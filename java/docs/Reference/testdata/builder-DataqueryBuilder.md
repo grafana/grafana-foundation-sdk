@@ -47,7 +47,7 @@ public dataqueryBuilder csvFileName(String csvFileName)
 ### <span class="badge object-method"></span> csvWave
 
 ```java
-public dataqueryBuilder csvWave(List<CSVWave> csvWave)
+public dataqueryBuilder csvWave(List<com.grafana.foundation.cog.Builder<CSVWave>> csvWave)
 ```
 
 ### <span class="badge object-method"></span> datasource
@@ -167,7 +167,7 @@ public dataqueryBuilder min(Double min)
 ### <span class="badge object-method"></span> nodes
 
 ```java
-public dataqueryBuilder nodes(NodesQuery nodes)
+public dataqueryBuilder nodes(com.grafana.foundation.cog.Builder<NodesQuery> nodes)
 ```
 
 ### <span class="badge object-method"></span> noise
@@ -185,7 +185,7 @@ public dataqueryBuilder points(List<List<Object>> points)
 ### <span class="badge object-method"></span> pulseWave
 
 ```java
-public dataqueryBuilder pulseWave(PulseWaveQuery pulseWave)
+public dataqueryBuilder pulseWave(com.grafana.foundation.cog.Builder<PulseWaveQuery> pulseWave)
 ```
 
 ### <span class="badge object-method"></span> queryType
@@ -217,7 +217,7 @@ public dataqueryBuilder refId(String refId)
 Optionally define expected query result behavior
 
 ```java
-public dataqueryBuilder resultAssertions(ResultAssertions resultAssertions)
+public dataqueryBuilder resultAssertions(com.grafana.foundation.cog.Builder<ResultAssertions> resultAssertions)
 ```
 
 ### <span class="badge object-method"></span> scenarioId
@@ -299,7 +299,7 @@ public dataqueryBuilder seriesCount(Long seriesCount)
 ### <span class="badge object-method"></span> sim
 
 ```java
-public dataqueryBuilder sim(SimulationQuery sim)
+public dataqueryBuilder sim(com.grafana.foundation.cog.Builder<SimulationQuery> sim)
 ```
 
 ### <span class="badge object-method"></span> spanCount
@@ -323,7 +323,7 @@ public dataqueryBuilder startValue(Double startValue)
 ### <span class="badge object-method"></span> stream
 
 ```java
-public dataqueryBuilder stream(StreamingQuery stream)
+public dataqueryBuilder stream(com.grafana.foundation.cog.Builder<StreamingQuery> stream)
 ```
 
 ### <span class="badge object-method"></span> stringInput
@@ -343,13 +343,13 @@ NOTE: unlike generic /ds/query, we can now send explicit time values in each que
 NOTE: the values for timeRange are not saved in a dashboard, they are constructed on the fly
 
 ```java
-public dataqueryBuilder timeRange(TimeRange timeRange)
+public dataqueryBuilder timeRange(com.grafana.foundation.cog.Builder<TimeRange> timeRange)
 ```
 
 ### <span class="badge object-method"></span> usa
 
 ```java
-public dataqueryBuilder usa(USAQuery usa)
+public dataqueryBuilder usa(com.grafana.foundation.cog.Builder<USAQuery> usa)
 ```
 
 ### <span class="badge object-method"></span> withNil

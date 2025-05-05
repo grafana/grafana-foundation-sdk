@@ -31,7 +31,7 @@ public AzureLogsQueryBuilder basicLogsQuery(Boolean basicLogsQuery)
 Builder query to be executed.
 
 ```java
-public AzureLogsQueryBuilder builderQuery(BuilderQueryExpression builderQuery)
+public AzureLogsQueryBuilder builderQuery(com.grafana.foundation.cog.Builder<BuilderQueryExpression> builderQuery)
 ```
 
 ### <span class="badge object-method"></span> dashboardTime

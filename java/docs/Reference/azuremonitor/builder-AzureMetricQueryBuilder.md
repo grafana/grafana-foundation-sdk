@@ -71,7 +71,7 @@ public AzureMetricQueryBuilder dimensionFilter(String dimensionFilter)
 Filters to reduce the set of data returned. Dimensions that can be filtered on are defined by the metric.
 
 ```java
-public AzureMetricQueryBuilder dimensionFilters(List<AzureMetricDimension> dimensionFilters)
+public AzureMetricQueryBuilder dimensionFilters(List<com.grafana.foundation.cog.Builder<AzureMetricDimension>> dimensionFilters)
 ```
 
 ### <span class="badge object-method"></span> metricDefinition
@@ -139,7 +139,7 @@ public AzureMetricQueryBuilder resourceUri(String resourceUri)
 Array of resource URIs to be queried.
 
 ```java
-public AzureMetricQueryBuilder resources(List<AzureMonitorResource> resources)
+public AzureMetricQueryBuilder resources(List<com.grafana.foundation.cog.Builder<AzureMonitorResource>> resources)
 ```
 
 ### <span class="badge object-method"></span> timeGrain

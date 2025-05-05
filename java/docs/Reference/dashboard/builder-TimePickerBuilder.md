@@ -39,7 +39,7 @@ public TimePickerBuilder nowDelay(String nowDelay)
 Quick ranges for time picker.
 
 ```java
-public TimePickerBuilder quickRanges(List<TimeOption> quickRanges)
+public TimePickerBuilder quickRanges(List<com.grafana.foundation.cog.Builder<TimeOption>> quickRanges)
 ```
 
 ### <span class="badge object-method"></span> refreshIntervals

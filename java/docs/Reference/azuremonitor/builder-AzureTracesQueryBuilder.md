@@ -23,7 +23,7 @@ public AzureTracesQuery build()
 Filters for property values.
 
 ```java
-public AzureTracesQueryBuilder filters(List<AzureTracesFilter> filters)
+public AzureTracesQueryBuilder filters(List<com.grafana.foundation.cog.Builder<AzureTracesFilter>> filters)
 ```
 
 ### <span class="badge object-method"></span> operationId

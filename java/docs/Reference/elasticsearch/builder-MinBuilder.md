@@ -39,7 +39,7 @@ public MinBuilder id(String id)
 ### <span class="badge object-method"></span> settings
 
 ```java
-public MinBuilder settings(ElasticsearchMinSettings settings)
+public MinBuilder settings(com.grafana.foundation.cog.Builder<ElasticsearchMinSettings> settings)
 ```
 
 ## See also

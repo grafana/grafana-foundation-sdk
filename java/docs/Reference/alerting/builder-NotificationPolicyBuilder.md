@@ -71,7 +71,7 @@ provides a Matches method to match a LabelSet against all Matchers in the
 slice. Note that some users of Matchers might require it to be sorted.
 
 ```java
-public NotificationPolicyBuilder matchers(List<Matcher> matchers)
+public NotificationPolicyBuilder matchers(List<com.grafana.foundation.cog.Builder<Matcher>> matchers)
 ```
 
 ### <span class="badge object-method"></span> muteTimeIntervals
@@ -107,7 +107,7 @@ public NotificationPolicyBuilder repeatInterval(String repeatInterval)
 ### <span class="badge object-method"></span> routes
 
 ```java
-public NotificationPolicyBuilder routes(List<NotificationPolicy> routes)
+public NotificationPolicyBuilder routes(List<com.grafana.foundation.cog.Builder<NotificationPolicy>> routes)
 ```
 
 ## See also

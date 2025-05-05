@@ -23,7 +23,7 @@ public DashboardMeta build()
 +k8s:deepcopy-gen=true
 
 ```java
-public DashboardMetaBuilder annotationsPermissions(AnnotationPermission annotationsPermissions)
+public DashboardMetaBuilder annotationsPermissions(com.grafana.foundation.cog.Builder<AnnotationPermission> annotationsPermissions)
 ```
 
 ### <span class="badge object-method"></span> apiVersion

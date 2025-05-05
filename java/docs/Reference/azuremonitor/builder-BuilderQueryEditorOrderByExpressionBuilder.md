@@ -27,7 +27,7 @@ public BuilderQueryEditorOrderByExpressionBuilder order(BuilderQueryEditorOrderB
 ### <span class="badge object-method"></span> property
 
 ```java
-public BuilderQueryEditorOrderByExpressionBuilder property(BuilderQueryEditorProperty property)
+public BuilderQueryEditorOrderByExpressionBuilder property(com.grafana.foundation.cog.Builder<BuilderQueryEditorProperty> property)
 ```
 
 ### <span class="badge object-method"></span> type

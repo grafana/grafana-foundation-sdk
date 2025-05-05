@@ -21,13 +21,13 @@ public BuilderQueryEditorWhereExpressionItems build()
 ### <span class="badge object-method"></span> operator
 
 ```java
-public BuilderQueryEditorWhereExpressionItemsBuilder operator(BuilderQueryEditorOperator operator)
+public BuilderQueryEditorWhereExpressionItemsBuilder operator(com.grafana.foundation.cog.Builder<BuilderQueryEditorOperator> operator)
 ```
 
 ### <span class="badge object-method"></span> property
 
 ```java
-public BuilderQueryEditorWhereExpressionItemsBuilder property(BuilderQueryEditorProperty property)
+public BuilderQueryEditorWhereExpressionItemsBuilder property(com.grafana.foundation.cog.Builder<BuilderQueryEditorProperty> property)
 ```
 
 ### <span class="badge object-method"></span> type
