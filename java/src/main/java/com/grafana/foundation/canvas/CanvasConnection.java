@@ -40,8 +40,8 @@ public class CanvasConnection {
     @JsonProperty("targetOriginal")
     public ConnectionCoordinates targetOriginal;
     public CanvasConnection() {
-        this.source = new com.grafana.foundation.canvas.ConnectionCoordinatesBuilder().build();
-        this.target = new com.grafana.foundation.canvas.ConnectionCoordinatesBuilder().build();
+        this.source = new com.grafana.foundation.canvas.ConnectionCoordinates();
+        this.target = new com.grafana.foundation.canvas.ConnectionCoordinates();
         this.path = ConnectionPath.STRAIGHT;
     }
     public CanvasConnection(ConnectionCoordinates source,ConnectionCoordinates target,String targetName,ConnectionPath path,ColorDimensionConfig color,ScaleDimensionConfig size,List<ConnectionCoordinates> vertices,ConnectionCoordinates sourceOriginal,ConnectionCoordinates targetOriginal) {

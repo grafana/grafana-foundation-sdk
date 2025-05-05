@@ -41,8 +41,8 @@ public class Options {
         this.rowHeight = 0.9f;
         this.showValue = VisibilityMode.AUTO;
         this.colWidth = 0.9;
-        this.legend = new com.grafana.foundation.common.VizLegendOptionsBuilder().build();
-        this.tooltip = new com.grafana.foundation.common.VizTooltipOptionsBuilder().build();
+        this.legend = new com.grafana.foundation.common.VizLegendOptions();
+        this.tooltip = new com.grafana.foundation.common.VizTooltipOptions();
         this.perPage = 20.0;
     }
     public Options(Float rowHeight,VisibilityMode showValue,Double colWidth,VizLegendOptions legend,VizTooltipOptions tooltip,List<String> timezone,Double perPage) {

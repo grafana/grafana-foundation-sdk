@@ -117,7 +117,7 @@ public TypeResampleBuilder refId(String refId)
 Optionally define expected query result behavior
 
 ```java
-public TypeResampleBuilder resultAssertions(ExprTypeResampleResultAssertions resultAssertions)
+public TypeResampleBuilder resultAssertions(com.grafana.foundation.cog.Builder<ExprTypeResampleResultAssertions> resultAssertions)
 ```
 
 ### <span class="badge object-method"></span> timeRange
@@ -129,7 +129,7 @@ NOTE: unlike generic /ds/query, we can now send explicit time values in each que
 NOTE: the values for timeRange are not saved in a dashboard, they are constructed on the fly
 
 ```java
-public TypeResampleBuilder timeRange(ExprTypeResampleTimeRange timeRange)
+public TypeResampleBuilder timeRange(com.grafana.foundation.cog.Builder<ExprTypeResampleTimeRange> timeRange)
 ```
 
 ### <span class="badge object-method"></span> upsampler

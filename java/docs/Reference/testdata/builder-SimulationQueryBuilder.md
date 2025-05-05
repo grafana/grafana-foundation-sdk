@@ -27,7 +27,7 @@ public SimulationQueryBuilder config(Object config)
 ### <span class="badge object-method"></span> key
 
 ```java
-public SimulationQueryBuilder key(Key key)
+public SimulationQueryBuilder key(com.grafana.foundation.cog.Builder<Key> key)
 ```
 
 ### <span class="badge object-method"></span> last

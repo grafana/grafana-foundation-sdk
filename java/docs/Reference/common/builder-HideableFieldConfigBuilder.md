@@ -21,7 +21,7 @@ public HideableFieldConfig build()
 ### <span class="badge object-method"></span> hideFrom
 
 ```java
-public HideableFieldConfigBuilder hideFrom(HideSeriesConfig hideFrom)
+public HideableFieldConfigBuilder hideFrom(com.grafana.foundation.cog.Builder<HideSeriesConfig> hideFrom)
 ```
 
 ## See also

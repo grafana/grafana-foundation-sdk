@@ -45,7 +45,7 @@ public DerivativeBuilder pipelineAgg(String pipelineAgg)
 ### <span class="badge object-method"></span> settings
 
 ```java
-public DerivativeBuilder settings(ElasticsearchDerivativeSettings settings)
+public DerivativeBuilder settings(com.grafana.foundation.cog.Builder<ElasticsearchDerivativeSettings> settings)
 ```
 
 ## See also

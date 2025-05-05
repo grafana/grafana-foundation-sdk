@@ -33,13 +33,13 @@ public BucketScriptBuilder id(String id)
 ### <span class="badge object-method"></span> pipelineVariables
 
 ```java
-public BucketScriptBuilder pipelineVariables(List<PipelineVariable> pipelineVariables)
+public BucketScriptBuilder pipelineVariables(List<com.grafana.foundation.cog.Builder<PipelineVariable>> pipelineVariables)
 ```
 
 ### <span class="badge object-method"></span> settings
 
 ```java
-public BucketScriptBuilder settings(ElasticsearchBucketScriptSettings settings)
+public BucketScriptBuilder settings(com.grafana.foundation.cog.Builder<ElasticsearchBucketScriptSettings> settings)
 ```
 
 ## See also
