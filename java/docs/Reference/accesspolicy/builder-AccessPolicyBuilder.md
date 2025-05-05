@@ -23,7 +23,7 @@ public AccessPolicy build()
 The role that must apply this policy
 
 ```java
-public AccessPolicyBuilder role(RoleRef role)
+public AccessPolicyBuilder role(com.grafana.foundation.cog.Builder<RoleRef> role)
 ```
 
 ### <span class="badge object-method"></span> rules
@@ -33,7 +33,7 @@ The set of rules to apply.  Note that * is required to modify
 access policy rules, and that "none" will reject all actions
 
 ```java
-public AccessPolicyBuilder rules(AccessRule rule)
+public AccessPolicyBuilder rules(com.grafana.foundation.cog.Builder<AccessRule> rule)
 ```
 
 ### <span class="badge object-method"></span> scope
@@ -41,7 +41,7 @@ public AccessPolicyBuilder rules(AccessRule rule)
 The scope where these policies should apply
 
 ```java
-public AccessPolicyBuilder scope(ResourceRef scope)
+public AccessPolicyBuilder scope(com.grafana.foundation.cog.Builder<ResourceRef> scope)
 ```
 
 ## See also

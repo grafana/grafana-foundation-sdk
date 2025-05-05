@@ -21,7 +21,7 @@ public ExprTypeThresholdConditions build()
 ### <span class="badge object-method"></span> evaluator
 
 ```java
-public ExprTypeThresholdConditionsBuilder evaluator(ExprTypeThresholdConditionsEvaluator evaluator)
+public ExprTypeThresholdConditionsBuilder evaluator(com.grafana.foundation.cog.Builder<ExprTypeThresholdConditionsEvaluator> evaluator)
 ```
 
 ### <span class="badge object-method"></span> loadedDimensions
@@ -33,7 +33,7 @@ public ExprTypeThresholdConditionsBuilder loadedDimensions(Object loadedDimensio
 ### <span class="badge object-method"></span> unloadEvaluator
 
 ```java
-public ExprTypeThresholdConditionsBuilder unloadEvaluator(ExprTypeThresholdConditionsUnloadEvaluator unloadEvaluator)
+public ExprTypeThresholdConditionsBuilder unloadEvaluator(com.grafana.foundation.cog.Builder<ExprTypeThresholdConditionsUnloadEvaluator> unloadEvaluator)
 ```
 
 ## See also

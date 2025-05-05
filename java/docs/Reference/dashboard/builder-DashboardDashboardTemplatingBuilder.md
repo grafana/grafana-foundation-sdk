@@ -23,7 +23,7 @@ public DashboardDashboardTemplating build()
 List of configured template variables with their saved values along with some other metadata
 
 ```java
-public DashboardDashboardTemplatingBuilder list(List<VariableModel> list)
+public DashboardDashboardTemplatingBuilder list(List<com.grafana.foundation.cog.Builder<VariableModel>> list)
 ```
 
 ## See also
