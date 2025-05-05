@@ -27,7 +27,7 @@ public MuteTimingBuilder name(String name)
 ### <span class="badge object-method"></span> timeIntervals
 
 ```java
-public MuteTimingBuilder timeIntervals(List<TimeInterval> timeIntervals)
+public MuteTimingBuilder timeIntervals(List<com.grafana.foundation.cog.Builder<TimeInterval>> timeIntervals)
 ```
 
 ## See also

@@ -39,7 +39,7 @@ public AverageBuilder id(String id)
 ### <span class="badge object-method"></span> settings
 
 ```java
-public AverageBuilder settings(ElasticsearchAverageSettings settings)
+public AverageBuilder settings(com.grafana.foundation.cog.Builder<ElasticsearchAverageSettings> settings)
 ```
 
 ## See also

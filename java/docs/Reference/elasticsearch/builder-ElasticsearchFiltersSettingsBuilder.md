@@ -21,7 +21,7 @@ public ElasticsearchFiltersSettings build()
 ### <span class="badge object-method"></span> filters
 
 ```java
-public ElasticsearchFiltersSettingsBuilder filters(List<Filter> filters)
+public ElasticsearchFiltersSettingsBuilder filters(List<com.grafana.foundation.cog.Builder<Filter>> filters)
 ```
 
 ## See also
