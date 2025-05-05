@@ -23,7 +23,7 @@ public TypeThreshold build()
 Threshold Conditions
 
 ```java
-public TypeThresholdBuilder conditions(List<ExprTypeThresholdConditions> conditions)
+public TypeThresholdBuilder conditions(List<com.grafana.foundation.cog.Builder<ExprTypeThresholdConditions>> conditions)
 ```
 
 ### <span class="badge object-method"></span> datasource
@@ -101,7 +101,7 @@ public TypeThresholdBuilder refId(String refId)
 Optionally define expected query result behavior
 
 ```java
-public TypeThresholdBuilder resultAssertions(ExprTypeThresholdResultAssertions resultAssertions)
+public TypeThresholdBuilder resultAssertions(com.grafana.foundation.cog.Builder<ExprTypeThresholdResultAssertions> resultAssertions)
 ```
 
 ### <span class="badge object-method"></span> timeRange
@@ -113,7 +113,7 @@ NOTE: unlike generic /ds/query, we can now send explicit time values in each que
 NOTE: the values for timeRange are not saved in a dashboard, they are constructed on the fly
 
 ```java
-public TypeThresholdBuilder timeRange(ExprTypeThresholdTimeRange timeRange)
+public TypeThresholdBuilder timeRange(com.grafana.foundation.cog.Builder<ExprTypeThresholdTimeRange> timeRange)
 ```
 
 ## See also

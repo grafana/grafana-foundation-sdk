@@ -33,7 +33,7 @@ public LogsBuilder id(String id)
 ### <span class="badge object-method"></span> settings
 
 ```java
-public LogsBuilder settings(ElasticsearchLogsSettings settings)
+public LogsBuilder settings(com.grafana.foundation.cog.Builder<ElasticsearchLogsSettings> settings)
 ```
 
 ## See also

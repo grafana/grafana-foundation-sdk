@@ -39,7 +39,7 @@ public PercentilesBuilder id(String id)
 ### <span class="badge object-method"></span> settings
 
 ```java
-public PercentilesBuilder settings(ElasticsearchPercentilesSettings settings)
+public PercentilesBuilder settings(com.grafana.foundation.cog.Builder<ElasticsearchPercentilesSettings> settings)
 ```
 
 ## See also

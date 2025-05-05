@@ -23,7 +23,7 @@ public HeatmapCalculationOptions build()
 The number of buckets to use for the xAxis in the heatmap
 
 ```java
-public HeatmapCalculationOptionsBuilder xBuckets(HeatmapCalculationBucketConfig xBuckets)
+public HeatmapCalculationOptionsBuilder xBuckets(com.grafana.foundation.cog.Builder<HeatmapCalculationBucketConfig> xBuckets)
 ```
 
 ### <span class="badge object-method"></span> yBuckets
@@ -31,7 +31,7 @@ public HeatmapCalculationOptionsBuilder xBuckets(HeatmapCalculationBucketConfig 
 The number of buckets to use for the yAxis in the heatmap
 
 ```java
-public HeatmapCalculationOptionsBuilder yBuckets(HeatmapCalculationBucketConfig yBuckets)
+public HeatmapCalculationOptionsBuilder yBuckets(com.grafana.foundation.cog.Builder<HeatmapCalculationBucketConfig> yBuckets)
 ```
 
 ## See also

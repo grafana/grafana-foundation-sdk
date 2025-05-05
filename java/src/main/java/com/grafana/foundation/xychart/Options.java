@@ -31,9 +31,9 @@ public class Options {
     @JsonProperty("series")
     public List<ScatterSeriesConfig> series;
     public Options() {
-        this.dims = new com.grafana.foundation.xychart.XYDimensionConfigBuilder().build();
-        this.legend = new com.grafana.foundation.common.VizLegendOptionsBuilder().build();
-        this.tooltip = new com.grafana.foundation.common.VizTooltipOptionsBuilder().build();
+        this.dims = new com.grafana.foundation.xychart.XYDimensionConfig();
+        this.legend = new com.grafana.foundation.common.VizLegendOptions();
+        this.tooltip = new com.grafana.foundation.common.VizTooltipOptions();
         this.series = new LinkedList<>();
     }
     public Options(SeriesMapping seriesMapping,XYDimensionConfig dims,VizLegendOptions legend,VizTooltipOptions tooltip,List<ScatterSeriesConfig> series) {

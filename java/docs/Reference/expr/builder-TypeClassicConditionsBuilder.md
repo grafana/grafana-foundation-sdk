@@ -21,7 +21,7 @@ public TypeClassicConditions build()
 ### <span class="badge object-method"></span> conditions
 
 ```java
-public TypeClassicConditionsBuilder conditions(List<ExprTypeClassicConditionsConditions> conditions)
+public TypeClassicConditionsBuilder conditions(List<com.grafana.foundation.cog.Builder<ExprTypeClassicConditionsConditions>> conditions)
 ```
 
 ### <span class="badge object-method"></span> datasource
@@ -91,7 +91,7 @@ public TypeClassicConditionsBuilder refId(String refId)
 Optionally define expected query result behavior
 
 ```java
-public TypeClassicConditionsBuilder resultAssertions(ExprTypeClassicConditionsResultAssertions resultAssertions)
+public TypeClassicConditionsBuilder resultAssertions(com.grafana.foundation.cog.Builder<ExprTypeClassicConditionsResultAssertions> resultAssertions)
 ```
 
 ### <span class="badge object-method"></span> timeRange
@@ -103,7 +103,7 @@ NOTE: unlike generic /ds/query, we can now send explicit time values in each que
 NOTE: the values for timeRange are not saved in a dashboard, they are constructed on the fly
 
 ```java
-public TypeClassicConditionsBuilder timeRange(ExprTypeClassicConditionsTimeRange timeRange)
+public TypeClassicConditionsBuilder timeRange(com.grafana.foundation.cog.Builder<ExprTypeClassicConditionsTimeRange> timeRange)
 ```
 
 ## See also
