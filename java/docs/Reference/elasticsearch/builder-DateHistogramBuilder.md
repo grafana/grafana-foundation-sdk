@@ -33,7 +33,7 @@ public DateHistogramBuilder id(String id)
 ### <span class="badge object-method"></span> settings
 
 ```java
-public DateHistogramBuilder settings(ElasticsearchDateHistogramSettings settings)
+public DateHistogramBuilder settings(com.grafana.foundation.cog.Builder<ElasticsearchDateHistogramSettings> settings)
 ```
 
 ## See also

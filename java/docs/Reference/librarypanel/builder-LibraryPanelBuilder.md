@@ -39,7 +39,7 @@ public LibraryPanelBuilder folderUid(String folderUid)
 Object storage metadata
 
 ```java
-public LibraryPanelBuilder meta(LibraryElementDTOMeta meta)
+public LibraryPanelBuilder meta(com.grafana.foundation.cog.Builder<LibraryElementDTOMeta> meta)
 ```
 
 ### <span class="badge object-method"></span> model
@@ -49,7 +49,7 @@ TODO: should be the same panel schema defined in dashboard
 Typescript: Omit<Panel, 'gridPos' | 'id' | 'libraryPanel'>;
 
 ```java
-public LibraryPanelBuilder model(PanelModel model)
+public LibraryPanelBuilder model(com.grafana.foundation.cog.Builder<PanelModel> model)
 ```
 
 ### <span class="badge object-method"></span> name
