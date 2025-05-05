@@ -31,7 +31,7 @@ public QueryBuilder datasourceUid(String datasourceUid)
 JSON is the raw JSON query and includes the above properties as well as custom properties.
 
 ```java
-public QueryBuilder model(Dataquery model)
+public QueryBuilder model(com.grafana.foundation.cog.Builder<Dataquery> model)
 ```
 
 ### <span class="badge object-method"></span> queryType
