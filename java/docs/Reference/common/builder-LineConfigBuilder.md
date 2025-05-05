@@ -33,7 +33,7 @@ public LineConfigBuilder lineInterpolation(LineInterpolation lineInterpolation)
 ### <span class="badge object-method"></span> lineStyle
 
 ```java
-public LineConfigBuilder lineStyle(LineStyle lineStyle)
+public LineConfigBuilder lineStyle(com.grafana.foundation.cog.Builder<LineStyle> lineStyle)
 ```
 
 ### <span class="badge object-method"></span> lineWidth

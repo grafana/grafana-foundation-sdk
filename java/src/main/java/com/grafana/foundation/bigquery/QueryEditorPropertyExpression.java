@@ -16,7 +16,7 @@ public class QueryEditorPropertyExpression {
     public QueryEditorProperty property;
     public QueryEditorPropertyExpression() {
         this.type = QueryEditorExpressionType.PROPERTY;
-        this.property = new com.grafana.foundation.bigquery.QueryEditorPropertyBuilder().build();
+        this.property = new com.grafana.foundation.bigquery.QueryEditorProperty();
     }
     public QueryEditorPropertyExpression(QueryEditorProperty property) {
         this.type = QueryEditorExpressionType.PROPERTY;

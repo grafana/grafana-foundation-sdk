@@ -20,7 +20,7 @@ public class SingleStatBaseOptions {
     @JsonProperty("orientation")
     public VizOrientation orientation;
     public SingleStatBaseOptions() {
-        this.reduceOptions = new com.grafana.foundation.common.ReduceDataOptionsBuilder().build();
+        this.reduceOptions = new com.grafana.foundation.common.ReduceDataOptions();
         this.orientation = VizOrientation.AUTO;
     }
     public SingleStatBaseOptions(ReduceDataOptions reduceOptions,VizTextDisplayOptions text,VizOrientation orientation) {

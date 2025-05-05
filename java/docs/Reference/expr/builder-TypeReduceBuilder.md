@@ -117,7 +117,7 @@ public TypeReduceBuilder refId(String refId)
 Optionally define expected query result behavior
 
 ```java
-public TypeReduceBuilder resultAssertions(ExprTypeReduceResultAssertions resultAssertions)
+public TypeReduceBuilder resultAssertions(com.grafana.foundation.cog.Builder<ExprTypeReduceResultAssertions> resultAssertions)
 ```
 
 ### <span class="badge object-method"></span> settings
@@ -125,7 +125,7 @@ public TypeReduceBuilder resultAssertions(ExprTypeReduceResultAssertions resultA
 Reducer Options
 
 ```java
-public TypeReduceBuilder settings(ExprTypeReduceSettings settings)
+public TypeReduceBuilder settings(com.grafana.foundation.cog.Builder<ExprTypeReduceSettings> settings)
 ```
 
 ### <span class="badge object-method"></span> timeRange
@@ -137,7 +137,7 @@ NOTE: unlike generic /ds/query, we can now send explicit time values in each que
 NOTE: the values for timeRange are not saved in a dashboard, they are constructed on the fly
 
 ```java
-public TypeReduceBuilder timeRange(ExprTypeReduceTimeRange timeRange)
+public TypeReduceBuilder timeRange(com.grafana.foundation.cog.Builder<ExprTypeReduceTimeRange> timeRange)
 ```
 
 ## See also

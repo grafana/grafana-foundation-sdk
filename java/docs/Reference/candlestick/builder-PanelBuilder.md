@@ -103,7 +103,7 @@ public PanelBuilder candleStyle(CandleStyle candleStyle)
 Panel color configuration
 
 ```java
-public PanelBuilder colorScheme(FieldColor color)
+public PanelBuilder colorScheme(com.grafana.foundation.cog.Builder<FieldColor> color)
 ```
 
 ### <span class="badge object-method"></span> colorStrategy
@@ -119,7 +119,7 @@ public PanelBuilder colorStrategy(ColorStrategy colorStrategy)
 Set which colors are used when the price movement is up or down
 
 ```java
-public PanelBuilder colors(CandlestickColors colors)
+public PanelBuilder colors(com.grafana.foundation.cog.Builder<CandlestickColors> colors)
 ```
 
 ### <span class="badge object-method"></span> dataLinks
@@ -127,7 +127,7 @@ public PanelBuilder colors(CandlestickColors colors)
 The behavior when clicking on a result
 
 ```java
-public PanelBuilder dataLinks(List<DashboardLink> links)
+public PanelBuilder dataLinks(List<com.grafana.foundation.cog.Builder<DashboardLink>> links)
 ```
 
 ### <span class="badge object-method"></span> datasource
@@ -179,7 +179,7 @@ public PanelBuilder drawStyle(GraphDrawStyle drawStyle)
 Map fields to appropriate dimension
 
 ```java
-public PanelBuilder fields(CandlestickFieldMap fields)
+public PanelBuilder fields(com.grafana.foundation.cog.Builder<CandlestickFieldMap> fields)
 ```
 
 ### <span class="badge object-method"></span> fillBelowTo
@@ -225,7 +225,7 @@ public PanelBuilder height(Integer h)
 ### <span class="badge object-method"></span> hideFrom
 
 ```java
-public PanelBuilder hideFrom(HideSeriesConfig hideFrom)
+public PanelBuilder hideFrom(com.grafana.foundation.cog.Builder<HideSeriesConfig> hideFrom)
 ```
 
 ### <span class="badge object-method"></span> hideTimeOverride
@@ -275,7 +275,7 @@ public PanelBuilder interval(String interval)
 ### <span class="badge object-method"></span> legend
 
 ```java
-public PanelBuilder legend(VizLegendOptions legend)
+public PanelBuilder legend(com.grafana.foundation.cog.Builder<VizLegendOptions> legend)
 ```
 
 ### <span class="badge object-method"></span> libraryPanel
@@ -301,7 +301,7 @@ public PanelBuilder lineInterpolation(LineInterpolation lineInterpolation)
 ### <span class="badge object-method"></span> lineStyle
 
 ```java
-public PanelBuilder lineStyle(LineStyle lineStyle)
+public PanelBuilder lineStyle(com.grafana.foundation.cog.Builder<LineStyle> lineStyle)
 ```
 
 ### <span class="badge object-method"></span> lineWidth
@@ -315,7 +315,7 @@ public PanelBuilder lineWidth(Double lineWidth)
 Panel links.
 
 ```java
-public PanelBuilder links(List<DashboardLink> links)
+public PanelBuilder links(List<com.grafana.foundation.cog.Builder<DashboardLink>> links)
 ```
 
 ### <span class="badge object-method"></span> mappings
@@ -411,7 +411,7 @@ public PanelBuilder overrideByRegexp(String regexp, List<DynamicConfigValue> pro
 Overrides are the options applied to specific fields overriding the defaults.
 
 ```java
-public PanelBuilder overrides(List<DashboardFieldConfigSourceOverrides> overrides)
+public PanelBuilder overrides(List<com.grafana.foundation.cog.Builder<DashboardFieldConfigSourceOverrides>> overrides)
 ```
 
 ### <span class="badge object-method"></span> pointColor
@@ -453,7 +453,7 @@ public PanelBuilder repeatDirection(PanelRepeatDirection repeatDirection)
 ### <span class="badge object-method"></span> scaleDistribution
 
 ```java
-public PanelBuilder scaleDistribution(ScaleDistributionConfig scaleDistribution)
+public PanelBuilder scaleDistribution(com.grafana.foundation.cog.Builder<ScaleDistributionConfig> scaleDistribution)
 ```
 
 ### <span class="badge object-method"></span> showPoints
@@ -485,7 +485,7 @@ public PanelBuilder spanNulls(BoolOrFloat64 spanNulls)
 ### <span class="badge object-method"></span> stacking
 
 ```java
-public PanelBuilder stacking(StackingConfig stacking)
+public PanelBuilder stacking(com.grafana.foundation.cog.Builder<StackingConfig> stacking)
 ```
 
 ### <span class="badge object-method"></span> targets
@@ -493,7 +493,7 @@ public PanelBuilder stacking(StackingConfig stacking)
 Depends on the panel plugin. See the plugin documentation for details.
 
 ```java
-public PanelBuilder targets(List<Dataquery> targets)
+public PanelBuilder targets(List<com.grafana.foundation.cog.Builder<Dataquery>> targets)
 ```
 
 ### <span class="badge object-method"></span> thresholds
@@ -501,13 +501,13 @@ public PanelBuilder targets(List<Dataquery> targets)
 Map numeric values to states
 
 ```java
-public PanelBuilder thresholds(ThresholdsConfig thresholds)
+public PanelBuilder thresholds(com.grafana.foundation.cog.Builder<ThresholdsConfig> thresholds)
 ```
 
 ### <span class="badge object-method"></span> thresholdsStyle
 
 ```java
-public PanelBuilder thresholdsStyle(GraphThresholdsStyleConfig thresholdsStyle)
+public PanelBuilder thresholdsStyle(com.grafana.foundation.cog.Builder<GraphThresholdsStyleConfig> thresholdsStyle)
 ```
 
 ### <span class="badge object-method"></span> timeFrom
@@ -611,7 +611,7 @@ public PanelBuilder unit(String unit)
 Overrides are the options applied to specific fields overriding the defaults.
 
 ```java
-public PanelBuilder withOverride(DashboardFieldConfigSourceOverrides override)
+public PanelBuilder withOverride(com.grafana.foundation.cog.Builder<DashboardFieldConfigSourceOverrides> override)
 ```
 
 ### <span class="badge object-method"></span> withTarget
@@ -619,7 +619,7 @@ public PanelBuilder withOverride(DashboardFieldConfigSourceOverrides override)
 Depends on the panel plugin. See the plugin documentation for details.
 
 ```java
-public PanelBuilder withTarget(Dataquery target)
+public PanelBuilder withTarget(com.grafana.foundation.cog.Builder<Dataquery> target)
 ```
 
 ### <span class="badge object-method"></span> withTransformation
