@@ -33,7 +33,7 @@ public PipelineMetricAggregationWithMultipleBucketPathsBuilder id(String id)
 ### <span class="badge object-method"></span> pipelineVariables
 
 ```java
-public PipelineMetricAggregationWithMultipleBucketPathsBuilder pipelineVariables(List<PipelineVariable> pipelineVariables)
+public PipelineMetricAggregationWithMultipleBucketPathsBuilder pipelineVariables(List<com.grafana.foundation.cog.Builder<PipelineVariable>> pipelineVariables)
 ```
 
 ### <span class="badge object-method"></span> type

@@ -39,7 +39,7 @@ public SumBuilder id(String id)
 ### <span class="badge object-method"></span> settings
 
 ```java
-public SumBuilder settings(ElasticsearchSumSettings settings)
+public SumBuilder settings(com.grafana.foundation.cog.Builder<ElasticsearchSumSettings> settings)
 ```
 
 ## See also

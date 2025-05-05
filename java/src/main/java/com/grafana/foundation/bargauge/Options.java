@@ -57,8 +57,8 @@ public class Options {
         this.sizing = BarGaugeSizing.AUTO;
         this.minVizWidth = 8;
         this.minVizHeight = 16;
-        this.legend = new com.grafana.foundation.common.VizLegendOptionsBuilder().build();
-        this.reduceOptions = new com.grafana.foundation.common.ReduceDataOptionsBuilder().build();
+        this.legend = new com.grafana.foundation.common.VizLegendOptions();
+        this.reduceOptions = new com.grafana.foundation.common.ReduceDataOptions();
         this.maxVizHeight = 300;
         this.orientation = VizOrientation.AUTO;
     }

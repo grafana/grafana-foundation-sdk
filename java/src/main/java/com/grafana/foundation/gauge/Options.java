@@ -38,7 +38,7 @@ public class Options {
         this.showThresholdMarkers = true;
         this.sizing = BarGaugeSizing.AUTO;
         this.minVizWidth = 75;
-        this.reduceOptions = new com.grafana.foundation.common.ReduceDataOptionsBuilder().build();
+        this.reduceOptions = new com.grafana.foundation.common.ReduceDataOptions();
         this.minVizHeight = 75;
         this.orientation = VizOrientation.AUTO;
     }

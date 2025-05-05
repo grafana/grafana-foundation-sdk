@@ -37,7 +37,7 @@ public RuleGroupBuilder interval(Long interval)
 ### <span class="badge object-method"></span> rules
 
 ```java
-public RuleGroupBuilder rules(List<Rule> rules)
+public RuleGroupBuilder rules(List<com.grafana.foundation.cog.Builder<Rule>> rules)
 ```
 
 ### <span class="badge object-method"></span> title
@@ -49,7 +49,7 @@ public RuleGroupBuilder title(String title)
 ### <span class="badge object-method"></span> withRule
 
 ```java
-public RuleGroupBuilder withRule(Rule rule)
+public RuleGroupBuilder withRule(com.grafana.foundation.cog.Builder<Rule> rule)
 ```
 
 ## See also

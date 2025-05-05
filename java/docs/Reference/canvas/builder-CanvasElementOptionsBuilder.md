@@ -21,13 +21,13 @@ public CanvasElementOptions build()
 ### <span class="badge object-method"></span> background
 
 ```java
-public CanvasElementOptionsBuilder background(BackgroundConfig background)
+public CanvasElementOptionsBuilder background(com.grafana.foundation.cog.Builder<BackgroundConfig> background)
 ```
 
 ### <span class="badge object-method"></span> border
 
 ```java
-public CanvasElementOptionsBuilder border(LineConfig border)
+public CanvasElementOptionsBuilder border(com.grafana.foundation.cog.Builder<LineConfig> border)
 ```
 
 ### <span class="badge object-method"></span> config
@@ -41,13 +41,13 @@ public CanvasElementOptionsBuilder config(Object config)
 ### <span class="badge object-method"></span> connections
 
 ```java
-public CanvasElementOptionsBuilder connections(List<CanvasConnection> connections)
+public CanvasElementOptionsBuilder connections(List<com.grafana.foundation.cog.Builder<CanvasConnection>> connections)
 ```
 
 ### <span class="badge object-method"></span> constraint
 
 ```java
-public CanvasElementOptionsBuilder constraint(Constraint constraint)
+public CanvasElementOptionsBuilder constraint(com.grafana.foundation.cog.Builder<Constraint> constraint)
 ```
 
 ### <span class="badge object-method"></span> name
@@ -59,7 +59,7 @@ public CanvasElementOptionsBuilder name(String name)
 ### <span class="badge object-method"></span> placement
 
 ```java
-public CanvasElementOptionsBuilder placement(Placement placement)
+public CanvasElementOptionsBuilder placement(com.grafana.foundation.cog.Builder<Placement> placement)
 ```
 
 ### <span class="badge object-method"></span> type

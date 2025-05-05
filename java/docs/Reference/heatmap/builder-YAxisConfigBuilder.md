@@ -107,7 +107,7 @@ public YAxisConfigBuilder reverse(Boolean reverse)
 ### <span class="badge object-method"></span> scaleDistribution
 
 ```java
-public YAxisConfigBuilder scaleDistribution(ScaleDistributionConfig scaleDistribution)
+public YAxisConfigBuilder scaleDistribution(com.grafana.foundation.cog.Builder<ScaleDistributionConfig> scaleDistribution)
 ```
 
 ### <span class="badge object-method"></span> unit

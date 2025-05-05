@@ -21,7 +21,7 @@ public FiltersSettings build()
 ### <span class="badge object-method"></span> filters
 
 ```java
-public FiltersSettingsBuilder filters(List<Filter> filters)
+public FiltersSettingsBuilder filters(List<com.grafana.foundation.cog.Builder<Filter>> filters)
 ```
 
 ## See also

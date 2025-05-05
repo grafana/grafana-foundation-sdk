@@ -27,7 +27,7 @@ public FiltersBuilder id(String id)
 ### <span class="badge object-method"></span> settings
 
 ```java
-public FiltersBuilder settings(ElasticsearchFiltersSettings settings)
+public FiltersBuilder settings(com.grafana.foundation.cog.Builder<ElasticsearchFiltersSettings> settings)
 ```
 
 ## See also

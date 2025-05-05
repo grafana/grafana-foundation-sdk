@@ -21,7 +21,7 @@ public Snapshot build()
 ### <span class="badge object-method"></span> dashboard
 
 ```java
-public SnapshotBuilder dashboard(Dashboard dashboard)
+public SnapshotBuilder dashboard(com.grafana.foundation.cog.Builder<Dashboard> dashboard)
 ```
 
 ### <span class="badge object-method"></span> expires
