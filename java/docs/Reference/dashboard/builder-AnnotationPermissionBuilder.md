@@ -21,13 +21,13 @@ public AnnotationPermission build()
 ### <span class="badge object-method"></span> dashboard
 
 ```java
-public AnnotationPermissionBuilder dashboard(AnnotationActions dashboard)
+public AnnotationPermissionBuilder dashboard(com.grafana.foundation.cog.Builder<AnnotationActions> dashboard)
 ```
 
 ### <span class="badge object-method"></span> organization
 
 ```java
-public AnnotationPermissionBuilder organization(AnnotationActions organization)
+public AnnotationPermissionBuilder organization(com.grafana.foundation.cog.Builder<AnnotationActions> organization)
 ```
 
 ## See also

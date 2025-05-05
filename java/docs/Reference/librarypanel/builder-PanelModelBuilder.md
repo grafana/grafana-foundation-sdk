@@ -61,7 +61,7 @@ public PanelModelBuilder interval(String interval)
 Panel links.
 
 ```java
-public PanelModelBuilder links(List<DashboardLink> links)
+public PanelModelBuilder links(List<com.grafana.foundation.cog.Builder<DashboardLink>> links)
 ```
 
 ### <span class="badge object-method"></span> maxDataPoints
@@ -127,7 +127,7 @@ public PanelModelBuilder tags(List<String> tags)
 Depends on the panel plugin. See the plugin documentation for details.
 
 ```java
-public PanelModelBuilder targets(List<Dataquery> targets)
+public PanelModelBuilder targets(List<com.grafana.foundation.cog.Builder<Dataquery>> targets)
 ```
 
 ### <span class="badge object-method"></span> timeFrom

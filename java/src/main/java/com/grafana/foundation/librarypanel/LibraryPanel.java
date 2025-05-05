@@ -47,7 +47,7 @@ public class LibraryPanel {
         this.name = "";
         this.type = "";
         this.version = 0L;
-        this.model = new com.grafana.foundation.librarypanel.PanelModelBuilder().build();
+        this.model = new com.grafana.foundation.librarypanel.PanelModel();
     }
     public LibraryPanel(String folderUid,String uid,String name,String description,String type,Short schemaVersion,Long version,PanelModel model,LibraryElementDTOMeta meta) {
         this.folderUid = folderUid;

@@ -31,7 +31,7 @@ public HeatmapCalculationBucketConfigBuilder mode(HeatmapCalculationMode mode)
 Controls the scale of the buckets
 
 ```java
-public HeatmapCalculationBucketConfigBuilder scale(ScaleDistributionConfig scale)
+public HeatmapCalculationBucketConfigBuilder scale(com.grafana.foundation.cog.Builder<ScaleDistributionConfig> scale)
 ```
 
 ### <span class="badge object-method"></span> value

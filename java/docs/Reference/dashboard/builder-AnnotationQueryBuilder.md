@@ -45,7 +45,7 @@ public AnnotationQueryBuilder expr(String expr)
 Filters to apply when fetching annotations
 
 ```java
-public AnnotationQueryBuilder filter(AnnotationPanelFilter filter)
+public AnnotationQueryBuilder filter(com.grafana.foundation.cog.Builder<AnnotationPanelFilter> filter)
 ```
 
 ### <span class="badge object-method"></span> hide
@@ -79,7 +79,7 @@ public AnnotationQueryBuilder name(String name)
 TODO.. this should just be a normal query target
 
 ```java
-public AnnotationQueryBuilder target(AnnotationTarget target)
+public AnnotationQueryBuilder target(com.grafana.foundation.cog.Builder<AnnotationTarget> target)
 ```
 
 ### <span class="badge object-method"></span> type

@@ -23,7 +23,7 @@ public GraphPanel build()
 @deprecated this is part of deprecated graph panel
 
 ```java
-public GraphPanelBuilder legend(DashboardGraphPanelLegend legend)
+public GraphPanelBuilder legend(com.grafana.foundation.cog.Builder<DashboardGraphPanelLegend> legend)
 ```
 
 ## See also

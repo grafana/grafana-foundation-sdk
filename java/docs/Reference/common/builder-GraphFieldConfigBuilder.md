@@ -117,7 +117,7 @@ public GraphFieldConfigBuilder gradientMode(GraphGradientMode gradientMode)
 ### <span class="badge object-method"></span> hideFrom
 
 ```java
-public GraphFieldConfigBuilder hideFrom(HideSeriesConfig hideFrom)
+public GraphFieldConfigBuilder hideFrom(com.grafana.foundation.cog.Builder<HideSeriesConfig> hideFrom)
 ```
 
 ### <span class="badge object-method"></span> insertNulls
@@ -141,7 +141,7 @@ public GraphFieldConfigBuilder lineInterpolation(LineInterpolation lineInterpola
 ### <span class="badge object-method"></span> lineStyle
 
 ```java
-public GraphFieldConfigBuilder lineStyle(LineStyle lineStyle)
+public GraphFieldConfigBuilder lineStyle(com.grafana.foundation.cog.Builder<LineStyle> lineStyle)
 ```
 
 ### <span class="badge object-method"></span> lineWidth
@@ -171,7 +171,7 @@ public GraphFieldConfigBuilder pointSymbol(String pointSymbol)
 ### <span class="badge object-method"></span> scaleDistribution
 
 ```java
-public GraphFieldConfigBuilder scaleDistribution(ScaleDistributionConfig scaleDistribution)
+public GraphFieldConfigBuilder scaleDistribution(com.grafana.foundation.cog.Builder<ScaleDistributionConfig> scaleDistribution)
 ```
 
 ### <span class="badge object-method"></span> showPoints
@@ -195,13 +195,13 @@ public GraphFieldConfigBuilder spanNulls(BoolOrFloat64 spanNulls)
 ### <span class="badge object-method"></span> stacking
 
 ```java
-public GraphFieldConfigBuilder stacking(StackingConfig stacking)
+public GraphFieldConfigBuilder stacking(com.grafana.foundation.cog.Builder<StackingConfig> stacking)
 ```
 
 ### <span class="badge object-method"></span> thresholdsStyle
 
 ```java
-public GraphFieldConfigBuilder thresholdsStyle(GraphThresholdsStyleConfig thresholdsStyle)
+public GraphFieldConfigBuilder thresholdsStyle(com.grafana.foundation.cog.Builder<GraphThresholdsStyleConfig> thresholdsStyle)
 ```
 
 ### <span class="badge object-method"></span> transform

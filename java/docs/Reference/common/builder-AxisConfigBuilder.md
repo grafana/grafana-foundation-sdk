@@ -69,7 +69,7 @@ public AxisConfigBuilder axisWidth(Double axisWidth)
 ### <span class="badge object-method"></span> scaleDistribution
 
 ```java
-public AxisConfigBuilder scaleDistribution(ScaleDistributionConfig scaleDistribution)
+public AxisConfigBuilder scaleDistribution(com.grafana.foundation.cog.Builder<ScaleDistributionConfig> scaleDistribution)
 ```
 
 ## See also
