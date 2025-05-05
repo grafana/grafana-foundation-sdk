@@ -47,7 +47,7 @@ public class Options {
         this.justifyMode = BigValueJustifyMode.AUTO;
         this.textMode = BigValueTextMode.AUTO;
         this.wideLayout = true;
-        this.reduceOptions = new com.grafana.foundation.common.ReduceDataOptionsBuilder().build();
+        this.reduceOptions = new com.grafana.foundation.common.ReduceDataOptions();
         this.showPercentChange = false;
         this.orientation = VizOrientation.AUTO;
     }

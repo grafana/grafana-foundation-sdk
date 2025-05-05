@@ -45,7 +45,7 @@ public dataqueryBuilder csvFileName(String csvFileName)
 ### <span class="badge object-method"></span> csvWave
 
 ```java
-public dataqueryBuilder csvWave(List<CSVWave> csvWave)
+public dataqueryBuilder csvWave(List<com.grafana.foundation.cog.Builder<CSVWave>> csvWave)
 ```
 
 ### <span class="badge object-method"></span> datasource
@@ -115,7 +115,7 @@ public dataqueryBuilder lines(Long lines)
 ### <span class="badge object-method"></span> nodes
 
 ```java
-public dataqueryBuilder nodes(NodesQuery nodes)
+public dataqueryBuilder nodes(com.grafana.foundation.cog.Builder<NodesQuery> nodes)
 ```
 
 ### <span class="badge object-method"></span> points
@@ -127,7 +127,7 @@ public dataqueryBuilder points(List<List<StringOrInt64>> points)
 ### <span class="badge object-method"></span> pulseWave
 
 ```java
-public dataqueryBuilder pulseWave(PulseWaveQuery pulseWave)
+public dataqueryBuilder pulseWave(com.grafana.foundation.cog.Builder<PulseWaveQuery> pulseWave)
 ```
 
 ### <span class="badge object-method"></span> queryType
@@ -173,7 +173,7 @@ public dataqueryBuilder seriesCount(Integer seriesCount)
 ### <span class="badge object-method"></span> sim
 
 ```java
-public dataqueryBuilder sim(SimulationQuery sim)
+public dataqueryBuilder sim(com.grafana.foundation.cog.Builder<SimulationQuery> sim)
 ```
 
 ### <span class="badge object-method"></span> spanCount
@@ -185,7 +185,7 @@ public dataqueryBuilder spanCount(Integer spanCount)
 ### <span class="badge object-method"></span> stream
 
 ```java
-public dataqueryBuilder stream(StreamingQuery stream)
+public dataqueryBuilder stream(com.grafana.foundation.cog.Builder<StreamingQuery> stream)
 ```
 
 ### <span class="badge object-method"></span> stringInput
@@ -197,7 +197,7 @@ public dataqueryBuilder stringInput(String stringInput)
 ### <span class="badge object-method"></span> usa
 
 ```java
-public dataqueryBuilder usa(USAQuery usa)
+public dataqueryBuilder usa(com.grafana.foundation.cog.Builder<USAQuery> usa)
 ```
 
 ## See also

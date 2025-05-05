@@ -33,7 +33,7 @@ public ManifestBuilder kind(String kind)
 ### <span class="badge object-method"></span> metadata
 
 ```java
-public ManifestBuilder metadata(Metadata metadata)
+public ManifestBuilder metadata(com.grafana.foundation.cog.Builder<Metadata> metadata)
 ```
 
 ### <span class="badge object-method"></span> spec

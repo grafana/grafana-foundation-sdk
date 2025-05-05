@@ -19,7 +19,7 @@ public class ExprTypeThresholdConditions {
     @JsonProperty("unloadEvaluator")
     public ExprTypeThresholdConditionsUnloadEvaluator unloadEvaluator;
     public ExprTypeThresholdConditions() {
-        this.evaluator = new com.grafana.foundation.expr.ExprTypeThresholdConditionsEvaluatorBuilder().build();
+        this.evaluator = new com.grafana.foundation.expr.ExprTypeThresholdConditionsEvaluator();
     }
     public ExprTypeThresholdConditions(ExprTypeThresholdConditionsEvaluator evaluator,Object loadedDimensions,ExprTypeThresholdConditionsUnloadEvaluator unloadEvaluator) {
         this.evaluator = evaluator;

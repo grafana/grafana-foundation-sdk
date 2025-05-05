@@ -21,7 +21,7 @@ public LineConfig build()
 ### <span class="badge object-method"></span> color
 
 ```java
-public LineConfigBuilder color(ColorDimensionConfig color)
+public LineConfigBuilder color(com.grafana.foundation.cog.Builder<ColorDimensionConfig> color)
 ```
 
 ### <span class="badge object-method"></span> width

@@ -29,7 +29,7 @@ Grafana comes with a native annotation store and the ability to add annotation e
 See https://grafana.com/docs/grafana/latest/dashboards/build-dashboards/annotate-visualizations/
 
 ```java
-public DashboardBuilder annotation(AnnotationQuery annotation)
+public DashboardBuilder annotation(com.grafana.foundation.cog.Builder<AnnotationQuery> annotation)
 ```
 
 ### <span class="badge object-method"></span> annotations
@@ -43,7 +43,7 @@ Grafana comes with a native annotation store and the ability to add annotation e
 See https://grafana.com/docs/grafana/latest/dashboards/build-dashboards/annotate-visualizations/
 
 ```java
-public DashboardBuilder annotations(List<AnnotationQuery> annotations)
+public DashboardBuilder annotations(List<com.grafana.foundation.cog.Builder<AnnotationQuery>> annotations)
 ```
 
 ### <span class="badge object-method"></span> description
@@ -93,7 +93,7 @@ public DashboardBuilder id(Long id)
 Links with references to other dashboards or external websites.
 
 ```java
-public DashboardBuilder link(DashboardLink link)
+public DashboardBuilder link(com.grafana.foundation.cog.Builder<DashboardLink> link)
 ```
 
 ### <span class="badge object-method"></span> links
@@ -101,7 +101,7 @@ public DashboardBuilder link(DashboardLink link)
 Links with references to other dashboards or external websites.
 
 ```java
-public DashboardBuilder links(List<DashboardLink> links)
+public DashboardBuilder links(List<com.grafana.foundation.cog.Builder<DashboardLink>> links)
 ```
 
 ### <span class="badge object-method"></span> liveNow
@@ -147,7 +147,7 @@ public DashboardBuilder revision(Long revision)
 Snapshot options. They are present only if the dashboard is a snapshot.
 
 ```java
-public DashboardBuilder snapshot(Snapshot snapshot)
+public DashboardBuilder snapshot(com.grafana.foundation.cog.Builder<Snapshot> snapshot)
 ```
 
 ### <span class="badge object-method"></span> tags
@@ -165,7 +165,7 @@ Time range for dashboard.
 Accepted values are relative time strings like {from: 'now-6h', to: 'now'} or absolute time strings like {from: '2020-07-10T08:00:00.000Z', to: '2020-07-10T14:00:00.000Z'}.
 
 ```java
-public DashboardBuilder time(DashboardDashboardTime time)
+public DashboardBuilder time(com.grafana.foundation.cog.Builder<DashboardDashboardTime> time)
 ```
 
 ### <span class="badge object-method"></span> timepicker
@@ -173,7 +173,7 @@ public DashboardBuilder time(DashboardDashboardTime time)
 Configuration of the time picker shown at the top of a dashboard.
 
 ```java
-public DashboardBuilder timepicker(TimePickerConfig timepicker)
+public DashboardBuilder timepicker(com.grafana.foundation.cog.Builder<TimePickerConfig> timepicker)
 ```
 
 ### <span class="badge object-method"></span> timezone
@@ -215,7 +215,7 @@ public DashboardBuilder uid(String uid)
 Configured template variables
 
 ```java
-public DashboardBuilder variables(List<VariableModel> variables)
+public DashboardBuilder variables(List<com.grafana.foundation.cog.Builder<VariableModel>> variables)
 ```
 
 ### <span class="badge object-method"></span> version
@@ -237,13 +237,13 @@ public DashboardBuilder weekStart(String weekStart)
 ### <span class="badge object-method"></span> withPanel
 
 ```java
-public DashboardBuilder withPanel(Panel panel)
+public DashboardBuilder withPanel(com.grafana.foundation.cog.Builder<Panel> panel)
 ```
 
 ### <span class="badge object-method"></span> withRow
 
 ```java
-public DashboardBuilder withRow(RowPanel rowPanel)
+public DashboardBuilder withRow(com.grafana.foundation.cog.Builder<RowPanel> rowPanel)
 ```
 
 ### <span class="badge object-method"></span> withVariable
@@ -251,7 +251,7 @@ public DashboardBuilder withRow(RowPanel rowPanel)
 Configured template variables
 
 ```java
-public DashboardBuilder withVariable(VariableModel variable)
+public DashboardBuilder withVariable(com.grafana.foundation.cog.Builder<VariableModel> variable)
 ```
 
 ## Examples
@@ -259,32 +259,42 @@ public DashboardBuilder withVariable(VariableModel variable)
 ### Building a dashboard
 
 ```java
+package example;
+
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.grafana.foundation.dashboard.Dashboard;
+import com.grafana.foundation.common.Constants;
+import com.grafana.foundation.dashboard.DashboardBuilder;
+import com.grafana.foundation.dashboard.DashboardDashboardTimeBuilder;
+import com.grafana.foundation.dashboard.RowBuilder;
+import com.grafana.foundation.prometheus.DataqueryBuilder;
+import com.grafana.foundation.timeseries.PanelBuilder;
+
+import java.util.List;
+
 public class Main {
-    public static void main(String[] args) {
-        Dashboard dashboard = new Dashboard.Builder("Sample Dashboard").
-                Uid("generated-from-java").
-                Tags(List.of("generated", "from", "java")).
-                Refresh("1m").Time(new DashboardDashboardTime.Builder().
-                        From("now-30m").
-                        To("now")
+    public static void main(String[] args) throws JsonProcessingException {
+        Dashboard dashboard = new DashboardBuilder("Sample Dashboard").
+                uid("generated-from-java").
+                tags(List.of("generated", "from", "java")).
+                refresh("1m").
+                time(new DashboardDashboardTimeBuilder().
+                        from("now-30m").
+                        to("now")
                 ).
-                Timezone(Constants.TimeZoneBrowser).
-                WithRow(new RowPanel.Builder("Overview")).
-                WithPanel(new PanelBuilder().
-                        Title("Network Received").
-                        Unit("bps").
-                        Min(0.0).
-                        WithTarget(new Dataquery.Builder().
-                                Expr("rate(node_network_receive_bytes_total{job=\"integrations/raspberrypi-node\", device!=\"lo\"}[$__rate_interval]) * 8").
-                                LegendFormat("{{ device }}")
+                timezone(Constants.TimeZoneBrowser).
+                withRow(new RowBuilder("Overview")).
+                withPanel(new PanelBuilder().
+                        title("Network Received").
+                        unit("bps").
+                        min(0.0).
+                        withTarget(new DataqueryBuilder().
+                                expr("rate(node_network_receive_bytes_total{job=\"integrations/raspberrypi-node\", device!=\"lo\"}[$__rate_interval]) * 8").
+                                legendFormat("{{ device }}")
                         )
                 ).build();
 
-        try {
-            System.out.println(dashboard.toJSON());
-        } catch (JsonProcessingException e) {
-            e.printStackTrace();
-        }
+        System.out.println(dashboard.toJSON());
     }
 }
 ```

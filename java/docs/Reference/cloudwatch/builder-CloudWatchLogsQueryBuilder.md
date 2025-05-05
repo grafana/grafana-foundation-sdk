@@ -71,7 +71,7 @@ public CloudWatchLogsQueryBuilder logGroupNames(List<String> logGroupNames)
 Log groups to query
 
 ```java
-public CloudWatchLogsQueryBuilder logGroups(List<LogGroup> logGroups)
+public CloudWatchLogsQueryBuilder logGroups(List<com.grafana.foundation.cog.Builder<LogGroup>> logGroups)
 ```
 
 ### <span class="badge object-method"></span> queryMode

@@ -45,7 +45,7 @@ public MovingFunctionBuilder pipelineAgg(String pipelineAgg)
 ### <span class="badge object-method"></span> settings
 
 ```java
-public MovingFunctionBuilder settings(ElasticsearchMovingFunctionSettings settings)
+public MovingFunctionBuilder settings(com.grafana.foundation.cog.Builder<ElasticsearchMovingFunctionSettings> settings)
 ```
 
 ## See also

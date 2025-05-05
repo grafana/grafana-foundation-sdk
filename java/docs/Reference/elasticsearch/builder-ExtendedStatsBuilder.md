@@ -45,7 +45,7 @@ public ExtendedStatsBuilder meta(Object meta)
 ### <span class="badge object-method"></span> settings
 
 ```java
-public ExtendedStatsBuilder settings(ElasticsearchExtendedStatsSettings settings)
+public ExtendedStatsBuilder settings(com.grafana.foundation.cog.Builder<ElasticsearchExtendedStatsSettings> settings)
 ```
 
 ## See also
