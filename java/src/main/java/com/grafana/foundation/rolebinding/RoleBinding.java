@@ -19,7 +19,7 @@ public class RoleBinding {
     public RoleBindingSubject subject;
     public RoleBinding() {
         this.role = new com.grafana.foundation.rolebinding.BuiltinRoleRefOrCustomRoleRef();
-        this.subject = new com.grafana.foundation.rolebinding.RoleBindingSubjectBuilder().build();
+        this.subject = new com.grafana.foundation.rolebinding.RoleBindingSubject();
     }
     public RoleBinding(BuiltinRoleRefOrCustomRoleRef role,RoleBindingSubject subject) {
         this.role = role;

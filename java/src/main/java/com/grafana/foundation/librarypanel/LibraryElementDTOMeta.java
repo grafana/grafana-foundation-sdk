@@ -31,8 +31,8 @@ public class LibraryElementDTOMeta {
         this.connectedDashboards = 0L;
         this.created = "";
         this.updated = "";
-        this.createdBy = new com.grafana.foundation.librarypanel.LibraryElementDTOMetaUserBuilder().build();
-        this.updatedBy = new com.grafana.foundation.librarypanel.LibraryElementDTOMetaUserBuilder().build();
+        this.createdBy = new com.grafana.foundation.librarypanel.LibraryElementDTOMetaUser();
+        this.updatedBy = new com.grafana.foundation.librarypanel.LibraryElementDTOMetaUser();
     }
     public LibraryElementDTOMeta(String folderName,String folderUid,Long connectedDashboards,String created,String updated,LibraryElementDTOMetaUser createdBy,LibraryElementDTOMetaUser updatedBy) {
         this.folderName = folderName;

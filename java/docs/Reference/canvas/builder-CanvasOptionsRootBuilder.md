@@ -23,7 +23,7 @@ public CanvasOptionsRoot build()
 The list of canvas elements attached to the root element
 
 ```java
-public CanvasOptionsRootBuilder elements(List<CanvasElementOptions> elements)
+public CanvasOptionsRootBuilder elements(List<com.grafana.foundation.cog.Builder<CanvasElementOptions>> elements)
 ```
 
 ### <span class="badge object-method"></span> name

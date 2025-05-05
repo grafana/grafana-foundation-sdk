@@ -22,7 +22,7 @@ public class SimulationQuery {
     @JsonProperty("stream")
     public Boolean stream;
     public SimulationQuery() {
-        this.key = new com.grafana.foundation.testdata.KeyBuilder().build();
+        this.key = new com.grafana.foundation.testdata.Key();
     }
     public SimulationQuery(Object config,Key key,Boolean last,Boolean stream) {
         this.config = config;

@@ -21,37 +21,37 @@ public XYSeriesConfig build()
 ### <span class="badge object-method"></span> color
 
 ```java
-public XYSeriesConfigBuilder color(XychartXYSeriesConfigColor color)
+public XYSeriesConfigBuilder color(com.grafana.foundation.cog.Builder<XychartXYSeriesConfigColor> color)
 ```
 
 ### <span class="badge object-method"></span> frame
 
 ```java
-public XYSeriesConfigBuilder frame(XychartXYSeriesConfigFrame frame)
+public XYSeriesConfigBuilder frame(com.grafana.foundation.cog.Builder<XychartXYSeriesConfigFrame> frame)
 ```
 
 ### <span class="badge object-method"></span> name
 
 ```java
-public XYSeriesConfigBuilder name(XychartXYSeriesConfigName name)
+public XYSeriesConfigBuilder name(com.grafana.foundation.cog.Builder<XychartXYSeriesConfigName> name)
 ```
 
 ### <span class="badge object-method"></span> size
 
 ```java
-public XYSeriesConfigBuilder size(XychartXYSeriesConfigSize size)
+public XYSeriesConfigBuilder size(com.grafana.foundation.cog.Builder<XychartXYSeriesConfigSize> size)
 ```
 
 ### <span class="badge object-method"></span> x
 
 ```java
-public XYSeriesConfigBuilder x(XychartXYSeriesConfigX x)
+public XYSeriesConfigBuilder x(com.grafana.foundation.cog.Builder<XychartXYSeriesConfigX> x)
 ```
 
 ### <span class="badge object-method"></span> y
 
 ```java
-public XYSeriesConfigBuilder y(XychartXYSeriesConfigY y)
+public XYSeriesConfigBuilder y(com.grafana.foundation.cog.Builder<XychartXYSeriesConfigY> y)
 ```
 
 ## See also

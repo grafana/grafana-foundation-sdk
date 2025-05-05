@@ -30,11 +30,11 @@ public class Options {
     @JsonProperty("tooltip")
     public TooltipOptions tooltip;
     public Options() {
-        this.view = new com.grafana.foundation.geomap.MapViewConfigBuilder().build();
-        this.controls = new com.grafana.foundation.geomap.ControlsOptionsBuilder().build();
-        this.basemap = new com.grafana.foundation.common.MapLayerOptionsBuilder().build();
+        this.view = new com.grafana.foundation.geomap.MapViewConfig();
+        this.controls = new com.grafana.foundation.geomap.ControlsOptions();
+        this.basemap = new com.grafana.foundation.common.MapLayerOptions();
         this.layers = new LinkedList<>();
-        this.tooltip = new com.grafana.foundation.geomap.TooltipOptionsBuilder().build();
+        this.tooltip = new com.grafana.foundation.geomap.TooltipOptions();
     }
     public Options(MapViewConfig view,ControlsOptions controls,MapLayerOptions basemap,List<MapLayerOptions> layers,TooltipOptions tooltip) {
         this.view = view;

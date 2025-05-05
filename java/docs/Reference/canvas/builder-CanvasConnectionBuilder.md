@@ -21,7 +21,7 @@ public CanvasConnection build()
 ### <span class="badge object-method"></span> color
 
 ```java
-public CanvasConnectionBuilder color(ColorDimensionConfig color)
+public CanvasConnectionBuilder color(com.grafana.foundation.cog.Builder<ColorDimensionConfig> color)
 ```
 
 ### <span class="badge object-method"></span> path
@@ -33,25 +33,25 @@ public CanvasConnectionBuilder path(ConnectionPath path)
 ### <span class="badge object-method"></span> size
 
 ```java
-public CanvasConnectionBuilder size(ScaleDimensionConfig size)
+public CanvasConnectionBuilder size(com.grafana.foundation.cog.Builder<ScaleDimensionConfig> size)
 ```
 
 ### <span class="badge object-method"></span> source
 
 ```java
-public CanvasConnectionBuilder source(ConnectionCoordinates source)
+public CanvasConnectionBuilder source(com.grafana.foundation.cog.Builder<ConnectionCoordinates> source)
 ```
 
 ### <span class="badge object-method"></span> sourceOriginal
 
 ```java
-public CanvasConnectionBuilder sourceOriginal(ConnectionCoordinates sourceOriginal)
+public CanvasConnectionBuilder sourceOriginal(com.grafana.foundation.cog.Builder<ConnectionCoordinates> sourceOriginal)
 ```
 
 ### <span class="badge object-method"></span> target
 
 ```java
-public CanvasConnectionBuilder target(ConnectionCoordinates target)
+public CanvasConnectionBuilder target(com.grafana.foundation.cog.Builder<ConnectionCoordinates> target)
 ```
 
 ### <span class="badge object-method"></span> targetName
@@ -63,13 +63,13 @@ public CanvasConnectionBuilder targetName(String targetName)
 ### <span class="badge object-method"></span> targetOriginal
 
 ```java
-public CanvasConnectionBuilder targetOriginal(ConnectionCoordinates targetOriginal)
+public CanvasConnectionBuilder targetOriginal(com.grafana.foundation.cog.Builder<ConnectionCoordinates> targetOriginal)
 ```
 
 ### <span class="badge object-method"></span> vertices
 
 ```java
-public CanvasConnectionBuilder vertices(List<ConnectionCoordinates> vertices)
+public CanvasConnectionBuilder vertices(List<com.grafana.foundation.cog.Builder<ConnectionCoordinates>> vertices)
 ```
 
 ## See also

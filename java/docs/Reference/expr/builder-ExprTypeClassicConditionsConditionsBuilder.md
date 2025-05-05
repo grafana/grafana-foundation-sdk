@@ -21,25 +21,25 @@ public ExprTypeClassicConditionsConditions build()
 ### <span class="badge object-method"></span> evaluator
 
 ```java
-public ExprTypeClassicConditionsConditionsBuilder evaluator(ExprTypeClassicConditionsConditionsEvaluator evaluator)
+public ExprTypeClassicConditionsConditionsBuilder evaluator(com.grafana.foundation.cog.Builder<ExprTypeClassicConditionsConditionsEvaluator> evaluator)
 ```
 
 ### <span class="badge object-method"></span> operator
 
 ```java
-public ExprTypeClassicConditionsConditionsBuilder operator(ExprTypeClassicConditionsConditionsOperator operator)
+public ExprTypeClassicConditionsConditionsBuilder operator(com.grafana.foundation.cog.Builder<ExprTypeClassicConditionsConditionsOperator> operator)
 ```
 
 ### <span class="badge object-method"></span> query
 
 ```java
-public ExprTypeClassicConditionsConditionsBuilder query(ExprTypeClassicConditionsConditionsQuery query)
+public ExprTypeClassicConditionsConditionsBuilder query(com.grafana.foundation.cog.Builder<ExprTypeClassicConditionsConditionsQuery> query)
 ```
 
 ### <span class="badge object-method"></span> reducer
 
 ```java
-public ExprTypeClassicConditionsConditionsBuilder reducer(ExprTypeClassicConditionsConditionsReducer reducer)
+public ExprTypeClassicConditionsConditionsBuilder reducer(com.grafana.foundation.cog.Builder<ExprTypeClassicConditionsConditionsReducer> reducer)
 ```
 
 ## See also
