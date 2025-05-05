@@ -39,7 +39,7 @@ public UniqueCountBuilder id(String id)
 ### <span class="badge object-method"></span> settings
 
 ```java
-public UniqueCountBuilder settings(ElasticsearchUniqueCountSettings settings)
+public UniqueCountBuilder settings(com.grafana.foundation.cog.Builder<ElasticsearchUniqueCountSettings> settings)
 ```
 
 ## See also

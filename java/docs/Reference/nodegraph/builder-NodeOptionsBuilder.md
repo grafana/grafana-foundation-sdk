@@ -23,7 +23,7 @@ public NodeOptions build()
 Define which fields are shown as part of the node arc (colored circle around the node).
 
 ```java
-public NodeOptionsBuilder arcs(List<ArcOption> arcs)
+public NodeOptionsBuilder arcs(List<com.grafana.foundation.cog.Builder<ArcOption>> arcs)
 ```
 
 ### <span class="badge object-method"></span> mainStatUnit

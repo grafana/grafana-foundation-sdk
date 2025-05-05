@@ -97,7 +97,7 @@ public TypeSqlBuilder refId(String refId)
 Optionally define expected query result behavior
 
 ```java
-public TypeSqlBuilder resultAssertions(ExprTypeSqlResultAssertions resultAssertions)
+public TypeSqlBuilder resultAssertions(com.grafana.foundation.cog.Builder<ExprTypeSqlResultAssertions> resultAssertions)
 ```
 
 ### <span class="badge object-method"></span> timeRange
@@ -109,7 +109,7 @@ NOTE: unlike generic /ds/query, we can now send explicit time values in each que
 NOTE: the values for timeRange are not saved in a dashboard, they are constructed on the fly
 
 ```java
-public TypeSqlBuilder timeRange(ExprTypeSqlTimeRange timeRange)
+public TypeSqlBuilder timeRange(com.grafana.foundation.cog.Builder<ExprTypeSqlTimeRange> timeRange)
 ```
 
 ## See also
