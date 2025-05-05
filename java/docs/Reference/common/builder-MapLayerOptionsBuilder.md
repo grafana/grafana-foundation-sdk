@@ -39,7 +39,7 @@ public MapLayerOptionsBuilder filterData(Object filterData)
 Common method to define geometry fields
 
 ```java
-public MapLayerOptionsBuilder location(FrameGeometrySource location)
+public MapLayerOptionsBuilder location(com.grafana.foundation.cog.Builder<FrameGeometrySource> location)
 ```
 
 ### <span class="badge object-method"></span> name

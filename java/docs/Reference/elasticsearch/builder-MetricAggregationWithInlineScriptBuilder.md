@@ -33,7 +33,7 @@ public MetricAggregationWithInlineScriptBuilder id(String id)
 ### <span class="badge object-method"></span> settings
 
 ```java
-public MetricAggregationWithInlineScriptBuilder settings(ElasticsearchMetricAggregationWithInlineScriptSettings settings)
+public MetricAggregationWithInlineScriptBuilder settings(com.grafana.foundation.cog.Builder<ElasticsearchMetricAggregationWithInlineScriptSettings> settings)
 ```
 
 ### <span class="badge object-method"></span> type

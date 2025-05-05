@@ -33,7 +33,7 @@ public MetricAggregationWithMissingSupportBuilder id(String id)
 ### <span class="badge object-method"></span> settings
 
 ```java
-public MetricAggregationWithMissingSupportBuilder settings(ElasticsearchMetricAggregationWithMissingSupportSettings settings)
+public MetricAggregationWithMissingSupportBuilder settings(com.grafana.foundation.cog.Builder<ElasticsearchMetricAggregationWithMissingSupportSettings> settings)
 ```
 
 ### <span class="badge object-method"></span> type

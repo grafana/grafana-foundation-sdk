@@ -21,7 +21,7 @@ public OptionsWithLegend build()
 ### <span class="badge object-method"></span> legend
 
 ```java
-public OptionsWithLegendBuilder legend(VizLegendOptions legend)
+public OptionsWithLegendBuilder legend(com.grafana.foundation.cog.Builder<VizLegendOptions> legend)
 ```
 
 ## See also

@@ -79,7 +79,7 @@ public RuleBuilder noDataState(RuleNoDataState noDataState)
 ### <span class="badge object-method"></span> notificationSettings
 
 ```java
-public RuleBuilder notificationSettings(NotificationSettings notificationSettings)
+public RuleBuilder notificationSettings(com.grafana.foundation.cog.Builder<NotificationSettings> notificationSettings)
 ```
 
 ### <span class="badge object-method"></span> orgID
@@ -97,13 +97,13 @@ public RuleBuilder provenance(String provenance)
 ### <span class="badge object-method"></span> queries
 
 ```java
-public RuleBuilder queries(List<Query> data)
+public RuleBuilder queries(List<com.grafana.foundation.cog.Builder<Query>> data)
 ```
 
 ### <span class="badge object-method"></span> record
 
 ```java
-public RuleBuilder record(RecordRule record)
+public RuleBuilder record(com.grafana.foundation.cog.Builder<RecordRule> record)
 ```
 
 ### <span class="badge object-method"></span> ruleGroup
@@ -133,7 +133,7 @@ public RuleBuilder updated(String updated)
 ### <span class="badge object-method"></span> withQuery
 
 ```java
-public RuleBuilder withQuery(Query data)
+public RuleBuilder withQuery(com.grafana.foundation.cog.Builder<Query> data)
 ```
 
 ## See also
