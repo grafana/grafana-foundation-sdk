@@ -151,7 +151,7 @@ public dataqueryBuilder refId(String refId)
 ### <span class="badge object-method"></span> scope
 
 ```java
-public dataqueryBuilder scope(PrometheusDataqueryScope scope)
+public dataqueryBuilder scope(com.grafana.foundation.cog.Builder<PrometheusDataqueryScope> scope)
 ```
 
 ## See also

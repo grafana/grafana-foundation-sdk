@@ -33,7 +33,7 @@ public RawDataBuilder id(String id)
 ### <span class="badge object-method"></span> settings
 
 ```java
-public RawDataBuilder settings(ElasticsearchRawDataSettings settings)
+public RawDataBuilder settings(com.grafana.foundation.cog.Builder<ElasticsearchRawDataSettings> settings)
 ```
 
 ## See also

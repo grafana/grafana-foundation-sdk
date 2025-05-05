@@ -21,7 +21,7 @@ public OptionsWithTextFormatting build()
 ### <span class="badge object-method"></span> text
 
 ```java
-public OptionsWithTextFormattingBuilder text(VizTextDisplayOptions text)
+public OptionsWithTextFormattingBuilder text(com.grafana.foundation.cog.Builder<VizTextDisplayOptions> text)
 ```
 
 ## See also

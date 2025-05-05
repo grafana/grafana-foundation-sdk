@@ -39,7 +39,7 @@ public MaxBuilder id(String id)
 ### <span class="badge object-method"></span> settings
 
 ```java
-public MaxBuilder settings(ElasticsearchMaxSettings settings)
+public MaxBuilder settings(com.grafana.foundation.cog.Builder<ElasticsearchMaxSettings> settings)
 ```
 
 ## See also

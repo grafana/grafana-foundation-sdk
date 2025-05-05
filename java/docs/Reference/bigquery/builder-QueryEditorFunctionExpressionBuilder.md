@@ -27,7 +27,7 @@ public QueryEditorFunctionExpressionBuilder name(String name)
 ### <span class="badge object-method"></span> parameters
 
 ```java
-public QueryEditorFunctionExpressionBuilder parameters(List<QueryEditorFunctionParameterExpression> parameters)
+public QueryEditorFunctionExpressionBuilder parameters(List<com.grafana.foundation.cog.Builder<QueryEditorFunctionParameterExpression>> parameters)
 ```
 
 ## See also
