@@ -181,7 +181,7 @@ public CloudWatchMetricsQueryBuilder region(String region)
 When the metric query type is set to `Insights` and the `metricEditorMode` is set to `Builder`, this field is used to build up an object representation of a SQL query.
 
 ```java
-public CloudWatchMetricsQueryBuilder sql(SQLExpression sql)
+public CloudWatchMetricsQueryBuilder sql(com.grafana.foundation.cog.Builder<SQLExpression> sql)
 ```
 
 ### <span class="badge object-method"></span> sqlExpression

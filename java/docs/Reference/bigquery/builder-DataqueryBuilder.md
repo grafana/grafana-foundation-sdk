@@ -137,7 +137,7 @@ public DataqueryBuilder sharded(Boolean sharded)
 ### <span class="badge object-method"></span> sql
 
 ```java
-public DataqueryBuilder sql(SQLExpression sql)
+public DataqueryBuilder sql(com.grafana.foundation.cog.Builder<SQLExpression> sql)
 ```
 
 ### <span class="badge object-method"></span> table

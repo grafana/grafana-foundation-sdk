@@ -93,7 +93,7 @@ public TypeMathBuilder refId(String refId)
 Optionally define expected query result behavior
 
 ```java
-public TypeMathBuilder resultAssertions(ExprTypeMathResultAssertions resultAssertions)
+public TypeMathBuilder resultAssertions(com.grafana.foundation.cog.Builder<ExprTypeMathResultAssertions> resultAssertions)
 ```
 
 ### <span class="badge object-method"></span> timeRange
@@ -105,7 +105,7 @@ NOTE: unlike generic /ds/query, we can now send explicit time values in each que
 NOTE: the values for timeRange are not saved in a dashboard, they are constructed on the fly
 
 ```java
-public TypeMathBuilder timeRange(ExprTypeMathTimeRange timeRange)
+public TypeMathBuilder timeRange(com.grafana.foundation.cog.Builder<ExprTypeMathTimeRange> timeRange)
 ```
 
 ## See also

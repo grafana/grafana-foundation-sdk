@@ -22,7 +22,7 @@ public class Manifest {
     public Manifest() {
         this.apiVersion = "";
         this.kind = "";
-        this.metadata = new com.grafana.foundation.resource.MetadataBuilder().build();
+        this.metadata = new com.grafana.foundation.resource.Metadata();
         this.spec = new Object();
     }
     public Manifest(String apiVersion,String kind,Metadata metadata,Object spec) {
