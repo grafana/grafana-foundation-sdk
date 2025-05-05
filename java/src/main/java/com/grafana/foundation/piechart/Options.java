@@ -37,9 +37,9 @@ public class Options {
     public VizOrientation orientation;
     public Options() {
         this.pieType = PieChartType.PIE;
-        this.tooltip = new com.grafana.foundation.common.VizTooltipOptionsBuilder().build();
-        this.reduceOptions = new com.grafana.foundation.common.ReduceDataOptionsBuilder().build();
-        this.legend = new com.grafana.foundation.piechart.PieChartLegendOptionsBuilder().build();
+        this.tooltip = new com.grafana.foundation.common.VizTooltipOptions();
+        this.reduceOptions = new com.grafana.foundation.common.ReduceDataOptions();
+        this.legend = new com.grafana.foundation.piechart.PieChartLegendOptions();
         this.orientation = VizOrientation.AUTO;
     }
     public Options(PieChartType pieType,List<PieChartLabels> displayLabels,VizTooltipOptions tooltip,ReduceDataOptions reduceOptions,VizTextDisplayOptions text,PieChartLegendOptions legend,VizOrientation orientation) {

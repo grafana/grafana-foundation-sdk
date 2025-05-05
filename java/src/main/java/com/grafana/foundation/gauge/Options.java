@@ -27,7 +27,7 @@ public class Options {
     public VizOrientation orientation;
     public Options() {
         this.showThresholdLabels = false;
-        this.reduceOptions = new com.grafana.foundation.common.ReduceDataOptionsBuilder().build();
+        this.reduceOptions = new com.grafana.foundation.common.ReduceDataOptions();
         this.showThresholdMarkers = true;
         this.orientation = VizOrientation.AUTO;
     }

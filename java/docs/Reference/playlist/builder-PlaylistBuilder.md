@@ -35,7 +35,7 @@ The ordered list of items that the playlist will iterate over.
 FIXME! This should not be optional, but changing it makes the godegen awkward
 
 ```java
-public PlaylistBuilder items(List<PlaylistItem> items)
+public PlaylistBuilder items(List<com.grafana.foundation.cog.Builder<PlaylistItem>> items)
 ```
 
 ### <span class="badge object-method"></span> name

@@ -69,7 +69,7 @@ public ScatterSeriesConfigBuilder axisWidth(Double axisWidth)
 ### <span class="badge object-method"></span> hideFrom
 
 ```java
-public ScatterSeriesConfigBuilder hideFrom(HideSeriesConfig hideFrom)
+public ScatterSeriesConfigBuilder hideFrom(com.grafana.foundation.cog.Builder<HideSeriesConfig> hideFrom)
 ```
 
 ### <span class="badge object-method"></span> label
@@ -81,19 +81,19 @@ public ScatterSeriesConfigBuilder label(VisibilityMode label)
 ### <span class="badge object-method"></span> labelValue
 
 ```java
-public ScatterSeriesConfigBuilder labelValue(TextDimensionConfig labelValue)
+public ScatterSeriesConfigBuilder labelValue(com.grafana.foundation.cog.Builder<TextDimensionConfig> labelValue)
 ```
 
 ### <span class="badge object-method"></span> lineColor
 
 ```java
-public ScatterSeriesConfigBuilder lineColor(ColorDimensionConfig lineColor)
+public ScatterSeriesConfigBuilder lineColor(com.grafana.foundation.cog.Builder<ColorDimensionConfig> lineColor)
 ```
 
 ### <span class="badge object-method"></span> lineStyle
 
 ```java
-public ScatterSeriesConfigBuilder lineStyle(LineStyle lineStyle)
+public ScatterSeriesConfigBuilder lineStyle(com.grafana.foundation.cog.Builder<LineStyle> lineStyle)
 ```
 
 ### <span class="badge object-method"></span> lineWidth
@@ -111,19 +111,19 @@ public ScatterSeriesConfigBuilder name(String name)
 ### <span class="badge object-method"></span> pointColor
 
 ```java
-public ScatterSeriesConfigBuilder pointColor(ColorDimensionConfig pointColor)
+public ScatterSeriesConfigBuilder pointColor(com.grafana.foundation.cog.Builder<ColorDimensionConfig> pointColor)
 ```
 
 ### <span class="badge object-method"></span> pointSize
 
 ```java
-public ScatterSeriesConfigBuilder pointSize(ScaleDimensionConfig pointSize)
+public ScatterSeriesConfigBuilder pointSize(com.grafana.foundation.cog.Builder<ScaleDimensionConfig> pointSize)
 ```
 
 ### <span class="badge object-method"></span> scaleDistribution
 
 ```java
-public ScatterSeriesConfigBuilder scaleDistribution(ScaleDistributionConfig scaleDistribution)
+public ScatterSeriesConfigBuilder scaleDistribution(com.grafana.foundation.cog.Builder<ScaleDistributionConfig> scaleDistribution)
 ```
 
 ### <span class="badge object-method"></span> show

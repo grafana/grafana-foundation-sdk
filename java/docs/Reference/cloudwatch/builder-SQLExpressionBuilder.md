@@ -31,7 +31,7 @@ public SQLExpressionBuilder from(QueryEditorPropertyExpressionOrQueryEditorFunct
 GROUP BY part of the SQL expression
 
 ```java
-public SQLExpressionBuilder groupBy(QueryEditorArrayExpression groupBy)
+public SQLExpressionBuilder groupBy(com.grafana.foundation.cog.Builder<QueryEditorArrayExpression> groupBy)
 ```
 
 ### <span class="badge object-method"></span> limit
@@ -47,7 +47,7 @@ public SQLExpressionBuilder limit(Long limit)
 ORDER BY part of the SQL expression
 
 ```java
-public SQLExpressionBuilder orderBy(QueryEditorFunctionExpression orderBy)
+public SQLExpressionBuilder orderBy(com.grafana.foundation.cog.Builder<QueryEditorFunctionExpression> orderBy)
 ```
 
 ### <span class="badge object-method"></span> orderByDirection
@@ -63,7 +63,7 @@ public SQLExpressionBuilder orderByDirection(String orderByDirection)
 SELECT part of the SQL expression
 
 ```java
-public SQLExpressionBuilder select(QueryEditorFunctionExpression select)
+public SQLExpressionBuilder select(com.grafana.foundation.cog.Builder<QueryEditorFunctionExpression> select)
 ```
 
 ### <span class="badge object-method"></span> where
@@ -71,7 +71,7 @@ public SQLExpressionBuilder select(QueryEditorFunctionExpression select)
 WHERE part of the SQL expression
 
 ```java
-public SQLExpressionBuilder where(QueryEditorArrayExpression where)
+public SQLExpressionBuilder where(com.grafana.foundation.cog.Builder<QueryEditorArrayExpression> where)
 ```
 
 ## See also

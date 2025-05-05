@@ -40,7 +40,7 @@ public class Options {
         this.valueMode = BarGaugeValueMode.COLOR;
         this.showUnfilled = true;
         this.minVizWidth = 0;
-        this.reduceOptions = new com.grafana.foundation.common.ReduceDataOptionsBuilder().build();
+        this.reduceOptions = new com.grafana.foundation.common.ReduceDataOptions();
         this.minVizHeight = 10;
         this.orientation = VizOrientation.AUTO;
     }

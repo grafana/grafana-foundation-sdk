@@ -35,7 +35,7 @@ public TempoQueryBuilder datasource(DataSourceRef datasource)
 ### <span class="badge object-method"></span> filters
 
 ```java
-public TempoQueryBuilder filters(List<TraceqlFilter> filters)
+public TempoQueryBuilder filters(List<com.grafana.foundation.cog.Builder<TraceqlFilter>> filters)
 ```
 
 ### <span class="badge object-method"></span> hide

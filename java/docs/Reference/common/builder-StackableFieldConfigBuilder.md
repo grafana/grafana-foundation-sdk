@@ -21,7 +21,7 @@ public StackableFieldConfig build()
 ### <span class="badge object-method"></span> stacking
 
 ```java
-public StackableFieldConfigBuilder stacking(StackingConfig stacking)
+public StackableFieldConfigBuilder stacking(com.grafana.foundation.cog.Builder<StackingConfig> stacking)
 ```
 
 ## See also
