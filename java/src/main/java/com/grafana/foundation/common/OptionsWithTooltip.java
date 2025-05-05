@@ -14,7 +14,7 @@ public class OptionsWithTooltip {
     @JsonProperty("tooltip")
     public VizTooltipOptions tooltip;
     public OptionsWithTooltip() {
-        this.tooltip = new com.grafana.foundation.common.VizTooltipOptionsBuilder().build();
+        this.tooltip = new com.grafana.foundation.common.VizTooltipOptions();
     }
     public OptionsWithTooltip(VizTooltipOptions tooltip) {
         this.tooltip = tooltip;

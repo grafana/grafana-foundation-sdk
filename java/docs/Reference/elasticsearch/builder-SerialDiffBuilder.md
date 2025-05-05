@@ -45,7 +45,7 @@ public SerialDiffBuilder pipelineAgg(String pipelineAgg)
 ### <span class="badge object-method"></span> settings
 
 ```java
-public SerialDiffBuilder settings(ElasticsearchSerialDiffSettings settings)
+public SerialDiffBuilder settings(com.grafana.foundation.cog.Builder<ElasticsearchSerialDiffSettings> settings)
 ```
 
 ## See also

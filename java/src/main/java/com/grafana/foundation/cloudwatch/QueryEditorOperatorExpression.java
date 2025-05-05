@@ -20,8 +20,8 @@ public class QueryEditorOperatorExpression {
     public QueryEditorOperator operator;
     public QueryEditorOperatorExpression() {
         this.type = QueryEditorExpressionType.OPERATOR;
-        this.property = new com.grafana.foundation.cloudwatch.QueryEditorPropertyBuilder().build();
-        this.operator = new com.grafana.foundation.cloudwatch.QueryEditorOperatorBuilder().build();
+        this.property = new com.grafana.foundation.cloudwatch.QueryEditorProperty();
+        this.operator = new com.grafana.foundation.cloudwatch.QueryEditorOperator();
     }
     public QueryEditorOperatorExpression(QueryEditorProperty property,QueryEditorOperator operator) {
         this.type = QueryEditorExpressionType.OPERATOR;
