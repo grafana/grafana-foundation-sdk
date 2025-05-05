@@ -27,13 +27,13 @@ public SingleStatBaseOptionsBuilder orientation(VizOrientation orientation)
 ### <span class="badge object-method"></span> reduceOptions
 
 ```java
-public SingleStatBaseOptionsBuilder reduceOptions(ReduceDataOptions reduceOptions)
+public SingleStatBaseOptionsBuilder reduceOptions(com.grafana.foundation.cog.Builder<ReduceDataOptions> reduceOptions)
 ```
 
 ### <span class="badge object-method"></span> text
 
 ```java
-public SingleStatBaseOptionsBuilder text(VizTextDisplayOptions text)
+public SingleStatBaseOptionsBuilder text(com.grafana.foundation.cog.Builder<VizTextDisplayOptions> text)
 ```
 
 ## See also

@@ -21,13 +21,13 @@ public BackgroundConfig build()
 ### <span class="badge object-method"></span> color
 
 ```java
-public BackgroundConfigBuilder color(ColorDimensionConfig color)
+public BackgroundConfigBuilder color(com.grafana.foundation.cog.Builder<ColorDimensionConfig> color)
 ```
 
 ### <span class="badge object-method"></span> image
 
 ```java
-public BackgroundConfigBuilder image(ResourceDimensionConfig image)
+public BackgroundConfigBuilder image(com.grafana.foundation.cog.Builder<ResourceDimensionConfig> image)
 ```
 
 ### <span class="badge object-method"></span> size

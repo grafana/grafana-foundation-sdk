@@ -51,7 +51,7 @@ public class Dataquery implements com.grafana.foundation.cog.variants.Dataquery 
     public DataSourceRef datasource;
     public Dataquery() {
         this.format = FormatOptions.TIME_SERIES;
-        this.connectionArgs = new com.grafana.foundation.athena.ConnectionArgsBuilder().build();
+        this.connectionArgs = new com.grafana.foundation.athena.ConnectionArgs();
         this.refId = "";
         this.rawSQL = "";
     }
