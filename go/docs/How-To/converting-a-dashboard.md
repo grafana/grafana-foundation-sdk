@@ -4,11 +4,12 @@
 package main
 
 import (
-    "encoding/json"
-    "fmt"
+	"encoding/json"
+	"fmt"
+	"os"
 
-    "github.com/grafana/grafana-foundation-sdk/go/cog/plugins"
-    "github.com/grafana/grafana-foundation-sdk/go/dashboard"
+	"github.com/grafana/grafana-foundation-sdk/go/cog/plugins"
+	"github.com/grafana/grafana-foundation-sdk/go/dashboard"
 )
 
 func main() {
