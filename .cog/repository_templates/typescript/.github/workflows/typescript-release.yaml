@@ -36,8 +36,14 @@ jobs:
 
       - name: Build
         run: yarn build
+        
+      - name: Get secrets
+        uses: grafana/shared-workflows/actions/get-vault-secrets@75804962c1ba608148988c1e2dc35fbb0ee21746
+        with:
+          repo_secrets: |
+            NPM_TOKEN=secrets:npm_token
 
       - name: Publish to NPM registry
         run: yarn publish --access public
         env:
-          NODE_AUTH_TOKEN: {{ `${{ secrets.NPM_TOKEN }}` }}
+          NODE_AUTH_TOKEN: {{ `${{ env.NPM_TOKEN }}` }}
