@@ -4,7 +4,7 @@ inputs:
   version:
     description: "Cog version to install"
     required: true
-    default: "0.0.34"
+    default: "0.0.35"
 outputs:
   bin-path:
     description: "Path to the cog binary"
