@@ -41,7 +41,7 @@ jobs:
           repo_secrets: |
             MAVEN_USERNAME=secrets:maven_username
             MAVEN_PASSWORD=secrets:maven_password
-            GPG_PASSPHRASE=gpg:private-key
+            GPG_PASSPHRASE=gpg:passphrase
             GPG_PUBLIC_KEY=gpg:public-key
             GPG_PRIVATE_KEY=gpg:private-key
           
