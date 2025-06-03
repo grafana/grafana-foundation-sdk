@@ -35,12 +35,26 @@ jobs:
         with:
           gradle-version: '8.8'
           
+      - name: Get secrets
+        uses: grafana/shared-workflows/actions/get-vault-secrets@75804962c1ba608148988c1e2dc35fbb0ee21746
+        with:
+          repo_secrets: |
+            MAVEN_USERNAME=secrets:maven_username
+            MAVEN_PASSWORD=secrets:maven_password
+            GPG_PASSPHRASE=gpg:private-key
+            GPG_PUBLIC_KEY=gpg:public-key
+            GPG_PRIVATE_KEY=gpg:private-key
+          
       - name: Publish package 📦
         env:
-          OSSRH_USERNAME: {{ `${{ secrets.OSSRH_USERNAME }}` }}
-          OSSRH_PASSWORD: {{ `${{ secrets.OSSRH_PASSWORD }}` }}
-          SIGNING_KEY: {{ `${{ secrets.SIGNING_KEY }}` }}
-          SIGNING_PASSWORD: {{ `${{ secrets.SIGNING_PASSWORD }}` }}
+          JRELEASER_MAVENCENTRAL_USERNAME: {{ `${{ env.MAVEN_USERNAME }}` }}
+          JRELEASER_MAVENCENTRAL_PASSWORD: {{ `${{ env.MAVEN_PASSWORD }}` }}
+          JRELEASER_GPG_PASSPHRASE: {{ `${{ env.GPG_PASSPHRASE }}` }}
+          JRELEASER_GPG_PUBLIC_KEY: {{ `${{ env.GPG_PUBLIC_KEY }}` }}
+          JRELEASER_GPG_SECRET_KEY: {{ `${{ env.GPG_PRIVATE_KEY }}` }}
         run:
-          gradle publishToSonatype closeAndReleaseSonatypeStagingRepository
+          gradle jreleaserConfig
+          gradle clean
+          gradle publish
+          gradle jreleaserFullRelease
   
