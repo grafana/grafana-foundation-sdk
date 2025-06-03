@@ -22,6 +22,7 @@ java {
 shadowJar {
     // allows maven to read the artifact (by default, it's "plain")
     archiveClassifier.set('')
+    relocate 'com.fasterxml.jackson', 'com.grafana.relocated.jackson'
 }
 
 allprojects {
