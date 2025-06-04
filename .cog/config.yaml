@@ -160,6 +160,9 @@ output:
     CogVersion: '%cog_version%'
     ReleaseBranch: '%release_branch%'
     BuildTimestamp: '%build_timestamp%'
+  output_options:
+    replace_extension:
+      tmpl: 'yaml'
 
   languages:
     - go:
