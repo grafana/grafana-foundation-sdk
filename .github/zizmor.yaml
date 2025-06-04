@@ -1,0 +1,4 @@
+rules:
+  template-injection:
+    ignore:
+      - ".cog/repository_templates/**/*.yaml"
