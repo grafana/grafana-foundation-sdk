@@ -109,6 +109,15 @@ publishing {
 }
 
 jreleaser {
+  release {
+    github {
+      enabled = false
+      skipRelease = true
+    }
+  }
+  announce {
+    enabled = false
+  }
   signing {
     active = 'ALWAYS'
     armored = true
@@ -116,24 +125,25 @@ jreleaser {
   deploy {
     maven {
       mavenCentral {
-        'release-deploy' {
+        mavenCentralRelease {
           active = 'RELEASE'
           url = 'https://central.sonatype.com/api/v1/publisher'
-          stagingRepository('target/staging-deploy')
+          stagingRepository('build/staging-deploy')
         }
-      }
-      nexus2 {
-        'snapshot-deploy' {
+        mavenCentralSnapshot {
           active = 'SNAPSHOT'
-          snapshotUrl = 'https://central.sonatype.com/repository/maven-snapshots'
-          applyMavenCentralRules = true
+          url = 'https://central.sonatype.com/repository/maven-snapshots'
           snapshotSupported = true
-          closeRepository = true
-          releaseRepository = true
-          stagingRepository('target/staging-deploy')
+          stagingRepository('build/staging-deploy')
         }
       }
     }
   }
+}
+
+tasks.withType(org.jreleaser.gradle.plugin.tasks.JReleaserConfigTask).configureEach {
+    dryrun = false
+    gitRootSearch = true
+    strict = false
 }
 {{- end }}
