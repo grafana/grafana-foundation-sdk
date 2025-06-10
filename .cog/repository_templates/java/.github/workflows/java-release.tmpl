@@ -22,6 +22,8 @@ jobs:
 
     steps:
       - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 #v4.2.2
+        with:
+          fetch-depth: 0
 
       - name: Uses Java SDK {{ `${{ env.JAVA_VERSION }}` }}
         uses: actions/setup-java@c5195efecf7bdfc987ee8bae7a71cb8b11521c00 #v4.7.1
@@ -53,6 +55,7 @@ jobs:
           JRELEASER_GPG_PUBLIC_KEY: {{ `${{ env.GPG_PUBLIC_KEY }}` }}
           JRELEASER_GPG_SECRET_KEY: {{ `${{ env.GPG_PRIVATE_KEY }}` }}
           JRELEASER_MAVENCENTRAL_STAGE: 'FULL'
+          JRELEASER_GITHUB_TOKEN: {{ `${{ secrets.GITHUB_TOKEN }}` }}
         run: |
           gradle clean
           gradle publish
