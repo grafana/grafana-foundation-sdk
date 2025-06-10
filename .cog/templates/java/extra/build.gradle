@@ -113,10 +113,16 @@ jreleaser {
     github {
       enabled = false
       skipRelease = true
+      changelog {
+        enabled = false
+      }
     }
   }
   announce {
-    enabled = false
+    active = 'NEVER'
+  }
+  upload {
+    active = 'NEVER'
   }
   signing {
     active = 'ALWAYS'
