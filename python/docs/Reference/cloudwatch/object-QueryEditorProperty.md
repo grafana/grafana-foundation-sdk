@@ -7,7 +7,7 @@ title: <span class="badge object-type-class"></span> QueryEditorProperty
 
 ```python
 class QueryEditorProperty:
-    type_val: cloudwatch.QueryEditorPropertyType
+    type_val: str
     name: typing.Optional[str]
 ```
 ## Methods

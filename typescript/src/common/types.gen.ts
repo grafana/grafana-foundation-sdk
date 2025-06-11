@@ -621,12 +621,6 @@ export type TimeZone = string;
 
 export const defaultTimeZone = (): TimeZone => ("browser");
 
-// Use UTC/GMT timezone
-export type TimeZoneUtc = "utc";
-
-// Use the timezone defined by end user web browser
-export type TimeZoneBrowser = "browser";
-
 // TODO docs
 export interface OptionsWithTextFormatting {
 	text?: VizTextDisplayOptions;
@@ -948,6 +942,12 @@ export const defaultTableCellHeight = (): TableCellHeight => (TableCellHeight.Sm
 export type TableCellOptions = TableAutoCellOptions | TableSparklineCellOptions | TableBarGaugeCellOptions | TableColoredBackgroundCellOptions | TableColorTextCellOptions | TableImageCellOptions | TableJsonViewCellOptions;
 
 export const defaultTableCellOptions = (): TableCellOptions => (defaultTableAutoCellOptions());
+
+// Use UTC/GMT timezone
+export type TimeZoneUtc = "utc";
+
+// Use the timezone defined by end user web browser
+export type TimeZoneBrowser = "browser";
 
 // Optional formats for the template variable replace functions
 // See also https://grafana.com/docs/grafana/latest/dashboards/variables/variable-syntax/#advanced-variable-format-options

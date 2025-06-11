@@ -843,16 +843,6 @@
       "type": "string",
       "description": "A specific timezone from https://en.wikipedia.org/wiki/Tz_database"
     },
-    "TimeZoneUtc": {
-      "type": "string",
-      "const": "utc",
-      "description": "Use UTC/GMT timezone"
-    },
-    "TimeZoneBrowser": {
-      "type": "string",
-      "const": "browser",
-      "description": "Use the timezone defined by end user web browser"
-    },
     "OptionsWithTextFormatting": {
       "type": "object",
       "additionalProperties": false,
@@ -1151,7 +1141,10 @@
         "type"
       ],
       "properties": {
-        "type": {}
+        "type": {
+          "$ref": "#/definitions/TableCellDisplayMode",
+          "default": "auto"
+        }
       },
       "description": "Auto mode table cell options"
     },
@@ -1162,7 +1155,10 @@
         "type"
       ],
       "properties": {
-        "type": {}
+        "type": {
+          "$ref": "#/definitions/TableCellDisplayMode",
+          "default": "color-text"
+        }
       },
       "description": "Colored text cell options"
     },
@@ -1173,7 +1169,10 @@
         "type"
       ],
       "properties": {
-        "type": {}
+        "type": {
+          "$ref": "#/definitions/TableCellDisplayMode",
+          "default": "json-view"
+        }
       },
       "description": "Json view cell options"
     },
@@ -1184,7 +1183,10 @@
         "type"
       ],
       "properties": {
-        "type": {}
+        "type": {
+          "$ref": "#/definitions/TableCellDisplayMode",
+          "default": "image"
+        }
       },
       "description": "Json view cell options"
     },
@@ -1195,7 +1197,10 @@
         "type"
       ],
       "properties": {
-        "type": {},
+        "type": {
+          "$ref": "#/definitions/TableCellDisplayMode",
+          "default": "gauge"
+        },
         "mode": {
           "$ref": "#/definitions/BarGaugeDisplayMode"
         },
@@ -1212,7 +1217,10 @@
         "type"
       ],
       "properties": {
-        "type": {},
+        "type": {
+          "$ref": "#/definitions/TableCellDisplayMode",
+          "default": "sparkline"
+        },
         "drawStyle": {
           "$ref": "#/definitions/GraphDrawStyle"
         },
@@ -1327,7 +1335,10 @@
         "type"
       ],
       "properties": {
-        "type": {},
+        "type": {
+          "$ref": "#/definitions/TableCellDisplayMode",
+          "default": "color-background"
+        },
         "mode": {
           "$ref": "#/definitions/TableCellBackgroundDisplayMode"
         }
@@ -1367,6 +1378,16 @@
         }
       ],
       "description": "Table cell options. Each cell has a display mode\nand other potential options for that display."
+    },
+    "TimeZoneUtc": {
+      "type": "string",
+      "const": "utc",
+      "description": "Use UTC/GMT timezone"
+    },
+    "TimeZoneBrowser": {
+      "type": "string",
+      "const": "browser",
+      "description": "Use the timezone defined by end user web browser"
     },
     "VariableFormatID": {
       "enum": [

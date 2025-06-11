@@ -11,14 +11,14 @@ var _ cog.Builder[VariableModel] = (*TextBoxVariableBuilder)(nil)
 // A variable is a placeholder for a value. You can use variables in metric queries and in panel titles.
 type TextBoxVariableBuilder struct {
 	internal *VariableModel
-	errors   map[string]cog.BuildErrors
+	errors   cog.BuildErrors
 }
 
 func NewTextBoxVariableBuilder(name string) *TextBoxVariableBuilder {
 	resource := NewVariableModel()
 	builder := &TextBoxVariableBuilder{
 		internal: resource,
-		errors:   make(map[string]cog.BuildErrors),
+		errors:   make(cog.BuildErrors, 0),
 	}
 	builder.internal.Name = name
 	builder.internal.Type = "textbox"
@@ -29,6 +29,10 @@ func NewTextBoxVariableBuilder(name string) *TextBoxVariableBuilder {
 func (builder *TextBoxVariableBuilder) Build() (VariableModel, error) {
 	if err := builder.internal.Validate(); err != nil {
 		return VariableModel{}, err
+	}
+
+	if len(builder.errors) > 0 {
+		return VariableModel{}, cog.MakeBuildErrors("dashboard.textBoxVariable", builder.errors)
 	}
 
 	return *builder.internal, nil

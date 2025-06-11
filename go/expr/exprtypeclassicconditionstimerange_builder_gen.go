@@ -10,14 +10,14 @@ var _ cog.Builder[ExprTypeClassicConditionsTimeRange] = (*ExprTypeClassicConditi
 
 type ExprTypeClassicConditionsTimeRangeBuilder struct {
 	internal *ExprTypeClassicConditionsTimeRange
-	errors   map[string]cog.BuildErrors
+	errors   cog.BuildErrors
 }
 
 func NewExprTypeClassicConditionsTimeRangeBuilder() *ExprTypeClassicConditionsTimeRangeBuilder {
 	resource := NewExprTypeClassicConditionsTimeRange()
 	builder := &ExprTypeClassicConditionsTimeRangeBuilder{
 		internal: resource,
-		errors:   make(map[string]cog.BuildErrors),
+		errors:   make(cog.BuildErrors, 0),
 	}
 
 	return builder
@@ -26,6 +26,10 @@ func NewExprTypeClassicConditionsTimeRangeBuilder() *ExprTypeClassicConditionsTi
 func (builder *ExprTypeClassicConditionsTimeRangeBuilder) Build() (ExprTypeClassicConditionsTimeRange, error) {
 	if err := builder.internal.Validate(); err != nil {
 		return ExprTypeClassicConditionsTimeRange{}, err
+	}
+
+	if len(builder.errors) > 0 {
+		return ExprTypeClassicConditionsTimeRange{}, cog.MakeBuildErrors("expr.exprTypeClassicConditionsTimeRange", builder.errors)
 	}
 
 	return *builder.internal, nil

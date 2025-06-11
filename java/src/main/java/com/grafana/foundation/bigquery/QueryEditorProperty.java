@@ -9,7 +9,6 @@ import com.fasterxml.jackson.databind.ObjectWriter;
 import com.fasterxml.jackson.annotation.JsonInclude;
 
 public class QueryEditorProperty {
-    @JsonInclude(JsonInclude.Include.NON_EMPTY)
     @JsonProperty("type")
     public QueryEditorPropertyType type;
     @JsonInclude(JsonInclude.Include.NON_NULL)
@@ -18,8 +17,8 @@ public class QueryEditorProperty {
     public QueryEditorProperty() {
         this.type = QueryEditorPropertyType.STRING;
     }
-    public QueryEditorProperty(QueryEditorPropertyType type,String name) {
-        this.type = type;
+    public QueryEditorProperty(String name) {
+        this.type = QueryEditorPropertyType.STRING;
         this.name = name;
     }
     

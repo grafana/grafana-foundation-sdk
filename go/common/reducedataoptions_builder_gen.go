@@ -11,14 +11,14 @@ var _ cog.Builder[ReduceDataOptions] = (*ReduceDataOptionsBuilder)(nil)
 // TODO docs
 type ReduceDataOptionsBuilder struct {
 	internal *ReduceDataOptions
-	errors   map[string]cog.BuildErrors
+	errors   cog.BuildErrors
 }
 
 func NewReduceDataOptionsBuilder() *ReduceDataOptionsBuilder {
 	resource := NewReduceDataOptions()
 	builder := &ReduceDataOptionsBuilder{
 		internal: resource,
-		errors:   make(map[string]cog.BuildErrors),
+		errors:   make(cog.BuildErrors, 0),
 	}
 
 	return builder
@@ -27,6 +27,10 @@ func NewReduceDataOptionsBuilder() *ReduceDataOptionsBuilder {
 func (builder *ReduceDataOptionsBuilder) Build() (ReduceDataOptions, error) {
 	if err := builder.internal.Validate(); err != nil {
 		return ReduceDataOptions{}, err
+	}
+
+	if len(builder.errors) > 0 {
+		return ReduceDataOptions{}, cog.MakeBuildErrors("common.reduceDataOptions", builder.errors)
 	}
 
 	return *builder.internal, nil
