@@ -12,14 +12,14 @@ var _ cog.Builder[TableFieldOptions] = (*TableFieldOptionsBuilder)(nil)
 // Generally defines alignment, filtering capabilties, display options, etc.
 type TableFieldOptionsBuilder struct {
 	internal *TableFieldOptions
-	errors   map[string]cog.BuildErrors
+	errors   cog.BuildErrors
 }
 
 func NewTableFieldOptionsBuilder() *TableFieldOptionsBuilder {
 	resource := NewTableFieldOptions()
 	builder := &TableFieldOptionsBuilder{
 		internal: resource,
-		errors:   make(map[string]cog.BuildErrors),
+		errors:   make(cog.BuildErrors, 0),
 	}
 
 	return builder
@@ -28,6 +28,10 @@ func NewTableFieldOptionsBuilder() *TableFieldOptionsBuilder {
 func (builder *TableFieldOptionsBuilder) Build() (TableFieldOptions, error) {
 	if err := builder.internal.Validate(); err != nil {
 		return TableFieldOptions{}, err
+	}
+
+	if len(builder.errors) > 0 {
+		return TableFieldOptions{}, cog.MakeBuildErrors("common.tableFieldOptions", builder.errors)
 	}
 
 	return *builder.internal, nil

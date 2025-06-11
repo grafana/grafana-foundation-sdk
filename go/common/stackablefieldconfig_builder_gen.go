@@ -11,14 +11,14 @@ var _ cog.Builder[StackableFieldConfig] = (*StackableFieldConfigBuilder)(nil)
 // TODO docs
 type StackableFieldConfigBuilder struct {
 	internal *StackableFieldConfig
-	errors   map[string]cog.BuildErrors
+	errors   cog.BuildErrors
 }
 
 func NewStackableFieldConfigBuilder() *StackableFieldConfigBuilder {
 	resource := NewStackableFieldConfig()
 	builder := &StackableFieldConfigBuilder{
 		internal: resource,
-		errors:   make(map[string]cog.BuildErrors),
+		errors:   make(cog.BuildErrors, 0),
 	}
 
 	return builder
@@ -29,13 +29,17 @@ func (builder *StackableFieldConfigBuilder) Build() (StackableFieldConfig, error
 		return StackableFieldConfig{}, err
 	}
 
+	if len(builder.errors) > 0 {
+		return StackableFieldConfig{}, cog.MakeBuildErrors("common.stackableFieldConfig", builder.errors)
+	}
+
 	return *builder.internal, nil
 }
 
 func (builder *StackableFieldConfigBuilder) Stacking(stacking cog.Builder[StackingConfig]) *StackableFieldConfigBuilder {
 	stackingResource, err := stacking.Build()
 	if err != nil {
-		builder.errors["stacking"] = err.(cog.BuildErrors)
+		builder.errors = append(builder.errors, err.(cog.BuildErrors)...)
 		return builder
 	}
 	builder.internal.Stacking = &stackingResource

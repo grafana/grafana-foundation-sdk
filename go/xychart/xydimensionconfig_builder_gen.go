@@ -10,14 +10,14 @@ var _ cog.Builder[XYDimensionConfig] = (*XYDimensionConfigBuilder)(nil)
 
 type XYDimensionConfigBuilder struct {
 	internal *XYDimensionConfig
-	errors   map[string]cog.BuildErrors
+	errors   cog.BuildErrors
 }
 
 func NewXYDimensionConfigBuilder() *XYDimensionConfigBuilder {
 	resource := NewXYDimensionConfig()
 	builder := &XYDimensionConfigBuilder{
 		internal: resource,
-		errors:   make(map[string]cog.BuildErrors),
+		errors:   make(cog.BuildErrors, 0),
 	}
 
 	return builder
@@ -26,6 +26,10 @@ func NewXYDimensionConfigBuilder() *XYDimensionConfigBuilder {
 func (builder *XYDimensionConfigBuilder) Build() (XYDimensionConfig, error) {
 	if err := builder.internal.Validate(); err != nil {
 		return XYDimensionConfig{}, err
+	}
+
+	if len(builder.errors) > 0 {
+		return XYDimensionConfig{}, cog.MakeBuildErrors("xychart.xYDimensionConfig", builder.errors)
 	}
 
 	return *builder.internal, nil

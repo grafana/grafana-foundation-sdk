@@ -10,14 +10,14 @@ var _ cog.Builder[DashboardGraphPanelLegend] = (*DashboardGraphPanelLegendBuilde
 
 type DashboardGraphPanelLegendBuilder struct {
 	internal *DashboardGraphPanelLegend
-	errors   map[string]cog.BuildErrors
+	errors   cog.BuildErrors
 }
 
 func NewDashboardGraphPanelLegendBuilder() *DashboardGraphPanelLegendBuilder {
 	resource := NewDashboardGraphPanelLegend()
 	builder := &DashboardGraphPanelLegendBuilder{
 		internal: resource,
-		errors:   make(map[string]cog.BuildErrors),
+		errors:   make(cog.BuildErrors, 0),
 	}
 
 	return builder
@@ -26,6 +26,10 @@ func NewDashboardGraphPanelLegendBuilder() *DashboardGraphPanelLegendBuilder {
 func (builder *DashboardGraphPanelLegendBuilder) Build() (DashboardGraphPanelLegend, error) {
 	if err := builder.internal.Validate(); err != nil {
 		return DashboardGraphPanelLegend{}, err
+	}
+
+	if len(builder.errors) > 0 {
+		return DashboardGraphPanelLegend{}, cog.MakeBuildErrors("dashboard.dashboardGraphPanelLegend", builder.errors)
 	}
 
 	return *builder.internal, nil

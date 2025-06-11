@@ -185,11 +185,6 @@ class CanvasConnection(cogbuilder.Builder[canvas.CanvasConnection]):
     
         return self
     
-    def path(self, path: canvas.ConnectionPath) -> typing.Self:    
-        self._internal.path = path
-    
-        return self
-    
     def color(self, color: cogbuilder.Builder[common.ColorDimensionConfig]) -> typing.Self:    
         color_resource = color.build()
         self._internal.color = color_resource

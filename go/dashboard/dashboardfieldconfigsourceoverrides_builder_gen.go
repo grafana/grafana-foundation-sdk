@@ -10,14 +10,14 @@ var _ cog.Builder[DashboardFieldConfigSourceOverrides] = (*DashboardFieldConfigS
 
 type DashboardFieldConfigSourceOverridesBuilder struct {
 	internal *DashboardFieldConfigSourceOverrides
-	errors   map[string]cog.BuildErrors
+	errors   cog.BuildErrors
 }
 
 func NewDashboardFieldConfigSourceOverridesBuilder() *DashboardFieldConfigSourceOverridesBuilder {
 	resource := NewDashboardFieldConfigSourceOverrides()
 	builder := &DashboardFieldConfigSourceOverridesBuilder{
 		internal: resource,
-		errors:   make(map[string]cog.BuildErrors),
+		errors:   make(cog.BuildErrors, 0),
 	}
 
 	return builder
@@ -26,6 +26,10 @@ func NewDashboardFieldConfigSourceOverridesBuilder() *DashboardFieldConfigSource
 func (builder *DashboardFieldConfigSourceOverridesBuilder) Build() (DashboardFieldConfigSourceOverrides, error) {
 	if err := builder.internal.Validate(); err != nil {
 		return DashboardFieldConfigSourceOverrides{}, err
+	}
+
+	if len(builder.errors) > 0 {
+		return DashboardFieldConfigSourceOverrides{}, cog.MakeBuildErrors("dashboard.dashboardFieldConfigSourceOverrides", builder.errors)
 	}
 
 	return *builder.internal, nil

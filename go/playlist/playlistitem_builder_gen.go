@@ -10,14 +10,14 @@ var _ cog.Builder[PlaylistItem] = (*PlaylistItemBuilder)(nil)
 
 type PlaylistItemBuilder struct {
 	internal *PlaylistItem
-	errors   map[string]cog.BuildErrors
+	errors   cog.BuildErrors
 }
 
 func NewPlaylistItemBuilder() *PlaylistItemBuilder {
 	resource := NewPlaylistItem()
 	builder := &PlaylistItemBuilder{
 		internal: resource,
-		errors:   make(map[string]cog.BuildErrors),
+		errors:   make(cog.BuildErrors, 0),
 	}
 
 	return builder
@@ -26,6 +26,10 @@ func NewPlaylistItemBuilder() *PlaylistItemBuilder {
 func (builder *PlaylistItemBuilder) Build() (PlaylistItem, error) {
 	if err := builder.internal.Validate(); err != nil {
 		return PlaylistItem{}, err
+	}
+
+	if len(builder.errors) > 0 {
+		return PlaylistItem{}, cog.MakeBuildErrors("playlist.playlistItem", builder.errors)
 	}
 
 	return *builder.internal, nil

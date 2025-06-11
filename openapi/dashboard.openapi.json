@@ -645,7 +645,10 @@
           "options"
         ],
         "properties": {
-          "type": {},
+          "type": {
+            "$ref": "#/components/schemas/MappingType",
+            "default": "value"
+          },
           "options": {
             "type": "object",
             "additionalProperties": {
@@ -696,7 +699,10 @@
           "options"
         ],
         "properties": {
-          "type": {},
+          "type": {
+            "$ref": "#/components/schemas/MappingType",
+            "default": "range"
+          },
           "options": {
             "type": "object",
             "additionalProperties": false,
@@ -732,7 +738,10 @@
           "options"
         ],
         "properties": {
-          "type": {},
+          "type": {
+            "$ref": "#/components/schemas/MappingType",
+            "default": "regex"
+          },
           "options": {
             "type": "object",
             "additionalProperties": false,
@@ -763,7 +772,10 @@
           "options"
         ],
         "properties": {
-          "type": {},
+          "type": {
+            "$ref": "#/components/schemas/MappingType",
+            "default": "special"
+          },
           "options": {
             "type": "object",
             "additionalProperties": false,

@@ -12,14 +12,14 @@ var _ cog.Builder[variants.Dataquery] = (*TempoQueryBuilder)(nil)
 
 type TempoQueryBuilder struct {
 	internal *TempoQuery
-	errors   map[string]cog.BuildErrors
+	errors   cog.BuildErrors
 }
 
 func NewTempoQueryBuilder() *TempoQueryBuilder {
 	resource := NewTempoQuery()
 	builder := &TempoQueryBuilder{
 		internal: resource,
-		errors:   make(map[string]cog.BuildErrors),
+		errors:   make(cog.BuildErrors, 0),
 	}
 
 	return builder
@@ -28,6 +28,10 @@ func NewTempoQueryBuilder() *TempoQueryBuilder {
 func (builder *TempoQueryBuilder) Build() (variants.Dataquery, error) {
 	if err := builder.internal.Validate(); err != nil {
 		return TempoQuery{}, err
+	}
+
+	if len(builder.errors) > 0 {
+		return TempoQuery{}, cog.MakeBuildErrors("tempo.tempoQuery", builder.errors)
 	}
 
 	return *builder.internal, nil
@@ -137,7 +141,7 @@ func (builder *TempoQueryBuilder) Filters(filters []cog.Builder[TraceqlFilter]) 
 	for _, r1 := range filters {
 		filtersDepth1, err := r1.Build()
 		if err != nil {
-			builder.errors["filters"] = err.(cog.BuildErrors)
+			builder.errors = append(builder.errors, err.(cog.BuildErrors)...)
 			return builder
 		}
 		filtersResources = append(filtersResources, filtersDepth1)

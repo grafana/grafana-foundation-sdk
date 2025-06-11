@@ -11,14 +11,14 @@ var _ cog.Builder[GraphFieldConfig] = (*GraphFieldConfigBuilder)(nil)
 // TODO docs
 type GraphFieldConfigBuilder struct {
 	internal *GraphFieldConfig
-	errors   map[string]cog.BuildErrors
+	errors   cog.BuildErrors
 }
 
 func NewGraphFieldConfigBuilder() *GraphFieldConfigBuilder {
 	resource := NewGraphFieldConfig()
 	builder := &GraphFieldConfigBuilder{
 		internal: resource,
-		errors:   make(map[string]cog.BuildErrors),
+		errors:   make(cog.BuildErrors, 0),
 	}
 
 	return builder
@@ -27,6 +27,10 @@ func NewGraphFieldConfigBuilder() *GraphFieldConfigBuilder {
 func (builder *GraphFieldConfigBuilder) Build() (GraphFieldConfig, error) {
 	if err := builder.internal.Validate(); err != nil {
 		return GraphFieldConfig{}, err
+	}
+
+	if len(builder.errors) > 0 {
+		return GraphFieldConfig{}, cog.MakeBuildErrors("common.graphFieldConfig", builder.errors)
 	}
 
 	return *builder.internal, nil
@@ -47,7 +51,7 @@ func (builder *GraphFieldConfigBuilder) GradientMode(gradientMode GraphGradientM
 func (builder *GraphFieldConfigBuilder) ThresholdsStyle(thresholdsStyle cog.Builder[GraphThresholdsStyleConfig]) *GraphFieldConfigBuilder {
 	thresholdsStyleResource, err := thresholdsStyle.Build()
 	if err != nil {
-		builder.errors["thresholdsStyle"] = err.(cog.BuildErrors)
+		builder.errors = append(builder.errors, err.(cog.BuildErrors)...)
 		return builder
 	}
 	builder.internal.ThresholdsStyle = &thresholdsStyleResource
@@ -76,7 +80,7 @@ func (builder *GraphFieldConfigBuilder) LineInterpolation(lineInterpolation Line
 func (builder *GraphFieldConfigBuilder) LineStyle(lineStyle cog.Builder[LineStyle]) *GraphFieldConfigBuilder {
 	lineStyleResource, err := lineStyle.Build()
 	if err != nil {
-		builder.errors["lineStyle"] = err.(cog.BuildErrors)
+		builder.errors = append(builder.errors, err.(cog.BuildErrors)...)
 		return builder
 	}
 	builder.internal.LineStyle = &lineStyleResource
@@ -159,7 +163,7 @@ func (builder *GraphFieldConfigBuilder) AxisGridShow(axisGridShow bool) *GraphFi
 func (builder *GraphFieldConfigBuilder) ScaleDistribution(scaleDistribution cog.Builder[ScaleDistributionConfig]) *GraphFieldConfigBuilder {
 	scaleDistributionResource, err := scaleDistribution.Build()
 	if err != nil {
-		builder.errors["scaleDistribution"] = err.(cog.BuildErrors)
+		builder.errors = append(builder.errors, err.(cog.BuildErrors)...)
 		return builder
 	}
 	builder.internal.ScaleDistribution = &scaleDistributionResource
@@ -182,7 +186,7 @@ func (builder *GraphFieldConfigBuilder) BarWidthFactor(barWidthFactor float64) *
 func (builder *GraphFieldConfigBuilder) Stacking(stacking cog.Builder[StackingConfig]) *GraphFieldConfigBuilder {
 	stackingResource, err := stacking.Build()
 	if err != nil {
-		builder.errors["stacking"] = err.(cog.BuildErrors)
+		builder.errors = append(builder.errors, err.(cog.BuildErrors)...)
 		return builder
 	}
 	builder.internal.Stacking = &stackingResource
@@ -193,7 +197,7 @@ func (builder *GraphFieldConfigBuilder) Stacking(stacking cog.Builder[StackingCo
 func (builder *GraphFieldConfigBuilder) HideFrom(hideFrom cog.Builder[HideSeriesConfig]) *GraphFieldConfigBuilder {
 	hideFromResource, err := hideFrom.Build()
 	if err != nil {
-		builder.errors["hideFrom"] = err.(cog.BuildErrors)
+		builder.errors = append(builder.errors, err.(cog.BuildErrors)...)
 		return builder
 	}
 	builder.internal.HideFrom = &hideFromResource

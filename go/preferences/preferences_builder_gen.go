@@ -10,14 +10,14 @@ var _ cog.Builder[Preferences] = (*PreferencesBuilder)(nil)
 
 type PreferencesBuilder struct {
 	internal *Preferences
-	errors   map[string]cog.BuildErrors
+	errors   cog.BuildErrors
 }
 
 func NewPreferencesBuilder() *PreferencesBuilder {
 	resource := NewPreferences()
 	builder := &PreferencesBuilder{
 		internal: resource,
-		errors:   make(map[string]cog.BuildErrors),
+		errors:   make(cog.BuildErrors, 0),
 	}
 
 	return builder
@@ -26,6 +26,10 @@ func NewPreferencesBuilder() *PreferencesBuilder {
 func (builder *PreferencesBuilder) Build() (Preferences, error) {
 	if err := builder.internal.Validate(); err != nil {
 		return Preferences{}, err
+	}
+
+	if len(builder.errors) > 0 {
+		return Preferences{}, cog.MakeBuildErrors("preferences.preferences", builder.errors)
 	}
 
 	return *builder.internal, nil
@@ -71,7 +75,7 @@ func (builder *PreferencesBuilder) Language(language string) *PreferencesBuilder
 func (builder *PreferencesBuilder) QueryHistory(queryHistory cog.Builder[QueryHistoryPreference]) *PreferencesBuilder {
 	queryHistoryResource, err := queryHistory.Build()
 	if err != nil {
-		builder.errors["queryHistory"] = err.(cog.BuildErrors)
+		builder.errors = append(builder.errors, err.(cog.BuildErrors)...)
 		return builder
 	}
 	builder.internal.QueryHistory = &queryHistoryResource
@@ -83,7 +87,7 @@ func (builder *PreferencesBuilder) QueryHistory(queryHistory cog.Builder[QueryHi
 func (builder *PreferencesBuilder) CookiePreferences(cookiePreferences cog.Builder[CookiePreferences]) *PreferencesBuilder {
 	cookiePreferencesResource, err := cookiePreferences.Build()
 	if err != nil {
-		builder.errors["cookiePreferences"] = err.(cog.BuildErrors)
+		builder.errors = append(builder.errors, err.(cog.BuildErrors)...)
 		return builder
 	}
 	builder.internal.CookiePreferences = &cookiePreferencesResource

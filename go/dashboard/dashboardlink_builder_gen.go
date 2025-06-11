@@ -11,14 +11,14 @@ var _ cog.Builder[DashboardLink] = (*DashboardLinkBuilder)(nil)
 // Links with references to other dashboards or external resources
 type DashboardLinkBuilder struct {
 	internal *DashboardLink
-	errors   map[string]cog.BuildErrors
+	errors   cog.BuildErrors
 }
 
 func NewDashboardLinkBuilder(title string) *DashboardLinkBuilder {
 	resource := NewDashboardLink()
 	builder := &DashboardLinkBuilder{
 		internal: resource,
-		errors:   make(map[string]cog.BuildErrors),
+		errors:   make(cog.BuildErrors, 0),
 	}
 	builder.internal.Title = title
 
@@ -28,6 +28,10 @@ func NewDashboardLinkBuilder(title string) *DashboardLinkBuilder {
 func (builder *DashboardLinkBuilder) Build() (DashboardLink, error) {
 	if err := builder.internal.Validate(); err != nil {
 		return DashboardLink{}, err
+	}
+
+	if len(builder.errors) > 0 {
+		return DashboardLink{}, cog.MakeBuildErrors("dashboard.dashboardLink", builder.errors)
 	}
 
 	return *builder.internal, nil

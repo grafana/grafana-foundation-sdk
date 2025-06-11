@@ -11,14 +11,14 @@ var _ cog.Builder[TimeSeriesList] = (*TimeSeriesListBuilder)(nil)
 // Time Series List sub-query properties.
 type TimeSeriesListBuilder struct {
 	internal *TimeSeriesList
-	errors   map[string]cog.BuildErrors
+	errors   cog.BuildErrors
 }
 
 func NewTimeSeriesListBuilder() *TimeSeriesListBuilder {
 	resource := NewTimeSeriesList()
 	builder := &TimeSeriesListBuilder{
 		internal: resource,
-		errors:   make(map[string]cog.BuildErrors),
+		errors:   make(cog.BuildErrors, 0),
 	}
 
 	return builder
@@ -27,6 +27,10 @@ func NewTimeSeriesListBuilder() *TimeSeriesListBuilder {
 func (builder *TimeSeriesListBuilder) Build() (TimeSeriesList, error) {
 	if err := builder.internal.Validate(); err != nil {
 		return TimeSeriesList{}, err
+	}
+
+	if len(builder.errors) > 0 {
+		return TimeSeriesList{}, cog.MakeBuildErrors("googlecloudmonitoring.timeSeriesList", builder.errors)
 	}
 
 	return *builder.internal, nil

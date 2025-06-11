@@ -485,11 +485,6 @@ class QueryEditorProperty(cogbuilder.Builder[cloudwatch.QueryEditorProperty]):
         """
         return self._internal    
     
-    def type(self, type_val: cloudwatch.QueryEditorPropertyType) -> typing.Self:    
-        self._internal.type_val = type_val
-    
-        return self
-    
     def name(self, name: str) -> typing.Self:    
         self._internal.name = name
     

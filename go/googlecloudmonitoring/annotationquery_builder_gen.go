@@ -11,14 +11,14 @@ var _ cog.Builder[AnnotationQuery] = (*AnnotationQueryBuilder)(nil)
 // Annotation sub-query properties.
 type AnnotationQueryBuilder struct {
 	internal *AnnotationQuery
-	errors   map[string]cog.BuildErrors
+	errors   cog.BuildErrors
 }
 
 func NewAnnotationQueryBuilder() *AnnotationQueryBuilder {
 	resource := NewAnnotationQuery()
 	builder := &AnnotationQueryBuilder{
 		internal: resource,
-		errors:   make(map[string]cog.BuildErrors),
+		errors:   make(cog.BuildErrors, 0),
 	}
 
 	return builder
@@ -27,6 +27,10 @@ func NewAnnotationQueryBuilder() *AnnotationQueryBuilder {
 func (builder *AnnotationQueryBuilder) Build() (AnnotationQuery, error) {
 	if err := builder.internal.Validate(); err != nil {
 		return AnnotationQuery{}, err
+	}
+
+	if len(builder.errors) > 0 {
+		return AnnotationQuery{}, cog.MakeBuildErrors("googlecloudmonitoring.annotationQuery", builder.errors)
 	}
 
 	return *builder.internal, nil

@@ -11,14 +11,14 @@ var _ cog.Builder[AxisConfig] = (*AxisConfigBuilder)(nil)
 // TODO docs
 type AxisConfigBuilder struct {
 	internal *AxisConfig
-	errors   map[string]cog.BuildErrors
+	errors   cog.BuildErrors
 }
 
 func NewAxisConfigBuilder() *AxisConfigBuilder {
 	resource := NewAxisConfig()
 	builder := &AxisConfigBuilder{
 		internal: resource,
-		errors:   make(map[string]cog.BuildErrors),
+		errors:   make(cog.BuildErrors, 0),
 	}
 
 	return builder
@@ -27,6 +27,10 @@ func NewAxisConfigBuilder() *AxisConfigBuilder {
 func (builder *AxisConfigBuilder) Build() (AxisConfig, error) {
 	if err := builder.internal.Validate(); err != nil {
 		return AxisConfig{}, err
+	}
+
+	if len(builder.errors) > 0 {
+		return AxisConfig{}, cog.MakeBuildErrors("common.axisConfig", builder.errors)
 	}
 
 	return *builder.internal, nil
@@ -77,7 +81,7 @@ func (builder *AxisConfigBuilder) AxisGridShow(axisGridShow bool) *AxisConfigBui
 func (builder *AxisConfigBuilder) ScaleDistribution(scaleDistribution cog.Builder[ScaleDistributionConfig]) *AxisConfigBuilder {
 	scaleDistributionResource, err := scaleDistribution.Build()
 	if err != nil {
-		builder.errors["scaleDistribution"] = err.(cog.BuildErrors)
+		builder.errors = append(builder.errors, err.(cog.BuildErrors)...)
 		return builder
 	}
 	builder.internal.ScaleDistribution = &scaleDistributionResource

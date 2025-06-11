@@ -11,14 +11,14 @@ var _ cog.Builder[CanvasConnection] = (*CanvasConnectionBuilder)(nil)
 
 type CanvasConnectionBuilder struct {
 	internal *CanvasConnection
-	errors   map[string]cog.BuildErrors
+	errors   cog.BuildErrors
 }
 
 func NewCanvasConnectionBuilder() *CanvasConnectionBuilder {
 	resource := NewCanvasConnection()
 	builder := &CanvasConnectionBuilder{
 		internal: resource,
-		errors:   make(map[string]cog.BuildErrors),
+		errors:   make(cog.BuildErrors, 0),
 	}
 
 	return builder
@@ -29,13 +29,17 @@ func (builder *CanvasConnectionBuilder) Build() (CanvasConnection, error) {
 		return CanvasConnection{}, err
 	}
 
+	if len(builder.errors) > 0 {
+		return CanvasConnection{}, cog.MakeBuildErrors("canvas.canvasConnection", builder.errors)
+	}
+
 	return *builder.internal, nil
 }
 
 func (builder *CanvasConnectionBuilder) Source(source cog.Builder[ConnectionCoordinates]) *CanvasConnectionBuilder {
 	sourceResource, err := source.Build()
 	if err != nil {
-		builder.errors["source"] = err.(cog.BuildErrors)
+		builder.errors = append(builder.errors, err.(cog.BuildErrors)...)
 		return builder
 	}
 	builder.internal.Source = sourceResource
@@ -46,7 +50,7 @@ func (builder *CanvasConnectionBuilder) Source(source cog.Builder[ConnectionCoor
 func (builder *CanvasConnectionBuilder) Target(target cog.Builder[ConnectionCoordinates]) *CanvasConnectionBuilder {
 	targetResource, err := target.Build()
 	if err != nil {
-		builder.errors["target"] = err.(cog.BuildErrors)
+		builder.errors = append(builder.errors, err.(cog.BuildErrors)...)
 		return builder
 	}
 	builder.internal.Target = targetResource
@@ -60,16 +64,10 @@ func (builder *CanvasConnectionBuilder) TargetName(targetName string) *CanvasCon
 	return builder
 }
 
-func (builder *CanvasConnectionBuilder) Path(path ConnectionPath) *CanvasConnectionBuilder {
-	builder.internal.Path = path
-
-	return builder
-}
-
 func (builder *CanvasConnectionBuilder) Color(color cog.Builder[common.ColorDimensionConfig]) *CanvasConnectionBuilder {
 	colorResource, err := color.Build()
 	if err != nil {
-		builder.errors["color"] = err.(cog.BuildErrors)
+		builder.errors = append(builder.errors, err.(cog.BuildErrors)...)
 		return builder
 	}
 	builder.internal.Color = &colorResource
@@ -80,7 +78,7 @@ func (builder *CanvasConnectionBuilder) Color(color cog.Builder[common.ColorDime
 func (builder *CanvasConnectionBuilder) Size(size cog.Builder[common.ScaleDimensionConfig]) *CanvasConnectionBuilder {
 	sizeResource, err := size.Build()
 	if err != nil {
-		builder.errors["size"] = err.(cog.BuildErrors)
+		builder.errors = append(builder.errors, err.(cog.BuildErrors)...)
 		return builder
 	}
 	builder.internal.Size = &sizeResource

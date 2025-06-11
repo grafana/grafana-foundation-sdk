@@ -10,14 +10,14 @@ var _ cog.Builder[ExprTypeClassicConditionsConditionsOperator] = (*ExprTypeClass
 
 type ExprTypeClassicConditionsConditionsOperatorBuilder struct {
 	internal *ExprTypeClassicConditionsConditionsOperator
-	errors   map[string]cog.BuildErrors
+	errors   cog.BuildErrors
 }
 
 func NewExprTypeClassicConditionsConditionsOperatorBuilder() *ExprTypeClassicConditionsConditionsOperatorBuilder {
 	resource := NewExprTypeClassicConditionsConditionsOperator()
 	builder := &ExprTypeClassicConditionsConditionsOperatorBuilder{
 		internal: resource,
-		errors:   make(map[string]cog.BuildErrors),
+		errors:   make(cog.BuildErrors, 0),
 	}
 
 	return builder
@@ -26,6 +26,10 @@ func NewExprTypeClassicConditionsConditionsOperatorBuilder() *ExprTypeClassicCon
 func (builder *ExprTypeClassicConditionsConditionsOperatorBuilder) Build() (ExprTypeClassicConditionsConditionsOperator, error) {
 	if err := builder.internal.Validate(); err != nil {
 		return ExprTypeClassicConditionsConditionsOperator{}, err
+	}
+
+	if len(builder.errors) > 0 {
+		return ExprTypeClassicConditionsConditionsOperator{}, cog.MakeBuildErrors("expr.exprTypeClassicConditionsConditionsOperator", builder.errors)
 	}
 
 	return *builder.internal, nil

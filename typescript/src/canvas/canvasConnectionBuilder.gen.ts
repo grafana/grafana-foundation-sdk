@@ -35,11 +35,6 @@ export class CanvasConnectionBuilder implements cog.Builder<canvas.CanvasConnect
         return this;
     }
 
-    path(path: canvas.ConnectionPath): this {
-        this.internal.path = path;
-        return this;
-    }
-
     color(color: cog.Builder<common.ColorDimensionConfig>): this {
         const colorResource = color.build();
         this.internal.color = colorResource;

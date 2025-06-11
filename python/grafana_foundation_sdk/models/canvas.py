@@ -211,15 +211,15 @@ class CanvasConnection:
     source: 'ConnectionCoordinates'
     target: 'ConnectionCoordinates'
     target_name: typing.Optional[str]
-    path: 'ConnectionPath'
+    path: str
     color: typing.Optional[common.ColorDimensionConfig]
     size: typing.Optional[common.ScaleDimensionConfig]
 
-    def __init__(self, source: typing.Optional['ConnectionCoordinates'] = None, target: typing.Optional['ConnectionCoordinates'] = None, target_name: typing.Optional[str] = None, path: typing.Optional['ConnectionPath'] = None, color: typing.Optional[common.ColorDimensionConfig] = None, size: typing.Optional[common.ScaleDimensionConfig] = None):
+    def __init__(self, source: typing.Optional['ConnectionCoordinates'] = None, target: typing.Optional['ConnectionCoordinates'] = None, target_name: typing.Optional[str] = None, color: typing.Optional[common.ColorDimensionConfig] = None, size: typing.Optional[common.ScaleDimensionConfig] = None):
         self.source = source if source is not None else ConnectionCoordinates()
         self.target = target if target is not None else ConnectionCoordinates()
         self.target_name = target_name
-        self.path = path if path is not None else ConnectionPath.STRAIGHT
+        self.path = ConnectionPath.STRAIGHT
         self.color = color
         self.size = size
 
@@ -247,8 +247,6 @@ class CanvasConnection:
             args["target"] = ConnectionCoordinates.from_json(data["target"])
         if "targetName" in data:
             args["target_name"] = data["targetName"]
-        if "path" in data:
-            args["path"] = data["path"]
         if "color" in data:
             args["color"] = common.ColorDimensionConfig.from_json(data["color"])
         if "size" in data:

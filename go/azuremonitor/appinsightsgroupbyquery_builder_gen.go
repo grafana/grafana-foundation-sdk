@@ -10,14 +10,14 @@ var _ cog.Builder[AppInsightsGroupByQuery] = (*AppInsightsGroupByQueryBuilder)(n
 
 type AppInsightsGroupByQueryBuilder struct {
 	internal *AppInsightsGroupByQuery
-	errors   map[string]cog.BuildErrors
+	errors   cog.BuildErrors
 }
 
 func NewAppInsightsGroupByQueryBuilder() *AppInsightsGroupByQueryBuilder {
 	resource := NewAppInsightsGroupByQuery()
 	builder := &AppInsightsGroupByQueryBuilder{
 		internal: resource,
-		errors:   make(map[string]cog.BuildErrors),
+		errors:   make(cog.BuildErrors, 0),
 	}
 	builder.internal.Kind = "AppInsightsGroupByQuery"
 
@@ -27,6 +27,10 @@ func NewAppInsightsGroupByQueryBuilder() *AppInsightsGroupByQueryBuilder {
 func (builder *AppInsightsGroupByQueryBuilder) Build() (AppInsightsGroupByQuery, error) {
 	if err := builder.internal.Validate(); err != nil {
 		return AppInsightsGroupByQuery{}, err
+	}
+
+	if len(builder.errors) > 0 {
+		return AppInsightsGroupByQuery{}, cog.MakeBuildErrors("azuremonitor.appInsightsGroupByQuery", builder.errors)
 	}
 
 	return *builder.internal, nil

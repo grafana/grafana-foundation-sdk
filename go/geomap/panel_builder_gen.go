@@ -14,14 +14,14 @@ var _ cog.Builder[dashboard.Panel] = (*PanelBuilder)(nil)
 // Dashboard panels are the basic visualization building blocks.
 type PanelBuilder struct {
 	internal *dashboard.Panel
-	errors   map[string]cog.BuildErrors
+	errors   cog.BuildErrors
 }
 
 func NewPanelBuilder() *PanelBuilder {
 	resource := dashboard.NewPanel()
 	builder := &PanelBuilder{
 		internal: resource,
-		errors:   make(map[string]cog.BuildErrors),
+		errors:   make(cog.BuildErrors, 0),
 	}
 	builder.internal.Type = "geomap"
 
@@ -31,6 +31,10 @@ func NewPanelBuilder() *PanelBuilder {
 func (builder *PanelBuilder) Build() (dashboard.Panel, error) {
 	if err := builder.internal.Validate(); err != nil {
 		return dashboard.Panel{}, err
+	}
+
+	if len(builder.errors) > 0 {
+		return dashboard.Panel{}, cog.MakeBuildErrors("geomap.panel", builder.errors)
 	}
 
 	return *builder.internal, nil
@@ -49,7 +53,7 @@ func (builder *PanelBuilder) Targets(targets []cog.Builder[variants.Dataquery]) 
 	for _, r1 := range targets {
 		targetsDepth1, err := r1.Build()
 		if err != nil {
-			builder.errors["targets"] = err.(cog.BuildErrors)
+			builder.errors = append(builder.errors, err.(cog.BuildErrors)...)
 			return builder
 		}
 		targetsResources = append(targetsResources, targetsDepth1)
@@ -63,7 +67,7 @@ func (builder *PanelBuilder) Targets(targets []cog.Builder[variants.Dataquery]) 
 func (builder *PanelBuilder) WithTarget(target cog.Builder[variants.Dataquery]) *PanelBuilder {
 	targetResource, err := target.Build()
 	if err != nil {
-		builder.errors["targets"] = err.(cog.BuildErrors)
+		builder.errors = append(builder.errors, err.(cog.BuildErrors)...)
 		return builder
 	}
 	builder.internal.Targets = append(builder.internal.Targets, targetResource)
@@ -132,7 +136,7 @@ func (builder *PanelBuilder) Links(links []cog.Builder[dashboard.DashboardLink])
 	for _, r1 := range links {
 		linksDepth1, err := r1.Build()
 		if err != nil {
-			builder.errors["links"] = err.(cog.BuildErrors)
+			builder.errors = append(builder.errors, err.(cog.BuildErrors)...)
 			return builder
 		}
 		linksResources = append(linksResources, linksDepth1)
@@ -281,7 +285,7 @@ func (builder *PanelBuilder) Mappings(mappings []dashboard.ValueMapping) *PanelB
 func (builder *PanelBuilder) Thresholds(thresholds cog.Builder[dashboard.ThresholdsConfig]) *PanelBuilder {
 	thresholdsResource, err := thresholds.Build()
 	if err != nil {
-		builder.errors["fieldConfig.defaults.thresholds"] = err.(cog.BuildErrors)
+		builder.errors = append(builder.errors, err.(cog.BuildErrors)...)
 		return builder
 	}
 	builder.internal.FieldConfig.Defaults.Thresholds = &thresholdsResource
@@ -293,7 +297,7 @@ func (builder *PanelBuilder) Thresholds(thresholds cog.Builder[dashboard.Thresho
 func (builder *PanelBuilder) ColorScheme(color cog.Builder[dashboard.FieldColor]) *PanelBuilder {
 	colorResource, err := color.Build()
 	if err != nil {
-		builder.errors["fieldConfig.defaults.color"] = err.(cog.BuildErrors)
+		builder.errors = append(builder.errors, err.(cog.BuildErrors)...)
 		return builder
 	}
 	builder.internal.FieldConfig.Defaults.Color = &colorResource
@@ -307,7 +311,7 @@ func (builder *PanelBuilder) DataLinks(links []cog.Builder[dashboard.DashboardLi
 	for _, r1 := range links {
 		linksDepth1, err := r1.Build()
 		if err != nil {
-			builder.errors["fieldConfig.defaults.links"] = err.(cog.BuildErrors)
+			builder.errors = append(builder.errors, err.(cog.BuildErrors)...)
 			return builder
 		}
 		linksResources = append(linksResources, linksDepth1)
@@ -330,7 +334,7 @@ func (builder *PanelBuilder) Overrides(overrides []cog.Builder[dashboard.Dashboa
 	for _, r1 := range overrides {
 		overridesDepth1, err := r1.Build()
 		if err != nil {
-			builder.errors["fieldConfig.overrides"] = err.(cog.BuildErrors)
+			builder.errors = append(builder.errors, err.(cog.BuildErrors)...)
 			return builder
 		}
 		overridesResources = append(overridesResources, overridesDepth1)
@@ -407,7 +411,7 @@ func (builder *PanelBuilder) View(view cog.Builder[MapViewConfig]) *PanelBuilder
 	}
 	viewResource, err := view.Build()
 	if err != nil {
-		builder.errors["options.view"] = err.(cog.BuildErrors)
+		builder.errors = append(builder.errors, err.(cog.BuildErrors)...)
 		return builder
 	}
 	builder.internal.Options.(*Options).View = viewResource
@@ -421,7 +425,7 @@ func (builder *PanelBuilder) Controls(controls cog.Builder[ControlsOptions]) *Pa
 	}
 	controlsResource, err := controls.Build()
 	if err != nil {
-		builder.errors["options.controls"] = err.(cog.BuildErrors)
+		builder.errors = append(builder.errors, err.(cog.BuildErrors)...)
 		return builder
 	}
 	builder.internal.Options.(*Options).Controls = controlsResource
@@ -435,7 +439,7 @@ func (builder *PanelBuilder) Basemap(basemap cog.Builder[common.MapLayerOptions]
 	}
 	basemapResource, err := basemap.Build()
 	if err != nil {
-		builder.errors["options.basemap"] = err.(cog.BuildErrors)
+		builder.errors = append(builder.errors, err.(cog.BuildErrors)...)
 		return builder
 	}
 	builder.internal.Options.(*Options).Basemap = basemapResource
@@ -451,7 +455,7 @@ func (builder *PanelBuilder) Layers(layers []cog.Builder[common.MapLayerOptions]
 	for _, r1 := range layers {
 		layersDepth1, err := r1.Build()
 		if err != nil {
-			builder.errors["options.layers"] = err.(cog.BuildErrors)
+			builder.errors = append(builder.errors, err.(cog.BuildErrors)...)
 			return builder
 		}
 		layersResources = append(layersResources, layersDepth1)
@@ -467,7 +471,7 @@ func (builder *PanelBuilder) Tooltip(tooltip cog.Builder[TooltipOptions]) *Panel
 	}
 	tooltipResource, err := tooltip.Build()
 	if err != nil {
-		builder.errors["options.tooltip"] = err.(cog.BuildErrors)
+		builder.errors = append(builder.errors, err.(cog.BuildErrors)...)
 		return builder
 	}
 	builder.internal.Options.(*Options).Tooltip = tooltipResource
