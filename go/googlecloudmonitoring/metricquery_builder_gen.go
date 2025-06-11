@@ -11,14 +11,14 @@ var _ cog.Builder[MetricQuery] = (*MetricQueryBuilder)(nil)
 // @deprecated This type is for migration purposes only. Replaced by TimeSeriesList Metric sub-query properties.
 type MetricQueryBuilder struct {
 	internal *MetricQuery
-	errors   map[string]cog.BuildErrors
+	errors   cog.BuildErrors
 }
 
 func NewMetricQueryBuilder() *MetricQueryBuilder {
 	resource := NewMetricQuery()
 	builder := &MetricQueryBuilder{
 		internal: resource,
-		errors:   make(map[string]cog.BuildErrors),
+		errors:   make(cog.BuildErrors, 0),
 	}
 
 	return builder
@@ -27,6 +27,10 @@ func NewMetricQueryBuilder() *MetricQueryBuilder {
 func (builder *MetricQueryBuilder) Build() (MetricQuery, error) {
 	if err := builder.internal.Validate(); err != nil {
 		return MetricQuery{}, err
+	}
+
+	if len(builder.errors) > 0 {
+		return MetricQuery{}, cog.MakeBuildErrors("googlecloudmonitoring.metricQuery", builder.errors)
 	}
 
 	return *builder.internal, nil

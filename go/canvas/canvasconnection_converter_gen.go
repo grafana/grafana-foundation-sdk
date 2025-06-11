@@ -6,7 +6,6 @@ import (
 	"fmt"
 	"strings"
 
-	cog "github.com/grafana/grafana-foundation-sdk/go/cog"
 	common "github.com/grafana/grafana-foundation-sdk/go/common"
 )
 
@@ -51,18 +50,6 @@ func CanvasConnectionConverter(input CanvasConnection) string {
 		buffer.Reset()
 
 	}
-
-	{
-		buffer.WriteString(`Path(`)
-		arg0 := cog.Dump(input.Path)
-		buffer.WriteString(arg0)
-
-		buffer.WriteString(")")
-
-		calls = append(calls, buffer.String())
-		buffer.Reset()
-	}
-
 	if input.Color != nil {
 
 		buffer.WriteString(`Color(`)

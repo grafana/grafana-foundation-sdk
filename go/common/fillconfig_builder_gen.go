@@ -11,14 +11,14 @@ var _ cog.Builder[FillConfig] = (*FillConfigBuilder)(nil)
 // TODO docs
 type FillConfigBuilder struct {
 	internal *FillConfig
-	errors   map[string]cog.BuildErrors
+	errors   cog.BuildErrors
 }
 
 func NewFillConfigBuilder() *FillConfigBuilder {
 	resource := NewFillConfig()
 	builder := &FillConfigBuilder{
 		internal: resource,
-		errors:   make(map[string]cog.BuildErrors),
+		errors:   make(cog.BuildErrors, 0),
 	}
 
 	return builder
@@ -27,6 +27,10 @@ func NewFillConfigBuilder() *FillConfigBuilder {
 func (builder *FillConfigBuilder) Build() (FillConfig, error) {
 	if err := builder.internal.Validate(); err != nil {
 		return FillConfig{}, err
+	}
+
+	if len(builder.errors) > 0 {
+		return FillConfig{}, cog.MakeBuildErrors("common.fillConfig", builder.errors)
 	}
 
 	return *builder.internal, nil

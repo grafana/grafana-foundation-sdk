@@ -10,14 +10,14 @@ var _ cog.Builder[Terms] = (*TermsBuilder)(nil)
 
 type TermsBuilder struct {
 	internal *Terms
-	errors   map[string]cog.BuildErrors
+	errors   cog.BuildErrors
 }
 
 func NewTermsBuilder() *TermsBuilder {
 	resource := NewTerms()
 	builder := &TermsBuilder{
 		internal: resource,
-		errors:   make(map[string]cog.BuildErrors),
+		errors:   make(cog.BuildErrors, 0),
 	}
 
 	return builder
@@ -26,6 +26,10 @@ func NewTermsBuilder() *TermsBuilder {
 func (builder *TermsBuilder) Build() (Terms, error) {
 	if err := builder.internal.Validate(); err != nil {
 		return Terms{}, err
+	}
+
+	if len(builder.errors) > 0 {
+		return Terms{}, cog.MakeBuildErrors("elasticsearch.terms", builder.errors)
 	}
 
 	return *builder.internal, nil
@@ -46,7 +50,7 @@ func (builder *TermsBuilder) Id(id string) *TermsBuilder {
 func (builder *TermsBuilder) Settings(settings cog.Builder[ElasticsearchTermsSettings]) *TermsBuilder {
 	settingsResource, err := settings.Build()
 	if err != nil {
-		builder.errors["settings"] = err.(cog.BuildErrors)
+		builder.errors = append(builder.errors, err.(cog.BuildErrors)...)
 		return builder
 	}
 	builder.internal.Settings = &settingsResource
