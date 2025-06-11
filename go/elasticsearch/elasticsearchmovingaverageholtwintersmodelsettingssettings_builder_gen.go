@@ -10,14 +10,14 @@ var _ cog.Builder[ElasticsearchMovingAverageHoltWintersModelSettingsSettings] = 
 
 type ElasticsearchMovingAverageHoltWintersModelSettingsSettingsBuilder struct {
 	internal *ElasticsearchMovingAverageHoltWintersModelSettingsSettings
-	errors   map[string]cog.BuildErrors
+	errors   cog.BuildErrors
 }
 
 func NewElasticsearchMovingAverageHoltWintersModelSettingsSettingsBuilder() *ElasticsearchMovingAverageHoltWintersModelSettingsSettingsBuilder {
 	resource := NewElasticsearchMovingAverageHoltWintersModelSettingsSettings()
 	builder := &ElasticsearchMovingAverageHoltWintersModelSettingsSettingsBuilder{
 		internal: resource,
-		errors:   make(map[string]cog.BuildErrors),
+		errors:   make(cog.BuildErrors, 0),
 	}
 
 	return builder
@@ -26,6 +26,10 @@ func NewElasticsearchMovingAverageHoltWintersModelSettingsSettingsBuilder() *Ela
 func (builder *ElasticsearchMovingAverageHoltWintersModelSettingsSettingsBuilder) Build() (ElasticsearchMovingAverageHoltWintersModelSettingsSettings, error) {
 	if err := builder.internal.Validate(); err != nil {
 		return ElasticsearchMovingAverageHoltWintersModelSettingsSettings{}, err
+	}
+
+	if len(builder.errors) > 0 {
+		return ElasticsearchMovingAverageHoltWintersModelSettingsSettings{}, cog.MakeBuildErrors("elasticsearch.elasticsearchMovingAverageHoltWintersModelSettingsSettings", builder.errors)
 	}
 
 	return *builder.internal, nil

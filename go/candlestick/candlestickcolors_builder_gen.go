@@ -10,14 +10,14 @@ var _ cog.Builder[CandlestickColors] = (*CandlestickColorsBuilder)(nil)
 
 type CandlestickColorsBuilder struct {
 	internal *CandlestickColors
-	errors   map[string]cog.BuildErrors
+	errors   cog.BuildErrors
 }
 
 func NewCandlestickColorsBuilder() *CandlestickColorsBuilder {
 	resource := NewCandlestickColors()
 	builder := &CandlestickColorsBuilder{
 		internal: resource,
-		errors:   make(map[string]cog.BuildErrors),
+		errors:   make(cog.BuildErrors, 0),
 	}
 
 	return builder
@@ -26,6 +26,10 @@ func NewCandlestickColorsBuilder() *CandlestickColorsBuilder {
 func (builder *CandlestickColorsBuilder) Build() (CandlestickColors, error) {
 	if err := builder.internal.Validate(); err != nil {
 		return CandlestickColors{}, err
+	}
+
+	if len(builder.errors) > 0 {
+		return CandlestickColors{}, cog.MakeBuildErrors("candlestick.candlestickColors", builder.errors)
 	}
 
 	return *builder.internal, nil

@@ -10,14 +10,14 @@ var _ cog.Builder[UniqueCount] = (*UniqueCountBuilder)(nil)
 
 type UniqueCountBuilder struct {
 	internal *UniqueCount
-	errors   map[string]cog.BuildErrors
+	errors   cog.BuildErrors
 }
 
 func NewUniqueCountBuilder() *UniqueCountBuilder {
 	resource := NewUniqueCount()
 	builder := &UniqueCountBuilder{
 		internal: resource,
-		errors:   make(map[string]cog.BuildErrors),
+		errors:   make(cog.BuildErrors, 0),
 	}
 
 	return builder
@@ -26,6 +26,10 @@ func NewUniqueCountBuilder() *UniqueCountBuilder {
 func (builder *UniqueCountBuilder) Build() (UniqueCount, error) {
 	if err := builder.internal.Validate(); err != nil {
 		return UniqueCount{}, err
+	}
+
+	if len(builder.errors) > 0 {
+		return UniqueCount{}, cog.MakeBuildErrors("elasticsearch.uniqueCount", builder.errors)
 	}
 
 	return *builder.internal, nil
@@ -46,7 +50,7 @@ func (builder *UniqueCountBuilder) Id(id string) *UniqueCountBuilder {
 func (builder *UniqueCountBuilder) Settings(settings cog.Builder[ElasticsearchUniqueCountSettings]) *UniqueCountBuilder {
 	settingsResource, err := settings.Build()
 	if err != nil {
-		builder.errors["settings"] = err.(cog.BuildErrors)
+		builder.errors = append(builder.errors, err.(cog.BuildErrors)...)
 		return builder
 	}
 	builder.internal.Settings = &settingsResource

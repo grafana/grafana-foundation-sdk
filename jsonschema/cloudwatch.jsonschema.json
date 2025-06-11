@@ -241,7 +241,10 @@
         "type"
       ],
       "properties": {
-        "type": {},
+        "type": {
+          "$ref": "#/definitions/QueryEditorExpressionType",
+          "default": "function"
+        },
         "name": {
           "type": "string"
         },
@@ -271,7 +274,10 @@
         "type"
       ],
       "properties": {
-        "type": {},
+        "type": {
+          "$ref": "#/definitions/QueryEditorExpressionType",
+          "default": "functionParameter"
+        },
         "name": {
           "type": "string"
         }
@@ -285,7 +291,10 @@
         "property"
       ],
       "properties": {
-        "type": {},
+        "type": {
+          "$ref": "#/definitions/QueryEditorExpressionType",
+          "default": "property"
+        },
         "property": {
           "$ref": "#/definitions/QueryEditorProperty"
         }
@@ -299,17 +308,13 @@
       ],
       "properties": {
         "type": {
-          "$ref": "#/definitions/QueryEditorPropertyType"
+          "$ref": "#/definitions/QueryEditorPropertyType",
+          "default": "string"
         },
         "name": {
           "type": "string"
         }
       }
-    },
-    "QueryEditorPropertyType": {
-      "enum": [
-        "string"
-      ]
     },
     "QueryEditorArrayExpression": {
       "type": "object",
@@ -363,7 +368,10 @@
         "property"
       ],
       "properties": {
-        "type": {},
+        "type": {
+          "$ref": "#/definitions/QueryEditorExpressionType",
+          "default": "groupBy"
+        },
         "property": {
           "$ref": "#/definitions/QueryEditorProperty"
         }
@@ -378,7 +386,10 @@
         "operator"
       ],
       "properties": {
-        "type": {},
+        "type": {
+          "$ref": "#/definitions/QueryEditorExpressionType",
+          "default": "operator"
+        },
         "property": {
           "$ref": "#/definitions/QueryEditorProperty"
         },
@@ -435,6 +446,11 @@
             "$ref": "#/definitions/QueryEditorOperatorType"
           }
         }
+      ]
+    },
+    "QueryEditorPropertyType": {
+      "enum": [
+        "string"
       ]
     },
     "CloudWatchLogsQuery": {

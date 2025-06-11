@@ -24,12 +24,6 @@ func (builder *CanvasConnectionBuilder) Build() (CanvasConnection, error)
 func (builder *CanvasConnectionBuilder) Color(color cog.Builder[common.ColorDimensionConfig]) *CanvasConnectionBuilder
 ```
 
-### <span class="badge object-method"></span> Path
-
-```go
-func (builder *CanvasConnectionBuilder) Path(path canvas.ConnectionPath) *CanvasConnectionBuilder
-```
-
 ### <span class="badge object-method"></span> Size
 
 ```go

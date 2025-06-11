@@ -10,14 +10,14 @@ var _ cog.Builder[TraceqlFilter] = (*TraceqlFilterBuilder)(nil)
 
 type TraceqlFilterBuilder struct {
 	internal *TraceqlFilter
-	errors   map[string]cog.BuildErrors
+	errors   cog.BuildErrors
 }
 
 func NewTraceqlFilterBuilder() *TraceqlFilterBuilder {
 	resource := NewTraceqlFilter()
 	builder := &TraceqlFilterBuilder{
 		internal: resource,
-		errors:   make(map[string]cog.BuildErrors),
+		errors:   make(cog.BuildErrors, 0),
 	}
 
 	return builder
@@ -26,6 +26,10 @@ func NewTraceqlFilterBuilder() *TraceqlFilterBuilder {
 func (builder *TraceqlFilterBuilder) Build() (TraceqlFilter, error) {
 	if err := builder.internal.Validate(); err != nil {
 		return TraceqlFilter{}, err
+	}
+
+	if len(builder.errors) > 0 {
+		return TraceqlFilter{}, cog.MakeBuildErrors("tempo.traceqlFilter", builder.errors)
 	}
 
 	return *builder.internal, nil

@@ -10,14 +10,14 @@ var _ cog.Builder[MuteTiming] = (*MuteTimingBuilder)(nil)
 
 type MuteTimingBuilder struct {
 	internal *MuteTiming
-	errors   map[string]cog.BuildErrors
+	errors   cog.BuildErrors
 }
 
 func NewMuteTimingBuilder() *MuteTimingBuilder {
 	resource := NewMuteTiming()
 	builder := &MuteTimingBuilder{
 		internal: resource,
-		errors:   make(map[string]cog.BuildErrors),
+		errors:   make(cog.BuildErrors, 0),
 	}
 
 	return builder
@@ -26,6 +26,10 @@ func NewMuteTimingBuilder() *MuteTimingBuilder {
 func (builder *MuteTimingBuilder) Build() (MuteTiming, error) {
 	if err := builder.internal.Validate(); err != nil {
 		return MuteTiming{}, err
+	}
+
+	if len(builder.errors) > 0 {
+		return MuteTiming{}, cog.MakeBuildErrors("alerting.muteTiming", builder.errors)
 	}
 
 	return *builder.internal, nil
@@ -42,7 +46,7 @@ func (builder *MuteTimingBuilder) TimeIntervals(timeIntervals []cog.Builder[Time
 	for _, r1 := range timeIntervals {
 		timeIntervalsDepth1, err := r1.Build()
 		if err != nil {
-			builder.errors["time_intervals"] = err.(cog.BuildErrors)
+			builder.errors = append(builder.errors, err.(cog.BuildErrors)...)
 			return builder
 		}
 		timeIntervalsResources = append(timeIntervalsResources, timeIntervalsDepth1)
