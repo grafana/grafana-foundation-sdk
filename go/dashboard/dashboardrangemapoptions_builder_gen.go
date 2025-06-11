@@ -10,14 +10,14 @@ var _ cog.Builder[DashboardRangeMapOptions] = (*DashboardRangeMapOptionsBuilder)
 
 type DashboardRangeMapOptionsBuilder struct {
 	internal *DashboardRangeMapOptions
-	errors   map[string]cog.BuildErrors
+	errors   cog.BuildErrors
 }
 
 func NewDashboardRangeMapOptionsBuilder() *DashboardRangeMapOptionsBuilder {
 	resource := NewDashboardRangeMapOptions()
 	builder := &DashboardRangeMapOptionsBuilder{
 		internal: resource,
-		errors:   make(map[string]cog.BuildErrors),
+		errors:   make(cog.BuildErrors, 0),
 	}
 
 	return builder
@@ -26,6 +26,10 @@ func NewDashboardRangeMapOptionsBuilder() *DashboardRangeMapOptionsBuilder {
 func (builder *DashboardRangeMapOptionsBuilder) Build() (DashboardRangeMapOptions, error) {
 	if err := builder.internal.Validate(); err != nil {
 		return DashboardRangeMapOptions{}, err
+	}
+
+	if len(builder.errors) > 0 {
+		return DashboardRangeMapOptions{}, cog.MakeBuildErrors("dashboard.dashboardRangeMapOptions", builder.errors)
 	}
 
 	return *builder.internal, nil

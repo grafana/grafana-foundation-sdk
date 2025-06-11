@@ -11,14 +11,14 @@ var _ cog.Builder[AzureTracesQuery] = (*AzureTracesQueryBuilder)(nil)
 // Application Insights Traces sub-query properties
 type AzureTracesQueryBuilder struct {
 	internal *AzureTracesQuery
-	errors   map[string]cog.BuildErrors
+	errors   cog.BuildErrors
 }
 
 func NewAzureTracesQueryBuilder() *AzureTracesQueryBuilder {
 	resource := NewAzureTracesQuery()
 	builder := &AzureTracesQueryBuilder{
 		internal: resource,
-		errors:   make(map[string]cog.BuildErrors),
+		errors:   make(cog.BuildErrors, 0),
 	}
 
 	return builder
@@ -27,6 +27,10 @@ func NewAzureTracesQueryBuilder() *AzureTracesQueryBuilder {
 func (builder *AzureTracesQueryBuilder) Build() (AzureTracesQuery, error) {
 	if err := builder.internal.Validate(); err != nil {
 		return AzureTracesQuery{}, err
+	}
+
+	if len(builder.errors) > 0 {
+		return AzureTracesQuery{}, cog.MakeBuildErrors("azuremonitor.azureTracesQuery", builder.errors)
 	}
 
 	return *builder.internal, nil
@@ -66,7 +70,7 @@ func (builder *AzureTracesQueryBuilder) Filters(filters []cog.Builder[AzureTrace
 	for _, r1 := range filters {
 		filtersDepth1, err := r1.Build()
 		if err != nil {
-			builder.errors["filters"] = err.(cog.BuildErrors)
+			builder.errors = append(builder.errors, err.(cog.BuildErrors)...)
 			return builder
 		}
 		filtersResources = append(filtersResources, filtersDepth1)

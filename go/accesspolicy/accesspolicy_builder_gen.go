@@ -10,14 +10,14 @@ var _ cog.Builder[AccessPolicy] = (*AccessPolicyBuilder)(nil)
 
 type AccessPolicyBuilder struct {
 	internal *AccessPolicy
-	errors   map[string]cog.BuildErrors
+	errors   cog.BuildErrors
 }
 
 func NewAccessPolicyBuilder() *AccessPolicyBuilder {
 	resource := NewAccessPolicy()
 	builder := &AccessPolicyBuilder{
 		internal: resource,
-		errors:   make(map[string]cog.BuildErrors),
+		errors:   make(cog.BuildErrors, 0),
 	}
 
 	return builder
@@ -28,6 +28,10 @@ func (builder *AccessPolicyBuilder) Build() (AccessPolicy, error) {
 		return AccessPolicy{}, err
 	}
 
+	if len(builder.errors) > 0 {
+		return AccessPolicy{}, cog.MakeBuildErrors("accesspolicy.accessPolicy", builder.errors)
+	}
+
 	return *builder.internal, nil
 }
 
@@ -35,7 +39,7 @@ func (builder *AccessPolicyBuilder) Build() (AccessPolicy, error) {
 func (builder *AccessPolicyBuilder) Scope(scope cog.Builder[ResourceRef]) *AccessPolicyBuilder {
 	scopeResource, err := scope.Build()
 	if err != nil {
-		builder.errors["scope"] = err.(cog.BuildErrors)
+		builder.errors = append(builder.errors, err.(cog.BuildErrors)...)
 		return builder
 	}
 	builder.internal.Scope = scopeResource
@@ -47,7 +51,7 @@ func (builder *AccessPolicyBuilder) Scope(scope cog.Builder[ResourceRef]) *Acces
 func (builder *AccessPolicyBuilder) Role(role cog.Builder[RoleRef]) *AccessPolicyBuilder {
 	roleResource, err := role.Build()
 	if err != nil {
-		builder.errors["role"] = err.(cog.BuildErrors)
+		builder.errors = append(builder.errors, err.(cog.BuildErrors)...)
 		return builder
 	}
 	builder.internal.Role = roleResource
@@ -60,7 +64,7 @@ func (builder *AccessPolicyBuilder) Role(role cog.Builder[RoleRef]) *AccessPolic
 func (builder *AccessPolicyBuilder) Rules(rule cog.Builder[AccessRule]) *AccessPolicyBuilder {
 	ruleResource, err := rule.Build()
 	if err != nil {
-		builder.errors["rules"] = err.(cog.BuildErrors)
+		builder.errors = append(builder.errors, err.(cog.BuildErrors)...)
 		return builder
 	}
 	builder.internal.Rules = append(builder.internal.Rules, ruleResource)

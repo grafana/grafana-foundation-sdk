@@ -10,14 +10,14 @@ var _ cog.Builder[DashboardSpecialValueMapOptions] = (*DashboardSpecialValueMapO
 
 type DashboardSpecialValueMapOptionsBuilder struct {
 	internal *DashboardSpecialValueMapOptions
-	errors   map[string]cog.BuildErrors
+	errors   cog.BuildErrors
 }
 
 func NewDashboardSpecialValueMapOptionsBuilder() *DashboardSpecialValueMapOptionsBuilder {
 	resource := NewDashboardSpecialValueMapOptions()
 	builder := &DashboardSpecialValueMapOptionsBuilder{
 		internal: resource,
-		errors:   make(map[string]cog.BuildErrors),
+		errors:   make(cog.BuildErrors, 0),
 	}
 
 	return builder
@@ -26,6 +26,10 @@ func NewDashboardSpecialValueMapOptionsBuilder() *DashboardSpecialValueMapOption
 func (builder *DashboardSpecialValueMapOptionsBuilder) Build() (DashboardSpecialValueMapOptions, error) {
 	if err := builder.internal.Validate(); err != nil {
 		return DashboardSpecialValueMapOptions{}, err
+	}
+
+	if len(builder.errors) > 0 {
+		return DashboardSpecialValueMapOptions{}, cog.MakeBuildErrors("dashboard.dashboardSpecialValueMapOptions", builder.errors)
 	}
 
 	return *builder.internal, nil

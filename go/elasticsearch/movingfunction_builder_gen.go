@@ -10,14 +10,14 @@ var _ cog.Builder[MovingFunction] = (*MovingFunctionBuilder)(nil)
 
 type MovingFunctionBuilder struct {
 	internal *MovingFunction
-	errors   map[string]cog.BuildErrors
+	errors   cog.BuildErrors
 }
 
 func NewMovingFunctionBuilder() *MovingFunctionBuilder {
 	resource := NewMovingFunction()
 	builder := &MovingFunctionBuilder{
 		internal: resource,
-		errors:   make(map[string]cog.BuildErrors),
+		errors:   make(cog.BuildErrors, 0),
 	}
 
 	return builder
@@ -26,6 +26,10 @@ func NewMovingFunctionBuilder() *MovingFunctionBuilder {
 func (builder *MovingFunctionBuilder) Build() (MovingFunction, error) {
 	if err := builder.internal.Validate(); err != nil {
 		return MovingFunction{}, err
+	}
+
+	if len(builder.errors) > 0 {
+		return MovingFunction{}, cog.MakeBuildErrors("elasticsearch.movingFunction", builder.errors)
 	}
 
 	return *builder.internal, nil
@@ -52,7 +56,7 @@ func (builder *MovingFunctionBuilder) Id(id string) *MovingFunctionBuilder {
 func (builder *MovingFunctionBuilder) Settings(settings cog.Builder[ElasticsearchMovingFunctionSettings]) *MovingFunctionBuilder {
 	settingsResource, err := settings.Build()
 	if err != nil {
-		builder.errors["settings"] = err.(cog.BuildErrors)
+		builder.errors = append(builder.errors, err.(cog.BuildErrors)...)
 		return builder
 	}
 	builder.internal.Settings = &settingsResource

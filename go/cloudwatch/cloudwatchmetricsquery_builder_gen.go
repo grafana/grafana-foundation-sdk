@@ -13,14 +13,14 @@ var _ cog.Builder[variants.Dataquery] = (*CloudWatchMetricsQueryBuilder)(nil)
 // Shape of a CloudWatch Metrics query
 type CloudWatchMetricsQueryBuilder struct {
 	internal *CloudWatchMetricsQuery
-	errors   map[string]cog.BuildErrors
+	errors   cog.BuildErrors
 }
 
 func NewCloudWatchMetricsQueryBuilder() *CloudWatchMetricsQueryBuilder {
 	resource := NewCloudWatchMetricsQuery()
 	builder := &CloudWatchMetricsQueryBuilder{
 		internal: resource,
-		errors:   make(map[string]cog.BuildErrors),
+		errors:   make(cog.BuildErrors, 0),
 	}
 
 	return builder
@@ -29,6 +29,10 @@ func NewCloudWatchMetricsQueryBuilder() *CloudWatchMetricsQueryBuilder {
 func (builder *CloudWatchMetricsQueryBuilder) Build() (variants.Dataquery, error) {
 	if err := builder.internal.Validate(); err != nil {
 		return CloudWatchMetricsQuery{}, err
+	}
+
+	if len(builder.errors) > 0 {
+		return CloudWatchMetricsQuery{}, cog.MakeBuildErrors("cloudwatch.cloudWatchMetricsQuery", builder.errors)
 	}
 
 	return *builder.internal, nil
@@ -177,7 +181,7 @@ func (builder *CloudWatchMetricsQueryBuilder) Statistic(statistic string) *Cloud
 func (builder *CloudWatchMetricsQueryBuilder) Sql(sql cog.Builder[SQLExpression]) *CloudWatchMetricsQueryBuilder {
 	sqlResource, err := sql.Build()
 	if err != nil {
-		builder.errors["sql"] = err.(cog.BuildErrors)
+		builder.errors = append(builder.errors, err.(cog.BuildErrors)...)
 		return builder
 	}
 	builder.internal.Sql = &sqlResource
