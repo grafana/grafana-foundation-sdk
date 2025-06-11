@@ -10,14 +10,14 @@ var _ cog.Builder[ControlsOptions] = (*ControlsOptionsBuilder)(nil)
 
 type ControlsOptionsBuilder struct {
 	internal *ControlsOptions
-	errors   map[string]cog.BuildErrors
+	errors   cog.BuildErrors
 }
 
 func NewControlsOptionsBuilder() *ControlsOptionsBuilder {
 	resource := NewControlsOptions()
 	builder := &ControlsOptionsBuilder{
 		internal: resource,
-		errors:   make(map[string]cog.BuildErrors),
+		errors:   make(cog.BuildErrors, 0),
 	}
 
 	return builder
@@ -26,6 +26,10 @@ func NewControlsOptionsBuilder() *ControlsOptionsBuilder {
 func (builder *ControlsOptionsBuilder) Build() (ControlsOptions, error) {
 	if err := builder.internal.Validate(); err != nil {
 		return ControlsOptions{}, err
+	}
+
+	if len(builder.errors) > 0 {
+		return ControlsOptions{}, cog.MakeBuildErrors("geomap.controlsOptions", builder.errors)
 	}
 
 	return *builder.internal, nil

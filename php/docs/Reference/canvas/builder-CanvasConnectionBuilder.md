@@ -26,12 +26,6 @@ build()
 color(\Grafana\Foundation\Cog\Builder $color)
 ```
 
-### <span class="badge object-method"></span> path
-
-```php
-path(\Grafana\Foundation\Canvas\ConnectionPath $path)
-```
-
 ### <span class="badge object-method"></span> size
 
 @param \Grafana\Foundation\Cog\Builder<\Grafana\Foundation\Common\ScaleDimensionConfig> $size

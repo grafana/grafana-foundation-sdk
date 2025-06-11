@@ -10,14 +10,14 @@ var _ cog.Builder[Derivative] = (*DerivativeBuilder)(nil)
 
 type DerivativeBuilder struct {
 	internal *Derivative
-	errors   map[string]cog.BuildErrors
+	errors   cog.BuildErrors
 }
 
 func NewDerivativeBuilder() *DerivativeBuilder {
 	resource := NewDerivative()
 	builder := &DerivativeBuilder{
 		internal: resource,
-		errors:   make(map[string]cog.BuildErrors),
+		errors:   make(cog.BuildErrors, 0),
 	}
 
 	return builder
@@ -26,6 +26,10 @@ func NewDerivativeBuilder() *DerivativeBuilder {
 func (builder *DerivativeBuilder) Build() (Derivative, error) {
 	if err := builder.internal.Validate(); err != nil {
 		return Derivative{}, err
+	}
+
+	if len(builder.errors) > 0 {
+		return Derivative{}, cog.MakeBuildErrors("elasticsearch.derivative", builder.errors)
 	}
 
 	return *builder.internal, nil
@@ -52,7 +56,7 @@ func (builder *DerivativeBuilder) Id(id string) *DerivativeBuilder {
 func (builder *DerivativeBuilder) Settings(settings cog.Builder[ElasticsearchDerivativeSettings]) *DerivativeBuilder {
 	settingsResource, err := settings.Build()
 	if err != nil {
-		builder.errors["settings"] = err.(cog.BuildErrors)
+		builder.errors = append(builder.errors, err.(cog.BuildErrors)...)
 		return builder
 	}
 	builder.internal.Settings = &settingsResource
