@@ -279,11 +279,6 @@ class QueryEditorProperty(cogbuilder.Builder[bigquery.QueryEditorProperty]):
         """
         return self._internal    
     
-    def type(self, type_val: bigquery.QueryEditorPropertyType) -> typing.Self:    
-        self._internal.type_val = type_val
-    
-        return self
-    
     def name(self, name: str) -> typing.Self:    
         self._internal.name = name
     

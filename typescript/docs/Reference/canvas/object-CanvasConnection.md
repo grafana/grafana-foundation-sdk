@@ -10,7 +10,7 @@ export interface CanvasConnection {
 	source: canvas.ConnectionCoordinates;
 	target: canvas.ConnectionCoordinates;
 	targetName?: string;
-	path: canvas.ConnectionPath;
+	path: canvas.ConnectionPath.Straight;
 	color?: common.ColorDimensionConfig;
 	size?: common.ScaleDimensionConfig;
 	vertices?: canvas.ConnectionCoordinates[];

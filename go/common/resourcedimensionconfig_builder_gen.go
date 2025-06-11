@@ -11,14 +11,14 @@ var _ cog.Builder[ResourceDimensionConfig] = (*ResourceDimensionConfigBuilder)(n
 // Links to a resource (image/svg path)
 type ResourceDimensionConfigBuilder struct {
 	internal *ResourceDimensionConfig
-	errors   map[string]cog.BuildErrors
+	errors   cog.BuildErrors
 }
 
 func NewResourceDimensionConfigBuilder() *ResourceDimensionConfigBuilder {
 	resource := NewResourceDimensionConfig()
 	builder := &ResourceDimensionConfigBuilder{
 		internal: resource,
-		errors:   make(map[string]cog.BuildErrors),
+		errors:   make(cog.BuildErrors, 0),
 	}
 
 	return builder
@@ -27,6 +27,10 @@ func NewResourceDimensionConfigBuilder() *ResourceDimensionConfigBuilder {
 func (builder *ResourceDimensionConfigBuilder) Build() (ResourceDimensionConfig, error) {
 	if err := builder.internal.Validate(); err != nil {
 		return ResourceDimensionConfig{}, err
+	}
+
+	if len(builder.errors) > 0 {
+		return ResourceDimensionConfig{}, cog.MakeBuildErrors("common.resourceDimensionConfig", builder.errors)
 	}
 
 	return *builder.internal, nil
