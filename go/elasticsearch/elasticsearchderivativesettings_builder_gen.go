@@ -10,14 +10,14 @@ var _ cog.Builder[ElasticsearchDerivativeSettings] = (*ElasticsearchDerivativeSe
 
 type ElasticsearchDerivativeSettingsBuilder struct {
 	internal *ElasticsearchDerivativeSettings
-	errors   map[string]cog.BuildErrors
+	errors   cog.BuildErrors
 }
 
 func NewElasticsearchDerivativeSettingsBuilder() *ElasticsearchDerivativeSettingsBuilder {
 	resource := NewElasticsearchDerivativeSettings()
 	builder := &ElasticsearchDerivativeSettingsBuilder{
 		internal: resource,
-		errors:   make(map[string]cog.BuildErrors),
+		errors:   make(cog.BuildErrors, 0),
 	}
 
 	return builder
@@ -26,6 +26,10 @@ func NewElasticsearchDerivativeSettingsBuilder() *ElasticsearchDerivativeSetting
 func (builder *ElasticsearchDerivativeSettingsBuilder) Build() (ElasticsearchDerivativeSettings, error) {
 	if err := builder.internal.Validate(); err != nil {
 		return ElasticsearchDerivativeSettings{}, err
+	}
+
+	if len(builder.errors) > 0 {
+		return ElasticsearchDerivativeSettings{}, cog.MakeBuildErrors("elasticsearch.elasticsearchDerivativeSettings", builder.errors)
 	}
 
 	return *builder.internal, nil

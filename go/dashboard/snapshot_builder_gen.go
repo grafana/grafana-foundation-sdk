@@ -15,14 +15,14 @@ var _ cog.Builder[Snapshot] = (*SnapshotBuilder)(nil)
 // Sensitive information stripped: queries (metric, template,annotation) and panel links.
 type SnapshotBuilder struct {
 	internal *Snapshot
-	errors   map[string]cog.BuildErrors
+	errors   cog.BuildErrors
 }
 
 func NewSnapshotBuilder() *SnapshotBuilder {
 	resource := NewSnapshot()
 	builder := &SnapshotBuilder{
 		internal: resource,
-		errors:   make(map[string]cog.BuildErrors),
+		errors:   make(cog.BuildErrors, 0),
 	}
 
 	return builder
@@ -31,6 +31,10 @@ func NewSnapshotBuilder() *SnapshotBuilder {
 func (builder *SnapshotBuilder) Build() (Snapshot, error) {
 	if err := builder.internal.Validate(); err != nil {
 		return Snapshot{}, err
+	}
+
+	if len(builder.errors) > 0 {
+		return Snapshot{}, cog.MakeBuildErrors("dashboard.snapshot", builder.errors)
 	}
 
 	return *builder.internal, nil
@@ -95,7 +99,7 @@ func (builder *SnapshotBuilder) Url(url string) *SnapshotBuilder {
 func (builder *SnapshotBuilder) Dashboard(dashboard cog.Builder[Dashboard]) *SnapshotBuilder {
 	dashboardResource, err := dashboard.Build()
 	if err != nil {
-		builder.errors["dashboard"] = err.(cog.BuildErrors)
+		builder.errors = append(builder.errors, err.(cog.BuildErrors)...)
 		return builder
 	}
 	builder.internal.Dashboard = &dashboardResource

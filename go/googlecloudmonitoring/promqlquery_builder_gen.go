@@ -11,14 +11,14 @@ var _ cog.Builder[PromQLQuery] = (*PromQLQueryBuilder)(nil)
 // PromQL sub-query properties.
 type PromQLQueryBuilder struct {
 	internal *PromQLQuery
-	errors   map[string]cog.BuildErrors
+	errors   cog.BuildErrors
 }
 
 func NewPromQLQueryBuilder() *PromQLQueryBuilder {
 	resource := NewPromQLQuery()
 	builder := &PromQLQueryBuilder{
 		internal: resource,
-		errors:   make(map[string]cog.BuildErrors),
+		errors:   make(cog.BuildErrors, 0),
 	}
 
 	return builder
@@ -27,6 +27,10 @@ func NewPromQLQueryBuilder() *PromQLQueryBuilder {
 func (builder *PromQLQueryBuilder) Build() (PromQLQuery, error) {
 	if err := builder.internal.Validate(); err != nil {
 		return PromQLQuery{}, err
+	}
+
+	if len(builder.errors) > 0 {
+		return PromQLQuery{}, cog.MakeBuildErrors("googlecloudmonitoring.promQLQuery", builder.errors)
 	}
 
 	return *builder.internal, nil

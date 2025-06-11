@@ -10,14 +10,14 @@ var _ cog.Builder[BaseGrafanaTemplateVariableQuery] = (*BaseGrafanaTemplateVaria
 
 type BaseGrafanaTemplateVariableQueryBuilder struct {
 	internal *BaseGrafanaTemplateVariableQuery
-	errors   map[string]cog.BuildErrors
+	errors   cog.BuildErrors
 }
 
 func NewBaseGrafanaTemplateVariableQueryBuilder() *BaseGrafanaTemplateVariableQueryBuilder {
 	resource := NewBaseGrafanaTemplateVariableQuery()
 	builder := &BaseGrafanaTemplateVariableQueryBuilder{
 		internal: resource,
-		errors:   make(map[string]cog.BuildErrors),
+		errors:   make(cog.BuildErrors, 0),
 	}
 
 	return builder
@@ -26,6 +26,10 @@ func NewBaseGrafanaTemplateVariableQueryBuilder() *BaseGrafanaTemplateVariableQu
 func (builder *BaseGrafanaTemplateVariableQueryBuilder) Build() (BaseGrafanaTemplateVariableQuery, error) {
 	if err := builder.internal.Validate(); err != nil {
 		return BaseGrafanaTemplateVariableQuery{}, err
+	}
+
+	if len(builder.errors) > 0 {
+		return BaseGrafanaTemplateVariableQuery{}, cog.MakeBuildErrors("azuremonitor.baseGrafanaTemplateVariableQuery", builder.errors)
 	}
 
 	return *builder.internal, nil

@@ -10,14 +10,14 @@ var _ cog.Builder[Team] = (*TeamBuilder)(nil)
 
 type TeamBuilder struct {
 	internal *Team
-	errors   map[string]cog.BuildErrors
+	errors   cog.BuildErrors
 }
 
 func NewTeamBuilder(name string) *TeamBuilder {
 	resource := NewTeam()
 	builder := &TeamBuilder{
 		internal: resource,
-		errors:   make(map[string]cog.BuildErrors),
+		errors:   make(cog.BuildErrors, 0),
 	}
 	builder.internal.Name = name
 
@@ -27,6 +27,10 @@ func NewTeamBuilder(name string) *TeamBuilder {
 func (builder *TeamBuilder) Build() (Team, error) {
 	if err := builder.internal.Validate(); err != nil {
 		return Team{}, err
+	}
+
+	if len(builder.errors) > 0 {
+		return Team{}, cog.MakeBuildErrors("team.team", builder.errors)
 	}
 
 	return *builder.internal, nil

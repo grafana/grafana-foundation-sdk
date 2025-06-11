@@ -10,14 +10,14 @@ var _ cog.Builder[ElasticsearchGeoHashGridSettings] = (*ElasticsearchGeoHashGrid
 
 type ElasticsearchGeoHashGridSettingsBuilder struct {
 	internal *ElasticsearchGeoHashGridSettings
-	errors   map[string]cog.BuildErrors
+	errors   cog.BuildErrors
 }
 
 func NewElasticsearchGeoHashGridSettingsBuilder() *ElasticsearchGeoHashGridSettingsBuilder {
 	resource := NewElasticsearchGeoHashGridSettings()
 	builder := &ElasticsearchGeoHashGridSettingsBuilder{
 		internal: resource,
-		errors:   make(map[string]cog.BuildErrors),
+		errors:   make(cog.BuildErrors, 0),
 	}
 
 	return builder
@@ -26,6 +26,10 @@ func NewElasticsearchGeoHashGridSettingsBuilder() *ElasticsearchGeoHashGridSetti
 func (builder *ElasticsearchGeoHashGridSettingsBuilder) Build() (ElasticsearchGeoHashGridSettings, error) {
 	if err := builder.internal.Validate(); err != nil {
 		return ElasticsearchGeoHashGridSettings{}, err
+	}
+
+	if len(builder.errors) > 0 {
+		return ElasticsearchGeoHashGridSettings{}, cog.MakeBuildErrors("elasticsearch.elasticsearchGeoHashGridSettings", builder.errors)
 	}
 
 	return *builder.internal, nil

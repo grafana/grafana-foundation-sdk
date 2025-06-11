@@ -10,14 +10,14 @@ var _ cog.Builder[Metadata] = (*MetadataBuilder)(nil)
 
 type MetadataBuilder struct {
 	internal *Metadata
-	errors   map[string]cog.BuildErrors
+	errors   cog.BuildErrors
 }
 
 func NewMetadataBuilder() *MetadataBuilder {
 	resource := NewMetadata()
 	builder := &MetadataBuilder{
 		internal: resource,
-		errors:   make(map[string]cog.BuildErrors),
+		errors:   make(cog.BuildErrors, 0),
 	}
 
 	return builder
@@ -26,6 +26,10 @@ func NewMetadataBuilder() *MetadataBuilder {
 func (builder *MetadataBuilder) Build() (Metadata, error) {
 	if err := builder.internal.Validate(); err != nil {
 		return Metadata{}, err
+	}
+
+	if len(builder.errors) > 0 {
+		return Metadata{}, cog.MakeBuildErrors("resource.metadata", builder.errors)
 	}
 
 	return *builder.internal, nil

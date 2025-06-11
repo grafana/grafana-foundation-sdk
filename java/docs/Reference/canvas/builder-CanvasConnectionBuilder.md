@@ -24,12 +24,6 @@ public CanvasConnection build()
 public CanvasConnectionBuilder color(com.grafana.foundation.cog.Builder<ColorDimensionConfig> color)
 ```
 
-### <span class="badge object-method"></span> path
-
-```java
-public CanvasConnectionBuilder path(ConnectionPath path)
-```
-
 ### <span class="badge object-method"></span> size
 
 ```java

@@ -11,14 +11,14 @@ var _ cog.Builder[Filter] = (*FilterBuilder)(nil)
 // Query filter representation.
 type FilterBuilder struct {
 	internal *Filter
-	errors   map[string]cog.BuildErrors
+	errors   cog.BuildErrors
 }
 
 func NewFilterBuilder() *FilterBuilder {
 	resource := NewFilter()
 	builder := &FilterBuilder{
 		internal: resource,
-		errors:   make(map[string]cog.BuildErrors),
+		errors:   make(cog.BuildErrors, 0),
 	}
 
 	return builder
@@ -27,6 +27,10 @@ func NewFilterBuilder() *FilterBuilder {
 func (builder *FilterBuilder) Build() (Filter, error) {
 	if err := builder.internal.Validate(); err != nil {
 		return Filter{}, err
+	}
+
+	if len(builder.errors) > 0 {
+		return Filter{}, cog.MakeBuildErrors("googlecloudmonitoring.filter", builder.errors)
 	}
 
 	return *builder.internal, nil
