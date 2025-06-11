@@ -12,14 +12,14 @@ var _ cog.Builder[TimePickerConfig] = (*TimePickerBuilder)(nil)
 // It defines the default config for the time picker and the refresh picker for the specific dashboard.
 type TimePickerBuilder struct {
 	internal *TimePickerConfig
-	errors   map[string]cog.BuildErrors
+	errors   cog.BuildErrors
 }
 
 func NewTimePickerBuilder() *TimePickerBuilder {
 	resource := NewTimePickerConfig()
 	builder := &TimePickerBuilder{
 		internal: resource,
-		errors:   make(map[string]cog.BuildErrors),
+		errors:   make(cog.BuildErrors, 0),
 	}
 
 	return builder
@@ -28,6 +28,10 @@ func NewTimePickerBuilder() *TimePickerBuilder {
 func (builder *TimePickerBuilder) Build() (TimePickerConfig, error) {
 	if err := builder.internal.Validate(); err != nil {
 		return TimePickerConfig{}, err
+	}
+
+	if len(builder.errors) > 0 {
+		return TimePickerConfig{}, cog.MakeBuildErrors("dashboard.timePicker", builder.errors)
 	}
 
 	return *builder.internal, nil
@@ -53,7 +57,7 @@ func (builder *TimePickerBuilder) QuickRanges(quickRanges []cog.Builder[TimeOpti
 	for _, r1 := range quickRanges {
 		quickRangesDepth1, err := r1.Build()
 		if err != nil {
-			builder.errors["quick_ranges"] = err.(cog.BuildErrors)
+			builder.errors = append(builder.errors, err.(cog.BuildErrors)...)
 			return builder
 		}
 		quickRangesResources = append(quickRangesResources, quickRangesDepth1)

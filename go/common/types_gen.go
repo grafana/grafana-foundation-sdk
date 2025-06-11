@@ -3921,12 +3921,6 @@ func (resource OptionsWithTimezones) Validate() error {
 // A specific timezone from https://en.wikipedia.org/wiki/Tz_database
 type TimeZone string
 
-// Use UTC/GMT timezone
-const TimeZoneUtc = "utc"
-
-// Use the timezone defined by end user web browser
-const TimeZoneBrowser = "browser"
-
 // TODO docs
 type OptionsWithTextFormatting struct {
 	Text *VizTextDisplayOptions `json:"text,omitempty"`
@@ -6823,6 +6817,12 @@ type TableCellOptions = TableAutoCellOptionsOrTableSparklineCellOptionsOrTableBa
 func NewTableCellOptions() *TableCellOptions {
 	return NewTableAutoCellOptionsOrTableSparklineCellOptionsOrTableBarGaugeCellOptionsOrTableColoredBackgroundCellOptionsOrTableColorTextCellOptionsOrTableImageCellOptionsOrTableDataLinksCellOptionsOrTableActionsCellOptionsOrTableJsonViewCellOptions()
 }
+
+// Use UTC/GMT timezone
+const TimeZoneUtc = "utc"
+
+// Use the timezone defined by end user web browser
+const TimeZoneBrowser = "browser"
 
 // Optional formats for the template variable replace functions
 // See also https://grafana.com/docs/grafana/latest/dashboards/variables/variable-syntax/#advanced-variable-format-options

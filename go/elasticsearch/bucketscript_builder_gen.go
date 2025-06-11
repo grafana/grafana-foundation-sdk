@@ -10,14 +10,14 @@ var _ cog.Builder[BucketScript] = (*BucketScriptBuilder)(nil)
 
 type BucketScriptBuilder struct {
 	internal *BucketScript
-	errors   map[string]cog.BuildErrors
+	errors   cog.BuildErrors
 }
 
 func NewBucketScriptBuilder() *BucketScriptBuilder {
 	resource := NewBucketScript()
 	builder := &BucketScriptBuilder{
 		internal: resource,
-		errors:   make(map[string]cog.BuildErrors),
+		errors:   make(cog.BuildErrors, 0),
 	}
 
 	return builder
@@ -28,6 +28,10 @@ func (builder *BucketScriptBuilder) Build() (BucketScript, error) {
 		return BucketScript{}, err
 	}
 
+	if len(builder.errors) > 0 {
+		return BucketScript{}, cog.MakeBuildErrors("elasticsearch.bucketScript", builder.errors)
+	}
+
 	return *builder.internal, nil
 }
 
@@ -36,7 +40,7 @@ func (builder *BucketScriptBuilder) PipelineVariables(pipelineVariables []cog.Bu
 	for _, r1 := range pipelineVariables {
 		pipelineVariablesDepth1, err := r1.Build()
 		if err != nil {
-			builder.errors["pipelineVariables"] = err.(cog.BuildErrors)
+			builder.errors = append(builder.errors, err.(cog.BuildErrors)...)
 			return builder
 		}
 		pipelineVariablesResources = append(pipelineVariablesResources, pipelineVariablesDepth1)
@@ -55,7 +59,7 @@ func (builder *BucketScriptBuilder) Id(id string) *BucketScriptBuilder {
 func (builder *BucketScriptBuilder) Settings(settings cog.Builder[ElasticsearchBucketScriptSettings]) *BucketScriptBuilder {
 	settingsResource, err := settings.Build()
 	if err != nil {
-		builder.errors["settings"] = err.(cog.BuildErrors)
+		builder.errors = append(builder.errors, err.(cog.BuildErrors)...)
 		return builder
 	}
 	builder.internal.Settings = &settingsResource

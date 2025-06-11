@@ -11,14 +11,14 @@ var _ cog.Builder[PieChartLegendOptions] = (*PieChartLegendOptionsBuilder)(nil)
 
 type PieChartLegendOptionsBuilder struct {
 	internal *PieChartLegendOptions
-	errors   map[string]cog.BuildErrors
+	errors   cog.BuildErrors
 }
 
 func NewPieChartLegendOptionsBuilder() *PieChartLegendOptionsBuilder {
 	resource := NewPieChartLegendOptions()
 	builder := &PieChartLegendOptionsBuilder{
 		internal: resource,
-		errors:   make(map[string]cog.BuildErrors),
+		errors:   make(cog.BuildErrors, 0),
 	}
 
 	return builder
@@ -27,6 +27,10 @@ func NewPieChartLegendOptionsBuilder() *PieChartLegendOptionsBuilder {
 func (builder *PieChartLegendOptionsBuilder) Build() (PieChartLegendOptions, error) {
 	if err := builder.internal.Validate(); err != nil {
 		return PieChartLegendOptions{}, err
+	}
+
+	if len(builder.errors) > 0 {
+		return PieChartLegendOptions{}, cog.MakeBuildErrors("piechart.pieChartLegendOptions", builder.errors)
 	}
 
 	return *builder.internal, nil

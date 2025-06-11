@@ -10,14 +10,14 @@ var _ cog.Builder[ElasticsearchMinSettings] = (*ElasticsearchMinSettingsBuilder)
 
 type ElasticsearchMinSettingsBuilder struct {
 	internal *ElasticsearchMinSettings
-	errors   map[string]cog.BuildErrors
+	errors   cog.BuildErrors
 }
 
 func NewElasticsearchMinSettingsBuilder() *ElasticsearchMinSettingsBuilder {
 	resource := NewElasticsearchMinSettings()
 	builder := &ElasticsearchMinSettingsBuilder{
 		internal: resource,
-		errors:   make(map[string]cog.BuildErrors),
+		errors:   make(cog.BuildErrors, 0),
 	}
 
 	return builder
@@ -26,6 +26,10 @@ func NewElasticsearchMinSettingsBuilder() *ElasticsearchMinSettingsBuilder {
 func (builder *ElasticsearchMinSettingsBuilder) Build() (ElasticsearchMinSettings, error) {
 	if err := builder.internal.Validate(); err != nil {
 		return ElasticsearchMinSettings{}, err
+	}
+
+	if len(builder.errors) > 0 {
+		return ElasticsearchMinSettings{}, cog.MakeBuildErrors("elasticsearch.elasticsearchMinSettings", builder.errors)
 	}
 
 	return *builder.internal, nil

@@ -10,14 +10,14 @@ var _ cog.Builder[LogGroup] = (*LogGroupBuilder)(nil)
 
 type LogGroupBuilder struct {
 	internal *LogGroup
-	errors   map[string]cog.BuildErrors
+	errors   cog.BuildErrors
 }
 
 func NewLogGroupBuilder() *LogGroupBuilder {
 	resource := NewLogGroup()
 	builder := &LogGroupBuilder{
 		internal: resource,
-		errors:   make(map[string]cog.BuildErrors),
+		errors:   make(cog.BuildErrors, 0),
 	}
 
 	return builder
@@ -26,6 +26,10 @@ func NewLogGroupBuilder() *LogGroupBuilder {
 func (builder *LogGroupBuilder) Build() (LogGroup, error) {
 	if err := builder.internal.Validate(); err != nil {
 		return LogGroup{}, err
+	}
+
+	if len(builder.errors) > 0 {
+		return LogGroup{}, cog.MakeBuildErrors("cloudwatch.logGroup", builder.errors)
 	}
 
 	return *builder.internal, nil

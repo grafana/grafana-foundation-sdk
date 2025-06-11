@@ -11,14 +11,14 @@ var _ cog.Builder[VariableModel] = (*AdHocVariableBuilder)(nil)
 // A variable is a placeholder for a value. You can use variables in metric queries and in panel titles.
 type AdHocVariableBuilder struct {
 	internal *VariableModel
-	errors   map[string]cog.BuildErrors
+	errors   cog.BuildErrors
 }
 
 func NewAdHocVariableBuilder(name string) *AdHocVariableBuilder {
 	resource := NewVariableModel()
 	builder := &AdHocVariableBuilder{
 		internal: resource,
-		errors:   make(map[string]cog.BuildErrors),
+		errors:   make(cog.BuildErrors, 0),
 	}
 	builder.internal.Name = name
 	builder.internal.Type = "adhoc"
@@ -29,6 +29,10 @@ func NewAdHocVariableBuilder(name string) *AdHocVariableBuilder {
 func (builder *AdHocVariableBuilder) Build() (VariableModel, error) {
 	if err := builder.internal.Validate(); err != nil {
 		return VariableModel{}, err
+	}
+
+	if len(builder.errors) > 0 {
+		return VariableModel{}, cog.MakeBuildErrors("dashboard.adHocVariable", builder.errors)
 	}
 
 	return *builder.internal, nil

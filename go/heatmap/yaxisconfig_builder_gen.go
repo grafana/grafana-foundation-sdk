@@ -12,14 +12,14 @@ var _ cog.Builder[YAxisConfig] = (*YAxisConfigBuilder)(nil)
 // Configuration options for the yAxis
 type YAxisConfigBuilder struct {
 	internal *YAxisConfig
-	errors   map[string]cog.BuildErrors
+	errors   cog.BuildErrors
 }
 
 func NewYAxisConfigBuilder() *YAxisConfigBuilder {
 	resource := NewYAxisConfig()
 	builder := &YAxisConfigBuilder{
 		internal: resource,
-		errors:   make(map[string]cog.BuildErrors),
+		errors:   make(cog.BuildErrors, 0),
 	}
 
 	return builder
@@ -28,6 +28,10 @@ func NewYAxisConfigBuilder() *YAxisConfigBuilder {
 func (builder *YAxisConfigBuilder) Build() (YAxisConfig, error) {
 	if err := builder.internal.Validate(); err != nil {
 		return YAxisConfig{}, err
+	}
+
+	if len(builder.errors) > 0 {
+		return YAxisConfig{}, cog.MakeBuildErrors("heatmap.yAxisConfig", builder.errors)
 	}
 
 	return *builder.internal, nil
@@ -106,7 +110,7 @@ func (builder *YAxisConfigBuilder) AxisGridShow(axisGridShow bool) *YAxisConfigB
 func (builder *YAxisConfigBuilder) ScaleDistribution(scaleDistribution cog.Builder[common.ScaleDistributionConfig]) *YAxisConfigBuilder {
 	scaleDistributionResource, err := scaleDistribution.Build()
 	if err != nil {
-		builder.errors["scaleDistribution"] = err.(cog.BuildErrors)
+		builder.errors = append(builder.errors, err.(cog.BuildErrors)...)
 		return builder
 	}
 	builder.internal.ScaleDistribution = &scaleDistributionResource

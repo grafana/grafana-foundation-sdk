@@ -10,14 +10,14 @@ var _ cog.Builder[QueryEditorArrayExpression] = (*QueryEditorArrayExpressionBuil
 
 type QueryEditorArrayExpressionBuilder struct {
 	internal *QueryEditorArrayExpression
-	errors   map[string]cog.BuildErrors
+	errors   cog.BuildErrors
 }
 
 func NewQueryEditorArrayExpressionBuilder() *QueryEditorArrayExpressionBuilder {
 	resource := NewQueryEditorArrayExpression()
 	builder := &QueryEditorArrayExpressionBuilder{
 		internal: resource,
-		errors:   make(map[string]cog.BuildErrors),
+		errors:   make(cog.BuildErrors, 0),
 	}
 
 	return builder
@@ -26,6 +26,10 @@ func NewQueryEditorArrayExpressionBuilder() *QueryEditorArrayExpressionBuilder {
 func (builder *QueryEditorArrayExpressionBuilder) Build() (QueryEditorArrayExpression, error) {
 	if err := builder.internal.Validate(); err != nil {
 		return QueryEditorArrayExpression{}, err
+	}
+
+	if len(builder.errors) > 0 {
+		return QueryEditorArrayExpression{}, cog.MakeBuildErrors("cloudwatch.queryEditorArrayExpression", builder.errors)
 	}
 
 	return *builder.internal, nil

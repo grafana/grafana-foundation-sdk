@@ -10,14 +10,14 @@ var _ cog.Builder[XychartFieldConfigPointSize] = (*XychartFieldConfigPointSizeBu
 
 type XychartFieldConfigPointSizeBuilder struct {
 	internal *XychartFieldConfigPointSize
-	errors   map[string]cog.BuildErrors
+	errors   cog.BuildErrors
 }
 
 func NewXychartFieldConfigPointSizeBuilder() *XychartFieldConfigPointSizeBuilder {
 	resource := NewXychartFieldConfigPointSize()
 	builder := &XychartFieldConfigPointSizeBuilder{
 		internal: resource,
-		errors:   make(map[string]cog.BuildErrors),
+		errors:   make(cog.BuildErrors, 0),
 	}
 
 	return builder
@@ -26,6 +26,10 @@ func NewXychartFieldConfigPointSizeBuilder() *XychartFieldConfigPointSizeBuilder
 func (builder *XychartFieldConfigPointSizeBuilder) Build() (XychartFieldConfigPointSize, error) {
 	if err := builder.internal.Validate(); err != nil {
 		return XychartFieldConfigPointSize{}, err
+	}
+
+	if len(builder.errors) > 0 {
+		return XychartFieldConfigPointSize{}, cog.MakeBuildErrors("xychart.xychartFieldConfigPointSize", builder.errors)
 	}
 
 	return *builder.internal, nil

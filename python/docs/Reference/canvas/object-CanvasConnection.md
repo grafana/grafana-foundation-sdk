@@ -10,7 +10,7 @@ class CanvasConnection:
     source: canvas.ConnectionCoordinates
     target: canvas.ConnectionCoordinates
     target_name: typing.Optional[str]
-    path: canvas.ConnectionPath
+    path: str
     color: typing.Optional[common.ColorDimensionConfig]
     size: typing.Optional[common.ScaleDimensionConfig]
     vertices: typing.Optional[list[canvas.ConnectionCoordinates]]
