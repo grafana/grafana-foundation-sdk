@@ -11,14 +11,14 @@ var _ cog.Builder[ScaleDistributionConfig] = (*ScaleDistributionConfigBuilder)(n
 // TODO docs
 type ScaleDistributionConfigBuilder struct {
 	internal *ScaleDistributionConfig
-	errors   map[string]cog.BuildErrors
+	errors   cog.BuildErrors
 }
 
 func NewScaleDistributionConfigBuilder() *ScaleDistributionConfigBuilder {
 	resource := NewScaleDistributionConfig()
 	builder := &ScaleDistributionConfigBuilder{
 		internal: resource,
-		errors:   make(map[string]cog.BuildErrors),
+		errors:   make(cog.BuildErrors, 0),
 	}
 
 	return builder
@@ -27,6 +27,10 @@ func NewScaleDistributionConfigBuilder() *ScaleDistributionConfigBuilder {
 func (builder *ScaleDistributionConfigBuilder) Build() (ScaleDistributionConfig, error) {
 	if err := builder.internal.Validate(); err != nil {
 		return ScaleDistributionConfig{}, err
+	}
+
+	if len(builder.errors) > 0 {
+		return ScaleDistributionConfig{}, cog.MakeBuildErrors("common.scaleDistributionConfig", builder.errors)
 	}
 
 	return *builder.internal, nil

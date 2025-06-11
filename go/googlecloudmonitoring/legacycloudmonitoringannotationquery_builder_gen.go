@@ -11,14 +11,14 @@ var _ cog.Builder[LegacyCloudMonitoringAnnotationQuery] = (*LegacyCloudMonitorin
 // @deprecated Use TimeSeriesList instead. Legacy annotation query properties for migration purposes.
 type LegacyCloudMonitoringAnnotationQueryBuilder struct {
 	internal *LegacyCloudMonitoringAnnotationQuery
-	errors   map[string]cog.BuildErrors
+	errors   cog.BuildErrors
 }
 
 func NewLegacyCloudMonitoringAnnotationQueryBuilder() *LegacyCloudMonitoringAnnotationQueryBuilder {
 	resource := NewLegacyCloudMonitoringAnnotationQuery()
 	builder := &LegacyCloudMonitoringAnnotationQueryBuilder{
 		internal: resource,
-		errors:   make(map[string]cog.BuildErrors),
+		errors:   make(cog.BuildErrors, 0),
 	}
 
 	return builder
@@ -27,6 +27,10 @@ func NewLegacyCloudMonitoringAnnotationQueryBuilder() *LegacyCloudMonitoringAnno
 func (builder *LegacyCloudMonitoringAnnotationQueryBuilder) Build() (LegacyCloudMonitoringAnnotationQuery, error) {
 	if err := builder.internal.Validate(); err != nil {
 		return LegacyCloudMonitoringAnnotationQuery{}, err
+	}
+
+	if len(builder.errors) > 0 {
+		return LegacyCloudMonitoringAnnotationQuery{}, cog.MakeBuildErrors("googlecloudmonitoring.legacyCloudMonitoringAnnotationQuery", builder.errors)
 	}
 
 	return *builder.internal, nil

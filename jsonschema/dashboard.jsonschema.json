@@ -694,7 +694,10 @@
         "options"
       ],
       "properties": {
-        "type": {},
+        "type": {
+          "$ref": "#/definitions/MappingType",
+          "default": "value"
+        },
         "options": {
           "type": "object",
           "additionalProperties": {
@@ -745,7 +748,10 @@
         "options"
       ],
       "properties": {
-        "type": {},
+        "type": {
+          "$ref": "#/definitions/MappingType",
+          "default": "range"
+        },
         "options": {
           "type": "object",
           "additionalProperties": false,
@@ -781,7 +787,10 @@
         "options"
       ],
       "properties": {
-        "type": {},
+        "type": {
+          "$ref": "#/definitions/MappingType",
+          "default": "regex"
+        },
         "options": {
           "type": "object",
           "additionalProperties": false,
@@ -812,7 +821,10 @@
         "options"
       ],
       "properties": {
-        "type": {},
+        "type": {
+          "$ref": "#/definitions/MappingType",
+          "default": "special"
+        },
         "options": {
           "type": "object",
           "additionalProperties": false,

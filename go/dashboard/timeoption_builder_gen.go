@@ -11,14 +11,14 @@ var _ cog.Builder[TimeOption] = (*TimeOptionBuilder)(nil)
 // Counterpart for TypeScript's TimeOption type.
 type TimeOptionBuilder struct {
 	internal *TimeOption
-	errors   map[string]cog.BuildErrors
+	errors   cog.BuildErrors
 }
 
 func NewTimeOptionBuilder() *TimeOptionBuilder {
 	resource := NewTimeOption()
 	builder := &TimeOptionBuilder{
 		internal: resource,
-		errors:   make(map[string]cog.BuildErrors),
+		errors:   make(cog.BuildErrors, 0),
 	}
 
 	return builder
@@ -27,6 +27,10 @@ func NewTimeOptionBuilder() *TimeOptionBuilder {
 func (builder *TimeOptionBuilder) Build() (TimeOption, error) {
 	if err := builder.internal.Validate(); err != nil {
 		return TimeOption{}, err
+	}
+
+	if len(builder.errors) > 0 {
+		return TimeOption{}, cog.MakeBuildErrors("dashboard.timeOption", builder.errors)
 	}
 
 	return *builder.internal, nil
