@@ -10,14 +10,14 @@ var _ cog.Builder[USAQuery] = (*USAQueryBuilder)(nil)
 
 type USAQueryBuilder struct {
 	internal *USAQuery
-	errors   map[string]cog.BuildErrors
+	errors   cog.BuildErrors
 }
 
 func NewUSAQueryBuilder() *USAQueryBuilder {
 	resource := NewUSAQuery()
 	builder := &USAQueryBuilder{
 		internal: resource,
-		errors:   make(map[string]cog.BuildErrors),
+		errors:   make(cog.BuildErrors, 0),
 	}
 
 	return builder
@@ -26,6 +26,10 @@ func NewUSAQueryBuilder() *USAQueryBuilder {
 func (builder *USAQueryBuilder) Build() (USAQuery, error) {
 	if err := builder.internal.Validate(); err != nil {
 		return USAQuery{}, err
+	}
+
+	if len(builder.errors) > 0 {
+		return USAQuery{}, cog.MakeBuildErrors("testdata.uSAQuery", builder.errors)
 	}
 
 	return *builder.internal, nil

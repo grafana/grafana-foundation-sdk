@@ -10,14 +10,14 @@ var _ cog.Builder[ScaleDimensionConfig] = (*ScaleDimensionConfigBuilder)(nil)
 
 type ScaleDimensionConfigBuilder struct {
 	internal *ScaleDimensionConfig
-	errors   map[string]cog.BuildErrors
+	errors   cog.BuildErrors
 }
 
 func NewScaleDimensionConfigBuilder() *ScaleDimensionConfigBuilder {
 	resource := NewScaleDimensionConfig()
 	builder := &ScaleDimensionConfigBuilder{
 		internal: resource,
-		errors:   make(map[string]cog.BuildErrors),
+		errors:   make(cog.BuildErrors, 0),
 	}
 
 	return builder
@@ -26,6 +26,10 @@ func NewScaleDimensionConfigBuilder() *ScaleDimensionConfigBuilder {
 func (builder *ScaleDimensionConfigBuilder) Build() (ScaleDimensionConfig, error) {
 	if err := builder.internal.Validate(); err != nil {
 		return ScaleDimensionConfig{}, err
+	}
+
+	if len(builder.errors) > 0 {
+		return ScaleDimensionConfig{}, cog.MakeBuildErrors("common.scaleDimensionConfig", builder.errors)
 	}
 
 	return *builder.internal, nil

@@ -10,14 +10,14 @@ var _ cog.Builder[DayOfMonthRange] = (*DayOfMonthRangeBuilder)(nil)
 
 type DayOfMonthRangeBuilder struct {
 	internal *DayOfMonthRange
-	errors   map[string]cog.BuildErrors
+	errors   cog.BuildErrors
 }
 
 func NewDayOfMonthRangeBuilder() *DayOfMonthRangeBuilder {
 	resource := NewDayOfMonthRange()
 	builder := &DayOfMonthRangeBuilder{
 		internal: resource,
-		errors:   make(map[string]cog.BuildErrors),
+		errors:   make(cog.BuildErrors, 0),
 	}
 
 	return builder
@@ -26,6 +26,10 @@ func NewDayOfMonthRangeBuilder() *DayOfMonthRangeBuilder {
 func (builder *DayOfMonthRangeBuilder) Build() (DayOfMonthRange, error) {
 	if err := builder.internal.Validate(); err != nil {
 		return DayOfMonthRange{}, err
+	}
+
+	if len(builder.errors) > 0 {
+		return DayOfMonthRange{}, cog.MakeBuildErrors("alerting.dayOfMonthRange", builder.errors)
 	}
 
 	return *builder.internal, nil

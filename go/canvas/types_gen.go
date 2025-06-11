@@ -630,6 +630,7 @@ func NewCanvasConnection() *CanvasConnection {
 	return &CanvasConnection{
 		Source: *NewConnectionCoordinates(),
 		Target: *NewConnectionCoordinates(),
+		Path:   ConnectionPathStraight,
 	}
 }
 
@@ -790,6 +791,9 @@ func (resource CanvasConnection) Validate() error {
 	}
 	if err := resource.Target.Validate(); err != nil {
 		errs = append(errs, cog.MakeBuildErrors("target", err)...)
+	}
+	if resource.Path != "straight" {
+		errs = append(errs, cog.MakeBuildErrors("path", errors.New("must be straight"))...)
 	}
 	if resource.Color != nil {
 		if err := resource.Color.Validate(); err != nil {

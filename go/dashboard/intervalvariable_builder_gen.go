@@ -11,14 +11,14 @@ var _ cog.Builder[VariableModel] = (*IntervalVariableBuilder)(nil)
 // A variable is a placeholder for a value. You can use variables in metric queries and in panel titles.
 type IntervalVariableBuilder struct {
 	internal *VariableModel
-	errors   map[string]cog.BuildErrors
+	errors   cog.BuildErrors
 }
 
 func NewIntervalVariableBuilder(name string) *IntervalVariableBuilder {
 	resource := NewVariableModel()
 	builder := &IntervalVariableBuilder{
 		internal: resource,
-		errors:   make(map[string]cog.BuildErrors),
+		errors:   make(cog.BuildErrors, 0),
 	}
 	builder.internal.Name = name
 	builder.internal.Type = "interval"
@@ -29,6 +29,10 @@ func NewIntervalVariableBuilder(name string) *IntervalVariableBuilder {
 func (builder *IntervalVariableBuilder) Build() (VariableModel, error) {
 	if err := builder.internal.Validate(); err != nil {
 		return VariableModel{}, err
+	}
+
+	if len(builder.errors) > 0 {
+		return VariableModel{}, cog.MakeBuildErrors("dashboard.intervalVariable", builder.errors)
 	}
 
 	return *builder.internal, nil
