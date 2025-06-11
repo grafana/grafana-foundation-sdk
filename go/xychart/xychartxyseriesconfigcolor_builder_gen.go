@@ -10,14 +10,14 @@ var _ cog.Builder[XychartXYSeriesConfigColor] = (*XychartXYSeriesConfigColorBuil
 
 type XychartXYSeriesConfigColorBuilder struct {
 	internal *XychartXYSeriesConfigColor
-	errors   map[string]cog.BuildErrors
+	errors   cog.BuildErrors
 }
 
 func NewXychartXYSeriesConfigColorBuilder() *XychartXYSeriesConfigColorBuilder {
 	resource := NewXychartXYSeriesConfigColor()
 	builder := &XychartXYSeriesConfigColorBuilder{
 		internal: resource,
-		errors:   make(map[string]cog.BuildErrors),
+		errors:   make(cog.BuildErrors, 0),
 	}
 
 	return builder
@@ -28,13 +28,17 @@ func (builder *XychartXYSeriesConfigColorBuilder) Build() (XychartXYSeriesConfig
 		return XychartXYSeriesConfigColor{}, err
 	}
 
+	if len(builder.errors) > 0 {
+		return XychartXYSeriesConfigColor{}, cog.MakeBuildErrors("xychart.xychartXYSeriesConfigColor", builder.errors)
+	}
+
 	return *builder.internal, nil
 }
 
 func (builder *XychartXYSeriesConfigColorBuilder) Matcher(matcher cog.Builder[MatcherConfig]) *XychartXYSeriesConfigColorBuilder {
 	matcherResource, err := matcher.Build()
 	if err != nil {
-		builder.errors["matcher"] = err.(cog.BuildErrors)
+		builder.errors = append(builder.errors, err.(cog.BuildErrors)...)
 		return builder
 	}
 	builder.internal.Matcher = matcherResource

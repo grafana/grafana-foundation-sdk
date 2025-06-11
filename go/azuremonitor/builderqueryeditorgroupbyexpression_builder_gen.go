@@ -10,14 +10,14 @@ var _ cog.Builder[BuilderQueryEditorGroupByExpression] = (*BuilderQueryEditorGro
 
 type BuilderQueryEditorGroupByExpressionBuilder struct {
 	internal *BuilderQueryEditorGroupByExpression
-	errors   map[string]cog.BuildErrors
+	errors   cog.BuildErrors
 }
 
 func NewBuilderQueryEditorGroupByExpressionBuilder() *BuilderQueryEditorGroupByExpressionBuilder {
 	resource := NewBuilderQueryEditorGroupByExpression()
 	builder := &BuilderQueryEditorGroupByExpressionBuilder{
 		internal: resource,
-		errors:   make(map[string]cog.BuildErrors),
+		errors:   make(cog.BuildErrors, 0),
 	}
 
 	return builder
@@ -28,13 +28,17 @@ func (builder *BuilderQueryEditorGroupByExpressionBuilder) Build() (BuilderQuery
 		return BuilderQueryEditorGroupByExpression{}, err
 	}
 
+	if len(builder.errors) > 0 {
+		return BuilderQueryEditorGroupByExpression{}, cog.MakeBuildErrors("azuremonitor.builderQueryEditorGroupByExpression", builder.errors)
+	}
+
 	return *builder.internal, nil
 }
 
 func (builder *BuilderQueryEditorGroupByExpressionBuilder) Property(property cog.Builder[BuilderQueryEditorProperty]) *BuilderQueryEditorGroupByExpressionBuilder {
 	propertyResource, err := property.Build()
 	if err != nil {
-		builder.errors["property"] = err.(cog.BuildErrors)
+		builder.errors = append(builder.errors, err.(cog.BuildErrors)...)
 		return builder
 	}
 	builder.internal.Property = &propertyResource
@@ -45,7 +49,7 @@ func (builder *BuilderQueryEditorGroupByExpressionBuilder) Property(property cog
 func (builder *BuilderQueryEditorGroupByExpressionBuilder) Interval(interval cog.Builder[BuilderQueryEditorProperty]) *BuilderQueryEditorGroupByExpressionBuilder {
 	intervalResource, err := interval.Build()
 	if err != nil {
-		builder.errors["interval"] = err.(cog.BuildErrors)
+		builder.errors = append(builder.errors, err.(cog.BuildErrors)...)
 		return builder
 	}
 	builder.internal.Interval = &intervalResource

@@ -3,8 +3,6 @@
 import * as cog from '../cog';
 import * as alerting from '../alerting';
 
-// A Route is a node that contains definitions of how to handle alerts. This is modified
-// from the upstream alertmanager in that it adds the ObjectMatchers property.
 export class NotificationPolicyBuilder implements cog.Builder<alerting.NotificationPolicy> {
     protected readonly internal: alerting.NotificationPolicy;
 
@@ -65,16 +63,6 @@ export class NotificationPolicyBuilder implements cog.Builder<alerting.Notificat
 
     muteTimeIntervals(muteTimeIntervals: string[]): this {
         this.internal.mute_time_intervals = muteTimeIntervals;
-        return this;
-    }
-
-    objectMatchers(objectMatchers: alerting.ObjectMatchers): this {
-        this.internal.object_matchers = objectMatchers;
-        return this;
-    }
-
-    provenance(provenance: alerting.Provenance): this {
-        this.internal.provenance = provenance;
         return this;
     }
 

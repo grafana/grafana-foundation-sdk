@@ -10,14 +10,14 @@ var _ cog.Builder[BuilderQueryEditorOrderByExpression] = (*BuilderQueryEditorOrd
 
 type BuilderQueryEditorOrderByExpressionBuilder struct {
 	internal *BuilderQueryEditorOrderByExpression
-	errors   map[string]cog.BuildErrors
+	errors   cog.BuildErrors
 }
 
 func NewBuilderQueryEditorOrderByExpressionBuilder() *BuilderQueryEditorOrderByExpressionBuilder {
 	resource := NewBuilderQueryEditorOrderByExpression()
 	builder := &BuilderQueryEditorOrderByExpressionBuilder{
 		internal: resource,
-		errors:   make(map[string]cog.BuildErrors),
+		errors:   make(cog.BuildErrors, 0),
 	}
 
 	return builder
@@ -28,13 +28,17 @@ func (builder *BuilderQueryEditorOrderByExpressionBuilder) Build() (BuilderQuery
 		return BuilderQueryEditorOrderByExpression{}, err
 	}
 
+	if len(builder.errors) > 0 {
+		return BuilderQueryEditorOrderByExpression{}, cog.MakeBuildErrors("azuremonitor.builderQueryEditorOrderByExpression", builder.errors)
+	}
+
 	return *builder.internal, nil
 }
 
 func (builder *BuilderQueryEditorOrderByExpressionBuilder) Property(property cog.Builder[BuilderQueryEditorProperty]) *BuilderQueryEditorOrderByExpressionBuilder {
 	propertyResource, err := property.Build()
 	if err != nil {
-		builder.errors["property"] = err.(cog.BuildErrors)
+		builder.errors = append(builder.errors, err.(cog.BuildErrors)...)
 		return builder
 	}
 	builder.internal.Property = propertyResource

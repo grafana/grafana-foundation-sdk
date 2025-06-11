@@ -3,19 +3,10 @@ title: <span class="badge object-type-class"></span> NotificationPolicy
 ---
 # <span class="badge object-type-class"></span> NotificationPolicy
 
-A Route is a node that contains definitions of how to handle alerts. This is modified
-
-from the upstream alertmanager in that it adds the ObjectMatchers property.
-
 ## Definition
 
 ```python
 class NotificationPolicy:
-    """
-    A Route is a node that contains definitions of how to handle alerts. This is modified
-    from the upstream alertmanager in that it adds the ObjectMatchers property.
-    """
-
     active_time_intervals: typing.Optional[list[str]]
     continue_val: typing.Optional[bool]
     group_by: typing.Optional[list[str]]
@@ -29,8 +20,6 @@ class NotificationPolicy:
     # slice. Note that some users of Matchers might require it to be sorted.
     matchers: typing.Optional[alerting.Matchers]
     mute_time_intervals: typing.Optional[list[str]]
-    object_matchers: typing.Optional[alerting.ObjectMatchers]
-    provenance: typing.Optional[alerting.Provenance]
     receiver: typing.Optional[str]
     repeat_interval: typing.Optional[str]
     routes: typing.Optional[list[alerting.NotificationPolicy]]

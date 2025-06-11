@@ -3,10 +3,6 @@ title: <span class="badge object-type-interface"></span> NotificationPolicy
 ---
 # <span class="badge object-type-interface"></span> NotificationPolicy
 
-A Route is a node that contains definitions of how to handle alerts. This is modified
-
-from the upstream alertmanager in that it adds the ObjectMatchers property.
-
 ## Definition
 
 ```typescript
@@ -24,8 +20,6 @@ export interface NotificationPolicy {
 	// slice. Note that some users of Matchers might require it to be sorted.
 	matchers?: alerting.Matchers;
 	mute_time_intervals?: string[];
-	object_matchers?: alerting.ObjectMatchers;
-	provenance?: alerting.Provenance;
 	receiver?: string;
 	repeat_interval?: string;
 	routes?: alerting.NotificationPolicy[];

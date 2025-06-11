@@ -392,6 +392,10 @@ func (resource RuleGroup) Validate() error {
 }
 
 type NotificationSettings struct {
+	// Override the times when notifications should not be muted. These must match the name of a mute time interval defined
+	// in the alertmanager configuration time_intervals section. All notifications will be suppressed unless they are sent
+	// at the time that matches any interval.
+	ActiveTimeIntervals []string `json:"active_time_intervals,omitempty"`
 	// Override the labels by which incoming alerts are grouped together. For example, multiple alerts coming in for
 	// cluster=A and alertname=LatencyHigh would be batched into a single group. To aggregate by all possible labels
 	// use the special value '...' as the sole label name.
@@ -406,7 +410,7 @@ type NotificationSettings struct {
 	// inhibiting alert to arrive or collect more initial alerts for the same group. (Usually ~0s to few minutes.)
 	GroupWait *string `json:"group_wait,omitempty"`
 	// Override the times when notifications should be muted. These must match the name of a mute time interval defined
-	// in the alertmanager configuration mute_time_intervals section. When muted it will not send any notifications, but
+	// in the alertmanager configuration time_intervals section. When muted it will not send any notifications, but
 	// otherwise acts normally.
 	MuteTimeIntervals []string `json:"mute_time_intervals,omitempty"`
 	// Name of the receiver to send notifications to.
@@ -437,6 +441,18 @@ func (resource *NotificationSettings) UnmarshalJSONStrict(raw []byte) error {
 	fields := make(map[string]json.RawMessage)
 	if err := json.Unmarshal(raw, &fields); err != nil {
 		return err
+	}
+	// Field "active_time_intervals"
+	if fields["active_time_intervals"] != nil {
+		if string(fields["active_time_intervals"]) != "null" {
+
+			if err := json.Unmarshal(fields["active_time_intervals"], &resource.ActiveTimeIntervals); err != nil {
+				errs = append(errs, cog.MakeBuildErrors("active_time_intervals", err)...)
+			}
+
+		}
+		delete(fields, "active_time_intervals")
+
 	}
 	// Field "group_by"
 	if fields["group_by"] != nil {
@@ -523,6 +539,16 @@ func (resource *NotificationSettings) UnmarshalJSONStrict(raw []byte) error {
 
 // Equals tests the equality of two `NotificationSettings` objects.
 func (resource NotificationSettings) Equals(other NotificationSettings) bool {
+
+	if len(resource.ActiveTimeIntervals) != len(other.ActiveTimeIntervals) {
+		return false
+	}
+
+	for i1 := range resource.ActiveTimeIntervals {
+		if resource.ActiveTimeIntervals[i1] != other.ActiveTimeIntervals[i1] {
+			return false
+		}
+	}
 
 	if len(resource.GroupBy) != len(other.GroupBy) {
 		return false
@@ -1134,10 +1160,6 @@ func (resource NotificationTemplate) Equals(other NotificationTemplate) bool {
 func (resource NotificationTemplate) Validate() error {
 	return nil
 }
-
-type ObjectMatcher []string
-
-type ObjectMatchers []ObjectMatcher
 
 type Provenance string
 
@@ -1864,8 +1886,6 @@ func (resource RelativeTimeRange) Validate() error {
 	return nil
 }
 
-// A Route is a node that contains definitions of how to handle alerts. This is modified
-// from the upstream alertmanager in that it adds the ObjectMatchers property.
 type NotificationPolicy struct {
 	ActiveTimeIntervals []string `json:"active_time_intervals,omitempty"`
 	Continue            *bool    `json:"continue,omitempty"`
@@ -1880,8 +1900,6 @@ type NotificationPolicy struct {
 	// slice. Note that some users of Matchers might require it to be sorted.
 	Matchers          *Matchers            `json:"matchers,omitempty"`
 	MuteTimeIntervals []string             `json:"mute_time_intervals,omitempty"`
-	ObjectMatchers    *ObjectMatchers      `json:"object_matchers,omitempty"`
-	Provenance        *Provenance          `json:"provenance,omitempty"`
 	Receiver          *string              `json:"receiver,omitempty"`
 	RepeatInterval    *string              `json:"repeat_interval,omitempty"`
 	Routes            []NotificationPolicy `json:"routes,omitempty"`
@@ -2018,29 +2036,6 @@ func (resource *NotificationPolicy) UnmarshalJSONStrict(raw []byte) error {
 
 		}
 		delete(fields, "mute_time_intervals")
-
-	}
-	// Field "object_matchers"
-	if fields["object_matchers"] != nil {
-		if string(fields["object_matchers"]) != "null" {
-
-			if err := json.Unmarshal(fields["object_matchers"], &resource.ObjectMatchers); err != nil {
-				errs = append(errs, cog.MakeBuildErrors("object_matchers", err)...)
-			}
-
-		}
-		delete(fields, "object_matchers")
-
-	}
-	// Field "provenance"
-	if fields["provenance"] != nil {
-		if string(fields["provenance"]) != "null" {
-			if err := json.Unmarshal(fields["provenance"], &resource.Provenance); err != nil {
-				errs = append(errs, cog.MakeBuildErrors("provenance", err)...)
-			}
-
-		}
-		delete(fields, "provenance")
 
 	}
 	// Field "receiver"
@@ -2198,38 +2193,6 @@ func (resource NotificationPolicy) Equals(other NotificationPolicy) bool {
 
 	for i1 := range resource.MuteTimeIntervals {
 		if resource.MuteTimeIntervals[i1] != other.MuteTimeIntervals[i1] {
-			return false
-		}
-	}
-	if resource.ObjectMatchers == nil && other.ObjectMatchers != nil || resource.ObjectMatchers != nil && other.ObjectMatchers == nil {
-		return false
-	}
-
-	if resource.ObjectMatchers != nil {
-
-		if len(*resource.ObjectMatchers) != len(*other.ObjectMatchers) {
-			return false
-		}
-
-		for i1 := range *resource.ObjectMatchers {
-
-			if len((*resource.ObjectMatchers)[i1]) != len((*other.ObjectMatchers)[i1]) {
-				return false
-			}
-
-			for i2 := range (*resource.ObjectMatchers)[i1] {
-				if (*resource.ObjectMatchers)[i1][i2] != (*other.ObjectMatchers)[i1][i2] {
-					return false
-				}
-			}
-		}
-	}
-	if resource.Provenance == nil && other.Provenance != nil || resource.Provenance != nil && other.Provenance == nil {
-		return false
-	}
-
-	if resource.Provenance != nil {
-		if *resource.Provenance != *other.Provenance {
 			return false
 		}
 	}

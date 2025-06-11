@@ -157,42 +157,6 @@ final class NotificationPolicyConverter
     
     
     }
-            if (count($input->objectMatchers) >= 1) {
-    
-        
-    $buffer = 'objectMatchers(';
-        $tmparg0 = [];
-        foreach ($input->objectMatchers as $arg1) {
-        $tmptmpobject_matchersarg1 = [];
-        foreach ($arg1 as $arg1Value) {
-        $tmparg1arg1Value =\var_export($arg1Value, true);
-        $tmptmpobject_matchersarg1[] = $tmparg1arg1Value;
-        }
-        $tmpobject_matchersarg1 = "[" . implode(", \n", $tmptmpobject_matchersarg1) . "]";
-        $tmparg0[] = $tmpobject_matchersarg1;
-        }
-        $arg0 = "[" . implode(", \n", $tmparg0) . "]";
-        $buffer .= $arg0;
-        
-    $buffer .= ')';
-
-    $calls[] = $buffer;
-    
-    
-    }
-            if ($input->provenance !== "") {
-    
-        
-    $buffer = 'provenance(';
-        $arg0 =\var_export($input->provenance, true);
-        $buffer .= $arg0;
-        
-    $buffer .= ')';
-
-    $calls[] = $buffer;
-    
-    
-    }
             if ($input->receiver !== null && $input->receiver !== "") {
     
         

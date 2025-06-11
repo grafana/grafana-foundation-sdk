@@ -2,10 +2,6 @@
 
 namespace Grafana\Foundation\Alerting;
 
-/**
- * A Route is a node that contains definitions of how to handle alerts. This is modified
- * from the upstream alertmanager in that it adds the ObjectMatchers property.
- */
 class NotificationPolicy implements \JsonSerializable
 {
     /**
@@ -48,13 +44,6 @@ class NotificationPolicy implements \JsonSerializable
      */
     public ?array $muteTimeIntervals;
 
-    /**
-     * @var array<array<string>>
-     */
-    public array $objectMatchers;
-
-    public string $provenance;
-
     public ?string $receiver;
 
     public ?string $repeatInterval;
@@ -74,13 +63,11 @@ class NotificationPolicy implements \JsonSerializable
      * @param array<string, string>|null $matchRe
      * @param array<\Grafana\Foundation\Alerting\Matcher>|null $matchers
      * @param array<string>|null $muteTimeIntervals
-     * @param array<array<string>>|null $objectMatchers
-     * @param string|null $provenance
      * @param string|null $receiver
      * @param string|null $repeatInterval
      * @param array<\Grafana\Foundation\Alerting\NotificationPolicy>|null $routes
      */
-    public function __construct(?array $activeTimeIntervals = null, ?bool $continue = null, ?array $groupBy = null, ?string $groupInterval = null, ?string $groupWait = null, ?array $match = null, ?array $matchRe = null, ?array $matchers = null, ?array $muteTimeIntervals = null, ?array $objectMatchers = null, ?string $provenance = null, ?string $receiver = null, ?string $repeatInterval = null, ?array $routes = null)
+    public function __construct(?array $activeTimeIntervals = null, ?bool $continue = null, ?array $groupBy = null, ?string $groupInterval = null, ?string $groupWait = null, ?array $match = null, ?array $matchRe = null, ?array $matchers = null, ?array $muteTimeIntervals = null, ?string $receiver = null, ?string $repeatInterval = null, ?array $routes = null)
     {
         $this->activeTimeIntervals = $activeTimeIntervals;
         $this->continue = $continue;
@@ -91,8 +78,6 @@ class NotificationPolicy implements \JsonSerializable
         $this->matchRe = $matchRe ?: [];
         $this->matchers = $matchers ?: [];
         $this->muteTimeIntervals = $muteTimeIntervals;
-        $this->objectMatchers = $objectMatchers ?: [];
-        $this->provenance = $provenance ?: "";
         $this->receiver = $receiver;
         $this->repeatInterval = $repeatInterval;
         $this->routes = $routes;
@@ -103,7 +88,7 @@ class NotificationPolicy implements \JsonSerializable
      */
     public static function fromArray(array $inputData): self
     {
-        /** @var array{active_time_intervals?: array<string>, continue?: bool, group_by?: array<string>, group_interval?: string, group_wait?: string, match?: array<string, string>, match_re?: array<string, string>, matchers?: array<mixed>, mute_time_intervals?: array<string>, object_matchers?: array<array<string>>, provenance?: string, receiver?: string, repeat_interval?: string, routes?: array<mixed>} $inputData */
+        /** @var array{active_time_intervals?: array<string>, continue?: bool, group_by?: array<string>, group_interval?: string, group_wait?: string, match?: array<string, string>, match_re?: array<string, string>, matchers?: array<mixed>, mute_time_intervals?: array<string>, receiver?: string, repeat_interval?: string, routes?: array<mixed>} $inputData */
         $data = $inputData;
         return new self(
             activeTimeIntervals: $data["active_time_intervals"] ?? null,
@@ -119,12 +104,10 @@ class NotificationPolicy implements \JsonSerializable
     	return \Grafana\Foundation\Alerting\Matcher::fromArray($val);
     }), $data["matchers"] ?? [])),
             muteTimeIntervals: $data["mute_time_intervals"] ?? null,
-            objectMatchers: $data["object_matchers"] ?? null,
-            provenance: $data["provenance"] ?? null,
             receiver: $data["receiver"] ?? null,
             repeatInterval: $data["repeat_interval"] ?? null,
             routes: array_filter(array_map((function($input) {
-    	/** @var array{active_time_intervals?: array<string>, continue?: bool, group_by?: array<string>, group_interval?: string, group_wait?: string, match?: array<string, string>, match_re?: array<string, string>, matchers?: array<mixed>, mute_time_intervals?: array<string>, object_matchers?: array<array<string>>, provenance?: string, receiver?: string, repeat_interval?: string, routes?: array<mixed>} */
+    	/** @var array{active_time_intervals?: array<string>, continue?: bool, group_by?: array<string>, group_interval?: string, group_wait?: string, match?: array<string, string>, match_re?: array<string, string>, matchers?: array<mixed>, mute_time_intervals?: array<string>, receiver?: string, repeat_interval?: string, routes?: array<mixed>} */
     $val = $input;
     	return \Grafana\Foundation\Alerting\NotificationPolicy::fromArray($val);
     }), $data["routes"] ?? [])),
@@ -139,8 +122,6 @@ class NotificationPolicy implements \JsonSerializable
         $data = new \stdClass;
         $data->match_re = $this->matchRe;
         $data->matchers = $this->matchers;
-        $data->object_matchers = $this->objectMatchers;
-        $data->provenance = $this->provenance;
         if (isset($this->activeTimeIntervals)) {
             $data->active_time_intervals = $this->activeTimeIntervals;
         }

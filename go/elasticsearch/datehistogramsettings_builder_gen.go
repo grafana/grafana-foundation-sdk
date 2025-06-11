@@ -10,14 +10,14 @@ var _ cog.Builder[DateHistogramSettings] = (*DateHistogramSettingsBuilder)(nil)
 
 type DateHistogramSettingsBuilder struct {
 	internal *DateHistogramSettings
-	errors   map[string]cog.BuildErrors
+	errors   cog.BuildErrors
 }
 
 func NewDateHistogramSettingsBuilder() *DateHistogramSettingsBuilder {
 	resource := NewDateHistogramSettings()
 	builder := &DateHistogramSettingsBuilder{
 		internal: resource,
-		errors:   make(map[string]cog.BuildErrors),
+		errors:   make(cog.BuildErrors, 0),
 	}
 
 	return builder
@@ -26,6 +26,10 @@ func NewDateHistogramSettingsBuilder() *DateHistogramSettingsBuilder {
 func (builder *DateHistogramSettingsBuilder) Build() (DateHistogramSettings, error) {
 	if err := builder.internal.Validate(); err != nil {
 		return DateHistogramSettings{}, err
+	}
+
+	if len(builder.errors) > 0 {
+		return DateHistogramSettings{}, cog.MakeBuildErrors("elasticsearch.dateHistogramSettings", builder.errors)
 	}
 
 	return *builder.internal, nil

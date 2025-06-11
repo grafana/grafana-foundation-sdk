@@ -10,14 +10,14 @@ var _ cog.Builder[BuilderQueryEditorOperator] = (*BuilderQueryEditorOperatorBuil
 
 type BuilderQueryEditorOperatorBuilder struct {
 	internal *BuilderQueryEditorOperator
-	errors   map[string]cog.BuildErrors
+	errors   cog.BuildErrors
 }
 
 func NewBuilderQueryEditorOperatorBuilder() *BuilderQueryEditorOperatorBuilder {
 	resource := NewBuilderQueryEditorOperator()
 	builder := &BuilderQueryEditorOperatorBuilder{
 		internal: resource,
-		errors:   make(map[string]cog.BuildErrors),
+		errors:   make(cog.BuildErrors, 0),
 	}
 
 	return builder
@@ -26,6 +26,10 @@ func NewBuilderQueryEditorOperatorBuilder() *BuilderQueryEditorOperatorBuilder {
 func (builder *BuilderQueryEditorOperatorBuilder) Build() (BuilderQueryEditorOperator, error) {
 	if err := builder.internal.Validate(); err != nil {
 		return BuilderQueryEditorOperator{}, err
+	}
+
+	if len(builder.errors) > 0 {
+		return BuilderQueryEditorOperator{}, cog.MakeBuildErrors("azuremonitor.builderQueryEditorOperator", builder.errors)
 	}
 
 	return *builder.internal, nil

@@ -80,18 +80,6 @@ matchers(matchers: alerting.Matchers)
 muteTimeIntervals(muteTimeIntervals: string[])
 ```
 
-### <span class="badge object-method"></span> objectMatchers
-
-```typescript
-objectMatchers(objectMatchers: alerting.ObjectMatchers)
-```
-
-### <span class="badge object-method"></span> provenance
-
-```typescript
-provenance(provenance: alerting.Provenance)
-```
-
 ### <span class="badge object-method"></span> receiver
 
 ```typescript

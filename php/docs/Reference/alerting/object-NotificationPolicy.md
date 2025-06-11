@@ -3,10 +3,6 @@ title: <span class="badge object-type-class"></span> NotificationPolicy
 ---
 # <span class="badge object-type-class"></span> NotificationPolicy
 
-A Route is a node that contains definitions of how to handle alerts. This is modified
-
-from the upstream alertmanager in that it adds the ObjectMatchers property.
-
 ## Definition
 
 ```php
@@ -51,13 +47,6 @@ class NotificationPolicy implements \JsonSerializable
      * @var array<string>|null
      */
     public ?array $muteTimeIntervals;
-
-    /**
-     * @var array<array<string>>
-     */
-    public array $objectMatchers;
-
-    public string $provenance;
 
     public ?string $receiver;
 

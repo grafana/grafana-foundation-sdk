@@ -11,14 +11,14 @@ var _ cog.Builder[BarConfig] = (*BarConfigBuilder)(nil)
 // TODO docs
 type BarConfigBuilder struct {
 	internal *BarConfig
-	errors   map[string]cog.BuildErrors
+	errors   cog.BuildErrors
 }
 
 func NewBarConfigBuilder() *BarConfigBuilder {
 	resource := NewBarConfig()
 	builder := &BarConfigBuilder{
 		internal: resource,
-		errors:   make(map[string]cog.BuildErrors),
+		errors:   make(cog.BuildErrors, 0),
 	}
 
 	return builder
@@ -27,6 +27,10 @@ func NewBarConfigBuilder() *BarConfigBuilder {
 func (builder *BarConfigBuilder) Build() (BarConfig, error) {
 	if err := builder.internal.Validate(); err != nil {
 		return BarConfig{}, err
+	}
+
+	if len(builder.errors) > 0 {
+		return BarConfig{}, cog.MakeBuildErrors("common.barConfig", builder.errors)
 	}
 
 	return *builder.internal, nil

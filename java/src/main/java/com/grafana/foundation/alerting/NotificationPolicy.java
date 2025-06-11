@@ -12,8 +12,6 @@ import java.util.Map;
 import com.fasterxml.jackson.annotation.JsonSetter;
 import com.fasterxml.jackson.annotation.Nulls;
 
-// A Route is a node that contains definitions of how to handle alerts. This is modified
-// from the upstream alertmanager in that it adds the ObjectMatchers property.
 public class NotificationPolicy {
     @JsonInclude(JsonInclude.Include.NON_NULL)
     @JsonProperty("active_time_intervals")
@@ -46,11 +44,6 @@ public class NotificationPolicy {
     @JsonInclude(JsonInclude.Include.NON_NULL)
     @JsonProperty("mute_time_intervals")
     public List<String> muteTimeIntervals;
-    @JsonSetter(nulls = Nulls.AS_EMPTY)
-    @JsonProperty("object_matchers")
-    public List<List<String>> objectMatchers;
-    @JsonProperty("provenance")
-    public String provenance;
     @JsonInclude(JsonInclude.Include.NON_NULL)
     @JsonProperty("receiver")
     public String receiver;
@@ -62,7 +55,7 @@ public class NotificationPolicy {
     public List<NotificationPolicy> routes;
     public NotificationPolicy() {
     }
-    public NotificationPolicy(List<String> activeTimeIntervals,Boolean continueArg,List<String> groupBy,String groupInterval,String groupWait,Map<String, String> match,Map<String, String> matchRe,List<Matcher> matchers,List<String> muteTimeIntervals,List<List<String>> objectMatchers,String provenance,String receiver,String repeatInterval,List<NotificationPolicy> routes) {
+    public NotificationPolicy(List<String> activeTimeIntervals,Boolean continueArg,List<String> groupBy,String groupInterval,String groupWait,Map<String, String> match,Map<String, String> matchRe,List<Matcher> matchers,List<String> muteTimeIntervals,String receiver,String repeatInterval,List<NotificationPolicy> routes) {
         this.activeTimeIntervals = activeTimeIntervals;
         this.continueArg = continueArg;
         this.groupBy = groupBy;
@@ -72,8 +65,6 @@ public class NotificationPolicy {
         this.matchRe = matchRe;
         this.matchers = matchers;
         this.muteTimeIntervals = muteTimeIntervals;
-        this.objectMatchers = objectMatchers;
-        this.provenance = provenance;
         this.receiver = receiver;
         this.repeatInterval = repeatInterval;
         this.routes = routes;

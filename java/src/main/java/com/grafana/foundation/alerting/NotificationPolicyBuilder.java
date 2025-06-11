@@ -62,16 +62,6 @@ public class NotificationPolicyBuilder implements com.grafana.foundation.cog.Bui
         return this;
     }
     
-    public NotificationPolicyBuilder objectMatchers(List<List<String>> objectMatchers) {
-        this.internal.objectMatchers = objectMatchers;
-        return this;
-    }
-    
-    public NotificationPolicyBuilder provenance(String provenance) {
-        this.internal.provenance = provenance;
-        return this;
-    }
-    
     public NotificationPolicyBuilder receiver(String receiver) {
         this.internal.receiver = receiver;
         return this;

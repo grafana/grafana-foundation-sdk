@@ -80,18 +80,6 @@ def matchers(matchers: alerting.Matchers) -> typing.Self
 def mute_time_intervals(mute_time_intervals: list[str]) -> typing.Self
 ```
 
-### <span class="badge object-method"></span> object_matchers
-
-```python
-def object_matchers(object_matchers: alerting.ObjectMatchers) -> typing.Self
-```
-
-### <span class="badge object-method"></span> provenance
-
-```python
-def provenance(provenance: alerting.Provenance) -> typing.Self
-```
-
 ### <span class="badge object-method"></span> receiver
 
 ```python

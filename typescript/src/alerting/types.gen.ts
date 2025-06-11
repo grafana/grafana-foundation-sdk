@@ -34,6 +34,10 @@ export const defaultRuleGroup = (): RuleGroup => ({
 });
 
 export interface NotificationSettings {
+	// Override the times when notifications should not be muted. These must match the name of a mute time interval defined
+	// in the alertmanager configuration time_intervals section. All notifications will be suppressed unless they are sent
+	// at the time that matches any interval.
+	active_time_intervals?: string[];
 	// Override the labels by which incoming alerts are grouped together. For example, multiple alerts coming in for
 	// cluster=A and alertname=LatencyHigh would be batched into a single group. To aggregate by all possible labels
 	// use the special value '...' as the sole label name.
@@ -48,7 +52,7 @@ export interface NotificationSettings {
 	// inhibiting alert to arrive or collect more initial alerts for the same group. (Usually ~0s to few minutes.)
 	group_wait?: string;
 	// Override the times when notifications should be muted. These must match the name of a mute time interval defined
-	// in the alertmanager configuration mute_time_intervals section. When muted it will not send any notifications, but
+	// in the alertmanager configuration time_intervals section. When muted it will not send any notifications, but
 	// otherwise acts normally.
 	mute_time_intervals?: string[];
 	// Name of the receiver to send notifications to.
@@ -145,14 +149,6 @@ export interface NotificationTemplate {
 export const defaultNotificationTemplate = (): NotificationTemplate => ({
 });
 
-export type ObjectMatcher = string[];
-
-export const defaultObjectMatcher = (): ObjectMatcher => ([]);
-
-export type ObjectMatchers = ObjectMatcher[];
-
-export const defaultObjectMatchers = (): ObjectMatchers => ([]);
-
 export type Provenance = string;
 
 export const defaultProvenance = (): Provenance => ("");
@@ -224,8 +220,6 @@ export interface RelativeTimeRange {
 export const defaultRelativeTimeRange = (): RelativeTimeRange => ({
 });
 
-// A Route is a node that contains definitions of how to handle alerts. This is modified
-// from the upstream alertmanager in that it adds the ObjectMatchers property.
 export interface NotificationPolicy {
 	active_time_intervals?: string[];
 	continue?: boolean;
@@ -240,8 +234,6 @@ export interface NotificationPolicy {
 	// slice. Note that some users of Matchers might require it to be sorted.
 	matchers?: Matchers;
 	mute_time_intervals?: string[];
-	object_matchers?: ObjectMatchers;
-	provenance?: Provenance;
 	receiver?: string;
 	repeat_interval?: string;
 	routes?: NotificationPolicy[];
