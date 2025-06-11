@@ -10,14 +10,14 @@ var _ cog.Builder[ExprTypeResampleTimeRange] = (*ExprTypeResampleTimeRangeBuilde
 
 type ExprTypeResampleTimeRangeBuilder struct {
 	internal *ExprTypeResampleTimeRange
-	errors   map[string]cog.BuildErrors
+	errors   cog.BuildErrors
 }
 
 func NewExprTypeResampleTimeRangeBuilder() *ExprTypeResampleTimeRangeBuilder {
 	resource := NewExprTypeResampleTimeRange()
 	builder := &ExprTypeResampleTimeRangeBuilder{
 		internal: resource,
-		errors:   make(map[string]cog.BuildErrors),
+		errors:   make(cog.BuildErrors, 0),
 	}
 
 	return builder
@@ -26,6 +26,10 @@ func NewExprTypeResampleTimeRangeBuilder() *ExprTypeResampleTimeRangeBuilder {
 func (builder *ExprTypeResampleTimeRangeBuilder) Build() (ExprTypeResampleTimeRange, error) {
 	if err := builder.internal.Validate(); err != nil {
 		return ExprTypeResampleTimeRange{}, err
+	}
+
+	if len(builder.errors) > 0 {
+		return ExprTypeResampleTimeRange{}, cog.MakeBuildErrors("expr.exprTypeResampleTimeRange", builder.errors)
 	}
 
 	return *builder.internal, nil

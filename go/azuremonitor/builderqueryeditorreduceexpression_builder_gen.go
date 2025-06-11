@@ -10,14 +10,14 @@ var _ cog.Builder[BuilderQueryEditorReduceExpression] = (*BuilderQueryEditorRedu
 
 type BuilderQueryEditorReduceExpressionBuilder struct {
 	internal *BuilderQueryEditorReduceExpression
-	errors   map[string]cog.BuildErrors
+	errors   cog.BuildErrors
 }
 
 func NewBuilderQueryEditorReduceExpressionBuilder() *BuilderQueryEditorReduceExpressionBuilder {
 	resource := NewBuilderQueryEditorReduceExpression()
 	builder := &BuilderQueryEditorReduceExpressionBuilder{
 		internal: resource,
-		errors:   make(map[string]cog.BuildErrors),
+		errors:   make(cog.BuildErrors, 0),
 	}
 
 	return builder
@@ -28,13 +28,17 @@ func (builder *BuilderQueryEditorReduceExpressionBuilder) Build() (BuilderQueryE
 		return BuilderQueryEditorReduceExpression{}, err
 	}
 
+	if len(builder.errors) > 0 {
+		return BuilderQueryEditorReduceExpression{}, cog.MakeBuildErrors("azuremonitor.builderQueryEditorReduceExpression", builder.errors)
+	}
+
 	return *builder.internal, nil
 }
 
 func (builder *BuilderQueryEditorReduceExpressionBuilder) Property(property cog.Builder[BuilderQueryEditorProperty]) *BuilderQueryEditorReduceExpressionBuilder {
 	propertyResource, err := property.Build()
 	if err != nil {
-		builder.errors["property"] = err.(cog.BuildErrors)
+		builder.errors = append(builder.errors, err.(cog.BuildErrors)...)
 		return builder
 	}
 	builder.internal.Property = &propertyResource
@@ -45,7 +49,7 @@ func (builder *BuilderQueryEditorReduceExpressionBuilder) Property(property cog.
 func (builder *BuilderQueryEditorReduceExpressionBuilder) Reduce(reduce cog.Builder[BuilderQueryEditorProperty]) *BuilderQueryEditorReduceExpressionBuilder {
 	reduceResource, err := reduce.Build()
 	if err != nil {
-		builder.errors["reduce"] = err.(cog.BuildErrors)
+		builder.errors = append(builder.errors, err.(cog.BuildErrors)...)
 		return builder
 	}
 	builder.internal.Reduce = &reduceResource
@@ -58,7 +62,7 @@ func (builder *BuilderQueryEditorReduceExpressionBuilder) Parameters(parameters 
 	for _, r1 := range parameters {
 		parametersDepth1, err := r1.Build()
 		if err != nil {
-			builder.errors["parameters"] = err.(cog.BuildErrors)
+			builder.errors = append(builder.errors, err.(cog.BuildErrors)...)
 			return builder
 		}
 		parametersResources = append(parametersResources, parametersDepth1)

@@ -24,12 +24,6 @@ build()
 color(color: cog.Builder<common.ColorDimensionConfig>)
 ```
 
-### <span class="badge object-method"></span> path
-
-```typescript
-path(path: canvas.ConnectionPath)
-```
-
 ### <span class="badge object-method"></span> size
 
 ```typescript

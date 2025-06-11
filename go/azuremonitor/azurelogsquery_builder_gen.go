@@ -11,14 +11,14 @@ var _ cog.Builder[AzureLogsQuery] = (*AzureLogsQueryBuilder)(nil)
 // Azure Monitor Logs sub-query properties
 type AzureLogsQueryBuilder struct {
 	internal *AzureLogsQuery
-	errors   map[string]cog.BuildErrors
+	errors   cog.BuildErrors
 }
 
 func NewAzureLogsQueryBuilder() *AzureLogsQueryBuilder {
 	resource := NewAzureLogsQuery()
 	builder := &AzureLogsQueryBuilder{
 		internal: resource,
-		errors:   make(map[string]cog.BuildErrors),
+		errors:   make(cog.BuildErrors, 0),
 	}
 
 	return builder
@@ -27,6 +27,10 @@ func NewAzureLogsQueryBuilder() *AzureLogsQueryBuilder {
 func (builder *AzureLogsQueryBuilder) Build() (AzureLogsQuery, error) {
 	if err := builder.internal.Validate(); err != nil {
 		return AzureLogsQuery{}, err
+	}
+
+	if len(builder.errors) > 0 {
+		return AzureLogsQuery{}, cog.MakeBuildErrors("azuremonitor.azureLogsQuery", builder.errors)
 	}
 
 	return *builder.internal, nil
@@ -92,7 +96,7 @@ func (builder *AzureLogsQueryBuilder) Mode(mode LogsEditorMode) *AzureLogsQueryB
 func (builder *AzureLogsQueryBuilder) BuilderQuery(builderQuery cog.Builder[BuilderQueryExpression]) *AzureLogsQueryBuilder {
 	builderQueryResource, err := builderQuery.Build()
 	if err != nil {
-		builder.errors["builderQuery"] = err.(cog.BuildErrors)
+		builder.errors = append(builder.errors, err.(cog.BuildErrors)...)
 		return builder
 	}
 	builder.internal.BuilderQuery = &builderQueryResource

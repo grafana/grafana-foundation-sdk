@@ -10,6 +10,11 @@ public class NotificationSettingsBuilder implements com.grafana.foundation.cog.B
     public NotificationSettingsBuilder() {
         this.internal = new NotificationSettings();
     }
+    public NotificationSettingsBuilder activeTimeIntervals(List<String> activeTimeIntervals) {
+        this.internal.activeTimeIntervals = activeTimeIntervals;
+        return this;
+    }
+    
     public NotificationSettingsBuilder groupBy(List<String> groupBy) {
         this.internal.groupBy = groupBy;
         return this;

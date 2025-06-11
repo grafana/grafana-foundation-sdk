@@ -11,14 +11,14 @@ var _ cog.Builder[FieldColor] = (*FieldColorBuilder)(nil)
 // Map a field to a color.
 type FieldColorBuilder struct {
 	internal *FieldColor
-	errors   map[string]cog.BuildErrors
+	errors   cog.BuildErrors
 }
 
 func NewFieldColorBuilder() *FieldColorBuilder {
 	resource := NewFieldColor()
 	builder := &FieldColorBuilder{
 		internal: resource,
-		errors:   make(map[string]cog.BuildErrors),
+		errors:   make(cog.BuildErrors, 0),
 	}
 
 	return builder
@@ -27,6 +27,10 @@ func NewFieldColorBuilder() *FieldColorBuilder {
 func (builder *FieldColorBuilder) Build() (FieldColor, error) {
 	if err := builder.internal.Validate(); err != nil {
 		return FieldColor{}, err
+	}
+
+	if len(builder.errors) > 0 {
+		return FieldColor{}, cog.MakeBuildErrors("dashboard.fieldColor", builder.errors)
 	}
 
 	return *builder.internal, nil

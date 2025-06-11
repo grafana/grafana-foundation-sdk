@@ -10,6 +10,24 @@ final class NotificationSettingsConverter
         $calls = [
             '(new \Grafana\Foundation\Alerting\NotificationSettingsBuilder())',
         ];
+            if ($input->activeTimeIntervals !== null && count($input->activeTimeIntervals) >= 1) {
+    
+        
+    $buffer = 'activeTimeIntervals(';
+        $tmparg0 = [];
+        foreach ($input->activeTimeIntervals as $arg1) {
+        $tmpactive_time_intervalsarg1 =\var_export($arg1, true);
+        $tmparg0[] = $tmpactive_time_intervalsarg1;
+        }
+        $arg0 = "[" . implode(", \n", $tmparg0) . "]";
+        $buffer .= $arg0;
+        
+    $buffer .= ')';
+
+    $calls[] = $buffer;
+    
+    
+    }
             if ($input->groupBy !== null && count($input->groupBy) >= 1) {
     
         

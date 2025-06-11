@@ -10,14 +10,14 @@ var _ cog.Builder[ElasticsearchSerialDiffSettings] = (*ElasticsearchSerialDiffSe
 
 type ElasticsearchSerialDiffSettingsBuilder struct {
 	internal *ElasticsearchSerialDiffSettings
-	errors   map[string]cog.BuildErrors
+	errors   cog.BuildErrors
 }
 
 func NewElasticsearchSerialDiffSettingsBuilder() *ElasticsearchSerialDiffSettingsBuilder {
 	resource := NewElasticsearchSerialDiffSettings()
 	builder := &ElasticsearchSerialDiffSettingsBuilder{
 		internal: resource,
-		errors:   make(map[string]cog.BuildErrors),
+		errors:   make(cog.BuildErrors, 0),
 	}
 
 	return builder
@@ -26,6 +26,10 @@ func NewElasticsearchSerialDiffSettingsBuilder() *ElasticsearchSerialDiffSetting
 func (builder *ElasticsearchSerialDiffSettingsBuilder) Build() (ElasticsearchSerialDiffSettings, error) {
 	if err := builder.internal.Validate(); err != nil {
 		return ElasticsearchSerialDiffSettings{}, err
+	}
+
+	if len(builder.errors) > 0 {
+		return ElasticsearchSerialDiffSettings{}, cog.MakeBuildErrors("elasticsearch.elasticsearchSerialDiffSettings", builder.errors)
 	}
 
 	return *builder.internal, nil

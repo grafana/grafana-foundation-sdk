@@ -15,14 +15,14 @@ var _ cog.Builder[variants.Dataquery] = (*CloudWatchAnnotationQueryBuilder)(nil)
 // #CloudWatchDefaultQuery: #CloudWatchLogsQuery & #CloudWatchMetricsQuery @cuetsy(kind="type")
 type CloudWatchAnnotationQueryBuilder struct {
 	internal *CloudWatchAnnotationQuery
-	errors   map[string]cog.BuildErrors
+	errors   cog.BuildErrors
 }
 
 func NewCloudWatchAnnotationQueryBuilder() *CloudWatchAnnotationQueryBuilder {
 	resource := NewCloudWatchAnnotationQuery()
 	builder := &CloudWatchAnnotationQueryBuilder{
 		internal: resource,
-		errors:   make(map[string]cog.BuildErrors),
+		errors:   make(cog.BuildErrors, 0),
 	}
 
 	return builder
@@ -31,6 +31,10 @@ func NewCloudWatchAnnotationQueryBuilder() *CloudWatchAnnotationQueryBuilder {
 func (builder *CloudWatchAnnotationQueryBuilder) Build() (variants.Dataquery, error) {
 	if err := builder.internal.Validate(); err != nil {
 		return CloudWatchAnnotationQuery{}, err
+	}
+
+	if len(builder.errors) > 0 {
+		return CloudWatchAnnotationQuery{}, cog.MakeBuildErrors("cloudwatch.cloudWatchAnnotationQuery", builder.errors)
 	}
 
 	return *builder.internal, nil

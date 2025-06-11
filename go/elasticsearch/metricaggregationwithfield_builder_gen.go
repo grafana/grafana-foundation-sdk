@@ -10,14 +10,14 @@ var _ cog.Builder[MetricAggregationWithField] = (*MetricAggregationWithFieldBuil
 
 type MetricAggregationWithFieldBuilder struct {
 	internal *MetricAggregationWithField
-	errors   map[string]cog.BuildErrors
+	errors   cog.BuildErrors
 }
 
 func NewMetricAggregationWithFieldBuilder() *MetricAggregationWithFieldBuilder {
 	resource := NewMetricAggregationWithField()
 	builder := &MetricAggregationWithFieldBuilder{
 		internal: resource,
-		errors:   make(map[string]cog.BuildErrors),
+		errors:   make(cog.BuildErrors, 0),
 	}
 
 	return builder
@@ -26,6 +26,10 @@ func NewMetricAggregationWithFieldBuilder() *MetricAggregationWithFieldBuilder {
 func (builder *MetricAggregationWithFieldBuilder) Build() (MetricAggregationWithField, error) {
 	if err := builder.internal.Validate(); err != nil {
 		return MetricAggregationWithField{}, err
+	}
+
+	if len(builder.errors) > 0 {
+		return MetricAggregationWithField{}, cog.MakeBuildErrors("elasticsearch.metricAggregationWithField", builder.errors)
 	}
 
 	return *builder.internal, nil

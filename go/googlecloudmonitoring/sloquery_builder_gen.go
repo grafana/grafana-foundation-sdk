@@ -11,14 +11,14 @@ var _ cog.Builder[SLOQuery] = (*SLOQueryBuilder)(nil)
 // SLO sub-query properties.
 type SLOQueryBuilder struct {
 	internal *SLOQuery
-	errors   map[string]cog.BuildErrors
+	errors   cog.BuildErrors
 }
 
 func NewSLOQueryBuilder() *SLOQueryBuilder {
 	resource := NewSLOQuery()
 	builder := &SLOQueryBuilder{
 		internal: resource,
-		errors:   make(map[string]cog.BuildErrors),
+		errors:   make(cog.BuildErrors, 0),
 	}
 
 	return builder
@@ -27,6 +27,10 @@ func NewSLOQueryBuilder() *SLOQueryBuilder {
 func (builder *SLOQueryBuilder) Build() (SLOQuery, error) {
 	if err := builder.internal.Validate(); err != nil {
 		return SLOQuery{}, err
+	}
+
+	if len(builder.errors) > 0 {
+		return SLOQuery{}, cog.MakeBuildErrors("googlecloudmonitoring.sLOQuery", builder.errors)
 	}
 
 	return *builder.internal, nil

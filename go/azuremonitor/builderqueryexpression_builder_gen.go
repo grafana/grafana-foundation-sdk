@@ -10,14 +10,14 @@ var _ cog.Builder[BuilderQueryExpression] = (*BuilderQueryExpressionBuilder)(nil
 
 type BuilderQueryExpressionBuilder struct {
 	internal *BuilderQueryExpression
-	errors   map[string]cog.BuildErrors
+	errors   cog.BuildErrors
 }
 
 func NewBuilderQueryExpressionBuilder() *BuilderQueryExpressionBuilder {
 	resource := NewBuilderQueryExpression()
 	builder := &BuilderQueryExpressionBuilder{
 		internal: resource,
-		errors:   make(map[string]cog.BuildErrors),
+		errors:   make(cog.BuildErrors, 0),
 	}
 
 	return builder
@@ -28,13 +28,17 @@ func (builder *BuilderQueryExpressionBuilder) Build() (BuilderQueryExpression, e
 		return BuilderQueryExpression{}, err
 	}
 
+	if len(builder.errors) > 0 {
+		return BuilderQueryExpression{}, cog.MakeBuildErrors("azuremonitor.builderQueryExpression", builder.errors)
+	}
+
 	return *builder.internal, nil
 }
 
 func (builder *BuilderQueryExpressionBuilder) From(from cog.Builder[BuilderQueryEditorPropertyExpression]) *BuilderQueryExpressionBuilder {
 	fromResource, err := from.Build()
 	if err != nil {
-		builder.errors["from"] = err.(cog.BuildErrors)
+		builder.errors = append(builder.errors, err.(cog.BuildErrors)...)
 		return builder
 	}
 	builder.internal.From = &fromResource
@@ -45,7 +49,7 @@ func (builder *BuilderQueryExpressionBuilder) From(from cog.Builder[BuilderQuery
 func (builder *BuilderQueryExpressionBuilder) Columns(columns cog.Builder[BuilderQueryEditorColumnsExpression]) *BuilderQueryExpressionBuilder {
 	columnsResource, err := columns.Build()
 	if err != nil {
-		builder.errors["columns"] = err.(cog.BuildErrors)
+		builder.errors = append(builder.errors, err.(cog.BuildErrors)...)
 		return builder
 	}
 	builder.internal.Columns = &columnsResource
@@ -56,7 +60,7 @@ func (builder *BuilderQueryExpressionBuilder) Columns(columns cog.Builder[Builde
 func (builder *BuilderQueryExpressionBuilder) Where(where cog.Builder[BuilderQueryEditorWhereExpressionArray]) *BuilderQueryExpressionBuilder {
 	whereResource, err := where.Build()
 	if err != nil {
-		builder.errors["where"] = err.(cog.BuildErrors)
+		builder.errors = append(builder.errors, err.(cog.BuildErrors)...)
 		return builder
 	}
 	builder.internal.Where = &whereResource
@@ -67,7 +71,7 @@ func (builder *BuilderQueryExpressionBuilder) Where(where cog.Builder[BuilderQue
 func (builder *BuilderQueryExpressionBuilder) Reduce(reduce cog.Builder[BuilderQueryEditorReduceExpressionArray]) *BuilderQueryExpressionBuilder {
 	reduceResource, err := reduce.Build()
 	if err != nil {
-		builder.errors["reduce"] = err.(cog.BuildErrors)
+		builder.errors = append(builder.errors, err.(cog.BuildErrors)...)
 		return builder
 	}
 	builder.internal.Reduce = &reduceResource
@@ -78,7 +82,7 @@ func (builder *BuilderQueryExpressionBuilder) Reduce(reduce cog.Builder[BuilderQ
 func (builder *BuilderQueryExpressionBuilder) GroupBy(groupBy cog.Builder[BuilderQueryEditorGroupByExpressionArray]) *BuilderQueryExpressionBuilder {
 	groupByResource, err := groupBy.Build()
 	if err != nil {
-		builder.errors["groupBy"] = err.(cog.BuildErrors)
+		builder.errors = append(builder.errors, err.(cog.BuildErrors)...)
 		return builder
 	}
 	builder.internal.GroupBy = &groupByResource
@@ -95,7 +99,7 @@ func (builder *BuilderQueryExpressionBuilder) Limit(limit int64) *BuilderQueryEx
 func (builder *BuilderQueryExpressionBuilder) OrderBy(orderBy cog.Builder[BuilderQueryEditorOrderByExpressionArray]) *BuilderQueryExpressionBuilder {
 	orderByResource, err := orderBy.Build()
 	if err != nil {
-		builder.errors["orderBy"] = err.(cog.BuildErrors)
+		builder.errors = append(builder.errors, err.(cog.BuildErrors)...)
 		return builder
 	}
 	builder.internal.OrderBy = &orderByResource
@@ -106,7 +110,7 @@ func (builder *BuilderQueryExpressionBuilder) OrderBy(orderBy cog.Builder[Builde
 func (builder *BuilderQueryExpressionBuilder) FuzzySearch(fuzzySearch cog.Builder[BuilderQueryEditorWhereExpressionArray]) *BuilderQueryExpressionBuilder {
 	fuzzySearchResource, err := fuzzySearch.Build()
 	if err != nil {
-		builder.errors["fuzzySearch"] = err.(cog.BuildErrors)
+		builder.errors = append(builder.errors, err.(cog.BuildErrors)...)
 		return builder
 	}
 	builder.internal.FuzzySearch = &fuzzySearchResource
@@ -117,7 +121,7 @@ func (builder *BuilderQueryExpressionBuilder) FuzzySearch(fuzzySearch cog.Builde
 func (builder *BuilderQueryExpressionBuilder) TimeFilter(timeFilter cog.Builder[BuilderQueryEditorWhereExpressionArray]) *BuilderQueryExpressionBuilder {
 	timeFilterResource, err := timeFilter.Build()
 	if err != nil {
-		builder.errors["timeFilter"] = err.(cog.BuildErrors)
+		builder.errors = append(builder.errors, err.(cog.BuildErrors)...)
 		return builder
 	}
 	builder.internal.TimeFilter = &timeFilterResource

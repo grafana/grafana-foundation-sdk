@@ -249,7 +249,10 @@
           "type"
         ],
         "properties": {
-          "type": {},
+          "type": {
+            "$ref": "#/components/schemas/QueryEditorExpressionType",
+            "default": "function"
+          },
           "name": {
             "type": "string"
           },
@@ -279,7 +282,10 @@
           "type"
         ],
         "properties": {
-          "type": {},
+          "type": {
+            "$ref": "#/components/schemas/QueryEditorExpressionType",
+            "default": "functionParameter"
+          },
           "name": {
             "type": "string"
           }
@@ -293,7 +299,10 @@
           "property"
         ],
         "properties": {
-          "type": {},
+          "type": {
+            "$ref": "#/components/schemas/QueryEditorExpressionType",
+            "default": "property"
+          },
           "property": {
             "$ref": "#/components/schemas/QueryEditorProperty"
           }
@@ -307,17 +316,13 @@
         ],
         "properties": {
           "type": {
-            "$ref": "#/components/schemas/QueryEditorPropertyType"
+            "$ref": "#/components/schemas/QueryEditorPropertyType",
+            "default": "string"
           },
           "name": {
             "type": "string"
           }
         }
-      },
-      "QueryEditorPropertyType": {
-        "enum": [
-          "string"
-        ]
       },
       "QueryEditorArrayExpression": {
         "type": "object",
@@ -371,7 +376,10 @@
           "property"
         ],
         "properties": {
-          "type": {},
+          "type": {
+            "$ref": "#/components/schemas/QueryEditorExpressionType",
+            "default": "groupBy"
+          },
           "property": {
             "$ref": "#/components/schemas/QueryEditorProperty"
           }
@@ -386,7 +394,10 @@
           "operator"
         ],
         "properties": {
-          "type": {},
+          "type": {
+            "$ref": "#/components/schemas/QueryEditorExpressionType",
+            "default": "operator"
+          },
           "property": {
             "$ref": "#/components/schemas/QueryEditorProperty"
           },
@@ -443,6 +454,11 @@
               "$ref": "#/components/schemas/QueryEditorOperatorType"
             }
           }
+        ]
+      },
+      "QueryEditorPropertyType": {
+        "enum": [
+          "string"
         ]
       },
       "LogsQueryLanguage": {

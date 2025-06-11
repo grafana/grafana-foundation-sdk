@@ -10,14 +10,14 @@ var _ cog.Builder[BuilderQueryEditorWhereExpressionArray] = (*BuilderQueryEditor
 
 type BuilderQueryEditorWhereExpressionArrayBuilder struct {
 	internal *BuilderQueryEditorWhereExpressionArray
-	errors   map[string]cog.BuildErrors
+	errors   cog.BuildErrors
 }
 
 func NewBuilderQueryEditorWhereExpressionArrayBuilder() *BuilderQueryEditorWhereExpressionArrayBuilder {
 	resource := NewBuilderQueryEditorWhereExpressionArray()
 	builder := &BuilderQueryEditorWhereExpressionArrayBuilder{
 		internal: resource,
-		errors:   make(map[string]cog.BuildErrors),
+		errors:   make(cog.BuildErrors, 0),
 	}
 
 	return builder
@@ -28,6 +28,10 @@ func (builder *BuilderQueryEditorWhereExpressionArrayBuilder) Build() (BuilderQu
 		return BuilderQueryEditorWhereExpressionArray{}, err
 	}
 
+	if len(builder.errors) > 0 {
+		return BuilderQueryEditorWhereExpressionArray{}, cog.MakeBuildErrors("azuremonitor.builderQueryEditorWhereExpressionArray", builder.errors)
+	}
+
 	return *builder.internal, nil
 }
 
@@ -36,7 +40,7 @@ func (builder *BuilderQueryEditorWhereExpressionArrayBuilder) Expressions(expres
 	for _, r1 := range expressions {
 		expressionsDepth1, err := r1.Build()
 		if err != nil {
-			builder.errors["expressions"] = err.(cog.BuildErrors)
+			builder.errors = append(builder.errors, err.(cog.BuildErrors)...)
 			return builder
 		}
 		expressionsResources = append(expressionsResources, expressionsDepth1)

@@ -10,14 +10,14 @@ var _ cog.Builder[FiltersSettings] = (*FiltersSettingsBuilder)(nil)
 
 type FiltersSettingsBuilder struct {
 	internal *FiltersSettings
-	errors   map[string]cog.BuildErrors
+	errors   cog.BuildErrors
 }
 
 func NewFiltersSettingsBuilder() *FiltersSettingsBuilder {
 	resource := NewFiltersSettings()
 	builder := &FiltersSettingsBuilder{
 		internal: resource,
-		errors:   make(map[string]cog.BuildErrors),
+		errors:   make(cog.BuildErrors, 0),
 	}
 
 	return builder
@@ -28,6 +28,10 @@ func (builder *FiltersSettingsBuilder) Build() (FiltersSettings, error) {
 		return FiltersSettings{}, err
 	}
 
+	if len(builder.errors) > 0 {
+		return FiltersSettings{}, cog.MakeBuildErrors("elasticsearch.filtersSettings", builder.errors)
+	}
+
 	return *builder.internal, nil
 }
 
@@ -36,7 +40,7 @@ func (builder *FiltersSettingsBuilder) Filters(filters []cog.Builder[Filter]) *F
 	for _, r1 := range filters {
 		filtersDepth1, err := r1.Build()
 		if err != nil {
-			builder.errors["filters"] = err.(cog.BuildErrors)
+			builder.errors = append(builder.errors, err.(cog.BuildErrors)...)
 			return builder
 		}
 		filtersResources = append(filtersResources, filtersDepth1)
