@@ -12,14 +12,14 @@ var _ cog.Builder[variants.Dataquery] = (*CloudMonitoringQueryBuilder)(nil)
 
 type CloudMonitoringQueryBuilder struct {
 	internal *CloudMonitoringQuery
-	errors   map[string]cog.BuildErrors
+	errors   cog.BuildErrors
 }
 
 func NewCloudMonitoringQueryBuilder() *CloudMonitoringQueryBuilder {
 	resource := NewCloudMonitoringQuery()
 	builder := &CloudMonitoringQueryBuilder{
 		internal: resource,
-		errors:   make(map[string]cog.BuildErrors),
+		errors:   make(cog.BuildErrors, 0),
 	}
 
 	return builder
@@ -28,6 +28,10 @@ func NewCloudMonitoringQueryBuilder() *CloudMonitoringQueryBuilder {
 func (builder *CloudMonitoringQueryBuilder) Build() (variants.Dataquery, error) {
 	if err := builder.internal.Validate(); err != nil {
 		return CloudMonitoringQuery{}, err
+	}
+
+	if len(builder.errors) > 0 {
+		return CloudMonitoringQuery{}, cog.MakeBuildErrors("googlecloudmonitoring.cloudMonitoringQuery", builder.errors)
 	}
 
 	return *builder.internal, nil
@@ -72,7 +76,7 @@ func (builder *CloudMonitoringQueryBuilder) AliasBy(aliasBy string) *CloudMonito
 func (builder *CloudMonitoringQueryBuilder) TimeSeriesList(timeSeriesList cog.Builder[TimeSeriesList]) *CloudMonitoringQueryBuilder {
 	timeSeriesListResource, err := timeSeriesList.Build()
 	if err != nil {
-		builder.errors["timeSeriesList"] = err.(cog.BuildErrors)
+		builder.errors = append(builder.errors, err.(cog.BuildErrors)...)
 		return builder
 	}
 	builder.internal.TimeSeriesList = &timeSeriesListResource
@@ -84,7 +88,7 @@ func (builder *CloudMonitoringQueryBuilder) TimeSeriesList(timeSeriesList cog.Bu
 func (builder *CloudMonitoringQueryBuilder) TimeSeriesQuery(timeSeriesQuery cog.Builder[TimeSeriesQuery]) *CloudMonitoringQueryBuilder {
 	timeSeriesQueryResource, err := timeSeriesQuery.Build()
 	if err != nil {
-		builder.errors["timeSeriesQuery"] = err.(cog.BuildErrors)
+		builder.errors = append(builder.errors, err.(cog.BuildErrors)...)
 		return builder
 	}
 	builder.internal.TimeSeriesQuery = &timeSeriesQueryResource
@@ -96,7 +100,7 @@ func (builder *CloudMonitoringQueryBuilder) TimeSeriesQuery(timeSeriesQuery cog.
 func (builder *CloudMonitoringQueryBuilder) SloQuery(sloQuery cog.Builder[SLOQuery]) *CloudMonitoringQueryBuilder {
 	sloQueryResource, err := sloQuery.Build()
 	if err != nil {
-		builder.errors["sloQuery"] = err.(cog.BuildErrors)
+		builder.errors = append(builder.errors, err.(cog.BuildErrors)...)
 		return builder
 	}
 	builder.internal.SloQuery = &sloQueryResource
@@ -108,7 +112,7 @@ func (builder *CloudMonitoringQueryBuilder) SloQuery(sloQuery cog.Builder[SLOQue
 func (builder *CloudMonitoringQueryBuilder) PromQLQuery(promQLQuery cog.Builder[PromQLQuery]) *CloudMonitoringQueryBuilder {
 	promQLQueryResource, err := promQLQuery.Build()
 	if err != nil {
-		builder.errors["promQLQuery"] = err.(cog.BuildErrors)
+		builder.errors = append(builder.errors, err.(cog.BuildErrors)...)
 		return builder
 	}
 	builder.internal.PromQLQuery = &promQLQueryResource

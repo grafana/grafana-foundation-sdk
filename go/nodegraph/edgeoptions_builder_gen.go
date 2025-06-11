@@ -10,14 +10,14 @@ var _ cog.Builder[EdgeOptions] = (*EdgeOptionsBuilder)(nil)
 
 type EdgeOptionsBuilder struct {
 	internal *EdgeOptions
-	errors   map[string]cog.BuildErrors
+	errors   cog.BuildErrors
 }
 
 func NewEdgeOptionsBuilder() *EdgeOptionsBuilder {
 	resource := NewEdgeOptions()
 	builder := &EdgeOptionsBuilder{
 		internal: resource,
-		errors:   make(map[string]cog.BuildErrors),
+		errors:   make(cog.BuildErrors, 0),
 	}
 
 	return builder
@@ -26,6 +26,10 @@ func NewEdgeOptionsBuilder() *EdgeOptionsBuilder {
 func (builder *EdgeOptionsBuilder) Build() (EdgeOptions, error) {
 	if err := builder.internal.Validate(); err != nil {
 		return EdgeOptions{}, err
+	}
+
+	if len(builder.errors) > 0 {
+		return EdgeOptions{}, cog.MakeBuildErrors("nodegraph.edgeOptions", builder.errors)
 	}
 
 	return *builder.internal, nil

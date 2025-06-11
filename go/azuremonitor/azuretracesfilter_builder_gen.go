@@ -10,14 +10,14 @@ var _ cog.Builder[AzureTracesFilter] = (*AzureTracesFilterBuilder)(nil)
 
 type AzureTracesFilterBuilder struct {
 	internal *AzureTracesFilter
-	errors   map[string]cog.BuildErrors
+	errors   cog.BuildErrors
 }
 
 func NewAzureTracesFilterBuilder() *AzureTracesFilterBuilder {
 	resource := NewAzureTracesFilter()
 	builder := &AzureTracesFilterBuilder{
 		internal: resource,
-		errors:   make(map[string]cog.BuildErrors),
+		errors:   make(cog.BuildErrors, 0),
 	}
 
 	return builder
@@ -26,6 +26,10 @@ func NewAzureTracesFilterBuilder() *AzureTracesFilterBuilder {
 func (builder *AzureTracesFilterBuilder) Build() (AzureTracesFilter, error) {
 	if err := builder.internal.Validate(); err != nil {
 		return AzureTracesFilter{}, err
+	}
+
+	if len(builder.errors) > 0 {
+		return AzureTracesFilter{}, cog.MakeBuildErrors("azuremonitor.azureTracesFilter", builder.errors)
 	}
 
 	return *builder.internal, nil

@@ -1476,14 +1476,6 @@ class OptionsWithTimezones:
 TimeZone: typing.TypeAlias = str
 
 
-# Use UTC/GMT timezone
-TimeZoneUtc: typing.Literal["utc"] = "utc"
-
-
-# Use the timezone defined by end user web browser
-TimeZoneBrowser: typing.Literal["browser"] = "browser"
-
-
 class OptionsWithTextFormatting:
     """
     TODO docs
@@ -2337,6 +2329,14 @@ class TableCellHeight(enum.StrEnum):
 # Table cell options. Each cell has a display mode
 # and other potential options for that display.
 TableCellOptions: typing.TypeAlias = typing.Union['TableAutoCellOptions', 'TableSparklineCellOptions', 'TableBarGaugeCellOptions', 'TableColoredBackgroundCellOptions', 'TableColorTextCellOptions', 'TableImageCellOptions', 'TableJsonViewCellOptions']
+
+
+# Use UTC/GMT timezone
+TimeZoneUtc: typing.Literal["utc"] = "utc"
+
+
+# Use the timezone defined by end user web browser
+TimeZoneBrowser: typing.Literal["browser"] = "browser"
 
 
 class VariableFormatID(enum.StrEnum):

@@ -11,14 +11,14 @@ var _ cog.Builder[Query] = (*QueryBuilder)(nil)
 
 type QueryBuilder struct {
 	internal *Query
-	errors   map[string]cog.BuildErrors
+	errors   cog.BuildErrors
 }
 
 func NewQueryBuilder(refId string) *QueryBuilder {
 	resource := NewQuery()
 	builder := &QueryBuilder{
 		internal: resource,
-		errors:   make(map[string]cog.BuildErrors),
+		errors:   make(cog.BuildErrors, 0),
 	}
 	builder.internal.RefId = &refId
 
@@ -28,6 +28,10 @@ func NewQueryBuilder(refId string) *QueryBuilder {
 func (builder *QueryBuilder) Build() (Query, error) {
 	if err := builder.internal.Validate(); err != nil {
 		return Query{}, err
+	}
+
+	if len(builder.errors) > 0 {
+		return Query{}, cog.MakeBuildErrors("alerting.query", builder.errors)
 	}
 
 	return *builder.internal, nil
@@ -44,7 +48,7 @@ func (builder *QueryBuilder) DatasourceUid(datasourceUid string) *QueryBuilder {
 func (builder *QueryBuilder) Model(model cog.Builder[variants.Dataquery]) *QueryBuilder {
 	modelResource, err := model.Build()
 	if err != nil {
-		builder.errors["model"] = err.(cog.BuildErrors)
+		builder.errors = append(builder.errors, err.(cog.BuildErrors)...)
 		return builder
 	}
 	builder.internal.Model = modelResource

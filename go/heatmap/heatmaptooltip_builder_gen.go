@@ -11,14 +11,14 @@ var _ cog.Builder[HeatmapTooltip] = (*HeatmapTooltipBuilder)(nil)
 // Controls tooltip options
 type HeatmapTooltipBuilder struct {
 	internal *HeatmapTooltip
-	errors   map[string]cog.BuildErrors
+	errors   cog.BuildErrors
 }
 
 func NewHeatmapTooltipBuilder() *HeatmapTooltipBuilder {
 	resource := NewHeatmapTooltip()
 	builder := &HeatmapTooltipBuilder{
 		internal: resource,
-		errors:   make(map[string]cog.BuildErrors),
+		errors:   make(cog.BuildErrors, 0),
 	}
 
 	return builder
@@ -27,6 +27,10 @@ func NewHeatmapTooltipBuilder() *HeatmapTooltipBuilder {
 func (builder *HeatmapTooltipBuilder) Build() (HeatmapTooltip, error) {
 	if err := builder.internal.Validate(); err != nil {
 		return HeatmapTooltip{}, err
+	}
+
+	if len(builder.errors) > 0 {
+		return HeatmapTooltip{}, cog.MakeBuildErrors("heatmap.heatmapTooltip", builder.errors)
 	}
 
 	return *builder.internal, nil

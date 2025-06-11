@@ -11,14 +11,14 @@ var _ cog.Builder[LineConfig] = (*LineConfigBuilder)(nil)
 // TODO docs
 type LineConfigBuilder struct {
 	internal *LineConfig
-	errors   map[string]cog.BuildErrors
+	errors   cog.BuildErrors
 }
 
 func NewLineConfigBuilder() *LineConfigBuilder {
 	resource := NewLineConfig()
 	builder := &LineConfigBuilder{
 		internal: resource,
-		errors:   make(map[string]cog.BuildErrors),
+		errors:   make(cog.BuildErrors, 0),
 	}
 
 	return builder
@@ -27,6 +27,10 @@ func NewLineConfigBuilder() *LineConfigBuilder {
 func (builder *LineConfigBuilder) Build() (LineConfig, error) {
 	if err := builder.internal.Validate(); err != nil {
 		return LineConfig{}, err
+	}
+
+	if len(builder.errors) > 0 {
+		return LineConfig{}, cog.MakeBuildErrors("common.lineConfig", builder.errors)
 	}
 
 	return *builder.internal, nil
@@ -53,7 +57,7 @@ func (builder *LineConfigBuilder) LineInterpolation(lineInterpolation LineInterp
 func (builder *LineConfigBuilder) LineStyle(lineStyle cog.Builder[LineStyle]) *LineConfigBuilder {
 	lineStyleResource, err := lineStyle.Build()
 	if err != nil {
-		builder.errors["lineStyle"] = err.(cog.BuildErrors)
+		builder.errors = append(builder.errors, err.(cog.BuildErrors)...)
 		return builder
 	}
 	builder.internal.LineStyle = &lineStyleResource

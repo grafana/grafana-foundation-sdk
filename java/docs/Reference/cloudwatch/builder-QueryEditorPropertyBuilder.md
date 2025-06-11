@@ -24,12 +24,6 @@ public QueryEditorProperty build()
 public QueryEditorPropertyBuilder name(String name)
 ```
 
-### <span class="badge object-method"></span> type
-
-```java
-public QueryEditorPropertyBuilder type(QueryEditorPropertyType type)
-```
-
 ## See also
 
  * <span class="badge object-type-class"></span> [QueryEditorProperty](./object-QueryEditorProperty.md)

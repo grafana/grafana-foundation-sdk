@@ -10,14 +10,14 @@ var _ cog.Builder[Key] = (*KeyBuilder)(nil)
 
 type KeyBuilder struct {
 	internal *Key
-	errors   map[string]cog.BuildErrors
+	errors   cog.BuildErrors
 }
 
 func NewKeyBuilder() *KeyBuilder {
 	resource := NewKey()
 	builder := &KeyBuilder{
 		internal: resource,
-		errors:   make(map[string]cog.BuildErrors),
+		errors:   make(cog.BuildErrors, 0),
 	}
 
 	return builder
@@ -26,6 +26,10 @@ func NewKeyBuilder() *KeyBuilder {
 func (builder *KeyBuilder) Build() (Key, error) {
 	if err := builder.internal.Validate(); err != nil {
 		return Key{}, err
+	}
+
+	if len(builder.errors) > 0 {
+		return Key{}, cog.MakeBuildErrors("testdata.key", builder.errors)
 	}
 
 	return *builder.internal, nil
