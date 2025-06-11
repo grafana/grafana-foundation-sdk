@@ -65,7 +65,7 @@ jobs:
         if: failure()
         run: |
           echo "Dumping build result file (if exists):"
-          FILE=$(find ${{ runner.temp }}/.gradle-actions/build-results -name '__run-*.json' | sort | tail -n 1)
+          FILE=$(find {{ `${{ runner.temp }}` }}/.gradle-actions/build-results -name '__run-*.json' | sort | tail -n 1)
           if [ -f "$FILE" ]; then
             echo "File: $FILE"
             cat "$FILE"
