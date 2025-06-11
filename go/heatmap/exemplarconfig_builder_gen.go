@@ -11,14 +11,14 @@ var _ cog.Builder[ExemplarConfig] = (*ExemplarConfigBuilder)(nil)
 // Controls exemplar options
 type ExemplarConfigBuilder struct {
 	internal *ExemplarConfig
-	errors   map[string]cog.BuildErrors
+	errors   cog.BuildErrors
 }
 
 func NewExemplarConfigBuilder() *ExemplarConfigBuilder {
 	resource := NewExemplarConfig()
 	builder := &ExemplarConfigBuilder{
 		internal: resource,
-		errors:   make(map[string]cog.BuildErrors),
+		errors:   make(cog.BuildErrors, 0),
 	}
 
 	return builder
@@ -27,6 +27,10 @@ func NewExemplarConfigBuilder() *ExemplarConfigBuilder {
 func (builder *ExemplarConfigBuilder) Build() (ExemplarConfig, error) {
 	if err := builder.internal.Validate(); err != nil {
 		return ExemplarConfig{}, err
+	}
+
+	if len(builder.errors) > 0 {
+		return ExemplarConfig{}, cog.MakeBuildErrors("heatmap.exemplarConfig", builder.errors)
 	}
 
 	return *builder.internal, nil

@@ -11,14 +11,14 @@ var _ cog.Builder[ScatterSeriesConfig] = (*ScatterSeriesConfigBuilder)(nil)
 
 type ScatterSeriesConfigBuilder struct {
 	internal *ScatterSeriesConfig
-	errors   map[string]cog.BuildErrors
+	errors   cog.BuildErrors
 }
 
 func NewScatterSeriesConfigBuilder() *ScatterSeriesConfigBuilder {
 	resource := NewScatterSeriesConfig()
 	builder := &ScatterSeriesConfigBuilder{
 		internal: resource,
-		errors:   make(map[string]cog.BuildErrors),
+		errors:   make(cog.BuildErrors, 0),
 	}
 
 	return builder
@@ -27,6 +27,10 @@ func NewScatterSeriesConfigBuilder() *ScatterSeriesConfigBuilder {
 func (builder *ScatterSeriesConfigBuilder) Build() (ScatterSeriesConfig, error) {
 	if err := builder.internal.Validate(); err != nil {
 		return ScatterSeriesConfig{}, err
+	}
+
+	if len(builder.errors) > 0 {
+		return ScatterSeriesConfig{}, cog.MakeBuildErrors("xychart.scatterSeriesConfig", builder.errors)
 	}
 
 	return *builder.internal, nil
@@ -59,7 +63,7 @@ func (builder *ScatterSeriesConfigBuilder) Show(show ScatterShow) *ScatterSeries
 func (builder *ScatterSeriesConfigBuilder) PointSize(pointSize cog.Builder[common.ScaleDimensionConfig]) *ScatterSeriesConfigBuilder {
 	pointSizeResource, err := pointSize.Build()
 	if err != nil {
-		builder.errors["pointSize"] = err.(cog.BuildErrors)
+		builder.errors = append(builder.errors, err.(cog.BuildErrors)...)
 		return builder
 	}
 	builder.internal.PointSize = &pointSizeResource
@@ -70,7 +74,7 @@ func (builder *ScatterSeriesConfigBuilder) PointSize(pointSize cog.Builder[commo
 func (builder *ScatterSeriesConfigBuilder) PointColor(pointColor cog.Builder[common.ColorDimensionConfig]) *ScatterSeriesConfigBuilder {
 	pointColorResource, err := pointColor.Build()
 	if err != nil {
-		builder.errors["pointColor"] = err.(cog.BuildErrors)
+		builder.errors = append(builder.errors, err.(cog.BuildErrors)...)
 		return builder
 	}
 	builder.internal.PointColor = &pointColorResource
@@ -81,7 +85,7 @@ func (builder *ScatterSeriesConfigBuilder) PointColor(pointColor cog.Builder[com
 func (builder *ScatterSeriesConfigBuilder) LineColor(lineColor cog.Builder[common.ColorDimensionConfig]) *ScatterSeriesConfigBuilder {
 	lineColorResource, err := lineColor.Build()
 	if err != nil {
-		builder.errors["lineColor"] = err.(cog.BuildErrors)
+		builder.errors = append(builder.errors, err.(cog.BuildErrors)...)
 		return builder
 	}
 	builder.internal.LineColor = &lineColorResource
@@ -98,7 +102,7 @@ func (builder *ScatterSeriesConfigBuilder) LineWidth(lineWidth int32) *ScatterSe
 func (builder *ScatterSeriesConfigBuilder) LineStyle(lineStyle cog.Builder[common.LineStyle]) *ScatterSeriesConfigBuilder {
 	lineStyleResource, err := lineStyle.Build()
 	if err != nil {
-		builder.errors["lineStyle"] = err.(cog.BuildErrors)
+		builder.errors = append(builder.errors, err.(cog.BuildErrors)...)
 		return builder
 	}
 	builder.internal.LineStyle = &lineStyleResource
@@ -115,7 +119,7 @@ func (builder *ScatterSeriesConfigBuilder) Label(label common.VisibilityMode) *S
 func (builder *ScatterSeriesConfigBuilder) HideFrom(hideFrom cog.Builder[common.HideSeriesConfig]) *ScatterSeriesConfigBuilder {
 	hideFromResource, err := hideFrom.Build()
 	if err != nil {
-		builder.errors["hideFrom"] = err.(cog.BuildErrors)
+		builder.errors = append(builder.errors, err.(cog.BuildErrors)...)
 		return builder
 	}
 	builder.internal.HideFrom = &hideFromResource
@@ -168,7 +172,7 @@ func (builder *ScatterSeriesConfigBuilder) AxisGridShow(axisGridShow bool) *Scat
 func (builder *ScatterSeriesConfigBuilder) ScaleDistribution(scaleDistribution cog.Builder[common.ScaleDistributionConfig]) *ScatterSeriesConfigBuilder {
 	scaleDistributionResource, err := scaleDistribution.Build()
 	if err != nil {
-		builder.errors["scaleDistribution"] = err.(cog.BuildErrors)
+		builder.errors = append(builder.errors, err.(cog.BuildErrors)...)
 		return builder
 	}
 	builder.internal.ScaleDistribution = &scaleDistributionResource
@@ -191,7 +195,7 @@ func (builder *ScatterSeriesConfigBuilder) Frame(frame float64) *ScatterSeriesCo
 func (builder *ScatterSeriesConfigBuilder) LabelValue(labelValue cog.Builder[common.TextDimensionConfig]) *ScatterSeriesConfigBuilder {
 	labelValueResource, err := labelValue.Build()
 	if err != nil {
-		builder.errors["labelValue"] = err.(cog.BuildErrors)
+		builder.errors = append(builder.errors, err.(cog.BuildErrors)...)
 		return builder
 	}
 	builder.internal.LabelValue = &labelValueResource

@@ -24,12 +24,6 @@ build()
 name(name: string)
 ```
 
-### <span class="badge object-method"></span> type
-
-```typescript
-type(type: bigquery.QueryEditorPropertyType)
-```
-
 ## See also
 
  * <span class="badge object-type-interface"></span> [QueryEditorProperty](./object-QueryEditorProperty.md)

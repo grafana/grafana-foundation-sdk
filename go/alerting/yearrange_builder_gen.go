@@ -10,14 +10,14 @@ var _ cog.Builder[YearRange] = (*YearRangeBuilder)(nil)
 
 type YearRangeBuilder struct {
 	internal *YearRange
-	errors   map[string]cog.BuildErrors
+	errors   cog.BuildErrors
 }
 
 func NewYearRangeBuilder() *YearRangeBuilder {
 	resource := NewYearRange()
 	builder := &YearRangeBuilder{
 		internal: resource,
-		errors:   make(map[string]cog.BuildErrors),
+		errors:   make(cog.BuildErrors, 0),
 	}
 
 	return builder
@@ -26,6 +26,10 @@ func NewYearRangeBuilder() *YearRangeBuilder {
 func (builder *YearRangeBuilder) Build() (YearRange, error) {
 	if err := builder.internal.Validate(); err != nil {
 		return YearRange{}, err
+	}
+
+	if len(builder.errors) > 0 {
+		return YearRange{}, cog.MakeBuildErrors("alerting.yearRange", builder.errors)
 	}
 
 	return *builder.internal, nil

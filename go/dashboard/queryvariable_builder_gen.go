@@ -11,14 +11,14 @@ var _ cog.Builder[VariableModel] = (*QueryVariableBuilder)(nil)
 // A variable is a placeholder for a value. You can use variables in metric queries and in panel titles.
 type QueryVariableBuilder struct {
 	internal *VariableModel
-	errors   map[string]cog.BuildErrors
+	errors   cog.BuildErrors
 }
 
 func NewQueryVariableBuilder(name string) *QueryVariableBuilder {
 	resource := NewVariableModel()
 	builder := &QueryVariableBuilder{
 		internal: resource,
-		errors:   make(map[string]cog.BuildErrors),
+		errors:   make(cog.BuildErrors, 0),
 	}
 	builder.internal.Name = name
 	builder.internal.Type = "query"
@@ -29,6 +29,10 @@ func NewQueryVariableBuilder(name string) *QueryVariableBuilder {
 func (builder *QueryVariableBuilder) Build() (VariableModel, error) {
 	if err := builder.internal.Validate(); err != nil {
 		return VariableModel{}, err
+	}
+
+	if len(builder.errors) > 0 {
+		return VariableModel{}, cog.MakeBuildErrors("dashboard.queryVariable", builder.errors)
 	}
 
 	return *builder.internal, nil

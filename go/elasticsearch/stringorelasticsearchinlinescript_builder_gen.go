@@ -10,14 +10,14 @@ var _ cog.Builder[StringOrElasticsearchInlineScript] = (*StringOrElasticsearchIn
 
 type StringOrElasticsearchInlineScriptBuilder struct {
 	internal *StringOrElasticsearchInlineScript
-	errors   map[string]cog.BuildErrors
+	errors   cog.BuildErrors
 }
 
 func NewStringOrElasticsearchInlineScriptBuilder() *StringOrElasticsearchInlineScriptBuilder {
 	resource := NewStringOrElasticsearchInlineScript()
 	builder := &StringOrElasticsearchInlineScriptBuilder{
 		internal: resource,
-		errors:   make(map[string]cog.BuildErrors),
+		errors:   make(cog.BuildErrors, 0),
 	}
 
 	return builder
@@ -26,6 +26,10 @@ func NewStringOrElasticsearchInlineScriptBuilder() *StringOrElasticsearchInlineS
 func (builder *StringOrElasticsearchInlineScriptBuilder) Build() (StringOrElasticsearchInlineScript, error) {
 	if err := builder.internal.Validate(); err != nil {
 		return StringOrElasticsearchInlineScript{}, err
+	}
+
+	if len(builder.errors) > 0 {
+		return StringOrElasticsearchInlineScript{}, cog.MakeBuildErrors("elasticsearch.stringOrElasticsearchInlineScript", builder.errors)
 	}
 
 	return *builder.internal, nil
@@ -40,7 +44,7 @@ func (builder *StringOrElasticsearchInlineScriptBuilder) String(stringArg string
 func (builder *StringOrElasticsearchInlineScriptBuilder) ElasticsearchInlineScript(elasticsearchInlineScript cog.Builder[ElasticsearchInlineScript]) *StringOrElasticsearchInlineScriptBuilder {
 	elasticsearchInlineScriptResource, err := elasticsearchInlineScript.Build()
 	if err != nil {
-		builder.errors["ElasticsearchInlineScript"] = err.(cog.BuildErrors)
+		builder.errors = append(builder.errors, err.(cog.BuildErrors)...)
 		return builder
 	}
 	builder.internal.ElasticsearchInlineScript = &elasticsearchInlineScriptResource

@@ -10,14 +10,14 @@ var _ cog.Builder[QueryEditorFunctionExpression] = (*QueryEditorFunctionExpressi
 
 type QueryEditorFunctionExpressionBuilder struct {
 	internal *QueryEditorFunctionExpression
-	errors   map[string]cog.BuildErrors
+	errors   cog.BuildErrors
 }
 
 func NewQueryEditorFunctionExpressionBuilder() *QueryEditorFunctionExpressionBuilder {
 	resource := NewQueryEditorFunctionExpression()
 	builder := &QueryEditorFunctionExpressionBuilder{
 		internal: resource,
-		errors:   make(map[string]cog.BuildErrors),
+		errors:   make(cog.BuildErrors, 0),
 	}
 
 	return builder
@@ -26,6 +26,10 @@ func NewQueryEditorFunctionExpressionBuilder() *QueryEditorFunctionExpressionBui
 func (builder *QueryEditorFunctionExpressionBuilder) Build() (QueryEditorFunctionExpression, error) {
 	if err := builder.internal.Validate(); err != nil {
 		return QueryEditorFunctionExpression{}, err
+	}
+
+	if len(builder.errors) > 0 {
+		return QueryEditorFunctionExpression{}, cog.MakeBuildErrors("cloudwatch.queryEditorFunctionExpression", builder.errors)
 	}
 
 	return *builder.internal, nil
@@ -42,7 +46,7 @@ func (builder *QueryEditorFunctionExpressionBuilder) Parameters(parameters []cog
 	for _, r1 := range parameters {
 		parametersDepth1, err := r1.Build()
 		if err != nil {
-			builder.errors["parameters"] = err.(cog.BuildErrors)
+			builder.errors = append(builder.errors, err.(cog.BuildErrors)...)
 			return builder
 		}
 		parametersResources = append(parametersResources, parametersDepth1)
