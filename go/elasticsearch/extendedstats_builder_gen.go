@@ -10,14 +10,14 @@ var _ cog.Builder[ExtendedStats] = (*ExtendedStatsBuilder)(nil)
 
 type ExtendedStatsBuilder struct {
 	internal *ExtendedStats
-	errors   map[string]cog.BuildErrors
+	errors   cog.BuildErrors
 }
 
 func NewExtendedStatsBuilder() *ExtendedStatsBuilder {
 	resource := NewExtendedStats()
 	builder := &ExtendedStatsBuilder{
 		internal: resource,
-		errors:   make(map[string]cog.BuildErrors),
+		errors:   make(cog.BuildErrors, 0),
 	}
 
 	return builder
@@ -28,13 +28,17 @@ func (builder *ExtendedStatsBuilder) Build() (ExtendedStats, error) {
 		return ExtendedStats{}, err
 	}
 
+	if len(builder.errors) > 0 {
+		return ExtendedStats{}, cog.MakeBuildErrors("elasticsearch.extendedStats", builder.errors)
+	}
+
 	return *builder.internal, nil
 }
 
 func (builder *ExtendedStatsBuilder) Settings(settings cog.Builder[ElasticsearchExtendedStatsSettings]) *ExtendedStatsBuilder {
 	settingsResource, err := settings.Build()
 	if err != nil {
-		builder.errors["settings"] = err.(cog.BuildErrors)
+		builder.errors = append(builder.errors, err.(cog.BuildErrors)...)
 		return builder
 	}
 	builder.internal.Settings = &settingsResource

@@ -11,14 +11,14 @@ var _ cog.Builder[OptionsWithTimezones] = (*OptionsWithTimezonesBuilder)(nil)
 // TODO docs
 type OptionsWithTimezonesBuilder struct {
 	internal *OptionsWithTimezones
-	errors   map[string]cog.BuildErrors
+	errors   cog.BuildErrors
 }
 
 func NewOptionsWithTimezonesBuilder() *OptionsWithTimezonesBuilder {
 	resource := NewOptionsWithTimezones()
 	builder := &OptionsWithTimezonesBuilder{
 		internal: resource,
-		errors:   make(map[string]cog.BuildErrors),
+		errors:   make(cog.BuildErrors, 0),
 	}
 
 	return builder
@@ -27,6 +27,10 @@ func NewOptionsWithTimezonesBuilder() *OptionsWithTimezonesBuilder {
 func (builder *OptionsWithTimezonesBuilder) Build() (OptionsWithTimezones, error) {
 	if err := builder.internal.Validate(); err != nil {
 		return OptionsWithTimezones{}, err
+	}
+
+	if len(builder.errors) > 0 {
+		return OptionsWithTimezones{}, cog.MakeBuildErrors("common.optionsWithTimezones", builder.errors)
 	}
 
 	return *builder.internal, nil

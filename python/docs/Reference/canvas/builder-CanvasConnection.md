@@ -24,12 +24,6 @@ def build() -> canvas.CanvasConnection
 def color(color: cogbuilder.Builder[common.ColorDimensionConfig]) -> typing.Self
 ```
 
-### <span class="badge object-method"></span> path
-
-```python
-def path(path: canvas.ConnectionPath) -> typing.Self
-```
-
 ### <span class="badge object-method"></span> size
 
 ```python

@@ -10,14 +10,14 @@ var _ cog.Builder[UpdateConfig] = (*UpdateConfigBuilder)(nil)
 
 type UpdateConfigBuilder struct {
 	internal *UpdateConfig
-	errors   map[string]cog.BuildErrors
+	errors   cog.BuildErrors
 }
 
 func NewUpdateConfigBuilder() *UpdateConfigBuilder {
 	resource := NewUpdateConfig()
 	builder := &UpdateConfigBuilder{
 		internal: resource,
-		errors:   make(map[string]cog.BuildErrors),
+		errors:   make(cog.BuildErrors, 0),
 	}
 
 	return builder
@@ -26,6 +26,10 @@ func NewUpdateConfigBuilder() *UpdateConfigBuilder {
 func (builder *UpdateConfigBuilder) Build() (UpdateConfig, error) {
 	if err := builder.internal.Validate(); err != nil {
 		return UpdateConfig{}, err
+	}
+
+	if len(builder.errors) > 0 {
+		return UpdateConfig{}, cog.MakeBuildErrors("debug.updateConfig", builder.errors)
 	}
 
 	return *builder.internal, nil

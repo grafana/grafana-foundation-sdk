@@ -10,14 +10,14 @@ var _ cog.Builder[TooltipOptions] = (*TooltipOptionsBuilder)(nil)
 
 type TooltipOptionsBuilder struct {
 	internal *TooltipOptions
-	errors   map[string]cog.BuildErrors
+	errors   cog.BuildErrors
 }
 
 func NewTooltipOptionsBuilder() *TooltipOptionsBuilder {
 	resource := NewTooltipOptions()
 	builder := &TooltipOptionsBuilder{
 		internal: resource,
-		errors:   make(map[string]cog.BuildErrors),
+		errors:   make(cog.BuildErrors, 0),
 	}
 
 	return builder
@@ -26,6 +26,10 @@ func NewTooltipOptionsBuilder() *TooltipOptionsBuilder {
 func (builder *TooltipOptionsBuilder) Build() (TooltipOptions, error) {
 	if err := builder.internal.Validate(); err != nil {
 		return TooltipOptions{}, err
+	}
+
+	if len(builder.errors) > 0 {
+		return TooltipOptions{}, cog.MakeBuildErrors("geomap.tooltipOptions", builder.errors)
 	}
 
 	return *builder.internal, nil

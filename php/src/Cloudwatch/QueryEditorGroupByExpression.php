@@ -26,7 +26,7 @@ class QueryEditorGroupByExpression implements \JsonSerializable
         $data = $inputData;
         return new self(
             property: isset($data["property"]) ? (function($input) {
-    	/** @var array{type?: string, name?: string} */
+    	/** @var array{type?: "string", name?: string} */
     $val = $input;
     	return \Grafana\Foundation\Cloudwatch\QueryEditorProperty::fromArray($val);
     })($data["property"]) : null,

@@ -10,14 +10,14 @@ var _ cog.Builder[MapViewConfig] = (*MapViewConfigBuilder)(nil)
 
 type MapViewConfigBuilder struct {
 	internal *MapViewConfig
-	errors   map[string]cog.BuildErrors
+	errors   cog.BuildErrors
 }
 
 func NewMapViewConfigBuilder() *MapViewConfigBuilder {
 	resource := NewMapViewConfig()
 	builder := &MapViewConfigBuilder{
 		internal: resource,
-		errors:   make(map[string]cog.BuildErrors),
+		errors:   make(cog.BuildErrors, 0),
 	}
 
 	return builder
@@ -26,6 +26,10 @@ func NewMapViewConfigBuilder() *MapViewConfigBuilder {
 func (builder *MapViewConfigBuilder) Build() (MapViewConfig, error) {
 	if err := builder.internal.Validate(); err != nil {
 		return MapViewConfig{}, err
+	}
+
+	if len(builder.errors) > 0 {
+		return MapViewConfig{}, cog.MakeBuildErrors("geomap.mapViewConfig", builder.errors)
 	}
 
 	return *builder.internal, nil

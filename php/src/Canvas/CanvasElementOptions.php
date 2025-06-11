@@ -81,7 +81,7 @@ class CanvasElementOptions implements \JsonSerializable
     	return \Grafana\Foundation\Canvas\LineConfig::fromArray($val);
     })($data["border"]) : null,
             connections: array_filter(array_map((function($input) {
-    	/** @var array{source?: mixed, target?: mixed, targetName?: string, path?: string, color?: mixed, size?: mixed, vertices?: array<mixed>, sourceOriginal?: mixed, targetOriginal?: mixed} */
+    	/** @var array{source?: mixed, target?: mixed, targetName?: string, path?: "straight", color?: mixed, size?: mixed, vertices?: array<mixed>, sourceOriginal?: mixed, targetOriginal?: mixed} */
     $val = $input;
     	return \Grafana\Foundation\Canvas\CanvasConnection::fromArray($val);
     }), $data["connections"] ?? [])),

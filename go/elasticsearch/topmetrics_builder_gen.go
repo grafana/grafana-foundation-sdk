@@ -10,14 +10,14 @@ var _ cog.Builder[TopMetrics] = (*TopMetricsBuilder)(nil)
 
 type TopMetricsBuilder struct {
 	internal *TopMetrics
-	errors   map[string]cog.BuildErrors
+	errors   cog.BuildErrors
 }
 
 func NewTopMetricsBuilder() *TopMetricsBuilder {
 	resource := NewTopMetrics()
 	builder := &TopMetricsBuilder{
 		internal: resource,
-		errors:   make(map[string]cog.BuildErrors),
+		errors:   make(cog.BuildErrors, 0),
 	}
 
 	return builder
@@ -26,6 +26,10 @@ func NewTopMetricsBuilder() *TopMetricsBuilder {
 func (builder *TopMetricsBuilder) Build() (TopMetrics, error) {
 	if err := builder.internal.Validate(); err != nil {
 		return TopMetrics{}, err
+	}
+
+	if len(builder.errors) > 0 {
+		return TopMetrics{}, cog.MakeBuildErrors("elasticsearch.topMetrics", builder.errors)
 	}
 
 	return *builder.internal, nil
@@ -40,7 +44,7 @@ func (builder *TopMetricsBuilder) Id(id string) *TopMetricsBuilder {
 func (builder *TopMetricsBuilder) Settings(settings cog.Builder[ElasticsearchTopMetricsSettings]) *TopMetricsBuilder {
 	settingsResource, err := settings.Build()
 	if err != nil {
-		builder.errors["settings"] = err.(cog.BuildErrors)
+		builder.errors = append(builder.errors, err.(cog.BuildErrors)...)
 		return builder
 	}
 	builder.internal.Settings = &settingsResource
