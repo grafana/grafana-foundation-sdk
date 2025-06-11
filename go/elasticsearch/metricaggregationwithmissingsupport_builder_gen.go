@@ -10,14 +10,14 @@ var _ cog.Builder[MetricAggregationWithMissingSupport] = (*MetricAggregationWith
 
 type MetricAggregationWithMissingSupportBuilder struct {
 	internal *MetricAggregationWithMissingSupport
-	errors   map[string]cog.BuildErrors
+	errors   cog.BuildErrors
 }
 
 func NewMetricAggregationWithMissingSupportBuilder() *MetricAggregationWithMissingSupportBuilder {
 	resource := NewMetricAggregationWithMissingSupport()
 	builder := &MetricAggregationWithMissingSupportBuilder{
 		internal: resource,
-		errors:   make(map[string]cog.BuildErrors),
+		errors:   make(cog.BuildErrors, 0),
 	}
 
 	return builder
@@ -28,13 +28,17 @@ func (builder *MetricAggregationWithMissingSupportBuilder) Build() (MetricAggreg
 		return MetricAggregationWithMissingSupport{}, err
 	}
 
+	if len(builder.errors) > 0 {
+		return MetricAggregationWithMissingSupport{}, cog.MakeBuildErrors("elasticsearch.metricAggregationWithMissingSupport", builder.errors)
+	}
+
 	return *builder.internal, nil
 }
 
 func (builder *MetricAggregationWithMissingSupportBuilder) Settings(settings cog.Builder[ElasticsearchMetricAggregationWithMissingSupportSettings]) *MetricAggregationWithMissingSupportBuilder {
 	settingsResource, err := settings.Build()
 	if err != nil {
-		builder.errors["settings"] = err.(cog.BuildErrors)
+		builder.errors = append(builder.errors, err.(cog.BuildErrors)...)
 		return builder
 	}
 	builder.internal.Settings = &settingsResource

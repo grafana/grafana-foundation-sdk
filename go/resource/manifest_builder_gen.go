@@ -10,14 +10,14 @@ var _ cog.Builder[Manifest] = (*ManifestBuilder)(nil)
 
 type ManifestBuilder struct {
 	internal *Manifest
-	errors   map[string]cog.BuildErrors
+	errors   cog.BuildErrors
 }
 
 func NewManifestBuilder() *ManifestBuilder {
 	resource := NewManifest()
 	builder := &ManifestBuilder{
 		internal: resource,
-		errors:   make(map[string]cog.BuildErrors),
+		errors:   make(cog.BuildErrors, 0),
 	}
 
 	return builder
@@ -26,6 +26,10 @@ func NewManifestBuilder() *ManifestBuilder {
 func (builder *ManifestBuilder) Build() (Manifest, error) {
 	if err := builder.internal.Validate(); err != nil {
 		return Manifest{}, err
+	}
+
+	if len(builder.errors) > 0 {
+		return Manifest{}, cog.MakeBuildErrors("resource.manifest", builder.errors)
 	}
 
 	return *builder.internal, nil
@@ -46,7 +50,7 @@ func (builder *ManifestBuilder) Kind(kind string) *ManifestBuilder {
 func (builder *ManifestBuilder) Metadata(metadata cog.Builder[Metadata]) *ManifestBuilder {
 	metadataResource, err := metadata.Build()
 	if err != nil {
-		builder.errors["metadata"] = err.(cog.BuildErrors)
+		builder.errors = append(builder.errors, err.(cog.BuildErrors)...)
 		return builder
 	}
 	builder.internal.Metadata = metadataResource

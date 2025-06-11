@@ -12,14 +12,14 @@ var _ cog.Builder[variants.Dataquery] = (*TypeReduceBuilder)(nil)
 
 type TypeReduceBuilder struct {
 	internal *TypeReduce
-	errors   map[string]cog.BuildErrors
+	errors   cog.BuildErrors
 }
 
 func NewTypeReduceBuilder() *TypeReduceBuilder {
 	resource := NewTypeReduce()
 	builder := &TypeReduceBuilder{
 		internal: resource,
-		errors:   make(map[string]cog.BuildErrors),
+		errors:   make(cog.BuildErrors, 0),
 	}
 	builder.internal.Type = "reduce"
 
@@ -29,6 +29,10 @@ func NewTypeReduceBuilder() *TypeReduceBuilder {
 func (builder *TypeReduceBuilder) Build() (variants.Dataquery, error) {
 	if err := builder.internal.Validate(); err != nil {
 		return TypeReduce{}, err
+	}
+
+	if len(builder.errors) > 0 {
+		return TypeReduce{}, cog.MakeBuildErrors("expr.typeReduce", builder.errors)
 	}
 
 	return *builder.internal, nil
@@ -109,7 +113,7 @@ func (builder *TypeReduceBuilder) RefId(refId string) *TypeReduceBuilder {
 func (builder *TypeReduceBuilder) ResultAssertions(resultAssertions cog.Builder[ExprTypeReduceResultAssertions]) *TypeReduceBuilder {
 	resultAssertionsResource, err := resultAssertions.Build()
 	if err != nil {
-		builder.errors["resultAssertions"] = err.(cog.BuildErrors)
+		builder.errors = append(builder.errors, err.(cog.BuildErrors)...)
 		return builder
 	}
 	builder.internal.ResultAssertions = &resultAssertionsResource
@@ -121,7 +125,7 @@ func (builder *TypeReduceBuilder) ResultAssertions(resultAssertions cog.Builder[
 func (builder *TypeReduceBuilder) Settings(settings cog.Builder[ExprTypeReduceSettings]) *TypeReduceBuilder {
 	settingsResource, err := settings.Build()
 	if err != nil {
-		builder.errors["settings"] = err.(cog.BuildErrors)
+		builder.errors = append(builder.errors, err.(cog.BuildErrors)...)
 		return builder
 	}
 	builder.internal.Settings = &settingsResource
@@ -135,7 +139,7 @@ func (builder *TypeReduceBuilder) Settings(settings cog.Builder[ExprTypeReduceSe
 func (builder *TypeReduceBuilder) TimeRange(timeRange cog.Builder[ExprTypeReduceTimeRange]) *TypeReduceBuilder {
 	timeRangeResource, err := timeRange.Build()
 	if err != nil {
-		builder.errors["timeRange"] = err.(cog.BuildErrors)
+		builder.errors = append(builder.errors, err.(cog.BuildErrors)...)
 		return builder
 	}
 	builder.internal.TimeRange = &timeRangeResource

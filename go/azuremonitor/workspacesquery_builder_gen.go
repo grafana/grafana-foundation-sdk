@@ -10,14 +10,14 @@ var _ cog.Builder[WorkspacesQuery] = (*WorkspacesQueryBuilder)(nil)
 
 type WorkspacesQueryBuilder struct {
 	internal *WorkspacesQuery
-	errors   map[string]cog.BuildErrors
+	errors   cog.BuildErrors
 }
 
 func NewWorkspacesQueryBuilder() *WorkspacesQueryBuilder {
 	resource := NewWorkspacesQuery()
 	builder := &WorkspacesQueryBuilder{
 		internal: resource,
-		errors:   make(map[string]cog.BuildErrors),
+		errors:   make(cog.BuildErrors, 0),
 	}
 	builder.internal.Kind = "WorkspacesQuery"
 
@@ -27,6 +27,10 @@ func NewWorkspacesQueryBuilder() *WorkspacesQueryBuilder {
 func (builder *WorkspacesQueryBuilder) Build() (WorkspacesQuery, error) {
 	if err := builder.internal.Validate(); err != nil {
 		return WorkspacesQuery{}, err
+	}
+
+	if len(builder.errors) > 0 {
+		return WorkspacesQuery{}, cog.MakeBuildErrors("azuremonitor.workspacesQuery", builder.errors)
 	}
 
 	return *builder.internal, nil

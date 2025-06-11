@@ -20,16 +20,15 @@ class CanvasConnection implements \JsonSerializable
      * @param \Grafana\Foundation\Canvas\ConnectionCoordinates|null $source
      * @param \Grafana\Foundation\Canvas\ConnectionCoordinates|null $target
      * @param string|null $targetName
-     * @param \Grafana\Foundation\Canvas\ConnectionPath|null $path
      * @param \Grafana\Foundation\Common\ColorDimensionConfig|null $color
      * @param \Grafana\Foundation\Common\ScaleDimensionConfig|null $size
      */
-    public function __construct(?\Grafana\Foundation\Canvas\ConnectionCoordinates $source = null, ?\Grafana\Foundation\Canvas\ConnectionCoordinates $target = null, ?string $targetName = null, ?\Grafana\Foundation\Canvas\ConnectionPath $path = null, ?\Grafana\Foundation\Common\ColorDimensionConfig $color = null, ?\Grafana\Foundation\Common\ScaleDimensionConfig $size = null)
+    public function __construct(?\Grafana\Foundation\Canvas\ConnectionCoordinates $source = null, ?\Grafana\Foundation\Canvas\ConnectionCoordinates $target = null, ?string $targetName = null, ?\Grafana\Foundation\Common\ColorDimensionConfig $color = null, ?\Grafana\Foundation\Common\ScaleDimensionConfig $size = null)
     {
         $this->source = $source ?: new \Grafana\Foundation\Canvas\ConnectionCoordinates();
         $this->target = $target ?: new \Grafana\Foundation\Canvas\ConnectionCoordinates();
         $this->targetName = $targetName;
-        $this->path = $path ?: \Grafana\Foundation\Canvas\ConnectionPath::Straight();
+        $this->path = \Grafana\Foundation\Canvas\ConnectionPath::straight();
         $this->color = $color;
         $this->size = $size;
     }
@@ -39,7 +38,7 @@ class CanvasConnection implements \JsonSerializable
      */
     public static function fromArray(array $inputData): self
     {
-        /** @var array{source?: mixed, target?: mixed, targetName?: string, path?: string, color?: mixed, size?: mixed} $inputData */
+        /** @var array{source?: mixed, target?: mixed, targetName?: string, path?: "straight", color?: mixed, size?: mixed} $inputData */
         $data = $inputData;
         return new self(
             source: isset($data["source"]) ? (function($input) {
@@ -53,7 +52,6 @@ class CanvasConnection implements \JsonSerializable
     	return \Grafana\Foundation\Canvas\ConnectionCoordinates::fromArray($val);
     })($data["target"]) : null,
             targetName: $data["targetName"] ?? null,
-            path: isset($data["path"]) ? (function($input) { return \Grafana\Foundation\Canvas\ConnectionPath::fromValue($input); })($data["path"]) : null,
             color: isset($data["color"]) ? (function($input) {
     	/** @var array{fixed?: string, field?: string} */
     $val = $input;

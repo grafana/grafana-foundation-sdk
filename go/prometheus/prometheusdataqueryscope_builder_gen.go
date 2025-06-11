@@ -10,14 +10,14 @@ var _ cog.Builder[PrometheusDataqueryScope] = (*PrometheusDataqueryScopeBuilder)
 
 type PrometheusDataqueryScopeBuilder struct {
 	internal *PrometheusDataqueryScope
-	errors   map[string]cog.BuildErrors
+	errors   cog.BuildErrors
 }
 
 func NewPrometheusDataqueryScopeBuilder() *PrometheusDataqueryScopeBuilder {
 	resource := NewPrometheusDataqueryScope()
 	builder := &PrometheusDataqueryScopeBuilder{
 		internal: resource,
-		errors:   make(map[string]cog.BuildErrors),
+		errors:   make(cog.BuildErrors, 0),
 	}
 
 	return builder
@@ -26,6 +26,10 @@ func NewPrometheusDataqueryScopeBuilder() *PrometheusDataqueryScopeBuilder {
 func (builder *PrometheusDataqueryScopeBuilder) Build() (PrometheusDataqueryScope, error) {
 	if err := builder.internal.Validate(); err != nil {
 		return PrometheusDataqueryScope{}, err
+	}
+
+	if len(builder.errors) > 0 {
+		return PrometheusDataqueryScope{}, cog.MakeBuildErrors("prometheus.prometheusDataqueryScope", builder.errors)
 	}
 
 	return *builder.internal, nil

@@ -12,14 +12,14 @@ var _ cog.Builder[variants.Dataquery] = (*AzureMonitorQueryBuilder)(nil)
 
 type AzureMonitorQueryBuilder struct {
 	internal *AzureMonitorQuery
-	errors   map[string]cog.BuildErrors
+	errors   cog.BuildErrors
 }
 
 func NewAzureMonitorQueryBuilder() *AzureMonitorQueryBuilder {
 	resource := NewAzureMonitorQuery()
 	builder := &AzureMonitorQueryBuilder{
 		internal: resource,
-		errors:   make(map[string]cog.BuildErrors),
+		errors:   make(cog.BuildErrors, 0),
 	}
 
 	return builder
@@ -28,6 +28,10 @@ func NewAzureMonitorQueryBuilder() *AzureMonitorQueryBuilder {
 func (builder *AzureMonitorQueryBuilder) Build() (variants.Dataquery, error) {
 	if err := builder.internal.Validate(); err != nil {
 		return AzureMonitorQuery{}, err
+	}
+
+	if len(builder.errors) > 0 {
+		return AzureMonitorQuery{}, cog.MakeBuildErrors("azuremonitor.azureMonitorQuery", builder.errors)
 	}
 
 	return *builder.internal, nil
@@ -77,7 +81,7 @@ func (builder *AzureMonitorQueryBuilder) Subscriptions(subscriptions []string) *
 func (builder *AzureMonitorQueryBuilder) AzureMonitor(azureMonitor cog.Builder[AzureMetricQuery]) *AzureMonitorQueryBuilder {
 	azureMonitorResource, err := azureMonitor.Build()
 	if err != nil {
-		builder.errors["azureMonitor"] = err.(cog.BuildErrors)
+		builder.errors = append(builder.errors, err.(cog.BuildErrors)...)
 		return builder
 	}
 	builder.internal.AzureMonitor = &azureMonitorResource
@@ -89,7 +93,7 @@ func (builder *AzureMonitorQueryBuilder) AzureMonitor(azureMonitor cog.Builder[A
 func (builder *AzureMonitorQueryBuilder) AzureLogAnalytics(azureLogAnalytics cog.Builder[AzureLogsQuery]) *AzureMonitorQueryBuilder {
 	azureLogAnalyticsResource, err := azureLogAnalytics.Build()
 	if err != nil {
-		builder.errors["azureLogAnalytics"] = err.(cog.BuildErrors)
+		builder.errors = append(builder.errors, err.(cog.BuildErrors)...)
 		return builder
 	}
 	builder.internal.AzureLogAnalytics = &azureLogAnalyticsResource
@@ -101,7 +105,7 @@ func (builder *AzureMonitorQueryBuilder) AzureLogAnalytics(azureLogAnalytics cog
 func (builder *AzureMonitorQueryBuilder) AzureResourceGraph(azureResourceGraph cog.Builder[AzureResourceGraphQuery]) *AzureMonitorQueryBuilder {
 	azureResourceGraphResource, err := azureResourceGraph.Build()
 	if err != nil {
-		builder.errors["azureResourceGraph"] = err.(cog.BuildErrors)
+		builder.errors = append(builder.errors, err.(cog.BuildErrors)...)
 		return builder
 	}
 	builder.internal.AzureResourceGraph = &azureResourceGraphResource
@@ -113,7 +117,7 @@ func (builder *AzureMonitorQueryBuilder) AzureResourceGraph(azureResourceGraph c
 func (builder *AzureMonitorQueryBuilder) AzureTraces(azureTraces cog.Builder[AzureTracesQuery]) *AzureMonitorQueryBuilder {
 	azureTracesResource, err := azureTraces.Build()
 	if err != nil {
-		builder.errors["azureTraces"] = err.(cog.BuildErrors)
+		builder.errors = append(builder.errors, err.(cog.BuildErrors)...)
 		return builder
 	}
 	builder.internal.AzureTraces = &azureTracesResource

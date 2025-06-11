@@ -10,14 +10,14 @@ var _ cog.Builder[MovingAverageHoltModelSettings] = (*MovingAverageHoltModelSett
 
 type MovingAverageHoltModelSettingsBuilder struct {
 	internal *MovingAverageHoltModelSettings
-	errors   map[string]cog.BuildErrors
+	errors   cog.BuildErrors
 }
 
 func NewMovingAverageHoltModelSettingsBuilder() *MovingAverageHoltModelSettingsBuilder {
 	resource := NewMovingAverageHoltModelSettings()
 	builder := &MovingAverageHoltModelSettingsBuilder{
 		internal: resource,
-		errors:   make(map[string]cog.BuildErrors),
+		errors:   make(cog.BuildErrors, 0),
 	}
 
 	return builder
@@ -28,13 +28,17 @@ func (builder *MovingAverageHoltModelSettingsBuilder) Build() (MovingAverageHolt
 		return MovingAverageHoltModelSettings{}, err
 	}
 
+	if len(builder.errors) > 0 {
+		return MovingAverageHoltModelSettings{}, cog.MakeBuildErrors("elasticsearch.movingAverageHoltModelSettings", builder.errors)
+	}
+
 	return *builder.internal, nil
 }
 
 func (builder *MovingAverageHoltModelSettingsBuilder) Settings(settings cog.Builder[ElasticsearchMovingAverageHoltModelSettingsSettings]) *MovingAverageHoltModelSettingsBuilder {
 	settingsResource, err := settings.Build()
 	if err != nil {
-		builder.errors["settings"] = err.(cog.BuildErrors)
+		builder.errors = append(builder.errors, err.(cog.BuildErrors)...)
 		return builder
 	}
 	builder.internal.Settings = settingsResource

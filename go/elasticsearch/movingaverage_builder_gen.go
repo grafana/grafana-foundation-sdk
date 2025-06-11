@@ -11,14 +11,14 @@ var _ cog.Builder[MovingAverage] = (*MovingAverageBuilder)(nil)
 // #MovingAverage's settings are overridden in types.ts
 type MovingAverageBuilder struct {
 	internal *MovingAverage
-	errors   map[string]cog.BuildErrors
+	errors   cog.BuildErrors
 }
 
 func NewMovingAverageBuilder() *MovingAverageBuilder {
 	resource := NewMovingAverage()
 	builder := &MovingAverageBuilder{
 		internal: resource,
-		errors:   make(map[string]cog.BuildErrors),
+		errors:   make(cog.BuildErrors, 0),
 	}
 
 	return builder
@@ -27,6 +27,10 @@ func NewMovingAverageBuilder() *MovingAverageBuilder {
 func (builder *MovingAverageBuilder) Build() (MovingAverage, error) {
 	if err := builder.internal.Validate(); err != nil {
 		return MovingAverage{}, err
+	}
+
+	if len(builder.errors) > 0 {
+		return MovingAverage{}, cog.MakeBuildErrors("elasticsearch.movingAverage", builder.errors)
 	}
 
 	return *builder.internal, nil

@@ -10,14 +10,14 @@ var _ cog.Builder[ResourceRef] = (*ResourceRefBuilder)(nil)
 
 type ResourceRefBuilder struct {
 	internal *ResourceRef
-	errors   map[string]cog.BuildErrors
+	errors   cog.BuildErrors
 }
 
 func NewResourceRefBuilder() *ResourceRefBuilder {
 	resource := NewResourceRef()
 	builder := &ResourceRefBuilder{
 		internal: resource,
-		errors:   make(map[string]cog.BuildErrors),
+		errors:   make(cog.BuildErrors, 0),
 	}
 
 	return builder
@@ -26,6 +26,10 @@ func NewResourceRefBuilder() *ResourceRefBuilder {
 func (builder *ResourceRefBuilder) Build() (ResourceRef, error) {
 	if err := builder.internal.Validate(); err != nil {
 		return ResourceRef{}, err
+	}
+
+	if len(builder.errors) > 0 {
+		return ResourceRef{}, cog.MakeBuildErrors("accesspolicy.resourceRef", builder.errors)
 	}
 
 	return *builder.internal, nil
