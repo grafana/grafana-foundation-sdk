@@ -10,14 +10,14 @@ var _ cog.Builder[CookiePreferences] = (*CookiePreferencesBuilder)(nil)
 
 type CookiePreferencesBuilder struct {
 	internal *CookiePreferences
-	errors   map[string]cog.BuildErrors
+	errors   cog.BuildErrors
 }
 
 func NewCookiePreferencesBuilder() *CookiePreferencesBuilder {
 	resource := NewCookiePreferences()
 	builder := &CookiePreferencesBuilder{
 		internal: resource,
-		errors:   make(map[string]cog.BuildErrors),
+		errors:   make(cog.BuildErrors, 0),
 	}
 
 	return builder
@@ -26,6 +26,10 @@ func NewCookiePreferencesBuilder() *CookiePreferencesBuilder {
 func (builder *CookiePreferencesBuilder) Build() (CookiePreferences, error) {
 	if err := builder.internal.Validate(); err != nil {
 		return CookiePreferences{}, err
+	}
+
+	if len(builder.errors) > 0 {
+		return CookiePreferences{}, cog.MakeBuildErrors("preferences.cookiePreferences", builder.errors)
 	}
 
 	return *builder.internal, nil

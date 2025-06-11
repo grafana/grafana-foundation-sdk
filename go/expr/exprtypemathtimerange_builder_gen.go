@@ -10,14 +10,14 @@ var _ cog.Builder[ExprTypeMathTimeRange] = (*ExprTypeMathTimeRangeBuilder)(nil)
 
 type ExprTypeMathTimeRangeBuilder struct {
 	internal *ExprTypeMathTimeRange
-	errors   map[string]cog.BuildErrors
+	errors   cog.BuildErrors
 }
 
 func NewExprTypeMathTimeRangeBuilder() *ExprTypeMathTimeRangeBuilder {
 	resource := NewExprTypeMathTimeRange()
 	builder := &ExprTypeMathTimeRangeBuilder{
 		internal: resource,
-		errors:   make(map[string]cog.BuildErrors),
+		errors:   make(cog.BuildErrors, 0),
 	}
 
 	return builder
@@ -26,6 +26,10 @@ func NewExprTypeMathTimeRangeBuilder() *ExprTypeMathTimeRangeBuilder {
 func (builder *ExprTypeMathTimeRangeBuilder) Build() (ExprTypeMathTimeRange, error) {
 	if err := builder.internal.Validate(); err != nil {
 		return ExprTypeMathTimeRange{}, err
+	}
+
+	if len(builder.errors) > 0 {
+		return ExprTypeMathTimeRange{}, cog.MakeBuildErrors("expr.exprTypeMathTimeRange", builder.errors)
 	}
 
 	return *builder.internal, nil

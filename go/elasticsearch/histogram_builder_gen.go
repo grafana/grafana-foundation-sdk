@@ -10,14 +10,14 @@ var _ cog.Builder[Histogram] = (*HistogramBuilder)(nil)
 
 type HistogramBuilder struct {
 	internal *Histogram
-	errors   map[string]cog.BuildErrors
+	errors   cog.BuildErrors
 }
 
 func NewHistogramBuilder() *HistogramBuilder {
 	resource := NewHistogram()
 	builder := &HistogramBuilder{
 		internal: resource,
-		errors:   make(map[string]cog.BuildErrors),
+		errors:   make(cog.BuildErrors, 0),
 	}
 
 	return builder
@@ -26,6 +26,10 @@ func NewHistogramBuilder() *HistogramBuilder {
 func (builder *HistogramBuilder) Build() (Histogram, error) {
 	if err := builder.internal.Validate(); err != nil {
 		return Histogram{}, err
+	}
+
+	if len(builder.errors) > 0 {
+		return Histogram{}, cog.MakeBuildErrors("elasticsearch.histogram", builder.errors)
 	}
 
 	return *builder.internal, nil
@@ -46,7 +50,7 @@ func (builder *HistogramBuilder) Id(id string) *HistogramBuilder {
 func (builder *HistogramBuilder) Settings(settings cog.Builder[ElasticsearchHistogramSettings]) *HistogramBuilder {
 	settingsResource, err := settings.Build()
 	if err != nil {
-		builder.errors["settings"] = err.(cog.BuildErrors)
+		builder.errors = append(builder.errors, err.(cog.BuildErrors)...)
 		return builder
 	}
 	builder.internal.Settings = &settingsResource

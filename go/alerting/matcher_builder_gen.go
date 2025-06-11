@@ -10,14 +10,14 @@ var _ cog.Builder[Matcher] = (*MatcherBuilder)(nil)
 
 type MatcherBuilder struct {
 	internal *Matcher
-	errors   map[string]cog.BuildErrors
+	errors   cog.BuildErrors
 }
 
 func NewMatcherBuilder() *MatcherBuilder {
 	resource := NewMatcher()
 	builder := &MatcherBuilder{
 		internal: resource,
-		errors:   make(map[string]cog.BuildErrors),
+		errors:   make(cog.BuildErrors, 0),
 	}
 
 	return builder
@@ -26,6 +26,10 @@ func NewMatcherBuilder() *MatcherBuilder {
 func (builder *MatcherBuilder) Build() (Matcher, error) {
 	if err := builder.internal.Validate(); err != nil {
 		return Matcher{}, err
+	}
+
+	if len(builder.errors) > 0 {
+		return Matcher{}, cog.MakeBuildErrors("alerting.matcher", builder.errors)
 	}
 
 	return *builder.internal, nil

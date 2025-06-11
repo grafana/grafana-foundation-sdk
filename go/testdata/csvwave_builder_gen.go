@@ -10,14 +10,14 @@ var _ cog.Builder[CSVWave] = (*CSVWaveBuilder)(nil)
 
 type CSVWaveBuilder struct {
 	internal *CSVWave
-	errors   map[string]cog.BuildErrors
+	errors   cog.BuildErrors
 }
 
 func NewCSVWaveBuilder() *CSVWaveBuilder {
 	resource := NewCSVWave()
 	builder := &CSVWaveBuilder{
 		internal: resource,
-		errors:   make(map[string]cog.BuildErrors),
+		errors:   make(cog.BuildErrors, 0),
 	}
 
 	return builder
@@ -26,6 +26,10 @@ func NewCSVWaveBuilder() *CSVWaveBuilder {
 func (builder *CSVWaveBuilder) Build() (CSVWave, error) {
 	if err := builder.internal.Validate(); err != nil {
 		return CSVWave{}, err
+	}
+
+	if len(builder.errors) > 0 {
+		return CSVWave{}, cog.MakeBuildErrors("testdata.cSVWave", builder.errors)
 	}
 
 	return *builder.internal, nil

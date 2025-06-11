@@ -10,14 +10,14 @@ var _ cog.Builder[StreamingQuery] = (*StreamingQueryBuilder)(nil)
 
 type StreamingQueryBuilder struct {
 	internal *StreamingQuery
-	errors   map[string]cog.BuildErrors
+	errors   cog.BuildErrors
 }
 
 func NewStreamingQueryBuilder() *StreamingQueryBuilder {
 	resource := NewStreamingQuery()
 	builder := &StreamingQueryBuilder{
 		internal: resource,
-		errors:   make(map[string]cog.BuildErrors),
+		errors:   make(cog.BuildErrors, 0),
 	}
 
 	return builder
@@ -26,6 +26,10 @@ func NewStreamingQueryBuilder() *StreamingQueryBuilder {
 func (builder *StreamingQueryBuilder) Build() (StreamingQuery, error) {
 	if err := builder.internal.Validate(); err != nil {
 		return StreamingQuery{}, err
+	}
+
+	if len(builder.errors) > 0 {
+		return StreamingQuery{}, cog.MakeBuildErrors("testdata.streamingQuery", builder.errors)
 	}
 
 	return *builder.internal, nil

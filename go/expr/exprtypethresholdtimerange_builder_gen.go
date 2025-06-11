@@ -10,14 +10,14 @@ var _ cog.Builder[ExprTypeThresholdTimeRange] = (*ExprTypeThresholdTimeRangeBuil
 
 type ExprTypeThresholdTimeRangeBuilder struct {
 	internal *ExprTypeThresholdTimeRange
-	errors   map[string]cog.BuildErrors
+	errors   cog.BuildErrors
 }
 
 func NewExprTypeThresholdTimeRangeBuilder() *ExprTypeThresholdTimeRangeBuilder {
 	resource := NewExprTypeThresholdTimeRange()
 	builder := &ExprTypeThresholdTimeRangeBuilder{
 		internal: resource,
-		errors:   make(map[string]cog.BuildErrors),
+		errors:   make(cog.BuildErrors, 0),
 	}
 
 	return builder
@@ -26,6 +26,10 @@ func NewExprTypeThresholdTimeRangeBuilder() *ExprTypeThresholdTimeRangeBuilder {
 func (builder *ExprTypeThresholdTimeRangeBuilder) Build() (ExprTypeThresholdTimeRange, error) {
 	if err := builder.internal.Validate(); err != nil {
 		return ExprTypeThresholdTimeRange{}, err
+	}
+
+	if len(builder.errors) > 0 {
+		return ExprTypeThresholdTimeRange{}, cog.MakeBuildErrors("expr.exprTypeThresholdTimeRange", builder.errors)
 	}
 
 	return *builder.internal, nil

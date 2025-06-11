@@ -10,14 +10,14 @@ var _ cog.Builder[NodeOptions] = (*NodeOptionsBuilder)(nil)
 
 type NodeOptionsBuilder struct {
 	internal *NodeOptions
-	errors   map[string]cog.BuildErrors
+	errors   cog.BuildErrors
 }
 
 func NewNodeOptionsBuilder() *NodeOptionsBuilder {
 	resource := NewNodeOptions()
 	builder := &NodeOptionsBuilder{
 		internal: resource,
-		errors:   make(map[string]cog.BuildErrors),
+		errors:   make(cog.BuildErrors, 0),
 	}
 
 	return builder
@@ -26,6 +26,10 @@ func NewNodeOptionsBuilder() *NodeOptionsBuilder {
 func (builder *NodeOptionsBuilder) Build() (NodeOptions, error) {
 	if err := builder.internal.Validate(); err != nil {
 		return NodeOptions{}, err
+	}
+
+	if len(builder.errors) > 0 {
+		return NodeOptions{}, cog.MakeBuildErrors("nodegraph.nodeOptions", builder.errors)
 	}
 
 	return *builder.internal, nil
@@ -51,7 +55,7 @@ func (builder *NodeOptionsBuilder) Arcs(arcs []cog.Builder[ArcOption]) *NodeOpti
 	for _, r1 := range arcs {
 		arcsDepth1, err := r1.Build()
 		if err != nil {
-			builder.errors["arcs"] = err.(cog.BuildErrors)
+			builder.errors = append(builder.errors, err.(cog.BuildErrors)...)
 			return builder
 		}
 		arcsResources = append(arcsResources, arcsDepth1)
