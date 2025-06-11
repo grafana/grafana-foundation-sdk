@@ -10,14 +10,14 @@ var _ cog.Builder[TimeRange] = (*TimeRangeBuilder)(nil)
 
 type TimeRangeBuilder struct {
 	internal *TimeRange
-	errors   map[string]cog.BuildErrors
+	errors   cog.BuildErrors
 }
 
 func NewTimeRangeBuilder() *TimeRangeBuilder {
 	resource := NewTimeRange()
 	builder := &TimeRangeBuilder{
 		internal: resource,
-		errors:   make(map[string]cog.BuildErrors),
+		errors:   make(cog.BuildErrors, 0),
 	}
 
 	return builder
@@ -26,6 +26,10 @@ func NewTimeRangeBuilder() *TimeRangeBuilder {
 func (builder *TimeRangeBuilder) Build() (TimeRange, error) {
 	if err := builder.internal.Validate(); err != nil {
 		return TimeRange{}, err
+	}
+
+	if len(builder.errors) > 0 {
+		return TimeRange{}, cog.MakeBuildErrors("testdata.timeRange", builder.errors)
 	}
 
 	return *builder.internal, nil

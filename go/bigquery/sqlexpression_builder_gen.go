@@ -10,14 +10,14 @@ var _ cog.Builder[SQLExpression] = (*SQLExpressionBuilder)(nil)
 
 type SQLExpressionBuilder struct {
 	internal *SQLExpression
-	errors   map[string]cog.BuildErrors
+	errors   cog.BuildErrors
 }
 
 func NewSQLExpressionBuilder() *SQLExpressionBuilder {
 	resource := NewSQLExpression()
 	builder := &SQLExpressionBuilder{
 		internal: resource,
-		errors:   make(map[string]cog.BuildErrors),
+		errors:   make(cog.BuildErrors, 0),
 	}
 
 	return builder
@@ -28,6 +28,10 @@ func (builder *SQLExpressionBuilder) Build() (SQLExpression, error) {
 		return SQLExpression{}, err
 	}
 
+	if len(builder.errors) > 0 {
+		return SQLExpression{}, cog.MakeBuildErrors("bigquery.sQLExpression", builder.errors)
+	}
+
 	return *builder.internal, nil
 }
 
@@ -36,7 +40,7 @@ func (builder *SQLExpressionBuilder) Columns(columns []cog.Builder[QueryEditorFu
 	for _, r1 := range columns {
 		columnsDepth1, err := r1.Build()
 		if err != nil {
-			builder.errors["columns"] = err.(cog.BuildErrors)
+			builder.errors = append(builder.errors, err.(cog.BuildErrors)...)
 			return builder
 		}
 		columnsResources = append(columnsResources, columnsDepth1)
@@ -64,7 +68,7 @@ func (builder *SQLExpressionBuilder) GroupBy(groupBy []cog.Builder[QueryEditorGr
 	for _, r1 := range groupBy {
 		groupByDepth1, err := r1.Build()
 		if err != nil {
-			builder.errors["groupBy"] = err.(cog.BuildErrors)
+			builder.errors = append(builder.errors, err.(cog.BuildErrors)...)
 			return builder
 		}
 		groupByResources = append(groupByResources, groupByDepth1)
@@ -77,7 +81,7 @@ func (builder *SQLExpressionBuilder) GroupBy(groupBy []cog.Builder[QueryEditorGr
 func (builder *SQLExpressionBuilder) OrderBy(orderBy cog.Builder[QueryEditorPropertyExpression]) *SQLExpressionBuilder {
 	orderByResource, err := orderBy.Build()
 	if err != nil {
-		builder.errors["orderBy"] = err.(cog.BuildErrors)
+		builder.errors = append(builder.errors, err.(cog.BuildErrors)...)
 		return builder
 	}
 	builder.internal.OrderBy = &orderByResource

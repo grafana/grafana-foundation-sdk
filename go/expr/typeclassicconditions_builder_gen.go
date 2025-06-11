@@ -12,14 +12,14 @@ var _ cog.Builder[variants.Dataquery] = (*TypeClassicConditionsBuilder)(nil)
 
 type TypeClassicConditionsBuilder struct {
 	internal *TypeClassicConditions
-	errors   map[string]cog.BuildErrors
+	errors   cog.BuildErrors
 }
 
 func NewTypeClassicConditionsBuilder() *TypeClassicConditionsBuilder {
 	resource := NewTypeClassicConditions()
 	builder := &TypeClassicConditionsBuilder{
 		internal: resource,
-		errors:   make(map[string]cog.BuildErrors),
+		errors:   make(cog.BuildErrors, 0),
 	}
 	builder.internal.Type = "classic_conditions"
 
@@ -31,6 +31,10 @@ func (builder *TypeClassicConditionsBuilder) Build() (variants.Dataquery, error)
 		return TypeClassicConditions{}, err
 	}
 
+	if len(builder.errors) > 0 {
+		return TypeClassicConditions{}, cog.MakeBuildErrors("expr.typeClassicConditions", builder.errors)
+	}
+
 	return *builder.internal, nil
 }
 
@@ -39,7 +43,7 @@ func (builder *TypeClassicConditionsBuilder) Conditions(conditions []cog.Builder
 	for _, r1 := range conditions {
 		conditionsDepth1, err := r1.Build()
 		if err != nil {
-			builder.errors["conditions"] = err.(cog.BuildErrors)
+			builder.errors = append(builder.errors, err.(cog.BuildErrors)...)
 			return builder
 		}
 		conditionsResources = append(conditionsResources, conditionsDepth1)
@@ -102,7 +106,7 @@ func (builder *TypeClassicConditionsBuilder) RefId(refId string) *TypeClassicCon
 func (builder *TypeClassicConditionsBuilder) ResultAssertions(resultAssertions cog.Builder[ExprTypeClassicConditionsResultAssertions]) *TypeClassicConditionsBuilder {
 	resultAssertionsResource, err := resultAssertions.Build()
 	if err != nil {
-		builder.errors["resultAssertions"] = err.(cog.BuildErrors)
+		builder.errors = append(builder.errors, err.(cog.BuildErrors)...)
 		return builder
 	}
 	builder.internal.ResultAssertions = &resultAssertionsResource
@@ -116,7 +120,7 @@ func (builder *TypeClassicConditionsBuilder) ResultAssertions(resultAssertions c
 func (builder *TypeClassicConditionsBuilder) TimeRange(timeRange cog.Builder[ExprTypeClassicConditionsTimeRange]) *TypeClassicConditionsBuilder {
 	timeRangeResource, err := timeRange.Build()
 	if err != nil {
-		builder.errors["timeRange"] = err.(cog.BuildErrors)
+		builder.errors = append(builder.errors, err.(cog.BuildErrors)...)
 		return builder
 	}
 	builder.internal.TimeRange = &timeRangeResource

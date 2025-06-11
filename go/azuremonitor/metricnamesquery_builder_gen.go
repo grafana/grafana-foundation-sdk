@@ -10,14 +10,14 @@ var _ cog.Builder[MetricNamesQuery] = (*MetricNamesQueryBuilder)(nil)
 
 type MetricNamesQueryBuilder struct {
 	internal *MetricNamesQuery
-	errors   map[string]cog.BuildErrors
+	errors   cog.BuildErrors
 }
 
 func NewMetricNamesQueryBuilder() *MetricNamesQueryBuilder {
 	resource := NewMetricNamesQuery()
 	builder := &MetricNamesQueryBuilder{
 		internal: resource,
-		errors:   make(map[string]cog.BuildErrors),
+		errors:   make(cog.BuildErrors, 0),
 	}
 	builder.internal.Kind = "MetricNamesQuery"
 
@@ -27,6 +27,10 @@ func NewMetricNamesQueryBuilder() *MetricNamesQueryBuilder {
 func (builder *MetricNamesQueryBuilder) Build() (MetricNamesQuery, error) {
 	if err := builder.internal.Validate(); err != nil {
 		return MetricNamesQuery{}, err
+	}
+
+	if len(builder.errors) > 0 {
+		return MetricNamesQuery{}, cog.MakeBuildErrors("azuremonitor.metricNamesQuery", builder.errors)
 	}
 
 	return *builder.internal, nil

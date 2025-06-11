@@ -10,14 +10,14 @@ var _ cog.Builder[ConnectionArgs] = (*ConnectionArgsBuilder)(nil)
 
 type ConnectionArgsBuilder struct {
 	internal *ConnectionArgs
-	errors   map[string]cog.BuildErrors
+	errors   cog.BuildErrors
 }
 
 func NewConnectionArgsBuilder() *ConnectionArgsBuilder {
 	resource := NewConnectionArgs()
 	builder := &ConnectionArgsBuilder{
 		internal: resource,
-		errors:   make(map[string]cog.BuildErrors),
+		errors:   make(cog.BuildErrors, 0),
 	}
 
 	return builder
@@ -26,6 +26,10 @@ func NewConnectionArgsBuilder() *ConnectionArgsBuilder {
 func (builder *ConnectionArgsBuilder) Build() (ConnectionArgs, error) {
 	if err := builder.internal.Validate(); err != nil {
 		return ConnectionArgs{}, err
+	}
+
+	if len(builder.errors) > 0 {
+		return ConnectionArgs{}, cog.MakeBuildErrors("athena.connectionArgs", builder.errors)
 	}
 
 	return *builder.internal, nil

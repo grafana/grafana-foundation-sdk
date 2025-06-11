@@ -137,7 +137,10 @@
         "type"
       ],
       "properties": {
-        "type": {},
+        "type": {
+          "$ref": "#/definitions/QueryEditorExpressionType",
+          "default": "function"
+        },
         "name": {
           "type": "string"
         },
@@ -167,7 +170,10 @@
         "type"
       ],
       "properties": {
-        "type": {},
+        "type": {
+          "$ref": "#/definitions/QueryEditorExpressionType",
+          "default": "functionParameter"
+        },
         "name": {
           "type": "string"
         }
@@ -181,7 +187,10 @@
         "property"
       ],
       "properties": {
-        "type": {},
+        "type": {
+          "$ref": "#/definitions/QueryEditorExpressionType",
+          "default": "groupBy"
+        },
         "property": {
           "$ref": "#/definitions/QueryEditorProperty"
         }
@@ -195,17 +204,13 @@
       ],
       "properties": {
         "type": {
-          "$ref": "#/definitions/QueryEditorPropertyType"
+          "$ref": "#/definitions/QueryEditorPropertyType",
+          "default": "string"
         },
         "name": {
           "type": "string"
         }
       }
-    },
-    "QueryEditorPropertyType": {
-      "enum": [
-        "string"
-      ]
     },
     "QueryEditorPropertyExpression": {
       "type": "object",
@@ -215,7 +220,10 @@
         "property"
       ],
       "properties": {
-        "type": {},
+        "type": {
+          "$ref": "#/definitions/QueryEditorExpressionType",
+          "default": "property"
+        },
         "property": {
           "$ref": "#/definitions/QueryEditorProperty"
         }
@@ -225,6 +233,11 @@
       "enum": [
         "ASC",
         "DESC"
+      ]
+    },
+    "QueryEditorPropertyType": {
+      "enum": [
+        "string"
       ]
     },
     "DataSourceRef": {
