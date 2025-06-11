@@ -10,14 +10,14 @@ var _ cog.Builder[BaseDimensionConfig] = (*BaseDimensionConfigBuilder)(nil)
 
 type BaseDimensionConfigBuilder struct {
 	internal *BaseDimensionConfig
-	errors   map[string]cog.BuildErrors
+	errors   cog.BuildErrors
 }
 
 func NewBaseDimensionConfigBuilder() *BaseDimensionConfigBuilder {
 	resource := NewBaseDimensionConfig()
 	builder := &BaseDimensionConfigBuilder{
 		internal: resource,
-		errors:   make(map[string]cog.BuildErrors),
+		errors:   make(cog.BuildErrors, 0),
 	}
 
 	return builder
@@ -26,6 +26,10 @@ func NewBaseDimensionConfigBuilder() *BaseDimensionConfigBuilder {
 func (builder *BaseDimensionConfigBuilder) Build() (BaseDimensionConfig, error) {
 	if err := builder.internal.Validate(); err != nil {
 		return BaseDimensionConfig{}, err
+	}
+
+	if len(builder.errors) > 0 {
+		return BaseDimensionConfig{}, cog.MakeBuildErrors("common.baseDimensionConfig", builder.errors)
 	}
 
 	return *builder.internal, nil

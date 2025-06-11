@@ -13,14 +13,14 @@ var _ cog.Builder[DataQuery] = (*DataQueryBuilder)(nil)
 // properties for the given context.
 type DataQueryBuilder struct {
 	internal *DataQuery
-	errors   map[string]cog.BuildErrors
+	errors   cog.BuildErrors
 }
 
 func NewDataQueryBuilder() *DataQueryBuilder {
 	resource := NewDataQuery()
 	builder := &DataQueryBuilder{
 		internal: resource,
-		errors:   make(map[string]cog.BuildErrors),
+		errors:   make(cog.BuildErrors, 0),
 	}
 
 	return builder
@@ -29,6 +29,10 @@ func NewDataQueryBuilder() *DataQueryBuilder {
 func (builder *DataQueryBuilder) Build() (DataQuery, error) {
 	if err := builder.internal.Validate(); err != nil {
 		return DataQuery{}, err
+	}
+
+	if len(builder.errors) > 0 {
+		return DataQuery{}, cog.MakeBuildErrors("common.dataQuery", builder.errors)
 	}
 
 	return *builder.internal, nil

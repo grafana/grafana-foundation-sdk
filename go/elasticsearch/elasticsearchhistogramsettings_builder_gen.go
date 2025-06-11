@@ -10,14 +10,14 @@ var _ cog.Builder[ElasticsearchHistogramSettings] = (*ElasticsearchHistogramSett
 
 type ElasticsearchHistogramSettingsBuilder struct {
 	internal *ElasticsearchHistogramSettings
-	errors   map[string]cog.BuildErrors
+	errors   cog.BuildErrors
 }
 
 func NewElasticsearchHistogramSettingsBuilder() *ElasticsearchHistogramSettingsBuilder {
 	resource := NewElasticsearchHistogramSettings()
 	builder := &ElasticsearchHistogramSettingsBuilder{
 		internal: resource,
-		errors:   make(map[string]cog.BuildErrors),
+		errors:   make(cog.BuildErrors, 0),
 	}
 
 	return builder
@@ -26,6 +26,10 @@ func NewElasticsearchHistogramSettingsBuilder() *ElasticsearchHistogramSettingsB
 func (builder *ElasticsearchHistogramSettingsBuilder) Build() (ElasticsearchHistogramSettings, error) {
 	if err := builder.internal.Validate(); err != nil {
 		return ElasticsearchHistogramSettings{}, err
+	}
+
+	if len(builder.errors) > 0 {
+		return ElasticsearchHistogramSettings{}, cog.MakeBuildErrors("elasticsearch.elasticsearchHistogramSettings", builder.errors)
 	}
 
 	return *builder.internal, nil

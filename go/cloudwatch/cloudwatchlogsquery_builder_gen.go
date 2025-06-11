@@ -13,14 +13,14 @@ var _ cog.Builder[variants.Dataquery] = (*CloudWatchLogsQueryBuilder)(nil)
 // Shape of a CloudWatch Logs query
 type CloudWatchLogsQueryBuilder struct {
 	internal *CloudWatchLogsQuery
-	errors   map[string]cog.BuildErrors
+	errors   cog.BuildErrors
 }
 
 func NewCloudWatchLogsQueryBuilder() *CloudWatchLogsQueryBuilder {
 	resource := NewCloudWatchLogsQuery()
 	builder := &CloudWatchLogsQueryBuilder{
 		internal: resource,
-		errors:   make(map[string]cog.BuildErrors),
+		errors:   make(cog.BuildErrors, 0),
 	}
 
 	return builder
@@ -29,6 +29,10 @@ func NewCloudWatchLogsQueryBuilder() *CloudWatchLogsQueryBuilder {
 func (builder *CloudWatchLogsQueryBuilder) Build() (variants.Dataquery, error) {
 	if err := builder.internal.Validate(); err != nil {
 		return CloudWatchLogsQuery{}, err
+	}
+
+	if len(builder.errors) > 0 {
+		return CloudWatchLogsQuery{}, cog.MakeBuildErrors("cloudwatch.cloudWatchLogsQuery", builder.errors)
 	}
 
 	return *builder.internal, nil
@@ -74,7 +78,7 @@ func (builder *CloudWatchLogsQueryBuilder) LogGroups(logGroups []cog.Builder[Log
 	for _, r1 := range logGroups {
 		logGroupsDepth1, err := r1.Build()
 		if err != nil {
-			builder.errors["logGroups"] = err.(cog.BuildErrors)
+			builder.errors = append(builder.errors, err.(cog.BuildErrors)...)
 			return builder
 		}
 		logGroupsResources = append(logGroupsResources, logGroupsDepth1)

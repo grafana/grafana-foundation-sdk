@@ -24,12 +24,6 @@ func (builder *QueryEditorPropertyBuilder) Build() (QueryEditorProperty, error)
 func (builder *QueryEditorPropertyBuilder) Name(name string) *QueryEditorPropertyBuilder
 ```
 
-### <span class="badge object-method"></span> Type
-
-```go
-func (builder *QueryEditorPropertyBuilder) Type(typeArg bigquery.QueryEditorPropertyType) *QueryEditorPropertyBuilder
-```
-
 ## See also
 
  * <span class="badge object-type-struct"></span> [QueryEditorProperty](./object-QueryEditorProperty.md)
