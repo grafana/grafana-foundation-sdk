@@ -10,14 +10,14 @@ var _ cog.Builder[ConnectionCoordinates] = (*ConnectionCoordinatesBuilder)(nil)
 
 type ConnectionCoordinatesBuilder struct {
 	internal *ConnectionCoordinates
-	errors   map[string]cog.BuildErrors
+	errors   cog.BuildErrors
 }
 
 func NewConnectionCoordinatesBuilder() *ConnectionCoordinatesBuilder {
 	resource := NewConnectionCoordinates()
 	builder := &ConnectionCoordinatesBuilder{
 		internal: resource,
-		errors:   make(map[string]cog.BuildErrors),
+		errors:   make(cog.BuildErrors, 0),
 	}
 
 	return builder
@@ -26,6 +26,10 @@ func NewConnectionCoordinatesBuilder() *ConnectionCoordinatesBuilder {
 func (builder *ConnectionCoordinatesBuilder) Build() (ConnectionCoordinates, error) {
 	if err := builder.internal.Validate(); err != nil {
 		return ConnectionCoordinates{}, err
+	}
+
+	if len(builder.errors) > 0 {
+		return ConnectionCoordinates{}, cog.MakeBuildErrors("canvas.connectionCoordinates", builder.errors)
 	}
 
 	return *builder.internal, nil

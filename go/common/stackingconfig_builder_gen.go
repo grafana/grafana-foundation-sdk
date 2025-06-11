@@ -11,14 +11,14 @@ var _ cog.Builder[StackingConfig] = (*StackingConfigBuilder)(nil)
 // TODO docs
 type StackingConfigBuilder struct {
 	internal *StackingConfig
-	errors   map[string]cog.BuildErrors
+	errors   cog.BuildErrors
 }
 
 func NewStackingConfigBuilder() *StackingConfigBuilder {
 	resource := NewStackingConfig()
 	builder := &StackingConfigBuilder{
 		internal: resource,
-		errors:   make(map[string]cog.BuildErrors),
+		errors:   make(cog.BuildErrors, 0),
 	}
 
 	return builder
@@ -27,6 +27,10 @@ func NewStackingConfigBuilder() *StackingConfigBuilder {
 func (builder *StackingConfigBuilder) Build() (StackingConfig, error) {
 	if err := builder.internal.Validate(); err != nil {
 		return StackingConfig{}, err
+	}
+
+	if len(builder.errors) > 0 {
+		return StackingConfig{}, cog.MakeBuildErrors("common.stackingConfig", builder.errors)
 	}
 
 	return *builder.internal, nil

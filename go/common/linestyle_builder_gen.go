@@ -11,14 +11,14 @@ var _ cog.Builder[LineStyle] = (*LineStyleBuilder)(nil)
 // TODO docs
 type LineStyleBuilder struct {
 	internal *LineStyle
-	errors   map[string]cog.BuildErrors
+	errors   cog.BuildErrors
 }
 
 func NewLineStyleBuilder() *LineStyleBuilder {
 	resource := NewLineStyle()
 	builder := &LineStyleBuilder{
 		internal: resource,
-		errors:   make(map[string]cog.BuildErrors),
+		errors:   make(cog.BuildErrors, 0),
 	}
 
 	return builder
@@ -27,6 +27,10 @@ func NewLineStyleBuilder() *LineStyleBuilder {
 func (builder *LineStyleBuilder) Build() (LineStyle, error) {
 	if err := builder.internal.Validate(); err != nil {
 		return LineStyle{}, err
+	}
+
+	if len(builder.errors) > 0 {
+		return LineStyle{}, cog.MakeBuildErrors("common.lineStyle", builder.errors)
 	}
 
 	return *builder.internal, nil

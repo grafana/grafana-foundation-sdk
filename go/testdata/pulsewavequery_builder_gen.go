@@ -10,14 +10,14 @@ var _ cog.Builder[PulseWaveQuery] = (*PulseWaveQueryBuilder)(nil)
 
 type PulseWaveQueryBuilder struct {
 	internal *PulseWaveQuery
-	errors   map[string]cog.BuildErrors
+	errors   cog.BuildErrors
 }
 
 func NewPulseWaveQueryBuilder() *PulseWaveQueryBuilder {
 	resource := NewPulseWaveQuery()
 	builder := &PulseWaveQueryBuilder{
 		internal: resource,
-		errors:   make(map[string]cog.BuildErrors),
+		errors:   make(cog.BuildErrors, 0),
 	}
 
 	return builder
@@ -26,6 +26,10 @@ func NewPulseWaveQueryBuilder() *PulseWaveQueryBuilder {
 func (builder *PulseWaveQueryBuilder) Build() (PulseWaveQuery, error) {
 	if err := builder.internal.Validate(); err != nil {
 		return PulseWaveQuery{}, err
+	}
+
+	if len(builder.errors) > 0 {
+		return PulseWaveQuery{}, cog.MakeBuildErrors("testdata.pulseWaveQuery", builder.errors)
 	}
 
 	return *builder.internal, nil

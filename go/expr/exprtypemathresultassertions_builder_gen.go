@@ -10,14 +10,14 @@ var _ cog.Builder[ExprTypeMathResultAssertions] = (*ExprTypeMathResultAssertions
 
 type ExprTypeMathResultAssertionsBuilder struct {
 	internal *ExprTypeMathResultAssertions
-	errors   map[string]cog.BuildErrors
+	errors   cog.BuildErrors
 }
 
 func NewExprTypeMathResultAssertionsBuilder() *ExprTypeMathResultAssertionsBuilder {
 	resource := NewExprTypeMathResultAssertions()
 	builder := &ExprTypeMathResultAssertionsBuilder{
 		internal: resource,
-		errors:   make(map[string]cog.BuildErrors),
+		errors:   make(cog.BuildErrors, 0),
 	}
 
 	return builder
@@ -26,6 +26,10 @@ func NewExprTypeMathResultAssertionsBuilder() *ExprTypeMathResultAssertionsBuild
 func (builder *ExprTypeMathResultAssertionsBuilder) Build() (ExprTypeMathResultAssertions, error) {
 	if err := builder.internal.Validate(); err != nil {
 		return ExprTypeMathResultAssertions{}, err
+	}
+
+	if len(builder.errors) > 0 {
+		return ExprTypeMathResultAssertions{}, cog.MakeBuildErrors("expr.exprTypeMathResultAssertions", builder.errors)
 	}
 
 	return *builder.internal, nil

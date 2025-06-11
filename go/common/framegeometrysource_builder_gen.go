@@ -10,14 +10,14 @@ var _ cog.Builder[FrameGeometrySource] = (*FrameGeometrySourceBuilder)(nil)
 
 type FrameGeometrySourceBuilder struct {
 	internal *FrameGeometrySource
-	errors   map[string]cog.BuildErrors
+	errors   cog.BuildErrors
 }
 
 func NewFrameGeometrySourceBuilder() *FrameGeometrySourceBuilder {
 	resource := NewFrameGeometrySource()
 	builder := &FrameGeometrySourceBuilder{
 		internal: resource,
-		errors:   make(map[string]cog.BuildErrors),
+		errors:   make(cog.BuildErrors, 0),
 	}
 
 	return builder
@@ -26,6 +26,10 @@ func NewFrameGeometrySourceBuilder() *FrameGeometrySourceBuilder {
 func (builder *FrameGeometrySourceBuilder) Build() (FrameGeometrySource, error) {
 	if err := builder.internal.Validate(); err != nil {
 		return FrameGeometrySource{}, err
+	}
+
+	if len(builder.errors) > 0 {
+		return FrameGeometrySource{}, cog.MakeBuildErrors("common.frameGeometrySource", builder.errors)
 	}
 
 	return *builder.internal, nil

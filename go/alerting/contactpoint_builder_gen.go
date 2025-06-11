@@ -12,14 +12,14 @@ var _ cog.Builder[ContactPoint] = (*ContactPointBuilder)(nil)
 // by grafanas embedded alertmanager implementation.
 type ContactPointBuilder struct {
 	internal *ContactPoint
-	errors   map[string]cog.BuildErrors
+	errors   cog.BuildErrors
 }
 
 func NewContactPointBuilder() *ContactPointBuilder {
 	resource := NewContactPoint()
 	builder := &ContactPointBuilder{
 		internal: resource,
-		errors:   make(map[string]cog.BuildErrors),
+		errors:   make(cog.BuildErrors, 0),
 	}
 
 	return builder
@@ -28,6 +28,10 @@ func NewContactPointBuilder() *ContactPointBuilder {
 func (builder *ContactPointBuilder) Build() (ContactPoint, error) {
 	if err := builder.internal.Validate(); err != nil {
 		return ContactPoint{}, err
+	}
+
+	if len(builder.errors) > 0 {
+		return ContactPoint{}, cog.MakeBuildErrors("alerting.contactPoint", builder.errors)
 	}
 
 	return *builder.internal, nil

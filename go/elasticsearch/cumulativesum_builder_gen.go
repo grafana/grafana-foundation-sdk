@@ -10,14 +10,14 @@ var _ cog.Builder[CumulativeSum] = (*CumulativeSumBuilder)(nil)
 
 type CumulativeSumBuilder struct {
 	internal *CumulativeSum
-	errors   map[string]cog.BuildErrors
+	errors   cog.BuildErrors
 }
 
 func NewCumulativeSumBuilder() *CumulativeSumBuilder {
 	resource := NewCumulativeSum()
 	builder := &CumulativeSumBuilder{
 		internal: resource,
-		errors:   make(map[string]cog.BuildErrors),
+		errors:   make(cog.BuildErrors, 0),
 	}
 
 	return builder
@@ -26,6 +26,10 @@ func NewCumulativeSumBuilder() *CumulativeSumBuilder {
 func (builder *CumulativeSumBuilder) Build() (CumulativeSum, error) {
 	if err := builder.internal.Validate(); err != nil {
 		return CumulativeSum{}, err
+	}
+
+	if len(builder.errors) > 0 {
+		return CumulativeSum{}, cog.MakeBuildErrors("elasticsearch.cumulativeSum", builder.errors)
 	}
 
 	return *builder.internal, nil
@@ -52,7 +56,7 @@ func (builder *CumulativeSumBuilder) Id(id string) *CumulativeSumBuilder {
 func (builder *CumulativeSumBuilder) Settings(settings cog.Builder[ElasticsearchCumulativeSumSettings]) *CumulativeSumBuilder {
 	settingsResource, err := settings.Build()
 	if err != nil {
-		builder.errors["settings"] = err.(cog.BuildErrors)
+		builder.errors = append(builder.errors, err.(cog.BuildErrors)...)
 		return builder
 	}
 	builder.internal.Settings = &settingsResource

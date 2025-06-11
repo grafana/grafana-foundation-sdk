@@ -10,14 +10,14 @@ var _ cog.Builder[Role] = (*RoleBuilder)(nil)
 
 type RoleBuilder struct {
 	internal *Role
-	errors   map[string]cog.BuildErrors
+	errors   cog.BuildErrors
 }
 
 func NewRoleBuilder() *RoleBuilder {
 	resource := NewRole()
 	builder := &RoleBuilder{
 		internal: resource,
-		errors:   make(map[string]cog.BuildErrors),
+		errors:   make(cog.BuildErrors, 0),
 	}
 
 	return builder
@@ -26,6 +26,10 @@ func NewRoleBuilder() *RoleBuilder {
 func (builder *RoleBuilder) Build() (Role, error) {
 	if err := builder.internal.Validate(); err != nil {
 		return Role{}, err
+	}
+
+	if len(builder.errors) > 0 {
+		return Role{}, cog.MakeBuildErrors("role.role", builder.errors)
 	}
 
 	return *builder.internal, nil
