@@ -10,14 +10,14 @@ var _ cog.Builder[Constraint] = (*ConstraintBuilder)(nil)
 
 type ConstraintBuilder struct {
 	internal *Constraint
-	errors   map[string]cog.BuildErrors
+	errors   cog.BuildErrors
 }
 
 func NewConstraintBuilder() *ConstraintBuilder {
 	resource := NewConstraint()
 	builder := &ConstraintBuilder{
 		internal: resource,
-		errors:   make(map[string]cog.BuildErrors),
+		errors:   make(cog.BuildErrors, 0),
 	}
 
 	return builder
@@ -26,6 +26,10 @@ func NewConstraintBuilder() *ConstraintBuilder {
 func (builder *ConstraintBuilder) Build() (Constraint, error) {
 	if err := builder.internal.Validate(); err != nil {
 		return Constraint{}, err
+	}
+
+	if len(builder.errors) > 0 {
+		return Constraint{}, cog.MakeBuildErrors("canvas.constraint", builder.errors)
 	}
 
 	return *builder.internal, nil

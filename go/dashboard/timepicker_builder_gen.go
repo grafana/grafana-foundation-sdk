@@ -10,14 +10,14 @@ var _ cog.Builder[TimePicker] = (*TimePickerBuilder)(nil)
 
 type TimePickerBuilder struct {
 	internal *TimePicker
-	errors   map[string]cog.BuildErrors
+	errors   cog.BuildErrors
 }
 
 func NewTimePickerBuilder() *TimePickerBuilder {
 	resource := NewTimePicker()
 	builder := &TimePickerBuilder{
 		internal: resource,
-		errors:   make(map[string]cog.BuildErrors),
+		errors:   make(cog.BuildErrors, 0),
 	}
 
 	return builder
@@ -26,6 +26,10 @@ func NewTimePickerBuilder() *TimePickerBuilder {
 func (builder *TimePickerBuilder) Build() (TimePicker, error) {
 	if err := builder.internal.Validate(); err != nil {
 		return TimePicker{}, err
+	}
+
+	if len(builder.errors) > 0 {
+		return TimePicker{}, cog.MakeBuildErrors("dashboard.timePicker", builder.errors)
 	}
 
 	return *builder.internal, nil

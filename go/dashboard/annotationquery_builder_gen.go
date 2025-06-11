@@ -12,14 +12,14 @@ var _ cog.Builder[AnnotationQuery] = (*AnnotationQueryBuilder)(nil)
 // FROM: AnnotationQuery in grafana-data/src/types/annotations.ts
 type AnnotationQueryBuilder struct {
 	internal *AnnotationQuery
-	errors   map[string]cog.BuildErrors
+	errors   cog.BuildErrors
 }
 
 func NewAnnotationQueryBuilder() *AnnotationQueryBuilder {
 	resource := NewAnnotationQuery()
 	builder := &AnnotationQueryBuilder{
 		internal: resource,
-		errors:   make(map[string]cog.BuildErrors),
+		errors:   make(cog.BuildErrors, 0),
 	}
 
 	return builder
@@ -28,6 +28,10 @@ func NewAnnotationQueryBuilder() *AnnotationQueryBuilder {
 func (builder *AnnotationQueryBuilder) Build() (AnnotationQuery, error) {
 	if err := builder.internal.Validate(); err != nil {
 		return AnnotationQuery{}, err
+	}
+
+	if len(builder.errors) > 0 {
+		return AnnotationQuery{}, cog.MakeBuildErrors("dashboard.annotationQuery", builder.errors)
 	}
 
 	return *builder.internal, nil
@@ -73,7 +77,7 @@ func (builder *AnnotationQueryBuilder) IconColor(iconColor string) *AnnotationQu
 func (builder *AnnotationQueryBuilder) Filter(filter cog.Builder[AnnotationPanelFilter]) *AnnotationQueryBuilder {
 	filterResource, err := filter.Build()
 	if err != nil {
-		builder.errors["filter"] = err.(cog.BuildErrors)
+		builder.errors = append(builder.errors, err.(cog.BuildErrors)...)
 		return builder
 	}
 	builder.internal.Filter = &filterResource
@@ -85,7 +89,7 @@ func (builder *AnnotationQueryBuilder) Filter(filter cog.Builder[AnnotationPanel
 func (builder *AnnotationQueryBuilder) Target(target cog.Builder[AnnotationTarget]) *AnnotationQueryBuilder {
 	targetResource, err := target.Build()
 	if err != nil {
-		builder.errors["target"] = err.(cog.BuildErrors)
+		builder.errors = append(builder.errors, err.(cog.BuildErrors)...)
 		return builder
 	}
 	builder.internal.Target = &targetResource

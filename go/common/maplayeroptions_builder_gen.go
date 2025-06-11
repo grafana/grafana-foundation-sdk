@@ -10,14 +10,14 @@ var _ cog.Builder[MapLayerOptions] = (*MapLayerOptionsBuilder)(nil)
 
 type MapLayerOptionsBuilder struct {
 	internal *MapLayerOptions
-	errors   map[string]cog.BuildErrors
+	errors   cog.BuildErrors
 }
 
 func NewMapLayerOptionsBuilder() *MapLayerOptionsBuilder {
 	resource := NewMapLayerOptions()
 	builder := &MapLayerOptionsBuilder{
 		internal: resource,
-		errors:   make(map[string]cog.BuildErrors),
+		errors:   make(cog.BuildErrors, 0),
 	}
 
 	return builder
@@ -26,6 +26,10 @@ func NewMapLayerOptionsBuilder() *MapLayerOptionsBuilder {
 func (builder *MapLayerOptionsBuilder) Build() (MapLayerOptions, error) {
 	if err := builder.internal.Validate(); err != nil {
 		return MapLayerOptions{}, err
+	}
+
+	if len(builder.errors) > 0 {
+		return MapLayerOptions{}, cog.MakeBuildErrors("common.mapLayerOptions", builder.errors)
 	}
 
 	return *builder.internal, nil
@@ -55,7 +59,7 @@ func (builder *MapLayerOptionsBuilder) Config(config any) *MapLayerOptionsBuilde
 func (builder *MapLayerOptionsBuilder) Location(location cog.Builder[FrameGeometrySource]) *MapLayerOptionsBuilder {
 	locationResource, err := location.Build()
 	if err != nil {
-		builder.errors["location"] = err.(cog.BuildErrors)
+		builder.errors = append(builder.errors, err.(cog.BuildErrors)...)
 		return builder
 	}
 	builder.internal.Location = &locationResource

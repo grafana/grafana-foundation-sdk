@@ -140,7 +140,8 @@
             "type": "string"
           },
           "path": {
-            "$ref": "#/components/schemas/ConnectionPath"
+            "$ref": "#/components/schemas/ConnectionPath",
+            "default": "straight"
           },
           "color": {
             "$ref": "#/components/schemas/ColorDimensionConfig"

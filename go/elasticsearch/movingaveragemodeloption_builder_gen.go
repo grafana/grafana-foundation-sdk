@@ -10,14 +10,14 @@ var _ cog.Builder[MovingAverageModelOption] = (*MovingAverageModelOptionBuilder)
 
 type MovingAverageModelOptionBuilder struct {
 	internal *MovingAverageModelOption
-	errors   map[string]cog.BuildErrors
+	errors   cog.BuildErrors
 }
 
 func NewMovingAverageModelOptionBuilder() *MovingAverageModelOptionBuilder {
 	resource := NewMovingAverageModelOption()
 	builder := &MovingAverageModelOptionBuilder{
 		internal: resource,
-		errors:   make(map[string]cog.BuildErrors),
+		errors:   make(cog.BuildErrors, 0),
 	}
 
 	return builder
@@ -26,6 +26,10 @@ func NewMovingAverageModelOptionBuilder() *MovingAverageModelOptionBuilder {
 func (builder *MovingAverageModelOptionBuilder) Build() (MovingAverageModelOption, error) {
 	if err := builder.internal.Validate(); err != nil {
 		return MovingAverageModelOption{}, err
+	}
+
+	if len(builder.errors) > 0 {
+		return MovingAverageModelOption{}, cog.MakeBuildErrors("elasticsearch.movingAverageModelOption", builder.errors)
 	}
 
 	return *builder.internal, nil
