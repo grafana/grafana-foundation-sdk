@@ -11,14 +11,14 @@ var _ cog.Builder[DataSourceJsonData] = (*DataSourceJsonDataBuilder)(nil)
 // TODO docs
 type DataSourceJsonDataBuilder struct {
 	internal *DataSourceJsonData
-	errors   map[string]cog.BuildErrors
+	errors   cog.BuildErrors
 }
 
 func NewDataSourceJsonDataBuilder() *DataSourceJsonDataBuilder {
 	resource := NewDataSourceJsonData()
 	builder := &DataSourceJsonDataBuilder{
 		internal: resource,
-		errors:   make(map[string]cog.BuildErrors),
+		errors:   make(cog.BuildErrors, 0),
 	}
 
 	return builder
@@ -27,6 +27,10 @@ func NewDataSourceJsonDataBuilder() *DataSourceJsonDataBuilder {
 func (builder *DataSourceJsonDataBuilder) Build() (DataSourceJsonData, error) {
 	if err := builder.internal.Validate(); err != nil {
 		return DataSourceJsonData{}, err
+	}
+
+	if len(builder.errors) > 0 {
+		return DataSourceJsonData{}, cog.MakeBuildErrors("common.dataSourceJsonData", builder.errors)
 	}
 
 	return *builder.internal, nil

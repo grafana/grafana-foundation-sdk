@@ -10,14 +10,14 @@ var _ cog.Builder[ElasticsearchMaxSettings] = (*ElasticsearchMaxSettingsBuilder)
 
 type ElasticsearchMaxSettingsBuilder struct {
 	internal *ElasticsearchMaxSettings
-	errors   map[string]cog.BuildErrors
+	errors   cog.BuildErrors
 }
 
 func NewElasticsearchMaxSettingsBuilder() *ElasticsearchMaxSettingsBuilder {
 	resource := NewElasticsearchMaxSettings()
 	builder := &ElasticsearchMaxSettingsBuilder{
 		internal: resource,
-		errors:   make(map[string]cog.BuildErrors),
+		errors:   make(cog.BuildErrors, 0),
 	}
 
 	return builder
@@ -26,6 +26,10 @@ func NewElasticsearchMaxSettingsBuilder() *ElasticsearchMaxSettingsBuilder {
 func (builder *ElasticsearchMaxSettingsBuilder) Build() (ElasticsearchMaxSettings, error) {
 	if err := builder.internal.Validate(); err != nil {
 		return ElasticsearchMaxSettings{}, err
+	}
+
+	if len(builder.errors) > 0 {
+		return ElasticsearchMaxSettings{}, cog.MakeBuildErrors("elasticsearch.elasticsearchMaxSettings", builder.errors)
 	}
 
 	return *builder.internal, nil

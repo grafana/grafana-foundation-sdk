@@ -10,14 +10,14 @@ var _ cog.Builder[SQLExpression] = (*SQLExpressionBuilder)(nil)
 
 type SQLExpressionBuilder struct {
 	internal *SQLExpression
-	errors   map[string]cog.BuildErrors
+	errors   cog.BuildErrors
 }
 
 func NewSQLExpressionBuilder() *SQLExpressionBuilder {
 	resource := NewSQLExpression()
 	builder := &SQLExpressionBuilder{
 		internal: resource,
-		errors:   make(map[string]cog.BuildErrors),
+		errors:   make(cog.BuildErrors, 0),
 	}
 
 	return builder
@@ -28,6 +28,10 @@ func (builder *SQLExpressionBuilder) Build() (SQLExpression, error) {
 		return SQLExpression{}, err
 	}
 
+	if len(builder.errors) > 0 {
+		return SQLExpression{}, cog.MakeBuildErrors("cloudwatch.sQLExpression", builder.errors)
+	}
+
 	return *builder.internal, nil
 }
 
@@ -35,7 +39,7 @@ func (builder *SQLExpressionBuilder) Build() (SQLExpression, error) {
 func (builder *SQLExpressionBuilder) Select(selectArg cog.Builder[QueryEditorFunctionExpression]) *SQLExpressionBuilder {
 	selectArgResource, err := selectArg.Build()
 	if err != nil {
-		builder.errors["select"] = err.(cog.BuildErrors)
+		builder.errors = append(builder.errors, err.(cog.BuildErrors)...)
 		return builder
 	}
 	builder.internal.Select = &selectArgResource
@@ -54,7 +58,7 @@ func (builder *SQLExpressionBuilder) From(from QueryEditorPropertyExpressionOrQu
 func (builder *SQLExpressionBuilder) Where(where cog.Builder[QueryEditorArrayExpression]) *SQLExpressionBuilder {
 	whereResource, err := where.Build()
 	if err != nil {
-		builder.errors["where"] = err.(cog.BuildErrors)
+		builder.errors = append(builder.errors, err.(cog.BuildErrors)...)
 		return builder
 	}
 	builder.internal.Where = &whereResource
@@ -66,7 +70,7 @@ func (builder *SQLExpressionBuilder) Where(where cog.Builder[QueryEditorArrayExp
 func (builder *SQLExpressionBuilder) GroupBy(groupBy cog.Builder[QueryEditorArrayExpression]) *SQLExpressionBuilder {
 	groupByResource, err := groupBy.Build()
 	if err != nil {
-		builder.errors["groupBy"] = err.(cog.BuildErrors)
+		builder.errors = append(builder.errors, err.(cog.BuildErrors)...)
 		return builder
 	}
 	builder.internal.GroupBy = &groupByResource
@@ -78,7 +82,7 @@ func (builder *SQLExpressionBuilder) GroupBy(groupBy cog.Builder[QueryEditorArra
 func (builder *SQLExpressionBuilder) OrderBy(orderBy cog.Builder[QueryEditorFunctionExpression]) *SQLExpressionBuilder {
 	orderByResource, err := orderBy.Build()
 	if err != nil {
-		builder.errors["orderBy"] = err.(cog.BuildErrors)
+		builder.errors = append(builder.errors, err.(cog.BuildErrors)...)
 		return builder
 	}
 	builder.internal.OrderBy = &orderByResource

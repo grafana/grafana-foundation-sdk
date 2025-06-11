@@ -10,14 +10,14 @@ var _ cog.Builder[LibraryPanel] = (*LibraryPanelBuilder)(nil)
 
 type LibraryPanelBuilder struct {
 	internal *LibraryPanel
-	errors   map[string]cog.BuildErrors
+	errors   cog.BuildErrors
 }
 
 func NewLibraryPanelBuilder() *LibraryPanelBuilder {
 	resource := NewLibraryPanel()
 	builder := &LibraryPanelBuilder{
 		internal: resource,
-		errors:   make(map[string]cog.BuildErrors),
+		errors:   make(cog.BuildErrors, 0),
 	}
 
 	return builder
@@ -26,6 +26,10 @@ func NewLibraryPanelBuilder() *LibraryPanelBuilder {
 func (builder *LibraryPanelBuilder) Build() (LibraryPanel, error) {
 	if err := builder.internal.Validate(); err != nil {
 		return LibraryPanel{}, err
+	}
+
+	if len(builder.errors) > 0 {
+		return LibraryPanel{}, cog.MakeBuildErrors("librarypanel.libraryPanel", builder.errors)
 	}
 
 	return *builder.internal, nil
@@ -85,7 +89,7 @@ func (builder *LibraryPanelBuilder) Version(version int64) *LibraryPanelBuilder 
 func (builder *LibraryPanelBuilder) Model(model cog.Builder[PanelModel]) *LibraryPanelBuilder {
 	modelResource, err := model.Build()
 	if err != nil {
-		builder.errors["model"] = err.(cog.BuildErrors)
+		builder.errors = append(builder.errors, err.(cog.BuildErrors)...)
 		return builder
 	}
 	builder.internal.Model = modelResource
@@ -97,7 +101,7 @@ func (builder *LibraryPanelBuilder) Model(model cog.Builder[PanelModel]) *Librar
 func (builder *LibraryPanelBuilder) Meta(meta cog.Builder[LibraryElementDTOMeta]) *LibraryPanelBuilder {
 	metaResource, err := meta.Build()
 	if err != nil {
-		builder.errors["meta"] = err.(cog.BuildErrors)
+		builder.errors = append(builder.errors, err.(cog.BuildErrors)...)
 		return builder
 	}
 	builder.internal.Meta = &metaResource

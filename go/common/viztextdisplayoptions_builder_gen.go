@@ -11,14 +11,14 @@ var _ cog.Builder[VizTextDisplayOptions] = (*VizTextDisplayOptionsBuilder)(nil)
 // TODO docs
 type VizTextDisplayOptionsBuilder struct {
 	internal *VizTextDisplayOptions
-	errors   map[string]cog.BuildErrors
+	errors   cog.BuildErrors
 }
 
 func NewVizTextDisplayOptionsBuilder() *VizTextDisplayOptionsBuilder {
 	resource := NewVizTextDisplayOptions()
 	builder := &VizTextDisplayOptionsBuilder{
 		internal: resource,
-		errors:   make(map[string]cog.BuildErrors),
+		errors:   make(cog.BuildErrors, 0),
 	}
 
 	return builder
@@ -27,6 +27,10 @@ func NewVizTextDisplayOptionsBuilder() *VizTextDisplayOptionsBuilder {
 func (builder *VizTextDisplayOptionsBuilder) Build() (VizTextDisplayOptions, error) {
 	if err := builder.internal.Validate(); err != nil {
 		return VizTextDisplayOptions{}, err
+	}
+
+	if len(builder.errors) > 0 {
+		return VizTextDisplayOptions{}, cog.MakeBuildErrors("common.vizTextDisplayOptions", builder.errors)
 	}
 
 	return *builder.internal, nil
