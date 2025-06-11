@@ -52,13 +52,6 @@ class CanvasConnectionBuilder implements \Grafana\Foundation\Cog\Builder
         return $this;
     }
 
-    public function path(\Grafana\Foundation\Canvas\ConnectionPath $path): static
-    {
-        $this->internal->path = $path;
-    
-        return $this;
-    }
-
     /**
      * @param \Grafana\Foundation\Cog\Builder<\Grafana\Foundation\Common\ColorDimensionConfig> $color
      */

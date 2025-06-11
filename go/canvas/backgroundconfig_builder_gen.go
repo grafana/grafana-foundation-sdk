@@ -11,14 +11,14 @@ var _ cog.Builder[BackgroundConfig] = (*BackgroundConfigBuilder)(nil)
 
 type BackgroundConfigBuilder struct {
 	internal *BackgroundConfig
-	errors   map[string]cog.BuildErrors
+	errors   cog.BuildErrors
 }
 
 func NewBackgroundConfigBuilder() *BackgroundConfigBuilder {
 	resource := NewBackgroundConfig()
 	builder := &BackgroundConfigBuilder{
 		internal: resource,
-		errors:   make(map[string]cog.BuildErrors),
+		errors:   make(cog.BuildErrors, 0),
 	}
 
 	return builder
@@ -29,13 +29,17 @@ func (builder *BackgroundConfigBuilder) Build() (BackgroundConfig, error) {
 		return BackgroundConfig{}, err
 	}
 
+	if len(builder.errors) > 0 {
+		return BackgroundConfig{}, cog.MakeBuildErrors("canvas.backgroundConfig", builder.errors)
+	}
+
 	return *builder.internal, nil
 }
 
 func (builder *BackgroundConfigBuilder) Color(color cog.Builder[common.ColorDimensionConfig]) *BackgroundConfigBuilder {
 	colorResource, err := color.Build()
 	if err != nil {
-		builder.errors["color"] = err.(cog.BuildErrors)
+		builder.errors = append(builder.errors, err.(cog.BuildErrors)...)
 		return builder
 	}
 	builder.internal.Color = &colorResource
@@ -46,7 +50,7 @@ func (builder *BackgroundConfigBuilder) Color(color cog.Builder[common.ColorDime
 func (builder *BackgroundConfigBuilder) Image(image cog.Builder[common.ResourceDimensionConfig]) *BackgroundConfigBuilder {
 	imageResource, err := image.Build()
 	if err != nil {
-		builder.errors["image"] = err.(cog.BuildErrors)
+		builder.errors = append(builder.errors, err.(cog.BuildErrors)...)
 		return builder
 	}
 	builder.internal.Image = &imageResource

@@ -10,14 +10,14 @@ var _ cog.Builder[NotificationSettings] = (*NotificationSettingsBuilder)(nil)
 
 type NotificationSettingsBuilder struct {
 	internal *NotificationSettings
-	errors   map[string]cog.BuildErrors
+	errors   cog.BuildErrors
 }
 
 func NewNotificationSettingsBuilder() *NotificationSettingsBuilder {
 	resource := NewNotificationSettings()
 	builder := &NotificationSettingsBuilder{
 		internal: resource,
-		errors:   make(map[string]cog.BuildErrors),
+		errors:   make(cog.BuildErrors, 0),
 	}
 
 	return builder
@@ -26,6 +26,10 @@ func NewNotificationSettingsBuilder() *NotificationSettingsBuilder {
 func (builder *NotificationSettingsBuilder) Build() (NotificationSettings, error) {
 	if err := builder.internal.Validate(); err != nil {
 		return NotificationSettings{}, err
+	}
+
+	if len(builder.errors) > 0 {
+		return NotificationSettings{}, cog.MakeBuildErrors("alerting.notificationSettings", builder.errors)
 	}
 
 	return *builder.internal, nil

@@ -10,14 +10,14 @@ var _ cog.Builder[BaseBucketAggregation] = (*BaseBucketAggregationBuilder)(nil)
 
 type BaseBucketAggregationBuilder struct {
 	internal *BaseBucketAggregation
-	errors   map[string]cog.BuildErrors
+	errors   cog.BuildErrors
 }
 
 func NewBaseBucketAggregationBuilder() *BaseBucketAggregationBuilder {
 	resource := NewBaseBucketAggregation()
 	builder := &BaseBucketAggregationBuilder{
 		internal: resource,
-		errors:   make(map[string]cog.BuildErrors),
+		errors:   make(cog.BuildErrors, 0),
 	}
 
 	return builder
@@ -26,6 +26,10 @@ func NewBaseBucketAggregationBuilder() *BaseBucketAggregationBuilder {
 func (builder *BaseBucketAggregationBuilder) Build() (BaseBucketAggregation, error) {
 	if err := builder.internal.Validate(); err != nil {
 		return BaseBucketAggregation{}, err
+	}
+
+	if len(builder.errors) > 0 {
+		return BaseBucketAggregation{}, cog.MakeBuildErrors("elasticsearch.baseBucketAggregation", builder.errors)
 	}
 
 	return *builder.internal, nil

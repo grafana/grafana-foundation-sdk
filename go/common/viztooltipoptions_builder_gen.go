@@ -11,14 +11,14 @@ var _ cog.Builder[VizTooltipOptions] = (*VizTooltipOptionsBuilder)(nil)
 // TODO docs
 type VizTooltipOptionsBuilder struct {
 	internal *VizTooltipOptions
-	errors   map[string]cog.BuildErrors
+	errors   cog.BuildErrors
 }
 
 func NewVizTooltipOptionsBuilder() *VizTooltipOptionsBuilder {
 	resource := NewVizTooltipOptions()
 	builder := &VizTooltipOptionsBuilder{
 		internal: resource,
-		errors:   make(map[string]cog.BuildErrors),
+		errors:   make(cog.BuildErrors, 0),
 	}
 
 	return builder
@@ -27,6 +27,10 @@ func NewVizTooltipOptionsBuilder() *VizTooltipOptionsBuilder {
 func (builder *VizTooltipOptionsBuilder) Build() (VizTooltipOptions, error) {
 	if err := builder.internal.Validate(); err != nil {
 		return VizTooltipOptions{}, err
+	}
+
+	if len(builder.errors) > 0 {
+		return VizTooltipOptions{}, cog.MakeBuildErrors("common.vizTooltipOptions", builder.errors)
 	}
 
 	return *builder.internal, nil

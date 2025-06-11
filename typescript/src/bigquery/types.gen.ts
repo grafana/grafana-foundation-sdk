@@ -122,19 +122,13 @@ export const defaultQueryEditorGroupByExpression = (): QueryEditorGroupByExpress
 });
 
 export interface QueryEditorProperty {
-	type: QueryEditorPropertyType;
+	type: QueryEditorPropertyType.String;
 	name?: string;
 }
 
 export const defaultQueryEditorProperty = (): QueryEditorProperty => ({
 	type: QueryEditorPropertyType.String,
 });
-
-export enum QueryEditorPropertyType {
-	String = "string",
-}
-
-export const defaultQueryEditorPropertyType = (): QueryEditorPropertyType => (QueryEditorPropertyType.String);
 
 export interface QueryEditorPropertyExpression {
 	type: QueryEditorExpressionType.Property;
@@ -152,4 +146,10 @@ export enum OrderByDirection {
 }
 
 export const defaultOrderByDirection = (): OrderByDirection => (OrderByDirection.ASC);
+
+export enum QueryEditorPropertyType {
+	String = "string",
+}
+
+export const defaultQueryEditorPropertyType = (): QueryEditorPropertyType => (QueryEditorPropertyType.String);
 
