@@ -11,14 +11,14 @@ var _ cog.Builder[OptionsWithTextFormatting] = (*OptionsWithTextFormattingBuilde
 // TODO docs
 type OptionsWithTextFormattingBuilder struct {
 	internal *OptionsWithTextFormatting
-	errors   map[string]cog.BuildErrors
+	errors   cog.BuildErrors
 }
 
 func NewOptionsWithTextFormattingBuilder() *OptionsWithTextFormattingBuilder {
 	resource := NewOptionsWithTextFormatting()
 	builder := &OptionsWithTextFormattingBuilder{
 		internal: resource,
-		errors:   make(map[string]cog.BuildErrors),
+		errors:   make(cog.BuildErrors, 0),
 	}
 
 	return builder
@@ -29,13 +29,17 @@ func (builder *OptionsWithTextFormattingBuilder) Build() (OptionsWithTextFormatt
 		return OptionsWithTextFormatting{}, err
 	}
 
+	if len(builder.errors) > 0 {
+		return OptionsWithTextFormatting{}, cog.MakeBuildErrors("common.optionsWithTextFormatting", builder.errors)
+	}
+
 	return *builder.internal, nil
 }
 
 func (builder *OptionsWithTextFormattingBuilder) Text(text cog.Builder[VizTextDisplayOptions]) *OptionsWithTextFormattingBuilder {
 	textResource, err := text.Build()
 	if err != nil {
-		builder.errors["text"] = err.(cog.BuildErrors)
+		builder.errors = append(builder.errors, err.(cog.BuildErrors)...)
 		return builder
 	}
 	builder.internal.Text = &textResource

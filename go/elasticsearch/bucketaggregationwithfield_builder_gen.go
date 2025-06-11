@@ -10,14 +10,14 @@ var _ cog.Builder[BucketAggregationWithField] = (*BucketAggregationWithFieldBuil
 
 type BucketAggregationWithFieldBuilder struct {
 	internal *BucketAggregationWithField
-	errors   map[string]cog.BuildErrors
+	errors   cog.BuildErrors
 }
 
 func NewBucketAggregationWithFieldBuilder() *BucketAggregationWithFieldBuilder {
 	resource := NewBucketAggregationWithField()
 	builder := &BucketAggregationWithFieldBuilder{
 		internal: resource,
-		errors:   make(map[string]cog.BuildErrors),
+		errors:   make(cog.BuildErrors, 0),
 	}
 
 	return builder
@@ -26,6 +26,10 @@ func NewBucketAggregationWithFieldBuilder() *BucketAggregationWithFieldBuilder {
 func (builder *BucketAggregationWithFieldBuilder) Build() (BucketAggregationWithField, error) {
 	if err := builder.internal.Validate(); err != nil {
 		return BucketAggregationWithField{}, err
+	}
+
+	if len(builder.errors) > 0 {
+		return BucketAggregationWithField{}, cog.MakeBuildErrors("elasticsearch.bucketAggregationWithField", builder.errors)
 	}
 
 	return *builder.internal, nil

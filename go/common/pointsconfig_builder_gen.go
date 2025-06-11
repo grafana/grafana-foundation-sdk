@@ -11,14 +11,14 @@ var _ cog.Builder[PointsConfig] = (*PointsConfigBuilder)(nil)
 // TODO docs
 type PointsConfigBuilder struct {
 	internal *PointsConfig
-	errors   map[string]cog.BuildErrors
+	errors   cog.BuildErrors
 }
 
 func NewPointsConfigBuilder() *PointsConfigBuilder {
 	resource := NewPointsConfig()
 	builder := &PointsConfigBuilder{
 		internal: resource,
-		errors:   make(map[string]cog.BuildErrors),
+		errors:   make(cog.BuildErrors, 0),
 	}
 
 	return builder
@@ -27,6 +27,10 @@ func NewPointsConfigBuilder() *PointsConfigBuilder {
 func (builder *PointsConfigBuilder) Build() (PointsConfig, error) {
 	if err := builder.internal.Validate(); err != nil {
 		return PointsConfig{}, err
+	}
+
+	if len(builder.errors) > 0 {
+		return PointsConfig{}, cog.MakeBuildErrors("common.pointsConfig", builder.errors)
 	}
 
 	return *builder.internal, nil

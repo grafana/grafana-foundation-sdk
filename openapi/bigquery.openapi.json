@@ -145,7 +145,10 @@
           "type"
         ],
         "properties": {
-          "type": {},
+          "type": {
+            "$ref": "#/components/schemas/QueryEditorExpressionType",
+            "default": "function"
+          },
           "name": {
             "type": "string"
           },
@@ -175,7 +178,10 @@
           "type"
         ],
         "properties": {
-          "type": {},
+          "type": {
+            "$ref": "#/components/schemas/QueryEditorExpressionType",
+            "default": "functionParameter"
+          },
           "name": {
             "type": "string"
           }
@@ -189,7 +195,10 @@
           "property"
         ],
         "properties": {
-          "type": {},
+          "type": {
+            "$ref": "#/components/schemas/QueryEditorExpressionType",
+            "default": "groupBy"
+          },
           "property": {
             "$ref": "#/components/schemas/QueryEditorProperty"
           }
@@ -203,17 +212,13 @@
         ],
         "properties": {
           "type": {
-            "$ref": "#/components/schemas/QueryEditorPropertyType"
+            "$ref": "#/components/schemas/QueryEditorPropertyType",
+            "default": "string"
           },
           "name": {
             "type": "string"
           }
         }
-      },
-      "QueryEditorPropertyType": {
-        "enum": [
-          "string"
-        ]
       },
       "QueryEditorPropertyExpression": {
         "type": "object",
@@ -223,7 +228,10 @@
           "property"
         ],
         "properties": {
-          "type": {},
+          "type": {
+            "$ref": "#/components/schemas/QueryEditorExpressionType",
+            "default": "property"
+          },
           "property": {
             "$ref": "#/components/schemas/QueryEditorProperty"
           }
@@ -233,6 +241,11 @@
         "enum": [
           "ASC",
           "DESC"
+        ]
+      },
+      "QueryEditorPropertyType": {
+        "enum": [
+          "string"
         ]
       },
       "DataSourceRef": {

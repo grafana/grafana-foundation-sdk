@@ -10,14 +10,14 @@ var _ cog.Builder[AzureResourceGraphQuery] = (*AzureResourceGraphQueryBuilder)(n
 
 type AzureResourceGraphQueryBuilder struct {
 	internal *AzureResourceGraphQuery
-	errors   map[string]cog.BuildErrors
+	errors   cog.BuildErrors
 }
 
 func NewAzureResourceGraphQueryBuilder() *AzureResourceGraphQueryBuilder {
 	resource := NewAzureResourceGraphQuery()
 	builder := &AzureResourceGraphQueryBuilder{
 		internal: resource,
-		errors:   make(map[string]cog.BuildErrors),
+		errors:   make(cog.BuildErrors, 0),
 	}
 
 	return builder
@@ -26,6 +26,10 @@ func NewAzureResourceGraphQueryBuilder() *AzureResourceGraphQueryBuilder {
 func (builder *AzureResourceGraphQueryBuilder) Build() (AzureResourceGraphQuery, error) {
 	if err := builder.internal.Validate(); err != nil {
 		return AzureResourceGraphQuery{}, err
+	}
+
+	if len(builder.errors) > 0 {
+		return AzureResourceGraphQuery{}, cog.MakeBuildErrors("azuremonitor.azureResourceGraphQuery", builder.errors)
 	}
 
 	return *builder.internal, nil

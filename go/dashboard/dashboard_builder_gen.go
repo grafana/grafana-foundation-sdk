@@ -10,7 +10,7 @@ var _ cog.Builder[Dashboard] = (*DashboardBuilder)(nil)
 
 type DashboardBuilder struct {
 	internal        *Dashboard
-	errors          map[string]cog.BuildErrors
+	errors          cog.BuildErrors
 	currentY        uint32
 	currentX        uint32
 	lastPanelHeight uint32
@@ -20,7 +20,7 @@ func NewDashboardBuilder(title string) *DashboardBuilder {
 	resource := NewDashboard()
 	builder := &DashboardBuilder{
 		internal: resource,
-		errors:   make(map[string]cog.BuildErrors),
+		errors:   make(cog.BuildErrors, 0),
 	}
 	builder.internal.Title = &title
 
@@ -30,6 +30,10 @@ func NewDashboardBuilder(title string) *DashboardBuilder {
 func (builder *DashboardBuilder) Build() (Dashboard, error) {
 	if err := builder.internal.Validate(); err != nil {
 		return Dashboard{}, err
+	}
+
+	if len(builder.errors) > 0 {
+		return Dashboard{}, cog.MakeBuildErrors("dashboard.dashboard", builder.errors)
 	}
 
 	return *builder.internal, nil
@@ -133,7 +137,7 @@ func (builder *DashboardBuilder) Time(from string, to string) *DashboardBuilder 
 func (builder *DashboardBuilder) Timepicker(timepicker cog.Builder[TimePickerConfig]) *DashboardBuilder {
 	timepickerResource, err := timepicker.Build()
 	if err != nil {
-		builder.errors["timepicker"] = err.(cog.BuildErrors)
+		builder.errors = append(builder.errors, err.(cog.BuildErrors)...)
 		return builder
 	}
 	builder.internal.Timepicker = &timepickerResource
@@ -181,7 +185,7 @@ func (builder *DashboardBuilder) Version(version uint32) *DashboardBuilder {
 func (builder *DashboardBuilder) WithPanel(panel cog.Builder[Panel]) *DashboardBuilder {
 	panelResource, err := panel.Build()
 	if err != nil {
-		builder.errors["panels"] = err.(cog.BuildErrors)
+		builder.errors = append(builder.errors, err.(cog.BuildErrors)...)
 		return builder
 	}
 
@@ -215,7 +219,7 @@ func (builder *DashboardBuilder) WithPanel(panel cog.Builder[Panel]) *DashboardB
 func (builder *DashboardBuilder) WithRow(rowPanel cog.Builder[RowPanel]) *DashboardBuilder {
 	rowPanelResource, err := rowPanel.Build()
 	if err != nil {
-		builder.errors["panels"] = err.(cog.BuildErrors)
+		builder.errors = append(builder.errors, err.(cog.BuildErrors)...)
 		return builder
 	}
 
@@ -240,6 +244,11 @@ func (builder *DashboardBuilder) WithRow(rowPanel cog.Builder[RowPanel]) *Dashbo
 
 	// Position the row's panels on the grid
 	for _, panel := range rowPanelResource.Panels {
+		// If the panel does not have a GridPos set, set it to the default one.
+		if panel.GridPos == nil {
+			panel.GridPos = NewGridPos()
+		}
+
 		// The panel either has no position set, or it is the first panel of the dashboard.
 		// In that case, we position it on the grid
 		if panel.GridPos.X == 0 && panel.GridPos.Y == 0 {
@@ -268,7 +277,7 @@ func (builder *DashboardBuilder) Variables(variables []cog.Builder[VariableModel
 	for _, r1 := range variables {
 		variablesDepth1, err := r1.Build()
 		if err != nil {
-			builder.errors["templating.list"] = err.(cog.BuildErrors)
+			builder.errors = append(builder.errors, err.(cog.BuildErrors)...)
 			return builder
 		}
 		variablesResources = append(variablesResources, variablesDepth1)
@@ -282,7 +291,7 @@ func (builder *DashboardBuilder) Variables(variables []cog.Builder[VariableModel
 func (builder *DashboardBuilder) WithVariable(variable cog.Builder[VariableModel]) *DashboardBuilder {
 	variableResource, err := variable.Build()
 	if err != nil {
-		builder.errors["templating.list"] = err.(cog.BuildErrors)
+		builder.errors = append(builder.errors, err.(cog.BuildErrors)...)
 		return builder
 	}
 	builder.internal.Templating.List = append(builder.internal.Templating.List, variableResource)
@@ -299,7 +308,7 @@ func (builder *DashboardBuilder) Annotations(annotations []cog.Builder[Annotatio
 	for _, r1 := range annotations {
 		annotationsDepth1, err := r1.Build()
 		if err != nil {
-			builder.errors["annotations.list"] = err.(cog.BuildErrors)
+			builder.errors = append(builder.errors, err.(cog.BuildErrors)...)
 			return builder
 		}
 		annotationsResources = append(annotationsResources, annotationsDepth1)
@@ -316,7 +325,7 @@ func (builder *DashboardBuilder) Annotations(annotations []cog.Builder[Annotatio
 func (builder *DashboardBuilder) Annotation(annotation cog.Builder[AnnotationQuery]) *DashboardBuilder {
 	annotationResource, err := annotation.Build()
 	if err != nil {
-		builder.errors["annotations.list"] = err.(cog.BuildErrors)
+		builder.errors = append(builder.errors, err.(cog.BuildErrors)...)
 		return builder
 	}
 	builder.internal.Annotations.List = append(builder.internal.Annotations.List, annotationResource)
@@ -330,7 +339,7 @@ func (builder *DashboardBuilder) Links(links []cog.Builder[DashboardLink]) *Dash
 	for _, r1 := range links {
 		linksDepth1, err := r1.Build()
 		if err != nil {
-			builder.errors["links"] = err.(cog.BuildErrors)
+			builder.errors = append(builder.errors, err.(cog.BuildErrors)...)
 			return builder
 		}
 		linksResources = append(linksResources, linksDepth1)
@@ -344,7 +353,7 @@ func (builder *DashboardBuilder) Links(links []cog.Builder[DashboardLink]) *Dash
 func (builder *DashboardBuilder) Link(link cog.Builder[DashboardLink]) *DashboardBuilder {
 	linkResource, err := link.Build()
 	if err != nil {
-		builder.errors["links"] = err.(cog.BuildErrors)
+		builder.errors = append(builder.errors, err.(cog.BuildErrors)...)
 		return builder
 	}
 	builder.internal.Links = append(builder.internal.Links, linkResource)
@@ -356,7 +365,7 @@ func (builder *DashboardBuilder) Link(link cog.Builder[DashboardLink]) *Dashboar
 func (builder *DashboardBuilder) Snapshot(snapshot cog.Builder[Snapshot]) *DashboardBuilder {
 	snapshotResource, err := snapshot.Build()
 	if err != nil {
-		builder.errors["snapshot"] = err.(cog.BuildErrors)
+		builder.errors = append(builder.errors, err.(cog.BuildErrors)...)
 		return builder
 	}
 	builder.internal.Snapshot = &snapshotResource

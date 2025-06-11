@@ -216,7 +216,10 @@
         "type"
       ],
       "properties": {
-        "type": {},
+        "type": {
+          "$ref": "#/definitions/TableCellDisplayMode",
+          "default": "auto"
+        },
         "wrapText": {
           "type": "boolean"
         }
@@ -230,7 +233,10 @@
         "type"
       ],
       "properties": {
-        "type": {},
+        "type": {
+          "$ref": "#/definitions/TableCellDisplayMode",
+          "default": "sparkline"
+        },
         "drawStyle": {
           "$ref": "#/definitions/GraphDrawStyle"
         },
@@ -355,7 +361,10 @@
         "type"
       ],
       "properties": {
-        "type": {},
+        "type": {
+          "$ref": "#/definitions/TableCellDisplayMode",
+          "default": "gauge"
+        },
         "mode": {
           "$ref": "#/definitions/BarGaugeDisplayMode"
         },
@@ -372,7 +381,10 @@
         "type"
       ],
       "properties": {
-        "type": {},
+        "type": {
+          "$ref": "#/definitions/TableCellDisplayMode",
+          "default": "color-background"
+        },
         "mode": {
           "$ref": "#/definitions/TableCellBackgroundDisplayMode"
         },
@@ -392,7 +404,10 @@
         "type"
       ],
       "properties": {
-        "type": {},
+        "type": {
+          "$ref": "#/definitions/TableCellDisplayMode",
+          "default": "color-text"
+        },
         "wrapText": {
           "type": "boolean"
         }
@@ -406,7 +421,10 @@
         "type"
       ],
       "properties": {
-        "type": {}
+        "type": {
+          "$ref": "#/definitions/TableCellDisplayMode",
+          "default": "image"
+        }
       },
       "description": "Json view cell options"
     },
@@ -417,7 +435,10 @@
         "type"
       ],
       "properties": {
-        "type": {}
+        "type": {
+          "$ref": "#/definitions/TableCellDisplayMode",
+          "default": "data-links"
+        }
       },
       "description": "Show data links in the cell"
     },
@@ -428,7 +449,10 @@
         "type"
       ],
       "properties": {
-        "type": {}
+        "type": {
+          "$ref": "#/definitions/TableCellDisplayMode",
+          "default": "json-view"
+        }
       },
       "description": "Json view cell options"
     },

@@ -7,7 +7,7 @@ title: <span class="badge object-type-interface"></span> QueryEditorProperty
 
 ```typescript
 export interface QueryEditorProperty {
-	type: bigquery.QueryEditorPropertyType;
+	type: bigquery.QueryEditorPropertyType.String;
 	name?: string;
 }
 

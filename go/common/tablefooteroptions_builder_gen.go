@@ -11,14 +11,14 @@ var _ cog.Builder[TableFooterOptions] = (*TableFooterOptionsBuilder)(nil)
 // Footer options
 type TableFooterOptionsBuilder struct {
 	internal *TableFooterOptions
-	errors   map[string]cog.BuildErrors
+	errors   cog.BuildErrors
 }
 
 func NewTableFooterOptionsBuilder() *TableFooterOptionsBuilder {
 	resource := NewTableFooterOptions()
 	builder := &TableFooterOptionsBuilder{
 		internal: resource,
-		errors:   make(map[string]cog.BuildErrors),
+		errors:   make(cog.BuildErrors, 0),
 	}
 
 	return builder
@@ -27,6 +27,10 @@ func NewTableFooterOptionsBuilder() *TableFooterOptionsBuilder {
 func (builder *TableFooterOptionsBuilder) Build() (TableFooterOptions, error) {
 	if err := builder.internal.Validate(); err != nil {
 		return TableFooterOptions{}, err
+	}
+
+	if len(builder.errors) > 0 {
+		return TableFooterOptions{}, cog.MakeBuildErrors("common.tableFooterOptions", builder.errors)
 	}
 
 	return *builder.internal, nil

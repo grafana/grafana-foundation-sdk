@@ -11,14 +11,14 @@ var _ cog.Builder[LineConfig] = (*LineConfigBuilder)(nil)
 
 type LineConfigBuilder struct {
 	internal *LineConfig
-	errors   map[string]cog.BuildErrors
+	errors   cog.BuildErrors
 }
 
 func NewLineConfigBuilder() *LineConfigBuilder {
 	resource := NewLineConfig()
 	builder := &LineConfigBuilder{
 		internal: resource,
-		errors:   make(map[string]cog.BuildErrors),
+		errors:   make(cog.BuildErrors, 0),
 	}
 
 	return builder
@@ -29,13 +29,17 @@ func (builder *LineConfigBuilder) Build() (LineConfig, error) {
 		return LineConfig{}, err
 	}
 
+	if len(builder.errors) > 0 {
+		return LineConfig{}, cog.MakeBuildErrors("canvas.lineConfig", builder.errors)
+	}
+
 	return *builder.internal, nil
 }
 
 func (builder *LineConfigBuilder) Color(color cog.Builder[common.ColorDimensionConfig]) *LineConfigBuilder {
 	colorResource, err := color.Build()
 	if err != nil {
-		builder.errors["color"] = err.(cog.BuildErrors)
+		builder.errors = append(builder.errors, err.(cog.BuildErrors)...)
 		return builder
 	}
 	builder.internal.Color = &colorResource
