@@ -10,14 +10,14 @@ var _ cog.Builder[ResultAssertions] = (*ResultAssertionsBuilder)(nil)
 
 type ResultAssertionsBuilder struct {
 	internal *ResultAssertions
-	errors   map[string]cog.BuildErrors
+	errors   cog.BuildErrors
 }
 
 func NewResultAssertionsBuilder() *ResultAssertionsBuilder {
 	resource := NewResultAssertions()
 	builder := &ResultAssertionsBuilder{
 		internal: resource,
-		errors:   make(map[string]cog.BuildErrors),
+		errors:   make(cog.BuildErrors, 0),
 	}
 
 	return builder
@@ -26,6 +26,10 @@ func NewResultAssertionsBuilder() *ResultAssertionsBuilder {
 func (builder *ResultAssertionsBuilder) Build() (ResultAssertions, error) {
 	if err := builder.internal.Validate(); err != nil {
 		return ResultAssertions{}, err
+	}
+
+	if len(builder.errors) > 0 {
+		return ResultAssertions{}, cog.MakeBuildErrors("testdata.resultAssertions", builder.errors)
 	}
 
 	return *builder.internal, nil

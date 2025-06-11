@@ -9,12 +9,11 @@ class QueryEditorProperty implements \JsonSerializable
     public ?string $name;
 
     /**
-     * @param \Grafana\Foundation\Cloudwatch\QueryEditorPropertyType|null $type
      * @param string|null $name
      */
-    public function __construct(?\Grafana\Foundation\Cloudwatch\QueryEditorPropertyType $type = null, ?string $name = null)
+    public function __construct(?string $name = null)
     {
-        $this->type = $type ?: \Grafana\Foundation\Cloudwatch\QueryEditorPropertyType::String();
+        $this->type = \Grafana\Foundation\Cloudwatch\QueryEditorPropertyType::string();
         $this->name = $name;
     }
 
@@ -23,10 +22,9 @@ class QueryEditorProperty implements \JsonSerializable
      */
     public static function fromArray(array $inputData): self
     {
-        /** @var array{type?: string, name?: string} $inputData */
+        /** @var array{type?: "string", name?: string} $inputData */
         $data = $inputData;
         return new self(
-            type: isset($data["type"]) ? (function($input) { return \Grafana\Foundation\Cloudwatch\QueryEditorPropertyType::fromValue($input); })($data["type"]) : null,
             name: $data["name"] ?? null,
         );
     }

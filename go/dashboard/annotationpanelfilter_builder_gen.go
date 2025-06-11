@@ -10,14 +10,14 @@ var _ cog.Builder[AnnotationPanelFilter] = (*AnnotationPanelFilterBuilder)(nil)
 
 type AnnotationPanelFilterBuilder struct {
 	internal *AnnotationPanelFilter
-	errors   map[string]cog.BuildErrors
+	errors   cog.BuildErrors
 }
 
 func NewAnnotationPanelFilterBuilder() *AnnotationPanelFilterBuilder {
 	resource := NewAnnotationPanelFilter()
 	builder := &AnnotationPanelFilterBuilder{
 		internal: resource,
-		errors:   make(map[string]cog.BuildErrors),
+		errors:   make(cog.BuildErrors, 0),
 	}
 
 	return builder
@@ -26,6 +26,10 @@ func NewAnnotationPanelFilterBuilder() *AnnotationPanelFilterBuilder {
 func (builder *AnnotationPanelFilterBuilder) Build() (AnnotationPanelFilter, error) {
 	if err := builder.internal.Validate(); err != nil {
 		return AnnotationPanelFilter{}, err
+	}
+
+	if len(builder.errors) > 0 {
+		return AnnotationPanelFilter{}, cog.MakeBuildErrors("dashboard.annotationPanelFilter", builder.errors)
 	}
 
 	return *builder.internal, nil

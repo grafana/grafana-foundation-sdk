@@ -10,14 +10,14 @@ var _ cog.Builder[Rate] = (*RateBuilder)(nil)
 
 type RateBuilder struct {
 	internal *Rate
-	errors   map[string]cog.BuildErrors
+	errors   cog.BuildErrors
 }
 
 func NewRateBuilder() *RateBuilder {
 	resource := NewRate()
 	builder := &RateBuilder{
 		internal: resource,
-		errors:   make(map[string]cog.BuildErrors),
+		errors:   make(cog.BuildErrors, 0),
 	}
 
 	return builder
@@ -26,6 +26,10 @@ func NewRateBuilder() *RateBuilder {
 func (builder *RateBuilder) Build() (Rate, error) {
 	if err := builder.internal.Validate(); err != nil {
 		return Rate{}, err
+	}
+
+	if len(builder.errors) > 0 {
+		return Rate{}, cog.MakeBuildErrors("elasticsearch.rate", builder.errors)
 	}
 
 	return *builder.internal, nil
@@ -46,7 +50,7 @@ func (builder *RateBuilder) Id(id string) *RateBuilder {
 func (builder *RateBuilder) Settings(settings cog.Builder[ElasticsearchRateSettings]) *RateBuilder {
 	settingsResource, err := settings.Build()
 	if err != nil {
-		builder.errors["settings"] = err.(cog.BuildErrors)
+		builder.errors = append(builder.errors, err.(cog.BuildErrors)...)
 		return builder
 	}
 	builder.internal.Settings = &settingsResource

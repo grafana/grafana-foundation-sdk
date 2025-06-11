@@ -10,14 +10,14 @@ var _ cog.Builder[CanvasOptionsRoot] = (*CanvasOptionsRootBuilder)(nil)
 
 type CanvasOptionsRootBuilder struct {
 	internal *CanvasOptionsRoot
-	errors   map[string]cog.BuildErrors
+	errors   cog.BuildErrors
 }
 
 func NewCanvasOptionsRootBuilder() *CanvasOptionsRootBuilder {
 	resource := NewCanvasOptionsRoot()
 	builder := &CanvasOptionsRootBuilder{
 		internal: resource,
-		errors:   make(map[string]cog.BuildErrors),
+		errors:   make(cog.BuildErrors, 0),
 	}
 	builder.internal.Type = "frame"
 
@@ -27,6 +27,10 @@ func NewCanvasOptionsRootBuilder() *CanvasOptionsRootBuilder {
 func (builder *CanvasOptionsRootBuilder) Build() (CanvasOptionsRoot, error) {
 	if err := builder.internal.Validate(); err != nil {
 		return CanvasOptionsRoot{}, err
+	}
+
+	if len(builder.errors) > 0 {
+		return CanvasOptionsRoot{}, cog.MakeBuildErrors("canvas.canvasOptionsRoot", builder.errors)
 	}
 
 	return *builder.internal, nil
@@ -45,7 +49,7 @@ func (builder *CanvasOptionsRootBuilder) Elements(elements []cog.Builder[CanvasE
 	for _, r1 := range elements {
 		elementsDepth1, err := r1.Build()
 		if err != nil {
-			builder.errors["elements"] = err.(cog.BuildErrors)
+			builder.errors = append(builder.errors, err.(cog.BuildErrors)...)
 			return builder
 		}
 		elementsResources = append(elementsResources, elementsDepth1)

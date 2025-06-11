@@ -10,14 +10,14 @@ var _ cog.Builder[QueryEditorProperty] = (*QueryEditorPropertyBuilder)(nil)
 
 type QueryEditorPropertyBuilder struct {
 	internal *QueryEditorProperty
-	errors   map[string]cog.BuildErrors
+	errors   cog.BuildErrors
 }
 
 func NewQueryEditorPropertyBuilder() *QueryEditorPropertyBuilder {
 	resource := NewQueryEditorProperty()
 	builder := &QueryEditorPropertyBuilder{
 		internal: resource,
-		errors:   make(map[string]cog.BuildErrors),
+		errors:   make(cog.BuildErrors, 0),
 	}
 
 	return builder
@@ -28,13 +28,11 @@ func (builder *QueryEditorPropertyBuilder) Build() (QueryEditorProperty, error) 
 		return QueryEditorProperty{}, err
 	}
 
+	if len(builder.errors) > 0 {
+		return QueryEditorProperty{}, cog.MakeBuildErrors("cloudwatch.queryEditorProperty", builder.errors)
+	}
+
 	return *builder.internal, nil
-}
-
-func (builder *QueryEditorPropertyBuilder) Type(typeArg QueryEditorPropertyType) *QueryEditorPropertyBuilder {
-	builder.internal.Type = typeArg
-
-	return builder
 }
 
 func (builder *QueryEditorPropertyBuilder) Name(name string) *QueryEditorPropertyBuilder {
