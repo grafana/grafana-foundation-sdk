@@ -10,14 +10,14 @@ var _ cog.Builder[AzureMetricDimension] = (*AzureMetricDimensionBuilder)(nil)
 
 type AzureMetricDimensionBuilder struct {
 	internal *AzureMetricDimension
-	errors   map[string]cog.BuildErrors
+	errors   cog.BuildErrors
 }
 
 func NewAzureMetricDimensionBuilder() *AzureMetricDimensionBuilder {
 	resource := NewAzureMetricDimension()
 	builder := &AzureMetricDimensionBuilder{
 		internal: resource,
-		errors:   make(map[string]cog.BuildErrors),
+		errors:   make(cog.BuildErrors, 0),
 	}
 
 	return builder
@@ -26,6 +26,10 @@ func NewAzureMetricDimensionBuilder() *AzureMetricDimensionBuilder {
 func (builder *AzureMetricDimensionBuilder) Build() (AzureMetricDimension, error) {
 	if err := builder.internal.Validate(); err != nil {
 		return AzureMetricDimension{}, err
+	}
+
+	if len(builder.errors) > 0 {
+		return AzureMetricDimension{}, cog.MakeBuildErrors("azuremonitor.azureMetricDimension", builder.errors)
 	}
 
 	return *builder.internal, nil

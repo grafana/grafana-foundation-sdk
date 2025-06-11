@@ -10,14 +10,14 @@ var _ cog.Builder[LibraryElementDTOMetaUser] = (*LibraryElementDTOMetaUserBuilde
 
 type LibraryElementDTOMetaUserBuilder struct {
 	internal *LibraryElementDTOMetaUser
-	errors   map[string]cog.BuildErrors
+	errors   cog.BuildErrors
 }
 
 func NewLibraryElementDTOMetaUserBuilder() *LibraryElementDTOMetaUserBuilder {
 	resource := NewLibraryElementDTOMetaUser()
 	builder := &LibraryElementDTOMetaUserBuilder{
 		internal: resource,
-		errors:   make(map[string]cog.BuildErrors),
+		errors:   make(cog.BuildErrors, 0),
 	}
 
 	return builder
@@ -26,6 +26,10 @@ func NewLibraryElementDTOMetaUserBuilder() *LibraryElementDTOMetaUserBuilder {
 func (builder *LibraryElementDTOMetaUserBuilder) Build() (LibraryElementDTOMetaUser, error) {
 	if err := builder.internal.Validate(); err != nil {
 		return LibraryElementDTOMetaUser{}, err
+	}
+
+	if len(builder.errors) > 0 {
+		return LibraryElementDTOMetaUser{}, cog.MakeBuildErrors("librarypanel.libraryElementDTOMetaUser", builder.errors)
 	}
 
 	return *builder.internal, nil

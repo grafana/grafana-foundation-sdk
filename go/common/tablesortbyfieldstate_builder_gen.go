@@ -11,14 +11,14 @@ var _ cog.Builder[TableSortByFieldState] = (*TableSortByFieldStateBuilder)(nil)
 // Sort by field state
 type TableSortByFieldStateBuilder struct {
 	internal *TableSortByFieldState
-	errors   map[string]cog.BuildErrors
+	errors   cog.BuildErrors
 }
 
 func NewTableSortByFieldStateBuilder() *TableSortByFieldStateBuilder {
 	resource := NewTableSortByFieldState()
 	builder := &TableSortByFieldStateBuilder{
 		internal: resource,
-		errors:   make(map[string]cog.BuildErrors),
+		errors:   make(cog.BuildErrors, 0),
 	}
 
 	return builder
@@ -27,6 +27,10 @@ func NewTableSortByFieldStateBuilder() *TableSortByFieldStateBuilder {
 func (builder *TableSortByFieldStateBuilder) Build() (TableSortByFieldState, error) {
 	if err := builder.internal.Validate(); err != nil {
 		return TableSortByFieldState{}, err
+	}
+
+	if len(builder.errors) > 0 {
+		return TableSortByFieldState{}, cog.MakeBuildErrors("common.tableSortByFieldState", builder.errors)
 	}
 
 	return *builder.internal, nil

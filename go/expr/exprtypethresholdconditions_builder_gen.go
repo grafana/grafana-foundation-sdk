@@ -10,14 +10,14 @@ var _ cog.Builder[ExprTypeThresholdConditions] = (*ExprTypeThresholdConditionsBu
 
 type ExprTypeThresholdConditionsBuilder struct {
 	internal *ExprTypeThresholdConditions
-	errors   map[string]cog.BuildErrors
+	errors   cog.BuildErrors
 }
 
 func NewExprTypeThresholdConditionsBuilder() *ExprTypeThresholdConditionsBuilder {
 	resource := NewExprTypeThresholdConditions()
 	builder := &ExprTypeThresholdConditionsBuilder{
 		internal: resource,
-		errors:   make(map[string]cog.BuildErrors),
+		errors:   make(cog.BuildErrors, 0),
 	}
 
 	return builder
@@ -28,13 +28,17 @@ func (builder *ExprTypeThresholdConditionsBuilder) Build() (ExprTypeThresholdCon
 		return ExprTypeThresholdConditions{}, err
 	}
 
+	if len(builder.errors) > 0 {
+		return ExprTypeThresholdConditions{}, cog.MakeBuildErrors("expr.exprTypeThresholdConditions", builder.errors)
+	}
+
 	return *builder.internal, nil
 }
 
 func (builder *ExprTypeThresholdConditionsBuilder) Evaluator(evaluator cog.Builder[ExprTypeThresholdConditionsEvaluator]) *ExprTypeThresholdConditionsBuilder {
 	evaluatorResource, err := evaluator.Build()
 	if err != nil {
-		builder.errors["evaluator"] = err.(cog.BuildErrors)
+		builder.errors = append(builder.errors, err.(cog.BuildErrors)...)
 		return builder
 	}
 	builder.internal.Evaluator = evaluatorResource
@@ -51,7 +55,7 @@ func (builder *ExprTypeThresholdConditionsBuilder) LoadedDimensions(loadedDimens
 func (builder *ExprTypeThresholdConditionsBuilder) UnloadEvaluator(unloadEvaluator cog.Builder[ExprTypeThresholdConditionsUnloadEvaluator]) *ExprTypeThresholdConditionsBuilder {
 	unloadEvaluatorResource, err := unloadEvaluator.Build()
 	if err != nil {
-		builder.errors["unloadEvaluator"] = err.(cog.BuildErrors)
+		builder.errors = append(builder.errors, err.(cog.BuildErrors)...)
 		return builder
 	}
 	builder.internal.UnloadEvaluator = &unloadEvaluatorResource

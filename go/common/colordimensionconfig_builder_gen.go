@@ -10,14 +10,14 @@ var _ cog.Builder[ColorDimensionConfig] = (*ColorDimensionConfigBuilder)(nil)
 
 type ColorDimensionConfigBuilder struct {
 	internal *ColorDimensionConfig
-	errors   map[string]cog.BuildErrors
+	errors   cog.BuildErrors
 }
 
 func NewColorDimensionConfigBuilder() *ColorDimensionConfigBuilder {
 	resource := NewColorDimensionConfig()
 	builder := &ColorDimensionConfigBuilder{
 		internal: resource,
-		errors:   make(map[string]cog.BuildErrors),
+		errors:   make(cog.BuildErrors, 0),
 	}
 
 	return builder
@@ -26,6 +26,10 @@ func NewColorDimensionConfigBuilder() *ColorDimensionConfigBuilder {
 func (builder *ColorDimensionConfigBuilder) Build() (ColorDimensionConfig, error) {
 	if err := builder.internal.Validate(); err != nil {
 		return ColorDimensionConfig{}, err
+	}
+
+	if len(builder.errors) > 0 {
+		return ColorDimensionConfig{}, cog.MakeBuildErrors("common.colorDimensionConfig", builder.errors)
 	}
 
 	return *builder.internal, nil

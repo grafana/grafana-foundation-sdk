@@ -11,14 +11,14 @@ var _ cog.Builder[RowPanel] = (*RowBuilder)(nil)
 // Row panel
 type RowBuilder struct {
 	internal *RowPanel
-	errors   map[string]cog.BuildErrors
+	errors   cog.BuildErrors
 }
 
 func NewRowBuilder(title string) *RowBuilder {
 	resource := NewRowPanel()
 	builder := &RowBuilder{
 		internal: resource,
-		errors:   make(map[string]cog.BuildErrors),
+		errors:   make(cog.BuildErrors, 0),
 	}
 	builder.internal.Type = "row"
 	builder.internal.Title = &title
@@ -29,6 +29,10 @@ func NewRowBuilder(title string) *RowBuilder {
 func (builder *RowBuilder) Build() (RowPanel, error) {
 	if err := builder.internal.Validate(); err != nil {
 		return RowPanel{}, err
+	}
+
+	if len(builder.errors) > 0 {
+		return RowPanel{}, cog.MakeBuildErrors("dashboard.row", builder.errors)
 	}
 
 	return *builder.internal, nil
@@ -76,7 +80,7 @@ func (builder *RowBuilder) Id(id uint32) *RowBuilder {
 func (builder *RowBuilder) WithPanel(panel cog.Builder[Panel]) *RowBuilder {
 	panelResource, err := panel.Build()
 	if err != nil {
-		builder.errors["panels"] = err.(cog.BuildErrors)
+		builder.errors = append(builder.errors, err.(cog.BuildErrors)...)
 		return builder
 	}
 	builder.internal.Panels = append(builder.internal.Panels, panelResource)
