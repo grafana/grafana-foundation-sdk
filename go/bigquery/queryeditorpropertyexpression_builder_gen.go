@@ -10,14 +10,14 @@ var _ cog.Builder[QueryEditorPropertyExpression] = (*QueryEditorPropertyExpressi
 
 type QueryEditorPropertyExpressionBuilder struct {
 	internal *QueryEditorPropertyExpression
-	errors   map[string]cog.BuildErrors
+	errors   cog.BuildErrors
 }
 
 func NewQueryEditorPropertyExpressionBuilder() *QueryEditorPropertyExpressionBuilder {
 	resource := NewQueryEditorPropertyExpression()
 	builder := &QueryEditorPropertyExpressionBuilder{
 		internal: resource,
-		errors:   make(map[string]cog.BuildErrors),
+		errors:   make(cog.BuildErrors, 0),
 	}
 
 	return builder
@@ -28,13 +28,17 @@ func (builder *QueryEditorPropertyExpressionBuilder) Build() (QueryEditorPropert
 		return QueryEditorPropertyExpression{}, err
 	}
 
+	if len(builder.errors) > 0 {
+		return QueryEditorPropertyExpression{}, cog.MakeBuildErrors("bigquery.queryEditorPropertyExpression", builder.errors)
+	}
+
 	return *builder.internal, nil
 }
 
 func (builder *QueryEditorPropertyExpressionBuilder) Property(property cog.Builder[QueryEditorProperty]) *QueryEditorPropertyExpressionBuilder {
 	propertyResource, err := property.Build()
 	if err != nil {
-		builder.errors["property"] = err.(cog.BuildErrors)
+		builder.errors = append(builder.errors, err.(cog.BuildErrors)...)
 		return builder
 	}
 	builder.internal.Property = propertyResource

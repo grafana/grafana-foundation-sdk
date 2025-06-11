@@ -10,14 +10,14 @@ var _ cog.Builder[Count] = (*CountBuilder)(nil)
 
 type CountBuilder struct {
 	internal *Count
-	errors   map[string]cog.BuildErrors
+	errors   cog.BuildErrors
 }
 
 func NewCountBuilder() *CountBuilder {
 	resource := NewCount()
 	builder := &CountBuilder{
 		internal: resource,
-		errors:   make(map[string]cog.BuildErrors),
+		errors:   make(cog.BuildErrors, 0),
 	}
 
 	return builder
@@ -26,6 +26,10 @@ func NewCountBuilder() *CountBuilder {
 func (builder *CountBuilder) Build() (Count, error) {
 	if err := builder.internal.Validate(); err != nil {
 		return Count{}, err
+	}
+
+	if len(builder.errors) > 0 {
+		return Count{}, cog.MakeBuildErrors("elasticsearch.count", builder.errors)
 	}
 
 	return *builder.internal, nil

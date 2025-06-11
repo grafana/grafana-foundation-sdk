@@ -12,14 +12,14 @@ var _ cog.Builder[Rule] = (*RuleBuilder)(nil)
 
 type RuleBuilder struct {
 	internal *Rule
-	errors   map[string]cog.BuildErrors
+	errors   cog.BuildErrors
 }
 
 func NewRuleBuilder(title string) *RuleBuilder {
 	resource := NewRule()
 	builder := &RuleBuilder{
 		internal: resource,
-		errors:   make(map[string]cog.BuildErrors),
+		errors:   make(cog.BuildErrors, 0),
 	}
 	builder.internal.Title = title
 
@@ -29,6 +29,10 @@ func NewRuleBuilder(title string) *RuleBuilder {
 func (builder *RuleBuilder) Build() (Rule, error) {
 	if err := builder.internal.Validate(); err != nil {
 		return Rule{}, err
+	}
+
+	if len(builder.errors) > 0 {
+		return Rule{}, cog.MakeBuildErrors("alerting.rule", builder.errors)
 	}
 
 	return *builder.internal, nil
@@ -51,7 +55,7 @@ func (builder *RuleBuilder) Queries(data []cog.Builder[Query]) *RuleBuilder {
 	for _, r1 := range data {
 		dataDepth1, err := r1.Build()
 		if err != nil {
-			builder.errors["data"] = err.(cog.BuildErrors)
+			builder.errors = append(builder.errors, err.(cog.BuildErrors)...)
 			return builder
 		}
 		dataResources = append(dataResources, dataDepth1)
@@ -64,7 +68,7 @@ func (builder *RuleBuilder) Queries(data []cog.Builder[Query]) *RuleBuilder {
 func (builder *RuleBuilder) WithQuery(data cog.Builder[Query]) *RuleBuilder {
 	dataResource, err := data.Build()
 	if err != nil {
-		builder.errors["data"] = err.(cog.BuildErrors)
+		builder.errors = append(builder.errors, err.(cog.BuildErrors)...)
 		return builder
 	}
 	builder.internal.Data = append(builder.internal.Data, dataResource)
@@ -119,7 +123,7 @@ func (builder *RuleBuilder) NoDataState(noDataState RuleNoDataState) *RuleBuilde
 func (builder *RuleBuilder) NotificationSettings(notificationSettings cog.Builder[NotificationSettings]) *RuleBuilder {
 	notificationSettingsResource, err := notificationSettings.Build()
 	if err != nil {
-		builder.errors["notification_settings"] = err.(cog.BuildErrors)
+		builder.errors = append(builder.errors, err.(cog.BuildErrors)...)
 		return builder
 	}
 	builder.internal.NotificationSettings = &notificationSettingsResource

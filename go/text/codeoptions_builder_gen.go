@@ -10,14 +10,14 @@ var _ cog.Builder[CodeOptions] = (*CodeOptionsBuilder)(nil)
 
 type CodeOptionsBuilder struct {
 	internal *CodeOptions
-	errors   map[string]cog.BuildErrors
+	errors   cog.BuildErrors
 }
 
 func NewCodeOptionsBuilder() *CodeOptionsBuilder {
 	resource := NewCodeOptions()
 	builder := &CodeOptionsBuilder{
 		internal: resource,
-		errors:   make(map[string]cog.BuildErrors),
+		errors:   make(cog.BuildErrors, 0),
 	}
 
 	return builder
@@ -26,6 +26,10 @@ func NewCodeOptionsBuilder() *CodeOptionsBuilder {
 func (builder *CodeOptionsBuilder) Build() (CodeOptions, error) {
 	if err := builder.internal.Validate(); err != nil {
 		return CodeOptions{}, err
+	}
+
+	if len(builder.errors) > 0 {
+		return CodeOptions{}, cog.MakeBuildErrors("text.codeOptions", builder.errors)
 	}
 
 	return *builder.internal, nil
