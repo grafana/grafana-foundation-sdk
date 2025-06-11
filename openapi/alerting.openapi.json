@@ -65,6 +65,13 @@
           "receiver"
         ],
         "properties": {
+          "active_time_intervals": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "description": "Override the times when notifications should not be muted. These must match the name of a mute time interval defined\nin the alertmanager configuration time_intervals section. All notifications will be suppressed unless they are sent\nat the time that matches any interval."
+          },
           "group_by": {
             "type": "array",
             "items": {
@@ -89,7 +96,7 @@
             "items": {
               "type": "string"
             },
-            "description": "Override the times when notifications should be muted. These must match the name of a mute time interval defined\nin the alertmanager configuration mute_time_intervals section. When muted it will not send any notifications, but\notherwise acts normally."
+            "description": "Override the times when notifications should be muted. These must match the name of a mute time interval defined\nin the alertmanager configuration time_intervals section. When muted it will not send any notifications, but\notherwise acts normally."
           },
           "receiver": {
             "type": "string",
@@ -228,18 +235,6 @@
           "version": {
             "type": "string"
           }
-        }
-      },
-      "ObjectMatcher": {
-        "type": "array",
-        "items": {
-          "type": "string"
-        }
-      },
-      "ObjectMatchers": {
-        "type": "array",
-        "items": {
-          "$ref": "#/components/schemas/ObjectMatcher"
         }
       },
       "Provenance": {
@@ -429,12 +424,6 @@
               "type": "string"
             }
           },
-          "object_matchers": {
-            "$ref": "#/components/schemas/ObjectMatchers"
-          },
-          "provenance": {
-            "$ref": "#/components/schemas/Provenance"
-          },
           "receiver": {
             "type": "string"
           },
@@ -447,8 +436,7 @@
               "$ref": "#/components/schemas/NotificationPolicy"
             }
           }
-        },
-        "description": "A Route is a node that contains definitions of how to handle alerts. This is modified\nfrom the upstream alertmanager in that it adds the ObjectMatchers property."
+        }
       },
       "TimeInterval": {
         "type": "object",

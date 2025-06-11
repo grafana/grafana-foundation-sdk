@@ -3,10 +3,6 @@ title: <span class="badge object-type-struct"></span> NotificationPolicy
 ---
 # <span class="badge object-type-struct"></span> NotificationPolicy
 
-A Route is a node that contains definitions of how to handle alerts. This is modified
-
-from the upstream alertmanager in that it adds the ObjectMatchers property.
-
 ## Definition
 
 ```go
@@ -24,8 +20,6 @@ type NotificationPolicy struct {
     // slice. Note that some users of Matchers might require it to be sorted.
     Matchers *alerting.Matchers `json:"matchers,omitempty"`
     MuteTimeIntervals []string `json:"mute_time_intervals,omitempty"`
-    ObjectMatchers *alerting.ObjectMatchers `json:"object_matchers,omitempty"`
-    Provenance *alerting.Provenance `json:"provenance,omitempty"`
     Receiver *string `json:"receiver,omitempty"`
     RepeatInterval *string `json:"repeat_interval,omitempty"`
     Routes []alerting.NotificationPolicy `json:"routes,omitempty"`

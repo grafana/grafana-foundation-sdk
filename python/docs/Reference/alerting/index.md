@@ -16,8 +16,6 @@
  * <span class="badge object-type-class"></span> [NotificationPolicy](./object-NotificationPolicy.md)
  * <span class="badge object-type-class"></span> [NotificationSettings](./object-NotificationSettings.md)
  * <span class="badge object-type-class"></span> [NotificationTemplate](./object-NotificationTemplate.md)
- * <span class="badge object-type-array"></span> [ObjectMatcher](./object-ObjectMatcher.md)
- * <span class="badge object-type-array"></span> [ObjectMatchers](./object-ObjectMatchers.md)
  * <span class="badge object-type-scalar"></span> [Provenance](./object-Provenance.md)
  * <span class="badge object-type-class"></span> [Query](./object-Query.md)
  * <span class="badge object-type-class"></span> [RecordRule](./object-RecordRule.md)

@@ -11,14 +11,14 @@ var _ cog.Builder[VizLegendOptions] = (*VizLegendOptionsBuilder)(nil)
 // TODO docs
 type VizLegendOptionsBuilder struct {
 	internal *VizLegendOptions
-	errors   map[string]cog.BuildErrors
+	errors   cog.BuildErrors
 }
 
 func NewVizLegendOptionsBuilder() *VizLegendOptionsBuilder {
 	resource := NewVizLegendOptions()
 	builder := &VizLegendOptionsBuilder{
 		internal: resource,
-		errors:   make(map[string]cog.BuildErrors),
+		errors:   make(cog.BuildErrors, 0),
 	}
 
 	return builder
@@ -27,6 +27,10 @@ func NewVizLegendOptionsBuilder() *VizLegendOptionsBuilder {
 func (builder *VizLegendOptionsBuilder) Build() (VizLegendOptions, error) {
 	if err := builder.internal.Validate(); err != nil {
 		return VizLegendOptions{}, err
+	}
+
+	if len(builder.errors) > 0 {
+		return VizLegendOptions{}, cog.MakeBuildErrors("common.vizLegendOptions", builder.errors)
 	}
 
 	return *builder.internal, nil

@@ -92,20 +92,6 @@ matchers(array $matchers)
 muteTimeIntervals(array $muteTimeIntervals)
 ```
 
-### <span class="badge object-method"></span> objectMatchers
-
-@param array<array<string>> $objectMatchers
-
-```php
-objectMatchers(array $objectMatchers)
-```
-
-### <span class="badge object-method"></span> provenance
-
-```php
-provenance(string $provenance)
-```
-
 ### <span class="badge object-method"></span> receiver
 
 ```php

@@ -3,8 +3,6 @@
 namespace Grafana\Foundation\Alerting;
 
 /**
- * A Route is a node that contains definitions of how to handle alerts. This is modified
- * from the upstream alertmanager in that it adds the ObjectMatchers property.
  * @implements \Grafana\Foundation\Cog\Builder<\Grafana\Foundation\Alerting\NotificationPolicy>
  */
 class NotificationPolicyBuilder implements \Grafana\Foundation\Cog\Builder
@@ -110,23 +108,6 @@ class NotificationPolicyBuilder implements \Grafana\Foundation\Cog\Builder
     public function muteTimeIntervals(array $muteTimeIntervals): static
     {
         $this->internal->muteTimeIntervals = $muteTimeIntervals;
-    
-        return $this;
-    }
-
-    /**
-     * @param array<array<string>> $objectMatchers
-     */
-    public function objectMatchers(array $objectMatchers): static
-    {
-        $this->internal->objectMatchers = $objectMatchers;
-    
-        return $this;
-    }
-
-    public function provenance(string $provenance): static
-    {
-        $this->internal->provenance = $provenance;
     
         return $this;
     }

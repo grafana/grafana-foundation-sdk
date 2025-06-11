@@ -80,18 +80,6 @@ func (builder *NotificationPolicyBuilder) Matchers(matchers alerting.Matchers) *
 func (builder *NotificationPolicyBuilder) MuteTimeIntervals(muteTimeIntervals []string) *NotificationPolicyBuilder
 ```
 
-### <span class="badge object-method"></span> ObjectMatchers
-
-```go
-func (builder *NotificationPolicyBuilder) ObjectMatchers(objectMatchers alerting.ObjectMatchers) *NotificationPolicyBuilder
-```
-
-### <span class="badge object-method"></span> Provenance
-
-```go
-func (builder *NotificationPolicyBuilder) Provenance(provenance alerting.Provenance) *NotificationPolicyBuilder
-```
-
 ### <span class="badge object-method"></span> Receiver
 
 ```go

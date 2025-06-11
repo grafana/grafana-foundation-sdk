@@ -10,14 +10,14 @@ var _ cog.Builder[ExprTypeResampleResultAssertions] = (*ExprTypeResampleResultAs
 
 type ExprTypeResampleResultAssertionsBuilder struct {
 	internal *ExprTypeResampleResultAssertions
-	errors   map[string]cog.BuildErrors
+	errors   cog.BuildErrors
 }
 
 func NewExprTypeResampleResultAssertionsBuilder() *ExprTypeResampleResultAssertionsBuilder {
 	resource := NewExprTypeResampleResultAssertions()
 	builder := &ExprTypeResampleResultAssertionsBuilder{
 		internal: resource,
-		errors:   make(map[string]cog.BuildErrors),
+		errors:   make(cog.BuildErrors, 0),
 	}
 
 	return builder
@@ -26,6 +26,10 @@ func NewExprTypeResampleResultAssertionsBuilder() *ExprTypeResampleResultAsserti
 func (builder *ExprTypeResampleResultAssertionsBuilder) Build() (ExprTypeResampleResultAssertions, error) {
 	if err := builder.internal.Validate(); err != nil {
 		return ExprTypeResampleResultAssertions{}, err
+	}
+
+	if len(builder.errors) > 0 {
+		return ExprTypeResampleResultAssertions{}, cog.MakeBuildErrors("expr.exprTypeResampleResultAssertions", builder.errors)
 	}
 
 	return *builder.internal, nil

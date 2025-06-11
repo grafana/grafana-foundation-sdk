@@ -104,6 +104,10 @@ class RuleGroup:
 
 
 class NotificationSettings:
+    # Override the times when notifications should not be muted. These must match the name of a mute time interval defined
+    # in the alertmanager configuration time_intervals section. All notifications will be suppressed unless they are sent
+    # at the time that matches any interval.
+    active_time_intervals: typing.Optional[list[str]]
     # Override the labels by which incoming alerts are grouped together. For example, multiple alerts coming in for
     # cluster=A and alertname=LatencyHigh would be batched into a single group. To aggregate by all possible labels
     # use the special value '...' as the sole label name.
@@ -118,7 +122,7 @@ class NotificationSettings:
     # inhibiting alert to arrive or collect more initial alerts for the same group. (Usually ~0s to few minutes.)
     group_wait: typing.Optional[str]
     # Override the times when notifications should be muted. These must match the name of a mute time interval defined
-    # in the alertmanager configuration mute_time_intervals section. When muted it will not send any notifications, but
+    # in the alertmanager configuration time_intervals section. When muted it will not send any notifications, but
     # otherwise acts normally.
     mute_time_intervals: typing.Optional[list[str]]
     # Name of the receiver to send notifications to.
@@ -130,7 +134,8 @@ class NotificationSettings:
     # occurs first. `repeat_interval` should not be less than `group_interval`.
     repeat_interval: typing.Optional[str]
 
-    def __init__(self, group_by: typing.Optional[list[str]] = None, group_interval: typing.Optional[str] = None, group_wait: typing.Optional[str] = None, mute_time_intervals: typing.Optional[list[str]] = None, receiver: str = "", repeat_interval: typing.Optional[str] = None):
+    def __init__(self, active_time_intervals: typing.Optional[list[str]] = None, group_by: typing.Optional[list[str]] = None, group_interval: typing.Optional[str] = None, group_wait: typing.Optional[str] = None, mute_time_intervals: typing.Optional[list[str]] = None, receiver: str = "", repeat_interval: typing.Optional[str] = None):
+        self.active_time_intervals = active_time_intervals
         self.group_by = group_by if group_by is not None else ["alertname", "grafana_folder"]
         self.group_interval = group_interval
         self.group_wait = group_wait
@@ -142,6 +147,8 @@ class NotificationSettings:
         payload: dict[str, object] = {
             "receiver": self.receiver,
         }
+        if self.active_time_intervals is not None:
+            payload["active_time_intervals"] = self.active_time_intervals
         if self.group_by is not None:
             payload["group_by"] = self.group_by
         if self.group_interval is not None:
@@ -158,6 +165,8 @@ class NotificationSettings:
     def from_json(cls, data: dict[str, typing.Any]) -> typing.Self:
         args: dict[str, typing.Any] = {}
         
+        if "active_time_intervals" in data:
+            args["active_time_intervals"] = data["active_time_intervals"]
         if "group_by" in data:
             args["group_by"] = data["group_by"]
         if "group_interval" in data:
@@ -360,12 +369,6 @@ class NotificationTemplate:
             args["version"] = data["version"]        
 
         return cls(**args)
-
-
-ObjectMatcher: typing.TypeAlias = list[str]
-
-
-ObjectMatchers: typing.TypeAlias = list['ObjectMatcher']
 
 
 Provenance: typing.TypeAlias = str
@@ -578,11 +581,6 @@ class RelativeTimeRange:
 
 
 class NotificationPolicy:
-    """
-    A Route is a node that contains definitions of how to handle alerts. This is modified
-    from the upstream alertmanager in that it adds the ObjectMatchers property.
-    """
-
     active_time_intervals: typing.Optional[list[str]]
     continue_val: typing.Optional[bool]
     group_by: typing.Optional[list[str]]
@@ -596,13 +594,11 @@ class NotificationPolicy:
     # slice. Note that some users of Matchers might require it to be sorted.
     matchers: typing.Optional['Matchers']
     mute_time_intervals: typing.Optional[list[str]]
-    object_matchers: typing.Optional['ObjectMatchers']
-    provenance: typing.Optional['Provenance']
     receiver: typing.Optional[str]
     repeat_interval: typing.Optional[str]
     routes: typing.Optional[list['NotificationPolicy']]
 
-    def __init__(self, active_time_intervals: typing.Optional[list[str]] = None, continue_val: typing.Optional[bool] = None, group_by: typing.Optional[list[str]] = None, group_interval: typing.Optional[str] = None, group_wait: typing.Optional[str] = None, match: typing.Optional[dict[str, str]] = None, match_re: typing.Optional['MatchRegexps'] = None, matchers: typing.Optional['Matchers'] = None, mute_time_intervals: typing.Optional[list[str]] = None, object_matchers: typing.Optional['ObjectMatchers'] = None, provenance: typing.Optional['Provenance'] = None, receiver: typing.Optional[str] = None, repeat_interval: typing.Optional[str] = None, routes: typing.Optional[list['NotificationPolicy']] = None):
+    def __init__(self, active_time_intervals: typing.Optional[list[str]] = None, continue_val: typing.Optional[bool] = None, group_by: typing.Optional[list[str]] = None, group_interval: typing.Optional[str] = None, group_wait: typing.Optional[str] = None, match: typing.Optional[dict[str, str]] = None, match_re: typing.Optional['MatchRegexps'] = None, matchers: typing.Optional['Matchers'] = None, mute_time_intervals: typing.Optional[list[str]] = None, receiver: typing.Optional[str] = None, repeat_interval: typing.Optional[str] = None, routes: typing.Optional[list['NotificationPolicy']] = None):
         self.active_time_intervals = active_time_intervals
         self.continue_val = continue_val
         self.group_by = group_by
@@ -612,8 +608,6 @@ class NotificationPolicy:
         self.match_re = match_re
         self.matchers = matchers
         self.mute_time_intervals = mute_time_intervals
-        self.object_matchers = object_matchers
-        self.provenance = provenance
         self.receiver = receiver
         self.repeat_interval = repeat_interval
         self.routes = routes
@@ -639,10 +633,6 @@ class NotificationPolicy:
             payload["matchers"] = self.matchers
         if self.mute_time_intervals is not None:
             payload["mute_time_intervals"] = self.mute_time_intervals
-        if self.object_matchers is not None:
-            payload["object_matchers"] = self.object_matchers
-        if self.provenance is not None:
-            payload["provenance"] = self.provenance
         if self.receiver is not None:
             payload["receiver"] = self.receiver
         if self.repeat_interval is not None:
@@ -673,10 +663,6 @@ class NotificationPolicy:
             args["matchers"] = [Matcher.from_json(item) for item in data["matchers"]]
         if "mute_time_intervals" in data:
             args["mute_time_intervals"] = data["mute_time_intervals"]
-        if "object_matchers" in data:
-            args["object_matchers"] = [item for item in data["object_matchers"]]
-        if "provenance" in data:
-            args["provenance"] = data["provenance"]
         if "receiver" in data:
             args["receiver"] = data["receiver"]
         if "repeat_interval" in data:

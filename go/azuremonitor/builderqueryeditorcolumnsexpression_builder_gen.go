@@ -10,14 +10,14 @@ var _ cog.Builder[BuilderQueryEditorColumnsExpression] = (*BuilderQueryEditorCol
 
 type BuilderQueryEditorColumnsExpressionBuilder struct {
 	internal *BuilderQueryEditorColumnsExpression
-	errors   map[string]cog.BuildErrors
+	errors   cog.BuildErrors
 }
 
 func NewBuilderQueryEditorColumnsExpressionBuilder() *BuilderQueryEditorColumnsExpressionBuilder {
 	resource := NewBuilderQueryEditorColumnsExpression()
 	builder := &BuilderQueryEditorColumnsExpressionBuilder{
 		internal: resource,
-		errors:   make(map[string]cog.BuildErrors),
+		errors:   make(cog.BuildErrors, 0),
 	}
 
 	return builder
@@ -26,6 +26,10 @@ func NewBuilderQueryEditorColumnsExpressionBuilder() *BuilderQueryEditorColumnsE
 func (builder *BuilderQueryEditorColumnsExpressionBuilder) Build() (BuilderQueryEditorColumnsExpression, error) {
 	if err := builder.internal.Validate(); err != nil {
 		return BuilderQueryEditorColumnsExpression{}, err
+	}
+
+	if len(builder.errors) > 0 {
+		return BuilderQueryEditorColumnsExpression{}, cog.MakeBuildErrors("azuremonitor.builderQueryEditorColumnsExpression", builder.errors)
 	}
 
 	return *builder.internal, nil

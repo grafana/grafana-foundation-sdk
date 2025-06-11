@@ -131,6 +131,17 @@ class NotificationSettings(cogbuilder.Builder[alerting.NotificationSettings]):
         """
         return self._internal    
     
+    def active_time_intervals(self, active_time_intervals: list[str]) -> typing.Self:    
+        """
+        Override the times when notifications should not be muted. These must match the name of a mute time interval defined
+        in the alertmanager configuration time_intervals section. All notifications will be suppressed unless they are sent
+        at the time that matches any interval.
+        """
+            
+        self._internal.active_time_intervals = active_time_intervals
+    
+        return self
+    
     def group_by(self, group_by: list[str]) -> typing.Self:    
         """
         Override the labels by which incoming alerts are grouped together. For example, multiple alerts coming in for
@@ -168,7 +179,7 @@ class NotificationSettings(cogbuilder.Builder[alerting.NotificationSettings]):
     def mute_time_intervals(self, mute_time_intervals: list[str]) -> typing.Self:    
         """
         Override the times when notifications should be muted. These must match the name of a mute time interval defined
-        in the alertmanager configuration mute_time_intervals section. When muted it will not send any notifications, but
+        in the alertmanager configuration time_intervals section. When muted it will not send any notifications, but
         otherwise acts normally.
         """
             
@@ -540,12 +551,7 @@ class RecordRule(cogbuilder.Builder[alerting.RecordRule]):
     
 
 
-class NotificationPolicy(cogbuilder.Builder[alerting.NotificationPolicy]):    
-    """
-    A Route is a node that contains definitions of how to handle alerts. This is modified
-    from the upstream alertmanager in that it adds the ObjectMatchers property.
-    """
-    
+class NotificationPolicy(cogbuilder.Builder[alerting.NotificationPolicy]):
     _internal: alerting.NotificationPolicy
 
     def __init__(self):
@@ -609,16 +615,6 @@ class NotificationPolicy(cogbuilder.Builder[alerting.NotificationPolicy]):
     
     def mute_time_intervals(self, mute_time_intervals: list[str]) -> typing.Self:    
         self._internal.mute_time_intervals = mute_time_intervals
-    
-        return self
-    
-    def object_matchers(self, object_matchers: alerting.ObjectMatchers) -> typing.Self:    
-        self._internal.object_matchers = object_matchers
-    
-        return self
-    
-    def provenance(self, provenance: alerting.Provenance) -> typing.Self:    
-        self._internal.provenance = provenance
     
         return self
     

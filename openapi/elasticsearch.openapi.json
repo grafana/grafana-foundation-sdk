@@ -46,7 +46,10 @@
           "id": {
             "type": "string"
           },
-          "type": {},
+          "type": {
+            "$ref": "#/components/schemas/BucketAggregationType",
+            "default": "date_histogram"
+          },
           "settings": {
             "type": "object",
             "additionalProperties": false,
@@ -94,7 +97,10 @@
           "id": {
             "type": "string"
           },
-          "type": {},
+          "type": {
+            "$ref": "#/components/schemas/BucketAggregationType",
+            "default": "histogram"
+          },
           "settings": {
             "type": "object",
             "additionalProperties": false,
@@ -123,7 +129,10 @@
           "id": {
             "type": "string"
           },
-          "type": {},
+          "type": {
+            "$ref": "#/components/schemas/BucketAggregationType",
+            "default": "terms"
+          },
           "settings": {
             "type": "object",
             "additionalProperties": false,
@@ -164,7 +173,10 @@
           "id": {
             "type": "string"
           },
-          "type": {},
+          "type": {
+            "$ref": "#/components/schemas/BucketAggregationType",
+            "default": "filters"
+          },
           "settings": {
             "type": "object",
             "additionalProperties": false,
@@ -209,7 +221,10 @@
           "id": {
             "type": "string"
           },
-          "type": {},
+          "type": {
+            "$ref": "#/components/schemas/BucketAggregationType",
+            "default": "geohash_grid"
+          },
           "settings": {
             "type": "object",
             "additionalProperties": false,
@@ -235,7 +250,10 @@
           "id": {
             "type": "string"
           },
-          "type": {},
+          "type": {
+            "$ref": "#/components/schemas/BucketAggregationType",
+            "default": "nested"
+          },
           "settings": {
             "type": "object",
             "additionalProperties": {}
@@ -263,7 +281,9 @@
           "id"
         ],
         "properties": {
-          "type": {},
+          "type": {
+            "$ref": "#/components/schemas/MetricAggregationType"
+          },
           "id": {
             "type": "string"
           },
@@ -371,7 +391,9 @@
           "field": {
             "type": "string"
           },
-          "type": {},
+          "type": {
+            "$ref": "#/components/schemas/MetricAggregationType"
+          },
           "id": {
             "type": "string"
           },
@@ -402,7 +424,9 @@
           "field": {
             "type": "string"
           },
-          "type": {},
+          "type": {
+            "$ref": "#/components/schemas/MetricAggregationType"
+          },
           "id": {
             "type": "string"
           },
@@ -434,7 +458,9 @@
           "field": {
             "type": "string"
           },
-          "type": {},
+          "type": {
+            "$ref": "#/components/schemas/MetricAggregationType"
+          },
           "id": {
             "type": "string"
           },
@@ -460,7 +486,9 @@
           "id"
         ],
         "properties": {
-          "type": {},
+          "type": {
+            "$ref": "#/components/schemas/MetricAggregationType"
+          },
           "pipelineVariables": {
             "type": "array",
             "items": {
@@ -588,7 +616,9 @@
           "field": {
             "type": "string"
           },
-          "type": {},
+          "type": {
+            "$ref": "#/components/schemas/MetricAggregationType"
+          },
           "id": {
             "type": "string"
           },
@@ -614,7 +644,9 @@
           "id"
         ],
         "properties": {
-          "type": {},
+          "type": {
+            "$ref": "#/components/schemas/MetricAggregationType"
+          },
           "id": {
             "type": "string"
           },
@@ -640,7 +672,9 @@
           "id"
         ],
         "properties": {
-          "type": {},
+          "type": {
+            "$ref": "#/components/schemas/MetricAggregationType"
+          },
           "id": {
             "type": "string"
           },
@@ -666,7 +700,9 @@
           "id"
         ],
         "properties": {
-          "type": {},
+          "type": {
+            "$ref": "#/components/schemas/MetricAggregationType"
+          },
           "field": {
             "type": "string"
           },
@@ -698,7 +734,9 @@
           "id"
         ],
         "properties": {
-          "type": {},
+          "type": {
+            "$ref": "#/components/schemas/MetricAggregationType"
+          },
           "field": {
             "type": "string"
           },
@@ -736,7 +774,9 @@
           "id"
         ],
         "properties": {
-          "type": {},
+          "type": {
+            "$ref": "#/components/schemas/MetricAggregationType"
+          },
           "settings": {
             "type": "object",
             "additionalProperties": false,
@@ -775,7 +815,9 @@
           "id"
         ],
         "properties": {
-          "type": {},
+          "type": {
+            "$ref": "#/components/schemas/MetricAggregationType"
+          },
           "field": {
             "type": "string"
           },
@@ -807,7 +849,9 @@
           "id"
         ],
         "properties": {
-          "type": {},
+          "type": {
+            "$ref": "#/components/schemas/MetricAggregationType"
+          },
           "field": {
             "type": "string"
           },
@@ -839,7 +883,9 @@
           "id"
         ],
         "properties": {
-          "type": {},
+          "type": {
+            "$ref": "#/components/schemas/MetricAggregationType"
+          },
           "field": {
             "type": "string"
           },
@@ -871,7 +917,9 @@
           "id"
         ],
         "properties": {
-          "type": {},
+          "type": {
+            "$ref": "#/components/schemas/MetricAggregationType"
+          },
           "field": {
             "type": "string"
           },
@@ -909,7 +957,9 @@
           "field": {
             "type": "string"
           },
-          "type": {},
+          "type": {
+            "$ref": "#/components/schemas/MetricAggregationType"
+          },
           "id": {
             "type": "string"
           },
@@ -941,7 +991,9 @@
           "id"
         ],
         "properties": {
-          "type": {},
+          "type": {
+            "$ref": "#/components/schemas/MetricAggregationType"
+          },
           "id": {
             "type": "string"
           },
@@ -967,7 +1019,9 @@
           "id"
         ],
         "properties": {
-          "type": {},
+          "type": {
+            "$ref": "#/components/schemas/MetricAggregationType"
+          },
           "field": {
             "type": "string"
           },
@@ -999,7 +1053,9 @@
           "id"
         ],
         "properties": {
-          "type": {},
+          "type": {
+            "$ref": "#/components/schemas/MetricAggregationType"
+          },
           "id": {
             "type": "string"
           },
@@ -1373,7 +1429,10 @@
           "predict"
         ],
         "properties": {
-          "model": {},
+          "model": {
+            "$ref": "#/components/schemas/MovingAverageModel",
+            "default": "simple"
+          },
           "window": {
             "type": "string"
           },
@@ -1391,7 +1450,10 @@
           "predict"
         ],
         "properties": {
-          "model": {},
+          "model": {
+            "$ref": "#/components/schemas/MovingAverageModel",
+            "default": "linear"
+          },
           "window": {
             "type": "string"
           },
@@ -1410,7 +1472,10 @@
           "predict"
         ],
         "properties": {
-          "model": {},
+          "model": {
+            "$ref": "#/components/schemas/MovingAverageModel",
+            "default": "ewma"
+          },
           "settings": {
             "type": "object",
             "additionalProperties": false,
@@ -1442,7 +1507,10 @@
           "predict"
         ],
         "properties": {
-          "model": {},
+          "model": {
+            "$ref": "#/components/schemas/MovingAverageModel",
+            "default": "holt"
+          },
           "settings": {
             "type": "object",
             "additionalProperties": false,
@@ -1477,7 +1545,10 @@
           "predict"
         ],
         "properties": {
-          "model": {},
+          "model": {
+            "$ref": "#/components/schemas/MovingAverageModel",
+            "default": "holt_winters"
+          },
           "settings": {
             "type": "object",
             "additionalProperties": false,

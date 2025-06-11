@@ -80,18 +80,6 @@ public NotificationPolicyBuilder matchers(List<com.grafana.foundation.cog.Builde
 public NotificationPolicyBuilder muteTimeIntervals(List<String> muteTimeIntervals)
 ```
 
-### <span class="badge object-method"></span> objectMatchers
-
-```java
-public NotificationPolicyBuilder objectMatchers(List<List<String>> objectMatchers)
-```
-
-### <span class="badge object-method"></span> provenance
-
-```java
-public NotificationPolicyBuilder provenance(String provenance)
-```
-
 ### <span class="badge object-method"></span> receiver
 
 ```java

@@ -5,6 +5,14 @@ namespace Grafana\Foundation\Alerting;
 class NotificationSettings implements \JsonSerializable
 {
     /**
+     * Override the times when notifications should not be muted. These must match the name of a mute time interval defined
+     * in the alertmanager configuration time_intervals section. All notifications will be suppressed unless they are sent
+     * at the time that matches any interval.
+     * @var array<string>|null
+     */
+    public ?array $activeTimeIntervals;
+
+    /**
      * Override the labels by which incoming alerts are grouped together. For example, multiple alerts coming in for
      * cluster=A and alertname=LatencyHigh would be batched into a single group. To aggregate by all possible labels
      * use the special value '...' as the sole label name.
@@ -29,7 +37,7 @@ class NotificationSettings implements \JsonSerializable
 
     /**
      * Override the times when notifications should be muted. These must match the name of a mute time interval defined
-     * in the alertmanager configuration mute_time_intervals section. When muted it will not send any notifications, but
+     * in the alertmanager configuration time_intervals section. When muted it will not send any notifications, but
      * otherwise acts normally.
      * @var array<string>|null
      */
@@ -50,6 +58,7 @@ class NotificationSettings implements \JsonSerializable
     public ?string $repeatInterval;
 
     /**
+     * @param array<string>|null $activeTimeIntervals
      * @param array<string>|null $groupBy
      * @param string|null $groupInterval
      * @param string|null $groupWait
@@ -57,8 +66,9 @@ class NotificationSettings implements \JsonSerializable
      * @param string|null $receiver
      * @param string|null $repeatInterval
      */
-    public function __construct(?array $groupBy = null, ?string $groupInterval = null, ?string $groupWait = null, ?array $muteTimeIntervals = null, ?string $receiver = null, ?string $repeatInterval = null)
+    public function __construct(?array $activeTimeIntervals = null, ?array $groupBy = null, ?string $groupInterval = null, ?string $groupWait = null, ?array $muteTimeIntervals = null, ?string $receiver = null, ?string $repeatInterval = null)
     {
+        $this->activeTimeIntervals = $activeTimeIntervals;
         $this->groupBy = $groupBy;
         $this->groupInterval = $groupInterval;
         $this->groupWait = $groupWait;
@@ -72,9 +82,10 @@ class NotificationSettings implements \JsonSerializable
      */
     public static function fromArray(array $inputData): self
     {
-        /** @var array{group_by?: array<string>, group_interval?: string, group_wait?: string, mute_time_intervals?: array<string>, receiver?: string, repeat_interval?: string} $inputData */
+        /** @var array{active_time_intervals?: array<string>, group_by?: array<string>, group_interval?: string, group_wait?: string, mute_time_intervals?: array<string>, receiver?: string, repeat_interval?: string} $inputData */
         $data = $inputData;
         return new self(
+            activeTimeIntervals: $data["active_time_intervals"] ?? null,
             groupBy: $data["group_by"] ?? null,
             groupInterval: $data["group_interval"] ?? null,
             groupWait: $data["group_wait"] ?? null,
@@ -91,6 +102,9 @@ class NotificationSettings implements \JsonSerializable
     {
         $data = new \stdClass;
         $data->receiver = $this->receiver;
+        if (isset($this->activeTimeIntervals)) {
+            $data->active_time_intervals = $this->activeTimeIntervals;
+        }
         if (isset($this->groupBy)) {
             $data->group_by = $this->groupBy;
         }

@@ -10,14 +10,14 @@ var _ cog.Builder[StringOrBoolOrFloat64OrSelectableValue] = (*StringOrBoolOrFloa
 
 type StringOrBoolOrFloat64OrSelectableValueBuilder struct {
 	internal *StringOrBoolOrFloat64OrSelectableValue
-	errors   map[string]cog.BuildErrors
+	errors   cog.BuildErrors
 }
 
 func NewStringOrBoolOrFloat64OrSelectableValueBuilder() *StringOrBoolOrFloat64OrSelectableValueBuilder {
 	resource := NewStringOrBoolOrFloat64OrSelectableValue()
 	builder := &StringOrBoolOrFloat64OrSelectableValueBuilder{
 		internal: resource,
-		errors:   make(map[string]cog.BuildErrors),
+		errors:   make(cog.BuildErrors, 0),
 	}
 
 	return builder
@@ -26,6 +26,10 @@ func NewStringOrBoolOrFloat64OrSelectableValueBuilder() *StringOrBoolOrFloat64Or
 func (builder *StringOrBoolOrFloat64OrSelectableValueBuilder) Build() (StringOrBoolOrFloat64OrSelectableValue, error) {
 	if err := builder.internal.Validate(); err != nil {
 		return StringOrBoolOrFloat64OrSelectableValue{}, err
+	}
+
+	if len(builder.errors) > 0 {
+		return StringOrBoolOrFloat64OrSelectableValue{}, cog.MakeBuildErrors("azuremonitor.stringOrBoolOrFloat64OrSelectableValue", builder.errors)
 	}
 
 	return *builder.internal, nil
@@ -52,7 +56,7 @@ func (builder *StringOrBoolOrFloat64OrSelectableValueBuilder) Float64(float64Arg
 func (builder *StringOrBoolOrFloat64OrSelectableValueBuilder) SelectableValue(selectableValue cog.Builder[SelectableValue]) *StringOrBoolOrFloat64OrSelectableValueBuilder {
 	selectableValueResource, err := selectableValue.Build()
 	if err != nil {
-		builder.errors["SelectableValue"] = err.(cog.BuildErrors)
+		builder.errors = append(builder.errors, err.(cog.BuildErrors)...)
 		return builder
 	}
 	builder.internal.SelectableValue = &selectableValueResource

@@ -143,30 +143,6 @@ func NotificationPolicyConverter(input NotificationPolicy) string {
 		buffer.Reset()
 
 	}
-	if input.ObjectMatchers != nil {
-
-		buffer.WriteString(`ObjectMatchers(`)
-		arg0 := cog.Dump(*input.ObjectMatchers)
-		buffer.WriteString(arg0)
-
-		buffer.WriteString(")")
-
-		calls = append(calls, buffer.String())
-		buffer.Reset()
-
-	}
-	if input.Provenance != nil {
-
-		buffer.WriteString(`Provenance(`)
-		arg0 := cog.Dump(*input.Provenance)
-		buffer.WriteString(arg0)
-
-		buffer.WriteString(")")
-
-		calls = append(calls, buffer.String())
-		buffer.Reset()
-
-	}
 	if input.Receiver != nil && *input.Receiver != "" {
 
 		buffer.WriteString(`Receiver(`)

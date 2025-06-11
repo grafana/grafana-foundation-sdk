@@ -10,14 +10,14 @@ var _ cog.Builder[BuilderQueryEditorOperatorType] = (*BuilderQueryEditorOperator
 
 type BuilderQueryEditorOperatorTypeBuilder struct {
 	internal *BuilderQueryEditorOperatorType
-	errors   map[string]cog.BuildErrors
+	errors   cog.BuildErrors
 }
 
 func NewBuilderQueryEditorOperatorTypeBuilder() *BuilderQueryEditorOperatorTypeBuilder {
 	resource := NewBuilderQueryEditorOperatorType()
 	builder := &BuilderQueryEditorOperatorTypeBuilder{
 		internal: resource,
-		errors:   make(map[string]cog.BuildErrors),
+		errors:   make(cog.BuildErrors, 0),
 	}
 
 	return builder
@@ -26,6 +26,10 @@ func NewBuilderQueryEditorOperatorTypeBuilder() *BuilderQueryEditorOperatorTypeB
 func (builder *BuilderQueryEditorOperatorTypeBuilder) Build() (BuilderQueryEditorOperatorType, error) {
 	if err := builder.internal.Validate(); err != nil {
 		return BuilderQueryEditorOperatorType{}, err
+	}
+
+	if len(builder.errors) > 0 {
+		return BuilderQueryEditorOperatorType{}, cog.MakeBuildErrors("azuremonitor.builderQueryEditorOperatorType", builder.errors)
 	}
 
 	return *builder.internal, nil
@@ -52,7 +56,7 @@ func (builder *BuilderQueryEditorOperatorTypeBuilder) Float64(float64Arg float64
 func (builder *BuilderQueryEditorOperatorTypeBuilder) SelectableValue(selectableValue cog.Builder[SelectableValue]) *BuilderQueryEditorOperatorTypeBuilder {
 	selectableValueResource, err := selectableValue.Build()
 	if err != nil {
-		builder.errors["SelectableValue"] = err.(cog.BuildErrors)
+		builder.errors = append(builder.errors, err.(cog.BuildErrors)...)
 		return builder
 	}
 	builder.internal.SelectableValue = &selectableValueResource
