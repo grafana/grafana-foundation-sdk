@@ -17,11 +17,6 @@ export class QueryEditorPropertyBuilder implements cog.Builder<cloudwatch.QueryE
         return this.internal;
     }
 
-    type(type: cloudwatch.QueryEditorPropertyType): this {
-        this.internal.type = type;
-        return this;
-    }
-
     name(name: string): this {
         this.internal.name = name;
         return this;

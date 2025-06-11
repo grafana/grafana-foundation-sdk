@@ -10,14 +10,14 @@ var _ cog.Builder[ExprTypeThresholdConditionsUnloadEvaluator] = (*ExprTypeThresh
 
 type ExprTypeThresholdConditionsUnloadEvaluatorBuilder struct {
 	internal *ExprTypeThresholdConditionsUnloadEvaluator
-	errors   map[string]cog.BuildErrors
+	errors   cog.BuildErrors
 }
 
 func NewExprTypeThresholdConditionsUnloadEvaluatorBuilder() *ExprTypeThresholdConditionsUnloadEvaluatorBuilder {
 	resource := NewExprTypeThresholdConditionsUnloadEvaluator()
 	builder := &ExprTypeThresholdConditionsUnloadEvaluatorBuilder{
 		internal: resource,
-		errors:   make(map[string]cog.BuildErrors),
+		errors:   make(cog.BuildErrors, 0),
 	}
 
 	return builder
@@ -26,6 +26,10 @@ func NewExprTypeThresholdConditionsUnloadEvaluatorBuilder() *ExprTypeThresholdCo
 func (builder *ExprTypeThresholdConditionsUnloadEvaluatorBuilder) Build() (ExprTypeThresholdConditionsUnloadEvaluator, error) {
 	if err := builder.internal.Validate(); err != nil {
 		return ExprTypeThresholdConditionsUnloadEvaluator{}, err
+	}
+
+	if len(builder.errors) > 0 {
+		return ExprTypeThresholdConditionsUnloadEvaluator{}, cog.MakeBuildErrors("expr.exprTypeThresholdConditionsUnloadEvaluator", builder.errors)
 	}
 
 	return *builder.internal, nil
