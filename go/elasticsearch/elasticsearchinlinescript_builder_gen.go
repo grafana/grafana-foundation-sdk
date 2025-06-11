@@ -10,14 +10,14 @@ var _ cog.Builder[ElasticsearchInlineScript] = (*ElasticsearchInlineScriptBuilde
 
 type ElasticsearchInlineScriptBuilder struct {
 	internal *ElasticsearchInlineScript
-	errors   map[string]cog.BuildErrors
+	errors   cog.BuildErrors
 }
 
 func NewElasticsearchInlineScriptBuilder() *ElasticsearchInlineScriptBuilder {
 	resource := NewElasticsearchInlineScript()
 	builder := &ElasticsearchInlineScriptBuilder{
 		internal: resource,
-		errors:   make(map[string]cog.BuildErrors),
+		errors:   make(cog.BuildErrors, 0),
 	}
 
 	return builder
@@ -26,6 +26,10 @@ func NewElasticsearchInlineScriptBuilder() *ElasticsearchInlineScriptBuilder {
 func (builder *ElasticsearchInlineScriptBuilder) Build() (ElasticsearchInlineScript, error) {
 	if err := builder.internal.Validate(); err != nil {
 		return ElasticsearchInlineScript{}, err
+	}
+
+	if len(builder.errors) > 0 {
+		return ElasticsearchInlineScript{}, cog.MakeBuildErrors("elasticsearch.elasticsearchInlineScript", builder.errors)
 	}
 
 	return *builder.internal, nil

@@ -11,14 +11,14 @@ var _ cog.Builder[HeatmapColorOptions] = (*HeatmapColorOptionsBuilder)(nil)
 // Controls various color options
 type HeatmapColorOptionsBuilder struct {
 	internal *HeatmapColorOptions
-	errors   map[string]cog.BuildErrors
+	errors   cog.BuildErrors
 }
 
 func NewHeatmapColorOptionsBuilder() *HeatmapColorOptionsBuilder {
 	resource := NewHeatmapColorOptions()
 	builder := &HeatmapColorOptionsBuilder{
 		internal: resource,
-		errors:   make(map[string]cog.BuildErrors),
+		errors:   make(cog.BuildErrors, 0),
 	}
 
 	return builder
@@ -27,6 +27,10 @@ func NewHeatmapColorOptionsBuilder() *HeatmapColorOptionsBuilder {
 func (builder *HeatmapColorOptionsBuilder) Build() (HeatmapColorOptions, error) {
 	if err := builder.internal.Validate(); err != nil {
 		return HeatmapColorOptions{}, err
+	}
+
+	if len(builder.errors) > 0 {
+		return HeatmapColorOptions{}, cog.MakeBuildErrors("heatmap.heatmapColorOptions", builder.errors)
 	}
 
 	return *builder.internal, nil

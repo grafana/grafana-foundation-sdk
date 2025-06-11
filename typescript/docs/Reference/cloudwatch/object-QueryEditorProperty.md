@@ -7,7 +7,7 @@ title: <span class="badge object-type-interface"></span> QueryEditorProperty
 
 ```typescript
 export interface QueryEditorProperty {
-	type: cloudwatch.QueryEditorPropertyType;
+	type: cloudwatch.QueryEditorPropertyType.String;
 	name?: string;
 }
 

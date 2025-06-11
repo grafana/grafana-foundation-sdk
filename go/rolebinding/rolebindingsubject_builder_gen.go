@@ -10,14 +10,14 @@ var _ cog.Builder[RoleBindingSubject] = (*RoleBindingSubjectBuilder)(nil)
 
 type RoleBindingSubjectBuilder struct {
 	internal *RoleBindingSubject
-	errors   map[string]cog.BuildErrors
+	errors   cog.BuildErrors
 }
 
 func NewRoleBindingSubjectBuilder() *RoleBindingSubjectBuilder {
 	resource := NewRoleBindingSubject()
 	builder := &RoleBindingSubjectBuilder{
 		internal: resource,
-		errors:   make(map[string]cog.BuildErrors),
+		errors:   make(cog.BuildErrors, 0),
 	}
 
 	return builder
@@ -26,6 +26,10 @@ func NewRoleBindingSubjectBuilder() *RoleBindingSubjectBuilder {
 func (builder *RoleBindingSubjectBuilder) Build() (RoleBindingSubject, error) {
 	if err := builder.internal.Validate(); err != nil {
 		return RoleBindingSubject{}, err
+	}
+
+	if len(builder.errors) > 0 {
+		return RoleBindingSubject{}, cog.MakeBuildErrors("rolebinding.roleBindingSubject", builder.errors)
 	}
 
 	return *builder.internal, nil

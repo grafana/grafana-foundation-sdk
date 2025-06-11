@@ -10,14 +10,14 @@ var _ cog.Builder[AppInsightsMetricNameQuery] = (*AppInsightsMetricNameQueryBuil
 
 type AppInsightsMetricNameQueryBuilder struct {
 	internal *AppInsightsMetricNameQuery
-	errors   map[string]cog.BuildErrors
+	errors   cog.BuildErrors
 }
 
 func NewAppInsightsMetricNameQueryBuilder() *AppInsightsMetricNameQueryBuilder {
 	resource := NewAppInsightsMetricNameQuery()
 	builder := &AppInsightsMetricNameQueryBuilder{
 		internal: resource,
-		errors:   make(map[string]cog.BuildErrors),
+		errors:   make(cog.BuildErrors, 0),
 	}
 	builder.internal.Kind = "AppInsightsMetricNameQuery"
 
@@ -27,6 +27,10 @@ func NewAppInsightsMetricNameQueryBuilder() *AppInsightsMetricNameQueryBuilder {
 func (builder *AppInsightsMetricNameQueryBuilder) Build() (AppInsightsMetricNameQuery, error) {
 	if err := builder.internal.Validate(); err != nil {
 		return AppInsightsMetricNameQuery{}, err
+	}
+
+	if len(builder.errors) > 0 {
+		return AppInsightsMetricNameQuery{}, cog.MakeBuildErrors("azuremonitor.appInsightsMetricNameQuery", builder.errors)
 	}
 
 	return *builder.internal, nil

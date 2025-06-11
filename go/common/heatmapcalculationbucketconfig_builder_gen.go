@@ -10,14 +10,14 @@ var _ cog.Builder[HeatmapCalculationBucketConfig] = (*HeatmapCalculationBucketCo
 
 type HeatmapCalculationBucketConfigBuilder struct {
 	internal *HeatmapCalculationBucketConfig
-	errors   map[string]cog.BuildErrors
+	errors   cog.BuildErrors
 }
 
 func NewHeatmapCalculationBucketConfigBuilder() *HeatmapCalculationBucketConfigBuilder {
 	resource := NewHeatmapCalculationBucketConfig()
 	builder := &HeatmapCalculationBucketConfigBuilder{
 		internal: resource,
-		errors:   make(map[string]cog.BuildErrors),
+		errors:   make(cog.BuildErrors, 0),
 	}
 
 	return builder
@@ -26,6 +26,10 @@ func NewHeatmapCalculationBucketConfigBuilder() *HeatmapCalculationBucketConfigB
 func (builder *HeatmapCalculationBucketConfigBuilder) Build() (HeatmapCalculationBucketConfig, error) {
 	if err := builder.internal.Validate(); err != nil {
 		return HeatmapCalculationBucketConfig{}, err
+	}
+
+	if len(builder.errors) > 0 {
+		return HeatmapCalculationBucketConfig{}, cog.MakeBuildErrors("common.heatmapCalculationBucketConfig", builder.errors)
 	}
 
 	return *builder.internal, nil
@@ -49,7 +53,7 @@ func (builder *HeatmapCalculationBucketConfigBuilder) Value(value string) *Heatm
 func (builder *HeatmapCalculationBucketConfigBuilder) Scale(scale cog.Builder[ScaleDistributionConfig]) *HeatmapCalculationBucketConfigBuilder {
 	scaleResource, err := scale.Build()
 	if err != nil {
-		builder.errors["scale"] = err.(cog.BuildErrors)
+		builder.errors = append(builder.errors, err.(cog.BuildErrors)...)
 		return builder
 	}
 	builder.internal.Scale = &scaleResource

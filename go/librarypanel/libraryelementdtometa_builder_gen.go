@@ -12,14 +12,14 @@ var _ cog.Builder[LibraryElementDTOMeta] = (*LibraryElementDTOMetaBuilder)(nil)
 
 type LibraryElementDTOMetaBuilder struct {
 	internal *LibraryElementDTOMeta
-	errors   map[string]cog.BuildErrors
+	errors   cog.BuildErrors
 }
 
 func NewLibraryElementDTOMetaBuilder() *LibraryElementDTOMetaBuilder {
 	resource := NewLibraryElementDTOMeta()
 	builder := &LibraryElementDTOMetaBuilder{
 		internal: resource,
-		errors:   make(map[string]cog.BuildErrors),
+		errors:   make(cog.BuildErrors, 0),
 	}
 
 	return builder
@@ -28,6 +28,10 @@ func NewLibraryElementDTOMetaBuilder() *LibraryElementDTOMetaBuilder {
 func (builder *LibraryElementDTOMetaBuilder) Build() (LibraryElementDTOMeta, error) {
 	if err := builder.internal.Validate(); err != nil {
 		return LibraryElementDTOMeta{}, err
+	}
+
+	if len(builder.errors) > 0 {
+		return LibraryElementDTOMeta{}, cog.MakeBuildErrors("librarypanel.libraryElementDTOMeta", builder.errors)
 	}
 
 	return *builder.internal, nil
@@ -66,7 +70,7 @@ func (builder *LibraryElementDTOMetaBuilder) Updated(updated time.Time) *Library
 func (builder *LibraryElementDTOMetaBuilder) CreatedBy(createdBy cog.Builder[LibraryElementDTOMetaUser]) *LibraryElementDTOMetaBuilder {
 	createdByResource, err := createdBy.Build()
 	if err != nil {
-		builder.errors["createdBy"] = err.(cog.BuildErrors)
+		builder.errors = append(builder.errors, err.(cog.BuildErrors)...)
 		return builder
 	}
 	builder.internal.CreatedBy = createdByResource
@@ -77,7 +81,7 @@ func (builder *LibraryElementDTOMetaBuilder) CreatedBy(createdBy cog.Builder[Lib
 func (builder *LibraryElementDTOMetaBuilder) UpdatedBy(updatedBy cog.Builder[LibraryElementDTOMetaUser]) *LibraryElementDTOMetaBuilder {
 	updatedByResource, err := updatedBy.Build()
 	if err != nil {
-		builder.errors["updatedBy"] = err.(cog.BuildErrors)
+		builder.errors = append(builder.errors, err.(cog.BuildErrors)...)
 		return builder
 	}
 	builder.internal.UpdatedBy = updatedByResource
