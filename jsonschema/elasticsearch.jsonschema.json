@@ -38,7 +38,10 @@
         "id": {
           "type": "string"
         },
-        "type": {},
+        "type": {
+          "$ref": "#/definitions/BucketAggregationType",
+          "default": "date_histogram"
+        },
         "settings": {
           "type": "object",
           "additionalProperties": false,
@@ -86,7 +89,10 @@
         "id": {
           "type": "string"
         },
-        "type": {},
+        "type": {
+          "$ref": "#/definitions/BucketAggregationType",
+          "default": "histogram"
+        },
         "settings": {
           "type": "object",
           "additionalProperties": false,
@@ -115,7 +121,10 @@
         "id": {
           "type": "string"
         },
-        "type": {},
+        "type": {
+          "$ref": "#/definitions/BucketAggregationType",
+          "default": "terms"
+        },
         "settings": {
           "type": "object",
           "additionalProperties": false,
@@ -156,7 +165,10 @@
         "id": {
           "type": "string"
         },
-        "type": {},
+        "type": {
+          "$ref": "#/definitions/BucketAggregationType",
+          "default": "filters"
+        },
         "settings": {
           "type": "object",
           "additionalProperties": false,
@@ -201,7 +213,10 @@
         "id": {
           "type": "string"
         },
-        "type": {},
+        "type": {
+          "$ref": "#/definitions/BucketAggregationType",
+          "default": "geohash_grid"
+        },
         "settings": {
           "type": "object",
           "additionalProperties": false,
@@ -227,7 +242,10 @@
         "id": {
           "type": "string"
         },
-        "type": {},
+        "type": {
+          "$ref": "#/definitions/BucketAggregationType",
+          "default": "nested"
+        },
         "settings": {
           "type": "object",
           "additionalProperties": {}
@@ -255,7 +273,9 @@
         "id"
       ],
       "properties": {
-        "type": {},
+        "type": {
+          "$ref": "#/definitions/MetricAggregationType"
+        },
         "id": {
           "type": "string"
         },
@@ -363,7 +383,9 @@
         "field": {
           "type": "string"
         },
-        "type": {},
+        "type": {
+          "$ref": "#/definitions/MetricAggregationType"
+        },
         "id": {
           "type": "string"
         },
@@ -394,7 +416,9 @@
         "field": {
           "type": "string"
         },
-        "type": {},
+        "type": {
+          "$ref": "#/definitions/MetricAggregationType"
+        },
         "id": {
           "type": "string"
         },
@@ -426,7 +450,9 @@
         "field": {
           "type": "string"
         },
-        "type": {},
+        "type": {
+          "$ref": "#/definitions/MetricAggregationType"
+        },
         "id": {
           "type": "string"
         },
@@ -452,7 +478,9 @@
         "id"
       ],
       "properties": {
-        "type": {},
+        "type": {
+          "$ref": "#/definitions/MetricAggregationType"
+        },
         "pipelineVariables": {
           "type": "array",
           "items": {
@@ -580,7 +608,9 @@
         "field": {
           "type": "string"
         },
-        "type": {},
+        "type": {
+          "$ref": "#/definitions/MetricAggregationType"
+        },
         "id": {
           "type": "string"
         },
@@ -606,7 +636,9 @@
         "id"
       ],
       "properties": {
-        "type": {},
+        "type": {
+          "$ref": "#/definitions/MetricAggregationType"
+        },
         "id": {
           "type": "string"
         },
@@ -632,7 +664,9 @@
         "id"
       ],
       "properties": {
-        "type": {},
+        "type": {
+          "$ref": "#/definitions/MetricAggregationType"
+        },
         "id": {
           "type": "string"
         },
@@ -658,7 +692,9 @@
         "id"
       ],
       "properties": {
-        "type": {},
+        "type": {
+          "$ref": "#/definitions/MetricAggregationType"
+        },
         "field": {
           "type": "string"
         },
@@ -690,7 +726,9 @@
         "id"
       ],
       "properties": {
-        "type": {},
+        "type": {
+          "$ref": "#/definitions/MetricAggregationType"
+        },
         "field": {
           "type": "string"
         },
@@ -728,7 +766,9 @@
         "id"
       ],
       "properties": {
-        "type": {},
+        "type": {
+          "$ref": "#/definitions/MetricAggregationType"
+        },
         "settings": {
           "type": "object",
           "additionalProperties": false,
@@ -767,7 +807,9 @@
         "id"
       ],
       "properties": {
-        "type": {},
+        "type": {
+          "$ref": "#/definitions/MetricAggregationType"
+        },
         "field": {
           "type": "string"
         },
@@ -799,7 +841,9 @@
         "id"
       ],
       "properties": {
-        "type": {},
+        "type": {
+          "$ref": "#/definitions/MetricAggregationType"
+        },
         "field": {
           "type": "string"
         },
@@ -831,7 +875,9 @@
         "id"
       ],
       "properties": {
-        "type": {},
+        "type": {
+          "$ref": "#/definitions/MetricAggregationType"
+        },
         "field": {
           "type": "string"
         },
@@ -863,7 +909,9 @@
         "id"
       ],
       "properties": {
-        "type": {},
+        "type": {
+          "$ref": "#/definitions/MetricAggregationType"
+        },
         "field": {
           "type": "string"
         },
@@ -901,7 +949,9 @@
         "field": {
           "type": "string"
         },
-        "type": {},
+        "type": {
+          "$ref": "#/definitions/MetricAggregationType"
+        },
         "id": {
           "type": "string"
         },
@@ -933,7 +983,9 @@
         "id"
       ],
       "properties": {
-        "type": {},
+        "type": {
+          "$ref": "#/definitions/MetricAggregationType"
+        },
         "id": {
           "type": "string"
         },
@@ -959,7 +1011,9 @@
         "id"
       ],
       "properties": {
-        "type": {},
+        "type": {
+          "$ref": "#/definitions/MetricAggregationType"
+        },
         "field": {
           "type": "string"
         },
@@ -991,7 +1045,9 @@
         "id"
       ],
       "properties": {
-        "type": {},
+        "type": {
+          "$ref": "#/definitions/MetricAggregationType"
+        },
         "id": {
           "type": "string"
         },
@@ -1365,7 +1421,10 @@
         "predict"
       ],
       "properties": {
-        "model": {},
+        "model": {
+          "$ref": "#/definitions/MovingAverageModel",
+          "default": "simple"
+        },
         "window": {
           "type": "string"
         },
@@ -1383,7 +1442,10 @@
         "predict"
       ],
       "properties": {
-        "model": {},
+        "model": {
+          "$ref": "#/definitions/MovingAverageModel",
+          "default": "linear"
+        },
         "window": {
           "type": "string"
         },
@@ -1402,7 +1464,10 @@
         "predict"
       ],
       "properties": {
-        "model": {},
+        "model": {
+          "$ref": "#/definitions/MovingAverageModel",
+          "default": "ewma"
+        },
         "settings": {
           "type": "object",
           "additionalProperties": false,
@@ -1434,7 +1499,10 @@
         "predict"
       ],
       "properties": {
-        "model": {},
+        "model": {
+          "$ref": "#/definitions/MovingAverageModel",
+          "default": "holt"
+        },
         "settings": {
           "type": "object",
           "additionalProperties": false,
@@ -1469,7 +1537,10 @@
         "predict"
       ],
       "properties": {
-        "model": {},
+        "model": {
+          "$ref": "#/definitions/MovingAverageModel",
+          "default": "holt_winters"
+        },
         "settings": {
           "type": "object",
           "additionalProperties": false,

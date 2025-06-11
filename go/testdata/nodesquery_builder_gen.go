@@ -10,14 +10,14 @@ var _ cog.Builder[NodesQuery] = (*NodesQueryBuilder)(nil)
 
 type NodesQueryBuilder struct {
 	internal *NodesQuery
-	errors   map[string]cog.BuildErrors
+	errors   cog.BuildErrors
 }
 
 func NewNodesQueryBuilder() *NodesQueryBuilder {
 	resource := NewNodesQuery()
 	builder := &NodesQueryBuilder{
 		internal: resource,
-		errors:   make(map[string]cog.BuildErrors),
+		errors:   make(cog.BuildErrors, 0),
 	}
 
 	return builder
@@ -26,6 +26,10 @@ func NewNodesQueryBuilder() *NodesQueryBuilder {
 func (builder *NodesQueryBuilder) Build() (NodesQuery, error) {
 	if err := builder.internal.Validate(); err != nil {
 		return NodesQuery{}, err
+	}
+
+	if len(builder.errors) > 0 {
+		return NodesQuery{}, cog.MakeBuildErrors("testdata.nodesQuery", builder.errors)
 	}
 
 	return *builder.internal, nil

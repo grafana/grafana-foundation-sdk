@@ -11,14 +11,14 @@ var _ cog.Builder[variants.Dataquery] = (*DataqueryBuilder)(nil)
 
 type DataqueryBuilder struct {
 	internal *Dataquery
-	errors   map[string]cog.BuildErrors
+	errors   cog.BuildErrors
 }
 
 func NewDataqueryBuilder() *DataqueryBuilder {
 	resource := NewDataquery()
 	builder := &DataqueryBuilder{
 		internal: resource,
-		errors:   make(map[string]cog.BuildErrors),
+		errors:   make(cog.BuildErrors, 0),
 	}
 
 	return builder
@@ -27,6 +27,10 @@ func NewDataqueryBuilder() *DataqueryBuilder {
 func (builder *DataqueryBuilder) Build() (variants.Dataquery, error) {
 	if err := builder.internal.Validate(); err != nil {
 		return Dataquery{}, err
+	}
+
+	if len(builder.errors) > 0 {
+		return Dataquery{}, cog.MakeBuildErrors("testdata.dataquery", builder.errors)
 	}
 
 	return *builder.internal, nil
@@ -53,7 +57,7 @@ func (builder *DataqueryBuilder) StringInput(stringInput string) *DataqueryBuild
 func (builder *DataqueryBuilder) Stream(stream cog.Builder[StreamingQuery]) *DataqueryBuilder {
 	streamResource, err := stream.Build()
 	if err != nil {
-		builder.errors["stream"] = err.(cog.BuildErrors)
+		builder.errors = append(builder.errors, err.(cog.BuildErrors)...)
 		return builder
 	}
 	builder.internal.Stream = &streamResource
@@ -64,7 +68,7 @@ func (builder *DataqueryBuilder) Stream(stream cog.Builder[StreamingQuery]) *Dat
 func (builder *DataqueryBuilder) PulseWave(pulseWave cog.Builder[PulseWaveQuery]) *DataqueryBuilder {
 	pulseWaveResource, err := pulseWave.Build()
 	if err != nil {
-		builder.errors["pulseWave"] = err.(cog.BuildErrors)
+		builder.errors = append(builder.errors, err.(cog.BuildErrors)...)
 		return builder
 	}
 	builder.internal.PulseWave = &pulseWaveResource
@@ -75,7 +79,7 @@ func (builder *DataqueryBuilder) PulseWave(pulseWave cog.Builder[PulseWaveQuery]
 func (builder *DataqueryBuilder) Sim(sim cog.Builder[SimulationQuery]) *DataqueryBuilder {
 	simResource, err := sim.Build()
 	if err != nil {
-		builder.errors["sim"] = err.(cog.BuildErrors)
+		builder.errors = append(builder.errors, err.(cog.BuildErrors)...)
 		return builder
 	}
 	builder.internal.Sim = &simResource
@@ -88,7 +92,7 @@ func (builder *DataqueryBuilder) CsvWave(csvWave []cog.Builder[CSVWave]) *Dataqu
 	for _, r1 := range csvWave {
 		csvWaveDepth1, err := r1.Build()
 		if err != nil {
-			builder.errors["csvWave"] = err.(cog.BuildErrors)
+			builder.errors = append(builder.errors, err.(cog.BuildErrors)...)
 			return builder
 		}
 		csvWaveResources = append(csvWaveResources, csvWaveDepth1)
@@ -125,7 +129,7 @@ func (builder *DataqueryBuilder) Channel(channel string) *DataqueryBuilder {
 func (builder *DataqueryBuilder) Nodes(nodes cog.Builder[NodesQuery]) *DataqueryBuilder {
 	nodesResource, err := nodes.Build()
 	if err != nil {
-		builder.errors["nodes"] = err.(cog.BuildErrors)
+		builder.errors = append(builder.errors, err.(cog.BuildErrors)...)
 		return builder
 	}
 	builder.internal.Nodes = &nodesResource
@@ -160,7 +164,7 @@ func (builder *DataqueryBuilder) SeriesCount(seriesCount int32) *DataqueryBuilde
 func (builder *DataqueryBuilder) Usa(usa cog.Builder[USAQuery]) *DataqueryBuilder {
 	usaResource, err := usa.Build()
 	if err != nil {
-		builder.errors["usa"] = err.(cog.BuildErrors)
+		builder.errors = append(builder.errors, err.(cog.BuildErrors)...)
 		return builder
 	}
 	builder.internal.Usa = &usaResource

@@ -13,14 +13,14 @@ var _ cog.Builder[variants.Dataquery] = (*DataqueryBuilder)(nil)
 // Manually converted from https://github.com/grafana/google-bigquery-datasource/blob/18680e42ba557791d109c7c540c2c3f2647592f0/src/types.ts#L75
 type DataqueryBuilder struct {
 	internal *Dataquery
-	errors   map[string]cog.BuildErrors
+	errors   cog.BuildErrors
 }
 
 func NewDataqueryBuilder() *DataqueryBuilder {
 	resource := NewDataquery()
 	builder := &DataqueryBuilder{
 		internal: resource,
-		errors:   make(map[string]cog.BuildErrors),
+		errors:   make(cog.BuildErrors, 0),
 	}
 
 	return builder
@@ -29,6 +29,10 @@ func NewDataqueryBuilder() *DataqueryBuilder {
 func (builder *DataqueryBuilder) Build() (variants.Dataquery, error) {
 	if err := builder.internal.Validate(); err != nil {
 		return Dataquery{}, err
+	}
+
+	if len(builder.errors) > 0 {
+		return Dataquery{}, cog.MakeBuildErrors("bigquery.dataquery", builder.errors)
 	}
 
 	return *builder.internal, nil
@@ -121,7 +125,7 @@ func (builder *DataqueryBuilder) EditorMode(editorMode EditorMode) *DataqueryBui
 func (builder *DataqueryBuilder) Sql(sql cog.Builder[SQLExpression]) *DataqueryBuilder {
 	sqlResource, err := sql.Build()
 	if err != nil {
-		builder.errors["sql"] = err.(cog.BuildErrors)
+		builder.errors = append(builder.errors, err.(cog.BuildErrors)...)
 		return builder
 	}
 	builder.internal.Sql = &sqlResource

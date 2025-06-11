@@ -10,14 +10,14 @@ var _ cog.Builder[TextDimensionConfig] = (*TextDimensionConfigBuilder)(nil)
 
 type TextDimensionConfigBuilder struct {
 	internal *TextDimensionConfig
-	errors   map[string]cog.BuildErrors
+	errors   cog.BuildErrors
 }
 
 func NewTextDimensionConfigBuilder() *TextDimensionConfigBuilder {
 	resource := NewTextDimensionConfig()
 	builder := &TextDimensionConfigBuilder{
 		internal: resource,
-		errors:   make(map[string]cog.BuildErrors),
+		errors:   make(cog.BuildErrors, 0),
 	}
 
 	return builder
@@ -26,6 +26,10 @@ func NewTextDimensionConfigBuilder() *TextDimensionConfigBuilder {
 func (builder *TextDimensionConfigBuilder) Build() (TextDimensionConfig, error) {
 	if err := builder.internal.Validate(); err != nil {
 		return TextDimensionConfig{}, err
+	}
+
+	if len(builder.errors) > 0 {
+		return TextDimensionConfig{}, cog.MakeBuildErrors("common.textDimensionConfig", builder.errors)
 	}
 
 	return *builder.internal, nil

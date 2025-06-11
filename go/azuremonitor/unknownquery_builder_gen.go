@@ -10,14 +10,14 @@ var _ cog.Builder[UnknownQuery] = (*UnknownQueryBuilder)(nil)
 
 type UnknownQueryBuilder struct {
 	internal *UnknownQuery
-	errors   map[string]cog.BuildErrors
+	errors   cog.BuildErrors
 }
 
 func NewUnknownQueryBuilder() *UnknownQueryBuilder {
 	resource := NewUnknownQuery()
 	builder := &UnknownQueryBuilder{
 		internal: resource,
-		errors:   make(map[string]cog.BuildErrors),
+		errors:   make(cog.BuildErrors, 0),
 	}
 	builder.internal.Kind = "UnknownQuery"
 
@@ -27,6 +27,10 @@ func NewUnknownQueryBuilder() *UnknownQueryBuilder {
 func (builder *UnknownQueryBuilder) Build() (UnknownQuery, error) {
 	if err := builder.internal.Validate(); err != nil {
 		return UnknownQuery{}, err
+	}
+
+	if len(builder.errors) > 0 {
+		return UnknownQuery{}, cog.MakeBuildErrors("azuremonitor.unknownQuery", builder.errors)
 	}
 
 	return *builder.internal, nil
