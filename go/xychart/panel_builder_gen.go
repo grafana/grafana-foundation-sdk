@@ -14,14 +14,14 @@ var _ cog.Builder[dashboard.Panel] = (*PanelBuilder)(nil)
 // Dashboard panels are the basic visualization building blocks.
 type PanelBuilder struct {
 	internal *dashboard.Panel
-	errors   map[string]cog.BuildErrors
+	errors   cog.BuildErrors
 }
 
 func NewPanelBuilder() *PanelBuilder {
 	resource := dashboard.NewPanel()
 	builder := &PanelBuilder{
 		internal: resource,
-		errors:   make(map[string]cog.BuildErrors),
+		errors:   make(cog.BuildErrors, 0),
 	}
 	builder.internal.Type = "xychart"
 
@@ -31,6 +31,10 @@ func NewPanelBuilder() *PanelBuilder {
 func (builder *PanelBuilder) Build() (dashboard.Panel, error) {
 	if err := builder.internal.Validate(); err != nil {
 		return dashboard.Panel{}, err
+	}
+
+	if len(builder.errors) > 0 {
+		return dashboard.Panel{}, cog.MakeBuildErrors("xychart.panel", builder.errors)
 	}
 
 	return *builder.internal, nil
@@ -49,7 +53,7 @@ func (builder *PanelBuilder) Targets(targets []cog.Builder[variants.Dataquery]) 
 	for _, r1 := range targets {
 		targetsDepth1, err := r1.Build()
 		if err != nil {
-			builder.errors["targets"] = err.(cog.BuildErrors)
+			builder.errors = append(builder.errors, err.(cog.BuildErrors)...)
 			return builder
 		}
 		targetsResources = append(targetsResources, targetsDepth1)
@@ -63,7 +67,7 @@ func (builder *PanelBuilder) Targets(targets []cog.Builder[variants.Dataquery]) 
 func (builder *PanelBuilder) WithTarget(target cog.Builder[variants.Dataquery]) *PanelBuilder {
 	targetResource, err := target.Build()
 	if err != nil {
-		builder.errors["targets"] = err.(cog.BuildErrors)
+		builder.errors = append(builder.errors, err.(cog.BuildErrors)...)
 		return builder
 	}
 	builder.internal.Targets = append(builder.internal.Targets, targetResource)
@@ -132,7 +136,7 @@ func (builder *PanelBuilder) Links(links []cog.Builder[dashboard.DashboardLink])
 	for _, r1 := range links {
 		linksDepth1, err := r1.Build()
 		if err != nil {
-			builder.errors["links"] = err.(cog.BuildErrors)
+			builder.errors = append(builder.errors, err.(cog.BuildErrors)...)
 			return builder
 		}
 		linksResources = append(linksResources, linksDepth1)
@@ -331,7 +335,7 @@ func (builder *PanelBuilder) Thresholds(thresholds cog.Builder[dashboard.Thresho
 	}
 	thresholdsResource, err := thresholds.Build()
 	if err != nil {
-		builder.errors["fieldConfig.defaults.thresholds"] = err.(cog.BuildErrors)
+		builder.errors = append(builder.errors, err.(cog.BuildErrors)...)
 		return builder
 	}
 	builder.internal.FieldConfig.Defaults.Thresholds = &thresholdsResource
@@ -346,7 +350,7 @@ func (builder *PanelBuilder) ColorScheme(color cog.Builder[dashboard.FieldColor]
 	}
 	colorResource, err := color.Build()
 	if err != nil {
-		builder.errors["fieldConfig.defaults.color"] = err.(cog.BuildErrors)
+		builder.errors = append(builder.errors, err.(cog.BuildErrors)...)
 		return builder
 	}
 	builder.internal.FieldConfig.Defaults.Color = &colorResource
@@ -363,7 +367,7 @@ func (builder *PanelBuilder) DataLinks(links []cog.Builder[dashboard.DashboardLi
 	for _, r1 := range links {
 		linksDepth1, err := r1.Build()
 		if err != nil {
-			builder.errors["fieldConfig.defaults.links"] = err.(cog.BuildErrors)
+			builder.errors = append(builder.errors, err.(cog.BuildErrors)...)
 			return builder
 		}
 		linksResources = append(linksResources, linksDepth1)
@@ -392,7 +396,7 @@ func (builder *PanelBuilder) Overrides(overrides []cog.Builder[dashboard.Dashboa
 	for _, r1 := range overrides {
 		overridesDepth1, err := r1.Build()
 		if err != nil {
-			builder.errors["fieldConfig.overrides"] = err.(cog.BuildErrors)
+			builder.errors = append(builder.errors, err.(cog.BuildErrors)...)
 			return builder
 		}
 		overridesResources = append(overridesResources, overridesDepth1)
@@ -499,7 +503,7 @@ func (builder *PanelBuilder) PointSize(pointSize cog.Builder[common.ScaleDimensi
 	}
 	pointSizeResource, err := pointSize.Build()
 	if err != nil {
-		builder.errors["fieldConfig.defaults.custom.pointSize"] = err.(cog.BuildErrors)
+		builder.errors = append(builder.errors, err.(cog.BuildErrors)...)
 		return builder
 	}
 	builder.internal.FieldConfig.Defaults.Custom.(*FieldConfig).PointSize = &pointSizeResource
@@ -516,7 +520,7 @@ func (builder *PanelBuilder) PointColor(pointColor cog.Builder[common.ColorDimen
 	}
 	pointColorResource, err := pointColor.Build()
 	if err != nil {
-		builder.errors["fieldConfig.defaults.custom.pointColor"] = err.(cog.BuildErrors)
+		builder.errors = append(builder.errors, err.(cog.BuildErrors)...)
 		return builder
 	}
 	builder.internal.FieldConfig.Defaults.Custom.(*FieldConfig).PointColor = &pointColorResource
@@ -533,7 +537,7 @@ func (builder *PanelBuilder) LineColor(lineColor cog.Builder[common.ColorDimensi
 	}
 	lineColorResource, err := lineColor.Build()
 	if err != nil {
-		builder.errors["fieldConfig.defaults.custom.lineColor"] = err.(cog.BuildErrors)
+		builder.errors = append(builder.errors, err.(cog.BuildErrors)...)
 		return builder
 	}
 	builder.internal.FieldConfig.Defaults.Custom.(*FieldConfig).LineColor = &lineColorResource
@@ -562,7 +566,7 @@ func (builder *PanelBuilder) LineStyle(lineStyle cog.Builder[common.LineStyle]) 
 	}
 	lineStyleResource, err := lineStyle.Build()
 	if err != nil {
-		builder.errors["fieldConfig.defaults.custom.lineStyle"] = err.(cog.BuildErrors)
+		builder.errors = append(builder.errors, err.(cog.BuildErrors)...)
 		return builder
 	}
 	builder.internal.FieldConfig.Defaults.Custom.(*FieldConfig).LineStyle = &lineStyleResource
@@ -591,7 +595,7 @@ func (builder *PanelBuilder) HideFrom(hideFrom cog.Builder[common.HideSeriesConf
 	}
 	hideFromResource, err := hideFrom.Build()
 	if err != nil {
-		builder.errors["fieldConfig.defaults.custom.hideFrom"] = err.(cog.BuildErrors)
+		builder.errors = append(builder.errors, err.(cog.BuildErrors)...)
 		return builder
 	}
 	builder.internal.FieldConfig.Defaults.Custom.(*FieldConfig).HideFrom = &hideFromResource
@@ -692,7 +696,7 @@ func (builder *PanelBuilder) ScaleDistribution(scaleDistribution cog.Builder[com
 	}
 	scaleDistributionResource, err := scaleDistribution.Build()
 	if err != nil {
-		builder.errors["fieldConfig.defaults.custom.scaleDistribution"] = err.(cog.BuildErrors)
+		builder.errors = append(builder.errors, err.(cog.BuildErrors)...)
 		return builder
 	}
 	builder.internal.FieldConfig.Defaults.Custom.(*FieldConfig).ScaleDistribution = &scaleDistributionResource
@@ -721,7 +725,7 @@ func (builder *PanelBuilder) LabelValue(labelValue cog.Builder[common.TextDimens
 	}
 	labelValueResource, err := labelValue.Build()
 	if err != nil {
-		builder.errors["fieldConfig.defaults.custom.labelValue"] = err.(cog.BuildErrors)
+		builder.errors = append(builder.errors, err.(cog.BuildErrors)...)
 		return builder
 	}
 	builder.internal.FieldConfig.Defaults.Custom.(*FieldConfig).LabelValue = &labelValueResource
@@ -757,7 +761,7 @@ func (builder *PanelBuilder) Dims(dims cog.Builder[XYDimensionConfig]) *PanelBui
 	}
 	dimsResource, err := dims.Build()
 	if err != nil {
-		builder.errors["options.dims"] = err.(cog.BuildErrors)
+		builder.errors = append(builder.errors, err.(cog.BuildErrors)...)
 		return builder
 	}
 	builder.internal.Options.(*Options).Dims = dimsResource
@@ -771,7 +775,7 @@ func (builder *PanelBuilder) Legend(legend cog.Builder[common.VizLegendOptions])
 	}
 	legendResource, err := legend.Build()
 	if err != nil {
-		builder.errors["options.legend"] = err.(cog.BuildErrors)
+		builder.errors = append(builder.errors, err.(cog.BuildErrors)...)
 		return builder
 	}
 	builder.internal.Options.(*Options).Legend = legendResource
@@ -785,7 +789,7 @@ func (builder *PanelBuilder) Tooltip(tooltip cog.Builder[common.VizTooltipOption
 	}
 	tooltipResource, err := tooltip.Build()
 	if err != nil {
-		builder.errors["options.tooltip"] = err.(cog.BuildErrors)
+		builder.errors = append(builder.errors, err.(cog.BuildErrors)...)
 		return builder
 	}
 	builder.internal.Options.(*Options).Tooltip = tooltipResource
@@ -802,7 +806,7 @@ func (builder *PanelBuilder) Series(series []cog.Builder[ScatterSeriesConfig]) *
 	for _, r1 := range series {
 		seriesDepth1, err := r1.Build()
 		if err != nil {
-			builder.errors["options.series"] = err.(cog.BuildErrors)
+			builder.errors = append(builder.errors, err.(cog.BuildErrors)...)
 			return builder
 		}
 		seriesResources = append(seriesResources, seriesDepth1)

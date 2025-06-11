@@ -10,14 +10,14 @@ var _ cog.Builder[CandlestickFieldMap] = (*CandlestickFieldMapBuilder)(nil)
 
 type CandlestickFieldMapBuilder struct {
 	internal *CandlestickFieldMap
-	errors   map[string]cog.BuildErrors
+	errors   cog.BuildErrors
 }
 
 func NewCandlestickFieldMapBuilder() *CandlestickFieldMapBuilder {
 	resource := NewCandlestickFieldMap()
 	builder := &CandlestickFieldMapBuilder{
 		internal: resource,
-		errors:   make(map[string]cog.BuildErrors),
+		errors:   make(cog.BuildErrors, 0),
 	}
 
 	return builder
@@ -26,6 +26,10 @@ func NewCandlestickFieldMapBuilder() *CandlestickFieldMapBuilder {
 func (builder *CandlestickFieldMapBuilder) Build() (CandlestickFieldMap, error) {
 	if err := builder.internal.Validate(); err != nil {
 		return CandlestickFieldMap{}, err
+	}
+
+	if len(builder.errors) > 0 {
+		return CandlestickFieldMap{}, cog.MakeBuildErrors("candlestick.candlestickFieldMap", builder.errors)
 	}
 
 	return *builder.internal, nil

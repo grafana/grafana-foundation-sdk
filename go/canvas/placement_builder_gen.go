@@ -10,14 +10,14 @@ var _ cog.Builder[Placement] = (*PlacementBuilder)(nil)
 
 type PlacementBuilder struct {
 	internal *Placement
-	errors   map[string]cog.BuildErrors
+	errors   cog.BuildErrors
 }
 
 func NewPlacementBuilder() *PlacementBuilder {
 	resource := NewPlacement()
 	builder := &PlacementBuilder{
 		internal: resource,
-		errors:   make(map[string]cog.BuildErrors),
+		errors:   make(cog.BuildErrors, 0),
 	}
 
 	return builder
@@ -26,6 +26,10 @@ func NewPlacementBuilder() *PlacementBuilder {
 func (builder *PlacementBuilder) Build() (Placement, error) {
 	if err := builder.internal.Validate(); err != nil {
 		return Placement{}, err
+	}
+
+	if len(builder.errors) > 0 {
+		return Placement{}, cog.MakeBuildErrors("canvas.placement", builder.errors)
 	}
 
 	return *builder.internal, nil

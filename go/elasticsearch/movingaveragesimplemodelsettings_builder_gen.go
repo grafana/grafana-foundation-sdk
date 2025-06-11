@@ -10,14 +10,14 @@ var _ cog.Builder[MovingAverageSimpleModelSettings] = (*MovingAverageSimpleModel
 
 type MovingAverageSimpleModelSettingsBuilder struct {
 	internal *MovingAverageSimpleModelSettings
-	errors   map[string]cog.BuildErrors
+	errors   cog.BuildErrors
 }
 
 func NewMovingAverageSimpleModelSettingsBuilder() *MovingAverageSimpleModelSettingsBuilder {
 	resource := NewMovingAverageSimpleModelSettings()
 	builder := &MovingAverageSimpleModelSettingsBuilder{
 		internal: resource,
-		errors:   make(map[string]cog.BuildErrors),
+		errors:   make(cog.BuildErrors, 0),
 	}
 
 	return builder
@@ -26,6 +26,10 @@ func NewMovingAverageSimpleModelSettingsBuilder() *MovingAverageSimpleModelSetti
 func (builder *MovingAverageSimpleModelSettingsBuilder) Build() (MovingAverageSimpleModelSettings, error) {
 	if err := builder.internal.Validate(); err != nil {
 		return MovingAverageSimpleModelSettings{}, err
+	}
+
+	if len(builder.errors) > 0 {
+		return MovingAverageSimpleModelSettings{}, cog.MakeBuildErrors("elasticsearch.movingAverageSimpleModelSettings", builder.errors)
 	}
 
 	return *builder.internal, nil
