@@ -10,14 +10,14 @@ var _ cog.Builder[PipelineVariable] = (*PipelineVariableBuilder)(nil)
 
 type PipelineVariableBuilder struct {
 	internal *PipelineVariable
-	errors   map[string]cog.BuildErrors
+	errors   cog.BuildErrors
 }
 
 func NewPipelineVariableBuilder() *PipelineVariableBuilder {
 	resource := NewPipelineVariable()
 	builder := &PipelineVariableBuilder{
 		internal: resource,
-		errors:   make(map[string]cog.BuildErrors),
+		errors:   make(cog.BuildErrors, 0),
 	}
 
 	return builder
@@ -26,6 +26,10 @@ func NewPipelineVariableBuilder() *PipelineVariableBuilder {
 func (builder *PipelineVariableBuilder) Build() (PipelineVariable, error) {
 	if err := builder.internal.Validate(); err != nil {
 		return PipelineVariable{}, err
+	}
+
+	if len(builder.errors) > 0 {
+		return PipelineVariable{}, cog.MakeBuildErrors("elasticsearch.pipelineVariable", builder.errors)
 	}
 
 	return *builder.internal, nil

@@ -11,14 +11,14 @@ var _ cog.Builder[OptionsWithLegend] = (*OptionsWithLegendBuilder)(nil)
 // TODO docs
 type OptionsWithLegendBuilder struct {
 	internal *OptionsWithLegend
-	errors   map[string]cog.BuildErrors
+	errors   cog.BuildErrors
 }
 
 func NewOptionsWithLegendBuilder() *OptionsWithLegendBuilder {
 	resource := NewOptionsWithLegend()
 	builder := &OptionsWithLegendBuilder{
 		internal: resource,
-		errors:   make(map[string]cog.BuildErrors),
+		errors:   make(cog.BuildErrors, 0),
 	}
 
 	return builder
@@ -29,13 +29,17 @@ func (builder *OptionsWithLegendBuilder) Build() (OptionsWithLegend, error) {
 		return OptionsWithLegend{}, err
 	}
 
+	if len(builder.errors) > 0 {
+		return OptionsWithLegend{}, cog.MakeBuildErrors("common.optionsWithLegend", builder.errors)
+	}
+
 	return *builder.internal, nil
 }
 
 func (builder *OptionsWithLegendBuilder) Legend(legend cog.Builder[VizLegendOptions]) *OptionsWithLegendBuilder {
 	legendResource, err := legend.Build()
 	if err != nil {
-		builder.errors["legend"] = err.(cog.BuildErrors)
+		builder.errors = append(builder.errors, err.(cog.BuildErrors)...)
 		return builder
 	}
 	builder.internal.Legend = legendResource

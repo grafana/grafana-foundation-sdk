@@ -10,14 +10,14 @@ var _ cog.Builder[BuiltinRoleRef] = (*BuiltinRoleRefBuilder)(nil)
 
 type BuiltinRoleRefBuilder struct {
 	internal *BuiltinRoleRef
-	errors   map[string]cog.BuildErrors
+	errors   cog.BuildErrors
 }
 
 func NewBuiltinRoleRefBuilder() *BuiltinRoleRefBuilder {
 	resource := NewBuiltinRoleRef()
 	builder := &BuiltinRoleRefBuilder{
 		internal: resource,
-		errors:   make(map[string]cog.BuildErrors),
+		errors:   make(cog.BuildErrors, 0),
 	}
 	builder.internal.Kind = "BuiltinRole"
 
@@ -27,6 +27,10 @@ func NewBuiltinRoleRefBuilder() *BuiltinRoleRefBuilder {
 func (builder *BuiltinRoleRefBuilder) Build() (BuiltinRoleRef, error) {
 	if err := builder.internal.Validate(); err != nil {
 		return BuiltinRoleRef{}, err
+	}
+
+	if len(builder.errors) > 0 {
+		return BuiltinRoleRef{}, cog.MakeBuildErrors("rolebinding.builtinRoleRef", builder.errors)
 	}
 
 	return *builder.internal, nil

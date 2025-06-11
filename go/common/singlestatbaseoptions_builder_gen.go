@@ -11,14 +11,14 @@ var _ cog.Builder[SingleStatBaseOptions] = (*SingleStatBaseOptionsBuilder)(nil)
 // TODO docs
 type SingleStatBaseOptionsBuilder struct {
 	internal *SingleStatBaseOptions
-	errors   map[string]cog.BuildErrors
+	errors   cog.BuildErrors
 }
 
 func NewSingleStatBaseOptionsBuilder() *SingleStatBaseOptionsBuilder {
 	resource := NewSingleStatBaseOptions()
 	builder := &SingleStatBaseOptionsBuilder{
 		internal: resource,
-		errors:   make(map[string]cog.BuildErrors),
+		errors:   make(cog.BuildErrors, 0),
 	}
 
 	return builder
@@ -29,13 +29,17 @@ func (builder *SingleStatBaseOptionsBuilder) Build() (SingleStatBaseOptions, err
 		return SingleStatBaseOptions{}, err
 	}
 
+	if len(builder.errors) > 0 {
+		return SingleStatBaseOptions{}, cog.MakeBuildErrors("common.singleStatBaseOptions", builder.errors)
+	}
+
 	return *builder.internal, nil
 }
 
 func (builder *SingleStatBaseOptionsBuilder) ReduceOptions(reduceOptions cog.Builder[ReduceDataOptions]) *SingleStatBaseOptionsBuilder {
 	reduceOptionsResource, err := reduceOptions.Build()
 	if err != nil {
-		builder.errors["reduceOptions"] = err.(cog.BuildErrors)
+		builder.errors = append(builder.errors, err.(cog.BuildErrors)...)
 		return builder
 	}
 	builder.internal.ReduceOptions = reduceOptionsResource
@@ -46,7 +50,7 @@ func (builder *SingleStatBaseOptionsBuilder) ReduceOptions(reduceOptions cog.Bui
 func (builder *SingleStatBaseOptionsBuilder) Text(text cog.Builder[VizTextDisplayOptions]) *SingleStatBaseOptionsBuilder {
 	textResource, err := text.Build()
 	if err != nil {
-		builder.errors["text"] = err.(cog.BuildErrors)
+		builder.errors = append(builder.errors, err.(cog.BuildErrors)...)
 		return builder
 	}
 	builder.internal.Text = &textResource
