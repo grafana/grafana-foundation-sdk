@@ -12,14 +12,14 @@ var _ cog.Builder[variants.Dataquery] = (*TypeThresholdBuilder)(nil)
 
 type TypeThresholdBuilder struct {
 	internal *TypeThreshold
-	errors   map[string]cog.BuildErrors
+	errors   cog.BuildErrors
 }
 
 func NewTypeThresholdBuilder() *TypeThresholdBuilder {
 	resource := NewTypeThreshold()
 	builder := &TypeThresholdBuilder{
 		internal: resource,
-		errors:   make(map[string]cog.BuildErrors),
+		errors:   make(cog.BuildErrors, 0),
 	}
 	builder.internal.Type = "threshold"
 
@@ -31,6 +31,10 @@ func (builder *TypeThresholdBuilder) Build() (variants.Dataquery, error) {
 		return TypeThreshold{}, err
 	}
 
+	if len(builder.errors) > 0 {
+		return TypeThreshold{}, cog.MakeBuildErrors("expr.typeThreshold", builder.errors)
+	}
+
 	return *builder.internal, nil
 }
 
@@ -40,7 +44,7 @@ func (builder *TypeThresholdBuilder) Conditions(conditions []cog.Builder[ExprTyp
 	for _, r1 := range conditions {
 		conditionsDepth1, err := r1.Build()
 		if err != nil {
-			builder.errors["conditions"] = err.(cog.BuildErrors)
+			builder.errors = append(builder.errors, err.(cog.BuildErrors)...)
 			return builder
 		}
 		conditionsResources = append(conditionsResources, conditionsDepth1)
@@ -110,7 +114,7 @@ func (builder *TypeThresholdBuilder) RefId(refId string) *TypeThresholdBuilder {
 func (builder *TypeThresholdBuilder) ResultAssertions(resultAssertions cog.Builder[ExprTypeThresholdResultAssertions]) *TypeThresholdBuilder {
 	resultAssertionsResource, err := resultAssertions.Build()
 	if err != nil {
-		builder.errors["resultAssertions"] = err.(cog.BuildErrors)
+		builder.errors = append(builder.errors, err.(cog.BuildErrors)...)
 		return builder
 	}
 	builder.internal.ResultAssertions = &resultAssertionsResource
@@ -124,7 +128,7 @@ func (builder *TypeThresholdBuilder) ResultAssertions(resultAssertions cog.Build
 func (builder *TypeThresholdBuilder) TimeRange(timeRange cog.Builder[ExprTypeThresholdTimeRange]) *TypeThresholdBuilder {
 	timeRangeResource, err := timeRange.Build()
 	if err != nil {
-		builder.errors["timeRange"] = err.(cog.BuildErrors)
+		builder.errors = append(builder.errors, err.(cog.BuildErrors)...)
 		return builder
 	}
 	builder.internal.TimeRange = &timeRangeResource

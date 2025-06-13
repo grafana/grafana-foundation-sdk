@@ -10,14 +10,14 @@ var _ cog.Builder[RecordRule] = (*RecordRuleBuilder)(nil)
 
 type RecordRuleBuilder struct {
 	internal *RecordRule
-	errors   map[string]cog.BuildErrors
+	errors   cog.BuildErrors
 }
 
 func NewRecordRuleBuilder() *RecordRuleBuilder {
 	resource := NewRecordRule()
 	builder := &RecordRuleBuilder{
 		internal: resource,
-		errors:   make(map[string]cog.BuildErrors),
+		errors:   make(cog.BuildErrors, 0),
 	}
 
 	return builder
@@ -26,6 +26,10 @@ func NewRecordRuleBuilder() *RecordRuleBuilder {
 func (builder *RecordRuleBuilder) Build() (RecordRule, error) {
 	if err := builder.internal.Validate(); err != nil {
 		return RecordRule{}, err
+	}
+
+	if len(builder.errors) > 0 {
+		return RecordRule{}, cog.MakeBuildErrors("alerting.recordRule", builder.errors)
 	}
 
 	return *builder.internal, nil

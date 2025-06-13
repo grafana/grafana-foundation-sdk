@@ -392,6 +392,10 @@ func (resource RuleGroup) Validate() error {
 }
 
 type NotificationSettings struct {
+	// Override the times when notifications should not be muted. These must match the name of a mute time interval defined
+	// in the alertmanager configuration time_intervals section. All notifications will be suppressed unless they are sent
+	// at the time that matches any interval.
+	ActiveTimeIntervals []string `json:"active_time_intervals,omitempty"`
 	// Override the labels by which incoming alerts are grouped together. For example, multiple alerts coming in for
 	// cluster=A and alertname=LatencyHigh would be batched into a single group. To aggregate by all possible labels
 	// use the special value '...' as the sole label name.
@@ -406,7 +410,7 @@ type NotificationSettings struct {
 	// inhibiting alert to arrive or collect more initial alerts for the same group. (Usually ~0s to few minutes.)
 	GroupWait *string `json:"group_wait,omitempty"`
 	// Override the times when notifications should be muted. These must match the name of a mute time interval defined
-	// in the alertmanager configuration mute_time_intervals section. When muted it will not send any notifications, but
+	// in the alertmanager configuration time_intervals section. When muted it will not send any notifications, but
 	// otherwise acts normally.
 	MuteTimeIntervals []string `json:"mute_time_intervals,omitempty"`
 	// Name of the receiver to send notifications to.
@@ -437,6 +441,18 @@ func (resource *NotificationSettings) UnmarshalJSONStrict(raw []byte) error {
 	fields := make(map[string]json.RawMessage)
 	if err := json.Unmarshal(raw, &fields); err != nil {
 		return err
+	}
+	// Field "active_time_intervals"
+	if fields["active_time_intervals"] != nil {
+		if string(fields["active_time_intervals"]) != "null" {
+
+			if err := json.Unmarshal(fields["active_time_intervals"], &resource.ActiveTimeIntervals); err != nil {
+				errs = append(errs, cog.MakeBuildErrors("active_time_intervals", err)...)
+			}
+
+		}
+		delete(fields, "active_time_intervals")
+
 	}
 	// Field "group_by"
 	if fields["group_by"] != nil {
@@ -523,6 +539,16 @@ func (resource *NotificationSettings) UnmarshalJSONStrict(raw []byte) error {
 
 // Equals tests the equality of two `NotificationSettings` objects.
 func (resource NotificationSettings) Equals(other NotificationSettings) bool {
+
+	if len(resource.ActiveTimeIntervals) != len(other.ActiveTimeIntervals) {
+		return false
+	}
+
+	for i1 := range resource.ActiveTimeIntervals {
+		if resource.ActiveTimeIntervals[i1] != other.ActiveTimeIntervals[i1] {
+			return false
+		}
+	}
 
 	if len(resource.GroupBy) != len(other.GroupBy) {
 		return false

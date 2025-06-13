@@ -11,14 +11,14 @@ var _ cog.Builder[HeatmapLegend] = (*HeatmapLegendBuilder)(nil)
 // Controls legend options
 type HeatmapLegendBuilder struct {
 	internal *HeatmapLegend
-	errors   map[string]cog.BuildErrors
+	errors   cog.BuildErrors
 }
 
 func NewHeatmapLegendBuilder() *HeatmapLegendBuilder {
 	resource := NewHeatmapLegend()
 	builder := &HeatmapLegendBuilder{
 		internal: resource,
-		errors:   make(map[string]cog.BuildErrors),
+		errors:   make(cog.BuildErrors, 0),
 	}
 
 	return builder
@@ -27,6 +27,10 @@ func NewHeatmapLegendBuilder() *HeatmapLegendBuilder {
 func (builder *HeatmapLegendBuilder) Build() (HeatmapLegend, error) {
 	if err := builder.internal.Validate(); err != nil {
 		return HeatmapLegend{}, err
+	}
+
+	if len(builder.errors) > 0 {
+		return HeatmapLegend{}, cog.MakeBuildErrors("heatmap.heatmapLegend", builder.errors)
 	}
 
 	return *builder.internal, nil

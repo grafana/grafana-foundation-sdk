@@ -10,14 +10,14 @@ var _ cog.Builder[ElasticsearchMetricAggregationWithInlineScriptSettings] = (*El
 
 type ElasticsearchMetricAggregationWithInlineScriptSettingsBuilder struct {
 	internal *ElasticsearchMetricAggregationWithInlineScriptSettings
-	errors   map[string]cog.BuildErrors
+	errors   cog.BuildErrors
 }
 
 func NewElasticsearchMetricAggregationWithInlineScriptSettingsBuilder() *ElasticsearchMetricAggregationWithInlineScriptSettingsBuilder {
 	resource := NewElasticsearchMetricAggregationWithInlineScriptSettings()
 	builder := &ElasticsearchMetricAggregationWithInlineScriptSettingsBuilder{
 		internal: resource,
-		errors:   make(map[string]cog.BuildErrors),
+		errors:   make(cog.BuildErrors, 0),
 	}
 
 	return builder
@@ -26,6 +26,10 @@ func NewElasticsearchMetricAggregationWithInlineScriptSettingsBuilder() *Elastic
 func (builder *ElasticsearchMetricAggregationWithInlineScriptSettingsBuilder) Build() (ElasticsearchMetricAggregationWithInlineScriptSettings, error) {
 	if err := builder.internal.Validate(); err != nil {
 		return ElasticsearchMetricAggregationWithInlineScriptSettings{}, err
+	}
+
+	if len(builder.errors) > 0 {
+		return ElasticsearchMetricAggregationWithInlineScriptSettings{}, cog.MakeBuildErrors("elasticsearch.elasticsearchMetricAggregationWithInlineScriptSettings", builder.errors)
 	}
 
 	return *builder.internal, nil

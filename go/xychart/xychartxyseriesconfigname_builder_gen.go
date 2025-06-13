@@ -10,14 +10,14 @@ var _ cog.Builder[XychartXYSeriesConfigName] = (*XychartXYSeriesConfigNameBuilde
 
 type XychartXYSeriesConfigNameBuilder struct {
 	internal *XychartXYSeriesConfigName
-	errors   map[string]cog.BuildErrors
+	errors   cog.BuildErrors
 }
 
 func NewXychartXYSeriesConfigNameBuilder() *XychartXYSeriesConfigNameBuilder {
 	resource := NewXychartXYSeriesConfigName()
 	builder := &XychartXYSeriesConfigNameBuilder{
 		internal: resource,
-		errors:   make(map[string]cog.BuildErrors),
+		errors:   make(cog.BuildErrors, 0),
 	}
 
 	return builder
@@ -26,6 +26,10 @@ func NewXychartXYSeriesConfigNameBuilder() *XychartXYSeriesConfigNameBuilder {
 func (builder *XychartXYSeriesConfigNameBuilder) Build() (XychartXYSeriesConfigName, error) {
 	if err := builder.internal.Validate(); err != nil {
 		return XychartXYSeriesConfigName{}, err
+	}
+
+	if len(builder.errors) > 0 {
+		return XychartXYSeriesConfigName{}, cog.MakeBuildErrors("xychart.xychartXYSeriesConfigName", builder.errors)
 	}
 
 	return *builder.internal, nil

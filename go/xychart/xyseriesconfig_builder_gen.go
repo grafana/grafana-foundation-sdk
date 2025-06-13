@@ -10,14 +10,14 @@ var _ cog.Builder[XYSeriesConfig] = (*XYSeriesConfigBuilder)(nil)
 
 type XYSeriesConfigBuilder struct {
 	internal *XYSeriesConfig
-	errors   map[string]cog.BuildErrors
+	errors   cog.BuildErrors
 }
 
 func NewXYSeriesConfigBuilder() *XYSeriesConfigBuilder {
 	resource := NewXYSeriesConfig()
 	builder := &XYSeriesConfigBuilder{
 		internal: resource,
-		errors:   make(map[string]cog.BuildErrors),
+		errors:   make(cog.BuildErrors, 0),
 	}
 
 	return builder
@@ -28,13 +28,17 @@ func (builder *XYSeriesConfigBuilder) Build() (XYSeriesConfig, error) {
 		return XYSeriesConfig{}, err
 	}
 
+	if len(builder.errors) > 0 {
+		return XYSeriesConfig{}, cog.MakeBuildErrors("xychart.xYSeriesConfig", builder.errors)
+	}
+
 	return *builder.internal, nil
 }
 
 func (builder *XYSeriesConfigBuilder) Name(name cog.Builder[XychartXYSeriesConfigName]) *XYSeriesConfigBuilder {
 	nameResource, err := name.Build()
 	if err != nil {
-		builder.errors["name"] = err.(cog.BuildErrors)
+		builder.errors = append(builder.errors, err.(cog.BuildErrors)...)
 		return builder
 	}
 	builder.internal.Name = &nameResource
@@ -45,7 +49,7 @@ func (builder *XYSeriesConfigBuilder) Name(name cog.Builder[XychartXYSeriesConfi
 func (builder *XYSeriesConfigBuilder) Frame(frame cog.Builder[XychartXYSeriesConfigFrame]) *XYSeriesConfigBuilder {
 	frameResource, err := frame.Build()
 	if err != nil {
-		builder.errors["frame"] = err.(cog.BuildErrors)
+		builder.errors = append(builder.errors, err.(cog.BuildErrors)...)
 		return builder
 	}
 	builder.internal.Frame = &frameResource
@@ -56,7 +60,7 @@ func (builder *XYSeriesConfigBuilder) Frame(frame cog.Builder[XychartXYSeriesCon
 func (builder *XYSeriesConfigBuilder) X(x cog.Builder[XychartXYSeriesConfigX]) *XYSeriesConfigBuilder {
 	xResource, err := x.Build()
 	if err != nil {
-		builder.errors["x"] = err.(cog.BuildErrors)
+		builder.errors = append(builder.errors, err.(cog.BuildErrors)...)
 		return builder
 	}
 	builder.internal.X = &xResource
@@ -67,7 +71,7 @@ func (builder *XYSeriesConfigBuilder) X(x cog.Builder[XychartXYSeriesConfigX]) *
 func (builder *XYSeriesConfigBuilder) Y(y cog.Builder[XychartXYSeriesConfigY]) *XYSeriesConfigBuilder {
 	yResource, err := y.Build()
 	if err != nil {
-		builder.errors["y"] = err.(cog.BuildErrors)
+		builder.errors = append(builder.errors, err.(cog.BuildErrors)...)
 		return builder
 	}
 	builder.internal.Y = &yResource
@@ -78,7 +82,7 @@ func (builder *XYSeriesConfigBuilder) Y(y cog.Builder[XychartXYSeriesConfigY]) *
 func (builder *XYSeriesConfigBuilder) Color(color cog.Builder[XychartXYSeriesConfigColor]) *XYSeriesConfigBuilder {
 	colorResource, err := color.Build()
 	if err != nil {
-		builder.errors["color"] = err.(cog.BuildErrors)
+		builder.errors = append(builder.errors, err.(cog.BuildErrors)...)
 		return builder
 	}
 	builder.internal.Color = &colorResource
@@ -89,7 +93,7 @@ func (builder *XYSeriesConfigBuilder) Color(color cog.Builder[XychartXYSeriesCon
 func (builder *XYSeriesConfigBuilder) Size(size cog.Builder[XychartXYSeriesConfigSize]) *XYSeriesConfigBuilder {
 	sizeResource, err := size.Build()
 	if err != nil {
-		builder.errors["size"] = err.(cog.BuildErrors)
+		builder.errors = append(builder.errors, err.(cog.BuildErrors)...)
 		return builder
 	}
 	builder.internal.Size = &sizeResource

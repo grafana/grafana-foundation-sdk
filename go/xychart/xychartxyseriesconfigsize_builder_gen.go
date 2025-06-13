@@ -10,14 +10,14 @@ var _ cog.Builder[XychartXYSeriesConfigSize] = (*XychartXYSeriesConfigSizeBuilde
 
 type XychartXYSeriesConfigSizeBuilder struct {
 	internal *XychartXYSeriesConfigSize
-	errors   map[string]cog.BuildErrors
+	errors   cog.BuildErrors
 }
 
 func NewXychartXYSeriesConfigSizeBuilder() *XychartXYSeriesConfigSizeBuilder {
 	resource := NewXychartXYSeriesConfigSize()
 	builder := &XychartXYSeriesConfigSizeBuilder{
 		internal: resource,
-		errors:   make(map[string]cog.BuildErrors),
+		errors:   make(cog.BuildErrors, 0),
 	}
 
 	return builder
@@ -28,13 +28,17 @@ func (builder *XychartXYSeriesConfigSizeBuilder) Build() (XychartXYSeriesConfigS
 		return XychartXYSeriesConfigSize{}, err
 	}
 
+	if len(builder.errors) > 0 {
+		return XychartXYSeriesConfigSize{}, cog.MakeBuildErrors("xychart.xychartXYSeriesConfigSize", builder.errors)
+	}
+
 	return *builder.internal, nil
 }
 
 func (builder *XychartXYSeriesConfigSizeBuilder) Matcher(matcher cog.Builder[MatcherConfig]) *XychartXYSeriesConfigSizeBuilder {
 	matcherResource, err := matcher.Build()
 	if err != nil {
-		builder.errors["matcher"] = err.(cog.BuildErrors)
+		builder.errors = append(builder.errors, err.(cog.BuildErrors)...)
 		return builder
 	}
 	builder.internal.Matcher = matcherResource

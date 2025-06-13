@@ -10,14 +10,14 @@ var _ cog.Builder[NotificationSettings] = (*NotificationSettingsBuilder)(nil)
 
 type NotificationSettingsBuilder struct {
 	internal *NotificationSettings
-	errors   map[string]cog.BuildErrors
+	errors   cog.BuildErrors
 }
 
 func NewNotificationSettingsBuilder() *NotificationSettingsBuilder {
 	resource := NewNotificationSettings()
 	builder := &NotificationSettingsBuilder{
 		internal: resource,
-		errors:   make(map[string]cog.BuildErrors),
+		errors:   make(cog.BuildErrors, 0),
 	}
 
 	return builder
@@ -28,7 +28,20 @@ func (builder *NotificationSettingsBuilder) Build() (NotificationSettings, error
 		return NotificationSettings{}, err
 	}
 
+	if len(builder.errors) > 0 {
+		return NotificationSettings{}, cog.MakeBuildErrors("alerting.notificationSettings", builder.errors)
+	}
+
 	return *builder.internal, nil
+}
+
+// Override the times when notifications should not be muted. These must match the name of a mute time interval defined
+// in the alertmanager configuration time_intervals section. All notifications will be suppressed unless they are sent
+// at the time that matches any interval.
+func (builder *NotificationSettingsBuilder) ActiveTimeIntervals(activeTimeIntervals []string) *NotificationSettingsBuilder {
+	builder.internal.ActiveTimeIntervals = activeTimeIntervals
+
+	return builder
 }
 
 // Override the labels by which incoming alerts are grouped together. For example, multiple alerts coming in for
@@ -60,7 +73,7 @@ func (builder *NotificationSettingsBuilder) GroupWait(groupWait string) *Notific
 }
 
 // Override the times when notifications should be muted. These must match the name of a mute time interval defined
-// in the alertmanager configuration mute_time_intervals section. When muted it will not send any notifications, but
+// in the alertmanager configuration time_intervals section. When muted it will not send any notifications, but
 // otherwise acts normally.
 func (builder *NotificationSettingsBuilder) MuteTimeIntervals(muteTimeIntervals []string) *NotificationSettingsBuilder {
 	builder.internal.MuteTimeIntervals = muteTimeIntervals

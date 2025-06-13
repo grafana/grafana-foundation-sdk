@@ -12,14 +12,14 @@ var _ cog.Builder[variants.Dataquery] = (*DataqueryBuilder)(nil)
 
 type DataqueryBuilder struct {
 	internal *Dataquery
-	errors   map[string]cog.BuildErrors
+	errors   cog.BuildErrors
 }
 
 func NewDataqueryBuilder() *DataqueryBuilder {
 	resource := NewDataquery()
 	builder := &DataqueryBuilder{
 		internal: resource,
-		errors:   make(map[string]cog.BuildErrors),
+		errors:   make(cog.BuildErrors, 0),
 	}
 
 	return builder
@@ -28,6 +28,10 @@ func NewDataqueryBuilder() *DataqueryBuilder {
 func (builder *DataqueryBuilder) Build() (variants.Dataquery, error) {
 	if err := builder.internal.Validate(); err != nil {
 		return Dataquery{}, err
+	}
+
+	if len(builder.errors) > 0 {
+		return Dataquery{}, cog.MakeBuildErrors("parca.dataquery", builder.errors)
 	}
 
 	return *builder.internal, nil

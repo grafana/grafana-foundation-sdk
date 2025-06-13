@@ -10,14 +10,14 @@ var _ cog.Builder[BuilderQueryEditorGroupByExpressionArray] = (*BuilderQueryEdit
 
 type BuilderQueryEditorGroupByExpressionArrayBuilder struct {
 	internal *BuilderQueryEditorGroupByExpressionArray
-	errors   map[string]cog.BuildErrors
+	errors   cog.BuildErrors
 }
 
 func NewBuilderQueryEditorGroupByExpressionArrayBuilder() *BuilderQueryEditorGroupByExpressionArrayBuilder {
 	resource := NewBuilderQueryEditorGroupByExpressionArray()
 	builder := &BuilderQueryEditorGroupByExpressionArrayBuilder{
 		internal: resource,
-		errors:   make(map[string]cog.BuildErrors),
+		errors:   make(cog.BuildErrors, 0),
 	}
 
 	return builder
@@ -28,6 +28,10 @@ func (builder *BuilderQueryEditorGroupByExpressionArrayBuilder) Build() (Builder
 		return BuilderQueryEditorGroupByExpressionArray{}, err
 	}
 
+	if len(builder.errors) > 0 {
+		return BuilderQueryEditorGroupByExpressionArray{}, cog.MakeBuildErrors("azuremonitor.builderQueryEditorGroupByExpressionArray", builder.errors)
+	}
+
 	return *builder.internal, nil
 }
 
@@ -36,7 +40,7 @@ func (builder *BuilderQueryEditorGroupByExpressionArrayBuilder) Expressions(expr
 	for _, r1 := range expressions {
 		expressionsDepth1, err := r1.Build()
 		if err != nil {
-			builder.errors["expressions"] = err.(cog.BuildErrors)
+			builder.errors = append(builder.errors, err.(cog.BuildErrors)...)
 			return builder
 		}
 		expressionsResources = append(expressionsResources, expressionsDepth1)

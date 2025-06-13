@@ -12,14 +12,14 @@ var _ cog.Builder[DashboardMeta] = (*DashboardMetaBuilder)(nil)
 
 type DashboardMetaBuilder struct {
 	internal *DashboardMeta
-	errors   map[string]cog.BuildErrors
+	errors   cog.BuildErrors
 }
 
 func NewDashboardMetaBuilder() *DashboardMetaBuilder {
 	resource := NewDashboardMeta()
 	builder := &DashboardMetaBuilder{
 		internal: resource,
-		errors:   make(map[string]cog.BuildErrors),
+		errors:   make(cog.BuildErrors, 0),
 	}
 
 	return builder
@@ -30,6 +30,10 @@ func (builder *DashboardMetaBuilder) Build() (DashboardMeta, error) {
 		return DashboardMeta{}, err
 	}
 
+	if len(builder.errors) > 0 {
+		return DashboardMeta{}, cog.MakeBuildErrors("dashboard.dashboardMeta", builder.errors)
+	}
+
 	return *builder.internal, nil
 }
 
@@ -37,7 +41,7 @@ func (builder *DashboardMetaBuilder) Build() (DashboardMeta, error) {
 func (builder *DashboardMetaBuilder) AnnotationsPermissions(annotationsPermissions cog.Builder[AnnotationPermission]) *DashboardMetaBuilder {
 	annotationsPermissionsResource, err := annotationsPermissions.Build()
 	if err != nil {
-		builder.errors["annotationsPermissions"] = err.(cog.BuildErrors)
+		builder.errors = append(builder.errors, err.(cog.BuildErrors)...)
 		return builder
 	}
 	builder.internal.AnnotationsPermissions = &annotationsPermissionsResource

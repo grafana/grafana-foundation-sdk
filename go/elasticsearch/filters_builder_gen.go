@@ -10,14 +10,14 @@ var _ cog.Builder[Filters] = (*FiltersBuilder)(nil)
 
 type FiltersBuilder struct {
 	internal *Filters
-	errors   map[string]cog.BuildErrors
+	errors   cog.BuildErrors
 }
 
 func NewFiltersBuilder() *FiltersBuilder {
 	resource := NewFilters()
 	builder := &FiltersBuilder{
 		internal: resource,
-		errors:   make(map[string]cog.BuildErrors),
+		errors:   make(cog.BuildErrors, 0),
 	}
 
 	return builder
@@ -26,6 +26,10 @@ func NewFiltersBuilder() *FiltersBuilder {
 func (builder *FiltersBuilder) Build() (Filters, error) {
 	if err := builder.internal.Validate(); err != nil {
 		return Filters{}, err
+	}
+
+	if len(builder.errors) > 0 {
+		return Filters{}, cog.MakeBuildErrors("elasticsearch.filters", builder.errors)
 	}
 
 	return *builder.internal, nil
@@ -40,7 +44,7 @@ func (builder *FiltersBuilder) Id(id string) *FiltersBuilder {
 func (builder *FiltersBuilder) Settings(settings cog.Builder[ElasticsearchFiltersSettings]) *FiltersBuilder {
 	settingsResource, err := settings.Build()
 	if err != nil {
-		builder.errors["settings"] = err.(cog.BuildErrors)
+		builder.errors = append(builder.errors, err.(cog.BuildErrors)...)
 		return builder
 	}
 	builder.internal.Settings = &settingsResource

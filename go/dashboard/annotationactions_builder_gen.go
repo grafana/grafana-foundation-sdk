@@ -11,14 +11,14 @@ var _ cog.Builder[AnnotationActions] = (*AnnotationActionsBuilder)(nil)
 // +k8s:deepcopy-gen=true
 type AnnotationActionsBuilder struct {
 	internal *AnnotationActions
-	errors   map[string]cog.BuildErrors
+	errors   cog.BuildErrors
 }
 
 func NewAnnotationActionsBuilder() *AnnotationActionsBuilder {
 	resource := NewAnnotationActions()
 	builder := &AnnotationActionsBuilder{
 		internal: resource,
-		errors:   make(map[string]cog.BuildErrors),
+		errors:   make(cog.BuildErrors, 0),
 	}
 
 	return builder
@@ -27,6 +27,10 @@ func NewAnnotationActionsBuilder() *AnnotationActionsBuilder {
 func (builder *AnnotationActionsBuilder) Build() (AnnotationActions, error) {
 	if err := builder.internal.Validate(); err != nil {
 		return AnnotationActions{}, err
+	}
+
+	if len(builder.errors) > 0 {
+		return AnnotationActions{}, cog.MakeBuildErrors("dashboard.annotationActions", builder.errors)
 	}
 
 	return *builder.internal, nil

@@ -128,7 +128,7 @@ class Rule implements \JsonSerializable
             missingSeriesEvalsToResolve: $data["missingSeriesEvalsToResolve"] ?? null,
             noDataState: isset($data["noDataState"]) ? (function($input) { return \Grafana\Foundation\Alerting\RuleNoDataState::fromValue($input); })($data["noDataState"]) : null,
             notificationSettings: isset($data["notification_settings"]) ? (function($input) {
-    	/** @var array{group_by?: array<string>, group_interval?: string, group_wait?: string, mute_time_intervals?: array<string>, receiver?: string, repeat_interval?: string} */
+    	/** @var array{active_time_intervals?: array<string>, group_by?: array<string>, group_interval?: string, group_wait?: string, mute_time_intervals?: array<string>, receiver?: string, repeat_interval?: string} */
     $val = $input;
     	return \Grafana\Foundation\Alerting\NotificationSettings::fromArray($val);
     })($data["notification_settings"]) : null,
