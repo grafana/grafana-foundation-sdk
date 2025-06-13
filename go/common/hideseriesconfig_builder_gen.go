@@ -11,14 +11,14 @@ var _ cog.Builder[HideSeriesConfig] = (*HideSeriesConfigBuilder)(nil)
 // TODO docs
 type HideSeriesConfigBuilder struct {
 	internal *HideSeriesConfig
-	errors   map[string]cog.BuildErrors
+	errors   cog.BuildErrors
 }
 
 func NewHideSeriesConfigBuilder() *HideSeriesConfigBuilder {
 	resource := NewHideSeriesConfig()
 	builder := &HideSeriesConfigBuilder{
 		internal: resource,
-		errors:   make(map[string]cog.BuildErrors),
+		errors:   make(cog.BuildErrors, 0),
 	}
 
 	return builder
@@ -27,6 +27,10 @@ func NewHideSeriesConfigBuilder() *HideSeriesConfigBuilder {
 func (builder *HideSeriesConfigBuilder) Build() (HideSeriesConfig, error) {
 	if err := builder.internal.Validate(); err != nil {
 		return HideSeriesConfig{}, err
+	}
+
+	if len(builder.errors) > 0 {
+		return HideSeriesConfig{}, cog.MakeBuildErrors("common.hideSeriesConfig", builder.errors)
 	}
 
 	return *builder.internal, nil

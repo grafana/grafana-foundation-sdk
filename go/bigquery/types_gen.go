@@ -1116,7 +1116,9 @@ type QueryEditorProperty struct {
 
 // NewQueryEditorProperty creates a new QueryEditorProperty object.
 func NewQueryEditorProperty() *QueryEditorProperty {
-	return &QueryEditorProperty{}
+	return &QueryEditorProperty{
+		Type: QueryEditorPropertyTypeString,
+	}
 }
 
 // UnmarshalJSONStrict implements a custom JSON unmarshalling logic to decode `QueryEditorProperty` from JSON.
@@ -1188,14 +1190,17 @@ func (resource QueryEditorProperty) Equals(other QueryEditorProperty) bool {
 
 // Validate checks all the validation constraints that may be defined on `QueryEditorProperty` fields for violations and returns them.
 func (resource QueryEditorProperty) Validate() error {
-	return nil
+	var errs cog.BuildErrors
+	if resource.Type != "string" {
+		errs = append(errs, cog.MakeBuildErrors("type", errors.New("must be string"))...)
+	}
+
+	if len(errs) == 0 {
+		return nil
+	}
+
+	return errs
 }
-
-type QueryEditorPropertyType string
-
-const (
-	QueryEditorPropertyTypeString QueryEditorPropertyType = "string"
-)
 
 type QueryEditorPropertyExpression struct {
 	Type     QueryEditorExpressionType `json:"type"`
@@ -1298,6 +1303,12 @@ type OrderByDirection string
 const (
 	OrderByDirectionASC  OrderByDirection = "ASC"
 	OrderByDirectionDESC OrderByDirection = "DESC"
+)
+
+type QueryEditorPropertyType string
+
+const (
+	QueryEditorPropertyTypeString QueryEditorPropertyType = "string"
 )
 
 // VariantConfig returns the configuration related to grafana-bigquery-datasource dataqueries.

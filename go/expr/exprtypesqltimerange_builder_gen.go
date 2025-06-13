@@ -10,14 +10,14 @@ var _ cog.Builder[ExprTypeSqlTimeRange] = (*ExprTypeSqlTimeRangeBuilder)(nil)
 
 type ExprTypeSqlTimeRangeBuilder struct {
 	internal *ExprTypeSqlTimeRange
-	errors   map[string]cog.BuildErrors
+	errors   cog.BuildErrors
 }
 
 func NewExprTypeSqlTimeRangeBuilder() *ExprTypeSqlTimeRangeBuilder {
 	resource := NewExprTypeSqlTimeRange()
 	builder := &ExprTypeSqlTimeRangeBuilder{
 		internal: resource,
-		errors:   make(map[string]cog.BuildErrors),
+		errors:   make(cog.BuildErrors, 0),
 	}
 
 	return builder
@@ -26,6 +26,10 @@ func NewExprTypeSqlTimeRangeBuilder() *ExprTypeSqlTimeRangeBuilder {
 func (builder *ExprTypeSqlTimeRangeBuilder) Build() (ExprTypeSqlTimeRange, error) {
 	if err := builder.internal.Validate(); err != nil {
 		return ExprTypeSqlTimeRange{}, err
+	}
+
+	if len(builder.errors) > 0 {
+		return ExprTypeSqlTimeRange{}, cog.MakeBuildErrors("expr.exprTypeSqlTimeRange", builder.errors)
 	}
 
 	return *builder.internal, nil

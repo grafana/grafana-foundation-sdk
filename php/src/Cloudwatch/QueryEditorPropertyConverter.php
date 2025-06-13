@@ -10,19 +10,6 @@ final class QueryEditorPropertyConverter
         $calls = [
             '(new \Grafana\Foundation\Cloudwatch\QueryEditorPropertyBuilder())',
         ];
-            
-    
-        {
-    $buffer = 'type(';
-        $arg0 ='\Grafana\Foundation\Cloudwatch\QueryEditorPropertyType::fromValue("'.$input->type.'")';
-        $buffer .= $arg0;
-        
-    $buffer .= ')';
-
-    $calls[] = $buffer;
-    }
-    
-    
             if ($input->name !== null && $input->name !== "") {
     
         

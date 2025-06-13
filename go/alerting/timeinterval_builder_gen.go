@@ -10,14 +10,14 @@ var _ cog.Builder[TimeInterval] = (*TimeIntervalBuilder)(nil)
 
 type TimeIntervalBuilder struct {
 	internal *TimeInterval
-	errors   map[string]cog.BuildErrors
+	errors   cog.BuildErrors
 }
 
 func NewTimeIntervalBuilder() *TimeIntervalBuilder {
 	resource := NewTimeInterval()
 	builder := &TimeIntervalBuilder{
 		internal: resource,
-		errors:   make(map[string]cog.BuildErrors),
+		errors:   make(cog.BuildErrors, 0),
 	}
 
 	return builder
@@ -28,6 +28,10 @@ func (builder *TimeIntervalBuilder) Build() (TimeInterval, error) {
 		return TimeInterval{}, err
 	}
 
+	if len(builder.errors) > 0 {
+		return TimeInterval{}, cog.MakeBuildErrors("alerting.timeInterval", builder.errors)
+	}
+
 	return *builder.internal, nil
 }
 
@@ -36,7 +40,7 @@ func (builder *TimeIntervalBuilder) Times(times []cog.Builder[TimeRange]) *TimeI
 	for _, r1 := range times {
 		timesDepth1, err := r1.Build()
 		if err != nil {
-			builder.errors["times"] = err.(cog.BuildErrors)
+			builder.errors = append(builder.errors, err.(cog.BuildErrors)...)
 			return builder
 		}
 		timesResources = append(timesResources, timesDepth1)
@@ -51,7 +55,7 @@ func (builder *TimeIntervalBuilder) Weekdays(weekdays []cog.Builder[WeekdayRange
 	for _, r1 := range weekdays {
 		weekdaysDepth1, err := r1.Build()
 		if err != nil {
-			builder.errors["weekdays"] = err.(cog.BuildErrors)
+			builder.errors = append(builder.errors, err.(cog.BuildErrors)...)
 			return builder
 		}
 		weekdaysResources = append(weekdaysResources, weekdaysDepth1)
@@ -66,7 +70,7 @@ func (builder *TimeIntervalBuilder) DaysOfMonth(daysOfMonth []cog.Builder[DayOfM
 	for _, r1 := range daysOfMonth {
 		daysOfMonthDepth1, err := r1.Build()
 		if err != nil {
-			builder.errors["days_of_month"] = err.(cog.BuildErrors)
+			builder.errors = append(builder.errors, err.(cog.BuildErrors)...)
 			return builder
 		}
 		daysOfMonthResources = append(daysOfMonthResources, daysOfMonthDepth1)
@@ -81,7 +85,7 @@ func (builder *TimeIntervalBuilder) Months(months []cog.Builder[MonthRange]) *Ti
 	for _, r1 := range months {
 		monthsDepth1, err := r1.Build()
 		if err != nil {
-			builder.errors["months"] = err.(cog.BuildErrors)
+			builder.errors = append(builder.errors, err.(cog.BuildErrors)...)
 			return builder
 		}
 		monthsResources = append(monthsResources, monthsDepth1)
@@ -96,7 +100,7 @@ func (builder *TimeIntervalBuilder) Years(years []cog.Builder[YearRange]) *TimeI
 	for _, r1 := range years {
 		yearsDepth1, err := r1.Build()
 		if err != nil {
-			builder.errors["years"] = err.(cog.BuildErrors)
+			builder.errors = append(builder.errors, err.(cog.BuildErrors)...)
 			return builder
 		}
 		yearsResources = append(yearsResources, yearsDepth1)

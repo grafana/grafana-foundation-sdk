@@ -11,14 +11,14 @@ var _ cog.Builder[FilterValueRange] = (*FilterValueRangeBuilder)(nil)
 // Controls the value filter range
 type FilterValueRangeBuilder struct {
 	internal *FilterValueRange
-	errors   map[string]cog.BuildErrors
+	errors   cog.BuildErrors
 }
 
 func NewFilterValueRangeBuilder() *FilterValueRangeBuilder {
 	resource := NewFilterValueRange()
 	builder := &FilterValueRangeBuilder{
 		internal: resource,
-		errors:   make(map[string]cog.BuildErrors),
+		errors:   make(cog.BuildErrors, 0),
 	}
 
 	return builder
@@ -27,6 +27,10 @@ func NewFilterValueRangeBuilder() *FilterValueRangeBuilder {
 func (builder *FilterValueRangeBuilder) Build() (FilterValueRange, error) {
 	if err := builder.internal.Validate(); err != nil {
 		return FilterValueRange{}, err
+	}
+
+	if len(builder.errors) > 0 {
+		return FilterValueRange{}, cog.MakeBuildErrors("heatmap.filterValueRange", builder.errors)
 	}
 
 	return *builder.internal, nil

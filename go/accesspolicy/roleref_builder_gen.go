@@ -10,14 +10,14 @@ var _ cog.Builder[RoleRef] = (*RoleRefBuilder)(nil)
 
 type RoleRefBuilder struct {
 	internal *RoleRef
-	errors   map[string]cog.BuildErrors
+	errors   cog.BuildErrors
 }
 
 func NewRoleRefBuilder() *RoleRefBuilder {
 	resource := NewRoleRef()
 	builder := &RoleRefBuilder{
 		internal: resource,
-		errors:   make(map[string]cog.BuildErrors),
+		errors:   make(cog.BuildErrors, 0),
 	}
 
 	return builder
@@ -26,6 +26,10 @@ func NewRoleRefBuilder() *RoleRefBuilder {
 func (builder *RoleRefBuilder) Build() (RoleRef, error) {
 	if err := builder.internal.Validate(); err != nil {
 		return RoleRef{}, err
+	}
+
+	if len(builder.errors) > 0 {
+		return RoleRef{}, cog.MakeBuildErrors("accesspolicy.roleRef", builder.errors)
 	}
 
 	return *builder.internal, nil
