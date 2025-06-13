@@ -12,14 +12,14 @@ var _ cog.Builder[NotificationPolicy] = (*NotificationPolicyBuilder)(nil)
 // from the upstream alertmanager in that it adds the ObjectMatchers property.
 type NotificationPolicyBuilder struct {
 	internal *NotificationPolicy
-	errors   map[string]cog.BuildErrors
+	errors   cog.BuildErrors
 }
 
 func NewNotificationPolicyBuilder() *NotificationPolicyBuilder {
 	resource := NewNotificationPolicy()
 	builder := &NotificationPolicyBuilder{
 		internal: resource,
-		errors:   make(map[string]cog.BuildErrors),
+		errors:   make(cog.BuildErrors, 0),
 	}
 
 	return builder
@@ -28,6 +28,10 @@ func NewNotificationPolicyBuilder() *NotificationPolicyBuilder {
 func (builder *NotificationPolicyBuilder) Build() (NotificationPolicy, error) {
 	if err := builder.internal.Validate(); err != nil {
 		return NotificationPolicy{}, err
+	}
+
+	if len(builder.errors) > 0 {
+		return NotificationPolicy{}, cog.MakeBuildErrors("alerting.notificationPolicy", builder.errors)
 	}
 
 	return *builder.internal, nil
@@ -120,7 +124,7 @@ func (builder *NotificationPolicyBuilder) Routes(routes []cog.Builder[Notificati
 	for _, r1 := range routes {
 		routesDepth1, err := r1.Build()
 		if err != nil {
-			builder.errors["routes"] = err.(cog.BuildErrors)
+			builder.errors = append(builder.errors, err.(cog.BuildErrors)...)
 			return builder
 		}
 		routesResources = append(routesResources, routesDepth1)

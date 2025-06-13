@@ -10,14 +10,14 @@ var _ cog.Builder[AccessRule] = (*AccessRuleBuilder)(nil)
 
 type AccessRuleBuilder struct {
 	internal *AccessRule
-	errors   map[string]cog.BuildErrors
+	errors   cog.BuildErrors
 }
 
 func NewAccessRuleBuilder() *AccessRuleBuilder {
 	resource := NewAccessRule()
 	builder := &AccessRuleBuilder{
 		internal: resource,
-		errors:   make(map[string]cog.BuildErrors),
+		errors:   make(cog.BuildErrors, 0),
 	}
 
 	return builder
@@ -26,6 +26,10 @@ func NewAccessRuleBuilder() *AccessRuleBuilder {
 func (builder *AccessRuleBuilder) Build() (AccessRule, error) {
 	if err := builder.internal.Validate(); err != nil {
 		return AccessRule{}, err
+	}
+
+	if len(builder.errors) > 0 {
+		return AccessRule{}, cog.MakeBuildErrors("accesspolicy.accessRule", builder.errors)
 	}
 
 	return *builder.internal, nil

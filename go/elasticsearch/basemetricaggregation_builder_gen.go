@@ -10,14 +10,14 @@ var _ cog.Builder[BaseMetricAggregation] = (*BaseMetricAggregationBuilder)(nil)
 
 type BaseMetricAggregationBuilder struct {
 	internal *BaseMetricAggregation
-	errors   map[string]cog.BuildErrors
+	errors   cog.BuildErrors
 }
 
 func NewBaseMetricAggregationBuilder() *BaseMetricAggregationBuilder {
 	resource := NewBaseMetricAggregation()
 	builder := &BaseMetricAggregationBuilder{
 		internal: resource,
-		errors:   make(map[string]cog.BuildErrors),
+		errors:   make(cog.BuildErrors, 0),
 	}
 
 	return builder
@@ -26,6 +26,10 @@ func NewBaseMetricAggregationBuilder() *BaseMetricAggregationBuilder {
 func (builder *BaseMetricAggregationBuilder) Build() (BaseMetricAggregation, error) {
 	if err := builder.internal.Validate(); err != nil {
 		return BaseMetricAggregation{}, err
+	}
+
+	if len(builder.errors) > 0 {
+		return BaseMetricAggregation{}, cog.MakeBuildErrors("elasticsearch.baseMetricAggregation", builder.errors)
 	}
 
 	return *builder.internal, nil

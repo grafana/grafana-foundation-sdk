@@ -12,14 +12,14 @@ var _ cog.Builder[variants.Dataquery] = (*TypeResampleBuilder)(nil)
 
 type TypeResampleBuilder struct {
 	internal *TypeResample
-	errors   map[string]cog.BuildErrors
+	errors   cog.BuildErrors
 }
 
 func NewTypeResampleBuilder() *TypeResampleBuilder {
 	resource := NewTypeResample()
 	builder := &TypeResampleBuilder{
 		internal: resource,
-		errors:   make(map[string]cog.BuildErrors),
+		errors:   make(cog.BuildErrors, 0),
 	}
 	builder.internal.Type = "resample"
 
@@ -29,6 +29,10 @@ func NewTypeResampleBuilder() *TypeResampleBuilder {
 func (builder *TypeResampleBuilder) Build() (variants.Dataquery, error) {
 	if err := builder.internal.Validate(); err != nil {
 		return TypeResample{}, err
+	}
+
+	if len(builder.errors) > 0 {
+		return TypeResample{}, cog.MakeBuildErrors("expr.typeResample", builder.errors)
 	}
 
 	return *builder.internal, nil
@@ -109,7 +113,7 @@ func (builder *TypeResampleBuilder) RefId(refId string) *TypeResampleBuilder {
 func (builder *TypeResampleBuilder) ResultAssertions(resultAssertions cog.Builder[ExprTypeResampleResultAssertions]) *TypeResampleBuilder {
 	resultAssertionsResource, err := resultAssertions.Build()
 	if err != nil {
-		builder.errors["resultAssertions"] = err.(cog.BuildErrors)
+		builder.errors = append(builder.errors, err.(cog.BuildErrors)...)
 		return builder
 	}
 	builder.internal.ResultAssertions = &resultAssertionsResource
@@ -123,7 +127,7 @@ func (builder *TypeResampleBuilder) ResultAssertions(resultAssertions cog.Builde
 func (builder *TypeResampleBuilder) TimeRange(timeRange cog.Builder[ExprTypeResampleTimeRange]) *TypeResampleBuilder {
 	timeRangeResource, err := timeRange.Build()
 	if err != nil {
-		builder.errors["timeRange"] = err.(cog.BuildErrors)
+		builder.errors = append(builder.errors, err.(cog.BuildErrors)...)
 		return builder
 	}
 	builder.internal.TimeRange = &timeRangeResource
