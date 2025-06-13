@@ -10,14 +10,14 @@ var _ cog.Builder[ResourceNamesQuery] = (*ResourceNamesQueryBuilder)(nil)
 
 type ResourceNamesQueryBuilder struct {
 	internal *ResourceNamesQuery
-	errors   map[string]cog.BuildErrors
+	errors   cog.BuildErrors
 }
 
 func NewResourceNamesQueryBuilder() *ResourceNamesQueryBuilder {
 	resource := NewResourceNamesQuery()
 	builder := &ResourceNamesQueryBuilder{
 		internal: resource,
-		errors:   make(map[string]cog.BuildErrors),
+		errors:   make(cog.BuildErrors, 0),
 	}
 	builder.internal.Kind = "ResourceNamesQuery"
 
@@ -27,6 +27,10 @@ func NewResourceNamesQueryBuilder() *ResourceNamesQueryBuilder {
 func (builder *ResourceNamesQueryBuilder) Build() (ResourceNamesQuery, error) {
 	if err := builder.internal.Validate(); err != nil {
 		return ResourceNamesQuery{}, err
+	}
+
+	if len(builder.errors) > 0 {
+		return ResourceNamesQuery{}, cog.MakeBuildErrors("azuremonitor.resourceNamesQuery", builder.errors)
 	}
 
 	return *builder.internal, nil

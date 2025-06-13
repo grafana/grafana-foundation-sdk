@@ -49,19 +49,6 @@ final class CanvasConnectionConverter
     
     
     }
-            
-    
-        {
-    $buffer = 'path(';
-        $arg0 ='\Grafana\Foundation\Canvas\ConnectionPath::fromValue("'.$input->path.'")';
-        $buffer .= $arg0;
-        
-    $buffer .= ')';
-
-    $calls[] = $buffer;
-    }
-    
-    
             if ($input->color !== null) {
     
         

@@ -10,14 +10,14 @@ var _ cog.Builder[DashboardDashboardTemplating] = (*DashboardDashboardTemplating
 
 type DashboardDashboardTemplatingBuilder struct {
 	internal *DashboardDashboardTemplating
-	errors   map[string]cog.BuildErrors
+	errors   cog.BuildErrors
 }
 
 func NewDashboardDashboardTemplatingBuilder() *DashboardDashboardTemplatingBuilder {
 	resource := NewDashboardDashboardTemplating()
 	builder := &DashboardDashboardTemplatingBuilder{
 		internal: resource,
-		errors:   make(map[string]cog.BuildErrors),
+		errors:   make(cog.BuildErrors, 0),
 	}
 
 	return builder
@@ -26,6 +26,10 @@ func NewDashboardDashboardTemplatingBuilder() *DashboardDashboardTemplatingBuild
 func (builder *DashboardDashboardTemplatingBuilder) Build() (DashboardDashboardTemplating, error) {
 	if err := builder.internal.Validate(); err != nil {
 		return DashboardDashboardTemplating{}, err
+	}
+
+	if len(builder.errors) > 0 {
+		return DashboardDashboardTemplating{}, cog.MakeBuildErrors("dashboard.dashboardDashboardTemplating", builder.errors)
 	}
 
 	return *builder.internal, nil
@@ -37,7 +41,7 @@ func (builder *DashboardDashboardTemplatingBuilder) List(list []cog.Builder[Vari
 	for _, r1 := range list {
 		listDepth1, err := r1.Build()
 		if err != nil {
-			builder.errors["list"] = err.(cog.BuildErrors)
+			builder.errors = append(builder.errors, err.(cog.BuildErrors)...)
 			return builder
 		}
 		listResources = append(listResources, listDepth1)
