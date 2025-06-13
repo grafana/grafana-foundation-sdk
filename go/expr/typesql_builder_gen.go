@@ -12,14 +12,14 @@ var _ cog.Builder[variants.Dataquery] = (*TypeSqlBuilder)(nil)
 
 type TypeSqlBuilder struct {
 	internal *TypeSql
-	errors   map[string]cog.BuildErrors
+	errors   cog.BuildErrors
 }
 
 func NewTypeSqlBuilder() *TypeSqlBuilder {
 	resource := NewTypeSql()
 	builder := &TypeSqlBuilder{
 		internal: resource,
-		errors:   make(map[string]cog.BuildErrors),
+		errors:   make(cog.BuildErrors, 0),
 	}
 	builder.internal.Type = "sql"
 
@@ -29,6 +29,10 @@ func NewTypeSqlBuilder() *TypeSqlBuilder {
 func (builder *TypeSqlBuilder) Build() (variants.Dataquery, error) {
 	if err := builder.internal.Validate(); err != nil {
 		return TypeSql{}, err
+	}
+
+	if len(builder.errors) > 0 {
+		return TypeSql{}, cog.MakeBuildErrors("expr.typeSql", builder.errors)
 	}
 
 	return *builder.internal, nil
@@ -99,7 +103,7 @@ func (builder *TypeSqlBuilder) RefId(refId string) *TypeSqlBuilder {
 func (builder *TypeSqlBuilder) ResultAssertions(resultAssertions cog.Builder[ExprTypeSqlResultAssertions]) *TypeSqlBuilder {
 	resultAssertionsResource, err := resultAssertions.Build()
 	if err != nil {
-		builder.errors["resultAssertions"] = err.(cog.BuildErrors)
+		builder.errors = append(builder.errors, err.(cog.BuildErrors)...)
 		return builder
 	}
 	builder.internal.ResultAssertions = &resultAssertionsResource
@@ -113,7 +117,7 @@ func (builder *TypeSqlBuilder) ResultAssertions(resultAssertions cog.Builder[Exp
 func (builder *TypeSqlBuilder) TimeRange(timeRange cog.Builder[ExprTypeSqlTimeRange]) *TypeSqlBuilder {
 	timeRangeResource, err := timeRange.Build()
 	if err != nil {
-		builder.errors["timeRange"] = err.(cog.BuildErrors)
+		builder.errors = append(builder.errors, err.(cog.BuildErrors)...)
 		return builder
 	}
 	builder.internal.TimeRange = &timeRangeResource

@@ -11,14 +11,14 @@ var _ cog.Builder[VariableModel] = (*CustomVariableBuilder)(nil)
 // A variable is a placeholder for a value. You can use variables in metric queries and in panel titles.
 type CustomVariableBuilder struct {
 	internal *VariableModel
-	errors   map[string]cog.BuildErrors
+	errors   cog.BuildErrors
 }
 
 func NewCustomVariableBuilder(name string) *CustomVariableBuilder {
 	resource := NewVariableModel()
 	builder := &CustomVariableBuilder{
 		internal: resource,
-		errors:   make(map[string]cog.BuildErrors),
+		errors:   make(cog.BuildErrors, 0),
 	}
 	builder.internal.Name = name
 	builder.internal.Type = "custom"
@@ -29,6 +29,10 @@ func NewCustomVariableBuilder(name string) *CustomVariableBuilder {
 func (builder *CustomVariableBuilder) Build() (VariableModel, error) {
 	if err := builder.internal.Validate(); err != nil {
 		return VariableModel{}, err
+	}
+
+	if len(builder.errors) > 0 {
+		return VariableModel{}, cog.MakeBuildErrors("dashboard.customVariable", builder.errors)
 	}
 
 	return *builder.internal, nil

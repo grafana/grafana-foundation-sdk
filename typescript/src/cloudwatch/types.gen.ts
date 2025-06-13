@@ -183,19 +183,13 @@ export const defaultQueryEditorPropertyExpression = (): QueryEditorPropertyExpre
 });
 
 export interface QueryEditorProperty {
-	type: QueryEditorPropertyType;
+	type: QueryEditorPropertyType.String;
 	name?: string;
 }
 
 export const defaultQueryEditorProperty = (): QueryEditorProperty => ({
 	type: QueryEditorPropertyType.String,
 });
-
-export enum QueryEditorPropertyType {
-	String = "string",
-}
-
-export const defaultQueryEditorPropertyType = (): QueryEditorPropertyType => (QueryEditorPropertyType.String);
 
 export interface QueryEditorArrayExpression {
 	type: "and" | "or";
@@ -250,6 +244,12 @@ export const defaultQueryEditorOperatorType = (): QueryEditorOperatorType => (""
 export type QueryEditorOperatorValueType = QueryEditorOperatorType | QueryEditorOperatorType[];
 
 export const defaultQueryEditorOperatorValueType = (): QueryEditorOperatorValueType => (defaultQueryEditorOperatorType());
+
+export enum QueryEditorPropertyType {
+	String = "string",
+}
+
+export const defaultQueryEditorPropertyType = (): QueryEditorPropertyType => (QueryEditorPropertyType.String);
 
 export enum LogsQueryLanguage {
 	CWLI = "CWLI",

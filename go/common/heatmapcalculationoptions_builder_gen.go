@@ -10,14 +10,14 @@ var _ cog.Builder[HeatmapCalculationOptions] = (*HeatmapCalculationOptionsBuilde
 
 type HeatmapCalculationOptionsBuilder struct {
 	internal *HeatmapCalculationOptions
-	errors   map[string]cog.BuildErrors
+	errors   cog.BuildErrors
 }
 
 func NewHeatmapCalculationOptionsBuilder() *HeatmapCalculationOptionsBuilder {
 	resource := NewHeatmapCalculationOptions()
 	builder := &HeatmapCalculationOptionsBuilder{
 		internal: resource,
-		errors:   make(map[string]cog.BuildErrors),
+		errors:   make(cog.BuildErrors, 0),
 	}
 
 	return builder
@@ -28,6 +28,10 @@ func (builder *HeatmapCalculationOptionsBuilder) Build() (HeatmapCalculationOpti
 		return HeatmapCalculationOptions{}, err
 	}
 
+	if len(builder.errors) > 0 {
+		return HeatmapCalculationOptions{}, cog.MakeBuildErrors("common.heatmapCalculationOptions", builder.errors)
+	}
+
 	return *builder.internal, nil
 }
 
@@ -35,7 +39,7 @@ func (builder *HeatmapCalculationOptionsBuilder) Build() (HeatmapCalculationOpti
 func (builder *HeatmapCalculationOptionsBuilder) XBuckets(xBuckets cog.Builder[HeatmapCalculationBucketConfig]) *HeatmapCalculationOptionsBuilder {
 	xBucketsResource, err := xBuckets.Build()
 	if err != nil {
-		builder.errors["xBuckets"] = err.(cog.BuildErrors)
+		builder.errors = append(builder.errors, err.(cog.BuildErrors)...)
 		return builder
 	}
 	builder.internal.XBuckets = &xBucketsResource
@@ -47,7 +51,7 @@ func (builder *HeatmapCalculationOptionsBuilder) XBuckets(xBuckets cog.Builder[H
 func (builder *HeatmapCalculationOptionsBuilder) YBuckets(yBuckets cog.Builder[HeatmapCalculationBucketConfig]) *HeatmapCalculationOptionsBuilder {
 	yBucketsResource, err := yBuckets.Build()
 	if err != nil {
-		builder.errors["yBuckets"] = err.(cog.BuildErrors)
+		builder.errors = append(builder.errors, err.(cog.BuildErrors)...)
 		return builder
 	}
 	builder.internal.YBuckets = &yBucketsResource

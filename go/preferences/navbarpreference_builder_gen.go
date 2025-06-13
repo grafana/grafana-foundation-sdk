@@ -10,14 +10,14 @@ var _ cog.Builder[NavbarPreference] = (*NavbarPreferenceBuilder)(nil)
 
 type NavbarPreferenceBuilder struct {
 	internal *NavbarPreference
-	errors   map[string]cog.BuildErrors
+	errors   cog.BuildErrors
 }
 
 func NewNavbarPreferenceBuilder() *NavbarPreferenceBuilder {
 	resource := NewNavbarPreference()
 	builder := &NavbarPreferenceBuilder{
 		internal: resource,
-		errors:   make(map[string]cog.BuildErrors),
+		errors:   make(cog.BuildErrors, 0),
 	}
 
 	return builder
@@ -26,6 +26,10 @@ func NewNavbarPreferenceBuilder() *NavbarPreferenceBuilder {
 func (builder *NavbarPreferenceBuilder) Build() (NavbarPreference, error) {
 	if err := builder.internal.Validate(); err != nil {
 		return NavbarPreference{}, err
+	}
+
+	if len(builder.errors) > 0 {
+		return NavbarPreference{}, cog.MakeBuildErrors("preferences.navbarPreference", builder.errors)
 	}
 
 	return *builder.internal, nil

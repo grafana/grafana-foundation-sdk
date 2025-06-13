@@ -10,14 +10,14 @@ var _ cog.Builder[QueryEditorGroupByExpression] = (*QueryEditorGroupByExpression
 
 type QueryEditorGroupByExpressionBuilder struct {
 	internal *QueryEditorGroupByExpression
-	errors   map[string]cog.BuildErrors
+	errors   cog.BuildErrors
 }
 
 func NewQueryEditorGroupByExpressionBuilder() *QueryEditorGroupByExpressionBuilder {
 	resource := NewQueryEditorGroupByExpression()
 	builder := &QueryEditorGroupByExpressionBuilder{
 		internal: resource,
-		errors:   make(map[string]cog.BuildErrors),
+		errors:   make(cog.BuildErrors, 0),
 	}
 
 	return builder
@@ -28,13 +28,17 @@ func (builder *QueryEditorGroupByExpressionBuilder) Build() (QueryEditorGroupByE
 		return QueryEditorGroupByExpression{}, err
 	}
 
+	if len(builder.errors) > 0 {
+		return QueryEditorGroupByExpression{}, cog.MakeBuildErrors("cloudwatch.queryEditorGroupByExpression", builder.errors)
+	}
+
 	return *builder.internal, nil
 }
 
 func (builder *QueryEditorGroupByExpressionBuilder) Property(property cog.Builder[QueryEditorProperty]) *QueryEditorGroupByExpressionBuilder {
 	propertyResource, err := property.Build()
 	if err != nil {
-		builder.errors["property"] = err.(cog.BuildErrors)
+		builder.errors = append(builder.errors, err.(cog.BuildErrors)...)
 		return builder
 	}
 	builder.internal.Property = propertyResource

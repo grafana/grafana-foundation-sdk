@@ -13,14 +13,14 @@ var _ cog.Builder[MatcherConfig] = (*MatcherConfigBuilder)(nil)
 // It comes with in id ( to resolve implementation from registry) and a configuration that’s specific to a particular matcher type.
 type MatcherConfigBuilder struct {
 	internal *MatcherConfig
-	errors   map[string]cog.BuildErrors
+	errors   cog.BuildErrors
 }
 
 func NewMatcherConfigBuilder() *MatcherConfigBuilder {
 	resource := NewMatcherConfig()
 	builder := &MatcherConfigBuilder{
 		internal: resource,
-		errors:   make(map[string]cog.BuildErrors),
+		errors:   make(cog.BuildErrors, 0),
 	}
 
 	return builder
@@ -29,6 +29,10 @@ func NewMatcherConfigBuilder() *MatcherConfigBuilder {
 func (builder *MatcherConfigBuilder) Build() (MatcherConfig, error) {
 	if err := builder.internal.Validate(); err != nil {
 		return MatcherConfig{}, err
+	}
+
+	if len(builder.errors) > 0 {
+		return MatcherConfig{}, cog.MakeBuildErrors("xychart.matcherConfig", builder.errors)
 	}
 
 	return *builder.internal, nil
