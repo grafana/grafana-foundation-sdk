@@ -10,14 +10,14 @@ var _ cog.Builder[SerialDiff] = (*SerialDiffBuilder)(nil)
 
 type SerialDiffBuilder struct {
 	internal *SerialDiff
-	errors   map[string]cog.BuildErrors
+	errors   cog.BuildErrors
 }
 
 func NewSerialDiffBuilder() *SerialDiffBuilder {
 	resource := NewSerialDiff()
 	builder := &SerialDiffBuilder{
 		internal: resource,
-		errors:   make(map[string]cog.BuildErrors),
+		errors:   make(cog.BuildErrors, 0),
 	}
 
 	return builder
@@ -26,6 +26,10 @@ func NewSerialDiffBuilder() *SerialDiffBuilder {
 func (builder *SerialDiffBuilder) Build() (SerialDiff, error) {
 	if err := builder.internal.Validate(); err != nil {
 		return SerialDiff{}, err
+	}
+
+	if len(builder.errors) > 0 {
+		return SerialDiff{}, cog.MakeBuildErrors("elasticsearch.serialDiff", builder.errors)
 	}
 
 	return *builder.internal, nil
@@ -52,7 +56,7 @@ func (builder *SerialDiffBuilder) Id(id string) *SerialDiffBuilder {
 func (builder *SerialDiffBuilder) Settings(settings cog.Builder[ElasticsearchSerialDiffSettings]) *SerialDiffBuilder {
 	settingsResource, err := settings.Build()
 	if err != nil {
-		builder.errors["settings"] = err.(cog.BuildErrors)
+		builder.errors = append(builder.errors, err.(cog.BuildErrors)...)
 		return builder
 	}
 	builder.internal.Settings = &settingsResource

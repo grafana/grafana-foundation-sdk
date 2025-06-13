@@ -10,14 +10,14 @@ var _ cog.Builder[ElasticsearchPercentilesSettings] = (*ElasticsearchPercentiles
 
 type ElasticsearchPercentilesSettingsBuilder struct {
 	internal *ElasticsearchPercentilesSettings
-	errors   map[string]cog.BuildErrors
+	errors   cog.BuildErrors
 }
 
 func NewElasticsearchPercentilesSettingsBuilder() *ElasticsearchPercentilesSettingsBuilder {
 	resource := NewElasticsearchPercentilesSettings()
 	builder := &ElasticsearchPercentilesSettingsBuilder{
 		internal: resource,
-		errors:   make(map[string]cog.BuildErrors),
+		errors:   make(cog.BuildErrors, 0),
 	}
 
 	return builder
@@ -26,6 +26,10 @@ func NewElasticsearchPercentilesSettingsBuilder() *ElasticsearchPercentilesSetti
 func (builder *ElasticsearchPercentilesSettingsBuilder) Build() (ElasticsearchPercentilesSettings, error) {
 	if err := builder.internal.Validate(); err != nil {
 		return ElasticsearchPercentilesSettings{}, err
+	}
+
+	if len(builder.errors) > 0 {
+		return ElasticsearchPercentilesSettings{}, cog.MakeBuildErrors("elasticsearch.elasticsearchPercentilesSettings", builder.errors)
 	}
 
 	return *builder.internal, nil

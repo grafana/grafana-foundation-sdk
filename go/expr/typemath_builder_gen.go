@@ -12,14 +12,14 @@ var _ cog.Builder[variants.Dataquery] = (*TypeMathBuilder)(nil)
 
 type TypeMathBuilder struct {
 	internal *TypeMath
-	errors   map[string]cog.BuildErrors
+	errors   cog.BuildErrors
 }
 
 func NewTypeMathBuilder() *TypeMathBuilder {
 	resource := NewTypeMath()
 	builder := &TypeMathBuilder{
 		internal: resource,
-		errors:   make(map[string]cog.BuildErrors),
+		errors:   make(cog.BuildErrors, 0),
 	}
 	builder.internal.Type = "math"
 
@@ -29,6 +29,10 @@ func NewTypeMathBuilder() *TypeMathBuilder {
 func (builder *TypeMathBuilder) Build() (variants.Dataquery, error) {
 	if err := builder.internal.Validate(); err != nil {
 		return TypeMath{}, err
+	}
+
+	if len(builder.errors) > 0 {
+		return TypeMath{}, cog.MakeBuildErrors("expr.typeMath", builder.errors)
 	}
 
 	return *builder.internal, nil
@@ -94,7 +98,7 @@ func (builder *TypeMathBuilder) RefId(refId string) *TypeMathBuilder {
 func (builder *TypeMathBuilder) ResultAssertions(resultAssertions cog.Builder[ExprTypeMathResultAssertions]) *TypeMathBuilder {
 	resultAssertionsResource, err := resultAssertions.Build()
 	if err != nil {
-		builder.errors["resultAssertions"] = err.(cog.BuildErrors)
+		builder.errors = append(builder.errors, err.(cog.BuildErrors)...)
 		return builder
 	}
 	builder.internal.ResultAssertions = &resultAssertionsResource
@@ -108,7 +112,7 @@ func (builder *TypeMathBuilder) ResultAssertions(resultAssertions cog.Builder[Ex
 func (builder *TypeMathBuilder) TimeRange(timeRange cog.Builder[ExprTypeMathTimeRange]) *TypeMathBuilder {
 	timeRangeResource, err := timeRange.Build()
 	if err != nil {
-		builder.errors["timeRange"] = err.(cog.BuildErrors)
+		builder.errors = append(builder.errors, err.(cog.BuildErrors)...)
 		return builder
 	}
 	builder.internal.TimeRange = &timeRangeResource

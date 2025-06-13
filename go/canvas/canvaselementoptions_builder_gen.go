@@ -10,14 +10,14 @@ var _ cog.Builder[CanvasElementOptions] = (*CanvasElementOptionsBuilder)(nil)
 
 type CanvasElementOptionsBuilder struct {
 	internal *CanvasElementOptions
-	errors   map[string]cog.BuildErrors
+	errors   cog.BuildErrors
 }
 
 func NewCanvasElementOptionsBuilder() *CanvasElementOptionsBuilder {
 	resource := NewCanvasElementOptions()
 	builder := &CanvasElementOptionsBuilder{
 		internal: resource,
-		errors:   make(map[string]cog.BuildErrors),
+		errors:   make(cog.BuildErrors, 0),
 	}
 
 	return builder
@@ -26,6 +26,10 @@ func NewCanvasElementOptionsBuilder() *CanvasElementOptionsBuilder {
 func (builder *CanvasElementOptionsBuilder) Build() (CanvasElementOptions, error) {
 	if err := builder.internal.Validate(); err != nil {
 		return CanvasElementOptions{}, err
+	}
+
+	if len(builder.errors) > 0 {
+		return CanvasElementOptions{}, cog.MakeBuildErrors("canvas.canvasElementOptions", builder.errors)
 	}
 
 	return *builder.internal, nil
@@ -53,7 +57,7 @@ func (builder *CanvasElementOptionsBuilder) Config(config any) *CanvasElementOpt
 func (builder *CanvasElementOptionsBuilder) Constraint(constraint cog.Builder[Constraint]) *CanvasElementOptionsBuilder {
 	constraintResource, err := constraint.Build()
 	if err != nil {
-		builder.errors["constraint"] = err.(cog.BuildErrors)
+		builder.errors = append(builder.errors, err.(cog.BuildErrors)...)
 		return builder
 	}
 	builder.internal.Constraint = &constraintResource
@@ -64,7 +68,7 @@ func (builder *CanvasElementOptionsBuilder) Constraint(constraint cog.Builder[Co
 func (builder *CanvasElementOptionsBuilder) Placement(placement cog.Builder[Placement]) *CanvasElementOptionsBuilder {
 	placementResource, err := placement.Build()
 	if err != nil {
-		builder.errors["placement"] = err.(cog.BuildErrors)
+		builder.errors = append(builder.errors, err.(cog.BuildErrors)...)
 		return builder
 	}
 	builder.internal.Placement = &placementResource
@@ -75,7 +79,7 @@ func (builder *CanvasElementOptionsBuilder) Placement(placement cog.Builder[Plac
 func (builder *CanvasElementOptionsBuilder) Background(background cog.Builder[BackgroundConfig]) *CanvasElementOptionsBuilder {
 	backgroundResource, err := background.Build()
 	if err != nil {
-		builder.errors["background"] = err.(cog.BuildErrors)
+		builder.errors = append(builder.errors, err.(cog.BuildErrors)...)
 		return builder
 	}
 	builder.internal.Background = &backgroundResource
@@ -86,7 +90,7 @@ func (builder *CanvasElementOptionsBuilder) Background(background cog.Builder[Ba
 func (builder *CanvasElementOptionsBuilder) Border(border cog.Builder[LineConfig]) *CanvasElementOptionsBuilder {
 	borderResource, err := border.Build()
 	if err != nil {
-		builder.errors["border"] = err.(cog.BuildErrors)
+		builder.errors = append(builder.errors, err.(cog.BuildErrors)...)
 		return builder
 	}
 	builder.internal.Border = &borderResource
@@ -99,7 +103,7 @@ func (builder *CanvasElementOptionsBuilder) Connections(connections []cog.Builde
 	for _, r1 := range connections {
 		connectionsDepth1, err := r1.Build()
 		if err != nil {
-			builder.errors["connections"] = err.(cog.BuildErrors)
+			builder.errors = append(builder.errors, err.(cog.BuildErrors)...)
 			return builder
 		}
 		connectionsResources = append(connectionsResources, connectionsDepth1)

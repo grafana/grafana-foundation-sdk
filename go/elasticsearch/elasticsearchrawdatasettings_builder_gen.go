@@ -10,14 +10,14 @@ var _ cog.Builder[ElasticsearchRawDataSettings] = (*ElasticsearchRawDataSettings
 
 type ElasticsearchRawDataSettingsBuilder struct {
 	internal *ElasticsearchRawDataSettings
-	errors   map[string]cog.BuildErrors
+	errors   cog.BuildErrors
 }
 
 func NewElasticsearchRawDataSettingsBuilder() *ElasticsearchRawDataSettingsBuilder {
 	resource := NewElasticsearchRawDataSettings()
 	builder := &ElasticsearchRawDataSettingsBuilder{
 		internal: resource,
-		errors:   make(map[string]cog.BuildErrors),
+		errors:   make(cog.BuildErrors, 0),
 	}
 
 	return builder
@@ -26,6 +26,10 @@ func NewElasticsearchRawDataSettingsBuilder() *ElasticsearchRawDataSettingsBuild
 func (builder *ElasticsearchRawDataSettingsBuilder) Build() (ElasticsearchRawDataSettings, error) {
 	if err := builder.internal.Validate(); err != nil {
 		return ElasticsearchRawDataSettings{}, err
+	}
+
+	if len(builder.errors) > 0 {
+		return ElasticsearchRawDataSettings{}, cog.MakeBuildErrors("elasticsearch.elasticsearchRawDataSettings", builder.errors)
 	}
 
 	return *builder.internal, nil

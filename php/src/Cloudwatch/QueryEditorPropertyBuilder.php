@@ -23,13 +23,6 @@ class QueryEditorPropertyBuilder implements \Grafana\Foundation\Cog\Builder
         return $this->internal;
     }
 
-    public function type(\Grafana\Foundation\Cloudwatch\QueryEditorPropertyType $type): static
-    {
-        $this->internal->type = $type;
-    
-        return $this;
-    }
-
     public function name(string $name): static
     {
         $this->internal->name = $name;
