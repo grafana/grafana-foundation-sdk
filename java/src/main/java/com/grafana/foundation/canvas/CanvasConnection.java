@@ -20,7 +20,6 @@ public class CanvasConnection {
     @JsonInclude(JsonInclude.Include.NON_NULL)
     @JsonProperty("targetName")
     public String targetName;
-    @JsonInclude(JsonInclude.Include.NON_EMPTY)
     @JsonProperty("path")
     public ConnectionPath path;
     @JsonInclude(JsonInclude.Include.NON_NULL)
@@ -34,11 +33,11 @@ public class CanvasConnection {
         this.target = new com.grafana.foundation.canvas.ConnectionCoordinates();
         this.path = ConnectionPath.STRAIGHT;
     }
-    public CanvasConnection(ConnectionCoordinates source,ConnectionCoordinates target,String targetName,ConnectionPath path,ColorDimensionConfig color,ScaleDimensionConfig size) {
+    public CanvasConnection(ConnectionCoordinates source,ConnectionCoordinates target,String targetName,ColorDimensionConfig color,ScaleDimensionConfig size) {
         this.source = source;
         this.target = target;
         this.targetName = targetName;
-        this.path = path;
+        this.path = ConnectionPath.STRAIGHT;
         this.color = color;
         this.size = size;
     }

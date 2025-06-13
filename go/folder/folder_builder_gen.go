@@ -12,14 +12,14 @@ var _ cog.Builder[Folder] = (*FolderBuilder)(nil)
 // common metadata will soon support setting the parent folder in the metadata
 type FolderBuilder struct {
 	internal *Folder
-	errors   map[string]cog.BuildErrors
+	errors   cog.BuildErrors
 }
 
 func NewFolderBuilder() *FolderBuilder {
 	resource := NewFolder()
 	builder := &FolderBuilder{
 		internal: resource,
-		errors:   make(map[string]cog.BuildErrors),
+		errors:   make(cog.BuildErrors, 0),
 	}
 
 	return builder
@@ -28,6 +28,10 @@ func NewFolderBuilder() *FolderBuilder {
 func (builder *FolderBuilder) Build() (Folder, error) {
 	if err := builder.internal.Validate(); err != nil {
 		return Folder{}, err
+	}
+
+	if len(builder.errors) > 0 {
+		return Folder{}, cog.MakeBuildErrors("folder.folder", builder.errors)
 	}
 
 	return *builder.internal, nil

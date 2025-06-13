@@ -10,14 +10,14 @@ var _ cog.Builder[QueryHistoryPreference] = (*QueryHistoryPreferenceBuilder)(nil
 
 type QueryHistoryPreferenceBuilder struct {
 	internal *QueryHistoryPreference
-	errors   map[string]cog.BuildErrors
+	errors   cog.BuildErrors
 }
 
 func NewQueryHistoryPreferenceBuilder() *QueryHistoryPreferenceBuilder {
 	resource := NewQueryHistoryPreference()
 	builder := &QueryHistoryPreferenceBuilder{
 		internal: resource,
-		errors:   make(map[string]cog.BuildErrors),
+		errors:   make(cog.BuildErrors, 0),
 	}
 
 	return builder
@@ -26,6 +26,10 @@ func NewQueryHistoryPreferenceBuilder() *QueryHistoryPreferenceBuilder {
 func (builder *QueryHistoryPreferenceBuilder) Build() (QueryHistoryPreference, error) {
 	if err := builder.internal.Validate(); err != nil {
 		return QueryHistoryPreference{}, err
+	}
+
+	if len(builder.errors) > 0 {
+		return QueryHistoryPreference{}, cog.MakeBuildErrors("preferences.queryHistoryPreference", builder.errors)
 	}
 
 	return *builder.internal, nil

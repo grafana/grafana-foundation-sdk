@@ -7,7 +7,7 @@ title: <span class="badge object-type-class"></span> QueryEditorProperty
 
 ```python
 class QueryEditorProperty:
-    type_val: bigquery.QueryEditorPropertyType
+    type_val: str
     name: typing.Optional[str]
 ```
 ## Methods

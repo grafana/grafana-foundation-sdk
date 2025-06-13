@@ -11,14 +11,14 @@ var _ cog.Builder[Scenario] = (*ScenarioBuilder)(nil)
 // TODO: Should this live here given it's not used in the dataquery?
 type ScenarioBuilder struct {
 	internal *Scenario
-	errors   map[string]cog.BuildErrors
+	errors   cog.BuildErrors
 }
 
 func NewScenarioBuilder() *ScenarioBuilder {
 	resource := NewScenario()
 	builder := &ScenarioBuilder{
 		internal: resource,
-		errors:   make(map[string]cog.BuildErrors),
+		errors:   make(cog.BuildErrors, 0),
 	}
 
 	return builder
@@ -27,6 +27,10 @@ func NewScenarioBuilder() *ScenarioBuilder {
 func (builder *ScenarioBuilder) Build() (Scenario, error) {
 	if err := builder.internal.Validate(); err != nil {
 		return Scenario{}, err
+	}
+
+	if len(builder.errors) > 0 {
+		return Scenario{}, cog.MakeBuildErrors("testdata.scenario", builder.errors)
 	}
 
 	return *builder.internal, nil

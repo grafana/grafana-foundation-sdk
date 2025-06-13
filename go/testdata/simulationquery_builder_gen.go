@@ -10,14 +10,14 @@ var _ cog.Builder[SimulationQuery] = (*SimulationQueryBuilder)(nil)
 
 type SimulationQueryBuilder struct {
 	internal *SimulationQuery
-	errors   map[string]cog.BuildErrors
+	errors   cog.BuildErrors
 }
 
 func NewSimulationQueryBuilder() *SimulationQueryBuilder {
 	resource := NewSimulationQuery()
 	builder := &SimulationQueryBuilder{
 		internal: resource,
-		errors:   make(map[string]cog.BuildErrors),
+		errors:   make(cog.BuildErrors, 0),
 	}
 
 	return builder
@@ -28,13 +28,17 @@ func (builder *SimulationQueryBuilder) Build() (SimulationQuery, error) {
 		return SimulationQuery{}, err
 	}
 
+	if len(builder.errors) > 0 {
+		return SimulationQuery{}, cog.MakeBuildErrors("testdata.simulationQuery", builder.errors)
+	}
+
 	return *builder.internal, nil
 }
 
 func (builder *SimulationQueryBuilder) Key(key cog.Builder[Key]) *SimulationQueryBuilder {
 	keyResource, err := key.Build()
 	if err != nil {
-		builder.errors["key"] = err.(cog.BuildErrors)
+		builder.errors = append(builder.errors, err.(cog.BuildErrors)...)
 		return builder
 	}
 	builder.internal.Key = keyResource

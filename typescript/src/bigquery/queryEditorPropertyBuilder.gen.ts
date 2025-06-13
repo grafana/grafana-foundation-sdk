@@ -17,11 +17,6 @@ export class QueryEditorPropertyBuilder implements cog.Builder<bigquery.QueryEdi
         return this.internal;
     }
 
-    type(type: bigquery.QueryEditorPropertyType): this {
-        this.internal.type = type;
-        return this;
-    }
-
     name(name: string): this {
         this.internal.name = name;
         return this;

@@ -10,14 +10,14 @@ var _ cog.Builder[ExprTypeReduceTimeRange] = (*ExprTypeReduceTimeRangeBuilder)(n
 
 type ExprTypeReduceTimeRangeBuilder struct {
 	internal *ExprTypeReduceTimeRange
-	errors   map[string]cog.BuildErrors
+	errors   cog.BuildErrors
 }
 
 func NewExprTypeReduceTimeRangeBuilder() *ExprTypeReduceTimeRangeBuilder {
 	resource := NewExprTypeReduceTimeRange()
 	builder := &ExprTypeReduceTimeRangeBuilder{
 		internal: resource,
-		errors:   make(map[string]cog.BuildErrors),
+		errors:   make(cog.BuildErrors, 0),
 	}
 
 	return builder
@@ -26,6 +26,10 @@ func NewExprTypeReduceTimeRangeBuilder() *ExprTypeReduceTimeRangeBuilder {
 func (builder *ExprTypeReduceTimeRangeBuilder) Build() (ExprTypeReduceTimeRange, error) {
 	if err := builder.internal.Validate(); err != nil {
 		return ExprTypeReduceTimeRange{}, err
+	}
+
+	if len(builder.errors) > 0 {
+		return ExprTypeReduceTimeRange{}, cog.MakeBuildErrors("expr.exprTypeReduceTimeRange", builder.errors)
 	}
 
 	return *builder.internal, nil

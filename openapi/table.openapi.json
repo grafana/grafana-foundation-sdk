@@ -220,7 +220,10 @@
           "type"
         ],
         "properties": {
-          "type": {}
+          "type": {
+            "$ref": "#/components/schemas/TableCellDisplayMode",
+            "default": "auto"
+          }
         },
         "description": "Auto mode table cell options"
       },
@@ -231,7 +234,10 @@
           "type"
         ],
         "properties": {
-          "type": {},
+          "type": {
+            "$ref": "#/components/schemas/TableCellDisplayMode",
+            "default": "sparkline"
+          },
           "drawStyle": {
             "$ref": "#/components/schemas/GraphDrawStyle"
           },
@@ -346,7 +352,10 @@
           "type"
         ],
         "properties": {
-          "type": {},
+          "type": {
+            "$ref": "#/components/schemas/TableCellDisplayMode",
+            "default": "gauge"
+          },
           "mode": {
             "$ref": "#/components/schemas/BarGaugeDisplayMode"
           },
@@ -363,7 +372,10 @@
           "type"
         ],
         "properties": {
-          "type": {},
+          "type": {
+            "$ref": "#/components/schemas/TableCellDisplayMode",
+            "default": "color-background"
+          },
           "mode": {
             "$ref": "#/components/schemas/TableCellBackgroundDisplayMode"
           }
@@ -377,7 +389,10 @@
           "type"
         ],
         "properties": {
-          "type": {}
+          "type": {
+            "$ref": "#/components/schemas/TableCellDisplayMode",
+            "default": "color-text"
+          }
         },
         "description": "Colored text cell options"
       },
@@ -388,7 +403,10 @@
           "type"
         ],
         "properties": {
-          "type": {}
+          "type": {
+            "$ref": "#/components/schemas/TableCellDisplayMode",
+            "default": "image"
+          }
         },
         "description": "Json view cell options"
       },
@@ -399,7 +417,10 @@
           "type"
         ],
         "properties": {
-          "type": {}
+          "type": {
+            "$ref": "#/components/schemas/TableCellDisplayMode",
+            "default": "json-view"
+          }
         },
         "description": "Json view cell options"
       },
