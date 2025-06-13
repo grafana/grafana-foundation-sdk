@@ -10,14 +10,14 @@ var _ cog.Builder[MovingAverageEWMAModelSettings] = (*MovingAverageEWMAModelSett
 
 type MovingAverageEWMAModelSettingsBuilder struct {
 	internal *MovingAverageEWMAModelSettings
-	errors   map[string]cog.BuildErrors
+	errors   cog.BuildErrors
 }
 
 func NewMovingAverageEWMAModelSettingsBuilder() *MovingAverageEWMAModelSettingsBuilder {
 	resource := NewMovingAverageEWMAModelSettings()
 	builder := &MovingAverageEWMAModelSettingsBuilder{
 		internal: resource,
-		errors:   make(map[string]cog.BuildErrors),
+		errors:   make(cog.BuildErrors, 0),
 	}
 
 	return builder
@@ -28,13 +28,17 @@ func (builder *MovingAverageEWMAModelSettingsBuilder) Build() (MovingAverageEWMA
 		return MovingAverageEWMAModelSettings{}, err
 	}
 
+	if len(builder.errors) > 0 {
+		return MovingAverageEWMAModelSettings{}, cog.MakeBuildErrors("elasticsearch.movingAverageEWMAModelSettings", builder.errors)
+	}
+
 	return *builder.internal, nil
 }
 
 func (builder *MovingAverageEWMAModelSettingsBuilder) Settings(settings cog.Builder[ElasticsearchMovingAverageEWMAModelSettingsSettings]) *MovingAverageEWMAModelSettingsBuilder {
 	settingsResource, err := settings.Build()
 	if err != nil {
-		builder.errors["settings"] = err.(cog.BuildErrors)
+		builder.errors = append(builder.errors, err.(cog.BuildErrors)...)
 		return builder
 	}
 	builder.internal.Settings = &settingsResource

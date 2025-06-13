@@ -10,14 +10,14 @@ var _ cog.Builder[AzureMonitorResource] = (*AzureMonitorResourceBuilder)(nil)
 
 type AzureMonitorResourceBuilder struct {
 	internal *AzureMonitorResource
-	errors   map[string]cog.BuildErrors
+	errors   cog.BuildErrors
 }
 
 func NewAzureMonitorResourceBuilder() *AzureMonitorResourceBuilder {
 	resource := NewAzureMonitorResource()
 	builder := &AzureMonitorResourceBuilder{
 		internal: resource,
-		errors:   make(map[string]cog.BuildErrors),
+		errors:   make(cog.BuildErrors, 0),
 	}
 
 	return builder
@@ -26,6 +26,10 @@ func NewAzureMonitorResourceBuilder() *AzureMonitorResourceBuilder {
 func (builder *AzureMonitorResourceBuilder) Build() (AzureMonitorResource, error) {
 	if err := builder.internal.Validate(); err != nil {
 		return AzureMonitorResource{}, err
+	}
+
+	if len(builder.errors) > 0 {
+		return AzureMonitorResource{}, cog.MakeBuildErrors("azuremonitor.azureMonitorResource", builder.errors)
 	}
 
 	return *builder.internal, nil

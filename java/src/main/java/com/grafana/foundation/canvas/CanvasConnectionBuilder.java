@@ -28,11 +28,6 @@ public class CanvasConnectionBuilder implements com.grafana.foundation.cog.Build
         return this;
     }
     
-    public CanvasConnectionBuilder path(ConnectionPath path) {
-        this.internal.path = path;
-        return this;
-    }
-    
     public CanvasConnectionBuilder color(com.grafana.foundation.cog.Builder<ColorDimensionConfig> color) {
     ColorDimensionConfig colorResource = color.build();
         this.internal.color = colorResource;

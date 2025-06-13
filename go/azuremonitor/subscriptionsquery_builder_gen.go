@@ -10,14 +10,14 @@ var _ cog.Builder[SubscriptionsQuery] = (*SubscriptionsQueryBuilder)(nil)
 
 type SubscriptionsQueryBuilder struct {
 	internal *SubscriptionsQuery
-	errors   map[string]cog.BuildErrors
+	errors   cog.BuildErrors
 }
 
 func NewSubscriptionsQueryBuilder() *SubscriptionsQueryBuilder {
 	resource := NewSubscriptionsQuery()
 	builder := &SubscriptionsQueryBuilder{
 		internal: resource,
-		errors:   make(map[string]cog.BuildErrors),
+		errors:   make(cog.BuildErrors, 0),
 	}
 	builder.internal.Kind = "SubscriptionsQuery"
 
@@ -27,6 +27,10 @@ func NewSubscriptionsQueryBuilder() *SubscriptionsQueryBuilder {
 func (builder *SubscriptionsQueryBuilder) Build() (SubscriptionsQuery, error) {
 	if err := builder.internal.Validate(); err != nil {
 		return SubscriptionsQuery{}, err
+	}
+
+	if len(builder.errors) > 0 {
+		return SubscriptionsQuery{}, cog.MakeBuildErrors("azuremonitor.subscriptionsQuery", builder.errors)
 	}
 
 	return *builder.internal, nil

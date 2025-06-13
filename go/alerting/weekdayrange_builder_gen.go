@@ -10,14 +10,14 @@ var _ cog.Builder[WeekdayRange] = (*WeekdayRangeBuilder)(nil)
 
 type WeekdayRangeBuilder struct {
 	internal *WeekdayRange
-	errors   map[string]cog.BuildErrors
+	errors   cog.BuildErrors
 }
 
 func NewWeekdayRangeBuilder() *WeekdayRangeBuilder {
 	resource := NewWeekdayRange()
 	builder := &WeekdayRangeBuilder{
 		internal: resource,
-		errors:   make(map[string]cog.BuildErrors),
+		errors:   make(cog.BuildErrors, 0),
 	}
 
 	return builder
@@ -26,6 +26,10 @@ func NewWeekdayRangeBuilder() *WeekdayRangeBuilder {
 func (builder *WeekdayRangeBuilder) Build() (WeekdayRange, error) {
 	if err := builder.internal.Validate(); err != nil {
 		return WeekdayRange{}, err
+	}
+
+	if len(builder.errors) > 0 {
+		return WeekdayRange{}, cog.MakeBuildErrors("alerting.weekdayRange", builder.errors)
 	}
 
 	return *builder.internal, nil

@@ -10,14 +10,14 @@ var _ cog.Builder[Logs] = (*LogsBuilder)(nil)
 
 type LogsBuilder struct {
 	internal *Logs
-	errors   map[string]cog.BuildErrors
+	errors   cog.BuildErrors
 }
 
 func NewLogsBuilder() *LogsBuilder {
 	resource := NewLogs()
 	builder := &LogsBuilder{
 		internal: resource,
-		errors:   make(map[string]cog.BuildErrors),
+		errors:   make(cog.BuildErrors, 0),
 	}
 
 	return builder
@@ -26,6 +26,10 @@ func NewLogsBuilder() *LogsBuilder {
 func (builder *LogsBuilder) Build() (Logs, error) {
 	if err := builder.internal.Validate(); err != nil {
 		return Logs{}, err
+	}
+
+	if len(builder.errors) > 0 {
+		return Logs{}, cog.MakeBuildErrors("elasticsearch.logs", builder.errors)
 	}
 
 	return *builder.internal, nil
@@ -40,7 +44,7 @@ func (builder *LogsBuilder) Id(id string) *LogsBuilder {
 func (builder *LogsBuilder) Settings(settings cog.Builder[ElasticsearchLogsSettings]) *LogsBuilder {
 	settingsResource, err := settings.Build()
 	if err != nil {
-		builder.errors["settings"] = err.(cog.BuildErrors)
+		builder.errors = append(builder.errors, err.(cog.BuildErrors)...)
 		return builder
 	}
 	builder.internal.Settings = &settingsResource

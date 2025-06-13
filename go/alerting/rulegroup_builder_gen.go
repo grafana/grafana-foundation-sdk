@@ -10,14 +10,14 @@ var _ cog.Builder[RuleGroup] = (*RuleGroupBuilder)(nil)
 
 type RuleGroupBuilder struct {
 	internal *RuleGroup
-	errors   map[string]cog.BuildErrors
+	errors   cog.BuildErrors
 }
 
 func NewRuleGroupBuilder(title string) *RuleGroupBuilder {
 	resource := NewRuleGroup()
 	builder := &RuleGroupBuilder{
 		internal: resource,
-		errors:   make(map[string]cog.BuildErrors),
+		errors:   make(cog.BuildErrors, 0),
 	}
 	builder.internal.Title = &title
 
@@ -27,6 +27,10 @@ func NewRuleGroupBuilder(title string) *RuleGroupBuilder {
 func (builder *RuleGroupBuilder) Build() (RuleGroup, error) {
 	if err := builder.internal.Validate(); err != nil {
 		return RuleGroup{}, err
+	}
+
+	if len(builder.errors) > 0 {
+		return RuleGroup{}, cog.MakeBuildErrors("alerting.ruleGroup", builder.errors)
 	}
 
 	return *builder.internal, nil
@@ -51,7 +55,7 @@ func (builder *RuleGroupBuilder) Rules(rules []cog.Builder[Rule]) *RuleGroupBuil
 	for _, r1 := range rules {
 		rulesDepth1, err := r1.Build()
 		if err != nil {
-			builder.errors["rules"] = err.(cog.BuildErrors)
+			builder.errors = append(builder.errors, err.(cog.BuildErrors)...)
 			return builder
 		}
 		rulesResources = append(rulesResources, rulesDepth1)
@@ -64,7 +68,7 @@ func (builder *RuleGroupBuilder) Rules(rules []cog.Builder[Rule]) *RuleGroupBuil
 func (builder *RuleGroupBuilder) WithRule(rule cog.Builder[Rule]) *RuleGroupBuilder {
 	ruleResource, err := rule.Build()
 	if err != nil {
-		builder.errors["rules"] = err.(cog.BuildErrors)
+		builder.errors = append(builder.errors, err.(cog.BuildErrors)...)
 		return builder
 	}
 	builder.internal.Rules = append(builder.internal.Rules, ruleResource)

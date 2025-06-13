@@ -13,14 +13,14 @@ var _ cog.Builder[variants.Dataquery] = (*DataqueryBuilder)(nil)
 // Manually converted from https://github.com/grafana/athena-datasource/blob/57ad707147b7a11e9a521a836d6bf9799877e0e3/src/types.ts
 type DataqueryBuilder struct {
 	internal *Dataquery
-	errors   map[string]cog.BuildErrors
+	errors   cog.BuildErrors
 }
 
 func NewDataqueryBuilder() *DataqueryBuilder {
 	resource := NewDataquery()
 	builder := &DataqueryBuilder{
 		internal: resource,
-		errors:   make(map[string]cog.BuildErrors),
+		errors:   make(cog.BuildErrors, 0),
 	}
 
 	return builder
@@ -29,6 +29,10 @@ func NewDataqueryBuilder() *DataqueryBuilder {
 func (builder *DataqueryBuilder) Build() (variants.Dataquery, error) {
 	if err := builder.internal.Validate(); err != nil {
 		return Dataquery{}, err
+	}
+
+	if len(builder.errors) > 0 {
+		return Dataquery{}, cog.MakeBuildErrors("athena.dataquery", builder.errors)
 	}
 
 	return *builder.internal, nil
@@ -43,7 +47,7 @@ func (builder *DataqueryBuilder) Format(format FormatOptions) *DataqueryBuilder 
 func (builder *DataqueryBuilder) ConnectionArgs(connectionArgs cog.Builder[ConnectionArgs]) *DataqueryBuilder {
 	connectionArgsResource, err := connectionArgs.Build()
 	if err != nil {
-		builder.errors["connectionArgs"] = err.(cog.BuildErrors)
+		builder.errors = append(builder.errors, err.(cog.BuildErrors)...)
 		return builder
 	}
 	builder.internal.ConnectionArgs = connectionArgsResource
