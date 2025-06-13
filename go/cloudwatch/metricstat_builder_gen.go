@@ -10,14 +10,14 @@ var _ cog.Builder[MetricStat] = (*MetricStatBuilder)(nil)
 
 type MetricStatBuilder struct {
 	internal *MetricStat
-	errors   map[string]cog.BuildErrors
+	errors   cog.BuildErrors
 }
 
 func NewMetricStatBuilder() *MetricStatBuilder {
 	resource := NewMetricStat()
 	builder := &MetricStatBuilder{
 		internal: resource,
-		errors:   make(map[string]cog.BuildErrors),
+		errors:   make(cog.BuildErrors, 0),
 	}
 
 	return builder
@@ -26,6 +26,10 @@ func NewMetricStatBuilder() *MetricStatBuilder {
 func (builder *MetricStatBuilder) Build() (MetricStat, error) {
 	if err := builder.internal.Validate(); err != nil {
 		return MetricStat{}, err
+	}
+
+	if len(builder.errors) > 0 {
+		return MetricStat{}, cog.MakeBuildErrors("cloudwatch.metricStat", builder.errors)
 	}
 
 	return *builder.internal, nil

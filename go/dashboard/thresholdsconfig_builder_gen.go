@@ -11,14 +11,14 @@ var _ cog.Builder[ThresholdsConfig] = (*ThresholdsConfigBuilder)(nil)
 // Thresholds configuration for the panel
 type ThresholdsConfigBuilder struct {
 	internal *ThresholdsConfig
-	errors   map[string]cog.BuildErrors
+	errors   cog.BuildErrors
 }
 
 func NewThresholdsConfigBuilder() *ThresholdsConfigBuilder {
 	resource := NewThresholdsConfig()
 	builder := &ThresholdsConfigBuilder{
 		internal: resource,
-		errors:   make(map[string]cog.BuildErrors),
+		errors:   make(cog.BuildErrors, 0),
 	}
 
 	return builder
@@ -27,6 +27,10 @@ func NewThresholdsConfigBuilder() *ThresholdsConfigBuilder {
 func (builder *ThresholdsConfigBuilder) Build() (ThresholdsConfig, error) {
 	if err := builder.internal.Validate(); err != nil {
 		return ThresholdsConfig{}, err
+	}
+
+	if len(builder.errors) > 0 {
+		return ThresholdsConfig{}, cog.MakeBuildErrors("dashboard.thresholdsConfig", builder.errors)
 	}
 
 	return *builder.internal, nil

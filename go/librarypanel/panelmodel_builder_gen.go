@@ -13,14 +13,14 @@ var _ cog.Builder[PanelModel] = (*PanelModelBuilder)(nil)
 // Dashboard panels are the basic visualization building blocks.
 type PanelModelBuilder struct {
 	internal *PanelModel
-	errors   map[string]cog.BuildErrors
+	errors   cog.BuildErrors
 }
 
 func NewPanelModelBuilder() *PanelModelBuilder {
 	resource := NewPanelModel()
 	builder := &PanelModelBuilder{
 		internal: resource,
-		errors:   make(map[string]cog.BuildErrors),
+		errors:   make(cog.BuildErrors, 0),
 	}
 
 	return builder
@@ -29,6 +29,10 @@ func NewPanelModelBuilder() *PanelModelBuilder {
 func (builder *PanelModelBuilder) Build() (PanelModel, error) {
 	if err := builder.internal.Validate(); err != nil {
 		return PanelModel{}, err
+	}
+
+	if len(builder.errors) > 0 {
+		return PanelModel{}, cog.MakeBuildErrors("librarypanel.panelModel", builder.errors)
 	}
 
 	return *builder.internal, nil
@@ -54,7 +58,7 @@ func (builder *PanelModelBuilder) Targets(targets []cog.Builder[variants.Dataque
 	for _, r1 := range targets {
 		targetsDepth1, err := r1.Build()
 		if err != nil {
-			builder.errors["targets"] = err.(cog.BuildErrors)
+			builder.errors = append(builder.errors, err.(cog.BuildErrors)...)
 			return builder
 		}
 		targetsResources = append(targetsResources, targetsDepth1)
@@ -98,7 +102,7 @@ func (builder *PanelModelBuilder) Links(links []cog.Builder[dashboard.DashboardL
 	for _, r1 := range links {
 		linksDepth1, err := r1.Build()
 		if err != nil {
-			builder.errors["links"] = err.(cog.BuildErrors)
+			builder.errors = append(builder.errors, err.(cog.BuildErrors)...)
 			return builder
 		}
 		linksResources = append(linksResources, linksDepth1)

@@ -10,14 +10,14 @@ var _ cog.Builder[AzureMetricQuery] = (*AzureMetricQueryBuilder)(nil)
 
 type AzureMetricQueryBuilder struct {
 	internal *AzureMetricQuery
-	errors   map[string]cog.BuildErrors
+	errors   cog.BuildErrors
 }
 
 func NewAzureMetricQueryBuilder() *AzureMetricQueryBuilder {
 	resource := NewAzureMetricQuery()
 	builder := &AzureMetricQueryBuilder{
 		internal: resource,
-		errors:   make(map[string]cog.BuildErrors),
+		errors:   make(cog.BuildErrors, 0),
 	}
 
 	return builder
@@ -26,6 +26,10 @@ func NewAzureMetricQueryBuilder() *AzureMetricQueryBuilder {
 func (builder *AzureMetricQueryBuilder) Build() (AzureMetricQuery, error) {
 	if err := builder.internal.Validate(); err != nil {
 		return AzureMetricQuery{}, err
+	}
+
+	if len(builder.errors) > 0 {
+		return AzureMetricQuery{}, cog.MakeBuildErrors("azuremonitor.azureMetricQuery", builder.errors)
 	}
 
 	return *builder.internal, nil
@@ -37,7 +41,7 @@ func (builder *AzureMetricQueryBuilder) Resources(resources []cog.Builder[AzureM
 	for _, r1 := range resources {
 		resourcesDepth1, err := r1.Build()
 		if err != nil {
-			builder.errors["resources"] = err.(cog.BuildErrors)
+			builder.errors = append(builder.errors, err.(cog.BuildErrors)...)
 			return builder
 		}
 		resourcesResources = append(resourcesResources, resourcesDepth1)
@@ -97,7 +101,7 @@ func (builder *AzureMetricQueryBuilder) DimensionFilters(dimensionFilters []cog.
 	for _, r1 := range dimensionFilters {
 		dimensionFiltersDepth1, err := r1.Build()
 		if err != nil {
-			builder.errors["dimensionFilters"] = err.(cog.BuildErrors)
+			builder.errors = append(builder.errors, err.(cog.BuildErrors)...)
 			return builder
 		}
 		dimensionFiltersResources = append(dimensionFiltersResources, dimensionFiltersDepth1)

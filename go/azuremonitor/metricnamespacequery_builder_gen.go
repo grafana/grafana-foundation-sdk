@@ -10,14 +10,14 @@ var _ cog.Builder[MetricNamespaceQuery] = (*MetricNamespaceQueryBuilder)(nil)
 
 type MetricNamespaceQueryBuilder struct {
 	internal *MetricNamespaceQuery
-	errors   map[string]cog.BuildErrors
+	errors   cog.BuildErrors
 }
 
 func NewMetricNamespaceQueryBuilder() *MetricNamespaceQueryBuilder {
 	resource := NewMetricNamespaceQuery()
 	builder := &MetricNamespaceQueryBuilder{
 		internal: resource,
-		errors:   make(map[string]cog.BuildErrors),
+		errors:   make(cog.BuildErrors, 0),
 	}
 	builder.internal.Kind = "MetricNamespaceQuery"
 
@@ -27,6 +27,10 @@ func NewMetricNamespaceQueryBuilder() *MetricNamespaceQueryBuilder {
 func (builder *MetricNamespaceQueryBuilder) Build() (MetricNamespaceQuery, error) {
 	if err := builder.internal.Validate(); err != nil {
 		return MetricNamespaceQuery{}, err
+	}
+
+	if len(builder.errors) > 0 {
+		return MetricNamespaceQuery{}, cog.MakeBuildErrors("azuremonitor.metricNamespaceQuery", builder.errors)
 	}
 
 	return *builder.internal, nil
