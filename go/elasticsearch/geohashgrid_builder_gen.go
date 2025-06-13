@@ -10,14 +10,14 @@ var _ cog.Builder[GeoHashGrid] = (*GeoHashGridBuilder)(nil)
 
 type GeoHashGridBuilder struct {
 	internal *GeoHashGrid
-	errors   map[string]cog.BuildErrors
+	errors   cog.BuildErrors
 }
 
 func NewGeoHashGridBuilder() *GeoHashGridBuilder {
 	resource := NewGeoHashGrid()
 	builder := &GeoHashGridBuilder{
 		internal: resource,
-		errors:   make(map[string]cog.BuildErrors),
+		errors:   make(cog.BuildErrors, 0),
 	}
 
 	return builder
@@ -26,6 +26,10 @@ func NewGeoHashGridBuilder() *GeoHashGridBuilder {
 func (builder *GeoHashGridBuilder) Build() (GeoHashGrid, error) {
 	if err := builder.internal.Validate(); err != nil {
 		return GeoHashGrid{}, err
+	}
+
+	if len(builder.errors) > 0 {
+		return GeoHashGrid{}, cog.MakeBuildErrors("elasticsearch.geoHashGrid", builder.errors)
 	}
 
 	return *builder.internal, nil
@@ -46,7 +50,7 @@ func (builder *GeoHashGridBuilder) Id(id string) *GeoHashGridBuilder {
 func (builder *GeoHashGridBuilder) Settings(settings cog.Builder[ElasticsearchGeoHashGridSettings]) *GeoHashGridBuilder {
 	settingsResource, err := settings.Build()
 	if err != nil {
-		builder.errors["settings"] = err.(cog.BuildErrors)
+		builder.errors = append(builder.errors, err.(cog.BuildErrors)...)
 		return builder
 	}
 	builder.internal.Settings = &settingsResource

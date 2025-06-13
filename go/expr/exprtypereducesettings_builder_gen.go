@@ -10,14 +10,14 @@ var _ cog.Builder[ExprTypeReduceSettings] = (*ExprTypeReduceSettingsBuilder)(nil
 
 type ExprTypeReduceSettingsBuilder struct {
 	internal *ExprTypeReduceSettings
-	errors   map[string]cog.BuildErrors
+	errors   cog.BuildErrors
 }
 
 func NewExprTypeReduceSettingsBuilder() *ExprTypeReduceSettingsBuilder {
 	resource := NewExprTypeReduceSettings()
 	builder := &ExprTypeReduceSettingsBuilder{
 		internal: resource,
-		errors:   make(map[string]cog.BuildErrors),
+		errors:   make(cog.BuildErrors, 0),
 	}
 
 	return builder
@@ -26,6 +26,10 @@ func NewExprTypeReduceSettingsBuilder() *ExprTypeReduceSettingsBuilder {
 func (builder *ExprTypeReduceSettingsBuilder) Build() (ExprTypeReduceSettings, error) {
 	if err := builder.internal.Validate(); err != nil {
 		return ExprTypeReduceSettings{}, err
+	}
+
+	if len(builder.errors) > 0 {
+		return ExprTypeReduceSettings{}, cog.MakeBuildErrors("expr.exprTypeReduceSettings", builder.errors)
 	}
 
 	return *builder.internal, nil

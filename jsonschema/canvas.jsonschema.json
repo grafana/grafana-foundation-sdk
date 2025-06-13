@@ -138,7 +138,8 @@
           "type": "string"
         },
         "path": {
-          "$ref": "#/definitions/ConnectionPath"
+          "$ref": "#/definitions/ConnectionPath",
+          "default": "straight"
         },
         "color": {
           "$ref": "#/definitions/ColorDimensionConfig"

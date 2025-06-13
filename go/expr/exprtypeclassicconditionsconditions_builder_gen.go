@@ -10,14 +10,14 @@ var _ cog.Builder[ExprTypeClassicConditionsConditions] = (*ExprTypeClassicCondit
 
 type ExprTypeClassicConditionsConditionsBuilder struct {
 	internal *ExprTypeClassicConditionsConditions
-	errors   map[string]cog.BuildErrors
+	errors   cog.BuildErrors
 }
 
 func NewExprTypeClassicConditionsConditionsBuilder() *ExprTypeClassicConditionsConditionsBuilder {
 	resource := NewExprTypeClassicConditionsConditions()
 	builder := &ExprTypeClassicConditionsConditionsBuilder{
 		internal: resource,
-		errors:   make(map[string]cog.BuildErrors),
+		errors:   make(cog.BuildErrors, 0),
 	}
 
 	return builder
@@ -28,13 +28,17 @@ func (builder *ExprTypeClassicConditionsConditionsBuilder) Build() (ExprTypeClas
 		return ExprTypeClassicConditionsConditions{}, err
 	}
 
+	if len(builder.errors) > 0 {
+		return ExprTypeClassicConditionsConditions{}, cog.MakeBuildErrors("expr.exprTypeClassicConditionsConditions", builder.errors)
+	}
+
 	return *builder.internal, nil
 }
 
 func (builder *ExprTypeClassicConditionsConditionsBuilder) Evaluator(evaluator cog.Builder[ExprTypeClassicConditionsConditionsEvaluator]) *ExprTypeClassicConditionsConditionsBuilder {
 	evaluatorResource, err := evaluator.Build()
 	if err != nil {
-		builder.errors["evaluator"] = err.(cog.BuildErrors)
+		builder.errors = append(builder.errors, err.(cog.BuildErrors)...)
 		return builder
 	}
 	builder.internal.Evaluator = evaluatorResource
@@ -45,7 +49,7 @@ func (builder *ExprTypeClassicConditionsConditionsBuilder) Evaluator(evaluator c
 func (builder *ExprTypeClassicConditionsConditionsBuilder) Operator(operator cog.Builder[ExprTypeClassicConditionsConditionsOperator]) *ExprTypeClassicConditionsConditionsBuilder {
 	operatorResource, err := operator.Build()
 	if err != nil {
-		builder.errors["operator"] = err.(cog.BuildErrors)
+		builder.errors = append(builder.errors, err.(cog.BuildErrors)...)
 		return builder
 	}
 	builder.internal.Operator = operatorResource
@@ -56,7 +60,7 @@ func (builder *ExprTypeClassicConditionsConditionsBuilder) Operator(operator cog
 func (builder *ExprTypeClassicConditionsConditionsBuilder) Query(query cog.Builder[ExprTypeClassicConditionsConditionsQuery]) *ExprTypeClassicConditionsConditionsBuilder {
 	queryResource, err := query.Build()
 	if err != nil {
-		builder.errors["query"] = err.(cog.BuildErrors)
+		builder.errors = append(builder.errors, err.(cog.BuildErrors)...)
 		return builder
 	}
 	builder.internal.Query = queryResource
@@ -67,7 +71,7 @@ func (builder *ExprTypeClassicConditionsConditionsBuilder) Query(query cog.Build
 func (builder *ExprTypeClassicConditionsConditionsBuilder) Reducer(reducer cog.Builder[ExprTypeClassicConditionsConditionsReducer]) *ExprTypeClassicConditionsConditionsBuilder {
 	reducerResource, err := reducer.Build()
 	if err != nil {
-		builder.errors["reducer"] = err.(cog.BuildErrors)
+		builder.errors = append(builder.errors, err.(cog.BuildErrors)...)
 		return builder
 	}
 	builder.internal.Reducer = reducerResource

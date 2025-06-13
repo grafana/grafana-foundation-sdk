@@ -14,14 +14,14 @@ var _ cog.Builder[dashboard.Panel] = (*PanelBuilder)(nil)
 // Dashboard panels are the basic visualization building blocks.
 type PanelBuilder struct {
 	internal *dashboard.Panel
-	errors   map[string]cog.BuildErrors
+	errors   cog.BuildErrors
 }
 
 func NewPanelBuilder() *PanelBuilder {
 	resource := dashboard.NewPanel()
 	builder := &PanelBuilder{
 		internal: resource,
-		errors:   make(map[string]cog.BuildErrors),
+		errors:   make(cog.BuildErrors, 0),
 	}
 	builder.internal.Type = "stat"
 
@@ -31,6 +31,10 @@ func NewPanelBuilder() *PanelBuilder {
 func (builder *PanelBuilder) Build() (dashboard.Panel, error) {
 	if err := builder.internal.Validate(); err != nil {
 		return dashboard.Panel{}, err
+	}
+
+	if len(builder.errors) > 0 {
+		return dashboard.Panel{}, cog.MakeBuildErrors("stat.panel", builder.errors)
 	}
 
 	return *builder.internal, nil
@@ -49,7 +53,7 @@ func (builder *PanelBuilder) Targets(targets []cog.Builder[variants.Dataquery]) 
 	for _, r1 := range targets {
 		targetsDepth1, err := r1.Build()
 		if err != nil {
-			builder.errors["targets"] = err.(cog.BuildErrors)
+			builder.errors = append(builder.errors, err.(cog.BuildErrors)...)
 			return builder
 		}
 		targetsResources = append(targetsResources, targetsDepth1)
@@ -63,7 +67,7 @@ func (builder *PanelBuilder) Targets(targets []cog.Builder[variants.Dataquery]) 
 func (builder *PanelBuilder) WithTarget(target cog.Builder[variants.Dataquery]) *PanelBuilder {
 	targetResource, err := target.Build()
 	if err != nil {
-		builder.errors["targets"] = err.(cog.BuildErrors)
+		builder.errors = append(builder.errors, err.(cog.BuildErrors)...)
 		return builder
 	}
 	builder.internal.Targets = append(builder.internal.Targets, targetResource)
@@ -132,7 +136,7 @@ func (builder *PanelBuilder) Links(links []cog.Builder[dashboard.DashboardLink])
 	for _, r1 := range links {
 		linksDepth1, err := r1.Build()
 		if err != nil {
-			builder.errors["links"] = err.(cog.BuildErrors)
+			builder.errors = append(builder.errors, err.(cog.BuildErrors)...)
 			return builder
 		}
 		linksResources = append(linksResources, linksDepth1)
@@ -317,7 +321,7 @@ func (builder *PanelBuilder) Thresholds(thresholds cog.Builder[dashboard.Thresho
 	}
 	thresholdsResource, err := thresholds.Build()
 	if err != nil {
-		builder.errors["fieldConfig.defaults.thresholds"] = err.(cog.BuildErrors)
+		builder.errors = append(builder.errors, err.(cog.BuildErrors)...)
 		return builder
 	}
 	builder.internal.FieldConfig.Defaults.Thresholds = &thresholdsResource
@@ -332,7 +336,7 @@ func (builder *PanelBuilder) ColorScheme(color cog.Builder[dashboard.FieldColor]
 	}
 	colorResource, err := color.Build()
 	if err != nil {
-		builder.errors["fieldConfig.defaults.color"] = err.(cog.BuildErrors)
+		builder.errors = append(builder.errors, err.(cog.BuildErrors)...)
 		return builder
 	}
 	builder.internal.FieldConfig.Defaults.Color = &colorResource
@@ -349,7 +353,7 @@ func (builder *PanelBuilder) DataLinks(links []cog.Builder[dashboard.DashboardLi
 	for _, r1 := range links {
 		linksDepth1, err := r1.Build()
 		if err != nil {
-			builder.errors["fieldConfig.defaults.links"] = err.(cog.BuildErrors)
+			builder.errors = append(builder.errors, err.(cog.BuildErrors)...)
 			return builder
 		}
 		linksResources = append(linksResources, linksDepth1)
@@ -378,7 +382,7 @@ func (builder *PanelBuilder) Overrides(overrides []cog.Builder[dashboard.Dashboa
 	for _, r1 := range overrides {
 		overridesDepth1, err := r1.Build()
 		if err != nil {
-			builder.errors["fieldConfig.overrides"] = err.(cog.BuildErrors)
+			builder.errors = append(builder.errors, err.(cog.BuildErrors)...)
 			return builder
 		}
 		overridesResources = append(overridesResources, overridesDepth1)
@@ -515,7 +519,7 @@ func (builder *PanelBuilder) ReduceOptions(reduceOptions cog.Builder[common.Redu
 	}
 	reduceOptionsResource, err := reduceOptions.Build()
 	if err != nil {
-		builder.errors["options.reduceOptions"] = err.(cog.BuildErrors)
+		builder.errors = append(builder.errors, err.(cog.BuildErrors)...)
 		return builder
 	}
 	builder.internal.Options.(*Options).ReduceOptions = reduceOptionsResource
@@ -529,7 +533,7 @@ func (builder *PanelBuilder) Text(text cog.Builder[common.VizTextDisplayOptions]
 	}
 	textResource, err := text.Build()
 	if err != nil {
-		builder.errors["options.text"] = err.(cog.BuildErrors)
+		builder.errors = append(builder.errors, err.(cog.BuildErrors)...)
 		return builder
 	}
 	builder.internal.Options.(*Options).Text = &textResource
