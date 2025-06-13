@@ -10,14 +10,14 @@ var _ cog.Builder[RawDocument] = (*RawDocumentBuilder)(nil)
 
 type RawDocumentBuilder struct {
 	internal *RawDocument
-	errors   map[string]cog.BuildErrors
+	errors   cog.BuildErrors
 }
 
 func NewRawDocumentBuilder() *RawDocumentBuilder {
 	resource := NewRawDocument()
 	builder := &RawDocumentBuilder{
 		internal: resource,
-		errors:   make(map[string]cog.BuildErrors),
+		errors:   make(cog.BuildErrors, 0),
 	}
 
 	return builder
@@ -26,6 +26,10 @@ func NewRawDocumentBuilder() *RawDocumentBuilder {
 func (builder *RawDocumentBuilder) Build() (RawDocument, error) {
 	if err := builder.internal.Validate(); err != nil {
 		return RawDocument{}, err
+	}
+
+	if len(builder.errors) > 0 {
+		return RawDocument{}, cog.MakeBuildErrors("elasticsearch.rawDocument", builder.errors)
 	}
 
 	return *builder.internal, nil
@@ -40,7 +44,7 @@ func (builder *RawDocumentBuilder) Id(id string) *RawDocumentBuilder {
 func (builder *RawDocumentBuilder) Settings(settings cog.Builder[ElasticsearchRawDocumentSettings]) *RawDocumentBuilder {
 	settingsResource, err := settings.Build()
 	if err != nil {
-		builder.errors["settings"] = err.(cog.BuildErrors)
+		builder.errors = append(builder.errors, err.(cog.BuildErrors)...)
 		return builder
 	}
 	builder.internal.Settings = &settingsResource

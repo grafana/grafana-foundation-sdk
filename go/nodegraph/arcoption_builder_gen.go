@@ -10,14 +10,14 @@ var _ cog.Builder[ArcOption] = (*ArcOptionBuilder)(nil)
 
 type ArcOptionBuilder struct {
 	internal *ArcOption
-	errors   map[string]cog.BuildErrors
+	errors   cog.BuildErrors
 }
 
 func NewArcOptionBuilder() *ArcOptionBuilder {
 	resource := NewArcOption()
 	builder := &ArcOptionBuilder{
 		internal: resource,
-		errors:   make(map[string]cog.BuildErrors),
+		errors:   make(cog.BuildErrors, 0),
 	}
 
 	return builder
@@ -26,6 +26,10 @@ func NewArcOptionBuilder() *ArcOptionBuilder {
 func (builder *ArcOptionBuilder) Build() (ArcOption, error) {
 	if err := builder.internal.Validate(); err != nil {
 		return ArcOption{}, err
+	}
+
+	if len(builder.errors) > 0 {
+		return ArcOption{}, cog.MakeBuildErrors("nodegraph.arcOption", builder.errors)
 	}
 
 	return *builder.internal, nil

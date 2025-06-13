@@ -12,14 +12,14 @@ var _ cog.Builder[RowsHeatmapOptions] = (*RowsHeatmapOptionsBuilder)(nil)
 // Controls frame rows options
 type RowsHeatmapOptionsBuilder struct {
 	internal *RowsHeatmapOptions
-	errors   map[string]cog.BuildErrors
+	errors   cog.BuildErrors
 }
 
 func NewRowsHeatmapOptionsBuilder() *RowsHeatmapOptionsBuilder {
 	resource := NewRowsHeatmapOptions()
 	builder := &RowsHeatmapOptionsBuilder{
 		internal: resource,
-		errors:   make(map[string]cog.BuildErrors),
+		errors:   make(cog.BuildErrors, 0),
 	}
 
 	return builder
@@ -28,6 +28,10 @@ func NewRowsHeatmapOptionsBuilder() *RowsHeatmapOptionsBuilder {
 func (builder *RowsHeatmapOptionsBuilder) Build() (RowsHeatmapOptions, error) {
 	if err := builder.internal.Validate(); err != nil {
 		return RowsHeatmapOptions{}, err
+	}
+
+	if len(builder.errors) > 0 {
+		return RowsHeatmapOptions{}, cog.MakeBuildErrors("heatmap.rowsHeatmapOptions", builder.errors)
 	}
 
 	return *builder.internal, nil

@@ -443,11 +443,11 @@ class QueryEditorPropertyExpression:
 
 
 class QueryEditorProperty:
-    type_val: 'QueryEditorPropertyType'
+    type_val: str
     name: typing.Optional[str]
 
-    def __init__(self, type_val: typing.Optional['QueryEditorPropertyType'] = None, name: typing.Optional[str] = None):
-        self.type_val = type_val if type_val is not None else QueryEditorPropertyType.STRING
+    def __init__(self, name: typing.Optional[str] = None):
+        self.type_val = QueryEditorPropertyType.STRING
         self.name = name
 
     def to_json(self) -> dict[str, object]:
@@ -462,16 +462,10 @@ class QueryEditorProperty:
     def from_json(cls, data: dict[str, typing.Any]) -> typing.Self:
         args: dict[str, typing.Any] = {}
         
-        if "type" in data:
-            args["type_val"] = data["type"]
         if "name" in data:
             args["name"] = data["name"]        
 
         return cls(**args)
-
-
-class QueryEditorPropertyType(enum.StrEnum):
-    STRING = "string"
 
 
 class QueryEditorArrayExpression:
@@ -598,6 +592,10 @@ QueryEditorOperatorType: typing.TypeAlias = typing.Union[str, bool, int]
 
 
 QueryEditorOperatorValueType: typing.TypeAlias = typing.Union[str, bool, int, list['QueryEditorOperatorType']]
+
+
+class QueryEditorPropertyType(enum.StrEnum):
+    STRING = "string"
 
 
 class LogsQueryLanguage(enum.StrEnum):
