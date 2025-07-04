@@ -26,6 +26,7 @@ permissions:
   contents: write # to push new branches
   actions: write # new branches will contain github actions
   pull-requests: write # to open PRs
+  id-token: write # to retrieve vault secrets
 
 # Allow only one concurrent release, skipping runs queued between the run in-progress and latest queued.
 # However, do NOT cancel in-progress runs as we want to allow these releases to complete.
@@ -56,11 +57,26 @@ jobs:
           enable-cache: 'true'
           devbox-version: ${{ env.DEVBOX_VERSION }}
 
+      - name: Get secrets
+        uses: grafana/shared-workflows/actions/get-vault-secrets@75804962c1ba608148988c1e2dc35fbb0ee21746
+        with:
+          repo_secrets: |
+            GITHUB_APP_ID=github_app:app-id
+            GITHUB_APP_PRIVATE_KEY=github_app:private-key
+
+      - name: Generate github private token
+        id: generate_github_token
+        uses: actions/create-github-app-token@df432ceedc7162793a195dd1713ff69aefc7379e # v2.0.6
+        with:
+          app-id: ${{ env.GITHUB_APP_ID }}
+          private-key: ${{ env.GITHUB_APP_PRIVATE_KEY }}
+          owner: ${{ github.repository_owner }}
+
       - name: Run the release script
         run: |
           git config --global user.name 'github-actions[bot]'
           git config --global user.email 'github-actions[bot]@users.noreply.github.com'
-          git config --global url."https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/".insteadOf "git@github.com:"
+          git config --global url."https://x-access-token:${{ env.GENERATED_GITHUB_TOKEN }}@github.com/".insteadOf "git@github.com:"
 
           if [ "${VERSION_TARGET}" == "all" ]; then
             devbox run ./scripts/release-all.sh
@@ -75,3 +91,4 @@ jobs:
           DRY_RUN: ${{ inputs.dryRun == true && 'yes' || 'no' }}
           SKIP_VALIDATION: ${{ inputs.skipValidation == true && 'yes' || 'no' }}
           VERSION_TARGET: ${{ inputs.version }}
+          GENERATED_GITHUB_TOKEN: ${{ steps.generate_github_token.outputs.token }}
