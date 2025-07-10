@@ -2,7 +2,7 @@ plugins {
     id 'java'
     id 'maven-publish'
     {{- if not .Data.Debug }}
-    id 'org.jreleaser' version '1.18.0'
+    id 'io.github.gradle-nexus.publish-plugin' version '2.0.0'
     {{- end }}
     id 'signing'
     id 'com.gradleup.shadow' version '8.3.6'
@@ -42,7 +42,10 @@ allprojects {
     repositories {
         mavenCentral()
         maven {
-            url = layout.buildDirectory.dir('staging-deploy')
+            url = uri("https://central.sonatype.com/repository/maven-snapshots/")
+            mavenContent {
+                snapshotsOnly()
+            }
         }
     }
 
@@ -53,7 +56,7 @@ allprojects {
 }
 
 dependencies {
-    implementation 'com.fasterxml.jackson.core:jackson-databind:2.17.1'
+    implementation 'com.fasterxml.jackson.core:jackson-databind:2.19.1'
 }
 
 tasks.withType(Javadoc).configureEach {
@@ -101,55 +104,29 @@ publishing {
             }
         }
     }
+}
+
+nexusPublishing {
     repositories {
-        maven {
-            url = layout.buildDirectory.dir('staging-deploy')
+        sonatype {
+            nexusUrl.set(uri("https://ossrh-staging-api.central.sonatype.com/service/local/"))
+            snapshotRepositoryUrl.set(uri("https://central.sonatype.com/repository/maven-snapshots/"))
+    
+            username = System.getenv("MAVEN_USERNAME")
+            password = System.getenv("MAVEN_PASSWORD")
         }
+    }    
+    transitionCheckOptions {
+        maxRetries = 100
+        delayBetween = Duration.ofSeconds(5)
+    }   
+}
+
+if (gradle.startParameter.taskNames.contains("publishToSonatype")) {
+    signing {
+        sign publishing.publications.mavenJava
+        useInMemoryPgpKeys(System.getenv("GPG_PRIVATE_KEY"), System.getenv("GPG_PASSPHRASE"))
     }
 }
 
-jreleaser {
-  release {
-    github {
-      enabled = false
-      skipRelease = true
-      changelog {
-        enabled = false
-      }
-    }
-  }
-  announce {
-    active = 'NEVER'
-  }
-  upload {
-    active = 'NEVER'
-  }
-  signing {
-    active = 'ALWAYS'
-    armored = true
-  }
-  deploy {
-    maven {
-      mavenCentral {
-        mavenCentralRelease {
-          active = 'RELEASE'
-          url = 'https://central.sonatype.com/api/v1/publisher'
-          stagingRepository('build/staging-deploy')
-        }
-        mavenCentralSnapshot {
-          active = 'SNAPSHOT'
-          url = 'https://central.sonatype.com/repository/maven-snapshots'
-          snapshotSupported = true
-          stagingRepository('build/staging-deploy')
-        }
-      }
-    }
-  }
-}
-
-tasks.withType(org.jreleaser.gradle.plugin.tasks.JReleaserConfigTask).configureEach {
-    dryrun = false
-    gitRootSearch = true
-    strict = false
-}
 {{- end }}
