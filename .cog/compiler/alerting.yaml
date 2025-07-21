@@ -196,3 +196,13 @@ passes:
       to: RecordRule
 
   - trim_enum_values: {}
+  
+  - add_enum_value:
+      field: alerting.Rule.execErrState
+      name: KeepLastErrState
+      value: 'KeepLast'
+
+  - add_enum_value:
+      field: alerting.Rule.noDataState
+      name: KeepLast
+      value: 'KeepLast'
