@@ -196,3 +196,6 @@ passes:
       to: RecordRule
 
   - trim_enum_values: {}
+
+  - retype_object:
+      object: alerting.RuleBuilder.execErrState
