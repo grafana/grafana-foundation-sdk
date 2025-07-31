@@ -51,6 +51,18 @@ func DataqueryConverter(input Dataquery) string {
 		buffer.Reset()
 
 	}
+
+	{
+		buffer.WriteString(`WithTransforms(`)
+		arg0 := fmt.Sprintf("%#v", input.WithTransforms)
+		buffer.WriteString(arg0)
+
+		buffer.WriteString(")")
+
+		calls = append(calls, buffer.String())
+		buffer.Reset()
+	}
+
 	if input.Datasource != nil {
 
 		buffer.WriteString(`Datasource(`)
