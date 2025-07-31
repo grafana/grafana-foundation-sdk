@@ -17,6 +17,7 @@ export interface Dataquery {
 	// Specify the query flavor
 	// TODO make this required and give it a default
 	queryType?: string;
+	withTransforms: boolean;
 	// For mixed data sources the selected datasource is on the query level.
 	// For non mixed scenarios this is undefined.
 	// TODO find a better way to do this ^ that's friendly to schema
@@ -28,6 +29,7 @@ export interface Dataquery {
 export const defaultDataquery = (): Dataquery => ({
 	panelId: 0,
 	refId: "",
+	withTransforms: false,
 	_implementsDataqueryVariant: () => {},
 });
 

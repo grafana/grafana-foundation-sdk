@@ -29,6 +29,8 @@ class Dataquery implements \JsonSerializable, \Grafana\Foundation\Cog\Dataquery
      */
     public ?string $queryType;
 
+    public bool $withTransforms;
+
     /**
      * For mixed data sources the selected datasource is on the query level.
      * For non mixed scenarios this is undefined.
@@ -42,14 +44,16 @@ class Dataquery implements \JsonSerializable, \Grafana\Foundation\Cog\Dataquery
      * @param string|null $refId
      * @param bool|null $hide
      * @param string|null $queryType
+     * @param bool|null $withTransforms
      * @param \Grafana\Foundation\Dashboard\DataSourceRef|null $datasource
      */
-    public function __construct(?int $panelId = null, ?string $refId = null, ?bool $hide = null, ?string $queryType = null, ?\Grafana\Foundation\Dashboard\DataSourceRef $datasource = null)
+    public function __construct(?int $panelId = null, ?string $refId = null, ?bool $hide = null, ?string $queryType = null, ?bool $withTransforms = null, ?\Grafana\Foundation\Dashboard\DataSourceRef $datasource = null)
     {
         $this->panelId = $panelId ?: 0;
         $this->refId = $refId ?: "";
         $this->hide = $hide;
         $this->queryType = $queryType;
+        $this->withTransforms = $withTransforms ?: false;
         $this->datasource = $datasource;
     }
 
@@ -58,13 +62,14 @@ class Dataquery implements \JsonSerializable, \Grafana\Foundation\Cog\Dataquery
      */
     public static function fromArray(array $inputData): self
     {
-        /** @var array{panelId?: int, refId?: string, hide?: bool, queryType?: string, datasource?: mixed} $inputData */
+        /** @var array{panelId?: int, refId?: string, hide?: bool, queryType?: string, withTransforms?: bool, datasource?: mixed} $inputData */
         $data = $inputData;
         return new self(
             panelId: $data["panelId"] ?? null,
             refId: $data["refId"] ?? null,
             hide: $data["hide"] ?? null,
             queryType: $data["queryType"] ?? null,
+            withTransforms: $data["withTransforms"] ?? null,
             datasource: isset($data["datasource"]) ? (function($input) {
     	/** @var array{type?: string, uid?: string} */
     $val = $input;
@@ -81,6 +86,7 @@ class Dataquery implements \JsonSerializable, \Grafana\Foundation\Cog\Dataquery
         $data = new \stdClass;
         $data->panelId = $this->panelId;
         $data->refId = $this->refId;
+        $data->withTransforms = $this->withTransforms;
         if (isset($this->hide)) {
             $data->hide = $this->hide;
         }
