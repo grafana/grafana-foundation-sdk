@@ -57,6 +57,13 @@ class DataqueryBuilder implements \Grafana\Foundation\Cog\Builder
         return $this;
     }
 
+    public function withTransforms(bool $withTransforms): static
+    {
+        $this->internal->withTransforms = $withTransforms;
+    
+        return $this;
+    }
+
     /**
      * For mixed data sources the selected datasource is on the query level.
      * For non mixed scenarios this is undefined.

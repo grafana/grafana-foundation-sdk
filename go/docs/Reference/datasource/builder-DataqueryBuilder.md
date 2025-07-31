@@ -64,6 +64,12 @@ By default, the UI will assign A->Z; however setting meaningful names may be use
 func (builder *DataqueryBuilder) RefId(refId string) *DataqueryBuilder
 ```
 
+### <span class="badge object-method"></span> WithTransforms
+
+```go
+func (builder *DataqueryBuilder) WithTransforms(withTransforms bool) *DataqueryBuilder
+```
+
 ## See also
 
  * <span class="badge object-type-struct"></span> [Dataquery](./object-Dataquery.md)
