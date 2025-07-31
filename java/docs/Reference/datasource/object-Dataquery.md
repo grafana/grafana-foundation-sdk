@@ -11,6 +11,7 @@ public class Dataquery extends com.grafana.foundation.cog.variants.Dataquery {
   public String refId;
   public Boolean hide;
   public String queryType;
+  public Boolean withTransforms;
   public DataSourceRef datasource;
 }
 ```
