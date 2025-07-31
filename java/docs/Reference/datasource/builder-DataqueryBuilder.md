@@ -64,6 +64,12 @@ By default, the UI will assign A->Z; however setting meaningful names may be use
 public DataqueryBuilder refId(String refId)
 ```
 
+### <span class="badge object-method"></span> withTransforms
+
+```java
+public DataqueryBuilder withTransforms(Boolean withTransforms)
+```
+
 ## See also
 
  * <span class="badge object-type-class"></span> [Dataquery](./object-Dataquery.md)
