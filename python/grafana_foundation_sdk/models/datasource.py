@@ -18,23 +18,26 @@ class Dataquery(cogvariants.Dataquery):
     # Specify the query flavor
     # TODO make this required and give it a default
     query_type: typing.Optional[str]
+    with_transforms: bool
     # For mixed data sources the selected datasource is on the query level.
     # For non mixed scenarios this is undefined.
     # TODO find a better way to do this ^ that's friendly to schema
     # TODO this shouldn't be unknown but DataSourceRef | null
     datasource: typing.Optional[dashboard.DataSourceRef]
 
-    def __init__(self, panel_id: int = 0, ref_id: str = "", hide: typing.Optional[bool] = None, query_type: typing.Optional[str] = None, datasource: typing.Optional[dashboard.DataSourceRef] = None):
+    def __init__(self, panel_id: int = 0, ref_id: str = "", hide: typing.Optional[bool] = None, query_type: typing.Optional[str] = None, with_transforms: bool = False, datasource: typing.Optional[dashboard.DataSourceRef] = None):
         self.panel_id = panel_id
         self.ref_id = ref_id
         self.hide = hide
         self.query_type = query_type
+        self.with_transforms = with_transforms
         self.datasource = datasource
 
     def to_json(self) -> dict[str, object]:
         payload: dict[str, object] = {
             "panelId": self.panel_id,
             "refId": self.ref_id,
+            "withTransforms": self.with_transforms,
         }
         if self.hide is not None:
             payload["hide"] = self.hide
@@ -56,6 +59,8 @@ class Dataquery(cogvariants.Dataquery):
             args["hide"] = data["hide"]
         if "queryType" in data:
             args["query_type"] = data["queryType"]
+        if "withTransforms" in data:
+            args["with_transforms"] = data["withTransforms"]
         if "datasource" in data:
             args["datasource"] = dashboard.DataSourceRef.from_json(data["datasource"])        
 
