@@ -49,6 +49,19 @@ final class DataqueryConverter
     
     
     }
+            
+    
+        {
+    $buffer = 'withTransforms(';
+        $arg0 =\var_export($input->withTransforms, true);
+        $buffer .= $arg0;
+        
+    $buffer .= ')';
+
+    $calls[] = $buffer;
+    }
+    
+    
             if ($input->datasource !== null) {
     
         
