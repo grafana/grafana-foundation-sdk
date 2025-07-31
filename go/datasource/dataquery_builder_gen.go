@@ -62,6 +62,12 @@ func (builder *DataqueryBuilder) Hide(hide bool) *DataqueryBuilder {
 	return builder
 }
 
+func (builder *DataqueryBuilder) WithTransforms(withTransforms bool) *DataqueryBuilder {
+	builder.internal.WithTransforms = withTransforms
+
+	return builder
+}
+
 // For mixed data sources the selected datasource is on the query level.
 // For non mixed scenarios this is undefined.
 // TODO find a better way to do this ^ that's friendly to schema
