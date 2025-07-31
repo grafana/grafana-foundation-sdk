@@ -64,6 +64,12 @@ By default, the UI will assign A->Z; however setting meaningful names may be use
 refId(refId: string)
 ```
 
+### <span class="badge object-method"></span> withTransforms
+
+```typescript
+withTransforms(withTransforms: boolean)
+```
+
 ## See also
 
  * <span class="badge object-type-interface"></span> [Dataquery](./object-Dataquery.md)
