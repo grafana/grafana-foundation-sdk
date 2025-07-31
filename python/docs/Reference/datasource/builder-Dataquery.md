@@ -60,6 +60,12 @@ By default, the UI will assign A->Z; however setting meaningful names may be use
 def ref_id(ref_id: str) -> typing.Self
 ```
 
+### <span class="badge object-method"></span> with_transforms
+
+```python
+def with_transforms(with_transforms: bool) -> typing.Self
+```
+
 ## See also
 
  * <span class="badge object-type-class"></span> [Dataquery](./object-Dataquery.md)
