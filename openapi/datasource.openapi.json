@@ -15,7 +15,8 @@
         "additionalProperties": false,
         "required": [
           "panelId",
-          "refId"
+          "refId",
+          "withTransforms"
         ],
         "properties": {
           "panelId": {
@@ -33,6 +34,9 @@
           "queryType": {
             "type": "string",
             "description": "Specify the query flavor\nTODO make this required and give it a default"
+          },
+          "withTransforms": {
+            "type": "boolean"
           },
           "datasource": {
             "$ref": "#/components/schemas/DataSourceRef",
