@@ -25,6 +25,11 @@ public class DataqueryBuilder implements com.grafana.foundation.cog.Builder<com.
         return this;
     }
     
+    public DataqueryBuilder withTransforms(Boolean withTransforms) {
+        this.internal.withTransforms = withTransforms;
+        return this;
+    }
+    
     public DataqueryBuilder datasource(DataSourceRef datasource) {
         this.internal.datasource = datasource;
         return this;

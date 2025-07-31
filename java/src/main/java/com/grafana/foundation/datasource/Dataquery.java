@@ -27,6 +27,8 @@ public class Dataquery implements com.grafana.foundation.cog.variants.Dataquery 
     @JsonInclude(JsonInclude.Include.NON_NULL)
     @JsonProperty("queryType")
     public String queryType;
+    @JsonProperty("withTransforms")
+    public Boolean withTransforms;
     // For mixed data sources the selected datasource is on the query level.
     // For non mixed scenarios this is undefined.
     // TODO find a better way to do this ^ that's friendly to schema
@@ -37,12 +39,14 @@ public class Dataquery implements com.grafana.foundation.cog.variants.Dataquery 
     public Dataquery() {
         this.panelId = 0;
         this.refId = "";
+        this.withTransforms = false;
     }
-    public Dataquery(Integer panelId,String refId,Boolean hide,String queryType,DataSourceRef datasource) {
+    public Dataquery(Integer panelId,String refId,Boolean hide,String queryType,Boolean withTransforms,DataSourceRef datasource) {
         this.panelId = panelId;
         this.refId = refId;
         this.hide = hide;
         this.queryType = queryType;
+        this.withTransforms = withTransforms;
         this.datasource = datasource;
     }
     public String dataqueryName() {
