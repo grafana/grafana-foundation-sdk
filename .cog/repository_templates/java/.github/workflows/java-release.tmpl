@@ -56,16 +56,4 @@ jobs:
           GPG_PASSPHRASE: {{ `${{ env.GPG_PASSPHRASE }}` }}
           GPG_PUBLIC_KEY: {{ `${{ env.GPG_PUBLIC_KEY }}` }}
           GPG_PRIVATE_KEY: {{ `${{ env.GPG_PRIVATE_KEY }}` }}
-        run: ./gradlew publishToSonatype closeAndReleaseSonatypeStagingRepository
-  
-      - name: Show Gradle Action build result (if exists)
-        if: failure()
-        run: |
-          echo "Dumping build result file (if exists):"
-          FILE=$(find {{ `${{ runner.temp }}` }}/.gradle-actions/build-results -name '__run-*.json' | sort | tail -n 1)
-          if [ -f "$FILE" ]; then
-            echo "File: $FILE"
-            cat "$FILE"
-          else
-            echo "No build result file found."
-          fi
+        run: gradle publishToSonatype closeAndReleaseSonatypeStagingRepository
