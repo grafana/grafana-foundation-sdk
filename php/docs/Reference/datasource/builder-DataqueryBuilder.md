@@ -60,6 +60,12 @@ By default, the UI will assign A->Z; however setting meaningful names may be use
 refId(string $refId)
 ```
 
+### <span class="badge object-method"></span> withTransforms
+
+```php
+withTransforms(bool $withTransforms)
+```
+
 ## See also
 
  * <span class="badge object-type-class"></span> [Dataquery](./object-Dataquery.md)

@@ -23,7 +23,8 @@ type Dataquery struct {
 	Hide *bool `json:"hide,omitempty"`
 	// Specify the query flavor
 	// TODO make this required and give it a default
-	QueryType *string `json:"queryType,omitempty"`
+	QueryType      *string `json:"queryType,omitempty"`
+	WithTransforms bool    `json:"withTransforms"`
 	// For mixed data sources the selected datasource is on the query level.
 	// For non mixed scenarios this is undefined.
 	// TODO find a better way to do this ^ that's friendly to schema
@@ -104,6 +105,20 @@ func (resource *Dataquery) UnmarshalJSONStrict(raw []byte) error {
 		delete(fields, "queryType")
 
 	}
+	// Field "withTransforms"
+	if fields["withTransforms"] != nil {
+		if string(fields["withTransforms"]) != "null" {
+			if err := json.Unmarshal(fields["withTransforms"], &resource.WithTransforms); err != nil {
+				errs = append(errs, cog.MakeBuildErrors("withTransforms", err)...)
+			}
+		} else {
+			errs = append(errs, cog.MakeBuildErrors("withTransforms", errors.New("required field is null"))...)
+
+		}
+		delete(fields, "withTransforms")
+	} else {
+		errs = append(errs, cog.MakeBuildErrors("withTransforms", errors.New("required field is missing from input"))...)
+	}
 	// Field "datasource"
 	if fields["datasource"] != nil {
 		if string(fields["datasource"]) != "null" {
@@ -162,6 +177,9 @@ func (resource Dataquery) Equals(otherCandidate variants.Dataquery) bool {
 		if *resource.QueryType != *other.QueryType {
 			return false
 		}
+	}
+	if resource.WithTransforms != other.WithTransforms {
+		return false
 	}
 	if resource.Datasource == nil && other.Datasource != nil || resource.Datasource != nil && other.Datasource == nil {
 		return false
