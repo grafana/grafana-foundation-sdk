@@ -18,6 +18,7 @@ type Dataquery struct {
     // Specify the query flavor
     // TODO make this required and give it a default
     QueryType *string `json:"queryType,omitempty"`
+    WithTransforms bool `json:"withTransforms"`
     // For mixed data sources the selected datasource is on the query level.
     // For non mixed scenarios this is undefined.
     // TODO find a better way to do this ^ that's friendly to schema

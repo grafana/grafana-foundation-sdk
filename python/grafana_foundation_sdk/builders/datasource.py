@@ -47,6 +47,11 @@ class Dataquery(cogbuilder.Builder[datasource.Dataquery]):
     
         return self
     
+    def with_transforms(self, with_transforms: bool) -> typing.Self:    
+        self._internal.with_transforms = with_transforms
+    
+        return self
+    
     def datasource(self, datasource: dashboard.DataSourceRef) -> typing.Self:    
         """
         For mixed data sources the selected datasource is on the query level.
