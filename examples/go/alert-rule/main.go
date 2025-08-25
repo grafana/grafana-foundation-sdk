@@ -13,7 +13,7 @@ import (
 
 func main() {
 	datasourceUid := "DS_PROMETHEUS_UID"
-	ruleGroupUid := "1m"
+	ruleGroupTitle := "example-group"
 	folderUid := "folder-foo-uid"
 
 	queryA := alerting.NewQueryBuilder("A").
@@ -48,12 +48,12 @@ func main() {
 		ExecErrState(alerting.RuleExecErrStateError).
 		NoDataState(alerting.RuleNoDataStateNoData).
 		For("0m").
-		RuleGroup(ruleGroupUid).
+		RuleGroup(ruleGroupTitle).
 		FolderUID(folderUid).
 		Labels(map[string]string{"severity": "critical"}).
 		Annotations(map[string]string{"summary": "Demo rule"})
 
-	ruleGroupBuilder := alerting.NewRuleGroupBuilder(ruleGroupUid).
+	ruleGroupBuilder := alerting.NewRuleGroupBuilder(ruleGroupTitle).
 		Interval(60).
 		FolderUid(folderUid).
 		Rules([]cog.Builder[alerting.Rule]{ruleBuilder})
