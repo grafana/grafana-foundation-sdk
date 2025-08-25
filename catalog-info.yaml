@@ -12,5 +12,5 @@ metadata:
     Set of tools, types and libraries for building and manipulating Grafana objects. 
 spec:
   type: library
-  owner: group:default/platform-monitoring
+  owner: group:default/grafana-app-platform-squad
   lifecycle: production
