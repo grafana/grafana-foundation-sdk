@@ -51,25 +51,9 @@ jobs:
           
       - name: Publish package 📦
         env:
-          JRELEASER_MAVENCENTRAL_USERNAME: {{ `${{ env.MAVEN_USERNAME }}` }}
-          JRELEASER_MAVENCENTRAL_PASSWORD: {{ `${{ env.MAVEN_PASSWORD }}` }}
-          JRELEASER_GPG_PASSPHRASE: {{ `${{ env.GPG_PASSPHRASE }}` }}
-          JRELEASER_GPG_PUBLIC_KEY: {{ `${{ env.GPG_PUBLIC_KEY }}` }}
-          JRELEASER_GPG_SECRET_KEY: {{ `${{ env.GPG_PRIVATE_KEY }}` }}
-          JRELEASER_MAVENCENTRAL_STAGE: 'FULL'
-        run: |
-          gradle clean
-          gradle publish
-          gradle jreleaserDeploy
-  
-      - name: Show Gradle Action build result (if exists)
-        if: failure()
-        run: |
-          echo "Dumping build result file (if exists):"
-          FILE=$(find {{ `${{ runner.temp }}` }}/.gradle-actions/build-results -name '__run-*.json' | sort | tail -n 1)
-          if [ -f "$FILE" ]; then
-            echo "File: $FILE"
-            cat "$FILE"
-          else
-            echo "No build result file found."
-          fi
+          MAVEN_USERNAME: {{ `${{ env.MAVEN_USERNAME }}` }}
+          MAVEN_PASSWORD: {{ `${{ env.MAVEN_PASSWORD }}` }}
+          GPG_PASSPHRASE: {{ `${{ env.GPG_PASSPHRASE }}` }}
+          GPG_PUBLIC_KEY: {{ `${{ env.GPG_PUBLIC_KEY }}` }}
+          GPG_PRIVATE_KEY: {{ `${{ env.GPG_PRIVATE_KEY }}` }}
+        run: gradle publishToSonatype closeAndReleaseSonatypeStagingRepository

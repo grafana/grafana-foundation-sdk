@@ -52,6 +52,7 @@ theme:
     - navigation.top
     - navigation.prune
     - search.highlight
+    - content.code.copy
 
   custom_dir: overrides
 
