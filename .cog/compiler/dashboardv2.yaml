@@ -1,0 +1,31 @@
+# yaml-language-server: $schema=https://raw.githubusercontent.com/grafana/cog/main/schemas/compiler_passes.json
+
+passes:
+  - extract_k8_resource_names: {
+      prefix_to_remove: 'Dashboard'
+  }
+  ######################
+  # Dashboard v2beta1 #
+  ######################
+
+  # To make our composability veneers shenanigans work
+  - retype_field:
+      field: dashboardv2beta1.VizConfigSpec.options
+      as:
+        kind: scalar
+        scalar: { scalar_kind: any }
+        nullable: true
+
+  - retype_field:
+      field: dashboardv2beta1.FieldConfig.custom
+      as:
+        kind: scalar
+        scalar: { scalar_kind: any }
+        nullable: true
+
+  - retype_field:
+      field: dashboardv2beta1.DataQueryKind.spec
+      as:
+        kind: scalar
+        scalar: { scalar_kind: any }
+        nullable: true
