@@ -1,7 +1,7 @@
 # yaml-language-server: $schema=https://raw.githubusercontent.com/grafana/cog/main/schemas/compiler_passes.json
 
 passes:
-  - extract_k8_resource_names: {
+  - cleanup_k8_resource_names: {
       prefix_to_remove: 'Dashboard'
   }
   ######################
