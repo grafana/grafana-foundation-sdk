@@ -29,3 +29,48 @@ passes:
         kind: scalar
         scalar: { scalar_kind: any }
         nullable: true
+
+  - rename_object:
+      from: dashboardv2beta1.Spec
+      to: Dashboard
+
+  - rename_object:
+      from: dashboardv2beta1.V2beta1FieldConfigSourceOverrides
+      to: FieldConfigSourceOverrides
+
+  - rename_object:
+      from: dashboardv2beta1.V2beta1RangeMapOptions
+      to: RangeMapOptions
+
+  - rename_object:
+      from: dashboardv2beta1.V2beta1RegexMapOptions
+      to: RegexMapOptions
+
+  - rename_object:
+      from: dashboardv2beta1.V2beta1AdhocVariableKindDatasource
+      to: AdhocVariableKindDatasource
+
+  - rename_object:
+      from: dashboardv2beta1.V2beta1SpecialValueMapOptions
+      to: SpecialValueMapOptions
+
+  # Use DataSourceRef defined in common package
+
+  - retype_field:
+      field: dashboardv2beta1.AdhocVariableKind.datasource
+      as: &datasource_ref
+        kind: ref
+        ref: { referred_pkg: common, referred_type: DataSourceRef }
+
+  - retype_field:
+      field: dashboardv2beta1.DataQueryKind.datasource
+      as: *datasource_ref
+
+  - retype_field:
+      field: dashboardv2beta1.GroupByVariableKind.datasource
+      as: *datasource_ref
+
+  - omit:
+      objects:
+        - dashboardv2beta1.V2beta1DataQueryKindDatasource
+        - dashboardv2beta1.V2beta1GroupByVariableKindDatasource
