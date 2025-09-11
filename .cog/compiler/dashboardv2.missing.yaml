@@ -381,6 +381,36 @@ passes:
             - { type: { kind: scalar, scalar: { scalar_kind: string } }, name: 'matches', value: 'matches' }
             - { type: { kind: scalar, scalar: { scalar_kind: string } }, name: 'notMatches', value: 'notMatches' }
 
+  # RepeatMode
+  - add_object:
+      object: dashboardv2beta1.RepeatMode
+      as:
+        kind: constant_ref
+        constant_ref: { referred_pkg: dashboardv2beta1, referred_type: RepeatMode, reference_value: 'variable' }
+
+  - retype_field:
+      field: dashboardv2beta1.RepeatOptions.mode
+      as:
+        kind: constant_ref
+        constant_ref: { referred_pkg: dashboardv2beta1, referred_type: RepeatMode, reference_value: 'variable' }
+
+  - retype_field:
+      field: dashboardv2beta1.RowRepeatOptions.mode
+      as:
+        kind: constant_ref
+        constant_ref: { referred_pkg: dashboardv2beta1, referred_type: RepeatMode, reference_value: 'variable' }
+
+  - retype_field:
+      field: dashboardv2beta1.TabRepeatOptions.mode
+      as:
+        kind: constant_ref
+        constant_ref: { referred_pkg: dashboardv2beta1, referred_type: RepeatMode, reference_value: 'variable' }
+
+  - retype_field:
+      field: dashboardv2beta1.AutoGridRepeatOptions.mode
+      as:
+        kind: constant_ref
+        constant_ref: { referred_pkg: dashboardv2beta1, referred_type: RepeatMode, reference_value: 'variable' }
 
   #############
   # Constants #
@@ -542,3 +572,77 @@ passes:
       as:
         kind: scalar
         scalar: { scalar_kind: string, value: 'ElementReference' }
+
+  ################
+  # Disjunctions #
+  ################
+
+  - retype_object:
+      object: dashboardv2beta1.PanelKindOrLibraryPanelKind
+      as:
+        kind: disjunction
+        disjunction:
+          branches:
+            - { kind: ref, ref: { referred_pkg: dashboardv2beta1, referred_type: PanelKind } }
+            - { kind: ref, ref: { referred_pkg: dashboardv2beta1, referred_type: LibraryPanelKind } }
+
+  - retype_object:
+      object: dashboardv2beta1.GridLayoutKindOrAutoGridLayoutKindOrTabsLayoutKindOrRowsLayoutKind
+      as:
+        kind: disjunction
+        disjunction:
+          branches:
+            - { kind: ref, ref: { referred_pkg: dashboardv2beta1, referred_type: GridLayoutKind } }
+            - { kind: ref, ref: { referred_pkg: dashboardv2beta1, referred_type: AutoGridLayoutKind } }
+            - { kind: ref, ref: { referred_pkg: dashboardv2beta1, referred_type: TabsLayoutKind } }
+            - { kind: ref, ref: { referred_pkg: dashboardv2beta1, referred_type: RowsLayoutKind } }
+
+  - retype_object:
+      object: dashboardv2beta1.ConditionalRenderingVariableKindOrConditionalRenderingDataKindOrConditionalRenderingTimeRangeSizeKind
+      as:
+        kind: disjunction
+        disjunction:
+          branches:
+            - { kind: ref, ref: { referred_pkg: dashboardv2beta1, referred_type: ConditionalRenderingVariableKind } }
+            - { kind: ref, ref: { referred_pkg: dashboardv2beta1, referred_type: ConditionalRenderingDataKind } }
+            - { kind: ref, ref: { referred_pkg: dashboardv2beta1, referred_type: ConditionalRenderingTimeRangeSizeKind } }
+
+  - retype_object:
+      object: dashboardv2beta1.ValueMapOrRangeMapOrRegexMapOrSpecialValueMap
+      as:
+        kind: disjunction
+        disjunction:
+          branches:
+            - { kind: ref, ref: { referred_pkg: dashboardv2beta1, referred_type: ValueMap } }
+            - { kind: ref, ref: { referred_pkg: dashboardv2beta1, referred_type: RangeMap } }
+            - { kind: ref, ref: { referred_pkg: dashboardv2beta1, referred_type: RegexMap } }
+            - { kind: ref, ref: { referred_pkg: dashboardv2beta1, referred_type: SpecialValueMap } }
+
+  - retype_object:
+      object: dashboardv2beta1.StringOrArrayOfString
+      as:
+        kind: disjunction
+        disjunction:
+          branches:
+            - { kind: scalar, scalar: { scalar_kind: string } }
+            - { kind: array, array: { value_type: { kind: scalar, scalar: { scalar_kind: string } } } }
+
+
+  ############
+  # Defaults #
+  ############
+
+  - fields_set_default:
+      defaults:
+        dashboardv2beta1.DataQueryKind.version: 'v0'
+        dashboardv2beta1.Dashboard.editable: true
+        dashboardv2beta1.TimeRangeOption.display: 'Last 6 hours'
+        dashboardv2beta1.TimeRangeOption.from: 'now-6h'
+        dashboardv2beta1.TimeRangeOption.to: 'now'
+        dashboardv2beta1.TimeSettingsSpec.timezone: 'browser'
+        dashboardv2beta1.TimeSettingsSpec.from: 'now-6h'
+        dashboardv2beta1.TimeSettingsSpec.to: 'now'
+        dashboardv2beta1.TimeSettingsSpec.autoRefreshIntervals: ['5s', '10s', '30s', '1m', '5m', '15m', '30m', '1h', '2h', '1d']
+        dashboardv2beta1.TimeSettingsSpec.fiscalYearStartMonth: 0
+        
+        
