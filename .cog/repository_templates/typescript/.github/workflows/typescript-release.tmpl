@@ -45,5 +45,3 @@ jobs:
 
       - name: Publish to NPM registry
         run: yarn publish --access public
-        env:
-          NODE_AUTH_TOKEN: {{ `${{ secrets.NPM_READ_TOKEN }}` }}
