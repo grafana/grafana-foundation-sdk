@@ -87,19 +87,22 @@
         "enum": [
           0,
           1
-        ]
+        ],
+        "type": "integer"
       },
       "QueryPriority": {
         "enum": [
           "INTERACTIVE",
           "BATCH"
-        ]
+        ],
+        "type": "string"
       },
       "EditorMode": {
         "enum": [
           "code",
           "builder"
-        ]
+        ],
+        "type": "string"
       },
       "SQLExpression": {
         "type": "object",
@@ -169,7 +172,8 @@
           "groupBy",
           "function",
           "functionParameter"
-        ]
+        ],
+        "type": "string"
       },
       "QueryEditorFunctionParameterExpression": {
         "type": "object",
@@ -220,6 +224,12 @@
           }
         }
       },
+      "QueryEditorPropertyType": {
+        "enum": [
+          "string"
+        ],
+        "type": "string"
+      },
       "QueryEditorPropertyExpression": {
         "type": "object",
         "additionalProperties": false,
@@ -241,12 +251,8 @@
         "enum": [
           "ASC",
           "DESC"
-        ]
-      },
-      "QueryEditorPropertyType": {
-        "enum": [
-          "string"
-        ]
+        ],
+        "type": "string"
       },
       "DataSourceRef": {
         "type": "object",
