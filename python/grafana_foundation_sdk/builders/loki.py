@@ -130,3 +130,8 @@ class Dataquery(cogbuilder.Builder[loki.Dataquery]):
     
         return self
     
+    def direction(self, direction: loki.LokiQueryDirection) -> typing.Self:    
+        self._internal.direction = direction
+    
+        return self
+    

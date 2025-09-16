@@ -20,10 +20,10 @@ public class BoolOrUint32Deserializer extends JsonDeserializer<BoolOrUint32> {
         
         BoolOrUint32 boolOrUint32 = new BoolOrUint32();
         if (root.isBoolean()) {
-            boolOrUint32.bool = mapper.convertValue(root, new TypeReference<>() {});
+            boolOrUint32.bool = mapper.convertValue(root, Boolean.class);
         }
         else if (root.isInt()) {
-            boolOrUint32.uint32 = mapper.convertValue(root, new TypeReference<>() {});
+            boolOrUint32.uint32 = mapper.convertValue(root, Integer.class);
         }
         
         return boolOrUint32;
