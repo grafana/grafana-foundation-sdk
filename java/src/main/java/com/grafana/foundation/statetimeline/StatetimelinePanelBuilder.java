@@ -1,6 +1,6 @@
 // Code generated - EDITING IS FUTILE. DO NOT EDIT.
 
-package com.grafana.foundation.heatmap;
+package com.grafana.foundation.statetimeline;
 
 import com.grafana.foundation.dashboard.Panel;
 import java.util.List;
@@ -18,25 +18,25 @@ import com.grafana.foundation.dashboard.FieldColor;
 import com.grafana.foundation.dashboard.DashboardFieldConfigSourceOverrides;
 import com.grafana.foundation.dashboard.DynamicConfigValue;
 import com.grafana.foundation.dashboard.MatcherConfig;
-import com.grafana.foundation.common.HeatmapCalculationOptions;
 import com.grafana.foundation.common.VisibilityMode;
-import com.grafana.foundation.common.TooltipDisplayMode;
-import com.grafana.foundation.common.ScaleDistributionConfig;
+import com.grafana.foundation.common.VizLegendOptions;
+import com.grafana.foundation.common.VizTooltipOptions;
+import com.grafana.foundation.common.TimelineValueAlignment;
 import com.grafana.foundation.common.HideSeriesConfig;
 
-public class PanelBuilder implements com.grafana.foundation.cog.Builder<Panel> {
+public class StatetimelinePanelBuilder implements com.grafana.foundation.cog.Builder<Panel> {
     protected final Panel internal;
     
-    public PanelBuilder() {
+    public StatetimelinePanelBuilder() {
         this.internal = new Panel();
-        this.internal.type = "heatmap";
+        this.internal.type = "state-timeline";
     }
-    public PanelBuilder id(Integer id) {
+    public StatetimelinePanelBuilder id(Integer id) {
         this.internal.id = id;
         return this;
     }
     
-    public PanelBuilder targets(List<com.grafana.foundation.cog.Builder<Dataquery>> targets) {
+    public StatetimelinePanelBuilder targets(List<com.grafana.foundation.cog.Builder<Dataquery>> targets) {
         List<Dataquery> targetsResources = new LinkedList<>();
         for (com.grafana.foundation.cog.Builder<Dataquery> r1 : targets) {
                 Dataquery targetsDepth1 = r1.build();
@@ -46,7 +46,7 @@ public class PanelBuilder implements com.grafana.foundation.cog.Builder<Panel> {
         return this;
     }
     
-    public PanelBuilder withTarget(com.grafana.foundation.cog.Builder<Dataquery> target) {
+    public StatetimelinePanelBuilder withTarget(com.grafana.foundation.cog.Builder<Dataquery> target) {
 		if (this.internal.targets == null) {
 			this.internal.targets = new LinkedList<>();
 		}
@@ -55,32 +55,32 @@ public class PanelBuilder implements com.grafana.foundation.cog.Builder<Panel> {
         return this;
     }
     
-    public PanelBuilder title(String title) {
+    public StatetimelinePanelBuilder title(String title) {
         this.internal.title = title;
         return this;
     }
     
-    public PanelBuilder description(String description) {
+    public StatetimelinePanelBuilder description(String description) {
         this.internal.description = description;
         return this;
     }
     
-    public PanelBuilder transparent(Boolean transparent) {
+    public StatetimelinePanelBuilder transparent(Boolean transparent) {
         this.internal.transparent = transparent;
         return this;
     }
     
-    public PanelBuilder datasource(DataSourceRef datasource) {
+    public StatetimelinePanelBuilder datasource(DataSourceRef datasource) {
         this.internal.datasource = datasource;
         return this;
     }
     
-    public PanelBuilder gridPos(GridPos gridPos) {
+    public StatetimelinePanelBuilder gridPos(GridPos gridPos) {
         this.internal.gridPos = gridPos;
         return this;
     }
     
-    public PanelBuilder height(Integer h) {
+    public StatetimelinePanelBuilder height(Integer h) {
         if (!(h > 0)) {
             throw new IllegalArgumentException("h must be > 0");
         }
@@ -91,7 +91,7 @@ public class PanelBuilder implements com.grafana.foundation.cog.Builder<Panel> {
         return this;
     }
     
-    public PanelBuilder span(Integer w) {
+    public StatetimelinePanelBuilder span(Integer w) {
         if (!(w > 0)) {
             throw new IllegalArgumentException("w must be > 0");
         }
@@ -105,7 +105,7 @@ public class PanelBuilder implements com.grafana.foundation.cog.Builder<Panel> {
         return this;
     }
     
-    public PanelBuilder links(List<com.grafana.foundation.cog.Builder<DashboardLink>> links) {
+    public StatetimelinePanelBuilder links(List<com.grafana.foundation.cog.Builder<DashboardLink>> links) {
         List<DashboardLink> linksResources = new LinkedList<>();
         for (com.grafana.foundation.cog.Builder<DashboardLink> r1 : links) {
                 DashboardLink linksDepth1 = r1.build();
@@ -115,32 +115,32 @@ public class PanelBuilder implements com.grafana.foundation.cog.Builder<Panel> {
         return this;
     }
     
-    public PanelBuilder repeat(String repeat) {
+    public StatetimelinePanelBuilder repeat(String repeat) {
         this.internal.repeat = repeat;
         return this;
     }
     
-    public PanelBuilder repeatDirection(PanelRepeatDirection repeatDirection) {
+    public StatetimelinePanelBuilder repeatDirection(PanelRepeatDirection repeatDirection) {
         this.internal.repeatDirection = repeatDirection;
         return this;
     }
     
-    public PanelBuilder maxPerRow(Double maxPerRow) {
+    public StatetimelinePanelBuilder maxPerRow(Double maxPerRow) {
         this.internal.maxPerRow = maxPerRow;
         return this;
     }
     
-    public PanelBuilder maxDataPoints(Double maxDataPoints) {
+    public StatetimelinePanelBuilder maxDataPoints(Double maxDataPoints) {
         this.internal.maxDataPoints = maxDataPoints;
         return this;
     }
     
-    public PanelBuilder transformations(List<DataTransformerConfig> transformations) {
+    public StatetimelinePanelBuilder transformations(List<DataTransformerConfig> transformations) {
         this.internal.transformations = transformations;
         return this;
     }
     
-    public PanelBuilder withTransformation(DataTransformerConfig transformation) {
+    public StatetimelinePanelBuilder withTransformation(DataTransformerConfig transformation) {
 		if (this.internal.transformations == null) {
 			this.internal.transformations = new LinkedList<>();
 		}
@@ -148,42 +148,42 @@ public class PanelBuilder implements com.grafana.foundation.cog.Builder<Panel> {
         return this;
     }
     
-    public PanelBuilder interval(String interval) {
+    public StatetimelinePanelBuilder interval(String interval) {
         this.internal.interval = interval;
         return this;
     }
     
-    public PanelBuilder timeFrom(String timeFrom) {
+    public StatetimelinePanelBuilder timeFrom(String timeFrom) {
         this.internal.timeFrom = timeFrom;
         return this;
     }
     
-    public PanelBuilder timeShift(String timeShift) {
+    public StatetimelinePanelBuilder timeShift(String timeShift) {
         this.internal.timeShift = timeShift;
         return this;
     }
     
-    public PanelBuilder hideTimeOverride(Boolean hideTimeOverride) {
+    public StatetimelinePanelBuilder hideTimeOverride(Boolean hideTimeOverride) {
         this.internal.hideTimeOverride = hideTimeOverride;
         return this;
     }
     
-    public PanelBuilder libraryPanel(LibraryPanelRef libraryPanel) {
+    public StatetimelinePanelBuilder libraryPanel(LibraryPanelRef libraryPanel) {
         this.internal.libraryPanel = libraryPanel;
         return this;
     }
     
-    public PanelBuilder cacheTimeout(String cacheTimeout) {
+    public StatetimelinePanelBuilder cacheTimeout(String cacheTimeout) {
         this.internal.cacheTimeout = cacheTimeout;
         return this;
     }
     
-    public PanelBuilder queryCachingTTL(Double queryCachingTTL) {
+    public StatetimelinePanelBuilder queryCachingTTL(Double queryCachingTTL) {
         this.internal.queryCachingTTL = queryCachingTTL;
         return this;
     }
     
-    public PanelBuilder displayName(String displayName) {
+    public StatetimelinePanelBuilder displayName(String displayName) {
 		if (this.internal.fieldConfig == null) {
 			this.internal.fieldConfig = new com.grafana.foundation.dashboard.FieldConfigSource();
 		}
@@ -194,7 +194,7 @@ public class PanelBuilder implements com.grafana.foundation.cog.Builder<Panel> {
         return this;
     }
     
-    public PanelBuilder unit(String unit) {
+    public StatetimelinePanelBuilder unit(String unit) {
 		if (this.internal.fieldConfig == null) {
 			this.internal.fieldConfig = new com.grafana.foundation.dashboard.FieldConfigSource();
 		}
@@ -205,7 +205,7 @@ public class PanelBuilder implements com.grafana.foundation.cog.Builder<Panel> {
         return this;
     }
     
-    public PanelBuilder decimals(Double decimals) {
+    public StatetimelinePanelBuilder decimals(Double decimals) {
 		if (this.internal.fieldConfig == null) {
 			this.internal.fieldConfig = new com.grafana.foundation.dashboard.FieldConfigSource();
 		}
@@ -216,7 +216,7 @@ public class PanelBuilder implements com.grafana.foundation.cog.Builder<Panel> {
         return this;
     }
     
-    public PanelBuilder min(Double min) {
+    public StatetimelinePanelBuilder min(Double min) {
 		if (this.internal.fieldConfig == null) {
 			this.internal.fieldConfig = new com.grafana.foundation.dashboard.FieldConfigSource();
 		}
@@ -227,7 +227,7 @@ public class PanelBuilder implements com.grafana.foundation.cog.Builder<Panel> {
         return this;
     }
     
-    public PanelBuilder max(Double max) {
+    public StatetimelinePanelBuilder max(Double max) {
 		if (this.internal.fieldConfig == null) {
 			this.internal.fieldConfig = new com.grafana.foundation.dashboard.FieldConfigSource();
 		}
@@ -238,7 +238,7 @@ public class PanelBuilder implements com.grafana.foundation.cog.Builder<Panel> {
         return this;
     }
     
-    public PanelBuilder mappings(List<ValueMapping> mappings) {
+    public StatetimelinePanelBuilder mappings(List<ValueMapping> mappings) {
 		if (this.internal.fieldConfig == null) {
 			this.internal.fieldConfig = new com.grafana.foundation.dashboard.FieldConfigSource();
 		}
@@ -249,7 +249,7 @@ public class PanelBuilder implements com.grafana.foundation.cog.Builder<Panel> {
         return this;
     }
     
-    public PanelBuilder thresholds(com.grafana.foundation.cog.Builder<ThresholdsConfig> thresholds) {
+    public StatetimelinePanelBuilder thresholds(com.grafana.foundation.cog.Builder<ThresholdsConfig> thresholds) {
 		if (this.internal.fieldConfig == null) {
 			this.internal.fieldConfig = new com.grafana.foundation.dashboard.FieldConfigSource();
 		}
@@ -261,7 +261,7 @@ public class PanelBuilder implements com.grafana.foundation.cog.Builder<Panel> {
         return this;
     }
     
-    public PanelBuilder colorScheme(com.grafana.foundation.cog.Builder<FieldColor> color) {
+    public StatetimelinePanelBuilder colorScheme(com.grafana.foundation.cog.Builder<FieldColor> color) {
 		if (this.internal.fieldConfig == null) {
 			this.internal.fieldConfig = new com.grafana.foundation.dashboard.FieldConfigSource();
 		}
@@ -273,7 +273,7 @@ public class PanelBuilder implements com.grafana.foundation.cog.Builder<Panel> {
         return this;
     }
     
-    public PanelBuilder dataLinks(List<com.grafana.foundation.cog.Builder<DashboardLink>> links) {
+    public StatetimelinePanelBuilder dataLinks(List<com.grafana.foundation.cog.Builder<DashboardLink>> links) {
 		if (this.internal.fieldConfig == null) {
 			this.internal.fieldConfig = new com.grafana.foundation.dashboard.FieldConfigSource();
 		}
@@ -289,7 +289,7 @@ public class PanelBuilder implements com.grafana.foundation.cog.Builder<Panel> {
         return this;
     }
     
-    public PanelBuilder noValue(String noValue) {
+    public StatetimelinePanelBuilder noValue(String noValue) {
 		if (this.internal.fieldConfig == null) {
 			this.internal.fieldConfig = new com.grafana.foundation.dashboard.FieldConfigSource();
 		}
@@ -300,7 +300,7 @@ public class PanelBuilder implements com.grafana.foundation.cog.Builder<Panel> {
         return this;
     }
     
-    public PanelBuilder overrides(List<com.grafana.foundation.cog.Builder<DashboardFieldConfigSourceOverrides>> overrides) {
+    public StatetimelinePanelBuilder overrides(List<com.grafana.foundation.cog.Builder<DashboardFieldConfigSourceOverrides>> overrides) {
 		if (this.internal.fieldConfig == null) {
 			this.internal.fieldConfig = new com.grafana.foundation.dashboard.FieldConfigSource();
 		}
@@ -313,7 +313,7 @@ public class PanelBuilder implements com.grafana.foundation.cog.Builder<Panel> {
         return this;
     }
     
-    public PanelBuilder withOverride(com.grafana.foundation.cog.Builder<DashboardFieldConfigSourceOverrides> override) {
+    public StatetimelinePanelBuilder withOverride(com.grafana.foundation.cog.Builder<DashboardFieldConfigSourceOverrides> override) {
 		if (this.internal.fieldConfig == null) {
 			this.internal.fieldConfig = new com.grafana.foundation.dashboard.FieldConfigSource();
 		}
@@ -325,7 +325,7 @@ public class PanelBuilder implements com.grafana.foundation.cog.Builder<Panel> {
         return this;
     }
     
-    public PanelBuilder overrideByName(String name,List<DynamicConfigValue> properties) {
+    public StatetimelinePanelBuilder overrideByName(String name,List<DynamicConfigValue> properties) {
 		if (this.internal.fieldConfig == null) {
 			this.internal.fieldConfig = new com.grafana.foundation.dashboard.FieldConfigSource();
 		}
@@ -342,7 +342,7 @@ public class PanelBuilder implements com.grafana.foundation.cog.Builder<Panel> {
         return this;
     }
     
-    public PanelBuilder overrideByRegexp(String regexp,List<DynamicConfigValue> properties) {
+    public StatetimelinePanelBuilder overrideByRegexp(String regexp,List<DynamicConfigValue> properties) {
 		if (this.internal.fieldConfig == null) {
 			this.internal.fieldConfig = new com.grafana.foundation.dashboard.FieldConfigSource();
 		}
@@ -359,7 +359,7 @@ public class PanelBuilder implements com.grafana.foundation.cog.Builder<Panel> {
         return this;
     }
     
-    public PanelBuilder overrideByFieldType(String fieldType,List<DynamicConfigValue> properties) {
+    public StatetimelinePanelBuilder overrideByFieldType(String fieldType,List<DynamicConfigValue> properties) {
 		if (this.internal.fieldConfig == null) {
 			this.internal.fieldConfig = new com.grafana.foundation.dashboard.FieldConfigSource();
 		}
@@ -376,7 +376,7 @@ public class PanelBuilder implements com.grafana.foundation.cog.Builder<Panel> {
         return this;
     }
     
-    public PanelBuilder overrideByQuery(String queryRefId,List<DynamicConfigValue> properties) {
+    public StatetimelinePanelBuilder overrideByQuery(String queryRefId,List<DynamicConfigValue> properties) {
 		if (this.internal.fieldConfig == null) {
 			this.internal.fieldConfig = new com.grafana.foundation.dashboard.FieldConfigSource();
 		}
@@ -393,195 +393,71 @@ public class PanelBuilder implements com.grafana.foundation.cog.Builder<Panel> {
         return this;
     }
     
-    public PanelBuilder calculate(Boolean calculate) {
+    public StatetimelinePanelBuilder showValue(VisibilityMode showValue) {
 		if (this.internal.options == null) {
-			this.internal.options = new com.grafana.foundation.heatmap.Options();
-		}
-        ((Options) this.internal.options).calculate = calculate;
-        return this;
-    }
-    
-    public PanelBuilder calculation(com.grafana.foundation.cog.Builder<HeatmapCalculationOptions> calculation) {
-		if (this.internal.options == null) {
-			this.internal.options = new com.grafana.foundation.heatmap.Options();
-		}
-    HeatmapCalculationOptions calculationResource = calculation.build();
-        ((Options) this.internal.options).calculation = calculationResource;
-        return this;
-    }
-    
-    public PanelBuilder color(com.grafana.foundation.cog.Builder<HeatmapColorOptions> color) {
-		if (this.internal.options == null) {
-			this.internal.options = new com.grafana.foundation.heatmap.Options();
-		}
-    HeatmapColorOptions colorResource = color.build();
-        ((Options) this.internal.options).color = colorResource;
-        return this;
-    }
-    
-    public PanelBuilder filterValues(com.grafana.foundation.cog.Builder<FilterValueRange> filterValues) {
-		if (this.internal.options == null) {
-			this.internal.options = new com.grafana.foundation.heatmap.Options();
-		}
-    FilterValueRange filterValuesResource = filterValues.build();
-        ((Options) this.internal.options).filterValues = filterValuesResource;
-        return this;
-    }
-    
-    public PanelBuilder rowsFrame(com.grafana.foundation.cog.Builder<RowsHeatmapOptions> rowsFrame) {
-		if (this.internal.options == null) {
-			this.internal.options = new com.grafana.foundation.heatmap.Options();
-		}
-    RowsHeatmapOptions rowsFrameResource = rowsFrame.build();
-        ((Options) this.internal.options).rowsFrame = rowsFrameResource;
-        return this;
-    }
-    
-    public PanelBuilder showValue(VisibilityMode showValue) {
-		if (this.internal.options == null) {
-			this.internal.options = new com.grafana.foundation.heatmap.Options();
+			this.internal.options = new com.grafana.foundation.statetimeline.Options();
 		}
         ((Options) this.internal.options).showValue = showValue;
         return this;
     }
     
-    public PanelBuilder cellGap(Integer cellGap) {
-        if (!(cellGap <= 25)) {
-            throw new IllegalArgumentException("cellGap must be <= 25");
+    public StatetimelinePanelBuilder rowHeight(Double rowHeight) {
+        if (!(rowHeight <= 1)) {
+            throw new IllegalArgumentException("rowHeight must be <= 1");
         }
 		if (this.internal.options == null) {
-			this.internal.options = new com.grafana.foundation.heatmap.Options();
+			this.internal.options = new com.grafana.foundation.statetimeline.Options();
 		}
-        ((Options) this.internal.options).cellGap = cellGap;
+        ((Options) this.internal.options).rowHeight = rowHeight;
         return this;
     }
     
-    public PanelBuilder cellRadius(Float cellRadius) {
+    public StatetimelinePanelBuilder mergeValues(Boolean mergeValues) {
 		if (this.internal.options == null) {
-			this.internal.options = new com.grafana.foundation.heatmap.Options();
+			this.internal.options = new com.grafana.foundation.statetimeline.Options();
 		}
-        ((Options) this.internal.options).cellRadius = cellRadius;
+        ((Options) this.internal.options).mergeValues = mergeValues;
         return this;
     }
     
-    public PanelBuilder cellValues(com.grafana.foundation.cog.Builder<CellValues> cellValues) {
+    public StatetimelinePanelBuilder legend(com.grafana.foundation.cog.Builder<VizLegendOptions> legend) {
 		if (this.internal.options == null) {
-			this.internal.options = new com.grafana.foundation.heatmap.Options();
+			this.internal.options = new com.grafana.foundation.statetimeline.Options();
 		}
-    CellValues cellValuesResource = cellValues.build();
-        ((Options) this.internal.options).cellValues = cellValuesResource;
+    VizLegendOptions legendResource = legend.build();
+        ((Options) this.internal.options).legend = legendResource;
         return this;
     }
     
-    public PanelBuilder yAxis(com.grafana.foundation.cog.Builder<YAxisConfig> yAxis) {
+    public StatetimelinePanelBuilder tooltip(com.grafana.foundation.cog.Builder<VizTooltipOptions> tooltip) {
 		if (this.internal.options == null) {
-			this.internal.options = new com.grafana.foundation.heatmap.Options();
+			this.internal.options = new com.grafana.foundation.statetimeline.Options();
 		}
-    YAxisConfig yAxisResource = yAxis.build();
-        ((Options) this.internal.options).yAxis = yAxisResource;
+    VizTooltipOptions tooltipResource = tooltip.build();
+        ((Options) this.internal.options).tooltip = tooltipResource;
         return this;
     }
     
-    public PanelBuilder showLegend() {
+    public StatetimelinePanelBuilder timezone(List<String> timezone) {
 		if (this.internal.options == null) {
-			this.internal.options = new com.grafana.foundation.heatmap.Options();
+			this.internal.options = new com.grafana.foundation.statetimeline.Options();
 		}
-		if (((Options) this.internal.options).legend == null) {
-			((Options) this.internal.options).legend = new com.grafana.foundation.heatmap.HeatmapLegendBuilder().build();
-		}
-        ((Options) this.internal.options).legend.show = true;
+        ((Options) this.internal.options).timezone = timezone;
         return this;
     }
     
-    public PanelBuilder hideLegend() {
+    public StatetimelinePanelBuilder alignValue(TimelineValueAlignment alignValue) {
 		if (this.internal.options == null) {
-			this.internal.options = new com.grafana.foundation.heatmap.Options();
+			this.internal.options = new com.grafana.foundation.statetimeline.Options();
 		}
-		if (((Options) this.internal.options).legend == null) {
-			((Options) this.internal.options).legend = new com.grafana.foundation.heatmap.HeatmapLegendBuilder().build();
-		}
-        ((Options) this.internal.options).legend.show = false;
+        ((Options) this.internal.options).alignValue = alignValue;
         return this;
     }
     
-    public PanelBuilder mode(TooltipDisplayMode mode) {
-		if (this.internal.options == null) {
-			this.internal.options = new com.grafana.foundation.heatmap.Options();
-		}
-		if (((Options) this.internal.options).tooltip == null) {
-			((Options) this.internal.options).tooltip = new com.grafana.foundation.heatmap.HeatmapTooltipBuilder().build();
-		}
-        ((Options) this.internal.options).tooltip.mode = mode;
-        return this;
-    }
-    
-    public PanelBuilder maxHeight(Double maxHeight) {
-		if (this.internal.options == null) {
-			this.internal.options = new com.grafana.foundation.heatmap.Options();
-		}
-		if (((Options) this.internal.options).tooltip == null) {
-			((Options) this.internal.options).tooltip = new com.grafana.foundation.heatmap.HeatmapTooltipBuilder().build();
-		}
-        ((Options) this.internal.options).tooltip.maxHeight = maxHeight;
-        return this;
-    }
-    
-    public PanelBuilder maxWidth(Double maxWidth) {
-		if (this.internal.options == null) {
-			this.internal.options = new com.grafana.foundation.heatmap.Options();
-		}
-		if (((Options) this.internal.options).tooltip == null) {
-			((Options) this.internal.options).tooltip = new com.grafana.foundation.heatmap.HeatmapTooltipBuilder().build();
-		}
-        ((Options) this.internal.options).tooltip.maxWidth = maxWidth;
-        return this;
-    }
-    
-    public PanelBuilder showYHistogram() {
-		if (this.internal.options == null) {
-			this.internal.options = new com.grafana.foundation.heatmap.Options();
-		}
-		if (((Options) this.internal.options).tooltip == null) {
-			((Options) this.internal.options).tooltip = new com.grafana.foundation.heatmap.HeatmapTooltipBuilder().build();
-		}
-        ((Options) this.internal.options).tooltip.yHistogram = true;
-        return this;
-    }
-    
-    public PanelBuilder hideYHistogram() {
-		if (this.internal.options == null) {
-			this.internal.options = new com.grafana.foundation.heatmap.Options();
-		}
-		if (((Options) this.internal.options).tooltip == null) {
-			((Options) this.internal.options).tooltip = new com.grafana.foundation.heatmap.HeatmapTooltipBuilder().build();
-		}
-        ((Options) this.internal.options).tooltip.yHistogram = false;
-        return this;
-    }
-    
-    public PanelBuilder showColorScale(Boolean showColorScale) {
-		if (this.internal.options == null) {
-			this.internal.options = new com.grafana.foundation.heatmap.Options();
-		}
-		if (((Options) this.internal.options).tooltip == null) {
-			((Options) this.internal.options).tooltip = new com.grafana.foundation.heatmap.HeatmapTooltipBuilder().build();
-		}
-        ((Options) this.internal.options).tooltip.showColorScale = showColorScale;
-        return this;
-    }
-    
-    public PanelBuilder exemplarsColor(String color) {
-		if (this.internal.options == null) {
-			this.internal.options = new com.grafana.foundation.heatmap.Options();
-		}
-		if (((Options) this.internal.options).exemplars == null) {
-			((Options) this.internal.options).exemplars = new com.grafana.foundation.heatmap.ExemplarConfigBuilder().build();
-		}
-        ((Options) this.internal.options).exemplars.color = color;
-        return this;
-    }
-    
-    public PanelBuilder scaleDistribution(com.grafana.foundation.cog.Builder<ScaleDistributionConfig> scaleDistribution) {
+    public StatetimelinePanelBuilder lineWidth(Integer lineWidth) {
+        if (!(lineWidth <= 10)) {
+            throw new IllegalArgumentException("lineWidth must be <= 10");
+        }
 		if (this.internal.fieldConfig == null) {
 			this.internal.fieldConfig = new com.grafana.foundation.dashboard.FieldConfigSource();
 		}
@@ -589,14 +465,13 @@ public class PanelBuilder implements com.grafana.foundation.cog.Builder<Panel> {
 			this.internal.fieldConfig.defaults = new com.grafana.foundation.dashboard.FieldConfig();
 		}
 		if (this.internal.fieldConfig.defaults.custom == null) {
-			this.internal.fieldConfig.defaults.custom = new com.grafana.foundation.heatmap.FieldConfig();
+			this.internal.fieldConfig.defaults.custom = new com.grafana.foundation.statetimeline.FieldConfig();
 		}
-    ScaleDistributionConfig scaleDistributionResource = scaleDistribution.build();
-        ((FieldConfig) this.internal.fieldConfig.defaults.custom).scaleDistribution = scaleDistributionResource;
+        ((FieldConfig) this.internal.fieldConfig.defaults.custom).lineWidth = lineWidth;
         return this;
     }
     
-    public PanelBuilder hideFrom(com.grafana.foundation.cog.Builder<HideSeriesConfig> hideFrom) {
+    public StatetimelinePanelBuilder hideFrom(com.grafana.foundation.cog.Builder<HideSeriesConfig> hideFrom) {
 		if (this.internal.fieldConfig == null) {
 			this.internal.fieldConfig = new com.grafana.foundation.dashboard.FieldConfigSource();
 		}
@@ -604,10 +479,27 @@ public class PanelBuilder implements com.grafana.foundation.cog.Builder<Panel> {
 			this.internal.fieldConfig.defaults = new com.grafana.foundation.dashboard.FieldConfig();
 		}
 		if (this.internal.fieldConfig.defaults.custom == null) {
-			this.internal.fieldConfig.defaults.custom = new com.grafana.foundation.heatmap.FieldConfig();
+			this.internal.fieldConfig.defaults.custom = new com.grafana.foundation.statetimeline.FieldConfig();
 		}
     HideSeriesConfig hideFromResource = hideFrom.build();
         ((FieldConfig) this.internal.fieldConfig.defaults.custom).hideFrom = hideFromResource;
+        return this;
+    }
+    
+    public StatetimelinePanelBuilder fillOpacity(Integer fillOpacity) {
+        if (!(fillOpacity <= 100)) {
+            throw new IllegalArgumentException("fillOpacity must be <= 100");
+        }
+		if (this.internal.fieldConfig == null) {
+			this.internal.fieldConfig = new com.grafana.foundation.dashboard.FieldConfigSource();
+		}
+		if (this.internal.fieldConfig.defaults == null) {
+			this.internal.fieldConfig.defaults = new com.grafana.foundation.dashboard.FieldConfig();
+		}
+		if (this.internal.fieldConfig.defaults.custom == null) {
+			this.internal.fieldConfig.defaults.custom = new com.grafana.foundation.statetimeline.FieldConfig();
+		}
+        ((FieldConfig) this.internal.fieldConfig.defaults.custom).fillOpacity = fillOpacity;
         return this;
     }
     public Panel build() {
