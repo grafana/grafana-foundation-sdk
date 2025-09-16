@@ -15,6 +15,7 @@
           "auto",
           "manual"
         ],
+        "type": "string",
         "description": "Auto is \"table\" in the UI"
       },
       "ScatterShow": {
@@ -22,7 +23,8 @@
           "points",
           "lines",
           "points+lines"
-        ]
+        ],
+        "type": "string"
       },
       "XYDimensionConfig": {
         "type": "object",
@@ -271,7 +273,8 @@
               "dash",
               "dot",
               "square"
-            ]
+            ],
+            "type": "string"
           },
           "dash": {
             "type": "array",
@@ -288,6 +291,7 @@
           "never",
           "always"
         ],
+        "type": "string",
         "description": "TODO docs"
       },
       "HideSeriesConfig": {
@@ -320,6 +324,7 @@
           "left",
           "hidden"
         ],
+        "type": "string",
         "description": "TODO docs"
       },
       "AxisColorMode": {
@@ -327,6 +332,7 @@
           "text",
           "series"
         ],
+        "type": "string",
         "description": "TODO docs"
       },
       "ScaleDistributionConfig": {
@@ -434,7 +440,8 @@
         "enum": [
           "linear",
           "quad"
-        ]
+        ],
+        "type": "string"
       },
       "ScaleDistribution": {
         "enum": [
@@ -443,6 +450,7 @@
           "ordinal",
           "symlog"
         ],
+        "type": "string",
         "description": "TODO docs"
       },
       "TextDimensionMode": {
@@ -450,7 +458,8 @@
           "fixed",
           "field",
           "template"
-        ]
+        ],
+        "type": "string"
       },
       "LegendDisplayMode": {
         "enum": [
@@ -458,6 +467,7 @@
           "table",
           "hidden"
         ],
+        "type": "string",
         "description": "TODO docs\nNote: \"hidden\" needs to remain as an option for plugins compatibility"
       },
       "LegendPlacement": {
@@ -465,6 +475,7 @@
           "bottom",
           "right"
         ],
+        "type": "string",
         "description": "TODO docs"
       },
       "TooltipDisplayMode": {
@@ -473,6 +484,7 @@
           "multi",
           "none"
         ],
+        "type": "string",
         "description": "TODO docs"
       },
       "SortOrder": {
@@ -481,6 +493,7 @@
           "desc",
           "none"
         ],
+        "type": "string",
         "description": "TODO docs"
       }
     }
