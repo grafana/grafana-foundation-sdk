@@ -15,6 +15,7 @@
           "pie",
           "donut"
         ],
+        "type": "string",
         "description": "Select the pie chart display style."
       },
       "PieChartLabels": {
@@ -23,6 +24,7 @@
           "value",
           "percent"
         ],
+        "type": "string",
         "description": "Select labels to display on the pie chart.\n - Name - The series or field name.\n - Percent - The percentage of the whole.\n - Value - The raw numerical value."
       },
       "PieChartLegendValues": {
@@ -30,6 +32,7 @@
           "value",
           "percent"
         ],
+        "type": "string",
         "description": "Select values to display in the legend.\n - Percent: The percentage of the whole.\n - Value: The raw numerical value."
       },
       "PieChartLegendOptions": {
@@ -127,6 +130,7 @@
           "table",
           "hidden"
         ],
+        "type": "string",
         "description": "TODO docs\nNote: \"hidden\" needs to remain as an option for plugins compatibility"
       },
       "LegendPlacement": {
@@ -134,6 +138,7 @@
           "bottom",
           "right"
         ],
+        "type": "string",
         "description": "TODO docs"
       },
       "VizTooltipOptions": {
@@ -209,6 +214,7 @@
           "vertical",
           "horizontal"
         ],
+        "type": "string",
         "description": "TODO docs"
       },
       "HideableFieldConfig": {
@@ -227,6 +233,7 @@
           "multi",
           "none"
         ],
+        "type": "string",
         "description": "TODO docs"
       },
       "SortOrder": {
@@ -235,6 +242,7 @@
           "desc",
           "none"
         ],
+        "type": "string",
         "description": "TODO docs"
       },
       "HideSeriesConfig": {
