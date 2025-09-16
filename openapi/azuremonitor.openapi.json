@@ -283,13 +283,15 @@
           "time_series",
           "trace",
           "logs"
-        ]
+        ],
+        "type": "string"
       },
       "LogsEditorMode": {
         "enum": [
           "builder",
           "raw"
-        ]
+        ],
+        "type": "string"
       },
       "BuilderQueryExpression": {
         "type": "object",
@@ -365,7 +367,8 @@
           "time_span",
           "function",
           "interval"
-        ]
+        ],
+        "type": "string"
       },
       "BuilderQueryEditorExpressionType": {
         "enum": [
@@ -377,7 +380,8 @@
           "or",
           "and",
           "order_by"
-        ]
+        ],
+        "type": "string"
       },
       "BuilderQueryEditorColumnsExpression": {
         "type": "object",
@@ -614,7 +618,8 @@
         "enum": [
           "asc",
           "desc"
-        ]
+        ],
+        "type": "string"
       },
       "AzureResourceGraphQuery": {
         "type": "object",
@@ -977,6 +982,7 @@
           "Azure Custom Namespaces",
           "Azure Custom Metric Names"
         ],
+        "type": "string",
         "description": "Defines the supported queryTypes. GrafanaTemplateVariableFn is deprecated"
       },
       "SelectableValue": {
@@ -1022,7 +1028,8 @@
           "MetricNamesQuery",
           "WorkspacesQuery",
           "UnknownQuery"
-        ]
+        ],
+        "type": "string"
       },
       "BaseGrafanaTemplateVariableQuery": {
         "type": "object",
