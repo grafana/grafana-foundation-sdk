@@ -9,7 +9,7 @@ A set of tools, types and *builder libraries* for building and manipulating Graf
 ## Installing
 
 ```shell
-yarn add '@grafana/grafana-foundation-sdk@~11.6.0-cogv0.0.x.1753977659'
+yarn add '@grafana/grafana-foundation-sdk@~11.6.0-cogv0.0.x.1758039791'
 ```
 
 ## Example usage
