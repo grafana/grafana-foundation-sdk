@@ -74,7 +74,7 @@ function gh_run() (
 
   cd "$repo_dir"
 
-  $GH_CLI_CMD "$f"
+  $GH_CLI_CMD "$@"
 )
 
 function run_when_safe() {
