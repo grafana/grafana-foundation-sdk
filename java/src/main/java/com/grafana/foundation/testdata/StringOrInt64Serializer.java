@@ -12,10 +12,10 @@ public class StringOrInt64Serializer extends JsonSerializer<StringOrInt64> {
 
     @Override
     public void serialize(StringOrInt64 value, JsonGenerator gen, SerializerProvider serializerProvider) throws IOException {
-         if (value.string != null) {
+        if (value.string != null) {
             gen.writeObject(value.string);
         }
-         else  if (value.int64 != null) {
+        else if (value.int64 != null) {
             gen.writeObject(value.int64);
         }
     }

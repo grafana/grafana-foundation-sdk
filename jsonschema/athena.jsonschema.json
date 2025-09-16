@@ -55,7 +55,8 @@
         0,
         1,
         2
-      ]
+      ],
+      "type": "integer"
     },
     "ConnectionArgs": {
       "type": "object",

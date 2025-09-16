@@ -54,6 +54,7 @@
               "dashboard_by_id",
               "dashboard_by_tag"
             ],
+            "type": "string",
             "description": "Type of the item."
           },
           "value": {

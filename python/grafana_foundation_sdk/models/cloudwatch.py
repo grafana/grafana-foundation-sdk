@@ -470,6 +470,10 @@ class QueryEditorProperty:
         return cls(**args)
 
 
+class QueryEditorPropertyType(enum.StrEnum):
+    STRING = "string"
+
+
 class QueryEditorArrayExpression:
     type_val: typing.Literal["and", "or"]
     expressions: list['QueryEditorExpression']
@@ -594,10 +598,6 @@ QueryEditorOperatorType: typing.TypeAlias = typing.Union[str, bool, int]
 
 
 QueryEditorOperatorValueType: typing.TypeAlias = typing.Union[str, bool, int, list['QueryEditorOperatorType']]
-
-
-class QueryEditorPropertyType(enum.StrEnum):
-    STRING = "string"
 
 
 class CloudWatchLogsQuery(cogvariants.Dataquery):

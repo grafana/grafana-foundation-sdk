@@ -32,6 +32,12 @@ TODO this shouldn't be unknown but DataSourceRef | null
 def datasource(datasource: dashboard.DataSourceRef) -> typing.Self
 ```
 
+### <span class="badge object-method"></span> direction
+
+```python
+def direction(direction: loki.LokiQueryDirection) -> typing.Self
+```
+
 ### <span class="badge object-method"></span> editor_mode
 
 ```python

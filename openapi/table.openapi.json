@@ -113,6 +113,7 @@
           "md",
           "lg"
         ],
+        "type": "string",
         "description": "Height of a table cell"
       }
     }

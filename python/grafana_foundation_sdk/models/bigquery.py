@@ -351,6 +351,10 @@ class QueryEditorProperty:
         return cls(**args)
 
 
+class QueryEditorPropertyType(enum.StrEnum):
+    STRING = "string"
+
+
 class QueryEditorPropertyExpression:
     type_val: str
     property_val: 'QueryEditorProperty'
@@ -379,10 +383,6 @@ class QueryEditorPropertyExpression:
 class OrderByDirection(enum.StrEnum):
     ASC = "ASC"
     DESC = "DESC"
-
-
-class QueryEditorPropertyType(enum.StrEnum):
-    STRING = "string"
 
 
 
