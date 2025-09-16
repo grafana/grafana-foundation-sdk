@@ -1537,6 +1537,12 @@ func (resource QueryEditorProperty) Validate() error {
 	return errs
 }
 
+type QueryEditorPropertyType string
+
+const (
+	QueryEditorPropertyTypeString QueryEditorPropertyType = "string"
+)
+
 type QueryEditorArrayExpression struct {
 	Type        QueryEditorArrayExpressionType `json:"type"`
 	Expressions []QueryEditorExpression        `json:"expressions"`
@@ -1985,12 +1991,6 @@ type QueryEditorOperatorValueType = StringOrBoolOrInt64OrArrayOfQueryEditorOpera
 func NewQueryEditorOperatorValueType() *QueryEditorOperatorValueType {
 	return NewStringOrBoolOrInt64OrArrayOfQueryEditorOperatorType()
 }
-
-type QueryEditorPropertyType string
-
-const (
-	QueryEditorPropertyTypeString QueryEditorPropertyType = "string"
-)
 
 // Shape of a CloudWatch Logs query
 type CloudWatchLogsQuery struct {
