@@ -20,10 +20,10 @@ public class BoolOrFloat64Deserializer extends JsonDeserializer<BoolOrFloat64> {
         
         BoolOrFloat64 boolOrFloat64 = new BoolOrFloat64();
         if (root.isBoolean()) {
-            boolOrFloat64.bool = mapper.convertValue(root, new TypeReference<>() {});
+            boolOrFloat64.bool = mapper.convertValue(root, Boolean.class);
         }
         else if (root.isDouble()) {
-            boolOrFloat64.float64 = mapper.convertValue(root, new TypeReference<>() {});
+            boolOrFloat64.float64 = mapper.convertValue(root, Double.class);
         }
         
         return boolOrFloat64;

@@ -187,19 +187,22 @@
           "Metrics",
           "Logs",
           "Annotations"
-        ]
+        ],
+        "type": "string"
       },
       "MetricQueryType": {
         "enum": [
           0,
           1
-        ]
+        ],
+        "type": "integer"
       },
       "MetricEditorMode": {
         "enum": [
           0,
           1
-        ]
+        ],
+        "type": "integer"
       },
       "SQLExpression": {
         "type": "object",
@@ -273,7 +276,8 @@
           "groupBy",
           "function",
           "functionParameter"
-        ]
+        ],
+        "type": "string"
       },
       "QueryEditorFunctionParameterExpression": {
         "type": "object",
@@ -324,6 +328,12 @@
           }
         }
       },
+      "QueryEditorPropertyType": {
+        "enum": [
+          "string"
+        ],
+        "type": "string"
+      },
       "QueryEditorArrayExpression": {
         "type": "object",
         "additionalProperties": false,
@@ -336,7 +346,8 @@
             "enum": [
               "and",
               "or"
-            ]
+            ],
+            "type": "string"
           },
           "expressions": {
             "type": "array",
@@ -456,17 +467,13 @@
           }
         ]
       },
-      "QueryEditorPropertyType": {
-        "enum": [
-          "string"
-        ]
-      },
       "LogsQueryLanguage": {
         "enum": [
           "CWLI",
           "SQL",
           "PPL"
-        ]
+        ],
+        "type": "string"
       },
       "CloudWatchLogsQuery": {
         "type": "object",

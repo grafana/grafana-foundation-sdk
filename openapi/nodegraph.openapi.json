@@ -63,14 +63,16 @@
         "enum": [
           "cooperative",
           "greedy"
-        ]
+        ],
+        "type": "string"
       },
       "LayoutAlgorithm": {
         "enum": [
           "layered",
           "force",
           "grid"
-        ]
+        ],
+        "type": "string"
       },
       "Options": {
         "type": "object",
