@@ -1,0 +1,489 @@
+// Code generated - EDITING IS FUTILE. DO NOT EDIT.
+
+package com.grafana.foundation.dashboardlist;
+
+import com.grafana.foundation.dashboard.Panel;
+import java.util.List;
+import com.grafana.foundation.cog.variants.Dataquery;
+import java.util.LinkedList;
+import com.grafana.foundation.dashboard.DataSourceRef;
+import com.grafana.foundation.dashboard.GridPos;
+import com.grafana.foundation.dashboard.DashboardLink;
+import com.grafana.foundation.dashboard.PanelRepeatDirection;
+import com.grafana.foundation.dashboard.DataTransformerConfig;
+import com.grafana.foundation.dashboard.LibraryPanelRef;
+import com.grafana.foundation.dashboard.ValueMapping;
+import com.grafana.foundation.dashboard.ThresholdsConfig;
+import com.grafana.foundation.dashboard.FieldColor;
+import com.grafana.foundation.dashboard.DashboardFieldConfigSourceOverrides;
+import com.grafana.foundation.dashboard.DynamicConfigValue;
+import com.grafana.foundation.dashboard.MatcherConfig;
+
+public class DashboardlistPanelBuilder implements com.grafana.foundation.cog.Builder<Panel> {
+    protected final Panel internal;
+    
+    public DashboardlistPanelBuilder() {
+        this.internal = new Panel();
+        this.internal.type = "dashlist";
+    }
+    public DashboardlistPanelBuilder id(Integer id) {
+        this.internal.id = id;
+        return this;
+    }
+    
+    public DashboardlistPanelBuilder targets(List<com.grafana.foundation.cog.Builder<Dataquery>> targets) {
+        List<Dataquery> targetsResources = new LinkedList<>();
+        for (com.grafana.foundation.cog.Builder<Dataquery> r1 : targets) {
+                Dataquery targetsDepth1 = r1.build();
+                targetsResources.add(targetsDepth1); 
+        }
+        this.internal.targets = targetsResources;
+        return this;
+    }
+    
+    public DashboardlistPanelBuilder withTarget(com.grafana.foundation.cog.Builder<Dataquery> target) {
+		if (this.internal.targets == null) {
+			this.internal.targets = new LinkedList<>();
+		}
+    Dataquery targetResource = target.build();
+        this.internal.targets.add(targetResource);
+        return this;
+    }
+    
+    public DashboardlistPanelBuilder title(String title) {
+        this.internal.title = title;
+        return this;
+    }
+    
+    public DashboardlistPanelBuilder description(String description) {
+        this.internal.description = description;
+        return this;
+    }
+    
+    public DashboardlistPanelBuilder transparent(Boolean transparent) {
+        this.internal.transparent = transparent;
+        return this;
+    }
+    
+    public DashboardlistPanelBuilder datasource(DataSourceRef datasource) {
+        this.internal.datasource = datasource;
+        return this;
+    }
+    
+    public DashboardlistPanelBuilder gridPos(GridPos gridPos) {
+        this.internal.gridPos = gridPos;
+        return this;
+    }
+    
+    public DashboardlistPanelBuilder height(Integer h) {
+        if (!(h > 0)) {
+            throw new IllegalArgumentException("h must be > 0");
+        }
+		if (this.internal.gridPos == null) {
+			this.internal.gridPos = new com.grafana.foundation.dashboard.GridPos();
+		}
+        this.internal.gridPos.h = h;
+        return this;
+    }
+    
+    public DashboardlistPanelBuilder span(Integer w) {
+        if (!(w > 0)) {
+            throw new IllegalArgumentException("w must be > 0");
+        }
+        if (!(w <= 24)) {
+            throw new IllegalArgumentException("w must be <= 24");
+        }
+		if (this.internal.gridPos == null) {
+			this.internal.gridPos = new com.grafana.foundation.dashboard.GridPos();
+		}
+        this.internal.gridPos.w = w;
+        return this;
+    }
+    
+    public DashboardlistPanelBuilder links(List<com.grafana.foundation.cog.Builder<DashboardLink>> links) {
+        List<DashboardLink> linksResources = new LinkedList<>();
+        for (com.grafana.foundation.cog.Builder<DashboardLink> r1 : links) {
+                DashboardLink linksDepth1 = r1.build();
+                linksResources.add(linksDepth1); 
+        }
+        this.internal.links = linksResources;
+        return this;
+    }
+    
+    public DashboardlistPanelBuilder repeat(String repeat) {
+        this.internal.repeat = repeat;
+        return this;
+    }
+    
+    public DashboardlistPanelBuilder repeatDirection(PanelRepeatDirection repeatDirection) {
+        this.internal.repeatDirection = repeatDirection;
+        return this;
+    }
+    
+    public DashboardlistPanelBuilder maxPerRow(Double maxPerRow) {
+        this.internal.maxPerRow = maxPerRow;
+        return this;
+    }
+    
+    public DashboardlistPanelBuilder maxDataPoints(Double maxDataPoints) {
+        this.internal.maxDataPoints = maxDataPoints;
+        return this;
+    }
+    
+    public DashboardlistPanelBuilder transformations(List<DataTransformerConfig> transformations) {
+        this.internal.transformations = transformations;
+        return this;
+    }
+    
+    public DashboardlistPanelBuilder withTransformation(DataTransformerConfig transformation) {
+		if (this.internal.transformations == null) {
+			this.internal.transformations = new LinkedList<>();
+		}
+        this.internal.transformations.add(transformation);
+        return this;
+    }
+    
+    public DashboardlistPanelBuilder interval(String interval) {
+        this.internal.interval = interval;
+        return this;
+    }
+    
+    public DashboardlistPanelBuilder timeFrom(String timeFrom) {
+        this.internal.timeFrom = timeFrom;
+        return this;
+    }
+    
+    public DashboardlistPanelBuilder timeShift(String timeShift) {
+        this.internal.timeShift = timeShift;
+        return this;
+    }
+    
+    public DashboardlistPanelBuilder hideTimeOverride(Boolean hideTimeOverride) {
+        this.internal.hideTimeOverride = hideTimeOverride;
+        return this;
+    }
+    
+    public DashboardlistPanelBuilder libraryPanel(LibraryPanelRef libraryPanel) {
+        this.internal.libraryPanel = libraryPanel;
+        return this;
+    }
+    
+    public DashboardlistPanelBuilder cacheTimeout(String cacheTimeout) {
+        this.internal.cacheTimeout = cacheTimeout;
+        return this;
+    }
+    
+    public DashboardlistPanelBuilder queryCachingTTL(Double queryCachingTTL) {
+        this.internal.queryCachingTTL = queryCachingTTL;
+        return this;
+    }
+    
+    public DashboardlistPanelBuilder displayName(String displayName) {
+		if (this.internal.fieldConfig == null) {
+			this.internal.fieldConfig = new com.grafana.foundation.dashboard.FieldConfigSource();
+		}
+		if (this.internal.fieldConfig.defaults == null) {
+			this.internal.fieldConfig.defaults = new com.grafana.foundation.dashboard.FieldConfig();
+		}
+        this.internal.fieldConfig.defaults.displayName = displayName;
+        return this;
+    }
+    
+    public DashboardlistPanelBuilder unit(String unit) {
+		if (this.internal.fieldConfig == null) {
+			this.internal.fieldConfig = new com.grafana.foundation.dashboard.FieldConfigSource();
+		}
+		if (this.internal.fieldConfig.defaults == null) {
+			this.internal.fieldConfig.defaults = new com.grafana.foundation.dashboard.FieldConfig();
+		}
+        this.internal.fieldConfig.defaults.unit = unit;
+        return this;
+    }
+    
+    public DashboardlistPanelBuilder decimals(Double decimals) {
+		if (this.internal.fieldConfig == null) {
+			this.internal.fieldConfig = new com.grafana.foundation.dashboard.FieldConfigSource();
+		}
+		if (this.internal.fieldConfig.defaults == null) {
+			this.internal.fieldConfig.defaults = new com.grafana.foundation.dashboard.FieldConfig();
+		}
+        this.internal.fieldConfig.defaults.decimals = decimals;
+        return this;
+    }
+    
+    public DashboardlistPanelBuilder min(Double min) {
+		if (this.internal.fieldConfig == null) {
+			this.internal.fieldConfig = new com.grafana.foundation.dashboard.FieldConfigSource();
+		}
+		if (this.internal.fieldConfig.defaults == null) {
+			this.internal.fieldConfig.defaults = new com.grafana.foundation.dashboard.FieldConfig();
+		}
+        this.internal.fieldConfig.defaults.min = min;
+        return this;
+    }
+    
+    public DashboardlistPanelBuilder max(Double max) {
+		if (this.internal.fieldConfig == null) {
+			this.internal.fieldConfig = new com.grafana.foundation.dashboard.FieldConfigSource();
+		}
+		if (this.internal.fieldConfig.defaults == null) {
+			this.internal.fieldConfig.defaults = new com.grafana.foundation.dashboard.FieldConfig();
+		}
+        this.internal.fieldConfig.defaults.max = max;
+        return this;
+    }
+    
+    public DashboardlistPanelBuilder mappings(List<ValueMapping> mappings) {
+		if (this.internal.fieldConfig == null) {
+			this.internal.fieldConfig = new com.grafana.foundation.dashboard.FieldConfigSource();
+		}
+		if (this.internal.fieldConfig.defaults == null) {
+			this.internal.fieldConfig.defaults = new com.grafana.foundation.dashboard.FieldConfig();
+		}
+        this.internal.fieldConfig.defaults.mappings = mappings;
+        return this;
+    }
+    
+    public DashboardlistPanelBuilder thresholds(com.grafana.foundation.cog.Builder<ThresholdsConfig> thresholds) {
+		if (this.internal.fieldConfig == null) {
+			this.internal.fieldConfig = new com.grafana.foundation.dashboard.FieldConfigSource();
+		}
+		if (this.internal.fieldConfig.defaults == null) {
+			this.internal.fieldConfig.defaults = new com.grafana.foundation.dashboard.FieldConfig();
+		}
+    ThresholdsConfig thresholdsResource = thresholds.build();
+        this.internal.fieldConfig.defaults.thresholds = thresholdsResource;
+        return this;
+    }
+    
+    public DashboardlistPanelBuilder colorScheme(com.grafana.foundation.cog.Builder<FieldColor> color) {
+		if (this.internal.fieldConfig == null) {
+			this.internal.fieldConfig = new com.grafana.foundation.dashboard.FieldConfigSource();
+		}
+		if (this.internal.fieldConfig.defaults == null) {
+			this.internal.fieldConfig.defaults = new com.grafana.foundation.dashboard.FieldConfig();
+		}
+    FieldColor colorResource = color.build();
+        this.internal.fieldConfig.defaults.color = colorResource;
+        return this;
+    }
+    
+    public DashboardlistPanelBuilder dataLinks(List<com.grafana.foundation.cog.Builder<DashboardLink>> links) {
+		if (this.internal.fieldConfig == null) {
+			this.internal.fieldConfig = new com.grafana.foundation.dashboard.FieldConfigSource();
+		}
+		if (this.internal.fieldConfig.defaults == null) {
+			this.internal.fieldConfig.defaults = new com.grafana.foundation.dashboard.FieldConfig();
+		}
+        List<DashboardLink> linksResources = new LinkedList<>();
+        for (com.grafana.foundation.cog.Builder<DashboardLink> r1 : links) {
+                DashboardLink linksDepth1 = r1.build();
+                linksResources.add(linksDepth1); 
+        }
+        this.internal.fieldConfig.defaults.links = linksResources;
+        return this;
+    }
+    
+    public DashboardlistPanelBuilder noValue(String noValue) {
+		if (this.internal.fieldConfig == null) {
+			this.internal.fieldConfig = new com.grafana.foundation.dashboard.FieldConfigSource();
+		}
+		if (this.internal.fieldConfig.defaults == null) {
+			this.internal.fieldConfig.defaults = new com.grafana.foundation.dashboard.FieldConfig();
+		}
+        this.internal.fieldConfig.defaults.noValue = noValue;
+        return this;
+    }
+    
+    public DashboardlistPanelBuilder overrides(List<com.grafana.foundation.cog.Builder<DashboardFieldConfigSourceOverrides>> overrides) {
+		if (this.internal.fieldConfig == null) {
+			this.internal.fieldConfig = new com.grafana.foundation.dashboard.FieldConfigSource();
+		}
+        List<DashboardFieldConfigSourceOverrides> overridesResources = new LinkedList<>();
+        for (com.grafana.foundation.cog.Builder<DashboardFieldConfigSourceOverrides> r1 : overrides) {
+                DashboardFieldConfigSourceOverrides overridesDepth1 = r1.build();
+                overridesResources.add(overridesDepth1); 
+        }
+        this.internal.fieldConfig.overrides = overridesResources;
+        return this;
+    }
+    
+    public DashboardlistPanelBuilder withOverride(com.grafana.foundation.cog.Builder<DashboardFieldConfigSourceOverrides> override) {
+		if (this.internal.fieldConfig == null) {
+			this.internal.fieldConfig = new com.grafana.foundation.dashboard.FieldConfigSource();
+		}
+		if (this.internal.fieldConfig.overrides == null) {
+			this.internal.fieldConfig.overrides = new LinkedList<>();
+		}
+    DashboardFieldConfigSourceOverrides overrideResource = override.build();
+        this.internal.fieldConfig.overrides.add(overrideResource);
+        return this;
+    }
+    
+    public DashboardlistPanelBuilder overrideByName(String name,List<DynamicConfigValue> properties) {
+		if (this.internal.fieldConfig == null) {
+			this.internal.fieldConfig = new com.grafana.foundation.dashboard.FieldConfigSource();
+		}
+		if (this.internal.fieldConfig.overrides == null) {
+			this.internal.fieldConfig.overrides = new LinkedList<>();
+		}
+    MatcherConfig matcherConfig = new MatcherConfig();
+        matcherConfig.id = "byName";
+        matcherConfig.options = name;
+    DashboardFieldConfigSourceOverrides dashboardFieldConfigSourceOverrides = new DashboardFieldConfigSourceOverrides();
+        dashboardFieldConfigSourceOverrides.matcher = matcherConfig;
+        dashboardFieldConfigSourceOverrides.properties = properties;
+        this.internal.fieldConfig.overrides.add(dashboardFieldConfigSourceOverrides);
+        return this;
+    }
+    
+    public DashboardlistPanelBuilder overrideByRegexp(String regexp,List<DynamicConfigValue> properties) {
+		if (this.internal.fieldConfig == null) {
+			this.internal.fieldConfig = new com.grafana.foundation.dashboard.FieldConfigSource();
+		}
+		if (this.internal.fieldConfig.overrides == null) {
+			this.internal.fieldConfig.overrides = new LinkedList<>();
+		}
+    MatcherConfig matcherConfig = new MatcherConfig();
+        matcherConfig.id = "byRegexp";
+        matcherConfig.options = regexp;
+    DashboardFieldConfigSourceOverrides dashboardFieldConfigSourceOverrides = new DashboardFieldConfigSourceOverrides();
+        dashboardFieldConfigSourceOverrides.matcher = matcherConfig;
+        dashboardFieldConfigSourceOverrides.properties = properties;
+        this.internal.fieldConfig.overrides.add(dashboardFieldConfigSourceOverrides);
+        return this;
+    }
+    
+    public DashboardlistPanelBuilder overrideByFieldType(String fieldType,List<DynamicConfigValue> properties) {
+		if (this.internal.fieldConfig == null) {
+			this.internal.fieldConfig = new com.grafana.foundation.dashboard.FieldConfigSource();
+		}
+		if (this.internal.fieldConfig.overrides == null) {
+			this.internal.fieldConfig.overrides = new LinkedList<>();
+		}
+    MatcherConfig matcherConfig = new MatcherConfig();
+        matcherConfig.id = "byType";
+        matcherConfig.options = fieldType;
+    DashboardFieldConfigSourceOverrides dashboardFieldConfigSourceOverrides = new DashboardFieldConfigSourceOverrides();
+        dashboardFieldConfigSourceOverrides.matcher = matcherConfig;
+        dashboardFieldConfigSourceOverrides.properties = properties;
+        this.internal.fieldConfig.overrides.add(dashboardFieldConfigSourceOverrides);
+        return this;
+    }
+    
+    public DashboardlistPanelBuilder overrideByQuery(String queryRefId,List<DynamicConfigValue> properties) {
+		if (this.internal.fieldConfig == null) {
+			this.internal.fieldConfig = new com.grafana.foundation.dashboard.FieldConfigSource();
+		}
+		if (this.internal.fieldConfig.overrides == null) {
+			this.internal.fieldConfig.overrides = new LinkedList<>();
+		}
+    MatcherConfig matcherConfig = new MatcherConfig();
+        matcherConfig.id = "byFrameRefID";
+        matcherConfig.options = queryRefId;
+    DashboardFieldConfigSourceOverrides dashboardFieldConfigSourceOverrides = new DashboardFieldConfigSourceOverrides();
+        dashboardFieldConfigSourceOverrides.matcher = matcherConfig;
+        dashboardFieldConfigSourceOverrides.properties = properties;
+        this.internal.fieldConfig.overrides.add(dashboardFieldConfigSourceOverrides);
+        return this;
+    }
+    
+    public DashboardlistPanelBuilder keepTime(Boolean keepTime) {
+		if (this.internal.options == null) {
+			this.internal.options = new com.grafana.foundation.dashboardlist.Options();
+		}
+        ((Options) this.internal.options).keepTime = keepTime;
+        return this;
+    }
+    
+    public DashboardlistPanelBuilder includeVars(Boolean includeVars) {
+		if (this.internal.options == null) {
+			this.internal.options = new com.grafana.foundation.dashboardlist.Options();
+		}
+        ((Options) this.internal.options).includeVars = includeVars;
+        return this;
+    }
+    
+    public DashboardlistPanelBuilder showStarred(Boolean showStarred) {
+		if (this.internal.options == null) {
+			this.internal.options = new com.grafana.foundation.dashboardlist.Options();
+		}
+        ((Options) this.internal.options).showStarred = showStarred;
+        return this;
+    }
+    
+    public DashboardlistPanelBuilder showRecentlyViewed(Boolean showRecentlyViewed) {
+		if (this.internal.options == null) {
+			this.internal.options = new com.grafana.foundation.dashboardlist.Options();
+		}
+        ((Options) this.internal.options).showRecentlyViewed = showRecentlyViewed;
+        return this;
+    }
+    
+    public DashboardlistPanelBuilder showSearch(Boolean showSearch) {
+		if (this.internal.options == null) {
+			this.internal.options = new com.grafana.foundation.dashboardlist.Options();
+		}
+        ((Options) this.internal.options).showSearch = showSearch;
+        return this;
+    }
+    
+    public DashboardlistPanelBuilder showHeadings(Boolean showHeadings) {
+		if (this.internal.options == null) {
+			this.internal.options = new com.grafana.foundation.dashboardlist.Options();
+		}
+        ((Options) this.internal.options).showHeadings = showHeadings;
+        return this;
+    }
+    
+    public DashboardlistPanelBuilder showFolderNames(Boolean showFolderNames) {
+		if (this.internal.options == null) {
+			this.internal.options = new com.grafana.foundation.dashboardlist.Options();
+		}
+        ((Options) this.internal.options).showFolderNames = showFolderNames;
+        return this;
+    }
+    
+    public DashboardlistPanelBuilder maxItems(Long maxItems) {
+		if (this.internal.options == null) {
+			this.internal.options = new com.grafana.foundation.dashboardlist.Options();
+		}
+        ((Options) this.internal.options).maxItems = maxItems;
+        return this;
+    }
+    
+    public DashboardlistPanelBuilder query(String query) {
+		if (this.internal.options == null) {
+			this.internal.options = new com.grafana.foundation.dashboardlist.Options();
+		}
+        ((Options) this.internal.options).query = query;
+        return this;
+    }
+    
+    public DashboardlistPanelBuilder tags(List<String> tags) {
+		if (this.internal.options == null) {
+			this.internal.options = new com.grafana.foundation.dashboardlist.Options();
+		}
+        ((Options) this.internal.options).tags = tags;
+        return this;
+    }
+    
+    public DashboardlistPanelBuilder folderId(Long folderId) {
+		if (this.internal.options == null) {
+			this.internal.options = new com.grafana.foundation.dashboardlist.Options();
+		}
+        ((Options) this.internal.options).folderId = folderId;
+        return this;
+    }
+    
+    public DashboardlistPanelBuilder folderUID(String folderUID) {
+		if (this.internal.options == null) {
+			this.internal.options = new com.grafana.foundation.dashboardlist.Options();
+		}
+        ((Options) this.internal.options).folderUID = folderUID;
+        return this;
+    }
+    public Panel build() {
+        return this.internal;
+    }
+}
