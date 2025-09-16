@@ -275,7 +275,8 @@
           "time_series",
           "trace",
           "logs"
-        ]
+        ],
+        "type": "string"
       },
       "AzureResourceGraphQuery": {
         "type": "object",
@@ -638,6 +639,7 @@
           "Azure Custom Namespaces",
           "Azure Custom Metric Names"
         ],
+        "type": "string",
         "description": "Defines the supported queryTypes. GrafanaTemplateVariableFn is deprecated"
       },
       "GrafanaTemplateVariableQueryType": {
@@ -651,7 +653,8 @@
           "MetricNamesQuery",
           "WorkspacesQuery",
           "UnknownQuery"
-        ]
+        ],
+        "type": "string"
       },
       "BaseGrafanaTemplateVariableQuery": {
         "type": "object",
