@@ -12,10 +12,10 @@ public class StringOrBoolSerializer extends JsonSerializer<StringOrBool> {
 
     @Override
     public void serialize(StringOrBool value, JsonGenerator gen, SerializerProvider serializerProvider) throws IOException {
-         if (value.string != null) {
+        if (value.string != null) {
             gen.writeObject(value.string);
         }
-         else  if (value.bool != null) {
+        else if (value.bool != null) {
             gen.writeObject(value.bool);
         }
     }
