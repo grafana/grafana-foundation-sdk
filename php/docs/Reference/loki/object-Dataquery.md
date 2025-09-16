@@ -71,6 +71,8 @@ class Dataquery implements \JsonSerializable, \Grafana\Foundation\Cog\Dataquery
      */
     public ?\Grafana\Foundation\Dashboard\DataSourceRef $datasource;
 
+    public ?\Grafana\Foundation\Loki\LokiQueryDirection $direction;
+
 }
 ```
 ## Methods

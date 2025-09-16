@@ -31,19 +31,19 @@ import com.grafana.foundation.common.ScaleDistributionConfig;
 import com.grafana.foundation.common.HideSeriesConfig;
 import com.grafana.foundation.common.GraphThresholdsStyleConfig;
 
-public class PanelBuilder implements com.grafana.foundation.cog.Builder<Panel> {
+public class BarchartPanelBuilder implements com.grafana.foundation.cog.Builder<Panel> {
     protected final Panel internal;
     
-    public PanelBuilder() {
+    public BarchartPanelBuilder() {
         this.internal = new Panel();
         this.internal.type = "barchart";
     }
-    public PanelBuilder id(Integer id) {
+    public BarchartPanelBuilder id(Integer id) {
         this.internal.id = id;
         return this;
     }
     
-    public PanelBuilder targets(List<com.grafana.foundation.cog.Builder<Dataquery>> targets) {
+    public BarchartPanelBuilder targets(List<com.grafana.foundation.cog.Builder<Dataquery>> targets) {
         List<Dataquery> targetsResources = new LinkedList<>();
         for (com.grafana.foundation.cog.Builder<Dataquery> r1 : targets) {
                 Dataquery targetsDepth1 = r1.build();
@@ -53,7 +53,7 @@ public class PanelBuilder implements com.grafana.foundation.cog.Builder<Panel> {
         return this;
     }
     
-    public PanelBuilder withTarget(com.grafana.foundation.cog.Builder<Dataquery> target) {
+    public BarchartPanelBuilder withTarget(com.grafana.foundation.cog.Builder<Dataquery> target) {
 		if (this.internal.targets == null) {
 			this.internal.targets = new LinkedList<>();
 		}
@@ -62,32 +62,32 @@ public class PanelBuilder implements com.grafana.foundation.cog.Builder<Panel> {
         return this;
     }
     
-    public PanelBuilder title(String title) {
+    public BarchartPanelBuilder title(String title) {
         this.internal.title = title;
         return this;
     }
     
-    public PanelBuilder description(String description) {
+    public BarchartPanelBuilder description(String description) {
         this.internal.description = description;
         return this;
     }
     
-    public PanelBuilder transparent(Boolean transparent) {
+    public BarchartPanelBuilder transparent(Boolean transparent) {
         this.internal.transparent = transparent;
         return this;
     }
     
-    public PanelBuilder datasource(DataSourceRef datasource) {
+    public BarchartPanelBuilder datasource(DataSourceRef datasource) {
         this.internal.datasource = datasource;
         return this;
     }
     
-    public PanelBuilder gridPos(GridPos gridPos) {
+    public BarchartPanelBuilder gridPos(GridPos gridPos) {
         this.internal.gridPos = gridPos;
         return this;
     }
     
-    public PanelBuilder height(Integer h) {
+    public BarchartPanelBuilder height(Integer h) {
         if (!(h > 0)) {
             throw new IllegalArgumentException("h must be > 0");
         }
@@ -98,7 +98,7 @@ public class PanelBuilder implements com.grafana.foundation.cog.Builder<Panel> {
         return this;
     }
     
-    public PanelBuilder span(Integer w) {
+    public BarchartPanelBuilder span(Integer w) {
         if (!(w > 0)) {
             throw new IllegalArgumentException("w must be > 0");
         }
@@ -112,7 +112,7 @@ public class PanelBuilder implements com.grafana.foundation.cog.Builder<Panel> {
         return this;
     }
     
-    public PanelBuilder links(List<com.grafana.foundation.cog.Builder<DashboardLink>> links) {
+    public BarchartPanelBuilder links(List<com.grafana.foundation.cog.Builder<DashboardLink>> links) {
         List<DashboardLink> linksResources = new LinkedList<>();
         for (com.grafana.foundation.cog.Builder<DashboardLink> r1 : links) {
                 DashboardLink linksDepth1 = r1.build();
@@ -122,32 +122,32 @@ public class PanelBuilder implements com.grafana.foundation.cog.Builder<Panel> {
         return this;
     }
     
-    public PanelBuilder repeat(String repeat) {
+    public BarchartPanelBuilder repeat(String repeat) {
         this.internal.repeat = repeat;
         return this;
     }
     
-    public PanelBuilder repeatDirection(PanelRepeatDirection repeatDirection) {
+    public BarchartPanelBuilder repeatDirection(PanelRepeatDirection repeatDirection) {
         this.internal.repeatDirection = repeatDirection;
         return this;
     }
     
-    public PanelBuilder maxPerRow(Double maxPerRow) {
+    public BarchartPanelBuilder maxPerRow(Double maxPerRow) {
         this.internal.maxPerRow = maxPerRow;
         return this;
     }
     
-    public PanelBuilder maxDataPoints(Double maxDataPoints) {
+    public BarchartPanelBuilder maxDataPoints(Double maxDataPoints) {
         this.internal.maxDataPoints = maxDataPoints;
         return this;
     }
     
-    public PanelBuilder transformations(List<DataTransformerConfig> transformations) {
+    public BarchartPanelBuilder transformations(List<DataTransformerConfig> transformations) {
         this.internal.transformations = transformations;
         return this;
     }
     
-    public PanelBuilder withTransformation(DataTransformerConfig transformation) {
+    public BarchartPanelBuilder withTransformation(DataTransformerConfig transformation) {
 		if (this.internal.transformations == null) {
 			this.internal.transformations = new LinkedList<>();
 		}
@@ -155,42 +155,42 @@ public class PanelBuilder implements com.grafana.foundation.cog.Builder<Panel> {
         return this;
     }
     
-    public PanelBuilder interval(String interval) {
+    public BarchartPanelBuilder interval(String interval) {
         this.internal.interval = interval;
         return this;
     }
     
-    public PanelBuilder timeFrom(String timeFrom) {
+    public BarchartPanelBuilder timeFrom(String timeFrom) {
         this.internal.timeFrom = timeFrom;
         return this;
     }
     
-    public PanelBuilder timeShift(String timeShift) {
+    public BarchartPanelBuilder timeShift(String timeShift) {
         this.internal.timeShift = timeShift;
         return this;
     }
     
-    public PanelBuilder hideTimeOverride(Boolean hideTimeOverride) {
+    public BarchartPanelBuilder hideTimeOverride(Boolean hideTimeOverride) {
         this.internal.hideTimeOverride = hideTimeOverride;
         return this;
     }
     
-    public PanelBuilder libraryPanel(LibraryPanelRef libraryPanel) {
+    public BarchartPanelBuilder libraryPanel(LibraryPanelRef libraryPanel) {
         this.internal.libraryPanel = libraryPanel;
         return this;
     }
     
-    public PanelBuilder cacheTimeout(String cacheTimeout) {
+    public BarchartPanelBuilder cacheTimeout(String cacheTimeout) {
         this.internal.cacheTimeout = cacheTimeout;
         return this;
     }
     
-    public PanelBuilder queryCachingTTL(Double queryCachingTTL) {
+    public BarchartPanelBuilder queryCachingTTL(Double queryCachingTTL) {
         this.internal.queryCachingTTL = queryCachingTTL;
         return this;
     }
     
-    public PanelBuilder displayName(String displayName) {
+    public BarchartPanelBuilder displayName(String displayName) {
 		if (this.internal.fieldConfig == null) {
 			this.internal.fieldConfig = new com.grafana.foundation.dashboard.FieldConfigSource();
 		}
@@ -201,7 +201,7 @@ public class PanelBuilder implements com.grafana.foundation.cog.Builder<Panel> {
         return this;
     }
     
-    public PanelBuilder unit(String unit) {
+    public BarchartPanelBuilder unit(String unit) {
 		if (this.internal.fieldConfig == null) {
 			this.internal.fieldConfig = new com.grafana.foundation.dashboard.FieldConfigSource();
 		}
@@ -212,7 +212,7 @@ public class PanelBuilder implements com.grafana.foundation.cog.Builder<Panel> {
         return this;
     }
     
-    public PanelBuilder decimals(Double decimals) {
+    public BarchartPanelBuilder decimals(Double decimals) {
 		if (this.internal.fieldConfig == null) {
 			this.internal.fieldConfig = new com.grafana.foundation.dashboard.FieldConfigSource();
 		}
@@ -223,7 +223,7 @@ public class PanelBuilder implements com.grafana.foundation.cog.Builder<Panel> {
         return this;
     }
     
-    public PanelBuilder min(Double min) {
+    public BarchartPanelBuilder min(Double min) {
 		if (this.internal.fieldConfig == null) {
 			this.internal.fieldConfig = new com.grafana.foundation.dashboard.FieldConfigSource();
 		}
@@ -234,7 +234,7 @@ public class PanelBuilder implements com.grafana.foundation.cog.Builder<Panel> {
         return this;
     }
     
-    public PanelBuilder max(Double max) {
+    public BarchartPanelBuilder max(Double max) {
 		if (this.internal.fieldConfig == null) {
 			this.internal.fieldConfig = new com.grafana.foundation.dashboard.FieldConfigSource();
 		}
@@ -245,7 +245,7 @@ public class PanelBuilder implements com.grafana.foundation.cog.Builder<Panel> {
         return this;
     }
     
-    public PanelBuilder mappings(List<ValueMapping> mappings) {
+    public BarchartPanelBuilder mappings(List<ValueMapping> mappings) {
 		if (this.internal.fieldConfig == null) {
 			this.internal.fieldConfig = new com.grafana.foundation.dashboard.FieldConfigSource();
 		}
@@ -256,7 +256,7 @@ public class PanelBuilder implements com.grafana.foundation.cog.Builder<Panel> {
         return this;
     }
     
-    public PanelBuilder thresholds(com.grafana.foundation.cog.Builder<ThresholdsConfig> thresholds) {
+    public BarchartPanelBuilder thresholds(com.grafana.foundation.cog.Builder<ThresholdsConfig> thresholds) {
 		if (this.internal.fieldConfig == null) {
 			this.internal.fieldConfig = new com.grafana.foundation.dashboard.FieldConfigSource();
 		}
@@ -268,7 +268,7 @@ public class PanelBuilder implements com.grafana.foundation.cog.Builder<Panel> {
         return this;
     }
     
-    public PanelBuilder colorScheme(com.grafana.foundation.cog.Builder<FieldColor> color) {
+    public BarchartPanelBuilder colorScheme(com.grafana.foundation.cog.Builder<FieldColor> color) {
 		if (this.internal.fieldConfig == null) {
 			this.internal.fieldConfig = new com.grafana.foundation.dashboard.FieldConfigSource();
 		}
@@ -280,7 +280,7 @@ public class PanelBuilder implements com.grafana.foundation.cog.Builder<Panel> {
         return this;
     }
     
-    public PanelBuilder dataLinks(List<com.grafana.foundation.cog.Builder<DashboardLink>> links) {
+    public BarchartPanelBuilder dataLinks(List<com.grafana.foundation.cog.Builder<DashboardLink>> links) {
 		if (this.internal.fieldConfig == null) {
 			this.internal.fieldConfig = new com.grafana.foundation.dashboard.FieldConfigSource();
 		}
@@ -296,7 +296,7 @@ public class PanelBuilder implements com.grafana.foundation.cog.Builder<Panel> {
         return this;
     }
     
-    public PanelBuilder noValue(String noValue) {
+    public BarchartPanelBuilder noValue(String noValue) {
 		if (this.internal.fieldConfig == null) {
 			this.internal.fieldConfig = new com.grafana.foundation.dashboard.FieldConfigSource();
 		}
@@ -307,7 +307,7 @@ public class PanelBuilder implements com.grafana.foundation.cog.Builder<Panel> {
         return this;
     }
     
-    public PanelBuilder overrides(List<com.grafana.foundation.cog.Builder<DashboardFieldConfigSourceOverrides>> overrides) {
+    public BarchartPanelBuilder overrides(List<com.grafana.foundation.cog.Builder<DashboardFieldConfigSourceOverrides>> overrides) {
 		if (this.internal.fieldConfig == null) {
 			this.internal.fieldConfig = new com.grafana.foundation.dashboard.FieldConfigSource();
 		}
@@ -320,7 +320,7 @@ public class PanelBuilder implements com.grafana.foundation.cog.Builder<Panel> {
         return this;
     }
     
-    public PanelBuilder withOverride(com.grafana.foundation.cog.Builder<DashboardFieldConfigSourceOverrides> override) {
+    public BarchartPanelBuilder withOverride(com.grafana.foundation.cog.Builder<DashboardFieldConfigSourceOverrides> override) {
 		if (this.internal.fieldConfig == null) {
 			this.internal.fieldConfig = new com.grafana.foundation.dashboard.FieldConfigSource();
 		}
@@ -332,7 +332,7 @@ public class PanelBuilder implements com.grafana.foundation.cog.Builder<Panel> {
         return this;
     }
     
-    public PanelBuilder overrideByName(String name,List<DynamicConfigValue> properties) {
+    public BarchartPanelBuilder overrideByName(String name,List<DynamicConfigValue> properties) {
 		if (this.internal.fieldConfig == null) {
 			this.internal.fieldConfig = new com.grafana.foundation.dashboard.FieldConfigSource();
 		}
@@ -349,7 +349,7 @@ public class PanelBuilder implements com.grafana.foundation.cog.Builder<Panel> {
         return this;
     }
     
-    public PanelBuilder overrideByRegexp(String regexp,List<DynamicConfigValue> properties) {
+    public BarchartPanelBuilder overrideByRegexp(String regexp,List<DynamicConfigValue> properties) {
 		if (this.internal.fieldConfig == null) {
 			this.internal.fieldConfig = new com.grafana.foundation.dashboard.FieldConfigSource();
 		}
@@ -366,7 +366,7 @@ public class PanelBuilder implements com.grafana.foundation.cog.Builder<Panel> {
         return this;
     }
     
-    public PanelBuilder overrideByFieldType(String fieldType,List<DynamicConfigValue> properties) {
+    public BarchartPanelBuilder overrideByFieldType(String fieldType,List<DynamicConfigValue> properties) {
 		if (this.internal.fieldConfig == null) {
 			this.internal.fieldConfig = new com.grafana.foundation.dashboard.FieldConfigSource();
 		}
@@ -383,7 +383,7 @@ public class PanelBuilder implements com.grafana.foundation.cog.Builder<Panel> {
         return this;
     }
     
-    public PanelBuilder overrideByQuery(String queryRefId,List<DynamicConfigValue> properties) {
+    public BarchartPanelBuilder overrideByQuery(String queryRefId,List<DynamicConfigValue> properties) {
 		if (this.internal.fieldConfig == null) {
 			this.internal.fieldConfig = new com.grafana.foundation.dashboard.FieldConfigSource();
 		}
@@ -400,7 +400,7 @@ public class PanelBuilder implements com.grafana.foundation.cog.Builder<Panel> {
         return this;
     }
     
-    public PanelBuilder xField(String xField) {
+    public BarchartPanelBuilder xField(String xField) {
 		if (this.internal.options == null) {
 			this.internal.options = new com.grafana.foundation.barchart.Options();
 		}
@@ -408,7 +408,7 @@ public class PanelBuilder implements com.grafana.foundation.cog.Builder<Panel> {
         return this;
     }
     
-    public PanelBuilder colorByField(String colorByField) {
+    public BarchartPanelBuilder colorByField(String colorByField) {
 		if (this.internal.options == null) {
 			this.internal.options = new com.grafana.foundation.barchart.Options();
 		}
@@ -416,7 +416,7 @@ public class PanelBuilder implements com.grafana.foundation.cog.Builder<Panel> {
         return this;
     }
     
-    public PanelBuilder orientation(VizOrientation orientation) {
+    public BarchartPanelBuilder orientation(VizOrientation orientation) {
 		if (this.internal.options == null) {
 			this.internal.options = new com.grafana.foundation.barchart.Options();
 		}
@@ -424,7 +424,7 @@ public class PanelBuilder implements com.grafana.foundation.cog.Builder<Panel> {
         return this;
     }
     
-    public PanelBuilder barRadius(Double barRadius) {
+    public BarchartPanelBuilder barRadius(Double barRadius) {
         if (!(barRadius >= 0)) {
             throw new IllegalArgumentException("barRadius must be >= 0");
         }
@@ -438,7 +438,7 @@ public class PanelBuilder implements com.grafana.foundation.cog.Builder<Panel> {
         return this;
     }
     
-    public PanelBuilder xTickLabelRotation(Integer xTickLabelRotation) {
+    public BarchartPanelBuilder xTickLabelRotation(Integer xTickLabelRotation) {
         if (!(xTickLabelRotation >= -90)) {
             throw new IllegalArgumentException("xTickLabelRotation must be >= -90");
         }
@@ -452,7 +452,7 @@ public class PanelBuilder implements com.grafana.foundation.cog.Builder<Panel> {
         return this;
     }
     
-    public PanelBuilder xTickLabelMaxLength(Integer xTickLabelMaxLength) {
+    public BarchartPanelBuilder xTickLabelMaxLength(Integer xTickLabelMaxLength) {
         if (!(xTickLabelMaxLength >= 0)) {
             throw new IllegalArgumentException("xTickLabelMaxLength must be >= 0");
         }
@@ -463,7 +463,7 @@ public class PanelBuilder implements com.grafana.foundation.cog.Builder<Panel> {
         return this;
     }
     
-    public PanelBuilder xTickLabelSpacing(Integer xTickLabelSpacing) {
+    public BarchartPanelBuilder xTickLabelSpacing(Integer xTickLabelSpacing) {
 		if (this.internal.options == null) {
 			this.internal.options = new com.grafana.foundation.barchart.Options();
 		}
@@ -471,7 +471,7 @@ public class PanelBuilder implements com.grafana.foundation.cog.Builder<Panel> {
         return this;
     }
     
-    public PanelBuilder stacking(StackingMode stacking) {
+    public BarchartPanelBuilder stacking(StackingMode stacking) {
 		if (this.internal.options == null) {
 			this.internal.options = new com.grafana.foundation.barchart.Options();
 		}
@@ -479,7 +479,7 @@ public class PanelBuilder implements com.grafana.foundation.cog.Builder<Panel> {
         return this;
     }
     
-    public PanelBuilder showValue(VisibilityMode showValue) {
+    public BarchartPanelBuilder showValue(VisibilityMode showValue) {
 		if (this.internal.options == null) {
 			this.internal.options = new com.grafana.foundation.barchart.Options();
 		}
@@ -487,7 +487,7 @@ public class PanelBuilder implements com.grafana.foundation.cog.Builder<Panel> {
         return this;
     }
     
-    public PanelBuilder barWidth(Double barWidth) {
+    public BarchartPanelBuilder barWidth(Double barWidth) {
         if (!(barWidth >= 0)) {
             throw new IllegalArgumentException("barWidth must be >= 0");
         }
@@ -501,7 +501,7 @@ public class PanelBuilder implements com.grafana.foundation.cog.Builder<Panel> {
         return this;
     }
     
-    public PanelBuilder groupWidth(Double groupWidth) {
+    public BarchartPanelBuilder groupWidth(Double groupWidth) {
         if (!(groupWidth >= 0)) {
             throw new IllegalArgumentException("groupWidth must be >= 0");
         }
@@ -515,7 +515,7 @@ public class PanelBuilder implements com.grafana.foundation.cog.Builder<Panel> {
         return this;
     }
     
-    public PanelBuilder legend(com.grafana.foundation.cog.Builder<VizLegendOptions> legend) {
+    public BarchartPanelBuilder legend(com.grafana.foundation.cog.Builder<VizLegendOptions> legend) {
 		if (this.internal.options == null) {
 			this.internal.options = new com.grafana.foundation.barchart.Options();
 		}
@@ -524,7 +524,7 @@ public class PanelBuilder implements com.grafana.foundation.cog.Builder<Panel> {
         return this;
     }
     
-    public PanelBuilder tooltip(com.grafana.foundation.cog.Builder<VizTooltipOptions> tooltip) {
+    public BarchartPanelBuilder tooltip(com.grafana.foundation.cog.Builder<VizTooltipOptions> tooltip) {
 		if (this.internal.options == null) {
 			this.internal.options = new com.grafana.foundation.barchart.Options();
 		}
@@ -533,7 +533,7 @@ public class PanelBuilder implements com.grafana.foundation.cog.Builder<Panel> {
         return this;
     }
     
-    public PanelBuilder text(com.grafana.foundation.cog.Builder<VizTextDisplayOptions> text) {
+    public BarchartPanelBuilder text(com.grafana.foundation.cog.Builder<VizTextDisplayOptions> text) {
 		if (this.internal.options == null) {
 			this.internal.options = new com.grafana.foundation.barchart.Options();
 		}
@@ -542,7 +542,7 @@ public class PanelBuilder implements com.grafana.foundation.cog.Builder<Panel> {
         return this;
     }
     
-    public PanelBuilder fullHighlight(Boolean fullHighlight) {
+    public BarchartPanelBuilder fullHighlight(Boolean fullHighlight) {
 		if (this.internal.options == null) {
 			this.internal.options = new com.grafana.foundation.barchart.Options();
 		}
@@ -550,7 +550,7 @@ public class PanelBuilder implements com.grafana.foundation.cog.Builder<Panel> {
         return this;
     }
     
-    public PanelBuilder lineWidth(Integer lineWidth) {
+    public BarchartPanelBuilder lineWidth(Integer lineWidth) {
         if (!(lineWidth <= 10)) {
             throw new IllegalArgumentException("lineWidth must be <= 10");
         }
@@ -567,7 +567,7 @@ public class PanelBuilder implements com.grafana.foundation.cog.Builder<Panel> {
         return this;
     }
     
-    public PanelBuilder fillOpacity(Integer fillOpacity) {
+    public BarchartPanelBuilder fillOpacity(Integer fillOpacity) {
         if (!(fillOpacity <= 100)) {
             throw new IllegalArgumentException("fillOpacity must be <= 100");
         }
@@ -584,7 +584,7 @@ public class PanelBuilder implements com.grafana.foundation.cog.Builder<Panel> {
         return this;
     }
     
-    public PanelBuilder gradientMode(GraphGradientMode gradientMode) {
+    public BarchartPanelBuilder gradientMode(GraphGradientMode gradientMode) {
 		if (this.internal.fieldConfig == null) {
 			this.internal.fieldConfig = new com.grafana.foundation.dashboard.FieldConfigSource();
 		}
@@ -598,7 +598,7 @@ public class PanelBuilder implements com.grafana.foundation.cog.Builder<Panel> {
         return this;
     }
     
-    public PanelBuilder axisPlacement(AxisPlacement axisPlacement) {
+    public BarchartPanelBuilder axisPlacement(AxisPlacement axisPlacement) {
 		if (this.internal.fieldConfig == null) {
 			this.internal.fieldConfig = new com.grafana.foundation.dashboard.FieldConfigSource();
 		}
@@ -612,7 +612,7 @@ public class PanelBuilder implements com.grafana.foundation.cog.Builder<Panel> {
         return this;
     }
     
-    public PanelBuilder axisColorMode(AxisColorMode axisColorMode) {
+    public BarchartPanelBuilder axisColorMode(AxisColorMode axisColorMode) {
 		if (this.internal.fieldConfig == null) {
 			this.internal.fieldConfig = new com.grafana.foundation.dashboard.FieldConfigSource();
 		}
@@ -626,7 +626,7 @@ public class PanelBuilder implements com.grafana.foundation.cog.Builder<Panel> {
         return this;
     }
     
-    public PanelBuilder axisLabel(String axisLabel) {
+    public BarchartPanelBuilder axisLabel(String axisLabel) {
 		if (this.internal.fieldConfig == null) {
 			this.internal.fieldConfig = new com.grafana.foundation.dashboard.FieldConfigSource();
 		}
@@ -640,7 +640,7 @@ public class PanelBuilder implements com.grafana.foundation.cog.Builder<Panel> {
         return this;
     }
     
-    public PanelBuilder axisWidth(Double axisWidth) {
+    public BarchartPanelBuilder axisWidth(Double axisWidth) {
 		if (this.internal.fieldConfig == null) {
 			this.internal.fieldConfig = new com.grafana.foundation.dashboard.FieldConfigSource();
 		}
@@ -654,7 +654,7 @@ public class PanelBuilder implements com.grafana.foundation.cog.Builder<Panel> {
         return this;
     }
     
-    public PanelBuilder axisSoftMin(Double axisSoftMin) {
+    public BarchartPanelBuilder axisSoftMin(Double axisSoftMin) {
 		if (this.internal.fieldConfig == null) {
 			this.internal.fieldConfig = new com.grafana.foundation.dashboard.FieldConfigSource();
 		}
@@ -668,7 +668,7 @@ public class PanelBuilder implements com.grafana.foundation.cog.Builder<Panel> {
         return this;
     }
     
-    public PanelBuilder axisSoftMax(Double axisSoftMax) {
+    public BarchartPanelBuilder axisSoftMax(Double axisSoftMax) {
 		if (this.internal.fieldConfig == null) {
 			this.internal.fieldConfig = new com.grafana.foundation.dashboard.FieldConfigSource();
 		}
@@ -682,7 +682,7 @@ public class PanelBuilder implements com.grafana.foundation.cog.Builder<Panel> {
         return this;
     }
     
-    public PanelBuilder axisGridShow(Boolean axisGridShow) {
+    public BarchartPanelBuilder axisGridShow(Boolean axisGridShow) {
 		if (this.internal.fieldConfig == null) {
 			this.internal.fieldConfig = new com.grafana.foundation.dashboard.FieldConfigSource();
 		}
@@ -696,7 +696,7 @@ public class PanelBuilder implements com.grafana.foundation.cog.Builder<Panel> {
         return this;
     }
     
-    public PanelBuilder scaleDistribution(com.grafana.foundation.cog.Builder<ScaleDistributionConfig> scaleDistribution) {
+    public BarchartPanelBuilder scaleDistribution(com.grafana.foundation.cog.Builder<ScaleDistributionConfig> scaleDistribution) {
 		if (this.internal.fieldConfig == null) {
 			this.internal.fieldConfig = new com.grafana.foundation.dashboard.FieldConfigSource();
 		}
@@ -711,7 +711,7 @@ public class PanelBuilder implements com.grafana.foundation.cog.Builder<Panel> {
         return this;
     }
     
-    public PanelBuilder axisCenteredZero(Boolean axisCenteredZero) {
+    public BarchartPanelBuilder axisCenteredZero(Boolean axisCenteredZero) {
 		if (this.internal.fieldConfig == null) {
 			this.internal.fieldConfig = new com.grafana.foundation.dashboard.FieldConfigSource();
 		}
@@ -725,7 +725,7 @@ public class PanelBuilder implements com.grafana.foundation.cog.Builder<Panel> {
         return this;
     }
     
-    public PanelBuilder hideFrom(com.grafana.foundation.cog.Builder<HideSeriesConfig> hideFrom) {
+    public BarchartPanelBuilder hideFrom(com.grafana.foundation.cog.Builder<HideSeriesConfig> hideFrom) {
 		if (this.internal.fieldConfig == null) {
 			this.internal.fieldConfig = new com.grafana.foundation.dashboard.FieldConfigSource();
 		}
@@ -740,7 +740,7 @@ public class PanelBuilder implements com.grafana.foundation.cog.Builder<Panel> {
         return this;
     }
     
-    public PanelBuilder thresholdsStyle(com.grafana.foundation.cog.Builder<GraphThresholdsStyleConfig> thresholdsStyle) {
+    public BarchartPanelBuilder thresholdsStyle(com.grafana.foundation.cog.Builder<GraphThresholdsStyleConfig> thresholdsStyle) {
 		if (this.internal.fieldConfig == null) {
 			this.internal.fieldConfig = new com.grafana.foundation.dashboard.FieldConfigSource();
 		}
@@ -755,7 +755,7 @@ public class PanelBuilder implements com.grafana.foundation.cog.Builder<Panel> {
         return this;
     }
     
-    public PanelBuilder axisBorderShow(Boolean axisBorderShow) {
+    public BarchartPanelBuilder axisBorderShow(Boolean axisBorderShow) {
 		if (this.internal.fieldConfig == null) {
 			this.internal.fieldConfig = new com.grafana.foundation.dashboard.FieldConfigSource();
 		}

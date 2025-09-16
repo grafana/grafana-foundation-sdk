@@ -69,6 +69,11 @@ public class DataqueryBuilder implements com.grafana.foundation.cog.Builder<com.
         this.internal.datasource = datasource;
         return this;
     }
+    
+    public DataqueryBuilder direction(LokiQueryDirection direction) {
+        this.internal.direction = direction;
+        return this;
+    }
     public Dataquery build() {
         return this.internal;
     }
