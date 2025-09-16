@@ -33,7 +33,8 @@
         "trace",
         "manual_entry",
         "variables-query"
-      ]
+      ],
+      "type": "string"
     },
     "StreamingQuery": {
       "type": "object",
@@ -51,7 +52,8 @@
             "logs",
             "fetch",
             "traces"
-          ]
+          ],
+          "type": "string"
         },
         "speed": {
           "type": "integer"
@@ -144,7 +146,8 @@
             "response_small",
             "response_medium",
             "random edges"
-          ]
+          ],
+          "type": "string"
         },
         "count": {
           "type": "integer"
@@ -272,7 +275,8 @@
             "server_panic",
             "frontend_exception",
             "frontend_observable"
-          ]
+          ],
+          "type": "string"
         },
         "spanCount": {
           "type": "integer"
