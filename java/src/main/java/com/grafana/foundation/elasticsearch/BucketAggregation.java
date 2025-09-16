@@ -30,64 +30,40 @@ public class BucketAggregation {
     @JsonUnwrapped
     protected Nested nested;
     protected BucketAggregation() {}
-    public static BucketAggregation createDateHistogram(com.grafana.foundation.cog.Builder<DateHistogram> dateHistogram) {
+    public static BucketAggregation createDateHistogram(DateHistogram dateHistogram) {
         BucketAggregation bucketAggregation = new BucketAggregation();
-        bucketAggregation.dateHistogram = dateHistogram.build();
+        bucketAggregation.dateHistogram = dateHistogram;
         return bucketAggregation;
     }
-    public static BucketAggregation createHistogram(com.grafana.foundation.cog.Builder<Histogram> histogram) {
+    public static BucketAggregation createHistogram(Histogram histogram) {
         BucketAggregation bucketAggregation = new BucketAggregation();
-        bucketAggregation.histogram = histogram.build();
+        bucketAggregation.histogram = histogram;
         return bucketAggregation;
     }
-    public static BucketAggregation createTerms(com.grafana.foundation.cog.Builder<Terms> terms) {
+    public static BucketAggregation createTerms(Terms terms) {
         BucketAggregation bucketAggregation = new BucketAggregation();
-        bucketAggregation.terms = terms.build();
+        bucketAggregation.terms = terms;
         return bucketAggregation;
     }
-    public static BucketAggregation createFilters(com.grafana.foundation.cog.Builder<Filters> filters) {
+    public static BucketAggregation createFilters(Filters filters) {
         BucketAggregation bucketAggregation = new BucketAggregation();
-        bucketAggregation.filters = filters.build();
+        bucketAggregation.filters = filters;
         return bucketAggregation;
     }
-    public static BucketAggregation createGeoHashGrid(com.grafana.foundation.cog.Builder<GeoHashGrid> geoHashGrid) {
+    public static BucketAggregation createGeoHashGrid(GeoHashGrid geoHashGrid) {
         BucketAggregation bucketAggregation = new BucketAggregation();
-        bucketAggregation.geoHashGrid = geoHashGrid.build();
+        bucketAggregation.geoHashGrid = geoHashGrid;
         return bucketAggregation;
     }
-    public static BucketAggregation createNested(com.grafana.foundation.cog.Builder<Nested> nested) {
+    public static BucketAggregation createNested(Nested nested) {
         BucketAggregation bucketAggregation = new BucketAggregation();
-        bucketAggregation.nested = nested.build();
+        bucketAggregation.nested = nested;
         return bucketAggregation;
     }
     
     public String toJSON() throws JsonProcessingException {
-        if (dateHistogram != null) {
-            ObjectWriter ow = new ObjectMapper().writer().withDefaultPrettyPrinter();
-            return ow.writeValueAsString(dateHistogram);
-        }
-        if (histogram != null) {
-            ObjectWriter ow = new ObjectMapper().writer().withDefaultPrettyPrinter();
-            return ow.writeValueAsString(histogram);
-        }
-        if (terms != null) {
-            ObjectWriter ow = new ObjectMapper().writer().withDefaultPrettyPrinter();
-            return ow.writeValueAsString(terms);
-        }
-        if (filters != null) {
-            ObjectWriter ow = new ObjectMapper().writer().withDefaultPrettyPrinter();
-            return ow.writeValueAsString(filters);
-        }
-        if (geoHashGrid != null) {
-            ObjectWriter ow = new ObjectMapper().writer().withDefaultPrettyPrinter();
-            return ow.writeValueAsString(geoHashGrid);
-        }
-        if (nested != null) {
-            ObjectWriter ow = new ObjectMapper().writer().withDefaultPrettyPrinter();
-            return ow.writeValueAsString(nested);
-        }
-        
-        return null;
+        ObjectWriter ow = new ObjectMapper().writer().withDefaultPrettyPrinter();
+        return ow.writeValueAsString(this);
     }
 
 }

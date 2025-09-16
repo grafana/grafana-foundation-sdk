@@ -169,6 +169,7 @@
           "vertical",
           "horizontal"
         ],
+        "type": "string",
         "description": "TODO docs"
       },
       "StackingMode": {
@@ -177,6 +178,7 @@
           "normal",
           "percent"
         ],
+        "type": "string",
         "description": "TODO docs"
       },
       "VisibilityMode": {
@@ -185,6 +187,7 @@
           "never",
           "always"
         ],
+        "type": "string",
         "description": "TODO docs"
       },
       "VizLegendOptions": {
@@ -285,6 +288,7 @@
           "hue",
           "scheme"
         ],
+        "type": "string",
         "description": "TODO docs"
       },
       "AxisPlacement": {
@@ -296,6 +300,7 @@
           "left",
           "hidden"
         ],
+        "type": "string",
         "description": "TODO docs"
       },
       "AxisColorMode": {
@@ -303,6 +308,7 @@
           "text",
           "series"
         ],
+        "type": "string",
         "description": "TODO docs"
       },
       "ScaleDistributionConfig": {
@@ -364,6 +370,7 @@
           "table",
           "hidden"
         ],
+        "type": "string",
         "description": "TODO docs\nNote: \"hidden\" needs to remain as an option for plugins compatibility"
       },
       "LegendPlacement": {
@@ -371,6 +378,7 @@
           "bottom",
           "right"
         ],
+        "type": "string",
         "description": "TODO docs"
       },
       "TooltipDisplayMode": {
@@ -379,6 +387,7 @@
           "multi",
           "none"
         ],
+        "type": "string",
         "description": "TODO docs"
       },
       "SortOrder": {
@@ -387,6 +396,7 @@
           "desc",
           "none"
         ],
+        "type": "string",
         "description": "TODO docs"
       },
       "ScaleDistribution": {
@@ -396,6 +406,7 @@
           "ordinal",
           "symlog"
         ],
+        "type": "string",
         "description": "TODO docs"
       },
       "GraphThresholdsStyleMode": {
@@ -408,6 +419,7 @@
           "dashed+area",
           "series"
         ],
+        "type": "string",
         "description": "TODO docs"
       }
     }

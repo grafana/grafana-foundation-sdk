@@ -1,6 +1,6 @@
 // Code generated - EDITING IS FUTILE. DO NOT EDIT.
 
-package com.grafana.foundation.dashboardlist;
+package com.grafana.foundation.piechart;
 
 import com.grafana.foundation.dashboard.Panel;
 import java.util.List;
@@ -18,20 +18,25 @@ import com.grafana.foundation.dashboard.FieldColor;
 import com.grafana.foundation.dashboard.DashboardFieldConfigSourceOverrides;
 import com.grafana.foundation.dashboard.DynamicConfigValue;
 import com.grafana.foundation.dashboard.MatcherConfig;
+import com.grafana.foundation.common.VizTooltipOptions;
+import com.grafana.foundation.common.ReduceDataOptions;
+import com.grafana.foundation.common.VizTextDisplayOptions;
+import com.grafana.foundation.common.VizOrientation;
+import com.grafana.foundation.common.HideSeriesConfig;
 
-public class PanelBuilder implements com.grafana.foundation.cog.Builder<Panel> {
+public class PiechartPanelBuilder implements com.grafana.foundation.cog.Builder<Panel> {
     protected final Panel internal;
     
-    public PanelBuilder() {
+    public PiechartPanelBuilder() {
         this.internal = new Panel();
-        this.internal.type = "dashlist";
+        this.internal.type = "piechart";
     }
-    public PanelBuilder id(Integer id) {
+    public PiechartPanelBuilder id(Integer id) {
         this.internal.id = id;
         return this;
     }
     
-    public PanelBuilder targets(List<com.grafana.foundation.cog.Builder<Dataquery>> targets) {
+    public PiechartPanelBuilder targets(List<com.grafana.foundation.cog.Builder<Dataquery>> targets) {
         List<Dataquery> targetsResources = new LinkedList<>();
         for (com.grafana.foundation.cog.Builder<Dataquery> r1 : targets) {
                 Dataquery targetsDepth1 = r1.build();
@@ -41,7 +46,7 @@ public class PanelBuilder implements com.grafana.foundation.cog.Builder<Panel> {
         return this;
     }
     
-    public PanelBuilder withTarget(com.grafana.foundation.cog.Builder<Dataquery> target) {
+    public PiechartPanelBuilder withTarget(com.grafana.foundation.cog.Builder<Dataquery> target) {
 		if (this.internal.targets == null) {
 			this.internal.targets = new LinkedList<>();
 		}
@@ -50,32 +55,32 @@ public class PanelBuilder implements com.grafana.foundation.cog.Builder<Panel> {
         return this;
     }
     
-    public PanelBuilder title(String title) {
+    public PiechartPanelBuilder title(String title) {
         this.internal.title = title;
         return this;
     }
     
-    public PanelBuilder description(String description) {
+    public PiechartPanelBuilder description(String description) {
         this.internal.description = description;
         return this;
     }
     
-    public PanelBuilder transparent(Boolean transparent) {
+    public PiechartPanelBuilder transparent(Boolean transparent) {
         this.internal.transparent = transparent;
         return this;
     }
     
-    public PanelBuilder datasource(DataSourceRef datasource) {
+    public PiechartPanelBuilder datasource(DataSourceRef datasource) {
         this.internal.datasource = datasource;
         return this;
     }
     
-    public PanelBuilder gridPos(GridPos gridPos) {
+    public PiechartPanelBuilder gridPos(GridPos gridPos) {
         this.internal.gridPos = gridPos;
         return this;
     }
     
-    public PanelBuilder height(Integer h) {
+    public PiechartPanelBuilder height(Integer h) {
         if (!(h > 0)) {
             throw new IllegalArgumentException("h must be > 0");
         }
@@ -86,7 +91,7 @@ public class PanelBuilder implements com.grafana.foundation.cog.Builder<Panel> {
         return this;
     }
     
-    public PanelBuilder span(Integer w) {
+    public PiechartPanelBuilder span(Integer w) {
         if (!(w > 0)) {
             throw new IllegalArgumentException("w must be > 0");
         }
@@ -100,7 +105,7 @@ public class PanelBuilder implements com.grafana.foundation.cog.Builder<Panel> {
         return this;
     }
     
-    public PanelBuilder links(List<com.grafana.foundation.cog.Builder<DashboardLink>> links) {
+    public PiechartPanelBuilder links(List<com.grafana.foundation.cog.Builder<DashboardLink>> links) {
         List<DashboardLink> linksResources = new LinkedList<>();
         for (com.grafana.foundation.cog.Builder<DashboardLink> r1 : links) {
                 DashboardLink linksDepth1 = r1.build();
@@ -110,32 +115,32 @@ public class PanelBuilder implements com.grafana.foundation.cog.Builder<Panel> {
         return this;
     }
     
-    public PanelBuilder repeat(String repeat) {
+    public PiechartPanelBuilder repeat(String repeat) {
         this.internal.repeat = repeat;
         return this;
     }
     
-    public PanelBuilder repeatDirection(PanelRepeatDirection repeatDirection) {
+    public PiechartPanelBuilder repeatDirection(PanelRepeatDirection repeatDirection) {
         this.internal.repeatDirection = repeatDirection;
         return this;
     }
     
-    public PanelBuilder maxPerRow(Double maxPerRow) {
+    public PiechartPanelBuilder maxPerRow(Double maxPerRow) {
         this.internal.maxPerRow = maxPerRow;
         return this;
     }
     
-    public PanelBuilder maxDataPoints(Double maxDataPoints) {
+    public PiechartPanelBuilder maxDataPoints(Double maxDataPoints) {
         this.internal.maxDataPoints = maxDataPoints;
         return this;
     }
     
-    public PanelBuilder transformations(List<DataTransformerConfig> transformations) {
+    public PiechartPanelBuilder transformations(List<DataTransformerConfig> transformations) {
         this.internal.transformations = transformations;
         return this;
     }
     
-    public PanelBuilder withTransformation(DataTransformerConfig transformation) {
+    public PiechartPanelBuilder withTransformation(DataTransformerConfig transformation) {
 		if (this.internal.transformations == null) {
 			this.internal.transformations = new LinkedList<>();
 		}
@@ -143,42 +148,42 @@ public class PanelBuilder implements com.grafana.foundation.cog.Builder<Panel> {
         return this;
     }
     
-    public PanelBuilder interval(String interval) {
+    public PiechartPanelBuilder interval(String interval) {
         this.internal.interval = interval;
         return this;
     }
     
-    public PanelBuilder timeFrom(String timeFrom) {
+    public PiechartPanelBuilder timeFrom(String timeFrom) {
         this.internal.timeFrom = timeFrom;
         return this;
     }
     
-    public PanelBuilder timeShift(String timeShift) {
+    public PiechartPanelBuilder timeShift(String timeShift) {
         this.internal.timeShift = timeShift;
         return this;
     }
     
-    public PanelBuilder hideTimeOverride(Boolean hideTimeOverride) {
+    public PiechartPanelBuilder hideTimeOverride(Boolean hideTimeOverride) {
         this.internal.hideTimeOverride = hideTimeOverride;
         return this;
     }
     
-    public PanelBuilder libraryPanel(LibraryPanelRef libraryPanel) {
+    public PiechartPanelBuilder libraryPanel(LibraryPanelRef libraryPanel) {
         this.internal.libraryPanel = libraryPanel;
         return this;
     }
     
-    public PanelBuilder cacheTimeout(String cacheTimeout) {
+    public PiechartPanelBuilder cacheTimeout(String cacheTimeout) {
         this.internal.cacheTimeout = cacheTimeout;
         return this;
     }
     
-    public PanelBuilder queryCachingTTL(Double queryCachingTTL) {
+    public PiechartPanelBuilder queryCachingTTL(Double queryCachingTTL) {
         this.internal.queryCachingTTL = queryCachingTTL;
         return this;
     }
     
-    public PanelBuilder displayName(String displayName) {
+    public PiechartPanelBuilder displayName(String displayName) {
 		if (this.internal.fieldConfig == null) {
 			this.internal.fieldConfig = new com.grafana.foundation.dashboard.FieldConfigSource();
 		}
@@ -189,7 +194,7 @@ public class PanelBuilder implements com.grafana.foundation.cog.Builder<Panel> {
         return this;
     }
     
-    public PanelBuilder unit(String unit) {
+    public PiechartPanelBuilder unit(String unit) {
 		if (this.internal.fieldConfig == null) {
 			this.internal.fieldConfig = new com.grafana.foundation.dashboard.FieldConfigSource();
 		}
@@ -200,7 +205,7 @@ public class PanelBuilder implements com.grafana.foundation.cog.Builder<Panel> {
         return this;
     }
     
-    public PanelBuilder decimals(Double decimals) {
+    public PiechartPanelBuilder decimals(Double decimals) {
 		if (this.internal.fieldConfig == null) {
 			this.internal.fieldConfig = new com.grafana.foundation.dashboard.FieldConfigSource();
 		}
@@ -211,7 +216,7 @@ public class PanelBuilder implements com.grafana.foundation.cog.Builder<Panel> {
         return this;
     }
     
-    public PanelBuilder min(Double min) {
+    public PiechartPanelBuilder min(Double min) {
 		if (this.internal.fieldConfig == null) {
 			this.internal.fieldConfig = new com.grafana.foundation.dashboard.FieldConfigSource();
 		}
@@ -222,7 +227,7 @@ public class PanelBuilder implements com.grafana.foundation.cog.Builder<Panel> {
         return this;
     }
     
-    public PanelBuilder max(Double max) {
+    public PiechartPanelBuilder max(Double max) {
 		if (this.internal.fieldConfig == null) {
 			this.internal.fieldConfig = new com.grafana.foundation.dashboard.FieldConfigSource();
 		}
@@ -233,7 +238,7 @@ public class PanelBuilder implements com.grafana.foundation.cog.Builder<Panel> {
         return this;
     }
     
-    public PanelBuilder mappings(List<ValueMapping> mappings) {
+    public PiechartPanelBuilder mappings(List<ValueMapping> mappings) {
 		if (this.internal.fieldConfig == null) {
 			this.internal.fieldConfig = new com.grafana.foundation.dashboard.FieldConfigSource();
 		}
@@ -244,7 +249,7 @@ public class PanelBuilder implements com.grafana.foundation.cog.Builder<Panel> {
         return this;
     }
     
-    public PanelBuilder thresholds(com.grafana.foundation.cog.Builder<ThresholdsConfig> thresholds) {
+    public PiechartPanelBuilder thresholds(com.grafana.foundation.cog.Builder<ThresholdsConfig> thresholds) {
 		if (this.internal.fieldConfig == null) {
 			this.internal.fieldConfig = new com.grafana.foundation.dashboard.FieldConfigSource();
 		}
@@ -256,7 +261,7 @@ public class PanelBuilder implements com.grafana.foundation.cog.Builder<Panel> {
         return this;
     }
     
-    public PanelBuilder colorScheme(com.grafana.foundation.cog.Builder<FieldColor> color) {
+    public PiechartPanelBuilder colorScheme(com.grafana.foundation.cog.Builder<FieldColor> color) {
 		if (this.internal.fieldConfig == null) {
 			this.internal.fieldConfig = new com.grafana.foundation.dashboard.FieldConfigSource();
 		}
@@ -268,7 +273,7 @@ public class PanelBuilder implements com.grafana.foundation.cog.Builder<Panel> {
         return this;
     }
     
-    public PanelBuilder dataLinks(List<com.grafana.foundation.cog.Builder<DashboardLink>> links) {
+    public PiechartPanelBuilder dataLinks(List<com.grafana.foundation.cog.Builder<DashboardLink>> links) {
 		if (this.internal.fieldConfig == null) {
 			this.internal.fieldConfig = new com.grafana.foundation.dashboard.FieldConfigSource();
 		}
@@ -284,7 +289,7 @@ public class PanelBuilder implements com.grafana.foundation.cog.Builder<Panel> {
         return this;
     }
     
-    public PanelBuilder noValue(String noValue) {
+    public PiechartPanelBuilder noValue(String noValue) {
 		if (this.internal.fieldConfig == null) {
 			this.internal.fieldConfig = new com.grafana.foundation.dashboard.FieldConfigSource();
 		}
@@ -295,7 +300,7 @@ public class PanelBuilder implements com.grafana.foundation.cog.Builder<Panel> {
         return this;
     }
     
-    public PanelBuilder overrides(List<com.grafana.foundation.cog.Builder<DashboardFieldConfigSourceOverrides>> overrides) {
+    public PiechartPanelBuilder overrides(List<com.grafana.foundation.cog.Builder<DashboardFieldConfigSourceOverrides>> overrides) {
 		if (this.internal.fieldConfig == null) {
 			this.internal.fieldConfig = new com.grafana.foundation.dashboard.FieldConfigSource();
 		}
@@ -308,7 +313,7 @@ public class PanelBuilder implements com.grafana.foundation.cog.Builder<Panel> {
         return this;
     }
     
-    public PanelBuilder withOverride(com.grafana.foundation.cog.Builder<DashboardFieldConfigSourceOverrides> override) {
+    public PiechartPanelBuilder withOverride(com.grafana.foundation.cog.Builder<DashboardFieldConfigSourceOverrides> override) {
 		if (this.internal.fieldConfig == null) {
 			this.internal.fieldConfig = new com.grafana.foundation.dashboard.FieldConfigSource();
 		}
@@ -320,7 +325,7 @@ public class PanelBuilder implements com.grafana.foundation.cog.Builder<Panel> {
         return this;
     }
     
-    public PanelBuilder overrideByName(String name,List<DynamicConfigValue> properties) {
+    public PiechartPanelBuilder overrideByName(String name,List<DynamicConfigValue> properties) {
 		if (this.internal.fieldConfig == null) {
 			this.internal.fieldConfig = new com.grafana.foundation.dashboard.FieldConfigSource();
 		}
@@ -337,7 +342,7 @@ public class PanelBuilder implements com.grafana.foundation.cog.Builder<Panel> {
         return this;
     }
     
-    public PanelBuilder overrideByRegexp(String regexp,List<DynamicConfigValue> properties) {
+    public PiechartPanelBuilder overrideByRegexp(String regexp,List<DynamicConfigValue> properties) {
 		if (this.internal.fieldConfig == null) {
 			this.internal.fieldConfig = new com.grafana.foundation.dashboard.FieldConfigSource();
 		}
@@ -354,7 +359,7 @@ public class PanelBuilder implements com.grafana.foundation.cog.Builder<Panel> {
         return this;
     }
     
-    public PanelBuilder overrideByFieldType(String fieldType,List<DynamicConfigValue> properties) {
+    public PiechartPanelBuilder overrideByFieldType(String fieldType,List<DynamicConfigValue> properties) {
 		if (this.internal.fieldConfig == null) {
 			this.internal.fieldConfig = new com.grafana.foundation.dashboard.FieldConfigSource();
 		}
@@ -371,7 +376,7 @@ public class PanelBuilder implements com.grafana.foundation.cog.Builder<Panel> {
         return this;
     }
     
-    public PanelBuilder overrideByQuery(String queryRefId,List<DynamicConfigValue> properties) {
+    public PiechartPanelBuilder overrideByQuery(String queryRefId,List<DynamicConfigValue> properties) {
 		if (this.internal.fieldConfig == null) {
 			this.internal.fieldConfig = new com.grafana.foundation.dashboard.FieldConfigSource();
 		}
@@ -388,99 +393,78 @@ public class PanelBuilder implements com.grafana.foundation.cog.Builder<Panel> {
         return this;
     }
     
-    public PanelBuilder keepTime(Boolean keepTime) {
+    public PiechartPanelBuilder pieType(PieChartType pieType) {
 		if (this.internal.options == null) {
-			this.internal.options = new com.grafana.foundation.dashboardlist.Options();
+			this.internal.options = new com.grafana.foundation.piechart.Options();
 		}
-        ((Options) this.internal.options).keepTime = keepTime;
+        ((Options) this.internal.options).pieType = pieType;
         return this;
     }
     
-    public PanelBuilder includeVars(Boolean includeVars) {
+    public PiechartPanelBuilder displayLabels(List<PieChartLabels> displayLabels) {
 		if (this.internal.options == null) {
-			this.internal.options = new com.grafana.foundation.dashboardlist.Options();
+			this.internal.options = new com.grafana.foundation.piechart.Options();
 		}
-        ((Options) this.internal.options).includeVars = includeVars;
+        ((Options) this.internal.options).displayLabels = displayLabels;
         return this;
     }
     
-    public PanelBuilder showStarred(Boolean showStarred) {
+    public PiechartPanelBuilder tooltip(com.grafana.foundation.cog.Builder<VizTooltipOptions> tooltip) {
 		if (this.internal.options == null) {
-			this.internal.options = new com.grafana.foundation.dashboardlist.Options();
+			this.internal.options = new com.grafana.foundation.piechart.Options();
 		}
-        ((Options) this.internal.options).showStarred = showStarred;
+    VizTooltipOptions tooltipResource = tooltip.build();
+        ((Options) this.internal.options).tooltip = tooltipResource;
         return this;
     }
     
-    public PanelBuilder showRecentlyViewed(Boolean showRecentlyViewed) {
+    public PiechartPanelBuilder reduceOptions(com.grafana.foundation.cog.Builder<ReduceDataOptions> reduceOptions) {
 		if (this.internal.options == null) {
-			this.internal.options = new com.grafana.foundation.dashboardlist.Options();
+			this.internal.options = new com.grafana.foundation.piechart.Options();
 		}
-        ((Options) this.internal.options).showRecentlyViewed = showRecentlyViewed;
+    ReduceDataOptions reduceOptionsResource = reduceOptions.build();
+        ((Options) this.internal.options).reduceOptions = reduceOptionsResource;
         return this;
     }
     
-    public PanelBuilder showSearch(Boolean showSearch) {
+    public PiechartPanelBuilder text(com.grafana.foundation.cog.Builder<VizTextDisplayOptions> text) {
 		if (this.internal.options == null) {
-			this.internal.options = new com.grafana.foundation.dashboardlist.Options();
+			this.internal.options = new com.grafana.foundation.piechart.Options();
 		}
-        ((Options) this.internal.options).showSearch = showSearch;
+    VizTextDisplayOptions textResource = text.build();
+        ((Options) this.internal.options).text = textResource;
         return this;
     }
     
-    public PanelBuilder showHeadings(Boolean showHeadings) {
+    public PiechartPanelBuilder legend(com.grafana.foundation.cog.Builder<PieChartLegendOptions> legend) {
 		if (this.internal.options == null) {
-			this.internal.options = new com.grafana.foundation.dashboardlist.Options();
+			this.internal.options = new com.grafana.foundation.piechart.Options();
 		}
-        ((Options) this.internal.options).showHeadings = showHeadings;
+    PieChartLegendOptions legendResource = legend.build();
+        ((Options) this.internal.options).legend = legendResource;
         return this;
     }
     
-    public PanelBuilder showFolderNames(Boolean showFolderNames) {
+    public PiechartPanelBuilder orientation(VizOrientation orientation) {
 		if (this.internal.options == null) {
-			this.internal.options = new com.grafana.foundation.dashboardlist.Options();
+			this.internal.options = new com.grafana.foundation.piechart.Options();
 		}
-        ((Options) this.internal.options).showFolderNames = showFolderNames;
+        ((Options) this.internal.options).orientation = orientation;
         return this;
     }
     
-    public PanelBuilder maxItems(Long maxItems) {
-		if (this.internal.options == null) {
-			this.internal.options = new com.grafana.foundation.dashboardlist.Options();
+    public PiechartPanelBuilder hideFrom(com.grafana.foundation.cog.Builder<HideSeriesConfig> hideFrom) {
+		if (this.internal.fieldConfig == null) {
+			this.internal.fieldConfig = new com.grafana.foundation.dashboard.FieldConfigSource();
 		}
-        ((Options) this.internal.options).maxItems = maxItems;
-        return this;
-    }
-    
-    public PanelBuilder query(String query) {
-		if (this.internal.options == null) {
-			this.internal.options = new com.grafana.foundation.dashboardlist.Options();
+		if (this.internal.fieldConfig.defaults == null) {
+			this.internal.fieldConfig.defaults = new com.grafana.foundation.dashboard.FieldConfig();
 		}
-        ((Options) this.internal.options).query = query;
-        return this;
-    }
-    
-    public PanelBuilder tags(List<String> tags) {
-		if (this.internal.options == null) {
-			this.internal.options = new com.grafana.foundation.dashboardlist.Options();
+		if (this.internal.fieldConfig.defaults.custom == null) {
+			this.internal.fieldConfig.defaults.custom = new com.grafana.foundation.piechart.FieldConfig();
 		}
-        ((Options) this.internal.options).tags = tags;
-        return this;
-    }
-    
-    public PanelBuilder folderId(Long folderId) {
-		if (this.internal.options == null) {
-			this.internal.options = new com.grafana.foundation.dashboardlist.Options();
-		}
-        ((Options) this.internal.options).folderId = folderId;
-        return this;
-    }
-    
-    public PanelBuilder folderUID(String folderUID) {
-		if (this.internal.options == null) {
-			this.internal.options = new com.grafana.foundation.dashboardlist.Options();
-		}
-        ((Options) this.internal.options).folderUID = folderUID;
+    HideSeriesConfig hideFromResource = hideFrom.build();
+        ((FieldConfig) this.internal.fieldConfig.defaults.custom).hideFrom = hideFromResource;
         return this;
     }
     public Panel build() {
