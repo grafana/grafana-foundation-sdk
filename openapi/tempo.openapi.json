@@ -153,6 +153,7 @@
           "resource",
           "span"
         ],
+        "type": "string",
         "description": "static fields are pre-set in the UI, dynamic fields are added by the user"
       },
       "SearchTableType": {
@@ -160,6 +161,7 @@
           "traces",
           "spans"
         ],
+        "type": "string",
         "description": "The type of the table that is used to display the search results"
       },
       "TempoQueryType": {
@@ -171,7 +173,8 @@
           "nativeSearch",
           "traceId",
           "clear"
-        ]
+        ],
+        "type": "string"
       },
       "SearchStreamingState": {
         "enum": [
@@ -180,6 +183,7 @@
           "done",
           "error"
         ],
+        "type": "string",
         "description": "The state of the TraceQL streaming search query"
       },
       "DataSourceRef": {
