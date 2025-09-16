@@ -191,6 +191,12 @@ export const defaultQueryEditorProperty = (): QueryEditorProperty => ({
 	type: QueryEditorPropertyType.String,
 });
 
+export enum QueryEditorPropertyType {
+	String = "string",
+}
+
+export const defaultQueryEditorPropertyType = (): QueryEditorPropertyType => (QueryEditorPropertyType.String);
+
 export interface QueryEditorArrayExpression {
 	type: "and" | "or";
 	expressions: QueryEditorExpression[];
@@ -244,12 +250,6 @@ export const defaultQueryEditorOperatorType = (): QueryEditorOperatorType => (""
 export type QueryEditorOperatorValueType = QueryEditorOperatorType | QueryEditorOperatorType[];
 
 export const defaultQueryEditorOperatorValueType = (): QueryEditorOperatorValueType => (defaultQueryEditorOperatorType());
-
-export enum QueryEditorPropertyType {
-	String = "string",
-}
-
-export const defaultQueryEditorPropertyType = (): QueryEditorPropertyType => (QueryEditorPropertyType.String);
 
 // Shape of a CloudWatch Logs query
 export interface CloudWatchLogsQuery {
