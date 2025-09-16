@@ -69,181 +69,105 @@ public class MetricAggregation {
     @JsonUnwrapped
     protected TopMetrics topMetrics;
     protected MetricAggregation() {}
-    public static MetricAggregation createCount(com.grafana.foundation.cog.Builder<Count> count) {
+    public static MetricAggregation createCount(Count count) {
         MetricAggregation metricAggregation = new MetricAggregation();
-        metricAggregation.count = count.build();
+        metricAggregation.count = count;
         return metricAggregation;
     }
-    public static MetricAggregation createMovingAverage(com.grafana.foundation.cog.Builder<MovingAverage> movingAverage) {
+    public static MetricAggregation createMovingAverage(MovingAverage movingAverage) {
         MetricAggregation metricAggregation = new MetricAggregation();
-        metricAggregation.movingAverage = movingAverage.build();
+        metricAggregation.movingAverage = movingAverage;
         return metricAggregation;
     }
-    public static MetricAggregation createDerivative(com.grafana.foundation.cog.Builder<Derivative> derivative) {
+    public static MetricAggregation createDerivative(Derivative derivative) {
         MetricAggregation metricAggregation = new MetricAggregation();
-        metricAggregation.derivative = derivative.build();
+        metricAggregation.derivative = derivative;
         return metricAggregation;
     }
-    public static MetricAggregation createCumulativeSum(com.grafana.foundation.cog.Builder<CumulativeSum> cumulativeSum) {
+    public static MetricAggregation createCumulativeSum(CumulativeSum cumulativeSum) {
         MetricAggregation metricAggregation = new MetricAggregation();
-        metricAggregation.cumulativeSum = cumulativeSum.build();
+        metricAggregation.cumulativeSum = cumulativeSum;
         return metricAggregation;
     }
-    public static MetricAggregation createBucketScript(com.grafana.foundation.cog.Builder<BucketScript> bucketScript) {
+    public static MetricAggregation createBucketScript(BucketScript bucketScript) {
         MetricAggregation metricAggregation = new MetricAggregation();
-        metricAggregation.bucketScript = bucketScript.build();
+        metricAggregation.bucketScript = bucketScript;
         return metricAggregation;
     }
-    public static MetricAggregation createSerialDiff(com.grafana.foundation.cog.Builder<SerialDiff> serialDiff) {
+    public static MetricAggregation createSerialDiff(SerialDiff serialDiff) {
         MetricAggregation metricAggregation = new MetricAggregation();
-        metricAggregation.serialDiff = serialDiff.build();
+        metricAggregation.serialDiff = serialDiff;
         return metricAggregation;
     }
-    public static MetricAggregation createRawData(com.grafana.foundation.cog.Builder<RawData> rawData) {
+    public static MetricAggregation createRawData(RawData rawData) {
         MetricAggregation metricAggregation = new MetricAggregation();
-        metricAggregation.rawData = rawData.build();
+        metricAggregation.rawData = rawData;
         return metricAggregation;
     }
-    public static MetricAggregation createRawDocument(com.grafana.foundation.cog.Builder<RawDocument> rawDocument) {
+    public static MetricAggregation createRawDocument(RawDocument rawDocument) {
         MetricAggregation metricAggregation = new MetricAggregation();
-        metricAggregation.rawDocument = rawDocument.build();
+        metricAggregation.rawDocument = rawDocument;
         return metricAggregation;
     }
-    public static MetricAggregation createUniqueCount(com.grafana.foundation.cog.Builder<UniqueCount> uniqueCount) {
+    public static MetricAggregation createUniqueCount(UniqueCount uniqueCount) {
         MetricAggregation metricAggregation = new MetricAggregation();
-        metricAggregation.uniqueCount = uniqueCount.build();
+        metricAggregation.uniqueCount = uniqueCount;
         return metricAggregation;
     }
-    public static MetricAggregation createPercentiles(com.grafana.foundation.cog.Builder<Percentiles> percentiles) {
+    public static MetricAggregation createPercentiles(Percentiles percentiles) {
         MetricAggregation metricAggregation = new MetricAggregation();
-        metricAggregation.percentiles = percentiles.build();
+        metricAggregation.percentiles = percentiles;
         return metricAggregation;
     }
-    public static MetricAggregation createExtendedStats(com.grafana.foundation.cog.Builder<ExtendedStats> extendedStats) {
+    public static MetricAggregation createExtendedStats(ExtendedStats extendedStats) {
         MetricAggregation metricAggregation = new MetricAggregation();
-        metricAggregation.extendedStats = extendedStats.build();
+        metricAggregation.extendedStats = extendedStats;
         return metricAggregation;
     }
-    public static MetricAggregation createMin(com.grafana.foundation.cog.Builder<Min> min) {
+    public static MetricAggregation createMin(Min min) {
         MetricAggregation metricAggregation = new MetricAggregation();
-        metricAggregation.min = min.build();
+        metricAggregation.min = min;
         return metricAggregation;
     }
-    public static MetricAggregation createMax(com.grafana.foundation.cog.Builder<Max> max) {
+    public static MetricAggregation createMax(Max max) {
         MetricAggregation metricAggregation = new MetricAggregation();
-        metricAggregation.max = max.build();
+        metricAggregation.max = max;
         return metricAggregation;
     }
-    public static MetricAggregation createSum(com.grafana.foundation.cog.Builder<Sum> sum) {
+    public static MetricAggregation createSum(Sum sum) {
         MetricAggregation metricAggregation = new MetricAggregation();
-        metricAggregation.sum = sum.build();
+        metricAggregation.sum = sum;
         return metricAggregation;
     }
-    public static MetricAggregation createAverage(com.grafana.foundation.cog.Builder<Average> average) {
+    public static MetricAggregation createAverage(Average average) {
         MetricAggregation metricAggregation = new MetricAggregation();
-        metricAggregation.average = average.build();
+        metricAggregation.average = average;
         return metricAggregation;
     }
-    public static MetricAggregation createMovingFunction(com.grafana.foundation.cog.Builder<MovingFunction> movingFunction) {
+    public static MetricAggregation createMovingFunction(MovingFunction movingFunction) {
         MetricAggregation metricAggregation = new MetricAggregation();
-        metricAggregation.movingFunction = movingFunction.build();
+        metricAggregation.movingFunction = movingFunction;
         return metricAggregation;
     }
-    public static MetricAggregation createLogs(com.grafana.foundation.cog.Builder<Logs> logs) {
+    public static MetricAggregation createLogs(Logs logs) {
         MetricAggregation metricAggregation = new MetricAggregation();
-        metricAggregation.logs = logs.build();
+        metricAggregation.logs = logs;
         return metricAggregation;
     }
-    public static MetricAggregation createRate(com.grafana.foundation.cog.Builder<Rate> rate) {
+    public static MetricAggregation createRate(Rate rate) {
         MetricAggregation metricAggregation = new MetricAggregation();
-        metricAggregation.rate = rate.build();
+        metricAggregation.rate = rate;
         return metricAggregation;
     }
-    public static MetricAggregation createTopMetrics(com.grafana.foundation.cog.Builder<TopMetrics> topMetrics) {
+    public static MetricAggregation createTopMetrics(TopMetrics topMetrics) {
         MetricAggregation metricAggregation = new MetricAggregation();
-        metricAggregation.topMetrics = topMetrics.build();
+        metricAggregation.topMetrics = topMetrics;
         return metricAggregation;
     }
     
     public String toJSON() throws JsonProcessingException {
-        if (count != null) {
-            ObjectWriter ow = new ObjectMapper().writer().withDefaultPrettyPrinter();
-            return ow.writeValueAsString(count);
-        }
-        if (movingAverage != null) {
-            ObjectWriter ow = new ObjectMapper().writer().withDefaultPrettyPrinter();
-            return ow.writeValueAsString(movingAverage);
-        }
-        if (derivative != null) {
-            ObjectWriter ow = new ObjectMapper().writer().withDefaultPrettyPrinter();
-            return ow.writeValueAsString(derivative);
-        }
-        if (cumulativeSum != null) {
-            ObjectWriter ow = new ObjectMapper().writer().withDefaultPrettyPrinter();
-            return ow.writeValueAsString(cumulativeSum);
-        }
-        if (bucketScript != null) {
-            ObjectWriter ow = new ObjectMapper().writer().withDefaultPrettyPrinter();
-            return ow.writeValueAsString(bucketScript);
-        }
-        if (serialDiff != null) {
-            ObjectWriter ow = new ObjectMapper().writer().withDefaultPrettyPrinter();
-            return ow.writeValueAsString(serialDiff);
-        }
-        if (rawData != null) {
-            ObjectWriter ow = new ObjectMapper().writer().withDefaultPrettyPrinter();
-            return ow.writeValueAsString(rawData);
-        }
-        if (rawDocument != null) {
-            ObjectWriter ow = new ObjectMapper().writer().withDefaultPrettyPrinter();
-            return ow.writeValueAsString(rawDocument);
-        }
-        if (uniqueCount != null) {
-            ObjectWriter ow = new ObjectMapper().writer().withDefaultPrettyPrinter();
-            return ow.writeValueAsString(uniqueCount);
-        }
-        if (percentiles != null) {
-            ObjectWriter ow = new ObjectMapper().writer().withDefaultPrettyPrinter();
-            return ow.writeValueAsString(percentiles);
-        }
-        if (extendedStats != null) {
-            ObjectWriter ow = new ObjectMapper().writer().withDefaultPrettyPrinter();
-            return ow.writeValueAsString(extendedStats);
-        }
-        if (min != null) {
-            ObjectWriter ow = new ObjectMapper().writer().withDefaultPrettyPrinter();
-            return ow.writeValueAsString(min);
-        }
-        if (max != null) {
-            ObjectWriter ow = new ObjectMapper().writer().withDefaultPrettyPrinter();
-            return ow.writeValueAsString(max);
-        }
-        if (sum != null) {
-            ObjectWriter ow = new ObjectMapper().writer().withDefaultPrettyPrinter();
-            return ow.writeValueAsString(sum);
-        }
-        if (average != null) {
-            ObjectWriter ow = new ObjectMapper().writer().withDefaultPrettyPrinter();
-            return ow.writeValueAsString(average);
-        }
-        if (movingFunction != null) {
-            ObjectWriter ow = new ObjectMapper().writer().withDefaultPrettyPrinter();
-            return ow.writeValueAsString(movingFunction);
-        }
-        if (logs != null) {
-            ObjectWriter ow = new ObjectMapper().writer().withDefaultPrettyPrinter();
-            return ow.writeValueAsString(logs);
-        }
-        if (rate != null) {
-            ObjectWriter ow = new ObjectMapper().writer().withDefaultPrettyPrinter();
-            return ow.writeValueAsString(rate);
-        }
-        if (topMetrics != null) {
-            ObjectWriter ow = new ObjectMapper().writer().withDefaultPrettyPrinter();
-            return ow.writeValueAsString(topMetrics);
-        }
-        
-        return null;
+        ObjectWriter ow = new ObjectMapper().writer().withDefaultPrettyPrinter();
+        return ow.writeValueAsString(this);
     }
 
 }
