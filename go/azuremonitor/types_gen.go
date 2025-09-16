@@ -3,6 +3,7 @@
 package azuremonitor
 
 import (
+	"bytes"
 	"encoding/json"
 	"errors"
 	"fmt"
@@ -5780,6 +5781,77 @@ func NewStringOrBoolOrFloat64OrSelectableValue() *StringOrBoolOrFloat64OrSelecta
 	return &StringOrBoolOrFloat64OrSelectableValue{}
 }
 
+// MarshalJSON implements a custom JSON marshalling logic to encode `StringOrBoolOrFloat64OrSelectableValue` as JSON.
+func (resource StringOrBoolOrFloat64OrSelectableValue) MarshalJSON() ([]byte, error) {
+	if resource.String != nil {
+		return json.Marshal(resource.String)
+	}
+	if resource.Bool != nil {
+		return json.Marshal(resource.Bool)
+	}
+	if resource.Float64 != nil {
+		return json.Marshal(resource.Float64)
+	}
+	if resource.SelectableValue != nil {
+		return json.Marshal(resource.SelectableValue)
+	}
+
+	return []byte("null"), nil
+}
+
+// UnmarshalJSON implements a custom JSON unmarshalling logic to decode `StringOrBoolOrFloat64OrSelectableValue` from JSON.
+func (resource *StringOrBoolOrFloat64OrSelectableValue) UnmarshalJSON(raw []byte) error {
+	if raw == nil {
+		return nil
+	}
+
+	var errList []error
+
+	// String
+	var String string
+	if err := json.Unmarshal(raw, &String); err != nil {
+		errList = append(errList, err)
+		resource.String = nil
+	} else {
+		resource.String = &String
+		return nil
+	}
+
+	// Bool
+	var Bool bool
+	if err := json.Unmarshal(raw, &Bool); err != nil {
+		errList = append(errList, err)
+		resource.Bool = nil
+	} else {
+		resource.Bool = &Bool
+		return nil
+	}
+
+	// Float64
+	var Float64 float64
+	if err := json.Unmarshal(raw, &Float64); err != nil {
+		errList = append(errList, err)
+		resource.Float64 = nil
+	} else {
+		resource.Float64 = &Float64
+		return nil
+	}
+
+	// SelectableValue
+	var SelectableValue SelectableValue
+	selectableValuedec := json.NewDecoder(bytes.NewReader(raw))
+	selectableValuedec.DisallowUnknownFields()
+	if err := selectableValuedec.Decode(&SelectableValue); err != nil {
+		errList = append(errList, err)
+		resource.SelectableValue = nil
+	} else {
+		resource.SelectableValue = &SelectableValue
+		return nil
+	}
+
+	return errors.Join(errList...)
+}
+
 // UnmarshalJSONStrict implements a custom JSON unmarshalling logic to decode `StringOrBoolOrFloat64OrSelectableValue` from JSON.
 // Note: the unmarshalling done by this function is strict. It will fail over required fields being absent from the input, fields having an incorrect type, unexpected fields being present, …
 func (resource *StringOrBoolOrFloat64OrSelectableValue) UnmarshalJSONStrict(raw []byte) error {
@@ -5787,60 +5859,48 @@ func (resource *StringOrBoolOrFloat64OrSelectableValue) UnmarshalJSONStrict(raw 
 		return nil
 	}
 	var errs cog.BuildErrors
+	var errList []error
 
-	fields := make(map[string]json.RawMessage)
-	if err := json.Unmarshal(raw, &fields); err != nil {
-		return err
-	}
-	// Field "String"
-	if fields["String"] != nil {
-		if string(fields["String"]) != "null" {
-			if err := json.Unmarshal(fields["String"], &resource.String); err != nil {
-				errs = append(errs, cog.MakeBuildErrors("String", err)...)
-			}
-
-		}
-		delete(fields, "String")
-
-	}
-	// Field "Bool"
-	if fields["Bool"] != nil {
-		if string(fields["Bool"]) != "null" {
-			if err := json.Unmarshal(fields["Bool"], &resource.Bool); err != nil {
-				errs = append(errs, cog.MakeBuildErrors("Bool", err)...)
-			}
-
-		}
-		delete(fields, "Bool")
-
-	}
-	// Field "Float64"
-	if fields["Float64"] != nil {
-		if string(fields["Float64"]) != "null" {
-			if err := json.Unmarshal(fields["Float64"], &resource.Float64); err != nil {
-				errs = append(errs, cog.MakeBuildErrors("Float64", err)...)
-			}
-
-		}
-		delete(fields, "Float64")
-
-	}
-	// Field "SelectableValue"
-	if fields["SelectableValue"] != nil {
-		if string(fields["SelectableValue"]) != "null" {
-
-			resource.SelectableValue = &SelectableValue{}
-			if err := resource.SelectableValue.UnmarshalJSONStrict(fields["SelectableValue"]); err != nil {
-				errs = append(errs, cog.MakeBuildErrors("SelectableValue", err)...)
-			}
-
-		}
-		delete(fields, "SelectableValue")
-
+	// String
+	var String string
+	if err := json.Unmarshal(raw, &String); err != nil {
+		errList = append(errList, err)
+	} else {
+		resource.String = &String
+		return nil
 	}
 
-	for field := range fields {
-		errs = append(errs, cog.MakeBuildErrors("StringOrBoolOrFloat64OrSelectableValue", fmt.Errorf("unexpected field '%s'", field))...)
+	// Bool
+	var Bool bool
+	if err := json.Unmarshal(raw, &Bool); err != nil {
+		errList = append(errList, err)
+	} else {
+		resource.Bool = &Bool
+		return nil
+	}
+
+	// Float64
+	var Float64 float64
+	if err := json.Unmarshal(raw, &Float64); err != nil {
+		errList = append(errList, err)
+	} else {
+		resource.Float64 = &Float64
+		return nil
+	}
+
+	// SelectableValue
+	var SelectableValue SelectableValue
+	selectableValuedec := json.NewDecoder(bytes.NewReader(raw))
+	selectableValuedec.DisallowUnknownFields()
+	if err := selectableValuedec.Decode(&SelectableValue); err != nil {
+		errList = append(errList, err)
+	} else {
+		resource.SelectableValue = &SelectableValue
+		return nil
+	}
+
+	if len(errList) != 0 {
+		errs = append(errs, cog.MakeBuildErrors("StringOrBoolOrFloat64OrSelectableValue", errors.Join(errList...))...)
 	}
 
 	if len(errs) == 0 {

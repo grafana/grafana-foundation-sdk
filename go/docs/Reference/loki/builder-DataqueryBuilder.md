@@ -32,6 +32,12 @@ TODO this shouldn't be unknown but DataSourceRef | null
 func (builder *DataqueryBuilder) Datasource(datasource dashboard.DataSourceRef) *DataqueryBuilder
 ```
 
+### <span class="badge object-method"></span> Direction
+
+```go
+func (builder *DataqueryBuilder) Direction(direction loki.LokiQueryDirection) *DataqueryBuilder
+```
+
 ### <span class="badge object-method"></span> EditorMode
 
 ```go

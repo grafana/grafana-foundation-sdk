@@ -166,6 +166,19 @@ final class DataqueryConverter
     
     
     }
+            if ($input->direction !== null) {
+    
+        
+    $buffer = 'direction(';
+        $arg0 ='\Grafana\Foundation\Loki\LokiQueryDirection::fromValue("'.$input->direction.'")';
+        $buffer .= $arg0;
+        
+    $buffer .= ')';
+
+    $calls[] = $buffer;
+    
+    
+    }
 
         return \implode("\n\t->", $calls);
     }

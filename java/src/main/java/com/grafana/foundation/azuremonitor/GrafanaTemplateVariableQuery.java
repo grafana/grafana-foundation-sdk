@@ -42,100 +42,60 @@ public class GrafanaTemplateVariableQuery {
     @JsonUnwrapped
     protected UnknownQuery unknownQuery;
     protected GrafanaTemplateVariableQuery() {}
-    public static GrafanaTemplateVariableQuery createAppInsightsMetricNameQuery(com.grafana.foundation.cog.Builder<AppInsightsMetricNameQuery> appInsightsMetricNameQuery) {
+    public static GrafanaTemplateVariableQuery createAppInsightsMetricNameQuery(AppInsightsMetricNameQuery appInsightsMetricNameQuery) {
         GrafanaTemplateVariableQuery grafanaTemplateVariableQuery = new GrafanaTemplateVariableQuery();
-        grafanaTemplateVariableQuery.appInsightsMetricNameQuery = appInsightsMetricNameQuery.build();
+        grafanaTemplateVariableQuery.appInsightsMetricNameQuery = appInsightsMetricNameQuery;
         return grafanaTemplateVariableQuery;
     }
-    public static GrafanaTemplateVariableQuery createAppInsightsGroupByQuery(com.grafana.foundation.cog.Builder<AppInsightsGroupByQuery> appInsightsGroupByQuery) {
+    public static GrafanaTemplateVariableQuery createAppInsightsGroupByQuery(AppInsightsGroupByQuery appInsightsGroupByQuery) {
         GrafanaTemplateVariableQuery grafanaTemplateVariableQuery = new GrafanaTemplateVariableQuery();
-        grafanaTemplateVariableQuery.appInsightsGroupByQuery = appInsightsGroupByQuery.build();
+        grafanaTemplateVariableQuery.appInsightsGroupByQuery = appInsightsGroupByQuery;
         return grafanaTemplateVariableQuery;
     }
-    public static GrafanaTemplateVariableQuery createSubscriptionsQuery(com.grafana.foundation.cog.Builder<SubscriptionsQuery> subscriptionsQuery) {
+    public static GrafanaTemplateVariableQuery createSubscriptionsQuery(SubscriptionsQuery subscriptionsQuery) {
         GrafanaTemplateVariableQuery grafanaTemplateVariableQuery = new GrafanaTemplateVariableQuery();
-        grafanaTemplateVariableQuery.subscriptionsQuery = subscriptionsQuery.build();
+        grafanaTemplateVariableQuery.subscriptionsQuery = subscriptionsQuery;
         return grafanaTemplateVariableQuery;
     }
-    public static GrafanaTemplateVariableQuery createResourceGroupsQuery(com.grafana.foundation.cog.Builder<ResourceGroupsQuery> resourceGroupsQuery) {
+    public static GrafanaTemplateVariableQuery createResourceGroupsQuery(ResourceGroupsQuery resourceGroupsQuery) {
         GrafanaTemplateVariableQuery grafanaTemplateVariableQuery = new GrafanaTemplateVariableQuery();
-        grafanaTemplateVariableQuery.resourceGroupsQuery = resourceGroupsQuery.build();
+        grafanaTemplateVariableQuery.resourceGroupsQuery = resourceGroupsQuery;
         return grafanaTemplateVariableQuery;
     }
-    public static GrafanaTemplateVariableQuery createResourceNamesQuery(com.grafana.foundation.cog.Builder<ResourceNamesQuery> resourceNamesQuery) {
+    public static GrafanaTemplateVariableQuery createResourceNamesQuery(ResourceNamesQuery resourceNamesQuery) {
         GrafanaTemplateVariableQuery grafanaTemplateVariableQuery = new GrafanaTemplateVariableQuery();
-        grafanaTemplateVariableQuery.resourceNamesQuery = resourceNamesQuery.build();
+        grafanaTemplateVariableQuery.resourceNamesQuery = resourceNamesQuery;
         return grafanaTemplateVariableQuery;
     }
-    public static GrafanaTemplateVariableQuery createMetricNamespaceQuery(com.grafana.foundation.cog.Builder<MetricNamespaceQuery> metricNamespaceQuery) {
+    public static GrafanaTemplateVariableQuery createMetricNamespaceQuery(MetricNamespaceQuery metricNamespaceQuery) {
         GrafanaTemplateVariableQuery grafanaTemplateVariableQuery = new GrafanaTemplateVariableQuery();
-        grafanaTemplateVariableQuery.metricNamespaceQuery = metricNamespaceQuery.build();
+        grafanaTemplateVariableQuery.metricNamespaceQuery = metricNamespaceQuery;
         return grafanaTemplateVariableQuery;
     }
-    public static GrafanaTemplateVariableQuery createMetricDefinitionsQuery(com.grafana.foundation.cog.Builder<MetricDefinitionsQuery> metricDefinitionsQuery) {
+    public static GrafanaTemplateVariableQuery createMetricDefinitionsQuery(MetricDefinitionsQuery metricDefinitionsQuery) {
         GrafanaTemplateVariableQuery grafanaTemplateVariableQuery = new GrafanaTemplateVariableQuery();
-        grafanaTemplateVariableQuery.metricDefinitionsQuery = metricDefinitionsQuery.build();
+        grafanaTemplateVariableQuery.metricDefinitionsQuery = metricDefinitionsQuery;
         return grafanaTemplateVariableQuery;
     }
-    public static GrafanaTemplateVariableQuery createMetricNamesQuery(com.grafana.foundation.cog.Builder<MetricNamesQuery> metricNamesQuery) {
+    public static GrafanaTemplateVariableQuery createMetricNamesQuery(MetricNamesQuery metricNamesQuery) {
         GrafanaTemplateVariableQuery grafanaTemplateVariableQuery = new GrafanaTemplateVariableQuery();
-        grafanaTemplateVariableQuery.metricNamesQuery = metricNamesQuery.build();
+        grafanaTemplateVariableQuery.metricNamesQuery = metricNamesQuery;
         return grafanaTemplateVariableQuery;
     }
-    public static GrafanaTemplateVariableQuery createWorkspacesQuery(com.grafana.foundation.cog.Builder<WorkspacesQuery> workspacesQuery) {
+    public static GrafanaTemplateVariableQuery createWorkspacesQuery(WorkspacesQuery workspacesQuery) {
         GrafanaTemplateVariableQuery grafanaTemplateVariableQuery = new GrafanaTemplateVariableQuery();
-        grafanaTemplateVariableQuery.workspacesQuery = workspacesQuery.build();
+        grafanaTemplateVariableQuery.workspacesQuery = workspacesQuery;
         return grafanaTemplateVariableQuery;
     }
-    public static GrafanaTemplateVariableQuery createUnknownQuery(com.grafana.foundation.cog.Builder<UnknownQuery> unknownQuery) {
+    public static GrafanaTemplateVariableQuery createUnknownQuery(UnknownQuery unknownQuery) {
         GrafanaTemplateVariableQuery grafanaTemplateVariableQuery = new GrafanaTemplateVariableQuery();
-        grafanaTemplateVariableQuery.unknownQuery = unknownQuery.build();
+        grafanaTemplateVariableQuery.unknownQuery = unknownQuery;
         return grafanaTemplateVariableQuery;
     }
     
     public String toJSON() throws JsonProcessingException {
-        if (appInsightsMetricNameQuery != null) {
-            ObjectWriter ow = new ObjectMapper().writer().withDefaultPrettyPrinter();
-            return ow.writeValueAsString(appInsightsMetricNameQuery);
-        }
-        if (appInsightsGroupByQuery != null) {
-            ObjectWriter ow = new ObjectMapper().writer().withDefaultPrettyPrinter();
-            return ow.writeValueAsString(appInsightsGroupByQuery);
-        }
-        if (subscriptionsQuery != null) {
-            ObjectWriter ow = new ObjectMapper().writer().withDefaultPrettyPrinter();
-            return ow.writeValueAsString(subscriptionsQuery);
-        }
-        if (resourceGroupsQuery != null) {
-            ObjectWriter ow = new ObjectMapper().writer().withDefaultPrettyPrinter();
-            return ow.writeValueAsString(resourceGroupsQuery);
-        }
-        if (resourceNamesQuery != null) {
-            ObjectWriter ow = new ObjectMapper().writer().withDefaultPrettyPrinter();
-            return ow.writeValueAsString(resourceNamesQuery);
-        }
-        if (metricNamespaceQuery != null) {
-            ObjectWriter ow = new ObjectMapper().writer().withDefaultPrettyPrinter();
-            return ow.writeValueAsString(metricNamespaceQuery);
-        }
-        if (metricDefinitionsQuery != null) {
-            ObjectWriter ow = new ObjectMapper().writer().withDefaultPrettyPrinter();
-            return ow.writeValueAsString(metricDefinitionsQuery);
-        }
-        if (metricNamesQuery != null) {
-            ObjectWriter ow = new ObjectMapper().writer().withDefaultPrettyPrinter();
-            return ow.writeValueAsString(metricNamesQuery);
-        }
-        if (workspacesQuery != null) {
-            ObjectWriter ow = new ObjectMapper().writer().withDefaultPrettyPrinter();
-            return ow.writeValueAsString(workspacesQuery);
-        }
-        if (unknownQuery != null) {
-            ObjectWriter ow = new ObjectMapper().writer().withDefaultPrettyPrinter();
-            return ow.writeValueAsString(unknownQuery);
-        }
-        
-        return null;
+        ObjectWriter ow = new ObjectMapper().writer().withDefaultPrettyPrinter();
+        return ow.writeValueAsString(this);
     }
 
 }

@@ -130,6 +130,12 @@ export const defaultQueryEditorProperty = (): QueryEditorProperty => ({
 	type: QueryEditorPropertyType.String,
 });
 
+export enum QueryEditorPropertyType {
+	String = "string",
+}
+
+export const defaultQueryEditorPropertyType = (): QueryEditorPropertyType => (QueryEditorPropertyType.String);
+
 export interface QueryEditorPropertyExpression {
 	type: QueryEditorExpressionType.Property;
 	property: QueryEditorProperty;
@@ -146,10 +152,4 @@ export enum OrderByDirection {
 }
 
 export const defaultOrderByDirection = (): OrderByDirection => (OrderByDirection.ASC);
-
-export enum QueryEditorPropertyType {
-	String = "string",
-}
-
-export const defaultQueryEditorPropertyType = (): QueryEditorPropertyType => (QueryEditorPropertyType.String);
 

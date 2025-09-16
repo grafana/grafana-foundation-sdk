@@ -18,28 +18,20 @@ public class PanelOrRowPanel {
     @JsonUnwrapped
     protected RowPanel rowPanel;
     protected PanelOrRowPanel() {}
-    public static PanelOrRowPanel createPanel(com.grafana.foundation.cog.Builder<Panel> panel) {
+    public static PanelOrRowPanel createPanel(Panel panel) {
         PanelOrRowPanel panelOrRowPanel = new PanelOrRowPanel();
-        panelOrRowPanel.panel = panel.build();
+        panelOrRowPanel.panel = panel;
         return panelOrRowPanel;
     }
-    public static PanelOrRowPanel createRowPanel(com.grafana.foundation.cog.Builder<RowPanel> rowPanel) {
+    public static PanelOrRowPanel createRowPanel(RowPanel rowPanel) {
         PanelOrRowPanel panelOrRowPanel = new PanelOrRowPanel();
-        panelOrRowPanel.rowPanel = rowPanel.build();
+        panelOrRowPanel.rowPanel = rowPanel;
         return panelOrRowPanel;
     }
     
     public String toJSON() throws JsonProcessingException {
-        if (panel != null) {
-            ObjectWriter ow = new ObjectMapper().writer().withDefaultPrettyPrinter();
-            return ow.writeValueAsString(panel);
-        }
-        if (rowPanel != null) {
-            ObjectWriter ow = new ObjectMapper().writer().withDefaultPrettyPrinter();
-            return ow.writeValueAsString(rowPanel);
-        }
-        
-        return null;
+        ObjectWriter ow = new ObjectMapper().writer().withDefaultPrettyPrinter();
+        return ow.writeValueAsString(this);
     }
 
 }

@@ -28,7 +28,8 @@
         "cursor",
         "State",
         "ThrowError"
-      ]
+      ],
+      "type": "string"
     },
     "Options": {
       "type": "object",

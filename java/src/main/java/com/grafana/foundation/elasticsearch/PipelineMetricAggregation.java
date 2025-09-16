@@ -24,46 +24,30 @@ public class PipelineMetricAggregation {
     @JsonUnwrapped
     protected BucketScript bucketScript;
     protected PipelineMetricAggregation() {}
-    public static PipelineMetricAggregation createMovingAverage(com.grafana.foundation.cog.Builder<MovingAverage> movingAverage) {
+    public static PipelineMetricAggregation createMovingAverage(MovingAverage movingAverage) {
         PipelineMetricAggregation pipelineMetricAggregation = new PipelineMetricAggregation();
-        pipelineMetricAggregation.movingAverage = movingAverage.build();
+        pipelineMetricAggregation.movingAverage = movingAverage;
         return pipelineMetricAggregation;
     }
-    public static PipelineMetricAggregation createDerivative(com.grafana.foundation.cog.Builder<Derivative> derivative) {
+    public static PipelineMetricAggregation createDerivative(Derivative derivative) {
         PipelineMetricAggregation pipelineMetricAggregation = new PipelineMetricAggregation();
-        pipelineMetricAggregation.derivative = derivative.build();
+        pipelineMetricAggregation.derivative = derivative;
         return pipelineMetricAggregation;
     }
-    public static PipelineMetricAggregation createCumulativeSum(com.grafana.foundation.cog.Builder<CumulativeSum> cumulativeSum) {
+    public static PipelineMetricAggregation createCumulativeSum(CumulativeSum cumulativeSum) {
         PipelineMetricAggregation pipelineMetricAggregation = new PipelineMetricAggregation();
-        pipelineMetricAggregation.cumulativeSum = cumulativeSum.build();
+        pipelineMetricAggregation.cumulativeSum = cumulativeSum;
         return pipelineMetricAggregation;
     }
-    public static PipelineMetricAggregation createBucketScript(com.grafana.foundation.cog.Builder<BucketScript> bucketScript) {
+    public static PipelineMetricAggregation createBucketScript(BucketScript bucketScript) {
         PipelineMetricAggregation pipelineMetricAggregation = new PipelineMetricAggregation();
-        pipelineMetricAggregation.bucketScript = bucketScript.build();
+        pipelineMetricAggregation.bucketScript = bucketScript;
         return pipelineMetricAggregation;
     }
     
     public String toJSON() throws JsonProcessingException {
-        if (movingAverage != null) {
-            ObjectWriter ow = new ObjectMapper().writer().withDefaultPrettyPrinter();
-            return ow.writeValueAsString(movingAverage);
-        }
-        if (derivative != null) {
-            ObjectWriter ow = new ObjectMapper().writer().withDefaultPrettyPrinter();
-            return ow.writeValueAsString(derivative);
-        }
-        if (cumulativeSum != null) {
-            ObjectWriter ow = new ObjectMapper().writer().withDefaultPrettyPrinter();
-            return ow.writeValueAsString(cumulativeSum);
-        }
-        if (bucketScript != null) {
-            ObjectWriter ow = new ObjectMapper().writer().withDefaultPrettyPrinter();
-            return ow.writeValueAsString(bucketScript);
-        }
-        
-        return null;
+        ObjectWriter ow = new ObjectMapper().writer().withDefaultPrettyPrinter();
+        return ow.writeValueAsString(this);
     }
 
 }

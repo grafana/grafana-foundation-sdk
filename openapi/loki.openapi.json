@@ -14,14 +14,16 @@
         "enum": [
           "code",
           "builder"
-        ]
+        ],
+        "type": "string"
       },
       "LokiQueryType": {
         "enum": [
           "range",
           "instant",
           "stream"
-        ]
+        ],
+        "type": "string"
       },
       "SupportingQueryType": {
         "enum": [
@@ -29,14 +31,16 @@
           "logsSample",
           "dataSample",
           "infiniteScroll"
-        ]
+        ],
+        "type": "string"
       },
       "LokiQueryDirection": {
         "enum": [
           "forward",
           "backward",
           "scan"
-        ]
+        ],
+        "type": "string"
       },
       "dataquery": {
         "type": "object",
@@ -92,6 +96,9 @@
           "datasource": {
             "$ref": "#/components/schemas/DataSourceRef",
             "description": "For mixed data sources the selected datasource is on the query level.\nFor non mixed scenarios this is undefined.\nTODO find a better way to do this ^ that's friendly to schema\nTODO this shouldn't be unknown but DataSourceRef | null"
+          },
+          "direction": {
+            "$ref": "#/components/schemas/LokiQueryDirection"
           }
         }
       },

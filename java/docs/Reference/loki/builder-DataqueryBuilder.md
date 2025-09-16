@@ -32,6 +32,12 @@ TODO this shouldn't be unknown but DataSourceRef | null
 public dataqueryBuilder datasource(DataSourceRef datasource)
 ```
 
+### <span class="badge object-method"></span> direction
+
+```java
+public dataqueryBuilder direction(LokiQueryDirection direction)
+```
+
 ### <span class="badge object-method"></span> editorMode
 
 ```java

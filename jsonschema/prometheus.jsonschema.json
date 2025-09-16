@@ -6,14 +6,16 @@
       "enum": [
         "code",
         "builder"
-      ]
+      ],
+      "type": "string"
     },
     "PromQueryFormat": {
       "enum": [
         "time_series",
         "table",
         "heatmap"
-      ]
+      ],
+      "type": "string"
     },
     "dataquery": {
       "type": "object",

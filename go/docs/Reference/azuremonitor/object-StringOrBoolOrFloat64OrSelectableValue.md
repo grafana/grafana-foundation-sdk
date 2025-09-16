@@ -15,6 +15,22 @@ type StringOrBoolOrFloat64OrSelectableValue struct {
 ```
 ## Methods
 
+### <span class="badge object-method"></span> MarshalJSON
+
+MarshalJSON implements a custom JSON marshalling logic to encode `StringOrBoolOrFloat64OrSelectableValue` as JSON.
+
+```go
+func (stringOrBoolOrFloat64OrSelectableValue *StringOrBoolOrFloat64OrSelectableValue) MarshalJSON() ([]byte, error)
+```
+
+### <span class="badge object-method"></span> UnmarshalJSON
+
+UnmarshalJSON implements a custom JSON unmarshalling logic to decode `StringOrBoolOrFloat64OrSelectableValue` from JSON.
+
+```go
+func (stringOrBoolOrFloat64OrSelectableValue *StringOrBoolOrFloat64OrSelectableValue) UnmarshalJSON(raw []byte) error
+```
+
 ### <span class="badge object-method"></span> UnmarshalJSONStrict
 
 UnmarshalJSONStrict implements a custom JSON unmarshalling logic to decode `StringOrBoolOrFloat64OrSelectableValue` from JSON.

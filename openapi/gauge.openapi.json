@@ -59,6 +59,7 @@
           "auto",
           "manual"
         ],
+        "type": "string",
         "description": "Allows for the bar gauge size to be set explicitly"
       },
       "ReduceDataOptions": {
@@ -115,6 +116,7 @@
           "vertical",
           "horizontal"
         ],
+        "type": "string",
         "description": "TODO docs"
       }
     }

@@ -12,13 +12,13 @@ public class QueryEditorOperatorTypeSerializer extends JsonSerializer<QueryEdito
 
     @Override
     public void serialize(QueryEditorOperatorType value, JsonGenerator gen, SerializerProvider serializerProvider) throws IOException {
-         if (value.string != null) {
+        if (value.string != null) {
             gen.writeObject(value.string);
         }
-         else  if (value.bool != null) {
+        else if (value.bool != null) {
             gen.writeObject(value.bool);
         }
-         else  if (value.int64 != null) {
+        else if (value.int64 != null) {
             gen.writeObject(value.int64);
         }
     }

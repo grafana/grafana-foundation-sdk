@@ -33,16 +33,8 @@ public class StringOrArrayOfString {
     }
     
     public String toJSON() throws JsonProcessingException {
-        if (string != null) {
-            ObjectWriter ow = new ObjectMapper().writer().withDefaultPrettyPrinter();
-            return ow.writeValueAsString(string);
-        }
-        if (arrayOfString != null) {
-            ObjectWriter ow = new ObjectMapper().writer().withDefaultPrettyPrinter();
-            return ow.writeValueAsString(arrayOfString);
-        }
-        
-        return null;
+        ObjectWriter ow = new ObjectMapper().writer().withDefaultPrettyPrinter();
+        return ow.writeValueAsString(this);
     }
 
 }

@@ -133,6 +133,7 @@
         "rate",
         "delta"
       ],
+      "type": "string",
       "description": "Types of pre-processor available. Defined by the metric."
     },
     "TimeSeriesQuery": {
@@ -246,6 +247,7 @@
         "annotation",
         "promQL"
       ],
+      "type": "string",
       "description": "Defines the supported queryTypes."
     },
     "MetricQuery": {
@@ -330,7 +332,8 @@
         "GAUGE",
         "DELTA",
         "CUMULATIVE"
-      ]
+      ],
+      "type": "string"
     },
     "ValueTypes": {
       "enum": [
@@ -341,7 +344,8 @@
         "STRING",
         "DISTRIBUTION",
         "MONEY"
-      ]
+      ],
+      "type": "string"
     },
     "AlignmentTypes": {
       "enum": [
@@ -364,7 +368,8 @@
         "ALIGN_PERCENTILE_05",
         "ALIGN_PERCENT_CHANGE",
         "ALIGN_NONE"
-      ]
+      ],
+      "type": "string"
     },
     "LegacyCloudMonitoringAnnotationQuery": {
       "type": "object",
@@ -458,7 +463,8 @@
         "selectors",
         "sloServices",
         "slo"
-      ]
+      ],
+      "type": "string"
     },
     "DataSourceRef": {
       "type": "object",

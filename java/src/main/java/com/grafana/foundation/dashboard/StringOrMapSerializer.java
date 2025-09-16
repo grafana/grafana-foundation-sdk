@@ -12,10 +12,10 @@ public class StringOrMapSerializer extends JsonSerializer<StringOrMap> {
 
     @Override
     public void serialize(StringOrMap value, JsonGenerator gen, SerializerProvider serializerProvider) throws IOException {
-         if (value.string != null) {
+        if (value.string != null) {
             gen.writeObject(value.string);
         }
-         else  if (value.map != null) {
+        else if (value.map != null) {
             gen.writeObject(value.map);
         }
     }

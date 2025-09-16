@@ -12,10 +12,10 @@ public class BoolOrFloat64Serializer extends JsonSerializer<BoolOrFloat64> {
 
     @Override
     public void serialize(BoolOrFloat64 value, JsonGenerator gen, SerializerProvider serializerProvider) throws IOException {
-         if (value.bool != null) {
+        if (value.bool != null) {
             gen.writeObject(value.bool);
         }
-         else  if (value.float64 != null) {
+        else if (value.float64 != null) {
             gen.writeObject(value.float64);
         }
     }

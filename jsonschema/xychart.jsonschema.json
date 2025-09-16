@@ -5,20 +5,23 @@
       "enum": [
         "circle",
         "square"
-      ]
+      ],
+      "type": "string"
     },
     "SeriesMapping": {
       "enum": [
         "auto",
         "manual"
-      ]
+      ],
+      "type": "string"
     },
     "XYShowMode": {
       "enum": [
         "points",
         "lines",
         "points+lines"
-      ]
+      ],
+      "type": "string"
     },
     "MatcherConfig": {
       "type": "object",
@@ -252,6 +255,7 @@
         "left",
         "hidden"
       ],
+      "type": "string",
       "description": "TODO docs"
     },
     "AxisColorMode": {
@@ -259,6 +263,7 @@
         "text",
         "series"
       ],
+      "type": "string",
       "description": "TODO docs"
     },
     "ScaleDistributionConfig": {
@@ -290,7 +295,8 @@
             "dash",
             "dot",
             "square"
-          ]
+          ],
+          "type": "string"
         },
         "dash": {
           "type": "array",
@@ -380,6 +386,7 @@
         "ordinal",
         "symlog"
       ],
+      "type": "string",
       "description": "TODO docs"
     },
     "LegendDisplayMode": {
@@ -388,6 +395,7 @@
         "table",
         "hidden"
       ],
+      "type": "string",
       "description": "TODO docs\nNote: \"hidden\" needs to remain as an option for plugins compatibility"
     },
     "LegendPlacement": {
@@ -395,6 +403,7 @@
         "bottom",
         "right"
       ],
+      "type": "string",
       "description": "TODO docs"
     },
     "TooltipDisplayMode": {
@@ -403,6 +412,7 @@
         "multi",
         "none"
       ],
+      "type": "string",
       "description": "TODO docs"
     },
     "SortOrder": {
@@ -411,6 +421,7 @@
         "desc",
         "none"
       ],
+      "type": "string",
       "description": "TODO docs"
     }
   }

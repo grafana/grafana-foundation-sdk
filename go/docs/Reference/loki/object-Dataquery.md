@@ -36,6 +36,7 @@ type Dataquery struct {
     // TODO find a better way to do this ^ that's friendly to schema
     // TODO this shouldn't be unknown but DataSourceRef | null
     Datasource *dashboard.DataSourceRef `json:"datasource,omitempty"`
+    Direction *loki.LokiQueryDirection `json:"direction,omitempty"`
 }
 ```
 ## Methods

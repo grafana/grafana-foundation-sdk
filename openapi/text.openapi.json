@@ -15,7 +15,8 @@
           "html",
           "markdown",
           "code"
-        ]
+        ],
+        "type": "string"
       },
       "CodeLanguage": {
         "enum": [
@@ -28,7 +29,8 @@
           "markdown",
           "html",
           "plaintext"
-        ]
+        ],
+        "type": "string"
       },
       "CodeOptions": {
         "type": "object",

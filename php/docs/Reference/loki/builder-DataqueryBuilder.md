@@ -32,6 +32,12 @@ TODO this shouldn't be unknown but DataSourceRef | null
 datasource(\Grafana\Foundation\Dashboard\DataSourceRef $datasource)
 ```
 
+### <span class="badge object-method"></span> direction
+
+```php
+direction(\Grafana\Foundation\Loki\LokiQueryDirection $direction)
+```
+
 ### <span class="badge object-method"></span> editorMode
 
 ```php

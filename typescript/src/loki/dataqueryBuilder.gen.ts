@@ -94,5 +94,10 @@ export class DataqueryBuilder implements cog.Builder<cog.Dataquery> {
         this.internal.datasource = datasource;
         return this;
     }
+
+    direction(direction: loki.LokiQueryDirection): this {
+        this.internal.direction = direction;
+        return this;
+    }
 }
 

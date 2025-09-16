@@ -15,7 +15,8 @@
           "metrics",
           "profile",
           "both"
-        ]
+        ],
+        "type": "string"
       },
       "dataquery": {
         "type": "object",

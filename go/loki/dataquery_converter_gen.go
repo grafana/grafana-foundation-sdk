@@ -159,6 +159,18 @@ func DataqueryConverter(input Dataquery) string {
 		buffer.Reset()
 
 	}
+	if input.Direction != nil {
+
+		buffer.WriteString(`Direction(`)
+		arg0 := cog.Dump(*input.Direction)
+		buffer.WriteString(arg0)
+
+		buffer.WriteString(")")
+
+		calls = append(calls, buffer.String())
+		buffer.Reset()
+
+	}
 
 	return strings.Join(calls, ".\t\n")
 }

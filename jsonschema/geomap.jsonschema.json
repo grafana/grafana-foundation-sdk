@@ -125,14 +125,16 @@
       "enum": [
         "none",
         "details"
-      ]
+      ],
+      "type": "string"
     },
     "MapCenterID": {
       "enum": [
         "zero",
         "coords",
         "fit"
-      ]
+      ],
+      "type": "string"
     },
     "MapLayerOptions": {
       "type": "object",
@@ -211,7 +213,8 @@
         "geohash",
         "coords",
         "lookup"
-      ]
+      ],
+      "type": "string"
     }
   }
 }

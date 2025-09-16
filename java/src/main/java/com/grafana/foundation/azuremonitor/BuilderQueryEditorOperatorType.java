@@ -6,28 +6,43 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.ObjectWriter;
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.fasterxml.jackson.annotation.JsonInclude;
 
+@JsonDeserialize(using = BuilderQueryEditorOperatorTypeDeserializer.class)
 public class BuilderQueryEditorOperatorType {
     @JsonInclude(JsonInclude.Include.NON_NULL)
     @JsonProperty("String")
-    public String string;
+    protected String string;
     @JsonInclude(JsonInclude.Include.NON_NULL)
     @JsonProperty("Bool")
-    public Boolean bool;
+    protected Boolean bool;
     @JsonInclude(JsonInclude.Include.NON_NULL)
     @JsonProperty("Float64")
-    public Double float64;
+    protected Double float64;
     @JsonInclude(JsonInclude.Include.NON_NULL)
     @JsonProperty("SelectableValue")
-    public SelectableValue selectableValue;
-    public BuilderQueryEditorOperatorType() {
+    protected SelectableValue selectableValue;
+    protected BuilderQueryEditorOperatorType() {}
+    public static BuilderQueryEditorOperatorType createString(String string) {
+        BuilderQueryEditorOperatorType builderQueryEditorOperatorType = new BuilderQueryEditorOperatorType();
+        builderQueryEditorOperatorType.string = string;
+        return builderQueryEditorOperatorType;
     }
-    public BuilderQueryEditorOperatorType(String string,Boolean bool,Double float64,SelectableValue selectableValue) {
-        this.string = string;
-        this.bool = bool;
-        this.float64 = float64;
-        this.selectableValue = selectableValue;
+    public static BuilderQueryEditorOperatorType createBool(Boolean bool) {
+        BuilderQueryEditorOperatorType builderQueryEditorOperatorType = new BuilderQueryEditorOperatorType();
+        builderQueryEditorOperatorType.bool = bool;
+        return builderQueryEditorOperatorType;
+    }
+    public static BuilderQueryEditorOperatorType createFloat64(Double float64) {
+        BuilderQueryEditorOperatorType builderQueryEditorOperatorType = new BuilderQueryEditorOperatorType();
+        builderQueryEditorOperatorType.float64 = float64;
+        return builderQueryEditorOperatorType;
+    }
+    public static BuilderQueryEditorOperatorType createSelectableValue(SelectableValue selectableValue) {
+        BuilderQueryEditorOperatorType builderQueryEditorOperatorType = new BuilderQueryEditorOperatorType();
+        builderQueryEditorOperatorType.selectableValue = selectableValue;
+        return builderQueryEditorOperatorType;
     }
     
     public String toJSON() throws JsonProcessingException {

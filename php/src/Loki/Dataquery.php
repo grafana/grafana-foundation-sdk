@@ -67,6 +67,8 @@ class Dataquery implements \JsonSerializable, \Grafana\Foundation\Cog\Dataquery
      */
     public ?\Grafana\Foundation\Dashboard\DataSourceRef $datasource;
 
+    public ?\Grafana\Foundation\Loki\LokiQueryDirection $direction;
+
     /**
      * @param string|null $expr
      * @param string|null $legendFormat
@@ -80,8 +82,9 @@ class Dataquery implements \JsonSerializable, \Grafana\Foundation\Cog\Dataquery
      * @param bool|null $hide
      * @param string|null $queryType
      * @param \Grafana\Foundation\Dashboard\DataSourceRef|null $datasource
+     * @param \Grafana\Foundation\Loki\LokiQueryDirection|null $direction
      */
-    public function __construct(?string $expr = null, ?string $legendFormat = null, ?int $maxLines = null, ?int $resolution = null, ?\Grafana\Foundation\Loki\QueryEditorMode $editorMode = null, ?bool $range = null, ?bool $instant = null, ?string $step = null, ?string $refId = null, ?bool $hide = null, ?string $queryType = null, ?\Grafana\Foundation\Dashboard\DataSourceRef $datasource = null)
+    public function __construct(?string $expr = null, ?string $legendFormat = null, ?int $maxLines = null, ?int $resolution = null, ?\Grafana\Foundation\Loki\QueryEditorMode $editorMode = null, ?bool $range = null, ?bool $instant = null, ?string $step = null, ?string $refId = null, ?bool $hide = null, ?string $queryType = null, ?\Grafana\Foundation\Dashboard\DataSourceRef $datasource = null, ?\Grafana\Foundation\Loki\LokiQueryDirection $direction = null)
     {
         $this->expr = $expr ?: "";
         $this->legendFormat = $legendFormat;
@@ -95,6 +98,7 @@ class Dataquery implements \JsonSerializable, \Grafana\Foundation\Cog\Dataquery
         $this->hide = $hide;
         $this->queryType = $queryType;
         $this->datasource = $datasource;
+        $this->direction = $direction;
     }
 
     /**
@@ -102,7 +106,7 @@ class Dataquery implements \JsonSerializable, \Grafana\Foundation\Cog\Dataquery
      */
     public static function fromArray(array $inputData): self
     {
-        /** @var array{expr?: string, legendFormat?: string, maxLines?: int, resolution?: int, editorMode?: string, range?: bool, instant?: bool, step?: string, refId?: string, hide?: bool, queryType?: string, datasource?: mixed} $inputData */
+        /** @var array{expr?: string, legendFormat?: string, maxLines?: int, resolution?: int, editorMode?: string, range?: bool, instant?: bool, step?: string, refId?: string, hide?: bool, queryType?: string, datasource?: mixed, direction?: string} $inputData */
         $data = $inputData;
         return new self(
             expr: $data["expr"] ?? null,
@@ -121,6 +125,7 @@ class Dataquery implements \JsonSerializable, \Grafana\Foundation\Cog\Dataquery
     $val = $input;
     	return \Grafana\Foundation\Dashboard\DataSourceRef::fromArray($val);
     })($data["datasource"]) : null,
+            direction: isset($data["direction"]) ? (function($input) { return \Grafana\Foundation\Loki\LokiQueryDirection::fromValue($input); })($data["direction"]) : null,
         );
     }
 
@@ -161,6 +166,9 @@ class Dataquery implements \JsonSerializable, \Grafana\Foundation\Cog\Dataquery
         }
         if (isset($this->datasource)) {
             $data->datasource = $this->datasource;
+        }
+        if (isset($this->direction)) {
+            $data->direction = $this->direction;
         }
         return $data;
     }

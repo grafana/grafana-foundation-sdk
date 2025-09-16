@@ -19,6 +19,7 @@ public class Dataquery extends com.grafana.foundation.cog.variants.Dataquery {
   public Boolean hide;
   public String queryType;
   public DataSourceRef datasource;
+  public LokiQueryDirection direction;
 }
 ```
 ## See also

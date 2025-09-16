@@ -21,19 +21,19 @@ public class CloudWatchQuery implements com.grafana.foundation.cog.variants.Data
     @JsonUnwrapped
     protected CloudWatchAnnotationQuery cloudWatchAnnotationQuery;
     protected CloudWatchQuery() {}
-    public static CloudWatchQuery createCloudWatchMetricsQuery(com.grafana.foundation.cog.Builder<CloudWatchMetricsQuery> cloudWatchMetricsQuery) {
+    public static CloudWatchQuery createCloudWatchMetricsQuery(CloudWatchMetricsQuery cloudWatchMetricsQuery) {
         CloudWatchQuery cloudWatchQuery = new CloudWatchQuery();
-        cloudWatchQuery.cloudWatchMetricsQuery = cloudWatchMetricsQuery.build();
+        cloudWatchQuery.cloudWatchMetricsQuery = cloudWatchMetricsQuery;
         return cloudWatchQuery;
     }
-    public static CloudWatchQuery createCloudWatchLogsQuery(com.grafana.foundation.cog.Builder<CloudWatchLogsQuery> cloudWatchLogsQuery) {
+    public static CloudWatchQuery createCloudWatchLogsQuery(CloudWatchLogsQuery cloudWatchLogsQuery) {
         CloudWatchQuery cloudWatchQuery = new CloudWatchQuery();
-        cloudWatchQuery.cloudWatchLogsQuery = cloudWatchLogsQuery.build();
+        cloudWatchQuery.cloudWatchLogsQuery = cloudWatchLogsQuery;
         return cloudWatchQuery;
     }
-    public static CloudWatchQuery createCloudWatchAnnotationQuery(com.grafana.foundation.cog.Builder<CloudWatchAnnotationQuery> cloudWatchAnnotationQuery) {
+    public static CloudWatchQuery createCloudWatchAnnotationQuery(CloudWatchAnnotationQuery cloudWatchAnnotationQuery) {
         CloudWatchQuery cloudWatchQuery = new CloudWatchQuery();
-        cloudWatchQuery.cloudWatchAnnotationQuery = cloudWatchAnnotationQuery.build();
+        cloudWatchQuery.cloudWatchAnnotationQuery = cloudWatchAnnotationQuery;
         return cloudWatchQuery;
     }
     public String dataqueryName() {
@@ -41,20 +41,8 @@ public class CloudWatchQuery implements com.grafana.foundation.cog.variants.Data
     }
     
     public String toJSON() throws JsonProcessingException {
-        if (cloudWatchMetricsQuery != null) {
-            ObjectWriter ow = new ObjectMapper().writer().withDefaultPrettyPrinter();
-            return ow.writeValueAsString(cloudWatchMetricsQuery);
-        }
-        if (cloudWatchLogsQuery != null) {
-            ObjectWriter ow = new ObjectMapper().writer().withDefaultPrettyPrinter();
-            return ow.writeValueAsString(cloudWatchLogsQuery);
-        }
-        if (cloudWatchAnnotationQuery != null) {
-            ObjectWriter ow = new ObjectMapper().writer().withDefaultPrettyPrinter();
-            return ow.writeValueAsString(cloudWatchAnnotationQuery);
-        }
-        
-        return null;
+        ObjectWriter ow = new ObjectMapper().writer().withDefaultPrettyPrinter();
+        return ow.writeValueAsString(this);
     }
 
 }

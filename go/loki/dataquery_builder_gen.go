@@ -125,3 +125,9 @@ func (builder *DataqueryBuilder) Datasource(datasource dashboard.DataSourceRef) 
 
 	return builder
 }
+
+func (builder *DataqueryBuilder) Direction(direction LokiQueryDirection) *DataqueryBuilder {
+	builder.internal.Direction = &direction
+
+	return builder
+}

@@ -61,11 +61,14 @@ public class Dataquery implements com.grafana.foundation.cog.variants.Dataquery 
     @JsonInclude(JsonInclude.Include.NON_NULL)
     @JsonProperty("datasource")
     public DataSourceRef datasource;
+    @JsonInclude(JsonInclude.Include.NON_NULL)
+    @JsonProperty("direction")
+    public LokiQueryDirection direction;
     public Dataquery() {
         this.expr = "";
         this.refId = "";
     }
-    public Dataquery(String expr,String legendFormat,Long maxLines,Long resolution,QueryEditorMode editorMode,Boolean range,Boolean instant,String step,String refId,Boolean hide,String queryType,DataSourceRef datasource) {
+    public Dataquery(String expr,String legendFormat,Long maxLines,Long resolution,QueryEditorMode editorMode,Boolean range,Boolean instant,String step,String refId,Boolean hide,String queryType,DataSourceRef datasource,LokiQueryDirection direction) {
         this.expr = expr;
         this.legendFormat = legendFormat;
         this.maxLines = maxLines;
@@ -78,6 +81,7 @@ public class Dataquery implements com.grafana.foundation.cog.variants.Dataquery 
         this.hide = hide;
         this.queryType = queryType;
         this.datasource = datasource;
+        this.direction = direction;
     }
     public String dataqueryName() {
         return "loki";

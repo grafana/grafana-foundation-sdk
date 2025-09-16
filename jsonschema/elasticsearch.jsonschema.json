@@ -73,7 +73,8 @@
         "date_histogram",
         "histogram",
         "nested"
-      ]
+      ],
+      "type": "string"
     },
     "Histogram": {
       "type": "object",
@@ -152,7 +153,8 @@
       "enum": [
         "desc",
         "asc"
-      ]
+      ],
+      "type": "string"
     },
     "Filters": {
       "type": "object",
@@ -351,7 +353,8 @@
         "serial_diff",
         "cumulative_sum",
         "bucket_script"
-      ]
+      ],
+      "type": "string"
     },
     "PipelineMetricAggregation": {
       "anyOf": [
@@ -1299,7 +1302,8 @@
         "std_deviation",
         "std_deviation_bounds_upper",
         "std_deviation_bounds_lower"
-      ]
+      ],
+      "type": "string"
     },
     "ExtendedStat": {
       "type": "object",
@@ -1374,7 +1378,8 @@
         "ewma",
         "holt",
         "holt_winters"
-      ]
+      ],
+      "type": "string"
     },
     "MovingAverageModelOption": {
       "type": "object",

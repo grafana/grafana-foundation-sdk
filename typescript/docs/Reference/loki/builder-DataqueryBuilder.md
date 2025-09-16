@@ -32,6 +32,12 @@ TODO this shouldn't be unknown but DataSourceRef | null
 datasource(datasource: dashboard.DataSourceRef)
 ```
 
+### <span class="badge object-method"></span> direction
+
+```typescript
+direction(direction: loki.LokiQueryDirection)
+```
+
 ### <span class="badge object-method"></span> editorMode
 
 ```typescript
