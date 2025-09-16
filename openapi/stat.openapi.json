@@ -60,6 +60,7 @@
           "line",
           "area"
         ],
+        "type": "string",
         "description": "TODO docs"
       },
       "BigValueColorMode": {
@@ -69,6 +70,7 @@
           "background_solid",
           "none"
         ],
+        "type": "string",
         "description": "TODO docs"
       },
       "BigValueJustifyMode": {
@@ -76,6 +78,7 @@
           "auto",
           "center"
         ],
+        "type": "string",
         "description": "TODO docs"
       },
       "BigValueTextMode": {
@@ -86,6 +89,7 @@
           "name",
           "none"
         ],
+        "type": "string",
         "description": "TODO docs"
       },
       "ReduceDataOptions": {
@@ -138,6 +142,7 @@
           "vertical",
           "horizontal"
         ],
+        "type": "string",
         "description": "TODO docs"
       }
     }

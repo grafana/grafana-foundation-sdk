@@ -148,4 +148,11 @@ class DataqueryBuilder implements \Grafana\Foundation\Cog\Builder
         return $this;
     }
 
+    public function direction(\Grafana\Foundation\Loki\LokiQueryDirection $direction): static
+    {
+        $this->internal->direction = $direction;
+    
+        return $this;
+    }
+
 }

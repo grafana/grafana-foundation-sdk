@@ -10,6 +10,10 @@ import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 import java.io.IOException;
+import java.util.List;
+import com.grafana.foundation.cog.variants.Dataquery;
+import com.grafana.foundation.cog.variants.Registry;
+import com.grafana.foundation.cog.variants.PanelConfig;
 
 public class StringOrBoolDeserializer extends JsonDeserializer<StringOrBool> {
 
@@ -20,10 +24,10 @@ public class StringOrBoolDeserializer extends JsonDeserializer<StringOrBool> {
         
         StringOrBool stringOrBool = new StringOrBool();
         if (root.isTextual()) {
-            stringOrBool.string = mapper.convertValue(root, new TypeReference<>() {});
+            stringOrBool.string = mapper.convertValue(root, String.class);
         }
         else if (root.isBoolean()) {
-            stringOrBool.bool = mapper.convertValue(root, new TypeReference<>() {});
+            stringOrBool.bool = mapper.convertValue(root, Boolean.class);
         }
         
         return stringOrBool;

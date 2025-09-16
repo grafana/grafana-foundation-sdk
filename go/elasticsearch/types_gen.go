@@ -3,6 +3,7 @@
 package elasticsearch
 
 import (
+	"bytes"
 	"encoding/json"
 	"errors"
 	"fmt"
@@ -10639,6 +10640,51 @@ func NewStringOrElasticsearchInlineScript() *StringOrElasticsearchInlineScript {
 	return &StringOrElasticsearchInlineScript{}
 }
 
+// MarshalJSON implements a custom JSON marshalling logic to encode `StringOrElasticsearchInlineScript` as JSON.
+func (resource StringOrElasticsearchInlineScript) MarshalJSON() ([]byte, error) {
+	if resource.String != nil {
+		return json.Marshal(resource.String)
+	}
+	if resource.ElasticsearchInlineScript != nil {
+		return json.Marshal(resource.ElasticsearchInlineScript)
+	}
+
+	return []byte("null"), nil
+}
+
+// UnmarshalJSON implements a custom JSON unmarshalling logic to decode `StringOrElasticsearchInlineScript` from JSON.
+func (resource *StringOrElasticsearchInlineScript) UnmarshalJSON(raw []byte) error {
+	if raw == nil {
+		return nil
+	}
+
+	var errList []error
+
+	// String
+	var String string
+	if err := json.Unmarshal(raw, &String); err != nil {
+		errList = append(errList, err)
+		resource.String = nil
+	} else {
+		resource.String = &String
+		return nil
+	}
+
+	// ElasticsearchInlineScript
+	var ElasticsearchInlineScript ElasticsearchInlineScript
+	elasticsearchInlineScriptdec := json.NewDecoder(bytes.NewReader(raw))
+	elasticsearchInlineScriptdec.DisallowUnknownFields()
+	if err := elasticsearchInlineScriptdec.Decode(&ElasticsearchInlineScript); err != nil {
+		errList = append(errList, err)
+		resource.ElasticsearchInlineScript = nil
+	} else {
+		resource.ElasticsearchInlineScript = &ElasticsearchInlineScript
+		return nil
+	}
+
+	return errors.Join(errList...)
+}
+
 // UnmarshalJSONStrict implements a custom JSON unmarshalling logic to decode `StringOrElasticsearchInlineScript` from JSON.
 // Note: the unmarshalling done by this function is strict. It will fail over required fields being absent from the input, fields having an incorrect type, unexpected fields being present, …
 func (resource *StringOrElasticsearchInlineScript) UnmarshalJSONStrict(raw []byte) error {
@@ -10646,38 +10692,30 @@ func (resource *StringOrElasticsearchInlineScript) UnmarshalJSONStrict(raw []byt
 		return nil
 	}
 	var errs cog.BuildErrors
+	var errList []error
 
-	fields := make(map[string]json.RawMessage)
-	if err := json.Unmarshal(raw, &fields); err != nil {
-		return err
-	}
-	// Field "String"
-	if fields["String"] != nil {
-		if string(fields["String"]) != "null" {
-			if err := json.Unmarshal(fields["String"], &resource.String); err != nil {
-				errs = append(errs, cog.MakeBuildErrors("String", err)...)
-			}
-
-		}
-		delete(fields, "String")
-
-	}
-	// Field "ElasticsearchInlineScript"
-	if fields["ElasticsearchInlineScript"] != nil {
-		if string(fields["ElasticsearchInlineScript"]) != "null" {
-
-			resource.ElasticsearchInlineScript = &ElasticsearchInlineScript{}
-			if err := resource.ElasticsearchInlineScript.UnmarshalJSONStrict(fields["ElasticsearchInlineScript"]); err != nil {
-				errs = append(errs, cog.MakeBuildErrors("ElasticsearchInlineScript", err)...)
-			}
-
-		}
-		delete(fields, "ElasticsearchInlineScript")
-
+	// String
+	var String string
+	if err := json.Unmarshal(raw, &String); err != nil {
+		errList = append(errList, err)
+	} else {
+		resource.String = &String
+		return nil
 	}
 
-	for field := range fields {
-		errs = append(errs, cog.MakeBuildErrors("StringOrElasticsearchInlineScript", fmt.Errorf("unexpected field '%s'", field))...)
+	// ElasticsearchInlineScript
+	var ElasticsearchInlineScript ElasticsearchInlineScript
+	elasticsearchInlineScriptdec := json.NewDecoder(bytes.NewReader(raw))
+	elasticsearchInlineScriptdec.DisallowUnknownFields()
+	if err := elasticsearchInlineScriptdec.Decode(&ElasticsearchInlineScript); err != nil {
+		errList = append(errList, err)
+	} else {
+		resource.ElasticsearchInlineScript = &ElasticsearchInlineScript
+		return nil
+	}
+
+	if len(errList) != 0 {
+		errs = append(errs, cog.MakeBuildErrors("StringOrElasticsearchInlineScript", errors.Join(errList...))...)
 	}
 
 	if len(errs) == 0 {
