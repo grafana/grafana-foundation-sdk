@@ -1,6 +1,6 @@
 // Code generated - EDITING IS FUTILE. DO NOT EDIT.
 
-package com.grafana.foundation.table;
+package com.grafana.foundation.histogram;
 
 import com.grafana.foundation.dashboard.Panel;
 import java.util.List;
@@ -18,26 +18,27 @@ import com.grafana.foundation.dashboard.FieldColor;
 import com.grafana.foundation.dashboard.DashboardFieldConfigSourceOverrides;
 import com.grafana.foundation.dashboard.DynamicConfigValue;
 import com.grafana.foundation.dashboard.MatcherConfig;
-import com.grafana.foundation.common.TableSortByFieldState;
-import com.grafana.foundation.common.TableFooterOptions;
-import com.grafana.foundation.common.TableCellHeight;
-import com.grafana.foundation.common.FieldTextAlignment;
-import com.grafana.foundation.common.TableCellDisplayMode;
-import com.grafana.foundation.common.TableCellOptions;
+import com.grafana.foundation.common.VizLegendOptions;
+import com.grafana.foundation.common.VizTooltipOptions;
+import com.grafana.foundation.common.AxisPlacement;
+import com.grafana.foundation.common.AxisColorMode;
+import com.grafana.foundation.common.ScaleDistributionConfig;
+import com.grafana.foundation.common.HideSeriesConfig;
+import com.grafana.foundation.common.GraphGradientMode;
 
-public class PanelBuilder implements com.grafana.foundation.cog.Builder<Panel> {
+public class HistogramPanelBuilder implements com.grafana.foundation.cog.Builder<Panel> {
     protected final Panel internal;
     
-    public PanelBuilder() {
+    public HistogramPanelBuilder() {
         this.internal = new Panel();
-        this.internal.type = "table";
+        this.internal.type = "histogram";
     }
-    public PanelBuilder id(Integer id) {
+    public HistogramPanelBuilder id(Integer id) {
         this.internal.id = id;
         return this;
     }
     
-    public PanelBuilder targets(List<com.grafana.foundation.cog.Builder<Dataquery>> targets) {
+    public HistogramPanelBuilder targets(List<com.grafana.foundation.cog.Builder<Dataquery>> targets) {
         List<Dataquery> targetsResources = new LinkedList<>();
         for (com.grafana.foundation.cog.Builder<Dataquery> r1 : targets) {
                 Dataquery targetsDepth1 = r1.build();
@@ -47,7 +48,7 @@ public class PanelBuilder implements com.grafana.foundation.cog.Builder<Panel> {
         return this;
     }
     
-    public PanelBuilder withTarget(com.grafana.foundation.cog.Builder<Dataquery> target) {
+    public HistogramPanelBuilder withTarget(com.grafana.foundation.cog.Builder<Dataquery> target) {
 		if (this.internal.targets == null) {
 			this.internal.targets = new LinkedList<>();
 		}
@@ -56,32 +57,32 @@ public class PanelBuilder implements com.grafana.foundation.cog.Builder<Panel> {
         return this;
     }
     
-    public PanelBuilder title(String title) {
+    public HistogramPanelBuilder title(String title) {
         this.internal.title = title;
         return this;
     }
     
-    public PanelBuilder description(String description) {
+    public HistogramPanelBuilder description(String description) {
         this.internal.description = description;
         return this;
     }
     
-    public PanelBuilder transparent(Boolean transparent) {
+    public HistogramPanelBuilder transparent(Boolean transparent) {
         this.internal.transparent = transparent;
         return this;
     }
     
-    public PanelBuilder datasource(DataSourceRef datasource) {
+    public HistogramPanelBuilder datasource(DataSourceRef datasource) {
         this.internal.datasource = datasource;
         return this;
     }
     
-    public PanelBuilder gridPos(GridPos gridPos) {
+    public HistogramPanelBuilder gridPos(GridPos gridPos) {
         this.internal.gridPos = gridPos;
         return this;
     }
     
-    public PanelBuilder height(Integer h) {
+    public HistogramPanelBuilder height(Integer h) {
         if (!(h > 0)) {
             throw new IllegalArgumentException("h must be > 0");
         }
@@ -92,7 +93,7 @@ public class PanelBuilder implements com.grafana.foundation.cog.Builder<Panel> {
         return this;
     }
     
-    public PanelBuilder span(Integer w) {
+    public HistogramPanelBuilder span(Integer w) {
         if (!(w > 0)) {
             throw new IllegalArgumentException("w must be > 0");
         }
@@ -106,7 +107,7 @@ public class PanelBuilder implements com.grafana.foundation.cog.Builder<Panel> {
         return this;
     }
     
-    public PanelBuilder links(List<com.grafana.foundation.cog.Builder<DashboardLink>> links) {
+    public HistogramPanelBuilder links(List<com.grafana.foundation.cog.Builder<DashboardLink>> links) {
         List<DashboardLink> linksResources = new LinkedList<>();
         for (com.grafana.foundation.cog.Builder<DashboardLink> r1 : links) {
                 DashboardLink linksDepth1 = r1.build();
@@ -116,32 +117,32 @@ public class PanelBuilder implements com.grafana.foundation.cog.Builder<Panel> {
         return this;
     }
     
-    public PanelBuilder repeat(String repeat) {
+    public HistogramPanelBuilder repeat(String repeat) {
         this.internal.repeat = repeat;
         return this;
     }
     
-    public PanelBuilder repeatDirection(PanelRepeatDirection repeatDirection) {
+    public HistogramPanelBuilder repeatDirection(PanelRepeatDirection repeatDirection) {
         this.internal.repeatDirection = repeatDirection;
         return this;
     }
     
-    public PanelBuilder maxPerRow(Double maxPerRow) {
+    public HistogramPanelBuilder maxPerRow(Double maxPerRow) {
         this.internal.maxPerRow = maxPerRow;
         return this;
     }
     
-    public PanelBuilder maxDataPoints(Double maxDataPoints) {
+    public HistogramPanelBuilder maxDataPoints(Double maxDataPoints) {
         this.internal.maxDataPoints = maxDataPoints;
         return this;
     }
     
-    public PanelBuilder transformations(List<DataTransformerConfig> transformations) {
+    public HistogramPanelBuilder transformations(List<DataTransformerConfig> transformations) {
         this.internal.transformations = transformations;
         return this;
     }
     
-    public PanelBuilder withTransformation(DataTransformerConfig transformation) {
+    public HistogramPanelBuilder withTransformation(DataTransformerConfig transformation) {
 		if (this.internal.transformations == null) {
 			this.internal.transformations = new LinkedList<>();
 		}
@@ -149,42 +150,42 @@ public class PanelBuilder implements com.grafana.foundation.cog.Builder<Panel> {
         return this;
     }
     
-    public PanelBuilder interval(String interval) {
+    public HistogramPanelBuilder interval(String interval) {
         this.internal.interval = interval;
         return this;
     }
     
-    public PanelBuilder timeFrom(String timeFrom) {
+    public HistogramPanelBuilder timeFrom(String timeFrom) {
         this.internal.timeFrom = timeFrom;
         return this;
     }
     
-    public PanelBuilder timeShift(String timeShift) {
+    public HistogramPanelBuilder timeShift(String timeShift) {
         this.internal.timeShift = timeShift;
         return this;
     }
     
-    public PanelBuilder hideTimeOverride(Boolean hideTimeOverride) {
+    public HistogramPanelBuilder hideTimeOverride(Boolean hideTimeOverride) {
         this.internal.hideTimeOverride = hideTimeOverride;
         return this;
     }
     
-    public PanelBuilder libraryPanel(LibraryPanelRef libraryPanel) {
+    public HistogramPanelBuilder libraryPanel(LibraryPanelRef libraryPanel) {
         this.internal.libraryPanel = libraryPanel;
         return this;
     }
     
-    public PanelBuilder cacheTimeout(String cacheTimeout) {
+    public HistogramPanelBuilder cacheTimeout(String cacheTimeout) {
         this.internal.cacheTimeout = cacheTimeout;
         return this;
     }
     
-    public PanelBuilder queryCachingTTL(Double queryCachingTTL) {
+    public HistogramPanelBuilder queryCachingTTL(Double queryCachingTTL) {
         this.internal.queryCachingTTL = queryCachingTTL;
         return this;
     }
     
-    public PanelBuilder displayName(String displayName) {
+    public HistogramPanelBuilder displayName(String displayName) {
 		if (this.internal.fieldConfig == null) {
 			this.internal.fieldConfig = new com.grafana.foundation.dashboard.FieldConfigSource();
 		}
@@ -195,7 +196,7 @@ public class PanelBuilder implements com.grafana.foundation.cog.Builder<Panel> {
         return this;
     }
     
-    public PanelBuilder unit(String unit) {
+    public HistogramPanelBuilder unit(String unit) {
 		if (this.internal.fieldConfig == null) {
 			this.internal.fieldConfig = new com.grafana.foundation.dashboard.FieldConfigSource();
 		}
@@ -206,7 +207,7 @@ public class PanelBuilder implements com.grafana.foundation.cog.Builder<Panel> {
         return this;
     }
     
-    public PanelBuilder decimals(Double decimals) {
+    public HistogramPanelBuilder decimals(Double decimals) {
 		if (this.internal.fieldConfig == null) {
 			this.internal.fieldConfig = new com.grafana.foundation.dashboard.FieldConfigSource();
 		}
@@ -217,7 +218,7 @@ public class PanelBuilder implements com.grafana.foundation.cog.Builder<Panel> {
         return this;
     }
     
-    public PanelBuilder min(Double min) {
+    public HistogramPanelBuilder min(Double min) {
 		if (this.internal.fieldConfig == null) {
 			this.internal.fieldConfig = new com.grafana.foundation.dashboard.FieldConfigSource();
 		}
@@ -228,7 +229,7 @@ public class PanelBuilder implements com.grafana.foundation.cog.Builder<Panel> {
         return this;
     }
     
-    public PanelBuilder max(Double max) {
+    public HistogramPanelBuilder max(Double max) {
 		if (this.internal.fieldConfig == null) {
 			this.internal.fieldConfig = new com.grafana.foundation.dashboard.FieldConfigSource();
 		}
@@ -239,7 +240,7 @@ public class PanelBuilder implements com.grafana.foundation.cog.Builder<Panel> {
         return this;
     }
     
-    public PanelBuilder mappings(List<ValueMapping> mappings) {
+    public HistogramPanelBuilder mappings(List<ValueMapping> mappings) {
 		if (this.internal.fieldConfig == null) {
 			this.internal.fieldConfig = new com.grafana.foundation.dashboard.FieldConfigSource();
 		}
@@ -250,7 +251,7 @@ public class PanelBuilder implements com.grafana.foundation.cog.Builder<Panel> {
         return this;
     }
     
-    public PanelBuilder thresholds(com.grafana.foundation.cog.Builder<ThresholdsConfig> thresholds) {
+    public HistogramPanelBuilder thresholds(com.grafana.foundation.cog.Builder<ThresholdsConfig> thresholds) {
 		if (this.internal.fieldConfig == null) {
 			this.internal.fieldConfig = new com.grafana.foundation.dashboard.FieldConfigSource();
 		}
@@ -262,7 +263,7 @@ public class PanelBuilder implements com.grafana.foundation.cog.Builder<Panel> {
         return this;
     }
     
-    public PanelBuilder colorScheme(com.grafana.foundation.cog.Builder<FieldColor> color) {
+    public HistogramPanelBuilder colorScheme(com.grafana.foundation.cog.Builder<FieldColor> color) {
 		if (this.internal.fieldConfig == null) {
 			this.internal.fieldConfig = new com.grafana.foundation.dashboard.FieldConfigSource();
 		}
@@ -274,7 +275,7 @@ public class PanelBuilder implements com.grafana.foundation.cog.Builder<Panel> {
         return this;
     }
     
-    public PanelBuilder dataLinks(List<com.grafana.foundation.cog.Builder<DashboardLink>> links) {
+    public HistogramPanelBuilder dataLinks(List<com.grafana.foundation.cog.Builder<DashboardLink>> links) {
 		if (this.internal.fieldConfig == null) {
 			this.internal.fieldConfig = new com.grafana.foundation.dashboard.FieldConfigSource();
 		}
@@ -290,7 +291,7 @@ public class PanelBuilder implements com.grafana.foundation.cog.Builder<Panel> {
         return this;
     }
     
-    public PanelBuilder noValue(String noValue) {
+    public HistogramPanelBuilder noValue(String noValue) {
 		if (this.internal.fieldConfig == null) {
 			this.internal.fieldConfig = new com.grafana.foundation.dashboard.FieldConfigSource();
 		}
@@ -301,7 +302,7 @@ public class PanelBuilder implements com.grafana.foundation.cog.Builder<Panel> {
         return this;
     }
     
-    public PanelBuilder overrides(List<com.grafana.foundation.cog.Builder<DashboardFieldConfigSourceOverrides>> overrides) {
+    public HistogramPanelBuilder overrides(List<com.grafana.foundation.cog.Builder<DashboardFieldConfigSourceOverrides>> overrides) {
 		if (this.internal.fieldConfig == null) {
 			this.internal.fieldConfig = new com.grafana.foundation.dashboard.FieldConfigSource();
 		}
@@ -314,7 +315,7 @@ public class PanelBuilder implements com.grafana.foundation.cog.Builder<Panel> {
         return this;
     }
     
-    public PanelBuilder withOverride(com.grafana.foundation.cog.Builder<DashboardFieldConfigSourceOverrides> override) {
+    public HistogramPanelBuilder withOverride(com.grafana.foundation.cog.Builder<DashboardFieldConfigSourceOverrides> override) {
 		if (this.internal.fieldConfig == null) {
 			this.internal.fieldConfig = new com.grafana.foundation.dashboard.FieldConfigSource();
 		}
@@ -326,7 +327,7 @@ public class PanelBuilder implements com.grafana.foundation.cog.Builder<Panel> {
         return this;
     }
     
-    public PanelBuilder overrideByName(String name,List<DynamicConfigValue> properties) {
+    public HistogramPanelBuilder overrideByName(String name,List<DynamicConfigValue> properties) {
 		if (this.internal.fieldConfig == null) {
 			this.internal.fieldConfig = new com.grafana.foundation.dashboard.FieldConfigSource();
 		}
@@ -343,7 +344,7 @@ public class PanelBuilder implements com.grafana.foundation.cog.Builder<Panel> {
         return this;
     }
     
-    public PanelBuilder overrideByRegexp(String regexp,List<DynamicConfigValue> properties) {
+    public HistogramPanelBuilder overrideByRegexp(String regexp,List<DynamicConfigValue> properties) {
 		if (this.internal.fieldConfig == null) {
 			this.internal.fieldConfig = new com.grafana.foundation.dashboard.FieldConfigSource();
 		}
@@ -360,7 +361,7 @@ public class PanelBuilder implements com.grafana.foundation.cog.Builder<Panel> {
         return this;
     }
     
-    public PanelBuilder overrideByFieldType(String fieldType,List<DynamicConfigValue> properties) {
+    public HistogramPanelBuilder overrideByFieldType(String fieldType,List<DynamicConfigValue> properties) {
 		if (this.internal.fieldConfig == null) {
 			this.internal.fieldConfig = new com.grafana.foundation.dashboard.FieldConfigSource();
 		}
@@ -377,7 +378,7 @@ public class PanelBuilder implements com.grafana.foundation.cog.Builder<Panel> {
         return this;
     }
     
-    public PanelBuilder overrideByQuery(String queryRefId,List<DynamicConfigValue> properties) {
+    public HistogramPanelBuilder overrideByQuery(String queryRefId,List<DynamicConfigValue> properties) {
 		if (this.internal.fieldConfig == null) {
 			this.internal.fieldConfig = new com.grafana.foundation.dashboard.FieldConfigSource();
 		}
@@ -394,61 +395,63 @@ public class PanelBuilder implements com.grafana.foundation.cog.Builder<Panel> {
         return this;
     }
     
-    public PanelBuilder frameIndex(Double frameIndex) {
-		if (this.internal.options == null) {
-			this.internal.options = new com.grafana.foundation.table.Options();
-		}
-        ((Options) this.internal.options).frameIndex = frameIndex;
-        return this;
-    }
-    
-    public PanelBuilder showHeader(Boolean showHeader) {
-		if (this.internal.options == null) {
-			this.internal.options = new com.grafana.foundation.table.Options();
-		}
-        ((Options) this.internal.options).showHeader = showHeader;
-        return this;
-    }
-    
-    public PanelBuilder showTypeIcons(Boolean showTypeIcons) {
-		if (this.internal.options == null) {
-			this.internal.options = new com.grafana.foundation.table.Options();
-		}
-        ((Options) this.internal.options).showTypeIcons = showTypeIcons;
-        return this;
-    }
-    
-    public PanelBuilder sortBy(List<com.grafana.foundation.cog.Builder<TableSortByFieldState>> sortBy) {
-		if (this.internal.options == null) {
-			this.internal.options = new com.grafana.foundation.table.Options();
-		}
-        List<TableSortByFieldState> sortByResources = new LinkedList<>();
-        for (com.grafana.foundation.cog.Builder<TableSortByFieldState> r1 : sortBy) {
-                TableSortByFieldState sortByDepth1 = r1.build();
-                sortByResources.add(sortByDepth1); 
+    public HistogramPanelBuilder bucketCount(Integer bucketCount) {
+        if (!(bucketCount > 0)) {
+            throw new IllegalArgumentException("bucketCount must be > 0");
         }
-        ((Options) this.internal.options).sortBy = sortByResources;
-        return this;
-    }
-    
-    public PanelBuilder footer(com.grafana.foundation.cog.Builder<TableFooterOptions> footer) {
 		if (this.internal.options == null) {
-			this.internal.options = new com.grafana.foundation.table.Options();
+			this.internal.options = new com.grafana.foundation.histogram.Options();
 		}
-    TableFooterOptions footerResource = footer.build();
-        ((Options) this.internal.options).footer = footerResource;
+        ((Options) this.internal.options).bucketCount = bucketCount;
         return this;
     }
     
-    public PanelBuilder cellHeight(TableCellHeight cellHeight) {
+    public HistogramPanelBuilder bucketSize(Integer bucketSize) {
 		if (this.internal.options == null) {
-			this.internal.options = new com.grafana.foundation.table.Options();
+			this.internal.options = new com.grafana.foundation.histogram.Options();
 		}
-        ((Options) this.internal.options).cellHeight = cellHeight;
+        ((Options) this.internal.options).bucketSize = bucketSize;
         return this;
     }
     
-    public PanelBuilder width(Double width) {
+    public HistogramPanelBuilder bucketOffset(Float bucketOffset) {
+		if (this.internal.options == null) {
+			this.internal.options = new com.grafana.foundation.histogram.Options();
+		}
+        ((Options) this.internal.options).bucketOffset = bucketOffset;
+        return this;
+    }
+    
+    public HistogramPanelBuilder legend(com.grafana.foundation.cog.Builder<VizLegendOptions> legend) {
+		if (this.internal.options == null) {
+			this.internal.options = new com.grafana.foundation.histogram.Options();
+		}
+    VizLegendOptions legendResource = legend.build();
+        ((Options) this.internal.options).legend = legendResource;
+        return this;
+    }
+    
+    public HistogramPanelBuilder tooltip(com.grafana.foundation.cog.Builder<VizTooltipOptions> tooltip) {
+		if (this.internal.options == null) {
+			this.internal.options = new com.grafana.foundation.histogram.Options();
+		}
+    VizTooltipOptions tooltipResource = tooltip.build();
+        ((Options) this.internal.options).tooltip = tooltipResource;
+        return this;
+    }
+    
+    public HistogramPanelBuilder combine(Boolean combine) {
+		if (this.internal.options == null) {
+			this.internal.options = new com.grafana.foundation.histogram.Options();
+		}
+        ((Options) this.internal.options).combine = combine;
+        return this;
+    }
+    
+    public HistogramPanelBuilder lineWidth(Integer lineWidth) {
+        if (!(lineWidth <= 10)) {
+            throw new IllegalArgumentException("lineWidth must be <= 10");
+        }
 		if (this.internal.fieldConfig == null) {
 			this.internal.fieldConfig = new com.grafana.foundation.dashboard.FieldConfigSource();
 		}
@@ -456,13 +459,16 @@ public class PanelBuilder implements com.grafana.foundation.cog.Builder<Panel> {
 			this.internal.fieldConfig.defaults = new com.grafana.foundation.dashboard.FieldConfig();
 		}
 		if (this.internal.fieldConfig.defaults.custom == null) {
-			this.internal.fieldConfig.defaults.custom = new com.grafana.foundation.table.FieldConfig();
+			this.internal.fieldConfig.defaults.custom = new com.grafana.foundation.histogram.FieldConfig();
 		}
-        ((FieldConfig) this.internal.fieldConfig.defaults.custom).width = width;
+        ((FieldConfig) this.internal.fieldConfig.defaults.custom).lineWidth = lineWidth;
         return this;
     }
     
-    public PanelBuilder minWidth(Double minWidth) {
+    public HistogramPanelBuilder fillOpacity(Integer fillOpacity) {
+        if (!(fillOpacity <= 100)) {
+            throw new IllegalArgumentException("fillOpacity must be <= 100");
+        }
 		if (this.internal.fieldConfig == null) {
 			this.internal.fieldConfig = new com.grafana.foundation.dashboard.FieldConfigSource();
 		}
@@ -470,13 +476,13 @@ public class PanelBuilder implements com.grafana.foundation.cog.Builder<Panel> {
 			this.internal.fieldConfig.defaults = new com.grafana.foundation.dashboard.FieldConfig();
 		}
 		if (this.internal.fieldConfig.defaults.custom == null) {
-			this.internal.fieldConfig.defaults.custom = new com.grafana.foundation.table.FieldConfig();
+			this.internal.fieldConfig.defaults.custom = new com.grafana.foundation.histogram.FieldConfig();
 		}
-        ((FieldConfig) this.internal.fieldConfig.defaults.custom).minWidth = minWidth;
+        ((FieldConfig) this.internal.fieldConfig.defaults.custom).fillOpacity = fillOpacity;
         return this;
     }
     
-    public PanelBuilder align(FieldTextAlignment align) {
+    public HistogramPanelBuilder axisPlacement(AxisPlacement axisPlacement) {
 		if (this.internal.fieldConfig == null) {
 			this.internal.fieldConfig = new com.grafana.foundation.dashboard.FieldConfigSource();
 		}
@@ -484,13 +490,13 @@ public class PanelBuilder implements com.grafana.foundation.cog.Builder<Panel> {
 			this.internal.fieldConfig.defaults = new com.grafana.foundation.dashboard.FieldConfig();
 		}
 		if (this.internal.fieldConfig.defaults.custom == null) {
-			this.internal.fieldConfig.defaults.custom = new com.grafana.foundation.table.FieldConfig();
+			this.internal.fieldConfig.defaults.custom = new com.grafana.foundation.histogram.FieldConfig();
 		}
-        ((FieldConfig) this.internal.fieldConfig.defaults.custom).align = align;
+        ((FieldConfig) this.internal.fieldConfig.defaults.custom).axisPlacement = axisPlacement;
         return this;
     }
     
-    public PanelBuilder displayMode(TableCellDisplayMode displayMode) {
+    public HistogramPanelBuilder axisColorMode(AxisColorMode axisColorMode) {
 		if (this.internal.fieldConfig == null) {
 			this.internal.fieldConfig = new com.grafana.foundation.dashboard.FieldConfigSource();
 		}
@@ -498,13 +504,13 @@ public class PanelBuilder implements com.grafana.foundation.cog.Builder<Panel> {
 			this.internal.fieldConfig.defaults = new com.grafana.foundation.dashboard.FieldConfig();
 		}
 		if (this.internal.fieldConfig.defaults.custom == null) {
-			this.internal.fieldConfig.defaults.custom = new com.grafana.foundation.table.FieldConfig();
+			this.internal.fieldConfig.defaults.custom = new com.grafana.foundation.histogram.FieldConfig();
 		}
-        ((FieldConfig) this.internal.fieldConfig.defaults.custom).displayMode = displayMode;
+        ((FieldConfig) this.internal.fieldConfig.defaults.custom).axisColorMode = axisColorMode;
         return this;
     }
     
-    public PanelBuilder cellOptions(TableCellOptions cellOptions) {
+    public HistogramPanelBuilder axisLabel(String axisLabel) {
 		if (this.internal.fieldConfig == null) {
 			this.internal.fieldConfig = new com.grafana.foundation.dashboard.FieldConfigSource();
 		}
@@ -512,13 +518,13 @@ public class PanelBuilder implements com.grafana.foundation.cog.Builder<Panel> {
 			this.internal.fieldConfig.defaults = new com.grafana.foundation.dashboard.FieldConfig();
 		}
 		if (this.internal.fieldConfig.defaults.custom == null) {
-			this.internal.fieldConfig.defaults.custom = new com.grafana.foundation.table.FieldConfig();
+			this.internal.fieldConfig.defaults.custom = new com.grafana.foundation.histogram.FieldConfig();
 		}
-        ((FieldConfig) this.internal.fieldConfig.defaults.custom).cellOptions = cellOptions;
+        ((FieldConfig) this.internal.fieldConfig.defaults.custom).axisLabel = axisLabel;
         return this;
     }
     
-    public PanelBuilder hidden(Boolean hidden) {
+    public HistogramPanelBuilder axisWidth(Double axisWidth) {
 		if (this.internal.fieldConfig == null) {
 			this.internal.fieldConfig = new com.grafana.foundation.dashboard.FieldConfigSource();
 		}
@@ -526,13 +532,13 @@ public class PanelBuilder implements com.grafana.foundation.cog.Builder<Panel> {
 			this.internal.fieldConfig.defaults = new com.grafana.foundation.dashboard.FieldConfig();
 		}
 		if (this.internal.fieldConfig.defaults.custom == null) {
-			this.internal.fieldConfig.defaults.custom = new com.grafana.foundation.table.FieldConfig();
+			this.internal.fieldConfig.defaults.custom = new com.grafana.foundation.histogram.FieldConfig();
 		}
-        ((FieldConfig) this.internal.fieldConfig.defaults.custom).hidden = hidden;
+        ((FieldConfig) this.internal.fieldConfig.defaults.custom).axisWidth = axisWidth;
         return this;
     }
     
-    public PanelBuilder inspect(Boolean inspect) {
+    public HistogramPanelBuilder axisSoftMin(Double axisSoftMin) {
 		if (this.internal.fieldConfig == null) {
 			this.internal.fieldConfig = new com.grafana.foundation.dashboard.FieldConfigSource();
 		}
@@ -540,13 +546,13 @@ public class PanelBuilder implements com.grafana.foundation.cog.Builder<Panel> {
 			this.internal.fieldConfig.defaults = new com.grafana.foundation.dashboard.FieldConfig();
 		}
 		if (this.internal.fieldConfig.defaults.custom == null) {
-			this.internal.fieldConfig.defaults.custom = new com.grafana.foundation.table.FieldConfig();
+			this.internal.fieldConfig.defaults.custom = new com.grafana.foundation.histogram.FieldConfig();
 		}
-        ((FieldConfig) this.internal.fieldConfig.defaults.custom).inspect = inspect;
+        ((FieldConfig) this.internal.fieldConfig.defaults.custom).axisSoftMin = axisSoftMin;
         return this;
     }
     
-    public PanelBuilder filterable(Boolean filterable) {
+    public HistogramPanelBuilder axisSoftMax(Double axisSoftMax) {
 		if (this.internal.fieldConfig == null) {
 			this.internal.fieldConfig = new com.grafana.foundation.dashboard.FieldConfigSource();
 		}
@@ -554,13 +560,13 @@ public class PanelBuilder implements com.grafana.foundation.cog.Builder<Panel> {
 			this.internal.fieldConfig.defaults = new com.grafana.foundation.dashboard.FieldConfig();
 		}
 		if (this.internal.fieldConfig.defaults.custom == null) {
-			this.internal.fieldConfig.defaults.custom = new com.grafana.foundation.table.FieldConfig();
+			this.internal.fieldConfig.defaults.custom = new com.grafana.foundation.histogram.FieldConfig();
 		}
-        ((FieldConfig) this.internal.fieldConfig.defaults.custom).filterable = filterable;
+        ((FieldConfig) this.internal.fieldConfig.defaults.custom).axisSoftMax = axisSoftMax;
         return this;
     }
     
-    public PanelBuilder hideHeader(Boolean hideHeader) {
+    public HistogramPanelBuilder axisGridShow(Boolean axisGridShow) {
 		if (this.internal.fieldConfig == null) {
 			this.internal.fieldConfig = new com.grafana.foundation.dashboard.FieldConfigSource();
 		}
@@ -568,9 +574,81 @@ public class PanelBuilder implements com.grafana.foundation.cog.Builder<Panel> {
 			this.internal.fieldConfig.defaults = new com.grafana.foundation.dashboard.FieldConfig();
 		}
 		if (this.internal.fieldConfig.defaults.custom == null) {
-			this.internal.fieldConfig.defaults.custom = new com.grafana.foundation.table.FieldConfig();
+			this.internal.fieldConfig.defaults.custom = new com.grafana.foundation.histogram.FieldConfig();
 		}
-        ((FieldConfig) this.internal.fieldConfig.defaults.custom).hideHeader = hideHeader;
+        ((FieldConfig) this.internal.fieldConfig.defaults.custom).axisGridShow = axisGridShow;
+        return this;
+    }
+    
+    public HistogramPanelBuilder scaleDistribution(com.grafana.foundation.cog.Builder<ScaleDistributionConfig> scaleDistribution) {
+		if (this.internal.fieldConfig == null) {
+			this.internal.fieldConfig = new com.grafana.foundation.dashboard.FieldConfigSource();
+		}
+		if (this.internal.fieldConfig.defaults == null) {
+			this.internal.fieldConfig.defaults = new com.grafana.foundation.dashboard.FieldConfig();
+		}
+		if (this.internal.fieldConfig.defaults.custom == null) {
+			this.internal.fieldConfig.defaults.custom = new com.grafana.foundation.histogram.FieldConfig();
+		}
+    ScaleDistributionConfig scaleDistributionResource = scaleDistribution.build();
+        ((FieldConfig) this.internal.fieldConfig.defaults.custom).scaleDistribution = scaleDistributionResource;
+        return this;
+    }
+    
+    public HistogramPanelBuilder axisCenteredZero(Boolean axisCenteredZero) {
+		if (this.internal.fieldConfig == null) {
+			this.internal.fieldConfig = new com.grafana.foundation.dashboard.FieldConfigSource();
+		}
+		if (this.internal.fieldConfig.defaults == null) {
+			this.internal.fieldConfig.defaults = new com.grafana.foundation.dashboard.FieldConfig();
+		}
+		if (this.internal.fieldConfig.defaults.custom == null) {
+			this.internal.fieldConfig.defaults.custom = new com.grafana.foundation.histogram.FieldConfig();
+		}
+        ((FieldConfig) this.internal.fieldConfig.defaults.custom).axisCenteredZero = axisCenteredZero;
+        return this;
+    }
+    
+    public HistogramPanelBuilder hideFrom(com.grafana.foundation.cog.Builder<HideSeriesConfig> hideFrom) {
+		if (this.internal.fieldConfig == null) {
+			this.internal.fieldConfig = new com.grafana.foundation.dashboard.FieldConfigSource();
+		}
+		if (this.internal.fieldConfig.defaults == null) {
+			this.internal.fieldConfig.defaults = new com.grafana.foundation.dashboard.FieldConfig();
+		}
+		if (this.internal.fieldConfig.defaults.custom == null) {
+			this.internal.fieldConfig.defaults.custom = new com.grafana.foundation.histogram.FieldConfig();
+		}
+    HideSeriesConfig hideFromResource = hideFrom.build();
+        ((FieldConfig) this.internal.fieldConfig.defaults.custom).hideFrom = hideFromResource;
+        return this;
+    }
+    
+    public HistogramPanelBuilder gradientMode(GraphGradientMode gradientMode) {
+		if (this.internal.fieldConfig == null) {
+			this.internal.fieldConfig = new com.grafana.foundation.dashboard.FieldConfigSource();
+		}
+		if (this.internal.fieldConfig.defaults == null) {
+			this.internal.fieldConfig.defaults = new com.grafana.foundation.dashboard.FieldConfig();
+		}
+		if (this.internal.fieldConfig.defaults.custom == null) {
+			this.internal.fieldConfig.defaults.custom = new com.grafana.foundation.histogram.FieldConfig();
+		}
+        ((FieldConfig) this.internal.fieldConfig.defaults.custom).gradientMode = gradientMode;
+        return this;
+    }
+    
+    public HistogramPanelBuilder axisBorderShow(Boolean axisBorderShow) {
+		if (this.internal.fieldConfig == null) {
+			this.internal.fieldConfig = new com.grafana.foundation.dashboard.FieldConfigSource();
+		}
+		if (this.internal.fieldConfig.defaults == null) {
+			this.internal.fieldConfig.defaults = new com.grafana.foundation.dashboard.FieldConfig();
+		}
+		if (this.internal.fieldConfig.defaults.custom == null) {
+			this.internal.fieldConfig.defaults.custom = new com.grafana.foundation.histogram.FieldConfig();
+		}
+        ((FieldConfig) this.internal.fieldConfig.defaults.custom).axisBorderShow = axisBorderShow;
         return this;
     }
     public Panel build() {
