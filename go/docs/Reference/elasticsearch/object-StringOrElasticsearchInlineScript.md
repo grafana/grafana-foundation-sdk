@@ -13,6 +13,22 @@ type StringOrElasticsearchInlineScript struct {
 ```
 ## Methods
 
+### <span class="badge object-method"></span> MarshalJSON
+
+MarshalJSON implements a custom JSON marshalling logic to encode `StringOrElasticsearchInlineScript` as JSON.
+
+```go
+func (stringOrElasticsearchInlineScript *StringOrElasticsearchInlineScript) MarshalJSON() ([]byte, error)
+```
+
+### <span class="badge object-method"></span> UnmarshalJSON
+
+UnmarshalJSON implements a custom JSON unmarshalling logic to decode `StringOrElasticsearchInlineScript` from JSON.
+
+```go
+func (stringOrElasticsearchInlineScript *StringOrElasticsearchInlineScript) UnmarshalJSON(raw []byte) error
+```
+
 ### <span class="badge object-method"></span> UnmarshalJSONStrict
 
 UnmarshalJSONStrict implements a custom JSON unmarshalling logic to decode `StringOrElasticsearchInlineScript` from JSON.

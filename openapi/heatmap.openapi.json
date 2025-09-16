@@ -15,6 +15,7 @@
           "opacity",
           "scheme"
         ],
+        "type": "string",
         "description": "Controls the color mode of the heatmap"
       },
       "HeatmapColorScale": {
@@ -22,6 +23,7 @@
           "linear",
           "exponential"
         ],
+        "type": "string",
         "description": "Controls the color scale of the heatmap"
       },
       "HeatmapColorOptions": {
@@ -335,6 +337,7 @@
           "left",
           "hidden"
         ],
+        "type": "string",
         "description": "TODO docs"
       },
       "AxisColorMode": {
@@ -342,6 +345,7 @@
           "text",
           "series"
         ],
+        "type": "string",
         "description": "TODO docs"
       },
       "ScaleDistributionConfig": {
@@ -369,7 +373,8 @@
           "ge",
           "unknown",
           "auto"
-        ]
+        ],
+        "type": "string"
       },
       "HeatmapCalculationOptions": {
         "type": "object",
@@ -391,6 +396,7 @@
           "never",
           "always"
         ],
+        "type": "string",
         "description": "TODO docs"
       },
       "HideSeriesConfig": {
@@ -421,6 +427,7 @@
           "ordinal",
           "symlog"
         ],
+        "type": "string",
         "description": "TODO docs"
       },
       "HeatmapCalculationBucketConfig": {
@@ -445,7 +452,8 @@
         "enum": [
           "size",
           "count"
-        ]
+        ],
+        "type": "string"
       }
     }
   }
