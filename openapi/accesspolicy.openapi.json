@@ -67,6 +67,7 @@
               "Team",
               "User"
             ],
+            "type": "string",
             "description": "Policies can apply to roles, teams, or users\nApplying policies to individual users is supported, but discouraged"
           },
           "name": {

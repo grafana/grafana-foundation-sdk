@@ -1204,6 +1204,12 @@ func (resource QueryEditorProperty) Validate() error {
 	return errs
 }
 
+type QueryEditorPropertyType string
+
+const (
+	QueryEditorPropertyTypeString QueryEditorPropertyType = "string"
+)
+
 type QueryEditorPropertyExpression struct {
 	Type     QueryEditorExpressionType `json:"type"`
 	Property QueryEditorProperty       `json:"property"`
@@ -1305,12 +1311,6 @@ type OrderByDirection string
 const (
 	OrderByDirectionASC  OrderByDirection = "ASC"
 	OrderByDirectionDESC OrderByDirection = "DESC"
-)
-
-type QueryEditorPropertyType string
-
-const (
-	QueryEditorPropertyTypeString QueryEditorPropertyType = "string"
 )
 
 // VariantConfig returns the configuration related to grafana-bigquery-datasource dataqueries.
