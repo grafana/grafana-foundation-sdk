@@ -107,6 +107,7 @@
         "md",
         "lg"
       ],
+      "type": "string",
       "description": "Height of a table cell"
     },
     "TableFieldOptions": {
@@ -159,6 +160,7 @@
         "right",
         "center"
       ],
+      "type": "string",
       "description": "TODO -- should not be table specific!\nTODO docs"
     },
     "TableCellDisplayMode": {
@@ -177,6 +179,7 @@
         "data-links",
         "custom"
       ],
+      "type": "string",
       "description": "Internally, this is the \"type\" of cell that's being displayed\nin the table such as colored text, JSON, gauge, etc.\nThe color-background-solid, gradient-gauge, and lcd-gauge\nmodes are deprecated in favor of new cell subOptions"
     },
     "TableCellOptions": {
@@ -439,6 +442,7 @@
         "bars",
         "points"
       ],
+      "type": "string",
       "description": "TODO docs"
     },
     "GraphGradientMode": {
@@ -448,6 +452,7 @@
         "hue",
         "scheme"
       ],
+      "type": "string",
       "description": "TODO docs"
     },
     "GraphThresholdsStyleConfig": {
@@ -470,6 +475,7 @@
         "stepBefore",
         "stepAfter"
       ],
+      "type": "string",
       "description": "TODO docs"
     },
     "LineStyle": {
@@ -482,7 +488,8 @@
             "dash",
             "dot",
             "square"
-          ]
+          ],
+          "type": "string"
         },
         "dash": {
           "type": "array",
@@ -499,6 +506,7 @@
         "never",
         "always"
       ],
+      "type": "string",
       "description": "TODO docs"
     },
     "AxisPlacement": {
@@ -510,6 +518,7 @@
         "left",
         "hidden"
       ],
+      "type": "string",
       "description": "TODO docs"
     },
     "AxisColorMode": {
@@ -517,6 +526,7 @@
         "text",
         "series"
       ],
+      "type": "string",
       "description": "TODO docs"
     },
     "ScaleDistributionConfig": {
@@ -544,6 +554,7 @@
         0,
         1
       ],
+      "type": "integer",
       "description": "TODO docs"
     },
     "StackingConfig": {
@@ -585,6 +596,7 @@
         "constant",
         "negative-Y"
       ],
+      "type": "string",
       "description": "TODO docs"
     },
     "BarGaugeDisplayMode": {
@@ -593,6 +605,7 @@
         "lcd",
         "gradient"
       ],
+      "type": "string",
       "description": "Enum expressing the possible display modes\nfor the bar gauge component of Grafana UI"
     },
     "BarGaugeValueMode": {
@@ -601,6 +614,7 @@
         "text",
         "hidden"
       ],
+      "type": "string",
       "description": "Allows for the table cell gauge display type to set the gauge mode."
     },
     "TableCellBackgroundDisplayMode": {
@@ -608,6 +622,7 @@
         "basic",
         "gradient"
       ],
+      "type": "string",
       "description": "Display mode to the \"Colored Background\" display\nmode for table cells. Either displays a solid color (basic mode)\nor a gradient."
     },
     "GraphThresholdsStyleMode": {
@@ -620,6 +635,7 @@
         "dashed+area",
         "series"
       ],
+      "type": "string",
       "description": "TODO docs"
     },
     "ScaleDistribution": {
@@ -629,6 +645,7 @@
         "ordinal",
         "symlog"
       ],
+      "type": "string",
       "description": "TODO docs"
     },
     "StackingMode": {
@@ -637,6 +654,7 @@
         "normal",
         "percent"
       ],
+      "type": "string",
       "description": "TODO docs"
     }
   }
