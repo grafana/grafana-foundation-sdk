@@ -10,6 +10,11 @@ import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 import java.io.IOException;
+import java.util.List;
+import com.grafana.foundation.cog.variants.Dataquery;
+import com.grafana.foundation.cog.variants.Registry;
+import com.grafana.foundation.cog.variants.PanelConfig;
+import java.util.Map;
 
 public class QueryEditorOperatorTypeDeserializer extends JsonDeserializer<QueryEditorOperatorType> {
 
@@ -20,13 +25,13 @@ public class QueryEditorOperatorTypeDeserializer extends JsonDeserializer<QueryE
         
         QueryEditorOperatorType queryEditorOperatorType = new QueryEditorOperatorType();
         if (root.isTextual()) {
-            queryEditorOperatorType.string = mapper.convertValue(root, new TypeReference<>() {});
+            queryEditorOperatorType.string = mapper.convertValue(root, String.class);
         }
         else if (root.isBoolean()) {
-            queryEditorOperatorType.bool = mapper.convertValue(root, new TypeReference<>() {});
+            queryEditorOperatorType.bool = mapper.convertValue(root, Boolean.class);
         }
-        else if (root.isObject()) {
-            queryEditorOperatorType.int64 = mapper.convertValue(root, new TypeReference<>() {});
+        else if (root.isIntegralNumber()) {
+            queryEditorOperatorType.int64 = mapper.convertValue(root, Long.class);
         }
         
         return queryEditorOperatorType;

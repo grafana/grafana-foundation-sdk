@@ -74,6 +74,7 @@ type Dataquery struct {
 	// TODO find a better way to do this ^ that's friendly to schema
 	// TODO this shouldn't be unknown but DataSourceRef | null
 	Datasource *dashboard.DataSourceRef `json:"datasource,omitempty"`
+	Direction  *LokiQueryDirection      `json:"direction,omitempty"`
 }
 
 func (resource Dataquery) ImplementsDataqueryVariant() {}
@@ -239,6 +240,17 @@ func (resource *Dataquery) UnmarshalJSONStrict(raw []byte) error {
 		delete(fields, "datasource")
 
 	}
+	// Field "direction"
+	if fields["direction"] != nil {
+		if string(fields["direction"]) != "null" {
+			if err := json.Unmarshal(fields["direction"], &resource.Direction); err != nil {
+				errs = append(errs, cog.MakeBuildErrors("direction", err)...)
+			}
+
+		}
+		delete(fields, "direction")
+
+	}
 
 	for field := range fields {
 		errs = append(errs, cog.MakeBuildErrors("Dataquery", fmt.Errorf("unexpected field '%s'", field))...)
@@ -354,6 +366,15 @@ func (resource Dataquery) Equals(otherCandidate variants.Dataquery) bool {
 
 	if resource.Datasource != nil {
 		if !resource.Datasource.Equals(*other.Datasource) {
+			return false
+		}
+	}
+	if resource.Direction == nil && other.Direction != nil || resource.Direction != nil && other.Direction == nil {
+		return false
+	}
+
+	if resource.Direction != nil {
+		if *resource.Direction != *other.Direction {
 			return false
 		}
 	}
