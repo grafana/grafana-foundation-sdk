@@ -10,6 +10,12 @@ import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 import java.io.IOException;
+import com.grafana.foundation.cog.variants.Dataquery;
+import com.grafana.foundation.cog.variants.Registry;
+import java.util.List;
+import com.grafana.foundation.dashboard.DataSourceRef;
+import com.grafana.foundation.cog.variants.PanelConfig;
+import java.util.Map;
 
 public class StringOrMapDeserializer extends JsonDeserializer<StringOrMap> {
 
@@ -20,10 +26,10 @@ public class StringOrMapDeserializer extends JsonDeserializer<StringOrMap> {
         
         StringOrMap stringOrMap = new StringOrMap();
         if (root.isTextual()) {
-            stringOrMap.string = mapper.convertValue(root, new TypeReference<>() {});
+            stringOrMap.string = mapper.convertValue(root, String.class);
         }
         else if (root.isObject()) {
-            stringOrMap.map = mapper.convertValue(root, new TypeReference<>() {});
+            stringOrMap.map = mapper.convertValue(root, new TypeReference<Map<String, Object>>() {});
         }
         
         return stringOrMap;
