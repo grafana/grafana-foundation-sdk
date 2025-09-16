@@ -12,10 +12,10 @@ public class BoolOrUint32Serializer extends JsonSerializer<BoolOrUint32> {
 
     @Override
     public void serialize(BoolOrUint32 value, JsonGenerator gen, SerializerProvider serializerProvider) throws IOException {
-         if (value.bool != null) {
+        if (value.bool != null) {
             gen.writeObject(value.bool);
         }
-         else  if (value.uint32 != null) {
+        else if (value.uint32 != null) {
             gen.writeObject(value.uint32);
         }
     }
