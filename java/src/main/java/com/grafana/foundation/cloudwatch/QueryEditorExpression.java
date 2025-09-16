@@ -30,64 +30,40 @@ public class QueryEditorExpression {
     @JsonUnwrapped
     protected QueryEditorOperatorExpression queryEditorOperatorExpression;
     protected QueryEditorExpression() {}
-    public static QueryEditorExpression createQueryEditorArrayExpression(com.grafana.foundation.cog.Builder<QueryEditorArrayExpression> queryEditorArrayExpression) {
+    public static QueryEditorExpression createQueryEditorArrayExpression(QueryEditorArrayExpression queryEditorArrayExpression) {
         QueryEditorExpression queryEditorExpression = new QueryEditorExpression();
-        queryEditorExpression.queryEditorArrayExpression = queryEditorArrayExpression.build();
+        queryEditorExpression.queryEditorArrayExpression = queryEditorArrayExpression;
         return queryEditorExpression;
     }
-    public static QueryEditorExpression createQueryEditorPropertyExpression(com.grafana.foundation.cog.Builder<QueryEditorPropertyExpression> queryEditorPropertyExpression) {
+    public static QueryEditorExpression createQueryEditorPropertyExpression(QueryEditorPropertyExpression queryEditorPropertyExpression) {
         QueryEditorExpression queryEditorExpression = new QueryEditorExpression();
-        queryEditorExpression.queryEditorPropertyExpression = queryEditorPropertyExpression.build();
+        queryEditorExpression.queryEditorPropertyExpression = queryEditorPropertyExpression;
         return queryEditorExpression;
     }
-    public static QueryEditorExpression createQueryEditorGroupByExpression(com.grafana.foundation.cog.Builder<QueryEditorGroupByExpression> queryEditorGroupByExpression) {
+    public static QueryEditorExpression createQueryEditorGroupByExpression(QueryEditorGroupByExpression queryEditorGroupByExpression) {
         QueryEditorExpression queryEditorExpression = new QueryEditorExpression();
-        queryEditorExpression.queryEditorGroupByExpression = queryEditorGroupByExpression.build();
+        queryEditorExpression.queryEditorGroupByExpression = queryEditorGroupByExpression;
         return queryEditorExpression;
     }
-    public static QueryEditorExpression createQueryEditorFunctionExpression(com.grafana.foundation.cog.Builder<QueryEditorFunctionExpression> queryEditorFunctionExpression) {
+    public static QueryEditorExpression createQueryEditorFunctionExpression(QueryEditorFunctionExpression queryEditorFunctionExpression) {
         QueryEditorExpression queryEditorExpression = new QueryEditorExpression();
-        queryEditorExpression.queryEditorFunctionExpression = queryEditorFunctionExpression.build();
+        queryEditorExpression.queryEditorFunctionExpression = queryEditorFunctionExpression;
         return queryEditorExpression;
     }
-    public static QueryEditorExpression createQueryEditorFunctionParameterExpression(com.grafana.foundation.cog.Builder<QueryEditorFunctionParameterExpression> queryEditorFunctionParameterExpression) {
+    public static QueryEditorExpression createQueryEditorFunctionParameterExpression(QueryEditorFunctionParameterExpression queryEditorFunctionParameterExpression) {
         QueryEditorExpression queryEditorExpression = new QueryEditorExpression();
-        queryEditorExpression.queryEditorFunctionParameterExpression = queryEditorFunctionParameterExpression.build();
+        queryEditorExpression.queryEditorFunctionParameterExpression = queryEditorFunctionParameterExpression;
         return queryEditorExpression;
     }
-    public static QueryEditorExpression createQueryEditorOperatorExpression(com.grafana.foundation.cog.Builder<QueryEditorOperatorExpression> queryEditorOperatorExpression) {
+    public static QueryEditorExpression createQueryEditorOperatorExpression(QueryEditorOperatorExpression queryEditorOperatorExpression) {
         QueryEditorExpression queryEditorExpression = new QueryEditorExpression();
-        queryEditorExpression.queryEditorOperatorExpression = queryEditorOperatorExpression.build();
+        queryEditorExpression.queryEditorOperatorExpression = queryEditorOperatorExpression;
         return queryEditorExpression;
     }
     
     public String toJSON() throws JsonProcessingException {
-        if (queryEditorArrayExpression != null) {
-            ObjectWriter ow = new ObjectMapper().writer().withDefaultPrettyPrinter();
-            return ow.writeValueAsString(queryEditorArrayExpression);
-        }
-        if (queryEditorPropertyExpression != null) {
-            ObjectWriter ow = new ObjectMapper().writer().withDefaultPrettyPrinter();
-            return ow.writeValueAsString(queryEditorPropertyExpression);
-        }
-        if (queryEditorGroupByExpression != null) {
-            ObjectWriter ow = new ObjectMapper().writer().withDefaultPrettyPrinter();
-            return ow.writeValueAsString(queryEditorGroupByExpression);
-        }
-        if (queryEditorFunctionExpression != null) {
-            ObjectWriter ow = new ObjectMapper().writer().withDefaultPrettyPrinter();
-            return ow.writeValueAsString(queryEditorFunctionExpression);
-        }
-        if (queryEditorFunctionParameterExpression != null) {
-            ObjectWriter ow = new ObjectMapper().writer().withDefaultPrettyPrinter();
-            return ow.writeValueAsString(queryEditorFunctionParameterExpression);
-        }
-        if (queryEditorOperatorExpression != null) {
-            ObjectWriter ow = new ObjectMapper().writer().withDefaultPrettyPrinter();
-            return ow.writeValueAsString(queryEditorOperatorExpression);
-        }
-        
-        return null;
+        ObjectWriter ow = new ObjectMapper().writer().withDefaultPrettyPrinter();
+        return ow.writeValueAsString(this);
     }
 
 }
