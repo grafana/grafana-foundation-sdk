@@ -7,7 +7,7 @@ on:
       - 'v10.1.x\+cog-v0.0.x'
 
 env:
-  NODE_VERSION: '18'
+  NODE_VERSION: '20'
 
 jobs:
   release:
@@ -38,6 +38,9 @@ jobs:
           node-version: ${{ env.NODE_VERSION }}
           scope: '@grafana'
           registry-url: 'https://registry.npmjs.org'
+
+      - name: Ensure npm latest version
+        run: npm install -g npm@latest
 
       - name: Install dependencies
         run: npm install
