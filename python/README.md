@@ -9,7 +9,7 @@ A set of tools, types and *builder libraries* for building and manipulating Graf
 ## Installing
 
 ```shell
-python3 -m pip install 'grafana_foundation_sdk==1753977713!11.5.0'
+python3 -m pip install 'grafana_foundation_sdk==1758020614!11.5.0'
 ```
 
 ## Example usage

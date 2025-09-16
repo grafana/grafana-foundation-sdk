@@ -54,7 +54,8 @@
       "enum": [
         "cooperative",
         "greedy"
-      ]
+      ],
+      "type": "string"
     },
     "Options": {
       "type": "object",
