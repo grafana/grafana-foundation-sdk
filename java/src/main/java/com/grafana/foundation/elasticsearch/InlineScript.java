@@ -6,20 +6,27 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.ObjectWriter;
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.fasterxml.jackson.annotation.JsonInclude;
 
+@JsonDeserialize(using = InlineScriptDeserializer.class)
 public class InlineScript {
     @JsonInclude(JsonInclude.Include.NON_NULL)
     @JsonProperty("String")
-    public String string;
+    protected String string;
     @JsonInclude(JsonInclude.Include.NON_NULL)
     @JsonProperty("ElasticsearchInlineScript")
-    public ElasticsearchInlineScript elasticsearchInlineScript;
-    public InlineScript() {
+    protected ElasticsearchInlineScript elasticsearchInlineScript;
+    protected InlineScript() {}
+    public static InlineScript createString(String string) {
+        InlineScript inlineScript = new InlineScript();
+        inlineScript.string = string;
+        return inlineScript;
     }
-    public InlineScript(String string,ElasticsearchInlineScript elasticsearchInlineScript) {
-        this.string = string;
-        this.elasticsearchInlineScript = elasticsearchInlineScript;
+    public static InlineScript createElasticsearchInlineScript(ElasticsearchInlineScript elasticsearchInlineScript) {
+        InlineScript inlineScript = new InlineScript();
+        inlineScript.elasticsearchInlineScript = elasticsearchInlineScript;
+        return inlineScript;
     }
     
     public String toJSON() throws JsonProcessingException {

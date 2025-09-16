@@ -10,6 +10,7 @@ import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 import java.io.IOException;
+import java.util.List;
 
 public class QueryEditorOperatorValueTypeDeserializer extends JsonDeserializer<QueryEditorOperatorValueType> {
 
@@ -20,16 +21,16 @@ public class QueryEditorOperatorValueTypeDeserializer extends JsonDeserializer<Q
         
         QueryEditorOperatorValueType queryEditorOperatorValueType = new QueryEditorOperatorValueType();
         if (root.isTextual()) {
-            queryEditorOperatorValueType.string = mapper.convertValue(root, new TypeReference<>() {});
+            queryEditorOperatorValueType.string = mapper.convertValue(root, String.class);
         }
         else if (root.isBoolean()) {
-            queryEditorOperatorValueType.bool = mapper.convertValue(root, new TypeReference<>() {});
+            queryEditorOperatorValueType.bool = mapper.convertValue(root, Boolean.class);
         }
-        else if (root.isObject()) {
-            queryEditorOperatorValueType.int64 = mapper.convertValue(root, new TypeReference<>() {});
+        else if (root.isIntegralNumber()) {
+            queryEditorOperatorValueType.int64 = mapper.convertValue(root, Long.class);
         }
         else if (root.isArray()) {
-            queryEditorOperatorValueType.arrayOfQueryEditorOperatorType = mapper.convertValue(root, new TypeReference<>() {});
+            queryEditorOperatorValueType.arrayOfQueryEditorOperatorType = mapper.convertValue(root, new TypeReference<List<QueryEditorOperatorType>>() {});
         }
         
         return queryEditorOperatorValueType;
