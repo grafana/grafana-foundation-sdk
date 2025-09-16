@@ -10,6 +10,12 @@ import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 import java.io.IOException;
+import com.grafana.foundation.cog.variants.Dataquery;
+import com.grafana.foundation.cog.variants.Registry;
+import com.grafana.foundation.cog.variants.PanelConfig;
+import java.util.Map;
+import java.util.List;
+import com.grafana.foundation.dashboard.DataSourceRef;
 
 public class BoolOrFloat64Deserializer extends JsonDeserializer<BoolOrFloat64> {
 
@@ -20,10 +26,10 @@ public class BoolOrFloat64Deserializer extends JsonDeserializer<BoolOrFloat64> {
         
         BoolOrFloat64 boolOrFloat64 = new BoolOrFloat64();
         if (root.isBoolean()) {
-            boolOrFloat64.bool = mapper.convertValue(root, new TypeReference<>() {});
+            boolOrFloat64.bool = mapper.convertValue(root, Boolean.class);
         }
         else if (root.isDouble()) {
-            boolOrFloat64.float64 = mapper.convertValue(root, new TypeReference<>() {});
+            boolOrFloat64.float64 = mapper.convertValue(root, Double.class);
         }
         
         return boolOrFloat64;
