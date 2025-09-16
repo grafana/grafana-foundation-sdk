@@ -8,7 +8,8 @@
         "leftright",
         "center",
         "scale"
-      ]
+      ],
+      "type": "string"
     },
     "VerticalConstraint": {
       "enum": [
@@ -17,7 +18,8 @@
         "topbottom",
         "center",
         "scale"
-      ]
+      ],
+      "type": "string"
     },
     "Constraint": {
       "type": "object",
@@ -65,7 +67,8 @@
         "cover",
         "fill",
         "tile"
-      ]
+      ],
+      "type": "string"
     },
     "BackgroundConfig": {
       "type": "object",
@@ -102,7 +105,8 @@
         "GET",
         "POST",
         "PUT"
-      ]
+      ],
+      "type": "string"
     },
     "ConnectionCoordinates": {
       "type": "object",
@@ -123,7 +127,8 @@
     "ConnectionPath": {
       "enum": [
         "straight"
-      ]
+      ],
+      "type": "string"
     },
     "CanvasConnection": {
       "type": "object",
@@ -333,13 +338,15 @@
         "fixed",
         "field",
         "mapping"
-      ]
+      ],
+      "type": "string"
     },
     "ScaleDimensionMode": {
       "enum": [
         "linear",
         "quad"
-      ]
+      ],
+      "type": "string"
     }
   }
 }

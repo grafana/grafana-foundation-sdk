@@ -7,7 +7,7 @@ on:
       - 'v11.4.x\+cog-v0.0.x'
 
 env:
-  NODE_VERSION: '18'
+  NODE_VERSION: '20'
 
 jobs:
   release:
@@ -17,6 +17,10 @@ jobs:
     permissions:
       contents: read
       id-token: write
+
+    environment:
+      name: typescript
+      url: https://www.npmjs.com/package/@grafana/grafana-foundation-sdk
 
     defaults:
       run:
@@ -35,19 +39,14 @@ jobs:
           scope: '@grafana'
           registry-url: 'https://registry.npmjs.org'
 
+      - name: Ensure npm latest version
+        run: npm install -g npm@latest
+
       - name: Install dependencies
-        run: yarn install
+        run: npm install
 
       - name: Build
-        run: yarn build
-        
-      - name: Get secrets
-        uses: grafana/shared-workflows/actions/get-vault-secrets@75804962c1ba608148988c1e2dc35fbb0ee21746
-        with:
-          repo_secrets: |
-            NPM_TOKEN=secrets:npm_token
+        run: npm run build
 
       - name: Publish to NPM registry
-        run: yarn publish --access public
-        env:
-          NODE_AUTH_TOKEN: ${{ env.NPM_TOKEN }}
+        run: npm publish --access public
