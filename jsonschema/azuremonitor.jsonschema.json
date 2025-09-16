@@ -260,7 +260,8 @@
         "time_series",
         "trace",
         "logs"
-      ]
+      ],
+      "type": "string"
     },
     "AzureResourceGraphQuery": {
       "type": "object",
@@ -621,6 +622,7 @@
         "Grafana Template Variable Function",
         "traceql"
       ],
+      "type": "string",
       "description": "Defines the supported queryTypes. GrafanaTemplateVariableFn is deprecated"
     },
     "GrafanaTemplateVariableQueryType": {
@@ -634,7 +636,8 @@
         "MetricNamesQuery",
         "WorkspacesQuery",
         "UnknownQuery"
-      ]
+      ],
+      "type": "string"
     },
     "BaseGrafanaTemplateVariableQuery": {
       "type": "object",
