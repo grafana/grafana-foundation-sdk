@@ -54,7 +54,8 @@
         "enum": [
           "Descending",
           "Ascending"
-        ]
+        ],
+        "type": "string"
       },
       "LogsDedupStrategy": {
         "enum": [
@@ -62,7 +63,8 @@
           "exact",
           "numbers",
           "signature"
-        ]
+        ],
+        "type": "string"
       }
     }
   }

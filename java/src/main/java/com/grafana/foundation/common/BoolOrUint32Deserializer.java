@@ -10,6 +10,11 @@ import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 import java.io.IOException;
+import com.grafana.foundation.cog.variants.Dataquery;
+import com.grafana.foundation.cog.variants.Registry;
+import com.grafana.foundation.cog.variants.PanelConfig;
+import java.util.Map;
+import java.util.List;
 
 public class BoolOrUint32Deserializer extends JsonDeserializer<BoolOrUint32> {
 
@@ -20,10 +25,10 @@ public class BoolOrUint32Deserializer extends JsonDeserializer<BoolOrUint32> {
         
         BoolOrUint32 boolOrUint32 = new BoolOrUint32();
         if (root.isBoolean()) {
-            boolOrUint32.bool = mapper.convertValue(root, new TypeReference<>() {});
+            boolOrUint32.bool = mapper.convertValue(root, Boolean.class);
         }
         else if (root.isInt()) {
-            boolOrUint32.uint32 = mapper.convertValue(root, new TypeReference<>() {});
+            boolOrUint32.uint32 = mapper.convertValue(root, Integer.class);
         }
         
         return boolOrUint32;

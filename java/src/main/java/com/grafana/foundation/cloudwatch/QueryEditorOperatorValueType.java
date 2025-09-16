@@ -49,24 +49,8 @@ public class QueryEditorOperatorValueType {
     }
     
     public String toJSON() throws JsonProcessingException {
-        if (string != null) {
-            ObjectWriter ow = new ObjectMapper().writer().withDefaultPrettyPrinter();
-            return ow.writeValueAsString(string);
-        }
-        if (bool != null) {
-            ObjectWriter ow = new ObjectMapper().writer().withDefaultPrettyPrinter();
-            return ow.writeValueAsString(bool);
-        }
-        if (int64 != null) {
-            ObjectWriter ow = new ObjectMapper().writer().withDefaultPrettyPrinter();
-            return ow.writeValueAsString(int64);
-        }
-        if (arrayOfQueryEditorOperatorType != null) {
-            ObjectWriter ow = new ObjectMapper().writer().withDefaultPrettyPrinter();
-            return ow.writeValueAsString(arrayOfQueryEditorOperatorType);
-        }
-        
-        return null;
+        ObjectWriter ow = new ObjectMapper().writer().withDefaultPrettyPrinter();
+        return ow.writeValueAsString(this);
     }
 
 }
