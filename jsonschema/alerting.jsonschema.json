@@ -95,7 +95,8 @@
             "victorops",
             "webhook",
             "wecom"
-          ]
+          ],
+          "type": "string"
         },
         "uid": {
           "type": "string",
@@ -122,7 +123,8 @@
         "!=",
         "=~",
         "!~"
-      ]
+      ],
+      "type": "string"
     },
     "Matcher": {
       "type": "object",
@@ -218,7 +220,8 @@
             "OK",
             "Alerting",
             "Error"
-          ]
+          ],
+          "type": "string"
         },
         "folderUID": {
           "type": "string"
@@ -244,7 +247,8 @@
             "Alerting",
             "NoData",
             "OK"
-          ]
+          ],
+          "type": "string"
         },
         "orgID": {
           "type": "integer"
