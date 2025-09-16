@@ -60,8 +60,9 @@ class Dataquery(cogvariants.Dataquery):
     # TODO find a better way to do this ^ that's friendly to schema
     # TODO this shouldn't be unknown but DataSourceRef | null
     datasource: typing.Optional[dashboard.DataSourceRef]
+    direction: typing.Optional['LokiQueryDirection']
 
-    def __init__(self, expr: str = "", legend_format: typing.Optional[str] = None, max_lines: typing.Optional[int] = None, resolution: typing.Optional[int] = None, editor_mode: typing.Optional['QueryEditorMode'] = None, range_val: typing.Optional[bool] = None, instant: typing.Optional[bool] = None, step: typing.Optional[str] = None, ref_id: str = "", hide: typing.Optional[bool] = None, query_type: typing.Optional[str] = None, datasource: typing.Optional[dashboard.DataSourceRef] = None):
+    def __init__(self, expr: str = "", legend_format: typing.Optional[str] = None, max_lines: typing.Optional[int] = None, resolution: typing.Optional[int] = None, editor_mode: typing.Optional['QueryEditorMode'] = None, range_val: typing.Optional[bool] = None, instant: typing.Optional[bool] = None, step: typing.Optional[str] = None, ref_id: str = "", hide: typing.Optional[bool] = None, query_type: typing.Optional[str] = None, datasource: typing.Optional[dashboard.DataSourceRef] = None, direction: typing.Optional['LokiQueryDirection'] = None):
         self.expr = expr
         self.legend_format = legend_format
         self.max_lines = max_lines
@@ -74,6 +75,7 @@ class Dataquery(cogvariants.Dataquery):
         self.hide = hide
         self.query_type = query_type
         self.datasource = datasource
+        self.direction = direction
 
     def to_json(self) -> dict[str, object]:
         payload: dict[str, object] = {
@@ -100,6 +102,8 @@ class Dataquery(cogvariants.Dataquery):
             payload["queryType"] = self.query_type
         if self.datasource is not None:
             payload["datasource"] = self.datasource
+        if self.direction is not None:
+            payload["direction"] = self.direction
         return payload
 
     @classmethod
@@ -129,7 +133,9 @@ class Dataquery(cogvariants.Dataquery):
         if "queryType" in data:
             args["query_type"] = data["queryType"]
         if "datasource" in data:
-            args["datasource"] = dashboard.DataSourceRef.from_json(data["datasource"])        
+            args["datasource"] = dashboard.DataSourceRef.from_json(data["datasource"])
+        if "direction" in data:
+            args["direction"] = data["direction"]        
 
         return cls(**args)
 
