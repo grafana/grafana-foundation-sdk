@@ -1,6 +1,6 @@
 // Code generated - EDITING IS FUTILE. DO NOT EDIT.
 
-package com.grafana.foundation.timeseries;
+package com.grafana.foundation.trend;
 
 import com.grafana.foundation.dashboard.Panel;
 import java.util.List;
@@ -36,19 +36,19 @@ import com.grafana.foundation.common.GraphTransform;
 import com.grafana.foundation.common.BoolOrFloat64;
 import com.grafana.foundation.common.BoolOrUint32;
 
-public class PanelBuilder implements com.grafana.foundation.cog.Builder<Panel> {
+public class TrendPanelBuilder implements com.grafana.foundation.cog.Builder<Panel> {
     protected final Panel internal;
     
-    public PanelBuilder() {
+    public TrendPanelBuilder() {
         this.internal = new Panel();
-        this.internal.type = "timeseries";
+        this.internal.type = "trend";
     }
-    public PanelBuilder id(Integer id) {
+    public TrendPanelBuilder id(Integer id) {
         this.internal.id = id;
         return this;
     }
     
-    public PanelBuilder targets(List<com.grafana.foundation.cog.Builder<Dataquery>> targets) {
+    public TrendPanelBuilder targets(List<com.grafana.foundation.cog.Builder<Dataquery>> targets) {
         List<Dataquery> targetsResources = new LinkedList<>();
         for (com.grafana.foundation.cog.Builder<Dataquery> r1 : targets) {
                 Dataquery targetsDepth1 = r1.build();
@@ -58,7 +58,7 @@ public class PanelBuilder implements com.grafana.foundation.cog.Builder<Panel> {
         return this;
     }
     
-    public PanelBuilder withTarget(com.grafana.foundation.cog.Builder<Dataquery> target) {
+    public TrendPanelBuilder withTarget(com.grafana.foundation.cog.Builder<Dataquery> target) {
 		if (this.internal.targets == null) {
 			this.internal.targets = new LinkedList<>();
 		}
@@ -67,32 +67,32 @@ public class PanelBuilder implements com.grafana.foundation.cog.Builder<Panel> {
         return this;
     }
     
-    public PanelBuilder title(String title) {
+    public TrendPanelBuilder title(String title) {
         this.internal.title = title;
         return this;
     }
     
-    public PanelBuilder description(String description) {
+    public TrendPanelBuilder description(String description) {
         this.internal.description = description;
         return this;
     }
     
-    public PanelBuilder transparent(Boolean transparent) {
+    public TrendPanelBuilder transparent(Boolean transparent) {
         this.internal.transparent = transparent;
         return this;
     }
     
-    public PanelBuilder datasource(DataSourceRef datasource) {
+    public TrendPanelBuilder datasource(DataSourceRef datasource) {
         this.internal.datasource = datasource;
         return this;
     }
     
-    public PanelBuilder gridPos(GridPos gridPos) {
+    public TrendPanelBuilder gridPos(GridPos gridPos) {
         this.internal.gridPos = gridPos;
         return this;
     }
     
-    public PanelBuilder height(Integer h) {
+    public TrendPanelBuilder height(Integer h) {
         if (!(h > 0)) {
             throw new IllegalArgumentException("h must be > 0");
         }
@@ -103,7 +103,7 @@ public class PanelBuilder implements com.grafana.foundation.cog.Builder<Panel> {
         return this;
     }
     
-    public PanelBuilder span(Integer w) {
+    public TrendPanelBuilder span(Integer w) {
         if (!(w > 0)) {
             throw new IllegalArgumentException("w must be > 0");
         }
@@ -117,7 +117,7 @@ public class PanelBuilder implements com.grafana.foundation.cog.Builder<Panel> {
         return this;
     }
     
-    public PanelBuilder links(List<com.grafana.foundation.cog.Builder<DashboardLink>> links) {
+    public TrendPanelBuilder links(List<com.grafana.foundation.cog.Builder<DashboardLink>> links) {
         List<DashboardLink> linksResources = new LinkedList<>();
         for (com.grafana.foundation.cog.Builder<DashboardLink> r1 : links) {
                 DashboardLink linksDepth1 = r1.build();
@@ -127,27 +127,27 @@ public class PanelBuilder implements com.grafana.foundation.cog.Builder<Panel> {
         return this;
     }
     
-    public PanelBuilder repeat(String repeat) {
+    public TrendPanelBuilder repeat(String repeat) {
         this.internal.repeat = repeat;
         return this;
     }
     
-    public PanelBuilder repeatDirection(PanelRepeatDirection repeatDirection) {
+    public TrendPanelBuilder repeatDirection(PanelRepeatDirection repeatDirection) {
         this.internal.repeatDirection = repeatDirection;
         return this;
     }
     
-    public PanelBuilder maxDataPoints(Double maxDataPoints) {
+    public TrendPanelBuilder maxDataPoints(Double maxDataPoints) {
         this.internal.maxDataPoints = maxDataPoints;
         return this;
     }
     
-    public PanelBuilder transformations(List<DataTransformerConfig> transformations) {
+    public TrendPanelBuilder transformations(List<DataTransformerConfig> transformations) {
         this.internal.transformations = transformations;
         return this;
     }
     
-    public PanelBuilder withTransformation(DataTransformerConfig transformation) {
+    public TrendPanelBuilder withTransformation(DataTransformerConfig transformation) {
 		if (this.internal.transformations == null) {
 			this.internal.transformations = new LinkedList<>();
 		}
@@ -155,27 +155,27 @@ public class PanelBuilder implements com.grafana.foundation.cog.Builder<Panel> {
         return this;
     }
     
-    public PanelBuilder interval(String interval) {
+    public TrendPanelBuilder interval(String interval) {
         this.internal.interval = interval;
         return this;
     }
     
-    public PanelBuilder timeFrom(String timeFrom) {
+    public TrendPanelBuilder timeFrom(String timeFrom) {
         this.internal.timeFrom = timeFrom;
         return this;
     }
     
-    public PanelBuilder timeShift(String timeShift) {
+    public TrendPanelBuilder timeShift(String timeShift) {
         this.internal.timeShift = timeShift;
         return this;
     }
     
-    public PanelBuilder libraryPanel(LibraryPanelRef libraryPanel) {
+    public TrendPanelBuilder libraryPanel(LibraryPanelRef libraryPanel) {
         this.internal.libraryPanel = libraryPanel;
         return this;
     }
     
-    public PanelBuilder displayName(String displayName) {
+    public TrendPanelBuilder displayName(String displayName) {
 		if (this.internal.fieldConfig == null) {
 			this.internal.fieldConfig = new com.grafana.foundation.dashboard.FieldConfigSource();
 		}
@@ -186,7 +186,7 @@ public class PanelBuilder implements com.grafana.foundation.cog.Builder<Panel> {
         return this;
     }
     
-    public PanelBuilder unit(String unit) {
+    public TrendPanelBuilder unit(String unit) {
 		if (this.internal.fieldConfig == null) {
 			this.internal.fieldConfig = new com.grafana.foundation.dashboard.FieldConfigSource();
 		}
@@ -197,7 +197,7 @@ public class PanelBuilder implements com.grafana.foundation.cog.Builder<Panel> {
         return this;
     }
     
-    public PanelBuilder decimals(Double decimals) {
+    public TrendPanelBuilder decimals(Double decimals) {
 		if (this.internal.fieldConfig == null) {
 			this.internal.fieldConfig = new com.grafana.foundation.dashboard.FieldConfigSource();
 		}
@@ -208,7 +208,7 @@ public class PanelBuilder implements com.grafana.foundation.cog.Builder<Panel> {
         return this;
     }
     
-    public PanelBuilder min(Double min) {
+    public TrendPanelBuilder min(Double min) {
 		if (this.internal.fieldConfig == null) {
 			this.internal.fieldConfig = new com.grafana.foundation.dashboard.FieldConfigSource();
 		}
@@ -219,7 +219,7 @@ public class PanelBuilder implements com.grafana.foundation.cog.Builder<Panel> {
         return this;
     }
     
-    public PanelBuilder max(Double max) {
+    public TrendPanelBuilder max(Double max) {
 		if (this.internal.fieldConfig == null) {
 			this.internal.fieldConfig = new com.grafana.foundation.dashboard.FieldConfigSource();
 		}
@@ -230,7 +230,7 @@ public class PanelBuilder implements com.grafana.foundation.cog.Builder<Panel> {
         return this;
     }
     
-    public PanelBuilder mappings(List<ValueMapping> mappings) {
+    public TrendPanelBuilder mappings(List<ValueMapping> mappings) {
 		if (this.internal.fieldConfig == null) {
 			this.internal.fieldConfig = new com.grafana.foundation.dashboard.FieldConfigSource();
 		}
@@ -241,7 +241,7 @@ public class PanelBuilder implements com.grafana.foundation.cog.Builder<Panel> {
         return this;
     }
     
-    public PanelBuilder thresholds(com.grafana.foundation.cog.Builder<ThresholdsConfig> thresholds) {
+    public TrendPanelBuilder thresholds(com.grafana.foundation.cog.Builder<ThresholdsConfig> thresholds) {
 		if (this.internal.fieldConfig == null) {
 			this.internal.fieldConfig = new com.grafana.foundation.dashboard.FieldConfigSource();
 		}
@@ -253,7 +253,7 @@ public class PanelBuilder implements com.grafana.foundation.cog.Builder<Panel> {
         return this;
     }
     
-    public PanelBuilder colorScheme(com.grafana.foundation.cog.Builder<FieldColor> color) {
+    public TrendPanelBuilder colorScheme(com.grafana.foundation.cog.Builder<FieldColor> color) {
 		if (this.internal.fieldConfig == null) {
 			this.internal.fieldConfig = new com.grafana.foundation.dashboard.FieldConfigSource();
 		}
@@ -265,7 +265,7 @@ public class PanelBuilder implements com.grafana.foundation.cog.Builder<Panel> {
         return this;
     }
     
-    public PanelBuilder dataLinks(List<com.grafana.foundation.cog.Builder<DashboardLink>> links) {
+    public TrendPanelBuilder dataLinks(List<com.grafana.foundation.cog.Builder<DashboardLink>> links) {
 		if (this.internal.fieldConfig == null) {
 			this.internal.fieldConfig = new com.grafana.foundation.dashboard.FieldConfigSource();
 		}
@@ -281,7 +281,7 @@ public class PanelBuilder implements com.grafana.foundation.cog.Builder<Panel> {
         return this;
     }
     
-    public PanelBuilder noValue(String noValue) {
+    public TrendPanelBuilder noValue(String noValue) {
 		if (this.internal.fieldConfig == null) {
 			this.internal.fieldConfig = new com.grafana.foundation.dashboard.FieldConfigSource();
 		}
@@ -292,7 +292,7 @@ public class PanelBuilder implements com.grafana.foundation.cog.Builder<Panel> {
         return this;
     }
     
-    public PanelBuilder overrides(List<com.grafana.foundation.cog.Builder<DashboardFieldConfigSourceOverrides>> overrides) {
+    public TrendPanelBuilder overrides(List<com.grafana.foundation.cog.Builder<DashboardFieldConfigSourceOverrides>> overrides) {
 		if (this.internal.fieldConfig == null) {
 			this.internal.fieldConfig = new com.grafana.foundation.dashboard.FieldConfigSource();
 		}
@@ -305,7 +305,7 @@ public class PanelBuilder implements com.grafana.foundation.cog.Builder<Panel> {
         return this;
     }
     
-    public PanelBuilder withOverride(com.grafana.foundation.cog.Builder<DashboardFieldConfigSourceOverrides> override) {
+    public TrendPanelBuilder withOverride(com.grafana.foundation.cog.Builder<DashboardFieldConfigSourceOverrides> override) {
 		if (this.internal.fieldConfig == null) {
 			this.internal.fieldConfig = new com.grafana.foundation.dashboard.FieldConfigSource();
 		}
@@ -317,7 +317,7 @@ public class PanelBuilder implements com.grafana.foundation.cog.Builder<Panel> {
         return this;
     }
     
-    public PanelBuilder overrideByName(String name,List<DynamicConfigValue> properties) {
+    public TrendPanelBuilder overrideByName(String name,List<DynamicConfigValue> properties) {
 		if (this.internal.fieldConfig == null) {
 			this.internal.fieldConfig = new com.grafana.foundation.dashboard.FieldConfigSource();
 		}
@@ -334,7 +334,7 @@ public class PanelBuilder implements com.grafana.foundation.cog.Builder<Panel> {
         return this;
     }
     
-    public PanelBuilder overrideByRegexp(String regexp,List<DynamicConfigValue> properties) {
+    public TrendPanelBuilder overrideByRegexp(String regexp,List<DynamicConfigValue> properties) {
 		if (this.internal.fieldConfig == null) {
 			this.internal.fieldConfig = new com.grafana.foundation.dashboard.FieldConfigSource();
 		}
@@ -351,7 +351,7 @@ public class PanelBuilder implements com.grafana.foundation.cog.Builder<Panel> {
         return this;
     }
     
-    public PanelBuilder overrideByFieldType(String fieldType,List<DynamicConfigValue> properties) {
+    public TrendPanelBuilder overrideByFieldType(String fieldType,List<DynamicConfigValue> properties) {
 		if (this.internal.fieldConfig == null) {
 			this.internal.fieldConfig = new com.grafana.foundation.dashboard.FieldConfigSource();
 		}
@@ -368,7 +368,7 @@ public class PanelBuilder implements com.grafana.foundation.cog.Builder<Panel> {
         return this;
     }
     
-    public PanelBuilder overrideByQuery(String queryRefId,List<DynamicConfigValue> properties) {
+    public TrendPanelBuilder overrideByQuery(String queryRefId,List<DynamicConfigValue> properties) {
 		if (this.internal.fieldConfig == null) {
 			this.internal.fieldConfig = new com.grafana.foundation.dashboard.FieldConfigSource();
 		}
@@ -385,33 +385,33 @@ public class PanelBuilder implements com.grafana.foundation.cog.Builder<Panel> {
         return this;
     }
     
-    public PanelBuilder timezone(List<String> timezone) {
+    public TrendPanelBuilder legend(com.grafana.foundation.cog.Builder<VizLegendOptions> legend) {
 		if (this.internal.options == null) {
-			this.internal.options = new com.grafana.foundation.timeseries.Options();
-		}
-        ((Options) this.internal.options).timezone = timezone;
-        return this;
-    }
-    
-    public PanelBuilder legend(com.grafana.foundation.cog.Builder<VizLegendOptions> legend) {
-		if (this.internal.options == null) {
-			this.internal.options = new com.grafana.foundation.timeseries.Options();
+			this.internal.options = new com.grafana.foundation.trend.Options();
 		}
     VizLegendOptions legendResource = legend.build();
         ((Options) this.internal.options).legend = legendResource;
         return this;
     }
     
-    public PanelBuilder tooltip(com.grafana.foundation.cog.Builder<VizTooltipOptions> tooltip) {
+    public TrendPanelBuilder tooltip(com.grafana.foundation.cog.Builder<VizTooltipOptions> tooltip) {
 		if (this.internal.options == null) {
-			this.internal.options = new com.grafana.foundation.timeseries.Options();
+			this.internal.options = new com.grafana.foundation.trend.Options();
 		}
     VizTooltipOptions tooltipResource = tooltip.build();
         ((Options) this.internal.options).tooltip = tooltipResource;
         return this;
     }
     
-    public PanelBuilder drawStyle(GraphDrawStyle drawStyle) {
+    public TrendPanelBuilder xField(String xField) {
+		if (this.internal.options == null) {
+			this.internal.options = new com.grafana.foundation.trend.Options();
+		}
+        ((Options) this.internal.options).xField = xField;
+        return this;
+    }
+    
+    public TrendPanelBuilder drawStyle(GraphDrawStyle drawStyle) {
 		if (this.internal.fieldConfig == null) {
 			this.internal.fieldConfig = new com.grafana.foundation.dashboard.FieldConfigSource();
 		}
@@ -419,13 +419,13 @@ public class PanelBuilder implements com.grafana.foundation.cog.Builder<Panel> {
 			this.internal.fieldConfig.defaults = new com.grafana.foundation.dashboard.FieldConfig();
 		}
 		if (this.internal.fieldConfig.defaults.custom == null) {
-			this.internal.fieldConfig.defaults.custom = new com.grafana.foundation.timeseries.FieldConfig();
+			this.internal.fieldConfig.defaults.custom = new com.grafana.foundation.trend.FieldConfig();
 		}
         ((FieldConfig) this.internal.fieldConfig.defaults.custom).drawStyle = drawStyle;
         return this;
     }
     
-    public PanelBuilder gradientMode(GraphGradientMode gradientMode) {
+    public TrendPanelBuilder gradientMode(GraphGradientMode gradientMode) {
 		if (this.internal.fieldConfig == null) {
 			this.internal.fieldConfig = new com.grafana.foundation.dashboard.FieldConfigSource();
 		}
@@ -433,13 +433,13 @@ public class PanelBuilder implements com.grafana.foundation.cog.Builder<Panel> {
 			this.internal.fieldConfig.defaults = new com.grafana.foundation.dashboard.FieldConfig();
 		}
 		if (this.internal.fieldConfig.defaults.custom == null) {
-			this.internal.fieldConfig.defaults.custom = new com.grafana.foundation.timeseries.FieldConfig();
+			this.internal.fieldConfig.defaults.custom = new com.grafana.foundation.trend.FieldConfig();
 		}
         ((FieldConfig) this.internal.fieldConfig.defaults.custom).gradientMode = gradientMode;
         return this;
     }
     
-    public PanelBuilder thresholdsStyle(com.grafana.foundation.cog.Builder<GraphThresholdsStyleConfig> thresholdsStyle) {
+    public TrendPanelBuilder thresholdsStyle(com.grafana.foundation.cog.Builder<GraphThresholdsStyleConfig> thresholdsStyle) {
 		if (this.internal.fieldConfig == null) {
 			this.internal.fieldConfig = new com.grafana.foundation.dashboard.FieldConfigSource();
 		}
@@ -447,14 +447,14 @@ public class PanelBuilder implements com.grafana.foundation.cog.Builder<Panel> {
 			this.internal.fieldConfig.defaults = new com.grafana.foundation.dashboard.FieldConfig();
 		}
 		if (this.internal.fieldConfig.defaults.custom == null) {
-			this.internal.fieldConfig.defaults.custom = new com.grafana.foundation.timeseries.FieldConfig();
+			this.internal.fieldConfig.defaults.custom = new com.grafana.foundation.trend.FieldConfig();
 		}
     GraphThresholdsStyleConfig thresholdsStyleResource = thresholdsStyle.build();
         ((FieldConfig) this.internal.fieldConfig.defaults.custom).thresholdsStyle = thresholdsStyleResource;
         return this;
     }
     
-    public PanelBuilder lineColor(String lineColor) {
+    public TrendPanelBuilder lineColor(String lineColor) {
 		if (this.internal.fieldConfig == null) {
 			this.internal.fieldConfig = new com.grafana.foundation.dashboard.FieldConfigSource();
 		}
@@ -462,13 +462,13 @@ public class PanelBuilder implements com.grafana.foundation.cog.Builder<Panel> {
 			this.internal.fieldConfig.defaults = new com.grafana.foundation.dashboard.FieldConfig();
 		}
 		if (this.internal.fieldConfig.defaults.custom == null) {
-			this.internal.fieldConfig.defaults.custom = new com.grafana.foundation.timeseries.FieldConfig();
+			this.internal.fieldConfig.defaults.custom = new com.grafana.foundation.trend.FieldConfig();
 		}
         ((FieldConfig) this.internal.fieldConfig.defaults.custom).lineColor = lineColor;
         return this;
     }
     
-    public PanelBuilder lineWidth(Double lineWidth) {
+    public TrendPanelBuilder lineWidth(Double lineWidth) {
 		if (this.internal.fieldConfig == null) {
 			this.internal.fieldConfig = new com.grafana.foundation.dashboard.FieldConfigSource();
 		}
@@ -476,13 +476,13 @@ public class PanelBuilder implements com.grafana.foundation.cog.Builder<Panel> {
 			this.internal.fieldConfig.defaults = new com.grafana.foundation.dashboard.FieldConfig();
 		}
 		if (this.internal.fieldConfig.defaults.custom == null) {
-			this.internal.fieldConfig.defaults.custom = new com.grafana.foundation.timeseries.FieldConfig();
+			this.internal.fieldConfig.defaults.custom = new com.grafana.foundation.trend.FieldConfig();
 		}
         ((FieldConfig) this.internal.fieldConfig.defaults.custom).lineWidth = lineWidth;
         return this;
     }
     
-    public PanelBuilder lineInterpolation(LineInterpolation lineInterpolation) {
+    public TrendPanelBuilder lineInterpolation(LineInterpolation lineInterpolation) {
 		if (this.internal.fieldConfig == null) {
 			this.internal.fieldConfig = new com.grafana.foundation.dashboard.FieldConfigSource();
 		}
@@ -490,13 +490,13 @@ public class PanelBuilder implements com.grafana.foundation.cog.Builder<Panel> {
 			this.internal.fieldConfig.defaults = new com.grafana.foundation.dashboard.FieldConfig();
 		}
 		if (this.internal.fieldConfig.defaults.custom == null) {
-			this.internal.fieldConfig.defaults.custom = new com.grafana.foundation.timeseries.FieldConfig();
+			this.internal.fieldConfig.defaults.custom = new com.grafana.foundation.trend.FieldConfig();
 		}
         ((FieldConfig) this.internal.fieldConfig.defaults.custom).lineInterpolation = lineInterpolation;
         return this;
     }
     
-    public PanelBuilder lineStyle(com.grafana.foundation.cog.Builder<LineStyle> lineStyle) {
+    public TrendPanelBuilder lineStyle(com.grafana.foundation.cog.Builder<LineStyle> lineStyle) {
 		if (this.internal.fieldConfig == null) {
 			this.internal.fieldConfig = new com.grafana.foundation.dashboard.FieldConfigSource();
 		}
@@ -504,14 +504,14 @@ public class PanelBuilder implements com.grafana.foundation.cog.Builder<Panel> {
 			this.internal.fieldConfig.defaults = new com.grafana.foundation.dashboard.FieldConfig();
 		}
 		if (this.internal.fieldConfig.defaults.custom == null) {
-			this.internal.fieldConfig.defaults.custom = new com.grafana.foundation.timeseries.FieldConfig();
+			this.internal.fieldConfig.defaults.custom = new com.grafana.foundation.trend.FieldConfig();
 		}
     LineStyle lineStyleResource = lineStyle.build();
         ((FieldConfig) this.internal.fieldConfig.defaults.custom).lineStyle = lineStyleResource;
         return this;
     }
     
-    public PanelBuilder fillColor(String fillColor) {
+    public TrendPanelBuilder fillColor(String fillColor) {
 		if (this.internal.fieldConfig == null) {
 			this.internal.fieldConfig = new com.grafana.foundation.dashboard.FieldConfigSource();
 		}
@@ -519,13 +519,13 @@ public class PanelBuilder implements com.grafana.foundation.cog.Builder<Panel> {
 			this.internal.fieldConfig.defaults = new com.grafana.foundation.dashboard.FieldConfig();
 		}
 		if (this.internal.fieldConfig.defaults.custom == null) {
-			this.internal.fieldConfig.defaults.custom = new com.grafana.foundation.timeseries.FieldConfig();
+			this.internal.fieldConfig.defaults.custom = new com.grafana.foundation.trend.FieldConfig();
 		}
         ((FieldConfig) this.internal.fieldConfig.defaults.custom).fillColor = fillColor;
         return this;
     }
     
-    public PanelBuilder fillOpacity(Double fillOpacity) {
+    public TrendPanelBuilder fillOpacity(Double fillOpacity) {
 		if (this.internal.fieldConfig == null) {
 			this.internal.fieldConfig = new com.grafana.foundation.dashboard.FieldConfigSource();
 		}
@@ -533,13 +533,13 @@ public class PanelBuilder implements com.grafana.foundation.cog.Builder<Panel> {
 			this.internal.fieldConfig.defaults = new com.grafana.foundation.dashboard.FieldConfig();
 		}
 		if (this.internal.fieldConfig.defaults.custom == null) {
-			this.internal.fieldConfig.defaults.custom = new com.grafana.foundation.timeseries.FieldConfig();
+			this.internal.fieldConfig.defaults.custom = new com.grafana.foundation.trend.FieldConfig();
 		}
         ((FieldConfig) this.internal.fieldConfig.defaults.custom).fillOpacity = fillOpacity;
         return this;
     }
     
-    public PanelBuilder showPoints(VisibilityMode showPoints) {
+    public TrendPanelBuilder showPoints(VisibilityMode showPoints) {
 		if (this.internal.fieldConfig == null) {
 			this.internal.fieldConfig = new com.grafana.foundation.dashboard.FieldConfigSource();
 		}
@@ -547,13 +547,13 @@ public class PanelBuilder implements com.grafana.foundation.cog.Builder<Panel> {
 			this.internal.fieldConfig.defaults = new com.grafana.foundation.dashboard.FieldConfig();
 		}
 		if (this.internal.fieldConfig.defaults.custom == null) {
-			this.internal.fieldConfig.defaults.custom = new com.grafana.foundation.timeseries.FieldConfig();
+			this.internal.fieldConfig.defaults.custom = new com.grafana.foundation.trend.FieldConfig();
 		}
         ((FieldConfig) this.internal.fieldConfig.defaults.custom).showPoints = showPoints;
         return this;
     }
     
-    public PanelBuilder pointSize(Double pointSize) {
+    public TrendPanelBuilder pointSize(Double pointSize) {
 		if (this.internal.fieldConfig == null) {
 			this.internal.fieldConfig = new com.grafana.foundation.dashboard.FieldConfigSource();
 		}
@@ -561,13 +561,13 @@ public class PanelBuilder implements com.grafana.foundation.cog.Builder<Panel> {
 			this.internal.fieldConfig.defaults = new com.grafana.foundation.dashboard.FieldConfig();
 		}
 		if (this.internal.fieldConfig.defaults.custom == null) {
-			this.internal.fieldConfig.defaults.custom = new com.grafana.foundation.timeseries.FieldConfig();
+			this.internal.fieldConfig.defaults.custom = new com.grafana.foundation.trend.FieldConfig();
 		}
         ((FieldConfig) this.internal.fieldConfig.defaults.custom).pointSize = pointSize;
         return this;
     }
     
-    public PanelBuilder pointColor(String pointColor) {
+    public TrendPanelBuilder pointColor(String pointColor) {
 		if (this.internal.fieldConfig == null) {
 			this.internal.fieldConfig = new com.grafana.foundation.dashboard.FieldConfigSource();
 		}
@@ -575,13 +575,13 @@ public class PanelBuilder implements com.grafana.foundation.cog.Builder<Panel> {
 			this.internal.fieldConfig.defaults = new com.grafana.foundation.dashboard.FieldConfig();
 		}
 		if (this.internal.fieldConfig.defaults.custom == null) {
-			this.internal.fieldConfig.defaults.custom = new com.grafana.foundation.timeseries.FieldConfig();
+			this.internal.fieldConfig.defaults.custom = new com.grafana.foundation.trend.FieldConfig();
 		}
         ((FieldConfig) this.internal.fieldConfig.defaults.custom).pointColor = pointColor;
         return this;
     }
     
-    public PanelBuilder axisPlacement(AxisPlacement axisPlacement) {
+    public TrendPanelBuilder axisPlacement(AxisPlacement axisPlacement) {
 		if (this.internal.fieldConfig == null) {
 			this.internal.fieldConfig = new com.grafana.foundation.dashboard.FieldConfigSource();
 		}
@@ -589,13 +589,13 @@ public class PanelBuilder implements com.grafana.foundation.cog.Builder<Panel> {
 			this.internal.fieldConfig.defaults = new com.grafana.foundation.dashboard.FieldConfig();
 		}
 		if (this.internal.fieldConfig.defaults.custom == null) {
-			this.internal.fieldConfig.defaults.custom = new com.grafana.foundation.timeseries.FieldConfig();
+			this.internal.fieldConfig.defaults.custom = new com.grafana.foundation.trend.FieldConfig();
 		}
         ((FieldConfig) this.internal.fieldConfig.defaults.custom).axisPlacement = axisPlacement;
         return this;
     }
     
-    public PanelBuilder axisColorMode(AxisColorMode axisColorMode) {
+    public TrendPanelBuilder axisColorMode(AxisColorMode axisColorMode) {
 		if (this.internal.fieldConfig == null) {
 			this.internal.fieldConfig = new com.grafana.foundation.dashboard.FieldConfigSource();
 		}
@@ -603,13 +603,13 @@ public class PanelBuilder implements com.grafana.foundation.cog.Builder<Panel> {
 			this.internal.fieldConfig.defaults = new com.grafana.foundation.dashboard.FieldConfig();
 		}
 		if (this.internal.fieldConfig.defaults.custom == null) {
-			this.internal.fieldConfig.defaults.custom = new com.grafana.foundation.timeseries.FieldConfig();
+			this.internal.fieldConfig.defaults.custom = new com.grafana.foundation.trend.FieldConfig();
 		}
         ((FieldConfig) this.internal.fieldConfig.defaults.custom).axisColorMode = axisColorMode;
         return this;
     }
     
-    public PanelBuilder axisLabel(String axisLabel) {
+    public TrendPanelBuilder axisLabel(String axisLabel) {
 		if (this.internal.fieldConfig == null) {
 			this.internal.fieldConfig = new com.grafana.foundation.dashboard.FieldConfigSource();
 		}
@@ -617,13 +617,13 @@ public class PanelBuilder implements com.grafana.foundation.cog.Builder<Panel> {
 			this.internal.fieldConfig.defaults = new com.grafana.foundation.dashboard.FieldConfig();
 		}
 		if (this.internal.fieldConfig.defaults.custom == null) {
-			this.internal.fieldConfig.defaults.custom = new com.grafana.foundation.timeseries.FieldConfig();
+			this.internal.fieldConfig.defaults.custom = new com.grafana.foundation.trend.FieldConfig();
 		}
         ((FieldConfig) this.internal.fieldConfig.defaults.custom).axisLabel = axisLabel;
         return this;
     }
     
-    public PanelBuilder axisWidth(Double axisWidth) {
+    public TrendPanelBuilder axisWidth(Double axisWidth) {
 		if (this.internal.fieldConfig == null) {
 			this.internal.fieldConfig = new com.grafana.foundation.dashboard.FieldConfigSource();
 		}
@@ -631,13 +631,13 @@ public class PanelBuilder implements com.grafana.foundation.cog.Builder<Panel> {
 			this.internal.fieldConfig.defaults = new com.grafana.foundation.dashboard.FieldConfig();
 		}
 		if (this.internal.fieldConfig.defaults.custom == null) {
-			this.internal.fieldConfig.defaults.custom = new com.grafana.foundation.timeseries.FieldConfig();
+			this.internal.fieldConfig.defaults.custom = new com.grafana.foundation.trend.FieldConfig();
 		}
         ((FieldConfig) this.internal.fieldConfig.defaults.custom).axisWidth = axisWidth;
         return this;
     }
     
-    public PanelBuilder axisSoftMin(Double axisSoftMin) {
+    public TrendPanelBuilder axisSoftMin(Double axisSoftMin) {
 		if (this.internal.fieldConfig == null) {
 			this.internal.fieldConfig = new com.grafana.foundation.dashboard.FieldConfigSource();
 		}
@@ -645,13 +645,13 @@ public class PanelBuilder implements com.grafana.foundation.cog.Builder<Panel> {
 			this.internal.fieldConfig.defaults = new com.grafana.foundation.dashboard.FieldConfig();
 		}
 		if (this.internal.fieldConfig.defaults.custom == null) {
-			this.internal.fieldConfig.defaults.custom = new com.grafana.foundation.timeseries.FieldConfig();
+			this.internal.fieldConfig.defaults.custom = new com.grafana.foundation.trend.FieldConfig();
 		}
         ((FieldConfig) this.internal.fieldConfig.defaults.custom).axisSoftMin = axisSoftMin;
         return this;
     }
     
-    public PanelBuilder axisSoftMax(Double axisSoftMax) {
+    public TrendPanelBuilder axisSoftMax(Double axisSoftMax) {
 		if (this.internal.fieldConfig == null) {
 			this.internal.fieldConfig = new com.grafana.foundation.dashboard.FieldConfigSource();
 		}
@@ -659,13 +659,13 @@ public class PanelBuilder implements com.grafana.foundation.cog.Builder<Panel> {
 			this.internal.fieldConfig.defaults = new com.grafana.foundation.dashboard.FieldConfig();
 		}
 		if (this.internal.fieldConfig.defaults.custom == null) {
-			this.internal.fieldConfig.defaults.custom = new com.grafana.foundation.timeseries.FieldConfig();
+			this.internal.fieldConfig.defaults.custom = new com.grafana.foundation.trend.FieldConfig();
 		}
         ((FieldConfig) this.internal.fieldConfig.defaults.custom).axisSoftMax = axisSoftMax;
         return this;
     }
     
-    public PanelBuilder axisGridShow(Boolean axisGridShow) {
+    public TrendPanelBuilder axisGridShow(Boolean axisGridShow) {
 		if (this.internal.fieldConfig == null) {
 			this.internal.fieldConfig = new com.grafana.foundation.dashboard.FieldConfigSource();
 		}
@@ -673,13 +673,13 @@ public class PanelBuilder implements com.grafana.foundation.cog.Builder<Panel> {
 			this.internal.fieldConfig.defaults = new com.grafana.foundation.dashboard.FieldConfig();
 		}
 		if (this.internal.fieldConfig.defaults.custom == null) {
-			this.internal.fieldConfig.defaults.custom = new com.grafana.foundation.timeseries.FieldConfig();
+			this.internal.fieldConfig.defaults.custom = new com.grafana.foundation.trend.FieldConfig();
 		}
         ((FieldConfig) this.internal.fieldConfig.defaults.custom).axisGridShow = axisGridShow;
         return this;
     }
     
-    public PanelBuilder scaleDistribution(com.grafana.foundation.cog.Builder<ScaleDistributionConfig> scaleDistribution) {
+    public TrendPanelBuilder scaleDistribution(com.grafana.foundation.cog.Builder<ScaleDistributionConfig> scaleDistribution) {
 		if (this.internal.fieldConfig == null) {
 			this.internal.fieldConfig = new com.grafana.foundation.dashboard.FieldConfigSource();
 		}
@@ -687,14 +687,14 @@ public class PanelBuilder implements com.grafana.foundation.cog.Builder<Panel> {
 			this.internal.fieldConfig.defaults = new com.grafana.foundation.dashboard.FieldConfig();
 		}
 		if (this.internal.fieldConfig.defaults.custom == null) {
-			this.internal.fieldConfig.defaults.custom = new com.grafana.foundation.timeseries.FieldConfig();
+			this.internal.fieldConfig.defaults.custom = new com.grafana.foundation.trend.FieldConfig();
 		}
     ScaleDistributionConfig scaleDistributionResource = scaleDistribution.build();
         ((FieldConfig) this.internal.fieldConfig.defaults.custom).scaleDistribution = scaleDistributionResource;
         return this;
     }
     
-    public PanelBuilder barAlignment(BarAlignment barAlignment) {
+    public TrendPanelBuilder barAlignment(BarAlignment barAlignment) {
 		if (this.internal.fieldConfig == null) {
 			this.internal.fieldConfig = new com.grafana.foundation.dashboard.FieldConfigSource();
 		}
@@ -702,13 +702,13 @@ public class PanelBuilder implements com.grafana.foundation.cog.Builder<Panel> {
 			this.internal.fieldConfig.defaults = new com.grafana.foundation.dashboard.FieldConfig();
 		}
 		if (this.internal.fieldConfig.defaults.custom == null) {
-			this.internal.fieldConfig.defaults.custom = new com.grafana.foundation.timeseries.FieldConfig();
+			this.internal.fieldConfig.defaults.custom = new com.grafana.foundation.trend.FieldConfig();
 		}
         ((FieldConfig) this.internal.fieldConfig.defaults.custom).barAlignment = barAlignment;
         return this;
     }
     
-    public PanelBuilder barWidthFactor(Double barWidthFactor) {
+    public TrendPanelBuilder barWidthFactor(Double barWidthFactor) {
 		if (this.internal.fieldConfig == null) {
 			this.internal.fieldConfig = new com.grafana.foundation.dashboard.FieldConfigSource();
 		}
@@ -716,13 +716,13 @@ public class PanelBuilder implements com.grafana.foundation.cog.Builder<Panel> {
 			this.internal.fieldConfig.defaults = new com.grafana.foundation.dashboard.FieldConfig();
 		}
 		if (this.internal.fieldConfig.defaults.custom == null) {
-			this.internal.fieldConfig.defaults.custom = new com.grafana.foundation.timeseries.FieldConfig();
+			this.internal.fieldConfig.defaults.custom = new com.grafana.foundation.trend.FieldConfig();
 		}
         ((FieldConfig) this.internal.fieldConfig.defaults.custom).barWidthFactor = barWidthFactor;
         return this;
     }
     
-    public PanelBuilder stacking(com.grafana.foundation.cog.Builder<StackingConfig> stacking) {
+    public TrendPanelBuilder stacking(com.grafana.foundation.cog.Builder<StackingConfig> stacking) {
 		if (this.internal.fieldConfig == null) {
 			this.internal.fieldConfig = new com.grafana.foundation.dashboard.FieldConfigSource();
 		}
@@ -730,14 +730,14 @@ public class PanelBuilder implements com.grafana.foundation.cog.Builder<Panel> {
 			this.internal.fieldConfig.defaults = new com.grafana.foundation.dashboard.FieldConfig();
 		}
 		if (this.internal.fieldConfig.defaults.custom == null) {
-			this.internal.fieldConfig.defaults.custom = new com.grafana.foundation.timeseries.FieldConfig();
+			this.internal.fieldConfig.defaults.custom = new com.grafana.foundation.trend.FieldConfig();
 		}
     StackingConfig stackingResource = stacking.build();
         ((FieldConfig) this.internal.fieldConfig.defaults.custom).stacking = stackingResource;
         return this;
     }
     
-    public PanelBuilder hideFrom(com.grafana.foundation.cog.Builder<HideSeriesConfig> hideFrom) {
+    public TrendPanelBuilder hideFrom(com.grafana.foundation.cog.Builder<HideSeriesConfig> hideFrom) {
 		if (this.internal.fieldConfig == null) {
 			this.internal.fieldConfig = new com.grafana.foundation.dashboard.FieldConfigSource();
 		}
@@ -745,14 +745,14 @@ public class PanelBuilder implements com.grafana.foundation.cog.Builder<Panel> {
 			this.internal.fieldConfig.defaults = new com.grafana.foundation.dashboard.FieldConfig();
 		}
 		if (this.internal.fieldConfig.defaults.custom == null) {
-			this.internal.fieldConfig.defaults.custom = new com.grafana.foundation.timeseries.FieldConfig();
+			this.internal.fieldConfig.defaults.custom = new com.grafana.foundation.trend.FieldConfig();
 		}
     HideSeriesConfig hideFromResource = hideFrom.build();
         ((FieldConfig) this.internal.fieldConfig.defaults.custom).hideFrom = hideFromResource;
         return this;
     }
     
-    public PanelBuilder transform(GraphTransform transform) {
+    public TrendPanelBuilder transform(GraphTransform transform) {
 		if (this.internal.fieldConfig == null) {
 			this.internal.fieldConfig = new com.grafana.foundation.dashboard.FieldConfigSource();
 		}
@@ -760,13 +760,13 @@ public class PanelBuilder implements com.grafana.foundation.cog.Builder<Panel> {
 			this.internal.fieldConfig.defaults = new com.grafana.foundation.dashboard.FieldConfig();
 		}
 		if (this.internal.fieldConfig.defaults.custom == null) {
-			this.internal.fieldConfig.defaults.custom = new com.grafana.foundation.timeseries.FieldConfig();
+			this.internal.fieldConfig.defaults.custom = new com.grafana.foundation.trend.FieldConfig();
 		}
         ((FieldConfig) this.internal.fieldConfig.defaults.custom).transform = transform;
         return this;
     }
     
-    public PanelBuilder spanNulls(BoolOrFloat64 spanNulls) {
+    public TrendPanelBuilder spanNulls(BoolOrFloat64 spanNulls) {
 		if (this.internal.fieldConfig == null) {
 			this.internal.fieldConfig = new com.grafana.foundation.dashboard.FieldConfigSource();
 		}
@@ -774,13 +774,13 @@ public class PanelBuilder implements com.grafana.foundation.cog.Builder<Panel> {
 			this.internal.fieldConfig.defaults = new com.grafana.foundation.dashboard.FieldConfig();
 		}
 		if (this.internal.fieldConfig.defaults.custom == null) {
-			this.internal.fieldConfig.defaults.custom = new com.grafana.foundation.timeseries.FieldConfig();
+			this.internal.fieldConfig.defaults.custom = new com.grafana.foundation.trend.FieldConfig();
 		}
         ((FieldConfig) this.internal.fieldConfig.defaults.custom).spanNulls = spanNulls;
         return this;
     }
     
-    public PanelBuilder fillBelowTo(String fillBelowTo) {
+    public TrendPanelBuilder fillBelowTo(String fillBelowTo) {
 		if (this.internal.fieldConfig == null) {
 			this.internal.fieldConfig = new com.grafana.foundation.dashboard.FieldConfigSource();
 		}
@@ -788,13 +788,13 @@ public class PanelBuilder implements com.grafana.foundation.cog.Builder<Panel> {
 			this.internal.fieldConfig.defaults = new com.grafana.foundation.dashboard.FieldConfig();
 		}
 		if (this.internal.fieldConfig.defaults.custom == null) {
-			this.internal.fieldConfig.defaults.custom = new com.grafana.foundation.timeseries.FieldConfig();
+			this.internal.fieldConfig.defaults.custom = new com.grafana.foundation.trend.FieldConfig();
 		}
         ((FieldConfig) this.internal.fieldConfig.defaults.custom).fillBelowTo = fillBelowTo;
         return this;
     }
     
-    public PanelBuilder pointSymbol(String pointSymbol) {
+    public TrendPanelBuilder pointSymbol(String pointSymbol) {
 		if (this.internal.fieldConfig == null) {
 			this.internal.fieldConfig = new com.grafana.foundation.dashboard.FieldConfigSource();
 		}
@@ -802,13 +802,13 @@ public class PanelBuilder implements com.grafana.foundation.cog.Builder<Panel> {
 			this.internal.fieldConfig.defaults = new com.grafana.foundation.dashboard.FieldConfig();
 		}
 		if (this.internal.fieldConfig.defaults.custom == null) {
-			this.internal.fieldConfig.defaults.custom = new com.grafana.foundation.timeseries.FieldConfig();
+			this.internal.fieldConfig.defaults.custom = new com.grafana.foundation.trend.FieldConfig();
 		}
         ((FieldConfig) this.internal.fieldConfig.defaults.custom).pointSymbol = pointSymbol;
         return this;
     }
     
-    public PanelBuilder axisCenteredZero(Boolean axisCenteredZero) {
+    public TrendPanelBuilder axisCenteredZero(Boolean axisCenteredZero) {
 		if (this.internal.fieldConfig == null) {
 			this.internal.fieldConfig = new com.grafana.foundation.dashboard.FieldConfigSource();
 		}
@@ -816,13 +816,13 @@ public class PanelBuilder implements com.grafana.foundation.cog.Builder<Panel> {
 			this.internal.fieldConfig.defaults = new com.grafana.foundation.dashboard.FieldConfig();
 		}
 		if (this.internal.fieldConfig.defaults.custom == null) {
-			this.internal.fieldConfig.defaults.custom = new com.grafana.foundation.timeseries.FieldConfig();
+			this.internal.fieldConfig.defaults.custom = new com.grafana.foundation.trend.FieldConfig();
 		}
         ((FieldConfig) this.internal.fieldConfig.defaults.custom).axisCenteredZero = axisCenteredZero;
         return this;
     }
     
-    public PanelBuilder barMaxWidth(Double barMaxWidth) {
+    public TrendPanelBuilder barMaxWidth(Double barMaxWidth) {
 		if (this.internal.fieldConfig == null) {
 			this.internal.fieldConfig = new com.grafana.foundation.dashboard.FieldConfigSource();
 		}
@@ -830,13 +830,13 @@ public class PanelBuilder implements com.grafana.foundation.cog.Builder<Panel> {
 			this.internal.fieldConfig.defaults = new com.grafana.foundation.dashboard.FieldConfig();
 		}
 		if (this.internal.fieldConfig.defaults.custom == null) {
-			this.internal.fieldConfig.defaults.custom = new com.grafana.foundation.timeseries.FieldConfig();
+			this.internal.fieldConfig.defaults.custom = new com.grafana.foundation.trend.FieldConfig();
 		}
         ((FieldConfig) this.internal.fieldConfig.defaults.custom).barMaxWidth = barMaxWidth;
         return this;
     }
     
-    public PanelBuilder insertNulls(BoolOrUint32 insertNulls) {
+    public TrendPanelBuilder insertNulls(BoolOrUint32 insertNulls) {
 		if (this.internal.fieldConfig == null) {
 			this.internal.fieldConfig = new com.grafana.foundation.dashboard.FieldConfigSource();
 		}
@@ -844,7 +844,7 @@ public class PanelBuilder implements com.grafana.foundation.cog.Builder<Panel> {
 			this.internal.fieldConfig.defaults = new com.grafana.foundation.dashboard.FieldConfig();
 		}
 		if (this.internal.fieldConfig.defaults.custom == null) {
-			this.internal.fieldConfig.defaults.custom = new com.grafana.foundation.timeseries.FieldConfig();
+			this.internal.fieldConfig.defaults.custom = new com.grafana.foundation.trend.FieldConfig();
 		}
         ((FieldConfig) this.internal.fieldConfig.defaults.custom).insertNulls = insertNulls;
         return this;

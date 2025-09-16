@@ -6,19 +6,22 @@
         "candles+volume",
         "candles",
         "volume"
-      ]
+      ],
+      "type": "string"
     },
     "CandleStyle": {
       "enum": [
         "candles",
         "ohlcbars"
-      ]
+      ],
+      "type": "string"
     },
     "ColorStrategy": {
       "enum": [
         "open-close",
         "close-close"
-      ]
+      ],
+      "type": "string"
     },
     "CandlestickFieldMap": {
       "type": "object",
@@ -289,6 +292,7 @@
         "table",
         "hidden"
       ],
+      "type": "string",
       "description": "TODO docs\nNote: \"hidden\" needs to remain as an option for plugins compatibility"
     },
     "LegendPlacement": {
@@ -296,6 +300,7 @@
         "bottom",
         "right"
       ],
+      "type": "string",
       "description": "TODO docs"
     },
     "GraphDrawStyle": {
@@ -304,6 +309,7 @@
         "bars",
         "points"
       ],
+      "type": "string",
       "description": "TODO docs"
     },
     "GraphGradientMode": {
@@ -313,6 +319,7 @@
         "hue",
         "scheme"
       ],
+      "type": "string",
       "description": "TODO docs"
     },
     "GraphThresholdsStyleConfig": {
@@ -335,6 +342,7 @@
         "stepBefore",
         "stepAfter"
       ],
+      "type": "string",
       "description": "TODO docs"
     },
     "LineStyle": {
@@ -347,7 +355,8 @@
             "dash",
             "dot",
             "square"
-          ]
+          ],
+          "type": "string"
         },
         "dash": {
           "type": "array",
@@ -364,6 +373,7 @@
         "never",
         "always"
       ],
+      "type": "string",
       "description": "TODO docs"
     },
     "AxisPlacement": {
@@ -375,6 +385,7 @@
         "left",
         "hidden"
       ],
+      "type": "string",
       "description": "TODO docs"
     },
     "AxisColorMode": {
@@ -382,6 +393,7 @@
         "text",
         "series"
       ],
+      "type": "string",
       "description": "TODO docs"
     },
     "ScaleDistributionConfig": {
@@ -409,6 +421,7 @@
         0,
         1
       ],
+      "type": "integer",
       "description": "TODO docs"
     },
     "StackingConfig": {
@@ -450,6 +463,7 @@
         "constant",
         "negative-Y"
       ],
+      "type": "string",
       "description": "TODO docs"
     },
     "GraphTresholdsStyleMode": {
@@ -462,6 +476,7 @@
         "dashed+area",
         "series"
       ],
+      "type": "string",
       "description": "TODO docs"
     },
     "ScaleDistribution": {
@@ -471,6 +486,7 @@
         "ordinal",
         "symlog"
       ],
+      "type": "string",
       "description": "TODO docs"
     },
     "StackingMode": {
@@ -479,6 +495,7 @@
         "normal",
         "percent"
       ],
+      "type": "string",
       "description": "TODO docs"
     }
   }

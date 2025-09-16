@@ -80,6 +80,7 @@
         "vertical",
         "horizontal"
       ],
+      "type": "string",
       "description": "TODO docs"
     }
   }
