@@ -7,6 +7,7 @@
         "annotations",
         "alertStates"
       ],
+      "type": "string",
       "description": "A topic is attached to DataFrame metadata in query results.\nThis specifies where the data should be used."
     },
     "DataSourceJsonData": {
@@ -72,7 +73,8 @@
       "enum": [
         "linear",
         "quad"
-      ]
+      ],
+      "type": "string"
     },
     "ScaleDimensionConfig": {
       "type": "object",
@@ -119,7 +121,8 @@
       "enum": [
         "mod",
         "clamped"
-      ]
+      ],
+      "type": "string"
     },
     "ScalarDimensionConfig": {
       "type": "object",
@@ -152,7 +155,8 @@
         "fixed",
         "field",
         "template"
-      ]
+      ],
+      "type": "string"
     },
     "TextDimensionConfig": {
       "type": "object",
@@ -178,7 +182,8 @@
         "fixed",
         "field",
         "mapping"
-      ]
+      ],
+      "type": "string"
     },
     "MapLayerOptions": {
       "type": "object",
@@ -257,13 +262,15 @@
         "geohash",
         "coords",
         "lookup"
-      ]
+      ],
+      "type": "string"
     },
     "HeatmapCalculationMode": {
       "enum": [
         "size",
         "count"
-      ]
+      ],
+      "type": "string"
     },
     "HeatmapCellLayout": {
       "enum": [
@@ -271,7 +278,8 @@
         "ge",
         "unknown",
         "auto"
-      ]
+      ],
+      "type": "string"
     },
     "HeatmapCalculationBucketConfig": {
       "type": "object",
@@ -317,13 +325,15 @@
         "ordinal",
         "symlog"
       ],
+      "type": "string",
       "description": "TODO docs"
     },
     "LogsSortOrder": {
       "enum": [
         "Descending",
         "Ascending"
-      ]
+      ],
+      "type": "string"
     },
     "AxisPlacement": {
       "enum": [
@@ -334,6 +344,7 @@
         "left",
         "hidden"
       ],
+      "type": "string",
       "description": "TODO docs"
     },
     "AxisColorMode": {
@@ -341,6 +352,7 @@
         "text",
         "series"
       ],
+      "type": "string",
       "description": "TODO docs"
     },
     "VisibilityMode": {
@@ -349,6 +361,7 @@
         "never",
         "always"
       ],
+      "type": "string",
       "description": "TODO docs"
     },
     "GraphDrawStyle": {
@@ -357,6 +370,7 @@
         "bars",
         "points"
       ],
+      "type": "string",
       "description": "TODO docs"
     },
     "GraphTransform": {
@@ -364,6 +378,7 @@
         "constant",
         "negative-Y"
       ],
+      "type": "string",
       "description": "TODO docs"
     },
     "LineInterpolation": {
@@ -373,6 +388,7 @@
         "stepBefore",
         "stepAfter"
       ],
+      "type": "string",
       "description": "TODO docs"
     },
     "GraphGradientMode": {
@@ -382,6 +398,7 @@
         "hue",
         "scheme"
       ],
+      "type": "string",
       "description": "TODO docs"
     },
     "StackingMode": {
@@ -390,6 +407,7 @@
         "normal",
         "percent"
       ],
+      "type": "string",
       "description": "TODO docs"
     },
     "BarAlignment": {
@@ -398,6 +416,7 @@
         0,
         1
       ],
+      "type": "integer",
       "description": "TODO docs"
     },
     "ScaleOrientation": {
@@ -405,6 +424,7 @@
         0,
         1
       ],
+      "type": "integer",
       "description": "TODO docs"
     },
     "ScaleDirection": {
@@ -414,6 +434,7 @@
         -1,
         -1
       ],
+      "type": "integer",
       "description": "TODO docs"
     },
     "LineStyle": {
@@ -426,7 +447,8 @@
             "dash",
             "dot",
             "square"
-          ]
+          ],
+          "type": "string"
         },
         "dash": {
           "type": "array",
@@ -619,6 +641,7 @@
         "dashed+area",
         "series"
       ],
+      "type": "string",
       "description": "TODO docs"
     },
     "GraphThresholdsStyleConfig": {
@@ -639,6 +662,7 @@
         "bottom",
         "right"
       ],
+      "type": "string",
       "description": "TODO docs"
     },
     "LegendDisplayMode": {
@@ -647,6 +671,7 @@
         "table",
         "hidden"
       ],
+      "type": "string",
       "description": "TODO docs\nNote: \"hidden\" needs to remain as an option for plugins compatibility"
     },
     "SingleStatBaseOptions": {
@@ -719,6 +744,7 @@
         "vertical",
         "horizontal"
       ],
+      "type": "string",
       "description": "TODO docs"
     },
     "OptionsWithTooltip": {
@@ -763,6 +789,7 @@
         "multi",
         "none"
       ],
+      "type": "string",
       "description": "TODO docs"
     },
     "SortOrder": {
@@ -771,6 +798,7 @@
         "desc",
         "none"
       ],
+      "type": "string",
       "description": "TODO docs"
     },
     "OptionsWithLegend": {
@@ -849,6 +877,16 @@
       "type": "string",
       "description": "A specific timezone from https://en.wikipedia.org/wiki/Tz_database"
     },
+    "TimeZoneUtc": {
+      "type": "string",
+      "const": "utc",
+      "description": "Use UTC/GMT timezone"
+    },
+    "TimeZoneBrowser": {
+      "type": "string",
+      "const": "browser",
+      "description": "Use the timezone defined by end user web browser"
+    },
     "OptionsWithTextFormatting": {
       "type": "object",
       "additionalProperties": false,
@@ -866,6 +904,7 @@
         "background_solid",
         "none"
       ],
+      "type": "string",
       "description": "TODO docs"
     },
     "BigValueGraphMode": {
@@ -874,6 +913,7 @@
         "line",
         "area"
       ],
+      "type": "string",
       "description": "TODO docs"
     },
     "BigValueJustifyMode": {
@@ -881,6 +921,7 @@
         "auto",
         "center"
       ],
+      "type": "string",
       "description": "TODO docs"
     },
     "BigValueTextMode": {
@@ -891,6 +932,7 @@
         "name",
         "none"
       ],
+      "type": "string",
       "description": "TODO docs"
     },
     "FieldTextAlignment": {
@@ -900,6 +942,7 @@
         "right",
         "center"
       ],
+      "type": "string",
       "description": "TODO -- should not be table specific!\nTODO docs"
     },
     "TimelineValueAlignment": {
@@ -908,6 +951,7 @@
         "left",
         "right"
       ],
+      "type": "string",
       "description": "Controls the value alignment in the TimelineChart component"
     },
     "GraphFieldConfig": {
@@ -1034,6 +1078,7 @@
         "lcd",
         "gradient"
       ],
+      "type": "string",
       "description": "Enum expressing the possible display modes\nfor the bar gauge component of Grafana UI"
     },
     "BarGaugeValueMode": {
@@ -1042,6 +1087,7 @@
         "text",
         "hidden"
       ],
+      "type": "string",
       "description": "Allows for the table cell gauge display type to set the gauge mode."
     },
     "BarGaugeNamePlacement": {
@@ -1050,6 +1096,7 @@
         "top",
         "left"
       ],
+      "type": "string",
       "description": "Allows for the bar gauge name to be placed explicitly"
     },
     "BarGaugeSizing": {
@@ -1057,6 +1104,7 @@
         "auto",
         "manual"
       ],
+      "type": "string",
       "description": "Allows for the bar gauge size to be set explicitly"
     },
     "Labels": {
@@ -1081,6 +1129,7 @@
         "data-links",
         "custom"
       ],
+      "type": "string",
       "description": "Internally, this is the \"type\" of cell that's being displayed\nin the table such as colored text, JSON, gauge, etc.\nThe color-background-solid, gradient-gauge, and lcd-gauge\nmodes are deprecated in favor of new cell subOptions"
     },
     "TableCellBackgroundDisplayMode": {
@@ -1088,6 +1137,7 @@
         "basic",
         "gradient"
       ],
+      "type": "string",
       "description": "Display mode to the \"Colored Background\" display\nmode for table cells. Either displays a solid color (basic mode)\nor a gradient."
     },
     "TableSortByFieldState": {
@@ -1372,6 +1422,7 @@
         "md",
         "lg"
       ],
+      "type": "string",
       "description": "Height of a table cell"
     },
     "TableCellOptions": {
@@ -1403,16 +1454,6 @@
       ],
       "description": "Table cell options. Each cell has a display mode\nand other potential options for that display."
     },
-    "TimeZoneUtc": {
-      "type": "string",
-      "const": "utc",
-      "description": "Use UTC/GMT timezone"
-    },
-    "TimeZoneBrowser": {
-      "type": "string",
-      "const": "browser",
-      "description": "Use the timezone defined by end user web browser"
-    },
     "VariableFormatID": {
       "enum": [
         "lucene",
@@ -1433,6 +1474,7 @@
         "text",
         "queryparam"
       ],
+      "type": "string",
       "description": "Optional formats for the template variable replace functions\nSee also https://grafana.com/docs/grafana/latest/dashboards/variables/variable-syntax/#advanced-variable-format-options"
     },
     "ResourceDimensionConfig": {
@@ -1475,7 +1517,8 @@
         "exact",
         "numbers",
         "signature"
-      ]
+      ],
+      "type": "string"
     },
     "ComparisonOperation": {
       "enum": [
@@ -1486,6 +1529,7 @@
         "gt",
         "gte"
       ],
+      "type": "string",
       "description": "Compare two values"
     },
     "TableFieldOptions": {

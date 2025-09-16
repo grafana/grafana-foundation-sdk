@@ -38,6 +38,7 @@ export interface dataquery {
 	// TODO find a better way to do this ^ that's friendly to schema
 	// TODO this shouldn't be unknown but DataSourceRef | null
 	datasource?: dashboard.DataSourceRef;
+	direction?: loki.LokiQueryDirection;
 	_implementsDataqueryVariant(): void;
 }
 

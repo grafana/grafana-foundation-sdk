@@ -10,6 +10,10 @@ import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 import java.io.IOException;
+import java.util.List;
+import com.grafana.foundation.cog.variants.Dataquery;
+import com.grafana.foundation.cog.variants.Registry;
+import com.grafana.foundation.dashboard.DataSourceRef;
 
 public class StringOrInt64Deserializer extends JsonDeserializer<StringOrInt64> {
 
@@ -20,10 +24,10 @@ public class StringOrInt64Deserializer extends JsonDeserializer<StringOrInt64> {
         
         StringOrInt64 stringOrInt64 = new StringOrInt64();
         if (root.isTextual()) {
-            stringOrInt64.string = mapper.convertValue(root, new TypeReference<>() {});
+            stringOrInt64.string = mapper.convertValue(root, String.class);
         }
-        else if (root.isObject()) {
-            stringOrInt64.int64 = mapper.convertValue(root, new TypeReference<>() {});
+        else if (root.isIntegralNumber()) {
+            stringOrInt64.int64 = mapper.convertValue(root, Long.class);
         }
         
         return stringOrInt64;
