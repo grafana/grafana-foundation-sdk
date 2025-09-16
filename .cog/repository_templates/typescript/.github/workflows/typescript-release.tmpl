@@ -47,4 +47,4 @@ jobs:
         run: npm run build
 
       - name: Publish to NPM registry
-        run: npm publish --access public --tag v{{ .Extra.GrafanaVersion|registryToSemver }}
+        run: npm publish --access public --tag {{ .Extra.GrafanaVersion }}
