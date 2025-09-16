@@ -47,4 +47,4 @@ jobs:
         run: npm run build
 
       - name: Publish to NPM registry
-        run: npm publish --access public --tag {{ .Extra.GrafanaVersion }}
+        run: npm publish --access public --tag {{ .Extra.GrafanaVersion }}-latest
