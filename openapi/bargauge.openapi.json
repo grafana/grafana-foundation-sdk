@@ -75,6 +75,7 @@
           "lcd",
           "gradient"
         ],
+        "type": "string",
         "description": "Enum expressing the possible display modes\nfor the bar gauge component of Grafana UI"
       },
       "BarGaugeValueMode": {
@@ -83,6 +84,7 @@
           "text",
           "hidden"
         ],
+        "type": "string",
         "description": "Allows for the table cell gauge display type to set the gauge mode."
       },
       "BarGaugeNamePlacement": {
@@ -91,6 +93,7 @@
           "top",
           "left"
         ],
+        "type": "string",
         "description": "Allows for the bar gauge name to be placed explicitly"
       },
       "BarGaugeSizing": {
@@ -98,6 +101,7 @@
           "auto",
           "manual"
         ],
+        "type": "string",
         "description": "Allows for the bar gauge size to be set explicitly"
       },
       "ReduceDataOptions": {
@@ -150,6 +154,7 @@
           "vertical",
           "horizontal"
         ],
+        "type": "string",
         "description": "TODO docs"
       }
     }

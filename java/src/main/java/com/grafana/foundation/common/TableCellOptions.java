@@ -72,36 +72,8 @@ public class TableCellOptions {
     }
     
     public String toJSON() throws JsonProcessingException {
-        if (tableAutoCellOptions != null) {
-            ObjectWriter ow = new ObjectMapper().writer().withDefaultPrettyPrinter();
-            return ow.writeValueAsString(tableAutoCellOptions);
-        }
-        if (tableSparklineCellOptions != null) {
-            ObjectWriter ow = new ObjectMapper().writer().withDefaultPrettyPrinter();
-            return ow.writeValueAsString(tableSparklineCellOptions);
-        }
-        if (tableBarGaugeCellOptions != null) {
-            ObjectWriter ow = new ObjectMapper().writer().withDefaultPrettyPrinter();
-            return ow.writeValueAsString(tableBarGaugeCellOptions);
-        }
-        if (tableColoredBackgroundCellOptions != null) {
-            ObjectWriter ow = new ObjectMapper().writer().withDefaultPrettyPrinter();
-            return ow.writeValueAsString(tableColoredBackgroundCellOptions);
-        }
-        if (tableColorTextCellOptions != null) {
-            ObjectWriter ow = new ObjectMapper().writer().withDefaultPrettyPrinter();
-            return ow.writeValueAsString(tableColorTextCellOptions);
-        }
-        if (tableImageCellOptions != null) {
-            ObjectWriter ow = new ObjectMapper().writer().withDefaultPrettyPrinter();
-            return ow.writeValueAsString(tableImageCellOptions);
-        }
-        if (tableJsonViewCellOptions != null) {
-            ObjectWriter ow = new ObjectMapper().writer().withDefaultPrettyPrinter();
-            return ow.writeValueAsString(tableJsonViewCellOptions);
-        }
-        
-        return null;
+        ObjectWriter ow = new ObjectMapper().writer().withDefaultPrettyPrinter();
+        return ow.writeValueAsString(this);
     }
 
 }

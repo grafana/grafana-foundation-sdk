@@ -51,7 +51,8 @@
               "viewer",
               "editor",
               "admin"
-            ]
+            ],
+            "type": "string"
           }
         }
       },
@@ -84,7 +85,8 @@
             "enum": [
               "Team",
               "User"
-            ]
+            ],
+            "type": "string"
           },
           "name": {
             "type": "string",
