@@ -87,6 +87,7 @@
                 "numeric-long",
                 "log-lines"
               ],
+              "type": "string",
               "description": "Type asserts that the frame matches a known type structure.\nPossible enum values:\n - `\"\"` \n - `\"timeseries-wide\"` \n - `\"timeseries-long\"` \n - `\"timeseries-many\"` \n - `\"timeseries-multi\"` \n - `\"directory-listing\"` \n - `\"table\"` \n - `\"numeric-wide\"` \n - `\"numeric-multi\"` \n - `\"numeric-long\"` \n - `\"log-lines\"` "
             },
             "typeVersion": {
@@ -171,6 +172,7 @@
             "last",
             "median"
           ],
+          "type": "string",
           "description": "The reducer\nPossible enum values:\n - `\"sum\"` \n - `\"mean\"` \n - `\"min\"` \n - `\"max\"` \n - `\"count\"` \n - `\"last\"` \n - `\"median\"` "
         },
         "refId": {
@@ -202,6 +204,7 @@
                 "numeric-long",
                 "log-lines"
               ],
+              "type": "string",
               "description": "Type asserts that the frame matches a known type structure.\nPossible enum values:\n - `\"\"` \n - `\"timeseries-wide\"` \n - `\"timeseries-long\"` \n - `\"timeseries-many\"` \n - `\"timeseries-multi\"` \n - `\"directory-listing\"` \n - `\"table\"` \n - `\"numeric-wide\"` \n - `\"numeric-multi\"` \n - `\"numeric-long\"` \n - `\"log-lines\"` "
             },
             "typeVersion": {
@@ -226,6 +229,7 @@
                 "dropNN",
                 "replaceNN"
               ],
+              "type": "string",
               "description": "Non-number reduce behavior\nPossible enum values:\n - `\"dropNN\"` Drop non-numbers\n - `\"replaceNN\"` Replace non-numbers"
             },
             "replaceWithValue": {
@@ -288,6 +292,7 @@
             "last",
             "median"
           ],
+          "type": "string",
           "description": "The downsample function\nPossible enum values:\n - `\"sum\"` \n - `\"mean\"` \n - `\"min\"` \n - `\"max\"` \n - `\"count\"` \n - `\"last\"` \n - `\"median\"` "
         },
         "expression": {
@@ -340,6 +345,7 @@
                 "numeric-long",
                 "log-lines"
               ],
+              "type": "string",
               "description": "Type asserts that the frame matches a known type structure.\nPossible enum values:\n - `\"\"` \n - `\"timeseries-wide\"` \n - `\"timeseries-long\"` \n - `\"timeseries-many\"` \n - `\"timeseries-multi\"` \n - `\"directory-listing\"` \n - `\"table\"` \n - `\"numeric-wide\"` \n - `\"numeric-multi\"` \n - `\"numeric-long\"` \n - `\"log-lines\"` "
             },
             "typeVersion": {
@@ -383,6 +389,7 @@
             "backfilling",
             "fillna"
           ],
+          "type": "string",
           "description": "The upsample function\nPossible enum values:\n - `\"pad\"` Use the last seen value\n - `\"backfilling\"` backfill\n - `\"fillna\"` Do not fill values (nill)"
         },
         "window": {
@@ -445,7 +452,8 @@
                       "and",
                       "or",
                       "logic-or"
-                    ]
+                    ],
+                    "type": "string"
                   }
                 }
               },
@@ -528,6 +536,7 @@
                 "numeric-long",
                 "log-lines"
               ],
+              "type": "string",
               "description": "Type asserts that the frame matches a known type structure.\nPossible enum values:\n - `\"\"` \n - `\"timeseries-wide\"` \n - `\"timeseries-long\"` \n - `\"timeseries-many\"` \n - `\"timeseries-multi\"` \n - `\"directory-listing\"` \n - `\"table\"` \n - `\"numeric-wide\"` \n - `\"numeric-multi\"` \n - `\"numeric-long\"` \n - `\"log-lines\"` "
             },
             "typeVersion": {
@@ -613,6 +622,7 @@
                       "within_range_included",
                       "outside_range_included"
                     ],
+                    "type": "string",
                     "description": "e.g. \"gt\""
                   }
                 }
@@ -648,6 +658,7 @@
                       "within_range_included",
                       "outside_range_included"
                     ],
+                    "type": "string",
                     "description": "e.g. \"gt\""
                   }
                 }
@@ -710,6 +721,7 @@
                 "numeric-long",
                 "log-lines"
               ],
+              "type": "string",
               "description": "Type asserts that the frame matches a known type structure.\nPossible enum values:\n - `\"\"` \n - `\"timeseries-wide\"` \n - `\"timeseries-long\"` \n - `\"timeseries-many\"` \n - `\"timeseries-multi\"` \n - `\"directory-listing\"` \n - `\"table\"` \n - `\"numeric-wide\"` \n - `\"numeric-multi\"` \n - `\"numeric-long\"` \n - `\"log-lines\"` "
             },
             "typeVersion": {
@@ -815,6 +827,7 @@
                 "numeric-long",
                 "log-lines"
               ],
+              "type": "string",
               "description": "Type asserts that the frame matches a known type structure.\nPossible enum values:\n - `\"\"` \n - `\"timeseries-wide\"` \n - `\"timeseries-long\"` \n - `\"timeseries-many\"` \n - `\"timeseries-multi\"` \n - `\"directory-listing\"` \n - `\"table\"` \n - `\"numeric-wide\"` \n - `\"numeric-multi\"` \n - `\"numeric-long\"` \n - `\"log-lines\"` "
             },
             "typeVersion": {
