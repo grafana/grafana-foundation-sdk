@@ -142,17 +142,22 @@ git_run "${KIND_REGISTRY_PATH}" checkout main
 git_run "${KIND_REGISTRY_PATH}" pull --ff-only origin main
 
 info "Running cog"
+
 grafana_version_or_main=${GRAFANA_VERSION}
 if [ "${grafana_version_or_main}" == "next" ]; then
   grafana_version_or_main="main"
-fi
+  typescript_tag="main"
 
 # The usual "v11.6.x" branch doesn't exist for some reason
-if [ "${grafana_version_or_main}" == "v11.6.x" ]; then
+elif [ "${grafana_version_or_main}" == "v11.6.x" ]; then
   grafana_version_or_main="release-11.6.0"
+  typescript_tag="11-6-latest"
+  
+else
+  typescript_tag=$(echo "$grafana_version_or_main" | sed -e 's/^v//' -e 's/\./-/g' -e 's/x$/latest/')
 fi
 
-run_codegen "output_dir=${codegen_output_path}/%l,kind_registry_path=${KIND_REGISTRY_PATH},kind_registry_version=${GRAFANA_VERSION},grafana_version=${grafana_version_or_main},cog_version=${COG_VERSION},all_grafana_versions=${ALL_GRAFANA_VERSIONS},release_branch=${release_branch},build_timestamp=${build_timestamp}"
+run_codegen "output_dir=${codegen_output_path}/%l,kind_registry_path=${KIND_REGISTRY_PATH},kind_registry_version=${GRAFANA_VERSION},grafana_version=${grafana_version_or_main},cog_version=${COG_VERSION},all_grafana_versions=${ALL_GRAFANA_VERSIONS},release_branch=${release_branch},build_timestamp=${build_timestamp},typescript_tag=${typescript_tag}"
 
 release_branch_exists=$(git_has_branch "${foundation_sdk_path}" "${release_branch}")
 if [ "$release_branch_exists" != "0" ]; then
