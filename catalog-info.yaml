@@ -15,4 +15,4 @@ metadata:
 spec:
   type: library
   owner: group:default/grafana-app-platform-squad
-  lifecycle: production
+  lifecycle: experimental
