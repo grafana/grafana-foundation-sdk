@@ -1,0 +1,6 @@
+runtime:
+  - package: 'dashboard'
+    name: 'panel'
+    nameFunc: 'ConvertPanelToCode'
+    DiscriminatorField: 'type'
+    
