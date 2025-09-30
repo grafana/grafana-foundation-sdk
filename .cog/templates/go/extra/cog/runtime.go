@@ -192,6 +192,15 @@ func ConvertDataqueryToCode(dataquery variants.Dataquery) string {
 	return NewRuntime().ConvertDataqueryToGo(dataquery)
 }
 
+func ConvertDataQueryKindToCode(dataqueryKind any, group string) string {
+	config, found := NewRuntime().dataqueryVariants[group]
+	if found && config.GoV2Converter != nil {
+		return config.GoV2Converter(dataqueryKind)
+	}
+
+	return "/* could not convert dataquerykind to go */"
+}
+
 func Dump(root any) string {
 	return dumpValue(reflect.ValueOf(root))
 }
