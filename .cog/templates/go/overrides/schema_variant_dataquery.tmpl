@@ -54,6 +54,15 @@ func VariantConfig() variants.DataqueryConfig {
                 return {{ .Schema.EntryPoint|formatObjectName }}Converter(dataquery)
             {{- end }}
         },
+        {{- if objectExists "dashboardv2beta1" "DataQueryKind" }}
+        GoV2Converter: func(input any) string {
+            if cast, ok := input.(*dashboardv2beta1.DataQueryKind); ok {
+                return QueryConverter(*cast)
+            }
+   
+            return QueryConverter(input.(dashboardv2beta1.DataQueryKind))
+        },
+        {{- end }}
         {{- end }}
     }
 }
