@@ -36,7 +36,7 @@ class Runtime:
         self.panelcfg_variants[variant.identifier] = variant
 
     def dataquery_from_json(self, data: dict[str, Any], dataquery_type_hint: str) -> cogvariants.Dataquery:
-        if dataquery_type_hint == "" and "datasource" in data and "type" in data["datasource"]:
+        if "datasource" in data and "type" in data["datasource"]:
             dataquery_type_hint = data["datasource"]["type"]
 
         if dataquery_type_hint != "" and dataquery_type_hint in self.dataquery_variants:

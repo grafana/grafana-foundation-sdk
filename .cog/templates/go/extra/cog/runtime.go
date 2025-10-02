@@ -63,19 +63,6 @@ func (runtime *Runtime) UnmarshalDataqueryArray(raw []byte, dataqueryTypeHint st
 }
 
 func (runtime *Runtime) UnmarshalDataquery(raw []byte, dataqueryTypeHint string) (variants.Dataquery, error) {
-	// A hint tells us the dataquery type: let's use it.
-	if dataqueryTypeHint != "" {
-		config, found := runtime.dataqueryVariants[dataqueryTypeHint]
-		if found {
-			dataquery, err := config.DataqueryUnmarshaler(raw)
-			if err != nil {
-				return nil, err
-			}
-
-			return dataquery.(variants.Dataquery), nil
-		}
-	}
-
 	// Dataqueries might reference the datasource to use, and its type. Let's use that.
 	partialDataquery := struct {
 		Datasource struct {
@@ -87,6 +74,19 @@ func (runtime *Runtime) UnmarshalDataquery(raw []byte, dataqueryTypeHint string)
 	}
 	if partialDataquery.Datasource.Type != "" {
 		config, found := runtime.dataqueryVariants[partialDataquery.Datasource.Type]
+		if found {
+			dataquery, err := config.DataqueryUnmarshaler(raw)
+			if err != nil {
+				return nil, err
+			}
+
+			return dataquery.(variants.Dataquery), nil
+		}
+	}
+
+	// A hint tells us the dataquery type: let's use it.
+	if dataqueryTypeHint != "" {
+		config, found := runtime.dataqueryVariants[dataqueryTypeHint]
 		if found {
 			dataquery, err := config.DataqueryUnmarshaler(raw)
 			if err != nil {
@@ -107,19 +107,6 @@ func (runtime *Runtime) UnmarshalDataquery(raw []byte, dataqueryTypeHint string)
 }
 
 func (runtime *Runtime) StrictUnmarshalDataquery(raw []byte, dataqueryTypeHint string) (variants.Dataquery, error) {
-	// A hint tells us the dataquery type: let's use it.
-	if dataqueryTypeHint != "" {
-		config, found := runtime.dataqueryVariants[dataqueryTypeHint]
-		if found {
-			dataquery, err := config.StrictDataqueryUnmarshaler(raw)
-			if err != nil {
-				return nil, err
-			}
-
-			return dataquery.(variants.Dataquery), nil
-		}
-	}
-
 	// Dataqueries might reference the datasource to use, and its type. Let's use that.
 	partialDataquery := struct {
 		Datasource struct {
@@ -131,6 +118,19 @@ func (runtime *Runtime) StrictUnmarshalDataquery(raw []byte, dataqueryTypeHint s
 	}
 	if partialDataquery.Datasource.Type != "" {
 		config, found := runtime.dataqueryVariants[partialDataquery.Datasource.Type]
+		if found {
+			dataquery, err := config.StrictDataqueryUnmarshaler(raw)
+			if err != nil {
+				return nil, err
+			}
+
+			return dataquery.(variants.Dataquery), nil
+		}
+	}
+
+	// A hint tells us the dataquery type: let's use it.
+	if dataqueryTypeHint != "" {
+		config, found := runtime.dataqueryVariants[dataqueryTypeHint]
 		if found {
 			dataquery, err := config.StrictDataqueryUnmarshaler(raw)
 			if err != nil {
