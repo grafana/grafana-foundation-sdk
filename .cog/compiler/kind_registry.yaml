@@ -101,6 +101,14 @@ passes:
           type:
             kind: scalar
             scalar: { scalar_kind: string }
+        - name: textFormat
+          type:
+            kind: scalar
+            scalar: { scalar_kind: string }
+        - name: titleFormat
+          type:
+            kind: scalar
+            scalar: { scalar_kind: string }
 
   #######################
   # Dashboard variables #
