@@ -55,6 +55,7 @@ func VariantConfig() variants.DataqueryConfig {
             {{- end }}
         },
         {{- if objectExists "dashboardv2beta1" "DataQueryKind" }}
+        {{- $dashboardv2beta1 := importPkg "dashboardv2beta1" }}
         GoV2Converter: func(input any) string {
             if cast, ok := input.(*dashboardv2beta1.DataQueryKind); ok {
                 return QueryConverter(*cast)
