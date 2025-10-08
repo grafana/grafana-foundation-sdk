@@ -12,12 +12,10 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.grafana.foundation.cog.variants.UnknownDataquery;
 import com.grafana.foundation.cog.variants.Registry;
 
-import java.util.List;
 import com.grafana.foundation.cog.variants.Dataquery;
 import com.grafana.foundation.cog.variants.Registry;
-import com.grafana.foundation.cog.variants.PanelConfig;
-import java.util.Map;
 import com.grafana.foundation.dashboard.DataSourceRef;
+import java.util.List;
 
 
 import java.io.IOException;
