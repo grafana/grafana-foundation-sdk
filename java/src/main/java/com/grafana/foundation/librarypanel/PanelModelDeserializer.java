@@ -15,8 +15,6 @@ import com.grafana.foundation.cog.variants.Registry;
 import java.util.List;
 import com.grafana.foundation.cog.variants.Dataquery;
 import com.grafana.foundation.cog.variants.Registry;
-import com.grafana.foundation.cog.variants.PanelConfig;
-import java.util.Map;
 import com.grafana.foundation.dashboard.DataSourceRef;
 
 
