@@ -259,6 +259,7 @@ func (builder *DataqueryBuilder) ResultAssertions(resultAssertions cog.Builder[R
 //   - `"node_graph"`
 //   - `"predictable_csv_wave"`
 //   - `"predictable_pulse"`
+//   - `"query_meta"`
 //   - `"random_walk"`
 //   - `"random_walk_table"`
 //   - `"random_walk_with_error"`

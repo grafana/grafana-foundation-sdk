@@ -26,6 +26,7 @@ const (
 	DataqueryScenarioIdNodeGraph DataqueryScenarioId = "node_graph"
 	DataqueryScenarioIdPredictableCsvWave DataqueryScenarioId = "predictable_csv_wave"
 	DataqueryScenarioIdPredictablePulse DataqueryScenarioId = "predictable_pulse"
+	DataqueryScenarioIdQueryMeta DataqueryScenarioId = "query_meta"
 	DataqueryScenarioIdRandomWalk DataqueryScenarioId = "random_walk"
 	DataqueryScenarioIdRandomWalkTable DataqueryScenarioId = "random_walk_table"
 	DataqueryScenarioIdRandomWalkWithError DataqueryScenarioId = "random_walk_with_error"

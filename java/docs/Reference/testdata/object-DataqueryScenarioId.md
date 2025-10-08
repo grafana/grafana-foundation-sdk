@@ -32,6 +32,7 @@ public enum DataqueryScenarioId {
     NODE_GRAPH("node_graph"),
     PREDICTABLE_CSV_WAVE("predictable_csv_wave"),
     PREDICTABLE_PULSE("predictable_pulse"),
+    QUERY_META("query_meta"),
     RANDOM_WALK("random_walk"),
     RANDOM_WALK_TABLE("random_walk_table"),
     RANDOM_WALK_WITH_ERROR("random_walk_with_error"),

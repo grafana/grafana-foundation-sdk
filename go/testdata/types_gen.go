@@ -1206,6 +1206,7 @@ type Dataquery struct {
 	//  - `"node_graph"`
 	//  - `"predictable_csv_wave"`
 	//  - `"predictable_pulse"`
+	//  - `"query_meta"`
 	//  - `"random_walk"`
 	//  - `"random_walk_table"`
 	//  - `"random_walk_with_error"`
@@ -2192,6 +2193,7 @@ const (
 	DataqueryScenarioIdNodeGraph                    DataqueryScenarioId = "node_graph"
 	DataqueryScenarioIdPredictableCsvWave           DataqueryScenarioId = "predictable_csv_wave"
 	DataqueryScenarioIdPredictablePulse             DataqueryScenarioId = "predictable_pulse"
+	DataqueryScenarioIdQueryMeta                    DataqueryScenarioId = "query_meta"
 	DataqueryScenarioIdRandomWalk                   DataqueryScenarioId = "random_walk"
 	DataqueryScenarioIdRandomWalkTable              DataqueryScenarioId = "random_walk_table"
 	DataqueryScenarioIdRandomWalkWithError          DataqueryScenarioId = "random_walk_with_error"
