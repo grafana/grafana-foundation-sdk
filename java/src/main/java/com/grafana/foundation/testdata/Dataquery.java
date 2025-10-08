@@ -131,6 +131,7 @@ public class Dataquery implements com.grafana.foundation.cog.variants.Dataquery 
     //  - `"node_graph"` 
     //  - `"predictable_csv_wave"` 
     //  - `"predictable_pulse"` 
+    //  - `"query_meta"` 
     //  - `"random_walk"` 
     //  - `"random_walk_table"` 
     //  - `"random_walk_with_error"` 

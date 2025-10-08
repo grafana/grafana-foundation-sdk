@@ -180,6 +180,15 @@ final class DataqueryScenarioId implements \JsonSerializable, \Stringable {
         return self::$instances["PredictablePulse"];
     }
 
+    public static function queryMeta(): self
+    {
+        if (!isset(self::$instances["QueryMeta"])) {
+            self::$instances["QueryMeta"] = new self("query_meta");
+        }
+
+        return self::$instances["QueryMeta"];
+    }
+
     public static function randomWalk(): self
     {
         if (!isset(self::$instances["RandomWalk"])) {
@@ -369,6 +378,10 @@ final class DataqueryScenarioId implements \JsonSerializable, \Stringable {
 
         if ($value === "predictable_pulse") {
             return self::predictablePulse();
+        }
+
+        if ($value === "query_meta") {
+            return self::queryMeta();
         }
 
         if ($value === "random_walk") {
