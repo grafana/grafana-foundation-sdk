@@ -3,4 +3,13 @@ runtime:
     name: 'panel'
     nameFunc: 'ConvertPanelToCode'
     DiscriminatorField: 'type'
-    
+
+  - package: 'dashboardv2beta1'
+    name: 'vizconfigkind'
+    nameFunc: 'ConvertPanelToCode'
+    DiscriminatorField: 'group'
+
+  - package: 'dashboardv2beta1'
+    name: 'dataquerykind'
+    nameFunc: 'ConvertDataQueryKindToCode'
+    DiscriminatorField: 'group'
