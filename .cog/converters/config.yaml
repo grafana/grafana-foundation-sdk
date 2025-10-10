@@ -1,0 +1,15 @@
+runtime:
+  - package: 'dashboard'
+    name: 'panel'
+    name_func: 'ConvertPanelToCode'
+    discriminator_field: 'type'
+
+  - package: 'dashboardv2beta1'
+    name: 'vizconfigkind'
+    name_func: 'ConvertPanelToCode'
+    discriminator_field: 'group'
+
+  - package: 'dashboardv2beta1'
+    name: 'dataquerykind'
+    name_func: 'ConvertDataQueryKindToCode'
+    discriminator_field: 'group'
