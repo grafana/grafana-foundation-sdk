@@ -60,7 +60,7 @@ func (resource *{{ .Object.Name|formatObjectName }}) UnmarshalJSON(raw []byte) e
 		return fmt.Errorf("error decoding field 'fieldConfig': %w", err)
 	}
 
-	variantCfg, found := cog.ConfigForPanelcfgVariant(resource.Kind)
+	variantCfg, found := cog.ConfigForPanelcfgVariant(resource.Group)
 	if found && variantCfg.FieldConfigUnmarshaler != nil {
 		fakeFieldConfigSource := struct {
 			Defaults struct {
@@ -85,7 +85,7 @@ func (resource *{{ .Object.Name|formatObjectName }}) UnmarshalJSON(raw []byte) e
 {{- define "object_dashboardv2beta1_VizConfigKind_spec_options" -}}
 	{{- $json := importStdPkg "encoding/json" -}}
 	{{- $cog := importPkg "cog" -}}
-	variantCfg, found := cog.ConfigForPanelcfgVariant(resource.Kind)
+	variantCfg, found := cog.ConfigForPanelcfgVariant(resource.Group)
 	if found && variantCfg.OptionsUnmarshaler != nil {
 		options, err := variantCfg.OptionsUnmarshaler(specFields["options"])
 		if err != nil {

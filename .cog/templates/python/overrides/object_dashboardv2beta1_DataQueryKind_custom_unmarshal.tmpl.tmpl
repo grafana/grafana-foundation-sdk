@@ -18,5 +18,5 @@ def from_json(cls, data: dict[str, typing.Any]) -> typing.Self:
 
 {{- define "dashboardv2beta1_DataQueryKind_spec_unmarshal" -}}
 {{- $cogruntime := importModule "cogruntime" "..cog" "runtime" -}}
-{{ $cogruntime }}.dataquery_from_json(data["{{ .Field.Name }}"],  data["kind"])
+{{ $cogruntime }}.dataquery_from_json(data["{{ .Field.Name }}"],  data["group"])
 {{- end }}

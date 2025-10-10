@@ -33,7 +33,7 @@
 	if err := json.Unmarshal(specFields["fieldConfig"], &spec.FieldConfig); err != nil {
 		errs = append(errs, cog.MakeBuildErrors("spec.fieldConfig", err)...)
 	} else {
-		variantCfg, found := cog.ConfigForPanelcfgVariant(resource.Kind)
+		variantCfg, found := cog.ConfigForPanelcfgVariant(resource.Group)
 		if found && variantCfg.StrictFieldConfigUnmarshaler != nil {
 			fakeFieldConfigSource := struct {
 				Defaults struct {
@@ -57,7 +57,7 @@
 {{- define "object_dashboardv2beta1_VizConfigKind_spec_options_strict_unmarshal" -}}
 	{{- $json := importStdPkg "encoding/json" -}}
 	{{- $cog := importPkg "cog" -}}
-	variantCfg, found := cog.ConfigForPanelcfgVariant(resource.Kind)
+	variantCfg, found := cog.ConfigForPanelcfgVariant(resource.Group)
 	if found && variantCfg.StrictOptionsUnmarshaler != nil {
 		options, err := variantCfg.StrictOptionsUnmarshaler(specFields["options"])
 		if err != nil {

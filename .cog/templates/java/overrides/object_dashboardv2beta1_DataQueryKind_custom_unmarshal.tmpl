@@ -33,8 +33,8 @@ public class {{ .Object.Name | upperCamelCase }}Deserializer extends JsonDeseria
         }
         {{- end }}
         {{- end }}
-        if ({{ .Object.Name | lowerCamelCase }}.kind != null && !{{ .Object.Name | lowerCamelCase }}.kind.trim().isEmpty()) {
-            Class<? extends Dataquery> clazz = Registry.getDataquery({{ .Object.Name | lowerCamelCase }}.kind);
+        if ({{ .Object.Name | lowerCamelCase }}.group != null && !{{ .Object.Name | lowerCamelCase }}.group.trim().isEmpty()) {
+            Class<? extends Dataquery> clazz = Registry.getDataquery({{ .Object.Name | lowerCamelCase }}.group);
             if (clazz != null) {
                 {{ $.Object.Name | lowerCamelCase }}.spec = mapper.treeToValue(root.get("spec"), clazz);
             } else {

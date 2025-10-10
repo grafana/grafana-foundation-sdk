@@ -33,7 +33,7 @@ func (resource *{{ .Object.Name|upperCamelCase }}) UnmarshalJSON(raw []byte) err
 	{{- $fmt := importStdPkg "fmt" -}}
 	{{- $cog := importPkg "cog" }}
 	if fields["spec"] != nil {
-		dataquery, err := cog.UnmarshalDataquery(fields["spec"], resource.Kind)
+		dataquery, err := cog.UnmarshalDataquery(fields["spec"], resource.Group)
 		if err != nil {
 			return fmt.Errorf("error decoding field 'spec': %w", err)
 		}

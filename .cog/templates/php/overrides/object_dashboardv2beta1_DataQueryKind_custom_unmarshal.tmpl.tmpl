@@ -24,6 +24,6 @@ public static function fromArray(array $inputData): self
 isset($data['spec']) ? (function($input) {
     /** @var array<string, mixed> $spec */
     $spec = $input['spec'];
-    return \Grafana\Foundation\Cog\Runtime::get()->dataqueryFromArray($spec, $input['kind'] ?? '');
+    return \Grafana\Foundation\Cog\Runtime::get()->dataqueryFromArray($spec, $input['group'] ?? '');
 })($data) : null
 {{- end }}

@@ -42,7 +42,7 @@ VizConfigSpec(
 
 {{- define "object_dashboardv2beta1_VizConfigKind_spec_fieldConfig_unmarshal" -}}
 {{- $cogruntime := importModule "cogruntime" "..cog" "runtime" -}}
-FieldConfigSource.from_json({**data["spec"]["fieldConfig"], **{"defaults": {**defaults, **{"custom": {{ $cogruntime }}.panelcfg_field_config_from_json(custom, data["kind"])}}}})
+FieldConfigSource.from_json({**data["spec"]["fieldConfig"], **{"defaults": {**defaults, **{"custom": {{ $cogruntime }}.panelcfg_field_config_from_json(custom, data["group"])}}}})
 {{- end }}
 
 {{- define "object_dashboardv2beta1_VizConfigKind_spec_options_unmarshal" -}}

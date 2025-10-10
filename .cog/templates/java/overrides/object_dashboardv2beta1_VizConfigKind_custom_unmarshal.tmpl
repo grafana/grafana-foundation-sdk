@@ -43,9 +43,9 @@ public class {{ .Object.Name | upperCamelCase }}Deserializer extends JsonDeseria
         {{ .Field.Type | formatType }} {{ .Field.Name }} = new {{ .Field.Type | formatType }}();
         JsonNode specNode = root.get("{{ .Field.Name }}");
         if (specNode != null && !specNode.isNull()) {
-            PanelConfig panelConfig = Registry.getPanel({{ .ObjectName }}.kind);
+            PanelConfig panelConfig = Registry.getPanel({{ .ObjectName }}.group);
             if (panelConfig == null) {
-                throw new IllegalArgumentException("Unknown panel type: " + {{ .ObjectName }}.kind);
+                throw new IllegalArgumentException("Unknown panel type: " + {{ .ObjectName }}.group);
             }
             {{- range $i, $field := (.Field.Type|resolveRefs).AsStruct.Fields }}
             {{ if gt $i 0 }}else {{ end }}if (specNode.has("{{ $field.Name }}")) {

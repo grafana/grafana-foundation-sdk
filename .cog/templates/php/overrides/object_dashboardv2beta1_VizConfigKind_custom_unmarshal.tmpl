@@ -70,7 +70,7 @@ isset($spec["fieldConfig"]) ? (function(string $panelType, $panel) {
     $fieldConfigSource->defaults->custom = ($config->fieldConfigFromArray)($defaults["custom"]);
 
     return $fieldConfigSource;
-})($kind, $spec) : null
+})($group, $spec) : null
 {{- end }}
 
 {{- define "object_dashboardv2beta1_VizConfigKind_spec_options_unmarshal" -}}
@@ -88,5 +88,5 @@ isset($spec["options"]) ? (function(string $panelType, $panel) {
     }
 
     return ($config->optionsFromArray)($options);
-})($kind, $spec) : null
+})($group, $spec) : null
 {{- end }}
