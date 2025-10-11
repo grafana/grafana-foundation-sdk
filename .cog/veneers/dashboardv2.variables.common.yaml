@@ -1,0 +1,128 @@
+# yaml-language-server: $schema=https://raw.githubusercontent.com/grafana/cog/main/schemas/veneers.json
+
+language: all
+
+package: dashboardv2beta1
+
+builders:
+  - omit: { by_object: VariableOption }
+
+  #################
+  # QueryVariable #
+  #################
+  - merge_into:
+      source: QueryVariableSpec
+      destination: QueryVariableKind
+      under_path: spec
+  - omit: { by_object: QueryVariableSpec }
+  - rename:
+      by_object: QueryVariableKind
+      as: QueryVariable
+  - promote_options_to_constructor:
+      by_name: QueryVariable
+      options: [name]
+
+  ################
+  # TextVariable #
+  ################
+  - merge_into:
+      source: TextVariableSpec
+      destination: TextVariableKind
+      under_path: spec
+  - omit: { by_object: TextVariableSpec }
+  - rename:
+      by_object: TextVariableKind
+      as: TextVariable
+  - promote_options_to_constructor:
+      by_name: TextVariable
+      options: [name]
+
+  ####################
+  # ConstantVariable #
+  ####################
+  - merge_into:
+      source: ConstantVariableSpec
+      destination: ConstantVariableKind
+      under_path: spec
+  - omit: { by_object: ConstantVariableSpec }
+  - rename:
+      by_object: ConstantVariableKind
+      as: ConstantVariable
+  - promote_options_to_constructor:
+      by_name: ConstantVariable
+      options: [name]
+
+  ######################
+  # DatasourceVariable #
+  ######################
+  - merge_into:
+      source: DatasourceVariableSpec
+      destination: DatasourceVariableKind
+      under_path: spec
+  - omit: { by_object: DatasourceVariableSpec }
+  - rename:
+      by_object: DatasourceVariableKind
+      as: DatasourceVariable
+  - promote_options_to_constructor:
+      by_name: DatasourceVariable
+      options: [name]
+
+  ####################
+  # IntervalVariable #
+  ####################
+  - merge_into:
+      source: IntervalVariableSpec
+      destination: IntervalVariableKind
+      under_path: spec
+  - omit: { by_object: IntervalVariableSpec }
+  - rename:
+      by_object: IntervalVariableKind
+      as: IntervalVariable
+  - promote_options_to_constructor:
+      by_name: IntervalVariable
+      options: [name]
+
+  ##################
+  # CustomVariable #
+  ##################
+  - merge_into:
+      source: CustomVariableSpec
+      destination: CustomVariableKind
+      under_path: spec
+  - omit: { by_object: CustomVariableSpec }
+  - rename:
+      by_object: CustomVariableKind
+      as: CustomVariable
+  - promote_options_to_constructor:
+      by_name: CustomVariable
+      options: [name]
+
+  ###################
+  # GroupByVariable #
+  ###################
+  - merge_into:
+      source: GroupByVariableSpec
+      destination: GroupByVariableKind
+      under_path: spec
+  - omit: { by_object: GroupByVariableSpec }
+  - rename:
+      by_object: GroupByVariableKind
+      as: GroupByVariable
+  - promote_options_to_constructor:
+      by_name: GroupByVariable
+      options: [name]
+
+  #################
+  # AdhocVariable #
+  #################
+  - merge_into:
+      source: AdhocVariableSpec
+      destination: AdhocVariableKind
+      under_path: spec
+  - omit: { by_object: AdhocVariableSpec }
+  - rename:
+      by_object: AdhocVariableKind
+      as: AdhocVariable
+  - promote_options_to_constructor:
+      by_name: AdhocVariable
+      options: [name]
