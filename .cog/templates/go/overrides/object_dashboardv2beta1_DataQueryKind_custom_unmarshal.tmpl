@@ -1,0 +1,42 @@
+{{- define "object_dashboardv2beta1_DataQueryKind_custom_unmarshal" }}
+{{- $fmt := importStdPkg "fmt" -}}
+{{- $json := importStdPkg "encoding/json" -}}
+func (resource *{{ .Object.Name|upperCamelCase }}) UnmarshalJSON(raw []byte) error {
+	if raw == nil {
+		return nil
+	}
+
+	fields := make(map[string]json.RawMessage)
+	if err := json.Unmarshal(raw, &fields); err != nil {
+		return err
+	}
+	{{- range $field := .Object.Type.Struct.Fields }}
+	{{- if eq $field.Name "spec" }}
+	{{ continue }}
+	{{- else }}
+	if fields["{{ $field.Name }}"] != nil {
+		if err := json.Unmarshal(fields["{{ $field.Name }}"], &resource.{{ $field.Name|upperCamelCase }}); err != nil {
+			return fmt.Errorf("error decoding field '{{ $field.Name }}': %w", err)
+		}
+	}
+	{{- end }}
+	{{- end }}
+
+	{{ template "unmarshal_dashboardv2beta1_DataQueryKind_spec" }}
+
+	return nil
+}
+
+{{ end }}
+
+{{- define "unmarshal_dashboardv2beta1_DataQueryKind_spec" -}}
+	{{- $fmt := importStdPkg "fmt" -}}
+	{{- $cog := importPkg "cog" }}
+	if fields["spec"] != nil {
+		dataquery, err := cog.UnmarshalDataquery(fields["spec"], resource.Group)
+		if err != nil {
+			return fmt.Errorf("error decoding field 'spec': %w", err)
+		}
+		resource.Spec = dataquery
+	}
+{{- end -}}

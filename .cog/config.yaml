@@ -145,6 +145,8 @@ transformations:
 
   builders:
     - '%__config_dir%/veneers'
+  
+  converters: '%__config_dir%/converters/config.yaml'
 
 output:
   directory: '%output_dir%'

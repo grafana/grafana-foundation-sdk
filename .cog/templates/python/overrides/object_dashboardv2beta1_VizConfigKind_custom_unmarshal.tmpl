@@ -1,0 +1,52 @@
+{{- define "object_dashboardv2beta1_VizConfigKind_custom_unmarshal" }}
+@classmethod
+def from_json(cls, data: dict[str, typing.Any]) -> typing.Self:
+    args: dict[str, typing.Any] = {}
+    defaults: dict[str, typing.Any] = {}
+    custom: dict[str, typing.Any] = {}
+    try:
+        defaults = data["spec"]["fieldConfig"]["defaults"]
+        custom = defaults.get("custom", {})
+    except KeyError:
+        pass
+
+{{ range $field := .Object.Type.Struct.Fields }}
+    {{- if eq $field.Name "spec" }}
+    if "{{ $field.Name }}" in data:
+        args["{{ $field.Name|formatIdentifier }}"] = {{ template "object_dashboardv2beta1_VizConfigKind_spec_unmarshal" (dict "Field" $field) }}
+    {{- else if $field.Type.IsConcreteScalar }}
+        {{ continue}}
+    {{- else }}
+    if "{{ $field.Name }}" in data:
+        args["{{ $field.Name|formatIdentifier }}"] = {{ unmarshalForType $field.Type (print "data[\"" $field.Name "\"]") $field.Name }}
+{{ end -}}
+{{ end }}
+    return cls(**args)
+{{- end }}
+
+{{- define "object_dashboardv2beta1_VizConfigKind_spec_unmarshal" -}}
+VizConfigSpec(
+{{- range $field := (.Field.Type|resolveRefs).Struct.Fields }}
+{{- $input := print "data[\"spec\"][\"" $field.Name "\"]" -}}
+    {{ $field.Name|formatIdentifier }}=
+{{- if eq $field.Name "options" -}}
+    {{ template "object_dashboardv2beta1_VizConfigKind_spec_options_unmarshal" }}
+{{- else if eq $field.Name "fieldConfig" -}}
+    {{ template "object_dashboardv2beta1_VizConfigKind_spec_fieldConfig_unmarshal" }}
+{{- else -}}
+    {{ (unmarshalForType $field.Type $input $field.Name).DecodingCall }}
+{{- end }} if {{ $input }} is not None else {{ defaultForType $field.Type}},
+{{- end -}}
+)
+{{- end }}
+
+{{- define "object_dashboardv2beta1_VizConfigKind_spec_fieldConfig_unmarshal" -}}
+{{- $cogruntime := importModule "cogruntime" "..cog" "runtime" -}}
+FieldConfigSource.from_json({**data["spec"]["fieldConfig"], **{"defaults": {**defaults, **{"custom": {{ $cogruntime }}.panelcfg_field_config_from_json(custom, data["group"])}}}})
+{{- end }}
+
+{{- define "object_dashboardv2beta1_VizConfigKind_spec_options_unmarshal" -}}
+{{- $input := print "data[\"spec\"][\"options\"]" -}}
+{{- $cogruntime := importModule "cogruntime" "..cog" "runtime" -}}
+{{ $cogruntime }}.panelcfg_options_from_json({{ $input }}, data["kind"])
+{{- end }}

@@ -9,7 +9,7 @@ A set of tools, types and *builder libraries* for building and manipulating Graf
 ## Installing
 
 ```shell
-python3 -m pip install 'grafana_foundation_sdk=={{ .Extra.BuildTimestamp }}!{{ .Extra.GrafanaVersion|registryToSemver }}'
+python3 -m pip install 'grafana_foundation_sdk=={{ if eq .Extra.GrafanaVersion "next" }}{{ .Extra.BuildTimestamp }}{{ else }}{{ .Extra.BuildTimestamp }}!{{ .Extra.GrafanaVersion|registryToSemver }}{{ end }}'
 ```
 
 ## Example usage
