@@ -1,0 +1,71 @@
+{{- define "object_dashboardv2beta1_VizConfigKind_custom_unmarshal" }}
+package {{ importPkg .Object.SelfRef.ReferredPkg }};
+
+import com.fasterxml.jackson.core.JsonParser;
+import com.fasterxml.jackson.core.type.TypeReference;
+import com.fasterxml.jackson.databind.DeserializationContext;
+import com.fasterxml.jackson.databind.JsonDeserializer;
+import com.fasterxml.jackson.databind.JsonNode;
+import com.fasterxml.jackson.databind.ObjectMapper;
+
+import {{ importPkg "cog.variants.PanelConfig" }};
+import {{ importPkg "cog.variants.Registry" }};
+
+import java.io.IOException;
+import java.util.Iterator;
+import java.util.Map;
+
+public class {{ .Object.Name | upperCamelCase }}Deserializer extends JsonDeserializer<{{ .Object.Name | upperCamelCase }}> {
+
+    @Override
+    public {{ .Object.Name }} deserialize(JsonParser jp, DeserializationContext cxt) throws IOException {
+        ObjectMapper mapper = (ObjectMapper) jp.getCodec();
+        JsonNode root = mapper.readTree(jp);
+        
+        {{ $objName := .Object.Name | lowerCamelCase }}
+        {{ .Object.Name | upperCamelCase }} {{ $objName }} = new {{ .Object.Name }}();
+        {{- range $i, $field := .Object.Type.AsStruct.Fields }}
+        {{- if eq $field.Name "spec" }}
+            {{ template "object_dashboardv2beta1_VizConfigKind_spec" (dict "Field" $field "ObjectName" $objName) }}
+        {{- else }}
+        {{ if gt $i 0 }}else {{ end }}if (root.has("{{ .Name }}")) {
+            {{ $.Object.Name | lowerCamelCase }}.{{ $field.Name | lowerCamelCase }} = mapper.convertValue(root.get("{{ .Name }}"), new TypeReference<>() {});
+        }
+        {{- end }}
+        {{- end }}
+        
+        return {{ $objName }};
+    }
+}
+{{- end }}
+
+{{- define "object_dashboardv2beta1_VizConfigKind_spec" }}
+        {{ .Field.Type | formatType }} {{ .Field.Name }} = new {{ .Field.Type | formatType }}();
+        JsonNode specNode = root.get("{{ .Field.Name }}");
+        if (specNode != null && !specNode.isNull()) {
+            PanelConfig panelConfig = Registry.getPanel({{ .ObjectName }}.group);
+            if (panelConfig == null) {
+                throw new IllegalArgumentException("Unknown panel type: " + {{ .ObjectName }}.group);
+            }
+            {{- range $i, $field := (.Field.Type|resolveRefs).AsStruct.Fields }}
+            {{ if gt $i 0 }}else {{ end }}if (specNode.has("{{ $field.Name }}")) {
+                {{- if eq $field.Name "options" }}
+                    {{ $.Field.Name }}.options = mapper.treeToValue(root.get("options"), panelConfig.getOptionsClass());
+                {{- else if eq $field.Name "fieldConfig" }}
+                    {{ $field.Type | formatType }} fieldConfig = mapper.treeToValue(specNode.get("fieldConfig"), {{ $field.Type | formatType }}.class);
+                    if (fieldConfig != null && fieldConfig.defaults != null) {
+                        JsonNode customNode = specNode.get("fieldConfig").get("defaults").get("custom");
+                        Class<?> customClass = panelConfig.getFieldConfigClass();
+                        if (customNode != null && customClass != null) {
+                            fieldConfig.defaults.custom = mapper.treeToValue(customNode, panelConfig.getFieldConfigClass());
+                        }
+                        {{ $.Field.Name }}.fieldConfig = fieldConfig;
+                    }
+                {{- else }}
+                    {{ $.Field.Name }}.{{ $field.Name | lowerCamelCase }} = mapper.convertValue(root.get("{{ $field.Name }}"), new TypeReference<>() {});
+                {{- end }}
+            }
+            {{- end }}
+        }
+        {{ .ObjectName }}.{{ .Field.Name }} = {{ .Field.Name }};
+{{- end }}

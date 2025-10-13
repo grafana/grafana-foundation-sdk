@@ -1,0 +1,73 @@
+{{- define "object_dashboardv2beta1_VizConfigKind_field_spec_custom_strict_unmarshal" -}}
+	{{- $fmt := importStdPkg "fmt" -}}
+	{{- $json := importStdPkg "encoding/json" -}}
+	{{- $cog := importPkg "cog" -}}
+	spec := {{ .Field.Type|formatType }}{}
+	specFields := make(map[string]json.RawMessage)
+	if err := json.Unmarshal(fields["spec"], &specFields); err != nil {
+		errs = append(errs, cog.MakeBuildErrors("spec", err)...)
+	} else {
+		{{- range $field := (.Field.Type|resolveRefs).Struct.Fields }}
+			if specFields["{{ $field.Name }}"] != nil {
+			{{- if eq $field.Name "options" }}
+				{{ template "object_dashboardv2beta1_VizConfigKind_spec_options_strict_unmarshal" }}
+			{{- else if eq $field.Name "fieldConfig" }}
+				{{ template "object_dashboardv2beta1_VizConfigKind_spec_fieldConfig" }}
+			{{- else }}
+				{{- $inputRef := print "specFields[" ($field.Name|formatScalar) "]" }}
+				{{- $unmarshalInto := print "spec." ($field.Name|formatFieldName) }}
+				{{- $errorBreadcrumb := print "spec." $field.Name }}
+				{{ template "strict_unmarshal_field_type" (dict "RawInputRef" $inputRef "InputType" $field.Type "UnmarshalInto" $unmarshalInto "ErrorBreadcrumb" $errorBreadcrumb "Depth" 1) }}
+			{{- end }}
+			}
+		{{ end }}
+	}
+
+	resource.Spec = spec
+{{ end }}
+
+{{- define "object_dashboardv2beta1_VizConfigKind_spec_fieldConfig_strict_unmarshal" -}}
+	{{- $fmt := importStdPkg "fmt" -}}
+	{{- $json := importStdPkg "encoding/json" -}}
+	{{- $cog := importPkg "cog" -}}
+	if err := json.Unmarshal(specFields["fieldConfig"], &spec.FieldConfig); err != nil {
+		errs = append(errs, cog.MakeBuildErrors("spec.fieldConfig", err)...)
+	} else {
+		variantCfg, found := cog.ConfigForPanelcfgVariant(resource.Group)
+		if found && variantCfg.StrictFieldConfigUnmarshaler != nil {
+			fakeFieldConfigSource := struct {
+				Defaults struct {
+					Custom json.RawMessage `json:"custom"`
+				} `json:"defaults"`
+			}{}
+			if err := json.Unmarshal(specFields["fieldConfig"], &fakeFieldConfigSource); err != nil {
+				errs = append(errs, cog.MakeBuildErrors("spec.fieldConfig", err)...)
+			} else if fakeFieldConfigSource.Defaults.Custom != nil {
+				customFieldConfig, err := variantCfg.StrictFieldConfigUnmarshaler(fakeFieldConfigSource.Defaults.Custom)
+				if err != nil {
+					errs = append(errs, cog.MakeBuildErrors("spec.fieldConfig.defaults.custom", err)...)
+				} else {
+					spec.FieldConfig.Defaults.Custom = customFieldConfig
+				}
+			}
+		}
+	}
+{{- end -}}
+
+{{- define "object_dashboardv2beta1_VizConfigKind_spec_options_strict_unmarshal" -}}
+	{{- $json := importStdPkg "encoding/json" -}}
+	{{- $cog := importPkg "cog" -}}
+	variantCfg, found := cog.ConfigForPanelcfgVariant(resource.Group)
+	if found && variantCfg.StrictOptionsUnmarshaler != nil {
+		options, err := variantCfg.StrictOptionsUnmarshaler(specFields["options"])
+		if err != nil {
+			errs = append(errs, cog.MakeBuildErrors("spec.options", err)...)
+		} else {
+			spec.Options = options
+		}
+	} else {
+		if err := json.Unmarshal(specFields["options"], &spec.Options); err != nil {
+			errs = append(errs, cog.MakeBuildErrors("spec.options", err)...)
+		}
+	}
+{{- end -}}

@@ -1,0 +1,9 @@
+{{- define "object_dashboardv2beta1_DataQueryKind_field_spec_custom_strict_unmarshal" -}}
+	{{- $cog := importPkg "cog" -}}
+	dataquery, err := cog.UnmarshalDataquery(fields["spec"], resource.Group)
+	if err != nil {
+		errs = append(errs, cog.MakeBuildErrors("spec", err)...)
+	} else {
+		resource.Spec = dataquery
+	}
+{{- end }}
