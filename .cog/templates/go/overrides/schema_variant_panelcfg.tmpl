@@ -61,8 +61,19 @@ func VariantConfig() {{ $variants }}.PanelcfgConfig {
 			if panel, ok := inputPanel.(*{{ $dashboard }}.Panel); ok {
 				return PanelConverter(*panel)
 			}
-
-			return PanelConverter(inputPanel.({{ $dashboard }}.Panel))
+            {{- if objectExists "dashboardv2beta1" "VizConfigKind" }}
+            {{- $dashboardv2beta1 := importPkg "dashboardv2beta1" }}
+            if panel, ok := inputPanel.(dashboard.Panel); ok {
+                return PanelConverter(panel)
+            }
+            if panel, ok := inputPanel.(*dashboardv2beta1.VizConfigKind); ok {
+                return VisualizationConverter(*panel)
+            }
+            
+            return VisualizationConverter(inputPanel.(dashboardv2beta1.VizConfigKind))
+            {{- else }}
+            return PanelConverter(inputPanel.(dashboard.Panel))
+            {{- end }}
 		},
 		{{- end }}
 	}
