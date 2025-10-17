@@ -6,6 +6,5 @@ passes:
 
   # Ensure consistent DataSourceRef
   - replace_reference:
-      from: common.DataSourceRef
-      to: dashboard.DataSourceRef
-  - omit: { objects: [ common.DataSourceRef ] }
+      from: dashboard.DataSourceRef
+      to: common.DataSourceRef

@@ -1,0 +1,31 @@
+passes:
+  #################
+  # DataSourceRef #
+  #################
+
+  # We have to set refId not required since dashboards v2 schema fails if exists
+
+  - fields_set_not_required:
+      fields: [
+        athena.Dataquery.refId,
+        azuremonitor.AzureMonitorQuery.refId,
+        bigquery.Dataquery.refId,
+        cloudwatch.CloudWatchMetricsQuery.refId,
+        cloudwatch.CloudWatchLogsQuery.refId,
+        cloudwatch.CloudWatchAnnotationQuery.refId,
+        datasource.Dataquery.refId,
+        elasticsearch.Dataquery.refId,
+        expr.typeMath.refId,
+        expr.typeReduce.refId,
+        expr.typeResample.refId,
+        expr.typeClassicConditions.refId,
+        expr.typeThreshold.refId,
+        expr.typeSql.refId,
+        googlecloudmonitoring.CloudMonitoringQuery.refId,
+        grafanapyroscope.Dataquery.refId,
+        loki.Dataquery.refId,
+        parca.Dataquery.refId,
+        prometheus.Dataquery.refId,
+        tempo.TempoQuery.refId,
+        testdata.dataquery.refId,
+      ]
