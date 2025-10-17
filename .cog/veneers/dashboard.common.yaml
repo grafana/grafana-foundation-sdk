@@ -11,7 +11,6 @@ builders:
 
   # We don't want these builders at all
   - omit: { by_object: GridPos }
-  - omit: { by_object: DataSourceRef }
   - omit: { by_object: LibraryPanelRef }
   - omit: { by_object: VariableOption }
   - omit: { by_object: Threshold }
@@ -208,6 +207,8 @@ builders:
   # Panels composability
   - compose:
       by_variant: panelcfg
+      # so that the dashboardv2 package can do its magic
+      preserve_original_builders: true
       source_builder_name: dashboard.Panel
       plugin_discriminator_field: type
       composition_map:
