@@ -46,7 +46,3 @@ passes:
   - rename_object: 
       from: dashboardv2beta1.DashboardSpec
       to: Dashboard
-
-  - rename_object: 
-      from: dashboardv2beta1.DataQueryKindDatasourceBuilder
-      to: Datasource
