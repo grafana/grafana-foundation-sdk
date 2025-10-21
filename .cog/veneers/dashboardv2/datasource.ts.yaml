@@ -8,3 +8,7 @@ options:
   - rename_arguments:
       by_builder: Query.datasource
       as: [ ref ]
+
+  - rename_arguments:
+      by_builder: Query.old_datasource
+      as: [ ref ]
