@@ -7,13 +7,13 @@ public static function fromArray(array $inputData): self
     /** @var {{ typeShape .Object.Type }} $inputData */
     $data = $inputData;
     return new self(
-        {{- range $field := .Object.Type.Struct.Fields }}
-        {{ $field.Name }}: {{ if eq $field.Name "spec" -}}
-        {{ template "dashboardv2beta1_DataQueryKind_spec_unmarshal" }}
-        {{- else if $field.Type.IsConcreteScalar }}
-        {{ continue}}
+        {{- range $field := .Object.Type.Struct.Fields }} 
+        {{ if eq $field.Name "spec" -}}
+        {{ $field.Name }}: {{ template "dashboardv2beta1_DataQueryKind_spec_unmarshal" }}
+        {{- else if or $field.Type.IsConcreteScalar $field.Type.IsConstantRef }}
+        {{ continue }}
         {{- else -}}
-        {{ unmarshalForType $field.Type (print "$data[\"" $field.Name "\"]") }}
+        {{ $field.Name }}: {{ unmarshalForType $field.Type (print "$data[\"" $field.Name "\"]") }}
         {{- end -}},
         {{- end }}
    );

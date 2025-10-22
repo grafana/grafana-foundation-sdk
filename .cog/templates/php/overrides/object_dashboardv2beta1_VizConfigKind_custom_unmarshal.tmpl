@@ -8,12 +8,12 @@ public static function fromArray(array $inputData): self
     $data = $inputData;
     return new self(
         {{- range $field := .Object.Type.Struct.Fields }}
-        {{ $field.Name }}: {{ if eq $field.Name "spec" -}}
-        {{ template "object_dashboardv2beta1_VizConfigKind_spec_unmarshal" (dict "Field" $field) }}
-        {{- else if $field.Type.IsConcreteScalar }}
-        {{ continue}}
+        {{- if eq $field.Name "spec" -}}
+        {{ $field.Name }}: {{ template "object_dashboardv2beta1_VizConfigKind_spec_unmarshal" (dict "Field" $field) }}
+        {{- else if or $field.Type.IsConcreteScalar $field.Type.IsConstantRef }}
+        {{ continue }}
         {{- else -}}
-        {{ unmarshalForType $field.Type (print "$data[\"" $field.Name "\"]") }}
+        {{ $field.Name }}: {{ unmarshalForType $field.Type (print "$data[\"" $field.Name "\"]") }}
         {{- end -}},
         {{- end }}
    );
