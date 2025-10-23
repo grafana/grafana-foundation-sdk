@@ -1,0 +1,48 @@
+# yaml-language-server: $schema=https://raw.githubusercontent.com/grafana/cog/main/schemas/veneers.json
+
+language: java
+
+package: dashboardv2beta1
+
+options:
+  #############
+  # Variables #
+  #############
+
+  - disjunction_as_options:
+      by_builder: Dashboard.variable
+  - rename:
+      by_builder: Dashboard.queryVariableKind
+      as: queryVariable
+  - rename:
+      by_builder: Dashboard.textVariableKind
+      as: textVariable
+  - rename:
+      by_builder: Dashboard.constantVariableKind
+      as: constantVariable
+  - rename:
+      by_builder: Dashboard.datasourceVariableKind
+      as: datasourceVariable
+  - rename:
+      by_builder: Dashboard.intervalVariableKind
+      as: intervalVariable
+  - rename:
+      by_builder: Dashboard.customVariableKind
+      as: customVariable
+  - rename:
+      by_builder: Dashboard.groupByVariableKind
+      as: groupByVariable
+  - rename:
+      by_builder: Dashboard.adhocVariableKind
+      as: adhocVariable
+
+  - disjunction_as_options:
+      by_builder: QueryVariable.query
+
+  ##########
+  # Panels #
+  ##########
+
+  # WithOverride(matcher, properties) instead of WithOverride(struct{...})
+  - struct_fields_as_arguments:
+      by_name: VizConfigKind.override
