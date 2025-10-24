@@ -96,7 +96,7 @@ final class Runtime
         return $queries;
     }
 
-    public function convertPanelToCode(\Grafana\Foundation\Dashboard\Panel $panel, string $panelType): string
+    public function convertPanelToCode(mixed $panel, string $panelType): string
     {
         if (!$this->panelcfgVariantExists($panelType)) {
             return '/* could not convert panel to PHP */';
@@ -125,6 +125,20 @@ final class Runtime
             return '/* could not convert dataquery to PHP */';
         }
 
+        return $convert($dataquery);
+    }
+
+    public function convertDataQueryKindToCode(\Grafana\Foundation\Dashboardv2beta1\DataQueryKind $dataquery, string $group): string 
+    {
+    	if (!isset($this->dataqueryVariants[$group])) {
+            return '/* could not convert DataQueryKind to PHP */';
+        }
+    
+        $convert = $this->dataqueryVariants[$group]->convertv2;
+        if ($convert === null) {
+            return '/* could not convert DataQueryKind to PHP */';
+        }
+        
         return $convert($dataquery);
     }
 }
