@@ -31,4 +31,10 @@ clone-kind-registry:
 generate: install-cog clone-kind-registry
 	bash -c 'source ./scripts/versions.sh && \
 		$(COG_BIN) generate --config .cog/config.yaml \
-		--parameters "output_dir=%l,kind_registry_path=$(KIND_REGISTRY_PATH),kind_registry_version=$(KIND_REGISTRY_VERSION),grafana_version=$(GRAFANA_VERSION),release_branch=main,all_grafana_versions=$$ALL_GRAFANA_VERSIONS,cog_version=$$COG_VERSION",repository_templates_dir=""'
+				--parameters "output_dir=%l,kind_registry_path=$(KIND_REGISTRY_PATH),kind_registry_version=$(KIND_REGISTRY_VERSION),grafana_version=$(GRAFANA_VERSION),release_branch=main,all_grafana_versions=$$ALL_GRAFANA_VERSIONS,cog_version=$$COG_VERSION,repository_templates_dir=""'
+
+
+.PHONY: validate
+validate: install-cog clone-kind-registry
+	$(COG_BIN) inspect --config .cog/config.yaml \
+			--parameters "output_dir=%l,kind_registry_path=$(KIND_REGISTRY_PATH),kind_registry_version=$(KIND_REGISTRY_VERSION),grafana_version=$(GRAFANA_VERSION),release_branch=main,all_grafana_versions=$$ALL_GRAFANA_VERSIONS,cog_version=$$COG_VERSION,repository_templates_dir=''"
