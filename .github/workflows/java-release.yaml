@@ -1,0 +1,61 @@
+name: Java Release
+on:
+  workflow_call:
+    inputs:
+      version:
+        required: true
+        type: string
+
+env:
+  JAVA_VERSION: '17'
+
+jobs:
+  release:
+    name: Build and release
+    runs-on: ubuntu-latest
+
+    permissions:
+      contents: read
+      id-token: write
+
+    defaults:
+      run:
+        shell: bash
+        working-directory: ./java
+
+    steps:
+      - uses: actions/checkout@08c6903cd8c0fde910a37f88322edcfb5dd907a8 #v5.0.0
+        with:
+          fetch-depth: 0
+          persist-credentials: false
+
+      - name: Uses Java SDK ${{ env.JAVA_VERSION }}
+        uses: actions/setup-java@dded0888837ed1f317902acf8a20df0ad188d165 #v5.0.0
+        with:
+          java-version: ${{ env.JAVA_VERSION }}
+          distribution: 'temurin'
+          check-latest: true
+
+      - name: Java setup gradle
+        uses: gradle/actions/setup-gradle@4d9f0ba0025fe599b4ebab900eb7f3a1d93ef4c2 #v5.0.0
+        with:
+          gradle-version: '8.8'
+          
+      - name: Get secrets
+        uses: grafana/shared-workflows/actions/get-vault-secrets@75804962c1ba608148988c1e2dc35fbb0ee21746
+        with:
+          repo_secrets: |
+            MAVEN_USERNAME=secrets:maven_username
+            MAVEN_PASSWORD=secrets:maven_password
+            GPG_PASSPHRASE=gpg:passphrase
+            GPG_PUBLIC_KEY=gpg:public-key
+            GPG_PRIVATE_KEY=gpg:private-key
+          
+      - name: Publish package 📦
+        env:
+          MAVEN_USERNAME: ${{ env.MAVEN_USERNAME }}
+          MAVEN_PASSWORD: ${{ env.MAVEN_PASSWORD }}
+          GPG_PASSPHRASE: ${{ env.GPG_PASSPHRASE }}
+          GPG_PUBLIC_KEY: ${{ env.GPG_PUBLIC_KEY }}
+          GPG_PRIVATE_KEY: ${{ env.GPG_PRIVATE_KEY }}
+        run: gradle publishToSonatype closeAndReleaseSonatypeStagingRepository -PgrafanaFoundationSDKVersion=${{ inputs.version }}
