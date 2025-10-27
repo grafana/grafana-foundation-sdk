@@ -4,7 +4,7 @@
 > This document describes the **legacy release process** for **Grafana versions prior to 12**.
 > These releases use **branches** (e.g., `v11.6.x+cog-v0.0.x`) instead of tags.
 >
-> For Grafana 12 and later releases using tags, refer to the main [releasing.md](./releasing.md) documentation.
+> For Grafana 12 and later releases using tags, refer to the main [contributing.md](./contributing.md) documentation.
 
 Releases to [`grafana-foundation-sdk`](https://github.com/grafana/grafana-foundation-sdk/)
 are triggered by [manually starting the `.github/workflows/release.yaml` GitHub action](https://github.com/grafana/grafana-foundation-sdk/actions/workflows/release.yaml).
