@@ -8,6 +8,7 @@ on:
 
 env:
   NODE_VERSION: '20'
+  RELEASE_VERSION: ${{ inputs.version }}
 
 jobs:
   release:
@@ -46,7 +47,7 @@ jobs:
         run: npm install
 
       - name: Set version dynamically
-        run: npm version ${{ inputs.version }} --no-git-tag-version
+        run: npm version ${{ env.RELEASE_VERSION }} --no-git-tag-version
 
       - name: Build
         run: npm run build

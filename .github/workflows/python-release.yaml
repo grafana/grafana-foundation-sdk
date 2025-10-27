@@ -8,6 +8,7 @@ on:
 
 env:
   PYTHON_VERSION: '3.12'
+  RELEASE_VERSION: ${{ inputs.version }}
 
 jobs:
   release:
@@ -39,8 +40,8 @@ jobs:
 
       - name: Set version dynamically
         run: |
-          echo "Setting version to ${{ inputs.version }}"
-          sed -i "s/^version = .*/version = \"${{ inputs.version }}\"/" pyproject.toml
+          echo "Setting version to ${{ env.RELEASE_VERSION }}"
+          sed -i "s/^version = .*/version = \"${{ env.RELEASE_VERSION }}\"/" pyproject.toml
       
       - name: Install pypa/build
         run: python3 -m pip install build --user
