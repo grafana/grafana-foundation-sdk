@@ -97,7 +97,7 @@ final class Runtime
     }
 
     {{ $panelArgument := "\\Grafana\\Foundation\\Dashboard\\Panel" }}
-    {{- if objectExists "dashboardv2beta1" "DataQueryKind" }}
+    {{- if objectExists "dashboardv2beta1" "VizConfigKind" }}
     {{- $panelArgument = "mixed" }}
     {{- end }}
 
