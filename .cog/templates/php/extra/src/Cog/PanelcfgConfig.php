@@ -1,13 +1,17 @@
 <?php
 
 namespace {{ .Data.NamespaceRoot }}\Cog;
+{{- $convertReturn := "\\Grafana\\Foundation\\Dashboard\\Panel" -}}
+{{- if (objectExists "dashboardv2beta1" "VizConfigKind") -}}
+  {{- $convertReturn = "mixed" -}}
+{{- end -}}
 
 final class PanelcfgConfig
 {
     public readonly string $identifier;
 
     /**
-     * @var (callable(mixed): string)|null
+     * @var (callable({{ $convertReturn }}): string)|null
      */
     public $convert;
 
@@ -22,7 +26,7 @@ final class PanelcfgConfig
     public $fieldConfigFromArray;
 
     /**
-     * @param (callable(mixed): string)|null $convert
+     * @param (callable({{ $convertReturn }}): string)|null $convert
      * @param (callable(array<string, mixed>): object)|null $optionsFromArray
      * @param (callable(array<string, mixed>): object)|null $fieldConfigFromArray
      */
