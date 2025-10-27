@@ -24,8 +24,8 @@ public static function fromArray(array $inputData): self
 isset($data['spec']) ? (function($input) {
     /** @var {{ typeShape (.Field.Type|resolveRefs) }} $spec */
     $spec = $input['spec'];
-    /** @var string $kind */
-    $kind = $input['kind'] ?? '';
+    /** @var string $group */
+    $group = $input['group'] ?? '';
     return new VizConfigSpec(
         {{- range $field := (.Field.Type|resolveRefs).Struct.Fields }}
         {{ $field.Name }}: {{ if eq $field.Name "options" -}}

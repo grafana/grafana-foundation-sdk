@@ -7,7 +7,7 @@ final class PanelcfgConfig
     public readonly string $identifier;
 
     /**
-     * @var (callable(\Grafana\Foundation\Dashboard\Panel): string)|null
+     * @var (callable(mixed): string)|null
      */
     public $convert;
 
@@ -22,7 +22,7 @@ final class PanelcfgConfig
     public $fieldConfigFromArray;
 
     /**
-     * @param (callable(\Grafana\Foundation\Dashboard\Panel): string)|null $convert
+     * @param (callable(mixed): string)|null $convert
      * @param (callable(array<string, mixed>): object)|null $optionsFromArray
      * @param (callable(array<string, mixed>): object)|null $fieldConfigFromArray
      */
