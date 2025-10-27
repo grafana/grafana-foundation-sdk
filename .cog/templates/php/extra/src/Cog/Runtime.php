@@ -96,7 +96,12 @@ final class Runtime
         return $queries;
     }
 
-    public function convertPanelToCode(mixed $panel, string $panelType): string
+    {{ $panelArgument := "\\Grafana\\Foundation\\Dashboard\\Panel" }}
+    {{- if objectExists "dashboardv2beta1" "VizConfigKind" }}
+    {{- $panelArgument = "mixed" }}
+    {{- end }}
+
+    public function convertPanelToCode({{ $panelArgument }} $panel, string $panelType): string
     {
         if (!$this->panelcfgVariantExists($panelType)) {
             return '/* could not convert panel to PHP */';
@@ -128,6 +133,7 @@ final class Runtime
         return $convert($dataquery);
     }
 
+    {{- if objectExists "dashboardv2beta1" "DataQueryKind" }}
     public function convertDataQueryKindToCode(\Grafana\Foundation\Dashboardv2beta1\DataQueryKind $dataquery, string $group): string 
     {
     	if (!isset($this->dataqueryVariants[$group])) {
@@ -141,4 +147,5 @@ final class Runtime
         
         return $convert($dataquery);
     }
+    {{- end }}
 }
