@@ -1,14 +1,9 @@
 name: TypeScript Release
 on:
-  workflow_call:
-    inputs:
-      version:
-        required: true
-        type: string
+  workflow_call: ~
 
 env:
   NODE_VERSION: '20'
-  RELEASE_VERSION: ${{ inputs.version }}
 
 jobs:
   release:
@@ -45,9 +40,6 @@ jobs:
 
       - name: Install dependencies
         run: npm install
-
-      - name: Set version dynamically
-        run: npm version ${{ env.RELEASE_VERSION }} --no-git-tag-version
 
       - name: Build
         run: npm run build

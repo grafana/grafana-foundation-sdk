@@ -12,6 +12,7 @@ parameters:
   release_branch: 'release_branch'
   build_timestamp: 'build_timestamp'
   typescript_tag: '10-4-latest'
+  release_tag: ''
   repository_templates_dir: '%__config_dir%/repository_templates'
   go_package_root: 'github.com/grafana/grafana-foundation-sdk/go'
   java_package_path: 'com.grafana.foundation'
@@ -176,6 +177,7 @@ output:
     CogVersion: '%cog_version%'
     ReleaseBranch: '%release_branch%'
     BuildTimestamp: '%build_timestamp%'
+    ReleaseTag: '%release_tag%'
     TypescriptTag: '%typescript_tag%'
   output_options:
     replace_extension:

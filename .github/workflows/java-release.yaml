@@ -1,14 +1,9 @@
 name: Java Release
 on:
-  workflow_call:
-    inputs:
-      version:
-        required: true
-        type: string
+  workflow_call: ~
 
 env:
   JAVA_VERSION: '17'
-  RELEASE_VERSION: ${{ inputs.version }}
 
 jobs:
   release:
@@ -59,4 +54,4 @@ jobs:
           GPG_PASSPHRASE: ${{ env.GPG_PASSPHRASE }}
           GPG_PUBLIC_KEY: ${{ env.GPG_PUBLIC_KEY }}
           GPG_PRIVATE_KEY: ${{ env.GPG_PRIVATE_KEY }}
-        run: gradle publishToSonatype closeAndReleaseSonatypeStagingRepository -PgrafanaFoundationSDKVersion=${{ env.RELEASE_VERSION }}
+        run: gradle publishToSonatype closeAndReleaseSonatypeStagingRepository

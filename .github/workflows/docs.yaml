@@ -1,9 +1,14 @@
 name: Publish documentation
 on:
-  workflow_dispatch: ~
+  workflow_call:
+    inputs:
+      version:
+        required: true
+        type: string
 
 env:
   DEVBOX_VERSION: '0.13.1'
+  RELEASE_VERSION: ${{ inputs.version }}
 
 # Grant GITHUB_TOKEN the permissions required to make a Pages deployment
 permissions:
@@ -54,7 +59,7 @@ jobs:
 
       - name: Build documentation website
         run: |
-          devbox run ./scripts/docs/build.sh
+          devbox run ./scripts/docs/build.sh ${{ env.RELEASE_VERSION }}
 
       - name: Upload static files as artifact
         id: deployment

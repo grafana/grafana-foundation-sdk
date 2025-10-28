@@ -5,7 +5,7 @@ on:
     tags: ["v*"]
     
 permissions:
-  contents: read
+  contents: write
   
 concurrency: 
   group: "releases"
@@ -24,9 +24,6 @@ jobs:
         with:
           fetch-depth: 0
           persist-credentials: false
-          
-      - name: Validate cog's config
-        run: make validate-cog-config
 
       - name: Get tag
         id: get_tag
@@ -35,20 +32,44 @@ jobs:
           TAG=$(git describe --tags `git rev-list --tags --max-count=1`)
           echo "tag=$TAG" >> $GITHUB_OUTPUT
 
+      - name: Validate cog's config
+        run: make validate-cog-config RELEASE_TAG=${{ steps.get_tag.outputs.tag }}
+
+      - name: Generate
+        run: make generate RELEASE_TAG=${{ steps.get_tag.outputs.tag }}
+        
+      - name: Setup Github user
+        run: |
+          git config --global user.name 'github-actions[bot]'
+          git config --global user.email 'github-actions[bot]@users.noreply.github.com'
+
+      - name: Commit generated files
+        run: |
+          git add .
+          git diff --quiet && echo "No changes to commit" && exit 0
+          git commit -m "chore: update generated files for ${{ steps.get_tag.outputs.tag }}"
+          
+      - name: Push changes
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          git remote set-url origin "https://x-access-token:${GITHUB_TOKEN}@github.com/${{ github.repository }}"
+          git push origin HEAD:main
+  
   java-release:
     needs: release
     uses: ./.github/workflows/java-release.yaml
-    with:
-      version: ${{ needs.release.outputs.tag }}
-      
+
   typescript-release:
     needs: release
     uses: ./.github/workflows/typescript-release.yaml
-    with:
-      version: ${{ needs.release.outputs.tag }}
-      
+
   python-release:
     needs: release
     uses: ./.github/workflows/python-release.yaml
+
+  docs:
+    needs: release
+    uses: ./.github/workflows/docs.yaml
     with:
       version: ${{ needs.release.outputs.tag }}
