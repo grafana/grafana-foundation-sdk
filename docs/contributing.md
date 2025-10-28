@@ -67,7 +67,7 @@ They are mainly used to "prettify" the output, and it's desirable to add some to
 
 ## Generation and Publishing
 
-To generate the code with your changes, run:
+You can test your changes locally by running the following command:
 ```bash
 make generate
 ```
@@ -76,7 +76,7 @@ Verify that:
 - The new package folder is generated (in the case of a new schema)
 - New changes are applied (if you modified an existing schema)
 
-After that, you can create a PR with the new changes.
+You only have to do a PR with the configuration changes. The CI does all code generations.
 
 After the PR is reviewed and merged, you only need to create and push a new tag to generate the new release.
 The tag should follow the [semver](https://semver.org/) format. (e.g., v0.0.3)
