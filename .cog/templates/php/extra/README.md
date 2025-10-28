@@ -9,7 +9,7 @@ A set of tools, types and *builder libraries* for building and manipulating Graf
 ## Installing
 
 ```shell
-composer require "grafana/foundation-sdk:dev-{{ .Extra.ReleaseBranch }}"
+composer require "grafana/foundation-sdk:dev-{{ if ne .Extra.ReleaseTag ""}}{{ .Extra.ReleaseTag }}{{ else }}{{ .Extra.ReleaseBranch }}{{ end }}"
 ```
 
 ## Example usage
