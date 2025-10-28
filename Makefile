@@ -18,7 +18,7 @@ $(COG_BIN):
 	@touch $@
 
 .PHONY: update-cog
-update-app-sdk: ## Update the Grafana App SDK dependency in go.mod
+update-cog: ## Update the cog dependency in go.mod
 	@pwd
 	go get github.com/grafana/cog@$(COG_VERSION)
 	go mod tidy
@@ -30,8 +30,8 @@ clone-kind-registry:
 .PHONY: generate
 generate: install-cog clone-kind-registry
 	bash -c 'source ./scripts/versions.sh && \
-		$(COG_BIN) generate --config .cog/config.yaml \
-				--parameters "output_dir=%l,kind_registry_path=$(KIND_REGISTRY_PATH),kind_registry_version=$(KIND_REGISTRY_VERSION),grafana_version=$(GRAFANA_VERSION),release_branch=main,all_grafana_versions=$$ALL_GRAFANA_VERSIONS,cog_version=$$COG_VERSION,repository_templates_dir=""'
+		"$(COG_BIN)" generate --config .cog/config.yaml \
+			--parameters "output_dir=%l,kind_registry_path=$(KIND_REGISTRY_PATH),kind_registry_version=$(KIND_REGISTRY_VERSION),grafana_version=$(GRAFANA_VERSION),release_branch=main,all_grafana_versions=$$ALL_GRAFANA_VERSIONS,cog_version=$$COG_VERSION,repository_templates_dir='\'\''"'
 
 
 .PHONY: validate
