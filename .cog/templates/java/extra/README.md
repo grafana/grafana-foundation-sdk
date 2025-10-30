@@ -10,7 +10,7 @@ A set of tools, types and *builder libraries* for building and manipulating Graf
 
 ### Gradle
 ```kotlin
-implementation("com.grafana:grafana-foundation-sdk:{{ .Extra.GrafanaVersion|registryToSemver }}-{{ .Extra.BuildTimestamp }}")
+implementation("com.grafana:grafana-foundation-sdk:{{ if ne .Extra.ReleaseTag ""}}{{ .Extra.ReleaseTag}}{{ else }}{{ .Extra.GrafanaVersion|registryToSemver }}-{{ .Extra.BuildTimestamp }}{{ end }}")
 ```
 
 ### Maven
