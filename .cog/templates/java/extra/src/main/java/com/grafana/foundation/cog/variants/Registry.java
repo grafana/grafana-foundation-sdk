@@ -16,11 +16,11 @@ public class Registry {
     
     static {
         {{- range $schema := $panelSchemas }}
-        registerPanel("{{ $schema.Metadata.Identifier|lower }}", com.grafana.foundation.{{ $schema.Package }}.Options.class, {{ if $schema.HasObject "FieldConfig" }}com.grafana.foundation.{{ $schema.Package }}.FieldConfig.class{{ else }}null{{ end }}{{ if $.Data.Config.GenerateConverters }}, new com.grafana.foundation.{{ $schema.Package }}.PanelConverter.class{{ end }});
+        registerPanel("{{ $schema.Metadata.Identifier }}", com.grafana.foundation.{{ $schema.Package }}.Options.class, {{ if $schema.HasObject "FieldConfig" }}com.grafana.foundation.{{ $schema.Package }}.FieldConfig.class{{ else }}null{{ end }}{{ if $.Data.Config.GenerateConverters }}, new com.grafana.foundation.{{ $schema.Package }}.PanelConverter.class{{ end }});
         {{- end }}
 
         {{- range $schema := $dataquerySchemas }}
-        registerDataquery("{{ $schema.Metadata.Identifier|lower }}", com.grafana.foundation.{{ $schema.Package }}.{{ $schema.EntryPoint|formatObjectName }}.class{{ if $.Data.Config.GenerateConverters }}, new com.grafana.foundation.{{ $schema.Package }}.{{ $schema.EntryPoint|formatObjectName }}MapperConverter.class{{ end }});
+        registerDataquery("{{ $schema.Metadata.Identifier }}", com.grafana.foundation.{{ $schema.Package }}.{{ $schema.EntryPoint|formatObjectName }}.class{{ if $.Data.Config.GenerateConverters }}, new com.grafana.foundation.{{ $schema.Package }}.{{ $schema.EntryPoint|formatObjectName }}MapperConverter.class{{ end }});
         {{- end }}
     }
 
