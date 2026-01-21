@@ -14,7 +14,7 @@
 // This configuration describes how to unmarshal it, convert it to code, …
 func VariantConfig() variants.DataqueryConfig {
     return variants.DataqueryConfig{
-        Identifier: "{{ .Schema.Metadata.Identifier|lower }}",
+        Identifier: "{{ .Schema.Metadata.Identifier }}",
         DataqueryUnmarshaler: func (raw []byte) (variants.Dataquery, error) {
             dataquery := &{{ .Schema.EntryPoint|formatObjectName }}{}
 
