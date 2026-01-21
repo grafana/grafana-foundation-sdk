@@ -27,7 +27,7 @@ pycparser==2.22
 Pygments==2.18.0
 pymdown-extensions==10.16.1
 python-dateutil==2.9.0.post0
-PyYAML==6.0.2
+PyYAML==6.0.3
 pyyaml_env_tag==0.1
 regex==2024.5.15
 requests==2.32.4
