@@ -2,7 +2,7 @@
     "name": "foundation-sdk-typescript",
     "main": "index.ts",
     "devDependencies": {
-        "@types/node": "18.19.34",
+        "@types/node": "18.19.130",
         "typescript": "5.4.5"
     },
     "dependencies": {
