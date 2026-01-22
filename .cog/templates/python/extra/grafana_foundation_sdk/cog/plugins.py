@@ -9,7 +9,7 @@ from ..models import {{ $pkg }}
 from . import runtime as cogruntime
 
 
-def register_default_plugins():
+def register_default_plugins() -> None:
     # Panelcfg variants
 {{- range $pkg := $panelPackages }}
     cogruntime.register_panelcfg_variant({{ $pkg }}.variant_config())

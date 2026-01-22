@@ -22,7 +22,7 @@ class Runtime:
     dataquery_variants: dict[str, DataqueryConfig]
     panelcfg_variants: dict[str, PanelCfgConfig]
 
-    def __new__(cls, *args, **kwargs):
+    def __new__(cls: type["Runtime"], *args: Any, **kwargs: Any) -> "Runtime":
         if cls._instance is None:
             cls._instance = object.__new__(cls, *args, **kwargs)
             cls.dataquery_variants = {}
@@ -30,10 +30,10 @@ class Runtime:
 
         return cls._instance
 
-    def register_dataquery_variant(self, variant: DataqueryConfig):
+    def register_dataquery_variant(self, variant: DataqueryConfig) -> None:
         self.dataquery_variants[variant.identifier] = variant
 
-    def register_panelcfg_variant(self, variant: PanelCfgConfig):
+    def register_panelcfg_variant(self, variant: PanelCfgConfig) -> None:
         self.panelcfg_variants[variant.identifier] = variant
 
     def dataquery_from_json(self, data: dict[str, Any], dataquery_type_hint: str) -> cogvariants.Dataquery:
@@ -53,7 +53,7 @@ class Runtime:
 class UnknownDataquery(cogvariants.Dataquery):
     data: dict[str, Any]
 
-    def __init__(self, data: dict[str, Any]):
+    def __init__(self, data: dict[str, Any]) -> None:
         self.data = data
 
     def to_json(self) -> dict[str, object]:
@@ -87,9 +87,9 @@ def panelcfg_field_config_from_json(data: dict[str, Any], panel_type: str) -> An
 
     return config.field_config_from_json_hook(data)
 
-def register_panelcfg_variant(variant: PanelCfgConfig):
+def register_panelcfg_variant(variant: PanelCfgConfig) -> None:
     Runtime().register_panelcfg_variant(variant)
 
 
-def register_dataquery_variant(variant: DataqueryConfig):
+def register_dataquery_variant(variant: DataqueryConfig) -> None:
     Runtime().register_dataquery_variant(variant)
