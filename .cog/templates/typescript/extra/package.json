@@ -1,6 +1,6 @@
 {
   "name": "@grafana/grafana-foundation-sdk",
-  "version": "{{ .Extra.GrafanaVersion|registryToSemver }}-cog{{ .Extra.CogVersion }}.{{ .Extra.BuildTimestamp }}",
+  "version": "{{ if ne .Extra.ReleaseTag "" }}{{ .Extra.ReleaseTag }}{{ else }}{{ .Extra.GrafanaVersion|registryToSemver }}-cog{{ .Extra.CogVersion }}.{{ .Extra.BuildTimestamp }}{{ end }}",
   "description": "A set of tools, types and libraries for building and manipulating Grafana objects.",
   "keywords": [
     "observability",

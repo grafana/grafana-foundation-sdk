@@ -9,6 +9,8 @@ set -o nounset
 # Catch the error in case mysqldump fails (but gzip succeeds) in `mysqldump |gzip`
 set -o pipefail
 
+RELEASE_TAG=${1:-}
+
 __dir="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 source "${__dir}/../versions.sh"
 source "${__dir}/../libs/logs.sh"
@@ -21,26 +23,33 @@ rm -rf "${build_dir}"
 mkdir -p "${build_dir}"
 mkdir -p "${docs_build_dir}"
 
-${__dir}/_pull_versions.sh "${build_dir}"
+"${__dir}"/_pull_versions.sh "${build_dir}" "${RELEASE_TAG}"
 
 echo "🪧 Building main website"
-mkdocs build -f ${mkdocs_dir}/mkdocs.yml -d ${docs_build_dir}
+mkdocs build -f "${mkdocs_dir}"/mkdocs.yml -d "${docs_build_dir}"
 
 echo '[]' > "${docs_build_dir}/versions.json"
 
+if [ -n "${RELEASE_TAG}" ]; then
+  build_documentation "${RELEASE_TAG}" "latest"
+fi
+
 for short_version in ${ALL_GRAFANA_VERSIONS//;/ } ; do
     full_version="${short_version}+cog-${COG_VERSION}"
-
-    log_group_start "Building documentation for version ${full_version}"
-    echo "🪧 Building documentation for version ${full_version}"
-
-    cat <<< $(jq ". += [{\"version\": \"${full_version}\", \"title\": \"${short_version}\"}]" "${docs_build_dir}/versions.json") > "${docs_build_dir}/versions.json"
-
-    SOURCE_VERSION_FOLDER="${build_dir}/versions/${full_version}" mkdocs build -f ${mkdocs_dir}/mkdocs-version.yml -d ${docs_build_dir}/${full_version}
-
-    echo "🪧 Minifying HTML"
-    minhtml --do-not-minify-doctype --ensure-spec-compliant-unquoted-attribute-values --keep-closing-tags --keep-input-type-text-attr --keep-html-and-head-opening-tags --preserve-brace-template-syntax --keep-spaces-between-attributes ${docs_build_dir}/${full_version}/*/*/*/*.html
-    minhtml --do-not-minify-doctype --ensure-spec-compliant-unquoted-attribute-values --keep-closing-tags --keep-input-type-text-attr --keep-html-and-head-opening-tags --preserve-brace-template-syntax --keep-spaces-between-attributes ${docs_build_dir}/${full_version}/*/*/*/*/*.html
-
-    log_group_end
+    build_documentation "$full_version" "$short_version"
 done
+
+build_documentation() {
+      log_group_start "Building documentation for version $1"
+      echo "🪧 Building documentation for version $1"
+  
+      cat <<< $(jq ". += [{\"version\": \"$1\", \"title\": \"$2\"}]" "${docs_build_dir}/versions.json") > "${docs_build_dir}/versions.json"
+  
+      SOURCE_VERSION_FOLDER="${build_dir}/versions/$1" mkdocs build -f "${mkdocs_dir}"/mkdocs-version.yml -d "${docs_build_dir}"/"$1"
+  
+      echo "🪧 Minifying HTML"
+      minhtml --do-not-minify-doctype --ensure-spec-compliant-unquoted-attribute-values --keep-closing-tags --keep-input-type-text-attr --keep-html-and-head-opening-tags --preserve-brace-template-syntax --keep-spaces-between-attributes "${docs_build_dir}"/"$1"/*/*/*/*.html
+      minhtml --do-not-minify-doctype --ensure-spec-compliant-unquoted-attribute-values --keep-closing-tags --keep-input-type-text-attr --keep-html-and-head-opening-tags --preserve-brace-template-syntax --keep-spaces-between-attributes "${docs_build_dir}"/"$1"/*/*/*/*/*.html
+  
+      log_group_end
+}
