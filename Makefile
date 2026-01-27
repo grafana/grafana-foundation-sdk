@@ -1,4 +1,4 @@
-COG_VERSION = v0.0.46
+COG_VERSION = v0.0.47
 COG_DIR     = $(shell go env GOPATH)/bin/cog-$(COG_VERSION)
 COG_BIN     = $(COG_DIR)/cli
 
@@ -18,7 +18,7 @@ $(COG_BIN):
 	@touch $@
 
 .PHONY: update-cog
-update-app-sdk: ## Update the Grafana App SDK dependency in go.mod
+update-cog: ## Update the Grafana cog dependency in go.mod
 	@pwd
 	go get github.com/grafana/cog@$(COG_VERSION)
 	go mod tidy
