@@ -1,6 +1,10 @@
 {
   "lockfile_version": "1",
   "packages": {
+    "github:NixOS/nixpkgs/nixpkgs-unstable": {
+      "last_modified": "2026-01-26T13:12:53Z",
+      "resolved": "github:NixOS/nixpkgs/13b0f9e6ac78abbbb736c635d87845c4f4bee51b?lastModified=1769433173&narHash=sha256-Gf1dFYgD344WZ3q0LPlRoWaNdNQq8kSBDLEWulRQSEs%3D"
+    },
     "go@1.23": {
       "last_modified": "2025-01-19T08:16:51Z",
       "resolved": "github:NixOS/nixpkgs/50165c4f7eb48ce82bd063e1fb8047a0f515f8ce#go",
@@ -146,51 +150,51 @@
         }
       }
     },
-    "php83Packages.phpstan@2.1.32": {
-      "last_modified": "2026-01-19T00:39:23Z",
-      "resolved": "github:NixOS/nixpkgs/bde09022887110deb780067364a0818e89258968#php83Packages.phpstan",
+    "php83Packages.phpstan@2.1.1": {
+      "last_modified": "2025-07-28T17:09:23Z",
+      "resolved": "github:NixOS/nixpkgs/648f70160c03151bc2121d179291337ad6bc564b#php83Packages.phpstan",
       "source": "devbox-search",
-      "version": "2.1.32",
+      "version": "2.1.19",
       "systems": {
         "aarch64-darwin": {
           "outputs": [
             {
               "name": "out",
-              "path": "/nix/store/7xk6kqkf1d2kqixpr4nbfs73xwyf5sh0-phpstan-2.1.32",
+              "path": "/nix/store/63f8a7yncm85c30snxdhgk7jd0aqv748-phpstan-2.1.19",
               "default": true
             }
           ],
-          "store_path": "/nix/store/7xk6kqkf1d2kqixpr4nbfs73xwyf5sh0-phpstan-2.1.32"
+          "store_path": "/nix/store/63f8a7yncm85c30snxdhgk7jd0aqv748-phpstan-2.1.19"
         },
         "aarch64-linux": {
           "outputs": [
             {
               "name": "out",
-              "path": "/nix/store/7kij5h5is1h1kbjpxbvy2zd66f7scsjr-phpstan-2.1.32",
+              "path": "/nix/store/svz9brh5y3c3s13vl5g2isrkh42i2xyw-phpstan-2.1.19",
               "default": true
             }
           ],
-          "store_path": "/nix/store/7kij5h5is1h1kbjpxbvy2zd66f7scsjr-phpstan-2.1.32"
+          "store_path": "/nix/store/svz9brh5y3c3s13vl5g2isrkh42i2xyw-phpstan-2.1.19"
         },
         "x86_64-darwin": {
           "outputs": [
             {
               "name": "out",
-              "path": "/nix/store/1mlqsybr8n4qssf5hcjkjclq12gj3i71-phpstan-2.1.32",
+              "path": "/nix/store/yblfk9k6173wng9wc6d2x5gc6pn4lb37-phpstan-2.1.19",
               "default": true
             }
           ],
-          "store_path": "/nix/store/1mlqsybr8n4qssf5hcjkjclq12gj3i71-phpstan-2.1.32"
+          "store_path": "/nix/store/yblfk9k6173wng9wc6d2x5gc6pn4lb37-phpstan-2.1.19"
         },
         "x86_64-linux": {
           "outputs": [
             {
               "name": "out",
-              "path": "/nix/store/mjh6jsig3gy54vsy8d5m9rbdrgl0xhal-phpstan-2.1.32",
+              "path": "/nix/store/bskdharg4a6iv4s2brpn0hci0447y1ra-phpstan-2.1.19",
               "default": true
             }
           ],
-          "store_path": "/nix/store/mjh6jsig3gy54vsy8d5m9rbdrgl0xhal-phpstan-2.1.32"
+          "store_path": "/nix/store/bskdharg4a6iv4s2brpn0hci0447y1ra-phpstan-2.1.19"
         }
       }
     },
