@@ -13,4 +13,4 @@ release_path=${1:-"./"}
 
 cd "${release_path}/python"
 
-mypy .
+mypy --strict .
