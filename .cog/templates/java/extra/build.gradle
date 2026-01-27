@@ -5,7 +5,7 @@ plugins {
     id 'io.github.gradle-nexus.publish-plugin' version '2.0.0'
     {{- end }}
     id 'signing'
-    id 'com.gradleup.shadow' version '8.3.6'
+    id 'com.gradleup.shadow' version '8.3.9'
 }
 
 group = "com.grafana"
