@@ -3,13 +3,13 @@
 import typing
 from ..cog import builder as cogbuilder
 from ..models import datasource
-from ..models import dashboard
+from ..models import common
 
 
 class Dataquery(cogbuilder.Builder[datasource.Dataquery]):
     _internal: datasource.Dataquery
 
-    def __init__(self):
+    def __init__(self) -> None:
         self._internal = datasource.Dataquery()
 
     def build(self) -> datasource.Dataquery:
@@ -54,7 +54,7 @@ class Dataquery(cogbuilder.Builder[datasource.Dataquery]):
     
         return self
     
-    def datasource(self, datasource: dashboard.DataSourceRef) -> typing.Self:    
+    def datasource(self, datasource: common.DataSourceRef) -> typing.Self:    
         """
         For mixed data sources the selected datasource is on the query level.
         For non mixed scenarios this is undefined.

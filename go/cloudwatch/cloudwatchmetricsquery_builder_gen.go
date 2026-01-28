@@ -5,7 +5,7 @@ package cloudwatch
 import (
 	cog "github.com/grafana/grafana-foundation-sdk/go/cog"
 	variants "github.com/grafana/grafana-foundation-sdk/go/cog/variants"
-	dashboard "github.com/grafana/grafana-foundation-sdk/go/dashboard"
+	common "github.com/grafana/grafana-foundation-sdk/go/common"
 )
 
 var _ cog.Builder[variants.Dataquery] = (*CloudWatchMetricsQueryBuilder)(nil)
@@ -99,7 +99,7 @@ func (builder *CloudWatchMetricsQueryBuilder) SqlExpression(sqlExpression string
 // In server side expressions, the refId is used as a variable name to identify results.
 // By default, the UI will assign A->Z; however setting meaningful names may be useful.
 func (builder *CloudWatchMetricsQueryBuilder) RefId(refId string) *CloudWatchMetricsQueryBuilder {
-	builder.internal.RefId = refId
+	builder.internal.RefId = &refId
 
 	return builder
 }
@@ -193,7 +193,7 @@ func (builder *CloudWatchMetricsQueryBuilder) Sql(sql cog.Builder[SQLExpression]
 // For non mixed scenarios this is undefined.
 // TODO find a better way to do this ^ that's friendly to schema
 // TODO this shouldn't be unknown but DataSourceRef | null
-func (builder *CloudWatchMetricsQueryBuilder) Datasource(datasource dashboard.DataSourceRef) *CloudWatchMetricsQueryBuilder {
+func (builder *CloudWatchMetricsQueryBuilder) Datasource(datasource common.DataSourceRef) *CloudWatchMetricsQueryBuilder {
 	builder.internal.Datasource = &datasource
 
 	return builder

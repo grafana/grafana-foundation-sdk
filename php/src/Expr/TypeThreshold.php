@@ -13,7 +13,7 @@ class TypeThreshold implements \JsonSerializable, \Grafana\Foundation\Cog\Dataqu
     /**
      * The datasource
      */
-    public ?\Grafana\Foundation\Dashboard\DataSourceRef $datasource;
+    public ?\Grafana\Foundation\Common\DataSourceRef $datasource;
 
     /**
      * Reference to single query result
@@ -50,7 +50,7 @@ class TypeThreshold implements \JsonSerializable, \Grafana\Foundation\Cog\Dataqu
     /**
      * RefID is the unique identifier of the query, set by the frontend call.
      */
-    public string $refId;
+    public ?string $refId;
 
     /**
      * Optionally define expected query result behavior
@@ -68,7 +68,7 @@ class TypeThreshold implements \JsonSerializable, \Grafana\Foundation\Cog\Dataqu
 
     /**
      * @param array<\Grafana\Foundation\Expr\ExprTypeThresholdConditions>|null $conditions
-     * @param \Grafana\Foundation\Dashboard\DataSourceRef|null $datasource
+     * @param \Grafana\Foundation\Common\DataSourceRef|null $datasource
      * @param string|null $expression
      * @param bool|null $hide
      * @param float|null $intervalMs
@@ -78,7 +78,7 @@ class TypeThreshold implements \JsonSerializable, \Grafana\Foundation\Cog\Dataqu
      * @param \Grafana\Foundation\Expr\ExprTypeThresholdResultAssertions|null $resultAssertions
      * @param \Grafana\Foundation\Expr\ExprTypeThresholdTimeRange|null $timeRange
      */
-    public function __construct(?array $conditions = null, ?\Grafana\Foundation\Dashboard\DataSourceRef $datasource = null, ?string $expression = null, ?bool $hide = null, ?float $intervalMs = null, ?int $maxDataPoints = null, ?string $queryType = null, ?string $refId = null, ?\Grafana\Foundation\Expr\ExprTypeThresholdResultAssertions $resultAssertions = null, ?\Grafana\Foundation\Expr\ExprTypeThresholdTimeRange $timeRange = null)
+    public function __construct(?array $conditions = null, ?\Grafana\Foundation\Common\DataSourceRef $datasource = null, ?string $expression = null, ?bool $hide = null, ?float $intervalMs = null, ?int $maxDataPoints = null, ?string $queryType = null, ?string $refId = null, ?\Grafana\Foundation\Expr\ExprTypeThresholdResultAssertions $resultAssertions = null, ?\Grafana\Foundation\Expr\ExprTypeThresholdTimeRange $timeRange = null)
     {
         $this->conditions = $conditions ?: [];
         $this->datasource = $datasource;
@@ -87,7 +87,7 @@ class TypeThreshold implements \JsonSerializable, \Grafana\Foundation\Cog\Dataqu
         $this->intervalMs = $intervalMs;
         $this->maxDataPoints = $maxDataPoints;
         $this->queryType = $queryType;
-        $this->refId = $refId ?: "";
+        $this->refId = $refId;
         $this->resultAssertions = $resultAssertions;
         $this->timeRange = $timeRange;
         $this->type = "threshold";
@@ -110,7 +110,7 @@ class TypeThreshold implements \JsonSerializable, \Grafana\Foundation\Cog\Dataqu
             datasource: isset($data["datasource"]) ? (function($input) {
     	/** @var array{type?: string, uid?: string} */
     $val = $input;
-    	return \Grafana\Foundation\Dashboard\DataSourceRef::fromArray($val);
+    	return \Grafana\Foundation\Common\DataSourceRef::fromArray($val);
     })($data["datasource"]) : null,
             expression: $data["expression"] ?? null,
             hide: $data["hide"] ?? null,
@@ -139,7 +139,6 @@ class TypeThreshold implements \JsonSerializable, \Grafana\Foundation\Cog\Dataqu
         $data = new \stdClass;
         $data->conditions = $this->conditions;
         $data->expression = $this->expression;
-        $data->refId = $this->refId;
         $data->type = $this->type;
         if (isset($this->datasource)) {
             $data->datasource = $this->datasource;
@@ -155,6 +154,9 @@ class TypeThreshold implements \JsonSerializable, \Grafana\Foundation\Cog\Dataqu
         }
         if (isset($this->queryType)) {
             $data->queryType = $this->queryType;
+        }
+        if (isset($this->refId)) {
+            $data->refId = $this->refId;
         }
         if (isset($this->resultAssertions)) {
             $data->resultAssertions = $this->resultAssertions;

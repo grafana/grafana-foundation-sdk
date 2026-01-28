@@ -41,7 +41,7 @@ class CloudWatchLogsQuery implements \JsonSerializable, \Grafana\Foundation\Cog\
      * In server side expressions, the refId is used as a variable name to identify results.
      * By default, the UI will assign A->Z; however setting meaningful names may be useful.
      */
-    public string $refId;
+    public ?string $refId;
 
     /**
      * true if query is disabled (ie should not be returned to the dashboard)
@@ -68,7 +68,7 @@ class CloudWatchLogsQuery implements \JsonSerializable, \Grafana\Foundation\Cog\
      * TODO find a better way to do this ^ that's friendly to schema
      * TODO this shouldn't be unknown but DataSourceRef | null
      */
-    public ?\Grafana\Foundation\Dashboard\DataSourceRef $datasource;
+    public ?\Grafana\Foundation\Common\DataSourceRef $datasource;
 
     /**
      * @param \Grafana\Foundation\Cloudwatch\CloudWatchQueryMode|null $queryMode
@@ -81,9 +81,9 @@ class CloudWatchLogsQuery implements \JsonSerializable, \Grafana\Foundation\Cog\
      * @param bool|null $hide
      * @param string|null $queryType
      * @param array<string>|null $logGroupNames
-     * @param \Grafana\Foundation\Dashboard\DataSourceRef|null $datasource
+     * @param \Grafana\Foundation\Common\DataSourceRef|null $datasource
      */
-    public function __construct(?\Grafana\Foundation\Cloudwatch\CloudWatchQueryMode $queryMode = null, ?string $id = null, ?string $region = null, ?string $expression = null, ?array $statsGroups = null, ?array $logGroups = null, ?string $refId = null, ?bool $hide = null, ?string $queryType = null, ?array $logGroupNames = null, ?\Grafana\Foundation\Dashboard\DataSourceRef $datasource = null)
+    public function __construct(?\Grafana\Foundation\Cloudwatch\CloudWatchQueryMode $queryMode = null, ?string $id = null, ?string $region = null, ?string $expression = null, ?array $statsGroups = null, ?array $logGroups = null, ?string $refId = null, ?bool $hide = null, ?string $queryType = null, ?array $logGroupNames = null, ?\Grafana\Foundation\Common\DataSourceRef $datasource = null)
     {
         $this->queryMode = $queryMode ?: \Grafana\Foundation\Cloudwatch\CloudWatchQueryMode::logs();
         $this->id = $id ?: "";
@@ -91,7 +91,7 @@ class CloudWatchLogsQuery implements \JsonSerializable, \Grafana\Foundation\Cog\
         $this->expression = $expression;
         $this->statsGroups = $statsGroups;
         $this->logGroups = $logGroups;
-        $this->refId = $refId ?: "";
+        $this->refId = $refId;
         $this->hide = $hide;
         $this->queryType = $queryType;
         $this->logGroupNames = $logGroupNames;
@@ -123,7 +123,7 @@ class CloudWatchLogsQuery implements \JsonSerializable, \Grafana\Foundation\Cog\
             datasource: isset($data["datasource"]) ? (function($input) {
     	/** @var array{type?: string, uid?: string} */
     $val = $input;
-    	return \Grafana\Foundation\Dashboard\DataSourceRef::fromArray($val);
+    	return \Grafana\Foundation\Common\DataSourceRef::fromArray($val);
     })($data["datasource"]) : null,
         );
     }
@@ -137,7 +137,6 @@ class CloudWatchLogsQuery implements \JsonSerializable, \Grafana\Foundation\Cog\
         $data->queryMode = $this->queryMode;
         $data->id = $this->id;
         $data->region = $this->region;
-        $data->refId = $this->refId;
         if (isset($this->expression)) {
             $data->expression = $this->expression;
         }
@@ -146,6 +145,9 @@ class CloudWatchLogsQuery implements \JsonSerializable, \Grafana\Foundation\Cog\
         }
         if (isset($this->logGroups)) {
             $data->logGroups = $this->logGroups;
+        }
+        if (isset($this->refId)) {
+            $data->refId = $this->refId;
         }
         if (isset($this->hide)) {
             $data->hide = $this->hide;

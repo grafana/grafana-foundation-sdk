@@ -5,7 +5,7 @@ package expr
 import (
 	cog "github.com/grafana/grafana-foundation-sdk/go/cog"
 	variants "github.com/grafana/grafana-foundation-sdk/go/cog/variants"
-	dashboard "github.com/grafana/grafana-foundation-sdk/go/dashboard"
+	common "github.com/grafana/grafana-foundation-sdk/go/common"
 )
 
 var _ cog.Builder[variants.Dataquery] = (*TypeClassicConditionsBuilder)(nil)
@@ -54,7 +54,7 @@ func (builder *TypeClassicConditionsBuilder) Conditions(conditions []cog.Builder
 }
 
 // The datasource
-func (builder *TypeClassicConditionsBuilder) Datasource(datasource dashboard.DataSourceRef) *TypeClassicConditionsBuilder {
+func (builder *TypeClassicConditionsBuilder) Datasource(datasource common.DataSourceRef) *TypeClassicConditionsBuilder {
 	builder.internal.Datasource = &datasource
 
 	return builder
@@ -97,7 +97,7 @@ func (builder *TypeClassicConditionsBuilder) QueryType(queryType string) *TypeCl
 
 // RefID is the unique identifier of the query, set by the frontend call.
 func (builder *TypeClassicConditionsBuilder) RefId(refId string) *TypeClassicConditionsBuilder {
-	builder.internal.RefId = refId
+	builder.internal.RefId = &refId
 
 	return builder
 }

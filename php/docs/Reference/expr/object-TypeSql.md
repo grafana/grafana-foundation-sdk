@@ -11,7 +11,7 @@ class TypeSql implements \JsonSerializable, \Grafana\Foundation\Cog\Dataquery
     /**
      * The datasource
      */
-    public ?\Grafana\Foundation\Dashboard\DataSourceRef $datasource;
+    public ?\Grafana\Foundation\Common\DataSourceRef $datasource;
 
     public string $expression;
 
@@ -47,7 +47,7 @@ class TypeSql implements \JsonSerializable, \Grafana\Foundation\Cog\Dataquery
     /**
      * RefID is the unique identifier of the query, set by the frontend call.
      */
-    public string $refId;
+    public ?string $refId;
 
     /**
      * Optionally define expected query result behavior

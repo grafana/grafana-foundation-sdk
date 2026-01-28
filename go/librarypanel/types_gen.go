@@ -12,6 +12,7 @@ import (
 
 	cog "github.com/grafana/grafana-foundation-sdk/go/cog"
 	variants "github.com/grafana/grafana-foundation-sdk/go/cog/variants"
+	common "github.com/grafana/grafana-foundation-sdk/go/common"
 	dashboard "github.com/grafana/grafana-foundation-sdk/go/dashboard"
 )
 
@@ -574,7 +575,7 @@ type PanelModel struct {
 	// Whether to display the panel without a background.
 	Transparent *bool `json:"transparent,omitempty"`
 	// The datasource used in all targets.
-	Datasource *dashboard.DataSourceRef `json:"datasource,omitempty"`
+	Datasource *common.DataSourceRef `json:"datasource,omitempty"`
 	// Panel links.
 	Links []dashboard.DashboardLink `json:"links,omitempty"`
 	// Name of template variable to repeat for.
@@ -625,7 +626,8 @@ type PanelModel struct {
 // NewPanelModel creates a new PanelModel object.
 func NewPanelModel() *PanelModel {
 	return &PanelModel{
-		Transparent: (func(input bool) *bool { return &input })(false),
+		Transparent:     (func(input bool) *bool { return &input })(false),
+		RepeatDirection: (func(input PanelModelRepeatDirection) *PanelModelRepeatDirection { return &input })(PanelModelRepeatDirectionH),
 	}
 }
 
@@ -875,7 +877,7 @@ func (resource *PanelModel) UnmarshalJSONStrict(raw []byte) error {
 	if fields["datasource"] != nil {
 		if string(fields["datasource"]) != "null" {
 
-			resource.Datasource = &dashboard.DataSourceRef{}
+			resource.Datasource = &common.DataSourceRef{}
 			if err := resource.Datasource.UnmarshalJSONStrict(fields["datasource"]); err != nil {
 				errs = append(errs, cog.MakeBuildErrors("datasource", err)...)
 			}

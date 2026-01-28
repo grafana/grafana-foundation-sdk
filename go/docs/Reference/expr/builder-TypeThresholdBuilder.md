@@ -31,7 +31,7 @@ func (builder *TypeThresholdBuilder) Conditions(conditions []cog.Builder[expr.Ex
 The datasource
 
 ```go
-func (builder *TypeThresholdBuilder) Datasource(datasource dashboard.DataSourceRef) *TypeThresholdBuilder
+func (builder *TypeThresholdBuilder) Datasource(datasource common.DataSourceRef) *TypeThresholdBuilder
 ```
 
 ### <span class="badge object-method"></span> Expression

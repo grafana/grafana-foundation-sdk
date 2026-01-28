@@ -9,7 +9,7 @@ class CloudMonitoringQuery implements \JsonSerializable, \Grafana\Foundation\Cog
      * In server side expressions, the refId is used as a variable name to identify results.
      * By default, the UI will assign A->Z; however setting meaningful names may be useful.
      */
-    public string $refId;
+    public ?string $refId;
 
     /**
      * true if query is disabled (ie should not be returned to the dashboard)
@@ -57,7 +57,7 @@ class CloudMonitoringQuery implements \JsonSerializable, \Grafana\Foundation\Cog
      * TODO find a better way to do this ^ that's friendly to schema
      * TODO this shouldn't be unknown but DataSourceRef | null
      */
-    public ?\Grafana\Foundation\Dashboard\DataSourceRef $datasource;
+    public ?\Grafana\Foundation\Common\DataSourceRef $datasource;
 
     /**
      * Time interval in milliseconds.
@@ -73,12 +73,12 @@ class CloudMonitoringQuery implements \JsonSerializable, \Grafana\Foundation\Cog
      * @param \Grafana\Foundation\Googlecloudmonitoring\TimeSeriesQuery|null $timeSeriesQuery
      * @param \Grafana\Foundation\Googlecloudmonitoring\SLOQuery|null $sloQuery
      * @param \Grafana\Foundation\Googlecloudmonitoring\PromQLQuery|null $promQLQuery
-     * @param \Grafana\Foundation\Dashboard\DataSourceRef|null $datasource
+     * @param \Grafana\Foundation\Common\DataSourceRef|null $datasource
      * @param float|null $intervalMs
      */
-    public function __construct(?string $refId = null, ?bool $hide = null, ?string $queryType = null, ?string $aliasBy = null, ?\Grafana\Foundation\Googlecloudmonitoring\TimeSeriesList $timeSeriesList = null, ?\Grafana\Foundation\Googlecloudmonitoring\TimeSeriesQuery $timeSeriesQuery = null, ?\Grafana\Foundation\Googlecloudmonitoring\SLOQuery $sloQuery = null, ?\Grafana\Foundation\Googlecloudmonitoring\PromQLQuery $promQLQuery = null, ?\Grafana\Foundation\Dashboard\DataSourceRef $datasource = null, ?float $intervalMs = null)
+    public function __construct(?string $refId = null, ?bool $hide = null, ?string $queryType = null, ?string $aliasBy = null, ?\Grafana\Foundation\Googlecloudmonitoring\TimeSeriesList $timeSeriesList = null, ?\Grafana\Foundation\Googlecloudmonitoring\TimeSeriesQuery $timeSeriesQuery = null, ?\Grafana\Foundation\Googlecloudmonitoring\SLOQuery $sloQuery = null, ?\Grafana\Foundation\Googlecloudmonitoring\PromQLQuery $promQLQuery = null, ?\Grafana\Foundation\Common\DataSourceRef $datasource = null, ?float $intervalMs = null)
     {
-        $this->refId = $refId ?: "";
+        $this->refId = $refId;
         $this->hide = $hide;
         $this->queryType = $queryType;
         $this->aliasBy = $aliasBy;
@@ -125,7 +125,7 @@ class CloudMonitoringQuery implements \JsonSerializable, \Grafana\Foundation\Cog
             datasource: isset($data["datasource"]) ? (function($input) {
     	/** @var array{type?: string, uid?: string} */
     $val = $input;
-    	return \Grafana\Foundation\Dashboard\DataSourceRef::fromArray($val);
+    	return \Grafana\Foundation\Common\DataSourceRef::fromArray($val);
     })($data["datasource"]) : null,
             intervalMs: $data["intervalMs"] ?? null,
         );
@@ -137,7 +137,9 @@ class CloudMonitoringQuery implements \JsonSerializable, \Grafana\Foundation\Cog
     public function jsonSerialize(): mixed
     {
         $data = new \stdClass;
-        $data->refId = $this->refId;
+        if (isset($this->refId)) {
+            $data->refId = $this->refId;
+        }
         if (isset($this->hide)) {
             $data->hide = $this->hide;
         }

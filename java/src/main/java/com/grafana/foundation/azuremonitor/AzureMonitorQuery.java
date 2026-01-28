@@ -8,12 +8,13 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.ObjectWriter;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import java.util.List;
-import com.grafana.foundation.dashboard.DataSourceRef;
+import com.grafana.foundation.common.DataSourceRef;
 
 public class AzureMonitorQuery implements com.grafana.foundation.cog.variants.Dataquery {
     // A unique identifier for the query within the list of targets.
     // In server side expressions, the refId is used as a variable name to identify results.
     // By default, the UI will assign A->Z; however setting meaningful names may be useful.
+    @JsonInclude(JsonInclude.Include.NON_NULL)
     @JsonProperty("refId")
     public String refId;
     // true if query is disabled (ie should not be returned to the dashboard)
@@ -78,7 +79,6 @@ public class AzureMonitorQuery implements com.grafana.foundation.cog.variants.Da
     @JsonProperty("region")
     public String region;
     public AzureMonitorQuery() {
-        this.refId = "";
     }
     public AzureMonitorQuery(String refId,Boolean hide,String queryType,String subscription,List<String> subscriptions,AzureMetricQuery azureMonitor,AzureLogsQuery azureLogAnalytics,AzureResourceGraphQuery azureResourceGraph,AzureTracesQuery azureTraces,GrafanaTemplateVariableQuery grafanaTemplateVariableFn,String resourceGroup,String namespace,String resource,DataSourceRef datasource,String region) {
         this.refId = refId;

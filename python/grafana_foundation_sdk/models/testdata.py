@@ -46,7 +46,7 @@ class StreamingQuery:
     bands: typing.Optional[int]
     url: typing.Optional[str]
 
-    def __init__(self, type_val: typing.Optional[typing.Literal["signal", "logs", "fetch", "traces"]] = None, speed: int = 0, spread: int = 0, noise: int = 0, bands: typing.Optional[int] = None, url: typing.Optional[str] = None):
+    def __init__(self, type_val: typing.Optional[typing.Literal["signal", "logs", "fetch", "traces"]] = None, speed: int = 0, spread: int = 0, noise: int = 0, bands: typing.Optional[int] = None, url: typing.Optional[str] = None) -> None:
         self.type_val = type_val if type_val is not None else "signal"
         self.speed = speed
         self.spread = spread
@@ -94,7 +94,7 @@ class PulseWaveQuery:
     on_value: typing.Optional[float]
     off_value: typing.Optional[float]
 
-    def __init__(self, time_step: typing.Optional[int] = None, on_count: typing.Optional[int] = None, off_count: typing.Optional[int] = None, on_value: typing.Optional[float] = None, off_value: typing.Optional[float] = None):
+    def __init__(self, time_step: typing.Optional[int] = None, on_count: typing.Optional[int] = None, off_count: typing.Optional[int] = None, on_value: typing.Optional[float] = None, off_value: typing.Optional[float] = None) -> None:
         self.time_step = time_step
         self.on_count = on_count
         self.off_count = off_count
@@ -140,7 +140,7 @@ class SimulationQuery:
     stream: typing.Optional[bool]
     last: typing.Optional[bool]
 
-    def __init__(self, key: typing.Optional['Key'] = None, config: typing.Optional[dict[str, object]] = None, stream: typing.Optional[bool] = None, last: typing.Optional[bool] = None):
+    def __init__(self, key: typing.Optional['Key'] = None, config: typing.Optional[dict[str, object]] = None, stream: typing.Optional[bool] = None, last: typing.Optional[bool] = None) -> None:
         self.key = key if key is not None else Key()
         self.config = config
         self.stream = stream
@@ -180,7 +180,7 @@ class CSVWave:
     values_csv: typing.Optional[str]
     labels: typing.Optional[str]
 
-    def __init__(self, time_step: typing.Optional[int] = None, name: typing.Optional[str] = None, values_csv: typing.Optional[str] = None, labels: typing.Optional[str] = None):
+    def __init__(self, time_step: typing.Optional[int] = None, name: typing.Optional[str] = None, values_csv: typing.Optional[str] = None, labels: typing.Optional[str] = None) -> None:
         self.time_step = time_step
         self.name = name
         self.values_csv = values_csv
@@ -220,7 +220,7 @@ class NodesQuery:
     count: typing.Optional[int]
     seed: typing.Optional[int]
 
-    def __init__(self, type_val: typing.Optional[typing.Literal["random", "response_small", "response_medium", "random edges"]] = None, count: typing.Optional[int] = None, seed: typing.Optional[int] = None):
+    def __init__(self, type_val: typing.Optional[typing.Literal["random", "response_small", "response_medium", "random edges"]] = None, count: typing.Optional[int] = None, seed: typing.Optional[int] = None) -> None:
         self.type_val = type_val
         self.count = count
         self.seed = seed
@@ -256,7 +256,7 @@ class USAQuery:
     fields: typing.Optional[list[str]]
     states: typing.Optional[list[str]]
 
-    def __init__(self, mode: typing.Optional[str] = None, period: typing.Optional[str] = None, fields: typing.Optional[list[str]] = None, states: typing.Optional[list[str]] = None):
+    def __init__(self, mode: typing.Optional[str] = None, period: typing.Optional[str] = None, fields: typing.Optional[list[str]] = None, states: typing.Optional[list[str]] = None) -> None:
         self.mode = mode
         self.period = period
         self.fields = fields
@@ -302,7 +302,7 @@ class Scenario:
     description: typing.Optional[str]
     hide_alias_field: typing.Optional[bool]
 
-    def __init__(self, id_val: str = "", name: str = "", string_input: str = "", description: typing.Optional[str] = None, hide_alias_field: typing.Optional[bool] = None):
+    def __init__(self, id_val: str = "", name: str = "", string_input: str = "", description: typing.Optional[str] = None, hide_alias_field: typing.Optional[bool] = None) -> None:
         self.id_val = id_val
         self.name = name
         self.string_input = string_input
@@ -366,7 +366,7 @@ class Dataquery(cogvariants.Dataquery):
     # A unique identifier for the query within the list of targets.
     # In server side expressions, the refId is used as a variable name to identify results.
     # By default, the UI will assign A->Z; however setting meaningful names may be useful.
-    ref_id: str
+    ref_id: typing.Optional[str]
     # true if query is disabled (ie should not be returned to the dashboard)
     # Note this does not always imply that the query should not be executed since
     # the results from a hidden query may be used as the input to other queries (SSE etc)
@@ -380,7 +380,7 @@ class Dataquery(cogvariants.Dataquery):
     # TODO this shouldn't be unknown but DataSourceRef | null
     datasource: typing.Optional[object]
 
-    def __init__(self, alias: typing.Optional[str] = None, scenario_id: typing.Optional['TestDataQueryType'] = None, string_input: typing.Optional[str] = None, stream: typing.Optional['StreamingQuery'] = None, pulse_wave: typing.Optional['PulseWaveQuery'] = None, sim: typing.Optional['SimulationQuery'] = None, csv_wave: typing.Optional[list['CSVWave']] = None, labels: typing.Optional[str] = None, lines: typing.Optional[int] = None, level_column: typing.Optional[bool] = None, channel: typing.Optional[str] = None, nodes: typing.Optional['NodesQuery'] = None, csv_file_name: typing.Optional[str] = None, csv_content: typing.Optional[str] = None, raw_frame_content: typing.Optional[str] = None, series_count: typing.Optional[int] = None, usa: typing.Optional['USAQuery'] = None, error_type: typing.Optional[typing.Literal["server_panic", "frontend_exception", "frontend_observable"]] = None, span_count: typing.Optional[int] = None, points: typing.Optional[list[list[typing.Union[str, int]]]] = None, drop_percent: typing.Optional[float] = None, flamegraph_diff: typing.Optional[bool] = None, ref_id: str = "", hide: typing.Optional[bool] = None, query_type: typing.Optional[str] = None, datasource: typing.Optional[object] = None):
+    def __init__(self, alias: typing.Optional[str] = None, scenario_id: typing.Optional['TestDataQueryType'] = None, string_input: typing.Optional[str] = None, stream: typing.Optional['StreamingQuery'] = None, pulse_wave: typing.Optional['PulseWaveQuery'] = None, sim: typing.Optional['SimulationQuery'] = None, csv_wave: typing.Optional[list['CSVWave']] = None, labels: typing.Optional[str] = None, lines: typing.Optional[int] = None, level_column: typing.Optional[bool] = None, channel: typing.Optional[str] = None, nodes: typing.Optional['NodesQuery'] = None, csv_file_name: typing.Optional[str] = None, csv_content: typing.Optional[str] = None, raw_frame_content: typing.Optional[str] = None, series_count: typing.Optional[int] = None, usa: typing.Optional['USAQuery'] = None, error_type: typing.Optional[typing.Literal["server_panic", "frontend_exception", "frontend_observable"]] = None, span_count: typing.Optional[int] = None, points: typing.Optional[list[list[typing.Union[str, int]]]] = None, drop_percent: typing.Optional[float] = None, flamegraph_diff: typing.Optional[bool] = None, ref_id: typing.Optional[str] = None, hide: typing.Optional[bool] = None, query_type: typing.Optional[str] = None, datasource: typing.Optional[object] = None) -> None:
         self.alias = alias
         self.scenario_id = scenario_id if scenario_id is not None else TestDataQueryType.RANDOM_WALK
         self.string_input = string_input
@@ -410,7 +410,6 @@ class Dataquery(cogvariants.Dataquery):
 
     def to_json(self) -> dict[str, object]:
         payload: dict[str, object] = {
-            "refId": self.ref_id,
         }
         if self.alias is not None:
             payload["alias"] = self.alias
@@ -456,6 +455,8 @@ class Dataquery(cogvariants.Dataquery):
             payload["dropPercent"] = self.drop_percent
         if self.flamegraph_diff is not None:
             payload["flamegraphDiff"] = self.flamegraph_diff
+        if self.ref_id is not None:
+            payload["refId"] = self.ref_id
         if self.hide is not None:
             payload["hide"] = self.hide
         if self.query_type is not None:
@@ -529,7 +530,7 @@ class Key:
     tick: float
     uid: typing.Optional[str]
 
-    def __init__(self, type_val: str = "", tick: float = 0, uid: typing.Optional[str] = None):
+    def __init__(self, type_val: str = "", tick: float = 0, uid: typing.Optional[str] = None) -> None:
         self.type_val = type_val
         self.tick = tick
         self.uid = uid

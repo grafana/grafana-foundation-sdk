@@ -56,7 +56,7 @@ class Dataquery implements \JsonSerializable, \Grafana\Foundation\Cog\Dataquery
      * In server side expressions, the refId is used as a variable name to identify results.
      * By default, the UI will assign A->Z; however setting meaningful names may be useful.
      */
-    public string $refId;
+    public ?string $refId;
 
     /**
      * true if query is disabled (ie should not be returned to the dashboard)

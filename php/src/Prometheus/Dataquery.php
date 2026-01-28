@@ -52,7 +52,7 @@ class Dataquery implements \JsonSerializable, \Grafana\Foundation\Cog\Dataquery
      * In server side expressions, the refId is used as a variable name to identify results.
      * By default, the UI will assign A->Z; however setting meaningful names may be useful.
      */
-    public string $refId;
+    public ?string $refId;
 
     /**
      * true if query is disabled (ie should not be returned to the dashboard)
@@ -109,7 +109,7 @@ class Dataquery implements \JsonSerializable, \Grafana\Foundation\Cog\Dataquery
         $this->legendFormat = $legendFormat;
         $this->intervalFactor = $intervalFactor;
         $this->scope = $scope;
-        $this->refId = $refId ?: "";
+        $this->refId = $refId;
         $this->hide = $hide;
         $this->queryType = $queryType;
         $this->datasource = $datasource;
@@ -152,7 +152,6 @@ class Dataquery implements \JsonSerializable, \Grafana\Foundation\Cog\Dataquery
     {
         $data = new \stdClass;
         $data->expr = $this->expr;
-        $data->refId = $this->refId;
         if (isset($this->instant)) {
             $data->instant = $this->instant;
         }
@@ -176,6 +175,9 @@ class Dataquery implements \JsonSerializable, \Grafana\Foundation\Cog\Dataquery
         }
         if (isset($this->scope)) {
             $data->scope = $this->scope;
+        }
+        if (isset($this->refId)) {
+            $data->refId = $this->refId;
         }
         if (isset($this->hide)) {
             $data->hide = $this->hide;

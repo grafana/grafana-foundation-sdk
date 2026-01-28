@@ -10,7 +10,7 @@ import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonSetter;
 import com.fasterxml.jackson.annotation.Nulls;
 import java.util.Map;
-import com.grafana.foundation.dashboard.DataSourceRef;
+import com.grafana.foundation.common.DataSourceRef;
 import java.util.List;
 
 // Shape of a CloudWatch Annotation query
@@ -36,6 +36,7 @@ public class CloudWatchAnnotationQuery implements com.grafana.foundation.cog.var
     // A unique identifier for the query within the list of targets.
     // In server side expressions, the refId is used as a variable name to identify results.
     // By default, the UI will assign A->Z; however setting meaningful names may be useful.
+    @JsonInclude(JsonInclude.Include.NON_NULL)
     @JsonProperty("refId")
     public String refId;
     // true if query is disabled (ie should not be returned to the dashboard)
@@ -98,7 +99,6 @@ public class CloudWatchAnnotationQuery implements com.grafana.foundation.cog.var
     public List<String> statistics;
     public CloudWatchAnnotationQuery() {
         this.queryMode = CloudWatchQueryMode.ANNOTATIONS;
-        this.refId = "";
         this.region = "";
         this.namespace = "";
     }

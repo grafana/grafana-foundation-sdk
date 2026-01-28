@@ -6,7 +6,7 @@ import com.grafana.foundation.dashboard.Panel;
 import java.util.List;
 import com.grafana.foundation.cog.variants.Dataquery;
 import java.util.LinkedList;
-import com.grafana.foundation.dashboard.DataSourceRef;
+import com.grafana.foundation.common.DataSourceRef;
 import com.grafana.foundation.dashboard.GridPos;
 import com.grafana.foundation.dashboard.DashboardLink;
 import com.grafana.foundation.dashboard.PanelRepeatDirection;
@@ -400,7 +400,7 @@ public class StatushistoryPanelBuilder implements com.grafana.foundation.cog.Bui
             throw new IllegalArgumentException("rowHeight must be <= 1");
         }
 		if (this.internal.options == null) {
-			this.internal.options = new com.grafana.foundation.statushistory.Options();
+			this.internal.options = new com.grafana.foundation.statushistory.OptionsBuilder().build();
 		}
         ((Options) this.internal.options).rowHeight = rowHeight;
         return this;
@@ -408,7 +408,7 @@ public class StatushistoryPanelBuilder implements com.grafana.foundation.cog.Bui
     
     public StatushistoryPanelBuilder showValue(VisibilityMode showValue) {
 		if (this.internal.options == null) {
-			this.internal.options = new com.grafana.foundation.statushistory.Options();
+			this.internal.options = new com.grafana.foundation.statushistory.OptionsBuilder().build();
 		}
         ((Options) this.internal.options).showValue = showValue;
         return this;
@@ -416,7 +416,7 @@ public class StatushistoryPanelBuilder implements com.grafana.foundation.cog.Bui
     
     public StatushistoryPanelBuilder legend(com.grafana.foundation.cog.Builder<VizLegendOptions> legend) {
 		if (this.internal.options == null) {
-			this.internal.options = new com.grafana.foundation.statushistory.Options();
+			this.internal.options = new com.grafana.foundation.statushistory.OptionsBuilder().build();
 		}
     VizLegendOptions legendResource = legend.build();
         ((Options) this.internal.options).legend = legendResource;
@@ -425,7 +425,7 @@ public class StatushistoryPanelBuilder implements com.grafana.foundation.cog.Bui
     
     public StatushistoryPanelBuilder tooltip(com.grafana.foundation.cog.Builder<VizTooltipOptions> tooltip) {
 		if (this.internal.options == null) {
-			this.internal.options = new com.grafana.foundation.statushistory.Options();
+			this.internal.options = new com.grafana.foundation.statushistory.OptionsBuilder().build();
 		}
     VizTooltipOptions tooltipResource = tooltip.build();
         ((Options) this.internal.options).tooltip = tooltipResource;
@@ -434,7 +434,7 @@ public class StatushistoryPanelBuilder implements com.grafana.foundation.cog.Bui
     
     public StatushistoryPanelBuilder timezone(List<String> timezone) {
 		if (this.internal.options == null) {
-			this.internal.options = new com.grafana.foundation.statushistory.Options();
+			this.internal.options = new com.grafana.foundation.statushistory.OptionsBuilder().build();
 		}
         ((Options) this.internal.options).timezone = timezone;
         return this;
@@ -445,7 +445,7 @@ public class StatushistoryPanelBuilder implements com.grafana.foundation.cog.Bui
             throw new IllegalArgumentException("colWidth must be <= 1");
         }
 		if (this.internal.options == null) {
-			this.internal.options = new com.grafana.foundation.statushistory.Options();
+			this.internal.options = new com.grafana.foundation.statushistory.OptionsBuilder().build();
 		}
         ((Options) this.internal.options).colWidth = colWidth;
         return this;
@@ -462,7 +462,7 @@ public class StatushistoryPanelBuilder implements com.grafana.foundation.cog.Bui
 			this.internal.fieldConfig.defaults = new com.grafana.foundation.dashboard.FieldConfig();
 		}
 		if (this.internal.fieldConfig.defaults.custom == null) {
-			this.internal.fieldConfig.defaults.custom = new com.grafana.foundation.statushistory.FieldConfig();
+			this.internal.fieldConfig.defaults.custom = new com.grafana.foundation.statushistory.FieldConfigBuilder().build();
 		}
         ((FieldConfig) this.internal.fieldConfig.defaults.custom).lineWidth = lineWidth;
         return this;
@@ -476,7 +476,7 @@ public class StatushistoryPanelBuilder implements com.grafana.foundation.cog.Bui
 			this.internal.fieldConfig.defaults = new com.grafana.foundation.dashboard.FieldConfig();
 		}
 		if (this.internal.fieldConfig.defaults.custom == null) {
-			this.internal.fieldConfig.defaults.custom = new com.grafana.foundation.statushistory.FieldConfig();
+			this.internal.fieldConfig.defaults.custom = new com.grafana.foundation.statushistory.FieldConfigBuilder().build();
 		}
     HideSeriesConfig hideFromResource = hideFrom.build();
         ((FieldConfig) this.internal.fieldConfig.defaults.custom).hideFrom = hideFromResource;
@@ -494,7 +494,7 @@ public class StatushistoryPanelBuilder implements com.grafana.foundation.cog.Bui
 			this.internal.fieldConfig.defaults = new com.grafana.foundation.dashboard.FieldConfig();
 		}
 		if (this.internal.fieldConfig.defaults.custom == null) {
-			this.internal.fieldConfig.defaults.custom = new com.grafana.foundation.statushistory.FieldConfig();
+			this.internal.fieldConfig.defaults.custom = new com.grafana.foundation.statushistory.FieldConfigBuilder().build();
 		}
         ((FieldConfig) this.internal.fieldConfig.defaults.custom).fillOpacity = fillOpacity;
         return this;

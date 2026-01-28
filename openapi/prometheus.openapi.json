@@ -29,8 +29,7 @@
         "type": "object",
         "additionalProperties": false,
         "required": [
-          "expr",
-          "refId"
+          "expr"
         ],
         "properties": {
           "expr": {

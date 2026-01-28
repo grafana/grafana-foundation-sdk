@@ -12,5 +12,6 @@
 
  * <span class="badge builder"></span> [ControlsOptionsBuilder](./builder-ControlsOptionsBuilder.md)
  * <span class="badge builder"></span> [MapViewConfigBuilder](./builder-MapViewConfigBuilder.md)
+ * <span class="badge builder"></span> [OptionsBuilder](./builder-OptionsBuilder.md)
  * <span class="badge builder"></span> [PanelBuilder](./builder-PanelBuilder.md)
  * <span class="badge builder"></span> [TooltipOptionsBuilder](./builder-TooltipOptionsBuilder.md)

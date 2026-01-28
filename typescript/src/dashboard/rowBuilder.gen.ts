@@ -2,6 +2,7 @@
 
 import * as cog from '../cog';
 import * as dashboard from '../dashboard';
+import * as common from '../common';
 
 // Row panel
 export class RowBuilder implements cog.Builder<dashboard.RowPanel> {
@@ -34,7 +35,7 @@ export class RowBuilder implements cog.Builder<dashboard.RowPanel> {
     }
 
     // Name of default datasource for the row
-    datasource(datasource: dashboard.DataSourceRef): this {
+    datasource(datasource: common.DataSourceRef): this {
         this.internal.datasource = datasource;
         return this;
     }

@@ -41,7 +41,7 @@ TODO find a better way to do this ^ that's friendly to schema
 TODO this shouldn't be unknown but DataSourceRef | null
 
 ```php
-datasource(\Grafana\Foundation\Dashboard\DataSourceRef $datasource)
+datasource(\Grafana\Foundation\Common\DataSourceRef $datasource)
 ```
 
 ### <span class="badge object-method"></span> editorMode

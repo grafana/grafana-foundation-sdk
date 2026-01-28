@@ -10,7 +10,7 @@ class UpdateConfig:
     data_changed: bool
     schema_changed: bool
 
-    def __init__(self, render: bool = False, data_changed: bool = False, schema_changed: bool = False):
+    def __init__(self, render: bool = False, data_changed: bool = False, schema_changed: bool = False) -> None:
         self.render = render
         self.data_changed = data_changed
         self.schema_changed = schema_changed
@@ -49,7 +49,7 @@ class Options:
     mode: 'DebugMode'
     counters: typing.Optional['UpdateConfig']
 
-    def __init__(self, mode: typing.Optional['DebugMode'] = None, counters: typing.Optional['UpdateConfig'] = None):
+    def __init__(self, mode: typing.Optional['DebugMode'] = None, counters: typing.Optional['UpdateConfig'] = None) -> None:
         self.mode = mode if mode is not None else DebugMode.RENDER
         self.counters = counters
 

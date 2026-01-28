@@ -123,7 +123,7 @@ dataLinks(array $links)
 The datasource used in all targets.
 
 ```php
-datasource(\Grafana\Foundation\Dashboard\DataSourceRef $datasource)
+datasource(\Grafana\Foundation\Common\DataSourceRef $datasource)
 ```
 
 ### <span class="badge object-method"></span> decimals

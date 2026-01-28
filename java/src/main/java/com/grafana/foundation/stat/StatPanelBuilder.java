@@ -6,7 +6,7 @@ import com.grafana.foundation.dashboard.Panel;
 import java.util.List;
 import com.grafana.foundation.cog.variants.Dataquery;
 import java.util.LinkedList;
-import com.grafana.foundation.dashboard.DataSourceRef;
+import com.grafana.foundation.common.DataSourceRef;
 import com.grafana.foundation.dashboard.GridPos;
 import com.grafana.foundation.dashboard.DashboardLink;
 import com.grafana.foundation.dashboard.PanelRepeatDirection;
@@ -397,7 +397,7 @@ public class StatPanelBuilder implements com.grafana.foundation.cog.Builder<Pane
     
     public StatPanelBuilder graphMode(BigValueGraphMode graphMode) {
 		if (this.internal.options == null) {
-			this.internal.options = new com.grafana.foundation.stat.Options();
+			this.internal.options = new com.grafana.foundation.stat.OptionsBuilder().build();
 		}
         ((Options) this.internal.options).graphMode = graphMode;
         return this;
@@ -405,7 +405,7 @@ public class StatPanelBuilder implements com.grafana.foundation.cog.Builder<Pane
     
     public StatPanelBuilder colorMode(BigValueColorMode colorMode) {
 		if (this.internal.options == null) {
-			this.internal.options = new com.grafana.foundation.stat.Options();
+			this.internal.options = new com.grafana.foundation.stat.OptionsBuilder().build();
 		}
         ((Options) this.internal.options).colorMode = colorMode;
         return this;
@@ -413,7 +413,7 @@ public class StatPanelBuilder implements com.grafana.foundation.cog.Builder<Pane
     
     public StatPanelBuilder justifyMode(BigValueJustifyMode justifyMode) {
 		if (this.internal.options == null) {
-			this.internal.options = new com.grafana.foundation.stat.Options();
+			this.internal.options = new com.grafana.foundation.stat.OptionsBuilder().build();
 		}
         ((Options) this.internal.options).justifyMode = justifyMode;
         return this;
@@ -421,7 +421,7 @@ public class StatPanelBuilder implements com.grafana.foundation.cog.Builder<Pane
     
     public StatPanelBuilder textMode(BigValueTextMode textMode) {
 		if (this.internal.options == null) {
-			this.internal.options = new com.grafana.foundation.stat.Options();
+			this.internal.options = new com.grafana.foundation.stat.OptionsBuilder().build();
 		}
         ((Options) this.internal.options).textMode = textMode;
         return this;
@@ -429,7 +429,7 @@ public class StatPanelBuilder implements com.grafana.foundation.cog.Builder<Pane
     
     public StatPanelBuilder wideLayout(Boolean wideLayout) {
 		if (this.internal.options == null) {
-			this.internal.options = new com.grafana.foundation.stat.Options();
+			this.internal.options = new com.grafana.foundation.stat.OptionsBuilder().build();
 		}
         ((Options) this.internal.options).wideLayout = wideLayout;
         return this;
@@ -437,7 +437,7 @@ public class StatPanelBuilder implements com.grafana.foundation.cog.Builder<Pane
     
     public StatPanelBuilder reduceOptions(com.grafana.foundation.cog.Builder<ReduceDataOptions> reduceOptions) {
 		if (this.internal.options == null) {
-			this.internal.options = new com.grafana.foundation.stat.Options();
+			this.internal.options = new com.grafana.foundation.stat.OptionsBuilder().build();
 		}
     ReduceDataOptions reduceOptionsResource = reduceOptions.build();
         ((Options) this.internal.options).reduceOptions = reduceOptionsResource;
@@ -446,7 +446,7 @@ public class StatPanelBuilder implements com.grafana.foundation.cog.Builder<Pane
     
     public StatPanelBuilder text(com.grafana.foundation.cog.Builder<VizTextDisplayOptions> text) {
 		if (this.internal.options == null) {
-			this.internal.options = new com.grafana.foundation.stat.Options();
+			this.internal.options = new com.grafana.foundation.stat.OptionsBuilder().build();
 		}
     VizTextDisplayOptions textResource = text.build();
         ((Options) this.internal.options).text = textResource;
@@ -455,7 +455,7 @@ public class StatPanelBuilder implements com.grafana.foundation.cog.Builder<Pane
     
     public StatPanelBuilder showPercentChange(Boolean showPercentChange) {
 		if (this.internal.options == null) {
-			this.internal.options = new com.grafana.foundation.stat.Options();
+			this.internal.options = new com.grafana.foundation.stat.OptionsBuilder().build();
 		}
         ((Options) this.internal.options).showPercentChange = showPercentChange;
         return this;
@@ -463,7 +463,7 @@ public class StatPanelBuilder implements com.grafana.foundation.cog.Builder<Pane
     
     public StatPanelBuilder orientation(VizOrientation orientation) {
 		if (this.internal.options == null) {
-			this.internal.options = new com.grafana.foundation.stat.Options();
+			this.internal.options = new com.grafana.foundation.stat.OptionsBuilder().build();
 		}
         ((Options) this.internal.options).orientation = orientation;
         return this;
