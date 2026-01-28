@@ -9,6 +9,18 @@
   "paths": {},
   "components": {
     "schemas": {
+      "DashboardV2Beta1": {
+        "type": "string",
+        "const": "dashboard.grafana.app/v2beta1"
+      },
+      "DashboardV2Alpha1": {
+        "type": "string",
+        "const": "dashboard.grafana.app/v2alpha1"
+      },
+      "DashboardKind": {
+        "type": "string",
+        "const": "Dashboard"
+      },
       "Manifest": {
         "type": "object",
         "additionalProperties": false,

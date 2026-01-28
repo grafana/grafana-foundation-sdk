@@ -8,3 +8,6 @@ title: <span class="badge object-type-ref"></span> FieldConfig
 ```java
 public class FieldConfig extends com.grafana.foundation.common.GraphFieldConfig {}
 ```
+## See also
+
+ * <span class="badge builder"></span> [FieldConfigBuilder](./builder-FieldConfigBuilder.md)

@@ -55,7 +55,7 @@ class Panel implements \JsonSerializable
     /**
      * The datasource used in all targets.
      */
-    public ?\Grafana\Foundation\Dashboard\DataSourceRef $datasource;
+    public ?\Grafana\Foundation\Common\DataSourceRef $datasource;
 
     /**
      * Grid position.

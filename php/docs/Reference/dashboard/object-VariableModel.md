@@ -49,7 +49,7 @@ class VariableModel implements \JsonSerializable
     /**
      * Data source used to fetch values for a variable. It can be defined but `null`.
      */
-    public ?\Grafana\Foundation\Dashboard\DataSourceRef $datasource;
+    public ?\Grafana\Foundation\Common\DataSourceRef $datasource;
 
     /**
      * Shows current selected variable text/value on the dashboard

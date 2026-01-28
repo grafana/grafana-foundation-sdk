@@ -23,7 +23,7 @@ def build() -> expr.TypeSql
 The datasource
 
 ```python
-def datasource(datasource: dashboard.DataSourceRef) -> typing.Self
+def datasource(datasource: common.DataSourceRef) -> typing.Self
 ```
 
 ### <span class="badge object-method"></span> expression

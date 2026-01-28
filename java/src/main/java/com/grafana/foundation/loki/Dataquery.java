@@ -7,7 +7,7 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.ObjectWriter;
 import com.fasterxml.jackson.annotation.JsonInclude;
-import com.grafana.foundation.dashboard.DataSourceRef;
+import com.grafana.foundation.common.DataSourceRef;
 
 public class Dataquery implements com.grafana.foundation.cog.variants.Dataquery {
     // The LogQL query.
@@ -43,6 +43,7 @@ public class Dataquery implements com.grafana.foundation.cog.variants.Dataquery 
     // A unique identifier for the query within the list of targets.
     // In server side expressions, the refId is used as a variable name to identify results.
     // By default, the UI will assign A->Z; however setting meaningful names may be useful.
+    @JsonInclude(JsonInclude.Include.NON_NULL)
     @JsonProperty("refId")
     public String refId;
     // true if query is disabled (ie should not be returned to the dashboard)
@@ -68,7 +69,6 @@ public class Dataquery implements com.grafana.foundation.cog.variants.Dataquery 
     public LokiQueryDirection direction;
     public Dataquery() {
         this.expr = "";
-        this.refId = "";
     }
     public Dataquery(String expr,String legendFormat,Long maxLines,Long resolution,QueryEditorMode editorMode,Boolean range,Boolean instant,String step,String refId,Boolean hide,String queryType,DataSourceRef datasource,LokiQueryDirection direction) {
         this.expr = expr;

@@ -3,7 +3,7 @@
 import enum
 from ..cog import variants as cogvariants
 import typing
-from ..models import dashboard
+from ..models import common
 from ..cog import runtime as cogruntime
 
 
@@ -27,7 +27,7 @@ class Dataquery(cogvariants.Dataquery):
     # A unique identifier for the query within the list of targets.
     # In server side expressions, the refId is used as a variable name to identify results.
     # By default, the UI will assign A->Z; however setting meaningful names may be useful.
-    ref_id: str
+    ref_id: typing.Optional[str]
     # true if query is disabled (ie should not be returned to the dashboard)
     # Note this does not always imply that the query should not be executed since
     # the results from a hidden query may be used as the input to other queries (SSE etc)
@@ -39,9 +39,9 @@ class Dataquery(cogvariants.Dataquery):
     # For non mixed scenarios this is undefined.
     # TODO find a better way to do this ^ that's friendly to schema
     # TODO this shouldn't be unknown but DataSourceRef | null
-    datasource: typing.Optional[dashboard.DataSourceRef]
+    datasource: typing.Optional[common.DataSourceRef]
 
-    def __init__(self, label_selector: str = "{}", span_selector: typing.Optional[list[str]] = None, profile_type_id: str = "", group_by: typing.Optional[list[str]] = None, max_nodes: typing.Optional[int] = None, ref_id: str = "", hide: typing.Optional[bool] = None, query_type: typing.Optional[str] = None, datasource: typing.Optional[dashboard.DataSourceRef] = None):
+    def __init__(self, label_selector: str = "{}", span_selector: typing.Optional[list[str]] = None, profile_type_id: str = "", group_by: typing.Optional[list[str]] = None, max_nodes: typing.Optional[int] = None, ref_id: typing.Optional[str] = None, hide: typing.Optional[bool] = None, query_type: typing.Optional[str] = None, datasource: typing.Optional[common.DataSourceRef] = None) -> None:
         self.label_selector = label_selector
         self.span_selector = span_selector
         self.profile_type_id = profile_type_id
@@ -57,12 +57,13 @@ class Dataquery(cogvariants.Dataquery):
             "labelSelector": self.label_selector,
             "profileTypeId": self.profile_type_id,
             "groupBy": self.group_by,
-            "refId": self.ref_id,
         }
         if self.span_selector is not None:
             payload["spanSelector"] = self.span_selector
         if self.max_nodes is not None:
             payload["maxNodes"] = self.max_nodes
+        if self.ref_id is not None:
+            payload["refId"] = self.ref_id
         if self.hide is not None:
             payload["hide"] = self.hide
         if self.query_type is not None:
@@ -92,7 +93,7 @@ class Dataquery(cogvariants.Dataquery):
         if "queryType" in data:
             args["query_type"] = data["queryType"]
         if "datasource" in data:
-            args["datasource"] = dashboard.DataSourceRef.from_json(data["datasource"])        
+            args["datasource"] = common.DataSourceRef.from_json(data["datasource"])        
 
         return cls(**args)
 

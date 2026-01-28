@@ -13,7 +13,7 @@ class Options:
     layers: list[common.MapLayerOptions]
     tooltip: 'TooltipOptions'
 
-    def __init__(self, view: typing.Optional['MapViewConfig'] = None, controls: typing.Optional['ControlsOptions'] = None, basemap: typing.Optional[common.MapLayerOptions] = None, layers: typing.Optional[list[common.MapLayerOptions]] = None, tooltip: typing.Optional['TooltipOptions'] = None):
+    def __init__(self, view: typing.Optional['MapViewConfig'] = None, controls: typing.Optional['ControlsOptions'] = None, basemap: typing.Optional[common.MapLayerOptions] = None, layers: typing.Optional[list[common.MapLayerOptions]] = None, tooltip: typing.Optional['TooltipOptions'] = None) -> None:
         self.view = view if view is not None else MapViewConfig()
         self.controls = controls if controls is not None else ControlsOptions()
         self.basemap = basemap if basemap is not None else common.MapLayerOptions()
@@ -61,7 +61,7 @@ class MapViewConfig:
     layer: typing.Optional[str]
     shared: typing.Optional[bool]
 
-    def __init__(self, id_val: str = "zero", lat: typing.Optional[int] = 0, lon: typing.Optional[int] = 0, zoom: typing.Optional[int] = 1, min_zoom: typing.Optional[int] = None, max_zoom: typing.Optional[int] = None, padding: typing.Optional[int] = None, all_layers: typing.Optional[bool] = True, last_only: typing.Optional[bool] = None, layer: typing.Optional[str] = None, shared: typing.Optional[bool] = None):
+    def __init__(self, id_val: str = "zero", lat: typing.Optional[int] = 0, lon: typing.Optional[int] = 0, zoom: typing.Optional[int] = 1, min_zoom: typing.Optional[int] = None, max_zoom: typing.Optional[int] = None, padding: typing.Optional[int] = None, all_layers: typing.Optional[bool] = True, last_only: typing.Optional[bool] = None, layer: typing.Optional[str] = None, shared: typing.Optional[bool] = None) -> None:
         self.id_val = id_val
         self.lat = lat
         self.lon = lon
@@ -144,7 +144,7 @@ class ControlsOptions:
     # Show measure
     show_measure: typing.Optional[bool]
 
-    def __init__(self, show_zoom: typing.Optional[bool] = None, mouse_wheel_zoom: typing.Optional[bool] = None, show_attribution: typing.Optional[bool] = None, show_scale: typing.Optional[bool] = None, show_debug: typing.Optional[bool] = None, show_measure: typing.Optional[bool] = None):
+    def __init__(self, show_zoom: typing.Optional[bool] = None, mouse_wheel_zoom: typing.Optional[bool] = None, show_attribution: typing.Optional[bool] = None, show_scale: typing.Optional[bool] = None, show_debug: typing.Optional[bool] = None, show_measure: typing.Optional[bool] = None) -> None:
         self.show_zoom = show_zoom
         self.mouse_wheel_zoom = mouse_wheel_zoom
         self.show_attribution = show_attribution
@@ -192,7 +192,7 @@ class ControlsOptions:
 class TooltipOptions:
     mode: 'TooltipMode'
 
-    def __init__(self, mode: typing.Optional['TooltipMode'] = None):
+    def __init__(self, mode: typing.Optional['TooltipMode'] = None) -> None:
         self.mode = mode if mode is not None else TooltipMode.NONE
 
     def to_json(self) -> dict[str, object]:

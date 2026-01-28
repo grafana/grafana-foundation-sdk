@@ -1,6 +1,6 @@
 // Code generated - EDITING IS FUTILE. DO NOT EDIT.
 
-import * as dashboard from '../dashboard';
+import * as common from '../common';
 
 
 export interface Dataquery {
@@ -9,7 +9,7 @@ export interface Dataquery {
 	// A unique identifier for the query within the list of targets.
 	// In server side expressions, the refId is used as a variable name to identify results.
 	// By default, the UI will assign A->Z; however setting meaningful names may be useful.
-	refId: string;
+	refId?: string;
 	// true if query is disabled (ie should not be returned to the dashboard)
 	// Note this does not always imply that the query should not be executed since
 	// the results from a hidden query may be used as the input to other queries (SSE etc)
@@ -22,13 +22,12 @@ export interface Dataquery {
 	// For non mixed scenarios this is undefined.
 	// TODO find a better way to do this ^ that's friendly to schema
 	// TODO this shouldn't be unknown but DataSourceRef | null
-	datasource?: dashboard.DataSourceRef;
+	datasource?: common.DataSourceRef;
 	_implementsDataqueryVariant(): void;
 }
 
 export const defaultDataquery = (): Dataquery => ({
 	panelId: 0,
-	refId: "",
 	withTransforms: false,
 	_implementsDataqueryVariant: () => {},
 });

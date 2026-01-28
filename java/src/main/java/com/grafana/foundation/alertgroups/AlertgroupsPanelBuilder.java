@@ -6,7 +6,7 @@ import com.grafana.foundation.dashboard.Panel;
 import java.util.List;
 import com.grafana.foundation.cog.variants.Dataquery;
 import java.util.LinkedList;
-import com.grafana.foundation.dashboard.DataSourceRef;
+import com.grafana.foundation.common.DataSourceRef;
 import com.grafana.foundation.dashboard.GridPos;
 import com.grafana.foundation.dashboard.DashboardLink;
 import com.grafana.foundation.dashboard.PanelRepeatDirection;
@@ -380,7 +380,7 @@ public class AlertgroupsPanelBuilder implements com.grafana.foundation.cog.Build
     
     public AlertgroupsPanelBuilder labels(String labels) {
 		if (this.internal.options == null) {
-			this.internal.options = new com.grafana.foundation.alertgroups.Options();
+			this.internal.options = new com.grafana.foundation.alertgroups.OptionsBuilder().build();
 		}
         ((Options) this.internal.options).labels = labels;
         return this;
@@ -388,7 +388,7 @@ public class AlertgroupsPanelBuilder implements com.grafana.foundation.cog.Build
     
     public AlertgroupsPanelBuilder alertmanager(String alertmanager) {
 		if (this.internal.options == null) {
-			this.internal.options = new com.grafana.foundation.alertgroups.Options();
+			this.internal.options = new com.grafana.foundation.alertgroups.OptionsBuilder().build();
 		}
         ((Options) this.internal.options).alertmanager = alertmanager;
         return this;
@@ -396,7 +396,7 @@ public class AlertgroupsPanelBuilder implements com.grafana.foundation.cog.Build
     
     public AlertgroupsPanelBuilder expandAll(Boolean expandAll) {
 		if (this.internal.options == null) {
-			this.internal.options = new com.grafana.foundation.alertgroups.Options();
+			this.internal.options = new com.grafana.foundation.alertgroups.OptionsBuilder().build();
 		}
         ((Options) this.internal.options).expandAll = expandAll;
         return this;

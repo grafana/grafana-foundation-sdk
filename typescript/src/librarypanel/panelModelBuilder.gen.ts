@@ -2,6 +2,7 @@
 
 import * as cog from '../cog';
 import * as librarypanel from '../librarypanel';
+import * as common from '../common';
 import * as dashboard from '../dashboard';
 
 // Dashboard panels are the basic visualization building blocks.
@@ -66,7 +67,7 @@ export class PanelModelBuilder implements cog.Builder<librarypanel.PanelModel> {
     }
 
     // The datasource used in all targets.
-    datasource(datasource: dashboard.DataSourceRef): this {
+    datasource(datasource: common.DataSourceRef): this {
         this.internal.datasource = datasource;
         return this;
     }

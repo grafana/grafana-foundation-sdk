@@ -18,10 +18,12 @@
 
  * <span class="badge builder"></span> [CellValues](./builder-CellValues.md)
  * <span class="badge builder"></span> [ExemplarConfig](./builder-ExemplarConfig.md)
+ * <span class="badge builder"></span> [FieldConfig](./builder-FieldConfig.md)
  * <span class="badge builder"></span> [FilterValueRange](./builder-FilterValueRange.md)
  * <span class="badge builder"></span> [HeatmapColorOptions](./builder-HeatmapColorOptions.md)
  * <span class="badge builder"></span> [HeatmapLegend](./builder-HeatmapLegend.md)
  * <span class="badge builder"></span> [HeatmapTooltip](./builder-HeatmapTooltip.md)
+ * <span class="badge builder"></span> [Options](./builder-Options.md)
  * <span class="badge builder"></span> [Panel](./builder-Panel.md)
  * <span class="badge builder"></span> [RowsHeatmapOptions](./builder-RowsHeatmapOptions.md)
  * <span class="badge builder"></span> [YAxisConfig](./builder-YAxisConfig.md)

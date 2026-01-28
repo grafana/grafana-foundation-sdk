@@ -31,7 +31,7 @@ current(\Grafana\Foundation\Dashboard\VariableOption $current)
 Data source used to fetch values for a variable. It can be defined but `null`.
 
 ```php
-datasource(\Grafana\Foundation\Dashboard\DataSourceRef $datasource)
+datasource(\Grafana\Foundation\Common\DataSourceRef $datasource)
 ```
 
 ### <span class="badge object-method"></span> description

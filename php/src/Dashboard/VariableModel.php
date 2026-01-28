@@ -46,7 +46,7 @@ class VariableModel implements \JsonSerializable
     /**
      * Data source used to fetch values for a variable. It can be defined but `null`.
      */
-    public ?\Grafana\Foundation\Dashboard\DataSourceRef $datasource;
+    public ?\Grafana\Foundation\Common\DataSourceRef $datasource;
 
     /**
      * Shows current selected variable text/value on the dashboard
@@ -95,7 +95,7 @@ class VariableModel implements \JsonSerializable
      * @param bool|null $skipUrlSync
      * @param string|null $description
      * @param string|array<string, mixed>|null $query
-     * @param \Grafana\Foundation\Dashboard\DataSourceRef|null $datasource
+     * @param \Grafana\Foundation\Common\DataSourceRef|null $datasource
      * @param \Grafana\Foundation\Dashboard\VariableOption|null $current
      * @param bool|null $multi
      * @param array<\Grafana\Foundation\Dashboard\VariableOption>|null $options
@@ -105,7 +105,7 @@ class VariableModel implements \JsonSerializable
      * @param string|null $autoMin
      * @param int|null $autoCount
      */
-    public function __construct(?\Grafana\Foundation\Dashboard\VariableType $type = null, ?string $name = null, ?string $label = null, ?\Grafana\Foundation\Dashboard\VariableHide $hide = null, ?bool $skipUrlSync = null, ?string $description = null,  $query = null, ?\Grafana\Foundation\Dashboard\DataSourceRef $datasource = null, ?\Grafana\Foundation\Dashboard\VariableOption $current = null, ?bool $multi = null, ?array $options = null, ?\Grafana\Foundation\Dashboard\VariableRefresh $refresh = null, ?\Grafana\Foundation\Dashboard\VariableSort $sort = null, ?bool $auto = null, ?string $autoMin = null, ?int $autoCount = null)
+    public function __construct(?\Grafana\Foundation\Dashboard\VariableType $type = null, ?string $name = null, ?string $label = null, ?\Grafana\Foundation\Dashboard\VariableHide $hide = null, ?bool $skipUrlSync = null, ?string $description = null,  $query = null, ?\Grafana\Foundation\Common\DataSourceRef $datasource = null, ?\Grafana\Foundation\Dashboard\VariableOption $current = null, ?bool $multi = null, ?array $options = null, ?\Grafana\Foundation\Dashboard\VariableRefresh $refresh = null, ?\Grafana\Foundation\Dashboard\VariableSort $sort = null, ?bool $auto = null, ?string $autoMin = null, ?int $autoCount = null)
     {
         $this->type = $type ?: \Grafana\Foundation\Dashboard\VariableType::Query();
         $this->name = $name ?: "";
@@ -150,7 +150,7 @@ class VariableModel implements \JsonSerializable
             datasource: isset($data["datasource"]) ? (function($input) {
     	/** @var array{type?: string, uid?: string} */
     $val = $input;
-    	return \Grafana\Foundation\Dashboard\DataSourceRef::fromArray($val);
+    	return \Grafana\Foundation\Common\DataSourceRef::fromArray($val);
     })($data["datasource"]) : null,
             current: isset($data["current"]) ? (function($input) {
     	/** @var array{selected?: bool, text?: string|array<string>, value?: string|array<string>} */

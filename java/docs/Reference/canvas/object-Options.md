@@ -13,3 +13,6 @@ public class Options {
   public CanvasOptionsRoot root;
 }
 ```
+## See also
+
+ * <span class="badge builder"></span> [OptionsBuilder](./builder-OptionsBuilder.md)

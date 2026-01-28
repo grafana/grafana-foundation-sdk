@@ -18,7 +18,7 @@
         ],
         "properties": {
           "role": {
-            "anyOf": [
+            "oneOf": [
               {
                 "$ref": "#/components/schemas/BuiltinRoleRef"
               },

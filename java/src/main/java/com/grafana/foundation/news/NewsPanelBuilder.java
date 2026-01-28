@@ -6,7 +6,7 @@ import com.grafana.foundation.dashboard.Panel;
 import java.util.List;
 import com.grafana.foundation.cog.variants.Dataquery;
 import java.util.LinkedList;
-import com.grafana.foundation.dashboard.DataSourceRef;
+import com.grafana.foundation.common.DataSourceRef;
 import com.grafana.foundation.dashboard.GridPos;
 import com.grafana.foundation.dashboard.DashboardLink;
 import com.grafana.foundation.dashboard.PanelRepeatDirection;
@@ -380,7 +380,7 @@ public class NewsPanelBuilder implements com.grafana.foundation.cog.Builder<Pane
     
     public NewsPanelBuilder feedUrl(String feedUrl) {
 		if (this.internal.options == null) {
-			this.internal.options = new com.grafana.foundation.news.Options();
+			this.internal.options = new com.grafana.foundation.news.OptionsBuilder().build();
 		}
         ((Options) this.internal.options).feedUrl = feedUrl;
         return this;
@@ -388,7 +388,7 @@ public class NewsPanelBuilder implements com.grafana.foundation.cog.Builder<Pane
     
     public NewsPanelBuilder showImage(Boolean showImage) {
 		if (this.internal.options == null) {
-			this.internal.options = new com.grafana.foundation.news.Options();
+			this.internal.options = new com.grafana.foundation.news.OptionsBuilder().build();
 		}
         ((Options) this.internal.options).showImage = showImage;
         return this;

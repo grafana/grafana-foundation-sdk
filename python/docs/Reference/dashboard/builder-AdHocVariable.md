@@ -23,7 +23,7 @@ def build() -> dashboard.VariableModel
 Data source used to fetch values for a variable. It can be defined but `null`.
 
 ```python
-def datasource(datasource: dashboard.DataSourceRef) -> typing.Self
+def datasource(datasource: common.DataSourceRef) -> typing.Self
 ```
 
 ### <span class="badge object-method"></span> description

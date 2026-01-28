@@ -80,6 +80,7 @@ public class Dataquery implements com.grafana.foundation.cog.variants.Dataquery 
     // A unique identifier for the query within the list of targets.
     // In server side expressions, the refId is used as a variable name to identify results.
     // By default, the UI will assign A->Z; however setting meaningful names may be useful.
+    @JsonInclude(JsonInclude.Include.NON_NULL)
     @JsonProperty("refId")
     public String refId;
     // true if query is disabled (ie should not be returned to the dashboard)
@@ -102,7 +103,6 @@ public class Dataquery implements com.grafana.foundation.cog.variants.Dataquery 
     public Object datasource;
     public Dataquery() {
         this.scenarioId = TestDataQueryType.RANDOM_WALK;
-        this.refId = "";
     }
     public Dataquery(String alias,TestDataQueryType scenarioId,String stringInput,StreamingQuery stream,PulseWaveQuery pulseWave,SimulationQuery sim,List<CSVWave> csvWave,String labels,Long lines,Boolean levelColumn,String channel,NodesQuery nodes,String csvFileName,String csvContent,String rawFrameContent,Integer seriesCount,USAQuery usa,DataqueryErrorType errorType,Integer spanCount,List<List<StringOrInt64>> points,Double dropPercent,Boolean flamegraphDiff,String refId,Boolean hide,String queryType,Object datasource) {
         this.alias = alias;

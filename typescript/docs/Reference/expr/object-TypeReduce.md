@@ -8,7 +8,7 @@ title: <span class="badge object-type-interface"></span> TypeReduce
 ```typescript
 export interface TypeReduce {
 	// The datasource
-	datasource?: dashboard.DataSourceRef;
+	datasource?: common.DataSourceRef;
 	// Reference to single query result
 	expression: string;
 	// true if query is disabled (ie should not be returned to the dashboard)
@@ -37,7 +37,7 @@ export interface TypeReduce {
 	//  - `"median"` 
 	reducer: "sum" | "mean" | "min" | "max" | "count" | "last" | "median";
 	// RefID is the unique identifier of the query, set by the frontend call.
-	refId: string;
+	refId?: string;
 	// Optionally define expected query result behavior
 	resultAssertions?: {
 		// Maximum frame count

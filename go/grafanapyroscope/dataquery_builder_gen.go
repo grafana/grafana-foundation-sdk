@@ -5,7 +5,7 @@ package grafanapyroscope
 import (
 	cog "github.com/grafana/grafana-foundation-sdk/go/cog"
 	variants "github.com/grafana/grafana-foundation-sdk/go/cog/variants"
-	dashboard "github.com/grafana/grafana-foundation-sdk/go/dashboard"
+	common "github.com/grafana/grafana-foundation-sdk/go/common"
 )
 
 var _ cog.Builder[variants.Dataquery] = (*DataqueryBuilder)(nil)
@@ -76,7 +76,7 @@ func (builder *DataqueryBuilder) MaxNodes(maxNodes int64) *DataqueryBuilder {
 // In server side expressions, the refId is used as a variable name to identify results.
 // By default, the UI will assign A->Z; however setting meaningful names may be useful.
 func (builder *DataqueryBuilder) RefId(refId string) *DataqueryBuilder {
-	builder.internal.RefId = refId
+	builder.internal.RefId = &refId
 
 	return builder
 }
@@ -102,7 +102,7 @@ func (builder *DataqueryBuilder) QueryType(queryType string) *DataqueryBuilder {
 // For non mixed scenarios this is undefined.
 // TODO find a better way to do this ^ that's friendly to schema
 // TODO this shouldn't be unknown but DataSourceRef | null
-func (builder *DataqueryBuilder) Datasource(datasource dashboard.DataSourceRef) *DataqueryBuilder {
+func (builder *DataqueryBuilder) Datasource(datasource common.DataSourceRef) *DataqueryBuilder {
 	builder.internal.Datasource = &datasource
 
 	return builder

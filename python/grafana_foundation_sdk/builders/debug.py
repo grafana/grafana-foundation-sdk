@@ -5,12 +5,13 @@ from ..cog import builder as cogbuilder
 from ..models import debug
 from ..models import dashboard
 from ..cog import variants as cogvariants
+from ..models import common
 
 
 class UpdateConfig(cogbuilder.Builder[debug.UpdateConfig]):
     _internal: debug.UpdateConfig
 
-    def __init__(self):
+    def __init__(self) -> None:
         self._internal = debug.UpdateConfig()
 
     def build(self) -> debug.UpdateConfig:
@@ -36,6 +37,31 @@ class UpdateConfig(cogbuilder.Builder[debug.UpdateConfig]):
     
 
 
+class Options(cogbuilder.Builder[debug.Options]):
+    _internal: debug.Options
+
+    def __init__(self) -> None:
+        self._internal = debug.Options()
+
+    def build(self) -> debug.Options:
+        """
+        Builds the object.
+        """
+        return self._internal    
+    
+    def mode(self, mode: debug.DebugMode) -> typing.Self:    
+        self._internal.mode = mode
+    
+        return self
+    
+    def counters(self, counters: cogbuilder.Builder[debug.UpdateConfig]) -> typing.Self:    
+        counters_resource = counters.build()
+        self._internal.counters = counters_resource
+    
+        return self
+    
+
+
 class Panel(cogbuilder.Builder[dashboard.Panel]):    
     """
     Dashboard panels are the basic visualization building blocks.
@@ -43,7 +69,7 @@ class Panel(cogbuilder.Builder[dashboard.Panel]):
     
     _internal: dashboard.Panel
 
-    def __init__(self):
+    def __init__(self) -> None:
         self._internal = dashboard.Panel()        
         self._internal.type_val = "debug"
 
@@ -112,7 +138,7 @@ class Panel(cogbuilder.Builder[dashboard.Panel]):
     
         return self
     
-    def datasource(self, datasource: dashboard.DataSourceRef) -> typing.Self:    
+    def datasource(self, datasource: common.DataSourceRef) -> typing.Self:    
         """
         The datasource used in all targets.
         """

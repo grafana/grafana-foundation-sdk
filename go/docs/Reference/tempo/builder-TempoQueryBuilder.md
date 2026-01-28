@@ -29,7 +29,7 @@ TODO find a better way to do this ^ that's friendly to schema
 TODO this shouldn't be unknown but DataSourceRef | null
 
 ```go
-func (builder *TempoQueryBuilder) Datasource(datasource dashboard.DataSourceRef) *TempoQueryBuilder
+func (builder *TempoQueryBuilder) Datasource(datasource common.DataSourceRef) *TempoQueryBuilder
 ```
 
 ### <span class="badge object-method"></span> Filters

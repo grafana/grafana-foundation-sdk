@@ -3,7 +3,7 @@
   "$ref": "#/definitions/dataquery",
   "definitions": {
     "BucketAggregation": {
-      "anyOf": [
+      "oneOf": [
         {
           "$ref": "#/definitions/DateHistogram"
         },
@@ -39,7 +39,11 @@
           "type": "string"
         },
         "type": {
-          "$ref": "#/definitions/BucketAggregationType",
+          "allOf": [
+            {
+              "$ref": "#/definitions/BucketAggregationType"
+            }
+          ],
           "default": "date_histogram"
         },
         "settings": {
@@ -91,7 +95,11 @@
           "type": "string"
         },
         "type": {
-          "$ref": "#/definitions/BucketAggregationType",
+          "allOf": [
+            {
+              "$ref": "#/definitions/BucketAggregationType"
+            }
+          ],
           "default": "histogram"
         },
         "settings": {
@@ -123,7 +131,11 @@
           "type": "string"
         },
         "type": {
-          "$ref": "#/definitions/BucketAggregationType",
+          "allOf": [
+            {
+              "$ref": "#/definitions/BucketAggregationType"
+            }
+          ],
           "default": "terms"
         },
         "settings": {
@@ -168,7 +180,11 @@
           "type": "string"
         },
         "type": {
-          "$ref": "#/definitions/BucketAggregationType",
+          "allOf": [
+            {
+              "$ref": "#/definitions/BucketAggregationType"
+            }
+          ],
           "default": "filters"
         },
         "settings": {
@@ -216,7 +232,11 @@
           "type": "string"
         },
         "type": {
-          "$ref": "#/definitions/BucketAggregationType",
+          "allOf": [
+            {
+              "$ref": "#/definitions/BucketAggregationType"
+            }
+          ],
           "default": "geohash_grid"
         },
         "settings": {
@@ -245,7 +265,11 @@
           "type": "string"
         },
         "type": {
-          "$ref": "#/definitions/BucketAggregationType",
+          "allOf": [
+            {
+              "$ref": "#/definitions/BucketAggregationType"
+            }
+          ],
           "default": "nested"
         },
         "settings": {
@@ -255,7 +279,7 @@
       }
     },
     "MetricAggregation": {
-      "anyOf": [
+      "oneOf": [
         {
           "$ref": "#/definitions/Count"
         },
@@ -287,7 +311,7 @@
       }
     },
     "MetricAggregationType": {
-      "anyOf": [
+      "oneOf": [
         {
           "type": "string",
           "const": "count"
@@ -357,7 +381,7 @@
       "type": "string"
     },
     "PipelineMetricAggregation": {
-      "anyOf": [
+      "oneOf": [
         {
           "$ref": "#/definitions/MovingAverage"
         },
@@ -524,7 +548,7 @@
       }
     },
     "InlineScript": {
-      "anyOf": [
+      "oneOf": [
         {
           "type": "string"
         },
@@ -540,7 +564,7 @@
       ]
     },
     "MetricAggregationWithSettings": {
-      "anyOf": [
+      "oneOf": [
         {
           "$ref": "#/definitions/BucketScript"
         },
@@ -1427,7 +1451,11 @@
       ],
       "properties": {
         "model": {
-          "$ref": "#/definitions/MovingAverageModel",
+          "allOf": [
+            {
+              "$ref": "#/definitions/MovingAverageModel"
+            }
+          ],
           "default": "simple"
         },
         "window": {
@@ -1448,7 +1476,11 @@
       ],
       "properties": {
         "model": {
-          "$ref": "#/definitions/MovingAverageModel",
+          "allOf": [
+            {
+              "$ref": "#/definitions/MovingAverageModel"
+            }
+          ],
           "default": "linear"
         },
         "window": {
@@ -1470,7 +1502,11 @@
       ],
       "properties": {
         "model": {
-          "$ref": "#/definitions/MovingAverageModel",
+          "allOf": [
+            {
+              "$ref": "#/definitions/MovingAverageModel"
+            }
+          ],
           "default": "ewma"
         },
         "settings": {
@@ -1505,7 +1541,11 @@
       ],
       "properties": {
         "model": {
-          "$ref": "#/definitions/MovingAverageModel",
+          "allOf": [
+            {
+              "$ref": "#/definitions/MovingAverageModel"
+            }
+          ],
           "default": "holt"
         },
         "settings": {
@@ -1543,7 +1583,11 @@
       ],
       "properties": {
         "model": {
-          "$ref": "#/definitions/MovingAverageModel",
+          "allOf": [
+            {
+              "$ref": "#/definitions/MovingAverageModel"
+            }
+          ],
           "default": "holt_winters"
         },
         "settings": {
@@ -1581,9 +1625,6 @@
     "dataquery": {
       "type": "object",
       "additionalProperties": false,
-      "required": [
-        "refId"
-      ],
       "properties": {
         "alias": {
           "type": "string",
@@ -1641,8 +1682,7 @@
           "type": "string",
           "description": "Specific datasource instance"
         }
-      },
-      "description": "Ref to a DataSource instance"
+      }
     }
   }
 }

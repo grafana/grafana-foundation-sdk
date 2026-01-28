@@ -111,7 +111,7 @@ class DataqueryBuilder implements \Grafana\Foundation\Cog\Builder
      * TODO find a better way to do this ^ that's friendly to schema
      * TODO this shouldn't be unknown but DataSourceRef | null
      */
-    public function datasource(\Grafana\Foundation\Dashboard\DataSourceRef $datasource): static
+    public function datasource(\Grafana\Foundation\Common\DataSourceRef $datasource): static
     {
         $this->internal->datasource = $datasource;
     

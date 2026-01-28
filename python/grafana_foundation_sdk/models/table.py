@@ -19,7 +19,7 @@ class Options:
     # Controls the height of the rows
     cell_height: typing.Optional[common.TableCellHeight]
 
-    def __init__(self, frame_index: float = 0, show_header: bool = True, show_type_icons: typing.Optional[bool] = False, sort_by: typing.Optional[list[common.TableSortByFieldState]] = None, footer: typing.Optional[common.TableFooterOptions] = None, cell_height: typing.Optional[common.TableCellHeight] = None):
+    def __init__(self, frame_index: float = 0, show_header: bool = True, show_type_icons: typing.Optional[bool] = False, sort_by: typing.Optional[list[common.TableSortByFieldState]] = None, footer: typing.Optional[common.TableFooterOptions] = None, cell_height: typing.Optional[common.TableCellHeight] = None) -> None:
         self.frame_index = frame_index
         self.show_header = show_header
         self.show_type_icons = show_type_icons
