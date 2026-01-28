@@ -10,6 +10,8 @@
  * <span class="badge object-type-struct"></span> [XYDimensionConfig](./object-XYDimensionConfig.md)
 ## Builders
 
+ * <span class="badge builder"></span> [FieldConfigBuilder](./builder-FieldConfigBuilder.md)
+ * <span class="badge builder"></span> [OptionsBuilder](./builder-OptionsBuilder.md)
  * <span class="badge builder"></span> [PanelBuilder](./builder-PanelBuilder.md)
  * <span class="badge builder"></span> [ScatterSeriesConfigBuilder](./builder-ScatterSeriesConfigBuilder.md)
  * <span class="badge builder"></span> [XYDimensionConfigBuilder](./builder-XYDimensionConfigBuilder.md)
@@ -65,12 +67,28 @@ XYDimensionConfigConverter accepts a `XYDimensionConfig` object and generates th
 func XYDimensionConfigConverter(input XYDimensionConfig) string
 ```
 
+### <span class="badge function"></span> FieldConfigConverter
+
+FieldConfigConverter accepts a `FieldConfig` object and generates the Go code to build this object using builders.
+
+```go
+func FieldConfigConverter(input FieldConfig) string
+```
+
 ### <span class="badge function"></span> ScatterSeriesConfigConverter
 
 ScatterSeriesConfigConverter accepts a `ScatterSeriesConfig` object and generates the Go code to build this object using builders.
 
 ```go
 func ScatterSeriesConfigConverter(input ScatterSeriesConfig) string
+```
+
+### <span class="badge function"></span> OptionsConverter
+
+OptionsConverter accepts a `Options` object and generates the Go code to build this object using builders.
+
+```go
+func OptionsConverter(input Options) string
 ```
 
 ### <span class="badge function"></span> PanelConverter

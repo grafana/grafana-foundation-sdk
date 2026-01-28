@@ -12,6 +12,7 @@
 
  * <span class="badge builder"></span> [ControlsOptions](./builder-ControlsOptions.md)
  * <span class="badge builder"></span> [MapViewConfig](./builder-MapViewConfig.md)
+ * <span class="badge builder"></span> [Options](./builder-Options.md)
  * <span class="badge builder"></span> [Panel](./builder-Panel.md)
  * <span class="badge builder"></span> [TooltipOptions](./builder-TooltipOptions.md)
 ## Functions

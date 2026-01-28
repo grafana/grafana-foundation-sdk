@@ -2,9 +2,31 @@
 
 import typing
 from ..cog import builder as cogbuilder
+from ..models import datagrid
 from ..models import dashboard
 from ..cog import variants as cogvariants
-from ..models import datagrid
+from ..models import common
+
+
+class Options(cogbuilder.Builder[datagrid.Options]):
+    _internal: datagrid.Options
+
+    def __init__(self) -> None:
+        self._internal = datagrid.Options()
+
+    def build(self) -> datagrid.Options:
+        """
+        Builds the object.
+        """
+        return self._internal    
+    
+    def selected_series(self, selected_series: int) -> typing.Self:    
+        if not selected_series >= 0:
+            raise ValueError("selected_series must be >= 0")
+        self._internal.selected_series = selected_series
+    
+        return self
+    
 
 
 class Panel(cogbuilder.Builder[dashboard.Panel]):    
@@ -14,7 +36,7 @@ class Panel(cogbuilder.Builder[dashboard.Panel]):
     
     _internal: dashboard.Panel
 
-    def __init__(self):
+    def __init__(self) -> None:
         self._internal = dashboard.Panel()        
         self._internal.type_val = "datagrid"
 
@@ -83,7 +105,7 @@ class Panel(cogbuilder.Builder[dashboard.Panel]):
     
         return self
     
-    def datasource(self, datasource: dashboard.DataSourceRef) -> typing.Self:    
+    def datasource(self, datasource: common.DataSourceRef) -> typing.Self:    
         """
         The datasource used in all targets.
         """

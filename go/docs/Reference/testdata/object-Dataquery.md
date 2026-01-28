@@ -14,7 +14,7 @@ type Dataquery struct {
     CsvFileName *string `json:"csvFileName,omitempty"`
     CsvWave []testdata.CSVWave `json:"csvWave,omitempty"`
     // The datasource
-    Datasource *dashboard.DataSourceRef `json:"datasource,omitempty"`
+    Datasource *common.DataSourceRef `json:"datasource,omitempty"`
     // Drop percentage (the chance we will lose a point 0-100)
     DropPercent *float64 `json:"dropPercent,omitempty"`
     // Possible enum values:

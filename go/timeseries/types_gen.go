@@ -169,8 +169,7 @@ func NewFieldConfig() *FieldConfig {
 // This configuration describes how to unmarshal it, convert it to code, …
 func VariantConfig() variants.PanelcfgConfig {
 	return variants.PanelcfgConfig{
-		Identifier: "timeseries",
-		OptionsUnmarshaler: func(raw []byte) (any, error) {
+		Identifier: "timeseries", OptionsUnmarshaler: func(raw []byte) (any, error) {
 			options := &Options{}
 
 			if err := json.Unmarshal(raw, options); err != nil {
@@ -187,8 +186,7 @@ func VariantConfig() variants.PanelcfgConfig {
 			}
 
 			return options, nil
-		},
-		FieldConfigUnmarshaler: func(raw []byte) (any, error) {
+		}, FieldConfigUnmarshaler: func(raw []byte) (any, error) {
 			fieldConfig := &FieldConfig{}
 
 			if err := json.Unmarshal(raw, fieldConfig); err != nil {
@@ -205,12 +203,10 @@ func VariantConfig() variants.PanelcfgConfig {
 			}
 
 			return fieldConfig, nil
-		},
-		GoConverter: func(inputPanel any) string {
+		}, GoConverter: func(inputPanel any) string {
 			if panel, ok := inputPanel.(*dashboard.Panel); ok {
 				return PanelConverter(*panel)
 			}
-
 			return PanelConverter(inputPanel.(dashboard.Panel))
 		},
 	}

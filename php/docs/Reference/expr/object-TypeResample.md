@@ -11,7 +11,7 @@ class TypeResample implements \JsonSerializable, \Grafana\Foundation\Cog\Dataque
     /**
      * The datasource
      */
-    public ?\Grafana\Foundation\Dashboard\DataSourceRef $datasource;
+    public ?\Grafana\Foundation\Common\DataSourceRef $datasource;
 
     /**
      * The downsample function
@@ -61,7 +61,7 @@ class TypeResample implements \JsonSerializable, \Grafana\Foundation\Cog\Dataque
     /**
      * RefID is the unique identifier of the query, set by the frontend call.
      */
-    public string $refId;
+    public ?string $refId;
 
     /**
      * Optionally define expected query result behavior

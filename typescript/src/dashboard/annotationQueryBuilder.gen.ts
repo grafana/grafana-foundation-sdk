@@ -2,6 +2,7 @@
 
 import * as cog from '../cog';
 import * as dashboard from '../dashboard';
+import * as common from '../common';
 
 // TODO docs
 // FROM: AnnotationQuery in grafana-data/src/types/annotations.ts
@@ -26,7 +27,7 @@ export class AnnotationQueryBuilder implements cog.Builder<dashboard.AnnotationQ
     }
 
     // Datasource where the annotations data is
-    datasource(datasource: dashboard.DataSourceRef): this {
+    datasource(datasource: common.DataSourceRef): this {
         this.internal.datasource = datasource;
         return this;
     }

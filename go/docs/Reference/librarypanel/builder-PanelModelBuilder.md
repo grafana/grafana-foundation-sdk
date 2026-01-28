@@ -31,7 +31,7 @@ func (builder *PanelModelBuilder) CacheTimeout(cacheTimeout string) *PanelModelB
 The datasource used in all targets.
 
 ```go
-func (builder *PanelModelBuilder) Datasource(datasource dashboard.DataSourceRef) *PanelModelBuilder
+func (builder *PanelModelBuilder) Datasource(datasource common.DataSourceRef) *PanelModelBuilder
 ```
 
 ### <span class="badge object-method"></span> Description

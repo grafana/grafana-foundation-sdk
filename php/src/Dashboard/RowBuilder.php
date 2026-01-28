@@ -50,7 +50,7 @@ class RowBuilder implements \Grafana\Foundation\Cog\Builder
     /**
      * Name of default datasource for the row
      */
-    public function datasource(\Grafana\Foundation\Dashboard\DataSourceRef $datasource): static
+    public function datasource(\Grafana\Foundation\Common\DataSourceRef $datasource): static
     {
         $this->internal->datasource = $datasource;
     
