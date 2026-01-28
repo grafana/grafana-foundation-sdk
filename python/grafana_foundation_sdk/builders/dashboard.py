@@ -4,6 +4,7 @@ import typing
 from ..cog import builder as cogbuilder
 from ..models import dashboard
 from ..cog import variants as cogvariants
+from ..models import common
 
 
 class Dashboard(cogbuilder.Builder[dashboard.Dashboard]):
@@ -12,7 +13,7 @@ class Dashboard(cogbuilder.Builder[dashboard.Dashboard]):
     __current_x: int = 0
     __last_panel_height: int = 0
 
-    def __init__(self, title: str):
+    def __init__(self, title: str) -> None:
         self._internal = dashboard.Dashboard()        
         self._internal.title = title
 
@@ -377,7 +378,7 @@ class TimePicker(cogbuilder.Builder[dashboard.TimePickerConfig]):
     
     _internal: dashboard.TimePickerConfig
 
-    def __init__(self):
+    def __init__(self) -> None:
         self._internal = dashboard.TimePickerConfig()
 
     def build(self) -> dashboard.TimePickerConfig:
@@ -431,7 +432,7 @@ class Panel(cogbuilder.Builder[dashboard.Panel]):
     
     _internal: dashboard.Panel
 
-    def __init__(self):
+    def __init__(self) -> None:
         self._internal = dashboard.Panel()
 
     def build(self) -> dashboard.Panel:
@@ -519,7 +520,7 @@ class Panel(cogbuilder.Builder[dashboard.Panel]):
     
         return self
     
-    def datasource(self, datasource: dashboard.DataSourceRef) -> typing.Self:    
+    def datasource(self, datasource: common.DataSourceRef) -> typing.Self:    
         """
         The datasource used in all targets.
         """
@@ -1040,6 +1041,42 @@ class Panel(cogbuilder.Builder[dashboard.Panel]):
     
 
 
+class DataSourceRef(cogbuilder.Builder[dashboard.DataSourceRef]):    
+    """
+    Ref to a DataSource instance
+    """
+    
+    _internal: dashboard.DataSourceRef
+
+    def __init__(self) -> None:
+        self._internal = dashboard.DataSourceRef()
+
+    def build(self) -> dashboard.DataSourceRef:
+        """
+        Builds the object.
+        """
+        return self._internal    
+    
+    def type(self, type_val: str) -> typing.Self:    
+        """
+        The plugin type-id
+        """
+            
+        self._internal.type_val = type_val
+    
+        return self
+    
+    def uid(self, uid: str) -> typing.Self:    
+        """
+        Specific datasource instance
+        """
+            
+        self._internal.uid = uid
+    
+        return self
+    
+
+
 class DashboardLink(cogbuilder.Builder[dashboard.DashboardLink]):    
     """
     Links with references to other dashboards or external resources
@@ -1047,7 +1084,7 @@ class DashboardLink(cogbuilder.Builder[dashboard.DashboardLink]):
     
     _internal: dashboard.DashboardLink
 
-    def __init__(self, title: str):
+    def __init__(self, title: str) -> None:
         self._internal = dashboard.DashboardLink()        
         self._internal.title = title
 
@@ -1156,7 +1193,7 @@ class ThresholdsConfig(cogbuilder.Builder[dashboard.ThresholdsConfig]):
     
     _internal: dashboard.ThresholdsConfig
 
-    def __init__(self):
+    def __init__(self) -> None:
         self._internal = dashboard.ThresholdsConfig()
 
     def build(self) -> dashboard.ThresholdsConfig:
@@ -1192,7 +1229,7 @@ class FieldColor(cogbuilder.Builder[dashboard.FieldColor]):
     
     _internal: dashboard.FieldColor
 
-    def __init__(self):
+    def __init__(self) -> None:
         self._internal = dashboard.FieldColor()
 
     def build(self) -> dashboard.FieldColor:
@@ -1237,7 +1274,7 @@ class Row(cogbuilder.Builder[dashboard.RowPanel]):
     
     _internal: dashboard.RowPanel
 
-    def __init__(self, title: str):
+    def __init__(self, title: str) -> None:
         self._internal = dashboard.RowPanel()        
         self._internal.type_val = "row"        
         self._internal.title = title
@@ -1267,7 +1304,7 @@ class Row(cogbuilder.Builder[dashboard.RowPanel]):
     
         return self
     
-    def datasource(self, datasource: dashboard.DataSourceRef) -> typing.Self:    
+    def datasource(self, datasource: common.DataSourceRef) -> typing.Self:    
         """
         Name of default datasource for the row
         """
@@ -1329,7 +1366,7 @@ class AnnotationQuery(cogbuilder.Builder[dashboard.AnnotationQuery]):
     
     _internal: dashboard.AnnotationQuery
 
-    def __init__(self):
+    def __init__(self) -> None:
         self._internal = dashboard.AnnotationQuery()
 
     def build(self) -> dashboard.AnnotationQuery:
@@ -1347,7 +1384,7 @@ class AnnotationQuery(cogbuilder.Builder[dashboard.AnnotationQuery]):
     
         return self
     
-    def datasource(self, datasource: dashboard.DataSourceRef) -> typing.Self:    
+    def datasource(self, datasource: common.DataSourceRef) -> typing.Self:    
         """
         Datasource where the annotations data is
         """
@@ -1432,7 +1469,7 @@ class AnnotationQuery(cogbuilder.Builder[dashboard.AnnotationQuery]):
 class AnnotationPanelFilter(cogbuilder.Builder[dashboard.AnnotationPanelFilter]):
     _internal: dashboard.AnnotationPanelFilter
 
-    def __init__(self):
+    def __init__(self) -> None:
         self._internal = dashboard.AnnotationPanelFilter()
 
     def build(self) -> dashboard.AnnotationPanelFilter:
@@ -1469,7 +1506,7 @@ class AnnotationTarget(cogbuilder.Builder[dashboard.AnnotationTarget]):
     
     _internal: dashboard.AnnotationTarget
 
-    def __init__(self):
+    def __init__(self) -> None:
         self._internal = dashboard.AnnotationTarget()
 
     def build(self) -> dashboard.AnnotationTarget:
@@ -1531,7 +1568,7 @@ class Snapshot(cogbuilder.Builder[dashboard.Snapshot]):
     
     _internal: dashboard.Snapshot
 
-    def __init__(self):
+    def __init__(self) -> None:
         self._internal = dashboard.Snapshot()
 
     def build(self) -> dashboard.Snapshot:
@@ -1632,7 +1669,7 @@ class Snapshot(cogbuilder.Builder[dashboard.Snapshot]):
 class AnnotationActions(cogbuilder.Builder[dashboard.AnnotationActions]):
     _internal: dashboard.AnnotationActions
 
-    def __init__(self):
+    def __init__(self) -> None:
         self._internal = dashboard.AnnotationActions()
 
     def build(self) -> dashboard.AnnotationActions:
@@ -1661,7 +1698,7 @@ class AnnotationActions(cogbuilder.Builder[dashboard.AnnotationActions]):
 class AnnotationPermission(cogbuilder.Builder[dashboard.AnnotationPermission]):
     _internal: dashboard.AnnotationPermission
 
-    def __init__(self):
+    def __init__(self) -> None:
         self._internal = dashboard.AnnotationPermission()
 
     def build(self) -> dashboard.AnnotationPermission:
@@ -1687,7 +1724,7 @@ class AnnotationPermission(cogbuilder.Builder[dashboard.AnnotationPermission]):
 class DashboardMeta(cogbuilder.Builder[dashboard.DashboardMeta]):
     _internal: dashboard.DashboardMeta
 
-    def __init__(self):
+    def __init__(self) -> None:
         self._internal = dashboard.DashboardMeta()
 
     def build(self) -> dashboard.DashboardMeta:
@@ -1836,7 +1873,7 @@ class DashboardMeta(cogbuilder.Builder[dashboard.DashboardMeta]):
 class DashboardDashboardTemplating(cogbuilder.Builder[dashboard.DashboardDashboardTemplating]):
     _internal: dashboard.DashboardDashboardTemplating
 
-    def __init__(self):
+    def __init__(self) -> None:
         self._internal = dashboard.DashboardDashboardTemplating()
 
     def build(self) -> dashboard.DashboardDashboardTemplating:
@@ -1860,7 +1897,7 @@ class DashboardDashboardTemplating(cogbuilder.Builder[dashboard.DashboardDashboa
 class DashboardFieldConfigSourceOverrides(cogbuilder.Builder[dashboard.DashboardFieldConfigSourceOverrides]):
     _internal: dashboard.DashboardFieldConfigSourceOverrides
 
-    def __init__(self):
+    def __init__(self) -> None:
         self._internal = dashboard.DashboardFieldConfigSourceOverrides()
 
     def build(self) -> dashboard.DashboardFieldConfigSourceOverrides:
@@ -1884,7 +1921,7 @@ class DashboardFieldConfigSourceOverrides(cogbuilder.Builder[dashboard.Dashboard
 class DashboardRangeMapOptions(cogbuilder.Builder[dashboard.DashboardRangeMapOptions]):
     _internal: dashboard.DashboardRangeMapOptions
 
-    def __init__(self):
+    def __init__(self) -> None:
         self._internal = dashboard.DashboardRangeMapOptions()
 
     def build(self) -> dashboard.DashboardRangeMapOptions:
@@ -1925,7 +1962,7 @@ class DashboardRangeMapOptions(cogbuilder.Builder[dashboard.DashboardRangeMapOpt
 class DashboardRegexMapOptions(cogbuilder.Builder[dashboard.DashboardRegexMapOptions]):
     _internal: dashboard.DashboardRegexMapOptions
 
-    def __init__(self):
+    def __init__(self) -> None:
         self._internal = dashboard.DashboardRegexMapOptions()
 
     def build(self) -> dashboard.DashboardRegexMapOptions:
@@ -1957,7 +1994,7 @@ class DashboardRegexMapOptions(cogbuilder.Builder[dashboard.DashboardRegexMapOpt
 class DashboardSpecialValueMapOptions(cogbuilder.Builder[dashboard.DashboardSpecialValueMapOptions]):
     _internal: dashboard.DashboardSpecialValueMapOptions
 
-    def __init__(self):
+    def __init__(self) -> None:
         self._internal = dashboard.DashboardSpecialValueMapOptions()
 
     def build(self) -> dashboard.DashboardSpecialValueMapOptions:
@@ -1993,7 +2030,7 @@ class QueryVariable(cogbuilder.Builder[dashboard.VariableModel]):
     
     _internal: dashboard.VariableModel
 
-    def __init__(self, name: str):
+    def __init__(self, name: str) -> None:
         self._internal = dashboard.VariableModel()        
         self._internal.name = name        
         self._internal.type_val = dashboard.VariableType.QUERY
@@ -2049,7 +2086,7 @@ class QueryVariable(cogbuilder.Builder[dashboard.VariableModel]):
     
         return self
     
-    def datasource(self, datasource: dashboard.DataSourceRef) -> typing.Self:    
+    def datasource(self, datasource: common.DataSourceRef) -> typing.Self:    
         """
         Data source used to fetch values for a variable. It can be defined but `null`.
         """
@@ -2140,7 +2177,7 @@ class AdHocVariable(cogbuilder.Builder[dashboard.VariableModel]):
     
     _internal: dashboard.VariableModel
 
-    def __init__(self, name: str):
+    def __init__(self, name: str) -> None:
         self._internal = dashboard.VariableModel()        
         self._internal.name = name        
         self._internal.type_val = dashboard.VariableType.ADHOC
@@ -2187,7 +2224,7 @@ class AdHocVariable(cogbuilder.Builder[dashboard.VariableModel]):
     
         return self
     
-    def datasource(self, datasource: dashboard.DataSourceRef) -> typing.Self:    
+    def datasource(self, datasource: common.DataSourceRef) -> typing.Self:    
         """
         Data source used to fetch values for a variable. It can be defined but `null`.
         """
@@ -2205,7 +2242,7 @@ class ConstantVariable(cogbuilder.Builder[dashboard.VariableModel]):
     
     _internal: dashboard.VariableModel
 
-    def __init__(self, name: str):
+    def __init__(self, name: str) -> None:
         self._internal = dashboard.VariableModel()        
         self._internal.name = name        
         self._internal.type_val = dashboard.VariableType.CONSTANT        
@@ -2262,7 +2299,7 @@ class DatasourceVariable(cogbuilder.Builder[dashboard.VariableModel]):
     
     _internal: dashboard.VariableModel
 
-    def __init__(self, name: str):
+    def __init__(self, name: str) -> None:
         self._internal = dashboard.VariableModel()        
         self._internal.name = name        
         self._internal.type_val = dashboard.VariableType.DATASOURCE
@@ -2373,7 +2410,7 @@ class IntervalVariable(cogbuilder.Builder[dashboard.VariableModel]):
     
     _internal: dashboard.VariableModel
 
-    def __init__(self, name: str):
+    def __init__(self, name: str) -> None:
         self._internal = dashboard.VariableModel()        
         self._internal.name = name        
         self._internal.type_val = dashboard.VariableType.INTERVAL
@@ -2486,7 +2523,7 @@ class TextBoxVariable(cogbuilder.Builder[dashboard.VariableModel]):
     
     _internal: dashboard.VariableModel
 
-    def __init__(self, name: str):
+    def __init__(self, name: str) -> None:
         self._internal = dashboard.VariableModel()        
         self._internal.name = name        
         self._internal.type_val = dashboard.VariableType.TEXTBOX
@@ -2569,7 +2606,7 @@ class CustomVariable(cogbuilder.Builder[dashboard.VariableModel]):
     
     _internal: dashboard.VariableModel
 
-    def __init__(self, name: str):
+    def __init__(self, name: str) -> None:
         self._internal = dashboard.VariableModel()        
         self._internal.name = name        
         self._internal.type_val = dashboard.VariableType.CUSTOM

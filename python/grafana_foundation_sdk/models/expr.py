@@ -2,7 +2,7 @@
 
 import typing
 from ..cog import variants as cogvariants
-from ..models import dashboard
+from ..models import common
 from ..cog import runtime as cogruntime
 
 
@@ -11,7 +11,7 @@ Expr: typing.TypeAlias = typing.Union['TypeMath', 'TypeReduce', 'TypeResample', 
 
 class TypeMath(cogvariants.Dataquery):
     # The datasource
-    datasource: typing.Optional[dashboard.DataSourceRef]
+    datasource: typing.Optional[common.DataSourceRef]
     # General math expression
     expression: str
     # true if query is disabled (ie should not be returned to the dashboard)
@@ -30,7 +30,7 @@ class TypeMath(cogvariants.Dataquery):
     # It can be used to distinguish different types of queries.
     query_type: typing.Optional[str]
     # RefID is the unique identifier of the query, set by the frontend call.
-    ref_id: str
+    ref_id: typing.Optional[str]
     # Optionally define expected query result behavior
     result_assertions: typing.Optional['ExprTypeMathResultAssertions']
     # TimeRange represents the query range
@@ -39,7 +39,7 @@ class TypeMath(cogvariants.Dataquery):
     time_range: typing.Optional['ExprTypeMathTimeRange']
     type_val: typing.Literal["math"]
 
-    def __init__(self, datasource: typing.Optional[dashboard.DataSourceRef] = None, expression: str = "", hide: typing.Optional[bool] = None, interval_ms: typing.Optional[float] = None, max_data_points: typing.Optional[int] = None, query_type: typing.Optional[str] = None, ref_id: str = "", result_assertions: typing.Optional['ExprTypeMathResultAssertions'] = None, time_range: typing.Optional['ExprTypeMathTimeRange'] = None):
+    def __init__(self, datasource: typing.Optional[common.DataSourceRef] = None, expression: str = "", hide: typing.Optional[bool] = None, interval_ms: typing.Optional[float] = None, max_data_points: typing.Optional[int] = None, query_type: typing.Optional[str] = None, ref_id: typing.Optional[str] = None, result_assertions: typing.Optional['ExprTypeMathResultAssertions'] = None, time_range: typing.Optional['ExprTypeMathTimeRange'] = None) -> None:
         self.datasource = datasource
         self.expression = expression
         self.hide = hide
@@ -54,7 +54,6 @@ class TypeMath(cogvariants.Dataquery):
     def to_json(self) -> dict[str, object]:
         payload: dict[str, object] = {
             "expression": self.expression,
-            "refId": self.ref_id,
             "type": self.type_val,
         }
         if self.datasource is not None:
@@ -67,6 +66,8 @@ class TypeMath(cogvariants.Dataquery):
             payload["maxDataPoints"] = self.max_data_points
         if self.query_type is not None:
             payload["queryType"] = self.query_type
+        if self.ref_id is not None:
+            payload["refId"] = self.ref_id
         if self.result_assertions is not None:
             payload["resultAssertions"] = self.result_assertions
         if self.time_range is not None:
@@ -78,7 +79,7 @@ class TypeMath(cogvariants.Dataquery):
         args: dict[str, typing.Any] = {}
         
         if "datasource" in data:
-            args["datasource"] = dashboard.DataSourceRef.from_json(data["datasource"])
+            args["datasource"] = common.DataSourceRef.from_json(data["datasource"])
         if "expression" in data:
             args["expression"] = data["expression"]
         if "hide" in data:
@@ -101,7 +102,7 @@ class TypeMath(cogvariants.Dataquery):
 
 class TypeReduce(cogvariants.Dataquery):
     # The datasource
-    datasource: typing.Optional[dashboard.DataSourceRef]
+    datasource: typing.Optional[common.DataSourceRef]
     # Reference to single query result
     expression: str
     # true if query is disabled (ie should not be returned to the dashboard)
@@ -130,7 +131,7 @@ class TypeReduce(cogvariants.Dataquery):
     #  - `"median"` 
     reducer: typing.Literal["sum", "mean", "min", "max", "count", "last", "median"]
     # RefID is the unique identifier of the query, set by the frontend call.
-    ref_id: str
+    ref_id: typing.Optional[str]
     # Optionally define expected query result behavior
     result_assertions: typing.Optional['ExprTypeReduceResultAssertions']
     # Reducer Options
@@ -141,7 +142,7 @@ class TypeReduce(cogvariants.Dataquery):
     time_range: typing.Optional['ExprTypeReduceTimeRange']
     type_val: typing.Literal["reduce"]
 
-    def __init__(self, datasource: typing.Optional[dashboard.DataSourceRef] = None, expression: str = "", hide: typing.Optional[bool] = None, interval_ms: typing.Optional[float] = None, max_data_points: typing.Optional[int] = None, query_type: typing.Optional[str] = None, reducer: typing.Optional[typing.Literal["sum", "mean", "min", "max", "count", "last", "median"]] = None, ref_id: str = "", result_assertions: typing.Optional['ExprTypeReduceResultAssertions'] = None, settings: typing.Optional['ExprTypeReduceSettings'] = None, time_range: typing.Optional['ExprTypeReduceTimeRange'] = None):
+    def __init__(self, datasource: typing.Optional[common.DataSourceRef] = None, expression: str = "", hide: typing.Optional[bool] = None, interval_ms: typing.Optional[float] = None, max_data_points: typing.Optional[int] = None, query_type: typing.Optional[str] = None, reducer: typing.Optional[typing.Literal["sum", "mean", "min", "max", "count", "last", "median"]] = None, ref_id: typing.Optional[str] = None, result_assertions: typing.Optional['ExprTypeReduceResultAssertions'] = None, settings: typing.Optional['ExprTypeReduceSettings'] = None, time_range: typing.Optional['ExprTypeReduceTimeRange'] = None) -> None:
         self.datasource = datasource
         self.expression = expression
         self.hide = hide
@@ -159,7 +160,6 @@ class TypeReduce(cogvariants.Dataquery):
         payload: dict[str, object] = {
             "expression": self.expression,
             "reducer": self.reducer,
-            "refId": self.ref_id,
             "type": self.type_val,
         }
         if self.datasource is not None:
@@ -172,6 +172,8 @@ class TypeReduce(cogvariants.Dataquery):
             payload["maxDataPoints"] = self.max_data_points
         if self.query_type is not None:
             payload["queryType"] = self.query_type
+        if self.ref_id is not None:
+            payload["refId"] = self.ref_id
         if self.result_assertions is not None:
             payload["resultAssertions"] = self.result_assertions
         if self.settings is not None:
@@ -185,7 +187,7 @@ class TypeReduce(cogvariants.Dataquery):
         args: dict[str, typing.Any] = {}
         
         if "datasource" in data:
-            args["datasource"] = dashboard.DataSourceRef.from_json(data["datasource"])
+            args["datasource"] = common.DataSourceRef.from_json(data["datasource"])
         if "expression" in data:
             args["expression"] = data["expression"]
         if "hide" in data:
@@ -212,7 +214,7 @@ class TypeReduce(cogvariants.Dataquery):
 
 class TypeResample(cogvariants.Dataquery):
     # The datasource
-    datasource: typing.Optional[dashboard.DataSourceRef]
+    datasource: typing.Optional[common.DataSourceRef]
     # The downsample function
     # Possible enum values:
     #  - `"sum"` 
@@ -241,7 +243,7 @@ class TypeResample(cogvariants.Dataquery):
     # It can be used to distinguish different types of queries.
     query_type: typing.Optional[str]
     # RefID is the unique identifier of the query, set by the frontend call.
-    ref_id: str
+    ref_id: typing.Optional[str]
     # Optionally define expected query result behavior
     result_assertions: typing.Optional['ExprTypeResampleResultAssertions']
     # TimeRange represents the query range
@@ -258,7 +260,7 @@ class TypeResample(cogvariants.Dataquery):
     # The time duration
     window: str
 
-    def __init__(self, datasource: typing.Optional[dashboard.DataSourceRef] = None, downsampler: typing.Optional[typing.Literal["sum", "mean", "min", "max", "count", "last", "median"]] = None, expression: str = "", hide: typing.Optional[bool] = None, interval_ms: typing.Optional[float] = None, max_data_points: typing.Optional[int] = None, query_type: typing.Optional[str] = None, ref_id: str = "", result_assertions: typing.Optional['ExprTypeResampleResultAssertions'] = None, time_range: typing.Optional['ExprTypeResampleTimeRange'] = None, upsampler: typing.Optional[typing.Literal["pad", "backfilling", "fillna"]] = None, window: str = ""):
+    def __init__(self, datasource: typing.Optional[common.DataSourceRef] = None, downsampler: typing.Optional[typing.Literal["sum", "mean", "min", "max", "count", "last", "median"]] = None, expression: str = "", hide: typing.Optional[bool] = None, interval_ms: typing.Optional[float] = None, max_data_points: typing.Optional[int] = None, query_type: typing.Optional[str] = None, ref_id: typing.Optional[str] = None, result_assertions: typing.Optional['ExprTypeResampleResultAssertions'] = None, time_range: typing.Optional['ExprTypeResampleTimeRange'] = None, upsampler: typing.Optional[typing.Literal["pad", "backfilling", "fillna"]] = None, window: str = "") -> None:
         self.datasource = datasource
         self.downsampler = downsampler if downsampler is not None else "sum"
         self.expression = expression
@@ -277,7 +279,6 @@ class TypeResample(cogvariants.Dataquery):
         payload: dict[str, object] = {
             "downsampler": self.downsampler,
             "expression": self.expression,
-            "refId": self.ref_id,
             "type": self.type_val,
             "upsampler": self.upsampler,
             "window": self.window,
@@ -292,6 +293,8 @@ class TypeResample(cogvariants.Dataquery):
             payload["maxDataPoints"] = self.max_data_points
         if self.query_type is not None:
             payload["queryType"] = self.query_type
+        if self.ref_id is not None:
+            payload["refId"] = self.ref_id
         if self.result_assertions is not None:
             payload["resultAssertions"] = self.result_assertions
         if self.time_range is not None:
@@ -303,7 +306,7 @@ class TypeResample(cogvariants.Dataquery):
         args: dict[str, typing.Any] = {}
         
         if "datasource" in data:
-            args["datasource"] = dashboard.DataSourceRef.from_json(data["datasource"])
+            args["datasource"] = common.DataSourceRef.from_json(data["datasource"])
         if "downsampler" in data:
             args["downsampler"] = data["downsampler"]
         if "expression" in data:
@@ -333,7 +336,7 @@ class TypeResample(cogvariants.Dataquery):
 class TypeClassicConditions(cogvariants.Dataquery):
     conditions: list['ExprTypeClassicConditionsConditions']
     # The datasource
-    datasource: typing.Optional[dashboard.DataSourceRef]
+    datasource: typing.Optional[common.DataSourceRef]
     # true if query is disabled (ie should not be returned to the dashboard)
     # NOTE: this does not always imply that the query should not be executed since
     # the results from a hidden query may be used as the input to other queries (SSE etc)
@@ -350,7 +353,7 @@ class TypeClassicConditions(cogvariants.Dataquery):
     # It can be used to distinguish different types of queries.
     query_type: typing.Optional[str]
     # RefID is the unique identifier of the query, set by the frontend call.
-    ref_id: str
+    ref_id: typing.Optional[str]
     # Optionally define expected query result behavior
     result_assertions: typing.Optional['ExprTypeClassicConditionsResultAssertions']
     # TimeRange represents the query range
@@ -359,7 +362,7 @@ class TypeClassicConditions(cogvariants.Dataquery):
     time_range: typing.Optional['ExprTypeClassicConditionsTimeRange']
     type_val: typing.Literal["classic_conditions"]
 
-    def __init__(self, conditions: typing.Optional[list['ExprTypeClassicConditionsConditions']] = None, datasource: typing.Optional[dashboard.DataSourceRef] = None, hide: typing.Optional[bool] = None, interval_ms: typing.Optional[float] = None, max_data_points: typing.Optional[int] = None, query_type: typing.Optional[str] = None, ref_id: str = "", result_assertions: typing.Optional['ExprTypeClassicConditionsResultAssertions'] = None, time_range: typing.Optional['ExprTypeClassicConditionsTimeRange'] = None):
+    def __init__(self, conditions: typing.Optional[list['ExprTypeClassicConditionsConditions']] = None, datasource: typing.Optional[common.DataSourceRef] = None, hide: typing.Optional[bool] = None, interval_ms: typing.Optional[float] = None, max_data_points: typing.Optional[int] = None, query_type: typing.Optional[str] = None, ref_id: typing.Optional[str] = None, result_assertions: typing.Optional['ExprTypeClassicConditionsResultAssertions'] = None, time_range: typing.Optional['ExprTypeClassicConditionsTimeRange'] = None) -> None:
         self.conditions = conditions if conditions is not None else []
         self.datasource = datasource
         self.hide = hide
@@ -374,7 +377,6 @@ class TypeClassicConditions(cogvariants.Dataquery):
     def to_json(self) -> dict[str, object]:
         payload: dict[str, object] = {
             "conditions": self.conditions,
-            "refId": self.ref_id,
             "type": self.type_val,
         }
         if self.datasource is not None:
@@ -387,6 +389,8 @@ class TypeClassicConditions(cogvariants.Dataquery):
             payload["maxDataPoints"] = self.max_data_points
         if self.query_type is not None:
             payload["queryType"] = self.query_type
+        if self.ref_id is not None:
+            payload["refId"] = self.ref_id
         if self.result_assertions is not None:
             payload["resultAssertions"] = self.result_assertions
         if self.time_range is not None:
@@ -400,7 +404,7 @@ class TypeClassicConditions(cogvariants.Dataquery):
         if "conditions" in data:
             args["conditions"] = [ExprTypeClassicConditionsConditions.from_json(item) for item in data["conditions"]]
         if "datasource" in data:
-            args["datasource"] = dashboard.DataSourceRef.from_json(data["datasource"])
+            args["datasource"] = common.DataSourceRef.from_json(data["datasource"])
         if "hide" in data:
             args["hide"] = data["hide"]
         if "intervalMs" in data:
@@ -423,7 +427,7 @@ class TypeThreshold(cogvariants.Dataquery):
     # Threshold Conditions
     conditions: list['ExprTypeThresholdConditions']
     # The datasource
-    datasource: typing.Optional[dashboard.DataSourceRef]
+    datasource: typing.Optional[common.DataSourceRef]
     # Reference to single query result
     expression: str
     # true if query is disabled (ie should not be returned to the dashboard)
@@ -442,7 +446,7 @@ class TypeThreshold(cogvariants.Dataquery):
     # It can be used to distinguish different types of queries.
     query_type: typing.Optional[str]
     # RefID is the unique identifier of the query, set by the frontend call.
-    ref_id: str
+    ref_id: typing.Optional[str]
     # Optionally define expected query result behavior
     result_assertions: typing.Optional['ExprTypeThresholdResultAssertions']
     # TimeRange represents the query range
@@ -451,7 +455,7 @@ class TypeThreshold(cogvariants.Dataquery):
     time_range: typing.Optional['ExprTypeThresholdTimeRange']
     type_val: typing.Literal["threshold"]
 
-    def __init__(self, conditions: typing.Optional[list['ExprTypeThresholdConditions']] = None, datasource: typing.Optional[dashboard.DataSourceRef] = None, expression: str = "", hide: typing.Optional[bool] = None, interval_ms: typing.Optional[float] = None, max_data_points: typing.Optional[int] = None, query_type: typing.Optional[str] = None, ref_id: str = "", result_assertions: typing.Optional['ExprTypeThresholdResultAssertions'] = None, time_range: typing.Optional['ExprTypeThresholdTimeRange'] = None):
+    def __init__(self, conditions: typing.Optional[list['ExprTypeThresholdConditions']] = None, datasource: typing.Optional[common.DataSourceRef] = None, expression: str = "", hide: typing.Optional[bool] = None, interval_ms: typing.Optional[float] = None, max_data_points: typing.Optional[int] = None, query_type: typing.Optional[str] = None, ref_id: typing.Optional[str] = None, result_assertions: typing.Optional['ExprTypeThresholdResultAssertions'] = None, time_range: typing.Optional['ExprTypeThresholdTimeRange'] = None) -> None:
         self.conditions = conditions if conditions is not None else []
         self.datasource = datasource
         self.expression = expression
@@ -468,7 +472,6 @@ class TypeThreshold(cogvariants.Dataquery):
         payload: dict[str, object] = {
             "conditions": self.conditions,
             "expression": self.expression,
-            "refId": self.ref_id,
             "type": self.type_val,
         }
         if self.datasource is not None:
@@ -481,6 +484,8 @@ class TypeThreshold(cogvariants.Dataquery):
             payload["maxDataPoints"] = self.max_data_points
         if self.query_type is not None:
             payload["queryType"] = self.query_type
+        if self.ref_id is not None:
+            payload["refId"] = self.ref_id
         if self.result_assertions is not None:
             payload["resultAssertions"] = self.result_assertions
         if self.time_range is not None:
@@ -494,7 +499,7 @@ class TypeThreshold(cogvariants.Dataquery):
         if "conditions" in data:
             args["conditions"] = [ExprTypeThresholdConditions.from_json(item) for item in data["conditions"]]
         if "datasource" in data:
-            args["datasource"] = dashboard.DataSourceRef.from_json(data["datasource"])
+            args["datasource"] = common.DataSourceRef.from_json(data["datasource"])
         if "expression" in data:
             args["expression"] = data["expression"]
         if "hide" in data:
@@ -517,7 +522,7 @@ class TypeThreshold(cogvariants.Dataquery):
 
 class TypeSql(cogvariants.Dataquery):
     # The datasource
-    datasource: typing.Optional[dashboard.DataSourceRef]
+    datasource: typing.Optional[common.DataSourceRef]
     expression: str
     format_val: str
     # true if query is disabled (ie should not be returned to the dashboard)
@@ -536,7 +541,7 @@ class TypeSql(cogvariants.Dataquery):
     # It can be used to distinguish different types of queries.
     query_type: typing.Optional[str]
     # RefID is the unique identifier of the query, set by the frontend call.
-    ref_id: str
+    ref_id: typing.Optional[str]
     # Optionally define expected query result behavior
     result_assertions: typing.Optional['ExprTypeSqlResultAssertions']
     # TimeRange represents the query range
@@ -545,7 +550,7 @@ class TypeSql(cogvariants.Dataquery):
     time_range: typing.Optional['ExprTypeSqlTimeRange']
     type_val: typing.Literal["sql"]
 
-    def __init__(self, datasource: typing.Optional[dashboard.DataSourceRef] = None, expression: str = "", format_val: str = "", hide: typing.Optional[bool] = None, interval_ms: typing.Optional[float] = None, max_data_points: typing.Optional[int] = None, query_type: typing.Optional[str] = None, ref_id: str = "", result_assertions: typing.Optional['ExprTypeSqlResultAssertions'] = None, time_range: typing.Optional['ExprTypeSqlTimeRange'] = None):
+    def __init__(self, datasource: typing.Optional[common.DataSourceRef] = None, expression: str = "", format_val: str = "", hide: typing.Optional[bool] = None, interval_ms: typing.Optional[float] = None, max_data_points: typing.Optional[int] = None, query_type: typing.Optional[str] = None, ref_id: typing.Optional[str] = None, result_assertions: typing.Optional['ExprTypeSqlResultAssertions'] = None, time_range: typing.Optional['ExprTypeSqlTimeRange'] = None) -> None:
         self.datasource = datasource
         self.expression = expression
         self.format_val = format_val
@@ -562,7 +567,6 @@ class TypeSql(cogvariants.Dataquery):
         payload: dict[str, object] = {
             "expression": self.expression,
             "format": self.format_val,
-            "refId": self.ref_id,
             "type": self.type_val,
         }
         if self.datasource is not None:
@@ -575,6 +579,8 @@ class TypeSql(cogvariants.Dataquery):
             payload["maxDataPoints"] = self.max_data_points
         if self.query_type is not None:
             payload["queryType"] = self.query_type
+        if self.ref_id is not None:
+            payload["refId"] = self.ref_id
         if self.result_assertions is not None:
             payload["resultAssertions"] = self.result_assertions
         if self.time_range is not None:
@@ -586,7 +592,7 @@ class TypeSql(cogvariants.Dataquery):
         args: dict[str, typing.Any] = {}
         
         if "datasource" in data:
-            args["datasource"] = dashboard.DataSourceRef.from_json(data["datasource"])
+            args["datasource"] = common.DataSourceRef.from_json(data["datasource"])
         if "expression" in data:
             args["expression"] = data["expression"]
         if "format" in data:
@@ -617,7 +623,7 @@ class TypeMathOrTypeReduceOrTypeResampleOrTypeClassicConditionsOrTypeThresholdOr
     type_threshold: typing.Optional['TypeThreshold']
     type_sql: typing.Optional['TypeSql']
 
-    def __init__(self, type_math: typing.Optional['TypeMath'] = None, type_reduce: typing.Optional['TypeReduce'] = None, type_resample: typing.Optional['TypeResample'] = None, type_classic_conditions: typing.Optional['TypeClassicConditions'] = None, type_threshold: typing.Optional['TypeThreshold'] = None, type_sql: typing.Optional['TypeSql'] = None):
+    def __init__(self, type_math: typing.Optional['TypeMath'] = None, type_reduce: typing.Optional['TypeReduce'] = None, type_resample: typing.Optional['TypeResample'] = None, type_classic_conditions: typing.Optional['TypeClassicConditions'] = None, type_threshold: typing.Optional['TypeThreshold'] = None, type_sql: typing.Optional['TypeSql'] = None) -> None:
         self.type_math = type_math
         self.type_reduce = type_reduce
         self.type_resample = type_resample
@@ -683,7 +689,7 @@ class ExprTypeMathResultAssertions:
     # contract documentation https://grafana.github.io/dataplane/contract/.
     type_version: list[int]
 
-    def __init__(self, max_frames: typing.Optional[int] = None, type_val: typing.Optional[typing.Literal["", "timeseries-wide", "timeseries-long", "timeseries-many", "timeseries-multi", "directory-listing", "table", "numeric-wide", "numeric-multi", "numeric-long", "log-lines"]] = None, type_version: typing.Optional[list[int]] = None):
+    def __init__(self, max_frames: typing.Optional[int] = None, type_val: typing.Optional[typing.Literal["", "timeseries-wide", "timeseries-long", "timeseries-many", "timeseries-multi", "directory-listing", "table", "numeric-wide", "numeric-multi", "numeric-long", "log-lines"]] = None, type_version: typing.Optional[list[int]] = None) -> None:
         self.max_frames = max_frames
         self.type_val = type_val
         self.type_version = type_version if type_version is not None else []
@@ -718,7 +724,7 @@ class ExprTypeMathTimeRange:
     # To is the end time of the query.
     to: str
 
-    def __init__(self, from_val: str = "now-6h", to: str = "now"):
+    def __init__(self, from_val: str = "now-6h", to: str = "now") -> None:
         self.from_val = from_val
         self.to = to
 
@@ -762,7 +768,7 @@ class ExprTypeReduceResultAssertions:
     # contract documentation https://grafana.github.io/dataplane/contract/.
     type_version: list[int]
 
-    def __init__(self, max_frames: typing.Optional[int] = None, type_val: typing.Optional[typing.Literal["", "timeseries-wide", "timeseries-long", "timeseries-many", "timeseries-multi", "directory-listing", "table", "numeric-wide", "numeric-multi", "numeric-long", "log-lines"]] = None, type_version: typing.Optional[list[int]] = None):
+    def __init__(self, max_frames: typing.Optional[int] = None, type_val: typing.Optional[typing.Literal["", "timeseries-wide", "timeseries-long", "timeseries-many", "timeseries-multi", "directory-listing", "table", "numeric-wide", "numeric-multi", "numeric-long", "log-lines"]] = None, type_version: typing.Optional[list[int]] = None) -> None:
         self.max_frames = max_frames
         self.type_val = type_val
         self.type_version = type_version if type_version is not None else []
@@ -800,7 +806,7 @@ class ExprTypeReduceSettings:
     # Only valid when mode is replace
     replace_with_value: typing.Optional[float]
 
-    def __init__(self, mode: typing.Optional[typing.Literal["dropNN", "replaceNN"]] = None, replace_with_value: typing.Optional[float] = None):
+    def __init__(self, mode: typing.Optional[typing.Literal["dropNN", "replaceNN"]] = None, replace_with_value: typing.Optional[float] = None) -> None:
         self.mode = mode if mode is not None else "dropNN"
         self.replace_with_value = replace_with_value
 
@@ -830,7 +836,7 @@ class ExprTypeReduceTimeRange:
     # To is the end time of the query.
     to: str
 
-    def __init__(self, from_val: str = "now-6h", to: str = "now"):
+    def __init__(self, from_val: str = "now-6h", to: str = "now") -> None:
         self.from_val = from_val
         self.to = to
 
@@ -874,7 +880,7 @@ class ExprTypeResampleResultAssertions:
     # contract documentation https://grafana.github.io/dataplane/contract/.
     type_version: list[int]
 
-    def __init__(self, max_frames: typing.Optional[int] = None, type_val: typing.Optional[typing.Literal["", "timeseries-wide", "timeseries-long", "timeseries-many", "timeseries-multi", "directory-listing", "table", "numeric-wide", "numeric-multi", "numeric-long", "log-lines"]] = None, type_version: typing.Optional[list[int]] = None):
+    def __init__(self, max_frames: typing.Optional[int] = None, type_val: typing.Optional[typing.Literal["", "timeseries-wide", "timeseries-long", "timeseries-many", "timeseries-multi", "directory-listing", "table", "numeric-wide", "numeric-multi", "numeric-long", "log-lines"]] = None, type_version: typing.Optional[list[int]] = None) -> None:
         self.max_frames = max_frames
         self.type_val = type_val
         self.type_version = type_version if type_version is not None else []
@@ -909,7 +915,7 @@ class ExprTypeResampleTimeRange:
     # To is the end time of the query.
     to: str
 
-    def __init__(self, from_val: str = "now-6h", to: str = "now"):
+    def __init__(self, from_val: str = "now-6h", to: str = "now") -> None:
         self.from_val = from_val
         self.to = to
 
@@ -937,7 +943,7 @@ class ExprTypeClassicConditionsConditionsEvaluator:
     # e.g. "gt"
     type_val: str
 
-    def __init__(self, params: typing.Optional[list[float]] = None, type_val: str = ""):
+    def __init__(self, params: typing.Optional[list[float]] = None, type_val: str = "") -> None:
         self.params = params if params is not None else []
         self.type_val = type_val
 
@@ -963,7 +969,7 @@ class ExprTypeClassicConditionsConditionsEvaluator:
 class ExprTypeClassicConditionsConditionsOperator:
     type_val: typing.Literal["and", "or", "logic-or"]
 
-    def __init__(self, type_val: typing.Optional[typing.Literal["and", "or", "logic-or"]] = None):
+    def __init__(self, type_val: typing.Optional[typing.Literal["and", "or", "logic-or"]] = None) -> None:
         self.type_val = type_val if type_val is not None else "and"
 
     def to_json(self) -> dict[str, object]:
@@ -985,7 +991,7 @@ class ExprTypeClassicConditionsConditionsOperator:
 class ExprTypeClassicConditionsConditionsQuery:
     params: list[str]
 
-    def __init__(self, params: typing.Optional[list[str]] = None):
+    def __init__(self, params: typing.Optional[list[str]] = None) -> None:
         self.params = params if params is not None else []
 
     def to_json(self) -> dict[str, object]:
@@ -1007,7 +1013,7 @@ class ExprTypeClassicConditionsConditionsQuery:
 class ExprTypeClassicConditionsConditionsReducer:
     type_val: str
 
-    def __init__(self, type_val: str = ""):
+    def __init__(self, type_val: str = "") -> None:
         self.type_val = type_val
 
     def to_json(self) -> dict[str, object]:
@@ -1032,7 +1038,7 @@ class ExprTypeClassicConditionsConditions:
     query: 'ExprTypeClassicConditionsConditionsQuery'
     reducer: 'ExprTypeClassicConditionsConditionsReducer'
 
-    def __init__(self, evaluator: typing.Optional['ExprTypeClassicConditionsConditionsEvaluator'] = None, operator: typing.Optional['ExprTypeClassicConditionsConditionsOperator'] = None, query: typing.Optional['ExprTypeClassicConditionsConditionsQuery'] = None, reducer: typing.Optional['ExprTypeClassicConditionsConditionsReducer'] = None):
+    def __init__(self, evaluator: typing.Optional['ExprTypeClassicConditionsConditionsEvaluator'] = None, operator: typing.Optional['ExprTypeClassicConditionsConditionsOperator'] = None, query: typing.Optional['ExprTypeClassicConditionsConditionsQuery'] = None, reducer: typing.Optional['ExprTypeClassicConditionsConditionsReducer'] = None) -> None:
         self.evaluator = evaluator if evaluator is not None else ExprTypeClassicConditionsConditionsEvaluator()
         self.operator = operator if operator is not None else ExprTypeClassicConditionsConditionsOperator()
         self.query = query if query is not None else ExprTypeClassicConditionsConditionsQuery()
@@ -1084,7 +1090,7 @@ class ExprTypeClassicConditionsResultAssertions:
     # contract documentation https://grafana.github.io/dataplane/contract/.
     type_version: list[int]
 
-    def __init__(self, max_frames: typing.Optional[int] = None, type_val: typing.Optional[typing.Literal["", "timeseries-wide", "timeseries-long", "timeseries-many", "timeseries-multi", "directory-listing", "table", "numeric-wide", "numeric-multi", "numeric-long", "log-lines"]] = None, type_version: typing.Optional[list[int]] = None):
+    def __init__(self, max_frames: typing.Optional[int] = None, type_val: typing.Optional[typing.Literal["", "timeseries-wide", "timeseries-long", "timeseries-many", "timeseries-multi", "directory-listing", "table", "numeric-wide", "numeric-multi", "numeric-long", "log-lines"]] = None, type_version: typing.Optional[list[int]] = None) -> None:
         self.max_frames = max_frames
         self.type_val = type_val
         self.type_version = type_version if type_version is not None else []
@@ -1119,7 +1125,7 @@ class ExprTypeClassicConditionsTimeRange:
     # To is the end time of the query.
     to: str
 
-    def __init__(self, from_val: str = "now-6h", to: str = "now"):
+    def __init__(self, from_val: str = "now-6h", to: str = "now") -> None:
         self.from_val = from_val
         self.to = to
 
@@ -1147,7 +1153,7 @@ class ExprTypeThresholdConditionsEvaluator:
     # e.g. "gt"
     type_val: typing.Literal["gt", "lt", "eq", "ne", "gte", "lte", "within_range", "outside_range", "within_range_included", "outside_range_included"]
 
-    def __init__(self, params: typing.Optional[list[float]] = None, type_val: typing.Optional[typing.Literal["gt", "lt", "eq", "ne", "gte", "lte", "within_range", "outside_range", "within_range_included", "outside_range_included"]] = None):
+    def __init__(self, params: typing.Optional[list[float]] = None, type_val: typing.Optional[typing.Literal["gt", "lt", "eq", "ne", "gte", "lte", "within_range", "outside_range", "within_range_included", "outside_range_included"]] = None) -> None:
         self.params = params if params is not None else []
         self.type_val = type_val if type_val is not None else "gt"
 
@@ -1175,7 +1181,7 @@ class ExprTypeThresholdConditionsUnloadEvaluator:
     # e.g. "gt"
     type_val: typing.Literal["gt", "lt", "eq", "ne", "gte", "lte", "within_range", "outside_range", "within_range_included", "outside_range_included"]
 
-    def __init__(self, params: typing.Optional[list[float]] = None, type_val: typing.Optional[typing.Literal["gt", "lt", "eq", "ne", "gte", "lte", "within_range", "outside_range", "within_range_included", "outside_range_included"]] = None):
+    def __init__(self, params: typing.Optional[list[float]] = None, type_val: typing.Optional[typing.Literal["gt", "lt", "eq", "ne", "gte", "lte", "within_range", "outside_range", "within_range_included", "outside_range_included"]] = None) -> None:
         self.params = params if params is not None else []
         self.type_val = type_val if type_val is not None else "gt"
 
@@ -1203,7 +1209,7 @@ class ExprTypeThresholdConditions:
     loaded_dimensions: typing.Optional[object]
     unload_evaluator: typing.Optional['ExprTypeThresholdConditionsUnloadEvaluator']
 
-    def __init__(self, evaluator: typing.Optional['ExprTypeThresholdConditionsEvaluator'] = None, loaded_dimensions: typing.Optional[object] = None, unload_evaluator: typing.Optional['ExprTypeThresholdConditionsUnloadEvaluator'] = None):
+    def __init__(self, evaluator: typing.Optional['ExprTypeThresholdConditionsEvaluator'] = None, loaded_dimensions: typing.Optional[object] = None, unload_evaluator: typing.Optional['ExprTypeThresholdConditionsUnloadEvaluator'] = None) -> None:
         self.evaluator = evaluator if evaluator is not None else ExprTypeThresholdConditionsEvaluator()
         self.loaded_dimensions = loaded_dimensions
         self.unload_evaluator = unload_evaluator
@@ -1253,7 +1259,7 @@ class ExprTypeThresholdResultAssertions:
     # contract documentation https://grafana.github.io/dataplane/contract/.
     type_version: list[int]
 
-    def __init__(self, max_frames: typing.Optional[int] = None, type_val: typing.Optional[typing.Literal["", "timeseries-wide", "timeseries-long", "timeseries-many", "timeseries-multi", "directory-listing", "table", "numeric-wide", "numeric-multi", "numeric-long", "log-lines"]] = None, type_version: typing.Optional[list[int]] = None):
+    def __init__(self, max_frames: typing.Optional[int] = None, type_val: typing.Optional[typing.Literal["", "timeseries-wide", "timeseries-long", "timeseries-many", "timeseries-multi", "directory-listing", "table", "numeric-wide", "numeric-multi", "numeric-long", "log-lines"]] = None, type_version: typing.Optional[list[int]] = None) -> None:
         self.max_frames = max_frames
         self.type_val = type_val
         self.type_version = type_version if type_version is not None else []
@@ -1288,7 +1294,7 @@ class ExprTypeThresholdTimeRange:
     # To is the end time of the query.
     to: str
 
-    def __init__(self, from_val: str = "now-6h", to: str = "now"):
+    def __init__(self, from_val: str = "now-6h", to: str = "now") -> None:
         self.from_val = from_val
         self.to = to
 
@@ -1332,7 +1338,7 @@ class ExprTypeSqlResultAssertions:
     # contract documentation https://grafana.github.io/dataplane/contract/.
     type_version: list[int]
 
-    def __init__(self, max_frames: typing.Optional[int] = None, type_val: typing.Optional[typing.Literal["", "timeseries-wide", "timeseries-long", "timeseries-many", "timeseries-multi", "directory-listing", "table", "numeric-wide", "numeric-multi", "numeric-long", "log-lines"]] = None, type_version: typing.Optional[list[int]] = None):
+    def __init__(self, max_frames: typing.Optional[int] = None, type_val: typing.Optional[typing.Literal["", "timeseries-wide", "timeseries-long", "timeseries-many", "timeseries-multi", "directory-listing", "table", "numeric-wide", "numeric-multi", "numeric-long", "log-lines"]] = None, type_version: typing.Optional[list[int]] = None) -> None:
         self.max_frames = max_frames
         self.type_val = type_val
         self.type_version = type_version if type_version is not None else []
@@ -1367,7 +1373,7 @@ class ExprTypeSqlTimeRange:
     # To is the end time of the query.
     to: str
 
-    def __init__(self, from_val: str = "now-6h", to: str = "now"):
+    def __init__(self, from_val: str = "now-6h", to: str = "now") -> None:
         self.from_val = from_val
         self.to = to
 

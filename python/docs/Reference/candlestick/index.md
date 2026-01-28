@@ -13,6 +13,8 @@
 
  * <span class="badge builder"></span> [CandlestickColors](./builder-CandlestickColors.md)
  * <span class="badge builder"></span> [CandlestickFieldMap](./builder-CandlestickFieldMap.md)
+ * <span class="badge builder"></span> [FieldConfig](./builder-FieldConfig.md)
+ * <span class="badge builder"></span> [Options](./builder-Options.md)
  * <span class="badge builder"></span> [Panel](./builder-Panel.md)
 ## Functions
 

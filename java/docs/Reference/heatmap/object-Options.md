@@ -23,3 +23,6 @@ public class Options {
   public HeatmapSelectionMode selectionMode;
 }
 ```
+## See also
+
+ * <span class="badge builder"></span> [OptionsBuilder](./builder-OptionsBuilder.md)

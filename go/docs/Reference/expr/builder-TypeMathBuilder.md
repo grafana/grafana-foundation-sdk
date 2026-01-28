@@ -23,7 +23,7 @@ func (builder *TypeMathBuilder) Build() (variants.Dataquery, error)
 The datasource
 
 ```go
-func (builder *TypeMathBuilder) Datasource(datasource dashboard.DataSourceRef) *TypeMathBuilder
+func (builder *TypeMathBuilder) Datasource(datasource common.DataSourceRef) *TypeMathBuilder
 ```
 
 ### <span class="badge object-method"></span> Expression

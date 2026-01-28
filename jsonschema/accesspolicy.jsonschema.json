@@ -85,7 +85,7 @@
           "default": "*"
         },
         "verb": {
-          "anyOf": [
+          "oneOf": [
             {
               "type": "string",
               "const": "*"

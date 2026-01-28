@@ -48,3 +48,6 @@ Validate checks all the validation constraints that may be defined on `Options` 
 func (options *Options) Validate() error
 ```
 
+## See also
+
+ * <span class="badge builder"></span> [OptionsBuilder](./builder-OptionsBuilder.md)

@@ -2,10 +2,113 @@
 
 import typing
 from ..cog import builder as cogbuilder
+from ..models import statetimeline
+from ..models import common
 from ..models import dashboard
 from ..cog import variants as cogvariants
-from ..models import common
-from ..models import statetimeline
+
+
+class Options(cogbuilder.Builder[statetimeline.Options]):
+    _internal: statetimeline.Options
+
+    def __init__(self) -> None:
+        self._internal = statetimeline.Options()
+
+    def build(self) -> statetimeline.Options:
+        """
+        Builds the object.
+        """
+        return self._internal    
+    
+    def show_value(self, show_value: common.VisibilityMode) -> typing.Self:    
+        """
+        Show timeline values on chart
+        """
+            
+        self._internal.show_value = show_value
+    
+        return self
+    
+    def row_height(self, row_height: float) -> typing.Self:    
+        """
+        Controls the row height
+        """
+            
+        if not row_height <= 1:
+            raise ValueError("row_height must be <= 1")
+        self._internal.row_height = row_height
+    
+        return self
+    
+    def merge_values(self, merge_values: bool) -> typing.Self:    
+        """
+        Merge equal consecutive values
+        """
+            
+        self._internal.merge_values = merge_values
+    
+        return self
+    
+    def legend(self, legend: cogbuilder.Builder[common.VizLegendOptions]) -> typing.Self:    
+        legend_resource = legend.build()
+        self._internal.legend = legend_resource
+    
+        return self
+    
+    def tooltip(self, tooltip: cogbuilder.Builder[common.VizTooltipOptions]) -> typing.Self:    
+        tooltip_resource = tooltip.build()
+        self._internal.tooltip = tooltip_resource
+    
+        return self
+    
+    def timezone(self, timezone: list[common.TimeZone]) -> typing.Self:    
+        self._internal.timezone = timezone
+    
+        return self
+    
+    def align_value(self, align_value: common.TimelineValueAlignment) -> typing.Self:    
+        """
+        Controls value alignment on the timelines
+        """
+            
+        self._internal.align_value = align_value
+    
+        return self
+    
+
+
+class FieldConfig(cogbuilder.Builder[statetimeline.FieldConfig]):
+    _internal: statetimeline.FieldConfig
+
+    def __init__(self) -> None:
+        self._internal = statetimeline.FieldConfig()
+
+    def build(self) -> statetimeline.FieldConfig:
+        """
+        Builds the object.
+        """
+        return self._internal    
+    
+    def line_width(self, line_width: int) -> typing.Self:    
+        if not line_width <= 10:
+            raise ValueError("line_width must be <= 10")
+        self._internal.line_width = line_width
+    
+        return self
+    
+    def hide_from(self, hide_from: cogbuilder.Builder[common.HideSeriesConfig]) -> typing.Self:    
+        hide_from_resource = hide_from.build()
+        self._internal.hide_from = hide_from_resource
+    
+        return self
+    
+    def fill_opacity(self, fill_opacity: int) -> typing.Self:    
+        if not fill_opacity <= 100:
+            raise ValueError("fill_opacity must be <= 100")
+        self._internal.fill_opacity = fill_opacity
+    
+        return self
+    
 
 
 class Panel(cogbuilder.Builder[dashboard.Panel]):    
@@ -15,7 +118,7 @@ class Panel(cogbuilder.Builder[dashboard.Panel]):
     
     _internal: dashboard.Panel
 
-    def __init__(self):
+    def __init__(self) -> None:
         self._internal = dashboard.Panel()        
         self._internal.type_val = "state-timeline"
 
@@ -84,7 +187,7 @@ class Panel(cogbuilder.Builder[dashboard.Panel]):
     
         return self
     
-    def datasource(self, datasource: dashboard.DataSourceRef) -> typing.Self:    
+    def datasource(self, datasource: common.DataSourceRef) -> typing.Self:    
         """
         The datasource used in all targets.
         """

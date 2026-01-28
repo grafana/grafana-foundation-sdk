@@ -6,7 +6,7 @@ import com.grafana.foundation.dashboard.Panel;
 import java.util.List;
 import com.grafana.foundation.cog.variants.Dataquery;
 import java.util.LinkedList;
-import com.grafana.foundation.dashboard.DataSourceRef;
+import com.grafana.foundation.common.DataSourceRef;
 import com.grafana.foundation.dashboard.GridPos;
 import com.grafana.foundation.dashboard.DashboardLink;
 import com.grafana.foundation.dashboard.PanelRepeatDirection;
@@ -395,7 +395,7 @@ public class StatetimelinePanelBuilder implements com.grafana.foundation.cog.Bui
     
     public StatetimelinePanelBuilder showValue(VisibilityMode showValue) {
 		if (this.internal.options == null) {
-			this.internal.options = new com.grafana.foundation.statetimeline.Options();
+			this.internal.options = new com.grafana.foundation.statetimeline.OptionsBuilder().build();
 		}
         ((Options) this.internal.options).showValue = showValue;
         return this;
@@ -406,7 +406,7 @@ public class StatetimelinePanelBuilder implements com.grafana.foundation.cog.Bui
             throw new IllegalArgumentException("rowHeight must be <= 1");
         }
 		if (this.internal.options == null) {
-			this.internal.options = new com.grafana.foundation.statetimeline.Options();
+			this.internal.options = new com.grafana.foundation.statetimeline.OptionsBuilder().build();
 		}
         ((Options) this.internal.options).rowHeight = rowHeight;
         return this;
@@ -414,7 +414,7 @@ public class StatetimelinePanelBuilder implements com.grafana.foundation.cog.Bui
     
     public StatetimelinePanelBuilder mergeValues(Boolean mergeValues) {
 		if (this.internal.options == null) {
-			this.internal.options = new com.grafana.foundation.statetimeline.Options();
+			this.internal.options = new com.grafana.foundation.statetimeline.OptionsBuilder().build();
 		}
         ((Options) this.internal.options).mergeValues = mergeValues;
         return this;
@@ -422,7 +422,7 @@ public class StatetimelinePanelBuilder implements com.grafana.foundation.cog.Bui
     
     public StatetimelinePanelBuilder legend(com.grafana.foundation.cog.Builder<VizLegendOptions> legend) {
 		if (this.internal.options == null) {
-			this.internal.options = new com.grafana.foundation.statetimeline.Options();
+			this.internal.options = new com.grafana.foundation.statetimeline.OptionsBuilder().build();
 		}
     VizLegendOptions legendResource = legend.build();
         ((Options) this.internal.options).legend = legendResource;
@@ -431,7 +431,7 @@ public class StatetimelinePanelBuilder implements com.grafana.foundation.cog.Bui
     
     public StatetimelinePanelBuilder tooltip(com.grafana.foundation.cog.Builder<VizTooltipOptions> tooltip) {
 		if (this.internal.options == null) {
-			this.internal.options = new com.grafana.foundation.statetimeline.Options();
+			this.internal.options = new com.grafana.foundation.statetimeline.OptionsBuilder().build();
 		}
     VizTooltipOptions tooltipResource = tooltip.build();
         ((Options) this.internal.options).tooltip = tooltipResource;
@@ -440,7 +440,7 @@ public class StatetimelinePanelBuilder implements com.grafana.foundation.cog.Bui
     
     public StatetimelinePanelBuilder timezone(List<String> timezone) {
 		if (this.internal.options == null) {
-			this.internal.options = new com.grafana.foundation.statetimeline.Options();
+			this.internal.options = new com.grafana.foundation.statetimeline.OptionsBuilder().build();
 		}
         ((Options) this.internal.options).timezone = timezone;
         return this;
@@ -448,7 +448,7 @@ public class StatetimelinePanelBuilder implements com.grafana.foundation.cog.Bui
     
     public StatetimelinePanelBuilder alignValue(TimelineValueAlignment alignValue) {
 		if (this.internal.options == null) {
-			this.internal.options = new com.grafana.foundation.statetimeline.Options();
+			this.internal.options = new com.grafana.foundation.statetimeline.OptionsBuilder().build();
 		}
         ((Options) this.internal.options).alignValue = alignValue;
         return this;
@@ -465,7 +465,7 @@ public class StatetimelinePanelBuilder implements com.grafana.foundation.cog.Bui
 			this.internal.fieldConfig.defaults = new com.grafana.foundation.dashboard.FieldConfig();
 		}
 		if (this.internal.fieldConfig.defaults.custom == null) {
-			this.internal.fieldConfig.defaults.custom = new com.grafana.foundation.statetimeline.FieldConfig();
+			this.internal.fieldConfig.defaults.custom = new com.grafana.foundation.statetimeline.FieldConfigBuilder().build();
 		}
         ((FieldConfig) this.internal.fieldConfig.defaults.custom).lineWidth = lineWidth;
         return this;
@@ -479,7 +479,7 @@ public class StatetimelinePanelBuilder implements com.grafana.foundation.cog.Bui
 			this.internal.fieldConfig.defaults = new com.grafana.foundation.dashboard.FieldConfig();
 		}
 		if (this.internal.fieldConfig.defaults.custom == null) {
-			this.internal.fieldConfig.defaults.custom = new com.grafana.foundation.statetimeline.FieldConfig();
+			this.internal.fieldConfig.defaults.custom = new com.grafana.foundation.statetimeline.FieldConfigBuilder().build();
 		}
     HideSeriesConfig hideFromResource = hideFrom.build();
         ((FieldConfig) this.internal.fieldConfig.defaults.custom).hideFrom = hideFromResource;
@@ -497,7 +497,7 @@ public class StatetimelinePanelBuilder implements com.grafana.foundation.cog.Bui
 			this.internal.fieldConfig.defaults = new com.grafana.foundation.dashboard.FieldConfig();
 		}
 		if (this.internal.fieldConfig.defaults.custom == null) {
-			this.internal.fieldConfig.defaults.custom = new com.grafana.foundation.statetimeline.FieldConfig();
+			this.internal.fieldConfig.defaults.custom = new com.grafana.foundation.statetimeline.FieldConfigBuilder().build();
 		}
         ((FieldConfig) this.internal.fieldConfig.defaults.custom).fillOpacity = fillOpacity;
         return this;

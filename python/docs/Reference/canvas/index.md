@@ -25,6 +25,7 @@
  * <span class="badge builder"></span> [ConnectionCoordinates](./builder-ConnectionCoordinates.md)
  * <span class="badge builder"></span> [Constraint](./builder-Constraint.md)
  * <span class="badge builder"></span> [LineConfig](./builder-LineConfig.md)
+ * <span class="badge builder"></span> [Options](./builder-Options.md)
  * <span class="badge builder"></span> [Panel](./builder-Panel.md)
  * <span class="badge builder"></span> [Placement](./builder-Placement.md)
 ## Functions

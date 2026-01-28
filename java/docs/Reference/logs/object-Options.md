@@ -18,3 +18,6 @@ public class Options {
   public LogsDedupStrategy dedupStrategy;
 }
 ```
+## See also
+
+ * <span class="badge builder"></span> [OptionsBuilder](./builder-OptionsBuilder.md)

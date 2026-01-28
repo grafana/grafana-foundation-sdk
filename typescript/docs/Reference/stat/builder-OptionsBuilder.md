@@ -1,0 +1,83 @@
+---
+title: <span class="badge builder"></span> OptionsBuilder
+---
+# <span class="badge builder"></span> OptionsBuilder
+
+## Constructor
+
+```typescript
+new OptionsBuilder()
+```
+## Methods
+
+### <span class="badge object-method"></span> build
+
+Builds the object.
+
+```typescript
+build()
+```
+
+### <span class="badge object-method"></span> colorMode
+
+```typescript
+colorMode(colorMode: common.BigValueColorMode)
+```
+
+### <span class="badge object-method"></span> graphMode
+
+```typescript
+graphMode(graphMode: common.BigValueGraphMode)
+```
+
+### <span class="badge object-method"></span> justifyMode
+
+```typescript
+justifyMode(justifyMode: common.BigValueJustifyMode)
+```
+
+### <span class="badge object-method"></span> orientation
+
+```typescript
+orientation(orientation: common.VizOrientation)
+```
+
+### <span class="badge object-method"></span> percentChangeColorMode
+
+```typescript
+percentChangeColorMode(percentChangeColorMode: common.PercentChangeColorMode)
+```
+
+### <span class="badge object-method"></span> reduceOptions
+
+```typescript
+reduceOptions(reduceOptions: cog.Builder<common.ReduceDataOptions>)
+```
+
+### <span class="badge object-method"></span> showPercentChange
+
+```typescript
+showPercentChange(showPercentChange: boolean)
+```
+
+### <span class="badge object-method"></span> text
+
+```typescript
+text(text: cog.Builder<common.VizTextDisplayOptions>)
+```
+
+### <span class="badge object-method"></span> textMode
+
+```typescript
+textMode(textMode: common.BigValueTextMode)
+```
+
+### <span class="badge object-method"></span> wideLayout
+
+```typescript
+wideLayout(wideLayout: boolean)
+```
+
+## See also
+
+ * <span class="badge object-type-interface"></span> [Options](./object-Options.md)

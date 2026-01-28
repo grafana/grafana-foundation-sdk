@@ -33,7 +33,7 @@ collapsed(bool $collapsed)
 Name of default datasource for the row
 
 ```php
-datasource(\Grafana\Foundation\Dashboard\DataSourceRef $datasource)
+datasource(\Grafana\Foundation\Common\DataSourceRef $datasource)
 ```
 
 ### <span class="badge object-method"></span> gridPos
