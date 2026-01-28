@@ -78,6 +78,18 @@ builders:
       by_object: ConditionalRenderingVariableKind
       as: ConditionalRenderingVariable
 
+  ####################
+  # LibraryPanelKind #
+  ####################
+
+  - merge_into:
+      source: LibraryPanelKindSpec
+      destination: LibraryPanelKind
+      under_path: spec
+  - rename:
+      by_object: LibraryPanelKind
+      as: LibraryPanel
+
   # No need for builders for structs generated from a disjunction
   - omit: { generated_from_disjunction: true }
 
