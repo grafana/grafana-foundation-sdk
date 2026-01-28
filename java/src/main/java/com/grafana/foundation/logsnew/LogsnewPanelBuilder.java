@@ -6,7 +6,7 @@ import com.grafana.foundation.dashboard.Panel;
 import java.util.List;
 import com.grafana.foundation.cog.variants.Dataquery;
 import java.util.LinkedList;
-import com.grafana.foundation.dashboard.DataSourceRef;
+import com.grafana.foundation.common.DataSourceRef;
 import com.grafana.foundation.dashboard.GridPos;
 import com.grafana.foundation.dashboard.DashboardLink;
 import com.grafana.foundation.dashboard.PanelRepeatDirection;
@@ -392,7 +392,7 @@ public class LogsnewPanelBuilder implements com.grafana.foundation.cog.Builder<P
     
     public LogsnewPanelBuilder showTime(Boolean showTime) {
 		if (this.internal.options == null) {
-			this.internal.options = new com.grafana.foundation.logsnew.Options();
+			this.internal.options = new com.grafana.foundation.logsnew.OptionsBuilder().build();
 		}
         ((Options) this.internal.options).showTime = showTime;
         return this;
@@ -400,7 +400,7 @@ public class LogsnewPanelBuilder implements com.grafana.foundation.cog.Builder<P
     
     public LogsnewPanelBuilder wrapLogMessage(Boolean wrapLogMessage) {
 		if (this.internal.options == null) {
-			this.internal.options = new com.grafana.foundation.logsnew.Options();
+			this.internal.options = new com.grafana.foundation.logsnew.OptionsBuilder().build();
 		}
         ((Options) this.internal.options).wrapLogMessage = wrapLogMessage;
         return this;
@@ -408,7 +408,7 @@ public class LogsnewPanelBuilder implements com.grafana.foundation.cog.Builder<P
     
     public LogsnewPanelBuilder enableLogDetails(Boolean enableLogDetails) {
 		if (this.internal.options == null) {
-			this.internal.options = new com.grafana.foundation.logsnew.Options();
+			this.internal.options = new com.grafana.foundation.logsnew.OptionsBuilder().build();
 		}
         ((Options) this.internal.options).enableLogDetails = enableLogDetails;
         return this;
@@ -416,7 +416,7 @@ public class LogsnewPanelBuilder implements com.grafana.foundation.cog.Builder<P
     
     public LogsnewPanelBuilder sortOrder(LogsSortOrder sortOrder) {
 		if (this.internal.options == null) {
-			this.internal.options = new com.grafana.foundation.logsnew.Options();
+			this.internal.options = new com.grafana.foundation.logsnew.OptionsBuilder().build();
 		}
         ((Options) this.internal.options).sortOrder = sortOrder;
         return this;
@@ -424,7 +424,7 @@ public class LogsnewPanelBuilder implements com.grafana.foundation.cog.Builder<P
     
     public LogsnewPanelBuilder dedupStrategy(LogsDedupStrategy dedupStrategy) {
 		if (this.internal.options == null) {
-			this.internal.options = new com.grafana.foundation.logsnew.Options();
+			this.internal.options = new com.grafana.foundation.logsnew.OptionsBuilder().build();
 		}
         ((Options) this.internal.options).dedupStrategy = dedupStrategy;
         return this;
@@ -432,7 +432,7 @@ public class LogsnewPanelBuilder implements com.grafana.foundation.cog.Builder<P
     
     public LogsnewPanelBuilder enableInfiniteScrolling(Boolean enableInfiniteScrolling) {
 		if (this.internal.options == null) {
-			this.internal.options = new com.grafana.foundation.logsnew.Options();
+			this.internal.options = new com.grafana.foundation.logsnew.OptionsBuilder().build();
 		}
         ((Options) this.internal.options).enableInfiniteScrolling = enableInfiniteScrolling;
         return this;
@@ -440,7 +440,7 @@ public class LogsnewPanelBuilder implements com.grafana.foundation.cog.Builder<P
     
     public LogsnewPanelBuilder onNewLogsReceived(Object onNewLogsReceived) {
 		if (this.internal.options == null) {
-			this.internal.options = new com.grafana.foundation.logsnew.Options();
+			this.internal.options = new com.grafana.foundation.logsnew.OptionsBuilder().build();
 		}
         ((Options) this.internal.options).onNewLogsReceived = onNewLogsReceived;
         return this;

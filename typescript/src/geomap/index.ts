@@ -2,6 +2,8 @@
 
 export * from './types.gen';
 export type * from './types.gen';
+export * from './optionsBuilder.gen';
+export type * from './optionsBuilder.gen';
 export * from './mapViewConfigBuilder.gen';
 export type * from './mapViewConfigBuilder.gen';
 export * from './controlsOptionsBuilder.gen';

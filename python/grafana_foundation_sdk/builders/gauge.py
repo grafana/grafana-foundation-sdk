@@ -2,10 +2,66 @@
 
 import typing
 from ..cog import builder as cogbuilder
-from ..models import dashboard
-from ..cog import variants as cogvariants
 from ..models import gauge
 from ..models import common
+from ..models import dashboard
+from ..cog import variants as cogvariants
+
+
+class Options(cogbuilder.Builder[gauge.Options]):
+    _internal: gauge.Options
+
+    def __init__(self) -> None:
+        self._internal = gauge.Options()
+
+    def build(self) -> gauge.Options:
+        """
+        Builds the object.
+        """
+        return self._internal    
+    
+    def show_threshold_labels(self, show_threshold_labels: bool) -> typing.Self:    
+        self._internal.show_threshold_labels = show_threshold_labels
+    
+        return self
+    
+    def show_threshold_markers(self, show_threshold_markers: bool) -> typing.Self:    
+        self._internal.show_threshold_markers = show_threshold_markers
+    
+        return self
+    
+    def sizing(self, sizing: common.BarGaugeSizing) -> typing.Self:    
+        self._internal.sizing = sizing
+    
+        return self
+    
+    def min_viz_width(self, min_viz_width: int) -> typing.Self:    
+        self._internal.min_viz_width = min_viz_width
+    
+        return self
+    
+    def reduce_options(self, reduce_options: cogbuilder.Builder[common.ReduceDataOptions]) -> typing.Self:    
+        reduce_options_resource = reduce_options.build()
+        self._internal.reduce_options = reduce_options_resource
+    
+        return self
+    
+    def text(self, text: cogbuilder.Builder[common.VizTextDisplayOptions]) -> typing.Self:    
+        text_resource = text.build()
+        self._internal.text = text_resource
+    
+        return self
+    
+    def min_viz_height(self, min_viz_height: int) -> typing.Self:    
+        self._internal.min_viz_height = min_viz_height
+    
+        return self
+    
+    def orientation(self, orientation: common.VizOrientation) -> typing.Self:    
+        self._internal.orientation = orientation
+    
+        return self
+    
 
 
 class Panel(cogbuilder.Builder[dashboard.Panel]):    
@@ -15,7 +71,7 @@ class Panel(cogbuilder.Builder[dashboard.Panel]):
     
     _internal: dashboard.Panel
 
-    def __init__(self):
+    def __init__(self) -> None:
         self._internal = dashboard.Panel()        
         self._internal.type_val = "gauge"
 
@@ -84,7 +140,7 @@ class Panel(cogbuilder.Builder[dashboard.Panel]):
     
         return self
     
-    def datasource(self, datasource: dashboard.DataSourceRef) -> typing.Self:    
+    def datasource(self, datasource: common.DataSourceRef) -> typing.Self:    
         """
         The datasource used in all targets.
         """

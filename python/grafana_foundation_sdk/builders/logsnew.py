@@ -2,10 +2,59 @@
 
 import typing
 from ..cog import builder as cogbuilder
-from ..models import dashboard
-from ..cog import variants as cogvariants
 from ..models import logsnew
 from ..models import common
+from ..models import dashboard
+from ..cog import variants as cogvariants
+
+
+class Options(cogbuilder.Builder[logsnew.Options]):
+    _internal: logsnew.Options
+
+    def __init__(self) -> None:
+        self._internal = logsnew.Options()
+
+    def build(self) -> logsnew.Options:
+        """
+        Builds the object.
+        """
+        return self._internal    
+    
+    def show_time(self, show_time: bool) -> typing.Self:    
+        self._internal.show_time = show_time
+    
+        return self
+    
+    def wrap_log_message(self, wrap_log_message: bool) -> typing.Self:    
+        self._internal.wrap_log_message = wrap_log_message
+    
+        return self
+    
+    def enable_log_details(self, enable_log_details: bool) -> typing.Self:    
+        self._internal.enable_log_details = enable_log_details
+    
+        return self
+    
+    def sort_order(self, sort_order: common.LogsSortOrder) -> typing.Self:    
+        self._internal.sort_order = sort_order
+    
+        return self
+    
+    def dedup_strategy(self, dedup_strategy: common.LogsDedupStrategy) -> typing.Self:    
+        self._internal.dedup_strategy = dedup_strategy
+    
+        return self
+    
+    def enable_infinite_scrolling(self, enable_infinite_scrolling: bool) -> typing.Self:    
+        self._internal.enable_infinite_scrolling = enable_infinite_scrolling
+    
+        return self
+    
+    def on_new_logs_received(self, on_new_logs_received: object) -> typing.Self:    
+        self._internal.on_new_logs_received = on_new_logs_received
+    
+        return self
+    
 
 
 class Panel(cogbuilder.Builder[dashboard.Panel]):    
@@ -15,7 +64,7 @@ class Panel(cogbuilder.Builder[dashboard.Panel]):
     
     _internal: dashboard.Panel
 
-    def __init__(self):
+    def __init__(self) -> None:
         self._internal = dashboard.Panel()        
         self._internal.type_val = "logsnew"
 
@@ -84,7 +133,7 @@ class Panel(cogbuilder.Builder[dashboard.Panel]):
     
         return self
     
-    def datasource(self, datasource: dashboard.DataSourceRef) -> typing.Self:    
+    def datasource(self, datasource: common.DataSourceRef) -> typing.Self:    
         """
         The datasource used in all targets.
         """

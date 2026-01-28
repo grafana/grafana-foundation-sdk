@@ -24,7 +24,7 @@ export interface VariableModel {
 	// Query used to fetch values for a variable
 	query?: string | Record<string, any>;
 	// Data source used to fetch values for a variable. It can be defined but `null`.
-	datasource?: dashboard.DataSourceRef;
+	datasource?: common.DataSourceRef;
 	// Shows current selected variable text/value on the dashboard
 	current?: dashboard.VariableOption;
 	// Whether multiple values can be selected or not from variable value list

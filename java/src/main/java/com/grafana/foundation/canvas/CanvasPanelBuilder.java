@@ -6,7 +6,7 @@ import com.grafana.foundation.dashboard.Panel;
 import java.util.List;
 import com.grafana.foundation.cog.variants.Dataquery;
 import java.util.LinkedList;
-import com.grafana.foundation.dashboard.DataSourceRef;
+import com.grafana.foundation.common.DataSourceRef;
 import com.grafana.foundation.dashboard.GridPos;
 import com.grafana.foundation.dashboard.DashboardLink;
 import com.grafana.foundation.dashboard.PanelRepeatDirection;
@@ -390,7 +390,7 @@ public class CanvasPanelBuilder implements com.grafana.foundation.cog.Builder<Pa
     
     public CanvasPanelBuilder inlineEditing(Boolean inlineEditing) {
 		if (this.internal.options == null) {
-			this.internal.options = new com.grafana.foundation.canvas.Options();
+			this.internal.options = new com.grafana.foundation.canvas.OptionsBuilder().build();
 		}
         ((Options) this.internal.options).inlineEditing = inlineEditing;
         return this;
@@ -398,7 +398,7 @@ public class CanvasPanelBuilder implements com.grafana.foundation.cog.Builder<Pa
     
     public CanvasPanelBuilder showAdvancedTypes(Boolean showAdvancedTypes) {
 		if (this.internal.options == null) {
-			this.internal.options = new com.grafana.foundation.canvas.Options();
+			this.internal.options = new com.grafana.foundation.canvas.OptionsBuilder().build();
 		}
         ((Options) this.internal.options).showAdvancedTypes = showAdvancedTypes;
         return this;
@@ -406,7 +406,7 @@ public class CanvasPanelBuilder implements com.grafana.foundation.cog.Builder<Pa
     
     public CanvasPanelBuilder panZoom(Boolean panZoom) {
 		if (this.internal.options == null) {
-			this.internal.options = new com.grafana.foundation.canvas.Options();
+			this.internal.options = new com.grafana.foundation.canvas.OptionsBuilder().build();
 		}
         ((Options) this.internal.options).panZoom = panZoom;
         return this;
@@ -414,7 +414,7 @@ public class CanvasPanelBuilder implements com.grafana.foundation.cog.Builder<Pa
     
     public CanvasPanelBuilder infinitePan(Boolean infinitePan) {
 		if (this.internal.options == null) {
-			this.internal.options = new com.grafana.foundation.canvas.Options();
+			this.internal.options = new com.grafana.foundation.canvas.OptionsBuilder().build();
 		}
         ((Options) this.internal.options).infinitePan = infinitePan;
         return this;
@@ -422,7 +422,7 @@ public class CanvasPanelBuilder implements com.grafana.foundation.cog.Builder<Pa
     
     public CanvasPanelBuilder root(com.grafana.foundation.cog.Builder<CanvasOptionsRoot> root) {
 		if (this.internal.options == null) {
-			this.internal.options = new com.grafana.foundation.canvas.Options();
+			this.internal.options = new com.grafana.foundation.canvas.OptionsBuilder().build();
 		}
     CanvasOptionsRoot rootResource = root.build();
         ((Options) this.internal.options).root = rootResource;

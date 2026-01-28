@@ -6,7 +6,7 @@ import com.grafana.foundation.dashboard.Panel;
 import java.util.List;
 import com.grafana.foundation.cog.variants.Dataquery;
 import java.util.LinkedList;
-import com.grafana.foundation.dashboard.DataSourceRef;
+import com.grafana.foundation.common.DataSourceRef;
 import com.grafana.foundation.dashboard.GridPos;
 import com.grafana.foundation.dashboard.DashboardLink;
 import com.grafana.foundation.dashboard.PanelRepeatDirection;
@@ -395,7 +395,7 @@ public class PiechartPanelBuilder implements com.grafana.foundation.cog.Builder<
     
     public PiechartPanelBuilder pieType(PieChartType pieType) {
 		if (this.internal.options == null) {
-			this.internal.options = new com.grafana.foundation.piechart.Options();
+			this.internal.options = new com.grafana.foundation.piechart.OptionsBuilder().build();
 		}
         ((Options) this.internal.options).pieType = pieType;
         return this;
@@ -403,7 +403,7 @@ public class PiechartPanelBuilder implements com.grafana.foundation.cog.Builder<
     
     public PiechartPanelBuilder displayLabels(List<PieChartLabels> displayLabels) {
 		if (this.internal.options == null) {
-			this.internal.options = new com.grafana.foundation.piechart.Options();
+			this.internal.options = new com.grafana.foundation.piechart.OptionsBuilder().build();
 		}
         ((Options) this.internal.options).displayLabels = displayLabels;
         return this;
@@ -411,7 +411,7 @@ public class PiechartPanelBuilder implements com.grafana.foundation.cog.Builder<
     
     public PiechartPanelBuilder tooltip(com.grafana.foundation.cog.Builder<VizTooltipOptions> tooltip) {
 		if (this.internal.options == null) {
-			this.internal.options = new com.grafana.foundation.piechart.Options();
+			this.internal.options = new com.grafana.foundation.piechart.OptionsBuilder().build();
 		}
     VizTooltipOptions tooltipResource = tooltip.build();
         ((Options) this.internal.options).tooltip = tooltipResource;
@@ -420,7 +420,7 @@ public class PiechartPanelBuilder implements com.grafana.foundation.cog.Builder<
     
     public PiechartPanelBuilder reduceOptions(com.grafana.foundation.cog.Builder<ReduceDataOptions> reduceOptions) {
 		if (this.internal.options == null) {
-			this.internal.options = new com.grafana.foundation.piechart.Options();
+			this.internal.options = new com.grafana.foundation.piechart.OptionsBuilder().build();
 		}
     ReduceDataOptions reduceOptionsResource = reduceOptions.build();
         ((Options) this.internal.options).reduceOptions = reduceOptionsResource;
@@ -429,7 +429,7 @@ public class PiechartPanelBuilder implements com.grafana.foundation.cog.Builder<
     
     public PiechartPanelBuilder text(com.grafana.foundation.cog.Builder<VizTextDisplayOptions> text) {
 		if (this.internal.options == null) {
-			this.internal.options = new com.grafana.foundation.piechart.Options();
+			this.internal.options = new com.grafana.foundation.piechart.OptionsBuilder().build();
 		}
     VizTextDisplayOptions textResource = text.build();
         ((Options) this.internal.options).text = textResource;
@@ -438,7 +438,7 @@ public class PiechartPanelBuilder implements com.grafana.foundation.cog.Builder<
     
     public PiechartPanelBuilder legend(com.grafana.foundation.cog.Builder<PieChartLegendOptions> legend) {
 		if (this.internal.options == null) {
-			this.internal.options = new com.grafana.foundation.piechart.Options();
+			this.internal.options = new com.grafana.foundation.piechart.OptionsBuilder().build();
 		}
     PieChartLegendOptions legendResource = legend.build();
         ((Options) this.internal.options).legend = legendResource;
@@ -447,7 +447,7 @@ public class PiechartPanelBuilder implements com.grafana.foundation.cog.Builder<
     
     public PiechartPanelBuilder orientation(VizOrientation orientation) {
 		if (this.internal.options == null) {
-			this.internal.options = new com.grafana.foundation.piechart.Options();
+			this.internal.options = new com.grafana.foundation.piechart.OptionsBuilder().build();
 		}
         ((Options) this.internal.options).orientation = orientation;
         return this;
@@ -461,7 +461,7 @@ public class PiechartPanelBuilder implements com.grafana.foundation.cog.Builder<
 			this.internal.fieldConfig.defaults = new com.grafana.foundation.dashboard.FieldConfig();
 		}
 		if (this.internal.fieldConfig.defaults.custom == null) {
-			this.internal.fieldConfig.defaults.custom = new com.grafana.foundation.piechart.FieldConfig();
+			this.internal.fieldConfig.defaults.custom = new com.grafana.foundation.piechart.FieldConfigBuilder().build();
 		}
     HideSeriesConfig hideFromResource = hideFrom.build();
         ((FieldConfig) this.internal.fieldConfig.defaults.custom).hideFrom = hideFromResource;

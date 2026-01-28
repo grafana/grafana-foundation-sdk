@@ -18,7 +18,9 @@
  * <span class="badge object-type-class"></span> [XychartXYSeriesConfigY](./object-XychartXYSeriesConfigY.md)
 ## Builders
 
+ * <span class="badge builder"></span> [FieldConfigBuilder](./builder-FieldConfigBuilder.md)
  * <span class="badge builder"></span> [MatcherConfigBuilder](./builder-MatcherConfigBuilder.md)
+ * <span class="badge builder"></span> [OptionsBuilder](./builder-OptionsBuilder.md)
  * <span class="badge builder"></span> [PanelBuilder](./builder-PanelBuilder.md)
  * <span class="badge builder"></span> [XYSeriesConfigBuilder](./builder-XYSeriesConfigBuilder.md)
  * <span class="badge builder"></span> [XychartFieldConfigPointSizeBuilder](./builder-XychartFieldConfigPointSizeBuilder.md)

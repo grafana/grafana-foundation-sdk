@@ -3,15 +3,59 @@
 import typing
 from ..cog import builder as cogbuilder
 from ..models import geomap
+from ..models import common
 from ..models import dashboard
 from ..cog import variants as cogvariants
-from ..models import common
+
+
+class Options(cogbuilder.Builder[geomap.Options]):
+    _internal: geomap.Options
+
+    def __init__(self) -> None:
+        self._internal = geomap.Options()
+
+    def build(self) -> geomap.Options:
+        """
+        Builds the object.
+        """
+        return self._internal    
+    
+    def view(self, view: cogbuilder.Builder[geomap.MapViewConfig]) -> typing.Self:    
+        view_resource = view.build()
+        self._internal.view = view_resource
+    
+        return self
+    
+    def controls(self, controls: cogbuilder.Builder[geomap.ControlsOptions]) -> typing.Self:    
+        controls_resource = controls.build()
+        self._internal.controls = controls_resource
+    
+        return self
+    
+    def basemap(self, basemap: cogbuilder.Builder[common.MapLayerOptions]) -> typing.Self:    
+        basemap_resource = basemap.build()
+        self._internal.basemap = basemap_resource
+    
+        return self
+    
+    def layers(self, layers: list[cogbuilder.Builder[common.MapLayerOptions]]) -> typing.Self:    
+        layers_resources = [r1.build() for r1 in layers]
+        self._internal.layers = layers_resources
+    
+        return self
+    
+    def tooltip(self, tooltip: cogbuilder.Builder[geomap.TooltipOptions]) -> typing.Self:    
+        tooltip_resource = tooltip.build()
+        self._internal.tooltip = tooltip_resource
+    
+        return self
+    
 
 
 class MapViewConfig(cogbuilder.Builder[geomap.MapViewConfig]):
     _internal: geomap.MapViewConfig
 
-    def __init__(self):
+    def __init__(self) -> None:
         self._internal = geomap.MapViewConfig()
 
     def build(self) -> geomap.MapViewConfig:
@@ -80,7 +124,7 @@ class MapViewConfig(cogbuilder.Builder[geomap.MapViewConfig]):
 class ControlsOptions(cogbuilder.Builder[geomap.ControlsOptions]):
     _internal: geomap.ControlsOptions
 
-    def __init__(self):
+    def __init__(self) -> None:
         self._internal = geomap.ControlsOptions()
 
     def build(self) -> geomap.ControlsOptions:
@@ -148,7 +192,7 @@ class ControlsOptions(cogbuilder.Builder[geomap.ControlsOptions]):
 class TooltipOptions(cogbuilder.Builder[geomap.TooltipOptions]):
     _internal: geomap.TooltipOptions
 
-    def __init__(self):
+    def __init__(self) -> None:
         self._internal = geomap.TooltipOptions()
 
     def build(self) -> geomap.TooltipOptions:
@@ -171,7 +215,7 @@ class Panel(cogbuilder.Builder[dashboard.Panel]):
     
     _internal: dashboard.Panel
 
-    def __init__(self):
+    def __init__(self) -> None:
         self._internal = dashboard.Panel()        
         self._internal.type_val = "geomap"
 
@@ -240,7 +284,7 @@ class Panel(cogbuilder.Builder[dashboard.Panel]):
     
         return self
     
-    def datasource(self, datasource: dashboard.DataSourceRef) -> typing.Self:    
+    def datasource(self, datasource: common.DataSourceRef) -> typing.Self:    
         """
         The datasource used in all targets.
         """

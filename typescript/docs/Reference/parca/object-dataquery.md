@@ -14,7 +14,7 @@ export interface dataquery {
 	// A unique identifier for the query within the list of targets.
 	// In server side expressions, the refId is used as a variable name to identify results.
 	// By default, the UI will assign A->Z; however setting meaningful names may be useful.
-	refId: string;
+	refId?: string;
 	// If hide is set to true, Grafana will filter out the response(s) associated with this query before returning it to the panel.
 	hide?: boolean;
 	// Specify the query flavor
@@ -24,7 +24,7 @@ export interface dataquery {
 	// For non mixed scenarios this is undefined.
 	// TODO find a better way to do this ^ that's friendly to schema
 	// TODO this shouldn't be unknown but DataSourceRef | null
-	datasource?: dashboard.DataSourceRef;
+	datasource?: common.DataSourceRef;
 	_implementsDataqueryVariant(): void;
 }
 

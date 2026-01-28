@@ -2,10 +2,170 @@
 
 import typing
 from ..cog import builder as cogbuilder
-from ..models import dashboard
-from ..cog import variants as cogvariants
 from ..models import statushistory
 from ..models import common
+from ..models import dashboard
+from ..cog import variants as cogvariants
+
+
+class Options(cogbuilder.Builder[statushistory.Options]):
+    _internal: statushistory.Options
+
+    def __init__(self) -> None:
+        self._internal = statushistory.Options()
+
+    def build(self) -> statushistory.Options:
+        """
+        Builds the object.
+        """
+        return self._internal    
+    
+    def row_height(self, row_height: float) -> typing.Self:    
+        """
+        Set the height of the rows
+        """
+            
+        if not row_height >= 0:
+            raise ValueError("row_height must be >= 0")
+        if not row_height <= 1:
+            raise ValueError("row_height must be <= 1")
+        self._internal.row_height = row_height
+    
+        return self
+    
+    def show_value(self, show_value: common.VisibilityMode) -> typing.Self:    
+        """
+        Show values on the columns
+        """
+            
+        self._internal.show_value = show_value
+    
+        return self
+    
+    def col_width(self, col_width: float) -> typing.Self:    
+        """
+        Controls the column width
+        """
+            
+        if not col_width <= 1:
+            raise ValueError("col_width must be <= 1")
+        self._internal.col_width = col_width
+    
+        return self
+    
+    def legend(self, legend: cogbuilder.Builder[common.VizLegendOptions]) -> typing.Self:    
+        legend_resource = legend.build()
+        self._internal.legend = legend_resource
+    
+        return self
+    
+    def tooltip(self, tooltip: cogbuilder.Builder[common.VizTooltipOptions]) -> typing.Self:    
+        tooltip_resource = tooltip.build()
+        self._internal.tooltip = tooltip_resource
+    
+        return self
+    
+    def timezone(self, timezone: list[common.TimeZone]) -> typing.Self:    
+        self._internal.timezone = timezone
+    
+        return self
+    
+    def per_page(self, per_page: float) -> typing.Self:    
+        """
+        Enables pagination when > 0
+        """
+            
+        if not per_page >= 1:
+            raise ValueError("per_page must be >= 1")
+        self._internal.per_page = per_page
+    
+        return self
+    
+
+
+class FieldConfig(cogbuilder.Builder[statushistory.FieldConfig]):
+    _internal: statushistory.FieldConfig
+
+    def __init__(self) -> None:
+        self._internal = statushistory.FieldConfig()
+
+    def build(self) -> statushistory.FieldConfig:
+        """
+        Builds the object.
+        """
+        return self._internal    
+    
+    def line_width(self, line_width: int) -> typing.Self:    
+        if not line_width <= 10:
+            raise ValueError("line_width must be <= 10")
+        self._internal.line_width = line_width
+    
+        return self
+    
+    def axis_placement(self, axis_placement: common.AxisPlacement) -> typing.Self:    
+        self._internal.axis_placement = axis_placement
+    
+        return self
+    
+    def axis_color_mode(self, axis_color_mode: common.AxisColorMode) -> typing.Self:    
+        self._internal.axis_color_mode = axis_color_mode
+    
+        return self
+    
+    def axis_label(self, axis_label: str) -> typing.Self:    
+        self._internal.axis_label = axis_label
+    
+        return self
+    
+    def axis_width(self, axis_width: float) -> typing.Self:    
+        self._internal.axis_width = axis_width
+    
+        return self
+    
+    def axis_soft_min(self, axis_soft_min: float) -> typing.Self:    
+        self._internal.axis_soft_min = axis_soft_min
+    
+        return self
+    
+    def axis_soft_max(self, axis_soft_max: float) -> typing.Self:    
+        self._internal.axis_soft_max = axis_soft_max
+    
+        return self
+    
+    def axis_grid_show(self, axis_grid_show: bool) -> typing.Self:    
+        self._internal.axis_grid_show = axis_grid_show
+    
+        return self
+    
+    def scale_distribution(self, scale_distribution: cogbuilder.Builder[common.ScaleDistributionConfig]) -> typing.Self:    
+        scale_distribution_resource = scale_distribution.build()
+        self._internal.scale_distribution = scale_distribution_resource
+    
+        return self
+    
+    def axis_centered_zero(self, axis_centered_zero: bool) -> typing.Self:    
+        self._internal.axis_centered_zero = axis_centered_zero
+    
+        return self
+    
+    def hide_from(self, hide_from: cogbuilder.Builder[common.HideSeriesConfig]) -> typing.Self:    
+        hide_from_resource = hide_from.build()
+        self._internal.hide_from = hide_from_resource
+    
+        return self
+    
+    def fill_opacity(self, fill_opacity: int) -> typing.Self:    
+        if not fill_opacity <= 100:
+            raise ValueError("fill_opacity must be <= 100")
+        self._internal.fill_opacity = fill_opacity
+    
+        return self
+    
+    def axis_border_show(self, axis_border_show: bool) -> typing.Self:    
+        self._internal.axis_border_show = axis_border_show
+    
+        return self
+    
 
 
 class Panel(cogbuilder.Builder[dashboard.Panel]):    
@@ -15,7 +175,7 @@ class Panel(cogbuilder.Builder[dashboard.Panel]):
     
     _internal: dashboard.Panel
 
-    def __init__(self):
+    def __init__(self) -> None:
         self._internal = dashboard.Panel()        
         self._internal.type_val = "status-history"
 
@@ -84,7 +244,7 @@ class Panel(cogbuilder.Builder[dashboard.Panel]):
     
         return self
     
-    def datasource(self, datasource: dashboard.DataSourceRef) -> typing.Self:    
+    def datasource(self, datasource: common.DataSourceRef) -> typing.Self:    
         """
         The datasource used in all targets.
         """

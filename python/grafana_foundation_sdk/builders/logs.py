@@ -2,10 +2,133 @@
 
 import typing
 from ..cog import builder as cogbuilder
-from ..models import dashboard
-from ..cog import variants as cogvariants
 from ..models import logs
 from ..models import common
+from ..models import dashboard
+from ..cog import variants as cogvariants
+
+
+class Options(cogbuilder.Builder[logs.Options]):
+    _internal: logs.Options
+
+    def __init__(self) -> None:
+        self._internal = logs.Options()
+
+    def build(self) -> logs.Options:
+        """
+        Builds the object.
+        """
+        return self._internal    
+    
+    def show_labels(self, show_labels: bool) -> typing.Self:    
+        self._internal.show_labels = show_labels
+    
+        return self
+    
+    def show_common_labels(self, show_common_labels: bool) -> typing.Self:    
+        self._internal.show_common_labels = show_common_labels
+    
+        return self
+    
+    def show_time(self, show_time: bool) -> typing.Self:    
+        self._internal.show_time = show_time
+    
+        return self
+    
+    def show_log_context_toggle(self, show_log_context_toggle: bool) -> typing.Self:    
+        self._internal.show_log_context_toggle = show_log_context_toggle
+    
+        return self
+    
+    def wrap_log_message(self, wrap_log_message: bool) -> typing.Self:    
+        self._internal.wrap_log_message = wrap_log_message
+    
+        return self
+    
+    def prettify_log_message(self, prettify_log_message: bool) -> typing.Self:    
+        self._internal.prettify_log_message = prettify_log_message
+    
+        return self
+    
+    def enable_log_details(self, enable_log_details: bool) -> typing.Self:    
+        self._internal.enable_log_details = enable_log_details
+    
+        return self
+    
+    def sort_order(self, sort_order: common.LogsSortOrder) -> typing.Self:    
+        self._internal.sort_order = sort_order
+    
+        return self
+    
+    def dedup_strategy(self, dedup_strategy: common.LogsDedupStrategy) -> typing.Self:    
+        self._internal.dedup_strategy = dedup_strategy
+    
+        return self
+    
+    def enable_infinite_scrolling(self, enable_infinite_scrolling: bool) -> typing.Self:    
+        self._internal.enable_infinite_scrolling = enable_infinite_scrolling
+    
+        return self
+    
+    def on_click_filter_label(self, on_click_filter_label: object) -> typing.Self:    
+        """
+        TODO: figure out how to define callbacks
+        """
+            
+        self._internal.on_click_filter_label = on_click_filter_label
+    
+        return self
+    
+    def on_click_filter_out_label(self, on_click_filter_out_label: object) -> typing.Self:    
+        self._internal.on_click_filter_out_label = on_click_filter_out_label
+    
+        return self
+    
+    def is_filter_label_active(self, is_filter_label_active: object) -> typing.Self:    
+        self._internal.is_filter_label_active = is_filter_label_active
+    
+        return self
+    
+    def on_click_filter_string(self, on_click_filter_string: object) -> typing.Self:    
+        self._internal.on_click_filter_string = on_click_filter_string
+    
+        return self
+    
+    def on_click_filter_out_string(self, on_click_filter_out_string: object) -> typing.Self:    
+        self._internal.on_click_filter_out_string = on_click_filter_out_string
+    
+        return self
+    
+    def on_click_show_field(self, on_click_show_field: object) -> typing.Self:    
+        self._internal.on_click_show_field = on_click_show_field
+    
+        return self
+    
+    def on_click_hide_field(self, on_click_hide_field: object) -> typing.Self:    
+        self._internal.on_click_hide_field = on_click_hide_field
+    
+        return self
+    
+    def log_row_menu_icons_before(self, log_row_menu_icons_before: object) -> typing.Self:    
+        self._internal.log_row_menu_icons_before = log_row_menu_icons_before
+    
+        return self
+    
+    def log_row_menu_icons_after(self, log_row_menu_icons_after: object) -> typing.Self:    
+        self._internal.log_row_menu_icons_after = log_row_menu_icons_after
+    
+        return self
+    
+    def on_new_logs_received(self, on_new_logs_received: object) -> typing.Self:    
+        self._internal.on_new_logs_received = on_new_logs_received
+    
+        return self
+    
+    def displayed_fields(self, displayed_fields: list[str]) -> typing.Self:    
+        self._internal.displayed_fields = displayed_fields
+    
+        return self
+    
 
 
 class Panel(cogbuilder.Builder[dashboard.Panel]):    
@@ -15,7 +138,7 @@ class Panel(cogbuilder.Builder[dashboard.Panel]):
     
     _internal: dashboard.Panel
 
-    def __init__(self):
+    def __init__(self) -> None:
         self._internal = dashboard.Panel()        
         self._internal.type_val = "logs"
 
@@ -84,7 +207,7 @@ class Panel(cogbuilder.Builder[dashboard.Panel]):
     
         return self
     
-    def datasource(self, datasource: dashboard.DataSourceRef) -> typing.Self:    
+    def datasource(self, datasource: common.DataSourceRef) -> typing.Self:    
         """
         The datasource used in all targets.
         """

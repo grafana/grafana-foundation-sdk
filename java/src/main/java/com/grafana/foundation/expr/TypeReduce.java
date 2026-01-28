@@ -7,7 +7,7 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.ObjectWriter;
 import com.fasterxml.jackson.annotation.JsonInclude;
-import com.grafana.foundation.dashboard.DataSourceRef;
+import com.grafana.foundation.common.DataSourceRef;
 
 public class TypeReduce implements com.grafana.foundation.cog.variants.Dataquery {
     // The datasource
@@ -53,6 +53,7 @@ public class TypeReduce implements com.grafana.foundation.cog.variants.Dataquery
     @JsonProperty("reducer")
     public TypeReduceReducer reducer;
     // RefID is the unique identifier of the query, set by the frontend call.
+    @JsonInclude(JsonInclude.Include.NON_NULL)
     @JsonProperty("refId")
     public String refId;
     // Optionally define expected query result behavior
@@ -74,7 +75,6 @@ public class TypeReduce implements com.grafana.foundation.cog.variants.Dataquery
     public TypeReduce() {
         this.expression = "";
         this.reducer = TypeReduceReducer.SUM;
-        this.refId = "";
         this.type = "";
     }
     public TypeReduce(DataSourceRef datasource,String expression,Boolean hide,Double intervalMs,Long maxDataPoints,String queryType,TypeReduceReducer reducer,String refId,ExprTypeReduceResultAssertions resultAssertions,ExprTypeReduceSettings settings,ExprTypeReduceTimeRange timeRange,String type) {

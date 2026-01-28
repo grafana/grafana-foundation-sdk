@@ -55,7 +55,7 @@ def csv_wave(csv_wave: list[cogbuilder.Builder[testdata.CSVWave]]) -> typing.Sel
 The datasource
 
 ```python
-def datasource(datasource: dashboard.DataSourceRef) -> typing.Self
+def datasource(datasource: common.DataSourceRef) -> typing.Self
 ```
 
 ### <span class="badge object-method"></span> drop_percent

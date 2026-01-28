@@ -34,7 +34,7 @@ class MatcherConfig:
     # The matcher options. This is specific to the matcher implementation.
     options: typing.Optional[object]
 
-    def __init__(self, id_val: str = "", options: typing.Optional[object] = None):
+    def __init__(self, id_val: str = "", options: typing.Optional[object] = None) -> None:
         self.id_val = id_val
         self.options = options
 
@@ -78,7 +78,7 @@ class FieldConfig:
     line_style: typing.Optional[common.LineStyle]
     axis_border_show: typing.Optional[bool]
 
-    def __init__(self, show: typing.Optional['XYShowMode'] = None, point_size: typing.Optional['XychartFieldConfigPointSize'] = None, point_shape: typing.Optional['PointShape'] = None, point_stroke_width: typing.Optional[int] = None, fill_opacity: typing.Optional[int] = 50, line_width: typing.Optional[int] = None, hide_from: typing.Optional[common.HideSeriesConfig] = None, axis_placement: typing.Optional[common.AxisPlacement] = None, axis_color_mode: typing.Optional[common.AxisColorMode] = None, axis_label: typing.Optional[str] = None, axis_width: typing.Optional[float] = None, axis_soft_min: typing.Optional[float] = None, axis_soft_max: typing.Optional[float] = None, axis_grid_show: typing.Optional[bool] = None, scale_distribution: typing.Optional[common.ScaleDistributionConfig] = None, axis_centered_zero: typing.Optional[bool] = None, line_style: typing.Optional[common.LineStyle] = None, axis_border_show: typing.Optional[bool] = None):
+    def __init__(self, show: typing.Optional['XYShowMode'] = None, point_size: typing.Optional['XychartFieldConfigPointSize'] = None, point_shape: typing.Optional['PointShape'] = None, point_stroke_width: typing.Optional[int] = None, fill_opacity: typing.Optional[int] = 50, line_width: typing.Optional[int] = None, hide_from: typing.Optional[common.HideSeriesConfig] = None, axis_placement: typing.Optional[common.AxisPlacement] = None, axis_color_mode: typing.Optional[common.AxisColorMode] = None, axis_label: typing.Optional[str] = None, axis_width: typing.Optional[float] = None, axis_soft_min: typing.Optional[float] = None, axis_soft_max: typing.Optional[float] = None, axis_grid_show: typing.Optional[bool] = None, scale_distribution: typing.Optional[common.ScaleDistributionConfig] = None, axis_centered_zero: typing.Optional[bool] = None, line_style: typing.Optional[common.LineStyle] = None, axis_border_show: typing.Optional[bool] = None) -> None:
         self.show = show if show is not None else XYShowMode.POINTS
         self.point_size = point_size
         self.point_shape = point_shape
@@ -191,7 +191,7 @@ class XYSeriesConfig:
     color: typing.Optional['XychartXYSeriesConfigColor']
     size: typing.Optional['XychartXYSeriesConfigSize']
 
-    def __init__(self, name: typing.Optional['XychartXYSeriesConfigName'] = None, frame: typing.Optional['XychartXYSeriesConfigFrame'] = None, x: typing.Optional['XychartXYSeriesConfigX'] = None, y: typing.Optional['XychartXYSeriesConfigY'] = None, color: typing.Optional['XychartXYSeriesConfigColor'] = None, size: typing.Optional['XychartXYSeriesConfigSize'] = None):
+    def __init__(self, name: typing.Optional['XychartXYSeriesConfigName'] = None, frame: typing.Optional['XychartXYSeriesConfigFrame'] = None, x: typing.Optional['XychartXYSeriesConfigX'] = None, y: typing.Optional['XychartXYSeriesConfigY'] = None, color: typing.Optional['XychartXYSeriesConfigColor'] = None, size: typing.Optional['XychartXYSeriesConfigSize'] = None) -> None:
         self.name = name
         self.frame = frame
         self.x = x
@@ -242,7 +242,7 @@ class Options:
     tooltip: common.VizTooltipOptions
     series: list['XYSeriesConfig']
 
-    def __init__(self, mapping: typing.Optional['SeriesMapping'] = None, legend: typing.Optional[common.VizLegendOptions] = None, tooltip: typing.Optional[common.VizTooltipOptions] = None, series: typing.Optional[list['XYSeriesConfig']] = None):
+    def __init__(self, mapping: typing.Optional['SeriesMapping'] = None, legend: typing.Optional[common.VizLegendOptions] = None, tooltip: typing.Optional[common.VizTooltipOptions] = None, series: typing.Optional[list['XYSeriesConfig']] = None) -> None:
         self.mapping = mapping if mapping is not None else SeriesMapping.AUTO
         self.legend = legend if legend is not None else common.VizLegendOptions()
         self.tooltip = tooltip if tooltip is not None else common.VizTooltipOptions()
@@ -278,7 +278,7 @@ class XychartFieldConfigPointSize:
     min_val: typing.Optional[int]
     max_val: typing.Optional[int]
 
-    def __init__(self, fixed: typing.Optional[int] = None, min_val: typing.Optional[int] = None, max_val: typing.Optional[int] = None):
+    def __init__(self, fixed: typing.Optional[int] = None, min_val: typing.Optional[int] = None, max_val: typing.Optional[int] = None) -> None:
         self.fixed = fixed
         self.min_val = min_val
         self.max_val = max_val
@@ -311,7 +311,7 @@ class XychartFieldConfigPointSize:
 class XychartXYSeriesConfigName:
     fixed: typing.Optional[str]
 
-    def __init__(self, fixed: typing.Optional[str] = None):
+    def __init__(self, fixed: typing.Optional[str] = None) -> None:
         self.fixed = fixed
 
     def to_json(self) -> dict[str, object]:
@@ -334,7 +334,7 @@ class XychartXYSeriesConfigName:
 class XychartXYSeriesConfigFrame:
     matcher: 'MatcherConfig'
 
-    def __init__(self, matcher: typing.Optional['MatcherConfig'] = None):
+    def __init__(self, matcher: typing.Optional['MatcherConfig'] = None) -> None:
         self.matcher = matcher if matcher is not None else MatcherConfig()
 
     def to_json(self) -> dict[str, object]:
@@ -356,7 +356,7 @@ class XychartXYSeriesConfigFrame:
 class XychartXYSeriesConfigX:
     matcher: 'MatcherConfig'
 
-    def __init__(self, matcher: typing.Optional['MatcherConfig'] = None):
+    def __init__(self, matcher: typing.Optional['MatcherConfig'] = None) -> None:
         self.matcher = matcher if matcher is not None else MatcherConfig()
 
     def to_json(self) -> dict[str, object]:
@@ -378,7 +378,7 @@ class XychartXYSeriesConfigX:
 class XychartXYSeriesConfigY:
     matcher: 'MatcherConfig'
 
-    def __init__(self, matcher: typing.Optional['MatcherConfig'] = None):
+    def __init__(self, matcher: typing.Optional['MatcherConfig'] = None) -> None:
         self.matcher = matcher if matcher is not None else MatcherConfig()
 
     def to_json(self) -> dict[str, object]:
@@ -400,7 +400,7 @@ class XychartXYSeriesConfigY:
 class XychartXYSeriesConfigColor:
     matcher: 'MatcherConfig'
 
-    def __init__(self, matcher: typing.Optional['MatcherConfig'] = None):
+    def __init__(self, matcher: typing.Optional['MatcherConfig'] = None) -> None:
         self.matcher = matcher if matcher is not None else MatcherConfig()
 
     def to_json(self) -> dict[str, object]:
@@ -422,7 +422,7 @@ class XychartXYSeriesConfigColor:
 class XychartXYSeriesConfigSize:
     matcher: 'MatcherConfig'
 
-    def __init__(self, matcher: typing.Optional['MatcherConfig'] = None):
+    def __init__(self, matcher: typing.Optional['MatcherConfig'] = None) -> None:
         self.matcher = matcher if matcher is not None else MatcherConfig()
 
     def to_json(self) -> dict[str, object]:

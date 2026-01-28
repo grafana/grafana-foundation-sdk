@@ -2,8 +2,8 @@
 
 import * as cog from '../cog';
 import * as dashboard from '../dashboard';
-import * as logsnew from '../logsnew';
 import * as common from '../common';
+import * as logsnew from '../logsnew';
 
 // Dashboard panels are the basic visualization building blocks.
 export class PanelBuilder implements cog.Builder<dashboard.Panel> {
@@ -63,7 +63,7 @@ export class PanelBuilder implements cog.Builder<dashboard.Panel> {
     }
 
     // The datasource used in all targets.
-    datasource(datasource: dashboard.DataSourceRef): this {
+    datasource(datasource: common.DataSourceRef): this {
         this.internal.datasource = datasource;
         return this;
     }

@@ -12,10 +12,8 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import java.io.IOException;
 import com.grafana.foundation.cog.variants.Dataquery;
 import com.grafana.foundation.cog.variants.Registry;
-import com.grafana.foundation.cog.variants.PanelConfig;
-import java.util.Map;
+import com.grafana.foundation.common.DataSourceRef;
 import java.util.List;
-import com.grafana.foundation.dashboard.DataSourceRef;
 
 public class StringOrArrayOfStringDeserializer extends JsonDeserializer<StringOrArrayOfString> {
 

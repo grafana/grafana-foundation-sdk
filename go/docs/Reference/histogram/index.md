@@ -6,6 +6,8 @@
  * <span class="badge object-type-struct"></span> [Options](./object-Options.md)
 ## Builders
 
+ * <span class="badge builder"></span> [FieldConfigBuilder](./builder-FieldConfigBuilder.md)
+ * <span class="badge builder"></span> [OptionsBuilder](./builder-OptionsBuilder.md)
  * <span class="badge builder"></span> [PanelBuilder](./builder-PanelBuilder.md)
 ## Functions
 
@@ -33,6 +35,22 @@ This configuration describes how to unmarshal it, convert it to code, …
 
 ```go
 func VariantConfig() variants.PanelcfgConfig
+```
+
+### <span class="badge function"></span> OptionsConverter
+
+OptionsConverter accepts a `Options` object and generates the Go code to build this object using builders.
+
+```go
+func OptionsConverter(input Options) string
+```
+
+### <span class="badge function"></span> FieldConfigConverter
+
+FieldConfigConverter accepts a `FieldConfig` object and generates the Go code to build this object using builders.
+
+```go
+func FieldConfigConverter(input FieldConfig) string
 ```
 
 ### <span class="badge function"></span> PanelConverter

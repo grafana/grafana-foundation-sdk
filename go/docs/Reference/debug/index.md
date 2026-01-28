@@ -7,6 +7,7 @@
  * <span class="badge object-type-struct"></span> [UpdateConfig](./object-UpdateConfig.md)
 ## Builders
 
+ * <span class="badge builder"></span> [OptionsBuilder](./builder-OptionsBuilder.md)
  * <span class="badge builder"></span> [PanelBuilder](./builder-PanelBuilder.md)
  * <span class="badge builder"></span> [UpdateConfigBuilder](./builder-UpdateConfigBuilder.md)
 ## Functions
@@ -43,6 +44,14 @@ UpdateConfigConverter accepts a `UpdateConfig` object and generates the Go code 
 
 ```go
 func UpdateConfigConverter(input UpdateConfig) string
+```
+
+### <span class="badge function"></span> OptionsConverter
+
+OptionsConverter accepts a `Options` object and generates the Go code to build this object using builders.
+
+```go
+func OptionsConverter(input Options) string
 ```
 
 ### <span class="badge function"></span> PanelConverter

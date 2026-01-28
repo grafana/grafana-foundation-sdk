@@ -22,7 +22,7 @@ export interface TypeThreshold {
 		};
 	}[];
 	// The datasource
-	datasource?: dashboard.DataSourceRef;
+	datasource?: common.DataSourceRef;
 	// Reference to single query result
 	expression: string;
 	// true if query is disabled (ie should not be returned to the dashboard)
@@ -41,7 +41,7 @@ export interface TypeThreshold {
 	// It can be used to distinguish different types of queries.
 	queryType?: string;
 	// RefID is the unique identifier of the query, set by the frontend call.
-	refId: string;
+	refId?: string;
 	// Optionally define expected query result behavior
 	resultAssertions?: {
 		// Maximum frame count

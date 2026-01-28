@@ -10,6 +10,8 @@ export * from './timeOptionBuilder.gen';
 export type * from './timeOptionBuilder.gen';
 export * from './panelBuilder.gen';
 export type * from './panelBuilder.gen';
+export * from './dataSourceRefBuilder.gen';
+export type * from './dataSourceRefBuilder.gen';
 export * from './dashboardLinkBuilder.gen';
 export type * from './dashboardLinkBuilder.gen';
 export * from './thresholdsConfigBuilder.gen';
