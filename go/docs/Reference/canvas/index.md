@@ -25,6 +25,7 @@
  * <span class="badge builder"></span> [ConnectionCoordinatesBuilder](./builder-ConnectionCoordinatesBuilder.md)
  * <span class="badge builder"></span> [ConstraintBuilder](./builder-ConstraintBuilder.md)
  * <span class="badge builder"></span> [LineConfigBuilder](./builder-LineConfigBuilder.md)
+ * <span class="badge builder"></span> [OptionsBuilder](./builder-OptionsBuilder.md)
  * <span class="badge builder"></span> [PanelBuilder](./builder-PanelBuilder.md)
  * <span class="badge builder"></span> [PlacementBuilder](./builder-PlacementBuilder.md)
 ## Functions
@@ -165,6 +166,14 @@ CanvasElementOptionsConverter accepts a `CanvasElementOptions` object and genera
 
 ```go
 func CanvasElementOptionsConverter(input CanvasElementOptions) string
+```
+
+### <span class="badge function"></span> OptionsConverter
+
+OptionsConverter accepts a `Options` object and generates the Go code to build this object using builders.
+
+```go
+func OptionsConverter(input Options) string
 ```
 
 ### <span class="badge function"></span> CanvasOptionsRootConverter

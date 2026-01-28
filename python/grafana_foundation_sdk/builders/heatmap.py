@@ -15,7 +15,7 @@ class HeatmapColorOptions(cogbuilder.Builder[heatmap.HeatmapColorOptions]):
     
     _internal: heatmap.HeatmapColorOptions
 
-    def __init__(self):
+    def __init__(self) -> None:
         self._internal = heatmap.HeatmapColorOptions()
 
     def build(self) -> heatmap.HeatmapColorOptions:
@@ -118,7 +118,7 @@ class YAxisConfig(cogbuilder.Builder[heatmap.YAxisConfig]):
     
     _internal: heatmap.YAxisConfig
 
-    def __init__(self):
+    def __init__(self) -> None:
         self._internal = heatmap.YAxisConfig()
 
     def build(self) -> heatmap.YAxisConfig:
@@ -232,7 +232,7 @@ class CellValues(cogbuilder.Builder[heatmap.CellValues]):
     
     _internal: heatmap.CellValues
 
-    def __init__(self):
+    def __init__(self) -> None:
         self._internal = heatmap.CellValues()
 
     def build(self) -> heatmap.CellValues:
@@ -268,7 +268,7 @@ class FilterValueRange(cogbuilder.Builder[heatmap.FilterValueRange]):
     
     _internal: heatmap.FilterValueRange
 
-    def __init__(self):
+    def __init__(self) -> None:
         self._internal = heatmap.FilterValueRange()
 
     def build(self) -> heatmap.FilterValueRange:
@@ -304,7 +304,7 @@ class HeatmapTooltip(cogbuilder.Builder[heatmap.HeatmapTooltip]):
     
     _internal: heatmap.HeatmapTooltip
 
-    def __init__(self):
+    def __init__(self) -> None:
         self._internal = heatmap.HeatmapTooltip()
 
     def build(self) -> heatmap.HeatmapTooltip:
@@ -359,7 +359,7 @@ class HeatmapLegend(cogbuilder.Builder[heatmap.HeatmapLegend]):
     
     _internal: heatmap.HeatmapLegend
 
-    def __init__(self):
+    def __init__(self) -> None:
         self._internal = heatmap.HeatmapLegend()
 
     def build(self) -> heatmap.HeatmapLegend:
@@ -386,7 +386,7 @@ class ExemplarConfig(cogbuilder.Builder[heatmap.ExemplarConfig]):
     
     _internal: heatmap.ExemplarConfig
 
-    def __init__(self):
+    def __init__(self) -> None:
         self._internal = heatmap.ExemplarConfig()
 
     def build(self) -> heatmap.ExemplarConfig:
@@ -413,7 +413,7 @@ class RowsHeatmapOptions(cogbuilder.Builder[heatmap.RowsHeatmapOptions]):
     
     _internal: heatmap.RowsHeatmapOptions
 
-    def __init__(self):
+    def __init__(self) -> None:
         self._internal = heatmap.RowsHeatmapOptions()
 
     def build(self) -> heatmap.RowsHeatmapOptions:
@@ -442,6 +442,180 @@ class RowsHeatmapOptions(cogbuilder.Builder[heatmap.RowsHeatmapOptions]):
     
 
 
+class Options(cogbuilder.Builder[heatmap.Options]):
+    _internal: heatmap.Options
+
+    def __init__(self) -> None:
+        self._internal = heatmap.Options()
+
+    def build(self) -> heatmap.Options:
+        """
+        Builds the object.
+        """
+        return self._internal    
+    
+    def calculate(self, calculate: bool) -> typing.Self:    
+        """
+        Controls if the heatmap should be calculated from data
+        """
+            
+        self._internal.calculate = calculate
+    
+        return self
+    
+    def calculation(self, calculation: cogbuilder.Builder[common.HeatmapCalculationOptions]) -> typing.Self:    
+        """
+        Calculation options for the heatmap
+        """
+            
+        calculation_resource = calculation.build()
+        self._internal.calculation = calculation_resource
+    
+        return self
+    
+    def color(self, color: cogbuilder.Builder[heatmap.HeatmapColorOptions]) -> typing.Self:    
+        """
+        Controls the color options
+        """
+            
+        color_resource = color.build()
+        self._internal.color = color_resource
+    
+        return self
+    
+    def filter_values(self, filter_values: cogbuilder.Builder[heatmap.FilterValueRange]) -> typing.Self:    
+        """
+        Filters values between a given range
+        """
+            
+        filter_values_resource = filter_values.build()
+        self._internal.filter_values = filter_values_resource
+    
+        return self
+    
+    def rows_frame(self, rows_frame: cogbuilder.Builder[heatmap.RowsHeatmapOptions]) -> typing.Self:    
+        """
+        Controls tick alignment and value name when not calculating from data
+        """
+            
+        rows_frame_resource = rows_frame.build()
+        self._internal.rows_frame = rows_frame_resource
+    
+        return self
+    
+    def show_value(self, show_value: common.VisibilityMode) -> typing.Self:    
+        """
+        | *{
+        	layout: ui.HeatmapCellLayout & "auto" // TODO: fix after remove when https://github.com/grafana/cuetsy/issues/74 is fixed
+        }
+        Controls the display of the value in the cell
+        """
+            
+        self._internal.show_value = show_value
+    
+        return self
+    
+    def cell_gap(self, cell_gap: int) -> typing.Self:    
+        """
+        Controls gap between cells
+        """
+            
+        if not cell_gap <= 25:
+            raise ValueError("cell_gap must be <= 25")
+        self._internal.cell_gap = cell_gap
+    
+        return self
+    
+    def cell_radius(self, cell_radius: float) -> typing.Self:    
+        """
+        Controls cell radius
+        """
+            
+        self._internal.cell_radius = cell_radius
+    
+        return self
+    
+    def cell_values(self, cell_values: cogbuilder.Builder[heatmap.CellValues]) -> typing.Self:    
+        """
+        Controls cell value unit
+        """
+            
+        cell_values_resource = cell_values.build()
+        self._internal.cell_values = cell_values_resource
+    
+        return self
+    
+    def y_axis(self, y_axis: cogbuilder.Builder[heatmap.YAxisConfig]) -> typing.Self:    
+        """
+        Controls yAxis placement
+        """
+            
+        y_axis_resource = y_axis.build()
+        self._internal.y_axis = y_axis_resource
+    
+        return self
+    
+    def legend(self, legend: cogbuilder.Builder[heatmap.HeatmapLegend]) -> typing.Self:    
+        """
+        | *{
+        	axisPlacement: ui.AxisPlacement & "left" // TODO: fix after remove when https://github.com/grafana/cuetsy/issues/74 is fixed
+        }
+        Controls legend options
+        """
+            
+        legend_resource = legend.build()
+        self._internal.legend = legend_resource
+    
+        return self
+    
+    def tooltip(self, tooltip: cogbuilder.Builder[heatmap.HeatmapTooltip]) -> typing.Self:    
+        """
+        Controls tooltip options
+        """
+            
+        tooltip_resource = tooltip.build()
+        self._internal.tooltip = tooltip_resource
+    
+        return self
+    
+    def exemplars(self, exemplars: cogbuilder.Builder[heatmap.ExemplarConfig]) -> typing.Self:    
+        """
+        Controls exemplar options
+        """
+            
+        exemplars_resource = exemplars.build()
+        self._internal.exemplars = exemplars_resource
+    
+        return self
+    
+
+
+class FieldConfig(cogbuilder.Builder[heatmap.FieldConfig]):
+    _internal: heatmap.FieldConfig
+
+    def __init__(self) -> None:
+        self._internal = heatmap.FieldConfig()
+
+    def build(self) -> heatmap.FieldConfig:
+        """
+        Builds the object.
+        """
+        return self._internal    
+    
+    def scale_distribution(self, scale_distribution: cogbuilder.Builder[common.ScaleDistributionConfig]) -> typing.Self:    
+        scale_distribution_resource = scale_distribution.build()
+        self._internal.scale_distribution = scale_distribution_resource
+    
+        return self
+    
+    def hide_from(self, hide_from: cogbuilder.Builder[common.HideSeriesConfig]) -> typing.Self:    
+        hide_from_resource = hide_from.build()
+        self._internal.hide_from = hide_from_resource
+    
+        return self
+    
+
+
 class Panel(cogbuilder.Builder[dashboard.Panel]):    
     """
     Dashboard panels are the basic visualization building blocks.
@@ -449,7 +623,7 @@ class Panel(cogbuilder.Builder[dashboard.Panel]):
     
     _internal: dashboard.Panel
 
-    def __init__(self):
+    def __init__(self) -> None:
         self._internal = dashboard.Panel()        
         self._internal.type_val = "heatmap"
 
@@ -518,7 +692,7 @@ class Panel(cogbuilder.Builder[dashboard.Panel]):
     
         return self
     
-    def datasource(self, datasource: dashboard.DataSourceRef) -> typing.Self:    
+    def datasource(self, datasource: common.DataSourceRef) -> typing.Self:    
         """
         The datasource used in all targets.
         """

@@ -10,6 +10,8 @@
  * <span class="badge object-type-class"></span> [XYDimensionConfig](./object-XYDimensionConfig.md)
 ## Builders
 
+ * <span class="badge builder"></span> [FieldConfig](./builder-FieldConfig.md)
+ * <span class="badge builder"></span> [Options](./builder-Options.md)
  * <span class="badge builder"></span> [Panel](./builder-Panel.md)
  * <span class="badge builder"></span> [ScatterSeriesConfig](./builder-ScatterSeriesConfig.md)
  * <span class="badge builder"></span> [XYDimensionConfig](./builder-XYDimensionConfig.md)

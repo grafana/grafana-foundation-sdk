@@ -8,6 +8,8 @@ export * from './timePickerBuilder.gen';
 export type * from './timePickerBuilder.gen';
 export * from './panelBuilder.gen';
 export type * from './panelBuilder.gen';
+export * from './dataSourceRefBuilder.gen';
+export type * from './dataSourceRefBuilder.gen';
 export * from './dashboardLinkBuilder.gen';
 export type * from './dashboardLinkBuilder.gen';
 export * from './thresholdsConfigBuilder.gen';

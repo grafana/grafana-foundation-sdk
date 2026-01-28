@@ -2,10 +2,69 @@
 
 import typing
 from ..cog import builder as cogbuilder
-from ..models import dashboard
-from ..cog import variants as cogvariants
 from ..models import logs
 from ..models import common
+from ..models import dashboard
+from ..cog import variants as cogvariants
+
+
+class Options(cogbuilder.Builder[logs.Options]):
+    _internal: logs.Options
+
+    def __init__(self) -> None:
+        self._internal = logs.Options()
+
+    def build(self) -> logs.Options:
+        """
+        Builds the object.
+        """
+        return self._internal    
+    
+    def show_labels(self, show_labels: bool) -> typing.Self:    
+        self._internal.show_labels = show_labels
+    
+        return self
+    
+    def show_common_labels(self, show_common_labels: bool) -> typing.Self:    
+        self._internal.show_common_labels = show_common_labels
+    
+        return self
+    
+    def show_time(self, show_time: bool) -> typing.Self:    
+        self._internal.show_time = show_time
+    
+        return self
+    
+    def show_log_context_toggle(self, show_log_context_toggle: bool) -> typing.Self:    
+        self._internal.show_log_context_toggle = show_log_context_toggle
+    
+        return self
+    
+    def wrap_log_message(self, wrap_log_message: bool) -> typing.Self:    
+        self._internal.wrap_log_message = wrap_log_message
+    
+        return self
+    
+    def prettify_log_message(self, prettify_log_message: bool) -> typing.Self:    
+        self._internal.prettify_log_message = prettify_log_message
+    
+        return self
+    
+    def enable_log_details(self, enable_log_details: bool) -> typing.Self:    
+        self._internal.enable_log_details = enable_log_details
+    
+        return self
+    
+    def sort_order(self, sort_order: common.LogsSortOrder) -> typing.Self:    
+        self._internal.sort_order = sort_order
+    
+        return self
+    
+    def dedup_strategy(self, dedup_strategy: common.LogsDedupStrategy) -> typing.Self:    
+        self._internal.dedup_strategy = dedup_strategy
+    
+        return self
+    
 
 
 class Panel(cogbuilder.Builder[dashboard.Panel]):    
@@ -15,7 +74,7 @@ class Panel(cogbuilder.Builder[dashboard.Panel]):
     
     _internal: dashboard.Panel
 
-    def __init__(self):
+    def __init__(self) -> None:
         self._internal = dashboard.Panel()        
         self._internal.type_val = "logs"
 
@@ -84,7 +143,7 @@ class Panel(cogbuilder.Builder[dashboard.Panel]):
     
         return self
     
-    def datasource(self, datasource: dashboard.DataSourceRef) -> typing.Self:    
+    def datasource(self, datasource: common.DataSourceRef) -> typing.Self:    
         """
         The datasource used in all targets.
         """

@@ -1,6 +1,6 @@
 // Code generated - EDITING IS FUTILE. DO NOT EDIT.
 
-import * as dashboard from '../dashboard';
+import * as common from '../common';
 
 
 // Manually converted from https://github.com/grafana/google-bigquery-datasource/blob/18680e42ba557791d109c7c540c2c3f2647592f0/src/types.ts#L75
@@ -23,7 +23,7 @@ export interface Dataquery {
 	// A unique identifier for the query within the list of targets.
 	// In server side expressions, the refId is used as a variable name to identify results.
 	// By default, the UI will assign A->Z; however setting meaningful names may be useful.
-	refId: string;
+	refId?: string;
 	// If hide is set to true, Grafana will filter out the response(s) associated with this query before returning it to the panel.
 	hide?: boolean;
 	// Specify the query flavor
@@ -33,14 +33,13 @@ export interface Dataquery {
 	// For non mixed scenarios this is undefined.
 	// TODO find a better way to do this ^ that's friendly to schema
 	// TODO this shouldn't be unknown but DataSourceRef | null
-	datasource?: dashboard.DataSourceRef;
+	datasource?: common.DataSourceRef;
 	_implementsDataqueryVariant(): void;
 }
 
 export const defaultDataquery = (): Dataquery => ({
 	format: QueryFormat.Timeseries,
 	rawSql: "",
-	refId: "",
 	_implementsDataqueryVariant: () => {},
 });
 

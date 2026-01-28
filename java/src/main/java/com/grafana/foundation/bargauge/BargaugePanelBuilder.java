@@ -6,7 +6,7 @@ import com.grafana.foundation.dashboard.Panel;
 import java.util.List;
 import com.grafana.foundation.cog.variants.Dataquery;
 import java.util.LinkedList;
-import com.grafana.foundation.dashboard.DataSourceRef;
+import com.grafana.foundation.common.DataSourceRef;
 import com.grafana.foundation.dashboard.GridPos;
 import com.grafana.foundation.dashboard.DashboardLink;
 import com.grafana.foundation.dashboard.PanelRepeatDirection;
@@ -397,7 +397,7 @@ public class BargaugePanelBuilder implements com.grafana.foundation.cog.Builder<
     
     public BargaugePanelBuilder displayMode(BarGaugeDisplayMode displayMode) {
 		if (this.internal.options == null) {
-			this.internal.options = new com.grafana.foundation.bargauge.Options();
+			this.internal.options = new com.grafana.foundation.bargauge.OptionsBuilder().build();
 		}
         ((Options) this.internal.options).displayMode = displayMode;
         return this;
@@ -405,7 +405,7 @@ public class BargaugePanelBuilder implements com.grafana.foundation.cog.Builder<
     
     public BargaugePanelBuilder valueMode(BarGaugeValueMode valueMode) {
 		if (this.internal.options == null) {
-			this.internal.options = new com.grafana.foundation.bargauge.Options();
+			this.internal.options = new com.grafana.foundation.bargauge.OptionsBuilder().build();
 		}
         ((Options) this.internal.options).valueMode = valueMode;
         return this;
@@ -413,7 +413,7 @@ public class BargaugePanelBuilder implements com.grafana.foundation.cog.Builder<
     
     public BargaugePanelBuilder namePlacement(BarGaugeNamePlacement namePlacement) {
 		if (this.internal.options == null) {
-			this.internal.options = new com.grafana.foundation.bargauge.Options();
+			this.internal.options = new com.grafana.foundation.bargauge.OptionsBuilder().build();
 		}
         ((Options) this.internal.options).namePlacement = namePlacement;
         return this;
@@ -421,7 +421,7 @@ public class BargaugePanelBuilder implements com.grafana.foundation.cog.Builder<
     
     public BargaugePanelBuilder showUnfilled(Boolean showUnfilled) {
 		if (this.internal.options == null) {
-			this.internal.options = new com.grafana.foundation.bargauge.Options();
+			this.internal.options = new com.grafana.foundation.bargauge.OptionsBuilder().build();
 		}
         ((Options) this.internal.options).showUnfilled = showUnfilled;
         return this;
@@ -429,7 +429,7 @@ public class BargaugePanelBuilder implements com.grafana.foundation.cog.Builder<
     
     public BargaugePanelBuilder sizing(BarGaugeSizing sizing) {
 		if (this.internal.options == null) {
-			this.internal.options = new com.grafana.foundation.bargauge.Options();
+			this.internal.options = new com.grafana.foundation.bargauge.OptionsBuilder().build();
 		}
         ((Options) this.internal.options).sizing = sizing;
         return this;
@@ -437,7 +437,7 @@ public class BargaugePanelBuilder implements com.grafana.foundation.cog.Builder<
     
     public BargaugePanelBuilder minVizWidth(Integer minVizWidth) {
 		if (this.internal.options == null) {
-			this.internal.options = new com.grafana.foundation.bargauge.Options();
+			this.internal.options = new com.grafana.foundation.bargauge.OptionsBuilder().build();
 		}
         ((Options) this.internal.options).minVizWidth = minVizWidth;
         return this;
@@ -445,7 +445,7 @@ public class BargaugePanelBuilder implements com.grafana.foundation.cog.Builder<
     
     public BargaugePanelBuilder minVizHeight(Integer minVizHeight) {
 		if (this.internal.options == null) {
-			this.internal.options = new com.grafana.foundation.bargauge.Options();
+			this.internal.options = new com.grafana.foundation.bargauge.OptionsBuilder().build();
 		}
         ((Options) this.internal.options).minVizHeight = minVizHeight;
         return this;
@@ -453,7 +453,7 @@ public class BargaugePanelBuilder implements com.grafana.foundation.cog.Builder<
     
     public BargaugePanelBuilder reduceOptions(com.grafana.foundation.cog.Builder<ReduceDataOptions> reduceOptions) {
 		if (this.internal.options == null) {
-			this.internal.options = new com.grafana.foundation.bargauge.Options();
+			this.internal.options = new com.grafana.foundation.bargauge.OptionsBuilder().build();
 		}
     ReduceDataOptions reduceOptionsResource = reduceOptions.build();
         ((Options) this.internal.options).reduceOptions = reduceOptionsResource;
@@ -462,7 +462,7 @@ public class BargaugePanelBuilder implements com.grafana.foundation.cog.Builder<
     
     public BargaugePanelBuilder text(com.grafana.foundation.cog.Builder<VizTextDisplayOptions> text) {
 		if (this.internal.options == null) {
-			this.internal.options = new com.grafana.foundation.bargauge.Options();
+			this.internal.options = new com.grafana.foundation.bargauge.OptionsBuilder().build();
 		}
     VizTextDisplayOptions textResource = text.build();
         ((Options) this.internal.options).text = textResource;
@@ -471,7 +471,7 @@ public class BargaugePanelBuilder implements com.grafana.foundation.cog.Builder<
     
     public BargaugePanelBuilder maxVizHeight(Integer maxVizHeight) {
 		if (this.internal.options == null) {
-			this.internal.options = new com.grafana.foundation.bargauge.Options();
+			this.internal.options = new com.grafana.foundation.bargauge.OptionsBuilder().build();
 		}
         ((Options) this.internal.options).maxVizHeight = maxVizHeight;
         return this;
@@ -479,7 +479,7 @@ public class BargaugePanelBuilder implements com.grafana.foundation.cog.Builder<
     
     public BargaugePanelBuilder orientation(VizOrientation orientation) {
 		if (this.internal.options == null) {
-			this.internal.options = new com.grafana.foundation.bargauge.Options();
+			this.internal.options = new com.grafana.foundation.bargauge.OptionsBuilder().build();
 		}
         ((Options) this.internal.options).orientation = orientation;
         return this;

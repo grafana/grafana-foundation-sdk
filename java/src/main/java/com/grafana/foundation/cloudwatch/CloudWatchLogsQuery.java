@@ -8,7 +8,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.ObjectWriter;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import java.util.List;
-import com.grafana.foundation.dashboard.DataSourceRef;
+import com.grafana.foundation.common.DataSourceRef;
 
 // Shape of a CloudWatch Logs query
 public class CloudWatchLogsQuery implements com.grafana.foundation.cog.variants.Dataquery {
@@ -36,6 +36,7 @@ public class CloudWatchLogsQuery implements com.grafana.foundation.cog.variants.
     // A unique identifier for the query within the list of targets.
     // In server side expressions, the refId is used as a variable name to identify results.
     // By default, the UI will assign A->Z; however setting meaningful names may be useful.
+    @JsonInclude(JsonInclude.Include.NON_NULL)
     @JsonProperty("refId")
     public String refId;
     // If hide is set to true, Grafana will filter out the response(s) associated with this query before returning it to the panel.
@@ -62,7 +63,6 @@ public class CloudWatchLogsQuery implements com.grafana.foundation.cog.variants.
         this.queryMode = CloudWatchQueryMode.LOGS;
         this.id = "";
         this.region = "";
-        this.refId = "";
     }
     public CloudWatchLogsQuery(CloudWatchQueryMode queryMode,String id,String region,String expression,List<String> statsGroups,List<LogGroup> logGroups,String refId,Boolean hide,String queryType,List<String> logGroupNames,DataSourceRef datasource) {
         this.queryMode = queryMode;

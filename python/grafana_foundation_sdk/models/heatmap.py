@@ -48,7 +48,7 @@ class HeatmapColorOptions:
     # Sets the maximum value for the color scale
     max_val: typing.Optional[float]
 
-    def __init__(self, mode: typing.Optional['HeatmapColorMode'] = None, scheme: str = "", fill: str = "", scale: typing.Optional['HeatmapColorScale'] = None, exponent: float = 0, steps: int = 0, reverse: bool = False, min_val: typing.Optional[float] = None, max_val: typing.Optional[float] = None):
+    def __init__(self, mode: typing.Optional['HeatmapColorMode'] = None, scheme: str = "", fill: str = "", scale: typing.Optional['HeatmapColorScale'] = None, exponent: float = 0, steps: int = 0, reverse: bool = False, min_val: typing.Optional[float] = None, max_val: typing.Optional[float] = None) -> None:
         self.mode = mode
         self.scheme = scheme
         self.fill = fill
@@ -129,7 +129,7 @@ class YAxisConfig:
     max_val: typing.Optional[float]
     axis_border_show: typing.Optional[bool]
 
-    def __init__(self, unit: typing.Optional[str] = None, reverse: typing.Optional[bool] = None, decimals: typing.Optional[float] = None, min_val: typing.Optional[float] = None, axis_placement: typing.Optional[common.AxisPlacement] = None, axis_color_mode: typing.Optional[common.AxisColorMode] = None, axis_label: typing.Optional[str] = None, axis_width: typing.Optional[float] = None, axis_soft_min: typing.Optional[float] = None, axis_soft_max: typing.Optional[float] = None, axis_grid_show: typing.Optional[bool] = None, scale_distribution: typing.Optional[common.ScaleDistributionConfig] = None, axis_centered_zero: typing.Optional[bool] = None, max_val: typing.Optional[float] = None, axis_border_show: typing.Optional[bool] = None):
+    def __init__(self, unit: typing.Optional[str] = None, reverse: typing.Optional[bool] = None, decimals: typing.Optional[float] = None, min_val: typing.Optional[float] = None, axis_placement: typing.Optional[common.AxisPlacement] = None, axis_color_mode: typing.Optional[common.AxisColorMode] = None, axis_label: typing.Optional[str] = None, axis_width: typing.Optional[float] = None, axis_soft_min: typing.Optional[float] = None, axis_soft_max: typing.Optional[float] = None, axis_grid_show: typing.Optional[bool] = None, scale_distribution: typing.Optional[common.ScaleDistributionConfig] = None, axis_centered_zero: typing.Optional[bool] = None, max_val: typing.Optional[float] = None, axis_border_show: typing.Optional[bool] = None) -> None:
         self.unit = unit
         self.reverse = reverse
         self.decimals = decimals
@@ -229,7 +229,7 @@ class CellValues:
     # Controls the number of decimals for cell values
     decimals: typing.Optional[float]
 
-    def __init__(self, unit: typing.Optional[str] = None, decimals: typing.Optional[float] = None):
+    def __init__(self, unit: typing.Optional[str] = None, decimals: typing.Optional[float] = None) -> None:
         self.unit = unit
         self.decimals = decimals
 
@@ -264,7 +264,7 @@ class FilterValueRange:
     # Sets the filter range to values greater than or equal to the given value
     ge: typing.Optional[float]
 
-    def __init__(self, le: typing.Optional[float] = None, ge: typing.Optional[float] = None):
+    def __init__(self, le: typing.Optional[float] = None, ge: typing.Optional[float] = None) -> None:
         self.le = le
         self.ge = ge
 
@@ -303,7 +303,7 @@ class HeatmapTooltip:
     # Controls if the tooltip shows a color scale in header
     show_color_scale: typing.Optional[bool]
 
-    def __init__(self, mode: typing.Optional[common.TooltipDisplayMode] = None, max_height: typing.Optional[float] = None, max_width: typing.Optional[float] = None, y_histogram: typing.Optional[bool] = None, show_color_scale: typing.Optional[bool] = None):
+    def __init__(self, mode: typing.Optional[common.TooltipDisplayMode] = None, max_height: typing.Optional[float] = None, max_width: typing.Optional[float] = None, y_histogram: typing.Optional[bool] = None, show_color_scale: typing.Optional[bool] = None) -> None:
         self.mode = mode if mode is not None else common.TooltipDisplayMode.SINGLE
         self.max_height = max_height
         self.max_width = max_width
@@ -350,7 +350,7 @@ class HeatmapLegend:
     # Controls if the legend is shown
     show: bool
 
-    def __init__(self, show: bool = False):
+    def __init__(self, show: bool = False) -> None:
         self.show = show
 
     def to_json(self) -> dict[str, object]:
@@ -377,7 +377,7 @@ class ExemplarConfig:
     # Sets the color of the exemplar markers
     color: str
 
-    def __init__(self, color: str = ""):
+    def __init__(self, color: str = "") -> None:
         self.color = color
 
     def to_json(self) -> dict[str, object]:
@@ -406,7 +406,7 @@ class RowsHeatmapOptions:
     # Controls tick alignment when not calculating from data
     layout: typing.Optional[common.HeatmapCellLayout]
 
-    def __init__(self, value: typing.Optional[str] = None, layout: typing.Optional[common.HeatmapCellLayout] = None):
+    def __init__(self, value: typing.Optional[str] = None, layout: typing.Optional[common.HeatmapCellLayout] = None) -> None:
         self.value = value
         self.layout = layout
 
@@ -465,7 +465,7 @@ class Options:
     # Controls exemplar options
     exemplars: 'ExemplarConfig'
 
-    def __init__(self, calculate: typing.Optional[bool] = False, calculation: typing.Optional[common.HeatmapCalculationOptions] = None, color: typing.Optional['HeatmapColorOptions'] = None, filter_values: typing.Optional['FilterValueRange'] = None, rows_frame: typing.Optional['RowsHeatmapOptions'] = None, show_value: typing.Optional[common.VisibilityMode] = None, cell_gap: typing.Optional[int] = 1, cell_radius: typing.Optional[float] = None, cell_values: typing.Optional['CellValues'] = None, y_axis: typing.Optional['YAxisConfig'] = None, legend: typing.Optional['HeatmapLegend'] = None, tooltip: typing.Optional['HeatmapTooltip'] = None, exemplars: typing.Optional['ExemplarConfig'] = None):
+    def __init__(self, calculate: typing.Optional[bool] = False, calculation: typing.Optional[common.HeatmapCalculationOptions] = None, color: typing.Optional['HeatmapColorOptions'] = None, filter_values: typing.Optional['FilterValueRange'] = None, rows_frame: typing.Optional['RowsHeatmapOptions'] = None, show_value: typing.Optional[common.VisibilityMode] = None, cell_gap: typing.Optional[int] = 1, cell_radius: typing.Optional[float] = None, cell_values: typing.Optional['CellValues'] = None, y_axis: typing.Optional['YAxisConfig'] = None, legend: typing.Optional['HeatmapLegend'] = None, tooltip: typing.Optional['HeatmapTooltip'] = None, exemplars: typing.Optional['ExemplarConfig'] = None) -> None:
         self.calculate = calculate
         self.calculation = calculation
         self.color = color if color is not None else HeatmapColorOptions(exponent=0.5, fill="dark-orange", reverse=False, scheme="Oranges", steps=64)
@@ -543,7 +543,7 @@ class FieldConfig:
     scale_distribution: typing.Optional[common.ScaleDistributionConfig]
     hide_from: typing.Optional[common.HideSeriesConfig]
 
-    def __init__(self, scale_distribution: typing.Optional[common.ScaleDistributionConfig] = None, hide_from: typing.Optional[common.HideSeriesConfig] = None):
+    def __init__(self, scale_distribution: typing.Optional[common.ScaleDistributionConfig] = None, hide_from: typing.Optional[common.HideSeriesConfig] = None) -> None:
         self.scale_distribution = scale_distribution
         self.hide_from = hide_from
 

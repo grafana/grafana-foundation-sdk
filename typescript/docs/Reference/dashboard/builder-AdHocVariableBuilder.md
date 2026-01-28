@@ -23,7 +23,7 @@ build()
 Data source used to fetch values for a variable. It can be defined but `null`.
 
 ```typescript
-datasource(datasource: dashboard.DataSourceRef)
+datasource(datasource: common.DataSourceRef)
 ```
 
 ### <span class="badge object-method"></span> description

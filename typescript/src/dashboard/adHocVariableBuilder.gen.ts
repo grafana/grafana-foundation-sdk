@@ -2,6 +2,7 @@
 
 import * as cog from '../cog';
 import * as dashboard from '../dashboard';
+import * as common from '../common';
 
 // A variable is a placeholder for a value. You can use variables in metric queries and in panel titles.
 export class AdHocVariableBuilder implements cog.Builder<dashboard.VariableModel> {
@@ -45,7 +46,7 @@ export class AdHocVariableBuilder implements cog.Builder<dashboard.VariableModel
     }
 
     // Data source used to fetch values for a variable. It can be defined but `null`.
-    datasource(datasource: dashboard.DataSourceRef): this {
+    datasource(datasource: common.DataSourceRef): this {
         this.internal.datasource = datasource;
         return this;
     }

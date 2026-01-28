@@ -7,7 +7,7 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.ObjectWriter;
 import com.fasterxml.jackson.annotation.JsonInclude;
-import com.grafana.foundation.dashboard.DataSourceRef;
+import com.grafana.foundation.common.DataSourceRef;
 
 public class TypeMath implements com.grafana.foundation.cog.variants.Dataquery {
     // The datasource
@@ -41,6 +41,7 @@ public class TypeMath implements com.grafana.foundation.cog.variants.Dataquery {
     @JsonProperty("queryType")
     public String queryType;
     // RefID is the unique identifier of the query, set by the frontend call.
+    @JsonInclude(JsonInclude.Include.NON_NULL)
     @JsonProperty("refId")
     public String refId;
     // Optionally define expected query result behavior
@@ -57,7 +58,6 @@ public class TypeMath implements com.grafana.foundation.cog.variants.Dataquery {
     public String type;
     public TypeMath() {
         this.expression = "";
-        this.refId = "";
         this.type = "";
     }
     public TypeMath(DataSourceRef datasource,String expression,Boolean hide,Double intervalMs,Long maxDataPoints,String queryType,String refId,ExprTypeMathResultAssertions resultAssertions,ExprTypeMathTimeRange timeRange,String type) {

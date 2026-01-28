@@ -10,6 +10,8 @@
  * <span class="badge object-type-enum"></span> [PieChartType](./object-PieChartType.md)
 ## Builders
 
+ * <span class="badge builder"></span> [FieldConfig](./builder-FieldConfig.md)
+ * <span class="badge builder"></span> [Options](./builder-Options.md)
  * <span class="badge builder"></span> [Panel](./builder-Panel.md)
  * <span class="badge builder"></span> [PieChartLegendOptions](./builder-PieChartLegendOptions.md)
 ## Functions

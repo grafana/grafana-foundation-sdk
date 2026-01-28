@@ -42,7 +42,7 @@ class Dataquery implements \JsonSerializable, \Grafana\Foundation\Cog\Dataquery
      * In server side expressions, the refId is used as a variable name to identify results.
      * By default, the UI will assign A->Z; however setting meaningful names may be useful.
      */
-    public string $refId;
+    public ?string $refId;
 
     /**
      * If hide is set to true, Grafana will filter out the response(s) associated with this query before returning it to the panel.
@@ -61,7 +61,7 @@ class Dataquery implements \JsonSerializable, \Grafana\Foundation\Cog\Dataquery
      * TODO find a better way to do this ^ that's friendly to schema
      * TODO this shouldn't be unknown but DataSourceRef | null
      */
-    public ?\Grafana\Foundation\Dashboard\DataSourceRef $datasource;
+    public ?\Grafana\Foundation\Common\DataSourceRef $datasource;
 
     /**
      * @param string|null $dataset
@@ -82,9 +82,9 @@ class Dataquery implements \JsonSerializable, \Grafana\Foundation\Cog\Dataquery
      * @param string|null $refId
      * @param bool|null $hide
      * @param string|null $queryType
-     * @param \Grafana\Foundation\Dashboard\DataSourceRef|null $datasource
+     * @param \Grafana\Foundation\Common\DataSourceRef|null $datasource
      */
-    public function __construct(?string $dataset = null, ?string $table = null, ?string $project = null, ?\Grafana\Foundation\Bigquery\QueryFormat $format = null, ?bool $rawQuery = null, ?string $rawSql = null, ?string $location = null, ?bool $partitioned = null, ?string $partitionedField = null, ?bool $convertToUTC = null, ?bool $sharded = null, ?\Grafana\Foundation\Bigquery\QueryPriority $queryPriority = null, ?string $timeShift = null, ?\Grafana\Foundation\Bigquery\EditorMode $editorMode = null, ?\Grafana\Foundation\Bigquery\SQLExpression $sql = null, ?string $refId = null, ?bool $hide = null, ?string $queryType = null, ?\Grafana\Foundation\Dashboard\DataSourceRef $datasource = null)
+    public function __construct(?string $dataset = null, ?string $table = null, ?string $project = null, ?\Grafana\Foundation\Bigquery\QueryFormat $format = null, ?bool $rawQuery = null, ?string $rawSql = null, ?string $location = null, ?bool $partitioned = null, ?string $partitionedField = null, ?bool $convertToUTC = null, ?bool $sharded = null, ?\Grafana\Foundation\Bigquery\QueryPriority $queryPriority = null, ?string $timeShift = null, ?\Grafana\Foundation\Bigquery\EditorMode $editorMode = null, ?\Grafana\Foundation\Bigquery\SQLExpression $sql = null, ?string $refId = null, ?bool $hide = null, ?string $queryType = null, ?\Grafana\Foundation\Common\DataSourceRef $datasource = null)
     {
         $this->dataset = $dataset;
         $this->table = $table;
@@ -101,7 +101,7 @@ class Dataquery implements \JsonSerializable, \Grafana\Foundation\Cog\Dataquery
         $this->timeShift = $timeShift;
         $this->editorMode = $editorMode;
         $this->sql = $sql;
-        $this->refId = $refId ?: "";
+        $this->refId = $refId;
         $this->hide = $hide;
         $this->queryType = $queryType;
         $this->datasource = $datasource;
@@ -140,7 +140,7 @@ class Dataquery implements \JsonSerializable, \Grafana\Foundation\Cog\Dataquery
             datasource: isset($data["datasource"]) ? (function($input) {
     	/** @var array{type?: string, uid?: string} */
     $val = $input;
-    	return \Grafana\Foundation\Dashboard\DataSourceRef::fromArray($val);
+    	return \Grafana\Foundation\Common\DataSourceRef::fromArray($val);
     })($data["datasource"]) : null,
         );
     }
@@ -153,7 +153,6 @@ class Dataquery implements \JsonSerializable, \Grafana\Foundation\Cog\Dataquery
         $data = new \stdClass;
         $data->format = $this->format;
         $data->rawSql = $this->rawSql;
-        $data->refId = $this->refId;
         if (isset($this->dataset)) {
             $data->dataset = $this->dataset;
         }
@@ -192,6 +191,9 @@ class Dataquery implements \JsonSerializable, \Grafana\Foundation\Cog\Dataquery
         }
         if (isset($this->sql)) {
             $data->sql = $this->sql;
+        }
+        if (isset($this->refId)) {
+            $data->refId = $this->refId;
         }
         if (isset($this->hide)) {
             $data->hide = $this->hide;
