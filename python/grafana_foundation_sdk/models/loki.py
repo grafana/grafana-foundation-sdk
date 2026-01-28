@@ -3,7 +3,7 @@
 import enum
 from ..cog import variants as cogvariants
 import typing
-from ..models import dashboard
+from ..models import common
 from ..cog import runtime as cogruntime
 
 
@@ -49,7 +49,7 @@ class Dataquery(cogvariants.Dataquery):
     # A unique identifier for the query within the list of targets.
     # In server side expressions, the refId is used as a variable name to identify results.
     # By default, the UI will assign A->Z; however setting meaningful names may be useful.
-    ref_id: str
+    ref_id: typing.Optional[str]
     # If hide is set to true, Grafana will filter out the response(s) associated with this query before returning it to the panel.
     hide: typing.Optional[bool]
     # Specify the query flavor
@@ -59,10 +59,10 @@ class Dataquery(cogvariants.Dataquery):
     # For non mixed scenarios this is undefined.
     # TODO find a better way to do this ^ that's friendly to schema
     # TODO this shouldn't be unknown but DataSourceRef | null
-    datasource: typing.Optional[dashboard.DataSourceRef]
+    datasource: typing.Optional[common.DataSourceRef]
     direction: typing.Optional['LokiQueryDirection']
 
-    def __init__(self, expr: str = "", legend_format: typing.Optional[str] = None, max_lines: typing.Optional[int] = None, resolution: typing.Optional[int] = None, editor_mode: typing.Optional['QueryEditorMode'] = None, range_val: typing.Optional[bool] = None, instant: typing.Optional[bool] = None, step: typing.Optional[str] = None, ref_id: str = "", hide: typing.Optional[bool] = None, query_type: typing.Optional[str] = None, datasource: typing.Optional[dashboard.DataSourceRef] = None, direction: typing.Optional['LokiQueryDirection'] = None):
+    def __init__(self, expr: str = "", legend_format: typing.Optional[str] = None, max_lines: typing.Optional[int] = None, resolution: typing.Optional[int] = None, editor_mode: typing.Optional['QueryEditorMode'] = None, range_val: typing.Optional[bool] = None, instant: typing.Optional[bool] = None, step: typing.Optional[str] = None, ref_id: typing.Optional[str] = None, hide: typing.Optional[bool] = None, query_type: typing.Optional[str] = None, datasource: typing.Optional[common.DataSourceRef] = None, direction: typing.Optional['LokiQueryDirection'] = None) -> None:
         self.expr = expr
         self.legend_format = legend_format
         self.max_lines = max_lines
@@ -80,7 +80,6 @@ class Dataquery(cogvariants.Dataquery):
     def to_json(self) -> dict[str, object]:
         payload: dict[str, object] = {
             "expr": self.expr,
-            "refId": self.ref_id,
         }
         if self.legend_format is not None:
             payload["legendFormat"] = self.legend_format
@@ -96,6 +95,8 @@ class Dataquery(cogvariants.Dataquery):
             payload["instant"] = self.instant
         if self.step is not None:
             payload["step"] = self.step
+        if self.ref_id is not None:
+            payload["refId"] = self.ref_id
         if self.hide is not None:
             payload["hide"] = self.hide
         if self.query_type is not None:
@@ -133,7 +134,7 @@ class Dataquery(cogvariants.Dataquery):
         if "queryType" in data:
             args["query_type"] = data["queryType"]
         if "datasource" in data:
-            args["datasource"] = dashboard.DataSourceRef.from_json(data["datasource"])
+            args["datasource"] = common.DataSourceRef.from_json(data["datasource"])
         if "direction" in data:
             args["direction"] = data["direction"]        
 

@@ -22,7 +22,7 @@ class Dataquery implements \JsonSerializable, \Grafana\Foundation\Cog\Dataquery
      * In server side expressions, the refId is used as a variable name to identify results.
      * By default, the UI will assign A->Z; however setting meaningful names may be useful.
      */
-    public string $refId;
+    public ?string $refId;
 
     /**
      * If hide is set to true, Grafana will filter out the response(s) associated with this query before returning it to the panel.
@@ -43,7 +43,7 @@ class Dataquery implements \JsonSerializable, \Grafana\Foundation\Cog\Dataquery
      * TODO find a better way to do this ^ that's friendly to schema
      * TODO this shouldn't be unknown but DataSourceRef | null
      */
-    public ?\Grafana\Foundation\Dashboard\DataSourceRef $datasource;
+    public ?\Grafana\Foundation\Common\DataSourceRef $datasource;
 
     /**
      * @param \Grafana\Foundation\Athena\FormatOptions|null $format
@@ -55,16 +55,16 @@ class Dataquery implements \JsonSerializable, \Grafana\Foundation\Cog\Dataquery
      * @param bool|null $hide
      * @param string|null $queryType
      * @param string|null $rawSQL
-     * @param \Grafana\Foundation\Dashboard\DataSourceRef|null $datasource
+     * @param \Grafana\Foundation\Common\DataSourceRef|null $datasource
      */
-    public function __construct(?\Grafana\Foundation\Athena\FormatOptions $format = null, ?\Grafana\Foundation\Athena\ConnectionArgs $connectionArgs = null, ?string $table = null, ?string $column = null, ?string $queryID = null, ?string $refId = null, ?bool $hide = null, ?string $queryType = null, ?string $rawSQL = null, ?\Grafana\Foundation\Dashboard\DataSourceRef $datasource = null)
+    public function __construct(?\Grafana\Foundation\Athena\FormatOptions $format = null, ?\Grafana\Foundation\Athena\ConnectionArgs $connectionArgs = null, ?string $table = null, ?string $column = null, ?string $queryID = null, ?string $refId = null, ?bool $hide = null, ?string $queryType = null, ?string $rawSQL = null, ?\Grafana\Foundation\Common\DataSourceRef $datasource = null)
     {
         $this->format = $format ?: \Grafana\Foundation\Athena\FormatOptions::TimeSeries();
         $this->connectionArgs = $connectionArgs ?: new \Grafana\Foundation\Athena\ConnectionArgs();
         $this->table = $table;
         $this->column = $column;
         $this->queryID = $queryID;
-        $this->refId = $refId ?: "";
+        $this->refId = $refId;
         $this->hide = $hide;
         $this->queryType = $queryType;
         $this->rawSQL = $rawSQL ?: "";
@@ -95,7 +95,7 @@ class Dataquery implements \JsonSerializable, \Grafana\Foundation\Cog\Dataquery
             datasource: isset($data["datasource"]) ? (function($input) {
     	/** @var array{type?: string, uid?: string} */
     $val = $input;
-    	return \Grafana\Foundation\Dashboard\DataSourceRef::fromArray($val);
+    	return \Grafana\Foundation\Common\DataSourceRef::fromArray($val);
     })($data["datasource"]) : null,
         );
     }
@@ -108,7 +108,6 @@ class Dataquery implements \JsonSerializable, \Grafana\Foundation\Cog\Dataquery
         $data = new \stdClass;
         $data->format = $this->format;
         $data->connectionArgs = $this->connectionArgs;
-        $data->refId = $this->refId;
         $data->rawSQL = $this->rawSQL;
         if (isset($this->table)) {
             $data->table = $this->table;
@@ -118,6 +117,9 @@ class Dataquery implements \JsonSerializable, \Grafana\Foundation\Cog\Dataquery
         }
         if (isset($this->queryID)) {
             $data->queryID = $this->queryID;
+        }
+        if (isset($this->refId)) {
+            $data->refId = $this->refId;
         }
         if (isset($this->hide)) {
             $data->hide = $this->hide;

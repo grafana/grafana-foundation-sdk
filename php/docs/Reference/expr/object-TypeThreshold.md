@@ -17,7 +17,7 @@ class TypeThreshold implements \JsonSerializable, \Grafana\Foundation\Cog\Dataqu
     /**
      * The datasource
      */
-    public ?\Grafana\Foundation\Dashboard\DataSourceRef $datasource;
+    public ?\Grafana\Foundation\Common\DataSourceRef $datasource;
 
     /**
      * Reference to single query result
@@ -54,7 +54,7 @@ class TypeThreshold implements \JsonSerializable, \Grafana\Foundation\Cog\Dataqu
     /**
      * RefID is the unique identifier of the query, set by the frontend call.
      */
-    public string $refId;
+    public ?string $refId;
 
     /**
      * Optionally define expected query result behavior

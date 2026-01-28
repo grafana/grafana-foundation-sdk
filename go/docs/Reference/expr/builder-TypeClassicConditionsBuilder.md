@@ -29,7 +29,7 @@ func (builder *TypeClassicConditionsBuilder) Conditions(conditions []cog.Builder
 The datasource
 
 ```go
-func (builder *TypeClassicConditionsBuilder) Datasource(datasource dashboard.DataSourceRef) *TypeClassicConditionsBuilder
+func (builder *TypeClassicConditionsBuilder) Datasource(datasource common.DataSourceRef) *TypeClassicConditionsBuilder
 ```
 
 ### <span class="badge object-method"></span> Hide

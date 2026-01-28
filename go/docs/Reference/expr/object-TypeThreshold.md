@@ -10,7 +10,7 @@ type TypeThreshold struct {
     // Threshold Conditions
     Conditions []expr.ExprTypeThresholdConditions `json:"conditions"`
     // The datasource
-    Datasource *dashboard.DataSourceRef `json:"datasource,omitempty"`
+    Datasource *common.DataSourceRef `json:"datasource,omitempty"`
     // Reference to single query result
     Expression string `json:"expression"`
     // true if query is disabled (ie should not be returned to the dashboard)
@@ -29,7 +29,7 @@ type TypeThreshold struct {
     // It can be used to distinguish different types of queries.
     QueryType *string `json:"queryType,omitempty"`
     // RefID is the unique identifier of the query, set by the frontend call.
-    RefId string `json:"refId"`
+    RefId *string `json:"refId,omitempty"`
     // Optionally define expected query result behavior
     ResultAssertions *expr.ExprTypeThresholdResultAssertions `json:"resultAssertions,omitempty"`
     // TimeRange represents the query range

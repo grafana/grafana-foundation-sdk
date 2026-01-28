@@ -12,7 +12,7 @@ class AccessPolicy:
     # access policy rules, and that "none" will reject all actions
     rules: list['AccessRule']
 
-    def __init__(self, scope: typing.Optional['ResourceRef'] = None, role: typing.Optional['RoleRef'] = None, rules: typing.Optional[list['AccessRule']] = None):
+    def __init__(self, scope: typing.Optional['ResourceRef'] = None, role: typing.Optional['RoleRef'] = None, rules: typing.Optional[list['AccessRule']] = None) -> None:
         self.scope = scope if scope is not None else ResourceRef()
         self.role = role if role is not None else RoleRef()
         self.rules = rules if rules is not None else []
@@ -43,7 +43,7 @@ class ResourceRef:
     kind: str
     name: str
 
-    def __init__(self, kind: str = "", name: str = ""):
+    def __init__(self, kind: str = "", name: str = "") -> None:
         self.kind = kind
         self.name = name
 
@@ -73,7 +73,7 @@ class RoleRef:
     name: str
     xname: str
 
-    def __init__(self, kind: typing.Optional[typing.Literal["Role", "BuiltinRole", "Team", "User"]] = None, name: str = "", xname: str = ""):
+    def __init__(self, kind: typing.Optional[typing.Literal["Role", "BuiltinRole", "Team", "User"]] = None, name: str = "", xname: str = "") -> None:
         self.kind = kind if kind is not None else "Role"
         self.name = name
         self.xname = xname
@@ -109,7 +109,7 @@ class AccessRule:
     # Specific sub-elements like "alert.rules" or "dashboard.permissions"????
     target: typing.Optional[str]
 
-    def __init__(self, kind: str = "*", verb: typing.Optional[typing.Union[typing.Literal["*"], typing.Literal["none"], str]] = None, target: typing.Optional[str] = None):
+    def __init__(self, kind: str = "*", verb: typing.Optional[typing.Union[typing.Literal["*"], typing.Literal["none"], str]] = None, target: typing.Optional[str] = None) -> None:
         self.kind = kind
         self.verb = verb if verb is not None else "*"
         self.target = target

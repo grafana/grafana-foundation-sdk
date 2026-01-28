@@ -8,7 +8,7 @@ title: <span class="badge object-type-class"></span> TypeReduce
 ```python
 class TypeReduce(cogvariants.Dataquery):
     # The datasource
-    datasource: typing.Optional[dashboard.DataSourceRef]
+    datasource: typing.Optional[common.DataSourceRef]
     # Reference to single query result
     expression: str
     # true if query is disabled (ie should not be returned to the dashboard)
@@ -37,7 +37,7 @@ class TypeReduce(cogvariants.Dataquery):
     #  - `"median"` 
     reducer: typing.Literal["sum", "mean", "min", "max", "count", "last", "median"]
     # RefID is the unique identifier of the query, set by the frontend call.
-    ref_id: str
+    ref_id: typing.Optional[str]
     # Optionally define expected query result behavior
     result_assertions: typing.Optional[expr.ExprTypeReduceResultAssertions]
     # Reducer Options

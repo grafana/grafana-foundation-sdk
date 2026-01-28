@@ -28,7 +28,7 @@ class VariableModel:
     # Query used to fetch values for a variable
     query: typing.Optional[typing.Union[str, dict[str, object]]]
     # Data source used to fetch values for a variable. It can be defined but `null`.
-    datasource: typing.Optional[dashboard.DataSourceRef]
+    datasource: typing.Optional[common.DataSourceRef]
     # Shows current selected variable text/value on the dashboard
     current: typing.Optional[dashboard.VariableOption]
     # Whether multiple values can be selected or not from variable value list

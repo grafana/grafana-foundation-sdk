@@ -33,7 +33,7 @@ collapsed(collapsed: boolean)
 Name of default datasource for the row
 
 ```typescript
-datasource(datasource: dashboard.DataSourceRef)
+datasource(datasource: common.DataSourceRef)
 ```
 
 ### <span class="badge object-method"></span> gridPos

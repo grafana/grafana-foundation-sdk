@@ -14,10 +14,10 @@ import com.grafana.foundation.cog.variants.Registry;
 
 import com.grafana.foundation.cog.variants.Dataquery;
 import com.grafana.foundation.cog.variants.Registry;
-import com.grafana.foundation.cog.variants.PanelConfig;
-import java.util.Map;
 import java.util.List;
-import com.grafana.foundation.dashboard.DataSourceRef;
+import com.grafana.foundation.cog.variants.PanelConfig;
+import com.grafana.foundation.common.DataSourceRef;
+import java.util.Map;
 
 
 import java.io.IOException;

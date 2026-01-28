@@ -7,8 +7,7 @@
       "additionalProperties": false,
       "required": [
         "format",
-        "rawSql",
-        "refId"
+        "rawSql"
       ],
       "properties": {
         "dataset": {
@@ -141,7 +140,11 @@
       ],
       "properties": {
         "type": {
-          "$ref": "#/definitions/QueryEditorExpressionType",
+          "allOf": [
+            {
+              "$ref": "#/definitions/QueryEditorExpressionType"
+            }
+          ],
           "default": "function"
         },
         "name": {
@@ -175,7 +178,11 @@
       ],
       "properties": {
         "type": {
-          "$ref": "#/definitions/QueryEditorExpressionType",
+          "allOf": [
+            {
+              "$ref": "#/definitions/QueryEditorExpressionType"
+            }
+          ],
           "default": "functionParameter"
         },
         "name": {
@@ -192,7 +199,11 @@
       ],
       "properties": {
         "type": {
-          "$ref": "#/definitions/QueryEditorExpressionType",
+          "allOf": [
+            {
+              "$ref": "#/definitions/QueryEditorExpressionType"
+            }
+          ],
           "default": "groupBy"
         },
         "property": {
@@ -208,7 +219,11 @@
       ],
       "properties": {
         "type": {
-          "$ref": "#/definitions/QueryEditorPropertyType",
+          "allOf": [
+            {
+              "$ref": "#/definitions/QueryEditorPropertyType"
+            }
+          ],
           "default": "string"
         },
         "name": {
@@ -231,7 +246,11 @@
       ],
       "properties": {
         "type": {
-          "$ref": "#/definitions/QueryEditorExpressionType",
+          "allOf": [
+            {
+              "$ref": "#/definitions/QueryEditorExpressionType"
+            }
+          ],
           "default": "property"
         },
         "property": {
@@ -258,8 +277,7 @@
           "type": "string",
           "description": "Specific datasource instance"
         }
-      },
-      "description": "Ref to a DataSource instance"
+      }
     }
   }
 }

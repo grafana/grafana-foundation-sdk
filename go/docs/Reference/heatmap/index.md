@@ -19,10 +19,12 @@
 
  * <span class="badge builder"></span> [CellValuesBuilder](./builder-CellValuesBuilder.md)
  * <span class="badge builder"></span> [ExemplarConfigBuilder](./builder-ExemplarConfigBuilder.md)
+ * <span class="badge builder"></span> [FieldConfigBuilder](./builder-FieldConfigBuilder.md)
  * <span class="badge builder"></span> [FilterValueRangeBuilder](./builder-FilterValueRangeBuilder.md)
  * <span class="badge builder"></span> [HeatmapColorOptionsBuilder](./builder-HeatmapColorOptionsBuilder.md)
  * <span class="badge builder"></span> [HeatmapLegendBuilder](./builder-HeatmapLegendBuilder.md)
  * <span class="badge builder"></span> [HeatmapTooltipBuilder](./builder-HeatmapTooltipBuilder.md)
+ * <span class="badge builder"></span> [OptionsBuilder](./builder-OptionsBuilder.md)
  * <span class="badge builder"></span> [PanelBuilder](./builder-PanelBuilder.md)
  * <span class="badge builder"></span> [RowsHeatmapOptionsBuilder](./builder-RowsHeatmapOptionsBuilder.md)
  * <span class="badge builder"></span> [YAxisConfigBuilder](./builder-YAxisConfigBuilder.md)
@@ -180,6 +182,22 @@ RowsHeatmapOptionsConverter accepts a `RowsHeatmapOptions` object and generates 
 
 ```go
 func RowsHeatmapOptionsConverter(input RowsHeatmapOptions) string
+```
+
+### <span class="badge function"></span> OptionsConverter
+
+OptionsConverter accepts a `Options` object and generates the Go code to build this object using builders.
+
+```go
+func OptionsConverter(input Options) string
+```
+
+### <span class="badge function"></span> FieldConfigConverter
+
+FieldConfigConverter accepts a `FieldConfig` object and generates the Go code to build this object using builders.
+
+```go
+func FieldConfigConverter(input FieldConfig) string
 ```
 
 ### <span class="badge function"></span> PanelConverter

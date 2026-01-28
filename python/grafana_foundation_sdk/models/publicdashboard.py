@@ -17,7 +17,7 @@ class PublicDashboard:
     # Flag that indicates if the time range picker is enabled
     time_selection_enabled: bool
 
-    def __init__(self, uid: str = "", dashboard_uid: str = "", access_token: typing.Optional[str] = None, is_enabled: bool = False, annotations_enabled: bool = False, time_selection_enabled: bool = False):
+    def __init__(self, uid: str = "", dashboard_uid: str = "", access_token: typing.Optional[str] = None, is_enabled: bool = False, annotations_enabled: bool = False, time_selection_enabled: bool = False) -> None:
         self.uid = uid
         self.dashboard_uid = dashboard_uid
         self.access_token = access_token
