@@ -15,7 +15,6 @@
         "additionalProperties": false,
         "required": [
           "panelId",
-          "refId",
           "withTransforms"
         ],
         "properties": {
@@ -56,8 +55,7 @@
             "type": "string",
             "description": "Specific datasource instance"
           }
-        },
-        "description": "Ref to a DataSource instance"
+        }
       }
     }
   }

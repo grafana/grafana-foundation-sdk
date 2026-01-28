@@ -8,7 +8,7 @@ title: <span class="badge object-type-struct"></span> TypeReduce
 ```go
 type TypeReduce struct {
     // The datasource
-    Datasource *dashboard.DataSourceRef `json:"datasource,omitempty"`
+    Datasource *common.DataSourceRef `json:"datasource,omitempty"`
     // Reference to single query result
     Expression string `json:"expression"`
     // true if query is disabled (ie should not be returned to the dashboard)
@@ -37,7 +37,7 @@ type TypeReduce struct {
     //  - `"median"` 
     Reducer expr.TypeReduceReducer `json:"reducer"`
     // RefID is the unique identifier of the query, set by the frontend call.
-    RefId string `json:"refId"`
+    RefId *string `json:"refId,omitempty"`
     // Optionally define expected query result behavior
     ResultAssertions *expr.ExprTypeReduceResultAssertions `json:"resultAssertions,omitempty"`
     // Reducer Options

@@ -10,3 +10,4 @@
 
  * <span class="badge builder"></span> [ConnectionArgsBuilder](./builder-ConnectionArgsBuilder.md)
  * <span class="badge builder"></span> [DataqueryBuilder](./builder-DataqueryBuilder.md)
+ * <span class="badge builder"></span> [QueryBuilder](./builder-QueryBuilder.md)

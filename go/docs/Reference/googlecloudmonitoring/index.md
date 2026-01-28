@@ -23,6 +23,7 @@
  * <span class="badge builder"></span> [LegacyCloudMonitoringAnnotationQueryBuilder](./builder-LegacyCloudMonitoringAnnotationQueryBuilder.md)
  * <span class="badge builder"></span> [MetricQueryBuilder](./builder-MetricQueryBuilder.md)
  * <span class="badge builder"></span> [PromQLQueryBuilder](./builder-PromQLQueryBuilder.md)
+ * <span class="badge builder"></span> [QueryBuilder](./builder-QueryBuilder.md)
  * <span class="badge builder"></span> [SLOQueryBuilder](./builder-SLOQueryBuilder.md)
  * <span class="badge builder"></span> [TimeSeriesListBuilder](./builder-TimeSeriesListBuilder.md)
  * <span class="badge builder"></span> [TimeSeriesQueryBuilder](./builder-TimeSeriesQueryBuilder.md)
@@ -164,5 +165,13 @@ FilterConverter accepts a `Filter` object and generates the Go code to build thi
 
 ```go
 func FilterConverter(input Filter) string
+```
+
+### <span class="badge function"></span> QueryConverter
+
+QueryConverter accepts a `Query` object and generates the Go code to build this object using builders.
+
+```go
+func QueryConverter(input dashboardv2beta1.DataQueryKind) string
 ```
 

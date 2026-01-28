@@ -6,3 +6,4 @@
 ## Builders
 
  * <span class="badge builder"></span> [PanelBuilder](./builder-PanelBuilder.md)
+ * <span class="badge builder"></span> [VisualizationBuilder](./builder-VisualizationBuilder.md)

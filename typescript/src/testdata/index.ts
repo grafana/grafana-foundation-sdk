@@ -22,3 +22,5 @@ export * from './uSAQueryBuilder.gen';
 export type * from './uSAQueryBuilder.gen';
 export * from './dataqueryBuilder.gen';
 export type * from './dataqueryBuilder.gen';
+export * from './queryBuilder.gen';
+export type * from './queryBuilder.gen';

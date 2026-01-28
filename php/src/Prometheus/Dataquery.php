@@ -50,7 +50,7 @@ class Dataquery implements \JsonSerializable, \Grafana\Foundation\Cog\Dataquery
      * In server side expressions, the refId is used as a variable name to identify results.
      * By default, the UI will assign A->Z; however setting meaningful names may be useful.
      */
-    public string $refId;
+    public ?string $refId;
 
     /**
      * If hide is set to true, Grafana will filter out the response(s) associated with this query before returning it to the panel.
@@ -69,7 +69,7 @@ class Dataquery implements \JsonSerializable, \Grafana\Foundation\Cog\Dataquery
      * TODO find a better way to do this ^ that's friendly to schema
      * TODO this shouldn't be unknown but DataSourceRef | null
      */
-    public ?\Grafana\Foundation\Dashboard\DataSourceRef $datasource;
+    public ?\Grafana\Foundation\Common\DataSourceRef $datasource;
 
     /**
      * An additional lower limit for the step parameter of the Prometheus query and for the
@@ -89,10 +89,10 @@ class Dataquery implements \JsonSerializable, \Grafana\Foundation\Cog\Dataquery
      * @param string|null $refId
      * @param bool|null $hide
      * @param string|null $queryType
-     * @param \Grafana\Foundation\Dashboard\DataSourceRef|null $datasource
+     * @param \Grafana\Foundation\Common\DataSourceRef|null $datasource
      * @param string|null $interval
      */
-    public function __construct(?string $expr = null, ?bool $instant = null, ?bool $range = null, ?bool $exemplar = null, ?\Grafana\Foundation\Prometheus\QueryEditorMode $editorMode = null, ?\Grafana\Foundation\Prometheus\PromQueryFormat $format = null, ?string $legendFormat = null, ?float $intervalFactor = null, ?string $refId = null, ?bool $hide = null, ?string $queryType = null, ?\Grafana\Foundation\Dashboard\DataSourceRef $datasource = null, ?string $interval = null)
+    public function __construct(?string $expr = null, ?bool $instant = null, ?bool $range = null, ?bool $exemplar = null, ?\Grafana\Foundation\Prometheus\QueryEditorMode $editorMode = null, ?\Grafana\Foundation\Prometheus\PromQueryFormat $format = null, ?string $legendFormat = null, ?float $intervalFactor = null, ?string $refId = null, ?bool $hide = null, ?string $queryType = null, ?\Grafana\Foundation\Common\DataSourceRef $datasource = null, ?string $interval = null)
     {
         $this->expr = $expr ?: "";
         $this->instant = $instant;
@@ -102,7 +102,7 @@ class Dataquery implements \JsonSerializable, \Grafana\Foundation\Cog\Dataquery
         $this->format = $format;
         $this->legendFormat = $legendFormat;
         $this->intervalFactor = $intervalFactor;
-        $this->refId = $refId ?: "";
+        $this->refId = $refId;
         $this->hide = $hide;
         $this->queryType = $queryType;
         $this->datasource = $datasource;
@@ -131,7 +131,7 @@ class Dataquery implements \JsonSerializable, \Grafana\Foundation\Cog\Dataquery
             datasource: isset($data["datasource"]) ? (function($input) {
     	/** @var array{type?: string, uid?: string} */
     $val = $input;
-    	return \Grafana\Foundation\Dashboard\DataSourceRef::fromArray($val);
+    	return \Grafana\Foundation\Common\DataSourceRef::fromArray($val);
     })($data["datasource"]) : null,
             interval: $data["interval"] ?? null,
         );
@@ -144,7 +144,6 @@ class Dataquery implements \JsonSerializable, \Grafana\Foundation\Cog\Dataquery
     {
         $data = new \stdClass;
         $data->expr = $this->expr;
-        $data->refId = $this->refId;
         if (isset($this->instant)) {
             $data->instant = $this->instant;
         }
@@ -165,6 +164,9 @@ class Dataquery implements \JsonSerializable, \Grafana\Foundation\Cog\Dataquery
         }
         if (isset($this->intervalFactor)) {
             $data->intervalFactor = $this->intervalFactor;
+        }
+        if (isset($this->refId)) {
+            $data->refId = $this->refId;
         }
         if (isset($this->hide)) {
             $data->hide = $this->hide;

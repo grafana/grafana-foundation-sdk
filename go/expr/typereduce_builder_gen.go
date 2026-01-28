@@ -5,7 +5,7 @@ package expr
 import (
 	cog "github.com/grafana/grafana-foundation-sdk/go/cog"
 	variants "github.com/grafana/grafana-foundation-sdk/go/cog/variants"
-	dashboard "github.com/grafana/grafana-foundation-sdk/go/dashboard"
+	common "github.com/grafana/grafana-foundation-sdk/go/common"
 )
 
 var _ cog.Builder[variants.Dataquery] = (*TypeReduceBuilder)(nil)
@@ -39,7 +39,7 @@ func (builder *TypeReduceBuilder) Build() (variants.Dataquery, error) {
 }
 
 // The datasource
-func (builder *TypeReduceBuilder) Datasource(datasource dashboard.DataSourceRef) *TypeReduceBuilder {
+func (builder *TypeReduceBuilder) Datasource(datasource common.DataSourceRef) *TypeReduceBuilder {
 	builder.internal.Datasource = &datasource
 
 	return builder
@@ -104,7 +104,7 @@ func (builder *TypeReduceBuilder) Reducer(reducer TypeReduceReducer) *TypeReduce
 
 // RefID is the unique identifier of the query, set by the frontend call.
 func (builder *TypeReduceBuilder) RefId(refId string) *TypeReduceBuilder {
-	builder.internal.RefId = refId
+	builder.internal.RefId = &refId
 
 	return builder
 }

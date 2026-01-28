@@ -6,3 +6,5 @@ export * from './tempoQueryBuilder.gen';
 export type * from './tempoQueryBuilder.gen';
 export * from './traceqlFilterBuilder.gen';
 export type * from './traceqlFilterBuilder.gen';
+export * from './queryBuilder.gen';
+export type * from './queryBuilder.gen';

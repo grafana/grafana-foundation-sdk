@@ -12,5 +12,6 @@
  * <span class="badge object-type-enum"></span> [TraceqlSearchScope](./object-TraceqlSearchScope.md)
 ## Builders
 
+ * <span class="badge builder"></span> [QueryBuilder](./builder-QueryBuilder.md)
  * <span class="badge builder"></span> [TempoQueryBuilder](./builder-TempoQueryBuilder.md)
  * <span class="badge builder"></span> [TraceqlFilterBuilder](./builder-TraceqlFilterBuilder.md)

@@ -27,6 +27,7 @@
  * <span class="badge builder"></span> [LineConfigBuilder](./builder-LineConfigBuilder.md)
  * <span class="badge builder"></span> [PanelBuilder](./builder-PanelBuilder.md)
  * <span class="badge builder"></span> [PlacementBuilder](./builder-PlacementBuilder.md)
+ * <span class="badge builder"></span> [VisualizationBuilder](./builder-VisualizationBuilder.md)
 ## Functions
 
 ### <span class="badge function"></span> NewConstraint
@@ -111,6 +112,14 @@ This configuration describes how to unmarshal it, convert it to code, …
 func VariantConfig() variants.PanelcfgConfig
 ```
 
+### <span class="badge function"></span> PanelConverter
+
+PanelConverter accepts a `Panel` object and generates the Go code to build this object using builders.
+
+```go
+func PanelConverter(input dashboard.Panel) string
+```
+
 ### <span class="badge function"></span> ConstraintConverter
 
 ConstraintConverter accepts a `Constraint` object and generates the Go code to build this object using builders.
@@ -175,11 +184,11 @@ CanvasOptionsRootConverter accepts a `CanvasOptionsRoot` object and generates th
 func CanvasOptionsRootConverter(input CanvasOptionsRoot) string
 ```
 
-### <span class="badge function"></span> PanelConverter
+### <span class="badge function"></span> VisualizationConverter
 
-PanelConverter accepts a `Panel` object and generates the Go code to build this object using builders.
+VisualizationConverter accepts a `Visualization` object and generates the Go code to build this object using builders.
 
 ```go
-func PanelConverter(input dashboard.Panel) string
+func VisualizationConverter(input dashboardv2beta1.VizConfigKind) string
 ```
 

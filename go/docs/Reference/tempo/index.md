@@ -12,6 +12,7 @@
  * <span class="badge object-type-enum"></span> [TraceqlSearchScope](./object-TraceqlSearchScope.md)
 ## Builders
 
+ * <span class="badge builder"></span> [QueryBuilder](./builder-QueryBuilder.md)
  * <span class="badge builder"></span> [TempoQueryBuilder](./builder-TempoQueryBuilder.md)
  * <span class="badge builder"></span> [TraceqlFilterBuilder](./builder-TraceqlFilterBuilder.md)
 ## Functions
@@ -64,5 +65,13 @@ TraceqlFilterConverter accepts a `TraceqlFilter` object and generates the Go cod
 
 ```go
 func TraceqlFilterConverter(input TraceqlFilter) string
+```
+
+### <span class="badge function"></span> QueryConverter
+
+QueryConverter accepts a `Query` object and generates the Go code to build this object using builders.
+
+```go
+func QueryConverter(input dashboardv2beta1.DataQueryKind) string
 ```
 

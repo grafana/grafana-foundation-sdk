@@ -24,6 +24,7 @@
  * <span class="badge builder"></span> [KeyBuilder](./builder-KeyBuilder.md)
  * <span class="badge builder"></span> [NodesQueryBuilder](./builder-NodesQueryBuilder.md)
  * <span class="badge builder"></span> [PulseWaveQueryBuilder](./builder-PulseWaveQueryBuilder.md)
+ * <span class="badge builder"></span> [QueryBuilder](./builder-QueryBuilder.md)
  * <span class="badge builder"></span> [ResultAssertionsBuilder](./builder-ResultAssertionsBuilder.md)
  * <span class="badge builder"></span> [SimulationQueryBuilder](./builder-SimulationQueryBuilder.md)
  * <span class="badge builder"></span> [StreamingQueryBuilder](./builder-StreamingQueryBuilder.md)
@@ -200,5 +201,13 @@ DataqueryConverter accepts a `Dataquery` object and generates the Go code to bui
 
 ```go
 func DataqueryConverter(input Dataquery) string
+```
+
+### <span class="badge function"></span> QueryConverter
+
+QueryConverter accepts a `Query` object and generates the Go code to build this object using builders.
+
+```go
+func QueryConverter(input dashboardv2beta1.DataQueryKind) string
 ```
 

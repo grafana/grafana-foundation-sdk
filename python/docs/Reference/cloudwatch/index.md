@@ -34,6 +34,7 @@
  * <span class="badge builder"></span> [CloudWatchMetricsQuery](./builder-CloudWatchMetricsQuery.md)
  * <span class="badge builder"></span> [LogGroup](./builder-LogGroup.md)
  * <span class="badge builder"></span> [MetricStat](./builder-MetricStat.md)
+ * <span class="badge builder"></span> [Query](./builder-Query.md)
  * <span class="badge builder"></span> [QueryEditorArrayExpression](./builder-QueryEditorArrayExpression.md)
  * <span class="badge builder"></span> [QueryEditorFunctionExpression](./builder-QueryEditorFunctionExpression.md)
  * <span class="badge builder"></span> [QueryEditorFunctionParameterExpression](./builder-QueryEditorFunctionParameterExpression.md)

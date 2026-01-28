@@ -51,7 +51,7 @@ class PieChartLegendOptions:
     width: typing.Optional[float]
     calcs: list[str]
 
-    def __init__(self, values: typing.Optional[list['PieChartLegendValues']] = None, display_mode: typing.Optional[common.LegendDisplayMode] = None, placement: typing.Optional[common.LegendPlacement] = None, show_legend: bool = False, as_table: typing.Optional[bool] = None, is_visible: typing.Optional[bool] = None, sort_by: typing.Optional[str] = None, sort_desc: typing.Optional[bool] = None, width: typing.Optional[float] = None, calcs: typing.Optional[list[str]] = None):
+    def __init__(self, values: typing.Optional[list['PieChartLegendValues']] = None, display_mode: typing.Optional[common.LegendDisplayMode] = None, placement: typing.Optional[common.LegendPlacement] = None, show_legend: bool = False, as_table: typing.Optional[bool] = None, is_visible: typing.Optional[bool] = None, sort_by: typing.Optional[str] = None, sort_desc: typing.Optional[bool] = None, width: typing.Optional[float] = None, calcs: typing.Optional[list[str]] = None) -> None:
         self.values = values if values is not None else []
         self.display_mode = display_mode if display_mode is not None else common.LegendDisplayMode.LIST
         self.placement = placement if placement is not None else common.LegendPlacement.BOTTOM
@@ -120,7 +120,7 @@ class Options:
     legend: 'PieChartLegendOptions'
     orientation: common.VizOrientation
 
-    def __init__(self, pie_type: typing.Optional['PieChartType'] = None, display_labels: typing.Optional[list['PieChartLabels']] = None, tooltip: typing.Optional[common.VizTooltipOptions] = None, reduce_options: typing.Optional[common.ReduceDataOptions] = None, text: typing.Optional[common.VizTextDisplayOptions] = None, legend: typing.Optional['PieChartLegendOptions'] = None, orientation: typing.Optional[common.VizOrientation] = None):
+    def __init__(self, pie_type: typing.Optional['PieChartType'] = None, display_labels: typing.Optional[list['PieChartLabels']] = None, tooltip: typing.Optional[common.VizTooltipOptions] = None, reduce_options: typing.Optional[common.ReduceDataOptions] = None, text: typing.Optional[common.VizTextDisplayOptions] = None, legend: typing.Optional['PieChartLegendOptions'] = None, orientation: typing.Optional[common.VizOrientation] = None) -> None:
         self.pie_type = pie_type if pie_type is not None else PieChartType.PIE
         self.display_labels = display_labels
         self.tooltip = tooltip if tooltip is not None else common.VizTooltipOptions()

@@ -67,6 +67,7 @@
  * <span class="badge builder"></span> [ExprTypeThresholdConditionsUnloadEvaluatorBuilder](./builder-ExprTypeThresholdConditionsUnloadEvaluatorBuilder.md)
  * <span class="badge builder"></span> [ExprTypeThresholdResultAssertionsBuilder](./builder-ExprTypeThresholdResultAssertionsBuilder.md)
  * <span class="badge builder"></span> [ExprTypeThresholdTimeRangeBuilder](./builder-ExprTypeThresholdTimeRangeBuilder.md)
+ * <span class="badge builder"></span> [QueryBuilder](./builder-QueryBuilder.md)
  * <span class="badge builder"></span> [TypeClassicConditionsBuilder](./builder-TypeClassicConditionsBuilder.md)
  * <span class="badge builder"></span> [TypeMathBuilder](./builder-TypeMathBuilder.md)
  * <span class="badge builder"></span> [TypeReduceBuilder](./builder-TypeReduceBuilder.md)
@@ -531,5 +532,13 @@ ExprTypeSqlTimeRangeConverter accepts a `ExprTypeSqlTimeRange` object and genera
 
 ```go
 func ExprTypeSqlTimeRangeConverter(input ExprTypeSqlTimeRange) string
+```
+
+### <span class="badge function"></span> QueryConverter
+
+QueryConverter accepts a `Query` object and generates the Go code to build this object using builders.
+
+```go
+func QueryConverter(input dashboardv2beta1.DataQueryKind) string
 ```
 

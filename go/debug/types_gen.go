@@ -10,6 +10,7 @@ import (
 	cog "github.com/grafana/grafana-foundation-sdk/go/cog"
 	variants "github.com/grafana/grafana-foundation-sdk/go/cog/variants"
 	dashboard "github.com/grafana/grafana-foundation-sdk/go/dashboard"
+	dashboardv2beta1 "github.com/grafana/grafana-foundation-sdk/go/dashboardv2beta1"
 )
 
 type UpdateConfig struct {
@@ -218,8 +219,7 @@ func (resource Options) Validate() error {
 // This configuration describes how to unmarshal it, convert it to code, …
 func VariantConfig() variants.PanelcfgConfig {
 	return variants.PanelcfgConfig{
-		Identifier: "debug",
-		OptionsUnmarshaler: func(raw []byte) (any, error) {
+		Identifier: "debug", OptionsUnmarshaler: func(raw []byte) (any, error) {
 			options := &Options{}
 
 			if err := json.Unmarshal(raw, options); err != nil {
@@ -236,13 +236,18 @@ func VariantConfig() variants.PanelcfgConfig {
 			}
 
 			return options, nil
-		},
-		GoConverter: func(inputPanel any) string {
+		}, GoConverter: func(inputPanel any) string {
 			if panel, ok := inputPanel.(*dashboard.Panel); ok {
 				return PanelConverter(*panel)
 			}
+			if panel, ok := inputPanel.(dashboard.Panel); ok {
+				return PanelConverter(panel)
+			}
+			if panel, ok := inputPanel.(*dashboardv2beta1.VizConfigKind); ok {
+				return VisualizationConverter(*panel)
+			}
 
-			return PanelConverter(inputPanel.(dashboard.Panel))
+			return VisualizationConverter(inputPanel.(dashboardv2beta1.VizConfigKind))
 		},
 	}
 }

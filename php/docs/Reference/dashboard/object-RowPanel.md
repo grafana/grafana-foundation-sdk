@@ -28,7 +28,7 @@ class RowPanel implements \JsonSerializable
     /**
      * Name of default datasource for the row
      */
-    public ?\Grafana\Foundation\Dashboard\DataSourceRef $datasource;
+    public ?\Grafana\Foundation\Common\DataSourceRef $datasource;
 
     /**
      * Row grid position

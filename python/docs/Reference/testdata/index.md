@@ -18,6 +18,7 @@
  * <span class="badge builder"></span> [Key](./builder-Key.md)
  * <span class="badge builder"></span> [NodesQuery](./builder-NodesQuery.md)
  * <span class="badge builder"></span> [PulseWaveQuery](./builder-PulseWaveQuery.md)
+ * <span class="badge builder"></span> [Query](./builder-Query.md)
  * <span class="badge builder"></span> [ResultAssertions](./builder-ResultAssertions.md)
  * <span class="badge builder"></span> [SimulationQuery](./builder-SimulationQuery.md)
  * <span class="badge builder"></span> [StreamingQuery](./builder-StreamingQuery.md)

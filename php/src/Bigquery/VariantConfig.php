@@ -10,6 +10,8 @@ final class VariantConfig
             identifier: 'grafana-bigquery-datasource',
             fromArray: [Dataquery::class, 'fromArray'],
             convert: [DataqueryConverter::class, 'convert'],
+            convertv2: [QueryConverter::class, 'convert'],
         );
     }
+
 }

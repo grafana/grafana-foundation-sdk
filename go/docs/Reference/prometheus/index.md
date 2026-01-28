@@ -7,6 +7,7 @@
  * <span class="badge object-type-struct"></span> [Dataquery](./object-Dataquery.md)
 ## Builders
 
+ * <span class="badge builder"></span> [QueryBuilder](./builder-QueryBuilder.md)
  * <span class="badge builder"></span> [DataqueryBuilder](./builder-DataqueryBuilder.md)
 ## Functions
 
@@ -34,5 +35,13 @@ DataqueryConverter accepts a `Dataquery` object and generates the Go code to bui
 
 ```go
 func DataqueryConverter(input Dataquery) string
+```
+
+### <span class="badge function"></span> QueryConverter
+
+QueryConverter accepts a `Query` object and generates the Go code to build this object using builders.
+
+```go
+func QueryConverter(input dashboardv2beta1.DataQueryKind) string
 ```
 

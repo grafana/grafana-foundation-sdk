@@ -14,3 +14,5 @@ export * from './typeThresholdBuilder.gen';
 export type * from './typeThresholdBuilder.gen';
 export * from './typeSqlBuilder.gen';
 export type * from './typeSqlBuilder.gen';
+export * from './queryBuilder.gen';
+export type * from './queryBuilder.gen';
