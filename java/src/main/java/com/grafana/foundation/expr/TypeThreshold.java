@@ -11,7 +11,7 @@ import com.fasterxml.jackson.annotation.JsonSetter;
 import com.fasterxml.jackson.annotation.Nulls;
 import java.util.List;
 import com.fasterxml.jackson.annotation.JsonInclude;
-import com.grafana.foundation.dashboard.DataSourceRef;
+import com.grafana.foundation.common.DataSourceRef;
 
 public class TypeThreshold implements com.grafana.foundation.cog.variants.Dataquery {
     // Threshold Conditions
@@ -49,6 +49,7 @@ public class TypeThreshold implements com.grafana.foundation.cog.variants.Dataqu
     @JsonProperty("queryType")
     public String queryType;
     // RefID is the unique identifier of the query, set by the frontend call.
+    @JsonInclude(JsonInclude.Include.NON_NULL)
     @JsonProperty("refId")
     public String refId;
     // Optionally define expected query result behavior
@@ -66,7 +67,6 @@ public class TypeThreshold implements com.grafana.foundation.cog.variants.Dataqu
     public TypeThreshold() {
         this.conditions = new LinkedList<>();
         this.expression = "";
-        this.refId = "";
         this.type = "";
     }
     public TypeThreshold(List<ExprTypeThresholdConditions> conditions,DataSourceRef datasource,String expression,Boolean hide,Double intervalMs,Long maxDataPoints,String queryType,String refId,ExprTypeThresholdResultAssertions resultAssertions,ExprTypeThresholdTimeRange timeRange,String type) {

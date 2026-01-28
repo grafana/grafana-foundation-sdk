@@ -7,7 +7,7 @@ class TypeResample implements \JsonSerializable, \Grafana\Foundation\Cog\Dataque
     /**
      * The datasource
      */
-    public ?\Grafana\Foundation\Dashboard\DataSourceRef $datasource;
+    public ?\Grafana\Foundation\Common\DataSourceRef $datasource;
 
     /**
      * The downsample function
@@ -57,7 +57,7 @@ class TypeResample implements \JsonSerializable, \Grafana\Foundation\Cog\Dataque
     /**
      * RefID is the unique identifier of the query, set by the frontend call.
      */
-    public string $refId;
+    public ?string $refId;
 
     /**
      * Optionally define expected query result behavior
@@ -88,7 +88,7 @@ class TypeResample implements \JsonSerializable, \Grafana\Foundation\Cog\Dataque
     public string $window;
 
     /**
-     * @param \Grafana\Foundation\Dashboard\DataSourceRef|null $datasource
+     * @param \Grafana\Foundation\Common\DataSourceRef|null $datasource
      * @param \Grafana\Foundation\Expr\TypeResampleDownsampler|null $downsampler
      * @param string|null $expression
      * @param bool|null $hide
@@ -101,7 +101,7 @@ class TypeResample implements \JsonSerializable, \Grafana\Foundation\Cog\Dataque
      * @param \Grafana\Foundation\Expr\TypeResampleUpsampler|null $upsampler
      * @param string|null $window
      */
-    public function __construct(?\Grafana\Foundation\Dashboard\DataSourceRef $datasource = null, ?\Grafana\Foundation\Expr\TypeResampleDownsampler $downsampler = null, ?string $expression = null, ?bool $hide = null, ?float $intervalMs = null, ?int $maxDataPoints = null, ?string $queryType = null, ?string $refId = null, ?\Grafana\Foundation\Expr\ExprTypeResampleResultAssertions $resultAssertions = null, ?\Grafana\Foundation\Expr\ExprTypeResampleTimeRange $timeRange = null, ?\Grafana\Foundation\Expr\TypeResampleUpsampler $upsampler = null, ?string $window = null)
+    public function __construct(?\Grafana\Foundation\Common\DataSourceRef $datasource = null, ?\Grafana\Foundation\Expr\TypeResampleDownsampler $downsampler = null, ?string $expression = null, ?bool $hide = null, ?float $intervalMs = null, ?int $maxDataPoints = null, ?string $queryType = null, ?string $refId = null, ?\Grafana\Foundation\Expr\ExprTypeResampleResultAssertions $resultAssertions = null, ?\Grafana\Foundation\Expr\ExprTypeResampleTimeRange $timeRange = null, ?\Grafana\Foundation\Expr\TypeResampleUpsampler $upsampler = null, ?string $window = null)
     {
         $this->datasource = $datasource;
         $this->downsampler = $downsampler ?: \Grafana\Foundation\Expr\TypeResampleDownsampler::Sum();
@@ -110,7 +110,7 @@ class TypeResample implements \JsonSerializable, \Grafana\Foundation\Cog\Dataque
         $this->intervalMs = $intervalMs;
         $this->maxDataPoints = $maxDataPoints;
         $this->queryType = $queryType;
-        $this->refId = $refId ?: "";
+        $this->refId = $refId;
         $this->resultAssertions = $resultAssertions;
         $this->timeRange = $timeRange;
         $this->type = "resample";
@@ -130,7 +130,7 @@ class TypeResample implements \JsonSerializable, \Grafana\Foundation\Cog\Dataque
             datasource: isset($data["datasource"]) ? (function($input) {
     	/** @var array{type?: string, uid?: string} */
     $val = $input;
-    	return \Grafana\Foundation\Dashboard\DataSourceRef::fromArray($val);
+    	return \Grafana\Foundation\Common\DataSourceRef::fromArray($val);
     })($data["datasource"]) : null,
             downsampler: isset($data["downsampler"]) ? (function($input) { return \Grafana\Foundation\Expr\TypeResampleDownsampler::fromValue($input); })($data["downsampler"]) : null,
             expression: $data["expression"] ?? null,
@@ -162,7 +162,6 @@ class TypeResample implements \JsonSerializable, \Grafana\Foundation\Cog\Dataque
         $data = new \stdClass;
         $data->downsampler = $this->downsampler;
         $data->expression = $this->expression;
-        $data->refId = $this->refId;
         $data->type = $this->type;
         $data->upsampler = $this->upsampler;
         $data->window = $this->window;
@@ -180,6 +179,9 @@ class TypeResample implements \JsonSerializable, \Grafana\Foundation\Cog\Dataque
         }
         if (isset($this->queryType)) {
             $data->queryType = $this->queryType;
+        }
+        if (isset($this->refId)) {
+            $data->refId = $this->refId;
         }
         if (isset($this->resultAssertions)) {
             $data->resultAssertions = $this->resultAssertions;

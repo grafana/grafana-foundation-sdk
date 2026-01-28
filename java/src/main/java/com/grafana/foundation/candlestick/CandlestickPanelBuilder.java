@@ -6,7 +6,7 @@ import com.grafana.foundation.dashboard.Panel;
 import java.util.List;
 import com.grafana.foundation.cog.variants.Dataquery;
 import java.util.LinkedList;
-import com.grafana.foundation.dashboard.DataSourceRef;
+import com.grafana.foundation.common.DataSourceRef;
 import com.grafana.foundation.dashboard.GridPos;
 import com.grafana.foundation.dashboard.DashboardLink;
 import com.grafana.foundation.dashboard.PanelRepeatDirection;
@@ -406,7 +406,7 @@ public class CandlestickPanelBuilder implements com.grafana.foundation.cog.Build
     
     public CandlestickPanelBuilder mode(VizDisplayMode mode) {
 		if (this.internal.options == null) {
-			this.internal.options = new com.grafana.foundation.candlestick.Options();
+			this.internal.options = new com.grafana.foundation.candlestick.OptionsBuilder().build();
 		}
         ((Options) this.internal.options).mode = mode;
         return this;
@@ -414,7 +414,7 @@ public class CandlestickPanelBuilder implements com.grafana.foundation.cog.Build
     
     public CandlestickPanelBuilder candleStyle(CandleStyle candleStyle) {
 		if (this.internal.options == null) {
-			this.internal.options = new com.grafana.foundation.candlestick.Options();
+			this.internal.options = new com.grafana.foundation.candlestick.OptionsBuilder().build();
 		}
         ((Options) this.internal.options).candleStyle = candleStyle;
         return this;
@@ -422,7 +422,7 @@ public class CandlestickPanelBuilder implements com.grafana.foundation.cog.Build
     
     public CandlestickPanelBuilder colorStrategy(ColorStrategy colorStrategy) {
 		if (this.internal.options == null) {
-			this.internal.options = new com.grafana.foundation.candlestick.Options();
+			this.internal.options = new com.grafana.foundation.candlestick.OptionsBuilder().build();
 		}
         ((Options) this.internal.options).colorStrategy = colorStrategy;
         return this;
@@ -430,7 +430,7 @@ public class CandlestickPanelBuilder implements com.grafana.foundation.cog.Build
     
     public CandlestickPanelBuilder fields(com.grafana.foundation.cog.Builder<CandlestickFieldMap> fields) {
 		if (this.internal.options == null) {
-			this.internal.options = new com.grafana.foundation.candlestick.Options();
+			this.internal.options = new com.grafana.foundation.candlestick.OptionsBuilder().build();
 		}
     CandlestickFieldMap fieldsResource = fields.build();
         ((Options) this.internal.options).fields = fieldsResource;
@@ -439,7 +439,7 @@ public class CandlestickPanelBuilder implements com.grafana.foundation.cog.Build
     
     public CandlestickPanelBuilder colors(com.grafana.foundation.cog.Builder<CandlestickColors> colors) {
 		if (this.internal.options == null) {
-			this.internal.options = new com.grafana.foundation.candlestick.Options();
+			this.internal.options = new com.grafana.foundation.candlestick.OptionsBuilder().build();
 		}
     CandlestickColors colorsResource = colors.build();
         ((Options) this.internal.options).colors = colorsResource;
@@ -448,7 +448,7 @@ public class CandlestickPanelBuilder implements com.grafana.foundation.cog.Build
     
     public CandlestickPanelBuilder legend(com.grafana.foundation.cog.Builder<VizLegendOptions> legend) {
 		if (this.internal.options == null) {
-			this.internal.options = new com.grafana.foundation.candlestick.Options();
+			this.internal.options = new com.grafana.foundation.candlestick.OptionsBuilder().build();
 		}
     VizLegendOptions legendResource = legend.build();
         ((Options) this.internal.options).legend = legendResource;
@@ -457,7 +457,7 @@ public class CandlestickPanelBuilder implements com.grafana.foundation.cog.Build
     
     public CandlestickPanelBuilder tooltip(com.grafana.foundation.cog.Builder<VizTooltipOptions> tooltip) {
 		if (this.internal.options == null) {
-			this.internal.options = new com.grafana.foundation.candlestick.Options();
+			this.internal.options = new com.grafana.foundation.candlestick.OptionsBuilder().build();
 		}
     VizTooltipOptions tooltipResource = tooltip.build();
         ((Options) this.internal.options).tooltip = tooltipResource;
@@ -466,7 +466,7 @@ public class CandlestickPanelBuilder implements com.grafana.foundation.cog.Build
     
     public CandlestickPanelBuilder includeAllFields(Boolean includeAllFields) {
 		if (this.internal.options == null) {
-			this.internal.options = new com.grafana.foundation.candlestick.Options();
+			this.internal.options = new com.grafana.foundation.candlestick.OptionsBuilder().build();
 		}
         ((Options) this.internal.options).includeAllFields = includeAllFields;
         return this;
@@ -480,7 +480,7 @@ public class CandlestickPanelBuilder implements com.grafana.foundation.cog.Build
 			this.internal.fieldConfig.defaults = new com.grafana.foundation.dashboard.FieldConfig();
 		}
 		if (this.internal.fieldConfig.defaults.custom == null) {
-			this.internal.fieldConfig.defaults.custom = new com.grafana.foundation.candlestick.FieldConfig();
+			this.internal.fieldConfig.defaults.custom = new com.grafana.foundation.candlestick.FieldConfigBuilder().build();
 		}
         ((FieldConfig) this.internal.fieldConfig.defaults.custom).drawStyle = drawStyle;
         return this;
@@ -494,7 +494,7 @@ public class CandlestickPanelBuilder implements com.grafana.foundation.cog.Build
 			this.internal.fieldConfig.defaults = new com.grafana.foundation.dashboard.FieldConfig();
 		}
 		if (this.internal.fieldConfig.defaults.custom == null) {
-			this.internal.fieldConfig.defaults.custom = new com.grafana.foundation.candlestick.FieldConfig();
+			this.internal.fieldConfig.defaults.custom = new com.grafana.foundation.candlestick.FieldConfigBuilder().build();
 		}
         ((FieldConfig) this.internal.fieldConfig.defaults.custom).gradientMode = gradientMode;
         return this;
@@ -508,7 +508,7 @@ public class CandlestickPanelBuilder implements com.grafana.foundation.cog.Build
 			this.internal.fieldConfig.defaults = new com.grafana.foundation.dashboard.FieldConfig();
 		}
 		if (this.internal.fieldConfig.defaults.custom == null) {
-			this.internal.fieldConfig.defaults.custom = new com.grafana.foundation.candlestick.FieldConfig();
+			this.internal.fieldConfig.defaults.custom = new com.grafana.foundation.candlestick.FieldConfigBuilder().build();
 		}
     GraphThresholdsStyleConfig thresholdsStyleResource = thresholdsStyle.build();
         ((FieldConfig) this.internal.fieldConfig.defaults.custom).thresholdsStyle = thresholdsStyleResource;
@@ -523,7 +523,7 @@ public class CandlestickPanelBuilder implements com.grafana.foundation.cog.Build
 			this.internal.fieldConfig.defaults = new com.grafana.foundation.dashboard.FieldConfig();
 		}
 		if (this.internal.fieldConfig.defaults.custom == null) {
-			this.internal.fieldConfig.defaults.custom = new com.grafana.foundation.candlestick.FieldConfig();
+			this.internal.fieldConfig.defaults.custom = new com.grafana.foundation.candlestick.FieldConfigBuilder().build();
 		}
         ((FieldConfig) this.internal.fieldConfig.defaults.custom).transform = transform;
         return this;
@@ -537,7 +537,7 @@ public class CandlestickPanelBuilder implements com.grafana.foundation.cog.Build
 			this.internal.fieldConfig.defaults = new com.grafana.foundation.dashboard.FieldConfig();
 		}
 		if (this.internal.fieldConfig.defaults.custom == null) {
-			this.internal.fieldConfig.defaults.custom = new com.grafana.foundation.candlestick.FieldConfig();
+			this.internal.fieldConfig.defaults.custom = new com.grafana.foundation.candlestick.FieldConfigBuilder().build();
 		}
         ((FieldConfig) this.internal.fieldConfig.defaults.custom).lineColor = lineColor;
         return this;
@@ -551,7 +551,7 @@ public class CandlestickPanelBuilder implements com.grafana.foundation.cog.Build
 			this.internal.fieldConfig.defaults = new com.grafana.foundation.dashboard.FieldConfig();
 		}
 		if (this.internal.fieldConfig.defaults.custom == null) {
-			this.internal.fieldConfig.defaults.custom = new com.grafana.foundation.candlestick.FieldConfig();
+			this.internal.fieldConfig.defaults.custom = new com.grafana.foundation.candlestick.FieldConfigBuilder().build();
 		}
         ((FieldConfig) this.internal.fieldConfig.defaults.custom).lineWidth = lineWidth;
         return this;
@@ -565,7 +565,7 @@ public class CandlestickPanelBuilder implements com.grafana.foundation.cog.Build
 			this.internal.fieldConfig.defaults = new com.grafana.foundation.dashboard.FieldConfig();
 		}
 		if (this.internal.fieldConfig.defaults.custom == null) {
-			this.internal.fieldConfig.defaults.custom = new com.grafana.foundation.candlestick.FieldConfig();
+			this.internal.fieldConfig.defaults.custom = new com.grafana.foundation.candlestick.FieldConfigBuilder().build();
 		}
         ((FieldConfig) this.internal.fieldConfig.defaults.custom).lineInterpolation = lineInterpolation;
         return this;
@@ -579,7 +579,7 @@ public class CandlestickPanelBuilder implements com.grafana.foundation.cog.Build
 			this.internal.fieldConfig.defaults = new com.grafana.foundation.dashboard.FieldConfig();
 		}
 		if (this.internal.fieldConfig.defaults.custom == null) {
-			this.internal.fieldConfig.defaults.custom = new com.grafana.foundation.candlestick.FieldConfig();
+			this.internal.fieldConfig.defaults.custom = new com.grafana.foundation.candlestick.FieldConfigBuilder().build();
 		}
     LineStyle lineStyleResource = lineStyle.build();
         ((FieldConfig) this.internal.fieldConfig.defaults.custom).lineStyle = lineStyleResource;
@@ -594,7 +594,7 @@ public class CandlestickPanelBuilder implements com.grafana.foundation.cog.Build
 			this.internal.fieldConfig.defaults = new com.grafana.foundation.dashboard.FieldConfig();
 		}
 		if (this.internal.fieldConfig.defaults.custom == null) {
-			this.internal.fieldConfig.defaults.custom = new com.grafana.foundation.candlestick.FieldConfig();
+			this.internal.fieldConfig.defaults.custom = new com.grafana.foundation.candlestick.FieldConfigBuilder().build();
 		}
         ((FieldConfig) this.internal.fieldConfig.defaults.custom).fillColor = fillColor;
         return this;
@@ -608,7 +608,7 @@ public class CandlestickPanelBuilder implements com.grafana.foundation.cog.Build
 			this.internal.fieldConfig.defaults = new com.grafana.foundation.dashboard.FieldConfig();
 		}
 		if (this.internal.fieldConfig.defaults.custom == null) {
-			this.internal.fieldConfig.defaults.custom = new com.grafana.foundation.candlestick.FieldConfig();
+			this.internal.fieldConfig.defaults.custom = new com.grafana.foundation.candlestick.FieldConfigBuilder().build();
 		}
         ((FieldConfig) this.internal.fieldConfig.defaults.custom).fillOpacity = fillOpacity;
         return this;
@@ -622,7 +622,7 @@ public class CandlestickPanelBuilder implements com.grafana.foundation.cog.Build
 			this.internal.fieldConfig.defaults = new com.grafana.foundation.dashboard.FieldConfig();
 		}
 		if (this.internal.fieldConfig.defaults.custom == null) {
-			this.internal.fieldConfig.defaults.custom = new com.grafana.foundation.candlestick.FieldConfig();
+			this.internal.fieldConfig.defaults.custom = new com.grafana.foundation.candlestick.FieldConfigBuilder().build();
 		}
         ((FieldConfig) this.internal.fieldConfig.defaults.custom).showPoints = showPoints;
         return this;
@@ -636,7 +636,7 @@ public class CandlestickPanelBuilder implements com.grafana.foundation.cog.Build
 			this.internal.fieldConfig.defaults = new com.grafana.foundation.dashboard.FieldConfig();
 		}
 		if (this.internal.fieldConfig.defaults.custom == null) {
-			this.internal.fieldConfig.defaults.custom = new com.grafana.foundation.candlestick.FieldConfig();
+			this.internal.fieldConfig.defaults.custom = new com.grafana.foundation.candlestick.FieldConfigBuilder().build();
 		}
         ((FieldConfig) this.internal.fieldConfig.defaults.custom).pointSize = pointSize;
         return this;
@@ -650,7 +650,7 @@ public class CandlestickPanelBuilder implements com.grafana.foundation.cog.Build
 			this.internal.fieldConfig.defaults = new com.grafana.foundation.dashboard.FieldConfig();
 		}
 		if (this.internal.fieldConfig.defaults.custom == null) {
-			this.internal.fieldConfig.defaults.custom = new com.grafana.foundation.candlestick.FieldConfig();
+			this.internal.fieldConfig.defaults.custom = new com.grafana.foundation.candlestick.FieldConfigBuilder().build();
 		}
         ((FieldConfig) this.internal.fieldConfig.defaults.custom).pointColor = pointColor;
         return this;
@@ -664,7 +664,7 @@ public class CandlestickPanelBuilder implements com.grafana.foundation.cog.Build
 			this.internal.fieldConfig.defaults = new com.grafana.foundation.dashboard.FieldConfig();
 		}
 		if (this.internal.fieldConfig.defaults.custom == null) {
-			this.internal.fieldConfig.defaults.custom = new com.grafana.foundation.candlestick.FieldConfig();
+			this.internal.fieldConfig.defaults.custom = new com.grafana.foundation.candlestick.FieldConfigBuilder().build();
 		}
         ((FieldConfig) this.internal.fieldConfig.defaults.custom).axisPlacement = axisPlacement;
         return this;
@@ -678,7 +678,7 @@ public class CandlestickPanelBuilder implements com.grafana.foundation.cog.Build
 			this.internal.fieldConfig.defaults = new com.grafana.foundation.dashboard.FieldConfig();
 		}
 		if (this.internal.fieldConfig.defaults.custom == null) {
-			this.internal.fieldConfig.defaults.custom = new com.grafana.foundation.candlestick.FieldConfig();
+			this.internal.fieldConfig.defaults.custom = new com.grafana.foundation.candlestick.FieldConfigBuilder().build();
 		}
         ((FieldConfig) this.internal.fieldConfig.defaults.custom).axisColorMode = axisColorMode;
         return this;
@@ -692,7 +692,7 @@ public class CandlestickPanelBuilder implements com.grafana.foundation.cog.Build
 			this.internal.fieldConfig.defaults = new com.grafana.foundation.dashboard.FieldConfig();
 		}
 		if (this.internal.fieldConfig.defaults.custom == null) {
-			this.internal.fieldConfig.defaults.custom = new com.grafana.foundation.candlestick.FieldConfig();
+			this.internal.fieldConfig.defaults.custom = new com.grafana.foundation.candlestick.FieldConfigBuilder().build();
 		}
         ((FieldConfig) this.internal.fieldConfig.defaults.custom).axisLabel = axisLabel;
         return this;
@@ -706,7 +706,7 @@ public class CandlestickPanelBuilder implements com.grafana.foundation.cog.Build
 			this.internal.fieldConfig.defaults = new com.grafana.foundation.dashboard.FieldConfig();
 		}
 		if (this.internal.fieldConfig.defaults.custom == null) {
-			this.internal.fieldConfig.defaults.custom = new com.grafana.foundation.candlestick.FieldConfig();
+			this.internal.fieldConfig.defaults.custom = new com.grafana.foundation.candlestick.FieldConfigBuilder().build();
 		}
         ((FieldConfig) this.internal.fieldConfig.defaults.custom).axisWidth = axisWidth;
         return this;
@@ -720,7 +720,7 @@ public class CandlestickPanelBuilder implements com.grafana.foundation.cog.Build
 			this.internal.fieldConfig.defaults = new com.grafana.foundation.dashboard.FieldConfig();
 		}
 		if (this.internal.fieldConfig.defaults.custom == null) {
-			this.internal.fieldConfig.defaults.custom = new com.grafana.foundation.candlestick.FieldConfig();
+			this.internal.fieldConfig.defaults.custom = new com.grafana.foundation.candlestick.FieldConfigBuilder().build();
 		}
         ((FieldConfig) this.internal.fieldConfig.defaults.custom).axisSoftMin = axisSoftMin;
         return this;
@@ -734,7 +734,7 @@ public class CandlestickPanelBuilder implements com.grafana.foundation.cog.Build
 			this.internal.fieldConfig.defaults = new com.grafana.foundation.dashboard.FieldConfig();
 		}
 		if (this.internal.fieldConfig.defaults.custom == null) {
-			this.internal.fieldConfig.defaults.custom = new com.grafana.foundation.candlestick.FieldConfig();
+			this.internal.fieldConfig.defaults.custom = new com.grafana.foundation.candlestick.FieldConfigBuilder().build();
 		}
         ((FieldConfig) this.internal.fieldConfig.defaults.custom).axisSoftMax = axisSoftMax;
         return this;
@@ -748,7 +748,7 @@ public class CandlestickPanelBuilder implements com.grafana.foundation.cog.Build
 			this.internal.fieldConfig.defaults = new com.grafana.foundation.dashboard.FieldConfig();
 		}
 		if (this.internal.fieldConfig.defaults.custom == null) {
-			this.internal.fieldConfig.defaults.custom = new com.grafana.foundation.candlestick.FieldConfig();
+			this.internal.fieldConfig.defaults.custom = new com.grafana.foundation.candlestick.FieldConfigBuilder().build();
 		}
         ((FieldConfig) this.internal.fieldConfig.defaults.custom).axisGridShow = axisGridShow;
         return this;
@@ -762,7 +762,7 @@ public class CandlestickPanelBuilder implements com.grafana.foundation.cog.Build
 			this.internal.fieldConfig.defaults = new com.grafana.foundation.dashboard.FieldConfig();
 		}
 		if (this.internal.fieldConfig.defaults.custom == null) {
-			this.internal.fieldConfig.defaults.custom = new com.grafana.foundation.candlestick.FieldConfig();
+			this.internal.fieldConfig.defaults.custom = new com.grafana.foundation.candlestick.FieldConfigBuilder().build();
 		}
     ScaleDistributionConfig scaleDistributionResource = scaleDistribution.build();
         ((FieldConfig) this.internal.fieldConfig.defaults.custom).scaleDistribution = scaleDistributionResource;
@@ -777,7 +777,7 @@ public class CandlestickPanelBuilder implements com.grafana.foundation.cog.Build
 			this.internal.fieldConfig.defaults = new com.grafana.foundation.dashboard.FieldConfig();
 		}
 		if (this.internal.fieldConfig.defaults.custom == null) {
-			this.internal.fieldConfig.defaults.custom = new com.grafana.foundation.candlestick.FieldConfig();
+			this.internal.fieldConfig.defaults.custom = new com.grafana.foundation.candlestick.FieldConfigBuilder().build();
 		}
         ((FieldConfig) this.internal.fieldConfig.defaults.custom).axisCenteredZero = axisCenteredZero;
         return this;
@@ -791,7 +791,7 @@ public class CandlestickPanelBuilder implements com.grafana.foundation.cog.Build
 			this.internal.fieldConfig.defaults = new com.grafana.foundation.dashboard.FieldConfig();
 		}
 		if (this.internal.fieldConfig.defaults.custom == null) {
-			this.internal.fieldConfig.defaults.custom = new com.grafana.foundation.candlestick.FieldConfig();
+			this.internal.fieldConfig.defaults.custom = new com.grafana.foundation.candlestick.FieldConfigBuilder().build();
 		}
         ((FieldConfig) this.internal.fieldConfig.defaults.custom).barAlignment = barAlignment;
         return this;
@@ -805,7 +805,7 @@ public class CandlestickPanelBuilder implements com.grafana.foundation.cog.Build
 			this.internal.fieldConfig.defaults = new com.grafana.foundation.dashboard.FieldConfig();
 		}
 		if (this.internal.fieldConfig.defaults.custom == null) {
-			this.internal.fieldConfig.defaults.custom = new com.grafana.foundation.candlestick.FieldConfig();
+			this.internal.fieldConfig.defaults.custom = new com.grafana.foundation.candlestick.FieldConfigBuilder().build();
 		}
         ((FieldConfig) this.internal.fieldConfig.defaults.custom).barWidthFactor = barWidthFactor;
         return this;
@@ -819,7 +819,7 @@ public class CandlestickPanelBuilder implements com.grafana.foundation.cog.Build
 			this.internal.fieldConfig.defaults = new com.grafana.foundation.dashboard.FieldConfig();
 		}
 		if (this.internal.fieldConfig.defaults.custom == null) {
-			this.internal.fieldConfig.defaults.custom = new com.grafana.foundation.candlestick.FieldConfig();
+			this.internal.fieldConfig.defaults.custom = new com.grafana.foundation.candlestick.FieldConfigBuilder().build();
 		}
     StackingConfig stackingResource = stacking.build();
         ((FieldConfig) this.internal.fieldConfig.defaults.custom).stacking = stackingResource;
@@ -834,7 +834,7 @@ public class CandlestickPanelBuilder implements com.grafana.foundation.cog.Build
 			this.internal.fieldConfig.defaults = new com.grafana.foundation.dashboard.FieldConfig();
 		}
 		if (this.internal.fieldConfig.defaults.custom == null) {
-			this.internal.fieldConfig.defaults.custom = new com.grafana.foundation.candlestick.FieldConfig();
+			this.internal.fieldConfig.defaults.custom = new com.grafana.foundation.candlestick.FieldConfigBuilder().build();
 		}
     HideSeriesConfig hideFromResource = hideFrom.build();
         ((FieldConfig) this.internal.fieldConfig.defaults.custom).hideFrom = hideFromResource;
@@ -849,7 +849,7 @@ public class CandlestickPanelBuilder implements com.grafana.foundation.cog.Build
 			this.internal.fieldConfig.defaults = new com.grafana.foundation.dashboard.FieldConfig();
 		}
 		if (this.internal.fieldConfig.defaults.custom == null) {
-			this.internal.fieldConfig.defaults.custom = new com.grafana.foundation.candlestick.FieldConfig();
+			this.internal.fieldConfig.defaults.custom = new com.grafana.foundation.candlestick.FieldConfigBuilder().build();
 		}
         ((FieldConfig) this.internal.fieldConfig.defaults.custom).insertNulls = insertNulls;
         return this;
@@ -863,7 +863,7 @@ public class CandlestickPanelBuilder implements com.grafana.foundation.cog.Build
 			this.internal.fieldConfig.defaults = new com.grafana.foundation.dashboard.FieldConfig();
 		}
 		if (this.internal.fieldConfig.defaults.custom == null) {
-			this.internal.fieldConfig.defaults.custom = new com.grafana.foundation.candlestick.FieldConfig();
+			this.internal.fieldConfig.defaults.custom = new com.grafana.foundation.candlestick.FieldConfigBuilder().build();
 		}
         ((FieldConfig) this.internal.fieldConfig.defaults.custom).spanNulls = spanNulls;
         return this;
@@ -877,7 +877,7 @@ public class CandlestickPanelBuilder implements com.grafana.foundation.cog.Build
 			this.internal.fieldConfig.defaults = new com.grafana.foundation.dashboard.FieldConfig();
 		}
 		if (this.internal.fieldConfig.defaults.custom == null) {
-			this.internal.fieldConfig.defaults.custom = new com.grafana.foundation.candlestick.FieldConfig();
+			this.internal.fieldConfig.defaults.custom = new com.grafana.foundation.candlestick.FieldConfigBuilder().build();
 		}
         ((FieldConfig) this.internal.fieldConfig.defaults.custom).fillBelowTo = fillBelowTo;
         return this;
@@ -891,7 +891,7 @@ public class CandlestickPanelBuilder implements com.grafana.foundation.cog.Build
 			this.internal.fieldConfig.defaults = new com.grafana.foundation.dashboard.FieldConfig();
 		}
 		if (this.internal.fieldConfig.defaults.custom == null) {
-			this.internal.fieldConfig.defaults.custom = new com.grafana.foundation.candlestick.FieldConfig();
+			this.internal.fieldConfig.defaults.custom = new com.grafana.foundation.candlestick.FieldConfigBuilder().build();
 		}
         ((FieldConfig) this.internal.fieldConfig.defaults.custom).pointSymbol = pointSymbol;
         return this;
@@ -905,7 +905,7 @@ public class CandlestickPanelBuilder implements com.grafana.foundation.cog.Build
 			this.internal.fieldConfig.defaults = new com.grafana.foundation.dashboard.FieldConfig();
 		}
 		if (this.internal.fieldConfig.defaults.custom == null) {
-			this.internal.fieldConfig.defaults.custom = new com.grafana.foundation.candlestick.FieldConfig();
+			this.internal.fieldConfig.defaults.custom = new com.grafana.foundation.candlestick.FieldConfigBuilder().build();
 		}
         ((FieldConfig) this.internal.fieldConfig.defaults.custom).axisBorderShow = axisBorderShow;
         return this;
@@ -919,7 +919,7 @@ public class CandlestickPanelBuilder implements com.grafana.foundation.cog.Build
 			this.internal.fieldConfig.defaults = new com.grafana.foundation.dashboard.FieldConfig();
 		}
 		if (this.internal.fieldConfig.defaults.custom == null) {
-			this.internal.fieldConfig.defaults.custom = new com.grafana.foundation.candlestick.FieldConfig();
+			this.internal.fieldConfig.defaults.custom = new com.grafana.foundation.candlestick.FieldConfigBuilder().build();
 		}
         ((FieldConfig) this.internal.fieldConfig.defaults.custom).barMaxWidth = barMaxWidth;
         return this;

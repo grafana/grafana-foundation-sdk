@@ -1,6 +1,6 @@
 // Code generated - EDITING IS FUTILE. DO NOT EDIT.
 
-import * as dashboard from '../dashboard';
+import * as common from '../common';
 
 
 export interface CSVWave {
@@ -138,7 +138,7 @@ export interface dataquery {
 	csvFileName?: string;
 	csvWave?: CSVWave[];
 	// The datasource
-	datasource?: dashboard.DataSourceRef;
+	datasource?: common.DataSourceRef;
 	// Drop percentage (the chance we will lose a point 0-100)
 	dropPercent?: number;
 	// Possible enum values:

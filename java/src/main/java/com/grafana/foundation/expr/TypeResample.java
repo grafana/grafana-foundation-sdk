@@ -7,7 +7,7 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.ObjectWriter;
 import com.fasterxml.jackson.annotation.JsonInclude;
-import com.grafana.foundation.dashboard.DataSourceRef;
+import com.grafana.foundation.common.DataSourceRef;
 
 public class TypeResample implements com.grafana.foundation.cog.variants.Dataquery {
     // The datasource
@@ -53,6 +53,7 @@ public class TypeResample implements com.grafana.foundation.cog.variants.Dataque
     @JsonProperty("queryType")
     public String queryType;
     // RefID is the unique identifier of the query, set by the frontend call.
+    @JsonInclude(JsonInclude.Include.NON_NULL)
     @JsonProperty("refId")
     public String refId;
     // Optionally define expected query result behavior
@@ -81,7 +82,6 @@ public class TypeResample implements com.grafana.foundation.cog.variants.Dataque
     public TypeResample() {
         this.downsampler = TypeResampleDownsampler.SUM;
         this.expression = "";
-        this.refId = "";
         this.type = "";
         this.upsampler = TypeResampleUpsampler.PAD;
         this.window = "";

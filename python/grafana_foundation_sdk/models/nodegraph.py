@@ -10,7 +10,7 @@ class ArcOption:
     # The color of the arc.
     color: typing.Optional[str]
 
-    def __init__(self, field: typing.Optional[str] = None, color: typing.Optional[str] = None):
+    def __init__(self, field: typing.Optional[str] = None, color: typing.Optional[str] = None) -> None:
         self.field = field
         self.color = color
 
@@ -43,7 +43,7 @@ class NodeOptions:
     # Define which fields are shown as part of the node arc (colored circle around the node).
     arcs: typing.Optional[list['ArcOption']]
 
-    def __init__(self, main_stat_unit: typing.Optional[str] = None, secondary_stat_unit: typing.Optional[str] = None, arcs: typing.Optional[list['ArcOption']] = None):
+    def __init__(self, main_stat_unit: typing.Optional[str] = None, secondary_stat_unit: typing.Optional[str] = None, arcs: typing.Optional[list['ArcOption']] = None) -> None:
         self.main_stat_unit = main_stat_unit
         self.secondary_stat_unit = secondary_stat_unit
         self.arcs = arcs
@@ -79,7 +79,7 @@ class EdgeOptions:
     # Unit for the secondary stat to override what ever is set in the data frame.
     secondary_stat_unit: typing.Optional[str]
 
-    def __init__(self, main_stat_unit: typing.Optional[str] = None, secondary_stat_unit: typing.Optional[str] = None):
+    def __init__(self, main_stat_unit: typing.Optional[str] = None, secondary_stat_unit: typing.Optional[str] = None) -> None:
         self.main_stat_unit = main_stat_unit
         self.secondary_stat_unit = secondary_stat_unit
 
@@ -108,7 +108,7 @@ class Options:
     nodes: typing.Optional['NodeOptions']
     edges: typing.Optional['EdgeOptions']
 
-    def __init__(self, nodes: typing.Optional['NodeOptions'] = None, edges: typing.Optional['EdgeOptions'] = None):
+    def __init__(self, nodes: typing.Optional['NodeOptions'] = None, edges: typing.Optional['EdgeOptions'] = None) -> None:
         self.nodes = nodes
         self.edges = edges
 

@@ -22,7 +22,7 @@ type PanelModel struct {
     // Whether to display the panel without a background.
     Transparent *bool `json:"transparent,omitempty"`
     // The datasource used in all targets.
-    Datasource *dashboard.DataSourceRef `json:"datasource,omitempty"`
+    Datasource *common.DataSourceRef `json:"datasource,omitempty"`
     // Panel links.
     Links []dashboard.DashboardLink `json:"links,omitempty"`
     // Name of template variable to repeat for.

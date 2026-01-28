@@ -15,6 +15,7 @@ import com.grafana.foundation.cog.variants.Registry;
 import java.util.List;
 import com.grafana.foundation.cog.variants.Dataquery;
 import com.grafana.foundation.cog.variants.Registry;
+import com.grafana.foundation.common.DataSourceRef;
 
 
 import java.io.IOException;

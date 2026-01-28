@@ -23,7 +23,7 @@ func (builder *TypeResampleBuilder) Build() (variants.Dataquery, error)
 The datasource
 
 ```go
-func (builder *TypeResampleBuilder) Datasource(datasource dashboard.DataSourceRef) *TypeResampleBuilder
+func (builder *TypeResampleBuilder) Datasource(datasource common.DataSourceRef) *TypeResampleBuilder
 ```
 
 ### <span class="badge object-method"></span> Downsampler

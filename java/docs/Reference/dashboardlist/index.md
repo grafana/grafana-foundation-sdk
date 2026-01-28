@@ -5,4 +5,5 @@
  * <span class="badge object-type-class"></span> [Options](./object-Options.md)
 ## Builders
 
+ * <span class="badge builder"></span> [OptionsBuilder](./builder-OptionsBuilder.md)
  * <span class="badge builder"></span> [PanelBuilder](./builder-PanelBuilder.md)

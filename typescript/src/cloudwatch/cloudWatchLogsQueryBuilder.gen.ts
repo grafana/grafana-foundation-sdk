@@ -2,7 +2,7 @@
 
 import * as cog from '../cog';
 import * as cloudwatch from '../cloudwatch';
-import * as dashboard from '../dashboard';
+import * as common from '../common';
 
 // Shape of a CloudWatch Logs query
 export class CloudWatchLogsQueryBuilder implements cog.Builder<cog.Dataquery> {
@@ -86,7 +86,7 @@ export class CloudWatchLogsQueryBuilder implements cog.Builder<cog.Dataquery> {
     // For non mixed scenarios this is undefined.
     // TODO find a better way to do this ^ that's friendly to schema
     // TODO this shouldn't be unknown but DataSourceRef | null
-    datasource(datasource: dashboard.DataSourceRef): this {
+    datasource(datasource: common.DataSourceRef): this {
         this.internal.datasource = datasource;
         return this;
     }

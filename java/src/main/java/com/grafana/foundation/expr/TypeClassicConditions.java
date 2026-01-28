@@ -11,7 +11,7 @@ import com.fasterxml.jackson.annotation.JsonSetter;
 import com.fasterxml.jackson.annotation.Nulls;
 import java.util.List;
 import com.fasterxml.jackson.annotation.JsonInclude;
-import com.grafana.foundation.dashboard.DataSourceRef;
+import com.grafana.foundation.common.DataSourceRef;
 
 public class TypeClassicConditions implements com.grafana.foundation.cog.variants.Dataquery {
     @JsonSetter(nulls = Nulls.AS_EMPTY)
@@ -45,6 +45,7 @@ public class TypeClassicConditions implements com.grafana.foundation.cog.variant
     @JsonProperty("queryType")
     public String queryType;
     // RefID is the unique identifier of the query, set by the frontend call.
+    @JsonInclude(JsonInclude.Include.NON_NULL)
     @JsonProperty("refId")
     public String refId;
     // Optionally define expected query result behavior
@@ -61,7 +62,6 @@ public class TypeClassicConditions implements com.grafana.foundation.cog.variant
     public String type;
     public TypeClassicConditions() {
         this.conditions = new LinkedList<>();
-        this.refId = "";
         this.type = "";
     }
     public TypeClassicConditions(List<ExprTypeClassicConditionsConditions> conditions,DataSourceRef datasource,Boolean hide,Double intervalMs,Long maxDataPoints,String queryType,String refId,ExprTypeClassicConditionsResultAssertions resultAssertions,ExprTypeClassicConditionsTimeRange timeRange,String type) {
