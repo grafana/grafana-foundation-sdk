@@ -10,5 +10,7 @@
  * <span class="badge object-type-enum"></span> [PieChartType](./object-PieChartType.md)
 ## Builders
 
+ * <span class="badge builder"></span> [FieldConfigBuilder](./builder-FieldConfigBuilder.md)
+ * <span class="badge builder"></span> [OptionsBuilder](./builder-OptionsBuilder.md)
  * <span class="badge builder"></span> [PanelBuilder](./builder-PanelBuilder.md)
  * <span class="badge builder"></span> [PieChartLegendOptionsBuilder](./builder-PieChartLegendOptionsBuilder.md)

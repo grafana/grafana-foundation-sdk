@@ -23,7 +23,7 @@ build()
 Datasource where the annotations data is
 
 ```php
-datasource(\Grafana\Foundation\Dashboard\DataSourceRef $datasource)
+datasource(\Grafana\Foundation\Common\DataSourceRef $datasource)
 ```
 
 ### <span class="badge object-method"></span> enable

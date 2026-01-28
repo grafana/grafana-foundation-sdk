@@ -30,7 +30,7 @@ class VariableModel:
     # Query used to fetch values for a variable
     query: typing.Optional[typing.Union[str, dict[str, object]]]
     # Data source used to fetch values for a variable. It can be defined but `null`.
-    datasource: typing.Optional[dashboard.DataSourceRef]
+    datasource: typing.Optional[common.DataSourceRef]
     # Format to use while fetching all values from data source, eg: wildcard, glob, regex, pipe, etc.
     all_format: typing.Optional[str]
     # Shows current selected variable text/value on the dashboard

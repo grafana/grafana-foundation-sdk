@@ -9,4 +9,5 @@
 ## Builders
 
  * <span class="badge builder"></span> [CodeOptionsBuilder](./builder-CodeOptionsBuilder.md)
+ * <span class="badge builder"></span> [OptionsBuilder](./builder-OptionsBuilder.md)
  * <span class="badge builder"></span> [PanelBuilder](./builder-PanelBuilder.md)

@@ -2,7 +2,7 @@
 
 from ..cog import variants as cogvariants
 import typing
-from ..models import dashboard
+from ..models import common
 import enum
 from ..cog import runtime as cogruntime
 
@@ -30,7 +30,7 @@ class Dataquery(cogvariants.Dataquery):
     # A unique identifier for the query within the list of targets.
     # In server side expressions, the refId is used as a variable name to identify results.
     # By default, the UI will assign A->Z; however setting meaningful names may be useful.
-    ref_id: str
+    ref_id: typing.Optional[str]
     # true if query is disabled (ie should not be returned to the dashboard)
     # Note this does not always imply that the query should not be executed since
     # the results from a hidden query may be used as the input to other queries (SSE etc)
@@ -42,9 +42,9 @@ class Dataquery(cogvariants.Dataquery):
     # For non mixed scenarios this is undefined.
     # TODO find a better way to do this ^ that's friendly to schema
     # TODO this shouldn't be unknown but DataSourceRef | null
-    datasource: typing.Optional[dashboard.DataSourceRef]
+    datasource: typing.Optional[common.DataSourceRef]
 
-    def __init__(self, dataset: typing.Optional[str] = None, table: typing.Optional[str] = None, project: typing.Optional[str] = None, format_val: typing.Optional['QueryFormat'] = None, raw_query: typing.Optional[bool] = None, raw_sql: str = "", location: typing.Optional[str] = None, partitioned: typing.Optional[bool] = None, partitioned_field: typing.Optional[str] = None, convert_to_utc: typing.Optional[bool] = None, sharded: typing.Optional[bool] = None, query_priority: typing.Optional['QueryPriority'] = None, time_shift: typing.Optional[str] = None, editor_mode: typing.Optional['EditorMode'] = None, sql: typing.Optional['SQLExpression'] = None, ref_id: str = "", hide: typing.Optional[bool] = None, query_type: typing.Optional[str] = None, datasource: typing.Optional[dashboard.DataSourceRef] = None):
+    def __init__(self, dataset: typing.Optional[str] = None, table: typing.Optional[str] = None, project: typing.Optional[str] = None, format_val: typing.Optional['QueryFormat'] = None, raw_query: typing.Optional[bool] = None, raw_sql: str = "", location: typing.Optional[str] = None, partitioned: typing.Optional[bool] = None, partitioned_field: typing.Optional[str] = None, convert_to_utc: typing.Optional[bool] = None, sharded: typing.Optional[bool] = None, query_priority: typing.Optional['QueryPriority'] = None, time_shift: typing.Optional[str] = None, editor_mode: typing.Optional['EditorMode'] = None, sql: typing.Optional['SQLExpression'] = None, ref_id: typing.Optional[str] = None, hide: typing.Optional[bool] = None, query_type: typing.Optional[str] = None, datasource: typing.Optional[common.DataSourceRef] = None) -> None:
         self.dataset = dataset
         self.table = table
         self.project = project
@@ -69,7 +69,6 @@ class Dataquery(cogvariants.Dataquery):
         payload: dict[str, object] = {
             "format": self.format_val,
             "rawSql": self.raw_sql,
-            "refId": self.ref_id,
         }
         if self.dataset is not None:
             payload["dataset"] = self.dataset
@@ -97,6 +96,8 @@ class Dataquery(cogvariants.Dataquery):
             payload["editorMode"] = self.editor_mode
         if self.sql is not None:
             payload["sql"] = self.sql
+        if self.ref_id is not None:
+            payload["refId"] = self.ref_id
         if self.hide is not None:
             payload["hide"] = self.hide
         if self.query_type is not None:
@@ -146,7 +147,7 @@ class Dataquery(cogvariants.Dataquery):
         if "queryType" in data:
             args["query_type"] = data["queryType"]
         if "datasource" in data:
-            args["datasource"] = dashboard.DataSourceRef.from_json(data["datasource"])        
+            args["datasource"] = common.DataSourceRef.from_json(data["datasource"])        
 
         return cls(**args)
 
@@ -177,7 +178,7 @@ class SQLExpression:
     limit: typing.Optional[int]
     offset: typing.Optional[int]
 
-    def __init__(self, columns: typing.Optional[list['QueryEditorFunctionExpression']] = None, from_val: typing.Optional[str] = None, where_string: typing.Optional[str] = None, group_by: typing.Optional[list['QueryEditorGroupByExpression']] = None, order_by: typing.Optional['QueryEditorPropertyExpression'] = None, order_by_direction: typing.Optional['OrderByDirection'] = None, limit: typing.Optional[int] = None, offset: typing.Optional[int] = None):
+    def __init__(self, columns: typing.Optional[list['QueryEditorFunctionExpression']] = None, from_val: typing.Optional[str] = None, where_string: typing.Optional[str] = None, group_by: typing.Optional[list['QueryEditorGroupByExpression']] = None, order_by: typing.Optional['QueryEditorPropertyExpression'] = None, order_by_direction: typing.Optional['OrderByDirection'] = None, limit: typing.Optional[int] = None, offset: typing.Optional[int] = None) -> None:
         self.columns = columns
         self.from_val = from_val
         self.where_string = where_string
@@ -237,7 +238,7 @@ class QueryEditorFunctionExpression:
     name: typing.Optional[str]
     parameters: typing.Optional[list['QueryEditorFunctionParameterExpression']]
 
-    def __init__(self, name: typing.Optional[str] = None, parameters: typing.Optional[list['QueryEditorFunctionParameterExpression']] = None):
+    def __init__(self, name: typing.Optional[str] = None, parameters: typing.Optional[list['QueryEditorFunctionParameterExpression']] = None) -> None:
         self.type_val = QueryEditorExpressionType.FUNCTION
         self.name = name
         self.parameters = parameters
@@ -278,7 +279,7 @@ class QueryEditorFunctionParameterExpression:
     type_val: str
     name: typing.Optional[str]
 
-    def __init__(self, name: typing.Optional[str] = None):
+    def __init__(self, name: typing.Optional[str] = None) -> None:
         self.type_val = QueryEditorExpressionType.FUNCTION_PARAMETER
         self.name = name
 
@@ -304,7 +305,7 @@ class QueryEditorGroupByExpression:
     type_val: str
     property_val: 'QueryEditorProperty'
 
-    def __init__(self, property_val: typing.Optional['QueryEditorProperty'] = None):
+    def __init__(self, property_val: typing.Optional['QueryEditorProperty'] = None) -> None:
         self.type_val = QueryEditorExpressionType.GROUP_BY
         self.property_val = property_val if property_val is not None else QueryEditorProperty()
 
@@ -329,7 +330,7 @@ class QueryEditorProperty:
     type_val: str
     name: typing.Optional[str]
 
-    def __init__(self, name: typing.Optional[str] = None):
+    def __init__(self, name: typing.Optional[str] = None) -> None:
         self.type_val = QueryEditorPropertyType.STRING
         self.name = name
 
@@ -359,7 +360,7 @@ class QueryEditorPropertyExpression:
     type_val: str
     property_val: 'QueryEditorProperty'
 
-    def __init__(self, property_val: typing.Optional['QueryEditorProperty'] = None):
+    def __init__(self, property_val: typing.Optional['QueryEditorProperty'] = None) -> None:
         self.type_val = QueryEditorExpressionType.PROPERTY
         self.property_val = property_val if property_val is not None else QueryEditorProperty()
 

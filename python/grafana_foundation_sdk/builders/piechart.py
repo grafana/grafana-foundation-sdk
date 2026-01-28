@@ -11,7 +11,7 @@ from ..cog import variants as cogvariants
 class PieChartLegendOptions(cogbuilder.Builder[piechart.PieChartLegendOptions]):
     _internal: piechart.PieChartLegendOptions
 
-    def __init__(self):
+    def __init__(self) -> None:
         self._internal = piechart.PieChartLegendOptions()
 
     def build(self) -> piechart.PieChartLegendOptions:
@@ -72,6 +72,79 @@ class PieChartLegendOptions(cogbuilder.Builder[piechart.PieChartLegendOptions]):
     
 
 
+class Options(cogbuilder.Builder[piechart.Options]):
+    _internal: piechart.Options
+
+    def __init__(self) -> None:
+        self._internal = piechart.Options()
+
+    def build(self) -> piechart.Options:
+        """
+        Builds the object.
+        """
+        return self._internal    
+    
+    def pie_type(self, pie_type: piechart.PieChartType) -> typing.Self:    
+        self._internal.pie_type = pie_type
+    
+        return self
+    
+    def display_labels(self, display_labels: list[piechart.PieChartLabels]) -> typing.Self:    
+        self._internal.display_labels = display_labels
+    
+        return self
+    
+    def tooltip(self, tooltip: cogbuilder.Builder[common.VizTooltipOptions]) -> typing.Self:    
+        tooltip_resource = tooltip.build()
+        self._internal.tooltip = tooltip_resource
+    
+        return self
+    
+    def reduce_options(self, reduce_options: cogbuilder.Builder[common.ReduceDataOptions]) -> typing.Self:    
+        reduce_options_resource = reduce_options.build()
+        self._internal.reduce_options = reduce_options_resource
+    
+        return self
+    
+    def text(self, text: cogbuilder.Builder[common.VizTextDisplayOptions]) -> typing.Self:    
+        text_resource = text.build()
+        self._internal.text = text_resource
+    
+        return self
+    
+    def legend(self, legend: cogbuilder.Builder[piechart.PieChartLegendOptions]) -> typing.Self:    
+        legend_resource = legend.build()
+        self._internal.legend = legend_resource
+    
+        return self
+    
+    def orientation(self, orientation: common.VizOrientation) -> typing.Self:    
+        self._internal.orientation = orientation
+    
+        return self
+    
+
+
+class FieldConfig(cogbuilder.Builder[piechart.FieldConfig]):
+    _internal: piechart.FieldConfig
+
+    def __init__(self) -> None:
+        self._internal = piechart.FieldConfig()
+
+    def build(self) -> piechart.FieldConfig:
+        """
+        Builds the object.
+        """
+        return self._internal    
+    
+    def hide_from(self, hide_from: cogbuilder.Builder[common.HideSeriesConfig]) -> typing.Self:    
+        hide_from_resource = hide_from.build()
+        self._internal.hide_from = hide_from_resource
+    
+        return self
+    
+
+
 class Panel(cogbuilder.Builder[dashboard.Panel]):    
     """
     Dashboard panels are the basic visualization building blocks.
@@ -79,7 +152,7 @@ class Panel(cogbuilder.Builder[dashboard.Panel]):
     
     _internal: dashboard.Panel
 
-    def __init__(self):
+    def __init__(self) -> None:
         self._internal = dashboard.Panel()        
         self._internal.type_val = "piechart"
 
@@ -148,7 +221,7 @@ class Panel(cogbuilder.Builder[dashboard.Panel]):
     
         return self
     
-    def datasource(self, datasource: dashboard.DataSourceRef) -> typing.Self:    
+    def datasource(self, datasource: common.DataSourceRef) -> typing.Self:    
         """
         The datasource used in all targets.
         """

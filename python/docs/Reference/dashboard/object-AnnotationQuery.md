@@ -19,7 +19,7 @@ class AnnotationQuery:
     # Name of annotation.
     name: str
     # Datasource where the annotations data is
-    datasource: dashboard.DataSourceRef
+    datasource: common.DataSourceRef
     # When enabled the annotation query is issued with every dashboard refresh
     enable: bool
     # Annotation queries can be toggled on or off at the top of the dashboard.

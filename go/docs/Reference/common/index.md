@@ -20,6 +20,7 @@
  * <span class="badge object-type-enum"></span> [ComparisonOperation](./object-ComparisonOperation.md)
  * <span class="badge object-type-struct"></span> [DataQuery](./object-DataQuery.md)
  * <span class="badge object-type-struct"></span> [DataSourceJsonData](./object-DataSourceJsonData.md)
+ * <span class="badge object-type-struct"></span> [DataSourceRef](./object-DataSourceRef.md)
  * <span class="badge object-type-enum"></span> [FieldTextAlignment](./object-FieldTextAlignment.md)
  * <span class="badge object-type-struct"></span> [FillConfig](./object-FillConfig.md)
  * <span class="badge object-type-struct"></span> [FrameGeometrySource](./object-FrameGeometrySource.md)
@@ -470,6 +471,14 @@ NewTableCellOptions creates a new TableCellOptions object.
 
 ```go
 func NewTableCellOptions() *TableCellOptions
+```
+
+### <span class="badge function"></span> NewDataSourceRef
+
+NewDataSourceRef creates a new DataSourceRef object.
+
+```go
+func NewDataSourceRef() *DataSourceRef
 ```
 
 ### <span class="badge function"></span> NewResourceDimensionConfig

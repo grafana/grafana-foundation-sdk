@@ -23,7 +23,7 @@ func (builder *AnnotationQueryBuilder) Build() (AnnotationQuery, error)
 Datasource where the annotations data is
 
 ```go
-func (builder *AnnotationQueryBuilder) Datasource(datasource dashboard.DataSourceRef) *AnnotationQueryBuilder
+func (builder *AnnotationQueryBuilder) Datasource(datasource common.DataSourceRef) *AnnotationQueryBuilder
 ```
 
 ### <span class="badge object-method"></span> Enable

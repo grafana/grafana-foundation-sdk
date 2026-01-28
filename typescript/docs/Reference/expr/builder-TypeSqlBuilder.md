@@ -23,7 +23,7 @@ build()
 The datasource
 
 ```typescript
-datasource(datasource: dashboard.DataSourceRef)
+datasource(datasource: common.DataSourceRef)
 ```
 
 ### <span class="badge object-method"></span> expression

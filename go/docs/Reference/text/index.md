@@ -9,6 +9,7 @@
 ## Builders
 
  * <span class="badge builder"></span> [CodeOptionsBuilder](./builder-CodeOptionsBuilder.md)
+ * <span class="badge builder"></span> [OptionsBuilder](./builder-OptionsBuilder.md)
  * <span class="badge builder"></span> [PanelBuilder](./builder-PanelBuilder.md)
 ## Functions
 
@@ -44,6 +45,14 @@ CodeOptionsConverter accepts a `CodeOptions` object and generates the Go code to
 
 ```go
 func CodeOptionsConverter(input CodeOptions) string
+```
+
+### <span class="badge function"></span> OptionsConverter
+
+OptionsConverter accepts a `Options` object and generates the Go code to build this object using builders.
+
+```go
+func OptionsConverter(input Options) string
 ```
 
 ### <span class="badge function"></span> PanelConverter

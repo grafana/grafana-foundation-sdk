@@ -33,7 +33,7 @@ func (builder *RowBuilder) Collapsed(collapsed bool) *RowBuilder
 Name of default datasource for the row
 
 ```go
-func (builder *RowBuilder) Datasource(datasource dashboard.DataSourceRef) *RowBuilder
+func (builder *RowBuilder) Datasource(datasource common.DataSourceRef) *RowBuilder
 ```
 
 ### <span class="badge object-method"></span> GridPos

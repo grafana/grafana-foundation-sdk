@@ -5,6 +5,7 @@ package dashboard
 import (
 	cog "github.com/grafana/grafana-foundation-sdk/go/cog"
 	variants "github.com/grafana/grafana-foundation-sdk/go/cog/variants"
+	common "github.com/grafana/grafana-foundation-sdk/go/common"
 )
 
 var _ cog.Builder[Panel] = (*PanelBuilder)(nil)
@@ -115,7 +116,7 @@ func (builder *PanelBuilder) Transparent(transparent bool) *PanelBuilder {
 }
 
 // The datasource used in all targets.
-func (builder *PanelBuilder) Datasource(datasource DataSourceRef) *PanelBuilder {
+func (builder *PanelBuilder) Datasource(datasource common.DataSourceRef) *PanelBuilder {
 	builder.internal.Datasource = &datasource
 
 	return builder

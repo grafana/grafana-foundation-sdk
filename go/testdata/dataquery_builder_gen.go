@@ -201,7 +201,7 @@ func (builder *DataqueryBuilder) DropPercent(dropPercent float64) *DataqueryBuil
 // In server side expressions, the refId is used as a variable name to identify results.
 // By default, the UI will assign A->Z; however setting meaningful names may be useful.
 func (builder *DataqueryBuilder) RefId(refId string) *DataqueryBuilder {
-	builder.internal.RefId = refId
+	builder.internal.RefId = &refId
 
 	return builder
 }

@@ -23,8 +23,7 @@
         "additionalProperties": false,
         "required": [
           "labelSelector",
-          "profileTypeId",
-          "refId"
+          "profileTypeId"
         ],
         "properties": {
           "labelSelector": {
@@ -66,8 +65,7 @@
             "type": "string",
             "description": "Specific datasource instance"
           }
-        },
-        "description": "Ref to a DataSource instance"
+        }
       }
     }
   }

@@ -467,7 +467,7 @@
           "$ref": "#/definitions/LineStyle"
         },
         "spanNulls": {
-          "anyOf": [
+          "oneOf": [
             {
               "type": "boolean"
             },
@@ -1016,7 +1016,7 @@
           "$ref": "#/definitions/GraphTransform"
         },
         "spanNulls": {
-          "anyOf": [
+          "oneOf": [
             {
               "type": "boolean"
             },
@@ -1039,7 +1039,7 @@
           "type": "number"
         },
         "insertNulls": {
-          "anyOf": [
+          "oneOf": [
             {
               "type": "boolean"
             },
@@ -1160,7 +1160,11 @@
       ],
       "properties": {
         "type": {
-          "$ref": "#/definitions/TableCellDisplayMode",
+          "allOf": [
+            {
+              "$ref": "#/definitions/TableCellDisplayMode"
+            }
+          ],
           "default": "auto"
         }
       },
@@ -1174,7 +1178,11 @@
       ],
       "properties": {
         "type": {
-          "$ref": "#/definitions/TableCellDisplayMode",
+          "allOf": [
+            {
+              "$ref": "#/definitions/TableCellDisplayMode"
+            }
+          ],
           "default": "color-text"
         }
       },
@@ -1188,7 +1196,11 @@
       ],
       "properties": {
         "type": {
-          "$ref": "#/definitions/TableCellDisplayMode",
+          "allOf": [
+            {
+              "$ref": "#/definitions/TableCellDisplayMode"
+            }
+          ],
           "default": "json-view"
         }
       },
@@ -1202,7 +1214,11 @@
       ],
       "properties": {
         "type": {
-          "$ref": "#/definitions/TableCellDisplayMode",
+          "allOf": [
+            {
+              "$ref": "#/definitions/TableCellDisplayMode"
+            }
+          ],
           "default": "image"
         }
       },
@@ -1216,7 +1232,11 @@
       ],
       "properties": {
         "type": {
-          "$ref": "#/definitions/TableCellDisplayMode",
+          "allOf": [
+            {
+              "$ref": "#/definitions/TableCellDisplayMode"
+            }
+          ],
           "default": "gauge"
         },
         "mode": {
@@ -1236,7 +1256,11 @@
       ],
       "properties": {
         "type": {
-          "$ref": "#/definitions/TableCellDisplayMode",
+          "allOf": [
+            {
+              "$ref": "#/definitions/TableCellDisplayMode"
+            }
+          ],
           "default": "sparkline"
         },
         "drawStyle": {
@@ -1315,7 +1339,7 @@
           "$ref": "#/definitions/GraphTransform"
         },
         "spanNulls": {
-          "anyOf": [
+          "oneOf": [
             {
               "type": "boolean"
             },
@@ -1348,7 +1372,11 @@
       ],
       "properties": {
         "type": {
-          "$ref": "#/definitions/TableCellDisplayMode",
+          "allOf": [
+            {
+              "$ref": "#/definitions/TableCellDisplayMode"
+            }
+          ],
           "default": "color-background"
         },
         "mode": {
@@ -1367,7 +1395,7 @@
       "description": "Height of a table cell"
     },
     "TableCellOptions": {
-      "anyOf": [
+      "oneOf": [
         {
           "$ref": "#/definitions/TableAutoCellOptions"
         },
@@ -1414,6 +1442,20 @@
       ],
       "type": "string",
       "description": "Optional formats for the template variable replace functions\nSee also https://grafana.com/docs/grafana/latest/dashboards/variables/variable-syntax/#advanced-variable-format-options"
+    },
+    "DataSourceRef": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "type": {
+          "type": "string",
+          "description": "The plugin type-id"
+        },
+        "uid": {
+          "type": "string",
+          "description": "Specific datasource instance"
+        }
+      }
     },
     "ResourceDimensionConfig": {
       "type": "object",

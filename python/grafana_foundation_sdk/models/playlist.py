@@ -16,7 +16,7 @@ class Playlist:
     # FIXME! This should not be optional, but changing it makes the godegen awkward
     items: typing.Optional[list['PlaylistItem']]
 
-    def __init__(self, uid: str = "", name: str = "", interval: str = "5m", items: typing.Optional[list['PlaylistItem']] = None):
+    def __init__(self, uid: str = "", name: str = "", interval: str = "5m", items: typing.Optional[list['PlaylistItem']] = None) -> None:
         self.uid = uid
         self.name = name
         self.interval = interval
@@ -63,7 +63,7 @@ class PlaylistItem:
     # Title is an unused property -- it will be removed in the future
     title: typing.Optional[str]
 
-    def __init__(self, type_val: typing.Optional[typing.Literal["dashboard_by_uid", "dashboard_by_id", "dashboard_by_tag"]] = None, value: str = "", title: typing.Optional[str] = None):
+    def __init__(self, type_val: typing.Optional[typing.Literal["dashboard_by_uid", "dashboard_by_id", "dashboard_by_tag"]] = None, value: str = "", title: typing.Optional[str] = None) -> None:
         self.type_val = type_val if type_val is not None else "dashboard_by_uid"
         self.value = value
         self.title = title

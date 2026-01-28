@@ -9,7 +9,7 @@ class TempoQuery implements \JsonSerializable, \Grafana\Foundation\Cog\Dataquery
      * In server side expressions, the refId is used as a variable name to identify results.
      * By default, the UI will assign A->Z; however setting meaningful names may be useful.
      */
-    public string $refId;
+    public ?string $refId;
 
     /**
      * true if query is disabled (ie should not be returned to the dashboard)
@@ -75,7 +75,7 @@ class TempoQuery implements \JsonSerializable, \Grafana\Foundation\Cog\Dataquery
      * TODO find a better way to do this ^ that's friendly to schema
      * TODO this shouldn't be unknown but DataSourceRef | null
      */
-    public ?\Grafana\Foundation\Dashboard\DataSourceRef $datasource;
+    public ?\Grafana\Foundation\Common\DataSourceRef $datasource;
 
     /**
      * @var array<\Grafana\Foundation\Tempo\TraceqlFilter>
@@ -95,12 +95,12 @@ class TempoQuery implements \JsonSerializable, \Grafana\Foundation\Cog\Dataquery
      * @param string|null $serviceMapQuery
      * @param bool|null $serviceMapIncludeNamespace
      * @param int|null $limit
-     * @param \Grafana\Foundation\Dashboard\DataSourceRef|null $datasource
+     * @param \Grafana\Foundation\Common\DataSourceRef|null $datasource
      * @param array<\Grafana\Foundation\Tempo\TraceqlFilter>|null $filters
      */
-    public function __construct(?string $refId = null, ?bool $hide = null, ?string $queryType = null, ?string $query = null, ?string $search = null, ?string $serviceName = null, ?string $spanName = null, ?string $minDuration = null, ?string $maxDuration = null, ?string $serviceMapQuery = null, ?bool $serviceMapIncludeNamespace = null, ?int $limit = null, ?\Grafana\Foundation\Dashboard\DataSourceRef $datasource = null, ?array $filters = null)
+    public function __construct(?string $refId = null, ?bool $hide = null, ?string $queryType = null, ?string $query = null, ?string $search = null, ?string $serviceName = null, ?string $spanName = null, ?string $minDuration = null, ?string $maxDuration = null, ?string $serviceMapQuery = null, ?bool $serviceMapIncludeNamespace = null, ?int $limit = null, ?\Grafana\Foundation\Common\DataSourceRef $datasource = null, ?array $filters = null)
     {
-        $this->refId = $refId ?: "";
+        $this->refId = $refId;
         $this->hide = $hide;
         $this->queryType = $queryType;
         $this->query = $query ?: "";
@@ -139,7 +139,7 @@ class TempoQuery implements \JsonSerializable, \Grafana\Foundation\Cog\Dataquery
             datasource: isset($data["datasource"]) ? (function($input) {
     	/** @var array{type?: string, uid?: string} */
     $val = $input;
-    	return \Grafana\Foundation\Dashboard\DataSourceRef::fromArray($val);
+    	return \Grafana\Foundation\Common\DataSourceRef::fromArray($val);
     })($data["datasource"]) : null,
             filters: array_filter(array_map((function($input) {
     	/** @var array{id?: string, tag?: string, operator?: string, value?: string|array<string>, valueType?: string, scope?: string} */
@@ -155,9 +155,11 @@ class TempoQuery implements \JsonSerializable, \Grafana\Foundation\Cog\Dataquery
     public function jsonSerialize(): mixed
     {
         $data = new \stdClass;
-        $data->refId = $this->refId;
         $data->query = $this->query;
         $data->filters = $this->filters;
+        if (isset($this->refId)) {
+            $data->refId = $this->refId;
+        }
         if (isset($this->hide)) {
             $data->hide = $this->hide;
         }

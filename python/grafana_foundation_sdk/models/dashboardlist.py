@@ -16,7 +16,7 @@ class Options:
     folder_id: typing.Optional[int]
     tags: list[str]
 
-    def __init__(self, keep_time: bool = False, include_vars: bool = False, show_starred: bool = True, show_recently_viewed: bool = False, show_search: bool = False, show_headings: bool = True, max_items: int = 10, query: str = "", folder_id: typing.Optional[int] = None, tags: typing.Optional[list[str]] = None):
+    def __init__(self, keep_time: bool = False, include_vars: bool = False, show_starred: bool = True, show_recently_viewed: bool = False, show_search: bool = False, show_headings: bool = True, max_items: int = 10, query: str = "", folder_id: typing.Optional[int] = None, tags: typing.Optional[list[str]] = None) -> None:
         self.keep_time = keep_time
         self.include_vars = include_vars
         self.show_starred = show_starred

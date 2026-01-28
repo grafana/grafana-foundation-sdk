@@ -12,6 +12,7 @@ import (
 
 	cog "github.com/grafana/grafana-foundation-sdk/go/cog"
 	variants "github.com/grafana/grafana-foundation-sdk/go/cog/variants"
+	common "github.com/grafana/grafana-foundation-sdk/go/common"
 )
 
 type Dashboard struct {
@@ -79,6 +80,7 @@ type Dashboard struct {
 // NewDashboard creates a new Dashboard object.
 func NewDashboard() *Dashboard {
 	return &Dashboard{
+		Style:                DashboardStyleDark,
 		Timezone:             (func(input string) *string { return &input })("browser"),
 		Editable:             true,
 		GraphTooltip:         DashboardCursorSyncOff,
@@ -190,8 +192,7 @@ func (resource *Dashboard) UnmarshalJSONStrict(raw []byte) error {
 
 		}
 		delete(fields, "style")
-	} else {
-		errs = append(errs, cog.MakeBuildErrors("style", errors.New("required field is missing from input"))...)
+
 	}
 	// Field "timezone"
 	if fields["timezone"] != nil {
@@ -705,7 +706,7 @@ type Panel struct {
 	// Whether to display the panel without a background.
 	Transparent bool `json:"transparent"`
 	// The datasource used in all targets.
-	Datasource *DataSourceRef `json:"datasource,omitempty"`
+	Datasource *common.DataSourceRef `json:"datasource,omitempty"`
 	// Grid position.
 	GridPos *GridPos `json:"gridPos,omitempty"`
 	// Panel links.
@@ -754,6 +755,7 @@ type Panel struct {
 func NewPanel() *Panel {
 	return &Panel{
 		Transparent:     false,
+		RepeatDirection: (func(input PanelRepeatDirection) *PanelRepeatDirection { return &input })(PanelRepeatDirectionH),
 		Transformations: []DataTransformerConfig{},
 		FieldConfig:     *NewFieldConfigSource(),
 	}
@@ -1048,7 +1050,7 @@ func (resource *Panel) UnmarshalJSONStrict(raw []byte) error {
 	if fields["datasource"] != nil {
 		if string(fields["datasource"]) != "null" {
 
-			resource.Datasource = &DataSourceRef{}
+			resource.Datasource = &common.DataSourceRef{}
 			if err := resource.Datasource.UnmarshalJSONStrict(fields["datasource"]); err != nil {
 				errs = append(errs, cog.MakeBuildErrors("datasource", err)...)
 			}
@@ -1523,112 +1525,11 @@ func (resource Panel) Validate() error {
 }
 
 // Ref to a DataSource instance
-type DataSourceRef struct {
-	// The plugin type-id
-	Type *string `json:"type,omitempty"`
-	// Specific datasource instance
-	Uid *string `json:"uid,omitempty"`
-}
+type DataSourceRef = common.DataSourceRef
 
 // NewDataSourceRef creates a new DataSourceRef object.
 func NewDataSourceRef() *DataSourceRef {
-	return &DataSourceRef{}
-}
-func (resource *DataSourceRef) UnmarshalJSON(raw []byte) error {
-	if raw == nil {
-		return nil
-	}
-
-	if raw[0] == '"' {
-		var datasourceUid string
-		if err := json.Unmarshal(raw, &datasourceUid); err != nil {
-			return err
-		}
-		resource.Uid = &datasourceUid
-	} else {
-		type original DataSourceRef
-
-		if err := json.Unmarshal(raw, (*original)(resource)); err != nil {
-			return err
-		}
-	}
-
-	return nil
-}
-
-// UnmarshalJSONStrict implements a custom JSON unmarshalling logic to decode `DataSourceRef` from JSON.
-// Note: the unmarshalling done by this function is strict. It will fail over required fields being absent from the input, fields having an incorrect type, unexpected fields being present, …
-func (resource *DataSourceRef) UnmarshalJSONStrict(raw []byte) error {
-	if raw == nil {
-		return nil
-	}
-	var errs cog.BuildErrors
-
-	fields := make(map[string]json.RawMessage)
-	if err := json.Unmarshal(raw, &fields); err != nil {
-		return err
-	}
-	// Field "type"
-	if fields["type"] != nil {
-		if string(fields["type"]) != "null" {
-			if err := json.Unmarshal(fields["type"], &resource.Type); err != nil {
-				errs = append(errs, cog.MakeBuildErrors("type", err)...)
-			}
-
-		}
-		delete(fields, "type")
-
-	}
-	// Field "uid"
-	if fields["uid"] != nil {
-		if string(fields["uid"]) != "null" {
-			if err := json.Unmarshal(fields["uid"], &resource.Uid); err != nil {
-				errs = append(errs, cog.MakeBuildErrors("uid", err)...)
-			}
-
-		}
-		delete(fields, "uid")
-
-	}
-
-	for field := range fields {
-		errs = append(errs, cog.MakeBuildErrors("DataSourceRef", fmt.Errorf("unexpected field '%s'", field))...)
-	}
-
-	if len(errs) == 0 {
-		return nil
-	}
-
-	return errs
-}
-
-// Equals tests the equality of two `DataSourceRef` objects.
-func (resource DataSourceRef) Equals(other DataSourceRef) bool {
-	if resource.Type == nil && other.Type != nil || resource.Type != nil && other.Type == nil {
-		return false
-	}
-
-	if resource.Type != nil {
-		if *resource.Type != *other.Type {
-			return false
-		}
-	}
-	if resource.Uid == nil && other.Uid != nil || resource.Uid != nil && other.Uid == nil {
-		return false
-	}
-
-	if resource.Uid != nil {
-		if *resource.Uid != *other.Uid {
-			return false
-		}
-	}
-
-	return true
-}
-
-// Validate checks all the validation constraints that may be defined on `DataSourceRef` fields for violations and returns them.
-func (resource DataSourceRef) Validate() error {
-	return nil
+	return common.NewDataSourceRef()
 }
 
 // Position and dimensions of a panel in the grid
@@ -3992,7 +3893,7 @@ type RowPanel struct {
 	// Row title
 	Title *string `json:"title,omitempty"`
 	// Name of default datasource for the row
-	Datasource *DataSourceRef `json:"datasource,omitempty"`
+	Datasource *common.DataSourceRef `json:"datasource,omitempty"`
 	// Row grid position
 	GridPos *GridPos `json:"gridPos,omitempty"`
 	// Unique identifier of the panel. Generated by Grafana when creating a new panel. It must be unique within a dashboard, but not globally.
@@ -4066,7 +3967,7 @@ func (resource *RowPanel) UnmarshalJSONStrict(raw []byte) error {
 	if fields["datasource"] != nil {
 		if string(fields["datasource"]) != "null" {
 
-			resource.Datasource = &DataSourceRef{}
+			resource.Datasource = &common.DataSourceRef{}
 			if err := resource.Datasource.UnmarshalJSONStrict(fields["datasource"]); err != nil {
 				errs = append(errs, cog.MakeBuildErrors("datasource", err)...)
 			}
@@ -4358,7 +4259,7 @@ type VariableModel struct {
 	// Query used to fetch values for a variable
 	Query *StringOrMap `json:"query,omitempty"`
 	// Data source used to fetch values for a variable. It can be defined but `null`.
-	Datasource *DataSourceRef `json:"datasource,omitempty"`
+	Datasource *common.DataSourceRef `json:"datasource,omitempty"`
 	// Format to use while fetching all values from data source, eg: wildcard, glob, regex, pipe, etc.
 	AllFormat *string `json:"allFormat,omitempty"`
 	// Shows current selected variable text/value on the dashboard
@@ -4519,7 +4420,7 @@ func (resource *VariableModel) UnmarshalJSONStrict(raw []byte) error {
 	if fields["datasource"] != nil {
 		if string(fields["datasource"]) != "null" {
 
-			resource.Datasource = &DataSourceRef{}
+			resource.Datasource = &common.DataSourceRef{}
 			if err := resource.Datasource.UnmarshalJSONStrict(fields["datasource"]); err != nil {
 				errs = append(errs, cog.MakeBuildErrors("datasource", err)...)
 			}
@@ -5180,7 +5081,7 @@ type AnnotationQuery struct {
 	// Name of annotation.
 	Name string `json:"name"`
 	// Datasource where the annotations data is
-	Datasource DataSourceRef `json:"datasource"`
+	Datasource common.DataSourceRef `json:"datasource"`
 	// When enabled the annotation query is issued with every dashboard refresh
 	Enable bool `json:"enable"`
 	// Annotation queries can be toggled on or off at the top of the dashboard.
@@ -5200,7 +5101,7 @@ type AnnotationQuery struct {
 // NewAnnotationQuery creates a new AnnotationQuery object.
 func NewAnnotationQuery() *AnnotationQuery {
 	return &AnnotationQuery{
-		Datasource: *NewDataSourceRef(),
+		Datasource: *common.NewDataSourceRef(),
 		Enable:     true,
 		Hide:       (func(input bool) *bool { return &input })(false),
 	}
@@ -5236,7 +5137,7 @@ func (resource *AnnotationQuery) UnmarshalJSONStrict(raw []byte) error {
 	if fields["datasource"] != nil {
 		if string(fields["datasource"]) != "null" {
 
-			resource.Datasource = DataSourceRef{}
+			resource.Datasource = common.DataSourceRef{}
 			if err := resource.Datasource.UnmarshalJSONStrict(fields["datasource"]); err != nil {
 				errs = append(errs, cog.MakeBuildErrors("datasource", err)...)
 			}

@@ -11,7 +11,7 @@ import java.util.LinkedList;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import java.util.List;
 import com.grafana.foundation.cog.variants.Dataquery;
-import com.grafana.foundation.dashboard.DataSourceRef;
+import com.grafana.foundation.common.DataSourceRef;
 import com.grafana.foundation.dashboard.DashboardLink;
 import com.fasterxml.jackson.annotation.JsonSetter;
 import com.fasterxml.jackson.annotation.Nulls;
@@ -114,6 +114,7 @@ public class PanelModel {
     public PanelModel() {
         this.type = "";
         this.transparent = false;
+        this.repeatDirection = PanelModelRepeatDirection.H;
         this.transformations = new LinkedList<>();
         this.options = new Object();
         this.fieldConfig = new com.grafana.foundation.dashboard.FieldConfigSource();

@@ -24,5 +24,6 @@
  * <span class="badge builder"></span> [ConnectionCoordinatesBuilder](./builder-ConnectionCoordinatesBuilder.md)
  * <span class="badge builder"></span> [ConstraintBuilder](./builder-ConstraintBuilder.md)
  * <span class="badge builder"></span> [LineConfigBuilder](./builder-LineConfigBuilder.md)
+ * <span class="badge builder"></span> [OptionsBuilder](./builder-OptionsBuilder.md)
  * <span class="badge builder"></span> [PanelBuilder](./builder-PanelBuilder.md)
  * <span class="badge builder"></span> [PlacementBuilder](./builder-PlacementBuilder.md)

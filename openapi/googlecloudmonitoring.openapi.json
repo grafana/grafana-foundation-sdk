@@ -13,9 +13,6 @@
       "CloudMonitoringQuery": {
         "type": "object",
         "additionalProperties": false,
-        "required": [
-          "refId"
-        ],
         "properties": {
           "refId": {
             "type": "string",
@@ -533,8 +530,7 @@
             "type": "string",
             "description": "Specific datasource instance"
           }
-        },
-        "description": "Ref to a DataSource instance"
+        }
       }
     }
   }

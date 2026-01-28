@@ -2,10 +2,278 @@
 
 import typing
 from ..cog import builder as cogbuilder
-from ..models import dashboard
-from ..cog import variants as cogvariants
 from ..models import barchart
 from ..models import common
+from ..models import dashboard
+from ..cog import variants as cogvariants
+
+
+class Options(cogbuilder.Builder[barchart.Options]):
+    _internal: barchart.Options
+
+    def __init__(self) -> None:
+        self._internal = barchart.Options()
+
+    def build(self) -> barchart.Options:
+        """
+        Builds the object.
+        """
+        return self._internal    
+    
+    def x_field(self, x_field: str) -> typing.Self:    
+        """
+        Manually select which field from the dataset to represent the x field.
+        """
+            
+        self._internal.x_field = x_field
+    
+        return self
+    
+    def color_by_field(self, color_by_field: str) -> typing.Self:    
+        """
+        Use the color value for a sibling field to color each bar value.
+        """
+            
+        self._internal.color_by_field = color_by_field
+    
+        return self
+    
+    def orientation(self, orientation: common.VizOrientation) -> typing.Self:    
+        """
+        Controls the orientation of the bar chart, either vertical or horizontal.
+        """
+            
+        self._internal.orientation = orientation
+    
+        return self
+    
+    def bar_radius(self, bar_radius: float) -> typing.Self:    
+        """
+        Controls the radius of each bar.
+        """
+            
+        if not bar_radius >= 0:
+            raise ValueError("bar_radius must be >= 0")
+        if not bar_radius <= 0.5:
+            raise ValueError("bar_radius must be <= 0.5")
+        self._internal.bar_radius = bar_radius
+    
+        return self
+    
+    def x_tick_label_rotation(self, x_tick_label_rotation: int) -> typing.Self:    
+        """
+        Controls the rotation of the x axis labels.
+        """
+            
+        if not x_tick_label_rotation >= -90:
+            raise ValueError("x_tick_label_rotation must be >= -90")
+        if not x_tick_label_rotation <= 90:
+            raise ValueError("x_tick_label_rotation must be <= 90")
+        self._internal.x_tick_label_rotation = x_tick_label_rotation
+    
+        return self
+    
+    def x_tick_label_max_length(self, x_tick_label_max_length: int) -> typing.Self:    
+        """
+        Sets the max length that a label can have before it is truncated.
+        """
+            
+        if not x_tick_label_max_length >= 0:
+            raise ValueError("x_tick_label_max_length must be >= 0")
+        self._internal.x_tick_label_max_length = x_tick_label_max_length
+    
+        return self
+    
+    def x_tick_label_spacing(self, x_tick_label_spacing: int) -> typing.Self:    
+        """
+        Controls the spacing between x axis labels.
+        negative values indicate backwards skipping behavior
+        """
+            
+        self._internal.x_tick_label_spacing = x_tick_label_spacing
+    
+        return self
+    
+    def stacking(self, stacking: common.StackingMode) -> typing.Self:    
+        """
+        Controls whether bars are stacked or not, either normally or in percent mode.
+        """
+            
+        self._internal.stacking = stacking
+    
+        return self
+    
+    def show_value(self, show_value: common.VisibilityMode) -> typing.Self:    
+        """
+        This controls whether values are shown on top or to the left of bars.
+        """
+            
+        self._internal.show_value = show_value
+    
+        return self
+    
+    def bar_width(self, bar_width: float) -> typing.Self:    
+        """
+        Controls the width of bars. 1 = Max width, 0 = Min width.
+        """
+            
+        if not bar_width >= 0:
+            raise ValueError("bar_width must be >= 0")
+        if not bar_width <= 1:
+            raise ValueError("bar_width must be <= 1")
+        self._internal.bar_width = bar_width
+    
+        return self
+    
+    def group_width(self, group_width: float) -> typing.Self:    
+        """
+        Controls the width of groups. 1 = max with, 0 = min width.
+        """
+            
+        if not group_width >= 0:
+            raise ValueError("group_width must be >= 0")
+        if not group_width <= 1:
+            raise ValueError("group_width must be <= 1")
+        self._internal.group_width = group_width
+    
+        return self
+    
+    def legend(self, legend: cogbuilder.Builder[common.VizLegendOptions]) -> typing.Self:    
+        legend_resource = legend.build()
+        self._internal.legend = legend_resource
+    
+        return self
+    
+    def tooltip(self, tooltip: cogbuilder.Builder[common.VizTooltipOptions]) -> typing.Self:    
+        tooltip_resource = tooltip.build()
+        self._internal.tooltip = tooltip_resource
+    
+        return self
+    
+    def text(self, text: cogbuilder.Builder[common.VizTextDisplayOptions]) -> typing.Self:    
+        text_resource = text.build()
+        self._internal.text = text_resource
+    
+        return self
+    
+    def full_highlight(self, full_highlight: bool) -> typing.Self:    
+        """
+        Enables mode which highlights the entire bar area and shows tooltip when cursor
+        hovers over highlighted area
+        """
+            
+        self._internal.full_highlight = full_highlight
+    
+        return self
+    
+
+
+class FieldConfig(cogbuilder.Builder[barchart.FieldConfig]):
+    _internal: barchart.FieldConfig
+
+    def __init__(self) -> None:
+        self._internal = barchart.FieldConfig()
+
+    def build(self) -> barchart.FieldConfig:
+        """
+        Builds the object.
+        """
+        return self._internal    
+    
+    def line_width(self, line_width: int) -> typing.Self:    
+        """
+        Controls line width of the bars.
+        """
+            
+        if not line_width <= 10:
+            raise ValueError("line_width must be <= 10")
+        self._internal.line_width = line_width
+    
+        return self
+    
+    def fill_opacity(self, fill_opacity: int) -> typing.Self:    
+        """
+        Controls the fill opacity of the bars.
+        """
+            
+        if not fill_opacity <= 100:
+            raise ValueError("fill_opacity must be <= 100")
+        self._internal.fill_opacity = fill_opacity
+    
+        return self
+    
+    def gradient_mode(self, gradient_mode: common.GraphGradientMode) -> typing.Self:    
+        """
+        Set the mode of the gradient fill. Fill gradient is based on the line color. To change the color, use the standard color scheme field option.
+        Gradient appearance is influenced by the Fill opacity setting.
+        """
+            
+        self._internal.gradient_mode = gradient_mode
+    
+        return self
+    
+    def axis_placement(self, axis_placement: common.AxisPlacement) -> typing.Self:    
+        self._internal.axis_placement = axis_placement
+    
+        return self
+    
+    def axis_color_mode(self, axis_color_mode: common.AxisColorMode) -> typing.Self:    
+        self._internal.axis_color_mode = axis_color_mode
+    
+        return self
+    
+    def axis_label(self, axis_label: str) -> typing.Self:    
+        self._internal.axis_label = axis_label
+    
+        return self
+    
+    def axis_width(self, axis_width: float) -> typing.Self:    
+        self._internal.axis_width = axis_width
+    
+        return self
+    
+    def axis_soft_min(self, axis_soft_min: float) -> typing.Self:    
+        self._internal.axis_soft_min = axis_soft_min
+    
+        return self
+    
+    def axis_soft_max(self, axis_soft_max: float) -> typing.Self:    
+        self._internal.axis_soft_max = axis_soft_max
+    
+        return self
+    
+    def axis_grid_show(self, axis_grid_show: bool) -> typing.Self:    
+        self._internal.axis_grid_show = axis_grid_show
+    
+        return self
+    
+    def scale_distribution(self, scale_distribution: cogbuilder.Builder[common.ScaleDistributionConfig]) -> typing.Self:    
+        scale_distribution_resource = scale_distribution.build()
+        self._internal.scale_distribution = scale_distribution_resource
+    
+        return self
+    
+    def hide_from(self, hide_from: cogbuilder.Builder[common.HideSeriesConfig]) -> typing.Self:    
+        hide_from_resource = hide_from.build()
+        self._internal.hide_from = hide_from_resource
+    
+        return self
+    
+    def thresholds_style(self, thresholds_style: cogbuilder.Builder[common.GraphThresholdsStyleConfig]) -> typing.Self:    
+        """
+        Threshold rendering
+        """
+            
+        thresholds_style_resource = thresholds_style.build()
+        self._internal.thresholds_style = thresholds_style_resource
+    
+        return self
+    
+    def axis_centered_zero(self, axis_centered_zero: bool) -> typing.Self:    
+        self._internal.axis_centered_zero = axis_centered_zero
+    
+        return self
+    
 
 
 class Panel(cogbuilder.Builder[dashboard.Panel]):    
@@ -15,7 +283,7 @@ class Panel(cogbuilder.Builder[dashboard.Panel]):
     
     _internal: dashboard.Panel
 
-    def __init__(self):
+    def __init__(self) -> None:
         self._internal = dashboard.Panel()        
         self._internal.type_val = "barchart"
 
@@ -84,7 +352,7 @@ class Panel(cogbuilder.Builder[dashboard.Panel]):
     
         return self
     
-    def datasource(self, datasource: dashboard.DataSourceRef) -> typing.Self:    
+    def datasource(self, datasource: common.DataSourceRef) -> typing.Self:    
         """
         The datasource used in all targets.
         """

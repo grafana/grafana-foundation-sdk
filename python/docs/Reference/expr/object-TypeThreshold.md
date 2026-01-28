@@ -10,7 +10,7 @@ class TypeThreshold(cogvariants.Dataquery):
     # Threshold Conditions
     conditions: list[expr.ExprTypeThresholdConditions]
     # The datasource
-    datasource: typing.Optional[dashboard.DataSourceRef]
+    datasource: typing.Optional[common.DataSourceRef]
     # Reference to single query result
     expression: str
     # true if query is disabled (ie should not be returned to the dashboard)
@@ -29,7 +29,7 @@ class TypeThreshold(cogvariants.Dataquery):
     # It can be used to distinguish different types of queries.
     query_type: typing.Optional[str]
     # RefID is the unique identifier of the query, set by the frontend call.
-    ref_id: str
+    ref_id: typing.Optional[str]
     # Optionally define expected query result behavior
     result_assertions: typing.Optional[expr.ExprTypeThresholdResultAssertions]
     # TimeRange represents the query range

@@ -26,7 +26,7 @@ type Panel struct {
     // Whether to display the panel without a background.
     Transparent bool `json:"transparent"`
     // The datasource used in all targets.
-    Datasource *dashboard.DataSourceRef `json:"datasource,omitempty"`
+    Datasource *common.DataSourceRef `json:"datasource,omitempty"`
     // Grid position.
     GridPos *dashboard.GridPos `json:"gridPos,omitempty"`
     // Panel links.

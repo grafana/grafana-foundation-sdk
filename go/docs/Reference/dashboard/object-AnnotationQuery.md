@@ -14,7 +14,7 @@ type AnnotationQuery struct {
     // Name of annotation.
     Name string `json:"name"`
     // Datasource where the annotations data is
-    Datasource dashboard.DataSourceRef `json:"datasource"`
+    Datasource common.DataSourceRef `json:"datasource"`
     // When enabled the annotation query is issued with every dashboard refresh
     Enable bool `json:"enable"`
     // Annotation queries can be toggled on or off at the top of the dashboard.

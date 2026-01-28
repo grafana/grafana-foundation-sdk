@@ -6,7 +6,7 @@ import com.grafana.foundation.dashboard.Panel;
 import java.util.List;
 import com.grafana.foundation.cog.variants.Dataquery;
 import java.util.LinkedList;
-import com.grafana.foundation.dashboard.DataSourceRef;
+import com.grafana.foundation.common.DataSourceRef;
 import com.grafana.foundation.dashboard.GridPos;
 import com.grafana.foundation.dashboard.DashboardLink;
 import com.grafana.foundation.dashboard.PanelRepeatDirection;
@@ -370,7 +370,7 @@ public class DashboardlistPanelBuilder implements com.grafana.foundation.cog.Bui
     
     public DashboardlistPanelBuilder keepTime(Boolean keepTime) {
 		if (this.internal.options == null) {
-			this.internal.options = new com.grafana.foundation.dashboardlist.Options();
+			this.internal.options = new com.grafana.foundation.dashboardlist.OptionsBuilder().build();
 		}
         ((Options) this.internal.options).keepTime = keepTime;
         return this;
@@ -378,7 +378,7 @@ public class DashboardlistPanelBuilder implements com.grafana.foundation.cog.Bui
     
     public DashboardlistPanelBuilder includeVars(Boolean includeVars) {
 		if (this.internal.options == null) {
-			this.internal.options = new com.grafana.foundation.dashboardlist.Options();
+			this.internal.options = new com.grafana.foundation.dashboardlist.OptionsBuilder().build();
 		}
         ((Options) this.internal.options).includeVars = includeVars;
         return this;
@@ -386,7 +386,7 @@ public class DashboardlistPanelBuilder implements com.grafana.foundation.cog.Bui
     
     public DashboardlistPanelBuilder showStarred(Boolean showStarred) {
 		if (this.internal.options == null) {
-			this.internal.options = new com.grafana.foundation.dashboardlist.Options();
+			this.internal.options = new com.grafana.foundation.dashboardlist.OptionsBuilder().build();
 		}
         ((Options) this.internal.options).showStarred = showStarred;
         return this;
@@ -394,7 +394,7 @@ public class DashboardlistPanelBuilder implements com.grafana.foundation.cog.Bui
     
     public DashboardlistPanelBuilder showRecentlyViewed(Boolean showRecentlyViewed) {
 		if (this.internal.options == null) {
-			this.internal.options = new com.grafana.foundation.dashboardlist.Options();
+			this.internal.options = new com.grafana.foundation.dashboardlist.OptionsBuilder().build();
 		}
         ((Options) this.internal.options).showRecentlyViewed = showRecentlyViewed;
         return this;
@@ -402,7 +402,7 @@ public class DashboardlistPanelBuilder implements com.grafana.foundation.cog.Bui
     
     public DashboardlistPanelBuilder showSearch(Boolean showSearch) {
 		if (this.internal.options == null) {
-			this.internal.options = new com.grafana.foundation.dashboardlist.Options();
+			this.internal.options = new com.grafana.foundation.dashboardlist.OptionsBuilder().build();
 		}
         ((Options) this.internal.options).showSearch = showSearch;
         return this;
@@ -410,7 +410,7 @@ public class DashboardlistPanelBuilder implements com.grafana.foundation.cog.Bui
     
     public DashboardlistPanelBuilder showHeadings(Boolean showHeadings) {
 		if (this.internal.options == null) {
-			this.internal.options = new com.grafana.foundation.dashboardlist.Options();
+			this.internal.options = new com.grafana.foundation.dashboardlist.OptionsBuilder().build();
 		}
         ((Options) this.internal.options).showHeadings = showHeadings;
         return this;
@@ -418,7 +418,7 @@ public class DashboardlistPanelBuilder implements com.grafana.foundation.cog.Bui
     
     public DashboardlistPanelBuilder maxItems(Long maxItems) {
 		if (this.internal.options == null) {
-			this.internal.options = new com.grafana.foundation.dashboardlist.Options();
+			this.internal.options = new com.grafana.foundation.dashboardlist.OptionsBuilder().build();
 		}
         ((Options) this.internal.options).maxItems = maxItems;
         return this;
@@ -426,7 +426,7 @@ public class DashboardlistPanelBuilder implements com.grafana.foundation.cog.Bui
     
     public DashboardlistPanelBuilder query(String query) {
 		if (this.internal.options == null) {
-			this.internal.options = new com.grafana.foundation.dashboardlist.Options();
+			this.internal.options = new com.grafana.foundation.dashboardlist.OptionsBuilder().build();
 		}
         ((Options) this.internal.options).query = query;
         return this;
@@ -434,7 +434,7 @@ public class DashboardlistPanelBuilder implements com.grafana.foundation.cog.Bui
     
     public DashboardlistPanelBuilder folderId(Long folderId) {
 		if (this.internal.options == null) {
-			this.internal.options = new com.grafana.foundation.dashboardlist.Options();
+			this.internal.options = new com.grafana.foundation.dashboardlist.OptionsBuilder().build();
 		}
         ((Options) this.internal.options).folderId = folderId;
         return this;
@@ -442,7 +442,7 @@ public class DashboardlistPanelBuilder implements com.grafana.foundation.cog.Bui
     
     public DashboardlistPanelBuilder tags(List<String> tags) {
 		if (this.internal.options == null) {
-			this.internal.options = new com.grafana.foundation.dashboardlist.Options();
+			this.internal.options = new com.grafana.foundation.dashboardlist.OptionsBuilder().build();
 		}
         ((Options) this.internal.options).tags = tags;
         return this;

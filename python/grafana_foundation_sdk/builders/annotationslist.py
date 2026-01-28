@@ -2,9 +2,74 @@
 
 import typing
 from ..cog import builder as cogbuilder
+from ..models import annotationslist
 from ..models import dashboard
 from ..cog import variants as cogvariants
-from ..models import annotationslist
+from ..models import common
+
+
+class Options(cogbuilder.Builder[annotationslist.Options]):
+    _internal: annotationslist.Options
+
+    def __init__(self) -> None:
+        self._internal = annotationslist.Options()
+
+    def build(self) -> annotationslist.Options:
+        """
+        Builds the object.
+        """
+        return self._internal    
+    
+    def only_from_this_dashboard(self, only_from_this_dashboard: bool) -> typing.Self:    
+        self._internal.only_from_this_dashboard = only_from_this_dashboard
+    
+        return self
+    
+    def only_in_time_range(self, only_in_time_range: bool) -> typing.Self:    
+        self._internal.only_in_time_range = only_in_time_range
+    
+        return self
+    
+    def tags(self, tags: list[str]) -> typing.Self:    
+        self._internal.tags = tags
+    
+        return self
+    
+    def limit(self, limit: int) -> typing.Self:    
+        self._internal.limit = limit
+    
+        return self
+    
+    def show_user(self, show_user: bool) -> typing.Self:    
+        self._internal.show_user = show_user
+    
+        return self
+    
+    def show_time(self, show_time: bool) -> typing.Self:    
+        self._internal.show_time = show_time
+    
+        return self
+    
+    def show_tags(self, show_tags: bool) -> typing.Self:    
+        self._internal.show_tags = show_tags
+    
+        return self
+    
+    def navigate_to_panel(self, navigate_to_panel: bool) -> typing.Self:    
+        self._internal.navigate_to_panel = navigate_to_panel
+    
+        return self
+    
+    def navigate_before(self, navigate_before: str) -> typing.Self:    
+        self._internal.navigate_before = navigate_before
+    
+        return self
+    
+    def navigate_after(self, navigate_after: str) -> typing.Self:    
+        self._internal.navigate_after = navigate_after
+    
+        return self
+    
 
 
 class Panel(cogbuilder.Builder[dashboard.Panel]):    
@@ -14,7 +79,7 @@ class Panel(cogbuilder.Builder[dashboard.Panel]):
     
     _internal: dashboard.Panel
 
-    def __init__(self):
+    def __init__(self) -> None:
         self._internal = dashboard.Panel()        
         self._internal.type_val = "annolist"
 
@@ -83,7 +148,7 @@ class Panel(cogbuilder.Builder[dashboard.Panel]):
     
         return self
     
-    def datasource(self, datasource: dashboard.DataSourceRef) -> typing.Self:    
+    def datasource(self, datasource: common.DataSourceRef) -> typing.Self:    
         """
         The datasource used in all targets.
         """

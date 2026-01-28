@@ -106,7 +106,7 @@ class PanelModelBuilder implements \Grafana\Foundation\Cog\Builder
     /**
      * The datasource used in all targets.
      */
-    public function datasource(\Grafana\Foundation\Dashboard\DataSourceRef $datasource): static
+    public function datasource(\Grafana\Foundation\Common\DataSourceRef $datasource): static
     {
         $this->internal->datasource = $datasource;
     

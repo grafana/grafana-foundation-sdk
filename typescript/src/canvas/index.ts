@@ -16,5 +16,7 @@ export * from './canvasConnectionBuilder.gen';
 export type * from './canvasConnectionBuilder.gen';
 export * from './canvasElementOptionsBuilder.gen';
 export type * from './canvasElementOptionsBuilder.gen';
+export * from './optionsBuilder.gen';
+export type * from './optionsBuilder.gen';
 export * from './panelBuilder.gen';
 export type * from './panelBuilder.gen';

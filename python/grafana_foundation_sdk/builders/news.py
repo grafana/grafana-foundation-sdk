@@ -2,9 +2,38 @@
 
 import typing
 from ..cog import builder as cogbuilder
+from ..models import news
 from ..models import dashboard
 from ..cog import variants as cogvariants
-from ..models import news
+from ..models import common
+
+
+class Options(cogbuilder.Builder[news.Options]):
+    _internal: news.Options
+
+    def __init__(self) -> None:
+        self._internal = news.Options()
+
+    def build(self) -> news.Options:
+        """
+        Builds the object.
+        """
+        return self._internal    
+    
+    def feed_url(self, feed_url: str) -> typing.Self:    
+        """
+        empty/missing will default to grafana blog
+        """
+            
+        self._internal.feed_url = feed_url
+    
+        return self
+    
+    def show_image(self, show_image: bool) -> typing.Self:    
+        self._internal.show_image = show_image
+    
+        return self
+    
 
 
 class Panel(cogbuilder.Builder[dashboard.Panel]):    
@@ -14,7 +43,7 @@ class Panel(cogbuilder.Builder[dashboard.Panel]):
     
     _internal: dashboard.Panel
 
-    def __init__(self):
+    def __init__(self) -> None:
         self._internal = dashboard.Panel()        
         self._internal.type_val = "news"
 
@@ -83,7 +112,7 @@ class Panel(cogbuilder.Builder[dashboard.Panel]):
     
         return self
     
-    def datasource(self, datasource: dashboard.DataSourceRef) -> typing.Self:    
+    def datasource(self, datasource: common.DataSourceRef) -> typing.Self:    
         """
         The datasource used in all targets.
         """

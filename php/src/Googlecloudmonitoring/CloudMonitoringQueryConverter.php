@@ -10,7 +10,7 @@ final class CloudMonitoringQueryConverter
         $calls = [
             '(new \Grafana\Foundation\Googlecloudmonitoring\CloudMonitoringQueryBuilder())',
         ];
-            if ($input->refId !== "") {
+            if ($input->refId !== null && $input->refId !== "") {
     
         
     $buffer = 'refId(';
@@ -105,7 +105,7 @@ final class CloudMonitoringQueryConverter
     
         
     $buffer = 'datasource(';
-        $arg0 ='(new \Grafana\Foundation\Dashboard\DataSourceRef('.(($input->datasource->type !== null) ? 'type: '.\var_export($input->datasource->type, true).', ' : '').''.(($input->datasource->uid !== null) ? 'uid: '.\var_export($input->datasource->uid, true).', ' : '').'))';
+        $arg0 ='(new \Grafana\Foundation\Common\DataSourceRef('.(($input->datasource->type !== null) ? 'type: '.\var_export($input->datasource->type, true).', ' : '').''.(($input->datasource->uid !== null) ? 'uid: '.\var_export($input->datasource->uid, true).', ' : '').'))';
         $buffer .= $arg0;
         
     $buffer .= ')';

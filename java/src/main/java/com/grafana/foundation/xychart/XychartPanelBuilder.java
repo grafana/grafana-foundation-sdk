@@ -6,7 +6,7 @@ import com.grafana.foundation.dashboard.Panel;
 import java.util.List;
 import com.grafana.foundation.cog.variants.Dataquery;
 import java.util.LinkedList;
-import com.grafana.foundation.dashboard.DataSourceRef;
+import com.grafana.foundation.common.DataSourceRef;
 import com.grafana.foundation.dashboard.GridPos;
 import com.grafana.foundation.dashboard.DashboardLink;
 import com.grafana.foundation.dashboard.PanelRepeatDirection;
@@ -387,7 +387,7 @@ public class XychartPanelBuilder implements com.grafana.foundation.cog.Builder<P
 			this.internal.fieldConfig.defaults = new com.grafana.foundation.dashboard.FieldConfig();
 		}
 		if (this.internal.fieldConfig.defaults.custom == null) {
-			this.internal.fieldConfig.defaults.custom = new com.grafana.foundation.xychart.FieldConfig();
+			this.internal.fieldConfig.defaults.custom = new com.grafana.foundation.xychart.FieldConfigBuilder().build();
 		}
         ((FieldConfig) this.internal.fieldConfig.defaults.custom).show = show;
         return this;
@@ -401,7 +401,7 @@ public class XychartPanelBuilder implements com.grafana.foundation.cog.Builder<P
 			this.internal.fieldConfig.defaults = new com.grafana.foundation.dashboard.FieldConfig();
 		}
 		if (this.internal.fieldConfig.defaults.custom == null) {
-			this.internal.fieldConfig.defaults.custom = new com.grafana.foundation.xychart.FieldConfig();
+			this.internal.fieldConfig.defaults.custom = new com.grafana.foundation.xychart.FieldConfigBuilder().build();
 		}
     ScaleDimensionConfig pointSizeResource = pointSize.build();
         ((FieldConfig) this.internal.fieldConfig.defaults.custom).pointSize = pointSizeResource;
@@ -416,7 +416,7 @@ public class XychartPanelBuilder implements com.grafana.foundation.cog.Builder<P
 			this.internal.fieldConfig.defaults = new com.grafana.foundation.dashboard.FieldConfig();
 		}
 		if (this.internal.fieldConfig.defaults.custom == null) {
-			this.internal.fieldConfig.defaults.custom = new com.grafana.foundation.xychart.FieldConfig();
+			this.internal.fieldConfig.defaults.custom = new com.grafana.foundation.xychart.FieldConfigBuilder().build();
 		}
     ColorDimensionConfig pointColorResource = pointColor.build();
         ((FieldConfig) this.internal.fieldConfig.defaults.custom).pointColor = pointColorResource;
@@ -431,7 +431,7 @@ public class XychartPanelBuilder implements com.grafana.foundation.cog.Builder<P
 			this.internal.fieldConfig.defaults = new com.grafana.foundation.dashboard.FieldConfig();
 		}
 		if (this.internal.fieldConfig.defaults.custom == null) {
-			this.internal.fieldConfig.defaults.custom = new com.grafana.foundation.xychart.FieldConfig();
+			this.internal.fieldConfig.defaults.custom = new com.grafana.foundation.xychart.FieldConfigBuilder().build();
 		}
     ColorDimensionConfig lineColorResource = lineColor.build();
         ((FieldConfig) this.internal.fieldConfig.defaults.custom).lineColor = lineColorResource;
@@ -449,7 +449,7 @@ public class XychartPanelBuilder implements com.grafana.foundation.cog.Builder<P
 			this.internal.fieldConfig.defaults = new com.grafana.foundation.dashboard.FieldConfig();
 		}
 		if (this.internal.fieldConfig.defaults.custom == null) {
-			this.internal.fieldConfig.defaults.custom = new com.grafana.foundation.xychart.FieldConfig();
+			this.internal.fieldConfig.defaults.custom = new com.grafana.foundation.xychart.FieldConfigBuilder().build();
 		}
         ((FieldConfig) this.internal.fieldConfig.defaults.custom).lineWidth = lineWidth;
         return this;
@@ -463,7 +463,7 @@ public class XychartPanelBuilder implements com.grafana.foundation.cog.Builder<P
 			this.internal.fieldConfig.defaults = new com.grafana.foundation.dashboard.FieldConfig();
 		}
 		if (this.internal.fieldConfig.defaults.custom == null) {
-			this.internal.fieldConfig.defaults.custom = new com.grafana.foundation.xychart.FieldConfig();
+			this.internal.fieldConfig.defaults.custom = new com.grafana.foundation.xychart.FieldConfigBuilder().build();
 		}
     LineStyle lineStyleResource = lineStyle.build();
         ((FieldConfig) this.internal.fieldConfig.defaults.custom).lineStyle = lineStyleResource;
@@ -478,7 +478,7 @@ public class XychartPanelBuilder implements com.grafana.foundation.cog.Builder<P
 			this.internal.fieldConfig.defaults = new com.grafana.foundation.dashboard.FieldConfig();
 		}
 		if (this.internal.fieldConfig.defaults.custom == null) {
-			this.internal.fieldConfig.defaults.custom = new com.grafana.foundation.xychart.FieldConfig();
+			this.internal.fieldConfig.defaults.custom = new com.grafana.foundation.xychart.FieldConfigBuilder().build();
 		}
         ((FieldConfig) this.internal.fieldConfig.defaults.custom).label = label;
         return this;
@@ -492,7 +492,7 @@ public class XychartPanelBuilder implements com.grafana.foundation.cog.Builder<P
 			this.internal.fieldConfig.defaults = new com.grafana.foundation.dashboard.FieldConfig();
 		}
 		if (this.internal.fieldConfig.defaults.custom == null) {
-			this.internal.fieldConfig.defaults.custom = new com.grafana.foundation.xychart.FieldConfig();
+			this.internal.fieldConfig.defaults.custom = new com.grafana.foundation.xychart.FieldConfigBuilder().build();
 		}
     HideSeriesConfig hideFromResource = hideFrom.build();
         ((FieldConfig) this.internal.fieldConfig.defaults.custom).hideFrom = hideFromResource;
@@ -507,7 +507,7 @@ public class XychartPanelBuilder implements com.grafana.foundation.cog.Builder<P
 			this.internal.fieldConfig.defaults = new com.grafana.foundation.dashboard.FieldConfig();
 		}
 		if (this.internal.fieldConfig.defaults.custom == null) {
-			this.internal.fieldConfig.defaults.custom = new com.grafana.foundation.xychart.FieldConfig();
+			this.internal.fieldConfig.defaults.custom = new com.grafana.foundation.xychart.FieldConfigBuilder().build();
 		}
         ((FieldConfig) this.internal.fieldConfig.defaults.custom).axisPlacement = axisPlacement;
         return this;
@@ -521,7 +521,7 @@ public class XychartPanelBuilder implements com.grafana.foundation.cog.Builder<P
 			this.internal.fieldConfig.defaults = new com.grafana.foundation.dashboard.FieldConfig();
 		}
 		if (this.internal.fieldConfig.defaults.custom == null) {
-			this.internal.fieldConfig.defaults.custom = new com.grafana.foundation.xychart.FieldConfig();
+			this.internal.fieldConfig.defaults.custom = new com.grafana.foundation.xychart.FieldConfigBuilder().build();
 		}
         ((FieldConfig) this.internal.fieldConfig.defaults.custom).axisColorMode = axisColorMode;
         return this;
@@ -535,7 +535,7 @@ public class XychartPanelBuilder implements com.grafana.foundation.cog.Builder<P
 			this.internal.fieldConfig.defaults = new com.grafana.foundation.dashboard.FieldConfig();
 		}
 		if (this.internal.fieldConfig.defaults.custom == null) {
-			this.internal.fieldConfig.defaults.custom = new com.grafana.foundation.xychart.FieldConfig();
+			this.internal.fieldConfig.defaults.custom = new com.grafana.foundation.xychart.FieldConfigBuilder().build();
 		}
         ((FieldConfig) this.internal.fieldConfig.defaults.custom).axisLabel = axisLabel;
         return this;
@@ -549,7 +549,7 @@ public class XychartPanelBuilder implements com.grafana.foundation.cog.Builder<P
 			this.internal.fieldConfig.defaults = new com.grafana.foundation.dashboard.FieldConfig();
 		}
 		if (this.internal.fieldConfig.defaults.custom == null) {
-			this.internal.fieldConfig.defaults.custom = new com.grafana.foundation.xychart.FieldConfig();
+			this.internal.fieldConfig.defaults.custom = new com.grafana.foundation.xychart.FieldConfigBuilder().build();
 		}
         ((FieldConfig) this.internal.fieldConfig.defaults.custom).axisWidth = axisWidth;
         return this;
@@ -563,7 +563,7 @@ public class XychartPanelBuilder implements com.grafana.foundation.cog.Builder<P
 			this.internal.fieldConfig.defaults = new com.grafana.foundation.dashboard.FieldConfig();
 		}
 		if (this.internal.fieldConfig.defaults.custom == null) {
-			this.internal.fieldConfig.defaults.custom = new com.grafana.foundation.xychart.FieldConfig();
+			this.internal.fieldConfig.defaults.custom = new com.grafana.foundation.xychart.FieldConfigBuilder().build();
 		}
         ((FieldConfig) this.internal.fieldConfig.defaults.custom).axisSoftMin = axisSoftMin;
         return this;
@@ -577,7 +577,7 @@ public class XychartPanelBuilder implements com.grafana.foundation.cog.Builder<P
 			this.internal.fieldConfig.defaults = new com.grafana.foundation.dashboard.FieldConfig();
 		}
 		if (this.internal.fieldConfig.defaults.custom == null) {
-			this.internal.fieldConfig.defaults.custom = new com.grafana.foundation.xychart.FieldConfig();
+			this.internal.fieldConfig.defaults.custom = new com.grafana.foundation.xychart.FieldConfigBuilder().build();
 		}
         ((FieldConfig) this.internal.fieldConfig.defaults.custom).axisSoftMax = axisSoftMax;
         return this;
@@ -591,7 +591,7 @@ public class XychartPanelBuilder implements com.grafana.foundation.cog.Builder<P
 			this.internal.fieldConfig.defaults = new com.grafana.foundation.dashboard.FieldConfig();
 		}
 		if (this.internal.fieldConfig.defaults.custom == null) {
-			this.internal.fieldConfig.defaults.custom = new com.grafana.foundation.xychart.FieldConfig();
+			this.internal.fieldConfig.defaults.custom = new com.grafana.foundation.xychart.FieldConfigBuilder().build();
 		}
         ((FieldConfig) this.internal.fieldConfig.defaults.custom).axisGridShow = axisGridShow;
         return this;
@@ -605,7 +605,7 @@ public class XychartPanelBuilder implements com.grafana.foundation.cog.Builder<P
 			this.internal.fieldConfig.defaults = new com.grafana.foundation.dashboard.FieldConfig();
 		}
 		if (this.internal.fieldConfig.defaults.custom == null) {
-			this.internal.fieldConfig.defaults.custom = new com.grafana.foundation.xychart.FieldConfig();
+			this.internal.fieldConfig.defaults.custom = new com.grafana.foundation.xychart.FieldConfigBuilder().build();
 		}
     ScaleDistributionConfig scaleDistributionResource = scaleDistribution.build();
         ((FieldConfig) this.internal.fieldConfig.defaults.custom).scaleDistribution = scaleDistributionResource;
@@ -620,7 +620,7 @@ public class XychartPanelBuilder implements com.grafana.foundation.cog.Builder<P
 			this.internal.fieldConfig.defaults = new com.grafana.foundation.dashboard.FieldConfig();
 		}
 		if (this.internal.fieldConfig.defaults.custom == null) {
-			this.internal.fieldConfig.defaults.custom = new com.grafana.foundation.xychart.FieldConfig();
+			this.internal.fieldConfig.defaults.custom = new com.grafana.foundation.xychart.FieldConfigBuilder().build();
 		}
     TextDimensionConfig labelValueResource = labelValue.build();
         ((FieldConfig) this.internal.fieldConfig.defaults.custom).labelValue = labelValueResource;
@@ -635,7 +635,7 @@ public class XychartPanelBuilder implements com.grafana.foundation.cog.Builder<P
 			this.internal.fieldConfig.defaults = new com.grafana.foundation.dashboard.FieldConfig();
 		}
 		if (this.internal.fieldConfig.defaults.custom == null) {
-			this.internal.fieldConfig.defaults.custom = new com.grafana.foundation.xychart.FieldConfig();
+			this.internal.fieldConfig.defaults.custom = new com.grafana.foundation.xychart.FieldConfigBuilder().build();
 		}
         ((FieldConfig) this.internal.fieldConfig.defaults.custom).axisCenteredZero = axisCenteredZero;
         return this;
@@ -643,7 +643,7 @@ public class XychartPanelBuilder implements com.grafana.foundation.cog.Builder<P
     
     public XychartPanelBuilder seriesMapping(SeriesMapping seriesMapping) {
 		if (this.internal.options == null) {
-			this.internal.options = new com.grafana.foundation.xychart.Options();
+			this.internal.options = new com.grafana.foundation.xychart.OptionsBuilder().build();
 		}
         ((Options) this.internal.options).seriesMapping = seriesMapping;
         return this;
@@ -651,7 +651,7 @@ public class XychartPanelBuilder implements com.grafana.foundation.cog.Builder<P
     
     public XychartPanelBuilder dims(com.grafana.foundation.cog.Builder<XYDimensionConfig> dims) {
 		if (this.internal.options == null) {
-			this.internal.options = new com.grafana.foundation.xychart.Options();
+			this.internal.options = new com.grafana.foundation.xychart.OptionsBuilder().build();
 		}
     XYDimensionConfig dimsResource = dims.build();
         ((Options) this.internal.options).dims = dimsResource;
@@ -660,7 +660,7 @@ public class XychartPanelBuilder implements com.grafana.foundation.cog.Builder<P
     
     public XychartPanelBuilder legend(com.grafana.foundation.cog.Builder<VizLegendOptions> legend) {
 		if (this.internal.options == null) {
-			this.internal.options = new com.grafana.foundation.xychart.Options();
+			this.internal.options = new com.grafana.foundation.xychart.OptionsBuilder().build();
 		}
     VizLegendOptions legendResource = legend.build();
         ((Options) this.internal.options).legend = legendResource;
@@ -669,7 +669,7 @@ public class XychartPanelBuilder implements com.grafana.foundation.cog.Builder<P
     
     public XychartPanelBuilder tooltip(com.grafana.foundation.cog.Builder<VizTooltipOptions> tooltip) {
 		if (this.internal.options == null) {
-			this.internal.options = new com.grafana.foundation.xychart.Options();
+			this.internal.options = new com.grafana.foundation.xychart.OptionsBuilder().build();
 		}
     VizTooltipOptions tooltipResource = tooltip.build();
         ((Options) this.internal.options).tooltip = tooltipResource;
@@ -678,7 +678,7 @@ public class XychartPanelBuilder implements com.grafana.foundation.cog.Builder<P
     
     public XychartPanelBuilder series(List<com.grafana.foundation.cog.Builder<ScatterSeriesConfig>> series) {
 		if (this.internal.options == null) {
-			this.internal.options = new com.grafana.foundation.xychart.Options();
+			this.internal.options = new com.grafana.foundation.xychart.OptionsBuilder().build();
 		}
         List<ScatterSeriesConfig> seriesResources = new LinkedList<>();
         for (com.grafana.foundation.cog.Builder<ScatterSeriesConfig> r1 : series) {

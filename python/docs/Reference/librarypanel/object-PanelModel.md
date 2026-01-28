@@ -28,7 +28,7 @@ class PanelModel:
     # Whether to display the panel without a background.
     transparent: bool
     # The datasource used in all targets.
-    datasource: typing.Optional[dashboard.DataSourceRef]
+    datasource: typing.Optional[common.DataSourceRef]
     # Panel links.
     links: typing.Optional[list[dashboard.DashboardLink]]
     # Name of template variable to repeat for.

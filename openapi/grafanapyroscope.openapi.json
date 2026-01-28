@@ -24,8 +24,7 @@
         "required": [
           "labelSelector",
           "profileTypeId",
-          "groupBy",
-          "refId"
+          "groupBy"
         ],
         "properties": {
           "labelSelector": {
@@ -78,8 +77,7 @@
             "type": "string",
             "description": "Specific datasource instance"
           }
-        },
-        "description": "Ref to a DataSource instance"
+        }
       }
     }
   }

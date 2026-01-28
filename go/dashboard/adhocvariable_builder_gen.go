@@ -4,6 +4,7 @@ package dashboard
 
 import (
 	cog "github.com/grafana/grafana-foundation-sdk/go/cog"
+	common "github.com/grafana/grafana-foundation-sdk/go/common"
 )
 
 var _ cog.Builder[VariableModel] = (*AdHocVariableBuilder)(nil)
@@ -74,7 +75,7 @@ func (builder *AdHocVariableBuilder) Description(description string) *AdHocVaria
 }
 
 // Data source used to fetch values for a variable. It can be defined but `null`.
-func (builder *AdHocVariableBuilder) Datasource(datasource DataSourceRef) *AdHocVariableBuilder {
+func (builder *AdHocVariableBuilder) Datasource(datasource common.DataSourceRef) *AdHocVariableBuilder {
 	builder.internal.Datasource = &datasource
 
 	return builder

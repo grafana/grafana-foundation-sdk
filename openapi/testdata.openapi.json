@@ -214,9 +214,6 @@
       "dataquery": {
         "type": "object",
         "additionalProperties": false,
-        "required": [
-          "refId"
-        ],
         "properties": {
           "alias": {
             "type": "string"
@@ -289,7 +286,7 @@
             "items": {
               "type": "array",
               "items": {
-                "anyOf": [
+                "oneOf": [
                   {
                     "type": "string"
                   },

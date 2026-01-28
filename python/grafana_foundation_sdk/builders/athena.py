@@ -3,7 +3,7 @@
 import typing
 from ..cog import builder as cogbuilder
 from ..models import athena
-from ..models import dashboard
+from ..models import common
 
 
 class Dataquery(cogbuilder.Builder[athena.Dataquery]):    
@@ -13,7 +13,7 @@ class Dataquery(cogbuilder.Builder[athena.Dataquery]):
     
     _internal: athena.Dataquery
 
-    def __init__(self):
+    def __init__(self) -> None:
         self._internal = athena.Dataquery()
 
     def build(self) -> athena.Dataquery:
@@ -85,7 +85,7 @@ class Dataquery(cogbuilder.Builder[athena.Dataquery]):
     
         return self
     
-    def datasource(self, datasource: dashboard.DataSourceRef) -> typing.Self:    
+    def datasource(self, datasource: common.DataSourceRef) -> typing.Self:    
         """
         For mixed data sources the selected datasource is on the query level.
         For non mixed scenarios this is undefined.
@@ -102,7 +102,7 @@ class Dataquery(cogbuilder.Builder[athena.Dataquery]):
 class ConnectionArgs(cogbuilder.Builder[athena.ConnectionArgs]):
     _internal: athena.ConnectionArgs
 
-    def __init__(self):
+    def __init__(self) -> None:
         self._internal = athena.ConnectionArgs()
 
     def build(self) -> athena.ConnectionArgs:

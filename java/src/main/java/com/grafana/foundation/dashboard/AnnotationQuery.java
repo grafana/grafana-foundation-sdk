@@ -7,6 +7,7 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.ObjectWriter;
 import com.fasterxml.jackson.annotation.JsonInclude;
+import com.grafana.foundation.common.DataSourceRef;
 
 // TODO docs
 // FROM: AnnotationQuery in grafana-data/src/types/annotations.ts
@@ -46,7 +47,7 @@ public class AnnotationQuery {
     public String expr;
     public AnnotationQuery() {
         this.name = "";
-        this.datasource = new com.grafana.foundation.dashboard.DataSourceRef();
+        this.datasource = new com.grafana.foundation.common.DataSourceRef();
         this.enable = true;
         this.hide = false;
         this.iconColor = "";

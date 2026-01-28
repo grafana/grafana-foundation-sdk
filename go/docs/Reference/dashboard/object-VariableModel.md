@@ -26,7 +26,7 @@ type VariableModel struct {
     // Query used to fetch values for a variable
     Query *dashboard.StringOrMap `json:"query,omitempty"`
     // Data source used to fetch values for a variable. It can be defined but `null`.
-    Datasource *dashboard.DataSourceRef `json:"datasource,omitempty"`
+    Datasource *common.DataSourceRef `json:"datasource,omitempty"`
     // Format to use while fetching all values from data source, eg: wildcard, glob, regex, pipe, etc.
     AllFormat *string `json:"allFormat,omitempty"`
     // Shows current selected variable text/value on the dashboard

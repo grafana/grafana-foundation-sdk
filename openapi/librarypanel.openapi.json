@@ -241,8 +241,7 @@
             "type": "string",
             "description": "Specific datasource instance"
           }
-        },
-        "description": "Ref to a DataSource instance"
+        }
       },
       "DashboardLink": {
         "type": "object",
@@ -500,7 +499,7 @@
         }
       },
       "ValueMapping": {
-        "anyOf": [
+        "oneOf": [
           {
             "$ref": "#/components/schemas/ValueMap"
           },
@@ -569,7 +568,11 @@
         ],
         "properties": {
           "type": {
-            "$ref": "#/components/schemas/MappingType",
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/MappingType"
+              }
+            ],
             "default": "value"
           },
           "options": {
@@ -591,7 +594,11 @@
         ],
         "properties": {
           "type": {
-            "$ref": "#/components/schemas/MappingType",
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/MappingType"
+              }
+            ],
             "default": "range"
           },
           "options": {
@@ -630,7 +637,11 @@
         ],
         "properties": {
           "type": {
-            "$ref": "#/components/schemas/MappingType",
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/MappingType"
+              }
+            ],
             "default": "regex"
           },
           "options": {
@@ -664,7 +675,11 @@
         ],
         "properties": {
           "type": {
-            "$ref": "#/components/schemas/MappingType",
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/MappingType"
+              }
+            ],
             "default": "special"
           },
           "options": {

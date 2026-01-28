@@ -2,7 +2,7 @@
 
 from ..cog import variants as cogvariants
 import typing
-from ..models import dashboard
+from ..models import common
 import enum
 from ..cog import runtime as cogruntime
 
@@ -20,7 +20,7 @@ class Dataquery(cogvariants.Dataquery):
     # A unique identifier for the query within the list of targets.
     # In server side expressions, the refId is used as a variable name to identify results.
     # By default, the UI will assign A->Z; however setting meaningful names may be useful.
-    ref_id: str
+    ref_id: typing.Optional[str]
     # true if query is disabled (ie should not be returned to the dashboard)
     # Note this does not always imply that the query should not be executed since
     # the results from a hidden query may be used as the input to other queries (SSE etc)
@@ -33,9 +33,9 @@ class Dataquery(cogvariants.Dataquery):
     # For non mixed scenarios this is undefined.
     # TODO find a better way to do this ^ that's friendly to schema
     # TODO this shouldn't be unknown but DataSourceRef | null
-    datasource: typing.Optional[dashboard.DataSourceRef]
+    datasource: typing.Optional[common.DataSourceRef]
 
-    def __init__(self, format_val: typing.Optional['FormatOptions'] = None, connection_args: typing.Optional['ConnectionArgs'] = None, table: typing.Optional[str] = None, column: typing.Optional[str] = None, query_id: typing.Optional[str] = None, ref_id: str = "", hide: typing.Optional[bool] = None, query_type: typing.Optional[str] = None, raw_sql: str = "", datasource: typing.Optional[dashboard.DataSourceRef] = None):
+    def __init__(self, format_val: typing.Optional['FormatOptions'] = None, connection_args: typing.Optional['ConnectionArgs'] = None, table: typing.Optional[str] = None, column: typing.Optional[str] = None, query_id: typing.Optional[str] = None, ref_id: typing.Optional[str] = None, hide: typing.Optional[bool] = None, query_type: typing.Optional[str] = None, raw_sql: str = "", datasource: typing.Optional[common.DataSourceRef] = None) -> None:
         self.format_val = format_val if format_val is not None else FormatOptions.TIME_SERIES
         self.connection_args = connection_args if connection_args is not None else ConnectionArgs()
         self.table = table
@@ -51,7 +51,6 @@ class Dataquery(cogvariants.Dataquery):
         payload: dict[str, object] = {
             "format": self.format_val,
             "connectionArgs": self.connection_args,
-            "refId": self.ref_id,
             "rawSQL": self.raw_sql,
         }
         if self.table is not None:
@@ -60,6 +59,8 @@ class Dataquery(cogvariants.Dataquery):
             payload["column"] = self.column
         if self.query_id is not None:
             payload["queryID"] = self.query_id
+        if self.ref_id is not None:
+            payload["refId"] = self.ref_id
         if self.hide is not None:
             payload["hide"] = self.hide
         if self.query_type is not None:
@@ -91,7 +92,7 @@ class Dataquery(cogvariants.Dataquery):
         if "rawSQL" in data:
             args["raw_sql"] = data["rawSQL"]
         if "datasource" in data:
-            args["datasource"] = dashboard.DataSourceRef.from_json(data["datasource"])        
+            args["datasource"] = common.DataSourceRef.from_json(data["datasource"])        
 
         return cls(**args)
 
@@ -109,7 +110,7 @@ class ConnectionArgs:
     result_reuse_enabled: typing.Optional[bool]
     result_reuse_max_age_in_minutes: typing.Optional[float]
 
-    def __init__(self, region: typing.Optional[str] = "__default", catalog: typing.Optional[str] = "__default", database: typing.Optional[str] = "__default", result_reuse_enabled: typing.Optional[bool] = False, result_reuse_max_age_in_minutes: typing.Optional[float] = 60):
+    def __init__(self, region: typing.Optional[str] = "__default", catalog: typing.Optional[str] = "__default", database: typing.Optional[str] = "__default", result_reuse_enabled: typing.Optional[bool] = False, result_reuse_max_age_in_minutes: typing.Optional[float] = 60) -> None:
         self.region = region
         self.catalog = catalog
         self.database = database

@@ -19,7 +19,7 @@ class Dataquery implements \JsonSerializable, \Grafana\Foundation\Cog\Dataquery
      * In server side expressions, the refId is used as a variable name to identify results.
      * By default, the UI will assign A->Z; however setting meaningful names may be useful.
      */
-    public string $refId;
+    public ?string $refId;
 
     /**
      * true if query is disabled (ie should not be returned to the dashboard)
@@ -40,7 +40,7 @@ class Dataquery implements \JsonSerializable, \Grafana\Foundation\Cog\Dataquery
      * TODO find a better way to do this ^ that's friendly to schema
      * TODO this shouldn't be unknown but DataSourceRef | null
      */
-    public ?\Grafana\Foundation\Dashboard\DataSourceRef $datasource;
+    public ?\Grafana\Foundation\Common\DataSourceRef $datasource;
 
     /**
      * @param string|null $labelSelector
@@ -48,13 +48,13 @@ class Dataquery implements \JsonSerializable, \Grafana\Foundation\Cog\Dataquery
      * @param string|null $refId
      * @param bool|null $hide
      * @param string|null $queryType
-     * @param \Grafana\Foundation\Dashboard\DataSourceRef|null $datasource
+     * @param \Grafana\Foundation\Common\DataSourceRef|null $datasource
      */
-    public function __construct(?string $labelSelector = null, ?string $profileTypeId = null, ?string $refId = null, ?bool $hide = null, ?string $queryType = null, ?\Grafana\Foundation\Dashboard\DataSourceRef $datasource = null)
+    public function __construct(?string $labelSelector = null, ?string $profileTypeId = null, ?string $refId = null, ?bool $hide = null, ?string $queryType = null, ?\Grafana\Foundation\Common\DataSourceRef $datasource = null)
     {
         $this->labelSelector = $labelSelector ?: "{}";
         $this->profileTypeId = $profileTypeId ?: "";
-        $this->refId = $refId ?: "";
+        $this->refId = $refId;
         $this->hide = $hide;
         $this->queryType = $queryType;
         $this->datasource = $datasource;
@@ -76,7 +76,7 @@ class Dataquery implements \JsonSerializable, \Grafana\Foundation\Cog\Dataquery
             datasource: isset($data["datasource"]) ? (function($input) {
     	/** @var array{type?: string, uid?: string} */
     $val = $input;
-    	return \Grafana\Foundation\Dashboard\DataSourceRef::fromArray($val);
+    	return \Grafana\Foundation\Common\DataSourceRef::fromArray($val);
     })($data["datasource"]) : null,
         );
     }
@@ -89,7 +89,9 @@ class Dataquery implements \JsonSerializable, \Grafana\Foundation\Cog\Dataquery
         $data = new \stdClass;
         $data->labelSelector = $this->labelSelector;
         $data->profileTypeId = $this->profileTypeId;
-        $data->refId = $this->refId;
+        if (isset($this->refId)) {
+            $data->refId = $this->refId;
+        }
         if (isset($this->hide)) {
             $data->hide = $this->hide;
         }

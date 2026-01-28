@@ -16,7 +16,6 @@
         "required": [
           "format",
           "connectionArgs",
-          "refId",
           "rawSQL"
         ],
         "properties": {
@@ -108,8 +107,7 @@
             "type": "string",
             "description": "Specific datasource instance"
           }
-        },
-        "description": "Ref to a DataSource instance"
+        }
       }
     }
   }

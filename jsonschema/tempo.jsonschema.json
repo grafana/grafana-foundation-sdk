@@ -6,7 +6,6 @@
       "type": "object",
       "additionalProperties": false,
       "required": [
-        "refId",
         "query",
         "filters"
       ],
@@ -91,7 +90,7 @@
           "description": "The operator that connects the tag to the value, for example: =, \u003e, !=, =~"
         },
         "value": {
-          "anyOf": [
+          "oneOf": [
             {
               "type": "string"
             },
@@ -159,8 +158,7 @@
           "type": "string",
           "description": "Specific datasource instance"
         }
-      },
-      "description": "Ref to a DataSource instance"
+      }
     }
   }
 }

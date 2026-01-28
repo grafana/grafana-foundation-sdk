@@ -2,6 +2,7 @@
 
 package com.grafana.foundation.dashboard;
 
+import com.grafana.foundation.common.DataSourceRef;
 
 public class AdHocVariableBuilder implements com.grafana.foundation.cog.Builder<VariableModel> {
     protected final VariableModel internal;

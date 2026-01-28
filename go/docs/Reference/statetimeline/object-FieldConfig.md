@@ -40,3 +40,6 @@ Validate checks all the validation constraints that may be defined on `FieldConf
 func (fieldConfig *FieldConfig) Validate() error
 ```
 
+## See also
+
+ * <span class="badge builder"></span> [FieldConfigBuilder](./builder-FieldConfigBuilder.md)

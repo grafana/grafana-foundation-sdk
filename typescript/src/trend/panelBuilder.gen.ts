@@ -63,7 +63,7 @@ export class PanelBuilder implements cog.Builder<dashboard.Panel> {
     }
 
     // The datasource used in all targets.
-    datasource(datasource: dashboard.DataSourceRef): this {
+    datasource(datasource: common.DataSourceRef): this {
         this.internal.datasource = datasource;
         return this;
     }

@@ -2,10 +2,80 @@
 
 import typing
 from ..cog import builder as cogbuilder
-from ..models import dashboard
-from ..cog import variants as cogvariants
 from ..models import table
 from ..models import common
+from ..models import dashboard
+from ..cog import variants as cogvariants
+
+
+class Options(cogbuilder.Builder[table.Options]):
+    _internal: table.Options
+
+    def __init__(self) -> None:
+        self._internal = table.Options()
+
+    def build(self) -> table.Options:
+        """
+        Builds the object.
+        """
+        return self._internal    
+    
+    def frame_index(self, frame_index: float) -> typing.Self:    
+        """
+        Represents the index of the selected frame
+        """
+            
+        self._internal.frame_index = frame_index
+    
+        return self
+    
+    def show_header(self, show_header: bool) -> typing.Self:    
+        """
+        Controls whether the panel should show the header
+        """
+            
+        self._internal.show_header = show_header
+    
+        return self
+    
+    def show_type_icons(self, show_type_icons: bool) -> typing.Self:    
+        """
+        Controls whether the header should show icons for the column types
+        """
+            
+        self._internal.show_type_icons = show_type_icons
+    
+        return self
+    
+    def sort_by(self, sort_by: list[cogbuilder.Builder[common.TableSortByFieldState]]) -> typing.Self:    
+        """
+        Used to control row sorting
+        """
+            
+        sort_by_resources = [r1.build() for r1 in sort_by]
+        self._internal.sort_by = sort_by_resources
+    
+        return self
+    
+    def footer(self, footer: cogbuilder.Builder[common.TableFooterOptions]) -> typing.Self:    
+        """
+        Controls footer options
+        """
+            
+        footer_resource = footer.build()
+        self._internal.footer = footer_resource
+    
+        return self
+    
+    def cell_height(self, cell_height: common.TableCellHeight) -> typing.Self:    
+        """
+        Controls the height of the rows
+        """
+            
+        self._internal.cell_height = cell_height
+    
+        return self
+    
 
 
 class Panel(cogbuilder.Builder[dashboard.Panel]):    
@@ -15,7 +85,7 @@ class Panel(cogbuilder.Builder[dashboard.Panel]):
     
     _internal: dashboard.Panel
 
-    def __init__(self):
+    def __init__(self) -> None:
         self._internal = dashboard.Panel()        
         self._internal.type_val = "table"
 
@@ -84,7 +154,7 @@ class Panel(cogbuilder.Builder[dashboard.Panel]):
     
         return self
     
-    def datasource(self, datasource: dashboard.DataSourceRef) -> typing.Self:    
+    def datasource(self, datasource: common.DataSourceRef) -> typing.Self:    
         """
         The datasource used in all targets.
         """

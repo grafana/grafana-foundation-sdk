@@ -16,7 +16,7 @@ class Folder:
     # Description of the folder.
     description: typing.Optional[str]
 
-    def __init__(self, uid: str = "", title: str = "", description: typing.Optional[str] = None):
+    def __init__(self, uid: str = "", title: str = "", description: typing.Optional[str] = None) -> None:
         self.uid = uid
         self.title = title
         self.description = description

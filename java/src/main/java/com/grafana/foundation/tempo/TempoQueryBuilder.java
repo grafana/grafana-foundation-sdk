@@ -2,7 +2,7 @@
 
 package com.grafana.foundation.tempo;
 
-import com.grafana.foundation.dashboard.DataSourceRef;
+import com.grafana.foundation.common.DataSourceRef;
 import java.util.List;
 import java.util.LinkedList;
 

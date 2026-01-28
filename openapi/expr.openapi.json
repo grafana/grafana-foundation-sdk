@@ -11,7 +11,7 @@
   "components": {
     "schemas": {
       "expr": {
-        "anyOf": [
+        "oneOf": [
           {
             "$ref": "#/components/schemas/TypeMath"
           },
@@ -37,7 +37,6 @@
         "additionalProperties": false,
         "required": [
           "expression",
-          "refId",
           "type"
         ],
         "properties": {
@@ -141,7 +140,6 @@
         "required": [
           "expression",
           "reducer",
-          "refId",
           "type"
         ],
         "properties": {
@@ -280,7 +278,6 @@
         "required": [
           "downsampler",
           "expression",
-          "refId",
           "type",
           "upsampler",
           "window"
@@ -412,7 +409,6 @@
         "additionalProperties": false,
         "required": [
           "conditions",
-          "refId",
           "type"
         ],
         "properties": {
@@ -590,7 +586,6 @@
         "required": [
           "conditions",
           "expression",
-          "refId",
           "type"
         ],
         "properties": {
@@ -775,7 +770,6 @@
         "required": [
           "expression",
           "format",
-          "refId",
           "type"
         ],
         "properties": {
@@ -911,8 +905,7 @@
             "type": "string",
             "description": "Specific datasource instance"
           }
-        },
-        "description": "Ref to a DataSource instance"
+        }
       }
     }
   }

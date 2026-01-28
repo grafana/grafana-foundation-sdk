@@ -26,7 +26,7 @@ export interface Panel {
 	// Whether to display the panel without a background.
 	transparent: boolean;
 	// The datasource used in all targets.
-	datasource?: dashboard.DataSourceRef;
+	datasource?: common.DataSourceRef;
 	// Grid position.
 	gridPos?: dashboard.GridPos;
 	// Panel links.

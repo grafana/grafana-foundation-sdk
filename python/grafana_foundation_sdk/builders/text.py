@@ -5,12 +5,13 @@ from ..cog import builder as cogbuilder
 from ..models import text
 from ..models import dashboard
 from ..cog import variants as cogvariants
+from ..models import common
 
 
 class CodeOptions(cogbuilder.Builder[text.CodeOptions]):
     _internal: text.CodeOptions
 
-    def __init__(self):
+    def __init__(self) -> None:
         self._internal = text.CodeOptions()
 
     def build(self) -> text.CodeOptions:
@@ -40,6 +41,36 @@ class CodeOptions(cogbuilder.Builder[text.CodeOptions]):
     
 
 
+class Options(cogbuilder.Builder[text.Options]):
+    _internal: text.Options
+
+    def __init__(self) -> None:
+        self._internal = text.Options()
+
+    def build(self) -> text.Options:
+        """
+        Builds the object.
+        """
+        return self._internal    
+    
+    def mode(self, mode: text.TextMode) -> typing.Self:    
+        self._internal.mode = mode
+    
+        return self
+    
+    def code(self, code: cogbuilder.Builder[text.CodeOptions]) -> typing.Self:    
+        code_resource = code.build()
+        self._internal.code = code_resource
+    
+        return self
+    
+    def content(self, content: str) -> typing.Self:    
+        self._internal.content = content
+    
+        return self
+    
+
+
 class Panel(cogbuilder.Builder[dashboard.Panel]):    
     """
     Dashboard panels are the basic visualization building blocks.
@@ -47,7 +78,7 @@ class Panel(cogbuilder.Builder[dashboard.Panel]):
     
     _internal: dashboard.Panel
 
-    def __init__(self):
+    def __init__(self) -> None:
         self._internal = dashboard.Panel()        
         self._internal.type_val = "text"
 
@@ -116,7 +147,7 @@ class Panel(cogbuilder.Builder[dashboard.Panel]):
     
         return self
     
-    def datasource(self, datasource: dashboard.DataSourceRef) -> typing.Self:    
+    def datasource(self, datasource: common.DataSourceRef) -> typing.Self:    
         """
         The datasource used in all targets.
         """

@@ -16,7 +16,7 @@ class AnnotationQuery implements \JsonSerializable
     /**
      * Datasource where the annotations data is
      */
-    public \Grafana\Foundation\Dashboard\DataSourceRef $datasource;
+    public \Grafana\Foundation\Common\DataSourceRef $datasource;
 
     /**
      * When enabled the annotation query is issued with every dashboard refresh
@@ -53,7 +53,7 @@ class AnnotationQuery implements \JsonSerializable
 
     /**
      * @param string|null $name
-     * @param \Grafana\Foundation\Dashboard\DataSourceRef|null $datasource
+     * @param \Grafana\Foundation\Common\DataSourceRef|null $datasource
      * @param bool|null $enable
      * @param bool|null $hide
      * @param string|null $iconColor
@@ -62,10 +62,10 @@ class AnnotationQuery implements \JsonSerializable
      * @param string|null $type
      * @param string|null $expr
      */
-    public function __construct(?string $name = null, ?\Grafana\Foundation\Dashboard\DataSourceRef $datasource = null, ?bool $enable = null, ?bool $hide = null, ?string $iconColor = null, ?\Grafana\Foundation\Dashboard\AnnotationPanelFilter $filter = null, ?\Grafana\Foundation\Dashboard\AnnotationTarget $target = null, ?string $type = null, ?string $expr = null)
+    public function __construct(?string $name = null, ?\Grafana\Foundation\Common\DataSourceRef $datasource = null, ?bool $enable = null, ?bool $hide = null, ?string $iconColor = null, ?\Grafana\Foundation\Dashboard\AnnotationPanelFilter $filter = null, ?\Grafana\Foundation\Dashboard\AnnotationTarget $target = null, ?string $type = null, ?string $expr = null)
     {
         $this->name = $name ?: "";
-        $this->datasource = $datasource ?: new \Grafana\Foundation\Dashboard\DataSourceRef();
+        $this->datasource = $datasource ?: new \Grafana\Foundation\Common\DataSourceRef();
         $this->enable = $enable ?: true;
         $this->hide = $hide;
         $this->iconColor = $iconColor ?: "";
@@ -87,7 +87,7 @@ class AnnotationQuery implements \JsonSerializable
             datasource: isset($data["datasource"]) ? (function($input) {
     	/** @var array{type?: string, uid?: string} */
     $val = $input;
-    	return \Grafana\Foundation\Dashboard\DataSourceRef::fromArray($val);
+    	return \Grafana\Foundation\Common\DataSourceRef::fromArray($val);
     })($data["datasource"]) : null,
             enable: $data["enable"] ?? null,
             hide: $data["hide"] ?? null,

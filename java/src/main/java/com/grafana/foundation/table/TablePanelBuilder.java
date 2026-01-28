@@ -6,7 +6,7 @@ import com.grafana.foundation.dashboard.Panel;
 import java.util.List;
 import com.grafana.foundation.cog.variants.Dataquery;
 import java.util.LinkedList;
-import com.grafana.foundation.dashboard.DataSourceRef;
+import com.grafana.foundation.common.DataSourceRef;
 import com.grafana.foundation.dashboard.GridPos;
 import com.grafana.foundation.dashboard.DashboardLink;
 import com.grafana.foundation.dashboard.PanelRepeatDirection;
@@ -373,7 +373,7 @@ public class TablePanelBuilder implements com.grafana.foundation.cog.Builder<Pan
     
     public TablePanelBuilder frameIndex(Double frameIndex) {
 		if (this.internal.options == null) {
-			this.internal.options = new com.grafana.foundation.table.Options();
+			this.internal.options = new com.grafana.foundation.table.OptionsBuilder().build();
 		}
         ((Options) this.internal.options).frameIndex = frameIndex;
         return this;
@@ -381,7 +381,7 @@ public class TablePanelBuilder implements com.grafana.foundation.cog.Builder<Pan
     
     public TablePanelBuilder showHeader(Boolean showHeader) {
 		if (this.internal.options == null) {
-			this.internal.options = new com.grafana.foundation.table.Options();
+			this.internal.options = new com.grafana.foundation.table.OptionsBuilder().build();
 		}
         ((Options) this.internal.options).showHeader = showHeader;
         return this;
@@ -389,7 +389,7 @@ public class TablePanelBuilder implements com.grafana.foundation.cog.Builder<Pan
     
     public TablePanelBuilder showTypeIcons(Boolean showTypeIcons) {
 		if (this.internal.options == null) {
-			this.internal.options = new com.grafana.foundation.table.Options();
+			this.internal.options = new com.grafana.foundation.table.OptionsBuilder().build();
 		}
         ((Options) this.internal.options).showTypeIcons = showTypeIcons;
         return this;
@@ -397,7 +397,7 @@ public class TablePanelBuilder implements com.grafana.foundation.cog.Builder<Pan
     
     public TablePanelBuilder sortBy(List<com.grafana.foundation.cog.Builder<TableSortByFieldState>> sortBy) {
 		if (this.internal.options == null) {
-			this.internal.options = new com.grafana.foundation.table.Options();
+			this.internal.options = new com.grafana.foundation.table.OptionsBuilder().build();
 		}
         List<TableSortByFieldState> sortByResources = new LinkedList<>();
         for (com.grafana.foundation.cog.Builder<TableSortByFieldState> r1 : sortBy) {
@@ -410,7 +410,7 @@ public class TablePanelBuilder implements com.grafana.foundation.cog.Builder<Pan
     
     public TablePanelBuilder footer(com.grafana.foundation.cog.Builder<TableFooterOptions> footer) {
 		if (this.internal.options == null) {
-			this.internal.options = new com.grafana.foundation.table.Options();
+			this.internal.options = new com.grafana.foundation.table.OptionsBuilder().build();
 		}
     TableFooterOptions footerResource = footer.build();
         ((Options) this.internal.options).footer = footerResource;
@@ -419,7 +419,7 @@ public class TablePanelBuilder implements com.grafana.foundation.cog.Builder<Pan
     
     public TablePanelBuilder cellHeight(TableCellHeight cellHeight) {
 		if (this.internal.options == null) {
-			this.internal.options = new com.grafana.foundation.table.Options();
+			this.internal.options = new com.grafana.foundation.table.OptionsBuilder().build();
 		}
         ((Options) this.internal.options).cellHeight = cellHeight;
         return this;

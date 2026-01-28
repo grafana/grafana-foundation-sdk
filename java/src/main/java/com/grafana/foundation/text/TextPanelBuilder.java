@@ -6,7 +6,7 @@ import com.grafana.foundation.dashboard.Panel;
 import java.util.List;
 import com.grafana.foundation.cog.variants.Dataquery;
 import java.util.LinkedList;
-import com.grafana.foundation.dashboard.DataSourceRef;
+import com.grafana.foundation.common.DataSourceRef;
 import com.grafana.foundation.dashboard.GridPos;
 import com.grafana.foundation.dashboard.DashboardLink;
 import com.grafana.foundation.dashboard.PanelRepeatDirection;
@@ -370,7 +370,7 @@ public class TextPanelBuilder implements com.grafana.foundation.cog.Builder<Pane
     
     public TextPanelBuilder mode(TextMode mode) {
 		if (this.internal.options == null) {
-			this.internal.options = new com.grafana.foundation.text.Options();
+			this.internal.options = new com.grafana.foundation.text.OptionsBuilder().build();
 		}
         ((Options) this.internal.options).mode = mode;
         return this;
@@ -378,7 +378,7 @@ public class TextPanelBuilder implements com.grafana.foundation.cog.Builder<Pane
     
     public TextPanelBuilder code(com.grafana.foundation.cog.Builder<CodeOptions> code) {
 		if (this.internal.options == null) {
-			this.internal.options = new com.grafana.foundation.text.Options();
+			this.internal.options = new com.grafana.foundation.text.OptionsBuilder().build();
 		}
     CodeOptions codeResource = code.build();
         ((Options) this.internal.options).code = codeResource;
@@ -387,7 +387,7 @@ public class TextPanelBuilder implements com.grafana.foundation.cog.Builder<Pane
     
     public TextPanelBuilder content(String content) {
 		if (this.internal.options == null) {
-			this.internal.options = new com.grafana.foundation.text.Options();
+			this.internal.options = new com.grafana.foundation.text.OptionsBuilder().build();
 		}
         ((Options) this.internal.options).content = content;
         return this;

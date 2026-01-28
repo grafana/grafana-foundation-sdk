@@ -11,7 +11,7 @@ from ..cog import variants as cogvariants
 class XYDimensionConfig(cogbuilder.Builder[xychart.XYDimensionConfig]):
     _internal: xychart.XYDimensionConfig
 
-    def __init__(self):
+    def __init__(self) -> None:
         self._internal = xychart.XYDimensionConfig()
 
     def build(self) -> xychart.XYDimensionConfig:
@@ -39,10 +39,123 @@ class XYDimensionConfig(cogbuilder.Builder[xychart.XYDimensionConfig]):
     
 
 
+class FieldConfig(cogbuilder.Builder[xychart.FieldConfig]):
+    _internal: xychart.FieldConfig
+
+    def __init__(self) -> None:
+        self._internal = xychart.FieldConfig()
+
+    def build(self) -> xychart.FieldConfig:
+        """
+        Builds the object.
+        """
+        return self._internal    
+    
+    def show(self, show: xychart.ScatterShow) -> typing.Self:    
+        self._internal.show = show
+    
+        return self
+    
+    def point_size(self, point_size: cogbuilder.Builder[common.ScaleDimensionConfig]) -> typing.Self:    
+        point_size_resource = point_size.build()
+        self._internal.point_size = point_size_resource
+    
+        return self
+    
+    def point_color(self, point_color: cogbuilder.Builder[common.ColorDimensionConfig]) -> typing.Self:    
+        point_color_resource = point_color.build()
+        self._internal.point_color = point_color_resource
+    
+        return self
+    
+    def line_color(self, line_color: cogbuilder.Builder[common.ColorDimensionConfig]) -> typing.Self:    
+        line_color_resource = line_color.build()
+        self._internal.line_color = line_color_resource
+    
+        return self
+    
+    def line_width(self, line_width: int) -> typing.Self:    
+        if not line_width >= 0:
+            raise ValueError("line_width must be >= 0")
+        self._internal.line_width = line_width
+    
+        return self
+    
+    def line_style(self, line_style: cogbuilder.Builder[common.LineStyle]) -> typing.Self:    
+        line_style_resource = line_style.build()
+        self._internal.line_style = line_style_resource
+    
+        return self
+    
+    def label(self, label: common.VisibilityMode) -> typing.Self:    
+        self._internal.label = label
+    
+        return self
+    
+    def hide_from(self, hide_from: cogbuilder.Builder[common.HideSeriesConfig]) -> typing.Self:    
+        hide_from_resource = hide_from.build()
+        self._internal.hide_from = hide_from_resource
+    
+        return self
+    
+    def axis_placement(self, axis_placement: common.AxisPlacement) -> typing.Self:    
+        self._internal.axis_placement = axis_placement
+    
+        return self
+    
+    def axis_color_mode(self, axis_color_mode: common.AxisColorMode) -> typing.Self:    
+        self._internal.axis_color_mode = axis_color_mode
+    
+        return self
+    
+    def axis_label(self, axis_label: str) -> typing.Self:    
+        self._internal.axis_label = axis_label
+    
+        return self
+    
+    def axis_width(self, axis_width: float) -> typing.Self:    
+        self._internal.axis_width = axis_width
+    
+        return self
+    
+    def axis_soft_min(self, axis_soft_min: float) -> typing.Self:    
+        self._internal.axis_soft_min = axis_soft_min
+    
+        return self
+    
+    def axis_soft_max(self, axis_soft_max: float) -> typing.Self:    
+        self._internal.axis_soft_max = axis_soft_max
+    
+        return self
+    
+    def axis_grid_show(self, axis_grid_show: bool) -> typing.Self:    
+        self._internal.axis_grid_show = axis_grid_show
+    
+        return self
+    
+    def scale_distribution(self, scale_distribution: cogbuilder.Builder[common.ScaleDistributionConfig]) -> typing.Self:    
+        scale_distribution_resource = scale_distribution.build()
+        self._internal.scale_distribution = scale_distribution_resource
+    
+        return self
+    
+    def label_value(self, label_value: cogbuilder.Builder[common.TextDimensionConfig]) -> typing.Self:    
+        label_value_resource = label_value.build()
+        self._internal.label_value = label_value_resource
+    
+        return self
+    
+    def axis_centered_zero(self, axis_centered_zero: bool) -> typing.Self:    
+        self._internal.axis_centered_zero = axis_centered_zero
+    
+        return self
+    
+
+
 class ScatterSeriesConfig(cogbuilder.Builder[xychart.ScatterSeriesConfig]):
     _internal: xychart.ScatterSeriesConfig
 
-    def __init__(self):
+    def __init__(self) -> None:
         self._internal = xychart.ScatterSeriesConfig()
 
     def build(self) -> xychart.ScatterSeriesConfig:
@@ -167,6 +280,49 @@ class ScatterSeriesConfig(cogbuilder.Builder[xychart.ScatterSeriesConfig]):
     
 
 
+class Options(cogbuilder.Builder[xychart.Options]):
+    _internal: xychart.Options
+
+    def __init__(self) -> None:
+        self._internal = xychart.Options()
+
+    def build(self) -> xychart.Options:
+        """
+        Builds the object.
+        """
+        return self._internal    
+    
+    def series_mapping(self, series_mapping: xychart.SeriesMapping) -> typing.Self:    
+        self._internal.series_mapping = series_mapping
+    
+        return self
+    
+    def dims(self, dims: cogbuilder.Builder[xychart.XYDimensionConfig]) -> typing.Self:    
+        dims_resource = dims.build()
+        self._internal.dims = dims_resource
+    
+        return self
+    
+    def legend(self, legend: cogbuilder.Builder[common.VizLegendOptions]) -> typing.Self:    
+        legend_resource = legend.build()
+        self._internal.legend = legend_resource
+    
+        return self
+    
+    def tooltip(self, tooltip: cogbuilder.Builder[common.VizTooltipOptions]) -> typing.Self:    
+        tooltip_resource = tooltip.build()
+        self._internal.tooltip = tooltip_resource
+    
+        return self
+    
+    def series(self, series: list[cogbuilder.Builder[xychart.ScatterSeriesConfig]]) -> typing.Self:    
+        series_resources = [r1.build() for r1 in series]
+        self._internal.series = series_resources
+    
+        return self
+    
+
+
 class Panel(cogbuilder.Builder[dashboard.Panel]):    
     """
     Dashboard panels are the basic visualization building blocks.
@@ -174,7 +330,7 @@ class Panel(cogbuilder.Builder[dashboard.Panel]):
     
     _internal: dashboard.Panel
 
-    def __init__(self):
+    def __init__(self) -> None:
         self._internal = dashboard.Panel()        
         self._internal.type_val = "xychart"
 
@@ -243,7 +399,7 @@ class Panel(cogbuilder.Builder[dashboard.Panel]):
     
         return self
     
-    def datasource(self, datasource: dashboard.DataSourceRef) -> typing.Self:    
+    def datasource(self, datasource: common.DataSourceRef) -> typing.Self:    
         """
         The datasource used in all targets.
         """

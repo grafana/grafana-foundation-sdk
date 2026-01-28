@@ -36,8 +36,7 @@
       "type": "object",
       "additionalProperties": false,
       "required": [
-        "expr",
-        "refId"
+        "expr"
       ],
       "properties": {
         "expr": {
@@ -104,8 +103,7 @@
           "type": "string",
           "description": "Specific datasource instance"
         }
-      },
-      "description": "Ref to a DataSource instance"
+      }
     }
   }
 }

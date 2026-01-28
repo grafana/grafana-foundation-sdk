@@ -12,7 +12,7 @@ class TypeClassicConditions implements \JsonSerializable, \Grafana\Foundation\Co
     /**
      * The datasource
      */
-    public ?\Grafana\Foundation\Dashboard\DataSourceRef $datasource;
+    public ?\Grafana\Foundation\Common\DataSourceRef $datasource;
 
     /**
      * true if query is disabled (ie should not be returned to the dashboard)
@@ -44,7 +44,7 @@ class TypeClassicConditions implements \JsonSerializable, \Grafana\Foundation\Co
     /**
      * RefID is the unique identifier of the query, set by the frontend call.
      */
-    public string $refId;
+    public ?string $refId;
 
     /**
      * Optionally define expected query result behavior
@@ -62,7 +62,7 @@ class TypeClassicConditions implements \JsonSerializable, \Grafana\Foundation\Co
 
     /**
      * @param array<\Grafana\Foundation\Expr\ExprTypeClassicConditionsConditions>|null $conditions
-     * @param \Grafana\Foundation\Dashboard\DataSourceRef|null $datasource
+     * @param \Grafana\Foundation\Common\DataSourceRef|null $datasource
      * @param bool|null $hide
      * @param float|null $intervalMs
      * @param int|null $maxDataPoints
@@ -71,7 +71,7 @@ class TypeClassicConditions implements \JsonSerializable, \Grafana\Foundation\Co
      * @param \Grafana\Foundation\Expr\ExprTypeClassicConditionsResultAssertions|null $resultAssertions
      * @param \Grafana\Foundation\Expr\ExprTypeClassicConditionsTimeRange|null $timeRange
      */
-    public function __construct(?array $conditions = null, ?\Grafana\Foundation\Dashboard\DataSourceRef $datasource = null, ?bool $hide = null, ?float $intervalMs = null, ?int $maxDataPoints = null, ?string $queryType = null, ?string $refId = null, ?\Grafana\Foundation\Expr\ExprTypeClassicConditionsResultAssertions $resultAssertions = null, ?\Grafana\Foundation\Expr\ExprTypeClassicConditionsTimeRange $timeRange = null)
+    public function __construct(?array $conditions = null, ?\Grafana\Foundation\Common\DataSourceRef $datasource = null, ?bool $hide = null, ?float $intervalMs = null, ?int $maxDataPoints = null, ?string $queryType = null, ?string $refId = null, ?\Grafana\Foundation\Expr\ExprTypeClassicConditionsResultAssertions $resultAssertions = null, ?\Grafana\Foundation\Expr\ExprTypeClassicConditionsTimeRange $timeRange = null)
     {
         $this->conditions = $conditions ?: [];
         $this->datasource = $datasource;
@@ -79,7 +79,7 @@ class TypeClassicConditions implements \JsonSerializable, \Grafana\Foundation\Co
         $this->intervalMs = $intervalMs;
         $this->maxDataPoints = $maxDataPoints;
         $this->queryType = $queryType;
-        $this->refId = $refId ?: "";
+        $this->refId = $refId;
         $this->resultAssertions = $resultAssertions;
         $this->timeRange = $timeRange;
         $this->type = "classic_conditions";
@@ -102,7 +102,7 @@ class TypeClassicConditions implements \JsonSerializable, \Grafana\Foundation\Co
             datasource: isset($data["datasource"]) ? (function($input) {
     	/** @var array{type?: string, uid?: string} */
     $val = $input;
-    	return \Grafana\Foundation\Dashboard\DataSourceRef::fromArray($val);
+    	return \Grafana\Foundation\Common\DataSourceRef::fromArray($val);
     })($data["datasource"]) : null,
             hide: $data["hide"] ?? null,
             intervalMs: $data["intervalMs"] ?? null,
@@ -129,7 +129,6 @@ class TypeClassicConditions implements \JsonSerializable, \Grafana\Foundation\Co
     {
         $data = new \stdClass;
         $data->conditions = $this->conditions;
-        $data->refId = $this->refId;
         $data->type = $this->type;
         if (isset($this->datasource)) {
             $data->datasource = $this->datasource;
@@ -145,6 +144,9 @@ class TypeClassicConditions implements \JsonSerializable, \Grafana\Foundation\Co
         }
         if (isset($this->queryType)) {
             $data->queryType = $this->queryType;
+        }
+        if (isset($this->refId)) {
+            $data->refId = $this->refId;
         }
         if (isset($this->resultAssertions)) {
             $data->resultAssertions = $this->resultAssertions;

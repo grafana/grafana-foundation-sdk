@@ -23,7 +23,7 @@ build()
 Datasource where the annotations data is
 
 ```typescript
-datasource(datasource: dashboard.DataSourceRef)
+datasource(datasource: common.DataSourceRef)
 ```
 
 ### <span class="badge object-method"></span> enable

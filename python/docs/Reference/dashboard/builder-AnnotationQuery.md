@@ -23,7 +23,7 @@ def build() -> dashboard.AnnotationQuery
 Datasource where the annotations data is
 
 ```python
-def datasource(datasource: dashboard.DataSourceRef) -> typing.Self
+def datasource(datasource: common.DataSourceRef) -> typing.Self
 ```
 
 ### <span class="badge object-method"></span> enable

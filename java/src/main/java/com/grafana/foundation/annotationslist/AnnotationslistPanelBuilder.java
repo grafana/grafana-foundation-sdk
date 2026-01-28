@@ -6,7 +6,7 @@ import com.grafana.foundation.dashboard.Panel;
 import java.util.List;
 import com.grafana.foundation.cog.variants.Dataquery;
 import java.util.LinkedList;
-import com.grafana.foundation.dashboard.DataSourceRef;
+import com.grafana.foundation.common.DataSourceRef;
 import com.grafana.foundation.dashboard.GridPos;
 import com.grafana.foundation.dashboard.DashboardLink;
 import com.grafana.foundation.dashboard.PanelRepeatDirection;
@@ -370,7 +370,7 @@ public class AnnotationslistPanelBuilder implements com.grafana.foundation.cog.B
     
     public AnnotationslistPanelBuilder onlyFromThisDashboard(Boolean onlyFromThisDashboard) {
 		if (this.internal.options == null) {
-			this.internal.options = new com.grafana.foundation.annotationslist.Options();
+			this.internal.options = new com.grafana.foundation.annotationslist.OptionsBuilder().build();
 		}
         ((Options) this.internal.options).onlyFromThisDashboard = onlyFromThisDashboard;
         return this;
@@ -378,7 +378,7 @@ public class AnnotationslistPanelBuilder implements com.grafana.foundation.cog.B
     
     public AnnotationslistPanelBuilder onlyInTimeRange(Boolean onlyInTimeRange) {
 		if (this.internal.options == null) {
-			this.internal.options = new com.grafana.foundation.annotationslist.Options();
+			this.internal.options = new com.grafana.foundation.annotationslist.OptionsBuilder().build();
 		}
         ((Options) this.internal.options).onlyInTimeRange = onlyInTimeRange;
         return this;
@@ -386,7 +386,7 @@ public class AnnotationslistPanelBuilder implements com.grafana.foundation.cog.B
     
     public AnnotationslistPanelBuilder tags(List<String> tags) {
 		if (this.internal.options == null) {
-			this.internal.options = new com.grafana.foundation.annotationslist.Options();
+			this.internal.options = new com.grafana.foundation.annotationslist.OptionsBuilder().build();
 		}
         ((Options) this.internal.options).tags = tags;
         return this;
@@ -394,7 +394,7 @@ public class AnnotationslistPanelBuilder implements com.grafana.foundation.cog.B
     
     public AnnotationslistPanelBuilder limit(Integer limit) {
 		if (this.internal.options == null) {
-			this.internal.options = new com.grafana.foundation.annotationslist.Options();
+			this.internal.options = new com.grafana.foundation.annotationslist.OptionsBuilder().build();
 		}
         ((Options) this.internal.options).limit = limit;
         return this;
@@ -402,7 +402,7 @@ public class AnnotationslistPanelBuilder implements com.grafana.foundation.cog.B
     
     public AnnotationslistPanelBuilder showUser(Boolean showUser) {
 		if (this.internal.options == null) {
-			this.internal.options = new com.grafana.foundation.annotationslist.Options();
+			this.internal.options = new com.grafana.foundation.annotationslist.OptionsBuilder().build();
 		}
         ((Options) this.internal.options).showUser = showUser;
         return this;
@@ -410,7 +410,7 @@ public class AnnotationslistPanelBuilder implements com.grafana.foundation.cog.B
     
     public AnnotationslistPanelBuilder showTime(Boolean showTime) {
 		if (this.internal.options == null) {
-			this.internal.options = new com.grafana.foundation.annotationslist.Options();
+			this.internal.options = new com.grafana.foundation.annotationslist.OptionsBuilder().build();
 		}
         ((Options) this.internal.options).showTime = showTime;
         return this;
@@ -418,7 +418,7 @@ public class AnnotationslistPanelBuilder implements com.grafana.foundation.cog.B
     
     public AnnotationslistPanelBuilder showTags(Boolean showTags) {
 		if (this.internal.options == null) {
-			this.internal.options = new com.grafana.foundation.annotationslist.Options();
+			this.internal.options = new com.grafana.foundation.annotationslist.OptionsBuilder().build();
 		}
         ((Options) this.internal.options).showTags = showTags;
         return this;
@@ -426,7 +426,7 @@ public class AnnotationslistPanelBuilder implements com.grafana.foundation.cog.B
     
     public AnnotationslistPanelBuilder navigateToPanel(Boolean navigateToPanel) {
 		if (this.internal.options == null) {
-			this.internal.options = new com.grafana.foundation.annotationslist.Options();
+			this.internal.options = new com.grafana.foundation.annotationslist.OptionsBuilder().build();
 		}
         ((Options) this.internal.options).navigateToPanel = navigateToPanel;
         return this;
@@ -434,7 +434,7 @@ public class AnnotationslistPanelBuilder implements com.grafana.foundation.cog.B
     
     public AnnotationslistPanelBuilder navigateBefore(String navigateBefore) {
 		if (this.internal.options == null) {
-			this.internal.options = new com.grafana.foundation.annotationslist.Options();
+			this.internal.options = new com.grafana.foundation.annotationslist.OptionsBuilder().build();
 		}
         ((Options) this.internal.options).navigateBefore = navigateBefore;
         return this;
@@ -442,7 +442,7 @@ public class AnnotationslistPanelBuilder implements com.grafana.foundation.cog.B
     
     public AnnotationslistPanelBuilder navigateAfter(String navigateAfter) {
 		if (this.internal.options == null) {
-			this.internal.options = new com.grafana.foundation.annotationslist.Options();
+			this.internal.options = new com.grafana.foundation.annotationslist.OptionsBuilder().build();
 		}
         ((Options) this.internal.options).navigateAfter = navigateAfter;
         return this;

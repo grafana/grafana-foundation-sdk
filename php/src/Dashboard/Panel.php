@@ -52,7 +52,7 @@ class Panel implements \JsonSerializable
     /**
      * The datasource used in all targets.
      */
-    public ?\Grafana\Foundation\Dashboard\DataSourceRef $datasource;
+    public ?\Grafana\Foundation\Common\DataSourceRef $datasource;
 
     /**
      * Grid position.
@@ -147,7 +147,7 @@ class Panel implements \JsonSerializable
      * @param string|null $title
      * @param string|null $description
      * @param bool|null $transparent
-     * @param \Grafana\Foundation\Dashboard\DataSourceRef|null $datasource
+     * @param \Grafana\Foundation\Common\DataSourceRef|null $datasource
      * @param \Grafana\Foundation\Dashboard\GridPos|null $gridPos
      * @param array<\Grafana\Foundation\Dashboard\DashboardLink>|null $links
      * @param string|null $repeat
@@ -162,7 +162,7 @@ class Panel implements \JsonSerializable
      * @param mixed|null $options
      * @param \Grafana\Foundation\Dashboard\FieldConfigSource|null $fieldConfig
      */
-    public function __construct(?string $type = null, ?int $id = null, ?string $pluginVersion = null, ?array $tags = null, ?array $targets = null, ?string $title = null, ?string $description = null, ?bool $transparent = null, ?\Grafana\Foundation\Dashboard\DataSourceRef $datasource = null, ?\Grafana\Foundation\Dashboard\GridPos $gridPos = null, ?array $links = null, ?string $repeat = null, ?\Grafana\Foundation\Dashboard\PanelRepeatDirection $repeatDirection = null, ?int $repeatPanelId = null, ?float $maxDataPoints = null, ?array $transformations = null, ?string $interval = null, ?string $timeFrom = null, ?string $timeShift = null, ?\Grafana\Foundation\Dashboard\LibraryPanelRef $libraryPanel = null,  $options = null, ?\Grafana\Foundation\Dashboard\FieldConfigSource $fieldConfig = null)
+    public function __construct(?string $type = null, ?int $id = null, ?string $pluginVersion = null, ?array $tags = null, ?array $targets = null, ?string $title = null, ?string $description = null, ?bool $transparent = null, ?\Grafana\Foundation\Common\DataSourceRef $datasource = null, ?\Grafana\Foundation\Dashboard\GridPos $gridPos = null, ?array $links = null, ?string $repeat = null, ?\Grafana\Foundation\Dashboard\PanelRepeatDirection $repeatDirection = null, ?int $repeatPanelId = null, ?float $maxDataPoints = null, ?array $transformations = null, ?string $interval = null, ?string $timeFrom = null, ?string $timeShift = null, ?\Grafana\Foundation\Dashboard\LibraryPanelRef $libraryPanel = null,  $options = null, ?\Grafana\Foundation\Dashboard\FieldConfigSource $fieldConfig = null)
     {
         $this->type = $type ?: "";
         $this->id = $id;
@@ -214,7 +214,7 @@ class Panel implements \JsonSerializable
             datasource: isset($data["datasource"]) ? (function($input) {
     	/** @var array{type?: string, uid?: string} */
     $val = $input;
-    	return \Grafana\Foundation\Dashboard\DataSourceRef::fromArray($val);
+    	return \Grafana\Foundation\Common\DataSourceRef::fromArray($val);
     })($data["datasource"]) : null,
             gridPos: isset($data["gridPos"]) ? (function($input) {
     	/** @var array{h?: int, w?: int, x?: int, y?: int, static?: bool} */
