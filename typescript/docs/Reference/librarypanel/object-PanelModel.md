@@ -22,7 +22,7 @@ export interface PanelModel {
 	// Whether to display the panel without a background.
 	transparent?: boolean;
 	// The datasource used in all targets.
-	datasource?: dashboard.DataSourceRef;
+	datasource?: common.DataSourceRef;
 	// Panel links.
 	links?: dashboard.DashboardLink[];
 	// Name of template variable to repeat for.

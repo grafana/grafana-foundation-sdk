@@ -2,7 +2,7 @@
 
 from ..cog import variants as cogvariants
 import typing
-from ..models import dashboard
+from ..models import common
 import enum
 from ..cog import runtime as cogruntime
 
@@ -11,7 +11,7 @@ class CloudMonitoringQuery(cogvariants.Dataquery):
     # A unique identifier for the query within the list of targets.
     # In server side expressions, the refId is used as a variable name to identify results.
     # By default, the UI will assign A->Z; however setting meaningful names may be useful.
-    ref_id: str
+    ref_id: typing.Optional[str]
     # If hide is set to true, Grafana will filter out the response(s) associated with this query before returning it to the panel.
     hide: typing.Optional[bool]
     # Specify the query flavor
@@ -33,11 +33,11 @@ class CloudMonitoringQuery(cogvariants.Dataquery):
     # For non mixed scenarios this is undefined.
     # TODO find a better way to do this ^ that's friendly to schema
     # TODO this shouldn't be unknown but DataSourceRef | null
-    datasource: typing.Optional[dashboard.DataSourceRef]
+    datasource: typing.Optional[common.DataSourceRef]
     # Time interval in milliseconds.
     interval_ms: typing.Optional[float]
 
-    def __init__(self, ref_id: str = "", hide: typing.Optional[bool] = None, query_type: typing.Optional[str] = None, alias_by: typing.Optional[str] = None, time_series_list: typing.Optional['TimeSeriesList'] = None, time_series_query: typing.Optional['TimeSeriesQuery'] = None, slo_query: typing.Optional['SLOQuery'] = None, prom_ql_query: typing.Optional['PromQLQuery'] = None, datasource: typing.Optional[dashboard.DataSourceRef] = None, interval_ms: typing.Optional[float] = None):
+    def __init__(self, ref_id: typing.Optional[str] = None, hide: typing.Optional[bool] = None, query_type: typing.Optional[str] = None, alias_by: typing.Optional[str] = None, time_series_list: typing.Optional['TimeSeriesList'] = None, time_series_query: typing.Optional['TimeSeriesQuery'] = None, slo_query: typing.Optional['SLOQuery'] = None, prom_ql_query: typing.Optional['PromQLQuery'] = None, datasource: typing.Optional[common.DataSourceRef] = None, interval_ms: typing.Optional[float] = None) -> None:
         self.ref_id = ref_id
         self.hide = hide
         self.query_type = query_type
@@ -51,8 +51,9 @@ class CloudMonitoringQuery(cogvariants.Dataquery):
 
     def to_json(self) -> dict[str, object]:
         payload: dict[str, object] = {
-            "refId": self.ref_id,
         }
+        if self.ref_id is not None:
+            payload["refId"] = self.ref_id
         if self.hide is not None:
             payload["hide"] = self.hide
         if self.query_type is not None:
@@ -94,7 +95,7 @@ class CloudMonitoringQuery(cogvariants.Dataquery):
         if "promQLQuery" in data:
             args["prom_ql_query"] = PromQLQuery.from_json(data["promQLQuery"])
         if "datasource" in data:
-            args["datasource"] = dashboard.DataSourceRef.from_json(data["datasource"])
+            args["datasource"] = common.DataSourceRef.from_json(data["datasource"])
         if "intervalMs" in data:
             args["interval_ms"] = data["intervalMs"]        
 
@@ -135,7 +136,7 @@ class TimeSeriesList:
     # Preprocessor is not part of the API, but is used to store the preprocessor and not affect the UI for the rest of parameters
     preprocessor: typing.Optional['PreprocessorType']
 
-    def __init__(self, project_name: str = "", cross_series_reducer: str = "", alignment_period: typing.Optional[str] = None, per_series_aligner: typing.Optional[str] = None, group_bys: typing.Optional[list[str]] = None, filters: typing.Optional[list[str]] = None, view: typing.Optional[str] = None, title: typing.Optional[str] = None, text: typing.Optional[str] = None, secondary_cross_series_reducer: typing.Optional[str] = None, secondary_alignment_period: typing.Optional[str] = None, secondary_per_series_aligner: typing.Optional[str] = None, secondary_group_bys: typing.Optional[list[str]] = None, preprocessor: typing.Optional['PreprocessorType'] = None):
+    def __init__(self, project_name: str = "", cross_series_reducer: str = "", alignment_period: typing.Optional[str] = None, per_series_aligner: typing.Optional[str] = None, group_bys: typing.Optional[list[str]] = None, filters: typing.Optional[list[str]] = None, view: typing.Optional[str] = None, title: typing.Optional[str] = None, text: typing.Optional[str] = None, secondary_cross_series_reducer: typing.Optional[str] = None, secondary_alignment_period: typing.Optional[str] = None, secondary_per_series_aligner: typing.Optional[str] = None, secondary_group_bys: typing.Optional[list[str]] = None, preprocessor: typing.Optional['PreprocessorType'] = None) -> None:
         self.project_name = project_name
         self.cross_series_reducer = cross_series_reducer
         self.alignment_period = alignment_period
@@ -240,7 +241,7 @@ class TimeSeriesQuery:
     # To disable the graphPeriod, it should explictly be set to 'disabled'.
     graph_period: typing.Optional[str]
 
-    def __init__(self, project_name: str = "", query: str = "", graph_period: typing.Optional[str] = "disabled"):
+    def __init__(self, project_name: str = "", query: str = "", graph_period: typing.Optional[str] = "disabled") -> None:
         self.project_name = project_name
         self.query = query
         self.graph_period = graph_period
@@ -294,7 +295,7 @@ class SLOQuery:
     # Specific lookback period for the SLO.
     lookback_period: typing.Optional[str]
 
-    def __init__(self, project_name: str = "", per_series_aligner: typing.Optional[str] = None, alignment_period: typing.Optional[str] = None, selector_name: str = "", service_id: str = "", service_name: str = "", slo_id: str = "", slo_name: str = "", goal: typing.Optional[float] = None, lookback_period: typing.Optional[str] = None):
+    def __init__(self, project_name: str = "", per_series_aligner: typing.Optional[str] = None, alignment_period: typing.Optional[str] = None, selector_name: str = "", service_id: str = "", service_name: str = "", slo_id: str = "", slo_name: str = "", goal: typing.Optional[float] = None, lookback_period: typing.Optional[str] = None) -> None:
         self.project_name = project_name
         self.per_series_aligner = per_series_aligner
         self.alignment_period = alignment_period
@@ -365,7 +366,7 @@ class PromQLQuery:
     # PromQL min step
     step: str
 
-    def __init__(self, project_name: str = "", expr: str = "", step: str = ""):
+    def __init__(self, project_name: str = "", expr: str = "", step: str = "") -> None:
         self.project_name = project_name
         self.expr = expr
         self.step = step
@@ -435,7 +436,7 @@ class MetricQuery:
     # To disable the graphPeriod, it should explictly be set to 'disabled'.
     graph_period: typing.Optional[str]
 
-    def __init__(self, project_name: str = "", per_series_aligner: typing.Optional[str] = None, alignment_period: typing.Optional[str] = None, alias_by: typing.Optional[str] = None, editor_mode: str = "", metric_type: str = "", cross_series_reducer: str = "", group_bys: typing.Optional[list[str]] = None, filters: typing.Optional[list[str]] = None, metric_kind: typing.Optional['MetricKind'] = None, value_type: typing.Optional[str] = None, view: typing.Optional[str] = None, query: str = "", preprocessor: typing.Optional['PreprocessorType'] = None, graph_period: typing.Optional[str] = "disabled"):
+    def __init__(self, project_name: str = "", per_series_aligner: typing.Optional[str] = None, alignment_period: typing.Optional[str] = None, alias_by: typing.Optional[str] = None, editor_mode: str = "", metric_type: str = "", cross_series_reducer: str = "", group_bys: typing.Optional[list[str]] = None, filters: typing.Optional[list[str]] = None, metric_kind: typing.Optional['MetricKind'] = None, value_type: typing.Optional[str] = None, view: typing.Optional[str] = None, query: str = "", preprocessor: typing.Optional['PreprocessorType'] = None, graph_period: typing.Optional[str] = "disabled") -> None:
         self.project_name = project_name
         self.per_series_aligner = per_series_aligner
         self.alignment_period = alignment_period
@@ -578,7 +579,7 @@ class LegacyCloudMonitoringAnnotationQuery:
     # Annotation text.
     text: str
 
-    def __init__(self, project_name: str = "", metric_type: str = "", ref_id: str = "", filters: typing.Optional[list[str]] = None, metric_kind: typing.Optional['MetricKind'] = None, value_type: str = "", title: str = "", text: str = ""):
+    def __init__(self, project_name: str = "", metric_type: str = "", ref_id: str = "", filters: typing.Optional[list[str]] = None, metric_kind: typing.Optional['MetricKind'] = None, value_type: str = "", title: str = "", text: str = "") -> None:
         self.project_name = project_name
         self.metric_type = metric_type
         self.ref_id = ref_id
@@ -639,7 +640,7 @@ class Filter:
     # Filter condition.
     condition: typing.Optional[str]
 
-    def __init__(self, key: str = "", operator: str = "", value: str = "", condition: typing.Optional[str] = None):
+    def __init__(self, key: str = "", operator: str = "", value: str = "", condition: typing.Optional[str] = None) -> None:
         self.key = key
         self.operator = operator
         self.value = value

@@ -2,7 +2,7 @@
 
 package com.grafana.foundation.googlecloudmonitoring;
 
-import com.grafana.foundation.dashboard.DataSourceRef;
+import com.grafana.foundation.common.DataSourceRef;
 
 public class CloudMonitoringQueryBuilder implements com.grafana.foundation.cog.Builder<com.grafana.foundation.cog.variants.Dataquery> {
     protected final CloudMonitoringQuery internal;

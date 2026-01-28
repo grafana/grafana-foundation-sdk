@@ -5,7 +5,7 @@ package expr
 import (
 	cog "github.com/grafana/grafana-foundation-sdk/go/cog"
 	variants "github.com/grafana/grafana-foundation-sdk/go/cog/variants"
-	dashboard "github.com/grafana/grafana-foundation-sdk/go/dashboard"
+	common "github.com/grafana/grafana-foundation-sdk/go/common"
 )
 
 var _ cog.Builder[variants.Dataquery] = (*TypeThresholdBuilder)(nil)
@@ -55,7 +55,7 @@ func (builder *TypeThresholdBuilder) Conditions(conditions []cog.Builder[ExprTyp
 }
 
 // The datasource
-func (builder *TypeThresholdBuilder) Datasource(datasource dashboard.DataSourceRef) *TypeThresholdBuilder {
+func (builder *TypeThresholdBuilder) Datasource(datasource common.DataSourceRef) *TypeThresholdBuilder {
 	builder.internal.Datasource = &datasource
 
 	return builder
@@ -105,7 +105,7 @@ func (builder *TypeThresholdBuilder) QueryType(queryType string) *TypeThresholdB
 
 // RefID is the unique identifier of the query, set by the frontend call.
 func (builder *TypeThresholdBuilder) RefId(refId string) *TypeThresholdBuilder {
-	builder.internal.RefId = refId
+	builder.internal.RefId = &refId
 
 	return builder
 }

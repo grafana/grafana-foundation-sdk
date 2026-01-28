@@ -47,7 +47,7 @@ func (builder *QueryVariableBuilder) Current(current dashboard.VariableOption) *
 Data source used to fetch values for a variable. It can be defined but `null`.
 
 ```go
-func (builder *QueryVariableBuilder) Datasource(datasource dashboard.DataSourceRef) *QueryVariableBuilder
+func (builder *QueryVariableBuilder) Datasource(datasource common.DataSourceRef) *QueryVariableBuilder
 ```
 
 ### <span class="badge object-method"></span> Description

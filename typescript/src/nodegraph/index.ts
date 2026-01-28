@@ -8,5 +8,7 @@ export * from './nodeOptionsBuilder.gen';
 export type * from './nodeOptionsBuilder.gen';
 export * from './edgeOptionsBuilder.gen';
 export type * from './edgeOptionsBuilder.gen';
+export * from './optionsBuilder.gen';
+export type * from './optionsBuilder.gen';
 export * from './panelBuilder.gen';
 export type * from './panelBuilder.gen';

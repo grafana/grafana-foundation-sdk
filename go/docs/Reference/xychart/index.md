@@ -18,7 +18,9 @@
  * <span class="badge object-type-struct"></span> [XychartXYSeriesConfigY](./object-XychartXYSeriesConfigY.md)
 ## Builders
 
+ * <span class="badge builder"></span> [FieldConfigBuilder](./builder-FieldConfigBuilder.md)
  * <span class="badge builder"></span> [MatcherConfigBuilder](./builder-MatcherConfigBuilder.md)
+ * <span class="badge builder"></span> [OptionsBuilder](./builder-OptionsBuilder.md)
  * <span class="badge builder"></span> [PanelBuilder](./builder-PanelBuilder.md)
  * <span class="badge builder"></span> [XYSeriesConfigBuilder](./builder-XYSeriesConfigBuilder.md)
  * <span class="badge builder"></span> [XychartFieldConfigPointSizeBuilder](./builder-XychartFieldConfigPointSizeBuilder.md)
@@ -136,12 +138,28 @@ MatcherConfigConverter accepts a `MatcherConfig` object and generates the Go cod
 func MatcherConfigConverter(input MatcherConfig) string
 ```
 
+### <span class="badge function"></span> FieldConfigConverter
+
+FieldConfigConverter accepts a `FieldConfig` object and generates the Go code to build this object using builders.
+
+```go
+func FieldConfigConverter(input FieldConfig) string
+```
+
 ### <span class="badge function"></span> XYSeriesConfigConverter
 
 XYSeriesConfigConverter accepts a `XYSeriesConfig` object and generates the Go code to build this object using builders.
 
 ```go
 func XYSeriesConfigConverter(input XYSeriesConfig) string
+```
+
+### <span class="badge function"></span> OptionsConverter
+
+OptionsConverter accepts a `Options` object and generates the Go code to build this object using builders.
+
+```go
+func OptionsConverter(input Options) string
 ```
 
 ### <span class="badge function"></span> XychartFieldConfigPointSizeConverter

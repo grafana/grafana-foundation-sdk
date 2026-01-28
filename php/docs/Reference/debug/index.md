@@ -7,5 +7,6 @@
  * <span class="badge object-type-class"></span> [UpdateConfig](./object-UpdateConfig.md)
 ## Builders
 
+ * <span class="badge builder"></span> [OptionsBuilder](./builder-OptionsBuilder.md)
  * <span class="badge builder"></span> [PanelBuilder](./builder-PanelBuilder.md)
  * <span class="badge builder"></span> [UpdateConfigBuilder](./builder-UpdateConfigBuilder.md)

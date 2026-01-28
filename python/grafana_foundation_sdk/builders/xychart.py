@@ -3,9 +3,9 @@
 import typing
 from ..cog import builder as cogbuilder
 from ..models import xychart
+from ..models import common
 from ..models import dashboard
 from ..cog import variants as cogvariants
-from ..models import common
 
 
 class MatcherConfig(cogbuilder.Builder[xychart.MatcherConfig]):    
@@ -17,7 +17,7 @@ class MatcherConfig(cogbuilder.Builder[xychart.MatcherConfig]):
     
     _internal: xychart.MatcherConfig
 
-    def __init__(self):
+    def __init__(self) -> None:
         self._internal = xychart.MatcherConfig()
 
     def build(self) -> xychart.MatcherConfig:
@@ -46,10 +46,124 @@ class MatcherConfig(cogbuilder.Builder[xychart.MatcherConfig]):
     
 
 
+class FieldConfig(cogbuilder.Builder[xychart.FieldConfig]):
+    _internal: xychart.FieldConfig
+
+    def __init__(self) -> None:
+        self._internal = xychart.FieldConfig()
+
+    def build(self) -> xychart.FieldConfig:
+        """
+        Builds the object.
+        """
+        return self._internal    
+    
+    def show(self, show: xychart.XYShowMode) -> typing.Self:    
+        self._internal.show = show
+    
+        return self
+    
+    def point_size(self, point_size: cogbuilder.Builder[xychart.XychartFieldConfigPointSize]) -> typing.Self:    
+        point_size_resource = point_size.build()
+        self._internal.point_size = point_size_resource
+    
+        return self
+    
+    def point_shape(self, point_shape: xychart.PointShape) -> typing.Self:    
+        self._internal.point_shape = point_shape
+    
+        return self
+    
+    def point_stroke_width(self, point_stroke_width: int) -> typing.Self:    
+        if not point_stroke_width >= 0:
+            raise ValueError("point_stroke_width must be >= 0")
+        self._internal.point_stroke_width = point_stroke_width
+    
+        return self
+    
+    def fill_opacity(self, fill_opacity: int) -> typing.Self:    
+        if not fill_opacity <= 100:
+            raise ValueError("fill_opacity must be <= 100")
+        self._internal.fill_opacity = fill_opacity
+    
+        return self
+    
+    def line_width(self, line_width: int) -> typing.Self:    
+        if not line_width >= 0:
+            raise ValueError("line_width must be >= 0")
+        self._internal.line_width = line_width
+    
+        return self
+    
+    def hide_from(self, hide_from: cogbuilder.Builder[common.HideSeriesConfig]) -> typing.Self:    
+        hide_from_resource = hide_from.build()
+        self._internal.hide_from = hide_from_resource
+    
+        return self
+    
+    def axis_placement(self, axis_placement: common.AxisPlacement) -> typing.Self:    
+        self._internal.axis_placement = axis_placement
+    
+        return self
+    
+    def axis_color_mode(self, axis_color_mode: common.AxisColorMode) -> typing.Self:    
+        self._internal.axis_color_mode = axis_color_mode
+    
+        return self
+    
+    def axis_label(self, axis_label: str) -> typing.Self:    
+        self._internal.axis_label = axis_label
+    
+        return self
+    
+    def axis_width(self, axis_width: float) -> typing.Self:    
+        self._internal.axis_width = axis_width
+    
+        return self
+    
+    def axis_soft_min(self, axis_soft_min: float) -> typing.Self:    
+        self._internal.axis_soft_min = axis_soft_min
+    
+        return self
+    
+    def axis_soft_max(self, axis_soft_max: float) -> typing.Self:    
+        self._internal.axis_soft_max = axis_soft_max
+    
+        return self
+    
+    def axis_grid_show(self, axis_grid_show: bool) -> typing.Self:    
+        self._internal.axis_grid_show = axis_grid_show
+    
+        return self
+    
+    def scale_distribution(self, scale_distribution: cogbuilder.Builder[common.ScaleDistributionConfig]) -> typing.Self:    
+        scale_distribution_resource = scale_distribution.build()
+        self._internal.scale_distribution = scale_distribution_resource
+    
+        return self
+    
+    def axis_centered_zero(self, axis_centered_zero: bool) -> typing.Self:    
+        self._internal.axis_centered_zero = axis_centered_zero
+    
+        return self
+    
+    def line_style(self, line_style: cogbuilder.Builder[common.LineStyle]) -> typing.Self:    
+        line_style_resource = line_style.build()
+        self._internal.line_style = line_style_resource
+    
+        return self
+    
+    def axis_border_show(self, axis_border_show: bool) -> typing.Self:    
+        self._internal.axis_border_show = axis_border_show
+    
+        return self
+    
+
+
 class XYSeriesConfig(cogbuilder.Builder[xychart.XYSeriesConfig]):
     _internal: xychart.XYSeriesConfig
 
-    def __init__(self):
+    def __init__(self) -> None:
         self._internal = xychart.XYSeriesConfig()
 
     def build(self) -> xychart.XYSeriesConfig:
@@ -96,10 +210,47 @@ class XYSeriesConfig(cogbuilder.Builder[xychart.XYSeriesConfig]):
     
 
 
+class Options(cogbuilder.Builder[xychart.Options]):
+    _internal: xychart.Options
+
+    def __init__(self) -> None:
+        self._internal = xychart.Options()
+
+    def build(self) -> xychart.Options:
+        """
+        Builds the object.
+        """
+        return self._internal    
+    
+    def mapping(self, mapping: xychart.SeriesMapping) -> typing.Self:    
+        self._internal.mapping = mapping
+    
+        return self
+    
+    def legend(self, legend: cogbuilder.Builder[common.VizLegendOptions]) -> typing.Self:    
+        legend_resource = legend.build()
+        self._internal.legend = legend_resource
+    
+        return self
+    
+    def tooltip(self, tooltip: cogbuilder.Builder[common.VizTooltipOptions]) -> typing.Self:    
+        tooltip_resource = tooltip.build()
+        self._internal.tooltip = tooltip_resource
+    
+        return self
+    
+    def series(self, series: list[cogbuilder.Builder[xychart.XYSeriesConfig]]) -> typing.Self:    
+        series_resources = [r1.build() for r1 in series]
+        self._internal.series = series_resources
+    
+        return self
+    
+
+
 class XychartFieldConfigPointSize(cogbuilder.Builder[xychart.XychartFieldConfigPointSize]):
     _internal: xychart.XychartFieldConfigPointSize
 
-    def __init__(self):
+    def __init__(self) -> None:
         self._internal = xychart.XychartFieldConfigPointSize()
 
     def build(self) -> xychart.XychartFieldConfigPointSize:
@@ -134,7 +285,7 @@ class XychartFieldConfigPointSize(cogbuilder.Builder[xychart.XychartFieldConfigP
 class XychartXYSeriesConfigName(cogbuilder.Builder[xychart.XychartXYSeriesConfigName]):
     _internal: xychart.XychartXYSeriesConfigName
 
-    def __init__(self):
+    def __init__(self) -> None:
         self._internal = xychart.XychartXYSeriesConfigName()
 
     def build(self) -> xychart.XychartXYSeriesConfigName:
@@ -153,7 +304,7 @@ class XychartXYSeriesConfigName(cogbuilder.Builder[xychart.XychartXYSeriesConfig
 class XychartXYSeriesConfigFrame(cogbuilder.Builder[xychart.XychartXYSeriesConfigFrame]):
     _internal: xychart.XychartXYSeriesConfigFrame
 
-    def __init__(self):
+    def __init__(self) -> None:
         self._internal = xychart.XychartXYSeriesConfigFrame()
 
     def build(self) -> xychart.XychartXYSeriesConfigFrame:
@@ -173,7 +324,7 @@ class XychartXYSeriesConfigFrame(cogbuilder.Builder[xychart.XychartXYSeriesConfi
 class XychartXYSeriesConfigX(cogbuilder.Builder[xychart.XychartXYSeriesConfigX]):
     _internal: xychart.XychartXYSeriesConfigX
 
-    def __init__(self):
+    def __init__(self) -> None:
         self._internal = xychart.XychartXYSeriesConfigX()
 
     def build(self) -> xychart.XychartXYSeriesConfigX:
@@ -193,7 +344,7 @@ class XychartXYSeriesConfigX(cogbuilder.Builder[xychart.XychartXYSeriesConfigX])
 class XychartXYSeriesConfigY(cogbuilder.Builder[xychart.XychartXYSeriesConfigY]):
     _internal: xychart.XychartXYSeriesConfigY
 
-    def __init__(self):
+    def __init__(self) -> None:
         self._internal = xychart.XychartXYSeriesConfigY()
 
     def build(self) -> xychart.XychartXYSeriesConfigY:
@@ -213,7 +364,7 @@ class XychartXYSeriesConfigY(cogbuilder.Builder[xychart.XychartXYSeriesConfigY])
 class XychartXYSeriesConfigColor(cogbuilder.Builder[xychart.XychartXYSeriesConfigColor]):
     _internal: xychart.XychartXYSeriesConfigColor
 
-    def __init__(self):
+    def __init__(self) -> None:
         self._internal = xychart.XychartXYSeriesConfigColor()
 
     def build(self) -> xychart.XychartXYSeriesConfigColor:
@@ -233,7 +384,7 @@ class XychartXYSeriesConfigColor(cogbuilder.Builder[xychart.XychartXYSeriesConfi
 class XychartXYSeriesConfigSize(cogbuilder.Builder[xychart.XychartXYSeriesConfigSize]):
     _internal: xychart.XychartXYSeriesConfigSize
 
-    def __init__(self):
+    def __init__(self) -> None:
         self._internal = xychart.XychartXYSeriesConfigSize()
 
     def build(self) -> xychart.XychartXYSeriesConfigSize:
@@ -257,7 +408,7 @@ class Panel(cogbuilder.Builder[dashboard.Panel]):
     
     _internal: dashboard.Panel
 
-    def __init__(self):
+    def __init__(self) -> None:
         self._internal = dashboard.Panel()        
         self._internal.type_val = "xychart"
 
@@ -326,7 +477,7 @@ class Panel(cogbuilder.Builder[dashboard.Panel]):
     
         return self
     
-    def datasource(self, datasource: dashboard.DataSourceRef) -> typing.Self:    
+    def datasource(self, datasource: common.DataSourceRef) -> typing.Self:    
         """
         The datasource used in all targets.
         """

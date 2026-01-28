@@ -31,7 +31,7 @@ def cache_timeout(cache_timeout: str) -> typing.Self
 The datasource used in all targets.
 
 ```python
-def datasource(datasource: dashboard.DataSourceRef) -> typing.Self
+def datasource(datasource: common.DataSourceRef) -> typing.Self
 ```
 
 ### <span class="badge object-method"></span> description
