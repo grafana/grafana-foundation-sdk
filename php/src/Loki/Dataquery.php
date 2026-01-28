@@ -46,7 +46,7 @@ class Dataquery implements \JsonSerializable, \Grafana\Foundation\Cog\Dataquery
      * In server side expressions, the refId is used as a variable name to identify results.
      * By default, the UI will assign A->Z; however setting meaningful names may be useful.
      */
-    public string $refId;
+    public ?string $refId;
 
     /**
      * true if query is disabled (ie should not be returned to the dashboard)
@@ -67,7 +67,7 @@ class Dataquery implements \JsonSerializable, \Grafana\Foundation\Cog\Dataquery
      * TODO find a better way to do this ^ that's friendly to schema
      * TODO this shouldn't be unknown but DataSourceRef | null
      */
-    public ?\Grafana\Foundation\Dashboard\DataSourceRef $datasource;
+    public ?\Grafana\Foundation\Common\DataSourceRef $datasource;
 
     public ?\Grafana\Foundation\Loki\LokiQueryDirection $direction;
 
@@ -83,10 +83,10 @@ class Dataquery implements \JsonSerializable, \Grafana\Foundation\Cog\Dataquery
      * @param string|null $refId
      * @param bool|null $hide
      * @param string|null $queryType
-     * @param \Grafana\Foundation\Dashboard\DataSourceRef|null $datasource
+     * @param \Grafana\Foundation\Common\DataSourceRef|null $datasource
      * @param \Grafana\Foundation\Loki\LokiQueryDirection|null $direction
      */
-    public function __construct(?string $expr = null, ?string $legendFormat = null, ?int $maxLines = null, ?int $resolution = null, ?\Grafana\Foundation\Loki\QueryEditorMode $editorMode = null, ?bool $range = null, ?bool $instant = null, ?string $step = null, ?string $refId = null, ?bool $hide = null, ?string $queryType = null, ?\Grafana\Foundation\Dashboard\DataSourceRef $datasource = null, ?\Grafana\Foundation\Loki\LokiQueryDirection $direction = null)
+    public function __construct(?string $expr = null, ?string $legendFormat = null, ?int $maxLines = null, ?int $resolution = null, ?\Grafana\Foundation\Loki\QueryEditorMode $editorMode = null, ?bool $range = null, ?bool $instant = null, ?string $step = null, ?string $refId = null, ?bool $hide = null, ?string $queryType = null, ?\Grafana\Foundation\Common\DataSourceRef $datasource = null, ?\Grafana\Foundation\Loki\LokiQueryDirection $direction = null)
     {
         $this->expr = $expr ?: "";
         $this->legendFormat = $legendFormat;
@@ -96,7 +96,7 @@ class Dataquery implements \JsonSerializable, \Grafana\Foundation\Cog\Dataquery
         $this->range = $range;
         $this->instant = $instant;
         $this->step = $step;
-        $this->refId = $refId ?: "";
+        $this->refId = $refId;
         $this->hide = $hide;
         $this->queryType = $queryType;
         $this->datasource = $datasource;
@@ -125,7 +125,7 @@ class Dataquery implements \JsonSerializable, \Grafana\Foundation\Cog\Dataquery
             datasource: isset($data["datasource"]) ? (function($input) {
     	/** @var array{type?: string, uid?: string} */
     $val = $input;
-    	return \Grafana\Foundation\Dashboard\DataSourceRef::fromArray($val);
+    	return \Grafana\Foundation\Common\DataSourceRef::fromArray($val);
     })($data["datasource"]) : null,
             direction: isset($data["direction"]) ? (function($input) { return \Grafana\Foundation\Loki\LokiQueryDirection::fromValue($input); })($data["direction"]) : null,
         );
@@ -138,7 +138,6 @@ class Dataquery implements \JsonSerializable, \Grafana\Foundation\Cog\Dataquery
     {
         $data = new \stdClass;
         $data->expr = $this->expr;
-        $data->refId = $this->refId;
         if (isset($this->legendFormat)) {
             $data->legendFormat = $this->legendFormat;
         }
@@ -159,6 +158,9 @@ class Dataquery implements \JsonSerializable, \Grafana\Foundation\Cog\Dataquery
         }
         if (isset($this->step)) {
             $data->step = $this->step;
+        }
+        if (isset($this->refId)) {
+            $data->refId = $this->refId;
         }
         if (isset($this->hide)) {
             $data->hide = $this->hide;

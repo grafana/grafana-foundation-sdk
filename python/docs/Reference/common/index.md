@@ -20,6 +20,7 @@
  * <span class="badge object-type-enum"></span> [ComparisonOperation](./object-ComparisonOperation.md)
  * <span class="badge object-type-class"></span> [DataQuery](./object-DataQuery.md)
  * <span class="badge object-type-class"></span> [DataSourceJsonData](./object-DataSourceJsonData.md)
+ * <span class="badge object-type-class"></span> [DataSourceRef](./object-DataSourceRef.md)
  * <span class="badge object-type-enum"></span> [FieldTextAlignment](./object-FieldTextAlignment.md)
  * <span class="badge object-type-class"></span> [FillConfig](./object-FillConfig.md)
  * <span class="badge object-type-class"></span> [FrameGeometrySource](./object-FrameGeometrySource.md)

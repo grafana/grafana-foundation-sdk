@@ -11,7 +11,7 @@ import (
 
 	cog "github.com/grafana/grafana-foundation-sdk/go/cog"
 	variants "github.com/grafana/grafana-foundation-sdk/go/cog/variants"
-	dashboard "github.com/grafana/grafana-foundation-sdk/go/dashboard"
+	common "github.com/grafana/grafana-foundation-sdk/go/common"
 )
 
 type Expr = TypeMathOrTypeReduceOrTypeResampleOrTypeClassicConditionsOrTypeThresholdOrTypeSql
@@ -23,7 +23,7 @@ func NewExpr() *Expr {
 
 type TypeMath struct {
 	// The datasource
-	Datasource *dashboard.DataSourceRef `json:"datasource,omitempty"`
+	Datasource *common.DataSourceRef `json:"datasource,omitempty"`
 	// General math expression
 	Expression string `json:"expression"`
 	// true if query is disabled (ie should not be returned to the dashboard)
@@ -42,7 +42,7 @@ type TypeMath struct {
 	// It can be used to distinguish different types of queries.
 	QueryType *string `json:"queryType,omitempty"`
 	// RefID is the unique identifier of the query, set by the frontend call.
-	RefId string `json:"refId"`
+	RefId *string `json:"refId,omitempty"`
 	// Optionally define expected query result behavior
 	ResultAssertions *ExprTypeMathResultAssertions `json:"resultAssertions,omitempty"`
 	// TimeRange represents the query range
@@ -81,7 +81,7 @@ func (resource *TypeMath) UnmarshalJSONStrict(raw []byte) error {
 	if fields["datasource"] != nil {
 		if string(fields["datasource"]) != "null" {
 
-			resource.Datasource = &dashboard.DataSourceRef{}
+			resource.Datasource = &common.DataSourceRef{}
 			if err := resource.Datasource.UnmarshalJSONStrict(fields["datasource"]); err != nil {
 				errs = append(errs, cog.MakeBuildErrors("datasource", err)...)
 			}
@@ -154,13 +154,10 @@ func (resource *TypeMath) UnmarshalJSONStrict(raw []byte) error {
 			if err := json.Unmarshal(fields["refId"], &resource.RefId); err != nil {
 				errs = append(errs, cog.MakeBuildErrors("refId", err)...)
 			}
-		} else {
-			errs = append(errs, cog.MakeBuildErrors("refId", errors.New("required field is null"))...)
 
 		}
 		delete(fields, "refId")
-	} else {
-		errs = append(errs, cog.MakeBuildErrors("refId", errors.New("required field is missing from input"))...)
+
 	}
 	// Field "resultAssertions"
 	if fields["resultAssertions"] != nil {
@@ -272,8 +269,14 @@ func (resource TypeMath) Equals(otherCandidate variants.Dataquery) bool {
 			return false
 		}
 	}
-	if resource.RefId != other.RefId {
+	if resource.RefId == nil && other.RefId != nil || resource.RefId != nil && other.RefId == nil {
 		return false
+	}
+
+	if resource.RefId != nil {
+		if *resource.RefId != *other.RefId {
+			return false
+		}
 	}
 	if resource.ResultAssertions == nil && other.ResultAssertions != nil || resource.ResultAssertions != nil && other.ResultAssertions == nil {
 		return false
@@ -334,7 +337,7 @@ func (resource TypeMath) Validate() error {
 
 type TypeReduce struct {
 	// The datasource
-	Datasource *dashboard.DataSourceRef `json:"datasource,omitempty"`
+	Datasource *common.DataSourceRef `json:"datasource,omitempty"`
 	// Reference to single query result
 	Expression string `json:"expression"`
 	// true if query is disabled (ie should not be returned to the dashboard)
@@ -363,7 +366,7 @@ type TypeReduce struct {
 	//  - `"median"`
 	Reducer TypeReduceReducer `json:"reducer"`
 	// RefID is the unique identifier of the query, set by the frontend call.
-	RefId string `json:"refId"`
+	RefId *string `json:"refId,omitempty"`
 	// Optionally define expected query result behavior
 	ResultAssertions *ExprTypeReduceResultAssertions `json:"resultAssertions,omitempty"`
 	// Reducer Options
@@ -404,7 +407,7 @@ func (resource *TypeReduce) UnmarshalJSONStrict(raw []byte) error {
 	if fields["datasource"] != nil {
 		if string(fields["datasource"]) != "null" {
 
-			resource.Datasource = &dashboard.DataSourceRef{}
+			resource.Datasource = &common.DataSourceRef{}
 			if err := resource.Datasource.UnmarshalJSONStrict(fields["datasource"]); err != nil {
 				errs = append(errs, cog.MakeBuildErrors("datasource", err)...)
 			}
@@ -491,13 +494,10 @@ func (resource *TypeReduce) UnmarshalJSONStrict(raw []byte) error {
 			if err := json.Unmarshal(fields["refId"], &resource.RefId); err != nil {
 				errs = append(errs, cog.MakeBuildErrors("refId", err)...)
 			}
-		} else {
-			errs = append(errs, cog.MakeBuildErrors("refId", errors.New("required field is null"))...)
 
 		}
 		delete(fields, "refId")
-	} else {
-		errs = append(errs, cog.MakeBuildErrors("refId", errors.New("required field is missing from input"))...)
+
 	}
 	// Field "resultAssertions"
 	if fields["resultAssertions"] != nil {
@@ -625,8 +625,14 @@ func (resource TypeReduce) Equals(otherCandidate variants.Dataquery) bool {
 	if resource.Reducer != other.Reducer {
 		return false
 	}
-	if resource.RefId != other.RefId {
+	if resource.RefId == nil && other.RefId != nil || resource.RefId != nil && other.RefId == nil {
 		return false
+	}
+
+	if resource.RefId != nil {
+		if *resource.RefId != *other.RefId {
+			return false
+		}
 	}
 	if resource.ResultAssertions == nil && other.ResultAssertions != nil || resource.ResultAssertions != nil && other.ResultAssertions == nil {
 		return false
@@ -701,7 +707,7 @@ func (resource TypeReduce) Validate() error {
 
 type TypeResample struct {
 	// The datasource
-	Datasource *dashboard.DataSourceRef `json:"datasource,omitempty"`
+	Datasource *common.DataSourceRef `json:"datasource,omitempty"`
 	// The downsample function
 	// Possible enum values:
 	//  - `"sum"`
@@ -730,7 +736,7 @@ type TypeResample struct {
 	// It can be used to distinguish different types of queries.
 	QueryType *string `json:"queryType,omitempty"`
 	// RefID is the unique identifier of the query, set by the frontend call.
-	RefId string `json:"refId"`
+	RefId *string `json:"refId,omitempty"`
 	// Optionally define expected query result behavior
 	ResultAssertions *ExprTypeResampleResultAssertions `json:"resultAssertions,omitempty"`
 	// TimeRange represents the query range
@@ -777,7 +783,7 @@ func (resource *TypeResample) UnmarshalJSONStrict(raw []byte) error {
 	if fields["datasource"] != nil {
 		if string(fields["datasource"]) != "null" {
 
-			resource.Datasource = &dashboard.DataSourceRef{}
+			resource.Datasource = &common.DataSourceRef{}
 			if err := resource.Datasource.UnmarshalJSONStrict(fields["datasource"]); err != nil {
 				errs = append(errs, cog.MakeBuildErrors("datasource", err)...)
 			}
@@ -864,13 +870,10 @@ func (resource *TypeResample) UnmarshalJSONStrict(raw []byte) error {
 			if err := json.Unmarshal(fields["refId"], &resource.RefId); err != nil {
 				errs = append(errs, cog.MakeBuildErrors("refId", err)...)
 			}
-		} else {
-			errs = append(errs, cog.MakeBuildErrors("refId", errors.New("required field is null"))...)
 
 		}
 		delete(fields, "refId")
-	} else {
-		errs = append(errs, cog.MakeBuildErrors("refId", errors.New("required field is missing from input"))...)
+
 	}
 	// Field "resultAssertions"
 	if fields["resultAssertions"] != nil {
@@ -1013,8 +1016,14 @@ func (resource TypeResample) Equals(otherCandidate variants.Dataquery) bool {
 			return false
 		}
 	}
-	if resource.RefId != other.RefId {
+	if resource.RefId == nil && other.RefId != nil || resource.RefId != nil && other.RefId == nil {
 		return false
+	}
+
+	if resource.RefId != nil {
+		if *resource.RefId != *other.RefId {
+			return false
+		}
 	}
 	if resource.ResultAssertions == nil && other.ResultAssertions != nil || resource.ResultAssertions != nil && other.ResultAssertions == nil {
 		return false
@@ -1088,7 +1097,7 @@ func (resource TypeResample) Validate() error {
 type TypeClassicConditions struct {
 	Conditions []ExprTypeClassicConditionsConditions `json:"conditions"`
 	// The datasource
-	Datasource *dashboard.DataSourceRef `json:"datasource,omitempty"`
+	Datasource *common.DataSourceRef `json:"datasource,omitempty"`
 	// true if query is disabled (ie should not be returned to the dashboard)
 	// NOTE: this does not always imply that the query should not be executed since
 	// the results from a hidden query may be used as the input to other queries (SSE etc)
@@ -1105,7 +1114,7 @@ type TypeClassicConditions struct {
 	// It can be used to distinguish different types of queries.
 	QueryType *string `json:"queryType,omitempty"`
 	// RefID is the unique identifier of the query, set by the frontend call.
-	RefId string `json:"refId"`
+	RefId *string `json:"refId,omitempty"`
 	// Optionally define expected query result behavior
 	ResultAssertions *ExprTypeClassicConditionsResultAssertions `json:"resultAssertions,omitempty"`
 	// TimeRange represents the query range
@@ -1171,7 +1180,7 @@ func (resource *TypeClassicConditions) UnmarshalJSONStrict(raw []byte) error {
 	if fields["datasource"] != nil {
 		if string(fields["datasource"]) != "null" {
 
-			resource.Datasource = &dashboard.DataSourceRef{}
+			resource.Datasource = &common.DataSourceRef{}
 			if err := resource.Datasource.UnmarshalJSONStrict(fields["datasource"]); err != nil {
 				errs = append(errs, cog.MakeBuildErrors("datasource", err)...)
 			}
@@ -1230,13 +1239,10 @@ func (resource *TypeClassicConditions) UnmarshalJSONStrict(raw []byte) error {
 			if err := json.Unmarshal(fields["refId"], &resource.RefId); err != nil {
 				errs = append(errs, cog.MakeBuildErrors("refId", err)...)
 			}
-		} else {
-			errs = append(errs, cog.MakeBuildErrors("refId", errors.New("required field is null"))...)
 
 		}
 		delete(fields, "refId")
-	} else {
-		errs = append(errs, cog.MakeBuildErrors("refId", errors.New("required field is missing from input"))...)
+
 	}
 	// Field "resultAssertions"
 	if fields["resultAssertions"] != nil {
@@ -1355,8 +1361,14 @@ func (resource TypeClassicConditions) Equals(otherCandidate variants.Dataquery) 
 			return false
 		}
 	}
-	if resource.RefId != other.RefId {
+	if resource.RefId == nil && other.RefId != nil || resource.RefId != nil && other.RefId == nil {
 		return false
+	}
+
+	if resource.RefId != nil {
+		if *resource.RefId != *other.RefId {
+			return false
+		}
 	}
 	if resource.ResultAssertions == nil && other.ResultAssertions != nil || resource.ResultAssertions != nil && other.ResultAssertions == nil {
 		return false
@@ -1419,7 +1431,7 @@ type TypeThreshold struct {
 	// Threshold Conditions
 	Conditions []ExprTypeThresholdConditions `json:"conditions"`
 	// The datasource
-	Datasource *dashboard.DataSourceRef `json:"datasource,omitempty"`
+	Datasource *common.DataSourceRef `json:"datasource,omitempty"`
 	// Reference to single query result
 	Expression string `json:"expression"`
 	// true if query is disabled (ie should not be returned to the dashboard)
@@ -1438,7 +1450,7 @@ type TypeThreshold struct {
 	// It can be used to distinguish different types of queries.
 	QueryType *string `json:"queryType,omitempty"`
 	// RefID is the unique identifier of the query, set by the frontend call.
-	RefId string `json:"refId"`
+	RefId *string `json:"refId,omitempty"`
 	// Optionally define expected query result behavior
 	ResultAssertions *ExprTypeThresholdResultAssertions `json:"resultAssertions,omitempty"`
 	// TimeRange represents the query range
@@ -1504,7 +1516,7 @@ func (resource *TypeThreshold) UnmarshalJSONStrict(raw []byte) error {
 	if fields["datasource"] != nil {
 		if string(fields["datasource"]) != "null" {
 
-			resource.Datasource = &dashboard.DataSourceRef{}
+			resource.Datasource = &common.DataSourceRef{}
 			if err := resource.Datasource.UnmarshalJSONStrict(fields["datasource"]); err != nil {
 				errs = append(errs, cog.MakeBuildErrors("datasource", err)...)
 			}
@@ -1577,13 +1589,10 @@ func (resource *TypeThreshold) UnmarshalJSONStrict(raw []byte) error {
 			if err := json.Unmarshal(fields["refId"], &resource.RefId); err != nil {
 				errs = append(errs, cog.MakeBuildErrors("refId", err)...)
 			}
-		} else {
-			errs = append(errs, cog.MakeBuildErrors("refId", errors.New("required field is null"))...)
 
 		}
 		delete(fields, "refId")
-	} else {
-		errs = append(errs, cog.MakeBuildErrors("refId", errors.New("required field is missing from input"))...)
+
 	}
 	// Field "resultAssertions"
 	if fields["resultAssertions"] != nil {
@@ -1705,8 +1714,14 @@ func (resource TypeThreshold) Equals(otherCandidate variants.Dataquery) bool {
 			return false
 		}
 	}
-	if resource.RefId != other.RefId {
+	if resource.RefId == nil && other.RefId != nil || resource.RefId != nil && other.RefId == nil {
 		return false
+	}
+
+	if resource.RefId != nil {
+		if *resource.RefId != *other.RefId {
+			return false
+		}
 	}
 	if resource.ResultAssertions == nil && other.ResultAssertions != nil || resource.ResultAssertions != nil && other.ResultAssertions == nil {
 		return false
@@ -1773,9 +1788,9 @@ func (resource TypeThreshold) Validate() error {
 
 type TypeSql struct {
 	// The datasource
-	Datasource *dashboard.DataSourceRef `json:"datasource,omitempty"`
-	Expression string                   `json:"expression"`
-	Format     string                   `json:"format"`
+	Datasource *common.DataSourceRef `json:"datasource,omitempty"`
+	Expression string                `json:"expression"`
+	Format     string                `json:"format"`
 	// true if query is disabled (ie should not be returned to the dashboard)
 	// NOTE: this does not always imply that the query should not be executed since
 	// the results from a hidden query may be used as the input to other queries (SSE etc)
@@ -1792,7 +1807,7 @@ type TypeSql struct {
 	// It can be used to distinguish different types of queries.
 	QueryType *string `json:"queryType,omitempty"`
 	// RefID is the unique identifier of the query, set by the frontend call.
-	RefId string `json:"refId"`
+	RefId *string `json:"refId,omitempty"`
 	// Optionally define expected query result behavior
 	ResultAssertions *ExprTypeSqlResultAssertions `json:"resultAssertions,omitempty"`
 	// TimeRange represents the query range
@@ -1831,7 +1846,7 @@ func (resource *TypeSql) UnmarshalJSONStrict(raw []byte) error {
 	if fields["datasource"] != nil {
 		if string(fields["datasource"]) != "null" {
 
-			resource.Datasource = &dashboard.DataSourceRef{}
+			resource.Datasource = &common.DataSourceRef{}
 			if err := resource.Datasource.UnmarshalJSONStrict(fields["datasource"]); err != nil {
 				errs = append(errs, cog.MakeBuildErrors("datasource", err)...)
 			}
@@ -1918,13 +1933,10 @@ func (resource *TypeSql) UnmarshalJSONStrict(raw []byte) error {
 			if err := json.Unmarshal(fields["refId"], &resource.RefId); err != nil {
 				errs = append(errs, cog.MakeBuildErrors("refId", err)...)
 			}
-		} else {
-			errs = append(errs, cog.MakeBuildErrors("refId", errors.New("required field is null"))...)
 
 		}
 		delete(fields, "refId")
-	} else {
-		errs = append(errs, cog.MakeBuildErrors("refId", errors.New("required field is missing from input"))...)
+
 	}
 	// Field "resultAssertions"
 	if fields["resultAssertions"] != nil {
@@ -2039,8 +2051,14 @@ func (resource TypeSql) Equals(otherCandidate variants.Dataquery) bool {
 			return false
 		}
 	}
-	if resource.RefId != other.RefId {
+	if resource.RefId == nil && other.RefId != nil || resource.RefId != nil && other.RefId == nil {
 		return false
+	}
+
+	if resource.RefId != nil {
+		if *resource.RefId != *other.RefId {
+			return false
+		}
 	}
 	if resource.ResultAssertions == nil && other.ResultAssertions != nil || resource.ResultAssertions != nil && other.ResultAssertions == nil {
 		return false

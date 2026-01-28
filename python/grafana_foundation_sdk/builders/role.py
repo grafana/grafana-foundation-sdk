@@ -8,7 +8,7 @@ from ..models import role
 class Role(cogbuilder.Builder[role.Role]):
     _internal: role.Role
 
-    def __init__(self):
+    def __init__(self) -> None:
         self._internal = role.Role()
 
     def build(self) -> role.Role:

@@ -13,9 +13,6 @@
       "AzureMonitorQuery": {
         "type": "object",
         "additionalProperties": false,
-        "required": [
-          "refId"
-        ],
         "properties": {
           "refId": {
             "type": "string",
@@ -345,7 +342,7 @@
         }
       },
       "GrafanaTemplateVariableQuery": {
-        "anyOf": [
+        "oneOf": [
           {
             "$ref": "#/components/schemas/AppInsightsMetricNameQuery"
           },
@@ -660,8 +657,7 @@
             "type": "string",
             "description": "Specific datasource instance"
           }
-        },
-        "description": "Ref to a DataSource instance"
+        }
       }
     }
   }

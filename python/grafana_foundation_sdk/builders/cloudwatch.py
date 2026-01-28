@@ -3,13 +3,13 @@
 import typing
 from ..cog import builder as cogbuilder
 from ..models import cloudwatch
-from ..models import dashboard
+from ..models import common
 
 
 class MetricStat(cogbuilder.Builder[cloudwatch.MetricStat]):
     _internal: cloudwatch.MetricStat
 
-    def __init__(self):
+    def __init__(self) -> None:
         self._internal = cloudwatch.MetricStat()
 
     def build(self) -> cloudwatch.MetricStat:
@@ -108,7 +108,7 @@ class CloudWatchMetricsQuery(cogbuilder.Builder[cloudwatch.CloudWatchMetricsQuer
     
     _internal: cloudwatch.CloudWatchMetricsQuery
 
-    def __init__(self):
+    def __init__(self) -> None:
         self._internal = cloudwatch.CloudWatchMetricsQuery()
 
     def build(self) -> cloudwatch.CloudWatchMetricsQuery:
@@ -304,7 +304,7 @@ class CloudWatchMetricsQuery(cogbuilder.Builder[cloudwatch.CloudWatchMetricsQuer
     
         return self
     
-    def datasource(self, datasource: dashboard.DataSourceRef) -> typing.Self:    
+    def datasource(self, datasource: common.DataSourceRef) -> typing.Self:    
         """
         For mixed data sources the selected datasource is on the query level.
         For non mixed scenarios this is undefined.
@@ -330,7 +330,7 @@ class CloudWatchMetricsQuery(cogbuilder.Builder[cloudwatch.CloudWatchMetricsQuer
 class SQLExpression(cogbuilder.Builder[cloudwatch.SQLExpression]):
     _internal: cloudwatch.SQLExpression
 
-    def __init__(self):
+    def __init__(self) -> None:
         self._internal = cloudwatch.SQLExpression()
 
     def build(self) -> cloudwatch.SQLExpression:
@@ -412,7 +412,7 @@ class SQLExpression(cogbuilder.Builder[cloudwatch.SQLExpression]):
 class QueryEditorFunctionExpression(cogbuilder.Builder[cloudwatch.QueryEditorFunctionExpression]):
     _internal: cloudwatch.QueryEditorFunctionExpression
 
-    def __init__(self):
+    def __init__(self) -> None:
         self._internal = cloudwatch.QueryEditorFunctionExpression()
 
     def build(self) -> cloudwatch.QueryEditorFunctionExpression:
@@ -437,7 +437,7 @@ class QueryEditorFunctionExpression(cogbuilder.Builder[cloudwatch.QueryEditorFun
 class QueryEditorFunctionParameterExpression(cogbuilder.Builder[cloudwatch.QueryEditorFunctionParameterExpression]):
     _internal: cloudwatch.QueryEditorFunctionParameterExpression
 
-    def __init__(self):
+    def __init__(self) -> None:
         self._internal = cloudwatch.QueryEditorFunctionParameterExpression()
 
     def build(self) -> cloudwatch.QueryEditorFunctionParameterExpression:
@@ -456,7 +456,7 @@ class QueryEditorFunctionParameterExpression(cogbuilder.Builder[cloudwatch.Query
 class QueryEditorPropertyExpression(cogbuilder.Builder[cloudwatch.QueryEditorPropertyExpression]):
     _internal: cloudwatch.QueryEditorPropertyExpression
 
-    def __init__(self):
+    def __init__(self) -> None:
         self._internal = cloudwatch.QueryEditorPropertyExpression()
 
     def build(self) -> cloudwatch.QueryEditorPropertyExpression:
@@ -476,7 +476,7 @@ class QueryEditorPropertyExpression(cogbuilder.Builder[cloudwatch.QueryEditorPro
 class QueryEditorProperty(cogbuilder.Builder[cloudwatch.QueryEditorProperty]):
     _internal: cloudwatch.QueryEditorProperty
 
-    def __init__(self):
+    def __init__(self) -> None:
         self._internal = cloudwatch.QueryEditorProperty()
 
     def build(self) -> cloudwatch.QueryEditorProperty:
@@ -495,7 +495,7 @@ class QueryEditorProperty(cogbuilder.Builder[cloudwatch.QueryEditorProperty]):
 class QueryEditorArrayExpression(cogbuilder.Builder[cloudwatch.QueryEditorArrayExpression]):
     _internal: cloudwatch.QueryEditorArrayExpression
 
-    def __init__(self):
+    def __init__(self) -> None:
         self._internal = cloudwatch.QueryEditorArrayExpression()
 
     def build(self) -> cloudwatch.QueryEditorArrayExpression:
@@ -520,7 +520,7 @@ class QueryEditorArrayExpression(cogbuilder.Builder[cloudwatch.QueryEditorArrayE
 class QueryEditorGroupByExpression(cogbuilder.Builder[cloudwatch.QueryEditorGroupByExpression]):
     _internal: cloudwatch.QueryEditorGroupByExpression
 
-    def __init__(self):
+    def __init__(self) -> None:
         self._internal = cloudwatch.QueryEditorGroupByExpression()
 
     def build(self) -> cloudwatch.QueryEditorGroupByExpression:
@@ -540,7 +540,7 @@ class QueryEditorGroupByExpression(cogbuilder.Builder[cloudwatch.QueryEditorGrou
 class QueryEditorOperatorExpression(cogbuilder.Builder[cloudwatch.QueryEditorOperatorExpression]):
     _internal: cloudwatch.QueryEditorOperatorExpression
 
-    def __init__(self):
+    def __init__(self) -> None:
         self._internal = cloudwatch.QueryEditorOperatorExpression()
 
     def build(self) -> cloudwatch.QueryEditorOperatorExpression:
@@ -574,7 +574,7 @@ class QueryEditorOperator(cogbuilder.Builder[cloudwatch.QueryEditorOperator]):
     
     _internal: cloudwatch.QueryEditorOperator
 
-    def __init__(self):
+    def __init__(self) -> None:
         self._internal = cloudwatch.QueryEditorOperator()
 
     def build(self) -> cloudwatch.QueryEditorOperator:
@@ -602,7 +602,7 @@ class CloudWatchLogsQuery(cogbuilder.Builder[cloudwatch.CloudWatchLogsQuery]):
     
     _internal: cloudwatch.CloudWatchLogsQuery
 
-    def __init__(self):
+    def __init__(self) -> None:
         self._internal = cloudwatch.CloudWatchLogsQuery()
 
     def build(self) -> cloudwatch.CloudWatchLogsQuery:
@@ -703,7 +703,7 @@ class CloudWatchLogsQuery(cogbuilder.Builder[cloudwatch.CloudWatchLogsQuery]):
     
         return self
     
-    def datasource(self, datasource: dashboard.DataSourceRef) -> typing.Self:    
+    def datasource(self, datasource: common.DataSourceRef) -> typing.Self:    
         """
         For mixed data sources the selected datasource is on the query level.
         For non mixed scenarios this is undefined.
@@ -720,7 +720,7 @@ class CloudWatchLogsQuery(cogbuilder.Builder[cloudwatch.CloudWatchLogsQuery]):
 class LogGroup(cogbuilder.Builder[cloudwatch.LogGroup]):
     _internal: cloudwatch.LogGroup
 
-    def __init__(self):
+    def __init__(self) -> None:
         self._internal = cloudwatch.LogGroup()
 
     def build(self) -> cloudwatch.LogGroup:
@@ -776,7 +776,7 @@ class CloudWatchAnnotationQuery(cogbuilder.Builder[cloudwatch.CloudWatchAnnotati
     
     _internal: cloudwatch.CloudWatchAnnotationQuery
 
-    def __init__(self):
+    def __init__(self) -> None:
         self._internal = cloudwatch.CloudWatchAnnotationQuery()
 
     def build(self) -> cloudwatch.CloudWatchAnnotationQuery:
@@ -931,7 +931,7 @@ class CloudWatchAnnotationQuery(cogbuilder.Builder[cloudwatch.CloudWatchAnnotati
     
         return self
     
-    def datasource(self, datasource: dashboard.DataSourceRef) -> typing.Self:    
+    def datasource(self, datasource: common.DataSourceRef) -> typing.Self:    
         """
         For mixed data sources the selected datasource is on the query level.
         For non mixed scenarios this is undefined.

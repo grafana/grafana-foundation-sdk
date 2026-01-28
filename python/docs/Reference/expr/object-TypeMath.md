@@ -8,7 +8,7 @@ title: <span class="badge object-type-class"></span> TypeMath
 ```python
 class TypeMath(cogvariants.Dataquery):
     # The datasource
-    datasource: typing.Optional[dashboard.DataSourceRef]
+    datasource: typing.Optional[common.DataSourceRef]
     # General math expression
     expression: str
     # true if query is disabled (ie should not be returned to the dashboard)
@@ -27,7 +27,7 @@ class TypeMath(cogvariants.Dataquery):
     # It can be used to distinguish different types of queries.
     query_type: typing.Optional[str]
     # RefID is the unique identifier of the query, set by the frontend call.
-    ref_id: str
+    ref_id: typing.Optional[str]
     # Optionally define expected query result behavior
     result_assertions: typing.Optional[expr.ExprTypeMathResultAssertions]
     # TimeRange represents the query range

@@ -6,7 +6,7 @@ import com.grafana.foundation.dashboard.Panel;
 import java.util.List;
 import com.grafana.foundation.cog.variants.Dataquery;
 import java.util.LinkedList;
-import com.grafana.foundation.dashboard.DataSourceRef;
+import com.grafana.foundation.common.DataSourceRef;
 import com.grafana.foundation.dashboard.GridPos;
 import com.grafana.foundation.dashboard.DashboardLink;
 import com.grafana.foundation.dashboard.PanelRepeatDirection;
@@ -384,7 +384,7 @@ public class HeatmapPanelBuilder implements com.grafana.foundation.cog.Builder<P
     
     public HeatmapPanelBuilder calculate(Boolean calculate) {
 		if (this.internal.options == null) {
-			this.internal.options = new com.grafana.foundation.heatmap.Options();
+			this.internal.options = new com.grafana.foundation.heatmap.OptionsBuilder().build();
 		}
         ((Options) this.internal.options).calculate = calculate;
         return this;
@@ -392,7 +392,7 @@ public class HeatmapPanelBuilder implements com.grafana.foundation.cog.Builder<P
     
     public HeatmapPanelBuilder calculation(com.grafana.foundation.cog.Builder<HeatmapCalculationOptions> calculation) {
 		if (this.internal.options == null) {
-			this.internal.options = new com.grafana.foundation.heatmap.Options();
+			this.internal.options = new com.grafana.foundation.heatmap.OptionsBuilder().build();
 		}
     HeatmapCalculationOptions calculationResource = calculation.build();
         ((Options) this.internal.options).calculation = calculationResource;
@@ -401,7 +401,7 @@ public class HeatmapPanelBuilder implements com.grafana.foundation.cog.Builder<P
     
     public HeatmapPanelBuilder color(com.grafana.foundation.cog.Builder<HeatmapColorOptions> color) {
 		if (this.internal.options == null) {
-			this.internal.options = new com.grafana.foundation.heatmap.Options();
+			this.internal.options = new com.grafana.foundation.heatmap.OptionsBuilder().build();
 		}
     HeatmapColorOptions colorResource = color.build();
         ((Options) this.internal.options).color = colorResource;
@@ -410,7 +410,7 @@ public class HeatmapPanelBuilder implements com.grafana.foundation.cog.Builder<P
     
     public HeatmapPanelBuilder filterValues(com.grafana.foundation.cog.Builder<FilterValueRange> filterValues) {
 		if (this.internal.options == null) {
-			this.internal.options = new com.grafana.foundation.heatmap.Options();
+			this.internal.options = new com.grafana.foundation.heatmap.OptionsBuilder().build();
 		}
     FilterValueRange filterValuesResource = filterValues.build();
         ((Options) this.internal.options).filterValues = filterValuesResource;
@@ -419,7 +419,7 @@ public class HeatmapPanelBuilder implements com.grafana.foundation.cog.Builder<P
     
     public HeatmapPanelBuilder rowsFrame(com.grafana.foundation.cog.Builder<RowsHeatmapOptions> rowsFrame) {
 		if (this.internal.options == null) {
-			this.internal.options = new com.grafana.foundation.heatmap.Options();
+			this.internal.options = new com.grafana.foundation.heatmap.OptionsBuilder().build();
 		}
     RowsHeatmapOptions rowsFrameResource = rowsFrame.build();
         ((Options) this.internal.options).rowsFrame = rowsFrameResource;
@@ -428,7 +428,7 @@ public class HeatmapPanelBuilder implements com.grafana.foundation.cog.Builder<P
     
     public HeatmapPanelBuilder showValue(VisibilityMode showValue) {
 		if (this.internal.options == null) {
-			this.internal.options = new com.grafana.foundation.heatmap.Options();
+			this.internal.options = new com.grafana.foundation.heatmap.OptionsBuilder().build();
 		}
         ((Options) this.internal.options).showValue = showValue;
         return this;
@@ -439,7 +439,7 @@ public class HeatmapPanelBuilder implements com.grafana.foundation.cog.Builder<P
             throw new IllegalArgumentException("cellGap must be <= 25");
         }
 		if (this.internal.options == null) {
-			this.internal.options = new com.grafana.foundation.heatmap.Options();
+			this.internal.options = new com.grafana.foundation.heatmap.OptionsBuilder().build();
 		}
         ((Options) this.internal.options).cellGap = cellGap;
         return this;
@@ -447,7 +447,7 @@ public class HeatmapPanelBuilder implements com.grafana.foundation.cog.Builder<P
     
     public HeatmapPanelBuilder cellRadius(Float cellRadius) {
 		if (this.internal.options == null) {
-			this.internal.options = new com.grafana.foundation.heatmap.Options();
+			this.internal.options = new com.grafana.foundation.heatmap.OptionsBuilder().build();
 		}
         ((Options) this.internal.options).cellRadius = cellRadius;
         return this;
@@ -455,7 +455,7 @@ public class HeatmapPanelBuilder implements com.grafana.foundation.cog.Builder<P
     
     public HeatmapPanelBuilder cellValues(com.grafana.foundation.cog.Builder<CellValues> cellValues) {
 		if (this.internal.options == null) {
-			this.internal.options = new com.grafana.foundation.heatmap.Options();
+			this.internal.options = new com.grafana.foundation.heatmap.OptionsBuilder().build();
 		}
     CellValues cellValuesResource = cellValues.build();
         ((Options) this.internal.options).cellValues = cellValuesResource;
@@ -464,7 +464,7 @@ public class HeatmapPanelBuilder implements com.grafana.foundation.cog.Builder<P
     
     public HeatmapPanelBuilder yAxis(com.grafana.foundation.cog.Builder<YAxisConfig> yAxis) {
 		if (this.internal.options == null) {
-			this.internal.options = new com.grafana.foundation.heatmap.Options();
+			this.internal.options = new com.grafana.foundation.heatmap.OptionsBuilder().build();
 		}
     YAxisConfig yAxisResource = yAxis.build();
         ((Options) this.internal.options).yAxis = yAxisResource;
@@ -473,7 +473,7 @@ public class HeatmapPanelBuilder implements com.grafana.foundation.cog.Builder<P
     
     public HeatmapPanelBuilder showLegend() {
 		if (this.internal.options == null) {
-			this.internal.options = new com.grafana.foundation.heatmap.Options();
+			this.internal.options = new com.grafana.foundation.heatmap.OptionsBuilder().build();
 		}
 		if (((Options) this.internal.options).legend == null) {
 			((Options) this.internal.options).legend = new com.grafana.foundation.heatmap.HeatmapLegendBuilder().build();
@@ -484,7 +484,7 @@ public class HeatmapPanelBuilder implements com.grafana.foundation.cog.Builder<P
     
     public HeatmapPanelBuilder hideLegend() {
 		if (this.internal.options == null) {
-			this.internal.options = new com.grafana.foundation.heatmap.Options();
+			this.internal.options = new com.grafana.foundation.heatmap.OptionsBuilder().build();
 		}
 		if (((Options) this.internal.options).legend == null) {
 			((Options) this.internal.options).legend = new com.grafana.foundation.heatmap.HeatmapLegendBuilder().build();
@@ -495,7 +495,7 @@ public class HeatmapPanelBuilder implements com.grafana.foundation.cog.Builder<P
     
     public HeatmapPanelBuilder showTooltip() {
 		if (this.internal.options == null) {
-			this.internal.options = new com.grafana.foundation.heatmap.Options();
+			this.internal.options = new com.grafana.foundation.heatmap.OptionsBuilder().build();
 		}
 		if (((Options) this.internal.options).tooltip == null) {
 			((Options) this.internal.options).tooltip = new com.grafana.foundation.heatmap.HeatmapTooltipBuilder().build();
@@ -506,7 +506,7 @@ public class HeatmapPanelBuilder implements com.grafana.foundation.cog.Builder<P
     
     public HeatmapPanelBuilder hideTooltip() {
 		if (this.internal.options == null) {
-			this.internal.options = new com.grafana.foundation.heatmap.Options();
+			this.internal.options = new com.grafana.foundation.heatmap.OptionsBuilder().build();
 		}
 		if (((Options) this.internal.options).tooltip == null) {
 			((Options) this.internal.options).tooltip = new com.grafana.foundation.heatmap.HeatmapTooltipBuilder().build();
@@ -517,7 +517,7 @@ public class HeatmapPanelBuilder implements com.grafana.foundation.cog.Builder<P
     
     public HeatmapPanelBuilder showYHistogram() {
 		if (this.internal.options == null) {
-			this.internal.options = new com.grafana.foundation.heatmap.Options();
+			this.internal.options = new com.grafana.foundation.heatmap.OptionsBuilder().build();
 		}
 		if (((Options) this.internal.options).tooltip == null) {
 			((Options) this.internal.options).tooltip = new com.grafana.foundation.heatmap.HeatmapTooltipBuilder().build();
@@ -528,7 +528,7 @@ public class HeatmapPanelBuilder implements com.grafana.foundation.cog.Builder<P
     
     public HeatmapPanelBuilder hideYHistogram() {
 		if (this.internal.options == null) {
-			this.internal.options = new com.grafana.foundation.heatmap.Options();
+			this.internal.options = new com.grafana.foundation.heatmap.OptionsBuilder().build();
 		}
 		if (((Options) this.internal.options).tooltip == null) {
 			((Options) this.internal.options).tooltip = new com.grafana.foundation.heatmap.HeatmapTooltipBuilder().build();
@@ -539,7 +539,7 @@ public class HeatmapPanelBuilder implements com.grafana.foundation.cog.Builder<P
     
     public HeatmapPanelBuilder showColorScale(Boolean showColorScale) {
 		if (this.internal.options == null) {
-			this.internal.options = new com.grafana.foundation.heatmap.Options();
+			this.internal.options = new com.grafana.foundation.heatmap.OptionsBuilder().build();
 		}
 		if (((Options) this.internal.options).tooltip == null) {
 			((Options) this.internal.options).tooltip = new com.grafana.foundation.heatmap.HeatmapTooltipBuilder().build();
@@ -550,7 +550,7 @@ public class HeatmapPanelBuilder implements com.grafana.foundation.cog.Builder<P
     
     public HeatmapPanelBuilder exemplarsColor(String color) {
 		if (this.internal.options == null) {
-			this.internal.options = new com.grafana.foundation.heatmap.Options();
+			this.internal.options = new com.grafana.foundation.heatmap.OptionsBuilder().build();
 		}
 		if (((Options) this.internal.options).exemplars == null) {
 			((Options) this.internal.options).exemplars = new com.grafana.foundation.heatmap.ExemplarConfigBuilder().build();
@@ -567,7 +567,7 @@ public class HeatmapPanelBuilder implements com.grafana.foundation.cog.Builder<P
 			this.internal.fieldConfig.defaults = new com.grafana.foundation.dashboard.FieldConfig();
 		}
 		if (this.internal.fieldConfig.defaults.custom == null) {
-			this.internal.fieldConfig.defaults.custom = new com.grafana.foundation.heatmap.FieldConfig();
+			this.internal.fieldConfig.defaults.custom = new com.grafana.foundation.heatmap.FieldConfigBuilder().build();
 		}
     ScaleDistributionConfig scaleDistributionResource = scaleDistribution.build();
         ((FieldConfig) this.internal.fieldConfig.defaults.custom).scaleDistribution = scaleDistributionResource;
@@ -582,7 +582,7 @@ public class HeatmapPanelBuilder implements com.grafana.foundation.cog.Builder<P
 			this.internal.fieldConfig.defaults = new com.grafana.foundation.dashboard.FieldConfig();
 		}
 		if (this.internal.fieldConfig.defaults.custom == null) {
-			this.internal.fieldConfig.defaults.custom = new com.grafana.foundation.heatmap.FieldConfig();
+			this.internal.fieldConfig.defaults.custom = new com.grafana.foundation.heatmap.FieldConfigBuilder().build();
 		}
     HideSeriesConfig hideFromResource = hideFrom.build();
         ((FieldConfig) this.internal.fieldConfig.defaults.custom).hideFrom = hideFromResource;

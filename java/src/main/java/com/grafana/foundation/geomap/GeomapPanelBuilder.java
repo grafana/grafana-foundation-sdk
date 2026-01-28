@@ -6,7 +6,7 @@ import com.grafana.foundation.dashboard.Panel;
 import java.util.List;
 import com.grafana.foundation.cog.variants.Dataquery;
 import java.util.LinkedList;
-import com.grafana.foundation.dashboard.DataSourceRef;
+import com.grafana.foundation.common.DataSourceRef;
 import com.grafana.foundation.dashboard.GridPos;
 import com.grafana.foundation.dashboard.DashboardLink;
 import com.grafana.foundation.dashboard.PanelRepeatDirection;
@@ -381,7 +381,7 @@ public class GeomapPanelBuilder implements com.grafana.foundation.cog.Builder<Pa
     
     public GeomapPanelBuilder view(com.grafana.foundation.cog.Builder<MapViewConfig> view) {
 		if (this.internal.options == null) {
-			this.internal.options = new com.grafana.foundation.geomap.Options();
+			this.internal.options = new com.grafana.foundation.geomap.OptionsBuilder().build();
 		}
     MapViewConfig viewResource = view.build();
         ((Options) this.internal.options).view = viewResource;
@@ -390,7 +390,7 @@ public class GeomapPanelBuilder implements com.grafana.foundation.cog.Builder<Pa
     
     public GeomapPanelBuilder controls(com.grafana.foundation.cog.Builder<ControlsOptions> controls) {
 		if (this.internal.options == null) {
-			this.internal.options = new com.grafana.foundation.geomap.Options();
+			this.internal.options = new com.grafana.foundation.geomap.OptionsBuilder().build();
 		}
     ControlsOptions controlsResource = controls.build();
         ((Options) this.internal.options).controls = controlsResource;
@@ -399,7 +399,7 @@ public class GeomapPanelBuilder implements com.grafana.foundation.cog.Builder<Pa
     
     public GeomapPanelBuilder basemap(com.grafana.foundation.cog.Builder<MapLayerOptions> basemap) {
 		if (this.internal.options == null) {
-			this.internal.options = new com.grafana.foundation.geomap.Options();
+			this.internal.options = new com.grafana.foundation.geomap.OptionsBuilder().build();
 		}
     MapLayerOptions basemapResource = basemap.build();
         ((Options) this.internal.options).basemap = basemapResource;
@@ -408,7 +408,7 @@ public class GeomapPanelBuilder implements com.grafana.foundation.cog.Builder<Pa
     
     public GeomapPanelBuilder layers(List<com.grafana.foundation.cog.Builder<MapLayerOptions>> layers) {
 		if (this.internal.options == null) {
-			this.internal.options = new com.grafana.foundation.geomap.Options();
+			this.internal.options = new com.grafana.foundation.geomap.OptionsBuilder().build();
 		}
         List<MapLayerOptions> layersResources = new LinkedList<>();
         for (com.grafana.foundation.cog.Builder<MapLayerOptions> r1 : layers) {
@@ -421,7 +421,7 @@ public class GeomapPanelBuilder implements com.grafana.foundation.cog.Builder<Pa
     
     public GeomapPanelBuilder tooltip(com.grafana.foundation.cog.Builder<TooltipOptions> tooltip) {
 		if (this.internal.options == null) {
-			this.internal.options = new com.grafana.foundation.geomap.Options();
+			this.internal.options = new com.grafana.foundation.geomap.OptionsBuilder().build();
 		}
     TooltipOptions tooltipResource = tooltip.build();
         ((Options) this.internal.options).tooltip = tooltipResource;

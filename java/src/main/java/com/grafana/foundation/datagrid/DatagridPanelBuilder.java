@@ -6,7 +6,7 @@ import com.grafana.foundation.dashboard.Panel;
 import java.util.List;
 import com.grafana.foundation.cog.variants.Dataquery;
 import java.util.LinkedList;
-import com.grafana.foundation.dashboard.DataSourceRef;
+import com.grafana.foundation.common.DataSourceRef;
 import com.grafana.foundation.dashboard.GridPos;
 import com.grafana.foundation.dashboard.DashboardLink;
 import com.grafana.foundation.dashboard.PanelRepeatDirection;
@@ -383,7 +383,7 @@ public class DatagridPanelBuilder implements com.grafana.foundation.cog.Builder<
             throw new IllegalArgumentException("selectedSeries must be >= 0");
         }
 		if (this.internal.options == null) {
-			this.internal.options = new com.grafana.foundation.datagrid.Options();
+			this.internal.options = new com.grafana.foundation.datagrid.OptionsBuilder().build();
 		}
         ((Options) this.internal.options).selectedSeries = selectedSeries;
         return this;

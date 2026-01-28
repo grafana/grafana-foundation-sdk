@@ -6,7 +6,7 @@ import com.grafana.foundation.dashboard.Panel;
 import java.util.List;
 import com.grafana.foundation.cog.variants.Dataquery;
 import java.util.LinkedList;
-import com.grafana.foundation.dashboard.DataSourceRef;
+import com.grafana.foundation.common.DataSourceRef;
 import com.grafana.foundation.dashboard.GridPos;
 import com.grafana.foundation.dashboard.DashboardLink;
 import com.grafana.foundation.dashboard.PanelRepeatDirection;
@@ -384,7 +384,7 @@ public class GaugePanelBuilder implements com.grafana.foundation.cog.Builder<Pan
     
     public GaugePanelBuilder showThresholdLabels(Boolean showThresholdLabels) {
 		if (this.internal.options == null) {
-			this.internal.options = new com.grafana.foundation.gauge.Options();
+			this.internal.options = new com.grafana.foundation.gauge.OptionsBuilder().build();
 		}
         ((Options) this.internal.options).showThresholdLabels = showThresholdLabels;
         return this;
@@ -392,7 +392,7 @@ public class GaugePanelBuilder implements com.grafana.foundation.cog.Builder<Pan
     
     public GaugePanelBuilder showThresholdMarkers(Boolean showThresholdMarkers) {
 		if (this.internal.options == null) {
-			this.internal.options = new com.grafana.foundation.gauge.Options();
+			this.internal.options = new com.grafana.foundation.gauge.OptionsBuilder().build();
 		}
         ((Options) this.internal.options).showThresholdMarkers = showThresholdMarkers;
         return this;
@@ -400,7 +400,7 @@ public class GaugePanelBuilder implements com.grafana.foundation.cog.Builder<Pan
     
     public GaugePanelBuilder sizing(BarGaugeSizing sizing) {
 		if (this.internal.options == null) {
-			this.internal.options = new com.grafana.foundation.gauge.Options();
+			this.internal.options = new com.grafana.foundation.gauge.OptionsBuilder().build();
 		}
         ((Options) this.internal.options).sizing = sizing;
         return this;
@@ -408,7 +408,7 @@ public class GaugePanelBuilder implements com.grafana.foundation.cog.Builder<Pan
     
     public GaugePanelBuilder minVizWidth(Integer minVizWidth) {
 		if (this.internal.options == null) {
-			this.internal.options = new com.grafana.foundation.gauge.Options();
+			this.internal.options = new com.grafana.foundation.gauge.OptionsBuilder().build();
 		}
         ((Options) this.internal.options).minVizWidth = minVizWidth;
         return this;
@@ -416,7 +416,7 @@ public class GaugePanelBuilder implements com.grafana.foundation.cog.Builder<Pan
     
     public GaugePanelBuilder reduceOptions(com.grafana.foundation.cog.Builder<ReduceDataOptions> reduceOptions) {
 		if (this.internal.options == null) {
-			this.internal.options = new com.grafana.foundation.gauge.Options();
+			this.internal.options = new com.grafana.foundation.gauge.OptionsBuilder().build();
 		}
     ReduceDataOptions reduceOptionsResource = reduceOptions.build();
         ((Options) this.internal.options).reduceOptions = reduceOptionsResource;
@@ -425,7 +425,7 @@ public class GaugePanelBuilder implements com.grafana.foundation.cog.Builder<Pan
     
     public GaugePanelBuilder text(com.grafana.foundation.cog.Builder<VizTextDisplayOptions> text) {
 		if (this.internal.options == null) {
-			this.internal.options = new com.grafana.foundation.gauge.Options();
+			this.internal.options = new com.grafana.foundation.gauge.OptionsBuilder().build();
 		}
     VizTextDisplayOptions textResource = text.build();
         ((Options) this.internal.options).text = textResource;
@@ -434,7 +434,7 @@ public class GaugePanelBuilder implements com.grafana.foundation.cog.Builder<Pan
     
     public GaugePanelBuilder minVizHeight(Integer minVizHeight) {
 		if (this.internal.options == null) {
-			this.internal.options = new com.grafana.foundation.gauge.Options();
+			this.internal.options = new com.grafana.foundation.gauge.OptionsBuilder().build();
 		}
         ((Options) this.internal.options).minVizHeight = minVizHeight;
         return this;
@@ -442,7 +442,7 @@ public class GaugePanelBuilder implements com.grafana.foundation.cog.Builder<Pan
     
     public GaugePanelBuilder orientation(VizOrientation orientation) {
 		if (this.internal.options == null) {
-			this.internal.options = new com.grafana.foundation.gauge.Options();
+			this.internal.options = new com.grafana.foundation.gauge.OptionsBuilder().build();
 		}
         ((Options) this.internal.options).orientation = orientation;
         return this;

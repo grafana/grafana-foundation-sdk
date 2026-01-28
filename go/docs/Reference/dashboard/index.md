@@ -19,7 +19,7 @@
  * <span class="badge object-type-struct"></span> [DashboardRangeMapOptions](./object-DashboardRangeMapOptions.md)
  * <span class="badge object-type-struct"></span> [DashboardRegexMapOptions](./object-DashboardRegexMapOptions.md)
  * <span class="badge object-type-struct"></span> [DashboardSpecialValueMapOptions](./object-DashboardSpecialValueMapOptions.md)
- * <span class="badge object-type-struct"></span> [DataSourceRef](./object-DataSourceRef.md)
+ * <span class="badge object-type-ref"></span> [DataSourceRef](./object-DataSourceRef.md)
  * <span class="badge object-type-struct"></span> [DataTransformerConfig](./object-DataTransformerConfig.md)
  * <span class="badge object-type-struct"></span> [DynamicConfigValue](./object-DynamicConfigValue.md)
  * <span class="badge object-type-struct"></span> [FieldColor](./object-FieldColor.md)
@@ -76,6 +76,7 @@
  * <span class="badge builder"></span> [DashboardRangeMapOptionsBuilder](./builder-DashboardRangeMapOptionsBuilder.md)
  * <span class="badge builder"></span> [DashboardRegexMapOptionsBuilder](./builder-DashboardRegexMapOptionsBuilder.md)
  * <span class="badge builder"></span> [DashboardSpecialValueMapOptionsBuilder](./builder-DashboardSpecialValueMapOptionsBuilder.md)
+ * <span class="badge builder"></span> [DataSourceRefBuilder](./builder-DataSourceRefBuilder.md)
  * <span class="badge builder"></span> [DatasourceVariableBuilder](./builder-DatasourceVariableBuilder.md)
  * <span class="badge builder"></span> [FieldColorBuilder](./builder-FieldColorBuilder.md)
  * <span class="badge builder"></span> [IntervalVariableBuilder](./builder-IntervalVariableBuilder.md)
@@ -454,6 +455,14 @@ PanelConverter accepts a `Panel` object and generates the Go code to build this 
 
 ```go
 func PanelConverter(input Panel) string
+```
+
+### <span class="badge function"></span> DataSourceRefConverter
+
+DataSourceRefConverter accepts a `DataSourceRef` object and generates the Go code to build this object using builders.
+
+```go
+func DataSourceRefConverter(input DataSourceRef) string
 ```
 
 ### <span class="badge function"></span> DashboardLinkConverter

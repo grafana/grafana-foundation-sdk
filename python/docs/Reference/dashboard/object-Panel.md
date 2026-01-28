@@ -30,7 +30,7 @@ class Panel:
     # Whether to display the panel without a background.
     transparent: typing.Optional[bool]
     # The datasource used in all targets.
-    datasource: typing.Optional[dashboard.DataSourceRef]
+    datasource: typing.Optional[common.DataSourceRef]
     # Grid position.
     grid_pos: typing.Optional[dashboard.GridPos]
     # Panel links.

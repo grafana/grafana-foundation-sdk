@@ -5,6 +5,7 @@ package com.grafana.foundation.dashboard;
 import java.util.List;
 import com.grafana.foundation.cog.variants.Dataquery;
 import java.util.LinkedList;
+import com.grafana.foundation.common.DataSourceRef;
 
 public class PanelBuilder<T extends PanelBuilder<T>> implements com.grafana.foundation.cog.Builder<Panel> {
     protected final Panel internal;

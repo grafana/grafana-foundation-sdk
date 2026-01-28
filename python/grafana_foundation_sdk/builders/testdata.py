@@ -8,7 +8,7 @@ from ..models import testdata
 class StreamingQuery(cogbuilder.Builder[testdata.StreamingQuery]):
     _internal: testdata.StreamingQuery
 
-    def __init__(self):
+    def __init__(self) -> None:
         self._internal = testdata.StreamingQuery()
 
     def build(self) -> testdata.StreamingQuery:
@@ -52,7 +52,7 @@ class StreamingQuery(cogbuilder.Builder[testdata.StreamingQuery]):
 class PulseWaveQuery(cogbuilder.Builder[testdata.PulseWaveQuery]):
     _internal: testdata.PulseWaveQuery
 
-    def __init__(self):
+    def __init__(self) -> None:
         self._internal = testdata.PulseWaveQuery()
 
     def build(self) -> testdata.PulseWaveQuery:
@@ -91,7 +91,7 @@ class PulseWaveQuery(cogbuilder.Builder[testdata.PulseWaveQuery]):
 class SimulationQuery(cogbuilder.Builder[testdata.SimulationQuery]):
     _internal: testdata.SimulationQuery
 
-    def __init__(self):
+    def __init__(self) -> None:
         self._internal = testdata.SimulationQuery()
 
     def build(self) -> testdata.SimulationQuery:
@@ -126,7 +126,7 @@ class SimulationQuery(cogbuilder.Builder[testdata.SimulationQuery]):
 class CSVWave(cogbuilder.Builder[testdata.CSVWave]):
     _internal: testdata.CSVWave
 
-    def __init__(self):
+    def __init__(self) -> None:
         self._internal = testdata.CSVWave()
 
     def build(self) -> testdata.CSVWave:
@@ -160,7 +160,7 @@ class CSVWave(cogbuilder.Builder[testdata.CSVWave]):
 class NodesQuery(cogbuilder.Builder[testdata.NodesQuery]):
     _internal: testdata.NodesQuery
 
-    def __init__(self):
+    def __init__(self) -> None:
         self._internal = testdata.NodesQuery()
 
     def build(self) -> testdata.NodesQuery:
@@ -184,7 +184,7 @@ class NodesQuery(cogbuilder.Builder[testdata.NodesQuery]):
 class USAQuery(cogbuilder.Builder[testdata.USAQuery]):
     _internal: testdata.USAQuery
 
-    def __init__(self):
+    def __init__(self) -> None:
         self._internal = testdata.USAQuery()
 
     def build(self) -> testdata.USAQuery:
@@ -222,7 +222,7 @@ class Scenario(cogbuilder.Builder[testdata.Scenario]):
     
     _internal: testdata.Scenario
 
-    def __init__(self):
+    def __init__(self) -> None:
         self._internal = testdata.Scenario()
 
     def build(self) -> testdata.Scenario:
@@ -261,7 +261,7 @@ class Scenario(cogbuilder.Builder[testdata.Scenario]):
 class Dataquery(cogbuilder.Builder[testdata.Dataquery]):
     _internal: testdata.Dataquery
 
-    def __init__(self):
+    def __init__(self) -> None:
         self._internal = testdata.Dataquery()
 
     def build(self) -> testdata.Dataquery:
@@ -439,7 +439,7 @@ class Dataquery(cogbuilder.Builder[testdata.Dataquery]):
 class Key(cogbuilder.Builder[testdata.Key]):
     _internal: testdata.Key
 
-    def __init__(self):
+    def __init__(self) -> None:
         self._internal = testdata.Key()
 
     def build(self) -> testdata.Key:

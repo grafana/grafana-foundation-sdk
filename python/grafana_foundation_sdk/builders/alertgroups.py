@@ -2,9 +2,51 @@
 
 import typing
 from ..cog import builder as cogbuilder
+from ..models import alertgroups
 from ..models import dashboard
 from ..cog import variants as cogvariants
-from ..models import alertgroups
+from ..models import common
+
+
+class Options(cogbuilder.Builder[alertgroups.Options]):
+    _internal: alertgroups.Options
+
+    def __init__(self) -> None:
+        self._internal = alertgroups.Options()
+
+    def build(self) -> alertgroups.Options:
+        """
+        Builds the object.
+        """
+        return self._internal    
+    
+    def labels(self, labels: str) -> typing.Self:    
+        """
+        Comma-separated list of values used to filter alert results
+        """
+            
+        self._internal.labels = labels
+    
+        return self
+    
+    def alertmanager(self, alertmanager: str) -> typing.Self:    
+        """
+        Name of the alertmanager used as a source for alerts
+        """
+            
+        self._internal.alertmanager = alertmanager
+    
+        return self
+    
+    def expand_all(self, expand_all: bool) -> typing.Self:    
+        """
+        Expand all alert groups by default
+        """
+            
+        self._internal.expand_all = expand_all
+    
+        return self
+    
 
 
 class Panel(cogbuilder.Builder[dashboard.Panel]):    
@@ -14,7 +56,7 @@ class Panel(cogbuilder.Builder[dashboard.Panel]):
     
     _internal: dashboard.Panel
 
-    def __init__(self):
+    def __init__(self) -> None:
         self._internal = dashboard.Panel()        
         self._internal.type_val = "alertGroups"
 
@@ -83,7 +125,7 @@ class Panel(cogbuilder.Builder[dashboard.Panel]):
     
         return self
     
-    def datasource(self, datasource: dashboard.DataSourceRef) -> typing.Self:    
+    def datasource(self, datasource: common.DataSourceRef) -> typing.Self:    
         """
         The datasource used in all targets.
         """

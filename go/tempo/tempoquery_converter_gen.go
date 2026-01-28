@@ -15,10 +15,10 @@ func TempoQueryConverter(input TempoQuery) string {
 		`tempo.NewTempoQueryBuilder()`,
 	}
 	var buffer strings.Builder
-	if input.RefId != "" {
+	if input.RefId != nil && *input.RefId != "" {
 
 		buffer.WriteString(`RefId(`)
-		arg0 := fmt.Sprintf("%#v", input.RefId)
+		arg0 := fmt.Sprintf("%#v", *input.RefId)
 		buffer.WriteString(arg0)
 
 		buffer.WriteString(")")

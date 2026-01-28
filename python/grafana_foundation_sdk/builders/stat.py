@@ -2,10 +2,66 @@
 
 import typing
 from ..cog import builder as cogbuilder
+from ..models import stat
+from ..models import common
 from ..models import dashboard
 from ..cog import variants as cogvariants
-from ..models import common
-from ..models import stat
+
+
+class Options(cogbuilder.Builder[stat.Options]):
+    _internal: stat.Options
+
+    def __init__(self) -> None:
+        self._internal = stat.Options()
+
+    def build(self) -> stat.Options:
+        """
+        Builds the object.
+        """
+        return self._internal    
+    
+    def graph_mode(self, graph_mode: common.BigValueGraphMode) -> typing.Self:    
+        self._internal.graph_mode = graph_mode
+    
+        return self
+    
+    def color_mode(self, color_mode: common.BigValueColorMode) -> typing.Self:    
+        self._internal.color_mode = color_mode
+    
+        return self
+    
+    def justify_mode(self, justify_mode: common.BigValueJustifyMode) -> typing.Self:    
+        self._internal.justify_mode = justify_mode
+    
+        return self
+    
+    def text_mode(self, text_mode: common.BigValueTextMode) -> typing.Self:    
+        self._internal.text_mode = text_mode
+    
+        return self
+    
+    def reduce_options(self, reduce_options: cogbuilder.Builder[common.ReduceDataOptions]) -> typing.Self:    
+        reduce_options_resource = reduce_options.build()
+        self._internal.reduce_options = reduce_options_resource
+    
+        return self
+    
+    def text(self, text: cogbuilder.Builder[common.VizTextDisplayOptions]) -> typing.Self:    
+        text_resource = text.build()
+        self._internal.text = text_resource
+    
+        return self
+    
+    def wide_layout(self, wide_layout: bool) -> typing.Self:    
+        self._internal.wide_layout = wide_layout
+    
+        return self
+    
+    def orientation(self, orientation: common.VizOrientation) -> typing.Self:    
+        self._internal.orientation = orientation
+    
+        return self
+    
 
 
 class Panel(cogbuilder.Builder[dashboard.Panel]):    
@@ -15,7 +71,7 @@ class Panel(cogbuilder.Builder[dashboard.Panel]):
     
     _internal: dashboard.Panel
 
-    def __init__(self):
+    def __init__(self) -> None:
         self._internal = dashboard.Panel()        
         self._internal.type_val = "stat"
 
@@ -84,7 +140,7 @@ class Panel(cogbuilder.Builder[dashboard.Panel]):
     
         return self
     
-    def datasource(self, datasource: dashboard.DataSourceRef) -> typing.Self:    
+    def datasource(self, datasource: common.DataSourceRef) -> typing.Self:    
         """
         The datasource used in all targets.
         """

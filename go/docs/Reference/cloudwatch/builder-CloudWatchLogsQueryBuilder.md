@@ -29,7 +29,7 @@ TODO find a better way to do this ^ that's friendly to schema
 TODO this shouldn't be unknown but DataSourceRef | null
 
 ```go
-func (builder *CloudWatchLogsQueryBuilder) Datasource(datasource dashboard.DataSourceRef) *CloudWatchLogsQueryBuilder
+func (builder *CloudWatchLogsQueryBuilder) Datasource(datasource common.DataSourceRef) *CloudWatchLogsQueryBuilder
 ```
 
 ### <span class="badge object-method"></span> Expression

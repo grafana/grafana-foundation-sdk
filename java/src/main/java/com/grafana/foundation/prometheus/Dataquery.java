@@ -44,6 +44,7 @@ public class Dataquery implements com.grafana.foundation.cog.variants.Dataquery 
     // A unique identifier for the query within the list of targets.
     // In server side expressions, the refId is used as a variable name to identify results.
     // By default, the UI will assign A->Z; however setting meaningful names may be useful.
+    @JsonInclude(JsonInclude.Include.NON_NULL)
     @JsonProperty("refId")
     public String refId;
     // true if query is disabled (ie should not be returned to the dashboard)
@@ -71,7 +72,6 @@ public class Dataquery implements com.grafana.foundation.cog.variants.Dataquery 
     public String interval;
     public Dataquery() {
         this.expr = "";
-        this.refId = "";
     }
     public Dataquery(String expr,Boolean instant,Boolean range,Boolean exemplar,QueryEditorMode editorMode,PromQueryFormat format,String legendFormat,Double intervalFactor,String refId,Boolean hide,String queryType,Object datasource,String interval) {
         this.expr = expr;

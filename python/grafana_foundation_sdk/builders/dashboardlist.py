@@ -2,9 +2,83 @@
 
 import typing
 from ..cog import builder as cogbuilder
+from ..models import dashboardlist
 from ..models import dashboard
 from ..cog import variants as cogvariants
-from ..models import dashboardlist
+from ..models import common
+
+
+class Options(cogbuilder.Builder[dashboardlist.Options]):
+    _internal: dashboardlist.Options
+
+    def __init__(self) -> None:
+        self._internal = dashboardlist.Options()
+
+    def build(self) -> dashboardlist.Options:
+        """
+        Builds the object.
+        """
+        return self._internal    
+    
+    def keep_time(self, keep_time: bool) -> typing.Self:    
+        self._internal.keep_time = keep_time
+    
+        return self
+    
+    def include_vars(self, include_vars: bool) -> typing.Self:    
+        self._internal.include_vars = include_vars
+    
+        return self
+    
+    def show_starred(self, show_starred: bool) -> typing.Self:    
+        self._internal.show_starred = show_starred
+    
+        return self
+    
+    def show_recently_viewed(self, show_recently_viewed: bool) -> typing.Self:    
+        self._internal.show_recently_viewed = show_recently_viewed
+    
+        return self
+    
+    def show_search(self, show_search: bool) -> typing.Self:    
+        self._internal.show_search = show_search
+    
+        return self
+    
+    def show_headings(self, show_headings: bool) -> typing.Self:    
+        self._internal.show_headings = show_headings
+    
+        return self
+    
+    def max_items(self, max_items: int) -> typing.Self:    
+        self._internal.max_items = max_items
+    
+        return self
+    
+    def query(self, query: str) -> typing.Self:    
+        self._internal.query = query
+    
+        return self
+    
+    def tags(self, tags: list[str]) -> typing.Self:    
+        self._internal.tags = tags
+    
+        return self
+    
+    def folder_id(self, folder_id: int) -> typing.Self:    
+        """
+        folderId is deprecated, and migrated to folderUid on panel init
+        """
+            
+        self._internal.folder_id = folder_id
+    
+        return self
+    
+    def folder_uid(self, folder_uid: str) -> typing.Self:    
+        self._internal.folder_uid = folder_uid
+    
+        return self
+    
 
 
 class Panel(cogbuilder.Builder[dashboard.Panel]):    
@@ -14,7 +88,7 @@ class Panel(cogbuilder.Builder[dashboard.Panel]):
     
     _internal: dashboard.Panel
 
-    def __init__(self):
+    def __init__(self) -> None:
         self._internal = dashboard.Panel()        
         self._internal.type_val = "dashlist"
 
@@ -83,7 +157,7 @@ class Panel(cogbuilder.Builder[dashboard.Panel]):
     
         return self
     
-    def datasource(self, datasource: dashboard.DataSourceRef) -> typing.Self:    
+    def datasource(self, datasource: common.DataSourceRef) -> typing.Self:    
         """
         The datasource used in all targets.
         """

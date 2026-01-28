@@ -1,5 +1,11 @@
 // Code generated - EDITING IS FUTILE. DO NOT EDIT.
 
+export const DashboardV2Beta1 = "dashboard.grafana.app/v2beta1";
+
+export const DashboardV2Alpha1 = "dashboard.grafana.app/v2alpha1";
+
+export const DashboardKind = "Dashboard";
+
 export interface Manifest {
 	apiVersion: string;
 	kind: string;

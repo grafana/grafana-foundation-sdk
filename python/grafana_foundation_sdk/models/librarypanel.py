@@ -2,6 +2,7 @@
 
 import typing
 from ..cog import variants as cogvariants
+from ..models import common
 from ..models import dashboard
 from ..cog import runtime as cogruntime
 
@@ -27,7 +28,7 @@ class LibraryPanel:
     # Object storage metadata
     meta: typing.Optional['LibraryElementDTOMeta']
 
-    def __init__(self, folder_uid: typing.Optional[str] = None, uid: str = "", name: str = "", description: typing.Optional[str] = None, type_val: str = "", schema_version: typing.Optional[int] = None, version: int = 0, model: typing.Optional['PanelModel'] = None, meta: typing.Optional['LibraryElementDTOMeta'] = None):
+    def __init__(self, folder_uid: typing.Optional[str] = None, uid: str = "", name: str = "", description: typing.Optional[str] = None, type_val: str = "", schema_version: typing.Optional[int] = None, version: int = 0, model: typing.Optional['PanelModel'] = None, meta: typing.Optional['LibraryElementDTOMeta'] = None) -> None:
         self.folder_uid = folder_uid
         self.uid = uid
         self.name = name
@@ -91,7 +92,7 @@ class LibraryElementDTOMeta:
     created_by: 'LibraryElementDTOMetaUser'
     updated_by: 'LibraryElementDTOMetaUser'
 
-    def __init__(self, folder_name: str = "", folder_uid: str = "", connected_dashboards: int = 0, created: str = "", updated: str = "", created_by: typing.Optional['LibraryElementDTOMetaUser'] = None, updated_by: typing.Optional['LibraryElementDTOMetaUser'] = None):
+    def __init__(self, folder_name: str = "", folder_uid: str = "", connected_dashboards: int = 0, created: str = "", updated: str = "", created_by: typing.Optional['LibraryElementDTOMetaUser'] = None, updated_by: typing.Optional['LibraryElementDTOMetaUser'] = None) -> None:
         self.folder_name = folder_name
         self.folder_uid = folder_uid
         self.connected_dashboards = connected_dashboards
@@ -139,7 +140,7 @@ class LibraryElementDTOMetaUser:
     name: str
     avatar_url: str
 
-    def __init__(self, id_val: int = 0, name: str = "", avatar_url: str = ""):
+    def __init__(self, id_val: int = 0, name: str = "", avatar_url: str = "") -> None:
         self.id_val = id_val
         self.name = name
         self.avatar_url = avatar_url
@@ -186,7 +187,7 @@ class PanelModel:
     # Whether to display the panel without a background.
     transparent: typing.Optional[bool]
     # The datasource used in all targets.
-    datasource: typing.Optional[dashboard.DataSourceRef]
+    datasource: typing.Optional[common.DataSourceRef]
     # Panel links.
     links: typing.Optional[list[dashboard.DashboardLink]]
     # Name of template variable to repeat for.
@@ -229,7 +230,7 @@ class PanelModel:
     # Field options allow you to change how the data is displayed in your visualizations.
     field_config: typing.Optional[dashboard.FieldConfigSource]
 
-    def __init__(self, type_val: str = "", plugin_version: typing.Optional[str] = None, tags: typing.Optional[list[str]] = None, targets: typing.Optional[list[cogvariants.Dataquery]] = None, title: typing.Optional[str] = None, description: typing.Optional[str] = None, transparent: typing.Optional[bool] = False, datasource: typing.Optional[dashboard.DataSourceRef] = None, links: typing.Optional[list[dashboard.DashboardLink]] = None, repeat: typing.Optional[str] = None, repeat_direction: typing.Optional[typing.Literal["h", "v"]] = None, max_per_row: typing.Optional[float] = None, max_data_points: typing.Optional[float] = None, transformations: typing.Optional[list[dashboard.DataTransformerConfig]] = None, interval: typing.Optional[str] = None, time_from: typing.Optional[str] = None, time_shift: typing.Optional[str] = None, hide_time_override: typing.Optional[bool] = None, options: typing.Optional[object] = None, field_config: typing.Optional[dashboard.FieldConfigSource] = None):
+    def __init__(self, type_val: str = "", plugin_version: typing.Optional[str] = None, tags: typing.Optional[list[str]] = None, targets: typing.Optional[list[cogvariants.Dataquery]] = None, title: typing.Optional[str] = None, description: typing.Optional[str] = None, transparent: typing.Optional[bool] = False, datasource: typing.Optional[common.DataSourceRef] = None, links: typing.Optional[list[dashboard.DashboardLink]] = None, repeat: typing.Optional[str] = None, repeat_direction: typing.Optional[typing.Literal["h", "v"]] = None, max_per_row: typing.Optional[float] = None, max_data_points: typing.Optional[float] = None, transformations: typing.Optional[list[dashboard.DataTransformerConfig]] = None, interval: typing.Optional[str] = None, time_from: typing.Optional[str] = None, time_shift: typing.Optional[str] = None, hide_time_override: typing.Optional[bool] = None, options: typing.Optional[object] = None, field_config: typing.Optional[dashboard.FieldConfigSource] = None) -> None:
         self.type_val = type_val
         self.plugin_version = plugin_version
         self.tags = tags
@@ -314,7 +315,7 @@ class PanelModel:
         if "transparent" in data:
             args["transparent"] = data["transparent"]
         if "datasource" in data:
-            args["datasource"] = dashboard.DataSourceRef.from_json(data["datasource"])
+            args["datasource"] = common.DataSourceRef.from_json(data["datasource"])
         if "links" in data:
             args["links"] = [dashboard.DashboardLink.from_json(item) for item in data["links"]]
         if "repeat" in data:

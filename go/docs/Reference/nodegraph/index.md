@@ -11,6 +11,7 @@
  * <span class="badge builder"></span> [ArcOptionBuilder](./builder-ArcOptionBuilder.md)
  * <span class="badge builder"></span> [EdgeOptionsBuilder](./builder-EdgeOptionsBuilder.md)
  * <span class="badge builder"></span> [NodeOptionsBuilder](./builder-NodeOptionsBuilder.md)
+ * <span class="badge builder"></span> [OptionsBuilder](./builder-OptionsBuilder.md)
  * <span class="badge builder"></span> [PanelBuilder](./builder-PanelBuilder.md)
 ## Functions
 
@@ -78,6 +79,14 @@ EdgeOptionsConverter accepts a `EdgeOptions` object and generates the Go code to
 
 ```go
 func EdgeOptionsConverter(input EdgeOptions) string
+```
+
+### <span class="badge function"></span> OptionsConverter
+
+OptionsConverter accepts a `Options` object and generates the Go code to build this object using builders.
+
+```go
+func OptionsConverter(input Options) string
 ```
 
 ### <span class="badge function"></span> PanelConverter

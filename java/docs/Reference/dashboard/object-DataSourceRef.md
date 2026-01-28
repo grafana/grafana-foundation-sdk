@@ -1,15 +1,15 @@
 ---
-title: <span class="badge object-type-class"></span> DataSourceRef
+title: <span class="badge object-type-ref"></span> DataSourceRef
 ---
-# <span class="badge object-type-class"></span> DataSourceRef
+# <span class="badge object-type-ref"></span> DataSourceRef
 
 Ref to a DataSource instance
 
 ## Definition
 
 ```java
-public class DataSourceRef {
-  public String type;
-  public String uid;
-}
+public class DataSourceRef extends com.grafana.foundation.common.DataSourceRef {}
 ```
+## See also
+
+ * <span class="badge builder"></span> [DataSourceRefBuilder](./builder-DataSourceRefBuilder.md)

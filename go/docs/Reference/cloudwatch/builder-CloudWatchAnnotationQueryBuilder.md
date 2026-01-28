@@ -65,7 +65,7 @@ TODO find a better way to do this ^ that's friendly to schema
 TODO this shouldn't be unknown but DataSourceRef | null
 
 ```go
-func (builder *CloudWatchAnnotationQueryBuilder) Datasource(datasource dashboard.DataSourceRef) *CloudWatchAnnotationQueryBuilder
+func (builder *CloudWatchAnnotationQueryBuilder) Datasource(datasource common.DataSourceRef) *CloudWatchAnnotationQueryBuilder
 ```
 
 ### <span class="badge object-method"></span> Dimensions

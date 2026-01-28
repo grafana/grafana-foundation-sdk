@@ -13,6 +13,8 @@
 
  * <span class="badge builder"></span> [CandlestickColorsBuilder](./builder-CandlestickColorsBuilder.md)
  * <span class="badge builder"></span> [CandlestickFieldMapBuilder](./builder-CandlestickFieldMapBuilder.md)
+ * <span class="badge builder"></span> [FieldConfigBuilder](./builder-FieldConfigBuilder.md)
+ * <span class="badge builder"></span> [OptionsBuilder](./builder-OptionsBuilder.md)
  * <span class="badge builder"></span> [PanelBuilder](./builder-PanelBuilder.md)
 ## Functions
 
@@ -72,6 +74,22 @@ CandlestickColorsConverter accepts a `CandlestickColors` object and generates th
 
 ```go
 func CandlestickColorsConverter(input CandlestickColors) string
+```
+
+### <span class="badge function"></span> OptionsConverter
+
+OptionsConverter accepts a `Options` object and generates the Go code to build this object using builders.
+
+```go
+func OptionsConverter(input Options) string
+```
+
+### <span class="badge function"></span> FieldConfigConverter
+
+FieldConfigConverter accepts a `FieldConfig` object and generates the Go code to build this object using builders.
+
+```go
+func FieldConfigConverter(input FieldConfig) string
 ```
 
 ### <span class="badge function"></span> PanelConverter

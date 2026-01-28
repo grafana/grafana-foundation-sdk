@@ -15,3 +15,6 @@ export interface Options {
 }
 
 ```
+## See also
+
+ * <span class="badge builder"></span> [OptionsBuilder](./builder-OptionsBuilder.md)

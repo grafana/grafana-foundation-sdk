@@ -20,7 +20,7 @@ class AnnotationQuery implements \JsonSerializable
     /**
      * Datasource where the annotations data is
      */
-    public \Grafana\Foundation\Dashboard\DataSourceRef $datasource;
+    public \Grafana\Foundation\Common\DataSourceRef $datasource;
 
     /**
      * When enabled the annotation query is issued with every dashboard refresh

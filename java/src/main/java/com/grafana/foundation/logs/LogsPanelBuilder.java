@@ -6,7 +6,7 @@ import com.grafana.foundation.dashboard.Panel;
 import java.util.List;
 import com.grafana.foundation.cog.variants.Dataquery;
 import java.util.LinkedList;
-import com.grafana.foundation.dashboard.DataSourceRef;
+import com.grafana.foundation.common.DataSourceRef;
 import com.grafana.foundation.dashboard.GridPos;
 import com.grafana.foundation.dashboard.DashboardLink;
 import com.grafana.foundation.dashboard.PanelRepeatDirection;
@@ -382,7 +382,7 @@ public class LogsPanelBuilder implements com.grafana.foundation.cog.Builder<Pane
     
     public LogsPanelBuilder showLabels(Boolean showLabels) {
 		if (this.internal.options == null) {
-			this.internal.options = new com.grafana.foundation.logs.Options();
+			this.internal.options = new com.grafana.foundation.logs.OptionsBuilder().build();
 		}
         ((Options) this.internal.options).showLabels = showLabels;
         return this;
@@ -390,7 +390,7 @@ public class LogsPanelBuilder implements com.grafana.foundation.cog.Builder<Pane
     
     public LogsPanelBuilder showCommonLabels(Boolean showCommonLabels) {
 		if (this.internal.options == null) {
-			this.internal.options = new com.grafana.foundation.logs.Options();
+			this.internal.options = new com.grafana.foundation.logs.OptionsBuilder().build();
 		}
         ((Options) this.internal.options).showCommonLabels = showCommonLabels;
         return this;
@@ -398,7 +398,7 @@ public class LogsPanelBuilder implements com.grafana.foundation.cog.Builder<Pane
     
     public LogsPanelBuilder showTime(Boolean showTime) {
 		if (this.internal.options == null) {
-			this.internal.options = new com.grafana.foundation.logs.Options();
+			this.internal.options = new com.grafana.foundation.logs.OptionsBuilder().build();
 		}
         ((Options) this.internal.options).showTime = showTime;
         return this;
@@ -406,7 +406,7 @@ public class LogsPanelBuilder implements com.grafana.foundation.cog.Builder<Pane
     
     public LogsPanelBuilder wrapLogMessage(Boolean wrapLogMessage) {
 		if (this.internal.options == null) {
-			this.internal.options = new com.grafana.foundation.logs.Options();
+			this.internal.options = new com.grafana.foundation.logs.OptionsBuilder().build();
 		}
         ((Options) this.internal.options).wrapLogMessage = wrapLogMessage;
         return this;
@@ -414,7 +414,7 @@ public class LogsPanelBuilder implements com.grafana.foundation.cog.Builder<Pane
     
     public LogsPanelBuilder prettifyLogMessage(Boolean prettifyLogMessage) {
 		if (this.internal.options == null) {
-			this.internal.options = new com.grafana.foundation.logs.Options();
+			this.internal.options = new com.grafana.foundation.logs.OptionsBuilder().build();
 		}
         ((Options) this.internal.options).prettifyLogMessage = prettifyLogMessage;
         return this;
@@ -422,7 +422,7 @@ public class LogsPanelBuilder implements com.grafana.foundation.cog.Builder<Pane
     
     public LogsPanelBuilder enableLogDetails(Boolean enableLogDetails) {
 		if (this.internal.options == null) {
-			this.internal.options = new com.grafana.foundation.logs.Options();
+			this.internal.options = new com.grafana.foundation.logs.OptionsBuilder().build();
 		}
         ((Options) this.internal.options).enableLogDetails = enableLogDetails;
         return this;
@@ -430,7 +430,7 @@ public class LogsPanelBuilder implements com.grafana.foundation.cog.Builder<Pane
     
     public LogsPanelBuilder sortOrder(LogsSortOrder sortOrder) {
 		if (this.internal.options == null) {
-			this.internal.options = new com.grafana.foundation.logs.Options();
+			this.internal.options = new com.grafana.foundation.logs.OptionsBuilder().build();
 		}
         ((Options) this.internal.options).sortOrder = sortOrder;
         return this;
@@ -438,7 +438,7 @@ public class LogsPanelBuilder implements com.grafana.foundation.cog.Builder<Pane
     
     public LogsPanelBuilder dedupStrategy(LogsDedupStrategy dedupStrategy) {
 		if (this.internal.options == null) {
-			this.internal.options = new com.grafana.foundation.logs.Options();
+			this.internal.options = new com.grafana.foundation.logs.OptionsBuilder().build();
 		}
         ((Options) this.internal.options).dedupStrategy = dedupStrategy;
         return this;
