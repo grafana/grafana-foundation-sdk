@@ -2,444 +2,10 @@
 
 import typing
 from ..cog import builder as cogbuilder
-from ..models import heatmap
-from ..models import common
 from ..models import dashboard
 from ..cog import variants as cogvariants
-
-
-class HeatmapColorOptions(cogbuilder.Builder[heatmap.HeatmapColorOptions]):    
-    """
-    Controls various color options
-    """
-    
-    _internal: heatmap.HeatmapColorOptions
-
-    def __init__(self):
-        self._internal = heatmap.HeatmapColorOptions()
-
-    def build(self) -> heatmap.HeatmapColorOptions:
-        """
-        Builds the object.
-        """
-        return self._internal    
-    
-    def mode(self, mode: heatmap.HeatmapColorMode) -> typing.Self:    
-        """
-        Sets the color mode
-        """
-            
-        self._internal.mode = mode
-    
-        return self
-    
-    def scheme(self, scheme: str) -> typing.Self:    
-        """
-        Controls the color scheme used
-        """
-            
-        self._internal.scheme = scheme
-    
-        return self
-    
-    def fill(self, fill: str) -> typing.Self:    
-        """
-        Controls the color fill when in opacity mode
-        """
-            
-        self._internal.fill = fill
-    
-        return self
-    
-    def scale(self, scale: heatmap.HeatmapColorScale) -> typing.Self:    
-        """
-        Controls the color scale
-        """
-            
-        self._internal.scale = scale
-    
-        return self
-    
-    def exponent(self, exponent: float) -> typing.Self:    
-        """
-        Controls the exponent when scale is set to exponential
-        """
-            
-        self._internal.exponent = exponent
-    
-        return self
-    
-    def steps(self, steps: int) -> typing.Self:    
-        """
-        Controls the number of color steps
-        """
-            
-        if not steps >= 2:
-            raise ValueError("steps must be >= 2")
-        if not steps <= 128:
-            raise ValueError("steps must be <= 128")
-        self._internal.steps = steps
-    
-        return self
-    
-    def reverse(self, reverse: bool) -> typing.Self:    
-        """
-        Reverses the color scheme
-        """
-            
-        self._internal.reverse = reverse
-    
-        return self
-    
-    def min(self, min_val: float) -> typing.Self:    
-        """
-        Sets the minimum value for the color scale
-        """
-            
-        self._internal.min_val = min_val
-    
-        return self
-    
-    def max(self, max_val: float) -> typing.Self:    
-        """
-        Sets the maximum value for the color scale
-        """
-            
-        self._internal.max_val = max_val
-    
-        return self
-    
-
-
-class YAxisConfig(cogbuilder.Builder[heatmap.YAxisConfig]):    
-    """
-    Configuration options for the yAxis
-    """
-    
-    _internal: heatmap.YAxisConfig
-
-    def __init__(self):
-        self._internal = heatmap.YAxisConfig()
-
-    def build(self) -> heatmap.YAxisConfig:
-        """
-        Builds the object.
-        """
-        return self._internal    
-    
-    def unit(self, unit: str) -> typing.Self:    
-        """
-        Sets the yAxis unit
-        """
-            
-        self._internal.unit = unit
-    
-        return self
-    
-    def reverse(self, reverse: bool) -> typing.Self:    
-        """
-        Reverses the yAxis
-        """
-            
-        self._internal.reverse = reverse
-    
-        return self
-    
-    def decimals(self, decimals: float) -> typing.Self:    
-        """
-        Controls the number of decimals for yAxis values
-        """
-            
-        self._internal.decimals = decimals
-    
-        return self
-    
-    def min(self, min_val: float) -> typing.Self:    
-        """
-        Sets the minimum value for the yAxis
-        """
-            
-        self._internal.min_val = min_val
-    
-        return self
-    
-    def axis_placement(self, axis_placement: common.AxisPlacement) -> typing.Self:    
-        self._internal.axis_placement = axis_placement
-    
-        return self
-    
-    def axis_color_mode(self, axis_color_mode: common.AxisColorMode) -> typing.Self:    
-        self._internal.axis_color_mode = axis_color_mode
-    
-        return self
-    
-    def axis_label(self, axis_label: str) -> typing.Self:    
-        self._internal.axis_label = axis_label
-    
-        return self
-    
-    def axis_width(self, axis_width: float) -> typing.Self:    
-        self._internal.axis_width = axis_width
-    
-        return self
-    
-    def axis_soft_min(self, axis_soft_min: float) -> typing.Self:    
-        self._internal.axis_soft_min = axis_soft_min
-    
-        return self
-    
-    def axis_soft_max(self, axis_soft_max: float) -> typing.Self:    
-        self._internal.axis_soft_max = axis_soft_max
-    
-        return self
-    
-    def axis_grid_show(self, axis_grid_show: bool) -> typing.Self:    
-        self._internal.axis_grid_show = axis_grid_show
-    
-        return self
-    
-    def scale_distribution(self, scale_distribution: cogbuilder.Builder[common.ScaleDistributionConfig]) -> typing.Self:    
-        scale_distribution_resource = scale_distribution.build()
-        self._internal.scale_distribution = scale_distribution_resource
-    
-        return self
-    
-    def axis_centered_zero(self, axis_centered_zero: bool) -> typing.Self:    
-        self._internal.axis_centered_zero = axis_centered_zero
-    
-        return self
-    
-    def max(self, max_val: float) -> typing.Self:    
-        """
-        Sets the maximum value for the yAxis
-        """
-            
-        self._internal.max_val = max_val
-    
-        return self
-    
-    def axis_border_show(self, axis_border_show: bool) -> typing.Self:    
-        self._internal.axis_border_show = axis_border_show
-    
-        return self
-    
-
-
-class CellValues(cogbuilder.Builder[heatmap.CellValues]):    
-    """
-    Controls cell value options
-    """
-    
-    _internal: heatmap.CellValues
-
-    def __init__(self):
-        self._internal = heatmap.CellValues()
-
-    def build(self) -> heatmap.CellValues:
-        """
-        Builds the object.
-        """
-        return self._internal    
-    
-    def unit(self, unit: str) -> typing.Self:    
-        """
-        Controls the cell value unit
-        """
-            
-        self._internal.unit = unit
-    
-        return self
-    
-    def decimals(self, decimals: float) -> typing.Self:    
-        """
-        Controls the number of decimals for cell values
-        """
-            
-        self._internal.decimals = decimals
-    
-        return self
-    
-
-
-class FilterValueRange(cogbuilder.Builder[heatmap.FilterValueRange]):    
-    """
-    Controls the value filter range
-    """
-    
-    _internal: heatmap.FilterValueRange
-
-    def __init__(self):
-        self._internal = heatmap.FilterValueRange()
-
-    def build(self) -> heatmap.FilterValueRange:
-        """
-        Builds the object.
-        """
-        return self._internal    
-    
-    def le(self, le: float) -> typing.Self:    
-        """
-        Sets the filter range to values less than or equal to the given value
-        """
-            
-        self._internal.le = le
-    
-        return self
-    
-    def ge(self, ge: float) -> typing.Self:    
-        """
-        Sets the filter range to values greater than or equal to the given value
-        """
-            
-        self._internal.ge = ge
-    
-        return self
-    
-
-
-class HeatmapTooltip(cogbuilder.Builder[heatmap.HeatmapTooltip]):    
-    """
-    Controls tooltip options
-    """
-    
-    _internal: heatmap.HeatmapTooltip
-
-    def __init__(self):
-        self._internal = heatmap.HeatmapTooltip()
-
-    def build(self) -> heatmap.HeatmapTooltip:
-        """
-        Builds the object.
-        """
-        return self._internal    
-    
-    def mode(self, mode: common.TooltipDisplayMode) -> typing.Self:    
-        """
-        Controls how the tooltip is shown
-        """
-            
-        self._internal.mode = mode
-    
-        return self
-    
-    def max_height(self, max_height: float) -> typing.Self:    
-        self._internal.max_height = max_height
-    
-        return self
-    
-    def max_width(self, max_width: float) -> typing.Self:    
-        self._internal.max_width = max_width
-    
-        return self
-    
-    def y_histogram(self, y_histogram: bool) -> typing.Self:    
-        """
-        Controls if the tooltip shows a histogram of the y-axis values
-        """
-            
-        self._internal.y_histogram = y_histogram
-    
-        return self
-    
-    def show_color_scale(self, show_color_scale: bool) -> typing.Self:    
-        """
-        Controls if the tooltip shows a color scale in header
-        """
-            
-        self._internal.show_color_scale = show_color_scale
-    
-        return self
-    
-
-
-class HeatmapLegend(cogbuilder.Builder[heatmap.HeatmapLegend]):    
-    """
-    Controls legend options
-    """
-    
-    _internal: heatmap.HeatmapLegend
-
-    def __init__(self):
-        self._internal = heatmap.HeatmapLegend()
-
-    def build(self) -> heatmap.HeatmapLegend:
-        """
-        Builds the object.
-        """
-        return self._internal    
-    
-    def show(self, show: bool) -> typing.Self:    
-        """
-        Controls if the legend is shown
-        """
-            
-        self._internal.show = show
-    
-        return self
-    
-
-
-class ExemplarConfig(cogbuilder.Builder[heatmap.ExemplarConfig]):    
-    """
-    Controls exemplar options
-    """
-    
-    _internal: heatmap.ExemplarConfig
-
-    def __init__(self):
-        self._internal = heatmap.ExemplarConfig()
-
-    def build(self) -> heatmap.ExemplarConfig:
-        """
-        Builds the object.
-        """
-        return self._internal    
-    
-    def color(self, color: str) -> typing.Self:    
-        """
-        Sets the color of the exemplar markers
-        """
-            
-        self._internal.color = color
-    
-        return self
-    
-
-
-class RowsHeatmapOptions(cogbuilder.Builder[heatmap.RowsHeatmapOptions]):    
-    """
-    Controls frame rows options
-    """
-    
-    _internal: heatmap.RowsHeatmapOptions
-
-    def __init__(self):
-        self._internal = heatmap.RowsHeatmapOptions()
-
-    def build(self) -> heatmap.RowsHeatmapOptions:
-        """
-        Builds the object.
-        """
-        return self._internal    
-    
-    def value(self, value: str) -> typing.Self:    
-        """
-        Sets the name of the cell when not calculating from data
-        """
-            
-        self._internal.value = value
-    
-        return self
-    
-    def layout(self, layout: common.HeatmapCellLayout) -> typing.Self:    
-        """
-        Controls tick alignment when not calculating from data
-        """
-            
-        self._internal.layout = layout
-    
-        return self
-    
+from ..models import common
+from ..models import heatmap
 
 
 class Panel(cogbuilder.Builder[dashboard.Panel]):    
@@ -449,7 +15,7 @@ class Panel(cogbuilder.Builder[dashboard.Panel]):
     
     _internal: dashboard.Panel
 
-    def __init__(self):
+    def __init__(self) -> None:
         self._internal = dashboard.Panel()        
         self._internal.type_val = "heatmap"
 
@@ -518,7 +84,7 @@ class Panel(cogbuilder.Builder[dashboard.Panel]):
     
         return self
     
-    def datasource(self, datasource: dashboard.DataSourceRef) -> typing.Self:    
+    def datasource(self, datasource: common.DataSourceRef) -> typing.Self:    
         """
         The datasource used in all targets.
         """
@@ -1016,7 +582,7 @@ class Panel(cogbuilder.Builder[dashboard.Panel]):
     
         return self
     
-    def color(self, color: cogbuilder.Builder[heatmap.HeatmapColorOptions]) -> typing.Self:    
+    def color(self, color: heatmap.HeatmapColorOptions) -> typing.Self:    
         """
         Controls the color options
         """
@@ -1024,12 +590,11 @@ class Panel(cogbuilder.Builder[dashboard.Panel]):
         if self._internal.options is None:
             self._internal.options = heatmap.Options()
         assert isinstance(self._internal.options, heatmap.Options)
-        color_resource = color.build()
-        self._internal.options.color = color_resource
+        self._internal.options.color = color
     
         return self
     
-    def filter_values(self, filter_values: cogbuilder.Builder[heatmap.FilterValueRange]) -> typing.Self:    
+    def filter_values(self, filter_values: heatmap.FilterValueRange) -> typing.Self:    
         """
         Filters values between a given range
         """
@@ -1037,12 +602,11 @@ class Panel(cogbuilder.Builder[dashboard.Panel]):
         if self._internal.options is None:
             self._internal.options = heatmap.Options()
         assert isinstance(self._internal.options, heatmap.Options)
-        filter_values_resource = filter_values.build()
-        self._internal.options.filter_values = filter_values_resource
+        self._internal.options.filter_values = filter_values
     
         return self
     
-    def rows_frame(self, rows_frame: cogbuilder.Builder[heatmap.RowsHeatmapOptions]) -> typing.Self:    
+    def rows_frame(self, rows_frame: heatmap.RowsHeatmapOptions) -> typing.Self:    
         """
         Controls tick alignment and value name when not calculating from data
         """
@@ -1050,8 +614,7 @@ class Panel(cogbuilder.Builder[dashboard.Panel]):
         if self._internal.options is None:
             self._internal.options = heatmap.Options()
         assert isinstance(self._internal.options, heatmap.Options)
-        rows_frame_resource = rows_frame.build()
-        self._internal.options.rows_frame = rows_frame_resource
+        self._internal.options.rows_frame = rows_frame
     
         return self
     
@@ -1096,7 +659,7 @@ class Panel(cogbuilder.Builder[dashboard.Panel]):
     
         return self
     
-    def cell_values(self, cell_values: cogbuilder.Builder[heatmap.CellValues]) -> typing.Self:    
+    def cell_values(self, cell_values: heatmap.CellValues) -> typing.Self:    
         """
         Controls cell value unit
         """
@@ -1104,12 +667,11 @@ class Panel(cogbuilder.Builder[dashboard.Panel]):
         if self._internal.options is None:
             self._internal.options = heatmap.Options()
         assert isinstance(self._internal.options, heatmap.Options)
-        cell_values_resource = cell_values.build()
-        self._internal.options.cell_values = cell_values_resource
+        self._internal.options.cell_values = cell_values
     
         return self
     
-    def y_axis(self, y_axis: cogbuilder.Builder[heatmap.YAxisConfig]) -> typing.Self:    
+    def y_axis(self, y_axis: heatmap.YAxisConfig) -> typing.Self:    
         """
         Controls yAxis placement
         """
@@ -1117,8 +679,7 @@ class Panel(cogbuilder.Builder[dashboard.Panel]):
         if self._internal.options is None:
             self._internal.options = heatmap.Options()
         assert isinstance(self._internal.options, heatmap.Options)
-        y_axis_resource = y_axis.build()
-        self._internal.options.y_axis = y_axis_resource
+        self._internal.options.y_axis = y_axis
     
         return self
     

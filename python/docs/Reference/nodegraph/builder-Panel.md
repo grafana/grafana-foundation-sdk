@@ -47,7 +47,7 @@ def data_links(links: list[cogbuilder.Builder[dashboard.DashboardLink]]) -> typi
 The datasource used in all targets.
 
 ```python
-def datasource(datasource: dashboard.DataSourceRef) -> typing.Self
+def datasource(datasource: common.DataSourceRef) -> typing.Self
 ```
 
 ### <span class="badge object-method"></span> decimals
@@ -83,7 +83,7 @@ def display_name(display_name: str) -> typing.Self
 ### <span class="badge object-method"></span> edges
 
 ```python
-def edges(edges: cogbuilder.Builder[nodegraph.EdgeOptions]) -> typing.Self
+def edges(edges: nodegraph.EdgeOptions) -> typing.Self
 ```
 
 ### <span class="badge object-method"></span> grid_pos
@@ -201,7 +201,7 @@ def no_value(no_value: str) -> typing.Self
 ### <span class="badge object-method"></span> nodes
 
 ```python
-def nodes(nodes: cogbuilder.Builder[nodegraph.NodeOptions]) -> typing.Self
+def nodes(nodes: nodegraph.NodeOptions) -> typing.Self
 ```
 
 ### <span class="badge object-method"></span> override_by_field_type

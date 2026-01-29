@@ -99,7 +99,7 @@ class PanelBuilder implements \Grafana\Foundation\Cog\Builder
     /**
      * The datasource used in all targets.
      */
-    public function datasource(\Grafana\Foundation\Dashboard\DataSourceRef $datasource): static
+    public function datasource(\Grafana\Foundation\Common\DataSourceRef $datasource): static
     {
         $this->internal->datasource = $datasource;
     
@@ -604,32 +604,24 @@ class PanelBuilder implements \Grafana\Foundation\Cog\Builder
         return $this;
     }
 
-    /**
-     * @param \Grafana\Foundation\Cog\Builder<\Grafana\Foundation\Nodegraph\NodeOptions> $nodes
-     */
-    public function nodes(\Grafana\Foundation\Cog\Builder $nodes): static
+    public function nodes(\Grafana\Foundation\Nodegraph\NodeOptions $nodes): static
     {    
         if ($this->internal->options === null) {
             $this->internal->options = new \Grafana\Foundation\Nodegraph\Options();
         }
         assert($this->internal->options instanceof \Grafana\Foundation\Nodegraph\Options);
-        $nodesResource = $nodes->build();
-        $this->internal->options->nodes = $nodesResource;
+        $this->internal->options->nodes = $nodes;
     
         return $this;
     }
 
-    /**
-     * @param \Grafana\Foundation\Cog\Builder<\Grafana\Foundation\Nodegraph\EdgeOptions> $edges
-     */
-    public function edges(\Grafana\Foundation\Cog\Builder $edges): static
+    public function edges(\Grafana\Foundation\Nodegraph\EdgeOptions $edges): static
     {    
         if ($this->internal->options === null) {
             $this->internal->options = new \Grafana\Foundation\Nodegraph\Options();
         }
         assert($this->internal->options instanceof \Grafana\Foundation\Nodegraph\Options);
-        $edgesResource = $edges->build();
-        $this->internal->options->edges = $edgesResource;
+        $this->internal->options->edges = $edges;
     
         return $this;
     }

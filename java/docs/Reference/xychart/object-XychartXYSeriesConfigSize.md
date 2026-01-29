@@ -10,6 +10,3 @@ public class XychartXYSeriesConfigSize {
   public MatcherConfig matcher;
 }
 ```
-## See also
-
- * <span class="badge builder"></span> [XychartXYSeriesConfigSizeBuilder](./builder-XychartXYSeriesConfigSizeBuilder.md)

@@ -51,7 +51,7 @@ dataLinks(array $links)
 The datasource used in all targets.
 
 ```php
-datasource(\Grafana\Foundation\Dashboard\DataSourceRef $datasource)
+datasource(\Grafana\Foundation\Common\DataSourceRef $datasource)
 ```
 
 ### <span class="badge object-method"></span> decimals
@@ -86,10 +86,8 @@ displayName(string $displayName)
 
 ### <span class="badge object-method"></span> edges
 
-@param \Grafana\Foundation\Cog\Builder<\Grafana\Foundation\Nodegraph\EdgeOptions> $edges
-
 ```php
-edges(\Grafana\Foundation\Cog\Builder $edges)
+edges(\Grafana\Foundation\Nodegraph\EdgeOptions $edges)
 ```
 
 ### <span class="badge object-method"></span> gridPos
@@ -210,10 +208,8 @@ noValue(string $noValue)
 
 ### <span class="badge object-method"></span> nodes
 
-@param \Grafana\Foundation\Cog\Builder<\Grafana\Foundation\Nodegraph\NodeOptions> $nodes
-
 ```php
-nodes(\Grafana\Foundation\Cog\Builder $nodes)
+nodes(\Grafana\Foundation\Nodegraph\NodeOptions $nodes)
 ```
 
 ### <span class="badge object-method"></span> overrideByFieldType

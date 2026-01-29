@@ -1,8 +1,6 @@
 <?php
 
-namespace Grafana\Foundation\Cog;
-
-final class PanelcfgConfig
+namespace Grafana\Foundation\Cog;final class PanelcfgConfig
 {
     public readonly string $identifier;
 

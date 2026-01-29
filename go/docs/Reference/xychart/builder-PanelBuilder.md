@@ -101,7 +101,7 @@ func (builder *PanelBuilder) DataLinks(links []cog.Builder[dashboard.DashboardLi
 The datasource used in all targets.
 
 ```go
-func (builder *PanelBuilder) Datasource(datasource dashboard.DataSourceRef) *PanelBuilder
+func (builder *PanelBuilder) Datasource(datasource common.DataSourceRef) *PanelBuilder
 ```
 
 ### <span class="badge object-method"></span> Decimals
@@ -329,7 +329,7 @@ func (builder *PanelBuilder) PointShape(pointShape xychart.PointShape) *PanelBui
 ### <span class="badge object-method"></span> PointSize
 
 ```go
-func (builder *PanelBuilder) PointSize(pointSize cog.Builder[xychart.XychartFieldConfigPointSize]) *PanelBuilder
+func (builder *PanelBuilder) PointSize(pointSize xychart.XychartFieldConfigPointSize) *PanelBuilder
 ```
 
 ### <span class="badge object-method"></span> PointStrokeWidth
@@ -373,7 +373,7 @@ func (builder *PanelBuilder) ScaleDistribution(scaleDistribution cog.Builder[com
 ### <span class="badge object-method"></span> Series
 
 ```go
-func (builder *PanelBuilder) Series(series []cog.Builder[xychart.XYSeriesConfig]) *PanelBuilder
+func (builder *PanelBuilder) Series(series []xychart.XYSeriesConfig) *PanelBuilder
 ```
 
 ### <span class="badge object-method"></span> Show

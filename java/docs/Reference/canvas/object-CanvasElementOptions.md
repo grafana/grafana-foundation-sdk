@@ -17,6 +17,3 @@ public class CanvasElementOptions {
   public List<CanvasConnection> connections;
 }
 ```
-## See also
-
- * <span class="badge builder"></span> [CanvasElementOptionsBuilder](./builder-CanvasElementOptionsBuilder.md)

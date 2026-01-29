@@ -287,7 +287,7 @@ The root element of canvas (frame), where all canvas elements are nested
 TODO: Figure out how to define a default value for this
 
 ```java
-public PanelBuilder root(com.grafana.foundation.cog.Builder<CanvasOptionsRoot> root)
+public PanelBuilder root(CanvasOptionsRoot root)
 ```
 
 ### <span class="badge object-method"></span> showAdvancedTypes

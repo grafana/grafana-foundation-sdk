@@ -83,7 +83,7 @@ public PanelBuilder displayName(String displayName)
 ### <span class="badge object-method"></span> edges
 
 ```java
-public PanelBuilder edges(com.grafana.foundation.cog.Builder<EdgeOptions> edges)
+public PanelBuilder edges(EdgeOptions edges)
 ```
 
 ### <span class="badge object-method"></span> gridPos
@@ -201,7 +201,7 @@ public PanelBuilder noValue(String noValue)
 ### <span class="badge object-method"></span> nodes
 
 ```java
-public PanelBuilder nodes(com.grafana.foundation.cog.Builder<NodeOptions> nodes)
+public PanelBuilder nodes(NodeOptions nodes)
 ```
 
 ### <span class="badge object-method"></span> overrideByFieldType

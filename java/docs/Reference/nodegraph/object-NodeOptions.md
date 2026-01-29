@@ -12,6 +12,3 @@ public class NodeOptions {
   public List<ArcOption> arcs;
 }
 ```
-## See also
-
- * <span class="badge builder"></span> [NodeOptionsBuilder](./builder-NodeOptionsBuilder.md)

@@ -141,7 +141,7 @@ public PanelBuilder interval(String interval)
 ### <span class="badge object-method"></span> legend
 
 ```java
-public PanelBuilder legend(com.grafana.foundation.cog.Builder<PieChartLegendOptions> legend)
+public PanelBuilder legend(PieChartLegendOptions legend)
 ```
 
 ### <span class="badge object-method"></span> libraryPanel

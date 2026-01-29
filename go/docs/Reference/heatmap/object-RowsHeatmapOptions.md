@@ -43,6 +43,3 @@ Validate checks all the validation constraints that may be defined on `RowsHeatm
 func (rowsHeatmapOptions *RowsHeatmapOptions) Validate() error
 ```
 
-## See also
-
- * <span class="badge builder"></span> [RowsHeatmapOptionsBuilder](./builder-RowsHeatmapOptionsBuilder.md)

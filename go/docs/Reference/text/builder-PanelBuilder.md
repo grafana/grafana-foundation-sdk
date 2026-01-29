@@ -29,7 +29,7 @@ func (builder *PanelBuilder) CacheTimeout(cacheTimeout string) *PanelBuilder
 ### <span class="badge object-method"></span> Code
 
 ```go
-func (builder *PanelBuilder) Code(code cog.Builder[text.CodeOptions]) *PanelBuilder
+func (builder *PanelBuilder) Code(code text.CodeOptions) *PanelBuilder
 ```
 
 ### <span class="badge object-method"></span> ColorScheme
@@ -59,7 +59,7 @@ func (builder *PanelBuilder) DataLinks(links []cog.Builder[dashboard.DashboardLi
 The datasource used in all targets.
 
 ```go
-func (builder *PanelBuilder) Datasource(datasource dashboard.DataSourceRef) *PanelBuilder
+func (builder *PanelBuilder) Datasource(datasource common.DataSourceRef) *PanelBuilder
 ```
 
 ### <span class="badge object-method"></span> Decimals

@@ -3,7 +3,7 @@
 package com.grafana.foundation.cloudwatch;
 
 import java.util.Map;
-import com.grafana.foundation.dashboard.DataSourceRef;
+import com.grafana.foundation.common.DataSourceRef;
 import java.util.List;
 
 public class CloudWatchAnnotationQueryBuilder implements com.grafana.foundation.cog.Builder<com.grafana.foundation.cog.variants.Dataquery> {

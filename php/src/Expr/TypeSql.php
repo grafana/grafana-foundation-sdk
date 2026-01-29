@@ -7,7 +7,7 @@ class TypeSql implements \JsonSerializable, \Grafana\Foundation\Cog\Dataquery
     /**
      * The datasource
      */
-    public ?\Grafana\Foundation\Dashboard\DataSourceRef $datasource;
+    public ?\Grafana\Foundation\Common\DataSourceRef $datasource;
 
     public string $expression;
 
@@ -43,7 +43,7 @@ class TypeSql implements \JsonSerializable, \Grafana\Foundation\Cog\Dataquery
     /**
      * RefID is the unique identifier of the query, set by the frontend call.
      */
-    public string $refId;
+    public ?string $refId;
 
     /**
      * Optionally define expected query result behavior
@@ -60,7 +60,7 @@ class TypeSql implements \JsonSerializable, \Grafana\Foundation\Cog\Dataquery
     public string $type;
 
     /**
-     * @param \Grafana\Foundation\Dashboard\DataSourceRef|null $datasource
+     * @param \Grafana\Foundation\Common\DataSourceRef|null $datasource
      * @param string|null $expression
      * @param string|null $format
      * @param bool|null $hide
@@ -71,7 +71,7 @@ class TypeSql implements \JsonSerializable, \Grafana\Foundation\Cog\Dataquery
      * @param \Grafana\Foundation\Expr\ExprTypeSqlResultAssertions|null $resultAssertions
      * @param \Grafana\Foundation\Expr\ExprTypeSqlTimeRange|null $timeRange
      */
-    public function __construct(?\Grafana\Foundation\Dashboard\DataSourceRef $datasource = null, ?string $expression = null, ?string $format = null, ?bool $hide = null, ?float $intervalMs = null, ?int $maxDataPoints = null, ?string $queryType = null, ?string $refId = null, ?\Grafana\Foundation\Expr\ExprTypeSqlResultAssertions $resultAssertions = null, ?\Grafana\Foundation\Expr\ExprTypeSqlTimeRange $timeRange = null)
+    public function __construct(?\Grafana\Foundation\Common\DataSourceRef $datasource = null, ?string $expression = null, ?string $format = null, ?bool $hide = null, ?float $intervalMs = null, ?int $maxDataPoints = null, ?string $queryType = null, ?string $refId = null, ?\Grafana\Foundation\Expr\ExprTypeSqlResultAssertions $resultAssertions = null, ?\Grafana\Foundation\Expr\ExprTypeSqlTimeRange $timeRange = null)
     {
         $this->datasource = $datasource;
         $this->expression = $expression ?: "";
@@ -80,7 +80,7 @@ class TypeSql implements \JsonSerializable, \Grafana\Foundation\Cog\Dataquery
         $this->intervalMs = $intervalMs;
         $this->maxDataPoints = $maxDataPoints;
         $this->queryType = $queryType;
-        $this->refId = $refId ?: "";
+        $this->refId = $refId;
         $this->resultAssertions = $resultAssertions;
         $this->timeRange = $timeRange;
         $this->type = "sql";
@@ -98,7 +98,7 @@ class TypeSql implements \JsonSerializable, \Grafana\Foundation\Cog\Dataquery
             datasource: isset($data["datasource"]) ? (function($input) {
     	/** @var array{type?: string, uid?: string} */
     $val = $input;
-    	return \Grafana\Foundation\Dashboard\DataSourceRef::fromArray($val);
+    	return \Grafana\Foundation\Common\DataSourceRef::fromArray($val);
     })($data["datasource"]) : null,
             expression: $data["expression"] ?? null,
             format: $data["format"] ?? null,
@@ -128,7 +128,6 @@ class TypeSql implements \JsonSerializable, \Grafana\Foundation\Cog\Dataquery
         $data = new \stdClass;
         $data->expression = $this->expression;
         $data->format = $this->format;
-        $data->refId = $this->refId;
         $data->type = $this->type;
         if (isset($this->datasource)) {
             $data->datasource = $this->datasource;
@@ -144,6 +143,9 @@ class TypeSql implements \JsonSerializable, \Grafana\Foundation\Cog\Dataquery
         }
         if (isset($this->queryType)) {
             $data->queryType = $this->queryType;
+        }
+        if (isset($this->refId)) {
+            $data->refId = $this->refId;
         }
         if (isset($this->resultAssertions)) {
             $data->resultAssertions = $this->resultAssertions;

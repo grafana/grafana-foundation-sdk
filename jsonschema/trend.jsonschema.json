@@ -180,7 +180,7 @@
           "$ref": "#/definitions/HideSeriesConfig"
         },
         "insertNulls": {
-          "anyOf": [
+          "oneOf": [
             {
               "type": "boolean"
             },
@@ -190,7 +190,7 @@
           ]
         },
         "spanNulls": {
-          "anyOf": [
+          "oneOf": [
             {
               "type": "boolean"
             },

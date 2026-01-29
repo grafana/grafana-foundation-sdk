@@ -47,6 +47,3 @@ Validate checks all the validation constraints that may be defined on `PieChartL
 func (pieChartLegendOptions *PieChartLegendOptions) Validate() error
 ```
 
-## See also
-
- * <span class="badge builder"></span> [PieChartLegendOptionsBuilder](./builder-PieChartLegendOptionsBuilder.md)

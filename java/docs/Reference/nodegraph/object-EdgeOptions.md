@@ -11,6 +11,3 @@ public class EdgeOptions {
   public String secondaryStatUnit;
 }
 ```
-## See also
-
- * <span class="badge builder"></span> [EdgeOptionsBuilder](./builder-EdgeOptionsBuilder.md)

@@ -14,6 +14,3 @@ export interface ArcOption {
 }
 
 ```
-## See also
-
- * <span class="badge builder"></span> [ArcOptionBuilder](./builder-ArcOptionBuilder.md)

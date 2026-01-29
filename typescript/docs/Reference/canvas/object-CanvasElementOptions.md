@@ -19,6 +19,3 @@ export interface CanvasElementOptions {
 }
 
 ```
-## See also
-
- * <span class="badge builder"></span> [CanvasElementOptionsBuilder](./builder-CanvasElementOptionsBuilder.md)

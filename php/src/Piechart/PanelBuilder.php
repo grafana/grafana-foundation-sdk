@@ -99,7 +99,7 @@ class PanelBuilder implements \Grafana\Foundation\Cog\Builder
     /**
      * The datasource used in all targets.
      */
-    public function datasource(\Grafana\Foundation\Dashboard\DataSourceRef $datasource): static
+    public function datasource(\Grafana\Foundation\Common\DataSourceRef $datasource): static
     {
         $this->internal->datasource = $datasource;
     
@@ -674,17 +674,13 @@ class PanelBuilder implements \Grafana\Foundation\Cog\Builder
         return $this;
     }
 
-    /**
-     * @param \Grafana\Foundation\Cog\Builder<\Grafana\Foundation\Piechart\PieChartLegendOptions> $legend
-     */
-    public function legend(\Grafana\Foundation\Cog\Builder $legend): static
+    public function legend(\Grafana\Foundation\Piechart\PieChartLegendOptions $legend): static
     {    
         if ($this->internal->options === null) {
             $this->internal->options = new \Grafana\Foundation\Piechart\Options();
         }
         assert($this->internal->options instanceof \Grafana\Foundation\Piechart\Options);
-        $legendResource = $legend->build();
-        $this->internal->options->legend = $legendResource;
+        $this->internal->options->legend = $legend;
     
         return $this;
     }

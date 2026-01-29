@@ -6,7 +6,7 @@ import com.grafana.foundation.dashboard.Panel;
 import java.util.List;
 import com.grafana.foundation.cog.variants.Dataquery;
 import java.util.LinkedList;
-import com.grafana.foundation.dashboard.DataSourceRef;
+import com.grafana.foundation.common.DataSourceRef;
 import com.grafana.foundation.dashboard.GridPos;
 import com.grafana.foundation.dashboard.DashboardLink;
 import com.grafana.foundation.dashboard.PanelRepeatDirection;
@@ -409,7 +409,7 @@ public class XychartPanelBuilder implements com.grafana.foundation.cog.Builder<P
         return this;
     }
     
-    public XychartPanelBuilder pointSize(com.grafana.foundation.cog.Builder<XychartFieldConfigPointSize> pointSize) {
+    public XychartPanelBuilder pointSize(XychartFieldConfigPointSize pointSize) {
 		if (this.internal.fieldConfig == null) {
 			this.internal.fieldConfig = new com.grafana.foundation.dashboard.FieldConfigSource();
 		}
@@ -419,8 +419,7 @@ public class XychartPanelBuilder implements com.grafana.foundation.cog.Builder<P
 		if (this.internal.fieldConfig.defaults.custom == null) {
 			this.internal.fieldConfig.defaults.custom = new com.grafana.foundation.xychart.FieldConfig();
 		}
-    XychartFieldConfigPointSize pointSizeResource = pointSize.build();
-        ((FieldConfig) this.internal.fieldConfig.defaults.custom).pointSize = pointSizeResource;
+        ((FieldConfig) this.internal.fieldConfig.defaults.custom).pointSize = pointSize;
         return this;
     }
     
@@ -686,16 +685,11 @@ public class XychartPanelBuilder implements com.grafana.foundation.cog.Builder<P
         return this;
     }
     
-    public XychartPanelBuilder series(List<com.grafana.foundation.cog.Builder<XYSeriesConfig>> series) {
+    public XychartPanelBuilder series(List<XYSeriesConfig> series) {
 		if (this.internal.options == null) {
 			this.internal.options = new com.grafana.foundation.xychart.Options();
 		}
-        List<XYSeriesConfig> seriesResources = new LinkedList<>();
-        for (com.grafana.foundation.cog.Builder<XYSeriesConfig> r1 : series) {
-                XYSeriesConfig seriesDepth1 = r1.build();
-                seriesResources.add(seriesDepth1); 
-        }
-        ((Options) this.internal.options).series = seriesResources;
+        ((Options) this.internal.options).series = series;
         return this;
     }
     public Panel build() {

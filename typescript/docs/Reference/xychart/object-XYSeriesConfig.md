@@ -28,6 +28,3 @@ export interface XYSeriesConfig {
 }
 
 ```
-## See also
-
- * <span class="badge builder"></span> [XYSeriesConfigBuilder](./builder-XYSeriesConfigBuilder.md)

@@ -12,6 +12,3 @@ public class XychartFieldConfigPointSize {
   public Integer max;
 }
 ```
-## See also
-
- * <span class="badge builder"></span> [XychartFieldConfigPointSizeBuilder](./builder-XychartFieldConfigPointSizeBuilder.md)

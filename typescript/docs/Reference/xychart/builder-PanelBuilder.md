@@ -101,7 +101,7 @@ dataLinks(links: cog.Builder<dashboard.DashboardLink>[])
 The datasource used in all targets.
 
 ```typescript
-datasource(datasource: dashboard.DataSourceRef)
+datasource(datasource: common.DataSourceRef)
 ```
 
 ### <span class="badge object-method"></span> decimals
@@ -380,7 +380,7 @@ scaleDistribution(scaleDistribution: cog.Builder<common.ScaleDistributionConfig>
 ### <span class="badge object-method"></span> series
 
 ```typescript
-series(series: cog.Builder<xychart.XYSeriesConfig>[])
+series(series: xychart.XYSeriesConfig[])
 ```
 
 ### <span class="badge object-method"></span> show

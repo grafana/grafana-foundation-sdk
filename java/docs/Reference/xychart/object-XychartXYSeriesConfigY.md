@@ -10,6 +10,3 @@ public class XychartXYSeriesConfigY {
   public MatcherConfig matcher;
 }
 ```
-## See also
-
- * <span class="badge builder"></span> [XychartXYSeriesConfigYBuilder](./builder-XychartXYSeriesConfigYBuilder.md)

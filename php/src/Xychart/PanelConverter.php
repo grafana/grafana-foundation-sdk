@@ -84,7 +84,7 @@ final class PanelConverter
     
         
     $buffer = 'datasource(';
-        $arg0 ='(new \Grafana\Foundation\Dashboard\DataSourceRef('.(($input->datasource->type !== null) ? 'type: '.\var_export($input->datasource->type, true).', ' : '').''.(($input->datasource->uid !== null) ? 'uid: '.\var_export($input->datasource->uid, true).', ' : '').'))';
+        $arg0 ='(new \Grafana\Foundation\Common\DataSourceRef('.(($input->datasource->type !== null) ? 'type: '.\var_export($input->datasource->type, true).', ' : '').''.(($input->datasource->uid !== null) ? 'uid: '.\var_export($input->datasource->uid, true).', ' : '').'))';
         $buffer .= $arg0;
         
     $buffer .= ')';
@@ -526,7 +526,7 @@ final class PanelConverter
     
         
     $buffer = 'pointSize(';
-        $arg0 = \Grafana\Foundation\Xychart\XychartFieldConfigPointSizeConverter::convert($input->fieldConfig->defaults->custom->pointSize);
+        $arg0 ='(new \Grafana\Foundation\Xychart\XychartFieldConfigPointSize('.(($input->fieldConfig->defaults->custom->pointSize->fixed !== null) ? 'fixed: '.\var_export($input->fieldConfig->defaults->custom->pointSize->fixed, true).', ' : '').''.(($input->fieldConfig->defaults->custom->pointSize->min !== null) ? 'min: '.\var_export($input->fieldConfig->defaults->custom->pointSize->min, true).', ' : '').''.(($input->fieldConfig->defaults->custom->pointSize->max !== null) ? 'max: '.\var_export($input->fieldConfig->defaults->custom->pointSize->max, true).', ' : '').'))';
         $buffer .= $arg0;
         
     $buffer .= ')';
@@ -788,7 +788,7 @@ final class PanelConverter
     $buffer = 'series(';
         $tmparg0 = [];
         foreach ($input->options->series as $arg1) {
-        $tmpseriesarg1 = \Grafana\Foundation\Xychart\XYSeriesConfigConverter::convert($arg1);
+        $tmpseriesarg1 ='(new \Grafana\Foundation\Xychart\XYSeriesConfig('.(($arg1->name !== null) ? 'name: '.'(new \Grafana\Foundation\Xychart\XychartXYSeriesConfigName('.(($arg1->name->fixed !== null) ? 'fixed: '.\var_export($arg1->name->fixed, true).', ' : '').'))'.', ' : '').''.(($arg1->frame !== null) ? 'frame: '.'(new \Grafana\Foundation\Xychart\XychartXYSeriesConfigFrame(matcher: '.'(new \Grafana\Foundation\Xychart\MatcherConfig(id: '.\var_export($arg1->frame->matcher->id, true).','.(($arg1->frame->matcher->options !== null) ? 'options: '.\var_export($arg1->frame->matcher->options, true).', ' : '').'))'.',))'.', ' : '').''.(($arg1->x !== null) ? 'x: '.'(new \Grafana\Foundation\Xychart\XychartXYSeriesConfigX(matcher: '.'(new \Grafana\Foundation\Xychart\MatcherConfig(id: '.\var_export($arg1->x->matcher->id, true).','.(($arg1->x->matcher->options !== null) ? 'options: '.\var_export($arg1->x->matcher->options, true).', ' : '').'))'.',))'.', ' : '').''.(($arg1->y !== null) ? 'y: '.'(new \Grafana\Foundation\Xychart\XychartXYSeriesConfigY(matcher: '.'(new \Grafana\Foundation\Xychart\MatcherConfig(id: '.\var_export($arg1->y->matcher->id, true).','.(($arg1->y->matcher->options !== null) ? 'options: '.\var_export($arg1->y->matcher->options, true).', ' : '').'))'.',))'.', ' : '').''.(($arg1->color !== null) ? 'color: '.'(new \Grafana\Foundation\Xychart\XychartXYSeriesConfigColor(matcher: '.'(new \Grafana\Foundation\Xychart\MatcherConfig(id: '.\var_export($arg1->color->matcher->id, true).','.(($arg1->color->matcher->options !== null) ? 'options: '.\var_export($arg1->color->matcher->options, true).', ' : '').'))'.',))'.', ' : '').''.(($arg1->size !== null) ? 'size: '.'(new \Grafana\Foundation\Xychart\XychartXYSeriesConfigSize(matcher: '.'(new \Grafana\Foundation\Xychart\MatcherConfig(id: '.\var_export($arg1->size->matcher->id, true).','.(($arg1->size->matcher->options !== null) ? 'options: '.\var_export($arg1->size->matcher->options, true).', ' : '').'))'.',))'.', ' : '').'))';
         $tmparg0[] = $tmpseriesarg1;
         }
         $arg0 = "[" . implode(", \n", $tmparg0) . "]";

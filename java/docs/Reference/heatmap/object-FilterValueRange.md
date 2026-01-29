@@ -13,6 +13,3 @@ public class FilterValueRange {
   public Float ge;
 }
 ```
-## See also
-
- * <span class="badge builder"></span> [FilterValueRangeBuilder](./builder-FilterValueRangeBuilder.md)

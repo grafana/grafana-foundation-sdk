@@ -41,6 +41,3 @@ Validate checks all the validation constraints that may be defined on `CodeOptio
 func (codeOptions *CodeOptions) Validate() error
 ```
 
-## See also
-
- * <span class="badge builder"></span> [CodeOptionsBuilder](./builder-CodeOptionsBuilder.md)

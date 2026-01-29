@@ -101,7 +101,7 @@ def data_links(links: list[cogbuilder.Builder[dashboard.DashboardLink]]) -> typi
 The datasource used in all targets.
 
 ```python
-def datasource(datasource: dashboard.DataSourceRef) -> typing.Self
+def datasource(datasource: common.DataSourceRef) -> typing.Self
 ```
 
 ### <span class="badge object-method"></span> decimals
@@ -329,7 +329,7 @@ def point_shape(point_shape: xychart.PointShape) -> typing.Self
 ### <span class="badge object-method"></span> point_size
 
 ```python
-def point_size(point_size: cogbuilder.Builder[xychart.XychartFieldConfigPointSize]) -> typing.Self
+def point_size(point_size: xychart.XychartFieldConfigPointSize) -> typing.Self
 ```
 
 ### <span class="badge object-method"></span> point_stroke_width
@@ -373,7 +373,7 @@ def scale_distribution(scale_distribution: cogbuilder.Builder[common.ScaleDistri
 ### <span class="badge object-method"></span> series
 
 ```python
-def series(series: list[cogbuilder.Builder[xychart.XYSeriesConfig]]) -> typing.Self
+def series(series: list[xychart.XYSeriesConfig]) -> typing.Self
 ```
 
 ### <span class="badge object-method"></span> show

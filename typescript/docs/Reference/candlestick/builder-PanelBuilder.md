@@ -127,7 +127,7 @@ colorStrategy(colorStrategy: candlestick.ColorStrategy)
 Set which colors are used when the price movement is up or down
 
 ```typescript
-colors(colors: cog.Builder<candlestick.CandlestickColors>)
+colors(colors: candlestick.CandlestickColors)
 ```
 
 ### <span class="badge object-method"></span> dataLinks
@@ -143,7 +143,7 @@ dataLinks(links: cog.Builder<dashboard.DashboardLink>[])
 The datasource used in all targets.
 
 ```typescript
-datasource(datasource: dashboard.DataSourceRef)
+datasource(datasource: common.DataSourceRef)
 ```
 
 ### <span class="badge object-method"></span> decimals
@@ -187,7 +187,7 @@ drawStyle(drawStyle: common.GraphDrawStyle)
 Map fields to appropriate dimension
 
 ```typescript
-fields(fields: cog.Builder<candlestick.CandlestickFieldMap>)
+fields(fields: candlestick.CandlestickFieldMap)
 ```
 
 ### <span class="badge object-method"></span> fillBelowTo

@@ -3,7 +3,7 @@
 package com.grafana.foundation.azuremonitor;
 
 import java.util.List;
-import com.grafana.foundation.dashboard.DataSourceRef;
+import com.grafana.foundation.common.DataSourceRef;
 
 public class AzureMonitorQueryBuilder implements com.grafana.foundation.cog.Builder<com.grafana.foundation.cog.variants.Dataquery> {
     protected final AzureMonitorQuery internal;

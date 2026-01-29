@@ -20,6 +20,3 @@ export interface CandlestickFieldMap {
 }
 
 ```
-## See also
-
- * <span class="badge builder"></span> [CandlestickFieldMapBuilder](./builder-CandlestickFieldMapBuilder.md)

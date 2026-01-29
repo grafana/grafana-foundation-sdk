@@ -17,6 +17,3 @@ public class MatcherConfig {
   public Object options;
 }
 ```
-## See also
-
- * <span class="badge builder"></span> [MatcherConfigBuilder](./builder-MatcherConfigBuilder.md)

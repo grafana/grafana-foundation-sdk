@@ -29,7 +29,7 @@ cacheTimeout(cacheTimeout: string)
 ### <span class="badge object-method"></span> code
 
 ```typescript
-code(code: cog.Builder<text.CodeOptions>)
+code(code: text.CodeOptions)
 ```
 
 ### <span class="badge object-method"></span> colorScheme
@@ -59,7 +59,7 @@ dataLinks(links: cog.Builder<dashboard.DashboardLink>[])
 The datasource used in all targets.
 
 ```typescript
-datasource(datasource: dashboard.DataSourceRef)
+datasource(datasource: common.DataSourceRef)
 ```
 
 ### <span class="badge object-method"></span> decimals

@@ -8,7 +8,7 @@ title: <span class="badge object-type-interface"></span> TypeResample
 ```typescript
 export interface TypeResample {
 	// The datasource
-	datasource?: dashboard.DataSourceRef;
+	datasource?: common.DataSourceRef;
 	// The downsample function
 	// Possible enum values:
 	//  - `"sum"` 
@@ -37,7 +37,7 @@ export interface TypeResample {
 	// It can be used to distinguish different types of queries.
 	queryType?: string;
 	// RefID is the unique identifier of the query, set by the frontend call.
-	refId: string;
+	refId?: string;
 	// Optionally define expected query result behavior
 	resultAssertions?: {
 		// Maximum frame count

@@ -11,6 +11,3 @@ export interface TooltipOptions {
 }
 
 ```
-## See also
-
- * <span class="badge builder"></span> [TooltipOptionsBuilder](./builder-TooltipOptionsBuilder.md)

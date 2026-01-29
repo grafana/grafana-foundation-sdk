@@ -2,8 +2,8 @@
 
 import * as cog from '../cog';
 import * as dashboard from '../dashboard';
-import * as xychart from '../xychart';
 import * as common from '../common';
+import * as xychart from '../xychart';
 
 // Dashboard panels are the basic visualization building blocks.
 export class PanelBuilder implements cog.Builder<dashboard.Panel> {
@@ -63,7 +63,7 @@ export class PanelBuilder implements cog.Builder<dashboard.Panel> {
     }
 
     // The datasource used in all targets.
-    datasource(datasource: dashboard.DataSourceRef): this {
+    datasource(datasource: common.DataSourceRef): this {
         this.internal.datasource = datasource;
         return this;
     }
@@ -735,12 +735,11 @@ export class PanelBuilder implements cog.Builder<dashboard.Panel> {
         return this;
     }
 
-    series(series: cog.Builder<xychart.XYSeriesConfig>[]): this {
+    series(series: xychart.XYSeriesConfig[]): this {
         if (!this.internal.options) {
             this.internal.options = xychart.defaultOptions();
         }
-        const seriesResources = series.map(builder1 => builder1.build());
-        this.internal.options.series = seriesResources;
+        this.internal.options.series = series;
         return this;
     }
 }

@@ -99,7 +99,7 @@ class PanelBuilder implements \Grafana\Foundation\Cog\Builder
     /**
      * The datasource used in all targets.
      */
-    public function datasource(\Grafana\Foundation\Dashboard\DataSourceRef $datasource): static
+    public function datasource(\Grafana\Foundation\Common\DataSourceRef $datasource): static
     {
         $this->internal->datasource = $datasource;
     
@@ -663,16 +663,14 @@ class PanelBuilder implements \Grafana\Foundation\Cog\Builder
     /**
      * The root element of canvas (frame), where all canvas elements are nested
      * TODO: Figure out how to define a default value for this
-     * @param \Grafana\Foundation\Cog\Builder<\Grafana\Foundation\Canvas\CanvasOptionsRoot> $root
      */
-    public function root(\Grafana\Foundation\Cog\Builder $root): static
+    public function root(\Grafana\Foundation\Canvas\CanvasOptionsRoot $root): static
     {    
         if ($this->internal->options === null) {
             $this->internal->options = new \Grafana\Foundation\Canvas\Options();
         }
         assert($this->internal->options instanceof \Grafana\Foundation\Canvas\Options);
-        $rootResource = $root->build();
-        $this->internal->options->root = $rootResource;
+        $this->internal->options->root = $root;
     
         return $this;
     }
