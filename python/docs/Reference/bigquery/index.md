@@ -18,6 +18,7 @@
 ## Builders
 
  * <span class="badge builder"></span> [Dataquery](./builder-Dataquery.md)
+ * <span class="badge builder"></span> [Query](./builder-Query.md)
  * <span class="badge builder"></span> [QueryEditorFunctionExpression](./builder-QueryEditorFunctionExpression.md)
  * <span class="badge builder"></span> [QueryEditorFunctionParameterExpression](./builder-QueryEditorFunctionParameterExpression.md)
  * <span class="badge builder"></span> [QueryEditorGroupByExpression](./builder-QueryEditorGroupByExpression.md)

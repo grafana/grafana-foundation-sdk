@@ -25,3 +25,4 @@
  * <span class="badge builder"></span> [LineConfigBuilder](./builder-LineConfigBuilder.md)
  * <span class="badge builder"></span> [PanelBuilder](./builder-PanelBuilder.md)
  * <span class="badge builder"></span> [PlacementBuilder](./builder-PlacementBuilder.md)
+ * <span class="badge builder"></span> [VisualizationBuilder](./builder-VisualizationBuilder.md)

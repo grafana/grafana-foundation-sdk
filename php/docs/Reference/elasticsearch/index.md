@@ -154,6 +154,7 @@
  * <span class="badge builder"></span> [PercentilesBuilder](./builder-PercentilesBuilder.md)
  * <span class="badge builder"></span> [PipelineMetricAggregationWithMultipleBucketPathsBuilder](./builder-PipelineMetricAggregationWithMultipleBucketPathsBuilder.md)
  * <span class="badge builder"></span> [PipelineVariableBuilder](./builder-PipelineVariableBuilder.md)
+ * <span class="badge builder"></span> [QueryBuilder](./builder-QueryBuilder.md)
  * <span class="badge builder"></span> [RateBuilder](./builder-RateBuilder.md)
  * <span class="badge builder"></span> [RawDataBuilder](./builder-RawDataBuilder.md)
  * <span class="badge builder"></span> [RawDocumentBuilder](./builder-RawDocumentBuilder.md)

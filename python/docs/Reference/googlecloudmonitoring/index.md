@@ -23,6 +23,7 @@
  * <span class="badge builder"></span> [LegacyCloudMonitoringAnnotationQuery](./builder-LegacyCloudMonitoringAnnotationQuery.md)
  * <span class="badge builder"></span> [MetricQuery](./builder-MetricQuery.md)
  * <span class="badge builder"></span> [PromQLQuery](./builder-PromQLQuery.md)
+ * <span class="badge builder"></span> [Query](./builder-Query.md)
  * <span class="badge builder"></span> [SLOQuery](./builder-SLOQuery.md)
  * <span class="badge builder"></span> [TimeSeriesList](./builder-TimeSeriesList.md)
  * <span class="badge builder"></span> [TimeSeriesQuery](./builder-TimeSeriesQuery.md)

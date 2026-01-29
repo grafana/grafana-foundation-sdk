@@ -10,6 +10,8 @@ final class VariantConfig
             identifier: 'tempo',
             fromArray: [TempoQuery::class, 'fromArray'],
             convert: [TempoQueryConverter::class, 'convert'],
+            convertv2: [QueryConverter::class, 'convert'],
         );
     }
+
 }

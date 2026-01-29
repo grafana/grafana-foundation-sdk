@@ -13,6 +13,7 @@
  * [common](./common/index.md)
  * <span class="badge package-core"></span> [dashboard](./dashboard/index.md)
  * <span class="badge package-variant-panelcfg"></span> [dashboardlist](./dashboardlist/index.md)
+ * <span class="badge package-core"></span> [dashboardv2beta1](./dashboardv2beta1/index.md)
  * <span class="badge package-variant-panelcfg"></span> [datagrid](./datagrid/index.md)
  * <span class="badge package-variant-dataquery"></span> [datasource](./datasource/index.md)
  * <span class="badge package-variant-panelcfg"></span> [debug](./debug/index.md)

@@ -18,7 +18,7 @@ class Options:
     on_log_options_change: typing.Optional[object]
     on_new_logs_received: typing.Optional[object]
 
-    def __init__(self, show_controls: bool = False, show_time: bool = False, wrap_log_message: bool = False, enable_log_details: bool = False, syntax_highlighting: bool = False, sort_order: typing.Optional[common.LogsSortOrder] = None, dedup_strategy: typing.Optional[common.LogsDedupStrategy] = None, grammar: typing.Optional[object] = None, enable_infinite_scrolling: typing.Optional[bool] = None, on_log_options_change: typing.Optional[object] = None, on_new_logs_received: typing.Optional[object] = None):
+    def __init__(self, show_controls: bool = False, show_time: bool = False, wrap_log_message: bool = False, enable_log_details: bool = False, syntax_highlighting: bool = False, sort_order: typing.Optional[common.LogsSortOrder] = None, dedup_strategy: typing.Optional[common.LogsDedupStrategy] = None, grammar: typing.Optional[object] = None, enable_infinite_scrolling: typing.Optional[bool] = None, on_log_options_change: typing.Optional[object] = None, on_new_logs_received: typing.Optional[object] = None) -> None:
         self.show_controls = show_controls
         self.show_time = show_time
         self.wrap_log_message = wrap_log_message

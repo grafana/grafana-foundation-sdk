@@ -41,6 +41,7 @@
  * <span class="badge builder"></span> [CloudWatchMetricsQueryBuilder](./builder-CloudWatchMetricsQueryBuilder.md)
  * <span class="badge builder"></span> [LogGroupBuilder](./builder-LogGroupBuilder.md)
  * <span class="badge builder"></span> [MetricStatBuilder](./builder-MetricStatBuilder.md)
+ * <span class="badge builder"></span> [QueryBuilder](./builder-QueryBuilder.md)
  * <span class="badge builder"></span> [QueryEditorArrayExpressionBuilder](./builder-QueryEditorArrayExpressionBuilder.md)
  * <span class="badge builder"></span> [QueryEditorFunctionExpressionBuilder](./builder-QueryEditorFunctionExpressionBuilder.md)
  * <span class="badge builder"></span> [QueryEditorFunctionParameterExpressionBuilder](./builder-QueryEditorFunctionParameterExpressionBuilder.md)
@@ -364,5 +365,13 @@ CloudWatchAnnotationQueryConverter accepts a `CloudWatchAnnotationQuery` object 
 
 ```go
 func CloudWatchAnnotationQueryConverter(input CloudWatchAnnotationQuery) string
+```
+
+### <span class="badge function"></span> QueryConverter
+
+QueryConverter accepts a `Query` object and generates the Go code to build this object using builders.
+
+```go
+func QueryConverter(input dashboardv2beta1.DataQueryKind) string
 ```
 

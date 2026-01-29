@@ -20,6 +20,7 @@
 
  * <span class="badge builder"></span> [MatcherConfigBuilder](./builder-MatcherConfigBuilder.md)
  * <span class="badge builder"></span> [PanelBuilder](./builder-PanelBuilder.md)
+ * <span class="badge builder"></span> [VisualizationBuilder](./builder-VisualizationBuilder.md)
  * <span class="badge builder"></span> [XYSeriesConfigBuilder](./builder-XYSeriesConfigBuilder.md)
  * <span class="badge builder"></span> [XychartFieldConfigPointSizeBuilder](./builder-XychartFieldConfigPointSizeBuilder.md)
  * <span class="badge builder"></span> [XychartXYSeriesConfigColorBuilder](./builder-XychartXYSeriesConfigColorBuilder.md)
@@ -128,6 +129,14 @@ This configuration describes how to unmarshal it, convert it to code, …
 func VariantConfig() variants.PanelcfgConfig
 ```
 
+### <span class="badge function"></span> PanelConverter
+
+PanelConverter accepts a `Panel` object and generates the Go code to build this object using builders.
+
+```go
+func PanelConverter(input dashboard.Panel) string
+```
+
 ### <span class="badge function"></span> MatcherConfigConverter
 
 MatcherConfigConverter accepts a `MatcherConfig` object and generates the Go code to build this object using builders.
@@ -200,11 +209,11 @@ XychartXYSeriesConfigSizeConverter accepts a `XychartXYSeriesConfigSize` object 
 func XychartXYSeriesConfigSizeConverter(input XychartXYSeriesConfigSize) string
 ```
 
-### <span class="badge function"></span> PanelConverter
+### <span class="badge function"></span> VisualizationConverter
 
-PanelConverter accepts a `Panel` object and generates the Go code to build this object using builders.
+VisualizationConverter accepts a `Visualization` object and generates the Go code to build this object using builders.
 
 ```go
-func PanelConverter(input dashboard.Panel) string
+func VisualizationConverter(input dashboardv2beta1.VizConfigKind) string
 ```
 

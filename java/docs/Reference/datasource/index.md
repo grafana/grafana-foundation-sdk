@@ -6,3 +6,4 @@
 ## Builders
 
  * <span class="badge builder"></span> [DataqueryBuilder](./builder-DataqueryBuilder.md)
+ * <span class="badge builder"></span> [QueryBuilder](./builder-QueryBuilder.md)

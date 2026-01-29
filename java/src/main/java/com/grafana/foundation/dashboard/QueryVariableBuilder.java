@@ -2,6 +2,7 @@
 
 package com.grafana.foundation.dashboard;
 
+import com.grafana.foundation.common.DataSourceRef;
 import java.util.List;
 
 public class QueryVariableBuilder implements com.grafana.foundation.cog.Builder<VariableModel> {

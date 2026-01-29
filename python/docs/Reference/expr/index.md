@@ -54,6 +54,7 @@
  * <span class="badge builder"></span> [ExprTypeThresholdConditionsUnloadEvaluator](./builder-ExprTypeThresholdConditionsUnloadEvaluator.md)
  * <span class="badge builder"></span> [ExprTypeThresholdResultAssertions](./builder-ExprTypeThresholdResultAssertions.md)
  * <span class="badge builder"></span> [ExprTypeThresholdTimeRange](./builder-ExprTypeThresholdTimeRange.md)
+ * <span class="badge builder"></span> [Query](./builder-Query.md)
  * <span class="badge builder"></span> [TypeClassicConditions](./builder-TypeClassicConditions.md)
  * <span class="badge builder"></span> [TypeMath](./builder-TypeMath.md)
  * <span class="badge builder"></span> [TypeReduce](./builder-TypeReduce.md)

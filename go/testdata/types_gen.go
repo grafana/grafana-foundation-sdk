@@ -11,7 +11,8 @@ import (
 
 	cog "github.com/grafana/grafana-foundation-sdk/go/cog"
 	variants "github.com/grafana/grafana-foundation-sdk/go/cog/variants"
-	dashboard "github.com/grafana/grafana-foundation-sdk/go/dashboard"
+	common "github.com/grafana/grafana-foundation-sdk/go/common"
+	dashboardv2beta1 "github.com/grafana/grafana-foundation-sdk/go/dashboardv2beta1"
 )
 
 type CSVWave struct {
@@ -1145,7 +1146,7 @@ type Dataquery struct {
 	CsvFileName *string   `json:"csvFileName,omitempty"`
 	CsvWave     []CSVWave `json:"csvWave,omitempty"`
 	// The datasource
-	Datasource *dashboard.DataSourceRef `json:"datasource,omitempty"`
+	Datasource *common.DataSourceRef `json:"datasource,omitempty"`
 	// Drop percentage (the chance we will lose a point 0-100)
 	DropPercent *float64 `json:"dropPercent,omitempty"`
 	// Possible enum values:
@@ -1331,7 +1332,7 @@ func (resource *Dataquery) UnmarshalJSONStrict(raw []byte) error {
 	if fields["datasource"] != nil {
 		if string(fields["datasource"]) != "null" {
 
-			resource.Datasource = &dashboard.DataSourceRef{}
+			resource.Datasource = &common.DataSourceRef{}
 			if err := resource.Datasource.UnmarshalJSONStrict(fields["datasource"]); err != nil {
 				errs = append(errs, cog.MakeBuildErrors("datasource", err)...)
 			}
@@ -2240,6 +2241,13 @@ func VariantConfig() variants.DataqueryConfig {
 				dataquery = input.(Dataquery)
 			}
 			return DataqueryConverter(dataquery)
+		},
+		GoV2Converter: func(input any) string {
+			if cast, ok := input.(*dashboardv2beta1.DataQueryKind); ok {
+				return QueryConverter(*cast)
+			}
+
+			return QueryConverter(input.(dashboardv2beta1.DataQueryKind))
 		},
 	}
 }

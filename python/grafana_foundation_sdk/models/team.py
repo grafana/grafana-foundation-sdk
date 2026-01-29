@@ -7,7 +7,7 @@ class Team:
     email: typing.Optional[str]
     name: str
 
-    def __init__(self, email: typing.Optional[str] = None, name: str = ""):
+    def __init__(self, email: typing.Optional[str] = None, name: str = "") -> None:
         self.email = email
         self.name = name
 

@@ -14,7 +14,7 @@ export interface AnnotationQuery {
 	// Name of annotation.
 	name: string;
 	// Datasource where the annotations data is
-	datasource: dashboard.DataSourceRef;
+	datasource: common.DataSourceRef;
 	// When enabled the annotation query is issued with every dashboard refresh
 	enable: boolean;
 	// Annotation queries can be toggled on or off at the top of the dashboard.

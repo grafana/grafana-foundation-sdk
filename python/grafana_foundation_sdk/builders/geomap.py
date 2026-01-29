@@ -2,166 +2,11 @@
 
 import typing
 from ..cog import builder as cogbuilder
-from ..models import geomap
 from ..models import dashboard
 from ..cog import variants as cogvariants
 from ..models import common
-
-
-class MapViewConfig(cogbuilder.Builder[geomap.MapViewConfig]):
-    _internal: geomap.MapViewConfig
-
-    def __init__(self):
-        self._internal = geomap.MapViewConfig()
-
-    def build(self) -> geomap.MapViewConfig:
-        """
-        Builds the object.
-        """
-        return self._internal    
-    
-    def id(self, id_val: str) -> typing.Self:    
-        self._internal.id_val = id_val
-    
-        return self
-    
-    def lat(self, lat: int) -> typing.Self:    
-        self._internal.lat = lat
-    
-        return self
-    
-    def lon(self, lon: int) -> typing.Self:    
-        self._internal.lon = lon
-    
-        return self
-    
-    def zoom(self, zoom: int) -> typing.Self:    
-        self._internal.zoom = zoom
-    
-        return self
-    
-    def min_zoom(self, min_zoom: int) -> typing.Self:    
-        self._internal.min_zoom = min_zoom
-    
-        return self
-    
-    def max_zoom(self, max_zoom: int) -> typing.Self:    
-        self._internal.max_zoom = max_zoom
-    
-        return self
-    
-    def padding(self, padding: int) -> typing.Self:    
-        self._internal.padding = padding
-    
-        return self
-    
-    def all_layers(self, all_layers: bool) -> typing.Self:    
-        self._internal.all_layers = all_layers
-    
-        return self
-    
-    def last_only(self, last_only: bool) -> typing.Self:    
-        self._internal.last_only = last_only
-    
-        return self
-    
-    def layer(self, layer: str) -> typing.Self:    
-        self._internal.layer = layer
-    
-        return self
-    
-    def shared(self, shared: bool) -> typing.Self:    
-        self._internal.shared = shared
-    
-        return self
-    
-
-
-class ControlsOptions(cogbuilder.Builder[geomap.ControlsOptions]):
-    _internal: geomap.ControlsOptions
-
-    def __init__(self):
-        self._internal = geomap.ControlsOptions()
-
-    def build(self) -> geomap.ControlsOptions:
-        """
-        Builds the object.
-        """
-        return self._internal    
-    
-    def show_zoom(self, show_zoom: bool) -> typing.Self:    
-        """
-        Zoom (upper left)
-        """
-            
-        self._internal.show_zoom = show_zoom
-    
-        return self
-    
-    def mouse_wheel_zoom(self, mouse_wheel_zoom: bool) -> typing.Self:    
-        """
-        let the mouse wheel zoom
-        """
-            
-        self._internal.mouse_wheel_zoom = mouse_wheel_zoom
-    
-        return self
-    
-    def show_attribution(self, show_attribution: bool) -> typing.Self:    
-        """
-        Lower right
-        """
-            
-        self._internal.show_attribution = show_attribution
-    
-        return self
-    
-    def show_scale(self, show_scale: bool) -> typing.Self:    
-        """
-        Scale options
-        """
-            
-        self._internal.show_scale = show_scale
-    
-        return self
-    
-    def show_debug(self, show_debug: bool) -> typing.Self:    
-        """
-        Show debug
-        """
-            
-        self._internal.show_debug = show_debug
-    
-        return self
-    
-    def show_measure(self, show_measure: bool) -> typing.Self:    
-        """
-        Show measure
-        """
-            
-        self._internal.show_measure = show_measure
-    
-        return self
-    
-
-
-class TooltipOptions(cogbuilder.Builder[geomap.TooltipOptions]):
-    _internal: geomap.TooltipOptions
-
-    def __init__(self):
-        self._internal = geomap.TooltipOptions()
-
-    def build(self) -> geomap.TooltipOptions:
-        """
-        Builds the object.
-        """
-        return self._internal    
-    
-    def mode(self, mode: geomap.TooltipMode) -> typing.Self:    
-        self._internal.mode = mode
-    
-        return self
-    
+from ..models import geomap
+from ..models import dashboardv2beta1
 
 
 class Panel(cogbuilder.Builder[dashboard.Panel]):    
@@ -171,7 +16,7 @@ class Panel(cogbuilder.Builder[dashboard.Panel]):
     
     _internal: dashboard.Panel
 
-    def __init__(self):
+    def __init__(self) -> None:
         self._internal = dashboard.Panel()        
         self._internal.type_val = "geomap"
 
@@ -240,7 +85,7 @@ class Panel(cogbuilder.Builder[dashboard.Panel]):
     
         return self
     
-    def datasource(self, datasource: dashboard.DataSourceRef) -> typing.Self:    
+    def datasource(self, datasource: common.DataSourceRef) -> typing.Self:    
         """
         The datasource used in all targets.
         """
@@ -755,6 +600,674 @@ class Panel(cogbuilder.Builder[dashboard.Panel]):
         assert isinstance(self._internal.options, geomap.Options)
         tooltip_resource = tooltip.build()
         self._internal.options.tooltip = tooltip_resource
+    
+        return self
+    
+
+
+class MapViewConfig(cogbuilder.Builder[geomap.MapViewConfig]):
+    _internal: geomap.MapViewConfig
+
+    def __init__(self) -> None:
+        self._internal = geomap.MapViewConfig()
+
+    def build(self) -> geomap.MapViewConfig:
+        """
+        Builds the object.
+        """
+        return self._internal    
+    
+    def id(self, id_val: str) -> typing.Self:    
+        self._internal.id_val = id_val
+    
+        return self
+    
+    def lat(self, lat: int) -> typing.Self:    
+        self._internal.lat = lat
+    
+        return self
+    
+    def lon(self, lon: int) -> typing.Self:    
+        self._internal.lon = lon
+    
+        return self
+    
+    def zoom(self, zoom: int) -> typing.Self:    
+        self._internal.zoom = zoom
+    
+        return self
+    
+    def min_zoom(self, min_zoom: int) -> typing.Self:    
+        self._internal.min_zoom = min_zoom
+    
+        return self
+    
+    def max_zoom(self, max_zoom: int) -> typing.Self:    
+        self._internal.max_zoom = max_zoom
+    
+        return self
+    
+    def padding(self, padding: int) -> typing.Self:    
+        self._internal.padding = padding
+    
+        return self
+    
+    def all_layers(self, all_layers: bool) -> typing.Self:    
+        self._internal.all_layers = all_layers
+    
+        return self
+    
+    def last_only(self, last_only: bool) -> typing.Self:    
+        self._internal.last_only = last_only
+    
+        return self
+    
+    def layer(self, layer: str) -> typing.Self:    
+        self._internal.layer = layer
+    
+        return self
+    
+    def shared(self, shared: bool) -> typing.Self:    
+        self._internal.shared = shared
+    
+        return self
+    
+
+
+class ControlsOptions(cogbuilder.Builder[geomap.ControlsOptions]):
+    _internal: geomap.ControlsOptions
+
+    def __init__(self) -> None:
+        self._internal = geomap.ControlsOptions()
+
+    def build(self) -> geomap.ControlsOptions:
+        """
+        Builds the object.
+        """
+        return self._internal    
+    
+    def show_zoom(self, show_zoom: bool) -> typing.Self:    
+        """
+        Zoom (upper left)
+        """
+            
+        self._internal.show_zoom = show_zoom
+    
+        return self
+    
+    def mouse_wheel_zoom(self, mouse_wheel_zoom: bool) -> typing.Self:    
+        """
+        let the mouse wheel zoom
+        """
+            
+        self._internal.mouse_wheel_zoom = mouse_wheel_zoom
+    
+        return self
+    
+    def show_attribution(self, show_attribution: bool) -> typing.Self:    
+        """
+        Lower right
+        """
+            
+        self._internal.show_attribution = show_attribution
+    
+        return self
+    
+    def show_scale(self, show_scale: bool) -> typing.Self:    
+        """
+        Scale options
+        """
+            
+        self._internal.show_scale = show_scale
+    
+        return self
+    
+    def show_debug(self, show_debug: bool) -> typing.Self:    
+        """
+        Show debug
+        """
+            
+        self._internal.show_debug = show_debug
+    
+        return self
+    
+    def show_measure(self, show_measure: bool) -> typing.Self:    
+        """
+        Show measure
+        """
+            
+        self._internal.show_measure = show_measure
+    
+        return self
+    
+
+
+class TooltipOptions(cogbuilder.Builder[geomap.TooltipOptions]):
+    _internal: geomap.TooltipOptions
+
+    def __init__(self) -> None:
+        self._internal = geomap.TooltipOptions()
+
+    def build(self) -> geomap.TooltipOptions:
+        """
+        Builds the object.
+        """
+        return self._internal    
+    
+    def mode(self, mode: geomap.TooltipMode) -> typing.Self:    
+        self._internal.mode = mode
+    
+        return self
+    
+
+
+class Visualization(cogbuilder.Builder[dashboardv2beta1.VizConfigKind]):
+    _internal: dashboardv2beta1.VizConfigKind
+
+    def __init__(self) -> None:
+        self._internal = dashboardv2beta1.VizConfigKind()        
+        self._internal.kind = "VizConfig"        
+        self._internal.group = "geomap"
+
+    def build(self) -> dashboardv2beta1.VizConfigKind:
+        """
+        Builds the object.
+        """
+        return self._internal    
+    
+    def display_name(self, display_name: str) -> typing.Self:    
+        """
+        The display value for this field.  This supports template variables blank is auto
+        """
+            
+        if self._internal.spec is None:
+            self._internal.spec = dashboardv2beta1.VizConfigSpec()
+        assert isinstance(self._internal.spec, dashboardv2beta1.VizConfigSpec)
+        if self._internal.spec.field_config is None:
+            self._internal.spec.field_config = dashboardv2beta1.FieldConfigSource()
+        assert isinstance(self._internal.spec.field_config, dashboardv2beta1.FieldConfigSource)
+        if self._internal.spec.field_config.defaults is None:
+            self._internal.spec.field_config.defaults = dashboardv2beta1.FieldConfig()
+        assert isinstance(self._internal.spec.field_config.defaults, dashboardv2beta1.FieldConfig)
+        self._internal.spec.field_config.defaults.display_name = display_name
+    
+        return self
+    
+    def display_name_from_ds(self, display_name_from_ds: str) -> typing.Self:    
+        """
+        This can be used by data sources that return and explicit naming structure for values and labels
+        When this property is configured, this value is used rather than the default naming strategy.
+        """
+            
+        if self._internal.spec is None:
+            self._internal.spec = dashboardv2beta1.VizConfigSpec()
+        assert isinstance(self._internal.spec, dashboardv2beta1.VizConfigSpec)
+        if self._internal.spec.field_config is None:
+            self._internal.spec.field_config = dashboardv2beta1.FieldConfigSource()
+        assert isinstance(self._internal.spec.field_config, dashboardv2beta1.FieldConfigSource)
+        if self._internal.spec.field_config.defaults is None:
+            self._internal.spec.field_config.defaults = dashboardv2beta1.FieldConfig()
+        assert isinstance(self._internal.spec.field_config.defaults, dashboardv2beta1.FieldConfig)
+        self._internal.spec.field_config.defaults.display_name_from_ds = display_name_from_ds
+    
+        return self
+    
+    def description(self, description: str) -> typing.Self:    
+        """
+        Human readable field metadata
+        """
+            
+        if self._internal.spec is None:
+            self._internal.spec = dashboardv2beta1.VizConfigSpec()
+        assert isinstance(self._internal.spec, dashboardv2beta1.VizConfigSpec)
+        if self._internal.spec.field_config is None:
+            self._internal.spec.field_config = dashboardv2beta1.FieldConfigSource()
+        assert isinstance(self._internal.spec.field_config, dashboardv2beta1.FieldConfigSource)
+        if self._internal.spec.field_config.defaults is None:
+            self._internal.spec.field_config.defaults = dashboardv2beta1.FieldConfig()
+        assert isinstance(self._internal.spec.field_config.defaults, dashboardv2beta1.FieldConfig)
+        self._internal.spec.field_config.defaults.description = description
+    
+        return self
+    
+    def path(self, path: str) -> typing.Self:    
+        """
+        An explicit path to the field in the datasource.  When the frame meta includes a path,
+        This will default to `${frame.meta.path}/${field.name}
+        
+        When defined, this value can be used as an identifier within the datasource scope, and
+        may be used to update the results
+        """
+            
+        if self._internal.spec is None:
+            self._internal.spec = dashboardv2beta1.VizConfigSpec()
+        assert isinstance(self._internal.spec, dashboardv2beta1.VizConfigSpec)
+        if self._internal.spec.field_config is None:
+            self._internal.spec.field_config = dashboardv2beta1.FieldConfigSource()
+        assert isinstance(self._internal.spec.field_config, dashboardv2beta1.FieldConfigSource)
+        if self._internal.spec.field_config.defaults is None:
+            self._internal.spec.field_config.defaults = dashboardv2beta1.FieldConfig()
+        assert isinstance(self._internal.spec.field_config.defaults, dashboardv2beta1.FieldConfig)
+        self._internal.spec.field_config.defaults.path = path
+    
+        return self
+    
+    def unit(self, unit: str) -> typing.Self:    
+        """
+        Unit a field should use. The unit you select is applied to all fields except time.
+        You can use the units ID availables in Grafana or a custom unit.
+        Available units in Grafana: https://github.com/grafana/grafana/blob/main/packages/grafana-data/src/valueFormats/categories.ts
+        As custom unit, you can use the following formats:
+        `suffix:<suffix>` for custom unit that should go after value.
+        `prefix:<prefix>` for custom unit that should go before value.
+        `time:<format>` For custom date time formats type for example `time:YYYY-MM-DD`.
+        `si:<base scale><unit characters>` for custom SI units. For example: `si: mF`. This one is a bit more advanced as you can specify both a unit and the source data scale. So if your source data is represented as milli (thousands of) something prefix the unit with that SI scale character.
+        `count:<unit>` for a custom count unit.
+        `currency:<unit>` for custom a currency unit.
+        """
+            
+        if self._internal.spec is None:
+            self._internal.spec = dashboardv2beta1.VizConfigSpec()
+        assert isinstance(self._internal.spec, dashboardv2beta1.VizConfigSpec)
+        if self._internal.spec.field_config is None:
+            self._internal.spec.field_config = dashboardv2beta1.FieldConfigSource()
+        assert isinstance(self._internal.spec.field_config, dashboardv2beta1.FieldConfigSource)
+        if self._internal.spec.field_config.defaults is None:
+            self._internal.spec.field_config.defaults = dashboardv2beta1.FieldConfig()
+        assert isinstance(self._internal.spec.field_config.defaults, dashboardv2beta1.FieldConfig)
+        self._internal.spec.field_config.defaults.unit = unit
+    
+        return self
+    
+    def decimals(self, decimals: float) -> typing.Self:    
+        """
+        Specify the number of decimals Grafana includes in the rendered value.
+        If you leave this field blank, Grafana automatically truncates the number of decimals based on the value.
+        For example 1.1234 will display as 1.12 and 100.456 will display as 100.
+        To display all decimals, set the unit to `String`.
+        """
+            
+        if self._internal.spec is None:
+            self._internal.spec = dashboardv2beta1.VizConfigSpec()
+        assert isinstance(self._internal.spec, dashboardv2beta1.VizConfigSpec)
+        if self._internal.spec.field_config is None:
+            self._internal.spec.field_config = dashboardv2beta1.FieldConfigSource()
+        assert isinstance(self._internal.spec.field_config, dashboardv2beta1.FieldConfigSource)
+        if self._internal.spec.field_config.defaults is None:
+            self._internal.spec.field_config.defaults = dashboardv2beta1.FieldConfig()
+        assert isinstance(self._internal.spec.field_config.defaults, dashboardv2beta1.FieldConfig)
+        self._internal.spec.field_config.defaults.decimals = decimals
+    
+        return self
+    
+    def min(self, min_val: float) -> typing.Self:    
+        """
+        The minimum value used in percentage threshold calculations. Leave blank for auto calculation based on all series and fields.
+        """
+            
+        if self._internal.spec is None:
+            self._internal.spec = dashboardv2beta1.VizConfigSpec()
+        assert isinstance(self._internal.spec, dashboardv2beta1.VizConfigSpec)
+        if self._internal.spec.field_config is None:
+            self._internal.spec.field_config = dashboardv2beta1.FieldConfigSource()
+        assert isinstance(self._internal.spec.field_config, dashboardv2beta1.FieldConfigSource)
+        if self._internal.spec.field_config.defaults is None:
+            self._internal.spec.field_config.defaults = dashboardv2beta1.FieldConfig()
+        assert isinstance(self._internal.spec.field_config.defaults, dashboardv2beta1.FieldConfig)
+        self._internal.spec.field_config.defaults.min_val = min_val
+    
+        return self
+    
+    def max(self, max_val: float) -> typing.Self:    
+        """
+        The maximum value used in percentage threshold calculations. Leave blank for auto calculation based on all series and fields.
+        """
+            
+        if self._internal.spec is None:
+            self._internal.spec = dashboardv2beta1.VizConfigSpec()
+        assert isinstance(self._internal.spec, dashboardv2beta1.VizConfigSpec)
+        if self._internal.spec.field_config is None:
+            self._internal.spec.field_config = dashboardv2beta1.FieldConfigSource()
+        assert isinstance(self._internal.spec.field_config, dashboardv2beta1.FieldConfigSource)
+        if self._internal.spec.field_config.defaults is None:
+            self._internal.spec.field_config.defaults = dashboardv2beta1.FieldConfig()
+        assert isinstance(self._internal.spec.field_config.defaults, dashboardv2beta1.FieldConfig)
+        self._internal.spec.field_config.defaults.max_val = max_val
+    
+        return self
+    
+    def mappings(self, mappings: list[dashboardv2beta1.ValueMapping]) -> typing.Self:    
+        """
+        Convert input values into a display string
+        """
+            
+        if self._internal.spec is None:
+            self._internal.spec = dashboardv2beta1.VizConfigSpec()
+        assert isinstance(self._internal.spec, dashboardv2beta1.VizConfigSpec)
+        if self._internal.spec.field_config is None:
+            self._internal.spec.field_config = dashboardv2beta1.FieldConfigSource()
+        assert isinstance(self._internal.spec.field_config, dashboardv2beta1.FieldConfigSource)
+        if self._internal.spec.field_config.defaults is None:
+            self._internal.spec.field_config.defaults = dashboardv2beta1.FieldConfig()
+        assert isinstance(self._internal.spec.field_config.defaults, dashboardv2beta1.FieldConfig)
+        self._internal.spec.field_config.defaults.mappings = mappings
+    
+        return self
+    
+    def thresholds(self, thresholds: cogbuilder.Builder[dashboardv2beta1.ThresholdsConfig]) -> typing.Self:    
+        """
+        Map numeric values to states
+        """
+            
+        if self._internal.spec is None:
+            self._internal.spec = dashboardv2beta1.VizConfigSpec()
+        assert isinstance(self._internal.spec, dashboardv2beta1.VizConfigSpec)
+        if self._internal.spec.field_config is None:
+            self._internal.spec.field_config = dashboardv2beta1.FieldConfigSource()
+        assert isinstance(self._internal.spec.field_config, dashboardv2beta1.FieldConfigSource)
+        if self._internal.spec.field_config.defaults is None:
+            self._internal.spec.field_config.defaults = dashboardv2beta1.FieldConfig()
+        assert isinstance(self._internal.spec.field_config.defaults, dashboardv2beta1.FieldConfig)
+        thresholds_resource = thresholds.build()
+        self._internal.spec.field_config.defaults.thresholds = thresholds_resource
+    
+        return self
+    
+    def color_scheme(self, color: cogbuilder.Builder[dashboardv2beta1.FieldColor]) -> typing.Self:    
+        """
+        Panel color configuration
+        """
+            
+        if self._internal.spec is None:
+            self._internal.spec = dashboardv2beta1.VizConfigSpec()
+        assert isinstance(self._internal.spec, dashboardv2beta1.VizConfigSpec)
+        if self._internal.spec.field_config is None:
+            self._internal.spec.field_config = dashboardv2beta1.FieldConfigSource()
+        assert isinstance(self._internal.spec.field_config, dashboardv2beta1.FieldConfigSource)
+        if self._internal.spec.field_config.defaults is None:
+            self._internal.spec.field_config.defaults = dashboardv2beta1.FieldConfig()
+        assert isinstance(self._internal.spec.field_config.defaults, dashboardv2beta1.FieldConfig)
+        color_resource = color.build()
+        self._internal.spec.field_config.defaults.color = color_resource
+    
+        return self
+    
+    def data_links(self, links: list[object]) -> typing.Self:    
+        """
+        The behavior when clicking on a result
+        """
+            
+        if self._internal.spec is None:
+            self._internal.spec = dashboardv2beta1.VizConfigSpec()
+        assert isinstance(self._internal.spec, dashboardv2beta1.VizConfigSpec)
+        if self._internal.spec.field_config is None:
+            self._internal.spec.field_config = dashboardv2beta1.FieldConfigSource()
+        assert isinstance(self._internal.spec.field_config, dashboardv2beta1.FieldConfigSource)
+        if self._internal.spec.field_config.defaults is None:
+            self._internal.spec.field_config.defaults = dashboardv2beta1.FieldConfig()
+        assert isinstance(self._internal.spec.field_config.defaults, dashboardv2beta1.FieldConfig)
+        self._internal.spec.field_config.defaults.links = links
+    
+        return self
+    
+    def actions(self, actions: list[cogbuilder.Builder[dashboardv2beta1.Action]]) -> typing.Self:    
+        """
+        Define interactive HTTP requests that can be triggered from data visualizations.
+        """
+            
+        if self._internal.spec is None:
+            self._internal.spec = dashboardv2beta1.VizConfigSpec()
+        assert isinstance(self._internal.spec, dashboardv2beta1.VizConfigSpec)
+        if self._internal.spec.field_config is None:
+            self._internal.spec.field_config = dashboardv2beta1.FieldConfigSource()
+        assert isinstance(self._internal.spec.field_config, dashboardv2beta1.FieldConfigSource)
+        if self._internal.spec.field_config.defaults is None:
+            self._internal.spec.field_config.defaults = dashboardv2beta1.FieldConfig()
+        assert isinstance(self._internal.spec.field_config.defaults, dashboardv2beta1.FieldConfig)
+        actions_resources = [r1.build() for r1 in actions]
+        self._internal.spec.field_config.defaults.actions = actions_resources
+    
+        return self
+    
+    def no_value(self, no_value: str) -> typing.Self:    
+        """
+        Alternative to empty string
+        """
+            
+        if self._internal.spec is None:
+            self._internal.spec = dashboardv2beta1.VizConfigSpec()
+        assert isinstance(self._internal.spec, dashboardv2beta1.VizConfigSpec)
+        if self._internal.spec.field_config is None:
+            self._internal.spec.field_config = dashboardv2beta1.FieldConfigSource()
+        assert isinstance(self._internal.spec.field_config, dashboardv2beta1.FieldConfigSource)
+        if self._internal.spec.field_config.defaults is None:
+            self._internal.spec.field_config.defaults = dashboardv2beta1.FieldConfig()
+        assert isinstance(self._internal.spec.field_config.defaults, dashboardv2beta1.FieldConfig)
+        self._internal.spec.field_config.defaults.no_value = no_value
+    
+        return self
+    
+    def field_min_max(self, field_min_max: bool) -> typing.Self:    
+        """
+        Calculate min max per field
+        """
+            
+        if self._internal.spec is None:
+            self._internal.spec = dashboardv2beta1.VizConfigSpec()
+        assert isinstance(self._internal.spec, dashboardv2beta1.VizConfigSpec)
+        if self._internal.spec.field_config is None:
+            self._internal.spec.field_config = dashboardv2beta1.FieldConfigSource()
+        assert isinstance(self._internal.spec.field_config, dashboardv2beta1.FieldConfigSource)
+        if self._internal.spec.field_config.defaults is None:
+            self._internal.spec.field_config.defaults = dashboardv2beta1.FieldConfig()
+        assert isinstance(self._internal.spec.field_config.defaults, dashboardv2beta1.FieldConfig)
+        self._internal.spec.field_config.defaults.field_min_max = field_min_max
+    
+        return self
+    
+    def null_value_mode(self, null_value_mode: dashboardv2beta1.NullValueMode) -> typing.Self:    
+        """
+        How null values should be handled when calculating field stats
+        "null" - Include null values, "connected" - Ignore nulls, "null as zero" - Treat nulls as zero
+        """
+            
+        if self._internal.spec is None:
+            self._internal.spec = dashboardv2beta1.VizConfigSpec()
+        assert isinstance(self._internal.spec, dashboardv2beta1.VizConfigSpec)
+        if self._internal.spec.field_config is None:
+            self._internal.spec.field_config = dashboardv2beta1.FieldConfigSource()
+        assert isinstance(self._internal.spec.field_config, dashboardv2beta1.FieldConfigSource)
+        if self._internal.spec.field_config.defaults is None:
+            self._internal.spec.field_config.defaults = dashboardv2beta1.FieldConfig()
+        assert isinstance(self._internal.spec.field_config.defaults, dashboardv2beta1.FieldConfig)
+        self._internal.spec.field_config.defaults.null_value_mode = null_value_mode
+    
+        return self
+    
+    def overrides(self, overrides: list[cogbuilder.Builder[dashboardv2beta1.Dashboardv2beta1FieldConfigSourceOverrides]]) -> typing.Self:    
+        """
+        Overrides are the options applied to specific fields overriding the defaults.
+        """
+            
+        if self._internal.spec is None:
+            self._internal.spec = dashboardv2beta1.VizConfigSpec()
+        assert isinstance(self._internal.spec, dashboardv2beta1.VizConfigSpec)
+        if self._internal.spec.field_config is None:
+            self._internal.spec.field_config = dashboardv2beta1.FieldConfigSource()
+        assert isinstance(self._internal.spec.field_config, dashboardv2beta1.FieldConfigSource)
+        overrides_resources = [r1.build() for r1 in overrides]
+        self._internal.spec.field_config.overrides = overrides_resources
+    
+        return self
+    
+    def override(self, override: cogbuilder.Builder[dashboardv2beta1.Dashboardv2beta1FieldConfigSourceOverrides]) -> typing.Self:    
+        """
+        Overrides are the options applied to specific fields overriding the defaults.
+        """
+            
+        if self._internal.spec is None:
+            self._internal.spec = dashboardv2beta1.VizConfigSpec()
+        assert isinstance(self._internal.spec, dashboardv2beta1.VizConfigSpec)
+        if self._internal.spec.field_config is None:
+            self._internal.spec.field_config = dashboardv2beta1.FieldConfigSource()
+        assert isinstance(self._internal.spec.field_config, dashboardv2beta1.FieldConfigSource)
+        if self._internal.spec.field_config.overrides is None:
+            self._internal.spec.field_config.overrides = []
+        
+        override_resource = override.build()
+        self._internal.spec.field_config.overrides.append(override_resource)
+    
+        return self
+    
+    def override_by_name(self, name: str, properties: list[dashboardv2beta1.DynamicConfigValue]) -> typing.Self:    
+        """
+        Adds override rules for a specific field, referred to by its name.
+        """
+            
+        if self._internal.spec is None:
+            self._internal.spec = dashboardv2beta1.VizConfigSpec()
+        assert isinstance(self._internal.spec, dashboardv2beta1.VizConfigSpec)
+        if self._internal.spec.field_config is None:
+            self._internal.spec.field_config = dashboardv2beta1.FieldConfigSource()
+        assert isinstance(self._internal.spec.field_config, dashboardv2beta1.FieldConfigSource)
+        if self._internal.spec.field_config.overrides is None:
+            self._internal.spec.field_config.overrides = []
+        
+        self._internal.spec.field_config.overrides.append(dashboardv2beta1.Dashboardv2beta1FieldConfigSourceOverrides(
+            matcher=dashboardv2beta1.MatcherConfig(
+            id_val="byName",
+            options=name,
+        ),
+            properties=properties,
+        ))
+    
+        return self
+    
+    def override_by_regexp(self, regexp: str, properties: list[dashboardv2beta1.DynamicConfigValue]) -> typing.Self:    
+        """
+        Adds override rules for the fields whose name match the given regexp.
+        """
+            
+        if self._internal.spec is None:
+            self._internal.spec = dashboardv2beta1.VizConfigSpec()
+        assert isinstance(self._internal.spec, dashboardv2beta1.VizConfigSpec)
+        if self._internal.spec.field_config is None:
+            self._internal.spec.field_config = dashboardv2beta1.FieldConfigSource()
+        assert isinstance(self._internal.spec.field_config, dashboardv2beta1.FieldConfigSource)
+        if self._internal.spec.field_config.overrides is None:
+            self._internal.spec.field_config.overrides = []
+        
+        self._internal.spec.field_config.overrides.append(dashboardv2beta1.Dashboardv2beta1FieldConfigSourceOverrides(
+            matcher=dashboardv2beta1.MatcherConfig(
+            id_val="byRegexp",
+            options=regexp,
+        ),
+            properties=properties,
+        ))
+    
+        return self
+    
+    def override_by_field_type(self, field_type: str, properties: list[dashboardv2beta1.DynamicConfigValue]) -> typing.Self:    
+        """
+        Adds override rules for all the fields of the given type.
+        """
+            
+        if self._internal.spec is None:
+            self._internal.spec = dashboardv2beta1.VizConfigSpec()
+        assert isinstance(self._internal.spec, dashboardv2beta1.VizConfigSpec)
+        if self._internal.spec.field_config is None:
+            self._internal.spec.field_config = dashboardv2beta1.FieldConfigSource()
+        assert isinstance(self._internal.spec.field_config, dashboardv2beta1.FieldConfigSource)
+        if self._internal.spec.field_config.overrides is None:
+            self._internal.spec.field_config.overrides = []
+        
+        self._internal.spec.field_config.overrides.append(dashboardv2beta1.Dashboardv2beta1FieldConfigSourceOverrides(
+            matcher=dashboardv2beta1.MatcherConfig(
+            id_val="byType",
+            options=field_type,
+        ),
+            properties=properties,
+        ))
+    
+        return self
+    
+    def override_by_query(self, query_ref_id: str, properties: list[dashboardv2beta1.DynamicConfigValue]) -> typing.Self:    
+        if self._internal.spec is None:
+            self._internal.spec = dashboardv2beta1.VizConfigSpec()
+        assert isinstance(self._internal.spec, dashboardv2beta1.VizConfigSpec)
+        if self._internal.spec.field_config is None:
+            self._internal.spec.field_config = dashboardv2beta1.FieldConfigSource()
+        assert isinstance(self._internal.spec.field_config, dashboardv2beta1.FieldConfigSource)
+        if self._internal.spec.field_config.overrides is None:
+            self._internal.spec.field_config.overrides = []
+        
+        self._internal.spec.field_config.overrides.append(dashboardv2beta1.Dashboardv2beta1FieldConfigSourceOverrides(
+            matcher=dashboardv2beta1.MatcherConfig(
+            id_val="byFrameRefID",
+            options=query_ref_id,
+        ),
+            properties=properties,
+        ))
+    
+        return self
+    
+    def view(self, view: cogbuilder.Builder[geomap.MapViewConfig]) -> typing.Self:    
+        if self._internal.spec is None:
+            self._internal.spec = dashboardv2beta1.VizConfigSpec()
+        assert isinstance(self._internal.spec, dashboardv2beta1.VizConfigSpec)
+        if self._internal.spec.options is None:
+            self._internal.spec.options = geomap.Options()
+        assert isinstance(self._internal.spec.options, geomap.Options)
+        view_resource = view.build()
+        self._internal.spec.options.view = view_resource
+    
+        return self
+    
+    def controls(self, controls: cogbuilder.Builder[geomap.ControlsOptions]) -> typing.Self:    
+        if self._internal.spec is None:
+            self._internal.spec = dashboardv2beta1.VizConfigSpec()
+        assert isinstance(self._internal.spec, dashboardv2beta1.VizConfigSpec)
+        if self._internal.spec.options is None:
+            self._internal.spec.options = geomap.Options()
+        assert isinstance(self._internal.spec.options, geomap.Options)
+        controls_resource = controls.build()
+        self._internal.spec.options.controls = controls_resource
+    
+        return self
+    
+    def basemap(self, basemap: cogbuilder.Builder[common.MapLayerOptions]) -> typing.Self:    
+        if self._internal.spec is None:
+            self._internal.spec = dashboardv2beta1.VizConfigSpec()
+        assert isinstance(self._internal.spec, dashboardv2beta1.VizConfigSpec)
+        if self._internal.spec.options is None:
+            self._internal.spec.options = geomap.Options()
+        assert isinstance(self._internal.spec.options, geomap.Options)
+        basemap_resource = basemap.build()
+        self._internal.spec.options.basemap = basemap_resource
+    
+        return self
+    
+    def layers(self, layers: list[cogbuilder.Builder[common.MapLayerOptions]]) -> typing.Self:    
+        if self._internal.spec is None:
+            self._internal.spec = dashboardv2beta1.VizConfigSpec()
+        assert isinstance(self._internal.spec, dashboardv2beta1.VizConfigSpec)
+        if self._internal.spec.options is None:
+            self._internal.spec.options = geomap.Options()
+        assert isinstance(self._internal.spec.options, geomap.Options)
+        layers_resources = [r1.build() for r1 in layers]
+        self._internal.spec.options.layers = layers_resources
+    
+        return self
+    
+    def tooltip(self, tooltip: cogbuilder.Builder[geomap.TooltipOptions]) -> typing.Self:    
+        if self._internal.spec is None:
+            self._internal.spec = dashboardv2beta1.VizConfigSpec()
+        assert isinstance(self._internal.spec, dashboardv2beta1.VizConfigSpec)
+        if self._internal.spec.options is None:
+            self._internal.spec.options = geomap.Options()
+        assert isinstance(self._internal.spec.options, geomap.Options)
+        tooltip_resource = tooltip.build()
+        self._internal.spec.options.tooltip = tooltip_resource
     
         return self
     
