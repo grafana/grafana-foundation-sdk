@@ -458,7 +458,7 @@ func (resource Options) Validate() error {
 // This configuration describes how to unmarshal it, convert it to code, …
 func VariantConfig() variants.PanelcfgConfig {
 	return variants.PanelcfgConfig{
-		Identifier: "nodegraph",
+		Identifier: "nodeGraph",
 		OptionsUnmarshaler: func(raw []byte) (any, error) {
 			options := &Options{}
 
@@ -481,7 +481,6 @@ func VariantConfig() variants.PanelcfgConfig {
 			if panel, ok := inputPanel.(*dashboard.Panel); ok {
 				return PanelConverter(*panel)
 			}
-
 			return PanelConverter(inputPanel.(dashboard.Panel))
 		},
 	}

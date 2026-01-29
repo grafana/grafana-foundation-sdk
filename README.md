@@ -7,6 +7,7 @@ as-code.
 of versions of Grafana, in the following languages:
 
 * Go
+* Java
 * PHP
 * Python
 * Typescript

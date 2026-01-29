@@ -12,7 +12,7 @@ class CSVWave:
     time_step: typing.Optional[int]
     values_csv: typing.Optional[str]
 
-    def __init__(self, labels: typing.Optional[str] = None, name: typing.Optional[str] = None, time_step: typing.Optional[int] = None, values_csv: typing.Optional[str] = None):
+    def __init__(self, labels: typing.Optional[str] = None, name: typing.Optional[str] = None, time_step: typing.Optional[int] = None, values_csv: typing.Optional[str] = None) -> None:
         self.labels = labels
         self.name = name
         self.time_step = time_step
@@ -58,7 +58,7 @@ class NodesQuery:
     #  - `"feature_showcase"` 
     type_val: typing.Optional[typing.Literal["random", "random edges", "response_medium", "response_small", "feature_showcase"]]
 
-    def __init__(self, count: typing.Optional[int] = None, seed: typing.Optional[int] = None, type_val: typing.Optional[typing.Literal["random", "random edges", "response_medium", "response_small", "feature_showcase"]] = None):
+    def __init__(self, count: typing.Optional[int] = None, seed: typing.Optional[int] = None, type_val: typing.Optional[typing.Literal["random", "random edges", "response_medium", "response_small", "feature_showcase"]] = None) -> None:
         self.count = count
         self.seed = seed
         self.type_val = type_val
@@ -95,7 +95,7 @@ class PulseWaveQuery:
     on_value: typing.Optional[float]
     time_step: typing.Optional[int]
 
-    def __init__(self, off_count: typing.Optional[int] = None, off_value: typing.Optional[float] = None, on_count: typing.Optional[int] = None, on_value: typing.Optional[float] = None, time_step: typing.Optional[int] = None):
+    def __init__(self, off_count: typing.Optional[int] = None, off_value: typing.Optional[float] = None, on_count: typing.Optional[int] = None, on_value: typing.Optional[float] = None, time_step: typing.Optional[int] = None) -> None:
         self.off_count = off_count
         self.off_value = off_value
         self.on_count = on_count
@@ -156,7 +156,7 @@ class ResultAssertions:
     # contract documentation https://grafana.github.io/dataplane/contract/.
     type_version: list[int]
 
-    def __init__(self, max_frames: typing.Optional[int] = None, type_val: typing.Optional[typing.Literal["", "timeseries-wide", "timeseries-long", "timeseries-many", "timeseries-multi", "directory-listing", "table", "numeric-wide", "numeric-multi", "numeric-long", "log-lines"]] = None, type_version: typing.Optional[list[int]] = None):
+    def __init__(self, max_frames: typing.Optional[int] = None, type_val: typing.Optional[typing.Literal["", "timeseries-wide", "timeseries-long", "timeseries-many", "timeseries-multi", "directory-listing", "table", "numeric-wide", "numeric-multi", "numeric-long", "log-lines"]] = None, type_version: typing.Optional[list[int]] = None) -> None:
         self.max_frames = max_frames
         self.type_val = type_val
         self.type_version = type_version if type_version is not None else []
@@ -190,7 +190,7 @@ class Key:
     type_val: str
     uid: typing.Optional[str]
 
-    def __init__(self, tick: float = 0, type_val: str = "", uid: typing.Optional[str] = None):
+    def __init__(self, tick: float = 0, type_val: str = "", uid: typing.Optional[str] = None) -> None:
         self.tick = tick
         self.type_val = type_val
         self.uid = uid
@@ -224,7 +224,7 @@ class SimulationQuery:
     last: typing.Optional[bool]
     stream: typing.Optional[bool]
 
-    def __init__(self, config: typing.Optional[object] = None, key: typing.Optional['Key'] = None, last: typing.Optional[bool] = None, stream: typing.Optional[bool] = None):
+    def __init__(self, config: typing.Optional[object] = None, key: typing.Optional['Key'] = None, last: typing.Optional[bool] = None, stream: typing.Optional[bool] = None) -> None:
         self.config = config
         self.key = key if key is not None else Key()
         self.last = last
@@ -271,7 +271,7 @@ class StreamingQuery:
     type_val: typing.Literal["fetch", "logs", "signal", "traces"]
     url: typing.Optional[str]
 
-    def __init__(self, bands: typing.Optional[int] = None, noise: float = 0, speed: float = 0, spread: float = 0, type_val: typing.Optional[typing.Literal["fetch", "logs", "signal", "traces"]] = None, url: typing.Optional[str] = None):
+    def __init__(self, bands: typing.Optional[int] = None, noise: float = 0, speed: float = 0, spread: float = 0, type_val: typing.Optional[typing.Literal["fetch", "logs", "signal", "traces"]] = None, url: typing.Optional[str] = None) -> None:
         self.bands = bands
         self.noise = noise
         self.speed = speed
@@ -318,7 +318,7 @@ class TimeRange:
     # To is the end time of the query.
     to: str
 
-    def __init__(self, from_val: str = "now-6h", to: str = "now"):
+    def __init__(self, from_val: str = "now-6h", to: str = "now") -> None:
         self.from_val = from_val
         self.to = to
 
@@ -347,7 +347,7 @@ class USAQuery:
     period: typing.Optional[str]
     states: typing.Optional[list[str]]
 
-    def __init__(self, fields: typing.Optional[list[str]] = None, mode: typing.Optional[str] = None, period: typing.Optional[str] = None, states: typing.Optional[list[str]] = None):
+    def __init__(self, fields: typing.Optional[list[str]] = None, mode: typing.Optional[str] = None, period: typing.Optional[str] = None, states: typing.Optional[list[str]] = None) -> None:
         self.fields = fields
         self.mode = mode
         self.period = period
@@ -479,7 +479,7 @@ class Dataquery(cogvariants.Dataquery):
     usa: typing.Optional['USAQuery']
     with_nil: typing.Optional[bool]
 
-    def __init__(self, alias: typing.Optional[str] = None, channel: typing.Optional[str] = None, csv_content: typing.Optional[str] = None, csv_file_name: typing.Optional[str] = None, csv_wave: typing.Optional[list['CSVWave']] = None, datasource: typing.Optional[dashboard.DataSourceRef] = None, drop_percent: typing.Optional[float] = None, error_source: typing.Optional[typing.Literal["plugin", "downstream"]] = None, error_type: typing.Optional[typing.Literal["frontend_exception", "frontend_observable", "server_panic"]] = None, flamegraph_diff: typing.Optional[bool] = None, hide: typing.Optional[bool] = None, interval_ms: typing.Optional[float] = None, labels: typing.Optional[str] = None, level_column: typing.Optional[bool] = None, lines: typing.Optional[int] = None, max_val: typing.Optional[float] = None, max_data_points: typing.Optional[int] = None, min_val: typing.Optional[float] = None, nodes: typing.Optional['NodesQuery'] = None, noise: typing.Optional[float] = None, points: typing.Optional[list[list[object]]] = None, pulse_wave: typing.Optional['PulseWaveQuery'] = None, query_type: typing.Optional[str] = None, raw_frame_content: typing.Optional[str] = None, ref_id: typing.Optional[str] = None, result_assertions: typing.Optional['ResultAssertions'] = None, scenario_id: typing.Optional[typing.Literal["annotations", "arrow", "csv_content", "csv_file", "csv_metric_values", "datapoints_outside_range", "error_with_source", "exponential_heatmap_bucket_data", "flame_graph", "grafana_api", "linear_heatmap_bucket_data", "live", "logs", "manual_entry", "no_data_points", "node_graph", "predictable_csv_wave", "predictable_pulse", "random_walk", "random_walk_table", "random_walk_with_error", "raw_frame", "server_error_500", "simulation", "slow_query", "streaming_client", "table_static", "trace", "usa", "variables-query"]] = None, series_count: typing.Optional[int] = None, sim: typing.Optional['SimulationQuery'] = None, span_count: typing.Optional[int] = None, spread: typing.Optional[float] = None, start_value: typing.Optional[float] = None, stream: typing.Optional['StreamingQuery'] = None, string_input: typing.Optional[str] = None, time_range: typing.Optional['TimeRange'] = None, usa: typing.Optional['USAQuery'] = None, with_nil: typing.Optional[bool] = None):
+    def __init__(self, alias: typing.Optional[str] = None, channel: typing.Optional[str] = None, csv_content: typing.Optional[str] = None, csv_file_name: typing.Optional[str] = None, csv_wave: typing.Optional[list['CSVWave']] = None, datasource: typing.Optional[dashboard.DataSourceRef] = None, drop_percent: typing.Optional[float] = None, error_source: typing.Optional[typing.Literal["plugin", "downstream"]] = None, error_type: typing.Optional[typing.Literal["frontend_exception", "frontend_observable", "server_panic"]] = None, flamegraph_diff: typing.Optional[bool] = None, hide: typing.Optional[bool] = None, interval_ms: typing.Optional[float] = None, labels: typing.Optional[str] = None, level_column: typing.Optional[bool] = None, lines: typing.Optional[int] = None, max_val: typing.Optional[float] = None, max_data_points: typing.Optional[int] = None, min_val: typing.Optional[float] = None, nodes: typing.Optional['NodesQuery'] = None, noise: typing.Optional[float] = None, points: typing.Optional[list[list[object]]] = None, pulse_wave: typing.Optional['PulseWaveQuery'] = None, query_type: typing.Optional[str] = None, raw_frame_content: typing.Optional[str] = None, ref_id: typing.Optional[str] = None, result_assertions: typing.Optional['ResultAssertions'] = None, scenario_id: typing.Optional[typing.Literal["annotations", "arrow", "csv_content", "csv_file", "csv_metric_values", "datapoints_outside_range", "error_with_source", "exponential_heatmap_bucket_data", "flame_graph", "grafana_api", "linear_heatmap_bucket_data", "live", "logs", "manual_entry", "no_data_points", "node_graph", "predictable_csv_wave", "predictable_pulse", "random_walk", "random_walk_table", "random_walk_with_error", "raw_frame", "server_error_500", "simulation", "slow_query", "streaming_client", "table_static", "trace", "usa", "variables-query"]] = None, series_count: typing.Optional[int] = None, sim: typing.Optional['SimulationQuery'] = None, span_count: typing.Optional[int] = None, spread: typing.Optional[float] = None, start_value: typing.Optional[float] = None, stream: typing.Optional['StreamingQuery'] = None, string_input: typing.Optional[str] = None, time_range: typing.Optional['TimeRange'] = None, usa: typing.Optional['USAQuery'] = None, with_nil: typing.Optional[bool] = None) -> None:
         self.alias = alias
         self.channel = channel
         self.csv_content = csv_content

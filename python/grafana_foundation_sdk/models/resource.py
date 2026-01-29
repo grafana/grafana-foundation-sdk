@@ -3,13 +3,22 @@
 import typing
 
 
+DashboardV2Beta1: typing.Literal["dashboard.grafana.app/v2beta1"] = "dashboard.grafana.app/v2beta1"
+
+
+DashboardV2Alpha1: typing.Literal["dashboard.grafana.app/v2alpha1"] = "dashboard.grafana.app/v2alpha1"
+
+
+DashboardKind: typing.Literal["Dashboard"] = "Dashboard"
+
+
 class Manifest:
     api_version: str
     kind: str
     metadata: 'Metadata'
     spec: object
 
-    def __init__(self, api_version: str = "", kind: str = "", metadata: typing.Optional['Metadata'] = None, spec: object = None):
+    def __init__(self, api_version: str = "", kind: str = "", metadata: typing.Optional['Metadata'] = None, spec: object = None) -> None:
         self.api_version = api_version
         self.kind = kind
         self.metadata = metadata if metadata is not None else Metadata()
@@ -52,7 +61,7 @@ class Metadata:
     update_timestamp: typing.Optional[str]
     deletion_timestamp: typing.Optional[str]
 
-    def __init__(self, name: str = "", namespace: typing.Optional[str] = None, labels: typing.Optional[dict[str, str]] = None, annotations: typing.Optional[dict[str, str]] = None, uid: typing.Optional[str] = None, resource_version: typing.Optional[str] = None, generation: typing.Optional[int] = None, creation_timestamp: typing.Optional[str] = None, update_timestamp: typing.Optional[str] = None, deletion_timestamp: typing.Optional[str] = None):
+    def __init__(self, name: str = "", namespace: typing.Optional[str] = None, labels: typing.Optional[dict[str, str]] = None, annotations: typing.Optional[dict[str, str]] = None, uid: typing.Optional[str] = None, resource_version: typing.Optional[str] = None, generation: typing.Optional[int] = None, creation_timestamp: typing.Optional[str] = None, update_timestamp: typing.Optional[str] = None, deletion_timestamp: typing.Optional[str] = None) -> None:
         self.name = name
         self.namespace = namespace
         self.labels = labels
