@@ -8,7 +8,7 @@ from ..models import accesspolicy
 class AccessPolicy(cogbuilder.Builder[accesspolicy.AccessPolicy]):
     _internal: accesspolicy.AccessPolicy
 
-    def __init__(self):
+    def __init__(self) -> None:
         self._internal = accesspolicy.AccessPolicy()
 
     def build(self) -> accesspolicy.AccessPolicy:
@@ -56,7 +56,7 @@ class AccessPolicy(cogbuilder.Builder[accesspolicy.AccessPolicy]):
 class ResourceRef(cogbuilder.Builder[accesspolicy.ResourceRef]):
     _internal: accesspolicy.ResourceRef
 
-    def __init__(self):
+    def __init__(self) -> None:
         self._internal = accesspolicy.ResourceRef()
 
     def build(self) -> accesspolicy.ResourceRef:
@@ -80,7 +80,7 @@ class ResourceRef(cogbuilder.Builder[accesspolicy.ResourceRef]):
 class RoleRef(cogbuilder.Builder[accesspolicy.RoleRef]):
     _internal: accesspolicy.RoleRef
 
-    def __init__(self):
+    def __init__(self) -> None:
         self._internal = accesspolicy.RoleRef()
 
     def build(self) -> accesspolicy.RoleRef:
@@ -114,7 +114,7 @@ class RoleRef(cogbuilder.Builder[accesspolicy.RoleRef]):
 class AccessRule(cogbuilder.Builder[accesspolicy.AccessRule]):
     _internal: accesspolicy.AccessRule
 
-    def __init__(self):
+    def __init__(self) -> None:
         self._internal = accesspolicy.AccessRule()
 
     def build(self) -> accesspolicy.AccessRule:

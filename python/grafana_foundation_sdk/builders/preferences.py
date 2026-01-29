@@ -13,7 +13,7 @@ class Preferences(cogbuilder.Builder[preferences.Preferences]):
     
     _internal: preferences.Preferences
 
-    def __init__(self):
+    def __init__(self) -> None:
         self._internal = preferences.Preferences()
 
     def build(self) -> preferences.Preferences:
@@ -93,7 +93,7 @@ class Preferences(cogbuilder.Builder[preferences.Preferences]):
 class QueryHistoryPreference(cogbuilder.Builder[preferences.QueryHistoryPreference]):
     _internal: preferences.QueryHistoryPreference
 
-    def __init__(self):
+    def __init__(self) -> None:
         self._internal = preferences.QueryHistoryPreference()
 
     def build(self) -> preferences.QueryHistoryPreference:
@@ -116,7 +116,7 @@ class QueryHistoryPreference(cogbuilder.Builder[preferences.QueryHistoryPreferen
 class CookiePreferences(cogbuilder.Builder[preferences.CookiePreferences]):
     _internal: preferences.CookiePreferences
 
-    def __init__(self):
+    def __init__(self) -> None:
         self._internal = preferences.CookiePreferences()
 
     def build(self) -> preferences.CookiePreferences:

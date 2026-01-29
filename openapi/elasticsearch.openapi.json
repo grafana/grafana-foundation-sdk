@@ -11,7 +11,7 @@
   "components": {
     "schemas": {
       "BucketAggregation": {
-        "anyOf": [
+        "oneOf": [
           {
             "$ref": "#/components/schemas/DateHistogram"
           },
@@ -47,7 +47,11 @@
             "type": "string"
           },
           "type": {
-            "$ref": "#/components/schemas/BucketAggregationType",
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/BucketAggregationType"
+              }
+            ],
             "default": "date_histogram"
           },
           "settings": {
@@ -99,7 +103,11 @@
             "type": "string"
           },
           "type": {
-            "$ref": "#/components/schemas/BucketAggregationType",
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/BucketAggregationType"
+              }
+            ],
             "default": "histogram"
           },
           "settings": {
@@ -131,7 +139,11 @@
             "type": "string"
           },
           "type": {
-            "$ref": "#/components/schemas/BucketAggregationType",
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/BucketAggregationType"
+              }
+            ],
             "default": "terms"
           },
           "settings": {
@@ -176,7 +188,11 @@
             "type": "string"
           },
           "type": {
-            "$ref": "#/components/schemas/BucketAggregationType",
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/BucketAggregationType"
+              }
+            ],
             "default": "filters"
           },
           "settings": {
@@ -224,7 +240,11 @@
             "type": "string"
           },
           "type": {
-            "$ref": "#/components/schemas/BucketAggregationType",
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/BucketAggregationType"
+              }
+            ],
             "default": "geohash_grid"
           },
           "settings": {
@@ -253,7 +273,11 @@
             "type": "string"
           },
           "type": {
-            "$ref": "#/components/schemas/BucketAggregationType",
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/BucketAggregationType"
+              }
+            ],
             "default": "nested"
           },
           "settings": {
@@ -263,7 +287,7 @@
         }
       },
       "MetricAggregation": {
-        "anyOf": [
+        "oneOf": [
           {
             "$ref": "#/components/schemas/Count"
           },
@@ -295,7 +319,7 @@
         }
       },
       "MetricAggregationType": {
-        "anyOf": [
+        "oneOf": [
           {
             "type": "string",
             "const": "count"
@@ -365,7 +389,7 @@
         "type": "string"
       },
       "PipelineMetricAggregation": {
-        "anyOf": [
+        "oneOf": [
           {
             "$ref": "#/components/schemas/MovingAverage"
           },
@@ -532,7 +556,7 @@
         }
       },
       "InlineScript": {
-        "anyOf": [
+        "oneOf": [
           {
             "type": "string"
           },
@@ -548,7 +572,7 @@
         ]
       },
       "MetricAggregationWithSettings": {
-        "anyOf": [
+        "oneOf": [
           {
             "$ref": "#/components/schemas/BucketScript"
           },
@@ -1435,7 +1459,11 @@
         ],
         "properties": {
           "model": {
-            "$ref": "#/components/schemas/MovingAverageModel",
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/MovingAverageModel"
+              }
+            ],
             "default": "simple"
           },
           "window": {
@@ -1456,7 +1484,11 @@
         ],
         "properties": {
           "model": {
-            "$ref": "#/components/schemas/MovingAverageModel",
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/MovingAverageModel"
+              }
+            ],
             "default": "linear"
           },
           "window": {
@@ -1478,7 +1510,11 @@
         ],
         "properties": {
           "model": {
-            "$ref": "#/components/schemas/MovingAverageModel",
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/MovingAverageModel"
+              }
+            ],
             "default": "ewma"
           },
           "settings": {
@@ -1513,7 +1549,11 @@
         ],
         "properties": {
           "model": {
-            "$ref": "#/components/schemas/MovingAverageModel",
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/MovingAverageModel"
+              }
+            ],
             "default": "holt"
           },
           "settings": {
@@ -1551,7 +1591,11 @@
         ],
         "properties": {
           "model": {
-            "$ref": "#/components/schemas/MovingAverageModel",
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/MovingAverageModel"
+              }
+            ],
             "default": "holt_winters"
           },
           "settings": {

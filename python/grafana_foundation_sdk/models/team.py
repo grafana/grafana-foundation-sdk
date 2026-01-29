@@ -9,7 +9,7 @@ class Team:
     # Email of the team.
     email: typing.Optional[str]
 
-    def __init__(self, name: str = "", email: typing.Optional[str] = None):
+    def __init__(self, name: str = "", email: typing.Optional[str] = None) -> None:
         self.name = name
         self.email = email
 
