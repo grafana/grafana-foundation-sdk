@@ -156,8 +156,11 @@ transformations:
     - '%__config_dir%/compiler/dataqueries_refid.yaml' # To avoid it to conflict with the refid in the dataquery schema.
 
   builders:
-    - '%__config_dir%/veneers'
-    - '%__config_dir%/veneers/dashboardv2'
+    - { path: '%__config_dir%/veneers' }
+    - if: '"%grafana_version%" != "main" && semver("%grafana_version%").LessThan(semver("v12.0.x"))'
+      path: '%__config_dir%/veneers/dashboardv1'
+    - if: '"%grafana_version%" == "main" || semver("%grafana_version%").MoreThanEqual(semver("v12.0.x"))'
+      path: '%__config_dir%/veneers/dashboardv2'
   
   converters: '%__config_dir%/converters/config.yaml'
 

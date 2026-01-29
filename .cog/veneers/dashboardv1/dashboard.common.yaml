@@ -1,0 +1,12 @@
+# yaml-language-server: $schema=https://raw.githubusercontent.com/grafana/cog/main/schemas/veneers.json
+
+# This file is loaded when only dashboardv1 are present.
+# Its purpose is to remove the "fieldconfig" and "options" builders leftover from the composability veneer.
+# The veneer doesn't remove these builders itself because they're used by dashboardv2 composability.
+
+language: all
+
+package: dashboard
+
+builders:
+  - omit: { by_variant: panelcfg }
