@@ -1,0 +1,425 @@
+---
+title: <span class="badge builder"></span> VisualizationBuilder
+---
+# <span class="badge builder"></span> VisualizationBuilder
+
+## Constructor
+
+```php
+new VisualizationBuilder()
+```
+## Methods
+
+### <span class="badge object-method"></span> build
+
+Builds the object.
+
+```php
+build()
+```
+
+### <span class="badge object-method"></span> actions
+
+Define interactive HTTP requests that can be triggered from data visualizations.
+
+@param array<\Grafana\Foundation\Cog\Builder<\Grafana\Foundation\Dashboardv2beta1\Action>> $actions
+
+```php
+actions(array $actions)
+```
+
+### <span class="badge object-method"></span> colorScheme
+
+Panel color configuration
+
+@param \Grafana\Foundation\Cog\Builder<\Grafana\Foundation\Dashboardv2beta1\FieldColor> $color
+
+```php
+colorScheme(\Grafana\Foundation\Cog\Builder $color)
+```
+
+### <span class="badge object-method"></span> controlsStorageKey
+
+```php
+controlsStorageKey(string $controlsStorageKey)
+```
+
+### <span class="badge object-method"></span> dataLinks
+
+The behavior when clicking on a result
+
+@param array<mixed> $links
+
+```php
+dataLinks(array $links)
+```
+
+### <span class="badge object-method"></span> decimals
+
+Specify the number of decimals Grafana includes in the rendered value.
+
+If you leave this field blank, Grafana automatically truncates the number of decimals based on the value.
+
+For example 1.1234 will display as 1.12 and 100.456 will display as 100.
+
+To display all decimals, set the unit to `String`.
+
+```php
+decimals(float $decimals)
+```
+
+### <span class="badge object-method"></span> dedupStrategy
+
+```php
+dedupStrategy(\Grafana\Foundation\Common\LogsDedupStrategy $dedupStrategy)
+```
+
+### <span class="badge object-method"></span> description
+
+Human readable field metadata
+
+```php
+description(string $description)
+```
+
+### <span class="badge object-method"></span> displayName
+
+The display value for this field.  This supports template variables blank is auto
+
+```php
+displayName(string $displayName)
+```
+
+### <span class="badge object-method"></span> displayNameFromDS
+
+This can be used by data sources that return and explicit naming structure for values and labels
+
+When this property is configured, this value is used rather than the default naming strategy.
+
+```php
+displayNameFromDS(string $displayNameFromDS)
+```
+
+### <span class="badge object-method"></span> displayedFields
+
+@param array<string> $displayedFields
+
+```php
+displayedFields(array $displayedFields)
+```
+
+### <span class="badge object-method"></span> enableInfiniteScrolling
+
+```php
+enableInfiniteScrolling(bool $enableInfiniteScrolling)
+```
+
+### <span class="badge object-method"></span> enableLogDetails
+
+```php
+enableLogDetails(bool $enableLogDetails)
+```
+
+### <span class="badge object-method"></span> fieldMinMax
+
+Calculate min max per field
+
+```php
+fieldMinMax(bool $fieldMinMax)
+```
+
+### <span class="badge object-method"></span> isFilterLabelActive
+
+@param mixed $isFilterLabelActive
+
+```php
+isFilterLabelActive($isFilterLabelActive)
+```
+
+### <span class="badge object-method"></span> logRowMenuIconsAfter
+
+@param mixed $logRowMenuIconsAfter
+
+```php
+logRowMenuIconsAfter($logRowMenuIconsAfter)
+```
+
+### <span class="badge object-method"></span> logRowMenuIconsBefore
+
+@param mixed $logRowMenuIconsBefore
+
+```php
+logRowMenuIconsBefore($logRowMenuIconsBefore)
+```
+
+### <span class="badge object-method"></span> mappings
+
+Convert input values into a display string
+
+@param array<\Grafana\Foundation\Dashboardv2beta1\ValueMap|\Grafana\Foundation\Dashboardv2beta1\RangeMap|\Grafana\Foundation\Dashboardv2beta1\RegexMap|\Grafana\Foundation\Dashboardv2beta1\SpecialValueMap> $mappings
+
+```php
+mappings(array $mappings)
+```
+
+### <span class="badge object-method"></span> max
+
+The maximum value used in percentage threshold calculations. Leave blank for auto calculation based on all series and fields.
+
+```php
+max(float $max)
+```
+
+### <span class="badge object-method"></span> min
+
+The minimum value used in percentage threshold calculations. Leave blank for auto calculation based on all series and fields.
+
+```php
+min(float $min)
+```
+
+### <span class="badge object-method"></span> noValue
+
+Alternative to empty string
+
+```php
+noValue(string $noValue)
+```
+
+### <span class="badge object-method"></span> nullValueMode
+
+How null values should be handled when calculating field stats
+
+"null" - Include null values, "connected" - Ignore nulls, "null as zero" - Treat nulls as zero
+
+```php
+nullValueMode(\Grafana\Foundation\Dashboardv2beta1\NullValueMode $nullValueMode)
+```
+
+### <span class="badge object-method"></span> onClickFilterLabel
+
+TODO: figure out how to define callbacks
+
+@param mixed $onClickFilterLabel
+
+```php
+onClickFilterLabel($onClickFilterLabel)
+```
+
+### <span class="badge object-method"></span> onClickFilterOutLabel
+
+@param mixed $onClickFilterOutLabel
+
+```php
+onClickFilterOutLabel($onClickFilterOutLabel)
+```
+
+### <span class="badge object-method"></span> onClickFilterOutString
+
+@param mixed $onClickFilterOutString
+
+```php
+onClickFilterOutString($onClickFilterOutString)
+```
+
+### <span class="badge object-method"></span> onClickFilterString
+
+@param mixed $onClickFilterString
+
+```php
+onClickFilterString($onClickFilterString)
+```
+
+### <span class="badge object-method"></span> onClickHideField
+
+@param mixed $onClickHideField
+
+```php
+onClickHideField($onClickHideField)
+```
+
+### <span class="badge object-method"></span> onClickShowField
+
+@param mixed $onClickShowField
+
+```php
+onClickShowField($onClickShowField)
+```
+
+### <span class="badge object-method"></span> onLogOptionsChange
+
+@param mixed $onLogOptionsChange
+
+```php
+onLogOptionsChange($onLogOptionsChange)
+```
+
+### <span class="badge object-method"></span> onNewLogsReceived
+
+@param mixed $onNewLogsReceived
+
+```php
+onNewLogsReceived($onNewLogsReceived)
+```
+
+### <span class="badge object-method"></span> override
+
+Overrides are the options applied to specific fields overriding the defaults.
+
+@param \Grafana\Foundation\Cog\Builder<\Grafana\Foundation\Dashboardv2beta1\Dashboardv2beta1FieldConfigSourceOverrides> $override
+
+```php
+override(\Grafana\Foundation\Cog\Builder $override)
+```
+
+### <span class="badge object-method"></span> overrideByFieldType
+
+Adds override rules for all the fields of the given type.
+
+@param array<\Grafana\Foundation\Dashboardv2beta1\DynamicConfigValue> $properties
+
+```php
+overrideByFieldType(string $fieldType, array $properties)
+```
+
+### <span class="badge object-method"></span> overrideByName
+
+Adds override rules for a specific field, referred to by its name.
+
+@param array<\Grafana\Foundation\Dashboardv2beta1\DynamicConfigValue> $properties
+
+```php
+overrideByName(string $name, array $properties)
+```
+
+### <span class="badge object-method"></span> overrideByQuery
+
+@param array<\Grafana\Foundation\Dashboardv2beta1\DynamicConfigValue> $properties
+
+```php
+overrideByQuery(string $queryRefId, array $properties)
+```
+
+### <span class="badge object-method"></span> overrideByRegexp
+
+Adds override rules for the fields whose name match the given regexp.
+
+@param array<\Grafana\Foundation\Dashboardv2beta1\DynamicConfigValue> $properties
+
+```php
+overrideByRegexp(string $regexp, array $properties)
+```
+
+### <span class="badge object-method"></span> overrides
+
+Overrides are the options applied to specific fields overriding the defaults.
+
+@param array<\Grafana\Foundation\Cog\Builder<\Grafana\Foundation\Dashboardv2beta1\Dashboardv2beta1FieldConfigSourceOverrides>> $overrides
+
+```php
+overrides(array $overrides)
+```
+
+### <span class="badge object-method"></span> path
+
+An explicit path to the field in the datasource.  When the frame meta includes a path,
+
+This will default to `${frame.meta.path}/${field.name}
+
+
+
+When defined, this value can be used as an identifier within the datasource scope, and
+
+may be used to update the results
+
+```php
+path(string $path)
+```
+
+### <span class="badge object-method"></span> prettifyLogMessage
+
+```php
+prettifyLogMessage(bool $prettifyLogMessage)
+```
+
+### <span class="badge object-method"></span> showCommonLabels
+
+```php
+showCommonLabels(bool $showCommonLabels)
+```
+
+### <span class="badge object-method"></span> showControls
+
+```php
+showControls(bool $showControls)
+```
+
+### <span class="badge object-method"></span> showLabels
+
+```php
+showLabels(bool $showLabels)
+```
+
+### <span class="badge object-method"></span> showLogContextToggle
+
+```php
+showLogContextToggle(bool $showLogContextToggle)
+```
+
+### <span class="badge object-method"></span> showTime
+
+```php
+showTime(bool $showTime)
+```
+
+### <span class="badge object-method"></span> sortOrder
+
+```php
+sortOrder(\Grafana\Foundation\Common\LogsSortOrder $sortOrder)
+```
+
+### <span class="badge object-method"></span> thresholds
+
+Map numeric values to states
+
+@param \Grafana\Foundation\Cog\Builder<\Grafana\Foundation\Dashboardv2beta1\ThresholdsConfig> $thresholds
+
+```php
+thresholds(\Grafana\Foundation\Cog\Builder $thresholds)
+```
+
+### <span class="badge object-method"></span> unit
+
+Unit a field should use. The unit you select is applied to all fields except time.
+
+You can use the units ID availables in Grafana or a custom unit.
+
+Available units in Grafana: https://github.com/grafana/grafana/blob/main/packages/grafana-data/src/valueFormats/categories.ts
+
+As custom unit, you can use the following formats:
+
+`suffix:<suffix>` for custom unit that should go after value.
+
+`prefix:<prefix>` for custom unit that should go before value.
+
+`time:<format>` For custom date time formats type for example `time:YYYY-MM-DD`.
+
+`si:<base scale><unit characters>` for custom SI units. For example: `si: mF`. This one is a bit more advanced as you can specify both a unit and the source data scale. So if your source data is represented as milli (thousands of) something prefix the unit with that SI scale character.
+
+`count:<unit>` for a custom count unit.
+
+`currency:<unit>` for custom a currency unit.
+
+```php
+unit(string $unit)
+```
+
+### <span class="badge object-method"></span> wrapLogMessage
+
+```php
+wrapLogMessage(bool $wrapLogMessage)
+```
+
+## See also
+
+ * <span class="badge object-type-class"></span> [dashboardv2beta1.VizConfigKind](../dashboardv2beta1/object-VizConfigKind.md)

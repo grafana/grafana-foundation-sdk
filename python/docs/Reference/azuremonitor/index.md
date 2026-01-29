@@ -77,6 +77,7 @@
  * <span class="badge builder"></span> [MetricDefinitionsQuery](./builder-MetricDefinitionsQuery.md)
  * <span class="badge builder"></span> [MetricNamesQuery](./builder-MetricNamesQuery.md)
  * <span class="badge builder"></span> [MetricNamespaceQuery](./builder-MetricNamespaceQuery.md)
+ * <span class="badge builder"></span> [Query](./builder-Query.md)
  * <span class="badge builder"></span> [ResourceGroupsQuery](./builder-ResourceGroupsQuery.md)
  * <span class="badge builder"></span> [ResourceNamesQuery](./builder-ResourceNamesQuery.md)
  * <span class="badge builder"></span> [SelectableValue](./builder-SelectableValue.md)

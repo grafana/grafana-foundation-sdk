@@ -23,7 +23,7 @@ func (builder *TypeReduceBuilder) Build() (variants.Dataquery, error)
 The datasource
 
 ```go
-func (builder *TypeReduceBuilder) Datasource(datasource dashboard.DataSourceRef) *TypeReduceBuilder
+func (builder *TypeReduceBuilder) Datasource(datasource common.DataSourceRef) *TypeReduceBuilder
 ```
 
 ### <span class="badge object-method"></span> Expression

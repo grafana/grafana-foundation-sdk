@@ -3,13 +3,14 @@
 import typing
 from ..cog import builder as cogbuilder
 from ..models import azuremonitor
-from ..models import dashboard
+from ..models import common
+from ..models import dashboardv2beta1
 
 
 class AzureMonitorQuery(cogbuilder.Builder[azuremonitor.AzureMonitorQuery]):
     _internal: azuremonitor.AzureMonitorQuery
 
-    def __init__(self):
+    def __init__(self) -> None:
         self._internal = azuremonitor.AzureMonitorQuery()
 
     def build(self) -> azuremonitor.AzureMonitorQuery:
@@ -162,7 +163,7 @@ class AzureMonitorQuery(cogbuilder.Builder[azuremonitor.AzureMonitorQuery]):
     
         return self
     
-    def datasource(self, datasource: dashboard.DataSourceRef) -> typing.Self:    
+    def datasource(self, datasource: common.DataSourceRef) -> typing.Self:    
         """
         For mixed data sources the selected datasource is on the query level.
         For non mixed scenarios this is undefined.
@@ -188,7 +189,7 @@ class AzureMonitorQuery(cogbuilder.Builder[azuremonitor.AzureMonitorQuery]):
 class AzureMetricQuery(cogbuilder.Builder[azuremonitor.AzureMetricQuery]):
     _internal: azuremonitor.AzureMetricQuery
 
-    def __init__(self):
+    def __init__(self) -> None:
         self._internal = azuremonitor.AzureMetricQuery()
 
     def build(self) -> azuremonitor.AzureMetricQuery:
@@ -368,7 +369,7 @@ class AzureMetricQuery(cogbuilder.Builder[azuremonitor.AzureMetricQuery]):
 class AzureMonitorResource(cogbuilder.Builder[azuremonitor.AzureMonitorResource]):
     _internal: azuremonitor.AzureMonitorResource
 
-    def __init__(self):
+    def __init__(self) -> None:
         self._internal = azuremonitor.AzureMonitorResource()
 
     def build(self) -> azuremonitor.AzureMonitorResource:
@@ -407,7 +408,7 @@ class AzureMonitorResource(cogbuilder.Builder[azuremonitor.AzureMonitorResource]
 class AzureMetricDimension(cogbuilder.Builder[azuremonitor.AzureMetricDimension]):
     _internal: azuremonitor.AzureMetricDimension
 
-    def __init__(self):
+    def __init__(self) -> None:
         self._internal = azuremonitor.AzureMetricDimension()
 
     def build(self) -> azuremonitor.AzureMetricDimension:
@@ -461,7 +462,7 @@ class AzureLogsQuery(cogbuilder.Builder[azuremonitor.AzureLogsQuery]):
     
     _internal: azuremonitor.AzureLogsQuery
 
-    def __init__(self):
+    def __init__(self) -> None:
         self._internal = azuremonitor.AzureLogsQuery()
 
     def build(self) -> azuremonitor.AzureLogsQuery:
@@ -575,7 +576,7 @@ class AzureLogsQuery(cogbuilder.Builder[azuremonitor.AzureLogsQuery]):
 class BuilderQueryExpression(cogbuilder.Builder[azuremonitor.BuilderQueryExpression]):
     _internal: azuremonitor.BuilderQueryExpression
 
-    def __init__(self):
+    def __init__(self) -> None:
         self._internal = azuremonitor.BuilderQueryExpression()
 
     def build(self) -> azuremonitor.BuilderQueryExpression:
@@ -642,7 +643,7 @@ class BuilderQueryExpression(cogbuilder.Builder[azuremonitor.BuilderQueryExpress
 class BuilderQueryEditorPropertyExpression(cogbuilder.Builder[azuremonitor.BuilderQueryEditorPropertyExpression]):
     _internal: azuremonitor.BuilderQueryEditorPropertyExpression
 
-    def __init__(self):
+    def __init__(self) -> None:
         self._internal = azuremonitor.BuilderQueryEditorPropertyExpression()
 
     def build(self) -> azuremonitor.BuilderQueryEditorPropertyExpression:
@@ -667,7 +668,7 @@ class BuilderQueryEditorPropertyExpression(cogbuilder.Builder[azuremonitor.Build
 class BuilderQueryEditorProperty(cogbuilder.Builder[azuremonitor.BuilderQueryEditorProperty]):
     _internal: azuremonitor.BuilderQueryEditorProperty
 
-    def __init__(self):
+    def __init__(self) -> None:
         self._internal = azuremonitor.BuilderQueryEditorProperty()
 
     def build(self) -> azuremonitor.BuilderQueryEditorProperty:
@@ -691,7 +692,7 @@ class BuilderQueryEditorProperty(cogbuilder.Builder[azuremonitor.BuilderQueryEdi
 class BuilderQueryEditorColumnsExpression(cogbuilder.Builder[azuremonitor.BuilderQueryEditorColumnsExpression]):
     _internal: azuremonitor.BuilderQueryEditorColumnsExpression
 
-    def __init__(self):
+    def __init__(self) -> None:
         self._internal = azuremonitor.BuilderQueryEditorColumnsExpression()
 
     def build(self) -> azuremonitor.BuilderQueryEditorColumnsExpression:
@@ -715,7 +716,7 @@ class BuilderQueryEditorColumnsExpression(cogbuilder.Builder[azuremonitor.Builde
 class BuilderQueryEditorWhereExpressionArray(cogbuilder.Builder[azuremonitor.BuilderQueryEditorWhereExpressionArray]):
     _internal: azuremonitor.BuilderQueryEditorWhereExpressionArray
 
-    def __init__(self):
+    def __init__(self) -> None:
         self._internal = azuremonitor.BuilderQueryEditorWhereExpressionArray()
 
     def build(self) -> azuremonitor.BuilderQueryEditorWhereExpressionArray:
@@ -740,7 +741,7 @@ class BuilderQueryEditorWhereExpressionArray(cogbuilder.Builder[azuremonitor.Bui
 class BuilderQueryEditorWhereExpression(cogbuilder.Builder[azuremonitor.BuilderQueryEditorWhereExpression]):
     _internal: azuremonitor.BuilderQueryEditorWhereExpression
 
-    def __init__(self):
+    def __init__(self) -> None:
         self._internal = azuremonitor.BuilderQueryEditorWhereExpression()
 
     def build(self) -> azuremonitor.BuilderQueryEditorWhereExpression:
@@ -765,7 +766,7 @@ class BuilderQueryEditorWhereExpression(cogbuilder.Builder[azuremonitor.BuilderQ
 class BuilderQueryEditorWhereExpressionItems(cogbuilder.Builder[azuremonitor.BuilderQueryEditorWhereExpressionItems]):
     _internal: azuremonitor.BuilderQueryEditorWhereExpressionItems
 
-    def __init__(self):
+    def __init__(self) -> None:
         self._internal = azuremonitor.BuilderQueryEditorWhereExpressionItems()
 
     def build(self) -> azuremonitor.BuilderQueryEditorWhereExpressionItems:
@@ -796,7 +797,7 @@ class BuilderQueryEditorWhereExpressionItems(cogbuilder.Builder[azuremonitor.Bui
 class BuilderQueryEditorOperator(cogbuilder.Builder[azuremonitor.BuilderQueryEditorOperator]):
     _internal: azuremonitor.BuilderQueryEditorOperator
 
-    def __init__(self):
+    def __init__(self) -> None:
         self._internal = azuremonitor.BuilderQueryEditorOperator()
 
     def build(self) -> azuremonitor.BuilderQueryEditorOperator:
@@ -825,7 +826,7 @@ class BuilderQueryEditorOperator(cogbuilder.Builder[azuremonitor.BuilderQueryEdi
 class BuilderQueryEditorReduceExpressionArray(cogbuilder.Builder[azuremonitor.BuilderQueryEditorReduceExpressionArray]):
     _internal: azuremonitor.BuilderQueryEditorReduceExpressionArray
 
-    def __init__(self):
+    def __init__(self) -> None:
         self._internal = azuremonitor.BuilderQueryEditorReduceExpressionArray()
 
     def build(self) -> azuremonitor.BuilderQueryEditorReduceExpressionArray:
@@ -850,7 +851,7 @@ class BuilderQueryEditorReduceExpressionArray(cogbuilder.Builder[azuremonitor.Bu
 class BuilderQueryEditorReduceExpression(cogbuilder.Builder[azuremonitor.BuilderQueryEditorReduceExpression]):
     _internal: azuremonitor.BuilderQueryEditorReduceExpression
 
-    def __init__(self):
+    def __init__(self) -> None:
         self._internal = azuremonitor.BuilderQueryEditorReduceExpression()
 
     def build(self) -> azuremonitor.BuilderQueryEditorReduceExpression:
@@ -887,7 +888,7 @@ class BuilderQueryEditorReduceExpression(cogbuilder.Builder[azuremonitor.Builder
 class BuilderQueryEditorFunctionParameterExpression(cogbuilder.Builder[azuremonitor.BuilderQueryEditorFunctionParameterExpression]):
     _internal: azuremonitor.BuilderQueryEditorFunctionParameterExpression
 
-    def __init__(self):
+    def __init__(self) -> None:
         self._internal = azuremonitor.BuilderQueryEditorFunctionParameterExpression()
 
     def build(self) -> azuremonitor.BuilderQueryEditorFunctionParameterExpression:
@@ -916,7 +917,7 @@ class BuilderQueryEditorFunctionParameterExpression(cogbuilder.Builder[azuremoni
 class BuilderQueryEditorGroupByExpressionArray(cogbuilder.Builder[azuremonitor.BuilderQueryEditorGroupByExpressionArray]):
     _internal: azuremonitor.BuilderQueryEditorGroupByExpressionArray
 
-    def __init__(self):
+    def __init__(self) -> None:
         self._internal = azuremonitor.BuilderQueryEditorGroupByExpressionArray()
 
     def build(self) -> azuremonitor.BuilderQueryEditorGroupByExpressionArray:
@@ -941,7 +942,7 @@ class BuilderQueryEditorGroupByExpressionArray(cogbuilder.Builder[azuremonitor.B
 class BuilderQueryEditorGroupByExpression(cogbuilder.Builder[azuremonitor.BuilderQueryEditorGroupByExpression]):
     _internal: azuremonitor.BuilderQueryEditorGroupByExpression
 
-    def __init__(self):
+    def __init__(self) -> None:
         self._internal = azuremonitor.BuilderQueryEditorGroupByExpression()
 
     def build(self) -> azuremonitor.BuilderQueryEditorGroupByExpression:
@@ -977,7 +978,7 @@ class BuilderQueryEditorGroupByExpression(cogbuilder.Builder[azuremonitor.Builde
 class BuilderQueryEditorOrderByExpressionArray(cogbuilder.Builder[azuremonitor.BuilderQueryEditorOrderByExpressionArray]):
     _internal: azuremonitor.BuilderQueryEditorOrderByExpressionArray
 
-    def __init__(self):
+    def __init__(self) -> None:
         self._internal = azuremonitor.BuilderQueryEditorOrderByExpressionArray()
 
     def build(self) -> azuremonitor.BuilderQueryEditorOrderByExpressionArray:
@@ -1002,7 +1003,7 @@ class BuilderQueryEditorOrderByExpressionArray(cogbuilder.Builder[azuremonitor.B
 class BuilderQueryEditorOrderByExpression(cogbuilder.Builder[azuremonitor.BuilderQueryEditorOrderByExpression]):
     _internal: azuremonitor.BuilderQueryEditorOrderByExpression
 
-    def __init__(self):
+    def __init__(self) -> None:
         self._internal = azuremonitor.BuilderQueryEditorOrderByExpression()
 
     def build(self) -> azuremonitor.BuilderQueryEditorOrderByExpression:
@@ -1032,7 +1033,7 @@ class BuilderQueryEditorOrderByExpression(cogbuilder.Builder[azuremonitor.Builde
 class AzureResourceGraphQuery(cogbuilder.Builder[azuremonitor.AzureResourceGraphQuery]):
     _internal: azuremonitor.AzureResourceGraphQuery
 
-    def __init__(self):
+    def __init__(self) -> None:
         self._internal = azuremonitor.AzureResourceGraphQuery()
 
     def build(self) -> azuremonitor.AzureResourceGraphQuery:
@@ -1068,7 +1069,7 @@ class AzureTracesQuery(cogbuilder.Builder[azuremonitor.AzureTracesQuery]):
     
     _internal: azuremonitor.AzureTracesQuery
 
-    def __init__(self):
+    def __init__(self) -> None:
         self._internal = azuremonitor.AzureTracesQuery()
 
     def build(self) -> azuremonitor.AzureTracesQuery:
@@ -1137,7 +1138,7 @@ class AzureTracesQuery(cogbuilder.Builder[azuremonitor.AzureTracesQuery]):
 class AzureTracesFilter(cogbuilder.Builder[azuremonitor.AzureTracesFilter]):
     _internal: azuremonitor.AzureTracesFilter
 
-    def __init__(self):
+    def __init__(self) -> None:
         self._internal = azuremonitor.AzureTracesFilter()
 
     def build(self) -> azuremonitor.AzureTracesFilter:
@@ -1178,7 +1179,7 @@ class AzureTracesFilter(cogbuilder.Builder[azuremonitor.AzureTracesFilter]):
 class AppInsightsMetricNameQuery(cogbuilder.Builder[azuremonitor.AppInsightsMetricNameQuery]):
     _internal: azuremonitor.AppInsightsMetricNameQuery
 
-    def __init__(self):
+    def __init__(self) -> None:
         self._internal = azuremonitor.AppInsightsMetricNameQuery()        
         self._internal.kind = "AppInsightsMetricNameQuery"
 
@@ -1198,7 +1199,7 @@ class AppInsightsMetricNameQuery(cogbuilder.Builder[azuremonitor.AppInsightsMetr
 class AppInsightsGroupByQuery(cogbuilder.Builder[azuremonitor.AppInsightsGroupByQuery]):
     _internal: azuremonitor.AppInsightsGroupByQuery
 
-    def __init__(self):
+    def __init__(self) -> None:
         self._internal = azuremonitor.AppInsightsGroupByQuery()        
         self._internal.kind = "AppInsightsGroupByQuery"
 
@@ -1223,7 +1224,7 @@ class AppInsightsGroupByQuery(cogbuilder.Builder[azuremonitor.AppInsightsGroupBy
 class SubscriptionsQuery(cogbuilder.Builder[azuremonitor.SubscriptionsQuery]):
     _internal: azuremonitor.SubscriptionsQuery
 
-    def __init__(self):
+    def __init__(self) -> None:
         self._internal = azuremonitor.SubscriptionsQuery()        
         self._internal.kind = "SubscriptionsQuery"
 
@@ -1243,7 +1244,7 @@ class SubscriptionsQuery(cogbuilder.Builder[azuremonitor.SubscriptionsQuery]):
 class ResourceGroupsQuery(cogbuilder.Builder[azuremonitor.ResourceGroupsQuery]):
     _internal: azuremonitor.ResourceGroupsQuery
 
-    def __init__(self):
+    def __init__(self) -> None:
         self._internal = azuremonitor.ResourceGroupsQuery()        
         self._internal.kind = "ResourceGroupsQuery"
 
@@ -1268,7 +1269,7 @@ class ResourceGroupsQuery(cogbuilder.Builder[azuremonitor.ResourceGroupsQuery]):
 class ResourceNamesQuery(cogbuilder.Builder[azuremonitor.ResourceNamesQuery]):
     _internal: azuremonitor.ResourceNamesQuery
 
-    def __init__(self):
+    def __init__(self) -> None:
         self._internal = azuremonitor.ResourceNamesQuery()        
         self._internal.kind = "ResourceNamesQuery"
 
@@ -1303,7 +1304,7 @@ class ResourceNamesQuery(cogbuilder.Builder[azuremonitor.ResourceNamesQuery]):
 class MetricNamespaceQuery(cogbuilder.Builder[azuremonitor.MetricNamespaceQuery]):
     _internal: azuremonitor.MetricNamespaceQuery
 
-    def __init__(self):
+    def __init__(self) -> None:
         self._internal = azuremonitor.MetricNamespaceQuery()        
         self._internal.kind = "MetricNamespaceQuery"
 
@@ -1347,7 +1348,7 @@ class MetricDefinitionsQuery(cogbuilder.Builder[azuremonitor.MetricDefinitionsQu
     
     _internal: azuremonitor.MetricDefinitionsQuery
 
-    def __init__(self):
+    def __init__(self) -> None:
         self._internal = azuremonitor.MetricDefinitionsQuery()        
         self._internal.kind = "MetricDefinitionsQuery"
 
@@ -1387,7 +1388,7 @@ class MetricDefinitionsQuery(cogbuilder.Builder[azuremonitor.MetricDefinitionsQu
 class MetricNamesQuery(cogbuilder.Builder[azuremonitor.MetricNamesQuery]):
     _internal: azuremonitor.MetricNamesQuery
 
-    def __init__(self):
+    def __init__(self) -> None:
         self._internal = azuremonitor.MetricNamesQuery()        
         self._internal.kind = "MetricNamesQuery"
 
@@ -1427,7 +1428,7 @@ class MetricNamesQuery(cogbuilder.Builder[azuremonitor.MetricNamesQuery]):
 class WorkspacesQuery(cogbuilder.Builder[azuremonitor.WorkspacesQuery]):
     _internal: azuremonitor.WorkspacesQuery
 
-    def __init__(self):
+    def __init__(self) -> None:
         self._internal = azuremonitor.WorkspacesQuery()        
         self._internal.kind = "WorkspacesQuery"
 
@@ -1452,7 +1453,7 @@ class WorkspacesQuery(cogbuilder.Builder[azuremonitor.WorkspacesQuery]):
 class UnknownQuery(cogbuilder.Builder[azuremonitor.UnknownQuery]):
     _internal: azuremonitor.UnknownQuery
 
-    def __init__(self):
+    def __init__(self) -> None:
         self._internal = azuremonitor.UnknownQuery()        
         self._internal.kind = "UnknownQuery"
 
@@ -1472,7 +1473,7 @@ class UnknownQuery(cogbuilder.Builder[azuremonitor.UnknownQuery]):
 class SelectableValue(cogbuilder.Builder[azuremonitor.SelectableValue]):
     _internal: azuremonitor.SelectableValue
 
-    def __init__(self):
+    def __init__(self) -> None:
         self._internal = azuremonitor.SelectableValue()
 
     def build(self) -> azuremonitor.SelectableValue:
@@ -1496,7 +1497,7 @@ class SelectableValue(cogbuilder.Builder[azuremonitor.SelectableValue]):
 class BaseGrafanaTemplateVariableQuery(cogbuilder.Builder[azuremonitor.BaseGrafanaTemplateVariableQuery]):
     _internal: azuremonitor.BaseGrafanaTemplateVariableQuery
 
-    def __init__(self):
+    def __init__(self) -> None:
         self._internal = azuremonitor.BaseGrafanaTemplateVariableQuery()
 
     def build(self) -> azuremonitor.BaseGrafanaTemplateVariableQuery:
@@ -1507,6 +1508,254 @@ class BaseGrafanaTemplateVariableQuery(cogbuilder.Builder[azuremonitor.BaseGrafa
     
     def raw_query(self, raw_query: str) -> typing.Self:    
         self._internal.raw_query = raw_query
+    
+        return self
+    
+
+
+class Query(cogbuilder.Builder[dashboardv2beta1.DataQueryKind]):
+    _internal: dashboardv2beta1.DataQueryKind
+
+    def __init__(self) -> None:
+        self._internal = dashboardv2beta1.DataQueryKind()        
+        self._internal.kind = "DataQuery"        
+        self._internal.group = "grafana-azure-monitor-datasource"
+
+    def build(self) -> dashboardv2beta1.DataQueryKind:
+        """
+        Builds the object.
+        """
+        return self._internal    
+    
+    def version(self, version: str) -> typing.Self:    
+        self._internal.version = version
+    
+        return self
+    
+    def datasource(self, ref: cogbuilder.Builder[dashboardv2beta1.Dashboardv2beta1DataQueryKindDatasource]) -> typing.Self:    
+        """
+        New type for datasource reference
+        Not creating a new type until we figure out how to handle DS refs for group by, adhoc, and every place that uses DataSourceRef in TS.
+        """
+            
+        ref_resource = ref.build()
+        self._internal.datasource = ref_resource
+    
+        return self
+    
+    def ref_id(self, ref_id: str) -> typing.Self:    
+        """
+        A unique identifier for the query within the list of targets.
+        In server side expressions, the refId is used as a variable name to identify results.
+        By default, the UI will assign A->Z; however setting meaningful names may be useful.
+        """
+            
+        if self._internal.spec is None:
+            self._internal.spec = azuremonitor.AzureMonitorQuery()
+        assert isinstance(self._internal.spec, azuremonitor.AzureMonitorQuery)
+        self._internal.spec.ref_id = ref_id
+    
+        return self
+    
+    def hide(self, hide: bool) -> typing.Self:    
+        """
+        If hide is set to true, Grafana will filter out the response(s) associated with this query before returning it to the panel.
+        """
+            
+        if self._internal.spec is None:
+            self._internal.spec = azuremonitor.AzureMonitorQuery()
+        assert isinstance(self._internal.spec, azuremonitor.AzureMonitorQuery)
+        self._internal.spec.hide = hide
+    
+        return self
+    
+    def query_type(self, query_type: str) -> typing.Self:    
+        """
+        Specify the query flavor
+        TODO make this required and give it a default
+        """
+            
+        if self._internal.spec is None:
+            self._internal.spec = azuremonitor.AzureMonitorQuery()
+        assert isinstance(self._internal.spec, azuremonitor.AzureMonitorQuery)
+        self._internal.spec.query_type = query_type
+    
+        return self
+    
+    def subscription(self, subscription: str) -> typing.Self:    
+        """
+        Azure subscription containing the resource(s) to be queried.
+        Also used for template variable queries
+        """
+            
+        if self._internal.spec is None:
+            self._internal.spec = azuremonitor.AzureMonitorQuery()
+        assert isinstance(self._internal.spec, azuremonitor.AzureMonitorQuery)
+        self._internal.spec.subscription = subscription
+    
+        return self
+    
+    def subscriptions(self, subscriptions: list[str]) -> typing.Self:    
+        """
+        Subscriptions to be queried via Azure Resource Graph.
+        """
+            
+        if self._internal.spec is None:
+            self._internal.spec = azuremonitor.AzureMonitorQuery()
+        assert isinstance(self._internal.spec, azuremonitor.AzureMonitorQuery)
+        self._internal.spec.subscriptions = subscriptions
+    
+        return self
+    
+    def azure_monitor(self, azure_monitor: cogbuilder.Builder[azuremonitor.AzureMetricQuery]) -> typing.Self:    
+        """
+        Azure Monitor Metrics sub-query properties.
+        """
+            
+        if self._internal.spec is None:
+            self._internal.spec = azuremonitor.AzureMonitorQuery()
+        assert isinstance(self._internal.spec, azuremonitor.AzureMonitorQuery)
+        azure_monitor_resource = azure_monitor.build()
+        self._internal.spec.azure_monitor = azure_monitor_resource
+    
+        return self
+    
+    def azure_log_analytics(self, azure_log_analytics: cogbuilder.Builder[azuremonitor.AzureLogsQuery]) -> typing.Self:    
+        """
+        Azure Monitor Logs sub-query properties.
+        """
+            
+        if self._internal.spec is None:
+            self._internal.spec = azuremonitor.AzureMonitorQuery()
+        assert isinstance(self._internal.spec, azuremonitor.AzureMonitorQuery)
+        azure_log_analytics_resource = azure_log_analytics.build()
+        self._internal.spec.azure_log_analytics = azure_log_analytics_resource
+    
+        return self
+    
+    def azure_resource_graph(self, azure_resource_graph: cogbuilder.Builder[azuremonitor.AzureResourceGraphQuery]) -> typing.Self:    
+        """
+        Azure Resource Graph sub-query properties.
+        """
+            
+        if self._internal.spec is None:
+            self._internal.spec = azuremonitor.AzureMonitorQuery()
+        assert isinstance(self._internal.spec, azuremonitor.AzureMonitorQuery)
+        azure_resource_graph_resource = azure_resource_graph.build()
+        self._internal.spec.azure_resource_graph = azure_resource_graph_resource
+    
+        return self
+    
+    def azure_traces(self, azure_traces: cogbuilder.Builder[azuremonitor.AzureTracesQuery]) -> typing.Self:    
+        """
+        Application Insights Traces sub-query properties.
+        """
+            
+        if self._internal.spec is None:
+            self._internal.spec = azuremonitor.AzureMonitorQuery()
+        assert isinstance(self._internal.spec, azuremonitor.AzureMonitorQuery)
+        azure_traces_resource = azure_traces.build()
+        self._internal.spec.azure_traces = azure_traces_resource
+    
+        return self
+    
+    def grafana_template_variable_fn(self, grafana_template_variable_fn: cogbuilder.Builder[azuremonitor.GrafanaTemplateVariableQuery]) -> typing.Self:    
+        """
+        @deprecated Legacy template variable support.
+        """
+            
+        if self._internal.spec is None:
+            self._internal.spec = azuremonitor.AzureMonitorQuery()
+        assert isinstance(self._internal.spec, azuremonitor.AzureMonitorQuery)
+        grafana_template_variable_fn_resource = grafana_template_variable_fn.build()
+        self._internal.spec.grafana_template_variable_fn = grafana_template_variable_fn_resource
+    
+        return self
+    
+    def resource_group(self, resource_group: str) -> typing.Self:    
+        """
+        Resource group used in template variable queries
+        """
+            
+        if self._internal.spec is None:
+            self._internal.spec = azuremonitor.AzureMonitorQuery()
+        assert isinstance(self._internal.spec, azuremonitor.AzureMonitorQuery)
+        self._internal.spec.resource_group = resource_group
+    
+        return self
+    
+    def namespace(self, namespace: str) -> typing.Self:    
+        """
+        Namespace used in template variable queries
+        """
+            
+        if self._internal.spec is None:
+            self._internal.spec = azuremonitor.AzureMonitorQuery()
+        assert isinstance(self._internal.spec, azuremonitor.AzureMonitorQuery)
+        self._internal.spec.namespace = namespace
+    
+        return self
+    
+    def resource(self, resource: str) -> typing.Self:    
+        """
+        Resource used in template variable queries
+        """
+            
+        if self._internal.spec is None:
+            self._internal.spec = azuremonitor.AzureMonitorQuery()
+        assert isinstance(self._internal.spec, azuremonitor.AzureMonitorQuery)
+        self._internal.spec.resource = resource
+    
+        return self
+    
+    def region(self, region: str) -> typing.Self:    
+        """
+        Region used in template variable queries
+        """
+            
+        if self._internal.spec is None:
+            self._internal.spec = azuremonitor.AzureMonitorQuery()
+        assert isinstance(self._internal.spec, azuremonitor.AzureMonitorQuery)
+        self._internal.spec.region = region
+    
+        return self
+    
+    def custom_namespace(self, custom_namespace: str) -> typing.Self:    
+        """
+        Custom namespace used in template variable queries
+        """
+            
+        if self._internal.spec is None:
+            self._internal.spec = azuremonitor.AzureMonitorQuery()
+        assert isinstance(self._internal.spec, azuremonitor.AzureMonitorQuery)
+        self._internal.spec.custom_namespace = custom_namespace
+    
+        return self
+    
+    def old_datasource(self, datasource: common.DataSourceRef) -> typing.Self:    
+        """
+        For mixed data sources the selected datasource is on the query level.
+        For non mixed scenarios this is undefined.
+        TODO find a better way to do this ^ that's friendly to schema
+        TODO this shouldn't be unknown but DataSourceRef | null
+        """
+            
+        if self._internal.spec is None:
+            self._internal.spec = azuremonitor.AzureMonitorQuery()
+        assert isinstance(self._internal.spec, azuremonitor.AzureMonitorQuery)
+        self._internal.spec.datasource = datasource
+    
+        return self
+    
+    def query(self, query: str) -> typing.Self:    
+        """
+        Used only for exemplar queries from Prometheus
+        """
+            
+        if self._internal.spec is None:
+            self._internal.spec = azuremonitor.AzureMonitorQuery()
+        assert isinstance(self._internal.spec, azuremonitor.AzureMonitorQuery)
+        self._internal.spec.query = query
     
         return self
     

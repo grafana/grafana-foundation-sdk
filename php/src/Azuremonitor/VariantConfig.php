@@ -10,6 +10,8 @@ final class VariantConfig
             identifier: 'grafana-azure-monitor-datasource',
             fromArray: [AzureMonitorQuery::class, 'fromArray'],
             convert: [AzureMonitorQueryConverter::class, 'convert'],
+            convertv2: [QueryConverter::class, 'convert'],
         );
     }
+
 }

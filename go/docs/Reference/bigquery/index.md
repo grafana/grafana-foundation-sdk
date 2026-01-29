@@ -18,6 +18,7 @@
 ## Builders
 
  * <span class="badge builder"></span> [DataqueryBuilder](./builder-DataqueryBuilder.md)
+ * <span class="badge builder"></span> [QueryBuilder](./builder-QueryBuilder.md)
  * <span class="badge builder"></span> [QueryEditorFunctionExpressionBuilder](./builder-QueryEditorFunctionExpressionBuilder.md)
  * <span class="badge builder"></span> [QueryEditorFunctionParameterExpressionBuilder](./builder-QueryEditorFunctionParameterExpressionBuilder.md)
  * <span class="badge builder"></span> [QueryEditorGroupByExpressionBuilder](./builder-QueryEditorGroupByExpressionBuilder.md)
@@ -146,5 +147,13 @@ QueryEditorPropertyExpressionConverter accepts a `QueryEditorPropertyExpression`
 
 ```go
 func QueryEditorPropertyExpressionConverter(input QueryEditorPropertyExpression) string
+```
+
+### <span class="badge function"></span> QueryConverter
+
+QueryConverter accepts a `Query` object and generates the Go code to build this object using builders.
+
+```go
+func QueryConverter(input dashboardv2beta1.DataQueryKind) string
 ```
 

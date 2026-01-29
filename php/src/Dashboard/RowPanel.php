@@ -25,7 +25,7 @@ class RowPanel implements \JsonSerializable
     /**
      * Name of default datasource for the row
      */
-    public ?\Grafana\Foundation\Dashboard\DataSourceRef $datasource;
+    public ?\Grafana\Foundation\Common\DataSourceRef $datasource;
 
     /**
      * Row grid position
@@ -51,13 +51,13 @@ class RowPanel implements \JsonSerializable
     /**
      * @param bool|null $collapsed
      * @param string|null $title
-     * @param \Grafana\Foundation\Dashboard\DataSourceRef|null $datasource
+     * @param \Grafana\Foundation\Common\DataSourceRef|null $datasource
      * @param \Grafana\Foundation\Dashboard\GridPos|null $gridPos
      * @param int|null $id
      * @param array<\Grafana\Foundation\Dashboard\Panel>|null $panels
      * @param string|null $repeat
      */
-    public function __construct(?bool $collapsed = null, ?string $title = null, ?\Grafana\Foundation\Dashboard\DataSourceRef $datasource = null, ?\Grafana\Foundation\Dashboard\GridPos $gridPos = null, ?int $id = null, ?array $panels = null, ?string $repeat = null)
+    public function __construct(?bool $collapsed = null, ?string $title = null, ?\Grafana\Foundation\Common\DataSourceRef $datasource = null, ?\Grafana\Foundation\Dashboard\GridPos $gridPos = null, ?int $id = null, ?array $panels = null, ?string $repeat = null)
     {
         $this->type = "row";
     
@@ -83,7 +83,7 @@ class RowPanel implements \JsonSerializable
             datasource: isset($data["datasource"]) ? (function($input) {
     	/** @var array{type?: string, uid?: string} */
     $val = $input;
-    	return \Grafana\Foundation\Dashboard\DataSourceRef::fromArray($val);
+    	return \Grafana\Foundation\Common\DataSourceRef::fromArray($val);
     })($data["datasource"]) : null,
             gridPos: isset($data["gridPos"]) ? (function($input) {
     	/** @var array{h?: int, w?: int, x?: int, y?: int, static?: bool} */

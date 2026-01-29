@@ -25,6 +25,7 @@
  * <span class="badge builder"></span> [HeatmapTooltipBuilder](./builder-HeatmapTooltipBuilder.md)
  * <span class="badge builder"></span> [PanelBuilder](./builder-PanelBuilder.md)
  * <span class="badge builder"></span> [RowsHeatmapOptionsBuilder](./builder-RowsHeatmapOptionsBuilder.md)
+ * <span class="badge builder"></span> [VisualizationBuilder](./builder-VisualizationBuilder.md)
  * <span class="badge builder"></span> [YAxisConfigBuilder](./builder-YAxisConfigBuilder.md)
 ## Functions
 
@@ -118,6 +119,14 @@ This configuration describes how to unmarshal it, convert it to code, …
 func VariantConfig() variants.PanelcfgConfig
 ```
 
+### <span class="badge function"></span> PanelConverter
+
+PanelConverter accepts a `Panel` object and generates the Go code to build this object using builders.
+
+```go
+func PanelConverter(input dashboard.Panel) string
+```
+
 ### <span class="badge function"></span> HeatmapColorOptionsConverter
 
 HeatmapColorOptionsConverter accepts a `HeatmapColorOptions` object and generates the Go code to build this object using builders.
@@ -182,11 +191,11 @@ RowsHeatmapOptionsConverter accepts a `RowsHeatmapOptions` object and generates 
 func RowsHeatmapOptionsConverter(input RowsHeatmapOptions) string
 ```
 
-### <span class="badge function"></span> PanelConverter
+### <span class="badge function"></span> VisualizationConverter
 
-PanelConverter accepts a `Panel` object and generates the Go code to build this object using builders.
+VisualizationConverter accepts a `Visualization` object and generates the Go code to build this object using builders.
 
 ```go
-func PanelConverter(input dashboard.Panel) string
+func VisualizationConverter(input dashboardv2beta1.VizConfigKind) string
 ```
 

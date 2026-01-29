@@ -2,7 +2,7 @@
 
 from ..cog import variants as cogvariants
 import typing
-from ..models import dashboard
+from ..models import common
 import enum
 from ..cog import runtime as cogruntime
 
@@ -11,7 +11,7 @@ class AzureMonitorQuery(cogvariants.Dataquery):
     # A unique identifier for the query within the list of targets.
     # In server side expressions, the refId is used as a variable name to identify results.
     # By default, the UI will assign A->Z; however setting meaningful names may be useful.
-    ref_id: str
+    ref_id: typing.Optional[str]
     # If hide is set to true, Grafana will filter out the response(s) associated with this query before returning it to the panel.
     hide: typing.Optional[bool]
     # Specify the query flavor
@@ -46,11 +46,11 @@ class AzureMonitorQuery(cogvariants.Dataquery):
     # For non mixed scenarios this is undefined.
     # TODO find a better way to do this ^ that's friendly to schema
     # TODO this shouldn't be unknown but DataSourceRef | null
-    datasource: typing.Optional[dashboard.DataSourceRef]
+    datasource: typing.Optional[common.DataSourceRef]
     # Used only for exemplar queries from Prometheus
     query: typing.Optional[str]
 
-    def __init__(self, ref_id: str = "", hide: typing.Optional[bool] = None, query_type: typing.Optional[str] = None, subscription: typing.Optional[str] = None, subscriptions: typing.Optional[list[str]] = None, azure_monitor: typing.Optional['AzureMetricQuery'] = None, azure_log_analytics: typing.Optional['AzureLogsQuery'] = None, azure_resource_graph: typing.Optional['AzureResourceGraphQuery'] = None, azure_traces: typing.Optional['AzureTracesQuery'] = None, grafana_template_variable_fn: typing.Optional['GrafanaTemplateVariableQuery'] = None, resource_group: typing.Optional[str] = None, namespace: typing.Optional[str] = None, resource: typing.Optional[str] = None, region: typing.Optional[str] = None, custom_namespace: typing.Optional[str] = None, datasource: typing.Optional[dashboard.DataSourceRef] = None, query: typing.Optional[str] = None):
+    def __init__(self, ref_id: typing.Optional[str] = None, hide: typing.Optional[bool] = None, query_type: typing.Optional[str] = None, subscription: typing.Optional[str] = None, subscriptions: typing.Optional[list[str]] = None, azure_monitor: typing.Optional['AzureMetricQuery'] = None, azure_log_analytics: typing.Optional['AzureLogsQuery'] = None, azure_resource_graph: typing.Optional['AzureResourceGraphQuery'] = None, azure_traces: typing.Optional['AzureTracesQuery'] = None, grafana_template_variable_fn: typing.Optional['GrafanaTemplateVariableQuery'] = None, resource_group: typing.Optional[str] = None, namespace: typing.Optional[str] = None, resource: typing.Optional[str] = None, region: typing.Optional[str] = None, custom_namespace: typing.Optional[str] = None, datasource: typing.Optional[common.DataSourceRef] = None, query: typing.Optional[str] = None) -> None:
         self.ref_id = ref_id
         self.hide = hide
         self.query_type = query_type
@@ -71,8 +71,9 @@ class AzureMonitorQuery(cogvariants.Dataquery):
 
     def to_json(self) -> dict[str, object]:
         payload: dict[str, object] = {
-            "refId": self.ref_id,
         }
+        if self.ref_id is not None:
+            payload["refId"] = self.ref_id
         if self.hide is not None:
             payload["hide"] = self.hide
         if self.query_type is not None:
@@ -143,7 +144,7 @@ class AzureMonitorQuery(cogvariants.Dataquery):
         if "customNamespace" in data:
             args["custom_namespace"] = data["customNamespace"]
         if "datasource" in data:
-            args["datasource"] = dashboard.DataSourceRef.from_json(data["datasource"])
+            args["datasource"] = common.DataSourceRef.from_json(data["datasource"])
         if "query" in data:
             args["query"] = data["query"]        
 
@@ -190,7 +191,7 @@ class AzureMetricQuery:
     # @deprecated Use resources instead
     resource_name: typing.Optional[str]
 
-    def __init__(self, resources: typing.Optional[list['AzureMonitorResource']] = None, metric_namespace: typing.Optional[str] = None, custom_namespace: typing.Optional[str] = None, metric_name: typing.Optional[str] = None, region: typing.Optional[str] = None, time_grain: typing.Optional[str] = None, aggregation: typing.Optional[str] = None, dimension_filters: typing.Optional[list['AzureMetricDimension']] = None, top: typing.Optional[str] = None, allowed_time_grains_ms: typing.Optional[list[int]] = None, alias: typing.Optional[str] = None, time_grain_unit: typing.Optional[str] = None, dimension: typing.Optional[str] = None, dimension_filter: typing.Optional[str] = None, metric_definition: typing.Optional[str] = None, resource_uri: typing.Optional[str] = None, resource_group: typing.Optional[str] = None, resource_name: typing.Optional[str] = None):
+    def __init__(self, resources: typing.Optional[list['AzureMonitorResource']] = None, metric_namespace: typing.Optional[str] = None, custom_namespace: typing.Optional[str] = None, metric_name: typing.Optional[str] = None, region: typing.Optional[str] = None, time_grain: typing.Optional[str] = None, aggregation: typing.Optional[str] = None, dimension_filters: typing.Optional[list['AzureMetricDimension']] = None, top: typing.Optional[str] = None, allowed_time_grains_ms: typing.Optional[list[int]] = None, alias: typing.Optional[str] = None, time_grain_unit: typing.Optional[str] = None, dimension: typing.Optional[str] = None, dimension_filter: typing.Optional[str] = None, metric_definition: typing.Optional[str] = None, resource_uri: typing.Optional[str] = None, resource_group: typing.Optional[str] = None, resource_name: typing.Optional[str] = None) -> None:
         self.resources = resources
         self.metric_namespace = metric_namespace
         self.custom_namespace = custom_namespace
@@ -302,7 +303,7 @@ class AzureMonitorResource:
     metric_namespace: typing.Optional[str]
     region: typing.Optional[str]
 
-    def __init__(self, subscription: typing.Optional[str] = None, resource_group: typing.Optional[str] = None, resource_name: typing.Optional[str] = None, metric_namespace: typing.Optional[str] = None, region: typing.Optional[str] = None):
+    def __init__(self, subscription: typing.Optional[str] = None, resource_group: typing.Optional[str] = None, resource_name: typing.Optional[str] = None, metric_namespace: typing.Optional[str] = None, region: typing.Optional[str] = None) -> None:
         self.subscription = subscription
         self.resource_group = resource_group
         self.resource_name = resource_name
@@ -352,7 +353,7 @@ class AzureMetricDimension:
     # @deprecated filter is deprecated in favour of filters to support multiselect.
     filter_val: typing.Optional[str]
 
-    def __init__(self, dimension: typing.Optional[str] = None, operator: typing.Optional[str] = None, filters: typing.Optional[list[str]] = None, filter_val: typing.Optional[str] = None):
+    def __init__(self, dimension: typing.Optional[str] = None, operator: typing.Optional[str] = None, filters: typing.Optional[list[str]] = None, filter_val: typing.Optional[str] = None) -> None:
         self.dimension = dimension
         self.operator = operator
         self.filters = filters
@@ -415,7 +416,7 @@ class AzureLogsQuery:
     # @deprecated Use dashboardTime instead
     intersect_time: typing.Optional[bool]
 
-    def __init__(self, query: typing.Optional[str] = None, result_format: typing.Optional['ResultFormat'] = None, resources: typing.Optional[list[str]] = None, dashboard_time: typing.Optional[bool] = None, time_column: typing.Optional[str] = None, basic_logs_query: typing.Optional[bool] = None, workspace: typing.Optional[str] = None, mode: typing.Optional['LogsEditorMode'] = None, builder_query: typing.Optional['BuilderQueryExpression'] = None, resource: typing.Optional[str] = None, intersect_time: typing.Optional[bool] = None):
+    def __init__(self, query: typing.Optional[str] = None, result_format: typing.Optional['ResultFormat'] = None, resources: typing.Optional[list[str]] = None, dashboard_time: typing.Optional[bool] = None, time_column: typing.Optional[str] = None, basic_logs_query: typing.Optional[bool] = None, workspace: typing.Optional[str] = None, mode: typing.Optional['LogsEditorMode'] = None, builder_query: typing.Optional['BuilderQueryExpression'] = None, resource: typing.Optional[str] = None, intersect_time: typing.Optional[bool] = None) -> None:
         self.query = query
         self.result_format = result_format
         self.resources = resources
@@ -508,7 +509,7 @@ class BuilderQueryExpression:
     fuzzy_search: typing.Optional['BuilderQueryEditorWhereExpressionArray']
     time_filter: typing.Optional['BuilderQueryEditorWhereExpressionArray']
 
-    def __init__(self, from_val: typing.Optional['BuilderQueryEditorPropertyExpression'] = None, columns: typing.Optional['BuilderQueryEditorColumnsExpression'] = None, where: typing.Optional['BuilderQueryEditorWhereExpressionArray'] = None, reduce: typing.Optional['BuilderQueryEditorReduceExpressionArray'] = None, group_by: typing.Optional['BuilderQueryEditorGroupByExpressionArray'] = None, limit: typing.Optional[int] = None, order_by: typing.Optional['BuilderQueryEditorOrderByExpressionArray'] = None, fuzzy_search: typing.Optional['BuilderQueryEditorWhereExpressionArray'] = None, time_filter: typing.Optional['BuilderQueryEditorWhereExpressionArray'] = None):
+    def __init__(self, from_val: typing.Optional['BuilderQueryEditorPropertyExpression'] = None, columns: typing.Optional['BuilderQueryEditorColumnsExpression'] = None, where: typing.Optional['BuilderQueryEditorWhereExpressionArray'] = None, reduce: typing.Optional['BuilderQueryEditorReduceExpressionArray'] = None, group_by: typing.Optional['BuilderQueryEditorGroupByExpressionArray'] = None, limit: typing.Optional[int] = None, order_by: typing.Optional['BuilderQueryEditorOrderByExpressionArray'] = None, fuzzy_search: typing.Optional['BuilderQueryEditorWhereExpressionArray'] = None, time_filter: typing.Optional['BuilderQueryEditorWhereExpressionArray'] = None) -> None:
         self.from_val = from_val
         self.columns = columns
         self.where = where
@@ -572,7 +573,7 @@ class BuilderQueryEditorPropertyExpression:
     property_val: 'BuilderQueryEditorProperty'
     type_val: 'BuilderQueryEditorExpressionType'
 
-    def __init__(self, property_val: typing.Optional['BuilderQueryEditorProperty'] = None, type_val: typing.Optional['BuilderQueryEditorExpressionType'] = None):
+    def __init__(self, property_val: typing.Optional['BuilderQueryEditorProperty'] = None, type_val: typing.Optional['BuilderQueryEditorExpressionType'] = None) -> None:
         self.property_val = property_val if property_val is not None else BuilderQueryEditorProperty()
         self.type_val = type_val if type_val is not None else BuilderQueryEditorExpressionType.PROPERTY
 
@@ -599,7 +600,7 @@ class BuilderQueryEditorProperty:
     type_val: 'BuilderQueryEditorPropertyType'
     name: str
 
-    def __init__(self, type_val: typing.Optional['BuilderQueryEditorPropertyType'] = None, name: str = ""):
+    def __init__(self, type_val: typing.Optional['BuilderQueryEditorPropertyType'] = None, name: str = "") -> None:
         self.type_val = type_val if type_val is not None else BuilderQueryEditorPropertyType.NUMBER
         self.name = name
 
@@ -647,7 +648,7 @@ class BuilderQueryEditorColumnsExpression:
     columns: typing.Optional[list[str]]
     type_val: 'BuilderQueryEditorExpressionType'
 
-    def __init__(self, columns: typing.Optional[list[str]] = None, type_val: typing.Optional['BuilderQueryEditorExpressionType'] = None):
+    def __init__(self, columns: typing.Optional[list[str]] = None, type_val: typing.Optional['BuilderQueryEditorExpressionType'] = None) -> None:
         self.columns = columns
         self.type_val = type_val if type_val is not None else BuilderQueryEditorExpressionType.PROPERTY
 
@@ -675,7 +676,7 @@ class BuilderQueryEditorWhereExpressionArray:
     expressions: list['BuilderQueryEditorWhereExpression']
     type_val: 'BuilderQueryEditorExpressionType'
 
-    def __init__(self, expressions: typing.Optional[list['BuilderQueryEditorWhereExpression']] = None, type_val: typing.Optional['BuilderQueryEditorExpressionType'] = None):
+    def __init__(self, expressions: typing.Optional[list['BuilderQueryEditorWhereExpression']] = None, type_val: typing.Optional['BuilderQueryEditorExpressionType'] = None) -> None:
         self.expressions = expressions if expressions is not None else []
         self.type_val = type_val if type_val is not None else BuilderQueryEditorExpressionType.PROPERTY
 
@@ -702,7 +703,7 @@ class BuilderQueryEditorWhereExpression:
     type_val: 'BuilderQueryEditorExpressionType'
     expressions: list['BuilderQueryEditorWhereExpressionItems']
 
-    def __init__(self, type_val: typing.Optional['BuilderQueryEditorExpressionType'] = None, expressions: typing.Optional[list['BuilderQueryEditorWhereExpressionItems']] = None):
+    def __init__(self, type_val: typing.Optional['BuilderQueryEditorExpressionType'] = None, expressions: typing.Optional[list['BuilderQueryEditorWhereExpressionItems']] = None) -> None:
         self.type_val = type_val if type_val is not None else BuilderQueryEditorExpressionType.PROPERTY
         self.expressions = expressions if expressions is not None else []
 
@@ -730,7 +731,7 @@ class BuilderQueryEditorWhereExpressionItems:
     operator: 'BuilderQueryEditorOperator'
     type_val: 'BuilderQueryEditorExpressionType'
 
-    def __init__(self, property_val: typing.Optional['BuilderQueryEditorProperty'] = None, operator: typing.Optional['BuilderQueryEditorOperator'] = None, type_val: typing.Optional['BuilderQueryEditorExpressionType'] = None):
+    def __init__(self, property_val: typing.Optional['BuilderQueryEditorProperty'] = None, operator: typing.Optional['BuilderQueryEditorOperator'] = None, type_val: typing.Optional['BuilderQueryEditorExpressionType'] = None) -> None:
         self.property_val = property_val if property_val is not None else BuilderQueryEditorProperty()
         self.operator = operator if operator is not None else BuilderQueryEditorOperator()
         self.type_val = type_val if type_val is not None else BuilderQueryEditorExpressionType.PROPERTY
@@ -762,7 +763,7 @@ class BuilderQueryEditorOperator:
     value: str
     label_value: typing.Optional[str]
 
-    def __init__(self, name: str = "", value: str = "", label_value: typing.Optional[str] = None):
+    def __init__(self, name: str = "", value: str = "", label_value: typing.Optional[str] = None) -> None:
         self.name = name
         self.value = value
         self.label_value = label_value
@@ -794,7 +795,7 @@ class BuilderQueryEditorReduceExpressionArray:
     expressions: list['BuilderQueryEditorReduceExpression']
     type_val: 'BuilderQueryEditorExpressionType'
 
-    def __init__(self, expressions: typing.Optional[list['BuilderQueryEditorReduceExpression']] = None, type_val: typing.Optional['BuilderQueryEditorExpressionType'] = None):
+    def __init__(self, expressions: typing.Optional[list['BuilderQueryEditorReduceExpression']] = None, type_val: typing.Optional['BuilderQueryEditorExpressionType'] = None) -> None:
         self.expressions = expressions if expressions is not None else []
         self.type_val = type_val if type_val is not None else BuilderQueryEditorExpressionType.PROPERTY
 
@@ -823,7 +824,7 @@ class BuilderQueryEditorReduceExpression:
     parameters: typing.Optional[list['BuilderQueryEditorFunctionParameterExpression']]
     focus: typing.Optional[bool]
 
-    def __init__(self, property_val: typing.Optional['BuilderQueryEditorProperty'] = None, reduce: typing.Optional['BuilderQueryEditorProperty'] = None, parameters: typing.Optional[list['BuilderQueryEditorFunctionParameterExpression']] = None, focus: typing.Optional[bool] = None):
+    def __init__(self, property_val: typing.Optional['BuilderQueryEditorProperty'] = None, reduce: typing.Optional['BuilderQueryEditorProperty'] = None, parameters: typing.Optional[list['BuilderQueryEditorFunctionParameterExpression']] = None, focus: typing.Optional[bool] = None) -> None:
         self.property_val = property_val
         self.reduce = reduce
         self.parameters = parameters
@@ -863,7 +864,7 @@ class BuilderQueryEditorFunctionParameterExpression:
     field_type: 'BuilderQueryEditorPropertyType'
     type_val: 'BuilderQueryEditorExpressionType'
 
-    def __init__(self, value: str = "", field_type: typing.Optional['BuilderQueryEditorPropertyType'] = None, type_val: typing.Optional['BuilderQueryEditorExpressionType'] = None):
+    def __init__(self, value: str = "", field_type: typing.Optional['BuilderQueryEditorPropertyType'] = None, type_val: typing.Optional['BuilderQueryEditorExpressionType'] = None) -> None:
         self.value = value
         self.field_type = field_type if field_type is not None else BuilderQueryEditorPropertyType.NUMBER
         self.type_val = type_val if type_val is not None else BuilderQueryEditorExpressionType.PROPERTY
@@ -894,7 +895,7 @@ class BuilderQueryEditorGroupByExpressionArray:
     expressions: list['BuilderQueryEditorGroupByExpression']
     type_val: 'BuilderQueryEditorExpressionType'
 
-    def __init__(self, expressions: typing.Optional[list['BuilderQueryEditorGroupByExpression']] = None, type_val: typing.Optional['BuilderQueryEditorExpressionType'] = None):
+    def __init__(self, expressions: typing.Optional[list['BuilderQueryEditorGroupByExpression']] = None, type_val: typing.Optional['BuilderQueryEditorExpressionType'] = None) -> None:
         self.expressions = expressions if expressions is not None else []
         self.type_val = type_val if type_val is not None else BuilderQueryEditorExpressionType.PROPERTY
 
@@ -923,7 +924,7 @@ class BuilderQueryEditorGroupByExpression:
     focus: typing.Optional[bool]
     type_val: typing.Optional['BuilderQueryEditorExpressionType']
 
-    def __init__(self, property_val: typing.Optional['BuilderQueryEditorProperty'] = None, interval: typing.Optional['BuilderQueryEditorProperty'] = None, focus: typing.Optional[bool] = None, type_val: typing.Optional['BuilderQueryEditorExpressionType'] = None):
+    def __init__(self, property_val: typing.Optional['BuilderQueryEditorProperty'] = None, interval: typing.Optional['BuilderQueryEditorProperty'] = None, focus: typing.Optional[bool] = None, type_val: typing.Optional['BuilderQueryEditorExpressionType'] = None) -> None:
         self.property_val = property_val
         self.interval = interval
         self.focus = focus
@@ -962,7 +963,7 @@ class BuilderQueryEditorOrderByExpressionArray:
     expressions: list['BuilderQueryEditorOrderByExpression']
     type_val: 'BuilderQueryEditorExpressionType'
 
-    def __init__(self, expressions: typing.Optional[list['BuilderQueryEditorOrderByExpression']] = None, type_val: typing.Optional['BuilderQueryEditorExpressionType'] = None):
+    def __init__(self, expressions: typing.Optional[list['BuilderQueryEditorOrderByExpression']] = None, type_val: typing.Optional['BuilderQueryEditorExpressionType'] = None) -> None:
         self.expressions = expressions if expressions is not None else []
         self.type_val = type_val if type_val is not None else BuilderQueryEditorExpressionType.PROPERTY
 
@@ -990,7 +991,7 @@ class BuilderQueryEditorOrderByExpression:
     order: 'BuilderQueryEditorOrderByOptions'
     type_val: 'BuilderQueryEditorExpressionType'
 
-    def __init__(self, property_val: typing.Optional['BuilderQueryEditorProperty'] = None, order: typing.Optional['BuilderQueryEditorOrderByOptions'] = None, type_val: typing.Optional['BuilderQueryEditorExpressionType'] = None):
+    def __init__(self, property_val: typing.Optional['BuilderQueryEditorProperty'] = None, order: typing.Optional['BuilderQueryEditorOrderByOptions'] = None, type_val: typing.Optional['BuilderQueryEditorExpressionType'] = None) -> None:
         self.property_val = property_val if property_val is not None else BuilderQueryEditorProperty()
         self.order = order if order is not None else BuilderQueryEditorOrderByOptions.ASC
         self.type_val = type_val if type_val is not None else BuilderQueryEditorExpressionType.PROPERTY
@@ -1028,7 +1029,7 @@ class AzureResourceGraphQuery:
     # Specifies the format results should be returned as. Defaults to table.
     result_format: typing.Optional[str]
 
-    def __init__(self, query: typing.Optional[str] = None, result_format: typing.Optional[str] = None):
+    def __init__(self, query: typing.Optional[str] = None, result_format: typing.Optional[str] = None) -> None:
         self.query = query
         self.result_format = result_format
 
@@ -1071,7 +1072,7 @@ class AzureTracesQuery:
     # KQL query to be executed.
     query: typing.Optional[str]
 
-    def __init__(self, result_format: typing.Optional['ResultFormat'] = None, resources: typing.Optional[list[str]] = None, operation_id: typing.Optional[str] = None, trace_types: typing.Optional[list[str]] = None, filters: typing.Optional[list['AzureTracesFilter']] = None, query: typing.Optional[str] = None):
+    def __init__(self, result_format: typing.Optional['ResultFormat'] = None, resources: typing.Optional[list[str]] = None, operation_id: typing.Optional[str] = None, trace_types: typing.Optional[list[str]] = None, filters: typing.Optional[list['AzureTracesFilter']] = None, query: typing.Optional[str] = None) -> None:
         self.result_format = result_format
         self.resources = resources
         self.operation_id = operation_id
@@ -1124,7 +1125,7 @@ class AzureTracesFilter:
     # Values to filter by.
     filters: list[str]
 
-    def __init__(self, property_val: str = "", operation: str = "", filters: typing.Optional[list[str]] = None):
+    def __init__(self, property_val: str = "", operation: str = "", filters: typing.Optional[list[str]] = None) -> None:
         self.property_val = property_val
         self.operation = operation
         self.filters = filters if filters is not None else []
@@ -1158,7 +1159,7 @@ class AppInsightsMetricNameQuery:
     raw_query: typing.Optional[str]
     kind: typing.Literal["AppInsightsMetricNameQuery"]
 
-    def __init__(self, raw_query: typing.Optional[str] = None):
+    def __init__(self, raw_query: typing.Optional[str] = None) -> None:
         self.raw_query = raw_query
         self.kind = "AppInsightsMetricNameQuery"
 
@@ -1185,7 +1186,7 @@ class AppInsightsGroupByQuery:
     kind: typing.Literal["AppInsightsGroupByQuery"]
     metric_name: str
 
-    def __init__(self, raw_query: typing.Optional[str] = None, metric_name: str = ""):
+    def __init__(self, raw_query: typing.Optional[str] = None, metric_name: str = "") -> None:
         self.raw_query = raw_query
         self.kind = "AppInsightsGroupByQuery"
         self.metric_name = metric_name
@@ -1215,7 +1216,7 @@ class SubscriptionsQuery:
     raw_query: typing.Optional[str]
     kind: typing.Literal["SubscriptionsQuery"]
 
-    def __init__(self, raw_query: typing.Optional[str] = None):
+    def __init__(self, raw_query: typing.Optional[str] = None) -> None:
         self.raw_query = raw_query
         self.kind = "SubscriptionsQuery"
 
@@ -1242,7 +1243,7 @@ class ResourceGroupsQuery:
     kind: typing.Literal["ResourceGroupsQuery"]
     subscription: str
 
-    def __init__(self, raw_query: typing.Optional[str] = None, subscription: str = ""):
+    def __init__(self, raw_query: typing.Optional[str] = None, subscription: str = "") -> None:
         self.raw_query = raw_query
         self.kind = "ResourceGroupsQuery"
         self.subscription = subscription
@@ -1275,7 +1276,7 @@ class ResourceNamesQuery:
     resource_group: str
     metric_namespace: str
 
-    def __init__(self, raw_query: typing.Optional[str] = None, subscription: str = "", resource_group: str = "", metric_namespace: str = ""):
+    def __init__(self, raw_query: typing.Optional[str] = None, subscription: str = "", resource_group: str = "", metric_namespace: str = "") -> None:
         self.raw_query = raw_query
         self.kind = "ResourceNamesQuery"
         self.subscription = subscription
@@ -1317,7 +1318,7 @@ class MetricNamespaceQuery:
     metric_namespace: typing.Optional[str]
     resource_name: typing.Optional[str]
 
-    def __init__(self, raw_query: typing.Optional[str] = None, subscription: str = "", resource_group: str = "", metric_namespace: typing.Optional[str] = None, resource_name: typing.Optional[str] = None):
+    def __init__(self, raw_query: typing.Optional[str] = None, subscription: str = "", resource_group: str = "", metric_namespace: typing.Optional[str] = None, resource_name: typing.Optional[str] = None) -> None:
         self.raw_query = raw_query
         self.kind = "MetricNamespaceQuery"
         self.subscription = subscription
@@ -1369,7 +1370,7 @@ class MetricDefinitionsQuery:
     metric_namespace: typing.Optional[str]
     resource_name: typing.Optional[str]
 
-    def __init__(self, raw_query: typing.Optional[str] = None, subscription: str = "", resource_group: str = "", metric_namespace: typing.Optional[str] = None, resource_name: typing.Optional[str] = None):
+    def __init__(self, raw_query: typing.Optional[str] = None, subscription: str = "", resource_group: str = "", metric_namespace: typing.Optional[str] = None, resource_name: typing.Optional[str] = None) -> None:
         self.raw_query = raw_query
         self.kind = "MetricDefinitionsQuery"
         self.subscription = subscription
@@ -1417,7 +1418,7 @@ class MetricNamesQuery:
     resource_name: str
     metric_namespace: str
 
-    def __init__(self, raw_query: typing.Optional[str] = None, subscription: str = "", resource_group: str = "", resource_name: str = "", metric_namespace: str = ""):
+    def __init__(self, raw_query: typing.Optional[str] = None, subscription: str = "", resource_group: str = "", resource_name: str = "", metric_namespace: str = "") -> None:
         self.raw_query = raw_query
         self.kind = "MetricNamesQuery"
         self.subscription = subscription
@@ -1460,7 +1461,7 @@ class WorkspacesQuery:
     kind: typing.Literal["WorkspacesQuery"]
     subscription: str
 
-    def __init__(self, raw_query: typing.Optional[str] = None, subscription: str = ""):
+    def __init__(self, raw_query: typing.Optional[str] = None, subscription: str = "") -> None:
         self.raw_query = raw_query
         self.kind = "WorkspacesQuery"
         self.subscription = subscription
@@ -1490,7 +1491,7 @@ class UnknownQuery:
     raw_query: typing.Optional[str]
     kind: typing.Literal["UnknownQuery"]
 
-    def __init__(self, raw_query: typing.Optional[str] = None):
+    def __init__(self, raw_query: typing.Optional[str] = None) -> None:
         self.raw_query = raw_query
         self.kind = "UnknownQuery"
 
@@ -1538,7 +1539,7 @@ class SelectableValue:
     label: str
     value: str
 
-    def __init__(self, label: str = "", value: str = ""):
+    def __init__(self, label: str = "", value: str = "") -> None:
         self.label = label
         self.value = value
 
@@ -1579,7 +1580,7 @@ class GrafanaTemplateVariableQueryType(enum.StrEnum):
 class BaseGrafanaTemplateVariableQuery:
     raw_query: typing.Optional[str]
 
-    def __init__(self, raw_query: typing.Optional[str] = None):
+    def __init__(self, raw_query: typing.Optional[str] = None) -> None:
         self.raw_query = raw_query
 
     def to_json(self) -> dict[str, object]:

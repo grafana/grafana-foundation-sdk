@@ -4,8 +4,9 @@ import typing
 from ..cog import builder as cogbuilder
 from ..models import dashboard
 from ..cog import variants as cogvariants
-from ..models import statushistory
 from ..models import common
+from ..models import statushistory
+from ..models import dashboardv2beta1
 
 
 class Panel(cogbuilder.Builder[dashboard.Panel]):    
@@ -15,7 +16,7 @@ class Panel(cogbuilder.Builder[dashboard.Panel]):
     
     _internal: dashboard.Panel
 
-    def __init__(self):
+    def __init__(self) -> None:
         self._internal = dashboard.Panel()        
         self._internal.type_val = "status-history"
 
@@ -84,7 +85,7 @@ class Panel(cogbuilder.Builder[dashboard.Panel]):
     
         return self
     
-    def datasource(self, datasource: dashboard.DataSourceRef) -> typing.Self:    
+    def datasource(self, datasource: common.DataSourceRef) -> typing.Self:    
         """
         The datasource used in all targets.
         """
@@ -824,6 +825,788 @@ class Panel(cogbuilder.Builder[dashboard.Panel]):
             self._internal.field_config.defaults.custom = statushistory.FieldConfig()
         assert isinstance(self._internal.field_config.defaults.custom, statushistory.FieldConfig)
         self._internal.field_config.defaults.custom.axis_border_show = axis_border_show
+    
+        return self
+    
+
+
+class Visualization(cogbuilder.Builder[dashboardv2beta1.VizConfigKind]):
+    _internal: dashboardv2beta1.VizConfigKind
+
+    def __init__(self) -> None:
+        self._internal = dashboardv2beta1.VizConfigKind()        
+        self._internal.kind = "VizConfig"        
+        self._internal.group = "status-history"
+
+    def build(self) -> dashboardv2beta1.VizConfigKind:
+        """
+        Builds the object.
+        """
+        return self._internal    
+    
+    def display_name(self, display_name: str) -> typing.Self:    
+        """
+        The display value for this field.  This supports template variables blank is auto
+        """
+            
+        if self._internal.spec is None:
+            self._internal.spec = dashboardv2beta1.VizConfigSpec()
+        assert isinstance(self._internal.spec, dashboardv2beta1.VizConfigSpec)
+        if self._internal.spec.field_config is None:
+            self._internal.spec.field_config = dashboardv2beta1.FieldConfigSource()
+        assert isinstance(self._internal.spec.field_config, dashboardv2beta1.FieldConfigSource)
+        if self._internal.spec.field_config.defaults is None:
+            self._internal.spec.field_config.defaults = dashboardv2beta1.FieldConfig()
+        assert isinstance(self._internal.spec.field_config.defaults, dashboardv2beta1.FieldConfig)
+        self._internal.spec.field_config.defaults.display_name = display_name
+    
+        return self
+    
+    def display_name_from_ds(self, display_name_from_ds: str) -> typing.Self:    
+        """
+        This can be used by data sources that return and explicit naming structure for values and labels
+        When this property is configured, this value is used rather than the default naming strategy.
+        """
+            
+        if self._internal.spec is None:
+            self._internal.spec = dashboardv2beta1.VizConfigSpec()
+        assert isinstance(self._internal.spec, dashboardv2beta1.VizConfigSpec)
+        if self._internal.spec.field_config is None:
+            self._internal.spec.field_config = dashboardv2beta1.FieldConfigSource()
+        assert isinstance(self._internal.spec.field_config, dashboardv2beta1.FieldConfigSource)
+        if self._internal.spec.field_config.defaults is None:
+            self._internal.spec.field_config.defaults = dashboardv2beta1.FieldConfig()
+        assert isinstance(self._internal.spec.field_config.defaults, dashboardv2beta1.FieldConfig)
+        self._internal.spec.field_config.defaults.display_name_from_ds = display_name_from_ds
+    
+        return self
+    
+    def description(self, description: str) -> typing.Self:    
+        """
+        Human readable field metadata
+        """
+            
+        if self._internal.spec is None:
+            self._internal.spec = dashboardv2beta1.VizConfigSpec()
+        assert isinstance(self._internal.spec, dashboardv2beta1.VizConfigSpec)
+        if self._internal.spec.field_config is None:
+            self._internal.spec.field_config = dashboardv2beta1.FieldConfigSource()
+        assert isinstance(self._internal.spec.field_config, dashboardv2beta1.FieldConfigSource)
+        if self._internal.spec.field_config.defaults is None:
+            self._internal.spec.field_config.defaults = dashboardv2beta1.FieldConfig()
+        assert isinstance(self._internal.spec.field_config.defaults, dashboardv2beta1.FieldConfig)
+        self._internal.spec.field_config.defaults.description = description
+    
+        return self
+    
+    def path(self, path: str) -> typing.Self:    
+        """
+        An explicit path to the field in the datasource.  When the frame meta includes a path,
+        This will default to `${frame.meta.path}/${field.name}
+        
+        When defined, this value can be used as an identifier within the datasource scope, and
+        may be used to update the results
+        """
+            
+        if self._internal.spec is None:
+            self._internal.spec = dashboardv2beta1.VizConfigSpec()
+        assert isinstance(self._internal.spec, dashboardv2beta1.VizConfigSpec)
+        if self._internal.spec.field_config is None:
+            self._internal.spec.field_config = dashboardv2beta1.FieldConfigSource()
+        assert isinstance(self._internal.spec.field_config, dashboardv2beta1.FieldConfigSource)
+        if self._internal.spec.field_config.defaults is None:
+            self._internal.spec.field_config.defaults = dashboardv2beta1.FieldConfig()
+        assert isinstance(self._internal.spec.field_config.defaults, dashboardv2beta1.FieldConfig)
+        self._internal.spec.field_config.defaults.path = path
+    
+        return self
+    
+    def unit(self, unit: str) -> typing.Self:    
+        """
+        Unit a field should use. The unit you select is applied to all fields except time.
+        You can use the units ID availables in Grafana or a custom unit.
+        Available units in Grafana: https://github.com/grafana/grafana/blob/main/packages/grafana-data/src/valueFormats/categories.ts
+        As custom unit, you can use the following formats:
+        `suffix:<suffix>` for custom unit that should go after value.
+        `prefix:<prefix>` for custom unit that should go before value.
+        `time:<format>` For custom date time formats type for example `time:YYYY-MM-DD`.
+        `si:<base scale><unit characters>` for custom SI units. For example: `si: mF`. This one is a bit more advanced as you can specify both a unit and the source data scale. So if your source data is represented as milli (thousands of) something prefix the unit with that SI scale character.
+        `count:<unit>` for a custom count unit.
+        `currency:<unit>` for custom a currency unit.
+        """
+            
+        if self._internal.spec is None:
+            self._internal.spec = dashboardv2beta1.VizConfigSpec()
+        assert isinstance(self._internal.spec, dashboardv2beta1.VizConfigSpec)
+        if self._internal.spec.field_config is None:
+            self._internal.spec.field_config = dashboardv2beta1.FieldConfigSource()
+        assert isinstance(self._internal.spec.field_config, dashboardv2beta1.FieldConfigSource)
+        if self._internal.spec.field_config.defaults is None:
+            self._internal.spec.field_config.defaults = dashboardv2beta1.FieldConfig()
+        assert isinstance(self._internal.spec.field_config.defaults, dashboardv2beta1.FieldConfig)
+        self._internal.spec.field_config.defaults.unit = unit
+    
+        return self
+    
+    def decimals(self, decimals: float) -> typing.Self:    
+        """
+        Specify the number of decimals Grafana includes in the rendered value.
+        If you leave this field blank, Grafana automatically truncates the number of decimals based on the value.
+        For example 1.1234 will display as 1.12 and 100.456 will display as 100.
+        To display all decimals, set the unit to `String`.
+        """
+            
+        if self._internal.spec is None:
+            self._internal.spec = dashboardv2beta1.VizConfigSpec()
+        assert isinstance(self._internal.spec, dashboardv2beta1.VizConfigSpec)
+        if self._internal.spec.field_config is None:
+            self._internal.spec.field_config = dashboardv2beta1.FieldConfigSource()
+        assert isinstance(self._internal.spec.field_config, dashboardv2beta1.FieldConfigSource)
+        if self._internal.spec.field_config.defaults is None:
+            self._internal.spec.field_config.defaults = dashboardv2beta1.FieldConfig()
+        assert isinstance(self._internal.spec.field_config.defaults, dashboardv2beta1.FieldConfig)
+        self._internal.spec.field_config.defaults.decimals = decimals
+    
+        return self
+    
+    def min(self, min_val: float) -> typing.Self:    
+        """
+        The minimum value used in percentage threshold calculations. Leave blank for auto calculation based on all series and fields.
+        """
+            
+        if self._internal.spec is None:
+            self._internal.spec = dashboardv2beta1.VizConfigSpec()
+        assert isinstance(self._internal.spec, dashboardv2beta1.VizConfigSpec)
+        if self._internal.spec.field_config is None:
+            self._internal.spec.field_config = dashboardv2beta1.FieldConfigSource()
+        assert isinstance(self._internal.spec.field_config, dashboardv2beta1.FieldConfigSource)
+        if self._internal.spec.field_config.defaults is None:
+            self._internal.spec.field_config.defaults = dashboardv2beta1.FieldConfig()
+        assert isinstance(self._internal.spec.field_config.defaults, dashboardv2beta1.FieldConfig)
+        self._internal.spec.field_config.defaults.min_val = min_val
+    
+        return self
+    
+    def max(self, max_val: float) -> typing.Self:    
+        """
+        The maximum value used in percentage threshold calculations. Leave blank for auto calculation based on all series and fields.
+        """
+            
+        if self._internal.spec is None:
+            self._internal.spec = dashboardv2beta1.VizConfigSpec()
+        assert isinstance(self._internal.spec, dashboardv2beta1.VizConfigSpec)
+        if self._internal.spec.field_config is None:
+            self._internal.spec.field_config = dashboardv2beta1.FieldConfigSource()
+        assert isinstance(self._internal.spec.field_config, dashboardv2beta1.FieldConfigSource)
+        if self._internal.spec.field_config.defaults is None:
+            self._internal.spec.field_config.defaults = dashboardv2beta1.FieldConfig()
+        assert isinstance(self._internal.spec.field_config.defaults, dashboardv2beta1.FieldConfig)
+        self._internal.spec.field_config.defaults.max_val = max_val
+    
+        return self
+    
+    def mappings(self, mappings: list[dashboardv2beta1.ValueMapping]) -> typing.Self:    
+        """
+        Convert input values into a display string
+        """
+            
+        if self._internal.spec is None:
+            self._internal.spec = dashboardv2beta1.VizConfigSpec()
+        assert isinstance(self._internal.spec, dashboardv2beta1.VizConfigSpec)
+        if self._internal.spec.field_config is None:
+            self._internal.spec.field_config = dashboardv2beta1.FieldConfigSource()
+        assert isinstance(self._internal.spec.field_config, dashboardv2beta1.FieldConfigSource)
+        if self._internal.spec.field_config.defaults is None:
+            self._internal.spec.field_config.defaults = dashboardv2beta1.FieldConfig()
+        assert isinstance(self._internal.spec.field_config.defaults, dashboardv2beta1.FieldConfig)
+        self._internal.spec.field_config.defaults.mappings = mappings
+    
+        return self
+    
+    def thresholds(self, thresholds: cogbuilder.Builder[dashboardv2beta1.ThresholdsConfig]) -> typing.Self:    
+        """
+        Map numeric values to states
+        """
+            
+        if self._internal.spec is None:
+            self._internal.spec = dashboardv2beta1.VizConfigSpec()
+        assert isinstance(self._internal.spec, dashboardv2beta1.VizConfigSpec)
+        if self._internal.spec.field_config is None:
+            self._internal.spec.field_config = dashboardv2beta1.FieldConfigSource()
+        assert isinstance(self._internal.spec.field_config, dashboardv2beta1.FieldConfigSource)
+        if self._internal.spec.field_config.defaults is None:
+            self._internal.spec.field_config.defaults = dashboardv2beta1.FieldConfig()
+        assert isinstance(self._internal.spec.field_config.defaults, dashboardv2beta1.FieldConfig)
+        thresholds_resource = thresholds.build()
+        self._internal.spec.field_config.defaults.thresholds = thresholds_resource
+    
+        return self
+    
+    def color_scheme(self, color: cogbuilder.Builder[dashboardv2beta1.FieldColor]) -> typing.Self:    
+        """
+        Panel color configuration
+        """
+            
+        if self._internal.spec is None:
+            self._internal.spec = dashboardv2beta1.VizConfigSpec()
+        assert isinstance(self._internal.spec, dashboardv2beta1.VizConfigSpec)
+        if self._internal.spec.field_config is None:
+            self._internal.spec.field_config = dashboardv2beta1.FieldConfigSource()
+        assert isinstance(self._internal.spec.field_config, dashboardv2beta1.FieldConfigSource)
+        if self._internal.spec.field_config.defaults is None:
+            self._internal.spec.field_config.defaults = dashboardv2beta1.FieldConfig()
+        assert isinstance(self._internal.spec.field_config.defaults, dashboardv2beta1.FieldConfig)
+        color_resource = color.build()
+        self._internal.spec.field_config.defaults.color = color_resource
+    
+        return self
+    
+    def data_links(self, links: list[object]) -> typing.Self:    
+        """
+        The behavior when clicking on a result
+        """
+            
+        if self._internal.spec is None:
+            self._internal.spec = dashboardv2beta1.VizConfigSpec()
+        assert isinstance(self._internal.spec, dashboardv2beta1.VizConfigSpec)
+        if self._internal.spec.field_config is None:
+            self._internal.spec.field_config = dashboardv2beta1.FieldConfigSource()
+        assert isinstance(self._internal.spec.field_config, dashboardv2beta1.FieldConfigSource)
+        if self._internal.spec.field_config.defaults is None:
+            self._internal.spec.field_config.defaults = dashboardv2beta1.FieldConfig()
+        assert isinstance(self._internal.spec.field_config.defaults, dashboardv2beta1.FieldConfig)
+        self._internal.spec.field_config.defaults.links = links
+    
+        return self
+    
+    def actions(self, actions: list[cogbuilder.Builder[dashboardv2beta1.Action]]) -> typing.Self:    
+        """
+        Define interactive HTTP requests that can be triggered from data visualizations.
+        """
+            
+        if self._internal.spec is None:
+            self._internal.spec = dashboardv2beta1.VizConfigSpec()
+        assert isinstance(self._internal.spec, dashboardv2beta1.VizConfigSpec)
+        if self._internal.spec.field_config is None:
+            self._internal.spec.field_config = dashboardv2beta1.FieldConfigSource()
+        assert isinstance(self._internal.spec.field_config, dashboardv2beta1.FieldConfigSource)
+        if self._internal.spec.field_config.defaults is None:
+            self._internal.spec.field_config.defaults = dashboardv2beta1.FieldConfig()
+        assert isinstance(self._internal.spec.field_config.defaults, dashboardv2beta1.FieldConfig)
+        actions_resources = [r1.build() for r1 in actions]
+        self._internal.spec.field_config.defaults.actions = actions_resources
+    
+        return self
+    
+    def no_value(self, no_value: str) -> typing.Self:    
+        """
+        Alternative to empty string
+        """
+            
+        if self._internal.spec is None:
+            self._internal.spec = dashboardv2beta1.VizConfigSpec()
+        assert isinstance(self._internal.spec, dashboardv2beta1.VizConfigSpec)
+        if self._internal.spec.field_config is None:
+            self._internal.spec.field_config = dashboardv2beta1.FieldConfigSource()
+        assert isinstance(self._internal.spec.field_config, dashboardv2beta1.FieldConfigSource)
+        if self._internal.spec.field_config.defaults is None:
+            self._internal.spec.field_config.defaults = dashboardv2beta1.FieldConfig()
+        assert isinstance(self._internal.spec.field_config.defaults, dashboardv2beta1.FieldConfig)
+        self._internal.spec.field_config.defaults.no_value = no_value
+    
+        return self
+    
+    def field_min_max(self, field_min_max: bool) -> typing.Self:    
+        """
+        Calculate min max per field
+        """
+            
+        if self._internal.spec is None:
+            self._internal.spec = dashboardv2beta1.VizConfigSpec()
+        assert isinstance(self._internal.spec, dashboardv2beta1.VizConfigSpec)
+        if self._internal.spec.field_config is None:
+            self._internal.spec.field_config = dashboardv2beta1.FieldConfigSource()
+        assert isinstance(self._internal.spec.field_config, dashboardv2beta1.FieldConfigSource)
+        if self._internal.spec.field_config.defaults is None:
+            self._internal.spec.field_config.defaults = dashboardv2beta1.FieldConfig()
+        assert isinstance(self._internal.spec.field_config.defaults, dashboardv2beta1.FieldConfig)
+        self._internal.spec.field_config.defaults.field_min_max = field_min_max
+    
+        return self
+    
+    def null_value_mode(self, null_value_mode: dashboardv2beta1.NullValueMode) -> typing.Self:    
+        """
+        How null values should be handled when calculating field stats
+        "null" - Include null values, "connected" - Ignore nulls, "null as zero" - Treat nulls as zero
+        """
+            
+        if self._internal.spec is None:
+            self._internal.spec = dashboardv2beta1.VizConfigSpec()
+        assert isinstance(self._internal.spec, dashboardv2beta1.VizConfigSpec)
+        if self._internal.spec.field_config is None:
+            self._internal.spec.field_config = dashboardv2beta1.FieldConfigSource()
+        assert isinstance(self._internal.spec.field_config, dashboardv2beta1.FieldConfigSource)
+        if self._internal.spec.field_config.defaults is None:
+            self._internal.spec.field_config.defaults = dashboardv2beta1.FieldConfig()
+        assert isinstance(self._internal.spec.field_config.defaults, dashboardv2beta1.FieldConfig)
+        self._internal.spec.field_config.defaults.null_value_mode = null_value_mode
+    
+        return self
+    
+    def overrides(self, overrides: list[cogbuilder.Builder[dashboardv2beta1.Dashboardv2beta1FieldConfigSourceOverrides]]) -> typing.Self:    
+        """
+        Overrides are the options applied to specific fields overriding the defaults.
+        """
+            
+        if self._internal.spec is None:
+            self._internal.spec = dashboardv2beta1.VizConfigSpec()
+        assert isinstance(self._internal.spec, dashboardv2beta1.VizConfigSpec)
+        if self._internal.spec.field_config is None:
+            self._internal.spec.field_config = dashboardv2beta1.FieldConfigSource()
+        assert isinstance(self._internal.spec.field_config, dashboardv2beta1.FieldConfigSource)
+        overrides_resources = [r1.build() for r1 in overrides]
+        self._internal.spec.field_config.overrides = overrides_resources
+    
+        return self
+    
+    def override(self, override: cogbuilder.Builder[dashboardv2beta1.Dashboardv2beta1FieldConfigSourceOverrides]) -> typing.Self:    
+        """
+        Overrides are the options applied to specific fields overriding the defaults.
+        """
+            
+        if self._internal.spec is None:
+            self._internal.spec = dashboardv2beta1.VizConfigSpec()
+        assert isinstance(self._internal.spec, dashboardv2beta1.VizConfigSpec)
+        if self._internal.spec.field_config is None:
+            self._internal.spec.field_config = dashboardv2beta1.FieldConfigSource()
+        assert isinstance(self._internal.spec.field_config, dashboardv2beta1.FieldConfigSource)
+        if self._internal.spec.field_config.overrides is None:
+            self._internal.spec.field_config.overrides = []
+        
+        override_resource = override.build()
+        self._internal.spec.field_config.overrides.append(override_resource)
+    
+        return self
+    
+    def override_by_name(self, name: str, properties: list[dashboardv2beta1.DynamicConfigValue]) -> typing.Self:    
+        """
+        Adds override rules for a specific field, referred to by its name.
+        """
+            
+        if self._internal.spec is None:
+            self._internal.spec = dashboardv2beta1.VizConfigSpec()
+        assert isinstance(self._internal.spec, dashboardv2beta1.VizConfigSpec)
+        if self._internal.spec.field_config is None:
+            self._internal.spec.field_config = dashboardv2beta1.FieldConfigSource()
+        assert isinstance(self._internal.spec.field_config, dashboardv2beta1.FieldConfigSource)
+        if self._internal.spec.field_config.overrides is None:
+            self._internal.spec.field_config.overrides = []
+        
+        self._internal.spec.field_config.overrides.append(dashboardv2beta1.Dashboardv2beta1FieldConfigSourceOverrides(
+            matcher=dashboardv2beta1.MatcherConfig(
+            id_val="byName",
+            options=name,
+        ),
+            properties=properties,
+        ))
+    
+        return self
+    
+    def override_by_regexp(self, regexp: str, properties: list[dashboardv2beta1.DynamicConfigValue]) -> typing.Self:    
+        """
+        Adds override rules for the fields whose name match the given regexp.
+        """
+            
+        if self._internal.spec is None:
+            self._internal.spec = dashboardv2beta1.VizConfigSpec()
+        assert isinstance(self._internal.spec, dashboardv2beta1.VizConfigSpec)
+        if self._internal.spec.field_config is None:
+            self._internal.spec.field_config = dashboardv2beta1.FieldConfigSource()
+        assert isinstance(self._internal.spec.field_config, dashboardv2beta1.FieldConfigSource)
+        if self._internal.spec.field_config.overrides is None:
+            self._internal.spec.field_config.overrides = []
+        
+        self._internal.spec.field_config.overrides.append(dashboardv2beta1.Dashboardv2beta1FieldConfigSourceOverrides(
+            matcher=dashboardv2beta1.MatcherConfig(
+            id_val="byRegexp",
+            options=regexp,
+        ),
+            properties=properties,
+        ))
+    
+        return self
+    
+    def override_by_field_type(self, field_type: str, properties: list[dashboardv2beta1.DynamicConfigValue]) -> typing.Self:    
+        """
+        Adds override rules for all the fields of the given type.
+        """
+            
+        if self._internal.spec is None:
+            self._internal.spec = dashboardv2beta1.VizConfigSpec()
+        assert isinstance(self._internal.spec, dashboardv2beta1.VizConfigSpec)
+        if self._internal.spec.field_config is None:
+            self._internal.spec.field_config = dashboardv2beta1.FieldConfigSource()
+        assert isinstance(self._internal.spec.field_config, dashboardv2beta1.FieldConfigSource)
+        if self._internal.spec.field_config.overrides is None:
+            self._internal.spec.field_config.overrides = []
+        
+        self._internal.spec.field_config.overrides.append(dashboardv2beta1.Dashboardv2beta1FieldConfigSourceOverrides(
+            matcher=dashboardv2beta1.MatcherConfig(
+            id_val="byType",
+            options=field_type,
+        ),
+            properties=properties,
+        ))
+    
+        return self
+    
+    def override_by_query(self, query_ref_id: str, properties: list[dashboardv2beta1.DynamicConfigValue]) -> typing.Self:    
+        if self._internal.spec is None:
+            self._internal.spec = dashboardv2beta1.VizConfigSpec()
+        assert isinstance(self._internal.spec, dashboardv2beta1.VizConfigSpec)
+        if self._internal.spec.field_config is None:
+            self._internal.spec.field_config = dashboardv2beta1.FieldConfigSource()
+        assert isinstance(self._internal.spec.field_config, dashboardv2beta1.FieldConfigSource)
+        if self._internal.spec.field_config.overrides is None:
+            self._internal.spec.field_config.overrides = []
+        
+        self._internal.spec.field_config.overrides.append(dashboardv2beta1.Dashboardv2beta1FieldConfigSourceOverrides(
+            matcher=dashboardv2beta1.MatcherConfig(
+            id_val="byFrameRefID",
+            options=query_ref_id,
+        ),
+            properties=properties,
+        ))
+    
+        return self
+    
+    def row_height(self, row_height: float) -> typing.Self:    
+        """
+        Set the height of the rows
+        """
+            
+        if not row_height >= 0:
+            raise ValueError("row_height must be >= 0")
+        if not row_height <= 1:
+            raise ValueError("row_height must be <= 1")
+        if self._internal.spec is None:
+            self._internal.spec = dashboardv2beta1.VizConfigSpec()
+        assert isinstance(self._internal.spec, dashboardv2beta1.VizConfigSpec)
+        if self._internal.spec.options is None:
+            self._internal.spec.options = statushistory.Options()
+        assert isinstance(self._internal.spec.options, statushistory.Options)
+        self._internal.spec.options.row_height = row_height
+    
+        return self
+    
+    def show_value(self, show_value: common.VisibilityMode) -> typing.Self:    
+        """
+        Show values on the columns
+        """
+            
+        if self._internal.spec is None:
+            self._internal.spec = dashboardv2beta1.VizConfigSpec()
+        assert isinstance(self._internal.spec, dashboardv2beta1.VizConfigSpec)
+        if self._internal.spec.options is None:
+            self._internal.spec.options = statushistory.Options()
+        assert isinstance(self._internal.spec.options, statushistory.Options)
+        self._internal.spec.options.show_value = show_value
+    
+        return self
+    
+    def col_width(self, col_width: float) -> typing.Self:    
+        """
+        Controls the column width
+        """
+            
+        if not col_width <= 1:
+            raise ValueError("col_width must be <= 1")
+        if self._internal.spec is None:
+            self._internal.spec = dashboardv2beta1.VizConfigSpec()
+        assert isinstance(self._internal.spec, dashboardv2beta1.VizConfigSpec)
+        if self._internal.spec.options is None:
+            self._internal.spec.options = statushistory.Options()
+        assert isinstance(self._internal.spec.options, statushistory.Options)
+        self._internal.spec.options.col_width = col_width
+    
+        return self
+    
+    def legend(self, legend: cogbuilder.Builder[common.VizLegendOptions]) -> typing.Self:    
+        if self._internal.spec is None:
+            self._internal.spec = dashboardv2beta1.VizConfigSpec()
+        assert isinstance(self._internal.spec, dashboardv2beta1.VizConfigSpec)
+        if self._internal.spec.options is None:
+            self._internal.spec.options = statushistory.Options()
+        assert isinstance(self._internal.spec.options, statushistory.Options)
+        legend_resource = legend.build()
+        self._internal.spec.options.legend = legend_resource
+    
+        return self
+    
+    def tooltip(self, tooltip: cogbuilder.Builder[common.VizTooltipOptions]) -> typing.Self:    
+        if self._internal.spec is None:
+            self._internal.spec = dashboardv2beta1.VizConfigSpec()
+        assert isinstance(self._internal.spec, dashboardv2beta1.VizConfigSpec)
+        if self._internal.spec.options is None:
+            self._internal.spec.options = statushistory.Options()
+        assert isinstance(self._internal.spec.options, statushistory.Options)
+        tooltip_resource = tooltip.build()
+        self._internal.spec.options.tooltip = tooltip_resource
+    
+        return self
+    
+    def timezone(self, timezone: list[common.TimeZone]) -> typing.Self:    
+        if self._internal.spec is None:
+            self._internal.spec = dashboardv2beta1.VizConfigSpec()
+        assert isinstance(self._internal.spec, dashboardv2beta1.VizConfigSpec)
+        if self._internal.spec.options is None:
+            self._internal.spec.options = statushistory.Options()
+        assert isinstance(self._internal.spec.options, statushistory.Options)
+        self._internal.spec.options.timezone = timezone
+    
+        return self
+    
+    def per_page(self, per_page: float) -> typing.Self:    
+        """
+        Enables pagination when > 0
+        """
+            
+        if not per_page >= 1:
+            raise ValueError("per_page must be >= 1")
+        if self._internal.spec is None:
+            self._internal.spec = dashboardv2beta1.VizConfigSpec()
+        assert isinstance(self._internal.spec, dashboardv2beta1.VizConfigSpec)
+        if self._internal.spec.options is None:
+            self._internal.spec.options = statushistory.Options()
+        assert isinstance(self._internal.spec.options, statushistory.Options)
+        self._internal.spec.options.per_page = per_page
+    
+        return self
+    
+    def line_width(self, line_width: int) -> typing.Self:    
+        if not line_width <= 10:
+            raise ValueError("line_width must be <= 10")
+        if self._internal.spec is None:
+            self._internal.spec = dashboardv2beta1.VizConfigSpec()
+        assert isinstance(self._internal.spec, dashboardv2beta1.VizConfigSpec)
+        if self._internal.spec.field_config is None:
+            self._internal.spec.field_config = dashboardv2beta1.FieldConfigSource()
+        assert isinstance(self._internal.spec.field_config, dashboardv2beta1.FieldConfigSource)
+        if self._internal.spec.field_config.defaults is None:
+            self._internal.spec.field_config.defaults = dashboardv2beta1.FieldConfig()
+        assert isinstance(self._internal.spec.field_config.defaults, dashboardv2beta1.FieldConfig)
+        if self._internal.spec.field_config.defaults.custom is None:
+            self._internal.spec.field_config.defaults.custom = statushistory.FieldConfig()
+        assert isinstance(self._internal.spec.field_config.defaults.custom, statushistory.FieldConfig)
+        self._internal.spec.field_config.defaults.custom.line_width = line_width
+    
+        return self
+    
+    def axis_placement(self, axis_placement: common.AxisPlacement) -> typing.Self:    
+        if self._internal.spec is None:
+            self._internal.spec = dashboardv2beta1.VizConfigSpec()
+        assert isinstance(self._internal.spec, dashboardv2beta1.VizConfigSpec)
+        if self._internal.spec.field_config is None:
+            self._internal.spec.field_config = dashboardv2beta1.FieldConfigSource()
+        assert isinstance(self._internal.spec.field_config, dashboardv2beta1.FieldConfigSource)
+        if self._internal.spec.field_config.defaults is None:
+            self._internal.spec.field_config.defaults = dashboardv2beta1.FieldConfig()
+        assert isinstance(self._internal.spec.field_config.defaults, dashboardv2beta1.FieldConfig)
+        if self._internal.spec.field_config.defaults.custom is None:
+            self._internal.spec.field_config.defaults.custom = statushistory.FieldConfig()
+        assert isinstance(self._internal.spec.field_config.defaults.custom, statushistory.FieldConfig)
+        self._internal.spec.field_config.defaults.custom.axis_placement = axis_placement
+    
+        return self
+    
+    def axis_color_mode(self, axis_color_mode: common.AxisColorMode) -> typing.Self:    
+        if self._internal.spec is None:
+            self._internal.spec = dashboardv2beta1.VizConfigSpec()
+        assert isinstance(self._internal.spec, dashboardv2beta1.VizConfigSpec)
+        if self._internal.spec.field_config is None:
+            self._internal.spec.field_config = dashboardv2beta1.FieldConfigSource()
+        assert isinstance(self._internal.spec.field_config, dashboardv2beta1.FieldConfigSource)
+        if self._internal.spec.field_config.defaults is None:
+            self._internal.spec.field_config.defaults = dashboardv2beta1.FieldConfig()
+        assert isinstance(self._internal.spec.field_config.defaults, dashboardv2beta1.FieldConfig)
+        if self._internal.spec.field_config.defaults.custom is None:
+            self._internal.spec.field_config.defaults.custom = statushistory.FieldConfig()
+        assert isinstance(self._internal.spec.field_config.defaults.custom, statushistory.FieldConfig)
+        self._internal.spec.field_config.defaults.custom.axis_color_mode = axis_color_mode
+    
+        return self
+    
+    def axis_label(self, axis_label: str) -> typing.Self:    
+        if self._internal.spec is None:
+            self._internal.spec = dashboardv2beta1.VizConfigSpec()
+        assert isinstance(self._internal.spec, dashboardv2beta1.VizConfigSpec)
+        if self._internal.spec.field_config is None:
+            self._internal.spec.field_config = dashboardv2beta1.FieldConfigSource()
+        assert isinstance(self._internal.spec.field_config, dashboardv2beta1.FieldConfigSource)
+        if self._internal.spec.field_config.defaults is None:
+            self._internal.spec.field_config.defaults = dashboardv2beta1.FieldConfig()
+        assert isinstance(self._internal.spec.field_config.defaults, dashboardv2beta1.FieldConfig)
+        if self._internal.spec.field_config.defaults.custom is None:
+            self._internal.spec.field_config.defaults.custom = statushistory.FieldConfig()
+        assert isinstance(self._internal.spec.field_config.defaults.custom, statushistory.FieldConfig)
+        self._internal.spec.field_config.defaults.custom.axis_label = axis_label
+    
+        return self
+    
+    def axis_width(self, axis_width: float) -> typing.Self:    
+        if self._internal.spec is None:
+            self._internal.spec = dashboardv2beta1.VizConfigSpec()
+        assert isinstance(self._internal.spec, dashboardv2beta1.VizConfigSpec)
+        if self._internal.spec.field_config is None:
+            self._internal.spec.field_config = dashboardv2beta1.FieldConfigSource()
+        assert isinstance(self._internal.spec.field_config, dashboardv2beta1.FieldConfigSource)
+        if self._internal.spec.field_config.defaults is None:
+            self._internal.spec.field_config.defaults = dashboardv2beta1.FieldConfig()
+        assert isinstance(self._internal.spec.field_config.defaults, dashboardv2beta1.FieldConfig)
+        if self._internal.spec.field_config.defaults.custom is None:
+            self._internal.spec.field_config.defaults.custom = statushistory.FieldConfig()
+        assert isinstance(self._internal.spec.field_config.defaults.custom, statushistory.FieldConfig)
+        self._internal.spec.field_config.defaults.custom.axis_width = axis_width
+    
+        return self
+    
+    def axis_soft_min(self, axis_soft_min: float) -> typing.Self:    
+        if self._internal.spec is None:
+            self._internal.spec = dashboardv2beta1.VizConfigSpec()
+        assert isinstance(self._internal.spec, dashboardv2beta1.VizConfigSpec)
+        if self._internal.spec.field_config is None:
+            self._internal.spec.field_config = dashboardv2beta1.FieldConfigSource()
+        assert isinstance(self._internal.spec.field_config, dashboardv2beta1.FieldConfigSource)
+        if self._internal.spec.field_config.defaults is None:
+            self._internal.spec.field_config.defaults = dashboardv2beta1.FieldConfig()
+        assert isinstance(self._internal.spec.field_config.defaults, dashboardv2beta1.FieldConfig)
+        if self._internal.spec.field_config.defaults.custom is None:
+            self._internal.spec.field_config.defaults.custom = statushistory.FieldConfig()
+        assert isinstance(self._internal.spec.field_config.defaults.custom, statushistory.FieldConfig)
+        self._internal.spec.field_config.defaults.custom.axis_soft_min = axis_soft_min
+    
+        return self
+    
+    def axis_soft_max(self, axis_soft_max: float) -> typing.Self:    
+        if self._internal.spec is None:
+            self._internal.spec = dashboardv2beta1.VizConfigSpec()
+        assert isinstance(self._internal.spec, dashboardv2beta1.VizConfigSpec)
+        if self._internal.spec.field_config is None:
+            self._internal.spec.field_config = dashboardv2beta1.FieldConfigSource()
+        assert isinstance(self._internal.spec.field_config, dashboardv2beta1.FieldConfigSource)
+        if self._internal.spec.field_config.defaults is None:
+            self._internal.spec.field_config.defaults = dashboardv2beta1.FieldConfig()
+        assert isinstance(self._internal.spec.field_config.defaults, dashboardv2beta1.FieldConfig)
+        if self._internal.spec.field_config.defaults.custom is None:
+            self._internal.spec.field_config.defaults.custom = statushistory.FieldConfig()
+        assert isinstance(self._internal.spec.field_config.defaults.custom, statushistory.FieldConfig)
+        self._internal.spec.field_config.defaults.custom.axis_soft_max = axis_soft_max
+    
+        return self
+    
+    def axis_grid_show(self, axis_grid_show: bool) -> typing.Self:    
+        if self._internal.spec is None:
+            self._internal.spec = dashboardv2beta1.VizConfigSpec()
+        assert isinstance(self._internal.spec, dashboardv2beta1.VizConfigSpec)
+        if self._internal.spec.field_config is None:
+            self._internal.spec.field_config = dashboardv2beta1.FieldConfigSource()
+        assert isinstance(self._internal.spec.field_config, dashboardv2beta1.FieldConfigSource)
+        if self._internal.spec.field_config.defaults is None:
+            self._internal.spec.field_config.defaults = dashboardv2beta1.FieldConfig()
+        assert isinstance(self._internal.spec.field_config.defaults, dashboardv2beta1.FieldConfig)
+        if self._internal.spec.field_config.defaults.custom is None:
+            self._internal.spec.field_config.defaults.custom = statushistory.FieldConfig()
+        assert isinstance(self._internal.spec.field_config.defaults.custom, statushistory.FieldConfig)
+        self._internal.spec.field_config.defaults.custom.axis_grid_show = axis_grid_show
+    
+        return self
+    
+    def scale_distribution(self, scale_distribution: cogbuilder.Builder[common.ScaleDistributionConfig]) -> typing.Self:    
+        if self._internal.spec is None:
+            self._internal.spec = dashboardv2beta1.VizConfigSpec()
+        assert isinstance(self._internal.spec, dashboardv2beta1.VizConfigSpec)
+        if self._internal.spec.field_config is None:
+            self._internal.spec.field_config = dashboardv2beta1.FieldConfigSource()
+        assert isinstance(self._internal.spec.field_config, dashboardv2beta1.FieldConfigSource)
+        if self._internal.spec.field_config.defaults is None:
+            self._internal.spec.field_config.defaults = dashboardv2beta1.FieldConfig()
+        assert isinstance(self._internal.spec.field_config.defaults, dashboardv2beta1.FieldConfig)
+        if self._internal.spec.field_config.defaults.custom is None:
+            self._internal.spec.field_config.defaults.custom = statushistory.FieldConfig()
+        assert isinstance(self._internal.spec.field_config.defaults.custom, statushistory.FieldConfig)
+        scale_distribution_resource = scale_distribution.build()
+        self._internal.spec.field_config.defaults.custom.scale_distribution = scale_distribution_resource
+    
+        return self
+    
+    def axis_centered_zero(self, axis_centered_zero: bool) -> typing.Self:    
+        if self._internal.spec is None:
+            self._internal.spec = dashboardv2beta1.VizConfigSpec()
+        assert isinstance(self._internal.spec, dashboardv2beta1.VizConfigSpec)
+        if self._internal.spec.field_config is None:
+            self._internal.spec.field_config = dashboardv2beta1.FieldConfigSource()
+        assert isinstance(self._internal.spec.field_config, dashboardv2beta1.FieldConfigSource)
+        if self._internal.spec.field_config.defaults is None:
+            self._internal.spec.field_config.defaults = dashboardv2beta1.FieldConfig()
+        assert isinstance(self._internal.spec.field_config.defaults, dashboardv2beta1.FieldConfig)
+        if self._internal.spec.field_config.defaults.custom is None:
+            self._internal.spec.field_config.defaults.custom = statushistory.FieldConfig()
+        assert isinstance(self._internal.spec.field_config.defaults.custom, statushistory.FieldConfig)
+        self._internal.spec.field_config.defaults.custom.axis_centered_zero = axis_centered_zero
+    
+        return self
+    
+    def hide_from(self, hide_from: cogbuilder.Builder[common.HideSeriesConfig]) -> typing.Self:    
+        if self._internal.spec is None:
+            self._internal.spec = dashboardv2beta1.VizConfigSpec()
+        assert isinstance(self._internal.spec, dashboardv2beta1.VizConfigSpec)
+        if self._internal.spec.field_config is None:
+            self._internal.spec.field_config = dashboardv2beta1.FieldConfigSource()
+        assert isinstance(self._internal.spec.field_config, dashboardv2beta1.FieldConfigSource)
+        if self._internal.spec.field_config.defaults is None:
+            self._internal.spec.field_config.defaults = dashboardv2beta1.FieldConfig()
+        assert isinstance(self._internal.spec.field_config.defaults, dashboardv2beta1.FieldConfig)
+        if self._internal.spec.field_config.defaults.custom is None:
+            self._internal.spec.field_config.defaults.custom = statushistory.FieldConfig()
+        assert isinstance(self._internal.spec.field_config.defaults.custom, statushistory.FieldConfig)
+        hide_from_resource = hide_from.build()
+        self._internal.spec.field_config.defaults.custom.hide_from = hide_from_resource
+    
+        return self
+    
+    def fill_opacity(self, fill_opacity: int) -> typing.Self:    
+        if not fill_opacity <= 100:
+            raise ValueError("fill_opacity must be <= 100")
+        if self._internal.spec is None:
+            self._internal.spec = dashboardv2beta1.VizConfigSpec()
+        assert isinstance(self._internal.spec, dashboardv2beta1.VizConfigSpec)
+        if self._internal.spec.field_config is None:
+            self._internal.spec.field_config = dashboardv2beta1.FieldConfigSource()
+        assert isinstance(self._internal.spec.field_config, dashboardv2beta1.FieldConfigSource)
+        if self._internal.spec.field_config.defaults is None:
+            self._internal.spec.field_config.defaults = dashboardv2beta1.FieldConfig()
+        assert isinstance(self._internal.spec.field_config.defaults, dashboardv2beta1.FieldConfig)
+        if self._internal.spec.field_config.defaults.custom is None:
+            self._internal.spec.field_config.defaults.custom = statushistory.FieldConfig()
+        assert isinstance(self._internal.spec.field_config.defaults.custom, statushistory.FieldConfig)
+        self._internal.spec.field_config.defaults.custom.fill_opacity = fill_opacity
+    
+        return self
+    
+    def axis_border_show(self, axis_border_show: bool) -> typing.Self:    
+        if self._internal.spec is None:
+            self._internal.spec = dashboardv2beta1.VizConfigSpec()
+        assert isinstance(self._internal.spec, dashboardv2beta1.VizConfigSpec)
+        if self._internal.spec.field_config is None:
+            self._internal.spec.field_config = dashboardv2beta1.FieldConfigSource()
+        assert isinstance(self._internal.spec.field_config, dashboardv2beta1.FieldConfigSource)
+        if self._internal.spec.field_config.defaults is None:
+            self._internal.spec.field_config.defaults = dashboardv2beta1.FieldConfig()
+        assert isinstance(self._internal.spec.field_config.defaults, dashboardv2beta1.FieldConfig)
+        if self._internal.spec.field_config.defaults.custom is None:
+            self._internal.spec.field_config.defaults.custom = statushistory.FieldConfig()
+        assert isinstance(self._internal.spec.field_config.defaults.custom, statushistory.FieldConfig)
+        self._internal.spec.field_config.defaults.custom.axis_border_show = axis_border_show
     
         return self
     

@@ -55,7 +55,7 @@ func (builder *DataqueryBuilder) CsvWave(csvWave []cog.Builder[testdata.CSVWave]
 The datasource
 
 ```go
-func (builder *DataqueryBuilder) Datasource(datasource dashboard.DataSourceRef) *DataqueryBuilder
+func (builder *DataqueryBuilder) Datasource(datasource common.DataSourceRef) *DataqueryBuilder
 ```
 
 ### <span class="badge object-method"></span> DropPercent

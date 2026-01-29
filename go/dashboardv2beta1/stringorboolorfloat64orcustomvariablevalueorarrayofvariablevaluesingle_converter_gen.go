@@ -1,0 +1,85 @@
+// Code generated - EDITING IS FUTILE. DO NOT EDIT.
+
+package dashboardv2beta1
+
+import (
+	"fmt"
+	"strings"
+
+	cog "github.com/grafana/grafana-foundation-sdk/go/cog"
+)
+
+// StringOrBoolOrFloat64OrCustomVariableValueOrArrayOfVariableValueSingleConverter accepts a `StringOrBoolOrFloat64OrCustomVariableValueOrArrayOfVariableValueSingle` object and generates the Go code to build this object using builders.
+func StringOrBoolOrFloat64OrCustomVariableValueOrArrayOfVariableValueSingleConverter(input StringOrBoolOrFloat64OrCustomVariableValueOrArrayOfVariableValueSingle) string {
+	calls := []string{
+		`dashboardv2beta1.NewStringOrBoolOrFloat64OrCustomVariableValueOrArrayOfVariableValueSingleBuilder()`,
+	}
+	var buffer strings.Builder
+	if input.String != nil && *input.String != "" {
+
+		buffer.WriteString(`String(`)
+		arg0 := fmt.Sprintf("%#v", *input.String)
+		buffer.WriteString(arg0)
+
+		buffer.WriteString(")")
+
+		calls = append(calls, buffer.String())
+		buffer.Reset()
+
+	}
+	if input.Bool != nil {
+
+		buffer.WriteString(`Bool(`)
+		arg0 := fmt.Sprintf("%#v", *input.Bool)
+		buffer.WriteString(arg0)
+
+		buffer.WriteString(")")
+
+		calls = append(calls, buffer.String())
+		buffer.Reset()
+
+	}
+	if input.Float64 != nil {
+
+		buffer.WriteString(`Float64(`)
+		arg0 := fmt.Sprintf("%#v", *input.Float64)
+		buffer.WriteString(arg0)
+
+		buffer.WriteString(")")
+
+		calls = append(calls, buffer.String())
+		buffer.Reset()
+
+	}
+	if input.CustomVariableValue != nil {
+
+		buffer.WriteString(`CustomVariableValue(`)
+		arg0 := cog.Dump(*input.CustomVariableValue)
+		buffer.WriteString(arg0)
+
+		buffer.WriteString(")")
+
+		calls = append(calls, buffer.String())
+		buffer.Reset()
+
+	}
+	if input.ArrayOfVariableValueSingle != nil && len(input.ArrayOfVariableValueSingle) >= 1 {
+
+		buffer.WriteString(`ArrayOfVariableValueSingle(`)
+		tmparg0 := []string{}
+		for _, arg1 := range input.ArrayOfVariableValueSingle {
+			tmpArrayOfVariableValueSinglearg1 := VariableValueSingleConverter(arg1)
+			tmparg0 = append(tmparg0, tmpArrayOfVariableValueSinglearg1)
+		}
+		arg0 := "[]cog.Builder[dashboardv2beta1.VariableValueSingle]{" + strings.Join(tmparg0, ",\n") + "}"
+		buffer.WriteString(arg0)
+
+		buffer.WriteString(")")
+
+		calls = append(calls, buffer.String())
+		buffer.Reset()
+
+	}
+
+	return strings.Join(calls, ".\t\n")
+}

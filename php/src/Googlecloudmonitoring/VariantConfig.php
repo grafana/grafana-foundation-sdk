@@ -10,6 +10,8 @@ final class VariantConfig
             identifier: 'cloud-monitoring',
             fromArray: [CloudMonitoringQuery::class, 'fromArray'],
             convert: [CloudMonitoringQueryConverter::class, 'convert'],
+            convertv2: [QueryConverter::class, 'convert'],
         );
     }
+
 }

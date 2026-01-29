@@ -16,3 +16,5 @@ export * from './queryEditorPropertyBuilder.gen';
 export type * from './queryEditorPropertyBuilder.gen';
 export * from './queryEditorPropertyExpressionBuilder.gen';
 export type * from './queryEditorPropertyExpressionBuilder.gen';
+export * from './queryBuilder.gen';
+export type * from './queryBuilder.gen';
