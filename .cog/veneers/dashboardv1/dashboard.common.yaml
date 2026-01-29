@@ -6,7 +6,8 @@
 
 language: all
 
-package: dashboard
+package: "*"
 
 builders:
-  - omit: { by_variant: panelcfg }
+  - omit: { by_name: Options }
+  - omit: { by_name: FieldConfig }

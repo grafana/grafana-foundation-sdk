@@ -1,0 +1,8 @@
+# yaml-language-server: $schema=https://raw.githubusercontent.com/grafana/cog/main/schemas/compiler_passes.json
+
+passes:
+  # Ensure consistent DataSourceRef
+  - replace_reference:
+      from: common.DataSourceRef
+      to: dashboard.DataSourceRef
+  - omit: { objects: [ common.DataSourceRef ] }
