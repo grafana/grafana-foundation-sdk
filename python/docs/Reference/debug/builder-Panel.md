@@ -37,7 +37,7 @@ def color_scheme(color: cogbuilder.Builder[dashboard.FieldColor]) -> typing.Self
 ### <span class="badge object-method"></span> counters
 
 ```python
-def counters(counters: cogbuilder.Builder[debug.UpdateConfig]) -> typing.Self
+def counters(counters: debug.UpdateConfig) -> typing.Self
 ```
 
 ### <span class="badge object-method"></span> data_links
@@ -53,7 +53,7 @@ def data_links(links: list[cogbuilder.Builder[dashboard.DashboardLink]]) -> typi
 The datasource used in all targets.
 
 ```python
-def datasource(datasource: dashboard.DataSourceRef) -> typing.Self
+def datasource(datasource: common.DataSourceRef) -> typing.Self
 ```
 
 ### <span class="badge object-method"></span> decimals

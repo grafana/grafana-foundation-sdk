@@ -12,6 +12,3 @@ public class ExemplarConfig {
   public String color;
 }
 ```
-## See also
-
- * <span class="badge builder"></span> [ExemplarConfigBuilder](./builder-ExemplarConfigBuilder.md)

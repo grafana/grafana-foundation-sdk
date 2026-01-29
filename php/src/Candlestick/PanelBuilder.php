@@ -99,7 +99,7 @@ class PanelBuilder implements \Grafana\Foundation\Cog\Builder
     /**
      * The datasource used in all targets.
      */
-    public function datasource(\Grafana\Foundation\Dashboard\DataSourceRef $datasource): static
+    public function datasource(\Grafana\Foundation\Common\DataSourceRef $datasource): static
     {
         $this->internal->datasource = $datasource;
     
@@ -648,32 +648,28 @@ class PanelBuilder implements \Grafana\Foundation\Cog\Builder
 
     /**
      * Map fields to appropriate dimension
-     * @param \Grafana\Foundation\Cog\Builder<\Grafana\Foundation\Candlestick\CandlestickFieldMap> $fields
      */
-    public function fields(\Grafana\Foundation\Cog\Builder $fields): static
+    public function fields(\Grafana\Foundation\Candlestick\CandlestickFieldMap $fields): static
     {    
         if ($this->internal->options === null) {
             $this->internal->options = new \Grafana\Foundation\Candlestick\Options();
         }
         assert($this->internal->options instanceof \Grafana\Foundation\Candlestick\Options);
-        $fieldsResource = $fields->build();
-        $this->internal->options->fields = $fieldsResource;
+        $this->internal->options->fields = $fields;
     
         return $this;
     }
 
     /**
      * Set which colors are used when the price movement is up or down
-     * @param \Grafana\Foundation\Cog\Builder<\Grafana\Foundation\Candlestick\CandlestickColors> $colors
      */
-    public function colors(\Grafana\Foundation\Cog\Builder $colors): static
+    public function colors(\Grafana\Foundation\Candlestick\CandlestickColors $colors): static
     {    
         if ($this->internal->options === null) {
             $this->internal->options = new \Grafana\Foundation\Candlestick\Options();
         }
         assert($this->internal->options instanceof \Grafana\Foundation\Candlestick\Options);
-        $colorsResource = $colors->build();
-        $this->internal->options->colors = $colorsResource;
+        $this->internal->options->colors = $colors;
     
         return $this;
     }

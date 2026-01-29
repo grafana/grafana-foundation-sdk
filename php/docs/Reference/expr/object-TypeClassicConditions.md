@@ -16,7 +16,7 @@ class TypeClassicConditions implements \JsonSerializable, \Grafana\Foundation\Co
     /**
      * The datasource
      */
-    public ?\Grafana\Foundation\Dashboard\DataSourceRef $datasource;
+    public ?\Grafana\Foundation\Common\DataSourceRef $datasource;
 
     /**
      * true if query is disabled (ie should not be returned to the dashboard)
@@ -48,7 +48,7 @@ class TypeClassicConditions implements \JsonSerializable, \Grafana\Foundation\Co
     /**
      * RefID is the unique identifier of the query, set by the frontend call.
      */
-    public string $refId;
+    public ?string $refId;
 
     /**
      * Optionally define expected query result behavior

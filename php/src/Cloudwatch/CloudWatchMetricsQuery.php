@@ -53,7 +53,7 @@ class CloudWatchMetricsQuery implements \JsonSerializable, \Grafana\Foundation\C
      * In server side expressions, the refId is used as a variable name to identify results.
      * By default, the UI will assign A->Z; however setting meaningful names may be useful.
      */
-    public string $refId;
+    public ?string $refId;
 
     /**
      * If hide is set to true, Grafana will filter out the response(s) associated with this query before returning it to the panel.
@@ -118,7 +118,7 @@ class CloudWatchMetricsQuery implements \JsonSerializable, \Grafana\Foundation\C
      * TODO find a better way to do this ^ that's friendly to schema
      * TODO this shouldn't be unknown but DataSourceRef | null
      */
-    public ?\Grafana\Foundation\Dashboard\DataSourceRef $datasource;
+    public ?\Grafana\Foundation\Common\DataSourceRef $datasource;
 
     /**
      * @deprecated use statistic
@@ -147,10 +147,10 @@ class CloudWatchMetricsQuery implements \JsonSerializable, \Grafana\Foundation\C
      * @param string|null $accountId
      * @param string|null $statistic
      * @param \Grafana\Foundation\Cloudwatch\SQLExpression|null $sql
-     * @param \Grafana\Foundation\Dashboard\DataSourceRef|null $datasource
+     * @param \Grafana\Foundation\Common\DataSourceRef|null $datasource
      * @param array<string>|null $statistics
      */
-    public function __construct(?\Grafana\Foundation\Cloudwatch\CloudWatchQueryMode $queryMode = null, ?\Grafana\Foundation\Cloudwatch\MetricQueryType $metricQueryType = null, ?\Grafana\Foundation\Cloudwatch\MetricEditorMode $metricEditorMode = null, ?string $id = null, ?string $alias = null, ?string $label = null, ?string $expression = null, ?string $sqlExpression = null, ?string $refId = null, ?bool $hide = null, ?string $queryType = null, ?string $region = null, ?string $namespace = null, ?string $metricName = null, ?array $dimensions = null, ?bool $matchExact = null, ?string $period = null, ?string $accountId = null, ?string $statistic = null, ?\Grafana\Foundation\Cloudwatch\SQLExpression $sql = null, ?\Grafana\Foundation\Dashboard\DataSourceRef $datasource = null, ?array $statistics = null)
+    public function __construct(?\Grafana\Foundation\Cloudwatch\CloudWatchQueryMode $queryMode = null, ?\Grafana\Foundation\Cloudwatch\MetricQueryType $metricQueryType = null, ?\Grafana\Foundation\Cloudwatch\MetricEditorMode $metricEditorMode = null, ?string $id = null, ?string $alias = null, ?string $label = null, ?string $expression = null, ?string $sqlExpression = null, ?string $refId = null, ?bool $hide = null, ?string $queryType = null, ?string $region = null, ?string $namespace = null, ?string $metricName = null, ?array $dimensions = null, ?bool $matchExact = null, ?string $period = null, ?string $accountId = null, ?string $statistic = null, ?\Grafana\Foundation\Cloudwatch\SQLExpression $sql = null, ?\Grafana\Foundation\Common\DataSourceRef $datasource = null, ?array $statistics = null)
     {
         $this->queryMode = $queryMode ?: \Grafana\Foundation\Cloudwatch\CloudWatchQueryMode::metrics();
         $this->metricQueryType = $metricQueryType;
@@ -160,7 +160,7 @@ class CloudWatchMetricsQuery implements \JsonSerializable, \Grafana\Foundation\C
         $this->label = $label;
         $this->expression = $expression;
         $this->sqlExpression = $sqlExpression;
-        $this->refId = $refId ?: "";
+        $this->refId = $refId;
         $this->hide = $hide;
         $this->queryType = $queryType;
         $this->region = $region ?: "";
@@ -225,7 +225,7 @@ class CloudWatchMetricsQuery implements \JsonSerializable, \Grafana\Foundation\C
             datasource: isset($data["datasource"]) ? (function($input) {
     	/** @var array{type?: string, uid?: string} */
     $val = $input;
-    	return \Grafana\Foundation\Dashboard\DataSourceRef::fromArray($val);
+    	return \Grafana\Foundation\Common\DataSourceRef::fromArray($val);
     })($data["datasource"]) : null,
             statistics: $data["statistics"] ?? null,
         );
@@ -239,7 +239,6 @@ class CloudWatchMetricsQuery implements \JsonSerializable, \Grafana\Foundation\C
         $data = new \stdClass;
         $data->queryMode = $this->queryMode;
         $data->id = $this->id;
-        $data->refId = $this->refId;
         $data->region = $this->region;
         $data->namespace = $this->namespace;
         $data->dimensions = $this->dimensions;
@@ -260,6 +259,9 @@ class CloudWatchMetricsQuery implements \JsonSerializable, \Grafana\Foundation\C
         }
         if (isset($this->sqlExpression)) {
             $data->sqlExpression = $this->sqlExpression;
+        }
+        if (isset($this->refId)) {
+            $data->refId = $this->refId;
         }
         if (isset($this->hide)) {
             $data->hide = $this->hide;

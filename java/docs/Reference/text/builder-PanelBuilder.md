@@ -29,7 +29,7 @@ public PanelBuilder cacheTimeout(String cacheTimeout)
 ### <span class="badge object-method"></span> code
 
 ```java
-public PanelBuilder code(com.grafana.foundation.cog.Builder<CodeOptions> code)
+public PanelBuilder code(CodeOptions code)
 ```
 
 ### <span class="badge object-method"></span> colorScheme

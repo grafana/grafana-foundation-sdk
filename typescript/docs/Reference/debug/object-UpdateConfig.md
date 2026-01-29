@@ -13,6 +13,3 @@ export interface UpdateConfig {
 }
 
 ```
-## See also
-
- * <span class="badge builder"></span> [UpdateConfigBuilder](./builder-UpdateConfigBuilder.md)

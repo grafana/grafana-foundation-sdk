@@ -33,7 +33,7 @@ class CloudWatchAnnotationQuery implements \JsonSerializable, \Grafana\Foundatio
      * In server side expressions, the refId is used as a variable name to identify results.
      * By default, the UI will assign A->Z; however setting meaningful names may be useful.
      */
-    public string $refId;
+    public ?string $refId;
 
     /**
      * If hide is set to true, Grafana will filter out the response(s) associated with this query before returning it to the panel.
@@ -100,7 +100,7 @@ class CloudWatchAnnotationQuery implements \JsonSerializable, \Grafana\Foundatio
      * TODO find a better way to do this ^ that's friendly to schema
      * TODO this shouldn't be unknown but DataSourceRef | null
      */
-    public ?\Grafana\Foundation\Dashboard\DataSourceRef $datasource;
+    public ?\Grafana\Foundation\Common\DataSourceRef $datasource;
 
     /**
      * @deprecated use statistic
@@ -124,15 +124,15 @@ class CloudWatchAnnotationQuery implements \JsonSerializable, \Grafana\Foundatio
      * @param string|null $accountId
      * @param string|null $statistic
      * @param string|null $alarmNamePrefix
-     * @param \Grafana\Foundation\Dashboard\DataSourceRef|null $datasource
+     * @param \Grafana\Foundation\Common\DataSourceRef|null $datasource
      * @param array<string>|null $statistics
      */
-    public function __construct(?\Grafana\Foundation\Cloudwatch\CloudWatchQueryMode $queryMode = null, ?bool $prefixMatching = null, ?string $actionPrefix = null, ?string $refId = null, ?bool $hide = null, ?string $queryType = null, ?string $region = null, ?string $namespace = null, ?string $metricName = null, ?array $dimensions = null, ?bool $matchExact = null, ?string $period = null, ?string $accountId = null, ?string $statistic = null, ?string $alarmNamePrefix = null, ?\Grafana\Foundation\Dashboard\DataSourceRef $datasource = null, ?array $statistics = null)
+    public function __construct(?\Grafana\Foundation\Cloudwatch\CloudWatchQueryMode $queryMode = null, ?bool $prefixMatching = null, ?string $actionPrefix = null, ?string $refId = null, ?bool $hide = null, ?string $queryType = null, ?string $region = null, ?string $namespace = null, ?string $metricName = null, ?array $dimensions = null, ?bool $matchExact = null, ?string $period = null, ?string $accountId = null, ?string $statistic = null, ?string $alarmNamePrefix = null, ?\Grafana\Foundation\Common\DataSourceRef $datasource = null, ?array $statistics = null)
     {
         $this->queryMode = $queryMode ?: \Grafana\Foundation\Cloudwatch\CloudWatchQueryMode::annotations();
         $this->prefixMatching = $prefixMatching;
         $this->actionPrefix = $actionPrefix;
-        $this->refId = $refId ?: "";
+        $this->refId = $refId;
         $this->hide = $hide;
         $this->queryType = $queryType;
         $this->region = $region ?: "";
@@ -188,7 +188,7 @@ class CloudWatchAnnotationQuery implements \JsonSerializable, \Grafana\Foundatio
             datasource: isset($data["datasource"]) ? (function($input) {
     	/** @var array{type?: string, uid?: string} */
     $val = $input;
-    	return \Grafana\Foundation\Dashboard\DataSourceRef::fromArray($val);
+    	return \Grafana\Foundation\Common\DataSourceRef::fromArray($val);
     })($data["datasource"]) : null,
             statistics: $data["statistics"] ?? null,
         );
@@ -201,7 +201,6 @@ class CloudWatchAnnotationQuery implements \JsonSerializable, \Grafana\Foundatio
     {
         $data = new \stdClass;
         $data->queryMode = $this->queryMode;
-        $data->refId = $this->refId;
         $data->region = $this->region;
         $data->namespace = $this->namespace;
         $data->dimensions = $this->dimensions;
@@ -210,6 +209,9 @@ class CloudWatchAnnotationQuery implements \JsonSerializable, \Grafana\Foundatio
         }
         if (isset($this->actionPrefix)) {
             $data->actionPrefix = $this->actionPrefix;
+        }
+        if (isset($this->refId)) {
+            $data->refId = $this->refId;
         }
         if (isset($this->hide)) {
             $data->hide = $this->hide;

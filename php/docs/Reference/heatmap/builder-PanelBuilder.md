@@ -64,20 +64,16 @@ cellRadius(float $cellRadius)
 
 Controls cell value unit
 
-@param \Grafana\Foundation\Cog\Builder<\Grafana\Foundation\Heatmap\CellValues> $cellValues
-
 ```php
-cellValues(\Grafana\Foundation\Cog\Builder $cellValues)
+cellValues(\Grafana\Foundation\Heatmap\CellValues $cellValues)
 ```
 
 ### <span class="badge object-method"></span> color
 
 Controls the color options
 
-@param \Grafana\Foundation\Cog\Builder<\Grafana\Foundation\Heatmap\HeatmapColorOptions> $color
-
 ```php
-color(\Grafana\Foundation\Cog\Builder $color)
+color(\Grafana\Foundation\Heatmap\HeatmapColorOptions $color)
 ```
 
 ### <span class="badge object-method"></span> colorScheme
@@ -105,7 +101,7 @@ dataLinks(array $links)
 The datasource used in all targets.
 
 ```php
-datasource(\Grafana\Foundation\Dashboard\DataSourceRef $datasource)
+datasource(\Grafana\Foundation\Common\DataSourceRef $datasource)
 ```
 
 ### <span class="badge object-method"></span> decimals
@@ -150,10 +146,8 @@ exemplarsColor(string $color)
 
 Filters values between a given range
 
-@param \Grafana\Foundation\Cog\Builder<\Grafana\Foundation\Heatmap\FilterValueRange> $filterValues
-
 ```php
-filterValues(\Grafana\Foundation\Cog\Builder $filterValues)
+filterValues(\Grafana\Foundation\Heatmap\FilterValueRange $filterValues)
 ```
 
 ### <span class="badge object-method"></span> gridPos
@@ -400,10 +394,8 @@ repeatDirection(\Grafana\Foundation\Dashboard\PanelRepeatDirection $repeatDirect
 
 Controls tick alignment and value name when not calculating from data
 
-@param \Grafana\Foundation\Cog\Builder<\Grafana\Foundation\Heatmap\RowsHeatmapOptions> $rowsFrame
-
 ```php
-rowsFrame(\Grafana\Foundation\Cog\Builder $rowsFrame)
+rowsFrame(\Grafana\Foundation\Heatmap\RowsHeatmapOptions $rowsFrame)
 ```
 
 ### <span class="badge object-method"></span> scaleDistribution
@@ -622,10 +614,8 @@ withTransformation(\Grafana\Foundation\Dashboard\DataTransformerConfig $transfor
 
 Controls yAxis placement
 
-@param \Grafana\Foundation\Cog\Builder<\Grafana\Foundation\Heatmap\YAxisConfig> $yAxis
-
 ```php
-yAxis(\Grafana\Foundation\Cog\Builder $yAxis)
+yAxis(\Grafana\Foundation\Heatmap\YAxisConfig $yAxis)
 ```
 
 ## See also

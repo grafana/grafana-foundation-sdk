@@ -8,7 +8,7 @@ title: <span class="badge object-type-class"></span> TypeResample
 ```python
 class TypeResample(cogvariants.Dataquery):
     # The datasource
-    datasource: typing.Optional[dashboard.DataSourceRef]
+    datasource: typing.Optional[common.DataSourceRef]
     # The downsample function
     # Possible enum values:
     #  - `"sum"` 
@@ -37,7 +37,7 @@ class TypeResample(cogvariants.Dataquery):
     # It can be used to distinguish different types of queries.
     query_type: typing.Optional[str]
     # RefID is the unique identifier of the query, set by the frontend call.
-    ref_id: str
+    ref_id: typing.Optional[str]
     # Optionally define expected query result behavior
     result_assertions: typing.Optional[expr.ExprTypeResampleResultAssertions]
     # TimeRange represents the query range

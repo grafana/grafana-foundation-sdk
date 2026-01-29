@@ -12,6 +12,3 @@ public class CodeOptions {
   public Boolean showMiniMap;
 }
 ```
-## See also
-
- * <span class="badge builder"></span> [CodeOptionsBuilder](./builder-CodeOptionsBuilder.md)

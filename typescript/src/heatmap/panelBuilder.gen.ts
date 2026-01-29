@@ -2,8 +2,8 @@
 
 import * as cog from '../cog';
 import * as dashboard from '../dashboard';
-import * as heatmap from '../heatmap';
 import * as common from '../common';
+import * as heatmap from '../heatmap';
 
 // Dashboard panels are the basic visualization building blocks.
 export class PanelBuilder implements cog.Builder<dashboard.Panel> {
@@ -63,7 +63,7 @@ export class PanelBuilder implements cog.Builder<dashboard.Panel> {
     }
 
     // The datasource used in all targets.
-    datasource(datasource: dashboard.DataSourceRef): this {
+    datasource(datasource: common.DataSourceRef): this {
         this.internal.datasource = datasource;
         return this;
     }
@@ -461,32 +461,29 @@ export class PanelBuilder implements cog.Builder<dashboard.Panel> {
     }
 
     // Controls the color options
-    color(color: cog.Builder<heatmap.HeatmapColorOptions>): this {
+    color(color: heatmap.HeatmapColorOptions): this {
         if (!this.internal.options) {
             this.internal.options = heatmap.defaultOptions();
         }
-        const colorResource = color.build();
-        this.internal.options.color = colorResource;
+        this.internal.options.color = color;
         return this;
     }
 
     // Filters values between a given range
-    filterValues(filterValues: cog.Builder<heatmap.FilterValueRange>): this {
+    filterValues(filterValues: heatmap.FilterValueRange): this {
         if (!this.internal.options) {
             this.internal.options = heatmap.defaultOptions();
         }
-        const filterValuesResource = filterValues.build();
-        this.internal.options.filterValues = filterValuesResource;
+        this.internal.options.filterValues = filterValues;
         return this;
     }
 
     // Controls tick alignment and value name when not calculating from data
-    rowsFrame(rowsFrame: cog.Builder<heatmap.RowsHeatmapOptions>): this {
+    rowsFrame(rowsFrame: heatmap.RowsHeatmapOptions): this {
         if (!this.internal.options) {
             this.internal.options = heatmap.defaultOptions();
         }
-        const rowsFrameResource = rowsFrame.build();
-        this.internal.options.rowsFrame = rowsFrameResource;
+        this.internal.options.rowsFrame = rowsFrame;
         return this;
     }
 
@@ -524,22 +521,20 @@ export class PanelBuilder implements cog.Builder<dashboard.Panel> {
     }
 
     // Controls cell value unit
-    cellValues(cellValues: cog.Builder<heatmap.CellValues>): this {
+    cellValues(cellValues: heatmap.CellValues): this {
         if (!this.internal.options) {
             this.internal.options = heatmap.defaultOptions();
         }
-        const cellValuesResource = cellValues.build();
-        this.internal.options.cellValues = cellValuesResource;
+        this.internal.options.cellValues = cellValues;
         return this;
     }
 
     // Controls yAxis placement
-    yAxis(yAxis: cog.Builder<heatmap.YAxisConfig>): this {
+    yAxis(yAxis: heatmap.YAxisConfig): this {
         if (!this.internal.options) {
             this.internal.options = heatmap.defaultOptions();
         }
-        const yAxisResource = yAxis.build();
-        this.internal.options.yAxis = yAxisResource;
+        this.internal.options.yAxis = yAxis;
         return this;
     }
 

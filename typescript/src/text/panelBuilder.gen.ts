@@ -2,6 +2,7 @@
 
 import * as cog from '../cog';
 import * as dashboard from '../dashboard';
+import * as common from '../common';
 import * as text from '../text';
 
 // Dashboard panels are the basic visualization building blocks.
@@ -62,7 +63,7 @@ export class PanelBuilder implements cog.Builder<dashboard.Panel> {
     }
 
     // The datasource used in all targets.
-    datasource(datasource: dashboard.DataSourceRef): this {
+    datasource(datasource: common.DataSourceRef): this {
         this.internal.datasource = datasource;
         return this;
     }
@@ -448,12 +449,11 @@ export class PanelBuilder implements cog.Builder<dashboard.Panel> {
         return this;
     }
 
-    code(code: cog.Builder<text.CodeOptions>): this {
+    code(code: text.CodeOptions): this {
         if (!this.internal.options) {
             this.internal.options = text.defaultOptions();
         }
-        const codeResource = code.build();
-        this.internal.options.code = codeResource;
+        this.internal.options.code = code;
         return this;
     }
 

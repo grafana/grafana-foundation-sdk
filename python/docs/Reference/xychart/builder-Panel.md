@@ -101,7 +101,7 @@ def data_links(links: list[cogbuilder.Builder[dashboard.DashboardLink]]) -> typi
 The datasource used in all targets.
 
 ```python
-def datasource(datasource: dashboard.DataSourceRef) -> typing.Self
+def datasource(datasource: common.DataSourceRef) -> typing.Self
 ```
 
 ### <span class="badge object-method"></span> decimals
@@ -131,7 +131,7 @@ def description(description: str) -> typing.Self
 Table Mode (auto)
 
 ```python
-def dims(dims: cogbuilder.Builder[xychart.XYDimensionConfig]) -> typing.Self
+def dims(dims: xychart.XYDimensionConfig) -> typing.Self
 ```
 
 ### <span class="badge object-method"></span> display_name
@@ -383,7 +383,7 @@ def scale_distribution(scale_distribution: cogbuilder.Builder[common.ScaleDistri
 Manual Mode
 
 ```python
-def series(series: list[cogbuilder.Builder[xychart.ScatterSeriesConfig]]) -> typing.Self
+def series(series: list[xychart.ScatterSeriesConfig]) -> typing.Self
 ```
 
 ### <span class="badge object-method"></span> series_mapping

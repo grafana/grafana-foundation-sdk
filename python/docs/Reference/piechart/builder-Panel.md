@@ -47,7 +47,7 @@ def data_links(links: list[cogbuilder.Builder[dashboard.DashboardLink]]) -> typi
 The datasource used in all targets.
 
 ```python
-def datasource(datasource: dashboard.DataSourceRef) -> typing.Self
+def datasource(datasource: common.DataSourceRef) -> typing.Self
 ```
 
 ### <span class="badge object-method"></span> decimals
@@ -141,7 +141,7 @@ def interval(interval: str) -> typing.Self
 ### <span class="badge object-method"></span> legend
 
 ```python
-def legend(legend: cogbuilder.Builder[piechart.PieChartLegendOptions]) -> typing.Self
+def legend(legend: piechart.PieChartLegendOptions) -> typing.Self
 ```
 
 ### <span class="badge object-method"></span> library_panel

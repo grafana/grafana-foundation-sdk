@@ -6,7 +6,7 @@ import com.grafana.foundation.dashboard.Panel;
 import java.util.List;
 import com.grafana.foundation.cog.variants.Dataquery;
 import java.util.LinkedList;
-import com.grafana.foundation.dashboard.DataSourceRef;
+import com.grafana.foundation.common.DataSourceRef;
 import com.grafana.foundation.dashboard.GridPos;
 import com.grafana.foundation.dashboard.DashboardLink;
 import com.grafana.foundation.dashboard.PanelRepeatDirection;
@@ -683,12 +683,11 @@ public class XychartPanelBuilder implements com.grafana.foundation.cog.Builder<P
         return this;
     }
     
-    public XychartPanelBuilder dims(com.grafana.foundation.cog.Builder<XYDimensionConfig> dims) {
+    public XychartPanelBuilder dims(XYDimensionConfig dims) {
 		if (this.internal.options == null) {
 			this.internal.options = new com.grafana.foundation.xychart.Options();
 		}
-    XYDimensionConfig dimsResource = dims.build();
-        ((Options) this.internal.options).dims = dimsResource;
+        ((Options) this.internal.options).dims = dims;
         return this;
     }
     
@@ -710,16 +709,11 @@ public class XychartPanelBuilder implements com.grafana.foundation.cog.Builder<P
         return this;
     }
     
-    public XychartPanelBuilder series(List<com.grafana.foundation.cog.Builder<ScatterSeriesConfig>> series) {
+    public XychartPanelBuilder series(List<ScatterSeriesConfig> series) {
 		if (this.internal.options == null) {
 			this.internal.options = new com.grafana.foundation.xychart.Options();
 		}
-        List<ScatterSeriesConfig> seriesResources = new LinkedList<>();
-        for (com.grafana.foundation.cog.Builder<ScatterSeriesConfig> r1 : series) {
-                ScatterSeriesConfig seriesDepth1 = r1.build();
-                seriesResources.add(seriesDepth1); 
-        }
-        ((Options) this.internal.options).series = seriesResources;
+        ((Options) this.internal.options).series = series;
         return this;
     }
     public Panel build() {

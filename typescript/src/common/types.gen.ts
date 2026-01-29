@@ -998,6 +998,16 @@ export enum VariableFormatID {
 
 export const defaultVariableFormatID = (): VariableFormatID => (VariableFormatID.Lucene);
 
+export interface DataSourceRef {
+	// The plugin type-id
+	type?: string;
+	// Specific datasource instance
+	uid?: string;
+}
+
+export const defaultDataSourceRef = (): DataSourceRef => ({
+});
+
 // Links to a resource (image/svg path)
 export interface ResourceDimensionConfig {
 	mode: ResourceDimensionMode;

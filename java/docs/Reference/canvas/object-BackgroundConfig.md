@@ -12,6 +12,3 @@ public class BackgroundConfig {
   public BackgroundImageSize size;
 }
 ```
-## See also
-
- * <span class="badge builder"></span> [BackgroundConfigBuilder](./builder-BackgroundConfigBuilder.md)

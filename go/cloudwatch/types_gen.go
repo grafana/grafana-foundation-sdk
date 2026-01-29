@@ -10,7 +10,7 @@ import (
 
 	cog "github.com/grafana/grafana-foundation-sdk/go/cog"
 	variants "github.com/grafana/grafana-foundation-sdk/go/cog/variants"
-	dashboard "github.com/grafana/grafana-foundation-sdk/go/dashboard"
+	common "github.com/grafana/grafana-foundation-sdk/go/common"
 )
 
 type MetricStat struct {
@@ -295,7 +295,7 @@ type CloudWatchMetricsQuery struct {
 	// A unique identifier for the query within the list of targets.
 	// In server side expressions, the refId is used as a variable name to identify results.
 	// By default, the UI will assign A->Z; however setting meaningful names may be useful.
-	RefId string `json:"refId"`
+	RefId *string `json:"refId,omitempty"`
 	// If hide is set to true, Grafana will filter out the response(s) associated with this query before returning it to the panel.
 	Hide *bool `json:"hide,omitempty"`
 	// Specify the query flavor
@@ -323,7 +323,7 @@ type CloudWatchMetricsQuery struct {
 	// For non mixed scenarios this is undefined.
 	// TODO find a better way to do this ^ that's friendly to schema
 	// TODO this shouldn't be unknown but DataSourceRef | null
-	Datasource *dashboard.DataSourceRef `json:"datasource,omitempty"`
+	Datasource *common.DataSourceRef `json:"datasource,omitempty"`
 	// @deprecated use statistic
 	Statistics []string `json:"statistics,omitempty"`
 }
@@ -452,13 +452,10 @@ func (resource *CloudWatchMetricsQuery) UnmarshalJSONStrict(raw []byte) error {
 			if err := json.Unmarshal(fields["refId"], &resource.RefId); err != nil {
 				errs = append(errs, cog.MakeBuildErrors("refId", err)...)
 			}
-		} else {
-			errs = append(errs, cog.MakeBuildErrors("refId", errors.New("required field is null"))...)
 
 		}
 		delete(fields, "refId")
-	} else {
-		errs = append(errs, cog.MakeBuildErrors("refId", errors.New("required field is missing from input"))...)
+
 	}
 	// Field "hide"
 	if fields["hide"] != nil {
@@ -606,7 +603,7 @@ func (resource *CloudWatchMetricsQuery) UnmarshalJSONStrict(raw []byte) error {
 	if fields["datasource"] != nil {
 		if string(fields["datasource"]) != "null" {
 
-			resource.Datasource = &dashboard.DataSourceRef{}
+			resource.Datasource = &common.DataSourceRef{}
 			if err := resource.Datasource.UnmarshalJSONStrict(fields["datasource"]); err != nil {
 				errs = append(errs, cog.MakeBuildErrors("datasource", err)...)
 			}
@@ -709,8 +706,14 @@ func (resource CloudWatchMetricsQuery) Equals(otherCandidate variants.Dataquery)
 			return false
 		}
 	}
-	if resource.RefId != other.RefId {
+	if resource.RefId == nil && other.RefId != nil || resource.RefId != nil && other.RefId == nil {
 		return false
+	}
+
+	if resource.RefId != nil {
+		if *resource.RefId != *other.RefId {
+			return false
+		}
 	}
 	if resource.Hide == nil && other.Hide != nil || resource.Hide != nil && other.Hide == nil {
 		return false
@@ -2008,7 +2011,7 @@ type CloudWatchLogsQuery struct {
 	// A unique identifier for the query within the list of targets.
 	// In server side expressions, the refId is used as a variable name to identify results.
 	// By default, the UI will assign A->Z; however setting meaningful names may be useful.
-	RefId string `json:"refId"`
+	RefId *string `json:"refId,omitempty"`
 	// If hide is set to true, Grafana will filter out the response(s) associated with this query before returning it to the panel.
 	Hide *bool `json:"hide,omitempty"`
 	// Specify the query flavor
@@ -2020,7 +2023,7 @@ type CloudWatchLogsQuery struct {
 	// For non mixed scenarios this is undefined.
 	// TODO find a better way to do this ^ that's friendly to schema
 	// TODO this shouldn't be unknown but DataSourceRef | null
-	Datasource *dashboard.DataSourceRef `json:"datasource,omitempty"`
+	Datasource *common.DataSourceRef `json:"datasource,omitempty"`
 }
 
 func (resource CloudWatchLogsQuery) ImplementsDataqueryVariant() {}
@@ -2141,13 +2144,10 @@ func (resource *CloudWatchLogsQuery) UnmarshalJSONStrict(raw []byte) error {
 			if err := json.Unmarshal(fields["refId"], &resource.RefId); err != nil {
 				errs = append(errs, cog.MakeBuildErrors("refId", err)...)
 			}
-		} else {
-			errs = append(errs, cog.MakeBuildErrors("refId", errors.New("required field is null"))...)
 
 		}
 		delete(fields, "refId")
-	} else {
-		errs = append(errs, cog.MakeBuildErrors("refId", errors.New("required field is missing from input"))...)
+
 	}
 	// Field "hide"
 	if fields["hide"] != nil {
@@ -2187,7 +2187,7 @@ func (resource *CloudWatchLogsQuery) UnmarshalJSONStrict(raw []byte) error {
 	if fields["datasource"] != nil {
 		if string(fields["datasource"]) != "null" {
 
-			resource.Datasource = &dashboard.DataSourceRef{}
+			resource.Datasource = &common.DataSourceRef{}
 			if err := resource.Datasource.UnmarshalJSONStrict(fields["datasource"]); err != nil {
 				errs = append(errs, cog.MakeBuildErrors("datasource", err)...)
 			}
@@ -2256,8 +2256,14 @@ func (resource CloudWatchLogsQuery) Equals(otherCandidate variants.Dataquery) bo
 			return false
 		}
 	}
-	if resource.RefId != other.RefId {
+	if resource.RefId == nil && other.RefId != nil || resource.RefId != nil && other.RefId == nil {
 		return false
+	}
+
+	if resource.RefId != nil {
+		if *resource.RefId != *other.RefId {
+			return false
+		}
 	}
 	if resource.Hide == nil && other.Hide != nil || resource.Hide != nil && other.Hide == nil {
 		return false
@@ -2464,7 +2470,7 @@ type CloudWatchAnnotationQuery struct {
 	// A unique identifier for the query within the list of targets.
 	// In server side expressions, the refId is used as a variable name to identify results.
 	// By default, the UI will assign A->Z; however setting meaningful names may be useful.
-	RefId string `json:"refId"`
+	RefId *string `json:"refId,omitempty"`
 	// If hide is set to true, Grafana will filter out the response(s) associated with this query before returning it to the panel.
 	Hide *bool `json:"hide,omitempty"`
 	// Specify the query flavor
@@ -2494,7 +2500,7 @@ type CloudWatchAnnotationQuery struct {
 	// For non mixed scenarios this is undefined.
 	// TODO find a better way to do this ^ that's friendly to schema
 	// TODO this shouldn't be unknown but DataSourceRef | null
-	Datasource *dashboard.DataSourceRef `json:"datasource,omitempty"`
+	Datasource *common.DataSourceRef `json:"datasource,omitempty"`
 	// @deprecated use statistic
 	Statistics []string `json:"statistics,omitempty"`
 }
@@ -2565,13 +2571,10 @@ func (resource *CloudWatchAnnotationQuery) UnmarshalJSONStrict(raw []byte) error
 			if err := json.Unmarshal(fields["refId"], &resource.RefId); err != nil {
 				errs = append(errs, cog.MakeBuildErrors("refId", err)...)
 			}
-		} else {
-			errs = append(errs, cog.MakeBuildErrors("refId", errors.New("required field is null"))...)
 
 		}
 		delete(fields, "refId")
-	} else {
-		errs = append(errs, cog.MakeBuildErrors("refId", errors.New("required field is missing from input"))...)
+
 	}
 	// Field "hide"
 	if fields["hide"] != nil {
@@ -2717,7 +2720,7 @@ func (resource *CloudWatchAnnotationQuery) UnmarshalJSONStrict(raw []byte) error
 	if fields["datasource"] != nil {
 		if string(fields["datasource"]) != "null" {
 
-			resource.Datasource = &dashboard.DataSourceRef{}
+			resource.Datasource = &common.DataSourceRef{}
 			if err := resource.Datasource.UnmarshalJSONStrict(fields["datasource"]); err != nil {
 				errs = append(errs, cog.MakeBuildErrors("datasource", err)...)
 			}
@@ -2781,8 +2784,14 @@ func (resource CloudWatchAnnotationQuery) Equals(otherCandidate variants.Dataque
 			return false
 		}
 	}
-	if resource.RefId != other.RefId {
+	if resource.RefId == nil && other.RefId != nil || resource.RefId != nil && other.RefId == nil {
 		return false
+	}
+
+	if resource.RefId != nil {
+		if *resource.RefId != *other.RefId {
+			return false
+		}
 	}
 	if resource.Hide == nil && other.Hide != nil || resource.Hide != nil && other.Hide == nil {
 		return false

@@ -5,6 +5,7 @@ package canvas
 import (
 	cog "github.com/grafana/grafana-foundation-sdk/go/cog"
 	variants "github.com/grafana/grafana-foundation-sdk/go/cog/variants"
+	common "github.com/grafana/grafana-foundation-sdk/go/common"
 	dashboard "github.com/grafana/grafana-foundation-sdk/go/dashboard"
 )
 
@@ -96,7 +97,7 @@ func (builder *PanelBuilder) Transparent(transparent bool) *PanelBuilder {
 }
 
 // The datasource used in all targets.
-func (builder *PanelBuilder) Datasource(datasource dashboard.DataSourceRef) *PanelBuilder {
+func (builder *PanelBuilder) Datasource(datasource common.DataSourceRef) *PanelBuilder {
 	builder.internal.Datasource = &datasource
 
 	return builder
@@ -523,16 +524,11 @@ func (builder *PanelBuilder) InfinitePan(infinitePan bool) *PanelBuilder {
 
 // The root element of canvas (frame), where all canvas elements are nested
 // TODO: Figure out how to define a default value for this
-func (builder *PanelBuilder) Root(root cog.Builder[CanvasOptionsRoot]) *PanelBuilder {
+func (builder *PanelBuilder) Root(root CanvasOptionsRoot) *PanelBuilder {
 	if builder.internal.Options == nil {
 		builder.internal.Options = NewOptions()
 	}
-	rootResource, err := root.Build()
-	if err != nil {
-		builder.errors = append(builder.errors, err.(cog.BuildErrors)...)
-		return builder
-	}
-	builder.internal.Options.(*Options).Root = rootResource
+	builder.internal.Options.(*Options).Root = root
 
 	return builder
 }

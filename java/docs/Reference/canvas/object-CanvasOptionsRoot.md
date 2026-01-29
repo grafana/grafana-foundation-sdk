@@ -12,6 +12,3 @@ public class CanvasOptionsRoot {
   public List<CanvasElementOptions> elements;
 }
 ```
-## See also
-
- * <span class="badge builder"></span> [CanvasOptionsRootBuilder](./builder-CanvasOptionsRootBuilder.md)

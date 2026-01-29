@@ -23,7 +23,7 @@ func (builder *TypeSqlBuilder) Build() (variants.Dataquery, error)
 The datasource
 
 ```go
-func (builder *TypeSqlBuilder) Datasource(datasource dashboard.DataSourceRef) *TypeSqlBuilder
+func (builder *TypeSqlBuilder) Datasource(datasource common.DataSourceRef) *TypeSqlBuilder
 ```
 
 ### <span class="badge object-method"></span> Expression

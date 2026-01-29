@@ -44,7 +44,7 @@ class CloudWatchLogsQuery implements \JsonSerializable, \Grafana\Foundation\Cog\
      * In server side expressions, the refId is used as a variable name to identify results.
      * By default, the UI will assign A->Z; however setting meaningful names may be useful.
      */
-    public string $refId;
+    public ?string $refId;
 
     /**
      * If hide is set to true, Grafana will filter out the response(s) associated with this query before returning it to the panel.
@@ -69,7 +69,7 @@ class CloudWatchLogsQuery implements \JsonSerializable, \Grafana\Foundation\Cog\
      * TODO find a better way to do this ^ that's friendly to schema
      * TODO this shouldn't be unknown but DataSourceRef | null
      */
-    public ?\Grafana\Foundation\Dashboard\DataSourceRef $datasource;
+    public ?\Grafana\Foundation\Common\DataSourceRef $datasource;
 
 }
 ```

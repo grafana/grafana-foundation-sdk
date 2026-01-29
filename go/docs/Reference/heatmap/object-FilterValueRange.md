@@ -43,6 +43,3 @@ Validate checks all the validation constraints that may be defined on `FilterVal
 func (filterValueRange *FilterValueRange) Validate() error
 ```
 
-## See also
-
- * <span class="badge builder"></span> [FilterValueRangeBuilder](./builder-FilterValueRangeBuilder.md)

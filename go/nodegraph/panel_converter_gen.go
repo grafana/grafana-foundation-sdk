@@ -467,7 +467,7 @@ func PanelConverter(input dashboard.Panel) string {
 	if input.Options != nil && input.Options.(*Options).Nodes != nil {
 
 		buffer.WriteString(`Nodes(`)
-		arg0 := NodeOptionsConverter(*input.Options.(*Options).Nodes)
+		arg0 := cog.Dump(*input.Options.(*Options).Nodes)
 		buffer.WriteString(arg0)
 
 		buffer.WriteString(")")
@@ -479,7 +479,7 @@ func PanelConverter(input dashboard.Panel) string {
 	if input.Options != nil && input.Options.(*Options).Edges != nil {
 
 		buffer.WriteString(`Edges(`)
-		arg0 := EdgeOptionsConverter(*input.Options.(*Options).Edges)
+		arg0 := cog.Dump(*input.Options.(*Options).Edges)
 		buffer.WriteString(arg0)
 
 		buffer.WriteString(")")

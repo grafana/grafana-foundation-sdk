@@ -10,7 +10,7 @@ import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import java.util.List;
 import com.grafana.foundation.cog.variants.Dataquery;
-import com.grafana.foundation.dashboard.DataSourceRef;
+import com.grafana.foundation.common.DataSourceRef;
 import com.grafana.foundation.dashboard.DashboardLink;
 import com.grafana.foundation.dashboard.DataTransformerConfig;
 import com.grafana.foundation.dashboard.FieldConfigSource;
@@ -121,6 +121,7 @@ public class PanelModel {
     public PanelModel() {
         this.type = "";
         this.transparent = false;
+        this.repeatDirection = PanelModelRepeatDirection.H;
     }
     public PanelModel(String type,String pluginVersion,List<Dataquery> targets,String title,String description,Boolean transparent,DataSourceRef datasource,List<DashboardLink> links,String repeat,PanelModelRepeatDirection repeatDirection,Double maxPerRow,Double maxDataPoints,List<DataTransformerConfig> transformations,String interval,String timeFrom,String timeShift,Boolean hideTimeOverride,String cacheTimeout,Double queryCachingTTL,Object options,FieldConfigSource fieldConfig) {
         this.type = type;

@@ -6,7 +6,7 @@ import com.grafana.foundation.dashboard.Panel;
 import java.util.List;
 import com.grafana.foundation.cog.variants.Dataquery;
 import java.util.LinkedList;
-import com.grafana.foundation.dashboard.DataSourceRef;
+import com.grafana.foundation.common.DataSourceRef;
 import com.grafana.foundation.dashboard.GridPos;
 import com.grafana.foundation.dashboard.DashboardLink;
 import com.grafana.foundation.dashboard.PanelRepeatDirection;
@@ -388,21 +388,19 @@ public class NodegraphPanelBuilder implements com.grafana.foundation.cog.Builder
         return this;
     }
     
-    public NodegraphPanelBuilder nodes(com.grafana.foundation.cog.Builder<NodeOptions> nodes) {
+    public NodegraphPanelBuilder nodes(NodeOptions nodes) {
 		if (this.internal.options == null) {
 			this.internal.options = new com.grafana.foundation.nodegraph.Options();
 		}
-    NodeOptions nodesResource = nodes.build();
-        ((Options) this.internal.options).nodes = nodesResource;
+        ((Options) this.internal.options).nodes = nodes;
         return this;
     }
     
-    public NodegraphPanelBuilder edges(com.grafana.foundation.cog.Builder<EdgeOptions> edges) {
+    public NodegraphPanelBuilder edges(EdgeOptions edges) {
 		if (this.internal.options == null) {
 			this.internal.options = new com.grafana.foundation.nodegraph.Options();
 		}
-    EdgeOptions edgesResource = edges.build();
-        ((Options) this.internal.options).edges = edgesResource;
+        ((Options) this.internal.options).edges = edges;
         return this;
     }
     public Panel build() {

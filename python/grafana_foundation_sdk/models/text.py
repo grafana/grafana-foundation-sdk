@@ -29,7 +29,7 @@ class CodeOptions:
     show_line_numbers: bool
     show_mini_map: bool
 
-    def __init__(self, language: typing.Optional['CodeLanguage'] = None, show_line_numbers: bool = False, show_mini_map: bool = False):
+    def __init__(self, language: typing.Optional['CodeLanguage'] = None, show_line_numbers: bool = False, show_mini_map: bool = False) -> None:
         self.language = language if language is not None else CodeLanguage.PLAINTEXT
         self.show_line_numbers = show_line_numbers
         self.show_mini_map = show_mini_map
@@ -61,7 +61,7 @@ class Options:
     code: typing.Optional['CodeOptions']
     content: str
 
-    def __init__(self, mode: typing.Optional['TextMode'] = None, code: typing.Optional['CodeOptions'] = None, content: str = "# Title\n\nFor markdown syntax help: [commonmark.org/help](https://commonmark.org/help/)"):
+    def __init__(self, mode: typing.Optional['TextMode'] = None, code: typing.Optional['CodeOptions'] = None, content: str = "# Title\n\nFor markdown syntax help: [commonmark.org/help](https://commonmark.org/help/)") -> None:
         self.mode = mode if mode is not None else TextMode.MARKDOWN
         self.code = code
         self.content = content

@@ -84,7 +84,7 @@ final class PanelConverter
     
         
     $buffer = 'datasource(';
-        $arg0 ='(new \Grafana\Foundation\Dashboard\DataSourceRef('.(($input->datasource->type !== null) ? 'type: '.\var_export($input->datasource->type, true).', ' : '').''.(($input->datasource->uid !== null) ? 'uid: '.\var_export($input->datasource->uid, true).', ' : '').'))';
+        $arg0 ='(new \Grafana\Foundation\Common\DataSourceRef('.(($input->datasource->type !== null) ? 'type: '.\var_export($input->datasource->type, true).', ' : '').''.(($input->datasource->uid !== null) ? 'uid: '.\var_export($input->datasource->uid, true).', ' : '').'))';
         $buffer .= $arg0;
         
     $buffer .= ')';
@@ -539,7 +539,7 @@ final class PanelConverter
     
         
     $buffer = 'color(';
-        $arg0 = \Grafana\Foundation\Heatmap\HeatmapColorOptionsConverter::convert($input->options->color);
+        $arg0 ='(new \Grafana\Foundation\Heatmap\HeatmapColorOptions('.(($input->options->color->mode !== null) ? 'mode: '.'\Grafana\Foundation\Heatmap\HeatmapColorMode::fromValue("'.$input->options->color->mode.'")'.', ' : '').'scheme: '.\var_export($input->options->color->scheme, true).',fill: '.\var_export($input->options->color->fill, true).','.(($input->options->color->scale !== null) ? 'scale: '.'\Grafana\Foundation\Heatmap\HeatmapColorScale::fromValue("'.$input->options->color->scale.'")'.', ' : '').'exponent: '.\var_export($input->options->color->exponent, true).',steps: '.\var_export($input->options->color->steps, true).',reverse: '.\var_export($input->options->color->reverse, true).','.(($input->options->color->min !== null) ? 'min: '.\var_export($input->options->color->min, true).', ' : '').''.(($input->options->color->max !== null) ? 'max: '.\var_export($input->options->color->max, true).', ' : '').'))';
         $buffer .= $arg0;
         
     $buffer .= ')';
@@ -552,7 +552,7 @@ final class PanelConverter
     
         
     $buffer = 'filterValues(';
-        $arg0 = \Grafana\Foundation\Heatmap\FilterValueRangeConverter::convert($input->options->filterValues);
+        $arg0 ='(new \Grafana\Foundation\Heatmap\FilterValueRange('.(($input->options->filterValues->le !== null) ? 'le: '.\var_export($input->options->filterValues->le, true).', ' : '').''.(($input->options->filterValues->ge !== null) ? 'ge: '.\var_export($input->options->filterValues->ge, true).', ' : '').'))';
         $buffer .= $arg0;
         
     $buffer .= ')';
@@ -565,7 +565,7 @@ final class PanelConverter
     
         
     $buffer = 'rowsFrame(';
-        $arg0 = \Grafana\Foundation\Heatmap\RowsHeatmapOptionsConverter::convert($input->options->rowsFrame);
+        $arg0 ='(new \Grafana\Foundation\Heatmap\RowsHeatmapOptions('.(($input->options->rowsFrame->value !== null) ? 'value: '.\var_export($input->options->rowsFrame->value, true).', ' : '').''.(($input->options->rowsFrame->layout !== null) ? 'layout: '.'\Grafana\Foundation\Common\HeatmapCellLayout::fromValue("'.$input->options->rowsFrame->layout.'")'.', ' : '').'))';
         $buffer .= $arg0;
         
     $buffer .= ')';
@@ -617,7 +617,7 @@ final class PanelConverter
     
         
     $buffer = 'cellValues(';
-        $arg0 = \Grafana\Foundation\Heatmap\CellValuesConverter::convert($input->options->cellValues);
+        $arg0 ='(new \Grafana\Foundation\Heatmap\CellValues('.(($input->options->cellValues->unit !== null) ? 'unit: '.\var_export($input->options->cellValues->unit, true).', ' : '').''.(($input->options->cellValues->decimals !== null) ? 'decimals: '.\var_export($input->options->cellValues->decimals, true).', ' : '').'))';
         $buffer .= $arg0;
         
     $buffer .= ')';
@@ -630,7 +630,7 @@ final class PanelConverter
     
         
     $buffer = 'yAxis(';
-        $arg0 = \Grafana\Foundation\Heatmap\YAxisConfigConverter::convert($input->options->yAxis);
+        $arg0 ='(new \Grafana\Foundation\Heatmap\YAxisConfig('.(($input->options->yAxis->unit !== null) ? 'unit: '.\var_export($input->options->yAxis->unit, true).', ' : '').''.(($input->options->yAxis->reverse !== null) ? 'reverse: '.\var_export($input->options->yAxis->reverse, true).', ' : '').''.(($input->options->yAxis->decimals !== null) ? 'decimals: '.\var_export($input->options->yAxis->decimals, true).', ' : '').''.(($input->options->yAxis->min !== null) ? 'min: '.\var_export($input->options->yAxis->min, true).', ' : '').''.(($input->options->yAxis->axisPlacement !== null) ? 'axisPlacement: '.'\Grafana\Foundation\Common\AxisPlacement::fromValue("'.$input->options->yAxis->axisPlacement.'")'.', ' : '').''.(($input->options->yAxis->axisColorMode !== null) ? 'axisColorMode: '.'\Grafana\Foundation\Common\AxisColorMode::fromValue("'.$input->options->yAxis->axisColorMode.'")'.', ' : '').''.(($input->options->yAxis->axisLabel !== null) ? 'axisLabel: '.\var_export($input->options->yAxis->axisLabel, true).', ' : '').''.(($input->options->yAxis->axisWidth !== null) ? 'axisWidth: '.\var_export($input->options->yAxis->axisWidth, true).', ' : '').''.(($input->options->yAxis->axisSoftMin !== null) ? 'axisSoftMin: '.\var_export($input->options->yAxis->axisSoftMin, true).', ' : '').''.(($input->options->yAxis->axisSoftMax !== null) ? 'axisSoftMax: '.\var_export($input->options->yAxis->axisSoftMax, true).', ' : '').''.(($input->options->yAxis->axisGridShow !== null) ? 'axisGridShow: '.\var_export($input->options->yAxis->axisGridShow, true).', ' : '').''.(($input->options->yAxis->scaleDistribution !== null) ? 'scaleDistribution: '.'(new \Grafana\Foundation\Common\ScaleDistributionConfig(type: '.'\Grafana\Foundation\Common\ScaleDistribution::fromValue("'.$input->options->yAxis->scaleDistribution->type.'")'.','.(($input->options->yAxis->scaleDistribution->log !== null) ? 'log: '.\var_export($input->options->yAxis->scaleDistribution->log, true).', ' : '').''.(($input->options->yAxis->scaleDistribution->linearThreshold !== null) ? 'linearThreshold: '.\var_export($input->options->yAxis->scaleDistribution->linearThreshold, true).', ' : '').'))'.', ' : '').''.(($input->options->yAxis->axisCenteredZero !== null) ? 'axisCenteredZero: '.\var_export($input->options->yAxis->axisCenteredZero, true).', ' : '').''.(($input->options->yAxis->max !== null) ? 'max: '.\var_export($input->options->yAxis->max, true).', ' : '').''.(($input->options->yAxis->axisBorderShow !== null) ? 'axisBorderShow: '.\var_export($input->options->yAxis->axisBorderShow, true).', ' : '').'))';
         $buffer .= $arg0;
         
     $buffer .= ')';

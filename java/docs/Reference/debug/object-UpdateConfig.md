@@ -12,6 +12,3 @@ public class UpdateConfig {
   public Boolean schemaChanged;
 }
 ```
-## See also
-
- * <span class="badge builder"></span> [UpdateConfigBuilder](./builder-UpdateConfigBuilder.md)

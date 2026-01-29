@@ -8,7 +8,7 @@ title: <span class="badge object-type-interface"></span> TypeMath
 ```typescript
 export interface TypeMath {
 	// The datasource
-	datasource?: dashboard.DataSourceRef;
+	datasource?: common.DataSourceRef;
 	// General math expression
 	expression: string;
 	// true if query is disabled (ie should not be returned to the dashboard)
@@ -27,7 +27,7 @@ export interface TypeMath {
 	// It can be used to distinguish different types of queries.
 	queryType?: string;
 	// RefID is the unique identifier of the query, set by the frontend call.
-	refId: string;
+	refId?: string;
 	// Optionally define expected query result behavior
 	resultAssertions?: {
 		// Maximum frame count

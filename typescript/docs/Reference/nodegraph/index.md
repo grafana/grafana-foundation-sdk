@@ -8,7 +8,4 @@
  * <span class="badge object-type-interface"></span> [Options](./object-Options.md)
 ## Builders
 
- * <span class="badge builder"></span> [ArcOptionBuilder](./builder-ArcOptionBuilder.md)
- * <span class="badge builder"></span> [EdgeOptionsBuilder](./builder-EdgeOptionsBuilder.md)
- * <span class="badge builder"></span> [NodeOptionsBuilder](./builder-NodeOptionsBuilder.md)
  * <span class="badge builder"></span> [PanelBuilder](./builder-PanelBuilder.md)

@@ -2,7 +2,7 @@
 
 from ..cog import variants as cogvariants
 import typing
-from ..models import dashboard
+from ..models import common
 from ..cog import runtime as cogruntime
 
 
@@ -12,7 +12,7 @@ class Dataquery(cogvariants.Dataquery):
     # A unique identifier for the query within the list of targets.
     # In server side expressions, the refId is used as a variable name to identify results.
     # By default, the UI will assign A->Z; however setting meaningful names may be useful.
-    ref_id: str
+    ref_id: typing.Optional[str]
     # If hide is set to true, Grafana will filter out the response(s) associated with this query before returning it to the panel.
     hide: typing.Optional[bool]
     # Specify the query flavor
@@ -23,9 +23,9 @@ class Dataquery(cogvariants.Dataquery):
     # For non mixed scenarios this is undefined.
     # TODO find a better way to do this ^ that's friendly to schema
     # TODO this shouldn't be unknown but DataSourceRef | null
-    datasource: typing.Optional[dashboard.DataSourceRef]
+    datasource: typing.Optional[common.DataSourceRef]
 
-    def __init__(self, panel_id: int = 0, ref_id: str = "", hide: typing.Optional[bool] = None, query_type: typing.Optional[str] = None, with_transforms: bool = False, datasource: typing.Optional[dashboard.DataSourceRef] = None):
+    def __init__(self, panel_id: int = 0, ref_id: typing.Optional[str] = None, hide: typing.Optional[bool] = None, query_type: typing.Optional[str] = None, with_transforms: bool = False, datasource: typing.Optional[common.DataSourceRef] = None) -> None:
         self.panel_id = panel_id
         self.ref_id = ref_id
         self.hide = hide
@@ -36,9 +36,10 @@ class Dataquery(cogvariants.Dataquery):
     def to_json(self) -> dict[str, object]:
         payload: dict[str, object] = {
             "panelId": self.panel_id,
-            "refId": self.ref_id,
             "withTransforms": self.with_transforms,
         }
+        if self.ref_id is not None:
+            payload["refId"] = self.ref_id
         if self.hide is not None:
             payload["hide"] = self.hide
         if self.query_type is not None:
@@ -62,7 +63,7 @@ class Dataquery(cogvariants.Dataquery):
         if "withTransforms" in data:
             args["with_transforms"] = data["withTransforms"]
         if "datasource" in data:
-            args["datasource"] = dashboard.DataSourceRef.from_json(data["datasource"])        
+            args["datasource"] = common.DataSourceRef.from_json(data["datasource"])        
 
         return cls(**args)
 

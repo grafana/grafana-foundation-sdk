@@ -99,10 +99,10 @@ func TypeResampleConverter(input TypeResample) string {
 		buffer.Reset()
 
 	}
-	if input.RefId != "" {
+	if input.RefId != nil && *input.RefId != "" {
 
 		buffer.WriteString(`RefId(`)
-		arg0 := fmt.Sprintf("%#v", input.RefId)
+		arg0 := fmt.Sprintf("%#v", *input.RefId)
 		buffer.WriteString(arg0)
 
 		buffer.WriteString(")")

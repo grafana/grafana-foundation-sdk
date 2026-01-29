@@ -37,7 +37,7 @@ public PanelBuilder colorScheme(com.grafana.foundation.cog.Builder<FieldColor> c
 ### <span class="badge object-method"></span> counters
 
 ```java
-public PanelBuilder counters(com.grafana.foundation.cog.Builder<UpdateConfig> counters)
+public PanelBuilder counters(UpdateConfig counters)
 ```
 
 ### <span class="badge object-method"></span> dataLinks

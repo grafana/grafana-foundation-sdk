@@ -22,6 +22,3 @@ export interface ControlsOptions {
 }
 
 ```
-## See also
-
- * <span class="badge builder"></span> [ControlsOptionsBuilder](./builder-ControlsOptionsBuilder.md)
