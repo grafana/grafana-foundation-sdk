@@ -9,7 +9,7 @@ class RoleBinding:
     # The team or user that has the specified role
     subject: 'RoleBindingSubject'
 
-    def __init__(self, role: typing.Optional[typing.Union['BuiltinRoleRef', 'CustomRoleRef']] = None, subject: typing.Optional['RoleBindingSubject'] = None):
+    def __init__(self, role: typing.Optional[typing.Union['BuiltinRoleRef', 'CustomRoleRef']] = None, subject: typing.Optional['RoleBindingSubject'] = None) -> None:
         self.role = role if role is not None else BuiltinRoleRef()
         self.subject = subject if subject is not None else RoleBindingSubject()
 
@@ -37,7 +37,7 @@ class BuiltinRoleRef:
     kind: typing.Literal["BuiltinRole"]
     name: typing.Literal["viewer", "editor", "admin"]
 
-    def __init__(self, name: typing.Optional[typing.Literal["viewer", "editor", "admin"]] = None):
+    def __init__(self, name: typing.Optional[typing.Literal["viewer", "editor", "admin"]] = None) -> None:
         self.kind = "BuiltinRole"
         self.name = name if name is not None else "viewer"
 
@@ -62,7 +62,7 @@ class CustomRoleRef:
     kind: typing.Literal["Role"]
     name: str
 
-    def __init__(self, name: str = ""):
+    def __init__(self, name: str = "") -> None:
         self.kind = "Role"
         self.name = name
 
@@ -88,7 +88,7 @@ class RoleBindingSubject:
     # The team/user identifier name
     name: str
 
-    def __init__(self, kind: typing.Optional[typing.Literal["Team", "User"]] = None, name: str = ""):
+    def __init__(self, kind: typing.Optional[typing.Literal["Team", "User"]] = None, name: str = "") -> None:
         self.kind = kind if kind is not None else "Team"
         self.name = name
 

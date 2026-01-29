@@ -15,7 +15,7 @@ class Options:
     # Name of the x field to use (defaults to first number)
     x_field: typing.Optional[str]
 
-    def __init__(self, legend: typing.Optional[common.VizLegendOptions] = None, tooltip: typing.Optional[common.VizTooltipOptions] = None, x_field: typing.Optional[str] = None):
+    def __init__(self, legend: typing.Optional[common.VizLegendOptions] = None, tooltip: typing.Optional[common.VizTooltipOptions] = None, x_field: typing.Optional[str] = None) -> None:
         self.legend = legend if legend is not None else common.VizLegendOptions()
         self.tooltip = tooltip if tooltip is not None else common.VizTooltipOptions()
         self.x_field = x_field
