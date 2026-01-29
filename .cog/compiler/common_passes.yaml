@@ -3,8 +3,3 @@
 passes:
   - entrypoint_identification: {}
   - disjunction_with_constant_to_default: {}
-
-  # Ensure consistent DataSourceRef
-  - replace_reference:
-      from: dashboard.DataSourceRef
-      to: common.DataSourceRef

@@ -23,6 +23,7 @@ builders:
   - omit: { by_object: MatcherConfig }
   - omit: { by_object: DynamicConfigValue }
   - omit: { by_object: DataTransformerConfig }
+  - omit: { by_object: DataSourceRef }
 
   #######################
   # Overrides shortcuts #

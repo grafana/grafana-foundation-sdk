@@ -151,9 +151,14 @@ inputs:
 
 transformations:
   schemas:
-    - '%__config_dir%/compiler/common_passes.yaml'
-    - '%__config_dir%/compiler/dataqueries.yaml'
-    - '%__config_dir%/compiler/dataqueries_refid.yaml' # To avoid it to conflict with the refid in the dataquery schema.
+    - { path: '%__config_dir%/compiler/common_passes.yaml' }
+    - { path: '%__config_dir%/compiler/dataqueries.yaml' }
+    - if: '"%grafana_version%" != "main" && semver("%grafana_version%").LessThan(semver("v12.0.x"))'
+      path: '%__config_dir%/compiler/datasourceref.dashboardv1.yaml'
+    - if: '"%grafana_version%" == "main" || semver("%grafana_version%").MoreThanEqual(semver("v12.0.x"))'
+      path: '%__config_dir%/compiler/datasourceref.dashboardv2.yaml'
+    - if: '"%grafana_version%" == "main" || semver("%grafana_version%").MoreThanEqual(semver("v12.0.x"))'
+      path: '%__config_dir%/compiler/dataqueries_refid.yaml' # To avoid it to conflict with the refid in the dataquery schema.
 
   builders:
     - { path: '%__config_dir%/veneers' }

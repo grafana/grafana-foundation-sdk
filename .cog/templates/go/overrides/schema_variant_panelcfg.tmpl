@@ -15,7 +15,7 @@ func VariantConfig() {{ $variants }}.PanelcfgConfig {
 	return {{ $variants }}.PanelcfgConfig{
 		Identifier: "{{ .Schema.Metadata.Identifier }}",
 		{{- if .Schema.HasObject "Options" }}
-		{{- $json := importStdPkg "encoding/json" -}}
+		{{- $json := importStdPkg "encoding/json" }}
 		OptionsUnmarshaler: func (raw []byte) (any, error) {
 			options := &Options{}
 
@@ -36,7 +36,7 @@ func VariantConfig() {{ $variants }}.PanelcfgConfig {
 		},
 		{{- end }}
 		{{- if .Schema.HasObject "FieldConfig" }}
-		{{- $json := importStdPkg "encoding/json" -}}
+		{{- $json := importStdPkg "encoding/json" }}
 		FieldConfigUnmarshaler: func (raw []byte) (any, error) {
 			fieldConfig := &FieldConfig{}
 
@@ -57,7 +57,7 @@ func VariantConfig() {{ $variants }}.PanelcfgConfig {
 		},
 		{{- end }}
 		{{- if .Config.GenerateConverters }}
-		{{- $dashboard := importPkg "dashboard" -}}
+		{{- $dashboard := importPkg "dashboard" }}
 		GoConverter: func(inputPanel any) string {
 			if panel, ok := inputPanel.(*{{ $dashboard }}.Panel); ok {
 				return PanelConverter(*panel)
