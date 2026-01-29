@@ -33,7 +33,7 @@ class Dataquery(cogvariants.Dataquery):
     # TODO this shouldn't be unknown but DataSourceRef | null
     datasource: typing.Optional[dashboard.DataSourceRef]
 
-    def __init__(self, label_selector: str = "{}", profile_type_id: str = "", ref_id: str = "", hide: typing.Optional[bool] = None, query_type: typing.Optional[str] = None, datasource: typing.Optional[dashboard.DataSourceRef] = None):
+    def __init__(self, label_selector: str = "{}", profile_type_id: str = "", ref_id: str = "", hide: typing.Optional[bool] = None, query_type: typing.Optional[str] = None, datasource: typing.Optional[dashboard.DataSourceRef] = None) -> None:
         self.label_selector = label_selector
         self.profile_type_id = profile_type_id
         self.ref_id = ref_id

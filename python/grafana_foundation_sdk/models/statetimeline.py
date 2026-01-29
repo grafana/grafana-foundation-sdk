@@ -20,7 +20,7 @@ class Options:
     # Enables pagination when > 0
     per_page: typing.Optional[float]
 
-    def __init__(self, show_value: typing.Optional[common.VisibilityMode] = None, row_height: float = 0.9, merge_values: typing.Optional[bool] = True, align_value: typing.Optional[common.TimelineValueAlignment] = None, legend: typing.Optional[common.VizLegendOptions] = None, tooltip: typing.Optional[common.VizTooltipOptions] = None, timezone: typing.Optional[list[common.TimeZone]] = None, per_page: typing.Optional[float] = 20):
+    def __init__(self, show_value: typing.Optional[common.VisibilityMode] = None, row_height: float = 0.9, merge_values: typing.Optional[bool] = True, align_value: typing.Optional[common.TimelineValueAlignment] = None, legend: typing.Optional[common.VizLegendOptions] = None, tooltip: typing.Optional[common.VizTooltipOptions] = None, timezone: typing.Optional[list[common.TimeZone]] = None, per_page: typing.Optional[float] = 20) -> None:
         self.show_value = show_value if show_value is not None else common.VisibilityMode.AUTO
         self.row_height = row_height
         self.merge_values = merge_values
@@ -86,7 +86,7 @@ class FieldConfig:
     fill_opacity: typing.Optional[int]
     axis_border_show: typing.Optional[bool]
 
-    def __init__(self, line_width: typing.Optional[int] = 0, axis_placement: typing.Optional[common.AxisPlacement] = None, axis_color_mode: typing.Optional[common.AxisColorMode] = None, axis_label: typing.Optional[str] = None, axis_width: typing.Optional[float] = None, axis_soft_min: typing.Optional[float] = None, axis_soft_max: typing.Optional[float] = None, axis_grid_show: typing.Optional[bool] = None, scale_distribution: typing.Optional[common.ScaleDistributionConfig] = None, axis_centered_zero: typing.Optional[bool] = None, hide_from: typing.Optional[common.HideSeriesConfig] = None, fill_opacity: typing.Optional[int] = 70, axis_border_show: typing.Optional[bool] = None):
+    def __init__(self, line_width: typing.Optional[int] = 0, axis_placement: typing.Optional[common.AxisPlacement] = None, axis_color_mode: typing.Optional[common.AxisColorMode] = None, axis_label: typing.Optional[str] = None, axis_width: typing.Optional[float] = None, axis_soft_min: typing.Optional[float] = None, axis_soft_max: typing.Optional[float] = None, axis_grid_show: typing.Optional[bool] = None, scale_distribution: typing.Optional[common.ScaleDistributionConfig] = None, axis_centered_zero: typing.Optional[bool] = None, hide_from: typing.Optional[common.HideSeriesConfig] = None, fill_opacity: typing.Optional[int] = 70, axis_border_show: typing.Optional[bool] = None) -> None:
         self.line_width = line_width
         self.axis_placement = axis_placement
         self.axis_color_mode = axis_color_mode

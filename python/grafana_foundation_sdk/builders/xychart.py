@@ -17,7 +17,7 @@ class MatcherConfig(cogbuilder.Builder[xychart.MatcherConfig]):
     
     _internal: xychart.MatcherConfig
 
-    def __init__(self):
+    def __init__(self) -> None:
         self._internal = xychart.MatcherConfig()
 
     def build(self) -> xychart.MatcherConfig:
@@ -49,7 +49,7 @@ class MatcherConfig(cogbuilder.Builder[xychart.MatcherConfig]):
 class XYSeriesConfig(cogbuilder.Builder[xychart.XYSeriesConfig]):
     _internal: xychart.XYSeriesConfig
 
-    def __init__(self):
+    def __init__(self) -> None:
         self._internal = xychart.XYSeriesConfig()
 
     def build(self) -> xychart.XYSeriesConfig:
@@ -99,7 +99,7 @@ class XYSeriesConfig(cogbuilder.Builder[xychart.XYSeriesConfig]):
 class XychartFieldConfigPointSize(cogbuilder.Builder[xychart.XychartFieldConfigPointSize]):
     _internal: xychart.XychartFieldConfigPointSize
 
-    def __init__(self):
+    def __init__(self) -> None:
         self._internal = xychart.XychartFieldConfigPointSize()
 
     def build(self) -> xychart.XychartFieldConfigPointSize:
@@ -134,7 +134,7 @@ class XychartFieldConfigPointSize(cogbuilder.Builder[xychart.XychartFieldConfigP
 class XychartXYSeriesConfigName(cogbuilder.Builder[xychart.XychartXYSeriesConfigName]):
     _internal: xychart.XychartXYSeriesConfigName
 
-    def __init__(self):
+    def __init__(self) -> None:
         self._internal = xychart.XychartXYSeriesConfigName()
 
     def build(self) -> xychart.XychartXYSeriesConfigName:
@@ -153,7 +153,7 @@ class XychartXYSeriesConfigName(cogbuilder.Builder[xychart.XychartXYSeriesConfig
 class XychartXYSeriesConfigFrame(cogbuilder.Builder[xychart.XychartXYSeriesConfigFrame]):
     _internal: xychart.XychartXYSeriesConfigFrame
 
-    def __init__(self):
+    def __init__(self) -> None:
         self._internal = xychart.XychartXYSeriesConfigFrame()
 
     def build(self) -> xychart.XychartXYSeriesConfigFrame:
@@ -173,7 +173,7 @@ class XychartXYSeriesConfigFrame(cogbuilder.Builder[xychart.XychartXYSeriesConfi
 class XychartXYSeriesConfigX(cogbuilder.Builder[xychart.XychartXYSeriesConfigX]):
     _internal: xychart.XychartXYSeriesConfigX
 
-    def __init__(self):
+    def __init__(self) -> None:
         self._internal = xychart.XychartXYSeriesConfigX()
 
     def build(self) -> xychart.XychartXYSeriesConfigX:
@@ -193,7 +193,7 @@ class XychartXYSeriesConfigX(cogbuilder.Builder[xychart.XychartXYSeriesConfigX])
 class XychartXYSeriesConfigY(cogbuilder.Builder[xychart.XychartXYSeriesConfigY]):
     _internal: xychart.XychartXYSeriesConfigY
 
-    def __init__(self):
+    def __init__(self) -> None:
         self._internal = xychart.XychartXYSeriesConfigY()
 
     def build(self) -> xychart.XychartXYSeriesConfigY:
@@ -213,7 +213,7 @@ class XychartXYSeriesConfigY(cogbuilder.Builder[xychart.XychartXYSeriesConfigY])
 class XychartXYSeriesConfigColor(cogbuilder.Builder[xychart.XychartXYSeriesConfigColor]):
     _internal: xychart.XychartXYSeriesConfigColor
 
-    def __init__(self):
+    def __init__(self) -> None:
         self._internal = xychart.XychartXYSeriesConfigColor()
 
     def build(self) -> xychart.XychartXYSeriesConfigColor:
@@ -233,7 +233,7 @@ class XychartXYSeriesConfigColor(cogbuilder.Builder[xychart.XychartXYSeriesConfi
 class XychartXYSeriesConfigSize(cogbuilder.Builder[xychart.XychartXYSeriesConfigSize]):
     _internal: xychart.XychartXYSeriesConfigSize
 
-    def __init__(self):
+    def __init__(self) -> None:
         self._internal = xychart.XychartXYSeriesConfigSize()
 
     def build(self) -> xychart.XychartXYSeriesConfigSize:
@@ -257,7 +257,7 @@ class Panel(cogbuilder.Builder[dashboard.Panel]):
     
     _internal: dashboard.Panel
 
-    def __init__(self):
+    def __init__(self) -> None:
         self._internal = dashboard.Panel()        
         self._internal.type_val = "xychart"
 

@@ -9,7 +9,7 @@ from ..models import dashboard
 class TempoQuery(cogbuilder.Builder[tempo.TempoQuery]):
     _internal: tempo.TempoQuery
 
-    def __init__(self):
+    def __init__(self) -> None:
         self._internal = tempo.TempoQuery()
 
     def build(self) -> tempo.TempoQuery:
@@ -207,7 +207,7 @@ class TempoQuery(cogbuilder.Builder[tempo.TempoQuery]):
 class TraceqlFilter(cogbuilder.Builder[tempo.TraceqlFilter]):
     _internal: tempo.TraceqlFilter
 
-    def __init__(self):
+    def __init__(self) -> None:
         self._internal = tempo.TraceqlFilter()
 
     def build(self) -> tempo.TraceqlFilter:
