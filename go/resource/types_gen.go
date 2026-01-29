@@ -11,6 +11,12 @@ import (
 	cog "github.com/grafana/grafana-foundation-sdk/go/cog"
 )
 
+const DashboardV2Beta1 = "dashboard.grafana.app/v2beta1"
+
+const DashboardV2Alpha1 = "dashboard.grafana.app/v2alpha1"
+
+const DashboardKind = "Dashboard"
+
 type Manifest struct {
 	ApiVersion string   `json:"apiVersion"`
 	Kind       string   `json:"kind"`

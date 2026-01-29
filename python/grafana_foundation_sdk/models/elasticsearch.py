@@ -16,7 +16,7 @@ class DateHistogram:
     type_val: str
     settings: typing.Optional['ElasticsearchDateHistogramSettings']
 
-    def __init__(self, field: typing.Optional[str] = None, id_val: str = "", settings: typing.Optional['ElasticsearchDateHistogramSettings'] = None):
+    def __init__(self, field: typing.Optional[str] = None, id_val: str = "", settings: typing.Optional['ElasticsearchDateHistogramSettings'] = None) -> None:
         self.field = field
         self.id_val = id_val
         self.type_val = BucketAggregationType.DATE_HISTOGRAM
@@ -62,7 +62,7 @@ class Histogram:
     type_val: str
     settings: typing.Optional['ElasticsearchHistogramSettings']
 
-    def __init__(self, field: typing.Optional[str] = None, id_val: str = "", settings: typing.Optional['ElasticsearchHistogramSettings'] = None):
+    def __init__(self, field: typing.Optional[str] = None, id_val: str = "", settings: typing.Optional['ElasticsearchHistogramSettings'] = None) -> None:
         self.field = field
         self.id_val = id_val
         self.type_val = BucketAggregationType.HISTOGRAM
@@ -99,7 +99,7 @@ class Terms:
     type_val: str
     settings: typing.Optional['ElasticsearchTermsSettings']
 
-    def __init__(self, field: typing.Optional[str] = None, id_val: str = "", settings: typing.Optional['ElasticsearchTermsSettings'] = None):
+    def __init__(self, field: typing.Optional[str] = None, id_val: str = "", settings: typing.Optional['ElasticsearchTermsSettings'] = None) -> None:
         self.field = field
         self.id_val = id_val
         self.type_val = BucketAggregationType.TERMS
@@ -140,7 +140,7 @@ class Filters:
     type_val: str
     settings: typing.Optional['ElasticsearchFiltersSettings']
 
-    def __init__(self, id_val: str = "", settings: typing.Optional['ElasticsearchFiltersSettings'] = None):
+    def __init__(self, id_val: str = "", settings: typing.Optional['ElasticsearchFiltersSettings'] = None) -> None:
         self.id_val = id_val
         self.type_val = BucketAggregationType.FILTERS
         self.settings = settings
@@ -170,7 +170,7 @@ class Filter:
     query: str
     label: str
 
-    def __init__(self, query: str = "", label: str = ""):
+    def __init__(self, query: str = "", label: str = "") -> None:
         self.query = query
         self.label = label
 
@@ -199,7 +199,7 @@ class GeoHashGrid:
     type_val: str
     settings: typing.Optional['ElasticsearchGeoHashGridSettings']
 
-    def __init__(self, field: typing.Optional[str] = None, id_val: str = "", settings: typing.Optional['ElasticsearchGeoHashGridSettings'] = None):
+    def __init__(self, field: typing.Optional[str] = None, id_val: str = "", settings: typing.Optional['ElasticsearchGeoHashGridSettings'] = None) -> None:
         self.field = field
         self.id_val = id_val
         self.type_val = BucketAggregationType.GEOHASH_GRID
@@ -236,7 +236,7 @@ class Nested:
     type_val: str
     settings: typing.Optional[object]
 
-    def __init__(self, field: typing.Optional[str] = None, id_val: str = "", settings: typing.Optional[object] = None):
+    def __init__(self, field: typing.Optional[str] = None, id_val: str = "", settings: typing.Optional[object] = None) -> None:
         self.field = field
         self.id_val = id_val
         self.type_val = BucketAggregationType.NESTED
@@ -275,7 +275,7 @@ class Count:
     id_val: str
     hide: typing.Optional[bool]
 
-    def __init__(self, id_val: str = "", hide: typing.Optional[bool] = None):
+    def __init__(self, id_val: str = "", hide: typing.Optional[bool] = None) -> None:
         self.type_val = MetricAggregationType.COUNT
         self.id_val = id_val
         self.hide = hide
@@ -347,7 +347,7 @@ class MovingAverage:
     settings: typing.Optional[dict[str, object]]
     hide: typing.Optional[bool]
 
-    def __init__(self, pipeline_agg: typing.Optional[str] = None, field: typing.Optional[str] = None, id_val: str = "", settings: typing.Optional[dict[str, object]] = None, hide: typing.Optional[bool] = None):
+    def __init__(self, pipeline_agg: typing.Optional[str] = None, field: typing.Optional[str] = None, id_val: str = "", settings: typing.Optional[dict[str, object]] = None, hide: typing.Optional[bool] = None) -> None:
         self.pipeline_agg = pipeline_agg
         self.field = field
         self.type_val = MetricAggregationType.MOVING_AVG
@@ -396,7 +396,7 @@ class Derivative:
     settings: typing.Optional['ElasticsearchDerivativeSettings']
     hide: typing.Optional[bool]
 
-    def __init__(self, pipeline_agg: typing.Optional[str] = None, field: typing.Optional[str] = None, id_val: str = "", settings: typing.Optional['ElasticsearchDerivativeSettings'] = None, hide: typing.Optional[bool] = None):
+    def __init__(self, pipeline_agg: typing.Optional[str] = None, field: typing.Optional[str] = None, id_val: str = "", settings: typing.Optional['ElasticsearchDerivativeSettings'] = None, hide: typing.Optional[bool] = None) -> None:
         self.pipeline_agg = pipeline_agg
         self.field = field
         self.type_val = MetricAggregationType.DERIVATIVE
@@ -445,7 +445,7 @@ class CumulativeSum:
     settings: typing.Optional['ElasticsearchCumulativeSumSettings']
     hide: typing.Optional[bool]
 
-    def __init__(self, pipeline_agg: typing.Optional[str] = None, field: typing.Optional[str] = None, id_val: str = "", settings: typing.Optional['ElasticsearchCumulativeSumSettings'] = None, hide: typing.Optional[bool] = None):
+    def __init__(self, pipeline_agg: typing.Optional[str] = None, field: typing.Optional[str] = None, id_val: str = "", settings: typing.Optional['ElasticsearchCumulativeSumSettings'] = None, hide: typing.Optional[bool] = None) -> None:
         self.pipeline_agg = pipeline_agg
         self.field = field
         self.type_val = MetricAggregationType.CUMULATIVE_SUM
@@ -493,7 +493,7 @@ class BucketScript:
     settings: typing.Optional['ElasticsearchBucketScriptSettings']
     hide: typing.Optional[bool]
 
-    def __init__(self, pipeline_variables: typing.Optional[list['PipelineVariable']] = None, id_val: str = "", settings: typing.Optional['ElasticsearchBucketScriptSettings'] = None, hide: typing.Optional[bool] = None):
+    def __init__(self, pipeline_variables: typing.Optional[list['PipelineVariable']] = None, id_val: str = "", settings: typing.Optional['ElasticsearchBucketScriptSettings'] = None, hide: typing.Optional[bool] = None) -> None:
         self.type_val = MetricAggregationType.BUCKET_SCRIPT
         self.pipeline_variables = pipeline_variables
         self.id_val = id_val
@@ -533,7 +533,7 @@ class PipelineVariable:
     name: str
     pipeline_agg: str
 
-    def __init__(self, name: str = "", pipeline_agg: str = ""):
+    def __init__(self, name: str = "", pipeline_agg: str = "") -> None:
         self.name = name
         self.pipeline_agg = pipeline_agg
 
@@ -570,7 +570,7 @@ class SerialDiff:
     settings: typing.Optional['ElasticsearchSerialDiffSettings']
     hide: typing.Optional[bool]
 
-    def __init__(self, pipeline_agg: typing.Optional[str] = None, field: typing.Optional[str] = None, id_val: str = "", settings: typing.Optional['ElasticsearchSerialDiffSettings'] = None, hide: typing.Optional[bool] = None):
+    def __init__(self, pipeline_agg: typing.Optional[str] = None, field: typing.Optional[str] = None, id_val: str = "", settings: typing.Optional['ElasticsearchSerialDiffSettings'] = None, hide: typing.Optional[bool] = None) -> None:
         self.pipeline_agg = pipeline_agg
         self.field = field
         self.type_val = MetricAggregationType.SERIAL_DIFF
@@ -617,7 +617,7 @@ class RawData:
     settings: typing.Optional['ElasticsearchRawDataSettings']
     hide: typing.Optional[bool]
 
-    def __init__(self, id_val: str = "", settings: typing.Optional['ElasticsearchRawDataSettings'] = None, hide: typing.Optional[bool] = None):
+    def __init__(self, id_val: str = "", settings: typing.Optional['ElasticsearchRawDataSettings'] = None, hide: typing.Optional[bool] = None) -> None:
         self.type_val = MetricAggregationType.RAW_DATA
         self.id_val = id_val
         self.settings = settings
@@ -654,7 +654,7 @@ class RawDocument:
     settings: typing.Optional['ElasticsearchRawDocumentSettings']
     hide: typing.Optional[bool]
 
-    def __init__(self, id_val: str = "", settings: typing.Optional['ElasticsearchRawDocumentSettings'] = None, hide: typing.Optional[bool] = None):
+    def __init__(self, id_val: str = "", settings: typing.Optional['ElasticsearchRawDocumentSettings'] = None, hide: typing.Optional[bool] = None) -> None:
         self.type_val = MetricAggregationType.RAW_DOCUMENT
         self.id_val = id_val
         self.settings = settings
@@ -692,7 +692,7 @@ class UniqueCount:
     settings: typing.Optional['ElasticsearchUniqueCountSettings']
     hide: typing.Optional[bool]
 
-    def __init__(self, field: typing.Optional[str] = None, id_val: str = "", settings: typing.Optional['ElasticsearchUniqueCountSettings'] = None, hide: typing.Optional[bool] = None):
+    def __init__(self, field: typing.Optional[str] = None, id_val: str = "", settings: typing.Optional['ElasticsearchUniqueCountSettings'] = None, hide: typing.Optional[bool] = None) -> None:
         self.type_val = MetricAggregationType.CARDINALITY
         self.field = field
         self.id_val = id_val
@@ -735,7 +735,7 @@ class Percentiles:
     settings: typing.Optional['ElasticsearchPercentilesSettings']
     hide: typing.Optional[bool]
 
-    def __init__(self, field: typing.Optional[str] = None, id_val: str = "", settings: typing.Optional['ElasticsearchPercentilesSettings'] = None, hide: typing.Optional[bool] = None):
+    def __init__(self, field: typing.Optional[str] = None, id_val: str = "", settings: typing.Optional['ElasticsearchPercentilesSettings'] = None, hide: typing.Optional[bool] = None) -> None:
         self.type_val = MetricAggregationType.PERCENTILES
         self.field = field
         self.id_val = id_val
@@ -779,7 +779,7 @@ class ExtendedStats:
     meta: typing.Optional[object]
     hide: typing.Optional[bool]
 
-    def __init__(self, settings: typing.Optional['ElasticsearchExtendedStatsSettings'] = None, field: typing.Optional[str] = None, id_val: str = "", meta: typing.Optional[object] = None, hide: typing.Optional[bool] = None):
+    def __init__(self, settings: typing.Optional['ElasticsearchExtendedStatsSettings'] = None, field: typing.Optional[str] = None, id_val: str = "", meta: typing.Optional[object] = None, hide: typing.Optional[bool] = None) -> None:
         self.type_val = MetricAggregationType.EXTENDED_STATS
         self.settings = settings
         self.field = field
@@ -827,7 +827,7 @@ class Min:
     settings: typing.Optional['ElasticsearchMinSettings']
     hide: typing.Optional[bool]
 
-    def __init__(self, field: typing.Optional[str] = None, id_val: str = "", settings: typing.Optional['ElasticsearchMinSettings'] = None, hide: typing.Optional[bool] = None):
+    def __init__(self, field: typing.Optional[str] = None, id_val: str = "", settings: typing.Optional['ElasticsearchMinSettings'] = None, hide: typing.Optional[bool] = None) -> None:
         self.type_val = MetricAggregationType.MIN
         self.field = field
         self.id_val = id_val
@@ -870,7 +870,7 @@ class Max:
     settings: typing.Optional['ElasticsearchMaxSettings']
     hide: typing.Optional[bool]
 
-    def __init__(self, field: typing.Optional[str] = None, id_val: str = "", settings: typing.Optional['ElasticsearchMaxSettings'] = None, hide: typing.Optional[bool] = None):
+    def __init__(self, field: typing.Optional[str] = None, id_val: str = "", settings: typing.Optional['ElasticsearchMaxSettings'] = None, hide: typing.Optional[bool] = None) -> None:
         self.type_val = MetricAggregationType.MAX
         self.field = field
         self.id_val = id_val
@@ -913,7 +913,7 @@ class Sum:
     settings: typing.Optional['ElasticsearchSumSettings']
     hide: typing.Optional[bool]
 
-    def __init__(self, field: typing.Optional[str] = None, id_val: str = "", settings: typing.Optional['ElasticsearchSumSettings'] = None, hide: typing.Optional[bool] = None):
+    def __init__(self, field: typing.Optional[str] = None, id_val: str = "", settings: typing.Optional['ElasticsearchSumSettings'] = None, hide: typing.Optional[bool] = None) -> None:
         self.type_val = MetricAggregationType.SUM
         self.field = field
         self.id_val = id_val
@@ -956,7 +956,7 @@ class Average:
     settings: typing.Optional['ElasticsearchAverageSettings']
     hide: typing.Optional[bool]
 
-    def __init__(self, field: typing.Optional[str] = None, id_val: str = "", settings: typing.Optional['ElasticsearchAverageSettings'] = None, hide: typing.Optional[bool] = None):
+    def __init__(self, field: typing.Optional[str] = None, id_val: str = "", settings: typing.Optional['ElasticsearchAverageSettings'] = None, hide: typing.Optional[bool] = None) -> None:
         self.type_val = MetricAggregationType.AVG
         self.field = field
         self.id_val = id_val
@@ -1000,7 +1000,7 @@ class MovingFunction:
     settings: typing.Optional['ElasticsearchMovingFunctionSettings']
     hide: typing.Optional[bool]
 
-    def __init__(self, pipeline_agg: typing.Optional[str] = None, field: typing.Optional[str] = None, id_val: str = "", settings: typing.Optional['ElasticsearchMovingFunctionSettings'] = None, hide: typing.Optional[bool] = None):
+    def __init__(self, pipeline_agg: typing.Optional[str] = None, field: typing.Optional[str] = None, id_val: str = "", settings: typing.Optional['ElasticsearchMovingFunctionSettings'] = None, hide: typing.Optional[bool] = None) -> None:
         self.pipeline_agg = pipeline_agg
         self.field = field
         self.type_val = MetricAggregationType.MOVING_FN
@@ -1047,7 +1047,7 @@ class Logs:
     settings: typing.Optional['ElasticsearchLogsSettings']
     hide: typing.Optional[bool]
 
-    def __init__(self, id_val: str = "", settings: typing.Optional['ElasticsearchLogsSettings'] = None, hide: typing.Optional[bool] = None):
+    def __init__(self, id_val: str = "", settings: typing.Optional['ElasticsearchLogsSettings'] = None, hide: typing.Optional[bool] = None) -> None:
         self.type_val = MetricAggregationType.LOGS
         self.id_val = id_val
         self.settings = settings
@@ -1085,7 +1085,7 @@ class Rate:
     settings: typing.Optional['ElasticsearchRateSettings']
     hide: typing.Optional[bool]
 
-    def __init__(self, field: typing.Optional[str] = None, id_val: str = "", settings: typing.Optional['ElasticsearchRateSettings'] = None, hide: typing.Optional[bool] = None):
+    def __init__(self, field: typing.Optional[str] = None, id_val: str = "", settings: typing.Optional['ElasticsearchRateSettings'] = None, hide: typing.Optional[bool] = None) -> None:
         self.type_val = MetricAggregationType.RATE
         self.field = field
         self.id_val = id_val
@@ -1127,7 +1127,7 @@ class TopMetrics:
     settings: typing.Optional['ElasticsearchTopMetricsSettings']
     hide: typing.Optional[bool]
 
-    def __init__(self, id_val: str = "", settings: typing.Optional['ElasticsearchTopMetricsSettings'] = None, hide: typing.Optional[bool] = None):
+    def __init__(self, id_val: str = "", settings: typing.Optional['ElasticsearchTopMetricsSettings'] = None, hide: typing.Optional[bool] = None) -> None:
         self.type_val = MetricAggregationType.TOP_METRICS
         self.id_val = id_val
         self.settings = settings
@@ -1163,7 +1163,7 @@ class BaseBucketAggregation:
     type_val: 'BucketAggregationType'
     settings: typing.Optional[object]
 
-    def __init__(self, id_val: str = "", type_val: typing.Optional['BucketAggregationType'] = None, settings: typing.Optional[object] = None):
+    def __init__(self, id_val: str = "", type_val: typing.Optional['BucketAggregationType'] = None, settings: typing.Optional[object] = None) -> None:
         self.id_val = id_val
         self.type_val = type_val if type_val is not None else BucketAggregationType.TERMS
         self.settings = settings
@@ -1197,7 +1197,7 @@ class BucketAggregationWithField:
     type_val: 'BucketAggregationType'
     settings: typing.Optional[object]
 
-    def __init__(self, field: typing.Optional[str] = None, id_val: str = "", type_val: typing.Optional['BucketAggregationType'] = None, settings: typing.Optional[object] = None):
+    def __init__(self, field: typing.Optional[str] = None, id_val: str = "", type_val: typing.Optional['BucketAggregationType'] = None, settings: typing.Optional[object] = None) -> None:
         self.field = field
         self.id_val = id_val
         self.type_val = type_val if type_val is not None else BucketAggregationType.TERMS
@@ -1237,7 +1237,7 @@ class DateHistogramSettings:
     offset: typing.Optional[str]
     time_zone: typing.Optional[str]
 
-    def __init__(self, interval: typing.Optional[str] = None, min_doc_count: typing.Optional[str] = None, trim_edges: typing.Optional[str] = None, offset: typing.Optional[str] = None, time_zone: typing.Optional[str] = None):
+    def __init__(self, interval: typing.Optional[str] = None, min_doc_count: typing.Optional[str] = None, trim_edges: typing.Optional[str] = None, offset: typing.Optional[str] = None, time_zone: typing.Optional[str] = None) -> None:
         self.interval = interval
         self.min_doc_count = min_doc_count
         self.trim_edges = trim_edges
@@ -1281,7 +1281,7 @@ class HistogramSettings:
     interval: typing.Optional[str]
     min_doc_count: typing.Optional[str]
 
-    def __init__(self, interval: typing.Optional[str] = None, min_doc_count: typing.Optional[str] = None):
+    def __init__(self, interval: typing.Optional[str] = None, min_doc_count: typing.Optional[str] = None) -> None:
         self.interval = interval
         self.min_doc_count = min_doc_count
 
@@ -1313,7 +1313,7 @@ class TermsSettings:
     order_by: typing.Optional[str]
     missing: typing.Optional[str]
 
-    def __init__(self, order: typing.Optional['TermsOrder'] = None, size: typing.Optional[str] = None, min_doc_count: typing.Optional[str] = None, order_by: typing.Optional[str] = None, missing: typing.Optional[str] = None):
+    def __init__(self, order: typing.Optional['TermsOrder'] = None, size: typing.Optional[str] = None, min_doc_count: typing.Optional[str] = None, order_by: typing.Optional[str] = None, missing: typing.Optional[str] = None) -> None:
         self.order = order
         self.size = size
         self.min_doc_count = min_doc_count
@@ -1356,7 +1356,7 @@ class TermsSettings:
 class FiltersSettings:
     filters: typing.Optional[list['Filter']]
 
-    def __init__(self, filters: typing.Optional[list['Filter']] = None):
+    def __init__(self, filters: typing.Optional[list['Filter']] = None) -> None:
         self.filters = filters
 
     def to_json(self) -> dict[str, object]:
@@ -1379,7 +1379,7 @@ class FiltersSettings:
 class GeoHashGridSettings:
     precision: typing.Optional[str]
 
-    def __init__(self, precision: typing.Optional[str] = None):
+    def __init__(self, precision: typing.Optional[str] = None) -> None:
         self.precision = precision
 
     def to_json(self) -> dict[str, object]:
@@ -1404,7 +1404,7 @@ class BaseMetricAggregation:
     id_val: str
     hide: typing.Optional[bool]
 
-    def __init__(self, type_val: typing.Optional['MetricAggregationType'] = None, id_val: str = "", hide: typing.Optional[bool] = None):
+    def __init__(self, type_val: typing.Optional['MetricAggregationType'] = None, id_val: str = "", hide: typing.Optional[bool] = None) -> None:
         self.type_val = type_val if type_val is not None else MetricAggregationType.COUNT
         self.id_val = id_val
         self.hide = hide
@@ -1438,7 +1438,7 @@ class MetricAggregationWithField:
     id_val: str
     hide: typing.Optional[bool]
 
-    def __init__(self, field: typing.Optional[str] = None, type_val: typing.Optional['MetricAggregationType'] = None, id_val: str = "", hide: typing.Optional[bool] = None):
+    def __init__(self, field: typing.Optional[str] = None, type_val: typing.Optional['MetricAggregationType'] = None, id_val: str = "", hide: typing.Optional[bool] = None) -> None:
         self.field = field
         self.type_val = type_val if type_val is not None else MetricAggregationType.COUNT
         self.id_val = id_val
@@ -1477,7 +1477,7 @@ class MetricAggregationWithMissingSupport:
     id_val: str
     hide: typing.Optional[bool]
 
-    def __init__(self, settings: typing.Optional['ElasticsearchMetricAggregationWithMissingSupportSettings'] = None, type_val: typing.Optional['MetricAggregationType'] = None, id_val: str = "", hide: typing.Optional[bool] = None):
+    def __init__(self, settings: typing.Optional['ElasticsearchMetricAggregationWithMissingSupportSettings'] = None, type_val: typing.Optional['MetricAggregationType'] = None, id_val: str = "", hide: typing.Optional[bool] = None) -> None:
         self.settings = settings
         self.type_val = type_val if type_val is not None else MetricAggregationType.COUNT
         self.id_val = id_val
@@ -1516,7 +1516,7 @@ class MetricAggregationWithInlineScript:
     id_val: str
     hide: typing.Optional[bool]
 
-    def __init__(self, settings: typing.Optional['ElasticsearchMetricAggregationWithInlineScriptSettings'] = None, type_val: typing.Optional['MetricAggregationType'] = None, id_val: str = "", hide: typing.Optional[bool] = None):
+    def __init__(self, settings: typing.Optional['ElasticsearchMetricAggregationWithInlineScriptSettings'] = None, type_val: typing.Optional['MetricAggregationType'] = None, id_val: str = "", hide: typing.Optional[bool] = None) -> None:
         self.settings = settings
         self.type_val = type_val if type_val is not None else MetricAggregationType.COUNT
         self.id_val = id_val
@@ -1564,7 +1564,7 @@ class ExtendedStat:
     label: str
     value: 'ExtendedStatMetaType'
 
-    def __init__(self, label: str = "", value: typing.Optional['ExtendedStatMetaType'] = None):
+    def __init__(self, label: str = "", value: typing.Optional['ExtendedStatMetaType'] = None) -> None:
         self.label = label
         self.value = value if value is not None else ExtendedStatMetaType.AVG
 
@@ -1594,7 +1594,7 @@ class BasePipelineMetricAggregation:
     id_val: str
     hide: typing.Optional[bool]
 
-    def __init__(self, pipeline_agg: typing.Optional[str] = None, field: typing.Optional[str] = None, type_val: str = "", id_val: str = "", hide: typing.Optional[bool] = None):
+    def __init__(self, pipeline_agg: typing.Optional[str] = None, field: typing.Optional[str] = None, type_val: str = "", id_val: str = "", hide: typing.Optional[bool] = None) -> None:
         self.pipeline_agg = pipeline_agg
         self.field = field
         self.type_val = type_val
@@ -1638,7 +1638,7 @@ class PipelineMetricAggregationWithMultipleBucketPaths:
     id_val: str
     hide: typing.Optional[bool]
 
-    def __init__(self, pipeline_variables: typing.Optional[list['PipelineVariable']] = None, type_val: typing.Optional['MetricAggregationType'] = None, id_val: str = "", hide: typing.Optional[bool] = None):
+    def __init__(self, pipeline_variables: typing.Optional[list['PipelineVariable']] = None, type_val: typing.Optional['MetricAggregationType'] = None, id_val: str = "", hide: typing.Optional[bool] = None) -> None:
         self.pipeline_variables = pipeline_variables
         self.type_val = type_val if type_val is not None else MetricAggregationType.COUNT
         self.id_val = id_val
@@ -1683,7 +1683,7 @@ class MovingAverageModelOption:
     label: str
     value: 'MovingAverageModel'
 
-    def __init__(self, label: str = "", value: typing.Optional['MovingAverageModel'] = None):
+    def __init__(self, label: str = "", value: typing.Optional['MovingAverageModel'] = None) -> None:
         self.label = label
         self.value = value if value is not None else MovingAverageModel.SIMPLE
 
@@ -1711,7 +1711,7 @@ class BaseMovingAverageModelSettings:
     window: str
     predict: str
 
-    def __init__(self, model: typing.Optional['MovingAverageModel'] = None, window: str = "", predict: str = ""):
+    def __init__(self, model: typing.Optional['MovingAverageModel'] = None, window: str = "", predict: str = "") -> None:
         self.model = model if model is not None else MovingAverageModel.SIMPLE
         self.window = window
         self.predict = predict
@@ -1743,7 +1743,7 @@ class MovingAverageSimpleModelSettings:
     window: str
     predict: str
 
-    def __init__(self, window: str = "", predict: str = ""):
+    def __init__(self, window: str = "", predict: str = "") -> None:
         self.model = MovingAverageModel.SIMPLE
         self.window = window
         self.predict = predict
@@ -1773,7 +1773,7 @@ class MovingAverageLinearModelSettings:
     window: str
     predict: str
 
-    def __init__(self, window: str = "", predict: str = ""):
+    def __init__(self, window: str = "", predict: str = "") -> None:
         self.model = MovingAverageModel.LINEAR
         self.window = window
         self.predict = predict
@@ -1805,7 +1805,7 @@ class MovingAverageEWMAModelSettings:
     minimize: bool
     predict: str
 
-    def __init__(self, settings: typing.Optional['ElasticsearchMovingAverageEWMAModelSettingsSettings'] = None, window: str = "", minimize: bool = False, predict: str = ""):
+    def __init__(self, settings: typing.Optional['ElasticsearchMovingAverageEWMAModelSettingsSettings'] = None, window: str = "", minimize: bool = False, predict: str = "") -> None:
         self.model = MovingAverageModel.EWMA
         self.settings = settings
         self.window = window
@@ -1846,7 +1846,7 @@ class MovingAverageHoltModelSettings:
     minimize: bool
     predict: str
 
-    def __init__(self, settings: typing.Optional['ElasticsearchMovingAverageHoltModelSettingsSettings'] = None, window: str = "", minimize: bool = False, predict: str = ""):
+    def __init__(self, settings: typing.Optional['ElasticsearchMovingAverageHoltModelSettingsSettings'] = None, window: str = "", minimize: bool = False, predict: str = "") -> None:
         self.model = MovingAverageModel.HOLT
         self.settings = settings if settings is not None else ElasticsearchMovingAverageHoltModelSettingsSettings()
         self.window = window
@@ -1886,7 +1886,7 @@ class MovingAverageHoltWintersModelSettings:
     minimize: bool
     predict: str
 
-    def __init__(self, settings: typing.Optional['ElasticsearchMovingAverageHoltWintersModelSettingsSettings'] = None, window: str = "", minimize: bool = False, predict: str = ""):
+    def __init__(self, settings: typing.Optional['ElasticsearchMovingAverageHoltWintersModelSettingsSettings'] = None, window: str = "", minimize: bool = False, predict: str = "") -> None:
         self.model = MovingAverageModel.HOLT_WINTERS
         self.settings = settings if settings is not None else ElasticsearchMovingAverageHoltWintersModelSettingsSettings()
         self.window = window
@@ -1945,7 +1945,7 @@ class Dataquery(cogvariants.Dataquery):
     # TODO this shouldn't be unknown but DataSourceRef | null
     datasource: typing.Optional[dashboard.DataSourceRef]
 
-    def __init__(self, alias: typing.Optional[str] = None, query: typing.Optional[str] = None, time_field: typing.Optional[str] = None, bucket_aggs: typing.Optional[list['BucketAggregation']] = None, metrics: typing.Optional[list['MetricAggregation']] = None, ref_id: str = "", hide: typing.Optional[bool] = None, query_type: typing.Optional[str] = None, datasource: typing.Optional[dashboard.DataSourceRef] = None):
+    def __init__(self, alias: typing.Optional[str] = None, query: typing.Optional[str] = None, time_field: typing.Optional[str] = None, bucket_aggs: typing.Optional[list['BucketAggregation']] = None, metrics: typing.Optional[list['MetricAggregation']] = None, ref_id: str = "", hide: typing.Optional[bool] = None, query_type: typing.Optional[str] = None, datasource: typing.Optional[dashboard.DataSourceRef] = None) -> None:
         self.alias = alias
         self.query = query
         self.time_field = time_field
@@ -2013,7 +2013,7 @@ class ElasticsearchDateHistogramSettings:
     offset: typing.Optional[str]
     time_zone: typing.Optional[str]
 
-    def __init__(self, interval: typing.Optional[str] = None, min_doc_count: typing.Optional[str] = None, trim_edges: typing.Optional[str] = None, offset: typing.Optional[str] = None, time_zone: typing.Optional[str] = None):
+    def __init__(self, interval: typing.Optional[str] = None, min_doc_count: typing.Optional[str] = None, trim_edges: typing.Optional[str] = None, offset: typing.Optional[str] = None, time_zone: typing.Optional[str] = None) -> None:
         self.interval = interval
         self.min_doc_count = min_doc_count
         self.trim_edges = trim_edges
@@ -2057,7 +2057,7 @@ class ElasticsearchHistogramSettings:
     interval: typing.Optional[str]
     min_doc_count: typing.Optional[str]
 
-    def __init__(self, interval: typing.Optional[str] = None, min_doc_count: typing.Optional[str] = None):
+    def __init__(self, interval: typing.Optional[str] = None, min_doc_count: typing.Optional[str] = None) -> None:
         self.interval = interval
         self.min_doc_count = min_doc_count
 
@@ -2089,7 +2089,7 @@ class ElasticsearchTermsSettings:
     order_by: typing.Optional[str]
     missing: typing.Optional[str]
 
-    def __init__(self, order: typing.Optional['TermsOrder'] = None, size: typing.Optional[str] = None, min_doc_count: typing.Optional[str] = None, order_by: typing.Optional[str] = None, missing: typing.Optional[str] = None):
+    def __init__(self, order: typing.Optional['TermsOrder'] = None, size: typing.Optional[str] = None, min_doc_count: typing.Optional[str] = None, order_by: typing.Optional[str] = None, missing: typing.Optional[str] = None) -> None:
         self.order = order
         self.size = size
         self.min_doc_count = min_doc_count
@@ -2132,7 +2132,7 @@ class ElasticsearchTermsSettings:
 class ElasticsearchFiltersSettings:
     filters: typing.Optional[list['Filter']]
 
-    def __init__(self, filters: typing.Optional[list['Filter']] = None):
+    def __init__(self, filters: typing.Optional[list['Filter']] = None) -> None:
         self.filters = filters
 
     def to_json(self) -> dict[str, object]:
@@ -2155,7 +2155,7 @@ class ElasticsearchFiltersSettings:
 class ElasticsearchGeoHashGridSettings:
     precision: typing.Optional[str]
 
-    def __init__(self, precision: typing.Optional[str] = None):
+    def __init__(self, precision: typing.Optional[str] = None) -> None:
         self.precision = precision
 
     def to_json(self) -> dict[str, object]:
@@ -2178,7 +2178,7 @@ class ElasticsearchGeoHashGridSettings:
 class ElasticsearchDerivativeSettings:
     unit: typing.Optional[str]
 
-    def __init__(self, unit: typing.Optional[str] = None):
+    def __init__(self, unit: typing.Optional[str] = None) -> None:
         self.unit = unit
 
     def to_json(self) -> dict[str, object]:
@@ -2201,7 +2201,7 @@ class ElasticsearchDerivativeSettings:
 class ElasticsearchCumulativeSumSettings:
     format_val: typing.Optional[str]
 
-    def __init__(self, format_val: typing.Optional[str] = None):
+    def __init__(self, format_val: typing.Optional[str] = None) -> None:
         self.format_val = format_val
 
     def to_json(self) -> dict[str, object]:
@@ -2224,7 +2224,7 @@ class ElasticsearchCumulativeSumSettings:
 class ElasticsearchBucketScriptSettings:
     script: typing.Optional['InlineScript']
 
-    def __init__(self, script: typing.Optional['InlineScript'] = None):
+    def __init__(self, script: typing.Optional['InlineScript'] = None) -> None:
         self.script = script
 
     def to_json(self) -> dict[str, object]:
@@ -2247,7 +2247,7 @@ class ElasticsearchBucketScriptSettings:
 class ElasticsearchInlineScript:
     inline: typing.Optional[str]
 
-    def __init__(self, inline: typing.Optional[str] = None):
+    def __init__(self, inline: typing.Optional[str] = None) -> None:
         self.inline = inline
 
     def to_json(self) -> dict[str, object]:
@@ -2270,7 +2270,7 @@ class ElasticsearchInlineScript:
 class ElasticsearchSerialDiffSettings:
     lag: typing.Optional[str]
 
-    def __init__(self, lag: typing.Optional[str] = None):
+    def __init__(self, lag: typing.Optional[str] = None) -> None:
         self.lag = lag
 
     def to_json(self) -> dict[str, object]:
@@ -2293,7 +2293,7 @@ class ElasticsearchSerialDiffSettings:
 class ElasticsearchRawDataSettings:
     size: typing.Optional[str]
 
-    def __init__(self, size: typing.Optional[str] = None):
+    def __init__(self, size: typing.Optional[str] = None) -> None:
         self.size = size
 
     def to_json(self) -> dict[str, object]:
@@ -2316,7 +2316,7 @@ class ElasticsearchRawDataSettings:
 class ElasticsearchRawDocumentSettings:
     size: typing.Optional[str]
 
-    def __init__(self, size: typing.Optional[str] = None):
+    def __init__(self, size: typing.Optional[str] = None) -> None:
         self.size = size
 
     def to_json(self) -> dict[str, object]:
@@ -2340,7 +2340,7 @@ class ElasticsearchUniqueCountSettings:
     precision_threshold: typing.Optional[str]
     missing: typing.Optional[str]
 
-    def __init__(self, precision_threshold: typing.Optional[str] = None, missing: typing.Optional[str] = None):
+    def __init__(self, precision_threshold: typing.Optional[str] = None, missing: typing.Optional[str] = None) -> None:
         self.precision_threshold = precision_threshold
         self.missing = missing
 
@@ -2370,7 +2370,7 @@ class ElasticsearchPercentilesSettings:
     missing: typing.Optional[str]
     percents: typing.Optional[list[str]]
 
-    def __init__(self, script: typing.Optional['InlineScript'] = None, missing: typing.Optional[str] = None, percents: typing.Optional[list[str]] = None):
+    def __init__(self, script: typing.Optional['InlineScript'] = None, missing: typing.Optional[str] = None, percents: typing.Optional[list[str]] = None) -> None:
         self.script = script
         self.missing = missing
         self.percents = percents
@@ -2405,7 +2405,7 @@ class ElasticsearchExtendedStatsSettings:
     missing: typing.Optional[str]
     sigma: typing.Optional[str]
 
-    def __init__(self, script: typing.Optional['InlineScript'] = None, missing: typing.Optional[str] = None, sigma: typing.Optional[str] = None):
+    def __init__(self, script: typing.Optional['InlineScript'] = None, missing: typing.Optional[str] = None, sigma: typing.Optional[str] = None) -> None:
         self.script = script
         self.missing = missing
         self.sigma = sigma
@@ -2439,7 +2439,7 @@ class ElasticsearchMinSettings:
     script: typing.Optional['InlineScript']
     missing: typing.Optional[str]
 
-    def __init__(self, script: typing.Optional['InlineScript'] = None, missing: typing.Optional[str] = None):
+    def __init__(self, script: typing.Optional['InlineScript'] = None, missing: typing.Optional[str] = None) -> None:
         self.script = script
         self.missing = missing
 
@@ -2468,7 +2468,7 @@ class ElasticsearchMaxSettings:
     script: typing.Optional['InlineScript']
     missing: typing.Optional[str]
 
-    def __init__(self, script: typing.Optional['InlineScript'] = None, missing: typing.Optional[str] = None):
+    def __init__(self, script: typing.Optional['InlineScript'] = None, missing: typing.Optional[str] = None) -> None:
         self.script = script
         self.missing = missing
 
@@ -2497,7 +2497,7 @@ class ElasticsearchSumSettings:
     script: typing.Optional['InlineScript']
     missing: typing.Optional[str]
 
-    def __init__(self, script: typing.Optional['InlineScript'] = None, missing: typing.Optional[str] = None):
+    def __init__(self, script: typing.Optional['InlineScript'] = None, missing: typing.Optional[str] = None) -> None:
         self.script = script
         self.missing = missing
 
@@ -2526,7 +2526,7 @@ class ElasticsearchAverageSettings:
     script: typing.Optional['InlineScript']
     missing: typing.Optional[str]
 
-    def __init__(self, script: typing.Optional['InlineScript'] = None, missing: typing.Optional[str] = None):
+    def __init__(self, script: typing.Optional['InlineScript'] = None, missing: typing.Optional[str] = None) -> None:
         self.script = script
         self.missing = missing
 
@@ -2556,7 +2556,7 @@ class ElasticsearchMovingFunctionSettings:
     script: typing.Optional['InlineScript']
     shift: typing.Optional[str]
 
-    def __init__(self, window: typing.Optional[str] = None, script: typing.Optional['InlineScript'] = None, shift: typing.Optional[str] = None):
+    def __init__(self, window: typing.Optional[str] = None, script: typing.Optional['InlineScript'] = None, shift: typing.Optional[str] = None) -> None:
         self.window = window
         self.script = script
         self.shift = shift
@@ -2589,7 +2589,7 @@ class ElasticsearchMovingFunctionSettings:
 class ElasticsearchLogsSettings:
     limit: typing.Optional[str]
 
-    def __init__(self, limit: typing.Optional[str] = None):
+    def __init__(self, limit: typing.Optional[str] = None) -> None:
         self.limit = limit
 
     def to_json(self) -> dict[str, object]:
@@ -2613,7 +2613,7 @@ class ElasticsearchRateSettings:
     unit: typing.Optional[str]
     mode: typing.Optional[str]
 
-    def __init__(self, unit: typing.Optional[str] = None, mode: typing.Optional[str] = None):
+    def __init__(self, unit: typing.Optional[str] = None, mode: typing.Optional[str] = None) -> None:
         self.unit = unit
         self.mode = mode
 
@@ -2643,7 +2643,7 @@ class ElasticsearchTopMetricsSettings:
     order_by: typing.Optional[str]
     metrics: typing.Optional[list[str]]
 
-    def __init__(self, order: typing.Optional[str] = None, order_by: typing.Optional[str] = None, metrics: typing.Optional[list[str]] = None):
+    def __init__(self, order: typing.Optional[str] = None, order_by: typing.Optional[str] = None, metrics: typing.Optional[list[str]] = None) -> None:
         self.order = order
         self.order_by = order_by
         self.metrics = metrics
@@ -2676,7 +2676,7 @@ class ElasticsearchTopMetricsSettings:
 class ElasticsearchMetricAggregationWithMissingSupportSettings:
     missing: typing.Optional[str]
 
-    def __init__(self, missing: typing.Optional[str] = None):
+    def __init__(self, missing: typing.Optional[str] = None) -> None:
         self.missing = missing
 
     def to_json(self) -> dict[str, object]:
@@ -2699,7 +2699,7 @@ class ElasticsearchMetricAggregationWithMissingSupportSettings:
 class ElasticsearchMetricAggregationWithInlineScriptSettings:
     script: typing.Optional['InlineScript']
 
-    def __init__(self, script: typing.Optional['InlineScript'] = None):
+    def __init__(self, script: typing.Optional['InlineScript'] = None) -> None:
         self.script = script
 
     def to_json(self) -> dict[str, object]:
@@ -2722,7 +2722,7 @@ class ElasticsearchMetricAggregationWithInlineScriptSettings:
 class ElasticsearchMovingAverageEWMAModelSettingsSettings:
     alpha: typing.Optional[str]
 
-    def __init__(self, alpha: typing.Optional[str] = None):
+    def __init__(self, alpha: typing.Optional[str] = None) -> None:
         self.alpha = alpha
 
     def to_json(self) -> dict[str, object]:
@@ -2746,7 +2746,7 @@ class ElasticsearchMovingAverageHoltModelSettingsSettings:
     alpha: typing.Optional[str]
     beta: typing.Optional[str]
 
-    def __init__(self, alpha: typing.Optional[str] = None, beta: typing.Optional[str] = None):
+    def __init__(self, alpha: typing.Optional[str] = None, beta: typing.Optional[str] = None) -> None:
         self.alpha = alpha
         self.beta = beta
 
@@ -2778,7 +2778,7 @@ class ElasticsearchMovingAverageHoltWintersModelSettingsSettings:
     period: typing.Optional[str]
     pad: typing.Optional[bool]
 
-    def __init__(self, alpha: typing.Optional[str] = None, beta: typing.Optional[str] = None, gamma: typing.Optional[str] = None, period: typing.Optional[str] = None, pad: typing.Optional[bool] = None):
+    def __init__(self, alpha: typing.Optional[str] = None, beta: typing.Optional[str] = None, gamma: typing.Optional[str] = None, period: typing.Optional[str] = None, pad: typing.Optional[bool] = None) -> None:
         self.alpha = alpha
         self.beta = beta
         self.gamma = gamma
