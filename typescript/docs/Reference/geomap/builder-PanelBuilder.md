@@ -43,7 +43,7 @@ colorScheme(color: cog.Builder<dashboard.FieldColor>)
 ### <span class="badge object-method"></span> controls
 
 ```typescript
-controls(controls: cog.Builder<geomap.ControlsOptions>)
+controls(controls: geomap.ControlsOptions)
 ```
 
 ### <span class="badge object-method"></span> dataLinks
@@ -59,7 +59,7 @@ dataLinks(links: cog.Builder<dashboard.DashboardLink>[])
 The datasource used in all targets.
 
 ```typescript
-datasource(datasource: dashboard.DataSourceRef)
+datasource(datasource: common.DataSourceRef)
 ```
 
 ### <span class="badge object-method"></span> decimals
@@ -348,7 +348,7 @@ title(title: string)
 ### <span class="badge object-method"></span> tooltip
 
 ```typescript
-tooltip(tooltip: cog.Builder<geomap.TooltipOptions>)
+tooltip(tooltip: geomap.TooltipOptions)
 ```
 
 ### <span class="badge object-method"></span> transformations
@@ -400,7 +400,7 @@ unit(unit: string)
 ### <span class="badge object-method"></span> view
 
 ```typescript
-view(view: cog.Builder<geomap.MapViewConfig>)
+view(view: geomap.MapViewConfig)
 ```
 
 ### <span class="badge object-method"></span> withOverride

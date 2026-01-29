@@ -479,7 +479,7 @@ func PanelConverter(input dashboard.Panel) string {
 	if input.Options != nil && input.Options.(*Options).Counters != nil {
 
 		buffer.WriteString(`Counters(`)
-		arg0 := UpdateConfigConverter(*input.Options.(*Options).Counters)
+		arg0 := cog.Dump(*input.Options.(*Options).Counters)
 		buffer.WriteString(arg0)
 
 		buffer.WriteString(")")

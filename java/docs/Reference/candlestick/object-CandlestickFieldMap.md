@@ -14,6 +14,3 @@ public class CandlestickFieldMap {
   public String volume;
 }
 ```
-## See also
-
- * <span class="badge builder"></span> [CandlestickFieldMapBuilder](./builder-CandlestickFieldMapBuilder.md)

@@ -101,7 +101,7 @@ dataLinks(links: cog.Builder<dashboard.DashboardLink>[])
 The datasource used in all targets.
 
 ```typescript
-datasource(datasource: dashboard.DataSourceRef)
+datasource(datasource: common.DataSourceRef)
 ```
 
 ### <span class="badge object-method"></span> decimals
@@ -131,7 +131,7 @@ description(description: string)
 Table Mode (auto)
 
 ```typescript
-dims(dims: cog.Builder<xychart.XYDimensionConfig>)
+dims(dims: xychart.XYDimensionConfig)
 ```
 
 ### <span class="badge object-method"></span> displayName
@@ -386,7 +386,7 @@ scaleDistribution(scaleDistribution: cog.Builder<common.ScaleDistributionConfig>
 Manual Mode
 
 ```typescript
-series(series: cog.Builder<xychart.ScatterSeriesConfig>[])
+series(series: xychart.ScatterSeriesConfig[])
 ```
 
 ### <span class="badge object-method"></span> seriesMapping

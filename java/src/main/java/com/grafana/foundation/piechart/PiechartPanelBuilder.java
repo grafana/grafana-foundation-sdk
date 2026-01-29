@@ -6,7 +6,7 @@ import com.grafana.foundation.dashboard.Panel;
 import java.util.List;
 import com.grafana.foundation.cog.variants.Dataquery;
 import java.util.LinkedList;
-import com.grafana.foundation.dashboard.DataSourceRef;
+import com.grafana.foundation.common.DataSourceRef;
 import com.grafana.foundation.dashboard.GridPos;
 import com.grafana.foundation.dashboard.DashboardLink;
 import com.grafana.foundation.dashboard.PanelRepeatDirection;
@@ -436,12 +436,11 @@ public class PiechartPanelBuilder implements com.grafana.foundation.cog.Builder<
         return this;
     }
     
-    public PiechartPanelBuilder legend(com.grafana.foundation.cog.Builder<PieChartLegendOptions> legend) {
+    public PiechartPanelBuilder legend(PieChartLegendOptions legend) {
 		if (this.internal.options == null) {
 			this.internal.options = new com.grafana.foundation.piechart.Options();
 		}
-    PieChartLegendOptions legendResource = legend.build();
-        ((Options) this.internal.options).legend = legendResource;
+        ((Options) this.internal.options).legend = legend;
         return this;
     }
     

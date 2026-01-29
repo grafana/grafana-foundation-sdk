@@ -2,38 +2,10 @@
 
 import typing
 from ..cog import builder as cogbuilder
-from ..models import debug
 from ..models import dashboard
 from ..cog import variants as cogvariants
-
-
-class UpdateConfig(cogbuilder.Builder[debug.UpdateConfig]):
-    _internal: debug.UpdateConfig
-
-    def __init__(self):
-        self._internal = debug.UpdateConfig()
-
-    def build(self) -> debug.UpdateConfig:
-        """
-        Builds the object.
-        """
-        return self._internal    
-    
-    def render(self, render: bool) -> typing.Self:    
-        self._internal.render = render
-    
-        return self
-    
-    def data_changed(self, data_changed: bool) -> typing.Self:    
-        self._internal.data_changed = data_changed
-    
-        return self
-    
-    def schema_changed(self, schema_changed: bool) -> typing.Self:    
-        self._internal.schema_changed = schema_changed
-    
-        return self
-    
+from ..models import common
+from ..models import debug
 
 
 class Panel(cogbuilder.Builder[dashboard.Panel]):    
@@ -43,7 +15,7 @@ class Panel(cogbuilder.Builder[dashboard.Panel]):
     
     _internal: dashboard.Panel
 
-    def __init__(self):
+    def __init__(self) -> None:
         self._internal = dashboard.Panel()        
         self._internal.type_val = "debug"
 
@@ -112,7 +84,7 @@ class Panel(cogbuilder.Builder[dashboard.Panel]):
     
         return self
     
-    def datasource(self, datasource: dashboard.DataSourceRef) -> typing.Self:    
+    def datasource(self, datasource: common.DataSourceRef) -> typing.Self:    
         """
         The datasource used in all targets.
         """
@@ -593,12 +565,11 @@ class Panel(cogbuilder.Builder[dashboard.Panel]):
     
         return self
     
-    def counters(self, counters: cogbuilder.Builder[debug.UpdateConfig]) -> typing.Self:    
+    def counters(self, counters: debug.UpdateConfig) -> typing.Self:    
         if self._internal.options is None:
             self._internal.options = debug.Options()
         assert isinstance(self._internal.options, debug.Options)
-        counters_resource = counters.build()
-        self._internal.options.counters = counters_resource
+        self._internal.options.counters = counters
     
         return self
     

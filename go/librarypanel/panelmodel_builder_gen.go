@@ -5,6 +5,7 @@ package librarypanel
 import (
 	cog "github.com/grafana/grafana-foundation-sdk/go/cog"
 	variants "github.com/grafana/grafana-foundation-sdk/go/cog/variants"
+	common "github.com/grafana/grafana-foundation-sdk/go/common"
 	dashboard "github.com/grafana/grafana-foundation-sdk/go/dashboard"
 )
 
@@ -90,7 +91,7 @@ func (builder *PanelModelBuilder) Transparent(transparent bool) *PanelModelBuild
 }
 
 // The datasource used in all targets.
-func (builder *PanelModelBuilder) Datasource(datasource dashboard.DataSourceRef) *PanelModelBuilder {
+func (builder *PanelModelBuilder) Datasource(datasource common.DataSourceRef) *PanelModelBuilder {
 	builder.internal.Datasource = &datasource
 
 	return builder

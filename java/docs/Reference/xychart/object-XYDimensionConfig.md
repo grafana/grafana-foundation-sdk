@@ -14,6 +14,3 @@ public class XYDimensionConfig {
   public List<String> exclude;
 }
 ```
-## See also
-
- * <span class="badge builder"></span> [XYDimensionConfigBuilder](./builder-XYDimensionConfigBuilder.md)

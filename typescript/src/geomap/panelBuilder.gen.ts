@@ -2,8 +2,8 @@
 
 import * as cog from '../cog';
 import * as dashboard from '../dashboard';
-import * as geomap from '../geomap';
 import * as common from '../common';
+import * as geomap from '../geomap';
 
 // Dashboard panels are the basic visualization building blocks.
 export class PanelBuilder implements cog.Builder<dashboard.Panel> {
@@ -63,7 +63,7 @@ export class PanelBuilder implements cog.Builder<dashboard.Panel> {
     }
 
     // The datasource used in all targets.
-    datasource(datasource: dashboard.DataSourceRef): this {
+    datasource(datasource: common.DataSourceRef): this {
         this.internal.datasource = datasource;
         return this;
     }
@@ -441,21 +441,19 @@ export class PanelBuilder implements cog.Builder<dashboard.Panel> {
         return this;
     }
 
-    view(view: cog.Builder<geomap.MapViewConfig>): this {
+    view(view: geomap.MapViewConfig): this {
         if (!this.internal.options) {
             this.internal.options = geomap.defaultOptions();
         }
-        const viewResource = view.build();
-        this.internal.options.view = viewResource;
+        this.internal.options.view = view;
         return this;
     }
 
-    controls(controls: cog.Builder<geomap.ControlsOptions>): this {
+    controls(controls: geomap.ControlsOptions): this {
         if (!this.internal.options) {
             this.internal.options = geomap.defaultOptions();
         }
-        const controlsResource = controls.build();
-        this.internal.options.controls = controlsResource;
+        this.internal.options.controls = controls;
         return this;
     }
 
@@ -477,12 +475,11 @@ export class PanelBuilder implements cog.Builder<dashboard.Panel> {
         return this;
     }
 
-    tooltip(tooltip: cog.Builder<geomap.TooltipOptions>): this {
+    tooltip(tooltip: geomap.TooltipOptions): this {
         if (!this.internal.options) {
             this.internal.options = geomap.defaultOptions();
         }
-        const tooltipResource = tooltip.build();
-        this.internal.options.tooltip = tooltipResource;
+        this.internal.options.tooltip = tooltip;
         return this;
     }
 }

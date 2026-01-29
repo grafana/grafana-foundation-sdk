@@ -84,7 +84,7 @@ final class PanelConverter
     
         
     $buffer = 'datasource(';
-        $arg0 ='(new \Grafana\Foundation\Dashboard\DataSourceRef('.(($input->datasource->type !== null) ? 'type: '.\var_export($input->datasource->type, true).', ' : '').''.(($input->datasource->uid !== null) ? 'uid: '.\var_export($input->datasource->uid, true).', ' : '').'))';
+        $arg0 ='(new \Grafana\Foundation\Common\DataSourceRef('.(($input->datasource->type !== null) ? 'type: '.\var_export($input->datasource->type, true).', ' : '').''.(($input->datasource->uid !== null) ? 'uid: '.\var_export($input->datasource->uid, true).', ' : '').'))';
         $buffer .= $arg0;
         
     $buffer .= ')';
@@ -513,7 +513,7 @@ final class PanelConverter
     
         
     $buffer = 'view(';
-        $arg0 = \Grafana\Foundation\Geomap\MapViewConfigConverter::convert($input->options->view);
+        $arg0 ='(new \Grafana\Foundation\Geomap\MapViewConfig(id: '.\var_export($input->options->view->id, true).','.(($input->options->view->lat !== null) ? 'lat: '.\var_export($input->options->view->lat, true).', ' : '').''.(($input->options->view->lon !== null) ? 'lon: '.\var_export($input->options->view->lon, true).', ' : '').''.(($input->options->view->zoom !== null) ? 'zoom: '.\var_export($input->options->view->zoom, true).', ' : '').''.(($input->options->view->minZoom !== null) ? 'minZoom: '.\var_export($input->options->view->minZoom, true).', ' : '').''.(($input->options->view->maxZoom !== null) ? 'maxZoom: '.\var_export($input->options->view->maxZoom, true).', ' : '').''.(($input->options->view->padding !== null) ? 'padding: '.\var_export($input->options->view->padding, true).', ' : '').''.(($input->options->view->allLayers !== null) ? 'allLayers: '.\var_export($input->options->view->allLayers, true).', ' : '').''.(($input->options->view->lastOnly !== null) ? 'lastOnly: '.\var_export($input->options->view->lastOnly, true).', ' : '').''.(($input->options->view->layer !== null) ? 'layer: '.\var_export($input->options->view->layer, true).', ' : '').''.(($input->options->view->shared !== null) ? 'shared: '.\var_export($input->options->view->shared, true).', ' : '').'))';
         $buffer .= $arg0;
         
     $buffer .= ')';
@@ -526,7 +526,7 @@ final class PanelConverter
     
         
     $buffer = 'controls(';
-        $arg0 = \Grafana\Foundation\Geomap\ControlsOptionsConverter::convert($input->options->controls);
+        $arg0 ='(new \Grafana\Foundation\Geomap\ControlsOptions('.(($input->options->controls->showZoom !== null) ? 'showZoom: '.\var_export($input->options->controls->showZoom, true).', ' : '').''.(($input->options->controls->mouseWheelZoom !== null) ? 'mouseWheelZoom: '.\var_export($input->options->controls->mouseWheelZoom, true).', ' : '').''.(($input->options->controls->showAttribution !== null) ? 'showAttribution: '.\var_export($input->options->controls->showAttribution, true).', ' : '').''.(($input->options->controls->showScale !== null) ? 'showScale: '.\var_export($input->options->controls->showScale, true).', ' : '').''.(($input->options->controls->showDebug !== null) ? 'showDebug: '.\var_export($input->options->controls->showDebug, true).', ' : '').''.(($input->options->controls->showMeasure !== null) ? 'showMeasure: '.\var_export($input->options->controls->showMeasure, true).', ' : '').'))';
         $buffer .= $arg0;
         
     $buffer .= ')';
@@ -570,7 +570,7 @@ final class PanelConverter
     
         
     $buffer = 'tooltip(';
-        $arg0 = \Grafana\Foundation\Geomap\TooltipOptionsConverter::convert($input->options->tooltip);
+        $arg0 ='(new \Grafana\Foundation\Geomap\TooltipOptions(mode: '.'\Grafana\Foundation\Geomap\TooltipMode::fromValue("'.$input->options->tooltip->mode.'")'.',))';
         $buffer .= $arg0;
         
     $buffer .= ')';

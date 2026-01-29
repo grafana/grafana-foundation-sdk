@@ -17,12 +17,4 @@
  * <span class="badge object-type-interface"></span> [YAxisConfig](./object-YAxisConfig.md)
 ## Builders
 
- * <span class="badge builder"></span> [CellValuesBuilder](./builder-CellValuesBuilder.md)
- * <span class="badge builder"></span> [ExemplarConfigBuilder](./builder-ExemplarConfigBuilder.md)
- * <span class="badge builder"></span> [FilterValueRangeBuilder](./builder-FilterValueRangeBuilder.md)
- * <span class="badge builder"></span> [HeatmapColorOptionsBuilder](./builder-HeatmapColorOptionsBuilder.md)
- * <span class="badge builder"></span> [HeatmapLegendBuilder](./builder-HeatmapLegendBuilder.md)
- * <span class="badge builder"></span> [HeatmapTooltipBuilder](./builder-HeatmapTooltipBuilder.md)
  * <span class="badge builder"></span> [PanelBuilder](./builder-PanelBuilder.md)
- * <span class="badge builder"></span> [RowsHeatmapOptionsBuilder](./builder-RowsHeatmapOptionsBuilder.md)
- * <span class="badge builder"></span> [YAxisConfigBuilder](./builder-YAxisConfigBuilder.md)

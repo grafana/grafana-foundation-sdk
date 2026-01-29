@@ -43,6 +43,3 @@ Validate checks all the validation constraints that may be defined on `CanvasOpt
 func (canvasOptionsRoot *CanvasOptionsRoot) Validate() error
 ```
 
-## See also
-
- * <span class="badge builder"></span> [CanvasOptionsRootBuilder](./builder-CanvasOptionsRootBuilder.md)

@@ -6730,6 +6730,93 @@ const (
 	VariableFormatIDQueryParam    VariableFormatID = "queryparam"
 )
 
+type DataSourceRef struct {
+	// The plugin type-id
+	Type *string `json:"type,omitempty"`
+	// Specific datasource instance
+	Uid *string `json:"uid,omitempty"`
+}
+
+// NewDataSourceRef creates a new DataSourceRef object.
+func NewDataSourceRef() *DataSourceRef {
+	return &DataSourceRef{}
+}
+
+// UnmarshalJSONStrict implements a custom JSON unmarshalling logic to decode `DataSourceRef` from JSON.
+// Note: the unmarshalling done by this function is strict. It will fail over required fields being absent from the input, fields having an incorrect type, unexpected fields being present, …
+func (resource *DataSourceRef) UnmarshalJSONStrict(raw []byte) error {
+	if raw == nil {
+		return nil
+	}
+	var errs cog.BuildErrors
+
+	fields := make(map[string]json.RawMessage)
+	if err := json.Unmarshal(raw, &fields); err != nil {
+		return err
+	}
+	// Field "type"
+	if fields["type"] != nil {
+		if string(fields["type"]) != "null" {
+			if err := json.Unmarshal(fields["type"], &resource.Type); err != nil {
+				errs = append(errs, cog.MakeBuildErrors("type", err)...)
+			}
+
+		}
+		delete(fields, "type")
+
+	}
+	// Field "uid"
+	if fields["uid"] != nil {
+		if string(fields["uid"]) != "null" {
+			if err := json.Unmarshal(fields["uid"], &resource.Uid); err != nil {
+				errs = append(errs, cog.MakeBuildErrors("uid", err)...)
+			}
+
+		}
+		delete(fields, "uid")
+
+	}
+
+	for field := range fields {
+		errs = append(errs, cog.MakeBuildErrors("DataSourceRef", fmt.Errorf("unexpected field '%s'", field))...)
+	}
+
+	if len(errs) == 0 {
+		return nil
+	}
+
+	return errs
+}
+
+// Equals tests the equality of two `DataSourceRef` objects.
+func (resource DataSourceRef) Equals(other DataSourceRef) bool {
+	if resource.Type == nil && other.Type != nil || resource.Type != nil && other.Type == nil {
+		return false
+	}
+
+	if resource.Type != nil {
+		if *resource.Type != *other.Type {
+			return false
+		}
+	}
+	if resource.Uid == nil && other.Uid != nil || resource.Uid != nil && other.Uid == nil {
+		return false
+	}
+
+	if resource.Uid != nil {
+		if *resource.Uid != *other.Uid {
+			return false
+		}
+	}
+
+	return true
+}
+
+// Validate checks all the validation constraints that may be defined on `DataSourceRef` fields for violations and returns them.
+func (resource DataSourceRef) Validate() error {
+	return nil
+}
+
 // Links to a resource (image/svg path)
 type ResourceDimensionConfig struct {
 	Mode ResourceDimensionMode `json:"mode"`

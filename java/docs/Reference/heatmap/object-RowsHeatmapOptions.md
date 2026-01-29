@@ -13,6 +13,3 @@ public class RowsHeatmapOptions {
   public HeatmapCellLayout layout;
 }
 ```
-## See also
-
- * <span class="badge builder"></span> [RowsHeatmapOptionsBuilder](./builder-RowsHeatmapOptionsBuilder.md)

@@ -23,7 +23,7 @@ func (builder *AdHocVariableBuilder) Build() (VariableModel, error)
 Data source used to fetch values for a variable. It can be defined but `null`.
 
 ```go
-func (builder *AdHocVariableBuilder) Datasource(datasource dashboard.DataSourceRef) *AdHocVariableBuilder
+func (builder *AdHocVariableBuilder) Datasource(datasource common.DataSourceRef) *AdHocVariableBuilder
 ```
 
 ### <span class="badge object-method"></span> Description

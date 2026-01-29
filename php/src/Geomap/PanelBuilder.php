@@ -99,7 +99,7 @@ class PanelBuilder implements \Grafana\Foundation\Cog\Builder
     /**
      * The datasource used in all targets.
      */
-    public function datasource(\Grafana\Foundation\Dashboard\DataSourceRef $datasource): static
+    public function datasource(\Grafana\Foundation\Common\DataSourceRef $datasource): static
     {
         $this->internal->datasource = $datasource;
     
@@ -604,32 +604,24 @@ class PanelBuilder implements \Grafana\Foundation\Cog\Builder
         return $this;
     }
 
-    /**
-     * @param \Grafana\Foundation\Cog\Builder<\Grafana\Foundation\Geomap\MapViewConfig> $view
-     */
-    public function view(\Grafana\Foundation\Cog\Builder $view): static
+    public function view(\Grafana\Foundation\Geomap\MapViewConfig $view): static
     {    
         if ($this->internal->options === null) {
             $this->internal->options = new \Grafana\Foundation\Geomap\Options();
         }
         assert($this->internal->options instanceof \Grafana\Foundation\Geomap\Options);
-        $viewResource = $view->build();
-        $this->internal->options->view = $viewResource;
+        $this->internal->options->view = $view;
     
         return $this;
     }
 
-    /**
-     * @param \Grafana\Foundation\Cog\Builder<\Grafana\Foundation\Geomap\ControlsOptions> $controls
-     */
-    public function controls(\Grafana\Foundation\Cog\Builder $controls): static
+    public function controls(\Grafana\Foundation\Geomap\ControlsOptions $controls): static
     {    
         if ($this->internal->options === null) {
             $this->internal->options = new \Grafana\Foundation\Geomap\Options();
         }
         assert($this->internal->options instanceof \Grafana\Foundation\Geomap\Options);
-        $controlsResource = $controls->build();
-        $this->internal->options->controls = $controlsResource;
+        $this->internal->options->controls = $controls;
     
         return $this;
     }
@@ -667,17 +659,13 @@ class PanelBuilder implements \Grafana\Foundation\Cog\Builder
         return $this;
     }
 
-    /**
-     * @param \Grafana\Foundation\Cog\Builder<\Grafana\Foundation\Geomap\TooltipOptions> $tooltip
-     */
-    public function tooltip(\Grafana\Foundation\Cog\Builder $tooltip): static
+    public function tooltip(\Grafana\Foundation\Geomap\TooltipOptions $tooltip): static
     {    
         if ($this->internal->options === null) {
             $this->internal->options = new \Grafana\Foundation\Geomap\Options();
         }
         assert($this->internal->options instanceof \Grafana\Foundation\Geomap\Options);
-        $tooltipResource = $tooltip->build();
-        $this->internal->options->tooltip = $tooltipResource;
+        $this->internal->options->tooltip = $tooltip;
     
         return $this;
     }

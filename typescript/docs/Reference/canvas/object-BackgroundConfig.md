@@ -13,6 +13,3 @@ export interface BackgroundConfig {
 }
 
 ```
-## See also
-
- * <span class="badge builder"></span> [BackgroundConfigBuilder](./builder-BackgroundConfigBuilder.md)

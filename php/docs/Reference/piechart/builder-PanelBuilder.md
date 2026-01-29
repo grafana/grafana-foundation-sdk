@@ -51,7 +51,7 @@ dataLinks(array $links)
 The datasource used in all targets.
 
 ```php
-datasource(\Grafana\Foundation\Dashboard\DataSourceRef $datasource)
+datasource(\Grafana\Foundation\Common\DataSourceRef $datasource)
 ```
 
 ### <span class="badge object-method"></span> decimals
@@ -148,10 +148,8 @@ interval(string $interval)
 
 ### <span class="badge object-method"></span> legend
 
-@param \Grafana\Foundation\Cog\Builder<\Grafana\Foundation\Piechart\PieChartLegendOptions> $legend
-
 ```php
-legend(\Grafana\Foundation\Cog\Builder $legend)
+legend(\Grafana\Foundation\Piechart\PieChartLegendOptions $legend)
 ```
 
 ### <span class="badge object-method"></span> libraryPanel

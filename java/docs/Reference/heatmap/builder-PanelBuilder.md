@@ -63,7 +63,7 @@ public PanelBuilder cellRadius(Float cellRadius)
 Controls cell value unit
 
 ```java
-public PanelBuilder cellValues(com.grafana.foundation.cog.Builder<CellValues> cellValues)
+public PanelBuilder cellValues(CellValues cellValues)
 ```
 
 ### <span class="badge object-method"></span> color
@@ -71,7 +71,7 @@ public PanelBuilder cellValues(com.grafana.foundation.cog.Builder<CellValues> ce
 Controls the color options
 
 ```java
-public PanelBuilder color(com.grafana.foundation.cog.Builder<HeatmapColorOptions> color)
+public PanelBuilder color(HeatmapColorOptions color)
 ```
 
 ### <span class="badge object-method"></span> colorScheme
@@ -141,7 +141,7 @@ public PanelBuilder exemplarsColor(String color)
 Filters values between a given range
 
 ```java
-public PanelBuilder filterValues(com.grafana.foundation.cog.Builder<FilterValueRange> filterValues)
+public PanelBuilder filterValues(FilterValueRange filterValues)
 ```
 
 ### <span class="badge object-method"></span> gridPos
@@ -373,7 +373,7 @@ public PanelBuilder repeatDirection(PanelRepeatDirection repeatDirection)
 Controls tick alignment and value name when not calculating from data
 
 ```java
-public PanelBuilder rowsFrame(com.grafana.foundation.cog.Builder<RowsHeatmapOptions> rowsFrame)
+public PanelBuilder rowsFrame(RowsHeatmapOptions rowsFrame)
 ```
 
 ### <span class="badge object-method"></span> scaleDistribution
@@ -581,7 +581,7 @@ public PanelBuilder withTransformation(DataTransformerConfig transformation)
 Controls yAxis placement
 
 ```java
-public PanelBuilder yAxis(com.grafana.foundation.cog.Builder<YAxisConfig> yAxis)
+public PanelBuilder yAxis(YAxisConfig yAxis)
 ```
 
 ## See also

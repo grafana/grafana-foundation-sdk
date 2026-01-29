@@ -2,7 +2,7 @@
 
 package com.grafana.foundation.datasource;
 
-import com.grafana.foundation.dashboard.DataSourceRef;
+import com.grafana.foundation.common.DataSourceRef;
 
 public class DataqueryBuilder implements com.grafana.foundation.cog.Builder<com.grafana.foundation.cog.variants.Dataquery> {
     protected final Dataquery internal;

@@ -99,7 +99,7 @@ class PanelBuilder implements \Grafana\Foundation\Cog\Builder
     /**
      * The datasource used in all targets.
      */
-    public function datasource(\Grafana\Foundation\Dashboard\DataSourceRef $datasource): static
+    public function datasource(\Grafana\Foundation\Common\DataSourceRef $datasource): static
     {
         $this->internal->datasource = $datasource;
     
@@ -615,17 +615,13 @@ class PanelBuilder implements \Grafana\Foundation\Cog\Builder
         return $this;
     }
 
-    /**
-     * @param \Grafana\Foundation\Cog\Builder<\Grafana\Foundation\Debug\UpdateConfig> $counters
-     */
-    public function counters(\Grafana\Foundation\Cog\Builder $counters): static
+    public function counters(\Grafana\Foundation\Debug\UpdateConfig $counters): static
     {    
         if ($this->internal->options === null) {
             $this->internal->options = new \Grafana\Foundation\Debug\Options();
         }
         assert($this->internal->options instanceof \Grafana\Foundation\Debug\Options);
-        $countersResource = $counters->build();
-        $this->internal->options->counters = $countersResource;
+        $this->internal->options->counters = $counters;
     
         return $this;
     }

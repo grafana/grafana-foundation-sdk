@@ -13,6 +13,3 @@ public class CellValues {
   public Float decimals;
 }
 ```
-## See also
-
- * <span class="badge builder"></span> [CellValuesBuilder](./builder-CellValuesBuilder.md)

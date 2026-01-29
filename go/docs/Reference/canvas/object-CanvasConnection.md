@@ -46,6 +46,3 @@ Validate checks all the validation constraints that may be defined on `CanvasCon
 func (canvasConnection *CanvasConnection) Validate() error
 ```
 
-## See also
-
- * <span class="badge builder"></span> [CanvasConnectionBuilder](./builder-CanvasConnectionBuilder.md)

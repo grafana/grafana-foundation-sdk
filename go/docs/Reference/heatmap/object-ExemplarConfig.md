@@ -41,6 +41,3 @@ Validate checks all the validation constraints that may be defined on `ExemplarC
 func (exemplarConfig *ExemplarConfig) Validate() error
 ```
 
-## See also
-
- * <span class="badge builder"></span> [ExemplarConfigBuilder](./builder-ExemplarConfigBuilder.md)

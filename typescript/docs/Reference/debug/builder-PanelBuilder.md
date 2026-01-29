@@ -37,7 +37,7 @@ colorScheme(color: cog.Builder<dashboard.FieldColor>)
 ### <span class="badge object-method"></span> counters
 
 ```typescript
-counters(counters: cog.Builder<debug.UpdateConfig>)
+counters(counters: debug.UpdateConfig)
 ```
 
 ### <span class="badge object-method"></span> dataLinks
@@ -53,7 +53,7 @@ dataLinks(links: cog.Builder<dashboard.DashboardLink>[])
 The datasource used in all targets.
 
 ```typescript
-datasource(datasource: dashboard.DataSourceRef)
+datasource(datasource: common.DataSourceRef)
 ```
 
 ### <span class="badge object-method"></span> decimals

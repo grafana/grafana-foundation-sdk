@@ -14,6 +14,3 @@ export interface HeatmapLegend {
 }
 
 ```
-## See also
-
- * <span class="badge builder"></span> [HeatmapLegendBuilder](./builder-HeatmapLegendBuilder.md)

@@ -26,6 +26,3 @@ public class YAxisConfig {
   public Boolean axisBorderShow;
 }
 ```
-## See also
-
- * <span class="badge builder"></span> [YAxisConfigBuilder](./builder-YAxisConfigBuilder.md)

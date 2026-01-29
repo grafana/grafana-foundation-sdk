@@ -19,6 +19,3 @@ export interface CanvasConnection {
 }
 
 ```
-## See also
-
- * <span class="badge builder"></span> [CanvasConnectionBuilder](./builder-CanvasConnectionBuilder.md)

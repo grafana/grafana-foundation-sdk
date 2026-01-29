@@ -14,6 +14,3 @@ export interface CodeOptions {
 }
 
 ```
-## See also
-
- * <span class="badge builder"></span> [CodeOptionsBuilder](./builder-CodeOptionsBuilder.md)

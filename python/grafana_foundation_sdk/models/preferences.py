@@ -27,7 +27,7 @@ class Preferences:
     # Navigation preferences
     navbar: typing.Optional['NavbarPreference']
 
-    def __init__(self, home_dashboard_uid: typing.Optional[str] = None, timezone: typing.Optional[str] = None, week_start: typing.Optional[str] = None, theme: typing.Optional[str] = None, language: typing.Optional[str] = None, query_history: typing.Optional['QueryHistoryPreference'] = None, cookie_preferences: typing.Optional['CookiePreferences'] = None, navbar: typing.Optional['NavbarPreference'] = None):
+    def __init__(self, home_dashboard_uid: typing.Optional[str] = None, timezone: typing.Optional[str] = None, week_start: typing.Optional[str] = None, theme: typing.Optional[str] = None, language: typing.Optional[str] = None, query_history: typing.Optional['QueryHistoryPreference'] = None, cookie_preferences: typing.Optional['CookiePreferences'] = None, navbar: typing.Optional['NavbarPreference'] = None) -> None:
         self.home_dashboard_uid = home_dashboard_uid
         self.timezone = timezone
         self.week_start = week_start
@@ -86,7 +86,7 @@ class QueryHistoryPreference:
     # one of: '' | 'query' | 'starred';
     home_tab: typing.Optional[str]
 
-    def __init__(self, home_tab: typing.Optional[str] = None):
+    def __init__(self, home_tab: typing.Optional[str] = None) -> None:
         self.home_tab = home_tab
 
     def to_json(self) -> dict[str, object]:
@@ -111,7 +111,7 @@ class CookiePreferences:
     performance: typing.Optional[object]
     functional: typing.Optional[object]
 
-    def __init__(self, analytics: typing.Optional[object] = None, performance: typing.Optional[object] = None, functional: typing.Optional[object] = None):
+    def __init__(self, analytics: typing.Optional[object] = None, performance: typing.Optional[object] = None, functional: typing.Optional[object] = None) -> None:
         self.analytics = analytics
         self.performance = performance
         self.functional = functional
@@ -144,7 +144,7 @@ class CookiePreferences:
 class NavbarPreference:
     bookmark_urls: list[str]
 
-    def __init__(self, bookmark_urls: typing.Optional[list[str]] = None):
+    def __init__(self, bookmark_urls: typing.Optional[list[str]] = None) -> None:
         self.bookmark_urls = bookmark_urls if bookmark_urls is not None else []
 
     def to_json(self) -> dict[str, object]:
