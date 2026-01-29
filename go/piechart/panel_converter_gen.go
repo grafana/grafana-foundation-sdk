@@ -533,7 +533,7 @@ func PanelConverter(input dashboard.Panel) string {
 	if input.Options != nil {
 
 		buffer.WriteString(`Legend(`)
-		arg0 := PieChartLegendOptionsConverter(input.Options.(*Options).Legend)
+		arg0 := cog.Dump(input.Options.(*Options).Legend)
 		buffer.WriteString(arg0)
 
 		buffer.WriteString(")")

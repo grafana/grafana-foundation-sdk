@@ -18,6 +18,3 @@ public class CanvasConnection {
   public ConnectionCoordinates targetOriginal;
 }
 ```
-## See also
-
- * <span class="badge builder"></span> [CanvasConnectionBuilder](./builder-CanvasConnectionBuilder.md)

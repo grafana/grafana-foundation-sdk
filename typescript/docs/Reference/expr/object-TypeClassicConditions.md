@@ -24,7 +24,7 @@ export interface TypeClassicConditions {
 		};
 	}[];
 	// The datasource
-	datasource?: dashboard.DataSourceRef;
+	datasource?: common.DataSourceRef;
 	// true if query is disabled (ie should not be returned to the dashboard)
 	// NOTE: this does not always imply that the query should not be executed since
 	// the results from a hidden query may be used as the input to other queries (SSE etc)
@@ -41,7 +41,7 @@ export interface TypeClassicConditions {
 	// It can be used to distinguish different types of queries.
 	queryType?: string;
 	// RefID is the unique identifier of the query, set by the frontend call.
-	refId: string;
+	refId?: string;
 	// Optionally define expected query result behavior
 	resultAssertions?: {
 		// Maximum frame count

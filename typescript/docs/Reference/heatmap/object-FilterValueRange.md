@@ -16,6 +16,3 @@ export interface FilterValueRange {
 }
 
 ```
-## See also
-
- * <span class="badge builder"></span> [FilterValueRangeBuilder](./builder-FilterValueRangeBuilder.md)

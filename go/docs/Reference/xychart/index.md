@@ -18,16 +18,7 @@
  * <span class="badge object-type-struct"></span> [XychartXYSeriesConfigY](./object-XychartXYSeriesConfigY.md)
 ## Builders
 
- * <span class="badge builder"></span> [MatcherConfigBuilder](./builder-MatcherConfigBuilder.md)
  * <span class="badge builder"></span> [PanelBuilder](./builder-PanelBuilder.md)
- * <span class="badge builder"></span> [XYSeriesConfigBuilder](./builder-XYSeriesConfigBuilder.md)
- * <span class="badge builder"></span> [XychartFieldConfigPointSizeBuilder](./builder-XychartFieldConfigPointSizeBuilder.md)
- * <span class="badge builder"></span> [XychartXYSeriesConfigColorBuilder](./builder-XychartXYSeriesConfigColorBuilder.md)
- * <span class="badge builder"></span> [XychartXYSeriesConfigFrameBuilder](./builder-XychartXYSeriesConfigFrameBuilder.md)
- * <span class="badge builder"></span> [XychartXYSeriesConfigNameBuilder](./builder-XychartXYSeriesConfigNameBuilder.md)
- * <span class="badge builder"></span> [XychartXYSeriesConfigSizeBuilder](./builder-XychartXYSeriesConfigSizeBuilder.md)
- * <span class="badge builder"></span> [XychartXYSeriesConfigXBuilder](./builder-XychartXYSeriesConfigXBuilder.md)
- * <span class="badge builder"></span> [XychartXYSeriesConfigYBuilder](./builder-XychartXYSeriesConfigYBuilder.md)
 ## Functions
 
 ### <span class="badge function"></span> NewMatcherConfig
@@ -126,78 +117,6 @@ This configuration describes how to unmarshal it, convert it to code, …
 
 ```go
 func VariantConfig() variants.PanelcfgConfig
-```
-
-### <span class="badge function"></span> MatcherConfigConverter
-
-MatcherConfigConverter accepts a `MatcherConfig` object and generates the Go code to build this object using builders.
-
-```go
-func MatcherConfigConverter(input MatcherConfig) string
-```
-
-### <span class="badge function"></span> XYSeriesConfigConverter
-
-XYSeriesConfigConverter accepts a `XYSeriesConfig` object and generates the Go code to build this object using builders.
-
-```go
-func XYSeriesConfigConverter(input XYSeriesConfig) string
-```
-
-### <span class="badge function"></span> XychartFieldConfigPointSizeConverter
-
-XychartFieldConfigPointSizeConverter accepts a `XychartFieldConfigPointSize` object and generates the Go code to build this object using builders.
-
-```go
-func XychartFieldConfigPointSizeConverter(input XychartFieldConfigPointSize) string
-```
-
-### <span class="badge function"></span> XychartXYSeriesConfigNameConverter
-
-XychartXYSeriesConfigNameConverter accepts a `XychartXYSeriesConfigName` object and generates the Go code to build this object using builders.
-
-```go
-func XychartXYSeriesConfigNameConverter(input XychartXYSeriesConfigName) string
-```
-
-### <span class="badge function"></span> XychartXYSeriesConfigFrameConverter
-
-XychartXYSeriesConfigFrameConverter accepts a `XychartXYSeriesConfigFrame` object and generates the Go code to build this object using builders.
-
-```go
-func XychartXYSeriesConfigFrameConverter(input XychartXYSeriesConfigFrame) string
-```
-
-### <span class="badge function"></span> XychartXYSeriesConfigXConverter
-
-XychartXYSeriesConfigXConverter accepts a `XychartXYSeriesConfigX` object and generates the Go code to build this object using builders.
-
-```go
-func XychartXYSeriesConfigXConverter(input XychartXYSeriesConfigX) string
-```
-
-### <span class="badge function"></span> XychartXYSeriesConfigYConverter
-
-XychartXYSeriesConfigYConverter accepts a `XychartXYSeriesConfigY` object and generates the Go code to build this object using builders.
-
-```go
-func XychartXYSeriesConfigYConverter(input XychartXYSeriesConfigY) string
-```
-
-### <span class="badge function"></span> XychartXYSeriesConfigColorConverter
-
-XychartXYSeriesConfigColorConverter accepts a `XychartXYSeriesConfigColor` object and generates the Go code to build this object using builders.
-
-```go
-func XychartXYSeriesConfigColorConverter(input XychartXYSeriesConfigColor) string
-```
-
-### <span class="badge function"></span> XychartXYSeriesConfigSizeConverter
-
-XychartXYSeriesConfigSizeConverter accepts a `XychartXYSeriesConfigSize` object and generates the Go code to build this object using builders.
-
-```go
-func XychartXYSeriesConfigSizeConverter(input XychartXYSeriesConfigSize) string
 ```
 
 ### <span class="badge function"></span> PanelConverter

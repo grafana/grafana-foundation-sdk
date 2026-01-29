@@ -40,6 +40,3 @@ Validate checks all the validation constraints that may be defined on `Candlesti
 func (candlestickColors *CandlestickColors) Validate() error
 ```
 
-## See also
-
- * <span class="badge builder"></span> [CandlestickColorsBuilder](./builder-CandlestickColorsBuilder.md)

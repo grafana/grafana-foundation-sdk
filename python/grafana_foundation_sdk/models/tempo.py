@@ -2,7 +2,7 @@
 
 from ..cog import variants as cogvariants
 import typing
-from ..models import dashboard
+from ..models import common
 import enum
 from ..cog import runtime as cogruntime
 
@@ -11,7 +11,7 @@ class TempoQuery(cogvariants.Dataquery):
     # A unique identifier for the query within the list of targets.
     # In server side expressions, the refId is used as a variable name to identify results.
     # By default, the UI will assign A->Z; however setting meaningful names may be useful.
-    ref_id: str
+    ref_id: typing.Optional[str]
     # If hide is set to true, Grafana will filter out the response(s) associated with this query before returning it to the panel.
     hide: typing.Optional[bool]
     # Specify the query flavor
@@ -50,11 +50,11 @@ class TempoQuery(cogvariants.Dataquery):
     # For non mixed scenarios this is undefined.
     # TODO find a better way to do this ^ that's friendly to schema
     # TODO this shouldn't be unknown but DataSourceRef | null
-    datasource: typing.Optional[dashboard.DataSourceRef]
+    datasource: typing.Optional[common.DataSourceRef]
     # For metric queries, whether to run instant or range queries
     metrics_query_type: typing.Optional['MetricsQueryType']
 
-    def __init__(self, ref_id: str = "", hide: typing.Optional[bool] = None, query_type: typing.Optional[str] = None, query: typing.Optional[str] = None, search: typing.Optional[str] = None, service_name: typing.Optional[str] = None, span_name: typing.Optional[str] = None, min_duration: typing.Optional[str] = None, max_duration: typing.Optional[str] = None, service_map_query: typing.Optional[typing.Union[str, list[str]]] = None, service_map_include_namespace: typing.Optional[bool] = None, limit: typing.Optional[int] = None, spss: typing.Optional[int] = None, filters: typing.Optional[list['TraceqlFilter']] = None, group_by: typing.Optional[list['TraceqlFilter']] = None, table_type: typing.Optional['SearchTableType'] = None, step: typing.Optional[str] = None, exemplars: typing.Optional[int] = None, datasource: typing.Optional[dashboard.DataSourceRef] = None, metrics_query_type: typing.Optional['MetricsQueryType'] = None):
+    def __init__(self, ref_id: typing.Optional[str] = None, hide: typing.Optional[bool] = None, query_type: typing.Optional[str] = None, query: typing.Optional[str] = None, search: typing.Optional[str] = None, service_name: typing.Optional[str] = None, span_name: typing.Optional[str] = None, min_duration: typing.Optional[str] = None, max_duration: typing.Optional[str] = None, service_map_query: typing.Optional[typing.Union[str, list[str]]] = None, service_map_include_namespace: typing.Optional[bool] = None, limit: typing.Optional[int] = None, spss: typing.Optional[int] = None, filters: typing.Optional[list['TraceqlFilter']] = None, group_by: typing.Optional[list['TraceqlFilter']] = None, table_type: typing.Optional['SearchTableType'] = None, step: typing.Optional[str] = None, exemplars: typing.Optional[int] = None, datasource: typing.Optional[common.DataSourceRef] = None, metrics_query_type: typing.Optional['MetricsQueryType'] = None) -> None:
         self.ref_id = ref_id
         self.hide = hide
         self.query_type = query_type
@@ -78,9 +78,10 @@ class TempoQuery(cogvariants.Dataquery):
 
     def to_json(self) -> dict[str, object]:
         payload: dict[str, object] = {
-            "refId": self.ref_id,
             "filters": self.filters,
         }
+        if self.ref_id is not None:
+            payload["refId"] = self.ref_id
         if self.hide is not None:
             payload["hide"] = self.hide
         if self.query_type is not None:
@@ -160,7 +161,7 @@ class TempoQuery(cogvariants.Dataquery):
         if "exemplars" in data:
             args["exemplars"] = data["exemplars"]
         if "datasource" in data:
-            args["datasource"] = dashboard.DataSourceRef.from_json(data["datasource"])
+            args["datasource"] = common.DataSourceRef.from_json(data["datasource"])
         if "metricsQueryType" in data:
             args["metrics_query_type"] = data["metricsQueryType"]        
 
@@ -181,7 +182,7 @@ class TraceqlFilter:
     # The scope of the filter, can either be unscoped/all scopes, resource or span
     scope: typing.Optional['TraceqlSearchScope']
 
-    def __init__(self, id_val: str = "", tag: typing.Optional[str] = None, operator: typing.Optional[str] = None, value: typing.Optional[typing.Union[str, list[str]]] = None, value_type: typing.Optional[str] = None, scope: typing.Optional['TraceqlSearchScope'] = None):
+    def __init__(self, id_val: str = "", tag: typing.Optional[str] = None, operator: typing.Optional[str] = None, value: typing.Optional[typing.Union[str, list[str]]] = None, value_type: typing.Optional[str] = None, scope: typing.Optional['TraceqlSearchScope'] = None) -> None:
         self.id_val = id_val
         self.tag = tag
         self.operator = operator

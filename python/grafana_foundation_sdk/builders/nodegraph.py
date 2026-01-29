@@ -2,115 +2,10 @@
 
 import typing
 from ..cog import builder as cogbuilder
-from ..models import nodegraph
 from ..models import dashboard
 from ..cog import variants as cogvariants
-
-
-class ArcOption(cogbuilder.Builder[nodegraph.ArcOption]):
-    _internal: nodegraph.ArcOption
-
-    def __init__(self):
-        self._internal = nodegraph.ArcOption()
-
-    def build(self) -> nodegraph.ArcOption:
-        """
-        Builds the object.
-        """
-        return self._internal    
-    
-    def field(self, field: str) -> typing.Self:    
-        """
-        Field from which to get the value. Values should be less than 1, representing fraction of a circle.
-        """
-            
-        self._internal.field = field
-    
-        return self
-    
-    def color(self, color: str) -> typing.Self:    
-        """
-        The color of the arc.
-        """
-            
-        self._internal.color = color
-    
-        return self
-    
-
-
-class NodeOptions(cogbuilder.Builder[nodegraph.NodeOptions]):
-    _internal: nodegraph.NodeOptions
-
-    def __init__(self):
-        self._internal = nodegraph.NodeOptions()
-
-    def build(self) -> nodegraph.NodeOptions:
-        """
-        Builds the object.
-        """
-        return self._internal    
-    
-    def main_stat_unit(self, main_stat_unit: str) -> typing.Self:    
-        """
-        Unit for the main stat to override what ever is set in the data frame.
-        """
-            
-        self._internal.main_stat_unit = main_stat_unit
-    
-        return self
-    
-    def secondary_stat_unit(self, secondary_stat_unit: str) -> typing.Self:    
-        """
-        Unit for the secondary stat to override what ever is set in the data frame.
-        """
-            
-        self._internal.secondary_stat_unit = secondary_stat_unit
-    
-        return self
-    
-    def arcs(self, arcs: list[cogbuilder.Builder[nodegraph.ArcOption]]) -> typing.Self:    
-        """
-        Define which fields are shown as part of the node arc (colored circle around the node).
-        """
-            
-        arcs_resources = [r1.build() for r1 in arcs]
-        self._internal.arcs = arcs_resources
-    
-        return self
-    
-
-
-class EdgeOptions(cogbuilder.Builder[nodegraph.EdgeOptions]):
-    _internal: nodegraph.EdgeOptions
-
-    def __init__(self):
-        self._internal = nodegraph.EdgeOptions()
-
-    def build(self) -> nodegraph.EdgeOptions:
-        """
-        Builds the object.
-        """
-        return self._internal    
-    
-    def main_stat_unit(self, main_stat_unit: str) -> typing.Self:    
-        """
-        Unit for the main stat to override what ever is set in the data frame.
-        """
-            
-        self._internal.main_stat_unit = main_stat_unit
-    
-        return self
-    
-    def secondary_stat_unit(self, secondary_stat_unit: str) -> typing.Self:    
-        """
-        Unit for the secondary stat to override what ever is set in the data frame.
-        """
-            
-        self._internal.secondary_stat_unit = secondary_stat_unit
-    
-        return self
-    
+from ..models import common
+from ..models import nodegraph
 
 
 class Panel(cogbuilder.Builder[dashboard.Panel]):    
@@ -120,7 +15,7 @@ class Panel(cogbuilder.Builder[dashboard.Panel]):
     
     _internal: dashboard.Panel
 
-    def __init__(self):
+    def __init__(self) -> None:
         self._internal = dashboard.Panel()        
         self._internal.type_val = "nodeGraph"
 
@@ -189,7 +84,7 @@ class Panel(cogbuilder.Builder[dashboard.Panel]):
     
         return self
     
-    def datasource(self, datasource: dashboard.DataSourceRef) -> typing.Self:    
+    def datasource(self, datasource: common.DataSourceRef) -> typing.Self:    
         """
         The datasource used in all targets.
         """
@@ -662,21 +557,19 @@ class Panel(cogbuilder.Builder[dashboard.Panel]):
     
         return self
     
-    def nodes(self, nodes: cogbuilder.Builder[nodegraph.NodeOptions]) -> typing.Self:    
+    def nodes(self, nodes: nodegraph.NodeOptions) -> typing.Self:    
         if self._internal.options is None:
             self._internal.options = nodegraph.Options()
         assert isinstance(self._internal.options, nodegraph.Options)
-        nodes_resource = nodes.build()
-        self._internal.options.nodes = nodes_resource
+        self._internal.options.nodes = nodes
     
         return self
     
-    def edges(self, edges: cogbuilder.Builder[nodegraph.EdgeOptions]) -> typing.Self:    
+    def edges(self, edges: nodegraph.EdgeOptions) -> typing.Self:    
         if self._internal.options is None:
             self._internal.options = nodegraph.Options()
         assert isinstance(self._internal.options, nodegraph.Options)
-        edges_resource = edges.build()
-        self._internal.options.edges = edges_resource
+        self._internal.options.edges = edges
     
         return self
     

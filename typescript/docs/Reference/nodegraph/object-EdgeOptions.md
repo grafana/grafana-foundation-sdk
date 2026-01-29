@@ -14,6 +14,3 @@ export interface EdgeOptions {
 }
 
 ```
-## See also
-
- * <span class="badge builder"></span> [EdgeOptionsBuilder](./builder-EdgeOptionsBuilder.md)

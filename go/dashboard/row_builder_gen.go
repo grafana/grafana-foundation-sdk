@@ -4,6 +4,7 @@ package dashboard
 
 import (
 	cog "github.com/grafana/grafana-foundation-sdk/go/cog"
+	common "github.com/grafana/grafana-foundation-sdk/go/common"
 )
 
 var _ cog.Builder[RowPanel] = (*RowBuilder)(nil)
@@ -54,7 +55,7 @@ func (builder *RowBuilder) Title(title string) *RowBuilder {
 }
 
 // Name of default datasource for the row
-func (builder *RowBuilder) Datasource(datasource DataSourceRef) *RowBuilder {
+func (builder *RowBuilder) Datasource(datasource common.DataSourceRef) *RowBuilder {
 	builder.internal.Datasource = &datasource
 
 	return builder

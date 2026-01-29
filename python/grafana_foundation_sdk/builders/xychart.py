@@ -2,252 +2,10 @@
 
 import typing
 from ..cog import builder as cogbuilder
-from ..models import xychart
 from ..models import dashboard
 from ..cog import variants as cogvariants
 from ..models import common
-
-
-class MatcherConfig(cogbuilder.Builder[xychart.MatcherConfig]):    
-    """
-    NOTE: (copied from dashboard_kind.cue, since not exported)
-    Matcher is a predicate configuration. Based on the config a set of field(s) or values is filtered in order to apply override / transformation.
-    It comes with in id ( to resolve implementation from registry) and a configuration that’s specific to a particular matcher type.
-    """
-    
-    _internal: xychart.MatcherConfig
-
-    def __init__(self):
-        self._internal = xychart.MatcherConfig()
-
-    def build(self) -> xychart.MatcherConfig:
-        """
-        Builds the object.
-        """
-        return self._internal    
-    
-    def id(self, id_val: str) -> typing.Self:    
-        """
-        The matcher id. This is used to find the matcher implementation from registry.
-        """
-            
-        self._internal.id_val = id_val
-    
-        return self
-    
-    def options(self, options: object) -> typing.Self:    
-        """
-        The matcher options. This is specific to the matcher implementation.
-        """
-            
-        self._internal.options = options
-    
-        return self
-    
-
-
-class XYSeriesConfig(cogbuilder.Builder[xychart.XYSeriesConfig]):
-    _internal: xychart.XYSeriesConfig
-
-    def __init__(self):
-        self._internal = xychart.XYSeriesConfig()
-
-    def build(self) -> xychart.XYSeriesConfig:
-        """
-        Builds the object.
-        """
-        return self._internal    
-    
-    def name(self, name: cogbuilder.Builder[xychart.XychartXYSeriesConfigName]) -> typing.Self:    
-        name_resource = name.build()
-        self._internal.name = name_resource
-    
-        return self
-    
-    def frame(self, frame: cogbuilder.Builder[xychart.XychartXYSeriesConfigFrame]) -> typing.Self:    
-        frame_resource = frame.build()
-        self._internal.frame = frame_resource
-    
-        return self
-    
-    def x(self, x: cogbuilder.Builder[xychart.XychartXYSeriesConfigX]) -> typing.Self:    
-        x_resource = x.build()
-        self._internal.x = x_resource
-    
-        return self
-    
-    def y(self, y: cogbuilder.Builder[xychart.XychartXYSeriesConfigY]) -> typing.Self:    
-        y_resource = y.build()
-        self._internal.y = y_resource
-    
-        return self
-    
-    def color(self, color: cogbuilder.Builder[xychart.XychartXYSeriesConfigColor]) -> typing.Self:    
-        color_resource = color.build()
-        self._internal.color = color_resource
-    
-        return self
-    
-    def size(self, size: cogbuilder.Builder[xychart.XychartXYSeriesConfigSize]) -> typing.Self:    
-        size_resource = size.build()
-        self._internal.size = size_resource
-    
-        return self
-    
-
-
-class XychartFieldConfigPointSize(cogbuilder.Builder[xychart.XychartFieldConfigPointSize]):
-    _internal: xychart.XychartFieldConfigPointSize
-
-    def __init__(self):
-        self._internal = xychart.XychartFieldConfigPointSize()
-
-    def build(self) -> xychart.XychartFieldConfigPointSize:
-        """
-        Builds the object.
-        """
-        return self._internal    
-    
-    def fixed(self, fixed: int) -> typing.Self:    
-        if not fixed >= 0:
-            raise ValueError("fixed must be >= 0")
-        self._internal.fixed = fixed
-    
-        return self
-    
-    def min(self, min_val: int) -> typing.Self:    
-        if not min_val >= 0:
-            raise ValueError("min_val must be >= 0")
-        self._internal.min_val = min_val
-    
-        return self
-    
-    def max(self, max_val: int) -> typing.Self:    
-        if not max_val >= 0:
-            raise ValueError("max_val must be >= 0")
-        self._internal.max_val = max_val
-    
-        return self
-    
-
-
-class XychartXYSeriesConfigName(cogbuilder.Builder[xychart.XychartXYSeriesConfigName]):
-    _internal: xychart.XychartXYSeriesConfigName
-
-    def __init__(self):
-        self._internal = xychart.XychartXYSeriesConfigName()
-
-    def build(self) -> xychart.XychartXYSeriesConfigName:
-        """
-        Builds the object.
-        """
-        return self._internal    
-    
-    def fixed(self, fixed: str) -> typing.Self:    
-        self._internal.fixed = fixed
-    
-        return self
-    
-
-
-class XychartXYSeriesConfigFrame(cogbuilder.Builder[xychart.XychartXYSeriesConfigFrame]):
-    _internal: xychart.XychartXYSeriesConfigFrame
-
-    def __init__(self):
-        self._internal = xychart.XychartXYSeriesConfigFrame()
-
-    def build(self) -> xychart.XychartXYSeriesConfigFrame:
-        """
-        Builds the object.
-        """
-        return self._internal    
-    
-    def matcher(self, matcher: cogbuilder.Builder[xychart.MatcherConfig]) -> typing.Self:    
-        matcher_resource = matcher.build()
-        self._internal.matcher = matcher_resource
-    
-        return self
-    
-
-
-class XychartXYSeriesConfigX(cogbuilder.Builder[xychart.XychartXYSeriesConfigX]):
-    _internal: xychart.XychartXYSeriesConfigX
-
-    def __init__(self):
-        self._internal = xychart.XychartXYSeriesConfigX()
-
-    def build(self) -> xychart.XychartXYSeriesConfigX:
-        """
-        Builds the object.
-        """
-        return self._internal    
-    
-    def matcher(self, matcher: cogbuilder.Builder[xychart.MatcherConfig]) -> typing.Self:    
-        matcher_resource = matcher.build()
-        self._internal.matcher = matcher_resource
-    
-        return self
-    
-
-
-class XychartXYSeriesConfigY(cogbuilder.Builder[xychart.XychartXYSeriesConfigY]):
-    _internal: xychart.XychartXYSeriesConfigY
-
-    def __init__(self):
-        self._internal = xychart.XychartXYSeriesConfigY()
-
-    def build(self) -> xychart.XychartXYSeriesConfigY:
-        """
-        Builds the object.
-        """
-        return self._internal    
-    
-    def matcher(self, matcher: cogbuilder.Builder[xychart.MatcherConfig]) -> typing.Self:    
-        matcher_resource = matcher.build()
-        self._internal.matcher = matcher_resource
-    
-        return self
-    
-
-
-class XychartXYSeriesConfigColor(cogbuilder.Builder[xychart.XychartXYSeriesConfigColor]):
-    _internal: xychart.XychartXYSeriesConfigColor
-
-    def __init__(self):
-        self._internal = xychart.XychartXYSeriesConfigColor()
-
-    def build(self) -> xychart.XychartXYSeriesConfigColor:
-        """
-        Builds the object.
-        """
-        return self._internal    
-    
-    def matcher(self, matcher: cogbuilder.Builder[xychart.MatcherConfig]) -> typing.Self:    
-        matcher_resource = matcher.build()
-        self._internal.matcher = matcher_resource
-    
-        return self
-    
-
-
-class XychartXYSeriesConfigSize(cogbuilder.Builder[xychart.XychartXYSeriesConfigSize]):
-    _internal: xychart.XychartXYSeriesConfigSize
-
-    def __init__(self):
-        self._internal = xychart.XychartXYSeriesConfigSize()
-
-    def build(self) -> xychart.XychartXYSeriesConfigSize:
-        """
-        Builds the object.
-        """
-        return self._internal    
-    
-    def matcher(self, matcher: cogbuilder.Builder[xychart.MatcherConfig]) -> typing.Self:    
-        matcher_resource = matcher.build()
-        self._internal.matcher = matcher_resource
-    
-        return self
-    
+from ..models import xychart
 
 
 class Panel(cogbuilder.Builder[dashboard.Panel]):    
@@ -257,7 +15,7 @@ class Panel(cogbuilder.Builder[dashboard.Panel]):
     
     _internal: dashboard.Panel
 
-    def __init__(self):
+    def __init__(self) -> None:
         self._internal = dashboard.Panel()        
         self._internal.type_val = "xychart"
 
@@ -326,7 +84,7 @@ class Panel(cogbuilder.Builder[dashboard.Panel]):
     
         return self
     
-    def datasource(self, datasource: dashboard.DataSourceRef) -> typing.Self:    
+    def datasource(self, datasource: common.DataSourceRef) -> typing.Self:    
         """
         The datasource used in all targets.
         """
@@ -813,7 +571,7 @@ class Panel(cogbuilder.Builder[dashboard.Panel]):
     
         return self
     
-    def point_size(self, point_size: cogbuilder.Builder[xychart.XychartFieldConfigPointSize]) -> typing.Self:    
+    def point_size(self, point_size: xychart.XychartFieldConfigPointSize) -> typing.Self:    
         if self._internal.field_config is None:
             self._internal.field_config = dashboard.FieldConfigSource()
         assert isinstance(self._internal.field_config, dashboard.FieldConfigSource)
@@ -823,8 +581,7 @@ class Panel(cogbuilder.Builder[dashboard.Panel]):
         if self._internal.field_config.defaults.custom is None:
             self._internal.field_config.defaults.custom = xychart.FieldConfig()
         assert isinstance(self._internal.field_config.defaults.custom, xychart.FieldConfig)
-        point_size_resource = point_size.build()
-        self._internal.field_config.defaults.custom.point_size = point_size_resource
+        self._internal.field_config.defaults.custom.point_size = point_size
     
         return self
     
@@ -1087,12 +844,11 @@ class Panel(cogbuilder.Builder[dashboard.Panel]):
     
         return self
     
-    def series(self, series: list[cogbuilder.Builder[xychart.XYSeriesConfig]]) -> typing.Self:    
+    def series(self, series: list[xychart.XYSeriesConfig]) -> typing.Self:    
         if self._internal.options is None:
             self._internal.options = xychart.Options()
         assert isinstance(self._internal.options, xychart.Options)
-        series_resources = [r1.build() for r1 in series]
-        self._internal.options.series = series_resources
+        self._internal.options.series = series
     
         return self
     

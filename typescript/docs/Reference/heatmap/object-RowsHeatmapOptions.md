@@ -16,6 +16,3 @@ export interface RowsHeatmapOptions {
 }
 
 ```
-## See also
-
- * <span class="badge builder"></span> [RowsHeatmapOptionsBuilder](./builder-RowsHeatmapOptionsBuilder.md)

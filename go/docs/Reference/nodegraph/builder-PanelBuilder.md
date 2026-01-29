@@ -47,7 +47,7 @@ func (builder *PanelBuilder) DataLinks(links []cog.Builder[dashboard.DashboardLi
 The datasource used in all targets.
 
 ```go
-func (builder *PanelBuilder) Datasource(datasource dashboard.DataSourceRef) *PanelBuilder
+func (builder *PanelBuilder) Datasource(datasource common.DataSourceRef) *PanelBuilder
 ```
 
 ### <span class="badge object-method"></span> Decimals
@@ -83,7 +83,7 @@ func (builder *PanelBuilder) DisplayName(displayName string) *PanelBuilder
 ### <span class="badge object-method"></span> Edges
 
 ```go
-func (builder *PanelBuilder) Edges(edges cog.Builder[nodegraph.EdgeOptions]) *PanelBuilder
+func (builder *PanelBuilder) Edges(edges nodegraph.EdgeOptions) *PanelBuilder
 ```
 
 ### <span class="badge object-method"></span> GridPos
@@ -201,7 +201,7 @@ func (builder *PanelBuilder) NoValue(noValue string) *PanelBuilder
 ### <span class="badge object-method"></span> Nodes
 
 ```go
-func (builder *PanelBuilder) Nodes(nodes cog.Builder[nodegraph.NodeOptions]) *PanelBuilder
+func (builder *PanelBuilder) Nodes(nodes nodegraph.NodeOptions) *PanelBuilder
 ```
 
 ### <span class="badge object-method"></span> OverrideByFieldType

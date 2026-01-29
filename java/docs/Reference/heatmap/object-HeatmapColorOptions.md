@@ -20,6 +20,3 @@ public class HeatmapColorOptions {
   public Float max;
 }
 ```
-## See also
-
- * <span class="badge builder"></span> [HeatmapColorOptionsBuilder](./builder-HeatmapColorOptionsBuilder.md)

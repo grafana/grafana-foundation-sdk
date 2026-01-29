@@ -31,7 +31,7 @@ func (builder *AnnotationQueryBuilder) BuiltIn(builtIn float64) *AnnotationQuery
 Datasource where the annotations data is
 
 ```go
-func (builder *AnnotationQueryBuilder) Datasource(datasource dashboard.DataSourceRef) *AnnotationQueryBuilder
+func (builder *AnnotationQueryBuilder) Datasource(datasource common.DataSourceRef) *AnnotationQueryBuilder
 ```
 
 ### <span class="badge object-method"></span> Enable

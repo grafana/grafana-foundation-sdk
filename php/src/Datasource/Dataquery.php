@@ -14,7 +14,7 @@ class Dataquery implements \JsonSerializable, \Grafana\Foundation\Cog\Dataquery
      * In server side expressions, the refId is used as a variable name to identify results.
      * By default, the UI will assign A->Z; however setting meaningful names may be useful.
      */
-    public string $refId;
+    public ?string $refId;
 
     /**
      * If hide is set to true, Grafana will filter out the response(s) associated with this query before returning it to the panel.
@@ -35,7 +35,7 @@ class Dataquery implements \JsonSerializable, \Grafana\Foundation\Cog\Dataquery
      * TODO find a better way to do this ^ that's friendly to schema
      * TODO this shouldn't be unknown but DataSourceRef | null
      */
-    public ?\Grafana\Foundation\Dashboard\DataSourceRef $datasource;
+    public ?\Grafana\Foundation\Common\DataSourceRef $datasource;
 
     /**
      * @param int|null $panelId
@@ -43,12 +43,12 @@ class Dataquery implements \JsonSerializable, \Grafana\Foundation\Cog\Dataquery
      * @param bool|null $hide
      * @param string|null $queryType
      * @param bool|null $withTransforms
-     * @param \Grafana\Foundation\Dashboard\DataSourceRef|null $datasource
+     * @param \Grafana\Foundation\Common\DataSourceRef|null $datasource
      */
-    public function __construct(?int $panelId = null, ?string $refId = null, ?bool $hide = null, ?string $queryType = null, ?bool $withTransforms = null, ?\Grafana\Foundation\Dashboard\DataSourceRef $datasource = null)
+    public function __construct(?int $panelId = null, ?string $refId = null, ?bool $hide = null, ?string $queryType = null, ?bool $withTransforms = null, ?\Grafana\Foundation\Common\DataSourceRef $datasource = null)
     {
         $this->panelId = $panelId ?: 0;
-        $this->refId = $refId ?: "";
+        $this->refId = $refId;
         $this->hide = $hide;
         $this->queryType = $queryType;
         $this->withTransforms = $withTransforms ?: false;
@@ -71,7 +71,7 @@ class Dataquery implements \JsonSerializable, \Grafana\Foundation\Cog\Dataquery
             datasource: isset($data["datasource"]) ? (function($input) {
     	/** @var array{type?: string, uid?: string} */
     $val = $input;
-    	return \Grafana\Foundation\Dashboard\DataSourceRef::fromArray($val);
+    	return \Grafana\Foundation\Common\DataSourceRef::fromArray($val);
     })($data["datasource"]) : null,
         );
     }
@@ -83,8 +83,10 @@ class Dataquery implements \JsonSerializable, \Grafana\Foundation\Cog\Dataquery
     {
         $data = new \stdClass;
         $data->panelId = $this->panelId;
-        $data->refId = $this->refId;
         $data->withTransforms = $this->withTransforms;
+        if (isset($this->refId)) {
+            $data->refId = $this->refId;
+        }
         if (isset($this->hide)) {
             $data->hide = $this->hide;
         }

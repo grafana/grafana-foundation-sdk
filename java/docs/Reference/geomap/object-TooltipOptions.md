@@ -10,6 +10,3 @@ public class TooltipOptions {
   public TooltipMode mode;
 }
 ```
-## See also
-
- * <span class="badge builder"></span> [TooltipOptionsBuilder](./builder-TooltipOptionsBuilder.md)

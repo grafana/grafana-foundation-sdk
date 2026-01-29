@@ -105,7 +105,7 @@ dataLinks(array $links)
 The datasource used in all targets.
 
 ```php
-datasource(\Grafana\Foundation\Dashboard\DataSourceRef $datasource)
+datasource(\Grafana\Foundation\Common\DataSourceRef $datasource)
 ```
 
 ### <span class="badge object-method"></span> decimals
@@ -352,10 +352,8 @@ pointShape(\Grafana\Foundation\Xychart\PointShape $pointShape)
 
 ### <span class="badge object-method"></span> pointSize
 
-@param \Grafana\Foundation\Cog\Builder<\Grafana\Foundation\Xychart\XychartFieldConfigPointSize> $pointSize
-
 ```php
-pointSize(\Grafana\Foundation\Cog\Builder $pointSize)
+pointSize(\Grafana\Foundation\Xychart\XychartFieldConfigPointSize $pointSize)
 ```
 
 ### <span class="badge object-method"></span> pointStrokeWidth
@@ -400,7 +398,7 @@ scaleDistribution(\Grafana\Foundation\Cog\Builder $scaleDistribution)
 
 ### <span class="badge object-method"></span> series
 
-@param array<\Grafana\Foundation\Cog\Builder<\Grafana\Foundation\Xychart\XYSeriesConfig>> $series
+@param array<\Grafana\Foundation\Xychart\XYSeriesConfig> $series
 
 ```php
 series(array $series)

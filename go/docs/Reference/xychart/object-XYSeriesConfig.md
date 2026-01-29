@@ -43,6 +43,3 @@ Validate checks all the validation constraints that may be defined on `XYSeriesC
 func (xYSeriesConfig *XYSeriesConfig) Validate() error
 ```
 
-## See also
-
- * <span class="badge builder"></span> [XYSeriesConfigBuilder](./builder-XYSeriesConfigBuilder.md)

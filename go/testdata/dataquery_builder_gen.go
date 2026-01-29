@@ -5,7 +5,7 @@ package testdata
 import (
 	cog "github.com/grafana/grafana-foundation-sdk/go/cog"
 	variants "github.com/grafana/grafana-foundation-sdk/go/cog/variants"
-	dashboard "github.com/grafana/grafana-foundation-sdk/go/dashboard"
+	common "github.com/grafana/grafana-foundation-sdk/go/common"
 )
 
 var _ cog.Builder[variants.Dataquery] = (*DataqueryBuilder)(nil)
@@ -78,7 +78,7 @@ func (builder *DataqueryBuilder) CsvWave(csvWave []cog.Builder[CSVWave]) *Dataqu
 }
 
 // The datasource
-func (builder *DataqueryBuilder) Datasource(datasource dashboard.DataSourceRef) *DataqueryBuilder {
+func (builder *DataqueryBuilder) Datasource(datasource common.DataSourceRef) *DataqueryBuilder {
 	builder.internal.Datasource = &datasource
 
 	return builder

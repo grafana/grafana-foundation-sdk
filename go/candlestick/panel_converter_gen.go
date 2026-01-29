@@ -504,7 +504,7 @@ func PanelConverter(input dashboard.Panel) string {
 	if input.Options != nil {
 
 		buffer.WriteString(`Fields(`)
-		arg0 := CandlestickFieldMapConverter(input.Options.(*Options).Fields)
+		arg0 := cog.Dump(input.Options.(*Options).Fields)
 		buffer.WriteString(arg0)
 
 		buffer.WriteString(")")
@@ -516,7 +516,7 @@ func PanelConverter(input dashboard.Panel) string {
 	if input.Options != nil {
 
 		buffer.WriteString(`Colors(`)
-		arg0 := CandlestickColorsConverter(input.Options.(*Options).Colors)
+		arg0 := cog.Dump(input.Options.(*Options).Colors)
 		buffer.WriteString(arg0)
 
 		buffer.WriteString(")")

@@ -19,6 +19,3 @@ public class PieChartLegendOptions {
   public List<String> calcs;
 }
 ```
-## See also
-
- * <span class="badge builder"></span> [PieChartLegendOptionsBuilder](./builder-PieChartLegendOptionsBuilder.md)

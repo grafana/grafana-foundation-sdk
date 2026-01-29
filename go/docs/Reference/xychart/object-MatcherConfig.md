@@ -47,6 +47,3 @@ Validate checks all the validation constraints that may be defined on `MatcherCo
 func (matcherConfig *MatcherConfig) Validate() error
 ```
 
-## See also
-
- * <span class="badge builder"></span> [MatcherConfigBuilder](./builder-MatcherConfigBuilder.md)

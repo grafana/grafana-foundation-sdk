@@ -99,7 +99,7 @@ class PanelBuilder implements \Grafana\Foundation\Cog\Builder
     /**
      * The datasource used in all targets.
      */
-    public function datasource(\Grafana\Foundation\Dashboard\DataSourceRef $datasource): static
+    public function datasource(\Grafana\Foundation\Common\DataSourceRef $datasource): static
     {
         $this->internal->datasource = $datasource;
     
@@ -619,10 +619,7 @@ class PanelBuilder implements \Grafana\Foundation\Cog\Builder
         return $this;
     }
 
-    /**
-     * @param \Grafana\Foundation\Cog\Builder<\Grafana\Foundation\Xychart\XychartFieldConfigPointSize> $pointSize
-     */
-    public function pointSize(\Grafana\Foundation\Cog\Builder $pointSize): static
+    public function pointSize(\Grafana\Foundation\Xychart\XychartFieldConfigPointSize $pointSize): static
     {    
         if ($this->internal->fieldConfig === null) {
             $this->internal->fieldConfig = new \Grafana\Foundation\Dashboard\FieldConfigSource();
@@ -632,8 +629,7 @@ class PanelBuilder implements \Grafana\Foundation\Cog\Builder
             $this->internal->fieldConfig->defaults->custom = new \Grafana\Foundation\Xychart\FieldConfig();
         }
         assert($this->internal->fieldConfig->defaults->custom instanceof \Grafana\Foundation\Xychart\FieldConfig);
-        $pointSizeResource = $pointSize->build();
-        $this->internal->fieldConfig->defaults->custom->pointSize = $pointSizeResource;
+        $this->internal->fieldConfig->defaults->custom->pointSize = $pointSize;
     
         return $this;
     }
@@ -941,7 +937,7 @@ class PanelBuilder implements \Grafana\Foundation\Cog\Builder
     }
 
     /**
-     * @param array<\Grafana\Foundation\Cog\Builder<\Grafana\Foundation\Xychart\XYSeriesConfig>> $series
+     * @param array<\Grafana\Foundation\Xychart\XYSeriesConfig> $series
      */
     public function series(array $series): static
     {    
@@ -949,11 +945,7 @@ class PanelBuilder implements \Grafana\Foundation\Cog\Builder
             $this->internal->options = new \Grafana\Foundation\Xychart\Options();
         }
         assert($this->internal->options instanceof \Grafana\Foundation\Xychart\Options);
-            $seriesResources = [];
-            foreach ($series as $r1) {
-                    $seriesResources[] = $r1->build();
-            }
-        $this->internal->options->series = $seriesResources;
+        $this->internal->options->series = $series;
     
         return $this;
     }

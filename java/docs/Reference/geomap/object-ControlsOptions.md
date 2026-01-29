@@ -15,6 +15,3 @@ public class ControlsOptions {
   public Boolean showMeasure;
 }
 ```
-## See also
-
- * <span class="badge builder"></span> [ControlsOptionsBuilder](./builder-ControlsOptionsBuilder.md)

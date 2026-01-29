@@ -84,7 +84,7 @@ final class PanelConverter
     
         
     $buffer = 'datasource(';
-        $arg0 ='(new \Grafana\Foundation\Dashboard\DataSourceRef('.(($input->datasource->type !== null) ? 'type: '.\var_export($input->datasource->type, true).', ' : '').''.(($input->datasource->uid !== null) ? 'uid: '.\var_export($input->datasource->uid, true).', ' : '').'))';
+        $arg0 ='(new \Grafana\Foundation\Common\DataSourceRef('.(($input->datasource->type !== null) ? 'type: '.\var_export($input->datasource->type, true).', ' : '').''.(($input->datasource->uid !== null) ? 'uid: '.\var_export($input->datasource->uid, true).', ' : '').'))';
         $buffer .= $arg0;
         
     $buffer .= ')';
@@ -526,7 +526,7 @@ final class PanelConverter
     
         
     $buffer = 'code(';
-        $arg0 = \Grafana\Foundation\Text\CodeOptionsConverter::convert($input->options->code);
+        $arg0 ='(new \Grafana\Foundation\Text\CodeOptions(language: '.'\Grafana\Foundation\Text\CodeLanguage::fromValue("'.$input->options->code->language.'")'.',showLineNumbers: '.\var_export($input->options->code->showLineNumbers, true).',showMiniMap: '.\var_export($input->options->code->showMiniMap, true).',))';
         $buffer .= $arg0;
         
     $buffer .= ')';

@@ -11,8 +11,6 @@
  * <span class="badge object-type-enum"></span> [VizDisplayMode](./object-VizDisplayMode.md)
 ## Builders
 
- * <span class="badge builder"></span> [CandlestickColors](./builder-CandlestickColors.md)
- * <span class="badge builder"></span> [CandlestickFieldMap](./builder-CandlestickFieldMap.md)
  * <span class="badge builder"></span> [Panel](./builder-Panel.md)
 ## Functions
 

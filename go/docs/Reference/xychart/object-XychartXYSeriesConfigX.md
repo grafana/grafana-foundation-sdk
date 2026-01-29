@@ -38,6 +38,3 @@ Validate checks all the validation constraints that may be defined on `XychartXY
 func (xychartXYSeriesConfigX *XychartXYSeriesConfigX) Validate() error
 ```
 
-## See also
-
- * <span class="badge builder"></span> [XychartXYSeriesConfigXBuilder](./builder-XychartXYSeriesConfigXBuilder.md)

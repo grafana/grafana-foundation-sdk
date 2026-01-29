@@ -9,9 +9,6 @@
  * <span class="badge object-type-enum"></span> [ZoomMode](./object-ZoomMode.md)
 ## Builders
 
- * <span class="badge builder"></span> [ArcOption](./builder-ArcOption.md)
- * <span class="badge builder"></span> [EdgeOptions](./builder-EdgeOptions.md)
- * <span class="badge builder"></span> [NodeOptions](./builder-NodeOptions.md)
  * <span class="badge builder"></span> [Panel](./builder-Panel.md)
 ## Functions
 

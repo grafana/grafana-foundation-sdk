@@ -8,5 +8,4 @@
  * <span class="badge object-type-enum"></span> [TextMode](./object-TextMode.md)
 ## Builders
 
- * <span class="badge builder"></span> [CodeOptionsBuilder](./builder-CodeOptionsBuilder.md)
  * <span class="badge builder"></span> [PanelBuilder](./builder-PanelBuilder.md)

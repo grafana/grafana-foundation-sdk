@@ -19,7 +19,8 @@ type DataqueryConfig struct {
 	Identifier                 string
 	DataqueryUnmarshaler       func(raw []byte) (Dataquery, error)
 	StrictDataqueryUnmarshaler func(raw []byte) (Dataquery, error)
-	GoConverter                func(inputPanel any) string
+	GoConverter                func(dataquery any) string
+	GoV2Converter              func(dataquery any) string
 }
 
 type Dataquery interface {

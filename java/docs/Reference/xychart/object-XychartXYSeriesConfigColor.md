@@ -10,6 +10,3 @@ public class XychartXYSeriesConfigColor {
   public MatcherConfig matcher;
 }
 ```
-## See also
-
- * <span class="badge builder"></span> [XychartXYSeriesConfigColorBuilder](./builder-XychartXYSeriesConfigColorBuilder.md)

@@ -329,7 +329,7 @@ public PanelBuilder pointShape(PointShape pointShape)
 ### <span class="badge object-method"></span> pointSize
 
 ```java
-public PanelBuilder pointSize(com.grafana.foundation.cog.Builder<XychartFieldConfigPointSize> pointSize)
+public PanelBuilder pointSize(XychartFieldConfigPointSize pointSize)
 ```
 
 ### <span class="badge object-method"></span> pointStrokeWidth
@@ -373,7 +373,7 @@ public PanelBuilder scaleDistribution(com.grafana.foundation.cog.Builder<ScaleDi
 ### <span class="badge object-method"></span> series
 
 ```java
-public PanelBuilder series(List<com.grafana.foundation.cog.Builder<XYSeriesConfig>> series)
+public PanelBuilder series(List<XYSeriesConfig> series)
 ```
 
 ### <span class="badge object-method"></span> show

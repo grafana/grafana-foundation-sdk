@@ -23,7 +23,7 @@ class Dataquery implements \JsonSerializable, \Grafana\Foundation\Cog\Dataquery
     /**
      * The datasource
      */
-    public ?\Grafana\Foundation\Dashboard\DataSourceRef $datasource;
+    public ?\Grafana\Foundation\Common\DataSourceRef $datasource;
 
     /**
      * Drop percentage (the chance we will lose a point 0-100)
@@ -176,7 +176,7 @@ class Dataquery implements \JsonSerializable, \Grafana\Foundation\Cog\Dataquery
      * @param string|null $csvContent
      * @param string|null $csvFileName
      * @param array<\Grafana\Foundation\Testdata\CSVWave>|null $csvWave
-     * @param \Grafana\Foundation\Dashboard\DataSourceRef|null $datasource
+     * @param \Grafana\Foundation\Common\DataSourceRef|null $datasource
      * @param float|null $dropPercent
      * @param \Grafana\Foundation\Testdata\DataqueryErrorSource|null $errorSource
      * @param \Grafana\Foundation\Testdata\DataqueryErrorType|null $errorType
@@ -209,7 +209,7 @@ class Dataquery implements \JsonSerializable, \Grafana\Foundation\Cog\Dataquery
      * @param \Grafana\Foundation\Testdata\USAQuery|null $usa
      * @param bool|null $withNil
      */
-    public function __construct(?string $alias = null, ?string $channel = null, ?string $csvContent = null, ?string $csvFileName = null, ?array $csvWave = null, ?\Grafana\Foundation\Dashboard\DataSourceRef $datasource = null, ?float $dropPercent = null, ?\Grafana\Foundation\Testdata\DataqueryErrorSource $errorSource = null, ?\Grafana\Foundation\Testdata\DataqueryErrorType $errorType = null, ?bool $flamegraphDiff = null, ?bool $hide = null, ?float $intervalMs = null, ?string $labels = null, ?bool $levelColumn = null, ?int $lines = null, ?float $max = null, ?int $maxDataPoints = null, ?float $min = null, ?\Grafana\Foundation\Testdata\NodesQuery $nodes = null, ?float $noise = null, ?array $points = null, ?\Grafana\Foundation\Testdata\PulseWaveQuery $pulseWave = null, ?string $queryType = null, ?string $rawFrameContent = null, ?string $refId = null, ?\Grafana\Foundation\Testdata\ResultAssertions $resultAssertions = null, ?\Grafana\Foundation\Testdata\DataqueryScenarioId $scenarioId = null, ?int $seriesCount = null, ?\Grafana\Foundation\Testdata\SimulationQuery $sim = null, ?int $spanCount = null, ?float $spread = null, ?float $startValue = null, ?\Grafana\Foundation\Testdata\StreamingQuery $stream = null, ?string $stringInput = null, ?\Grafana\Foundation\Testdata\TimeRange $timeRange = null, ?\Grafana\Foundation\Testdata\USAQuery $usa = null, ?bool $withNil = null)
+    public function __construct(?string $alias = null, ?string $channel = null, ?string $csvContent = null, ?string $csvFileName = null, ?array $csvWave = null, ?\Grafana\Foundation\Common\DataSourceRef $datasource = null, ?float $dropPercent = null, ?\Grafana\Foundation\Testdata\DataqueryErrorSource $errorSource = null, ?\Grafana\Foundation\Testdata\DataqueryErrorType $errorType = null, ?bool $flamegraphDiff = null, ?bool $hide = null, ?float $intervalMs = null, ?string $labels = null, ?bool $levelColumn = null, ?int $lines = null, ?float $max = null, ?int $maxDataPoints = null, ?float $min = null, ?\Grafana\Foundation\Testdata\NodesQuery $nodes = null, ?float $noise = null, ?array $points = null, ?\Grafana\Foundation\Testdata\PulseWaveQuery $pulseWave = null, ?string $queryType = null, ?string $rawFrameContent = null, ?string $refId = null, ?\Grafana\Foundation\Testdata\ResultAssertions $resultAssertions = null, ?\Grafana\Foundation\Testdata\DataqueryScenarioId $scenarioId = null, ?int $seriesCount = null, ?\Grafana\Foundation\Testdata\SimulationQuery $sim = null, ?int $spanCount = null, ?float $spread = null, ?float $startValue = null, ?\Grafana\Foundation\Testdata\StreamingQuery $stream = null, ?string $stringInput = null, ?\Grafana\Foundation\Testdata\TimeRange $timeRange = null, ?\Grafana\Foundation\Testdata\USAQuery $usa = null, ?bool $withNil = null)
     {
         $this->alias = $alias;
         $this->channel = $channel;
@@ -270,7 +270,7 @@ class Dataquery implements \JsonSerializable, \Grafana\Foundation\Cog\Dataquery
             datasource: isset($data["datasource"]) ? (function($input) {
     	/** @var array{type?: string, uid?: string} */
     $val = $input;
-    	return \Grafana\Foundation\Dashboard\DataSourceRef::fromArray($val);
+    	return \Grafana\Foundation\Common\DataSourceRef::fromArray($val);
     })($data["datasource"]) : null,
             dropPercent: $data["dropPercent"] ?? null,
             errorSource: isset($data["errorSource"]) ? (function($input) { return \Grafana\Foundation\Testdata\DataqueryErrorSource::fromValue($input); })($data["errorSource"]) : null,

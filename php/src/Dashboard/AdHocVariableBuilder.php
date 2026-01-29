@@ -69,7 +69,7 @@ class AdHocVariableBuilder implements \Grafana\Foundation\Cog\Builder
     /**
      * Data source used to fetch values for a variable. It can be defined but `null`.
      */
-    public function datasource(\Grafana\Foundation\Dashboard\DataSourceRef $datasource): static
+    public function datasource(\Grafana\Foundation\Common\DataSourceRef $datasource): static
     {
         $this->internal->datasource = $datasource;
     

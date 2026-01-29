@@ -12,6 +12,3 @@ public class LineConfig {
   public Double radius;
 }
 ```
-## See also
-
- * <span class="badge builder"></span> [LineConfigBuilder](./builder-LineConfigBuilder.md)

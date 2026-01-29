@@ -9,9 +9,6 @@
  * <span class="badge object-type-enum"></span> [ZoomMode](./object-ZoomMode.md)
 ## Builders
 
- * <span class="badge builder"></span> [ArcOptionBuilder](./builder-ArcOptionBuilder.md)
- * <span class="badge builder"></span> [EdgeOptionsBuilder](./builder-EdgeOptionsBuilder.md)
- * <span class="badge builder"></span> [NodeOptionsBuilder](./builder-NodeOptionsBuilder.md)
  * <span class="badge builder"></span> [PanelBuilder](./builder-PanelBuilder.md)
 ## Functions
 
@@ -55,30 +52,6 @@ This configuration describes how to unmarshal it, convert it to code, …
 
 ```go
 func VariantConfig() variants.PanelcfgConfig
-```
-
-### <span class="badge function"></span> ArcOptionConverter
-
-ArcOptionConverter accepts a `ArcOption` object and generates the Go code to build this object using builders.
-
-```go
-func ArcOptionConverter(input ArcOption) string
-```
-
-### <span class="badge function"></span> NodeOptionsConverter
-
-NodeOptionsConverter accepts a `NodeOptions` object and generates the Go code to build this object using builders.
-
-```go
-func NodeOptionsConverter(input NodeOptions) string
-```
-
-### <span class="badge function"></span> EdgeOptionsConverter
-
-EdgeOptionsConverter accepts a `EdgeOptions` object and generates the Go code to build this object using builders.
-
-```go
-func EdgeOptionsConverter(input EdgeOptions) string
 ```
 
 ### <span class="badge function"></span> PanelConverter

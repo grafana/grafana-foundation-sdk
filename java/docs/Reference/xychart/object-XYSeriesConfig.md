@@ -15,6 +15,3 @@ public class XYSeriesConfig {
   public XychartXYSeriesConfigSize size;
 }
 ```
-## See also
-
- * <span class="badge builder"></span> [XYSeriesConfigBuilder](./builder-XYSeriesConfigBuilder.md)

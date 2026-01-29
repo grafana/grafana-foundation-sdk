@@ -63,7 +63,7 @@ cellRadius(cellRadius: number)
 Controls cell value unit
 
 ```typescript
-cellValues(cellValues: cog.Builder<heatmap.CellValues>)
+cellValues(cellValues: heatmap.CellValues)
 ```
 
 ### <span class="badge object-method"></span> color
@@ -71,7 +71,7 @@ cellValues(cellValues: cog.Builder<heatmap.CellValues>)
 Controls the color options
 
 ```typescript
-color(color: cog.Builder<heatmap.HeatmapColorOptions>)
+color(color: heatmap.HeatmapColorOptions)
 ```
 
 ### <span class="badge object-method"></span> colorScheme
@@ -95,7 +95,7 @@ dataLinks(links: cog.Builder<dashboard.DashboardLink>[])
 The datasource used in all targets.
 
 ```typescript
-datasource(datasource: dashboard.DataSourceRef)
+datasource(datasource: common.DataSourceRef)
 ```
 
 ### <span class="badge object-method"></span> decimals
@@ -141,7 +141,7 @@ exemplarsColor(color: string)
 Filters values between a given range
 
 ```typescript
-filterValues(filterValues: cog.Builder<heatmap.FilterValueRange>)
+filterValues(filterValues: heatmap.FilterValueRange)
 ```
 
 ### <span class="badge object-method"></span> gridPos
@@ -376,7 +376,7 @@ repeatDirection(repeatDirection: "h" | "v")
 Controls tick alignment and value name when not calculating from data
 
 ```typescript
-rowsFrame(rowsFrame: cog.Builder<heatmap.RowsHeatmapOptions>)
+rowsFrame(rowsFrame: heatmap.RowsHeatmapOptions)
 ```
 
 ### <span class="badge object-method"></span> scaleDistribution
@@ -587,7 +587,7 @@ withTransformation(transformation: dashboard.DataTransformerConfig)
 Controls yAxis placement
 
 ```typescript
-yAxis(yAxis: cog.Builder<heatmap.YAxisConfig>)
+yAxis(yAxis: heatmap.YAxisConfig)
 ```
 
 ## See also

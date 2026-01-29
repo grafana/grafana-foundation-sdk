@@ -20,6 +20,3 @@ export interface MatcherConfig {
 }
 
 ```
-## See also
-
- * <span class="badge builder"></span> [MatcherConfigBuilder](./builder-MatcherConfigBuilder.md)

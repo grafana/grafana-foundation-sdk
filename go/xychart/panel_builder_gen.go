@@ -97,7 +97,7 @@ func (builder *PanelBuilder) Transparent(transparent bool) *PanelBuilder {
 }
 
 // The datasource used in all targets.
-func (builder *PanelBuilder) Datasource(datasource dashboard.DataSourceRef) *PanelBuilder {
+func (builder *PanelBuilder) Datasource(datasource common.DataSourceRef) *PanelBuilder {
 	builder.internal.Datasource = &datasource
 
 	return builder
@@ -494,19 +494,14 @@ func (builder *PanelBuilder) Show(show XYShowMode) *PanelBuilder {
 	return builder
 }
 
-func (builder *PanelBuilder) PointSize(pointSize cog.Builder[XychartFieldConfigPointSize]) *PanelBuilder {
+func (builder *PanelBuilder) PointSize(pointSize XychartFieldConfigPointSize) *PanelBuilder {
 	if builder.internal.FieldConfig == nil {
 		builder.internal.FieldConfig = dashboard.NewFieldConfigSource()
 	}
 	if builder.internal.FieldConfig.Defaults.Custom == nil {
 		builder.internal.FieldConfig.Defaults.Custom = NewFieldConfig()
 	}
-	pointSizeResource, err := pointSize.Build()
-	if err != nil {
-		builder.errors = append(builder.errors, err.(cog.BuildErrors)...)
-		return builder
-	}
-	builder.internal.FieldConfig.Defaults.Custom.(*FieldConfig).PointSize = &pointSizeResource
+	builder.internal.FieldConfig.Defaults.Custom.(*FieldConfig).PointSize = &pointSize
 
 	return builder
 }
@@ -755,20 +750,11 @@ func (builder *PanelBuilder) Tooltip(tooltip cog.Builder[common.VizTooltipOption
 	return builder
 }
 
-func (builder *PanelBuilder) Series(series []cog.Builder[XYSeriesConfig]) *PanelBuilder {
+func (builder *PanelBuilder) Series(series []XYSeriesConfig) *PanelBuilder {
 	if builder.internal.Options == nil {
 		builder.internal.Options = NewOptions()
 	}
-	seriesResources := make([]XYSeriesConfig, 0, len(series))
-	for _, r1 := range series {
-		seriesDepth1, err := r1.Build()
-		if err != nil {
-			builder.errors = append(builder.errors, err.(cog.BuildErrors)...)
-			return builder
-		}
-		seriesResources = append(seriesResources, seriesDepth1)
-	}
-	builder.internal.Options.(*Options).Series = seriesResources
+	builder.internal.Options.(*Options).Series = series
 
 	return builder
 }

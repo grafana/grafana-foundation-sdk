@@ -40,6 +40,3 @@ Validate checks all the validation constraints that may be defined on `XychartFi
 func (xychartFieldConfigPointSize *XychartFieldConfigPointSize) Validate() error
 ```
 
-## See also
-
- * <span class="badge builder"></span> [XychartFieldConfigPointSizeBuilder](./builder-XychartFieldConfigPointSizeBuilder.md)
