@@ -11,7 +11,7 @@ import com.fasterxml.jackson.annotation.JsonInclude;
 import java.util.List;
 import com.fasterxml.jackson.annotation.JsonSetter;
 import com.fasterxml.jackson.annotation.Nulls;
-import com.grafana.foundation.dashboard.DataSourceRef;
+import com.grafana.foundation.common.DataSourceRef;
 
 public class Dataquery implements com.grafana.foundation.cog.variants.Dataquery {
     // Specifies the query label selectors.
@@ -35,6 +35,7 @@ public class Dataquery implements com.grafana.foundation.cog.variants.Dataquery 
     // A unique identifier for the query within the list of targets.
     // In server side expressions, the refId is used as a variable name to identify results.
     // By default, the UI will assign A->Z; however setting meaningful names may be useful.
+    @JsonInclude(JsonInclude.Include.NON_NULL)
     @JsonProperty("refId")
     public String refId;
     // If hide is set to true, Grafana will filter out the response(s) associated with this query before returning it to the panel.
@@ -57,7 +58,6 @@ public class Dataquery implements com.grafana.foundation.cog.variants.Dataquery 
         this.labelSelector = "{}";
         this.profileTypeId = "";
         this.groupBy = new LinkedList<>();
-        this.refId = "";
     }
     public Dataquery(String labelSelector,List<String> spanSelector,String profileTypeId,List<String> groupBy,Long maxNodes,String refId,Boolean hide,String queryType,DataSourceRef datasource) {
         this.labelSelector = labelSelector;

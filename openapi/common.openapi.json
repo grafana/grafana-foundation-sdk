@@ -484,7 +484,7 @@
             "$ref": "#/components/schemas/LineStyle"
           },
           "spanNulls": {
-            "anyOf": [
+            "oneOf": [
               {
                 "type": "boolean"
               },
@@ -1045,7 +1045,7 @@
             "$ref": "#/components/schemas/GraphTransform"
           },
           "spanNulls": {
-            "anyOf": [
+            "oneOf": [
               {
                 "type": "boolean"
               },
@@ -1068,7 +1068,7 @@
             "type": "number"
           },
           "insertNulls": {
-            "anyOf": [
+            "oneOf": [
               {
                 "type": "boolean"
               },
@@ -1207,7 +1207,11 @@
         ],
         "properties": {
           "type": {
-            "$ref": "#/components/schemas/TableCellDisplayMode",
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/TableCellDisplayMode"
+              }
+            ],
             "default": "auto"
           }
         },
@@ -1221,7 +1225,11 @@
         ],
         "properties": {
           "type": {
-            "$ref": "#/components/schemas/TableCellDisplayMode",
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/TableCellDisplayMode"
+              }
+            ],
             "default": "color-text"
           }
         },
@@ -1235,7 +1243,11 @@
         ],
         "properties": {
           "type": {
-            "$ref": "#/components/schemas/TableCellDisplayMode",
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/TableCellDisplayMode"
+              }
+            ],
             "default": "json-view"
           }
         },
@@ -1249,7 +1261,11 @@
         ],
         "properties": {
           "type": {
-            "$ref": "#/components/schemas/TableCellDisplayMode",
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/TableCellDisplayMode"
+              }
+            ],
             "default": "image"
           }
         },
@@ -1263,7 +1279,11 @@
         ],
         "properties": {
           "type": {
-            "$ref": "#/components/schemas/TableCellDisplayMode",
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/TableCellDisplayMode"
+              }
+            ],
             "default": "data-links"
           }
         },
@@ -1277,7 +1297,11 @@
         ],
         "properties": {
           "type": {
-            "$ref": "#/components/schemas/TableCellDisplayMode",
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/TableCellDisplayMode"
+              }
+            ],
             "default": "gauge"
           },
           "mode": {
@@ -1297,7 +1321,11 @@
         ],
         "properties": {
           "type": {
-            "$ref": "#/components/schemas/TableCellDisplayMode",
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/TableCellDisplayMode"
+              }
+            ],
             "default": "sparkline"
           },
           "drawStyle": {
@@ -1382,7 +1410,7 @@
             "$ref": "#/components/schemas/GraphTransform"
           },
           "spanNulls": {
-            "anyOf": [
+            "oneOf": [
               {
                 "type": "boolean"
               },
@@ -1415,7 +1443,11 @@
         ],
         "properties": {
           "type": {
-            "$ref": "#/components/schemas/TableCellDisplayMode",
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/TableCellDisplayMode"
+              }
+            ],
             "default": "color-background"
           },
           "mode": {
@@ -1437,7 +1469,7 @@
         "description": "Height of a table cell"
       },
       "TableCellOptions": {
-        "anyOf": [
+        "oneOf": [
           {
             "$ref": "#/components/schemas/TableAutoCellOptions"
           },
@@ -1487,6 +1519,20 @@
         ],
         "type": "string",
         "description": "Optional formats for the template variable replace functions\nSee also https://grafana.com/docs/grafana/latest/dashboards/variables/variable-syntax/#advanced-variable-format-options"
+      },
+      "DataSourceRef": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "type": {
+            "type": "string",
+            "description": "The plugin type-id"
+          },
+          "uid": {
+            "type": "string",
+            "description": "Specific datasource instance"
+          }
+        }
       },
       "ResourceDimensionConfig": {
         "type": "object",

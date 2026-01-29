@@ -492,7 +492,7 @@ func PanelConverter(input dashboard.Panel) string {
 	if input.Options != nil {
 
 		buffer.WriteString(`Color(`)
-		arg0 := HeatmapColorOptionsConverter(input.Options.(*Options).Color)
+		arg0 := cog.Dump(input.Options.(*Options).Color)
 		buffer.WriteString(arg0)
 
 		buffer.WriteString(")")
@@ -504,7 +504,7 @@ func PanelConverter(input dashboard.Panel) string {
 	if input.Options != nil && input.Options.(*Options).FilterValues != nil {
 
 		buffer.WriteString(`FilterValues(`)
-		arg0 := FilterValueRangeConverter(*input.Options.(*Options).FilterValues)
+		arg0 := cog.Dump(*input.Options.(*Options).FilterValues)
 		buffer.WriteString(arg0)
 
 		buffer.WriteString(")")
@@ -516,7 +516,7 @@ func PanelConverter(input dashboard.Panel) string {
 	if input.Options != nil && input.Options.(*Options).RowsFrame != nil {
 
 		buffer.WriteString(`RowsFrame(`)
-		arg0 := RowsHeatmapOptionsConverter(*input.Options.(*Options).RowsFrame)
+		arg0 := cog.Dump(*input.Options.(*Options).RowsFrame)
 		buffer.WriteString(arg0)
 
 		buffer.WriteString(")")
@@ -564,7 +564,7 @@ func PanelConverter(input dashboard.Panel) string {
 	if input.Options != nil && input.Options.(*Options).CellValues != nil {
 
 		buffer.WriteString(`CellValues(`)
-		arg0 := CellValuesConverter(*input.Options.(*Options).CellValues)
+		arg0 := cog.Dump(*input.Options.(*Options).CellValues)
 		buffer.WriteString(arg0)
 
 		buffer.WriteString(")")
@@ -576,7 +576,7 @@ func PanelConverter(input dashboard.Panel) string {
 	if input.Options != nil {
 
 		buffer.WriteString(`YAxis(`)
-		arg0 := YAxisConfigConverter(input.Options.(*Options).YAxis)
+		arg0 := cog.Dump(input.Options.(*Options).YAxis)
 		buffer.WriteString(arg0)
 
 		buffer.WriteString(")")

@@ -40,6 +40,3 @@ Validate checks all the validation constraints that may be defined on `LineConfi
 func (lineConfig *LineConfig) Validate() error
 ```
 
-## See also
-
- * <span class="badge builder"></span> [LineConfigBuilder](./builder-LineConfigBuilder.md)

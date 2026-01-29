@@ -43,7 +43,7 @@ def color_scheme(color: cogbuilder.Builder[dashboard.FieldColor]) -> typing.Self
 ### <span class="badge object-method"></span> controls
 
 ```python
-def controls(controls: cogbuilder.Builder[geomap.ControlsOptions]) -> typing.Self
+def controls(controls: geomap.ControlsOptions) -> typing.Self
 ```
 
 ### <span class="badge object-method"></span> data_links
@@ -59,7 +59,7 @@ def data_links(links: list[cogbuilder.Builder[dashboard.DashboardLink]]) -> typi
 The datasource used in all targets.
 
 ```python
-def datasource(datasource: dashboard.DataSourceRef) -> typing.Self
+def datasource(datasource: common.DataSourceRef) -> typing.Self
 ```
 
 ### <span class="badge object-method"></span> decimals
@@ -345,7 +345,7 @@ def title(title: str) -> typing.Self
 ### <span class="badge object-method"></span> tooltip
 
 ```python
-def tooltip(tooltip: cogbuilder.Builder[geomap.TooltipOptions]) -> typing.Self
+def tooltip(tooltip: geomap.TooltipOptions) -> typing.Self
 ```
 
 ### <span class="badge object-method"></span> transformations
@@ -397,7 +397,7 @@ def unit(unit: str) -> typing.Self
 ### <span class="badge object-method"></span> view
 
 ```python
-def view(view: cogbuilder.Builder[geomap.MapViewConfig]) -> typing.Self
+def view(view: geomap.MapViewConfig) -> typing.Self
 ```
 
 ### <span class="badge object-method"></span> with_override

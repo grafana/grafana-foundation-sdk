@@ -84,7 +84,7 @@ final class PanelConverter
     
         
     $buffer = 'datasource(';
-        $arg0 ='(new \Grafana\Foundation\Dashboard\DataSourceRef('.(($input->datasource->type !== null) ? 'type: '.\var_export($input->datasource->type, true).', ' : '').''.(($input->datasource->uid !== null) ? 'uid: '.\var_export($input->datasource->uid, true).', ' : '').'))';
+        $arg0 ='(new \Grafana\Foundation\Common\DataSourceRef('.(($input->datasource->type !== null) ? 'type: '.\var_export($input->datasource->type, true).', ' : '').''.(($input->datasource->uid !== null) ? 'uid: '.\var_export($input->datasource->uid, true).', ' : '').'))';
         $buffer .= $arg0;
         
     $buffer .= ')';
@@ -565,7 +565,7 @@ final class PanelConverter
     
         
     $buffer = 'root(';
-        $arg0 = \Grafana\Foundation\Canvas\CanvasOptionsRootConverter::convert($input->options->root);
+        $arg0 ='(new \Grafana\Foundation\Canvas\CanvasOptionsRoot(name: '.\var_export($input->options->root->name, true).',type: '.\var_export($input->options->root->type, true).',elements: '.\var_export($input->options->root->elements, true).',))';
         $buffer .= $arg0;
         
     $buffer .= ')';

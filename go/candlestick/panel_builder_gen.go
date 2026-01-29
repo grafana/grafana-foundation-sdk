@@ -97,7 +97,7 @@ func (builder *PanelBuilder) Transparent(transparent bool) *PanelBuilder {
 }
 
 // The datasource used in all targets.
-func (builder *PanelBuilder) Datasource(datasource dashboard.DataSourceRef) *PanelBuilder {
+func (builder *PanelBuilder) Datasource(datasource common.DataSourceRef) *PanelBuilder {
 	builder.internal.Datasource = &datasource
 
 	return builder
@@ -513,31 +513,21 @@ func (builder *PanelBuilder) ColorStrategy(colorStrategy ColorStrategy) *PanelBu
 }
 
 // Map fields to appropriate dimension
-func (builder *PanelBuilder) Fields(fields cog.Builder[CandlestickFieldMap]) *PanelBuilder {
+func (builder *PanelBuilder) Fields(fields CandlestickFieldMap) *PanelBuilder {
 	if builder.internal.Options == nil {
 		builder.internal.Options = NewOptions()
 	}
-	fieldsResource, err := fields.Build()
-	if err != nil {
-		builder.errors = append(builder.errors, err.(cog.BuildErrors)...)
-		return builder
-	}
-	builder.internal.Options.(*Options).Fields = fieldsResource
+	builder.internal.Options.(*Options).Fields = fields
 
 	return builder
 }
 
 // Set which colors are used when the price movement is up or down
-func (builder *PanelBuilder) Colors(colors cog.Builder[CandlestickColors]) *PanelBuilder {
+func (builder *PanelBuilder) Colors(colors CandlestickColors) *PanelBuilder {
 	if builder.internal.Options == nil {
 		builder.internal.Options = NewOptions()
 	}
-	colorsResource, err := colors.Build()
-	if err != nil {
-		builder.errors = append(builder.errors, err.(cog.BuildErrors)...)
-		return builder
-	}
-	builder.internal.Options.(*Options).Colors = colorsResource
+	builder.internal.Options.(*Options).Colors = colors
 
 	return builder
 }

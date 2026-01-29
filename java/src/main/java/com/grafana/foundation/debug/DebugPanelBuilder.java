@@ -6,7 +6,7 @@ import com.grafana.foundation.dashboard.Panel;
 import java.util.List;
 import com.grafana.foundation.cog.variants.Dataquery;
 import java.util.LinkedList;
-import com.grafana.foundation.dashboard.DataSourceRef;
+import com.grafana.foundation.common.DataSourceRef;
 import com.grafana.foundation.dashboard.GridPos;
 import com.grafana.foundation.dashboard.DashboardLink;
 import com.grafana.foundation.dashboard.PanelRepeatDirection;
@@ -396,12 +396,11 @@ public class DebugPanelBuilder implements com.grafana.foundation.cog.Builder<Pan
         return this;
     }
     
-    public DebugPanelBuilder counters(com.grafana.foundation.cog.Builder<UpdateConfig> counters) {
+    public DebugPanelBuilder counters(UpdateConfig counters) {
 		if (this.internal.options == null) {
 			this.internal.options = new com.grafana.foundation.debug.Options();
 		}
-    UpdateConfig countersResource = counters.build();
-        ((Options) this.internal.options).counters = countersResource;
+        ((Options) this.internal.options).counters = counters;
         return this;
     }
     public Panel build() {

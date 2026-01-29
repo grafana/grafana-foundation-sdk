@@ -16,6 +16,3 @@ public class HeatmapTooltip {
   public Boolean showColorScale;
 }
 ```
-## See also
-
- * <span class="badge builder"></span> [HeatmapTooltipBuilder](./builder-HeatmapTooltipBuilder.md)

@@ -127,7 +127,7 @@ public PanelBuilder colorStrategy(ColorStrategy colorStrategy)
 Set which colors are used when the price movement is up or down
 
 ```java
-public PanelBuilder colors(com.grafana.foundation.cog.Builder<CandlestickColors> colors)
+public PanelBuilder colors(CandlestickColors colors)
 ```
 
 ### <span class="badge object-method"></span> dataLinks
@@ -187,7 +187,7 @@ public PanelBuilder drawStyle(GraphDrawStyle drawStyle)
 Map fields to appropriate dimension
 
 ```java
-public PanelBuilder fields(com.grafana.foundation.cog.Builder<CandlestickFieldMap> fields)
+public PanelBuilder fields(CandlestickFieldMap fields)
 ```
 
 ### <span class="badge object-method"></span> fillBelowTo

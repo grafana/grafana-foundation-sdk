@@ -47,6 +47,3 @@ Validate checks all the validation constraints that may be defined on `Candlesti
 func (candlestickFieldMap *CandlestickFieldMap) Validate() error
 ```
 
-## See also
-
- * <span class="badge builder"></span> [CandlestickFieldMapBuilder](./builder-CandlestickFieldMapBuilder.md)

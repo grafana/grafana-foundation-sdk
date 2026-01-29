@@ -5,6 +5,7 @@ package debug
 import (
 	cog "github.com/grafana/grafana-foundation-sdk/go/cog"
 	variants "github.com/grafana/grafana-foundation-sdk/go/cog/variants"
+	common "github.com/grafana/grafana-foundation-sdk/go/common"
 	dashboard "github.com/grafana/grafana-foundation-sdk/go/dashboard"
 )
 
@@ -96,7 +97,7 @@ func (builder *PanelBuilder) Transparent(transparent bool) *PanelBuilder {
 }
 
 // The datasource used in all targets.
-func (builder *PanelBuilder) Datasource(datasource dashboard.DataSourceRef) *PanelBuilder {
+func (builder *PanelBuilder) Datasource(datasource common.DataSourceRef) *PanelBuilder {
 	builder.internal.Datasource = &datasource
 
 	return builder
@@ -490,16 +491,11 @@ func (builder *PanelBuilder) Mode(mode DebugMode) *PanelBuilder {
 	return builder
 }
 
-func (builder *PanelBuilder) Counters(counters cog.Builder[UpdateConfig]) *PanelBuilder {
+func (builder *PanelBuilder) Counters(counters UpdateConfig) *PanelBuilder {
 	if builder.internal.Options == nil {
 		builder.internal.Options = NewOptions()
 	}
-	countersResource, err := counters.Build()
-	if err != nil {
-		builder.errors = append(builder.errors, err.(cog.BuildErrors)...)
-		return builder
-	}
-	builder.internal.Options.(*Options).Counters = &countersResource
+	builder.internal.Options.(*Options).Counters = &counters
 
 	return builder
 }

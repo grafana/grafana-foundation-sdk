@@ -97,7 +97,7 @@ func (builder *PanelBuilder) Transparent(transparent bool) *PanelBuilder {
 }
 
 // The datasource used in all targets.
-func (builder *PanelBuilder) Datasource(datasource dashboard.DataSourceRef) *PanelBuilder {
+func (builder *PanelBuilder) Datasource(datasource common.DataSourceRef) *PanelBuilder {
 	builder.internal.Datasource = &datasource
 
 	return builder
@@ -508,46 +508,31 @@ func (builder *PanelBuilder) Calculation(calculation cog.Builder[common.HeatmapC
 }
 
 // Controls the color options
-func (builder *PanelBuilder) Color(color cog.Builder[HeatmapColorOptions]) *PanelBuilder {
+func (builder *PanelBuilder) Color(color HeatmapColorOptions) *PanelBuilder {
 	if builder.internal.Options == nil {
 		builder.internal.Options = NewOptions()
 	}
-	colorResource, err := color.Build()
-	if err != nil {
-		builder.errors = append(builder.errors, err.(cog.BuildErrors)...)
-		return builder
-	}
-	builder.internal.Options.(*Options).Color = colorResource
+	builder.internal.Options.(*Options).Color = color
 
 	return builder
 }
 
 // Filters values between a given range
-func (builder *PanelBuilder) FilterValues(filterValues cog.Builder[FilterValueRange]) *PanelBuilder {
+func (builder *PanelBuilder) FilterValues(filterValues FilterValueRange) *PanelBuilder {
 	if builder.internal.Options == nil {
 		builder.internal.Options = NewOptions()
 	}
-	filterValuesResource, err := filterValues.Build()
-	if err != nil {
-		builder.errors = append(builder.errors, err.(cog.BuildErrors)...)
-		return builder
-	}
-	builder.internal.Options.(*Options).FilterValues = &filterValuesResource
+	builder.internal.Options.(*Options).FilterValues = &filterValues
 
 	return builder
 }
 
 // Controls tick alignment and value name when not calculating from data
-func (builder *PanelBuilder) RowsFrame(rowsFrame cog.Builder[RowsHeatmapOptions]) *PanelBuilder {
+func (builder *PanelBuilder) RowsFrame(rowsFrame RowsHeatmapOptions) *PanelBuilder {
 	if builder.internal.Options == nil {
 		builder.internal.Options = NewOptions()
 	}
-	rowsFrameResource, err := rowsFrame.Build()
-	if err != nil {
-		builder.errors = append(builder.errors, err.(cog.BuildErrors)...)
-		return builder
-	}
-	builder.internal.Options.(*Options).RowsFrame = &rowsFrameResource
+	builder.internal.Options.(*Options).RowsFrame = &rowsFrame
 
 	return builder
 }
@@ -587,31 +572,21 @@ func (builder *PanelBuilder) CellRadius(cellRadius float32) *PanelBuilder {
 }
 
 // Controls cell value unit
-func (builder *PanelBuilder) CellValues(cellValues cog.Builder[CellValues]) *PanelBuilder {
+func (builder *PanelBuilder) CellValues(cellValues CellValues) *PanelBuilder {
 	if builder.internal.Options == nil {
 		builder.internal.Options = NewOptions()
 	}
-	cellValuesResource, err := cellValues.Build()
-	if err != nil {
-		builder.errors = append(builder.errors, err.(cog.BuildErrors)...)
-		return builder
-	}
-	builder.internal.Options.(*Options).CellValues = &cellValuesResource
+	builder.internal.Options.(*Options).CellValues = &cellValues
 
 	return builder
 }
 
 // Controls yAxis placement
-func (builder *PanelBuilder) YAxis(yAxis cog.Builder[YAxisConfig]) *PanelBuilder {
+func (builder *PanelBuilder) YAxis(yAxis YAxisConfig) *PanelBuilder {
 	if builder.internal.Options == nil {
 		builder.internal.Options = NewOptions()
 	}
-	yAxisResource, err := yAxis.Build()
-	if err != nil {
-		builder.errors = append(builder.errors, err.(cog.BuildErrors)...)
-		return builder
-	}
-	builder.internal.Options.(*Options).YAxis = yAxisResource
+	builder.internal.Options.(*Options).YAxis = yAxis
 
 	return builder
 }

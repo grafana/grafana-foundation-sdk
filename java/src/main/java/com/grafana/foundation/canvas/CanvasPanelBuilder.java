@@ -6,7 +6,7 @@ import com.grafana.foundation.dashboard.Panel;
 import java.util.List;
 import com.grafana.foundation.cog.variants.Dataquery;
 import java.util.LinkedList;
-import com.grafana.foundation.dashboard.DataSourceRef;
+import com.grafana.foundation.common.DataSourceRef;
 import com.grafana.foundation.dashboard.GridPos;
 import com.grafana.foundation.dashboard.DashboardLink;
 import com.grafana.foundation.dashboard.PanelRepeatDirection;
@@ -420,12 +420,11 @@ public class CanvasPanelBuilder implements com.grafana.foundation.cog.Builder<Pa
         return this;
     }
     
-    public CanvasPanelBuilder root(com.grafana.foundation.cog.Builder<CanvasOptionsRoot> root) {
+    public CanvasPanelBuilder root(CanvasOptionsRoot root) {
 		if (this.internal.options == null) {
 			this.internal.options = new com.grafana.foundation.canvas.Options();
 		}
-    CanvasOptionsRoot rootResource = root.build();
-        ((Options) this.internal.options).root = rootResource;
+        ((Options) this.internal.options).root = root;
         return this;
     }
     public Panel build() {

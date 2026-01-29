@@ -14,6 +14,3 @@ export interface ExemplarConfig {
 }
 
 ```
-## See also
-
- * <span class="badge builder"></span> [ExemplarConfigBuilder](./builder-ExemplarConfigBuilder.md)

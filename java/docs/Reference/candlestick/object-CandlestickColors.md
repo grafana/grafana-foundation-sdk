@@ -12,6 +12,3 @@ public class CandlestickColors {
   public String flat;
 }
 ```
-## See also
-
- * <span class="badge builder"></span> [CandlestickColorsBuilder](./builder-CandlestickColorsBuilder.md)

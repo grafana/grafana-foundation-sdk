@@ -18,7 +18,7 @@ class Options:
     max_viz_height: int
     orientation: common.VizOrientation
 
-    def __init__(self, display_mode: typing.Optional[common.BarGaugeDisplayMode] = None, value_mode: typing.Optional[common.BarGaugeValueMode] = None, name_placement: typing.Optional[common.BarGaugeNamePlacement] = None, show_unfilled: bool = True, sizing: typing.Optional[common.BarGaugeSizing] = None, min_viz_width: int = 8, min_viz_height: int = 16, reduce_options: typing.Optional[common.ReduceDataOptions] = None, text: typing.Optional[common.VizTextDisplayOptions] = None, max_viz_height: int = 300, orientation: typing.Optional[common.VizOrientation] = None):
+    def __init__(self, display_mode: typing.Optional[common.BarGaugeDisplayMode] = None, value_mode: typing.Optional[common.BarGaugeValueMode] = None, name_placement: typing.Optional[common.BarGaugeNamePlacement] = None, show_unfilled: bool = True, sizing: typing.Optional[common.BarGaugeSizing] = None, min_viz_width: int = 8, min_viz_height: int = 16, reduce_options: typing.Optional[common.ReduceDataOptions] = None, text: typing.Optional[common.VizTextDisplayOptions] = None, max_viz_height: int = 300, orientation: typing.Optional[common.VizOrientation] = None) -> None:
         self.display_mode = display_mode if display_mode is not None else common.BarGaugeDisplayMode.GRADIENT
         self.value_mode = value_mode if value_mode is not None else common.BarGaugeValueMode.COLOR
         self.name_placement = name_placement if name_placement is not None else common.BarGaugeNamePlacement.AUTO

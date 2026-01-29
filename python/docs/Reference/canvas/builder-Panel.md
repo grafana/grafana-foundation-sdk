@@ -47,7 +47,7 @@ def data_links(links: list[cogbuilder.Builder[dashboard.DashboardLink]]) -> typi
 The datasource used in all targets.
 
 ```python
-def datasource(datasource: dashboard.DataSourceRef) -> typing.Self
+def datasource(datasource: common.DataSourceRef) -> typing.Self
 ```
 
 ### <span class="badge object-method"></span> decimals
@@ -287,7 +287,7 @@ The root element of canvas (frame), where all canvas elements are nested
 TODO: Figure out how to define a default value for this
 
 ```python
-def root(root: cogbuilder.Builder[canvas.CanvasOptionsRoot]) -> typing.Self
+def root(root: canvas.CanvasOptionsRoot) -> typing.Self
 ```
 
 ### <span class="badge object-method"></span> show_advanced_types

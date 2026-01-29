@@ -63,7 +63,7 @@ def cell_radius(cell_radius: float) -> typing.Self
 Controls cell value unit
 
 ```python
-def cell_values(cell_values: cogbuilder.Builder[heatmap.CellValues]) -> typing.Self
+def cell_values(cell_values: heatmap.CellValues) -> typing.Self
 ```
 
 ### <span class="badge object-method"></span> color
@@ -71,7 +71,7 @@ def cell_values(cell_values: cogbuilder.Builder[heatmap.CellValues]) -> typing.S
 Controls the color options
 
 ```python
-def color(color: cogbuilder.Builder[heatmap.HeatmapColorOptions]) -> typing.Self
+def color(color: heatmap.HeatmapColorOptions) -> typing.Self
 ```
 
 ### <span class="badge object-method"></span> color_scheme
@@ -95,7 +95,7 @@ def data_links(links: list[cogbuilder.Builder[dashboard.DashboardLink]]) -> typi
 The datasource used in all targets.
 
 ```python
-def datasource(datasource: dashboard.DataSourceRef) -> typing.Self
+def datasource(datasource: common.DataSourceRef) -> typing.Self
 ```
 
 ### <span class="badge object-method"></span> decimals
@@ -141,7 +141,7 @@ def exemplars_color(color: str) -> typing.Self
 Filters values between a given range
 
 ```python
-def filter_values(filter_values: cogbuilder.Builder[heatmap.FilterValueRange]) -> typing.Self
+def filter_values(filter_values: heatmap.FilterValueRange) -> typing.Self
 ```
 
 ### <span class="badge object-method"></span> grid_pos
@@ -373,7 +373,7 @@ def repeat_direction(repeat_direction: typing.Literal["h", "v"]) -> typing.Self
 Controls tick alignment and value name when not calculating from data
 
 ```python
-def rows_frame(rows_frame: cogbuilder.Builder[heatmap.RowsHeatmapOptions]) -> typing.Self
+def rows_frame(rows_frame: heatmap.RowsHeatmapOptions) -> typing.Self
 ```
 
 ### <span class="badge object-method"></span> scale_distribution
@@ -573,7 +573,7 @@ def with_transformation(transformation: dashboard.DataTransformerConfig) -> typi
 Controls yAxis placement
 
 ```python
-def y_axis(y_axis: cogbuilder.Builder[heatmap.YAxisConfig]) -> typing.Self
+def y_axis(y_axis: heatmap.YAxisConfig) -> typing.Self
 ```
 
 ## See also

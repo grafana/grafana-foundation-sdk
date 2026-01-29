@@ -99,7 +99,7 @@ class PanelBuilder implements \Grafana\Foundation\Cog\Builder
     /**
      * The datasource used in all targets.
      */
-    public function datasource(\Grafana\Foundation\Dashboard\DataSourceRef $datasource): static
+    public function datasource(\Grafana\Foundation\Common\DataSourceRef $datasource): static
     {
         $this->internal->datasource = $datasource;
     
@@ -636,48 +636,42 @@ class PanelBuilder implements \Grafana\Foundation\Cog\Builder
 
     /**
      * Controls the color options
-     * @param \Grafana\Foundation\Cog\Builder<\Grafana\Foundation\Heatmap\HeatmapColorOptions> $color
      */
-    public function color(\Grafana\Foundation\Cog\Builder $color): static
+    public function color(\Grafana\Foundation\Heatmap\HeatmapColorOptions $color): static
     {    
         if ($this->internal->options === null) {
             $this->internal->options = new \Grafana\Foundation\Heatmap\Options();
         }
         assert($this->internal->options instanceof \Grafana\Foundation\Heatmap\Options);
-        $colorResource = $color->build();
-        $this->internal->options->color = $colorResource;
+        $this->internal->options->color = $color;
     
         return $this;
     }
 
     /**
      * Filters values between a given range
-     * @param \Grafana\Foundation\Cog\Builder<\Grafana\Foundation\Heatmap\FilterValueRange> $filterValues
      */
-    public function filterValues(\Grafana\Foundation\Cog\Builder $filterValues): static
+    public function filterValues(\Grafana\Foundation\Heatmap\FilterValueRange $filterValues): static
     {    
         if ($this->internal->options === null) {
             $this->internal->options = new \Grafana\Foundation\Heatmap\Options();
         }
         assert($this->internal->options instanceof \Grafana\Foundation\Heatmap\Options);
-        $filterValuesResource = $filterValues->build();
-        $this->internal->options->filterValues = $filterValuesResource;
+        $this->internal->options->filterValues = $filterValues;
     
         return $this;
     }
 
     /**
      * Controls tick alignment and value name when not calculating from data
-     * @param \Grafana\Foundation\Cog\Builder<\Grafana\Foundation\Heatmap\RowsHeatmapOptions> $rowsFrame
      */
-    public function rowsFrame(\Grafana\Foundation\Cog\Builder $rowsFrame): static
+    public function rowsFrame(\Grafana\Foundation\Heatmap\RowsHeatmapOptions $rowsFrame): static
     {    
         if ($this->internal->options === null) {
             $this->internal->options = new \Grafana\Foundation\Heatmap\Options();
         }
         assert($this->internal->options instanceof \Grafana\Foundation\Heatmap\Options);
-        $rowsFrameResource = $rowsFrame->build();
-        $this->internal->options->rowsFrame = $rowsFrameResource;
+        $this->internal->options->rowsFrame = $rowsFrame;
     
         return $this;
     }
@@ -732,32 +726,28 @@ class PanelBuilder implements \Grafana\Foundation\Cog\Builder
 
     /**
      * Controls cell value unit
-     * @param \Grafana\Foundation\Cog\Builder<\Grafana\Foundation\Heatmap\CellValues> $cellValues
      */
-    public function cellValues(\Grafana\Foundation\Cog\Builder $cellValues): static
+    public function cellValues(\Grafana\Foundation\Heatmap\CellValues $cellValues): static
     {    
         if ($this->internal->options === null) {
             $this->internal->options = new \Grafana\Foundation\Heatmap\Options();
         }
         assert($this->internal->options instanceof \Grafana\Foundation\Heatmap\Options);
-        $cellValuesResource = $cellValues->build();
-        $this->internal->options->cellValues = $cellValuesResource;
+        $this->internal->options->cellValues = $cellValues;
     
         return $this;
     }
 
     /**
      * Controls yAxis placement
-     * @param \Grafana\Foundation\Cog\Builder<\Grafana\Foundation\Heatmap\YAxisConfig> $yAxis
      */
-    public function yAxis(\Grafana\Foundation\Cog\Builder $yAxis): static
+    public function yAxis(\Grafana\Foundation\Heatmap\YAxisConfig $yAxis): static
     {    
         if ($this->internal->options === null) {
             $this->internal->options = new \Grafana\Foundation\Heatmap\Options();
         }
         assert($this->internal->options instanceof \Grafana\Foundation\Heatmap\Options);
-        $yAxisResource = $yAxis->build();
-        $this->internal->options->yAxis = $yAxisResource;
+        $this->internal->options->yAxis = $yAxis;
     
         return $this;
     }

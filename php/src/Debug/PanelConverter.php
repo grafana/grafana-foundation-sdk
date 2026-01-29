@@ -84,7 +84,7 @@ final class PanelConverter
     
         
     $buffer = 'datasource(';
-        $arg0 ='(new \Grafana\Foundation\Dashboard\DataSourceRef('.(($input->datasource->type !== null) ? 'type: '.\var_export($input->datasource->type, true).', ' : '').''.(($input->datasource->uid !== null) ? 'uid: '.\var_export($input->datasource->uid, true).', ' : '').'))';
+        $arg0 ='(new \Grafana\Foundation\Common\DataSourceRef('.(($input->datasource->type !== null) ? 'type: '.\var_export($input->datasource->type, true).', ' : '').''.(($input->datasource->uid !== null) ? 'uid: '.\var_export($input->datasource->uid, true).', ' : '').'))';
         $buffer .= $arg0;
         
     $buffer .= ')';
@@ -526,7 +526,7 @@ final class PanelConverter
     
         
     $buffer = 'counters(';
-        $arg0 = \Grafana\Foundation\Debug\UpdateConfigConverter::convert($input->options->counters);
+        $arg0 ='(new \Grafana\Foundation\Debug\UpdateConfig(render: '.\var_export($input->options->counters->render, true).',dataChanged: '.\var_export($input->options->counters->dataChanged, true).',schemaChanged: '.\var_export($input->options->counters->schemaChanged, true).',))';
         $buffer .= $arg0;
         
     $buffer .= ')';

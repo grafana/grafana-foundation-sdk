@@ -127,7 +127,7 @@ func (builder *PanelBuilder) ColorStrategy(colorStrategy candlestick.ColorStrate
 Set which colors are used when the price movement is up or down
 
 ```go
-func (builder *PanelBuilder) Colors(colors cog.Builder[candlestick.CandlestickColors]) *PanelBuilder
+func (builder *PanelBuilder) Colors(colors candlestick.CandlestickColors) *PanelBuilder
 ```
 
 ### <span class="badge object-method"></span> DataLinks
@@ -143,7 +143,7 @@ func (builder *PanelBuilder) DataLinks(links []cog.Builder[dashboard.DashboardLi
 The datasource used in all targets.
 
 ```go
-func (builder *PanelBuilder) Datasource(datasource dashboard.DataSourceRef) *PanelBuilder
+func (builder *PanelBuilder) Datasource(datasource common.DataSourceRef) *PanelBuilder
 ```
 
 ### <span class="badge object-method"></span> Decimals
@@ -187,7 +187,7 @@ func (builder *PanelBuilder) DrawStyle(drawStyle common.GraphDrawStyle) *PanelBu
 Map fields to appropriate dimension
 
 ```go
-func (builder *PanelBuilder) Fields(fields cog.Builder[candlestick.CandlestickFieldMap]) *PanelBuilder
+func (builder *PanelBuilder) Fields(fields candlestick.CandlestickFieldMap) *PanelBuilder
 ```
 
 ### <span class="badge object-method"></span> FillBelowTo

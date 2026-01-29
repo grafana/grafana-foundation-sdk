@@ -2,6 +2,7 @@
 
 import * as cog from '../cog';
 import * as dashboard from '../dashboard';
+import * as common from '../common';
 import * as nodegraph from '../nodegraph';
 
 // Dashboard panels are the basic visualization building blocks.
@@ -62,7 +63,7 @@ export class PanelBuilder implements cog.Builder<dashboard.Panel> {
     }
 
     // The datasource used in all targets.
-    datasource(datasource: dashboard.DataSourceRef): this {
+    datasource(datasource: common.DataSourceRef): this {
         this.internal.datasource = datasource;
         return this;
     }
@@ -440,21 +441,19 @@ export class PanelBuilder implements cog.Builder<dashboard.Panel> {
         return this;
     }
 
-    nodes(nodes: cog.Builder<nodegraph.NodeOptions>): this {
+    nodes(nodes: nodegraph.NodeOptions): this {
         if (!this.internal.options) {
             this.internal.options = nodegraph.defaultOptions();
         }
-        const nodesResource = nodes.build();
-        this.internal.options.nodes = nodesResource;
+        this.internal.options.nodes = nodes;
         return this;
     }
 
-    edges(edges: cog.Builder<nodegraph.EdgeOptions>): this {
+    edges(edges: nodegraph.EdgeOptions): this {
         if (!this.internal.options) {
             this.internal.options = nodegraph.defaultOptions();
         }
-        const edgesResource = edges.build();
-        this.internal.options.edges = edgesResource;
+        this.internal.options.edges = edges;
         return this;
     }
 }

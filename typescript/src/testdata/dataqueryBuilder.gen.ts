@@ -2,7 +2,7 @@
 
 import * as cog from '../cog';
 import * as testdata from '../testdata';
-import * as dashboard from '../dashboard';
+import * as common from '../common';
 
 export class DataqueryBuilder implements cog.Builder<cog.Dataquery> {
     protected readonly internal: testdata.dataquery;
@@ -46,7 +46,7 @@ export class DataqueryBuilder implements cog.Builder<cog.Dataquery> {
     }
 
     // The datasource
-    datasource(datasource: dashboard.DataSourceRef): this {
+    datasource(datasource: common.DataSourceRef): this {
         this.internal.datasource = datasource;
         return this;
     }

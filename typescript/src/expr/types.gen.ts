@@ -1,6 +1,6 @@
 // Code generated - EDITING IS FUTILE. DO NOT EDIT.
 
-import * as dashboard from '../dashboard';
+import * as common from '../common';
 
 
 export type expr = TypeMath | TypeReduce | TypeResample | TypeClassicConditions | TypeThreshold | TypeSql;
@@ -9,7 +9,7 @@ export const defaultExpr = (): expr => (defaultTypeMath());
 
 export interface TypeMath {
 	// The datasource
-	datasource?: dashboard.DataSourceRef;
+	datasource?: common.DataSourceRef;
 	// General math expression
 	expression: string;
 	// true if query is disabled (ie should not be returned to the dashboard)
@@ -28,7 +28,7 @@ export interface TypeMath {
 	// It can be used to distinguish different types of queries.
 	queryType?: string;
 	// RefID is the unique identifier of the query, set by the frontend call.
-	refId: string;
+	refId?: string;
 	// Optionally define expected query result behavior
 	resultAssertions?: {
 		// Maximum frame count
@@ -66,14 +66,13 @@ export interface TypeMath {
 
 export const defaultTypeMath = (): TypeMath => ({
 	expression: "",
-	refId: "",
 	type: "math",
 	_implementsDataqueryVariant: () => {},
 });
 
 export interface TypeReduce {
 	// The datasource
-	datasource?: dashboard.DataSourceRef;
+	datasource?: common.DataSourceRef;
 	// Reference to single query result
 	expression: string;
 	// true if query is disabled (ie should not be returned to the dashboard)
@@ -102,7 +101,7 @@ export interface TypeReduce {
 	//  - `"median"` 
 	reducer: "sum" | "mean" | "min" | "max" | "count" | "last" | "median";
 	// RefID is the unique identifier of the query, set by the frontend call.
-	refId: string;
+	refId?: string;
 	// Optionally define expected query result behavior
 	resultAssertions?: {
 		// Maximum frame count
@@ -151,14 +150,13 @@ export interface TypeReduce {
 export const defaultTypeReduce = (): TypeReduce => ({
 	expression: "",
 	reducer: "sum",
-	refId: "",
 	type: "reduce",
 	_implementsDataqueryVariant: () => {},
 });
 
 export interface TypeResample {
 	// The datasource
-	datasource?: dashboard.DataSourceRef;
+	datasource?: common.DataSourceRef;
 	// The downsample function
 	// Possible enum values:
 	//  - `"sum"` 
@@ -187,7 +185,7 @@ export interface TypeResample {
 	// It can be used to distinguish different types of queries.
 	queryType?: string;
 	// RefID is the unique identifier of the query, set by the frontend call.
-	refId: string;
+	refId?: string;
 	// Optionally define expected query result behavior
 	resultAssertions?: {
 		// Maximum frame count
@@ -234,7 +232,6 @@ export interface TypeResample {
 export const defaultTypeResample = (): TypeResample => ({
 	downsampler: "sum",
 	expression: "",
-	refId: "",
 	type: "resample",
 	upsampler: "pad",
 	window: "",
@@ -259,7 +256,7 @@ export interface TypeClassicConditions {
 		};
 	}[];
 	// The datasource
-	datasource?: dashboard.DataSourceRef;
+	datasource?: common.DataSourceRef;
 	// true if query is disabled (ie should not be returned to the dashboard)
 	// NOTE: this does not always imply that the query should not be executed since
 	// the results from a hidden query may be used as the input to other queries (SSE etc)
@@ -276,7 +273,7 @@ export interface TypeClassicConditions {
 	// It can be used to distinguish different types of queries.
 	queryType?: string;
 	// RefID is the unique identifier of the query, set by the frontend call.
-	refId: string;
+	refId?: string;
 	// Optionally define expected query result behavior
 	resultAssertions?: {
 		// Maximum frame count
@@ -314,7 +311,6 @@ export interface TypeClassicConditions {
 
 export const defaultTypeClassicConditions = (): TypeClassicConditions => ({
 	conditions: [],
-	refId: "",
 	type: "classic_conditions",
 	_implementsDataqueryVariant: () => {},
 });
@@ -335,7 +331,7 @@ export interface TypeThreshold {
 		};
 	}[];
 	// The datasource
-	datasource?: dashboard.DataSourceRef;
+	datasource?: common.DataSourceRef;
 	// Reference to single query result
 	expression: string;
 	// true if query is disabled (ie should not be returned to the dashboard)
@@ -354,7 +350,7 @@ export interface TypeThreshold {
 	// It can be used to distinguish different types of queries.
 	queryType?: string;
 	// RefID is the unique identifier of the query, set by the frontend call.
-	refId: string;
+	refId?: string;
 	// Optionally define expected query result behavior
 	resultAssertions?: {
 		// Maximum frame count
@@ -393,14 +389,13 @@ export interface TypeThreshold {
 export const defaultTypeThreshold = (): TypeThreshold => ({
 	conditions: [],
 	expression: "",
-	refId: "",
 	type: "threshold",
 	_implementsDataqueryVariant: () => {},
 });
 
 export interface TypeSql {
 	// The datasource
-	datasource?: dashboard.DataSourceRef;
+	datasource?: common.DataSourceRef;
 	expression: string;
 	format: string;
 	// true if query is disabled (ie should not be returned to the dashboard)
@@ -419,7 +414,7 @@ export interface TypeSql {
 	// It can be used to distinguish different types of queries.
 	queryType?: string;
 	// RefID is the unique identifier of the query, set by the frontend call.
-	refId: string;
+	refId?: string;
 	// Optionally define expected query result behavior
 	resultAssertions?: {
 		// Maximum frame count
@@ -458,7 +453,6 @@ export interface TypeSql {
 export const defaultTypeSql = (): TypeSql => ({
 	expression: "",
 	format: "",
-	refId: "",
 	type: "sql",
 	_implementsDataqueryVariant: () => {},
 });

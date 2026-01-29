@@ -131,7 +131,7 @@ public PanelBuilder description(String description)
 Table Mode (auto)
 
 ```java
-public PanelBuilder dims(com.grafana.foundation.cog.Builder<XYDimensionConfig> dims)
+public PanelBuilder dims(XYDimensionConfig dims)
 ```
 
 ### <span class="badge object-method"></span> displayName
@@ -383,7 +383,7 @@ public PanelBuilder scaleDistribution(com.grafana.foundation.cog.Builder<ScaleDi
 Manual Mode
 
 ```java
-public PanelBuilder series(List<com.grafana.foundation.cog.Builder<ScatterSeriesConfig>> series)
+public PanelBuilder series(List<ScatterSeriesConfig> series)
 ```
 
 ### <span class="badge object-method"></span> seriesMapping

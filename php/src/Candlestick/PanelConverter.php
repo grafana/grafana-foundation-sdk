@@ -84,7 +84,7 @@ final class PanelConverter
     
         
     $buffer = 'datasource(';
-        $arg0 ='(new \Grafana\Foundation\Dashboard\DataSourceRef('.(($input->datasource->type !== null) ? 'type: '.\var_export($input->datasource->type, true).', ' : '').''.(($input->datasource->uid !== null) ? 'uid: '.\var_export($input->datasource->uid, true).', ' : '').'))';
+        $arg0 ='(new \Grafana\Foundation\Common\DataSourceRef('.(($input->datasource->type !== null) ? 'type: '.\var_export($input->datasource->type, true).', ' : '').''.(($input->datasource->uid !== null) ? 'uid: '.\var_export($input->datasource->uid, true).', ' : '').'))';
         $buffer .= $arg0;
         
     $buffer .= ')';
@@ -552,7 +552,7 @@ final class PanelConverter
     
         
     $buffer = 'fields(';
-        $arg0 = \Grafana\Foundation\Candlestick\CandlestickFieldMapConverter::convert($input->options->fields);
+        $arg0 ='(new \Grafana\Foundation\Candlestick\CandlestickFieldMap('.(($input->options->fields->open !== null) ? 'open: '.\var_export($input->options->fields->open, true).', ' : '').''.(($input->options->fields->high !== null) ? 'high: '.\var_export($input->options->fields->high, true).', ' : '').''.(($input->options->fields->low !== null) ? 'low: '.\var_export($input->options->fields->low, true).', ' : '').''.(($input->options->fields->close !== null) ? 'close: '.\var_export($input->options->fields->close, true).', ' : '').''.(($input->options->fields->volume !== null) ? 'volume: '.\var_export($input->options->fields->volume, true).', ' : '').'))';
         $buffer .= $arg0;
         
     $buffer .= ')';
@@ -565,7 +565,7 @@ final class PanelConverter
     
         
     $buffer = 'colors(';
-        $arg0 = \Grafana\Foundation\Candlestick\CandlestickColorsConverter::convert($input->options->colors);
+        $arg0 ='(new \Grafana\Foundation\Candlestick\CandlestickColors(up: '.\var_export($input->options->colors->up, true).',down: '.\var_export($input->options->colors->down, true).',flat: '.\var_export($input->options->colors->flat, true).',))';
         $buffer .= $arg0;
         
     $buffer .= ')';

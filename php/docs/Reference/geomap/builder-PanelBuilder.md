@@ -46,10 +46,8 @@ colorScheme(\Grafana\Foundation\Cog\Builder $color)
 
 ### <span class="badge object-method"></span> controls
 
-@param \Grafana\Foundation\Cog\Builder<\Grafana\Foundation\Geomap\ControlsOptions> $controls
-
 ```php
-controls(\Grafana\Foundation\Cog\Builder $controls)
+controls(\Grafana\Foundation\Geomap\ControlsOptions $controls)
 ```
 
 ### <span class="badge object-method"></span> dataLinks
@@ -67,7 +65,7 @@ dataLinks(array $links)
 The datasource used in all targets.
 
 ```php
-datasource(\Grafana\Foundation\Dashboard\DataSourceRef $datasource)
+datasource(\Grafana\Foundation\Common\DataSourceRef $datasource)
 ```
 
 ### <span class="badge object-method"></span> decimals
@@ -372,10 +370,8 @@ title(string $title)
 
 ### <span class="badge object-method"></span> tooltip
 
-@param \Grafana\Foundation\Cog\Builder<\Grafana\Foundation\Geomap\TooltipOptions> $tooltip
-
 ```php
-tooltip(\Grafana\Foundation\Cog\Builder $tooltip)
+tooltip(\Grafana\Foundation\Geomap\TooltipOptions $tooltip)
 ```
 
 ### <span class="badge object-method"></span> transformations
@@ -428,10 +424,8 @@ unit(string $unit)
 
 ### <span class="badge object-method"></span> view
 
-@param \Grafana\Foundation\Cog\Builder<\Grafana\Foundation\Geomap\MapViewConfig> $view
-
 ```php
-view(\Grafana\Foundation\Cog\Builder $view)
+view(\Grafana\Foundation\Geomap\MapViewConfig $view)
 ```
 
 ### <span class="badge object-method"></span> withOverride

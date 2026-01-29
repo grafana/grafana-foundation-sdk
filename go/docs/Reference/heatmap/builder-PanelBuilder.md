@@ -63,7 +63,7 @@ func (builder *PanelBuilder) CellRadius(cellRadius float32) *PanelBuilder
 Controls cell value unit
 
 ```go
-func (builder *PanelBuilder) CellValues(cellValues cog.Builder[heatmap.CellValues]) *PanelBuilder
+func (builder *PanelBuilder) CellValues(cellValues heatmap.CellValues) *PanelBuilder
 ```
 
 ### <span class="badge object-method"></span> Color
@@ -71,7 +71,7 @@ func (builder *PanelBuilder) CellValues(cellValues cog.Builder[heatmap.CellValue
 Controls the color options
 
 ```go
-func (builder *PanelBuilder) Color(color cog.Builder[heatmap.HeatmapColorOptions]) *PanelBuilder
+func (builder *PanelBuilder) Color(color heatmap.HeatmapColorOptions) *PanelBuilder
 ```
 
 ### <span class="badge object-method"></span> ColorScheme
@@ -95,7 +95,7 @@ func (builder *PanelBuilder) DataLinks(links []cog.Builder[dashboard.DashboardLi
 The datasource used in all targets.
 
 ```go
-func (builder *PanelBuilder) Datasource(datasource dashboard.DataSourceRef) *PanelBuilder
+func (builder *PanelBuilder) Datasource(datasource common.DataSourceRef) *PanelBuilder
 ```
 
 ### <span class="badge object-method"></span> Decimals
@@ -141,7 +141,7 @@ func (builder *PanelBuilder) ExemplarsColor(color string) *PanelBuilder
 Filters values between a given range
 
 ```go
-func (builder *PanelBuilder) FilterValues(filterValues cog.Builder[heatmap.FilterValueRange]) *PanelBuilder
+func (builder *PanelBuilder) FilterValues(filterValues heatmap.FilterValueRange) *PanelBuilder
 ```
 
 ### <span class="badge object-method"></span> GridPos
@@ -373,7 +373,7 @@ func (builder *PanelBuilder) RepeatDirection(repeatDirection dashboard.PanelRepe
 Controls tick alignment and value name when not calculating from data
 
 ```go
-func (builder *PanelBuilder) RowsFrame(rowsFrame cog.Builder[heatmap.RowsHeatmapOptions]) *PanelBuilder
+func (builder *PanelBuilder) RowsFrame(rowsFrame heatmap.RowsHeatmapOptions) *PanelBuilder
 ```
 
 ### <span class="badge object-method"></span> ScaleDistribution
@@ -573,7 +573,7 @@ func (builder *PanelBuilder) WithTransformation(transformation dashboard.DataTra
 Controls yAxis placement
 
 ```go
-func (builder *PanelBuilder) YAxis(yAxis cog.Builder[heatmap.YAxisConfig]) *PanelBuilder
+func (builder *PanelBuilder) YAxis(yAxis heatmap.YAxisConfig) *PanelBuilder
 ```
 
 ## See also

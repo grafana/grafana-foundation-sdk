@@ -9,7 +9,7 @@ title: <span class="badge object-type-class"></span> TypeClassicConditions
 class TypeClassicConditions(cogvariants.Dataquery):
     conditions: list[expr.ExprTypeClassicConditionsConditions]
     # The datasource
-    datasource: typing.Optional[dashboard.DataSourceRef]
+    datasource: typing.Optional[common.DataSourceRef]
     # true if query is disabled (ie should not be returned to the dashboard)
     # NOTE: this does not always imply that the query should not be executed since
     # the results from a hidden query may be used as the input to other queries (SSE etc)
@@ -26,7 +26,7 @@ class TypeClassicConditions(cogvariants.Dataquery):
     # It can be used to distinguish different types of queries.
     query_type: typing.Optional[str]
     # RefID is the unique identifier of the query, set by the frontend call.
-    ref_id: str
+    ref_id: typing.Optional[str]
     # Optionally define expected query result behavior
     result_assertions: typing.Optional[expr.ExprTypeClassicConditionsResultAssertions]
     # TimeRange represents the query range

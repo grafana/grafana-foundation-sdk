@@ -21,6 +21,3 @@ export interface MapViewConfig {
 }
 
 ```
-## See also
-
- * <span class="badge builder"></span> [MapViewConfigBuilder](./builder-MapViewConfigBuilder.md)

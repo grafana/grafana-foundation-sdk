@@ -48,6 +48,3 @@ Validate checks all the validation constraints that may be defined on `MapViewCo
 func (mapViewConfig *MapViewConfig) Validate() error
 ```
 
-## See also
-
- * <span class="badge builder"></span> [MapViewConfigBuilder](./builder-MapViewConfigBuilder.md)

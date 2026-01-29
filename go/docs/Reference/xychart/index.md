@@ -11,8 +11,6 @@
 ## Builders
 
  * <span class="badge builder"></span> [PanelBuilder](./builder-PanelBuilder.md)
- * <span class="badge builder"></span> [ScatterSeriesConfigBuilder](./builder-ScatterSeriesConfigBuilder.md)
- * <span class="badge builder"></span> [XYDimensionConfigBuilder](./builder-XYDimensionConfigBuilder.md)
 ## Functions
 
 ### <span class="badge function"></span> NewXYDimensionConfig
@@ -55,22 +53,6 @@ This configuration describes how to unmarshal it, convert it to code, …
 
 ```go
 func VariantConfig() variants.PanelcfgConfig
-```
-
-### <span class="badge function"></span> XYDimensionConfigConverter
-
-XYDimensionConfigConverter accepts a `XYDimensionConfig` object and generates the Go code to build this object using builders.
-
-```go
-func XYDimensionConfigConverter(input XYDimensionConfig) string
-```
-
-### <span class="badge function"></span> ScatterSeriesConfigConverter
-
-ScatterSeriesConfigConverter accepts a `ScatterSeriesConfig` object and generates the Go code to build this object using builders.
-
-```go
-func ScatterSeriesConfigConverter(input ScatterSeriesConfig) string
 ```
 
 ### <span class="badge function"></span> PanelConverter

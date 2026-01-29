@@ -127,7 +127,7 @@ def color_strategy(color_strategy: candlestick.ColorStrategy) -> typing.Self
 Set which colors are used when the price movement is up or down
 
 ```python
-def colors(colors: cogbuilder.Builder[candlestick.CandlestickColors]) -> typing.Self
+def colors(colors: candlestick.CandlestickColors) -> typing.Self
 ```
 
 ### <span class="badge object-method"></span> data_links
@@ -143,7 +143,7 @@ def data_links(links: list[cogbuilder.Builder[dashboard.DashboardLink]]) -> typi
 The datasource used in all targets.
 
 ```python
-def datasource(datasource: dashboard.DataSourceRef) -> typing.Self
+def datasource(datasource: common.DataSourceRef) -> typing.Self
 ```
 
 ### <span class="badge object-method"></span> decimals
@@ -187,7 +187,7 @@ def draw_style(draw_style: common.GraphDrawStyle) -> typing.Self
 Map fields to appropriate dimension
 
 ```python
-def fields(fields: cogbuilder.Builder[candlestick.CandlestickFieldMap]) -> typing.Self
+def fields(fields: candlestick.CandlestickFieldMap) -> typing.Self
 ```
 
 ### <span class="badge object-method"></span> fill_below_to
