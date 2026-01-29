@@ -54,7 +54,7 @@
     "Dimensions": {
       "type": "object",
       "additionalProperties": {
-        "anyOf": [
+        "oneOf": [
           {
             "type": "string"
           },
@@ -205,7 +205,7 @@
           "description": "SELECT part of the SQL expression"
         },
         "from": {
-          "anyOf": [
+          "oneOf": [
             {
               "$ref": "#/definitions/QueryEditorPropertyExpression"
             },
@@ -245,7 +245,11 @@
       ],
       "properties": {
         "type": {
-          "$ref": "#/definitions/QueryEditorExpressionType",
+          "allOf": [
+            {
+              "$ref": "#/definitions/QueryEditorExpressionType"
+            }
+          ],
           "default": "function"
         },
         "name": {
@@ -279,7 +283,11 @@
       ],
       "properties": {
         "type": {
-          "$ref": "#/definitions/QueryEditorExpressionType",
+          "allOf": [
+            {
+              "$ref": "#/definitions/QueryEditorExpressionType"
+            }
+          ],
           "default": "functionParameter"
         },
         "name": {
@@ -296,7 +304,11 @@
       ],
       "properties": {
         "type": {
-          "$ref": "#/definitions/QueryEditorExpressionType",
+          "allOf": [
+            {
+              "$ref": "#/definitions/QueryEditorExpressionType"
+            }
+          ],
           "default": "property"
         },
         "property": {
@@ -312,7 +324,11 @@
       ],
       "properties": {
         "type": {
-          "$ref": "#/definitions/QueryEditorPropertyType",
+          "allOf": [
+            {
+              "$ref": "#/definitions/QueryEditorPropertyType"
+            }
+          ],
           "default": "string"
         },
         "name": {
@@ -350,7 +366,7 @@
       }
     },
     "QueryEditorExpression": {
-      "anyOf": [
+      "oneOf": [
         {
           "$ref": "#/definitions/QueryEditorArrayExpression"
         },
@@ -380,7 +396,11 @@
       ],
       "properties": {
         "type": {
-          "$ref": "#/definitions/QueryEditorExpressionType",
+          "allOf": [
+            {
+              "$ref": "#/definitions/QueryEditorExpressionType"
+            }
+          ],
           "default": "groupBy"
         },
         "property": {
@@ -398,7 +418,11 @@
       ],
       "properties": {
         "type": {
-          "$ref": "#/definitions/QueryEditorExpressionType",
+          "allOf": [
+            {
+              "$ref": "#/definitions/QueryEditorExpressionType"
+            }
+          ],
           "default": "operator"
         },
         "property": {
@@ -418,7 +442,7 @@
           "type": "string"
         },
         "value": {
-          "anyOf": [
+          "oneOf": [
             {
               "$ref": "#/definitions/QueryEditorOperatorType"
             },
@@ -434,7 +458,7 @@
       "description": "TS type is QueryEditorOperator\u003cT extends QueryEditorOperatorValueType\u003e, extended in veneer"
     },
     "QueryEditorOperatorType": {
-      "anyOf": [
+      "oneOf": [
         {
           "type": "string"
         },
@@ -447,7 +471,7 @@
       ]
     },
     "QueryEditorOperatorValueType": {
-      "anyOf": [
+      "oneOf": [
         {
           "$ref": "#/definitions/QueryEditorOperatorType"
         },
@@ -637,7 +661,7 @@
       "description": "Shape of a CloudWatch Annotation query\nTS type is CloudWatchDefaultQuery = Omit\u003cCloudWatchLogsQuery, 'queryMode'\u003e \u0026 CloudWatchMetricsQuery, declared in veneer\n#CloudWatchDefaultQuery: #CloudWatchLogsQuery \u0026 #CloudWatchMetricsQuery @cuetsy(kind=\"type\")"
     },
     "CloudWatchQuery": {
-      "anyOf": [
+      "oneOf": [
         {
           "$ref": "#/definitions/CloudWatchMetricsQuery"
         },

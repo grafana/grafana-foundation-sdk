@@ -210,7 +210,6 @@ func VariantConfig() variants.PanelcfgConfig {
 			if panel, ok := inputPanel.(*dashboard.Panel); ok {
 				return PanelConverter(*panel)
 			}
-
 			return PanelConverter(inputPanel.(dashboard.Panel))
 		},
 	}

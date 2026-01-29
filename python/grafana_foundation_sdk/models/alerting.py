@@ -20,7 +20,7 @@ class Query:
     # for requests.
     relative_time_range: typing.Optional['RelativeTimeRange']
 
-    def __init__(self, datasource_uid: typing.Optional[str] = None, model: typing.Optional[cogvariants.Dataquery] = None, query_type: typing.Optional[str] = None, ref_id: typing.Optional[str] = None, relative_time_range: typing.Optional['RelativeTimeRange'] = None):
+    def __init__(self, datasource_uid: typing.Optional[str] = None, model: typing.Optional[cogvariants.Dataquery] = None, query_type: typing.Optional[str] = None, ref_id: typing.Optional[str] = None, relative_time_range: typing.Optional['RelativeTimeRange'] = None) -> None:
         self.datasource_uid = datasource_uid
         self.model = model
         self.query_type = query_type
@@ -68,7 +68,7 @@ class RuleGroup:
     rules: typing.Optional[list['Rule']]
     title: typing.Optional[str]
 
-    def __init__(self, folder_uid: typing.Optional[str] = None, interval: typing.Optional['Duration'] = None, rules: typing.Optional[list['Rule']] = None, title: typing.Optional[str] = None):
+    def __init__(self, folder_uid: typing.Optional[str] = None, interval: typing.Optional['Duration'] = None, rules: typing.Optional[list['Rule']] = None, title: typing.Optional[str] = None) -> None:
         self.folder_uid = folder_uid
         self.interval = interval
         self.rules = rules
@@ -130,7 +130,7 @@ class NotificationSettings:
     # occurs first. `repeat_interval` should not be less than `group_interval`.
     repeat_interval: typing.Optional[str]
 
-    def __init__(self, group_by: typing.Optional[list[str]] = None, group_interval: typing.Optional[str] = None, group_wait: typing.Optional[str] = None, mute_time_intervals: typing.Optional[list[str]] = None, receiver: str = "", repeat_interval: typing.Optional[str] = None):
+    def __init__(self, group_by: typing.Optional[list[str]] = None, group_interval: typing.Optional[str] = None, group_wait: typing.Optional[str] = None, mute_time_intervals: typing.Optional[list[str]] = None, receiver: str = "", repeat_interval: typing.Optional[str] = None) -> None:
         self.group_by = group_by if group_by is not None else ["alertname", "grafana_folder"]
         self.group_interval = group_interval
         self.group_wait = group_wait
@@ -195,7 +195,7 @@ class ContactPoint:
     # set by the user.
     uid: typing.Optional[str]
 
-    def __init__(self, disable_resolve_message: typing.Optional[bool] = None, name: typing.Optional[str] = None, provenance: typing.Optional[str] = None, settings: typing.Optional['Json'] = None, type_val: typing.Optional[typing.Literal["alertmanager", "dingding", "discord", "email", "googlechat", "kafka", "line", "opsgenie", "pagerduty", "pushover", "sensugo", "slack", "teams", "telegram", "threema", "victorops", "webhook", "wecom"]] = None, uid: typing.Optional[str] = None):
+    def __init__(self, disable_resolve_message: typing.Optional[bool] = None, name: typing.Optional[str] = None, provenance: typing.Optional[str] = None, settings: typing.Optional['Json'] = None, type_val: typing.Optional[typing.Literal["alertmanager", "dingding", "discord", "email", "googlechat", "kafka", "line", "opsgenie", "pagerduty", "pushover", "sensugo", "slack", "teams", "telegram", "threema", "victorops", "webhook", "wecom"]] = None, uid: typing.Optional[str] = None) -> None:
         self.disable_resolve_message = disable_resolve_message
         self.name = name
         self.provenance = provenance
@@ -256,7 +256,7 @@ class Matcher:
     type: typing.Optional['MatchType']
     value: typing.Optional[str]
 
-    def __init__(self, name: typing.Optional[str] = None, type: typing.Optional['MatchType'] = None, value: typing.Optional[str] = None):
+    def __init__(self, name: typing.Optional[str] = None, type: typing.Optional['MatchType'] = None, value: typing.Optional[str] = None) -> None:
         self.name = name
         self.type = type
         self.value = value
@@ -296,7 +296,7 @@ class MuteTiming:
     name: typing.Optional[str]
     time_intervals: typing.Optional[list['TimeInterval']]
 
-    def __init__(self, name: typing.Optional[str] = None, time_intervals: typing.Optional[list['TimeInterval']] = None):
+    def __init__(self, name: typing.Optional[str] = None, time_intervals: typing.Optional[list['TimeInterval']] = None) -> None:
         self.name = name
         self.time_intervals = time_intervals
 
@@ -327,7 +327,7 @@ class NotificationTemplate:
     template: typing.Optional[str]
     version: typing.Optional[str]
 
-    def __init__(self, name: typing.Optional[str] = None, provenance: typing.Optional['Provenance'] = None, template: typing.Optional[str] = None, version: typing.Optional[str] = None):
+    def __init__(self, name: typing.Optional[str] = None, provenance: typing.Optional['Provenance'] = None, template: typing.Optional[str] = None, version: typing.Optional[str] = None) -> None:
         self.name = name
         self.provenance = provenance
         self.template = template
@@ -393,7 +393,7 @@ class Rule:
     uid: typing.Optional[str]
     updated: typing.Optional[str]
 
-    def __init__(self, annotations: typing.Optional[dict[str, str]] = None, condition: str = "", data: typing.Optional[list['Query']] = None, exec_err_state: typing.Optional[typing.Literal["OK", "Alerting", "Error"]] = None, folder_uid: str = "", for_val: str = "", id_val: typing.Optional[int] = None, is_paused: typing.Optional[bool] = None, labels: typing.Optional[dict[str, str]] = None, no_data_state: typing.Optional[typing.Literal["Alerting", "NoData", "OK"]] = None, notification_settings: typing.Optional['NotificationSettings'] = None, org_id: int = 0, provenance: typing.Optional['Provenance'] = None, record: typing.Optional['RecordRule'] = None, rule_group: str = "", title: str = "", uid: typing.Optional[str] = None, updated: typing.Optional[str] = None):
+    def __init__(self, annotations: typing.Optional[dict[str, str]] = None, condition: str = "", data: typing.Optional[list['Query']] = None, exec_err_state: typing.Optional[typing.Literal["OK", "Alerting", "Error"]] = None, folder_uid: str = "", for_val: str = "", id_val: typing.Optional[int] = None, is_paused: typing.Optional[bool] = None, labels: typing.Optional[dict[str, str]] = None, no_data_state: typing.Optional[typing.Literal["Alerting", "NoData", "OK"]] = None, notification_settings: typing.Optional['NotificationSettings'] = None, org_id: int = 0, provenance: typing.Optional['Provenance'] = None, record: typing.Optional['RecordRule'] = None, rule_group: str = "", title: str = "", uid: typing.Optional[str] = None, updated: typing.Optional[str] = None) -> None:
         self.annotations = annotations
         self.condition = condition
         self.data = data if data is not None else []
@@ -495,7 +495,7 @@ class RecordRule:
     # Name of the recorded metric.
     metric: str
 
-    def __init__(self, from_val: str = "", metric: str = ""):
+    def __init__(self, from_val: str = "", metric: str = "") -> None:
         self.from_val = from_val
         self.metric = metric
 
@@ -533,7 +533,7 @@ class RelativeTimeRange:
     # largest representable duration to approximately 290 years.
     to: typing.Optional['Duration']
 
-    def __init__(self, from_val: typing.Optional['Duration'] = None, to: typing.Optional['Duration'] = None):
+    def __init__(self, from_val: typing.Optional['Duration'] = None, to: typing.Optional['Duration'] = None) -> None:
         self.from_val = from_val
         self.to = to
 
@@ -583,7 +583,7 @@ class NotificationPolicy:
     repeat_interval: typing.Optional[str]
     routes: typing.Optional[list['NotificationPolicy']]
 
-    def __init__(self, active_time_intervals: typing.Optional[list[str]] = None, continue_val: typing.Optional[bool] = None, group_by: typing.Optional[list[str]] = None, group_interval: typing.Optional[str] = None, group_wait: typing.Optional[str] = None, match: typing.Optional[dict[str, str]] = None, match_re: typing.Optional['MatchRegexps'] = None, matchers: typing.Optional['Matchers'] = None, mute_time_intervals: typing.Optional[list[str]] = None, object_matchers: typing.Optional['ObjectMatchers'] = None, provenance: typing.Optional['Provenance'] = None, receiver: typing.Optional[str] = None, repeat_interval: typing.Optional[str] = None, routes: typing.Optional[list['NotificationPolicy']] = None):
+    def __init__(self, active_time_intervals: typing.Optional[list[str]] = None, continue_val: typing.Optional[bool] = None, group_by: typing.Optional[list[str]] = None, group_interval: typing.Optional[str] = None, group_wait: typing.Optional[str] = None, match: typing.Optional[dict[str, str]] = None, match_re: typing.Optional['MatchRegexps'] = None, matchers: typing.Optional['Matchers'] = None, mute_time_intervals: typing.Optional[list[str]] = None, object_matchers: typing.Optional['ObjectMatchers'] = None, provenance: typing.Optional['Provenance'] = None, receiver: typing.Optional[str] = None, repeat_interval: typing.Optional[str] = None, routes: typing.Optional[list['NotificationPolicy']] = None) -> None:
         self.active_time_intervals = active_time_intervals
         self.continue_val = continue_val
         self.group_by = group_by
@@ -676,7 +676,7 @@ class TimeInterval:
     years: typing.Optional[list['YearRange']]
     location: typing.Optional['Location']
 
-    def __init__(self, times: typing.Optional[list['TimeRange']] = None, weekdays: typing.Optional[list['WeekdayRange']] = None, days_of_month: typing.Optional[list['DayOfMonthRange']] = None, months: typing.Optional[list['MonthRange']] = None, years: typing.Optional[list['YearRange']] = None, location: typing.Optional['Location'] = None):
+    def __init__(self, times: typing.Optional[list['TimeRange']] = None, weekdays: typing.Optional[list['WeekdayRange']] = None, days_of_month: typing.Optional[list['DayOfMonthRange']] = None, months: typing.Optional[list['MonthRange']] = None, years: typing.Optional[list['YearRange']] = None, location: typing.Optional['Location'] = None) -> None:
         self.times = times
         self.weekdays = weekdays
         self.days_of_month = days_of_month
@@ -729,7 +729,7 @@ class TimeRange:
     from_val: typing.Optional[str]
     to: typing.Optional[str]
 
-    def __init__(self, from_val: typing.Optional[str] = None, to: typing.Optional[str] = None):
+    def __init__(self, from_val: typing.Optional[str] = None, to: typing.Optional[str] = None) -> None:
         self.from_val = from_val
         self.to = to
 
@@ -758,7 +758,7 @@ class WeekdayRange:
     begin: typing.Optional[int]
     end: typing.Optional[int]
 
-    def __init__(self, begin: typing.Optional[int] = None, end: typing.Optional[int] = None):
+    def __init__(self, begin: typing.Optional[int] = None, end: typing.Optional[int] = None) -> None:
         self.begin = begin
         self.end = end
 
@@ -787,7 +787,7 @@ class DayOfMonthRange:
     begin: typing.Optional[int]
     end: typing.Optional[int]
 
-    def __init__(self, begin: typing.Optional[int] = None, end: typing.Optional[int] = None):
+    def __init__(self, begin: typing.Optional[int] = None, end: typing.Optional[int] = None) -> None:
         self.begin = begin
         self.end = end
 
@@ -816,7 +816,7 @@ class YearRange:
     begin: typing.Optional[int]
     end: typing.Optional[int]
 
-    def __init__(self, begin: typing.Optional[int] = None, end: typing.Optional[int] = None):
+    def __init__(self, begin: typing.Optional[int] = None, end: typing.Optional[int] = None) -> None:
         self.begin = begin
         self.end = end
 
@@ -845,7 +845,7 @@ class MonthRange:
     begin: typing.Optional[int]
     end: typing.Optional[int]
 
-    def __init__(self, begin: typing.Optional[int] = None, end: typing.Optional[int] = None):
+    def __init__(self, begin: typing.Optional[int] = None, end: typing.Optional[int] = None) -> None:
         self.begin = begin
         self.end = end
 
