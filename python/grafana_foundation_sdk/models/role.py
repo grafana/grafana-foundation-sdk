@@ -15,7 +15,7 @@ class Role:
     # Do not show this role
     hidden: bool
 
-    def __init__(self, name: str = "", display_name: typing.Optional[str] = None, group_name: typing.Optional[str] = None, description: typing.Optional[str] = None, hidden: bool = False):
+    def __init__(self, name: str = "", display_name: typing.Optional[str] = None, group_name: typing.Optional[str] = None, description: typing.Optional[str] = None, hidden: bool = False) -> None:
         self.name = name
         self.display_name = display_name
         self.group_name = group_name

@@ -9,7 +9,7 @@ from ..models import dashboard
 class Dataquery(cogbuilder.Builder[loki.Dataquery]):
     _internal: loki.Dataquery
 
-    def __init__(self):
+    def __init__(self) -> None:
         self._internal = loki.Dataquery()
 
     def build(self) -> loki.Dataquery:

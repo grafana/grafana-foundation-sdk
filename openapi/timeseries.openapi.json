@@ -196,7 +196,7 @@
             "$ref": "#/components/schemas/GraphTransform"
           },
           "spanNulls": {
-            "anyOf": [
+            "oneOf": [
               {
                 "type": "boolean"
               },
@@ -219,7 +219,7 @@
             "type": "number"
           },
           "insertNulls": {
-            "anyOf": [
+            "oneOf": [
               {
                 "type": "boolean"
               },

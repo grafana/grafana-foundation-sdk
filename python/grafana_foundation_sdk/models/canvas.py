@@ -26,7 +26,7 @@ class Constraint:
     horizontal: typing.Optional['HorizontalConstraint']
     vertical: typing.Optional['VerticalConstraint']
 
-    def __init__(self, horizontal: typing.Optional['HorizontalConstraint'] = None, vertical: typing.Optional['VerticalConstraint'] = None):
+    def __init__(self, horizontal: typing.Optional['HorizontalConstraint'] = None, vertical: typing.Optional['VerticalConstraint'] = None) -> None:
         self.horizontal = horizontal
         self.vertical = vertical
 
@@ -59,7 +59,7 @@ class Placement:
     width: typing.Optional[float]
     height: typing.Optional[float]
 
-    def __init__(self, top: typing.Optional[float] = None, left: typing.Optional[float] = None, right: typing.Optional[float] = None, bottom: typing.Optional[float] = None, width: typing.Optional[float] = None, height: typing.Optional[float] = None):
+    def __init__(self, top: typing.Optional[float] = None, left: typing.Optional[float] = None, right: typing.Optional[float] = None, bottom: typing.Optional[float] = None, width: typing.Optional[float] = None, height: typing.Optional[float] = None) -> None:
         self.top = top
         self.left = left
         self.right = right
@@ -117,7 +117,7 @@ class BackgroundConfig:
     image: typing.Optional[common.ResourceDimensionConfig]
     size: typing.Optional['BackgroundImageSize']
 
-    def __init__(self, color: typing.Optional[common.ColorDimensionConfig] = None, image: typing.Optional[common.ResourceDimensionConfig] = None, size: typing.Optional['BackgroundImageSize'] = None):
+    def __init__(self, color: typing.Optional[common.ColorDimensionConfig] = None, image: typing.Optional[common.ResourceDimensionConfig] = None, size: typing.Optional['BackgroundImageSize'] = None) -> None:
         self.color = color
         self.image = image
         self.size = size
@@ -151,7 +151,7 @@ class LineConfig:
     color: typing.Optional[common.ColorDimensionConfig]
     width: typing.Optional[float]
 
-    def __init__(self, color: typing.Optional[common.ColorDimensionConfig] = None, width: typing.Optional[float] = None):
+    def __init__(self, color: typing.Optional[common.ColorDimensionConfig] = None, width: typing.Optional[float] = None) -> None:
         self.color = color
         self.width = width
 
@@ -186,7 +186,7 @@ class ConnectionCoordinates:
     x: float
     y: float
 
-    def __init__(self, x: float = 0, y: float = 0):
+    def __init__(self, x: float = 0, y: float = 0) -> None:
         self.x = x
         self.y = y
 
@@ -221,7 +221,7 @@ class CanvasConnection:
     color: typing.Optional[common.ColorDimensionConfig]
     size: typing.Optional[common.ScaleDimensionConfig]
 
-    def __init__(self, source: typing.Optional['ConnectionCoordinates'] = None, target: typing.Optional['ConnectionCoordinates'] = None, target_name: typing.Optional[str] = None, color: typing.Optional[common.ColorDimensionConfig] = None, size: typing.Optional[common.ScaleDimensionConfig] = None):
+    def __init__(self, source: typing.Optional['ConnectionCoordinates'] = None, target: typing.Optional['ConnectionCoordinates'] = None, target_name: typing.Optional[str] = None, color: typing.Optional[common.ColorDimensionConfig] = None, size: typing.Optional[common.ScaleDimensionConfig] = None) -> None:
         self.source = source if source is not None else ConnectionCoordinates()
         self.target = target if target is not None else ConnectionCoordinates()
         self.target_name = target_name
@@ -272,7 +272,7 @@ class CanvasElementOptions:
     border: typing.Optional['LineConfig']
     connections: typing.Optional[list['CanvasConnection']]
 
-    def __init__(self, name: str = "", type_val: str = "", config: typing.Optional[object] = None, constraint: typing.Optional['Constraint'] = None, placement: typing.Optional['Placement'] = None, background: typing.Optional['BackgroundConfig'] = None, border: typing.Optional['LineConfig'] = None, connections: typing.Optional[list['CanvasConnection']] = None):
+    def __init__(self, name: str = "", type_val: str = "", config: typing.Optional[object] = None, constraint: typing.Optional['Constraint'] = None, placement: typing.Optional['Placement'] = None, background: typing.Optional['BackgroundConfig'] = None, border: typing.Optional['LineConfig'] = None, connections: typing.Optional[list['CanvasConnection']] = None) -> None:
         self.name = name
         self.type_val = type_val
         self.config = config
@@ -338,7 +338,7 @@ class Options:
     # TODO: Figure out how to define a default value for this
     root: 'CanvasOptionsRoot'
 
-    def __init__(self, inline_editing: bool = True, show_advanced_types: bool = True, pan_zoom: bool = True, infinite_pan: bool = True, root: typing.Optional['CanvasOptionsRoot'] = None):
+    def __init__(self, inline_editing: bool = True, show_advanced_types: bool = True, pan_zoom: bool = True, infinite_pan: bool = True, root: typing.Optional['CanvasOptionsRoot'] = None) -> None:
         self.inline_editing = inline_editing
         self.show_advanced_types = show_advanced_types
         self.pan_zoom = pan_zoom
@@ -381,7 +381,7 @@ class CanvasOptionsRoot:
     # The list of canvas elements attached to the root element
     elements: list['CanvasElementOptions']
 
-    def __init__(self, name: str = "", elements: typing.Optional[list['CanvasElementOptions']] = None):
+    def __init__(self, name: str = "", elements: typing.Optional[list['CanvasElementOptions']] = None) -> None:
         self.name = name
         self.type_val = "frame"
         self.elements = elements if elements is not None else []

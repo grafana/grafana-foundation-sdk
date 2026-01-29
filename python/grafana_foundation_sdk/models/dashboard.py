@@ -64,7 +64,7 @@ class Dashboard:
     # Snapshot options. They are present only if the dashboard is a snapshot.
     snapshot: typing.Optional['Snapshot']
 
-    def __init__(self, id_val: typing.Optional[int] = None, uid: typing.Optional[str] = None, title: typing.Optional[str] = None, description: typing.Optional[str] = None, revision: typing.Optional[int] = None, gnet_id: typing.Optional[str] = None, tags: typing.Optional[list[str]] = None, timezone: typing.Optional[str] = "browser", editable: typing.Optional[bool] = True, graph_tooltip: typing.Optional['DashboardCursorSync'] = None, time: typing.Optional['DashboardDashboardTime'] = None, timepicker: typing.Optional['TimePickerConfig'] = None, fiscal_year_start_month: typing.Optional[int] = 0, live_now: typing.Optional[bool] = None, week_start: typing.Optional[str] = None, refresh: typing.Optional[str] = None, schema_version: int = 36, version: typing.Optional[int] = None, panels: typing.Optional[list[typing.Union['Panel', 'RowPanel']]] = None, templating: typing.Optional['DashboardDashboardTemplating'] = None, annotations: typing.Optional['AnnotationContainer'] = None, links: typing.Optional[list['DashboardLink']] = None, snapshot: typing.Optional['Snapshot'] = None):
+    def __init__(self, id_val: typing.Optional[int] = None, uid: typing.Optional[str] = None, title: typing.Optional[str] = None, description: typing.Optional[str] = None, revision: typing.Optional[int] = None, gnet_id: typing.Optional[str] = None, tags: typing.Optional[list[str]] = None, timezone: typing.Optional[str] = "browser", editable: typing.Optional[bool] = True, graph_tooltip: typing.Optional['DashboardCursorSync'] = None, time: typing.Optional['DashboardDashboardTime'] = None, timepicker: typing.Optional['TimePickerConfig'] = None, fiscal_year_start_month: typing.Optional[int] = 0, live_now: typing.Optional[bool] = None, week_start: typing.Optional[str] = None, refresh: typing.Optional[str] = None, schema_version: int = 36, version: typing.Optional[int] = None, panels: typing.Optional[list[typing.Union['Panel', 'RowPanel']]] = None, templating: typing.Optional['DashboardDashboardTemplating'] = None, annotations: typing.Optional['AnnotationContainer'] = None, links: typing.Optional[list['DashboardLink']] = None, snapshot: typing.Optional['Snapshot'] = None) -> None:
         self.id_val = id_val
         self.uid = uid
         self.title = title
@@ -219,7 +219,7 @@ class TimePickerConfig:
     # Override the now time by entering a time delay. Use this option to accommodate known delays in data aggregation to avoid null values.
     now_delay: typing.Optional[str]
 
-    def __init__(self, hidden: typing.Optional[bool] = False, refresh_intervals: typing.Optional[list[str]] = None, time_options: typing.Optional[list[str]] = None, now_delay: typing.Optional[str] = None):
+    def __init__(self, hidden: typing.Optional[bool] = False, refresh_intervals: typing.Optional[list[str]] = None, time_options: typing.Optional[list[str]] = None, now_delay: typing.Optional[str] = None) -> None:
         self.hidden = hidden
         self.refresh_intervals = refresh_intervals if refresh_intervals is not None else ["5s", "10s", "30s", "1m", "5m", "15m", "30m", "1h", "2h", "1d"]
         self.time_options = time_options if time_options is not None else ["5m", "15m", "1h", "6h", "12h", "24h", "2d", "7d", "30d"]
@@ -325,7 +325,7 @@ class Panel:
     # Field options allow you to change how the data is displayed in your visualizations.
     field_config: typing.Optional['FieldConfigSource']
 
-    def __init__(self, type_val: str = "", id_val: typing.Optional[int] = None, plugin_version: typing.Optional[str] = None, targets: typing.Optional[list[cogvariants.Dataquery]] = None, title: typing.Optional[str] = None, description: typing.Optional[str] = None, transparent: typing.Optional[bool] = False, datasource: typing.Optional['DataSourceRef'] = None, grid_pos: typing.Optional['GridPos'] = None, links: typing.Optional[list['DashboardLink']] = None, repeat: typing.Optional[str] = None, repeat_direction: typing.Optional[typing.Literal["h", "v"]] = None, max_per_row: typing.Optional[float] = None, max_data_points: typing.Optional[float] = None, transformations: typing.Optional[list['DataTransformerConfig']] = None, interval: typing.Optional[str] = None, time_from: typing.Optional[str] = None, time_shift: typing.Optional[str] = None, hide_time_override: typing.Optional[bool] = None, library_panel: typing.Optional['LibraryPanelRef'] = None, cache_timeout: typing.Optional[str] = None, query_caching_ttl: typing.Optional[float] = None, options: typing.Optional[object] = None, field_config: typing.Optional['FieldConfigSource'] = None):
+    def __init__(self, type_val: str = "", id_val: typing.Optional[int] = None, plugin_version: typing.Optional[str] = None, targets: typing.Optional[list[cogvariants.Dataquery]] = None, title: typing.Optional[str] = None, description: typing.Optional[str] = None, transparent: typing.Optional[bool] = False, datasource: typing.Optional['DataSourceRef'] = None, grid_pos: typing.Optional['GridPos'] = None, links: typing.Optional[list['DashboardLink']] = None, repeat: typing.Optional[str] = None, repeat_direction: typing.Optional[typing.Literal["h", "v"]] = None, max_per_row: typing.Optional[float] = None, max_data_points: typing.Optional[float] = None, transformations: typing.Optional[list['DataTransformerConfig']] = None, interval: typing.Optional[str] = None, time_from: typing.Optional[str] = None, time_shift: typing.Optional[str] = None, hide_time_override: typing.Optional[bool] = None, library_panel: typing.Optional['LibraryPanelRef'] = None, cache_timeout: typing.Optional[str] = None, query_caching_ttl: typing.Optional[float] = None, options: typing.Optional[object] = None, field_config: typing.Optional['FieldConfigSource'] = None) -> None:
         self.type_val = type_val
         self.id_val = id_val
         self.plugin_version = plugin_version
@@ -482,7 +482,7 @@ class DataSourceRef:
     # Specific datasource instance
     uid: typing.Optional[str]
 
-    def __init__(self, type_val: typing.Optional[str] = None, uid: typing.Optional[str] = None):
+    def __init__(self, type_val: typing.Optional[str] = None, uid: typing.Optional[str] = None) -> None:
         self.type_val = type_val
         self.uid = uid
 
@@ -523,7 +523,7 @@ class GridPos:
     # Whether the panel is fixed within the grid. If true, the panel will not be affected by other panels' interactions
     static: typing.Optional[bool]
 
-    def __init__(self, h: int = 9, w: int = 12, x: int = 0, y: int = 0, static: typing.Optional[bool] = None):
+    def __init__(self, h: int = 9, w: int = 12, x: int = 0, y: int = 0, static: typing.Optional[bool] = None) -> None:
         self.h = h
         self.w = w
         self.x = x
@@ -585,7 +585,7 @@ class DashboardLink:
     # If true, includes current time range in the link as query params
     keep_time: bool
 
-    def __init__(self, title: str = "", type_val: typing.Optional['DashboardLinkType'] = None, icon: str = "", tooltip: str = "", url: typing.Optional[str] = None, tags: typing.Optional[list[str]] = None, as_dropdown: bool = False, target_blank: bool = False, include_vars: bool = False, keep_time: bool = False):
+    def __init__(self, title: str = "", type_val: typing.Optional['DashboardLinkType'] = None, icon: str = "", tooltip: str = "", url: typing.Optional[str] = None, tags: typing.Optional[list[str]] = None, as_dropdown: bool = False, target_blank: bool = False, include_vars: bool = False, keep_time: bool = False) -> None:
         self.title = title
         self.type_val = type_val if type_val is not None else DashboardLinkType.LINK
         self.icon = icon
@@ -669,7 +669,7 @@ class DataTransformerConfig:
     # Valid options depend on the transformer id
     options: object
 
-    def __init__(self, id_val: str = "", disabled: typing.Optional[bool] = None, filter_val: typing.Optional['MatcherConfig'] = None, topic: typing.Optional[typing.Literal["series", "annotations", "alertStates"]] = None, options: object = None):
+    def __init__(self, id_val: str = "", disabled: typing.Optional[bool] = None, filter_val: typing.Optional['MatcherConfig'] = None, topic: typing.Optional[typing.Literal["series", "annotations", "alertStates"]] = None, options: object = None) -> None:
         self.id_val = id_val
         self.disabled = disabled
         self.filter_val = filter_val
@@ -718,7 +718,7 @@ class MatcherConfig:
     # The matcher options. This is specific to the matcher implementation.
     options: typing.Optional[object]
 
-    def __init__(self, id_val: str = "", options: typing.Optional[object] = None):
+    def __init__(self, id_val: str = "", options: typing.Optional[object] = None) -> None:
         self.id_val = id_val
         self.options = options
 
@@ -754,7 +754,7 @@ class LibraryPanelRef:
     # Library panel uid
     uid: str
 
-    def __init__(self, name: str = "", uid: str = ""):
+    def __init__(self, name: str = "", uid: str = "") -> None:
         self.name = name
         self.uid = uid
 
@@ -789,7 +789,7 @@ class FieldConfigSource:
     # Overrides are the options applied to specific fields overriding the defaults.
     overrides: list['DashboardFieldConfigSourceOverrides']
 
-    def __init__(self, defaults: typing.Optional['FieldConfig'] = None, overrides: typing.Optional[list['DashboardFieldConfigSourceOverrides']] = None):
+    def __init__(self, defaults: typing.Optional['FieldConfig'] = None, overrides: typing.Optional[list['DashboardFieldConfigSourceOverrides']] = None) -> None:
         self.defaults = defaults if defaults is not None else FieldConfig()
         self.overrides = overrides if overrides is not None else []
 
@@ -870,7 +870,7 @@ class FieldConfig:
     # in panel plugin schemas.
     custom: typing.Optional[object]
 
-    def __init__(self, display_name: typing.Optional[str] = None, display_name_from_ds: typing.Optional[str] = None, description: typing.Optional[str] = None, path: typing.Optional[str] = None, writeable: typing.Optional[bool] = None, filterable: typing.Optional[bool] = None, unit: typing.Optional[str] = None, decimals: typing.Optional[float] = None, min_val: typing.Optional[float] = None, max_val: typing.Optional[float] = None, mappings: typing.Optional[list['ValueMapping']] = None, thresholds: typing.Optional['ThresholdsConfig'] = None, color: typing.Optional['FieldColor'] = None, links: typing.Optional[list['DashboardLink']] = None, no_value: typing.Optional[str] = None, custom: typing.Optional[object] = None):
+    def __init__(self, display_name: typing.Optional[str] = None, display_name_from_ds: typing.Optional[str] = None, description: typing.Optional[str] = None, path: typing.Optional[str] = None, writeable: typing.Optional[bool] = None, filterable: typing.Optional[bool] = None, unit: typing.Optional[str] = None, decimals: typing.Optional[float] = None, min_val: typing.Optional[float] = None, max_val: typing.Optional[float] = None, mappings: typing.Optional[list['ValueMapping']] = None, thresholds: typing.Optional['ThresholdsConfig'] = None, color: typing.Optional['FieldColor'] = None, links: typing.Optional[list['DashboardLink']] = None, no_value: typing.Optional[str] = None, custom: typing.Optional[object] = None) -> None:
         self.display_name = display_name
         self.display_name_from_ds = display_name_from_ds
         self.description = description
@@ -980,7 +980,7 @@ class ValueMap:
     # Map with <value_to_match>: ValueMappingResult. For example: { "10": { text: "Perfection!", color: "green" } }
     options: dict[str, 'ValueMappingResult']
 
-    def __init__(self, options: typing.Optional[dict[str, 'ValueMappingResult']] = None):
+    def __init__(self, options: typing.Optional[dict[str, 'ValueMappingResult']] = None) -> None:
         self.type_val = MappingType.VALUE_TO_TEXT
         self.options = options if options is not None else {}
 
@@ -1030,7 +1030,7 @@ class ValueMappingResult:
     # Position in the mapping array. Only used internally.
     index: typing.Optional[int]
 
-    def __init__(self, text: typing.Optional[str] = None, color: typing.Optional[str] = None, icon: typing.Optional[str] = None, index: typing.Optional[int] = None):
+    def __init__(self, text: typing.Optional[str] = None, color: typing.Optional[str] = None, icon: typing.Optional[str] = None, index: typing.Optional[int] = None) -> None:
         self.text = text
         self.color = color
         self.icon = icon
@@ -1075,7 +1075,7 @@ class RangeMap:
     # Range to match against and the result to apply when the value is within the range
     options: 'DashboardRangeMapOptions'
 
-    def __init__(self, options: typing.Optional['DashboardRangeMapOptions'] = None):
+    def __init__(self, options: typing.Optional['DashboardRangeMapOptions'] = None) -> None:
         self.type_val = MappingType.RANGE_TO_TEXT
         self.options = options if options is not None else DashboardRangeMapOptions()
 
@@ -1106,7 +1106,7 @@ class RegexMap:
     # Regular expression to match against and the result to apply when the value matches the regex
     options: 'DashboardRegexMapOptions'
 
-    def __init__(self, options: typing.Optional['DashboardRegexMapOptions'] = None):
+    def __init__(self, options: typing.Optional['DashboardRegexMapOptions'] = None) -> None:
         self.type_val = MappingType.REGEX_TO_TEXT
         self.options = options if options is not None else DashboardRegexMapOptions()
 
@@ -1137,7 +1137,7 @@ class SpecialValueMap:
     type_val: str
     options: 'DashboardSpecialValueMapOptions'
 
-    def __init__(self, options: typing.Optional['DashboardSpecialValueMapOptions'] = None):
+    def __init__(self, options: typing.Optional['DashboardSpecialValueMapOptions'] = None) -> None:
         self.type_val = MappingType.SPECIAL_VALUE
         self.options = options if options is not None else DashboardSpecialValueMapOptions()
 
@@ -1181,7 +1181,7 @@ class ThresholdsConfig:
     # Must be sorted by 'value', first value is always -Infinity
     steps: list['Threshold']
 
-    def __init__(self, mode: typing.Optional['ThresholdsMode'] = None, steps: typing.Optional[list['Threshold']] = None):
+    def __init__(self, mode: typing.Optional['ThresholdsMode'] = None, steps: typing.Optional[list['Threshold']] = None) -> None:
         self.mode = mode if mode is not None else ThresholdsMode.ABSOLUTE
         self.steps = steps if steps is not None else []
 
@@ -1225,7 +1225,7 @@ class Threshold:
     # Color represents the color of the visual change that will occur in the dashboard when the threshold value is met or exceeded.
     color: str
 
-    def __init__(self, value: typing.Optional[float] = None, color: str = ""):
+    def __init__(self, value: typing.Optional[float] = None, color: str = "") -> None:
         self.value = value
         self.color = color
 
@@ -1260,7 +1260,7 @@ class FieldColor:
     # Some visualizations need to know how to assign a series color from by value color schemes.
     series_by: typing.Optional['FieldColorSeriesByMode']
 
-    def __init__(self, mode: typing.Optional['FieldColorModeId'] = None, fixed_color: typing.Optional[str] = None, series_by: typing.Optional['FieldColorSeriesByMode'] = None):
+    def __init__(self, mode: typing.Optional['FieldColorModeId'] = None, fixed_color: typing.Optional[str] = None, series_by: typing.Optional['FieldColorSeriesByMode'] = None) -> None:
         self.mode = mode if mode is not None else FieldColorModeId.THRESHOLDS
         self.fixed_color = fixed_color
         self.series_by = series_by
@@ -1342,7 +1342,7 @@ class DynamicConfigValue:
     id_val: str
     value: typing.Optional[object]
 
-    def __init__(self, id_val: str = "", value: typing.Optional[object] = None):
+    def __init__(self, id_val: str = "", value: typing.Optional[object] = None) -> None:
         self.id_val = id_val
         self.value = value
 
@@ -1388,7 +1388,7 @@ class RowPanel:
     # Name of template variable to repeat for.
     repeat: typing.Optional[str]
 
-    def __init__(self, collapsed: bool = False, title: typing.Optional[str] = None, datasource: typing.Optional['DataSourceRef'] = None, grid_pos: typing.Optional['GridPos'] = None, id_val: int = 0, panels: typing.Optional[list['Panel']] = None, repeat: typing.Optional[str] = None):
+    def __init__(self, collapsed: bool = False, title: typing.Optional[str] = None, datasource: typing.Optional['DataSourceRef'] = None, grid_pos: typing.Optional['GridPos'] = None, id_val: int = 0, panels: typing.Optional[list['Panel']] = None, repeat: typing.Optional[str] = None) -> None:
         self.type_val = "row"
         self.collapsed = collapsed
         self.title = title
@@ -1483,7 +1483,7 @@ class VariableModel:
     # For example, if the current visible time range is 30 minutes, then the auto interval groups the data into 30 one-minute increments.
     auto_count: typing.Optional[int]
 
-    def __init__(self, type_val: typing.Optional['VariableType'] = None, name: str = "", label: typing.Optional[str] = None, hide: typing.Optional['VariableHide'] = None, skip_url_sync: typing.Optional[bool] = False, description: typing.Optional[str] = None, query: typing.Optional[typing.Union[str, dict[str, object]]] = None, datasource: typing.Optional['DataSourceRef'] = None, current: typing.Optional['VariableOption'] = None, multi: typing.Optional[bool] = False, options: typing.Optional[list['VariableOption']] = None, refresh: typing.Optional['VariableRefresh'] = None, sort: typing.Optional['VariableSort'] = None, include_all: typing.Optional[bool] = False, all_value: typing.Optional[str] = None, regex: typing.Optional[str] = None, auto: typing.Optional[bool] = False, auto_min: typing.Optional[str] = "10s", auto_count: typing.Optional[int] = 30):
+    def __init__(self, type_val: typing.Optional['VariableType'] = None, name: str = "", label: typing.Optional[str] = None, hide: typing.Optional['VariableHide'] = None, skip_url_sync: typing.Optional[bool] = False, description: typing.Optional[str] = None, query: typing.Optional[typing.Union[str, dict[str, object]]] = None, datasource: typing.Optional['DataSourceRef'] = None, current: typing.Optional['VariableOption'] = None, multi: typing.Optional[bool] = False, options: typing.Optional[list['VariableOption']] = None, refresh: typing.Optional['VariableRefresh'] = None, sort: typing.Optional['VariableSort'] = None, include_all: typing.Optional[bool] = False, all_value: typing.Optional[str] = None, regex: typing.Optional[str] = None, auto: typing.Optional[bool] = False, auto_min: typing.Optional[str] = "10s", auto_count: typing.Optional[int] = 30) -> None:
         self.type_val = type_val if type_val is not None else VariableType.QUERY
         self.name = name
         self.label = label
@@ -1638,7 +1638,7 @@ class VariableOption:
     # Value of the option
     value: typing.Union[str, list[str]]
 
-    def __init__(self, selected: typing.Optional[bool] = None, text: typing.Optional[typing.Union[str, list[str]]] = None, value: typing.Optional[typing.Union[str, list[str]]] = None):
+    def __init__(self, selected: typing.Optional[bool] = None, text: typing.Optional[typing.Union[str, list[str]]] = None, value: typing.Optional[typing.Union[str, list[str]]] = None) -> None:
         self.selected = selected
         self.text = text if text is not None else ""
         self.value = value if value is not None else ""
@@ -1716,7 +1716,7 @@ class AnnotationContainer:
     # List of annotations
     list_val: typing.Optional[list['AnnotationQuery']]
 
-    def __init__(self, list_val: typing.Optional[list['AnnotationQuery']] = None):
+    def __init__(self, list_val: typing.Optional[list['AnnotationQuery']] = None) -> None:
         self.list_val = list_val
 
     def to_json(self) -> dict[str, object]:
@@ -1763,7 +1763,7 @@ class AnnotationQuery:
     built_in: typing.Optional[float]
     expr: typing.Optional[str]
 
-    def __init__(self, name: str = "", datasource: typing.Optional['DataSourceRef'] = None, enable: bool = True, hide: typing.Optional[bool] = False, icon_color: str = "", filter_val: typing.Optional['AnnotationPanelFilter'] = None, target: typing.Optional['AnnotationTarget'] = None, type_val: typing.Optional[str] = None, built_in: typing.Optional[float] = 0, expr: typing.Optional[str] = None):
+    def __init__(self, name: str = "", datasource: typing.Optional['DataSourceRef'] = None, enable: bool = True, hide: typing.Optional[bool] = False, icon_color: str = "", filter_val: typing.Optional['AnnotationPanelFilter'] = None, target: typing.Optional['AnnotationTarget'] = None, type_val: typing.Optional[str] = None, built_in: typing.Optional[float] = 0, expr: typing.Optional[str] = None) -> None:
         self.name = name
         self.datasource = datasource if datasource is not None else DataSourceRef()
         self.enable = enable
@@ -1830,7 +1830,7 @@ class AnnotationPanelFilter:
     # Panel IDs that should be included or excluded
     ids: list[int]
 
-    def __init__(self, exclude: typing.Optional[bool] = False, ids: typing.Optional[list[int]] = None):
+    def __init__(self, exclude: typing.Optional[bool] = False, ids: typing.Optional[list[int]] = None) -> None:
         self.exclude = exclude
         self.ids = ids if ids is not None else []
 
@@ -1873,7 +1873,7 @@ class AnnotationTarget:
     # but code+tests is already depending on it so hard to change
     type_val: str
 
-    def __init__(self, limit: int = 0, match_any: bool = False, tags: typing.Optional[list[str]] = None, type_val: str = ""):
+    def __init__(self, limit: int = 0, match_any: bool = False, tags: typing.Optional[list[str]] = None, type_val: str = "") -> None:
         self.limit = limit
         self.match_any = match_any
         self.tags = tags if tags is not None else []
@@ -1939,7 +1939,7 @@ class Snapshot:
     user_id: int
     dashboard: typing.Optional['Dashboard']
 
-    def __init__(self, created: str = "", expires: str = "", external: bool = False, external_url: str = "", original_url: str = "", id_val: int = 0, key: str = "", name: str = "", org_id: int = 0, updated: str = "", url: typing.Optional[str] = None, user_id: int = 0, dashboard: typing.Optional['Dashboard'] = None):
+    def __init__(self, created: str = "", expires: str = "", external: bool = False, external_url: str = "", original_url: str = "", id_val: int = 0, key: str = "", name: str = "", org_id: int = 0, updated: str = "", url: typing.Optional[str] = None, user_id: int = 0, dashboard: typing.Optional['Dashboard'] = None) -> None:
         self.created = created
         self.expires = expires
         self.external = external
@@ -2013,7 +2013,7 @@ class AnnotationActions:
     can_delete: typing.Optional[bool]
     can_edit: typing.Optional[bool]
 
-    def __init__(self, can_add: typing.Optional[bool] = None, can_delete: typing.Optional[bool] = None, can_edit: typing.Optional[bool] = None):
+    def __init__(self, can_add: typing.Optional[bool] = None, can_delete: typing.Optional[bool] = None, can_edit: typing.Optional[bool] = None) -> None:
         self.can_add = can_add
         self.can_delete = can_delete
         self.can_edit = can_edit
@@ -2047,7 +2047,7 @@ class AnnotationPermission:
     dashboard: typing.Optional['AnnotationActions']
     organization: typing.Optional['AnnotationActions']
 
-    def __init__(self, dashboard: typing.Optional['AnnotationActions'] = None, organization: typing.Optional['AnnotationActions'] = None):
+    def __init__(self, dashboard: typing.Optional['AnnotationActions'] = None, organization: typing.Optional['AnnotationActions'] = None) -> None:
         self.dashboard = dashboard
         self.organization = organization
 
@@ -2102,7 +2102,7 @@ class DashboardMeta:
     url: typing.Optional[str]
     version: typing.Optional[int]
 
-    def __init__(self, annotations_permissions: typing.Optional['AnnotationPermission'] = None, can_admin: typing.Optional[bool] = None, can_delete: typing.Optional[bool] = None, can_edit: typing.Optional[bool] = None, can_save: typing.Optional[bool] = None, can_star: typing.Optional[bool] = None, created: typing.Optional[str] = None, created_by: typing.Optional[str] = None, expires: typing.Optional[str] = None, folder_id: typing.Optional[int] = None, folder_title: typing.Optional[str] = None, folder_uid: typing.Optional[str] = None, folder_url: typing.Optional[str] = None, has_acl: typing.Optional[bool] = None, is_folder: typing.Optional[bool] = None, is_snapshot: typing.Optional[bool] = None, is_starred: typing.Optional[bool] = None, provisioned: typing.Optional[bool] = None, provisioned_external_id: typing.Optional[str] = None, public_dashboard_enabled: typing.Optional[bool] = None, public_dashboard_uid: typing.Optional[str] = None, slug: typing.Optional[str] = None, type_val: typing.Optional[str] = None, updated: typing.Optional[str] = None, updated_by: typing.Optional[str] = None, url: typing.Optional[str] = None, version: typing.Optional[int] = None):
+    def __init__(self, annotations_permissions: typing.Optional['AnnotationPermission'] = None, can_admin: typing.Optional[bool] = None, can_delete: typing.Optional[bool] = None, can_edit: typing.Optional[bool] = None, can_save: typing.Optional[bool] = None, can_star: typing.Optional[bool] = None, created: typing.Optional[str] = None, created_by: typing.Optional[str] = None, expires: typing.Optional[str] = None, folder_id: typing.Optional[int] = None, folder_title: typing.Optional[str] = None, folder_uid: typing.Optional[str] = None, folder_url: typing.Optional[str] = None, has_acl: typing.Optional[bool] = None, is_folder: typing.Optional[bool] = None, is_snapshot: typing.Optional[bool] = None, is_starred: typing.Optional[bool] = None, provisioned: typing.Optional[bool] = None, provisioned_external_id: typing.Optional[str] = None, public_dashboard_enabled: typing.Optional[bool] = None, public_dashboard_uid: typing.Optional[str] = None, slug: typing.Optional[str] = None, type_val: typing.Optional[str] = None, updated: typing.Optional[str] = None, updated_by: typing.Optional[str] = None, url: typing.Optional[str] = None, version: typing.Optional[int] = None) -> None:
         self.annotations_permissions = annotations_permissions
         self.can_admin = can_admin
         self.can_delete = can_delete
@@ -2256,7 +2256,7 @@ class DashboardDashboardTime:
     from_val: str
     to: str
 
-    def __init__(self, from_val: str = "now-6h", to: str = "now"):
+    def __init__(self, from_val: str = "now-6h", to: str = "now") -> None:
         self.from_val = from_val
         self.to = to
 
@@ -2283,7 +2283,7 @@ class DashboardDashboardTemplating:
     # List of configured template variables with their saved values along with some other metadata
     list_val: typing.Optional[list['VariableModel']]
 
-    def __init__(self, list_val: typing.Optional[list['VariableModel']] = None):
+    def __init__(self, list_val: typing.Optional[list['VariableModel']] = None) -> None:
         self.list_val = list_val
 
     def to_json(self) -> dict[str, object]:
@@ -2307,7 +2307,7 @@ class DashboardFieldConfigSourceOverrides:
     matcher: 'MatcherConfig'
     properties: list['DynamicConfigValue']
 
-    def __init__(self, matcher: typing.Optional['MatcherConfig'] = None, properties: typing.Optional[list['DynamicConfigValue']] = None):
+    def __init__(self, matcher: typing.Optional['MatcherConfig'] = None, properties: typing.Optional[list['DynamicConfigValue']] = None) -> None:
         self.matcher = matcher if matcher is not None else MatcherConfig()
         self.properties = properties if properties is not None else []
 
@@ -2338,7 +2338,7 @@ class DashboardRangeMapOptions:
     # Config to apply when the value is within the range
     result: 'ValueMappingResult'
 
-    def __init__(self, from_val: typing.Optional[float] = None, to: typing.Optional[float] = None, result: typing.Optional['ValueMappingResult'] = None):
+    def __init__(self, from_val: typing.Optional[float] = None, to: typing.Optional[float] = None, result: typing.Optional['ValueMappingResult'] = None) -> None:
         self.from_val = from_val
         self.to = to
         self.result = result if result is not None else ValueMappingResult()
@@ -2371,7 +2371,7 @@ class DashboardRegexMapOptions:
     # Config to apply when the value matches the regex
     result: 'ValueMappingResult'
 
-    def __init__(self, pattern: str = "", result: typing.Optional['ValueMappingResult'] = None):
+    def __init__(self, pattern: str = "", result: typing.Optional['ValueMappingResult'] = None) -> None:
         self.pattern = pattern
         self.result = result if result is not None else ValueMappingResult()
 
@@ -2400,7 +2400,7 @@ class DashboardSpecialValueMapOptions:
     # Config to apply when the value matches the special value
     result: 'ValueMappingResult'
 
-    def __init__(self, match: typing.Optional['SpecialValueMatch'] = None, result: typing.Optional['ValueMappingResult'] = None):
+    def __init__(self, match: typing.Optional['SpecialValueMatch'] = None, result: typing.Optional['ValueMappingResult'] = None) -> None:
         self.match = match if match is not None else SpecialValueMatch.TRUE
         self.result = result if result is not None else ValueMappingResult()
 

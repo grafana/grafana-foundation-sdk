@@ -11,7 +11,7 @@ from ..models import common
 class MapViewConfig(cogbuilder.Builder[geomap.MapViewConfig]):
     _internal: geomap.MapViewConfig
 
-    def __init__(self):
+    def __init__(self) -> None:
         self._internal = geomap.MapViewConfig()
 
     def build(self) -> geomap.MapViewConfig:
@@ -80,7 +80,7 @@ class MapViewConfig(cogbuilder.Builder[geomap.MapViewConfig]):
 class ControlsOptions(cogbuilder.Builder[geomap.ControlsOptions]):
     _internal: geomap.ControlsOptions
 
-    def __init__(self):
+    def __init__(self) -> None:
         self._internal = geomap.ControlsOptions()
 
     def build(self) -> geomap.ControlsOptions:
@@ -148,7 +148,7 @@ class ControlsOptions(cogbuilder.Builder[geomap.ControlsOptions]):
 class TooltipOptions(cogbuilder.Builder[geomap.TooltipOptions]):
     _internal: geomap.TooltipOptions
 
-    def __init__(self):
+    def __init__(self) -> None:
         self._internal = geomap.TooltipOptions()
 
     def build(self) -> geomap.TooltipOptions:
@@ -171,7 +171,7 @@ class Panel(cogbuilder.Builder[dashboard.Panel]):
     
     _internal: dashboard.Panel
 
-    def __init__(self):
+    def __init__(self) -> None:
         self._internal = dashboard.Panel()        
         self._internal.type_val = "geomap"
 

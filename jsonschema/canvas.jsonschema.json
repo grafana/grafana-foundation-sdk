@@ -143,7 +143,11 @@
           "type": "string"
         },
         "path": {
-          "$ref": "#/definitions/ConnectionPath",
+          "allOf": [
+            {
+              "$ref": "#/definitions/ConnectionPath"
+            }
+          ],
           "default": "straight"
         },
         "color": {
