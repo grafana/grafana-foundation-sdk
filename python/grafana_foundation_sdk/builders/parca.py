@@ -9,7 +9,7 @@ from ..models import dashboard
 class Dataquery(cogbuilder.Builder[parca.Dataquery]):
     _internal: parca.Dataquery
 
-    def __init__(self):
+    def __init__(self) -> None:
         self._internal = parca.Dataquery()
 
     def build(self) -> parca.Dataquery:

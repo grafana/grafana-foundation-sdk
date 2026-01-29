@@ -493,7 +493,7 @@
       }
     },
     "ValueMapping": {
-      "anyOf": [
+      "oneOf": [
         {
           "$ref": "#/definitions/ValueMap"
         },
@@ -562,7 +562,11 @@
       ],
       "properties": {
         "type": {
-          "$ref": "#/definitions/MappingType",
+          "allOf": [
+            {
+              "$ref": "#/definitions/MappingType"
+            }
+          ],
           "default": "value"
         },
         "options": {
@@ -584,7 +588,11 @@
       ],
       "properties": {
         "type": {
-          "$ref": "#/definitions/MappingType",
+          "allOf": [
+            {
+              "$ref": "#/definitions/MappingType"
+            }
+          ],
           "default": "range"
         },
         "options": {
@@ -623,7 +631,11 @@
       ],
       "properties": {
         "type": {
-          "$ref": "#/definitions/MappingType",
+          "allOf": [
+            {
+              "$ref": "#/definitions/MappingType"
+            }
+          ],
           "default": "regex"
         },
         "options": {
@@ -657,7 +669,11 @@
       ],
       "properties": {
         "type": {
-          "$ref": "#/definitions/MappingType",
+          "allOf": [
+            {
+              "$ref": "#/definitions/MappingType"
+            }
+          ],
           "default": "special"
         },
         "options": {

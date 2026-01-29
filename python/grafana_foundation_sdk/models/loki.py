@@ -63,7 +63,7 @@ class Dataquery(cogvariants.Dataquery):
     datasource: typing.Optional[dashboard.DataSourceRef]
     direction: typing.Optional['LokiQueryDirection']
 
-    def __init__(self, expr: str = "", legend_format: typing.Optional[str] = None, max_lines: typing.Optional[int] = None, resolution: typing.Optional[int] = None, editor_mode: typing.Optional['QueryEditorMode'] = None, range_val: typing.Optional[bool] = None, instant: typing.Optional[bool] = None, step: typing.Optional[str] = None, ref_id: str = "", hide: typing.Optional[bool] = None, query_type: typing.Optional[str] = None, datasource: typing.Optional[dashboard.DataSourceRef] = None, direction: typing.Optional['LokiQueryDirection'] = None):
+    def __init__(self, expr: str = "", legend_format: typing.Optional[str] = None, max_lines: typing.Optional[int] = None, resolution: typing.Optional[int] = None, editor_mode: typing.Optional['QueryEditorMode'] = None, range_val: typing.Optional[bool] = None, instant: typing.Optional[bool] = None, step: typing.Optional[str] = None, ref_id: str = "", hide: typing.Optional[bool] = None, query_type: typing.Optional[str] = None, datasource: typing.Optional[dashboard.DataSourceRef] = None, direction: typing.Optional['LokiQueryDirection'] = None) -> None:
         self.expr = expr
         self.legend_format = legend_format
         self.max_lines = max_lines

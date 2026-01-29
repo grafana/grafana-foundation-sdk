@@ -336,7 +336,7 @@
         }
       },
       "GrafanaTemplateVariableQuery": {
-        "anyOf": [
+        "oneOf": [
           {
             "$ref": "#/components/schemas/AppInsightsMetricNameQuery"
           },

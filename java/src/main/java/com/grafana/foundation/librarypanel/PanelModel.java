@@ -114,6 +114,7 @@ public class PanelModel {
     public PanelModel() {
         this.type = "";
         this.transparent = false;
+        this.repeatDirection = PanelModelRepeatDirection.H;
         this.transformations = new LinkedList<>();
         this.options = new Object();
         this.fieldConfig = new com.grafana.foundation.dashboard.FieldConfigSource();

@@ -13,7 +13,7 @@ class Folder(cogbuilder.Builder[folder.Folder]):
     
     _internal: folder.Folder
 
-    def __init__(self):
+    def __init__(self) -> None:
         self._internal = folder.Folder()
 
     def build(self) -> folder.Folder:

@@ -12,7 +12,7 @@ class Options:
     show_threshold_markers: bool
     orientation: common.VizOrientation
 
-    def __init__(self, show_threshold_labels: bool = False, reduce_options: typing.Optional[common.ReduceDataOptions] = None, text: typing.Optional[common.VizTextDisplayOptions] = None, show_threshold_markers: bool = True, orientation: typing.Optional[common.VizOrientation] = None):
+    def __init__(self, show_threshold_labels: bool = False, reduce_options: typing.Optional[common.ReduceDataOptions] = None, text: typing.Optional[common.VizTextDisplayOptions] = None, show_threshold_markers: bool = True, orientation: typing.Optional[common.VizOrientation] = None) -> None:
         self.show_threshold_labels = show_threshold_labels
         self.reduce_options = reduce_options if reduce_options is not None else common.ReduceDataOptions()
         self.text = text
