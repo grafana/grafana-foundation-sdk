@@ -26,7 +26,7 @@ class DataSourceJsonData:
     manage_alerts: typing.Optional[bool]
     alertmanager_uid: typing.Optional[str]
 
-    def __init__(self, auth_type: typing.Optional[str] = None, default_region: typing.Optional[str] = None, profile: typing.Optional[str] = None, manage_alerts: typing.Optional[bool] = None, alertmanager_uid: typing.Optional[str] = None):
+    def __init__(self, auth_type: typing.Optional[str] = None, default_region: typing.Optional[str] = None, profile: typing.Optional[str] = None, manage_alerts: typing.Optional[bool] = None, alertmanager_uid: typing.Optional[str] = None) -> None:
         self.auth_type = auth_type
         self.default_region = default_region
         self.profile = profile
@@ -88,7 +88,7 @@ class DataQuery:
     # TODO this shouldn't be unknown but DataSourceRef | null
     datasource: typing.Optional[object]
 
-    def __init__(self, ref_id: str = "", hide: typing.Optional[bool] = None, query_type: typing.Optional[str] = None, datasource: typing.Optional[object] = None):
+    def __init__(self, ref_id: str = "", hide: typing.Optional[bool] = None, query_type: typing.Optional[str] = None, datasource: typing.Optional[object] = None) -> None:
         self.ref_id = ref_id
         self.hide = hide
         self.query_type = query_type
@@ -126,7 +126,7 @@ class BaseDimensionConfig:
     # fixed: T -- will be added by each element
     field: typing.Optional[str]
 
-    def __init__(self, field: typing.Optional[str] = None):
+    def __init__(self, field: typing.Optional[str] = None) -> None:
         self.field = field
 
     def to_json(self) -> dict[str, object]:
@@ -160,7 +160,7 @@ class ScaleDimensionConfig:
     # | *"linear"
     mode: typing.Optional['ScaleDimensionMode']
 
-    def __init__(self, min_val: float = 0, max_val: float = 0, fixed: typing.Optional[float] = None, field: typing.Optional[str] = None, mode: typing.Optional['ScaleDimensionMode'] = None):
+    def __init__(self, min_val: float = 0, max_val: float = 0, fixed: typing.Optional[float] = None, field: typing.Optional[str] = None, mode: typing.Optional['ScaleDimensionMode'] = None) -> None:
         self.min_val = min_val
         self.max_val = max_val
         self.fixed = fixed
@@ -204,7 +204,7 @@ class ColorDimensionConfig:
     # fixed: T -- will be added by each element
     field: typing.Optional[str]
 
-    def __init__(self, fixed: typing.Optional[str] = None, field: typing.Optional[str] = None):
+    def __init__(self, fixed: typing.Optional[str] = None, field: typing.Optional[str] = None) -> None:
         self.fixed = fixed
         self.field = field
 
@@ -242,7 +242,7 @@ class ScalarDimensionConfig:
     field: typing.Optional[str]
     mode: typing.Optional['ScalarDimensionMode']
 
-    def __init__(self, min_val: float = 0, max_val: float = 0, fixed: typing.Optional[float] = None, field: typing.Optional[str] = None, mode: typing.Optional['ScalarDimensionMode'] = None):
+    def __init__(self, min_val: float = 0, max_val: float = 0, fixed: typing.Optional[float] = None, field: typing.Optional[str] = None, mode: typing.Optional['ScalarDimensionMode'] = None) -> None:
         self.min_val = min_val
         self.max_val = max_val
         self.fixed = fixed
@@ -292,7 +292,7 @@ class TextDimensionConfig:
     field: typing.Optional[str]
     fixed: typing.Optional[str]
 
-    def __init__(self, mode: typing.Optional['TextDimensionMode'] = None, field: typing.Optional[str] = None, fixed: typing.Optional[str] = None):
+    def __init__(self, mode: typing.Optional['TextDimensionMode'] = None, field: typing.Optional[str] = None, fixed: typing.Optional[str] = None) -> None:
         self.mode = mode if mode is not None else TextDimensionMode.FIXED
         self.field = field
         self.fixed = fixed
@@ -344,7 +344,7 @@ class MapLayerOptions:
     # Check tooltip (defaults to true)
     tooltip: typing.Optional[bool]
 
-    def __init__(self, type_val: str = "", name: str = "", config: typing.Optional[object] = None, location: typing.Optional['FrameGeometrySource'] = None, filter_data: typing.Optional[object] = None, opacity: typing.Optional[int] = None, tooltip: typing.Optional[bool] = None):
+    def __init__(self, type_val: str = "", name: str = "", config: typing.Optional[object] = None, location: typing.Optional['FrameGeometrySource'] = None, filter_data: typing.Optional[object] = None, opacity: typing.Optional[int] = None, tooltip: typing.Optional[bool] = None) -> None:
         self.type_val = type_val
         self.name = name
         self.config = config
@@ -403,7 +403,7 @@ class FrameGeometrySource:
     # Path to Gazetteer
     gazetteer: typing.Optional[str]
 
-    def __init__(self, mode: typing.Optional['FrameGeometrySourceMode'] = None, geohash: typing.Optional[str] = None, latitude: typing.Optional[str] = None, longitude: typing.Optional[str] = None, wkt: typing.Optional[str] = None, lookup: typing.Optional[str] = None, gazetteer: typing.Optional[str] = None):
+    def __init__(self, mode: typing.Optional['FrameGeometrySourceMode'] = None, geohash: typing.Optional[str] = None, latitude: typing.Optional[str] = None, longitude: typing.Optional[str] = None, wkt: typing.Optional[str] = None, lookup: typing.Optional[str] = None, gazetteer: typing.Optional[str] = None) -> None:
         self.mode = mode if mode is not None else FrameGeometrySourceMode.AUTO
         self.geohash = geohash
         self.latitude = latitude
@@ -479,7 +479,7 @@ class HeatmapCalculationBucketConfig:
     # Controls the scale of the buckets
     scale: typing.Optional['ScaleDistributionConfig']
 
-    def __init__(self, mode: typing.Optional['HeatmapCalculationMode'] = None, value: typing.Optional[str] = None, scale: typing.Optional['ScaleDistributionConfig'] = None):
+    def __init__(self, mode: typing.Optional['HeatmapCalculationMode'] = None, value: typing.Optional[str] = None, scale: typing.Optional['ScaleDistributionConfig'] = None) -> None:
         self.mode = mode
         self.value = value
         self.scale = scale
@@ -518,7 +518,7 @@ class ScaleDistributionConfig:
     log: typing.Optional[float]
     linear_threshold: typing.Optional[float]
 
-    def __init__(self, type_val: typing.Optional['ScaleDistribution'] = None, log: typing.Optional[float] = None, linear_threshold: typing.Optional[float] = None):
+    def __init__(self, type_val: typing.Optional['ScaleDistribution'] = None, log: typing.Optional[float] = None, linear_threshold: typing.Optional[float] = None) -> None:
         self.type_val = type_val if type_val is not None else ScaleDistribution.LINEAR
         self.log = log
         self.linear_threshold = linear_threshold
@@ -684,7 +684,7 @@ class LineStyle:
     fill: typing.Optional[typing.Literal["solid", "dash", "dot", "square"]]
     dash: typing.Optional[list[float]]
 
-    def __init__(self, fill: typing.Optional[typing.Literal["solid", "dash", "dot", "square"]] = None, dash: typing.Optional[list[float]] = None):
+    def __init__(self, fill: typing.Optional[typing.Literal["solid", "dash", "dot", "square"]] = None, dash: typing.Optional[list[float]] = None) -> None:
         self.fill = fill
         self.dash = dash
 
@@ -723,7 +723,7 @@ class LineConfig:
     # X axis that should be considered connected.  For timeseries, this is milliseconds
     span_nulls: typing.Optional[typing.Union[bool, float]]
 
-    def __init__(self, line_color: typing.Optional[str] = None, line_width: typing.Optional[float] = None, line_interpolation: typing.Optional['LineInterpolation'] = None, line_style: typing.Optional['LineStyle'] = None, span_nulls: typing.Optional[typing.Union[bool, float]] = None):
+    def __init__(self, line_color: typing.Optional[str] = None, line_width: typing.Optional[float] = None, line_interpolation: typing.Optional['LineInterpolation'] = None, line_style: typing.Optional['LineStyle'] = None, span_nulls: typing.Optional[typing.Union[bool, float]] = None) -> None:
         self.line_color = line_color
         self.line_width = line_width
         self.line_interpolation = line_interpolation
@@ -772,7 +772,7 @@ class BarConfig:
     bar_width_factor: typing.Optional[float]
     bar_max_width: typing.Optional[float]
 
-    def __init__(self, bar_alignment: typing.Optional['BarAlignment'] = None, bar_width_factor: typing.Optional[float] = None, bar_max_width: typing.Optional[float] = None):
+    def __init__(self, bar_alignment: typing.Optional['BarAlignment'] = None, bar_width_factor: typing.Optional[float] = None, bar_max_width: typing.Optional[float] = None) -> None:
         self.bar_alignment = bar_alignment
         self.bar_width_factor = bar_width_factor
         self.bar_max_width = bar_max_width
@@ -811,7 +811,7 @@ class FillConfig:
     fill_opacity: typing.Optional[float]
     fill_below_to: typing.Optional[str]
 
-    def __init__(self, fill_color: typing.Optional[str] = None, fill_opacity: typing.Optional[float] = None, fill_below_to: typing.Optional[str] = None):
+    def __init__(self, fill_color: typing.Optional[str] = None, fill_opacity: typing.Optional[float] = None, fill_below_to: typing.Optional[str] = None) -> None:
         self.fill_color = fill_color
         self.fill_opacity = fill_opacity
         self.fill_below_to = fill_below_to
@@ -851,7 +851,7 @@ class PointsConfig:
     point_color: typing.Optional[str]
     point_symbol: typing.Optional[str]
 
-    def __init__(self, show_points: typing.Optional['VisibilityMode'] = None, point_size: typing.Optional[float] = None, point_color: typing.Optional[str] = None, point_symbol: typing.Optional[str] = None):
+    def __init__(self, show_points: typing.Optional['VisibilityMode'] = None, point_size: typing.Optional[float] = None, point_color: typing.Optional[str] = None, point_symbol: typing.Optional[str] = None) -> None:
         self.show_points = show_points
         self.point_size = point_size
         self.point_color = point_color
@@ -902,7 +902,7 @@ class AxisConfig:
     axis_centered_zero: typing.Optional[bool]
     axis_border_show: typing.Optional[bool]
 
-    def __init__(self, axis_placement: typing.Optional['AxisPlacement'] = None, axis_color_mode: typing.Optional['AxisColorMode'] = None, axis_label: typing.Optional[str] = None, axis_width: typing.Optional[float] = None, axis_soft_min: typing.Optional[float] = None, axis_soft_max: typing.Optional[float] = None, axis_grid_show: typing.Optional[bool] = None, scale_distribution: typing.Optional['ScaleDistributionConfig'] = None, axis_centered_zero: typing.Optional[bool] = None, axis_border_show: typing.Optional[bool] = None):
+    def __init__(self, axis_placement: typing.Optional['AxisPlacement'] = None, axis_color_mode: typing.Optional['AxisColorMode'] = None, axis_label: typing.Optional[str] = None, axis_width: typing.Optional[float] = None, axis_soft_min: typing.Optional[float] = None, axis_soft_max: typing.Optional[float] = None, axis_grid_show: typing.Optional[bool] = None, scale_distribution: typing.Optional['ScaleDistributionConfig'] = None, axis_centered_zero: typing.Optional[bool] = None, axis_border_show: typing.Optional[bool] = None) -> None:
         self.axis_placement = axis_placement
         self.axis_color_mode = axis_color_mode
         self.axis_label = axis_label
@@ -976,7 +976,7 @@ class HideSeriesConfig:
     legend: bool
     viz: bool
 
-    def __init__(self, tooltip: bool = False, legend: bool = False, viz: bool = False):
+    def __init__(self, tooltip: bool = False, legend: bool = False, viz: bool = False) -> None:
         self.tooltip = tooltip
         self.legend = legend
         self.viz = viz
@@ -1011,7 +1011,7 @@ class StackingConfig:
     mode: typing.Optional['StackingMode']
     group: typing.Optional[str]
 
-    def __init__(self, mode: typing.Optional['StackingMode'] = None, group: typing.Optional[str] = None):
+    def __init__(self, mode: typing.Optional['StackingMode'] = None, group: typing.Optional[str] = None) -> None:
         self.mode = mode
         self.group = group
 
@@ -1043,7 +1043,7 @@ class StackableFieldConfig:
 
     stacking: typing.Optional['StackingConfig']
 
-    def __init__(self, stacking: typing.Optional['StackingConfig'] = None):
+    def __init__(self, stacking: typing.Optional['StackingConfig'] = None) -> None:
         self.stacking = stacking
 
     def to_json(self) -> dict[str, object]:
@@ -1070,7 +1070,7 @@ class HideableFieldConfig:
 
     hide_from: typing.Optional['HideSeriesConfig']
 
-    def __init__(self, hide_from: typing.Optional['HideSeriesConfig'] = None):
+    def __init__(self, hide_from: typing.Optional['HideSeriesConfig'] = None) -> None:
         self.hide_from = hide_from
 
     def to_json(self) -> dict[str, object]:
@@ -1111,7 +1111,7 @@ class GraphThresholdsStyleConfig:
 
     mode: 'GraphThresholdsStyleMode'
 
-    def __init__(self, mode: typing.Optional['GraphThresholdsStyleMode'] = None):
+    def __init__(self, mode: typing.Optional['GraphThresholdsStyleMode'] = None) -> None:
         self.mode = mode if mode is not None else GraphThresholdsStyleMode.OFF
 
     def to_json(self) -> dict[str, object]:
@@ -1159,7 +1159,7 @@ class SingleStatBaseOptions:
     text: typing.Optional['VizTextDisplayOptions']
     orientation: 'VizOrientation'
 
-    def __init__(self, reduce_options: typing.Optional['ReduceDataOptions'] = None, text: typing.Optional['VizTextDisplayOptions'] = None, orientation: typing.Optional['VizOrientation'] = None):
+    def __init__(self, reduce_options: typing.Optional['ReduceDataOptions'] = None, text: typing.Optional['VizTextDisplayOptions'] = None, orientation: typing.Optional['VizOrientation'] = None) -> None:
         self.reduce_options = reduce_options if reduce_options is not None else ReduceDataOptions()
         self.text = text
         self.orientation = orientation if orientation is not None else VizOrientation.AUTO
@@ -1201,7 +1201,7 @@ class ReduceDataOptions:
     # Which fields to show.  By default this is only numeric fields
     fields: typing.Optional[str]
 
-    def __init__(self, values: typing.Optional[bool] = None, limit: typing.Optional[float] = None, calcs: typing.Optional[list[str]] = None, fields: typing.Optional[str] = None):
+    def __init__(self, values: typing.Optional[bool] = None, limit: typing.Optional[float] = None, calcs: typing.Optional[list[str]] = None, fields: typing.Optional[str] = None) -> None:
         self.values = values
         self.limit = limit
         self.calcs = calcs if calcs is not None else []
@@ -1245,7 +1245,7 @@ class VizTextDisplayOptions:
     # Explicit value text size
     value_size: typing.Optional[float]
 
-    def __init__(self, title_size: typing.Optional[float] = None, value_size: typing.Optional[float] = None):
+    def __init__(self, title_size: typing.Optional[float] = None, value_size: typing.Optional[float] = None) -> None:
         self.title_size = title_size
         self.value_size = value_size
 
@@ -1287,7 +1287,7 @@ class OptionsWithTooltip:
 
     tooltip: 'VizTooltipOptions'
 
-    def __init__(self, tooltip: typing.Optional['VizTooltipOptions'] = None):
+    def __init__(self, tooltip: typing.Optional['VizTooltipOptions'] = None) -> None:
         self.tooltip = tooltip if tooltip is not None else VizTooltipOptions()
 
     def to_json(self) -> dict[str, object]:
@@ -1316,7 +1316,7 @@ class VizTooltipOptions:
     max_width: typing.Optional[float]
     max_height: typing.Optional[float]
 
-    def __init__(self, mode: typing.Optional['TooltipDisplayMode'] = None, sort: typing.Optional['SortOrder'] = None, max_width: typing.Optional[float] = None, max_height: typing.Optional[float] = None):
+    def __init__(self, mode: typing.Optional['TooltipDisplayMode'] = None, sort: typing.Optional['SortOrder'] = None, max_width: typing.Optional[float] = None, max_height: typing.Optional[float] = None) -> None:
         self.mode = mode if mode is not None else TooltipDisplayMode.SINGLE
         self.sort = sort if sort is not None else SortOrder.ASCENDING
         self.max_width = max_width
@@ -1376,7 +1376,7 @@ class OptionsWithLegend:
 
     legend: 'VizLegendOptions'
 
-    def __init__(self, legend: typing.Optional['VizLegendOptions'] = None):
+    def __init__(self, legend: typing.Optional['VizLegendOptions'] = None) -> None:
         self.legend = legend if legend is not None else VizLegendOptions()
 
     def to_json(self) -> dict[str, object]:
@@ -1410,7 +1410,7 @@ class VizLegendOptions:
     width: typing.Optional[float]
     calcs: list[str]
 
-    def __init__(self, display_mode: typing.Optional['LegendDisplayMode'] = None, placement: typing.Optional['LegendPlacement'] = None, show_legend: bool = False, as_table: typing.Optional[bool] = None, is_visible: typing.Optional[bool] = None, sort_by: typing.Optional[str] = None, sort_desc: typing.Optional[bool] = None, width: typing.Optional[float] = None, calcs: typing.Optional[list[str]] = None):
+    def __init__(self, display_mode: typing.Optional['LegendDisplayMode'] = None, placement: typing.Optional['LegendPlacement'] = None, show_legend: bool = False, as_table: typing.Optional[bool] = None, is_visible: typing.Optional[bool] = None, sort_by: typing.Optional[str] = None, sort_desc: typing.Optional[bool] = None, width: typing.Optional[float] = None, calcs: typing.Optional[list[str]] = None) -> None:
         self.display_mode = display_mode if display_mode is not None else LegendDisplayMode.LIST
         self.placement = placement if placement is not None else LegendPlacement.BOTTOM
         self.show_legend = show_legend
@@ -1473,7 +1473,7 @@ class OptionsWithTimezones:
 
     timezone: typing.Optional[list['TimeZone']]
 
-    def __init__(self, timezone: typing.Optional[list['TimeZone']] = None):
+    def __init__(self, timezone: typing.Optional[list['TimeZone']] = None) -> None:
         self.timezone = timezone
 
     def to_json(self) -> dict[str, object]:
@@ -1512,7 +1512,7 @@ class OptionsWithTextFormatting:
 
     text: typing.Optional['VizTextDisplayOptions']
 
-    def __init__(self, text: typing.Optional['VizTextDisplayOptions'] = None):
+    def __init__(self, text: typing.Optional['VizTextDisplayOptions'] = None) -> None:
         self.text = text
 
     def to_json(self) -> dict[str, object]:
@@ -1647,7 +1647,7 @@ class GraphFieldConfig:
     axis_border_show: typing.Optional[bool]
     bar_max_width: typing.Optional[float]
 
-    def __init__(self, draw_style: typing.Optional['GraphDrawStyle'] = None, gradient_mode: typing.Optional['GraphGradientMode'] = None, thresholds_style: typing.Optional['GraphThresholdsStyleConfig'] = None, transform: typing.Optional['GraphTransform'] = None, line_color: typing.Optional[str] = None, line_width: typing.Optional[float] = None, line_interpolation: typing.Optional['LineInterpolation'] = None, line_style: typing.Optional['LineStyle'] = None, fill_color: typing.Optional[str] = None, fill_opacity: typing.Optional[float] = None, show_points: typing.Optional['VisibilityMode'] = None, point_size: typing.Optional[float] = None, point_color: typing.Optional[str] = None, axis_placement: typing.Optional['AxisPlacement'] = None, axis_color_mode: typing.Optional['AxisColorMode'] = None, axis_label: typing.Optional[str] = None, axis_width: typing.Optional[float] = None, axis_soft_min: typing.Optional[float] = None, axis_soft_max: typing.Optional[float] = None, axis_grid_show: typing.Optional[bool] = None, scale_distribution: typing.Optional['ScaleDistributionConfig'] = None, axis_centered_zero: typing.Optional[bool] = None, bar_alignment: typing.Optional['BarAlignment'] = None, bar_width_factor: typing.Optional[float] = None, stacking: typing.Optional['StackingConfig'] = None, hide_from: typing.Optional['HideSeriesConfig'] = None, insert_nulls: typing.Optional[typing.Union[bool, float]] = None, span_nulls: typing.Optional[typing.Union[bool, float]] = None, fill_below_to: typing.Optional[str] = None, point_symbol: typing.Optional[str] = None, axis_border_show: typing.Optional[bool] = None, bar_max_width: typing.Optional[float] = None):
+    def __init__(self, draw_style: typing.Optional['GraphDrawStyle'] = None, gradient_mode: typing.Optional['GraphGradientMode'] = None, thresholds_style: typing.Optional['GraphThresholdsStyleConfig'] = None, transform: typing.Optional['GraphTransform'] = None, line_color: typing.Optional[str] = None, line_width: typing.Optional[float] = None, line_interpolation: typing.Optional['LineInterpolation'] = None, line_style: typing.Optional['LineStyle'] = None, fill_color: typing.Optional[str] = None, fill_opacity: typing.Optional[float] = None, show_points: typing.Optional['VisibilityMode'] = None, point_size: typing.Optional[float] = None, point_color: typing.Optional[str] = None, axis_placement: typing.Optional['AxisPlacement'] = None, axis_color_mode: typing.Optional['AxisColorMode'] = None, axis_label: typing.Optional[str] = None, axis_width: typing.Optional[float] = None, axis_soft_min: typing.Optional[float] = None, axis_soft_max: typing.Optional[float] = None, axis_grid_show: typing.Optional[bool] = None, scale_distribution: typing.Optional['ScaleDistributionConfig'] = None, axis_centered_zero: typing.Optional[bool] = None, bar_alignment: typing.Optional['BarAlignment'] = None, bar_width_factor: typing.Optional[float] = None, stacking: typing.Optional['StackingConfig'] = None, hide_from: typing.Optional['HideSeriesConfig'] = None, insert_nulls: typing.Optional[typing.Union[bool, float]] = None, span_nulls: typing.Optional[typing.Union[bool, float]] = None, fill_below_to: typing.Optional[str] = None, point_symbol: typing.Optional[str] = None, axis_border_show: typing.Optional[bool] = None, bar_max_width: typing.Optional[float] = None) -> None:
         self.draw_style = draw_style
         self.gradient_mode = gradient_mode
         self.thresholds_style = thresholds_style
@@ -1909,7 +1909,7 @@ class TableSortByFieldState:
     # Flag used to indicate descending sort order
     desc: typing.Optional[bool]
 
-    def __init__(self, display_name: str = "", desc: typing.Optional[bool] = None):
+    def __init__(self, display_name: str = "", desc: typing.Optional[bool] = None) -> None:
         self.display_name = display_name
         self.desc = desc
 
@@ -1945,7 +1945,7 @@ class TableFooterOptions:
     enable_pagination: typing.Optional[bool]
     count_rows: typing.Optional[bool]
 
-    def __init__(self, show: bool = False, reducer: typing.Optional[list[str]] = None, fields: typing.Optional[list[str]] = None, enable_pagination: typing.Optional[bool] = None, count_rows: typing.Optional[bool] = None):
+    def __init__(self, show: bool = False, reducer: typing.Optional[list[str]] = None, fields: typing.Optional[list[str]] = None, enable_pagination: typing.Optional[bool] = None, count_rows: typing.Optional[bool] = None) -> None:
         self.show = show
         self.reducer = reducer if reducer is not None else []
         self.fields = fields
@@ -1991,7 +1991,7 @@ class TableAutoCellOptions:
     type_val: str
     wrap_text: typing.Optional[bool]
 
-    def __init__(self, wrap_text: typing.Optional[bool] = None):
+    def __init__(self, wrap_text: typing.Optional[bool] = None) -> None:
         self.type_val = TableCellDisplayMode.AUTO
         self.wrap_text = wrap_text
 
@@ -2021,7 +2021,7 @@ class TableColorTextCellOptions:
     type_val: str
     wrap_text: typing.Optional[bool]
 
-    def __init__(self, wrap_text: typing.Optional[bool] = None):
+    def __init__(self, wrap_text: typing.Optional[bool] = None) -> None:
         self.type_val = TableCellDisplayMode.COLOR_TEXT
         self.wrap_text = wrap_text
 
@@ -2050,7 +2050,7 @@ class TableJsonViewCellOptions:
 
     type_val: str
 
-    def __init__(self, ):
+    def __init__(self, ) -> None:
         self.type_val = TableCellDisplayMode.JSON_VIEW
 
     def to_json(self) -> dict[str, object]:
@@ -2074,7 +2074,7 @@ class TableImageCellOptions:
     alt: typing.Optional[str]
     title: typing.Optional[str]
 
-    def __init__(self, alt: typing.Optional[str] = None, title: typing.Optional[str] = None):
+    def __init__(self, alt: typing.Optional[str] = None, title: typing.Optional[str] = None) -> None:
         self.type_val = TableCellDisplayMode.IMAGE
         self.alt = alt
         self.title = title
@@ -2108,7 +2108,7 @@ class TableDataLinksCellOptions:
 
     type_val: str
 
-    def __init__(self, ):
+    def __init__(self, ) -> None:
         self.type_val = TableCellDisplayMode.DATA_LINKS
 
     def to_json(self) -> dict[str, object]:
@@ -2132,7 +2132,7 @@ class TableBarGaugeCellOptions:
     mode: typing.Optional['BarGaugeDisplayMode']
     value_display_mode: typing.Optional['BarGaugeValueMode']
 
-    def __init__(self, mode: typing.Optional['BarGaugeDisplayMode'] = None, value_display_mode: typing.Optional['BarGaugeValueMode'] = None):
+    def __init__(self, mode: typing.Optional['BarGaugeDisplayMode'] = None, value_display_mode: typing.Optional['BarGaugeValueMode'] = None) -> None:
         self.type_val = TableCellDisplayMode.GAUGE
         self.mode = mode
         self.value_display_mode = value_display_mode
@@ -2202,7 +2202,7 @@ class TableSparklineCellOptions:
     axis_border_show: typing.Optional[bool]
     bar_max_width: typing.Optional[float]
 
-    def __init__(self, draw_style: typing.Optional['GraphDrawStyle'] = None, gradient_mode: typing.Optional['GraphGradientMode'] = None, thresholds_style: typing.Optional['GraphThresholdsStyleConfig'] = None, transform: typing.Optional['GraphTransform'] = None, line_color: typing.Optional[str] = None, line_width: typing.Optional[float] = None, line_interpolation: typing.Optional['LineInterpolation'] = None, line_style: typing.Optional['LineStyle'] = None, fill_color: typing.Optional[str] = None, fill_opacity: typing.Optional[float] = None, show_points: typing.Optional['VisibilityMode'] = None, point_size: typing.Optional[float] = None, point_color: typing.Optional[str] = None, axis_placement: typing.Optional['AxisPlacement'] = None, axis_color_mode: typing.Optional['AxisColorMode'] = None, axis_label: typing.Optional[str] = None, axis_width: typing.Optional[float] = None, axis_soft_min: typing.Optional[float] = None, axis_soft_max: typing.Optional[float] = None, axis_grid_show: typing.Optional[bool] = None, scale_distribution: typing.Optional['ScaleDistributionConfig'] = None, axis_centered_zero: typing.Optional[bool] = None, bar_alignment: typing.Optional['BarAlignment'] = None, bar_width_factor: typing.Optional[float] = None, stacking: typing.Optional['StackingConfig'] = None, hide_from: typing.Optional['HideSeriesConfig'] = None, hide_value: typing.Optional[bool] = None, insert_nulls: typing.Optional[typing.Union[bool, float]] = None, span_nulls: typing.Optional[typing.Union[bool, float]] = None, fill_below_to: typing.Optional[str] = None, point_symbol: typing.Optional[str] = None, axis_border_show: typing.Optional[bool] = None, bar_max_width: typing.Optional[float] = None):
+    def __init__(self, draw_style: typing.Optional['GraphDrawStyle'] = None, gradient_mode: typing.Optional['GraphGradientMode'] = None, thresholds_style: typing.Optional['GraphThresholdsStyleConfig'] = None, transform: typing.Optional['GraphTransform'] = None, line_color: typing.Optional[str] = None, line_width: typing.Optional[float] = None, line_interpolation: typing.Optional['LineInterpolation'] = None, line_style: typing.Optional['LineStyle'] = None, fill_color: typing.Optional[str] = None, fill_opacity: typing.Optional[float] = None, show_points: typing.Optional['VisibilityMode'] = None, point_size: typing.Optional[float] = None, point_color: typing.Optional[str] = None, axis_placement: typing.Optional['AxisPlacement'] = None, axis_color_mode: typing.Optional['AxisColorMode'] = None, axis_label: typing.Optional[str] = None, axis_width: typing.Optional[float] = None, axis_soft_min: typing.Optional[float] = None, axis_soft_max: typing.Optional[float] = None, axis_grid_show: typing.Optional[bool] = None, scale_distribution: typing.Optional['ScaleDistributionConfig'] = None, axis_centered_zero: typing.Optional[bool] = None, bar_alignment: typing.Optional['BarAlignment'] = None, bar_width_factor: typing.Optional[float] = None, stacking: typing.Optional['StackingConfig'] = None, hide_from: typing.Optional['HideSeriesConfig'] = None, hide_value: typing.Optional[bool] = None, insert_nulls: typing.Optional[typing.Union[bool, float]] = None, span_nulls: typing.Optional[typing.Union[bool, float]] = None, fill_below_to: typing.Optional[str] = None, point_symbol: typing.Optional[str] = None, axis_border_show: typing.Optional[bool] = None, bar_max_width: typing.Optional[float] = None) -> None:
         self.type_val = TableCellDisplayMode.SPARKLINE
         self.draw_style = draw_style
         self.gradient_mode = gradient_mode
@@ -2394,7 +2394,7 @@ class TableColoredBackgroundCellOptions:
     apply_to_row: typing.Optional[bool]
     wrap_text: typing.Optional[bool]
 
-    def __init__(self, mode: typing.Optional['TableCellBackgroundDisplayMode'] = None, apply_to_row: typing.Optional[bool] = None, wrap_text: typing.Optional[bool] = None):
+    def __init__(self, mode: typing.Optional['TableCellBackgroundDisplayMode'] = None, apply_to_row: typing.Optional[bool] = None, wrap_text: typing.Optional[bool] = None) -> None:
         self.type_val = TableCellDisplayMode.COLOR_BACKGROUND
         self.mode = mode
         self.apply_to_row = apply_to_row
@@ -2477,7 +2477,7 @@ class ResourceDimensionConfig:
     field: typing.Optional[str]
     fixed: typing.Optional[str]
 
-    def __init__(self, mode: typing.Optional['ResourceDimensionMode'] = None, field: typing.Optional[str] = None, fixed: typing.Optional[str] = None):
+    def __init__(self, mode: typing.Optional['ResourceDimensionMode'] = None, field: typing.Optional[str] = None, fixed: typing.Optional[str] = None) -> None:
         self.mode = mode if mode is not None else ResourceDimensionMode.FIXED
         self.field = field
         self.fixed = fixed
@@ -2512,7 +2512,7 @@ class HeatmapCalculationOptions:
     # The number of buckets to use for the yAxis in the heatmap
     y_buckets: typing.Optional['HeatmapCalculationBucketConfig']
 
-    def __init__(self, x_buckets: typing.Optional['HeatmapCalculationBucketConfig'] = None, y_buckets: typing.Optional['HeatmapCalculationBucketConfig'] = None):
+    def __init__(self, x_buckets: typing.Optional['HeatmapCalculationBucketConfig'] = None, y_buckets: typing.Optional['HeatmapCalculationBucketConfig'] = None) -> None:
         self.x_buckets = x_buckets
         self.y_buckets = y_buckets
 
@@ -2576,7 +2576,7 @@ class TableFieldOptions:
     # Hides any header for a column, useful for columns that show some static content or buttons.
     hide_header: typing.Optional[bool]
 
-    def __init__(self, width: typing.Optional[float] = None, min_width: typing.Optional[float] = None, align: typing.Optional['FieldTextAlignment'] = None, display_mode: typing.Optional['TableCellDisplayMode'] = None, cell_options: typing.Optional['TableCellOptions'] = None, hidden: typing.Optional[bool] = None, inspect: bool = False, filterable: typing.Optional[bool] = None, hide_header: typing.Optional[bool] = None):
+    def __init__(self, width: typing.Optional[float] = None, min_width: typing.Optional[float] = None, align: typing.Optional['FieldTextAlignment'] = None, display_mode: typing.Optional['TableCellDisplayMode'] = None, cell_options: typing.Optional['TableCellOptions'] = None, hidden: typing.Optional[bool] = None, inspect: bool = False, filterable: typing.Optional[bool] = None, hide_header: typing.Optional[bool] = None) -> None:
         self.width = width
         self.min_width = min_width
         self.align = align if align is not None else FieldTextAlignment.AUTO

@@ -476,7 +476,7 @@
           "$ref": "#/definitions/LineStyle"
         },
         "spanNulls": {
-          "anyOf": [
+          "oneOf": [
             {
               "type": "boolean"
             },
@@ -1046,7 +1046,7 @@
           "$ref": "#/definitions/HideSeriesConfig"
         },
         "insertNulls": {
-          "anyOf": [
+          "oneOf": [
             {
               "type": "boolean"
             },
@@ -1056,7 +1056,7 @@
           ]
         },
         "spanNulls": {
-          "anyOf": [
+          "oneOf": [
             {
               "type": "boolean"
             },
@@ -1208,7 +1208,11 @@
       ],
       "properties": {
         "type": {
-          "$ref": "#/definitions/TableCellDisplayMode",
+          "allOf": [
+            {
+              "$ref": "#/definitions/TableCellDisplayMode"
+            }
+          ],
           "default": "auto"
         },
         "wrapText": {
@@ -1225,7 +1229,11 @@
       ],
       "properties": {
         "type": {
-          "$ref": "#/definitions/TableCellDisplayMode",
+          "allOf": [
+            {
+              "$ref": "#/definitions/TableCellDisplayMode"
+            }
+          ],
           "default": "color-text"
         },
         "wrapText": {
@@ -1242,7 +1250,11 @@
       ],
       "properties": {
         "type": {
-          "$ref": "#/definitions/TableCellDisplayMode",
+          "allOf": [
+            {
+              "$ref": "#/definitions/TableCellDisplayMode"
+            }
+          ],
           "default": "json-view"
         }
       },
@@ -1256,7 +1268,11 @@
       ],
       "properties": {
         "type": {
-          "$ref": "#/definitions/TableCellDisplayMode",
+          "allOf": [
+            {
+              "$ref": "#/definitions/TableCellDisplayMode"
+            }
+          ],
           "default": "image"
         },
         "alt": {
@@ -1276,7 +1292,11 @@
       ],
       "properties": {
         "type": {
-          "$ref": "#/definitions/TableCellDisplayMode",
+          "allOf": [
+            {
+              "$ref": "#/definitions/TableCellDisplayMode"
+            }
+          ],
           "default": "data-links"
         }
       },
@@ -1290,7 +1310,11 @@
       ],
       "properties": {
         "type": {
-          "$ref": "#/definitions/TableCellDisplayMode",
+          "allOf": [
+            {
+              "$ref": "#/definitions/TableCellDisplayMode"
+            }
+          ],
           "default": "gauge"
         },
         "mode": {
@@ -1310,7 +1334,11 @@
       ],
       "properties": {
         "type": {
-          "$ref": "#/definitions/TableCellDisplayMode",
+          "allOf": [
+            {
+              "$ref": "#/definitions/TableCellDisplayMode"
+            }
+          ],
           "default": "sparkline"
         },
         "drawStyle": {
@@ -1395,7 +1423,7 @@
           "type": "boolean"
         },
         "insertNulls": {
-          "anyOf": [
+          "oneOf": [
             {
               "type": "boolean"
             },
@@ -1405,7 +1433,7 @@
           ]
         },
         "spanNulls": {
-          "anyOf": [
+          "oneOf": [
             {
               "type": "boolean"
             },
@@ -1438,7 +1466,11 @@
       ],
       "properties": {
         "type": {
-          "$ref": "#/definitions/TableCellDisplayMode",
+          "allOf": [
+            {
+              "$ref": "#/definitions/TableCellDisplayMode"
+            }
+          ],
           "default": "color-background"
         },
         "mode": {
@@ -1464,7 +1496,7 @@
       "description": "Height of a table cell"
     },
     "TableCellOptions": {
-      "anyOf": [
+      "oneOf": [
         {
           "$ref": "#/definitions/TableAutoCellOptions"
         },

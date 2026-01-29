@@ -16,7 +16,7 @@ class Options:
     # Controls the column width
     col_width: typing.Optional[float]
 
-    def __init__(self, row_height: float = 0.9, show_value: typing.Optional[common.VisibilityMode] = None, legend: typing.Optional[common.VizLegendOptions] = None, tooltip: typing.Optional[common.VizTooltipOptions] = None, timezone: typing.Optional[list[common.TimeZone]] = None, col_width: typing.Optional[float] = 0.9):
+    def __init__(self, row_height: float = 0.9, show_value: typing.Optional[common.VisibilityMode] = None, legend: typing.Optional[common.VizLegendOptions] = None, tooltip: typing.Optional[common.VizTooltipOptions] = None, timezone: typing.Optional[list[common.TimeZone]] = None, col_width: typing.Optional[float] = 0.9) -> None:
         self.row_height = row_height
         self.show_value = show_value if show_value is not None else common.VisibilityMode.AUTO
         self.legend = legend if legend is not None else common.VizLegendOptions()
@@ -62,7 +62,7 @@ class FieldConfig:
     hide_from: typing.Optional[common.HideSeriesConfig]
     fill_opacity: typing.Optional[int]
 
-    def __init__(self, line_width: typing.Optional[int] = 1, hide_from: typing.Optional[common.HideSeriesConfig] = None, fill_opacity: typing.Optional[int] = 70):
+    def __init__(self, line_width: typing.Optional[int] = 1, hide_from: typing.Optional[common.HideSeriesConfig] = None, fill_opacity: typing.Optional[int] = 70) -> None:
         self.line_width = line_width
         self.hide_from = hide_from
         self.fill_opacity = fill_opacity
