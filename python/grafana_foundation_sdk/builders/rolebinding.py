@@ -8,7 +8,7 @@ from ..models import rolebinding
 class RoleBinding(cogbuilder.Builder[rolebinding.RoleBinding]):
     _internal: rolebinding.RoleBinding
 
-    def __init__(self):
+    def __init__(self) -> None:
         self._internal = rolebinding.RoleBinding()
 
     def build(self) -> rolebinding.RoleBinding:
@@ -42,7 +42,7 @@ class RoleBinding(cogbuilder.Builder[rolebinding.RoleBinding]):
 class BuiltinRoleRef(cogbuilder.Builder[rolebinding.BuiltinRoleRef]):
     _internal: rolebinding.BuiltinRoleRef
 
-    def __init__(self):
+    def __init__(self) -> None:
         self._internal = rolebinding.BuiltinRoleRef()        
         self._internal.kind = "BuiltinRole"
 
@@ -62,7 +62,7 @@ class BuiltinRoleRef(cogbuilder.Builder[rolebinding.BuiltinRoleRef]):
 class CustomRoleRef(cogbuilder.Builder[rolebinding.CustomRoleRef]):
     _internal: rolebinding.CustomRoleRef
 
-    def __init__(self):
+    def __init__(self) -> None:
         self._internal = rolebinding.CustomRoleRef()        
         self._internal.kind = "Role"
 
@@ -82,7 +82,7 @@ class CustomRoleRef(cogbuilder.Builder[rolebinding.CustomRoleRef]):
 class RoleBindingSubject(cogbuilder.Builder[rolebinding.RoleBindingSubject]):
     _internal: rolebinding.RoleBindingSubject
 
-    def __init__(self):
+    def __init__(self) -> None:
         self._internal = rolebinding.RoleBindingSubject()
 
     def build(self) -> rolebinding.RoleBindingSubject:

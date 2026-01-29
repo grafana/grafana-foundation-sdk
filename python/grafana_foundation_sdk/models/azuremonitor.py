@@ -44,7 +44,7 @@ class AzureMonitorQuery(cogvariants.Dataquery):
     # queryType: #AzureQueryType
     region: typing.Optional[str]
 
-    def __init__(self, ref_id: str = "", hide: typing.Optional[bool] = None, query_type: typing.Optional[str] = None, subscription: typing.Optional[str] = None, subscriptions: typing.Optional[list[str]] = None, azure_monitor: typing.Optional['AzureMetricQuery'] = None, azure_log_analytics: typing.Optional['AzureLogsQuery'] = None, azure_resource_graph: typing.Optional['AzureResourceGraphQuery'] = None, azure_traces: typing.Optional['AzureTracesQuery'] = None, grafana_template_variable_fn: typing.Optional['GrafanaTemplateVariableQuery'] = None, resource_group: typing.Optional[str] = None, namespace: typing.Optional[str] = None, resource: typing.Optional[str] = None, datasource: typing.Optional[dashboard.DataSourceRef] = None, region: typing.Optional[str] = None):
+    def __init__(self, ref_id: str = "", hide: typing.Optional[bool] = None, query_type: typing.Optional[str] = None, subscription: typing.Optional[str] = None, subscriptions: typing.Optional[list[str]] = None, azure_monitor: typing.Optional['AzureMetricQuery'] = None, azure_log_analytics: typing.Optional['AzureLogsQuery'] = None, azure_resource_graph: typing.Optional['AzureResourceGraphQuery'] = None, azure_traces: typing.Optional['AzureTracesQuery'] = None, grafana_template_variable_fn: typing.Optional['GrafanaTemplateVariableQuery'] = None, resource_group: typing.Optional[str] = None, namespace: typing.Optional[str] = None, resource: typing.Optional[str] = None, datasource: typing.Optional[dashboard.DataSourceRef] = None, region: typing.Optional[str] = None) -> None:
         self.ref_id = ref_id
         self.hide = hide
         self.query_type = query_type
@@ -174,7 +174,7 @@ class AzureMetricQuery:
     # @deprecated Use resources instead
     resource_name: typing.Optional[str]
 
-    def __init__(self, resources: typing.Optional[list['AzureMonitorResource']] = None, metric_namespace: typing.Optional[str] = None, custom_namespace: typing.Optional[str] = None, metric_name: typing.Optional[str] = None, region: typing.Optional[str] = None, time_grain: typing.Optional[str] = None, aggregation: typing.Optional[str] = None, dimension_filters: typing.Optional[list['AzureMetricDimension']] = None, top: typing.Optional[str] = None, allowed_time_grains_ms: typing.Optional[list[int]] = None, alias: typing.Optional[str] = None, time_grain_unit: typing.Optional[str] = None, dimension: typing.Optional[str] = None, dimension_filter: typing.Optional[str] = None, metric_definition: typing.Optional[str] = None, resource_uri: typing.Optional[str] = None, resource_group: typing.Optional[str] = None, resource_name: typing.Optional[str] = None):
+    def __init__(self, resources: typing.Optional[list['AzureMonitorResource']] = None, metric_namespace: typing.Optional[str] = None, custom_namespace: typing.Optional[str] = None, metric_name: typing.Optional[str] = None, region: typing.Optional[str] = None, time_grain: typing.Optional[str] = None, aggregation: typing.Optional[str] = None, dimension_filters: typing.Optional[list['AzureMetricDimension']] = None, top: typing.Optional[str] = None, allowed_time_grains_ms: typing.Optional[list[int]] = None, alias: typing.Optional[str] = None, time_grain_unit: typing.Optional[str] = None, dimension: typing.Optional[str] = None, dimension_filter: typing.Optional[str] = None, metric_definition: typing.Optional[str] = None, resource_uri: typing.Optional[str] = None, resource_group: typing.Optional[str] = None, resource_name: typing.Optional[str] = None) -> None:
         self.resources = resources
         self.metric_namespace = metric_namespace
         self.custom_namespace = custom_namespace
@@ -286,7 +286,7 @@ class AzureMonitorResource:
     metric_namespace: typing.Optional[str]
     region: typing.Optional[str]
 
-    def __init__(self, subscription: typing.Optional[str] = None, resource_group: typing.Optional[str] = None, resource_name: typing.Optional[str] = None, metric_namespace: typing.Optional[str] = None, region: typing.Optional[str] = None):
+    def __init__(self, subscription: typing.Optional[str] = None, resource_group: typing.Optional[str] = None, resource_name: typing.Optional[str] = None, metric_namespace: typing.Optional[str] = None, region: typing.Optional[str] = None) -> None:
         self.subscription = subscription
         self.resource_group = resource_group
         self.resource_name = resource_name
@@ -336,7 +336,7 @@ class AzureMetricDimension:
     # @deprecated filter is deprecated in favour of filters to support multiselect.
     filter_val: typing.Optional[str]
 
-    def __init__(self, dimension: typing.Optional[str] = None, operator: typing.Optional[str] = None, filters: typing.Optional[list[str]] = None, filter_val: typing.Optional[str] = None):
+    def __init__(self, dimension: typing.Optional[str] = None, operator: typing.Optional[str] = None, filters: typing.Optional[list[str]] = None, filter_val: typing.Optional[str] = None) -> None:
         self.dimension = dimension
         self.operator = operator
         self.filters = filters
@@ -393,7 +393,7 @@ class AzureLogsQuery:
     # @deprecated Use dashboardTime instead
     intersect_time: typing.Optional[bool]
 
-    def __init__(self, query: typing.Optional[str] = None, result_format: typing.Optional['ResultFormat'] = None, resources: typing.Optional[list[str]] = None, dashboard_time: typing.Optional[bool] = None, time_column: typing.Optional[str] = None, workspace: typing.Optional[str] = None, resource: typing.Optional[str] = None, intersect_time: typing.Optional[bool] = None):
+    def __init__(self, query: typing.Optional[str] = None, result_format: typing.Optional['ResultFormat'] = None, resources: typing.Optional[list[str]] = None, dashboard_time: typing.Optional[bool] = None, time_column: typing.Optional[str] = None, workspace: typing.Optional[str] = None, resource: typing.Optional[str] = None, intersect_time: typing.Optional[bool] = None) -> None:
         self.query = query
         self.result_format = result_format
         self.resources = resources
@@ -461,7 +461,7 @@ class AzureResourceGraphQuery:
     # Specifies the format results should be returned as. Defaults to table.
     result_format: typing.Optional[str]
 
-    def __init__(self, query: typing.Optional[str] = None, result_format: typing.Optional[str] = None):
+    def __init__(self, query: typing.Optional[str] = None, result_format: typing.Optional[str] = None) -> None:
         self.query = query
         self.result_format = result_format
 
@@ -504,7 +504,7 @@ class AzureTracesQuery:
     # KQL query to be executed.
     query: typing.Optional[str]
 
-    def __init__(self, result_format: typing.Optional['ResultFormat'] = None, resources: typing.Optional[list[str]] = None, operation_id: typing.Optional[str] = None, trace_types: typing.Optional[list[str]] = None, filters: typing.Optional[list['AzureTracesFilter']] = None, query: typing.Optional[str] = None):
+    def __init__(self, result_format: typing.Optional['ResultFormat'] = None, resources: typing.Optional[list[str]] = None, operation_id: typing.Optional[str] = None, trace_types: typing.Optional[list[str]] = None, filters: typing.Optional[list['AzureTracesFilter']] = None, query: typing.Optional[str] = None) -> None:
         self.result_format = result_format
         self.resources = resources
         self.operation_id = operation_id
@@ -557,7 +557,7 @@ class AzureTracesFilter:
     # Values to filter by.
     filters: list[str]
 
-    def __init__(self, property_val: str = "", operation: str = "", filters: typing.Optional[list[str]] = None):
+    def __init__(self, property_val: str = "", operation: str = "", filters: typing.Optional[list[str]] = None) -> None:
         self.property_val = property_val
         self.operation = operation
         self.filters = filters if filters is not None else []
@@ -591,7 +591,7 @@ class AppInsightsMetricNameQuery:
     raw_query: typing.Optional[str]
     kind: typing.Literal["AppInsightsMetricNameQuery"]
 
-    def __init__(self, raw_query: typing.Optional[str] = None):
+    def __init__(self, raw_query: typing.Optional[str] = None) -> None:
         self.raw_query = raw_query
         self.kind = "AppInsightsMetricNameQuery"
 
@@ -618,7 +618,7 @@ class AppInsightsGroupByQuery:
     kind: typing.Literal["AppInsightsGroupByQuery"]
     metric_name: str
 
-    def __init__(self, raw_query: typing.Optional[str] = None, metric_name: str = ""):
+    def __init__(self, raw_query: typing.Optional[str] = None, metric_name: str = "") -> None:
         self.raw_query = raw_query
         self.kind = "AppInsightsGroupByQuery"
         self.metric_name = metric_name
@@ -648,7 +648,7 @@ class SubscriptionsQuery:
     raw_query: typing.Optional[str]
     kind: typing.Literal["SubscriptionsQuery"]
 
-    def __init__(self, raw_query: typing.Optional[str] = None):
+    def __init__(self, raw_query: typing.Optional[str] = None) -> None:
         self.raw_query = raw_query
         self.kind = "SubscriptionsQuery"
 
@@ -675,7 +675,7 @@ class ResourceGroupsQuery:
     kind: typing.Literal["ResourceGroupsQuery"]
     subscription: str
 
-    def __init__(self, raw_query: typing.Optional[str] = None, subscription: str = ""):
+    def __init__(self, raw_query: typing.Optional[str] = None, subscription: str = "") -> None:
         self.raw_query = raw_query
         self.kind = "ResourceGroupsQuery"
         self.subscription = subscription
@@ -708,7 +708,7 @@ class ResourceNamesQuery:
     resource_group: str
     metric_namespace: str
 
-    def __init__(self, raw_query: typing.Optional[str] = None, subscription: str = "", resource_group: str = "", metric_namespace: str = ""):
+    def __init__(self, raw_query: typing.Optional[str] = None, subscription: str = "", resource_group: str = "", metric_namespace: str = "") -> None:
         self.raw_query = raw_query
         self.kind = "ResourceNamesQuery"
         self.subscription = subscription
@@ -750,7 +750,7 @@ class MetricNamespaceQuery:
     metric_namespace: typing.Optional[str]
     resource_name: typing.Optional[str]
 
-    def __init__(self, raw_query: typing.Optional[str] = None, subscription: str = "", resource_group: str = "", metric_namespace: typing.Optional[str] = None, resource_name: typing.Optional[str] = None):
+    def __init__(self, raw_query: typing.Optional[str] = None, subscription: str = "", resource_group: str = "", metric_namespace: typing.Optional[str] = None, resource_name: typing.Optional[str] = None) -> None:
         self.raw_query = raw_query
         self.kind = "MetricNamespaceQuery"
         self.subscription = subscription
@@ -802,7 +802,7 @@ class MetricDefinitionsQuery:
     metric_namespace: typing.Optional[str]
     resource_name: typing.Optional[str]
 
-    def __init__(self, raw_query: typing.Optional[str] = None, subscription: str = "", resource_group: str = "", metric_namespace: typing.Optional[str] = None, resource_name: typing.Optional[str] = None):
+    def __init__(self, raw_query: typing.Optional[str] = None, subscription: str = "", resource_group: str = "", metric_namespace: typing.Optional[str] = None, resource_name: typing.Optional[str] = None) -> None:
         self.raw_query = raw_query
         self.kind = "MetricDefinitionsQuery"
         self.subscription = subscription
@@ -850,7 +850,7 @@ class MetricNamesQuery:
     resource_name: str
     metric_namespace: str
 
-    def __init__(self, raw_query: typing.Optional[str] = None, subscription: str = "", resource_group: str = "", resource_name: str = "", metric_namespace: str = ""):
+    def __init__(self, raw_query: typing.Optional[str] = None, subscription: str = "", resource_group: str = "", resource_name: str = "", metric_namespace: str = "") -> None:
         self.raw_query = raw_query
         self.kind = "MetricNamesQuery"
         self.subscription = subscription
@@ -893,7 +893,7 @@ class WorkspacesQuery:
     kind: typing.Literal["WorkspacesQuery"]
     subscription: str
 
-    def __init__(self, raw_query: typing.Optional[str] = None, subscription: str = ""):
+    def __init__(self, raw_query: typing.Optional[str] = None, subscription: str = "") -> None:
         self.raw_query = raw_query
         self.kind = "WorkspacesQuery"
         self.subscription = subscription
@@ -923,7 +923,7 @@ class UnknownQuery:
     raw_query: typing.Optional[str]
     kind: typing.Literal["UnknownQuery"]
 
-    def __init__(self, raw_query: typing.Optional[str] = None):
+    def __init__(self, raw_query: typing.Optional[str] = None) -> None:
         self.raw_query = raw_query
         self.kind = "UnknownQuery"
 
@@ -979,7 +979,7 @@ class GrafanaTemplateVariableQueryType(enum.StrEnum):
 class BaseGrafanaTemplateVariableQuery:
     raw_query: typing.Optional[str]
 
-    def __init__(self, raw_query: typing.Optional[str] = None):
+    def __init__(self, raw_query: typing.Optional[str] = None) -> None:
         self.raw_query = raw_query
 
     def to_json(self) -> dict[str, object]:

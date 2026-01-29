@@ -13,9 +13,9 @@ import java.io.IOException;
 import java.util.List;
 import com.grafana.foundation.cog.variants.Dataquery;
 import com.grafana.foundation.cog.variants.Registry;
-import com.grafana.foundation.dashboard.DataSourceRef;
 import com.grafana.foundation.cog.variants.PanelConfig;
 import java.util.Map;
+import com.grafana.foundation.dashboard.DataSourceRef;
 
 public class BoolOrUint32Deserializer extends JsonDeserializer<BoolOrUint32> {
 

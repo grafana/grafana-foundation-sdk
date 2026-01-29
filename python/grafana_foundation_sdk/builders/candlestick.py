@@ -11,7 +11,7 @@ from ..models import common
 class CandlestickFieldMap(cogbuilder.Builder[candlestick.CandlestickFieldMap]):
     _internal: candlestick.CandlestickFieldMap
 
-    def __init__(self):
+    def __init__(self) -> None:
         self._internal = candlestick.CandlestickFieldMap()
 
     def build(self) -> candlestick.CandlestickFieldMap:
@@ -70,7 +70,7 @@ class CandlestickFieldMap(cogbuilder.Builder[candlestick.CandlestickFieldMap]):
 class CandlestickColors(cogbuilder.Builder[candlestick.CandlestickColors]):
     _internal: candlestick.CandlestickColors
 
-    def __init__(self):
+    def __init__(self) -> None:
         self._internal = candlestick.CandlestickColors()
 
     def build(self) -> candlestick.CandlestickColors:
@@ -103,7 +103,7 @@ class Panel(cogbuilder.Builder[dashboard.Panel]):
     
     _internal: dashboard.Panel
 
-    def __init__(self):
+    def __init__(self) -> None:
         self._internal = dashboard.Panel()        
         self._internal.type_val = "candlestick"
 
