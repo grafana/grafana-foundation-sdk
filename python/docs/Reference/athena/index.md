@@ -10,6 +10,7 @@
 
  * <span class="badge builder"></span> [ConnectionArgs](./builder-ConnectionArgs.md)
  * <span class="badge builder"></span> [Dataquery](./builder-Dataquery.md)
+ * <span class="badge builder"></span> [Query](./builder-Query.md)
 ## Functions
 
 ### <span class="badge function"></span> variant_config

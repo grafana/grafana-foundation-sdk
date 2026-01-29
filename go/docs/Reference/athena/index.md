@@ -10,6 +10,7 @@
 
  * <span class="badge builder"></span> [ConnectionArgsBuilder](./builder-ConnectionArgsBuilder.md)
  * <span class="badge builder"></span> [DataqueryBuilder](./builder-DataqueryBuilder.md)
+ * <span class="badge builder"></span> [QueryBuilder](./builder-QueryBuilder.md)
 ## Functions
 
 ### <span class="badge function"></span> NewDataquery
@@ -52,5 +53,13 @@ ConnectionArgsConverter accepts a `ConnectionArgs` object and generates the Go c
 
 ```go
 func ConnectionArgsConverter(input ConnectionArgs) string
+```
+
+### <span class="badge function"></span> QueryConverter
+
+QueryConverter accepts a `Query` object and generates the Go code to build this object using builders.
+
+```go
+func QueryConverter(input dashboardv2beta1.DataQueryKind) string
 ```
 

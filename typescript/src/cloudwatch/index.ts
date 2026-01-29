@@ -30,3 +30,5 @@ export * from './logGroupBuilder.gen';
 export type * from './logGroupBuilder.gen';
 export * from './cloudWatchAnnotationQueryBuilder.gen';
 export type * from './cloudWatchAnnotationQueryBuilder.gen';
+export * from './queryBuilder.gen';
+export type * from './queryBuilder.gen';

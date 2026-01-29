@@ -14,6 +14,7 @@
  * <span class="badge builder"></span> [MapViewConfig](./builder-MapViewConfig.md)
  * <span class="badge builder"></span> [Panel](./builder-Panel.md)
  * <span class="badge builder"></span> [TooltipOptions](./builder-TooltipOptions.md)
+ * <span class="badge builder"></span> [Visualization](./builder-Visualization.md)
 ## Functions
 
 ### <span class="badge function"></span> variant_config

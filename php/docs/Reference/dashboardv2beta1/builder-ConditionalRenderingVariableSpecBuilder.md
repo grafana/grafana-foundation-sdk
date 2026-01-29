@@ -1,0 +1,41 @@
+---
+title: <span class="badge builder"></span> ConditionalRenderingVariableSpecBuilder
+---
+# <span class="badge builder"></span> ConditionalRenderingVariableSpecBuilder
+
+## Constructor
+
+```php
+new ConditionalRenderingVariableSpecBuilder()
+```
+## Methods
+
+### <span class="badge object-method"></span> build
+
+Builds the object.
+
+```php
+build()
+```
+
+### <span class="badge object-method"></span> operator
+
+```php
+operator(\Grafana\Foundation\Dashboardv2beta1\ConditionalRenderingVariableSpecOperator $operator)
+```
+
+### <span class="badge object-method"></span> value
+
+```php
+value(string $value)
+```
+
+### <span class="badge object-method"></span> variable
+
+```php
+variable(string $variable)
+```
+
+## See also
+
+ * <span class="badge object-type-class"></span> [ConditionalRenderingVariableSpec](./object-ConditionalRenderingVariableSpec.md)

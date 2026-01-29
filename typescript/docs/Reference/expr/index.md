@@ -12,6 +12,7 @@
  * <span class="badge object-type-disjunction"></span> [expr](./object-expr.md)
 ## Builders
 
+ * <span class="badge builder"></span> [QueryBuilder](./builder-QueryBuilder.md)
  * <span class="badge builder"></span> [TypeClassicConditionsBuilder](./builder-TypeClassicConditionsBuilder.md)
  * <span class="badge builder"></span> [TypeMathBuilder](./builder-TypeMathBuilder.md)
  * <span class="badge builder"></span> [TypeReduceBuilder](./builder-TypeReduceBuilder.md)

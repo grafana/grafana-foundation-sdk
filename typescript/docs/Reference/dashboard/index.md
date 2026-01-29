@@ -13,7 +13,7 @@
  * <span class="badge object-type-interface"></span> [DashboardLink](./object-DashboardLink.md)
  * <span class="badge object-type-enum"></span> [DashboardLinkType](./object-DashboardLinkType.md)
  * <span class="badge object-type-interface"></span> [DashboardMeta](./object-DashboardMeta.md)
- * <span class="badge object-type-interface"></span> [DataSourceRef](./object-DataSourceRef.md)
+ * <span class="badge object-type-ref"></span> [DataSourceRef](./object-DataSourceRef.md)
  * <span class="badge object-type-interface"></span> [DataTransformerConfig](./object-DataTransformerConfig.md)
  * <span class="badge object-type-interface"></span> [DynamicConfigValue](./object-DynamicConfigValue.md)
  * <span class="badge object-type-interface"></span> [FieldColor](./object-FieldColor.md)

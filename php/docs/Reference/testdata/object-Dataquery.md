@@ -27,7 +27,7 @@ class Dataquery implements \JsonSerializable, \Grafana\Foundation\Cog\Dataquery
     /**
      * The datasource
      */
-    public ?\Grafana\Foundation\Dashboard\DataSourceRef $datasource;
+    public ?\Grafana\Foundation\Common\DataSourceRef $datasource;
 
     /**
      * Drop percentage (the chance we will lose a point 0-100)

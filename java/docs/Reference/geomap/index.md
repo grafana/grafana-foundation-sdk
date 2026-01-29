@@ -14,3 +14,4 @@
  * <span class="badge builder"></span> [MapViewConfigBuilder](./builder-MapViewConfigBuilder.md)
  * <span class="badge builder"></span> [PanelBuilder](./builder-PanelBuilder.md)
  * <span class="badge builder"></span> [TooltipOptionsBuilder](./builder-TooltipOptionsBuilder.md)
+ * <span class="badge builder"></span> [VisualizationBuilder](./builder-VisualizationBuilder.md)

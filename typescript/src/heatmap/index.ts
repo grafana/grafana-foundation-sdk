@@ -2,6 +2,8 @@
 
 export * from './types.gen';
 export type * from './types.gen';
+export * from './panelBuilder.gen';
+export type * from './panelBuilder.gen';
 export * from './heatmapColorOptionsBuilder.gen';
 export type * from './heatmapColorOptionsBuilder.gen';
 export * from './yAxisConfigBuilder.gen';
@@ -18,5 +20,5 @@ export * from './exemplarConfigBuilder.gen';
 export type * from './exemplarConfigBuilder.gen';
 export * from './rowsHeatmapOptionsBuilder.gen';
 export type * from './rowsHeatmapOptionsBuilder.gen';
-export * from './panelBuilder.gen';
-export type * from './panelBuilder.gen';
+export * from './visualizationBuilder.gen';
+export type * from './visualizationBuilder.gen';

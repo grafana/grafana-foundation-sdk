@@ -19,7 +19,7 @@
  * <span class="badge object-type-class"></span> [DashboardRangeMapOptions](./object-DashboardRangeMapOptions.md)
  * <span class="badge object-type-class"></span> [DashboardRegexMapOptions](./object-DashboardRegexMapOptions.md)
  * <span class="badge object-type-class"></span> [DashboardSpecialValueMapOptions](./object-DashboardSpecialValueMapOptions.md)
- * <span class="badge object-type-class"></span> [DataSourceRef](./object-DataSourceRef.md)
+ * <span class="badge object-type-ref"></span> [DataSourceRef](./object-DataSourceRef.md)
  * <span class="badge object-type-class"></span> [DataTransformerConfig](./object-DataTransformerConfig.md)
  * <span class="badge object-type-enum"></span> [DataTransformerConfigTopic](./object-DataTransformerConfigTopic.md)
  * <span class="badge object-type-class"></span> [DynamicConfigValue](./object-DynamicConfigValue.md)

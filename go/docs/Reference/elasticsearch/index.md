@@ -164,6 +164,7 @@
  * <span class="badge builder"></span> [PercentilesBuilder](./builder-PercentilesBuilder.md)
  * <span class="badge builder"></span> [PipelineMetricAggregationWithMultipleBucketPathsBuilder](./builder-PipelineMetricAggregationWithMultipleBucketPathsBuilder.md)
  * <span class="badge builder"></span> [PipelineVariableBuilder](./builder-PipelineVariableBuilder.md)
+ * <span class="badge builder"></span> [QueryBuilder](./builder-QueryBuilder.md)
  * <span class="badge builder"></span> [RateBuilder](./builder-RateBuilder.md)
  * <span class="badge builder"></span> [RawDataBuilder](./builder-RawDataBuilder.md)
  * <span class="badge builder"></span> [RawDocumentBuilder](./builder-RawDocumentBuilder.md)
@@ -1505,5 +1506,13 @@ StringOrElasticsearchInlineScriptConverter accepts a `StringOrElasticsearchInlin
 
 ```go
 func StringOrElasticsearchInlineScriptConverter(input StringOrElasticsearchInlineScript) string
+```
+
+### <span class="badge function"></span> QueryConverter
+
+QueryConverter accepts a `Query` object and generates the Go code to build this object using builders.
+
+```go
+func QueryConverter(input dashboardv2beta1.DataQueryKind) string
 ```
 

@@ -25,6 +25,7 @@
  * <span class="badge builder"></span> [HeatmapTooltip](./builder-HeatmapTooltip.md)
  * <span class="badge builder"></span> [Panel](./builder-Panel.md)
  * <span class="badge builder"></span> [RowsHeatmapOptions](./builder-RowsHeatmapOptions.md)
+ * <span class="badge builder"></span> [Visualization](./builder-Visualization.md)
  * <span class="badge builder"></span> [YAxisConfig](./builder-YAxisConfig.md)
 ## Functions
 

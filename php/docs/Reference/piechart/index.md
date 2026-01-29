@@ -12,3 +12,4 @@
 
  * <span class="badge builder"></span> [PanelBuilder](./builder-PanelBuilder.md)
  * <span class="badge builder"></span> [PieChartLegendOptionsBuilder](./builder-PieChartLegendOptionsBuilder.md)
+ * <span class="badge builder"></span> [VisualizationBuilder](./builder-VisualizationBuilder.md)

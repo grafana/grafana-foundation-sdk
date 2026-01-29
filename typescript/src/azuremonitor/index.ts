@@ -72,3 +72,5 @@ export * from './selectableValueBuilder.gen';
 export type * from './selectableValueBuilder.gen';
 export * from './baseGrafanaTemplateVariableQueryBuilder.gen';
 export type * from './baseGrafanaTemplateVariableQueryBuilder.gen';
+export * from './queryBuilder.gen';
+export type * from './queryBuilder.gen';

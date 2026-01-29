@@ -9,6 +9,7 @@
 
  * <span class="badge builder"></span> [PanelBuilder](./builder-PanelBuilder.md)
  * <span class="badge builder"></span> [UpdateConfigBuilder](./builder-UpdateConfigBuilder.md)
+ * <span class="badge builder"></span> [VisualizationBuilder](./builder-VisualizationBuilder.md)
 ## Functions
 
 ### <span class="badge function"></span> NewUpdateConfig
@@ -37,6 +38,14 @@ This configuration describes how to unmarshal it, convert it to code, …
 func VariantConfig() variants.PanelcfgConfig
 ```
 
+### <span class="badge function"></span> PanelConverter
+
+PanelConverter accepts a `Panel` object and generates the Go code to build this object using builders.
+
+```go
+func PanelConverter(input dashboard.Panel) string
+```
+
 ### <span class="badge function"></span> UpdateConfigConverter
 
 UpdateConfigConverter accepts a `UpdateConfig` object and generates the Go code to build this object using builders.
@@ -45,11 +54,11 @@ UpdateConfigConverter accepts a `UpdateConfig` object and generates the Go code 
 func UpdateConfigConverter(input UpdateConfig) string
 ```
 
-### <span class="badge function"></span> PanelConverter
+### <span class="badge function"></span> VisualizationConverter
 
-PanelConverter accepts a `Panel` object and generates the Go code to build this object using builders.
+VisualizationConverter accepts a `Visualization` object and generates the Go code to build this object using builders.
 
 ```go
-func PanelConverter(input dashboard.Panel) string
+func VisualizationConverter(input dashboardv2beta1.VizConfigKind) string
 ```
 

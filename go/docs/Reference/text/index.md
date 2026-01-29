@@ -10,6 +10,7 @@
 
  * <span class="badge builder"></span> [CodeOptionsBuilder](./builder-CodeOptionsBuilder.md)
  * <span class="badge builder"></span> [PanelBuilder](./builder-PanelBuilder.md)
+ * <span class="badge builder"></span> [VisualizationBuilder](./builder-VisualizationBuilder.md)
 ## Functions
 
 ### <span class="badge function"></span> NewCodeOptions
@@ -38,6 +39,14 @@ This configuration describes how to unmarshal it, convert it to code, …
 func VariantConfig() variants.PanelcfgConfig
 ```
 
+### <span class="badge function"></span> PanelConverter
+
+PanelConverter accepts a `Panel` object and generates the Go code to build this object using builders.
+
+```go
+func PanelConverter(input dashboard.Panel) string
+```
+
 ### <span class="badge function"></span> CodeOptionsConverter
 
 CodeOptionsConverter accepts a `CodeOptions` object and generates the Go code to build this object using builders.
@@ -46,11 +55,11 @@ CodeOptionsConverter accepts a `CodeOptions` object and generates the Go code to
 func CodeOptionsConverter(input CodeOptions) string
 ```
 
-### <span class="badge function"></span> PanelConverter
+### <span class="badge function"></span> VisualizationConverter
 
-PanelConverter accepts a `Panel` object and generates the Go code to build this object using builders.
+VisualizationConverter accepts a `Visualization` object and generates the Go code to build this object using builders.
 
 ```go
-func PanelConverter(input dashboard.Panel) string
+func VisualizationConverter(input dashboardv2beta1.VizConfigKind) string
 ```
 

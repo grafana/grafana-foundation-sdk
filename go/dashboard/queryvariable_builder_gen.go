@@ -4,6 +4,7 @@ package dashboard
 
 import (
 	cog "github.com/grafana/grafana-foundation-sdk/go/cog"
+	common "github.com/grafana/grafana-foundation-sdk/go/common"
 )
 
 var _ cog.Builder[VariableModel] = (*QueryVariableBuilder)(nil)
@@ -74,7 +75,7 @@ func (builder *QueryVariableBuilder) Query(query StringOrMap) *QueryVariableBuil
 }
 
 // Data source used to fetch values for a variable. It can be defined but `null`.
-func (builder *QueryVariableBuilder) Datasource(datasource DataSourceRef) *QueryVariableBuilder {
+func (builder *QueryVariableBuilder) Datasource(datasource common.DataSourceRef) *QueryVariableBuilder {
 	builder.internal.Datasource = &datasource
 
 	return builder

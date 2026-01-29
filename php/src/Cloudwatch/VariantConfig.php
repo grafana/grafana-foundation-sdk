@@ -35,6 +35,8 @@ final class VariantConfig
         throw new \ValueError('can not convert unknown disjunction branch');
 }
 }),
+            convertv2: [QueryConverter::class, 'convert'],
         );
     }
+
 }

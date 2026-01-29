@@ -18,3 +18,5 @@ export * from './legacyCloudMonitoringAnnotationQueryBuilder.gen';
 export type * from './legacyCloudMonitoringAnnotationQueryBuilder.gen';
 export * from './filterBuilder.gen';
 export type * from './filterBuilder.gen';
+export * from './queryBuilder.gen';
+export type * from './queryBuilder.gen';

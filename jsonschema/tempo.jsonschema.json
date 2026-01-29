@@ -6,7 +6,6 @@
       "type": "object",
       "additionalProperties": false,
       "required": [
-        "refId",
         "filters"
       ],
       "properties": {
@@ -47,7 +46,7 @@
           "description": "@deprecated Define the maximum duration to select traces. Use duration format, for example: 1.2s, 100ms"
         },
         "serviceMapQuery": {
-          "anyOf": [
+          "oneOf": [
             {
               "type": "string"
             },
@@ -127,7 +126,7 @@
           "description": "The operator that connects the tag to the value, for example: =, \u003e, !=, =~"
         },
         "value": {
-          "anyOf": [
+          "oneOf": [
             {
               "type": "string"
             },
@@ -213,8 +212,7 @@
           "type": "string",
           "description": "Specific datasource instance"
         }
-      },
-      "description": "Ref to a DataSource instance"
+      }
     }
   }
 }

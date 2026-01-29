@@ -7,7 +7,7 @@ class TypeReduce implements \JsonSerializable, \Grafana\Foundation\Cog\Dataquery
     /**
      * The datasource
      */
-    public ?\Grafana\Foundation\Dashboard\DataSourceRef $datasource;
+    public ?\Grafana\Foundation\Common\DataSourceRef $datasource;
 
     /**
      * Reference to single query result
@@ -57,7 +57,7 @@ class TypeReduce implements \JsonSerializable, \Grafana\Foundation\Cog\Dataquery
     /**
      * RefID is the unique identifier of the query, set by the frontend call.
      */
-    public string $refId;
+    public ?string $refId;
 
     /**
      * Optionally define expected query result behavior
@@ -79,7 +79,7 @@ class TypeReduce implements \JsonSerializable, \Grafana\Foundation\Cog\Dataquery
     public string $type;
 
     /**
-     * @param \Grafana\Foundation\Dashboard\DataSourceRef|null $datasource
+     * @param \Grafana\Foundation\Common\DataSourceRef|null $datasource
      * @param string|null $expression
      * @param bool|null $hide
      * @param float|null $intervalMs
@@ -91,7 +91,7 @@ class TypeReduce implements \JsonSerializable, \Grafana\Foundation\Cog\Dataquery
      * @param \Grafana\Foundation\Expr\ExprTypeReduceSettings|null $settings
      * @param \Grafana\Foundation\Expr\ExprTypeReduceTimeRange|null $timeRange
      */
-    public function __construct(?\Grafana\Foundation\Dashboard\DataSourceRef $datasource = null, ?string $expression = null, ?bool $hide = null, ?float $intervalMs = null, ?int $maxDataPoints = null, ?string $queryType = null, ?\Grafana\Foundation\Expr\TypeReduceReducer $reducer = null, ?string $refId = null, ?\Grafana\Foundation\Expr\ExprTypeReduceResultAssertions $resultAssertions = null, ?\Grafana\Foundation\Expr\ExprTypeReduceSettings $settings = null, ?\Grafana\Foundation\Expr\ExprTypeReduceTimeRange $timeRange = null)
+    public function __construct(?\Grafana\Foundation\Common\DataSourceRef $datasource = null, ?string $expression = null, ?bool $hide = null, ?float $intervalMs = null, ?int $maxDataPoints = null, ?string $queryType = null, ?\Grafana\Foundation\Expr\TypeReduceReducer $reducer = null, ?string $refId = null, ?\Grafana\Foundation\Expr\ExprTypeReduceResultAssertions $resultAssertions = null, ?\Grafana\Foundation\Expr\ExprTypeReduceSettings $settings = null, ?\Grafana\Foundation\Expr\ExprTypeReduceTimeRange $timeRange = null)
     {
         $this->datasource = $datasource;
         $this->expression = $expression ?: "";
@@ -100,7 +100,7 @@ class TypeReduce implements \JsonSerializable, \Grafana\Foundation\Cog\Dataquery
         $this->maxDataPoints = $maxDataPoints;
         $this->queryType = $queryType;
         $this->reducer = $reducer ?: \Grafana\Foundation\Expr\TypeReduceReducer::Sum();
-        $this->refId = $refId ?: "";
+        $this->refId = $refId;
         $this->resultAssertions = $resultAssertions;
         $this->settings = $settings;
         $this->timeRange = $timeRange;
@@ -119,7 +119,7 @@ class TypeReduce implements \JsonSerializable, \Grafana\Foundation\Cog\Dataquery
             datasource: isset($data["datasource"]) ? (function($input) {
     	/** @var array{type?: string, uid?: string} */
     $val = $input;
-    	return \Grafana\Foundation\Dashboard\DataSourceRef::fromArray($val);
+    	return \Grafana\Foundation\Common\DataSourceRef::fromArray($val);
     })($data["datasource"]) : null,
             expression: $data["expression"] ?? null,
             hide: $data["hide"] ?? null,
@@ -154,7 +154,6 @@ class TypeReduce implements \JsonSerializable, \Grafana\Foundation\Cog\Dataquery
         $data = new \stdClass;
         $data->expression = $this->expression;
         $data->reducer = $this->reducer;
-        $data->refId = $this->refId;
         $data->type = $this->type;
         if (isset($this->datasource)) {
             $data->datasource = $this->datasource;
@@ -170,6 +169,9 @@ class TypeReduce implements \JsonSerializable, \Grafana\Foundation\Cog\Dataquery
         }
         if (isset($this->queryType)) {
             $data->queryType = $this->queryType;
+        }
+        if (isset($this->refId)) {
+            $data->refId = $this->refId;
         }
         if (isset($this->resultAssertions)) {
             $data->resultAssertions = $this->resultAssertions;
