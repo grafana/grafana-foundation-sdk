@@ -9,7 +9,7 @@ from ..models import dashboard
 class AzureMonitorQuery(cogbuilder.Builder[azuremonitor.AzureMonitorQuery]):
     _internal: azuremonitor.AzureMonitorQuery
 
-    def __init__(self):
+    def __init__(self) -> None:
         self._internal = azuremonitor.AzureMonitorQuery()
 
     def build(self) -> azuremonitor.AzureMonitorQuery:
@@ -164,7 +164,7 @@ class AzureMonitorQuery(cogbuilder.Builder[azuremonitor.AzureMonitorQuery]):
 class AzureMetricQuery(cogbuilder.Builder[azuremonitor.AzureMetricQuery]):
     _internal: azuremonitor.AzureMetricQuery
 
-    def __init__(self):
+    def __init__(self) -> None:
         self._internal = azuremonitor.AzureMetricQuery()
 
     def build(self) -> azuremonitor.AzureMetricQuery:
@@ -344,7 +344,7 @@ class AzureMetricQuery(cogbuilder.Builder[azuremonitor.AzureMetricQuery]):
 class AzureMonitorResource(cogbuilder.Builder[azuremonitor.AzureMonitorResource]):
     _internal: azuremonitor.AzureMonitorResource
 
-    def __init__(self):
+    def __init__(self) -> None:
         self._internal = azuremonitor.AzureMonitorResource()
 
     def build(self) -> azuremonitor.AzureMonitorResource:
@@ -383,7 +383,7 @@ class AzureMonitorResource(cogbuilder.Builder[azuremonitor.AzureMonitorResource]
 class AzureMetricDimension(cogbuilder.Builder[azuremonitor.AzureMetricDimension]):
     _internal: azuremonitor.AzureMetricDimension
 
-    def __init__(self):
+    def __init__(self) -> None:
         self._internal = azuremonitor.AzureMetricDimension()
 
     def build(self) -> azuremonitor.AzureMetricDimension:
@@ -437,7 +437,7 @@ class AzureLogsQuery(cogbuilder.Builder[azuremonitor.AzureLogsQuery]):
     
     _internal: azuremonitor.AzureLogsQuery
 
-    def __init__(self):
+    def __init__(self) -> None:
         self._internal = azuremonitor.AzureLogsQuery()
 
     def build(self) -> azuremonitor.AzureLogsQuery:
@@ -523,7 +523,7 @@ class AzureLogsQuery(cogbuilder.Builder[azuremonitor.AzureLogsQuery]):
 class AzureResourceGraphQuery(cogbuilder.Builder[azuremonitor.AzureResourceGraphQuery]):
     _internal: azuremonitor.AzureResourceGraphQuery
 
-    def __init__(self):
+    def __init__(self) -> None:
         self._internal = azuremonitor.AzureResourceGraphQuery()
 
     def build(self) -> azuremonitor.AzureResourceGraphQuery:
@@ -559,7 +559,7 @@ class AzureTracesQuery(cogbuilder.Builder[azuremonitor.AzureTracesQuery]):
     
     _internal: azuremonitor.AzureTracesQuery
 
-    def __init__(self):
+    def __init__(self) -> None:
         self._internal = azuremonitor.AzureTracesQuery()
 
     def build(self) -> azuremonitor.AzureTracesQuery:
@@ -628,7 +628,7 @@ class AzureTracesQuery(cogbuilder.Builder[azuremonitor.AzureTracesQuery]):
 class AzureTracesFilter(cogbuilder.Builder[azuremonitor.AzureTracesFilter]):
     _internal: azuremonitor.AzureTracesFilter
 
-    def __init__(self):
+    def __init__(self) -> None:
         self._internal = azuremonitor.AzureTracesFilter()
 
     def build(self) -> azuremonitor.AzureTracesFilter:
@@ -669,7 +669,7 @@ class AzureTracesFilter(cogbuilder.Builder[azuremonitor.AzureTracesFilter]):
 class AppInsightsMetricNameQuery(cogbuilder.Builder[azuremonitor.AppInsightsMetricNameQuery]):
     _internal: azuremonitor.AppInsightsMetricNameQuery
 
-    def __init__(self):
+    def __init__(self) -> None:
         self._internal = azuremonitor.AppInsightsMetricNameQuery()        
         self._internal.kind = "AppInsightsMetricNameQuery"
 
@@ -689,7 +689,7 @@ class AppInsightsMetricNameQuery(cogbuilder.Builder[azuremonitor.AppInsightsMetr
 class AppInsightsGroupByQuery(cogbuilder.Builder[azuremonitor.AppInsightsGroupByQuery]):
     _internal: azuremonitor.AppInsightsGroupByQuery
 
-    def __init__(self):
+    def __init__(self) -> None:
         self._internal = azuremonitor.AppInsightsGroupByQuery()        
         self._internal.kind = "AppInsightsGroupByQuery"
 
@@ -714,7 +714,7 @@ class AppInsightsGroupByQuery(cogbuilder.Builder[azuremonitor.AppInsightsGroupBy
 class SubscriptionsQuery(cogbuilder.Builder[azuremonitor.SubscriptionsQuery]):
     _internal: azuremonitor.SubscriptionsQuery
 
-    def __init__(self):
+    def __init__(self) -> None:
         self._internal = azuremonitor.SubscriptionsQuery()        
         self._internal.kind = "SubscriptionsQuery"
 
@@ -734,7 +734,7 @@ class SubscriptionsQuery(cogbuilder.Builder[azuremonitor.SubscriptionsQuery]):
 class ResourceGroupsQuery(cogbuilder.Builder[azuremonitor.ResourceGroupsQuery]):
     _internal: azuremonitor.ResourceGroupsQuery
 
-    def __init__(self):
+    def __init__(self) -> None:
         self._internal = azuremonitor.ResourceGroupsQuery()        
         self._internal.kind = "ResourceGroupsQuery"
 
@@ -759,7 +759,7 @@ class ResourceGroupsQuery(cogbuilder.Builder[azuremonitor.ResourceGroupsQuery]):
 class ResourceNamesQuery(cogbuilder.Builder[azuremonitor.ResourceNamesQuery]):
     _internal: azuremonitor.ResourceNamesQuery
 
-    def __init__(self):
+    def __init__(self) -> None:
         self._internal = azuremonitor.ResourceNamesQuery()        
         self._internal.kind = "ResourceNamesQuery"
 
@@ -794,7 +794,7 @@ class ResourceNamesQuery(cogbuilder.Builder[azuremonitor.ResourceNamesQuery]):
 class MetricNamespaceQuery(cogbuilder.Builder[azuremonitor.MetricNamespaceQuery]):
     _internal: azuremonitor.MetricNamespaceQuery
 
-    def __init__(self):
+    def __init__(self) -> None:
         self._internal = azuremonitor.MetricNamespaceQuery()        
         self._internal.kind = "MetricNamespaceQuery"
 
@@ -838,7 +838,7 @@ class MetricDefinitionsQuery(cogbuilder.Builder[azuremonitor.MetricDefinitionsQu
     
     _internal: azuremonitor.MetricDefinitionsQuery
 
-    def __init__(self):
+    def __init__(self) -> None:
         self._internal = azuremonitor.MetricDefinitionsQuery()        
         self._internal.kind = "MetricDefinitionsQuery"
 
@@ -878,7 +878,7 @@ class MetricDefinitionsQuery(cogbuilder.Builder[azuremonitor.MetricDefinitionsQu
 class MetricNamesQuery(cogbuilder.Builder[azuremonitor.MetricNamesQuery]):
     _internal: azuremonitor.MetricNamesQuery
 
-    def __init__(self):
+    def __init__(self) -> None:
         self._internal = azuremonitor.MetricNamesQuery()        
         self._internal.kind = "MetricNamesQuery"
 
@@ -918,7 +918,7 @@ class MetricNamesQuery(cogbuilder.Builder[azuremonitor.MetricNamesQuery]):
 class WorkspacesQuery(cogbuilder.Builder[azuremonitor.WorkspacesQuery]):
     _internal: azuremonitor.WorkspacesQuery
 
-    def __init__(self):
+    def __init__(self) -> None:
         self._internal = azuremonitor.WorkspacesQuery()        
         self._internal.kind = "WorkspacesQuery"
 
@@ -943,7 +943,7 @@ class WorkspacesQuery(cogbuilder.Builder[azuremonitor.WorkspacesQuery]):
 class UnknownQuery(cogbuilder.Builder[azuremonitor.UnknownQuery]):
     _internal: azuremonitor.UnknownQuery
 
-    def __init__(self):
+    def __init__(self) -> None:
         self._internal = azuremonitor.UnknownQuery()        
         self._internal.kind = "UnknownQuery"
 
@@ -963,7 +963,7 @@ class UnknownQuery(cogbuilder.Builder[azuremonitor.UnknownQuery]):
 class BaseGrafanaTemplateVariableQuery(cogbuilder.Builder[azuremonitor.BaseGrafanaTemplateVariableQuery]):
     _internal: azuremonitor.BaseGrafanaTemplateVariableQuery
 
-    def __init__(self):
+    def __init__(self) -> None:
         self._internal = azuremonitor.BaseGrafanaTemplateVariableQuery()
 
     def build(self) -> azuremonitor.BaseGrafanaTemplateVariableQuery:

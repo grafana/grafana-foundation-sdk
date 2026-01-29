@@ -10,7 +10,7 @@ from ..cog import variants as cogvariants
 class ArcOption(cogbuilder.Builder[nodegraph.ArcOption]):
     _internal: nodegraph.ArcOption
 
-    def __init__(self):
+    def __init__(self) -> None:
         self._internal = nodegraph.ArcOption()
 
     def build(self) -> nodegraph.ArcOption:
@@ -42,7 +42,7 @@ class ArcOption(cogbuilder.Builder[nodegraph.ArcOption]):
 class NodeOptions(cogbuilder.Builder[nodegraph.NodeOptions]):
     _internal: nodegraph.NodeOptions
 
-    def __init__(self):
+    def __init__(self) -> None:
         self._internal = nodegraph.NodeOptions()
 
     def build(self) -> nodegraph.NodeOptions:
@@ -84,7 +84,7 @@ class NodeOptions(cogbuilder.Builder[nodegraph.NodeOptions]):
 class EdgeOptions(cogbuilder.Builder[nodegraph.EdgeOptions]):
     _internal: nodegraph.EdgeOptions
 
-    def __init__(self):
+    def __init__(self) -> None:
         self._internal = nodegraph.EdgeOptions()
 
     def build(self) -> nodegraph.EdgeOptions:
@@ -120,7 +120,7 @@ class Panel(cogbuilder.Builder[dashboard.Panel]):
     
     _internal: dashboard.Panel
 
-    def __init__(self):
+    def __init__(self) -> None:
         self._internal = dashboard.Panel()        
         self._internal.type_val = "nodeGraph"
 

@@ -11,7 +11,7 @@ from ..cog import variants as cogvariants
 class Constraint(cogbuilder.Builder[canvas.Constraint]):
     _internal: canvas.Constraint
 
-    def __init__(self):
+    def __init__(self) -> None:
         self._internal = canvas.Constraint()
 
     def build(self) -> canvas.Constraint:
@@ -35,7 +35,7 @@ class Constraint(cogbuilder.Builder[canvas.Constraint]):
 class Placement(cogbuilder.Builder[canvas.Placement]):
     _internal: canvas.Placement
 
-    def __init__(self):
+    def __init__(self) -> None:
         self._internal = canvas.Placement()
 
     def build(self) -> canvas.Placement:
@@ -79,7 +79,7 @@ class Placement(cogbuilder.Builder[canvas.Placement]):
 class BackgroundConfig(cogbuilder.Builder[canvas.BackgroundConfig]):
     _internal: canvas.BackgroundConfig
 
-    def __init__(self):
+    def __init__(self) -> None:
         self._internal = canvas.BackgroundConfig()
 
     def build(self) -> canvas.BackgroundConfig:
@@ -110,7 +110,7 @@ class BackgroundConfig(cogbuilder.Builder[canvas.BackgroundConfig]):
 class LineConfig(cogbuilder.Builder[canvas.LineConfig]):
     _internal: canvas.LineConfig
 
-    def __init__(self):
+    def __init__(self) -> None:
         self._internal = canvas.LineConfig()
 
     def build(self) -> canvas.LineConfig:
@@ -135,7 +135,7 @@ class LineConfig(cogbuilder.Builder[canvas.LineConfig]):
 class ConnectionCoordinates(cogbuilder.Builder[canvas.ConnectionCoordinates]):
     _internal: canvas.ConnectionCoordinates
 
-    def __init__(self):
+    def __init__(self) -> None:
         self._internal = canvas.ConnectionCoordinates()
 
     def build(self) -> canvas.ConnectionCoordinates:
@@ -159,7 +159,7 @@ class ConnectionCoordinates(cogbuilder.Builder[canvas.ConnectionCoordinates]):
 class CanvasConnection(cogbuilder.Builder[canvas.CanvasConnection]):
     _internal: canvas.CanvasConnection
 
-    def __init__(self):
+    def __init__(self) -> None:
         self._internal = canvas.CanvasConnection()
 
     def build(self) -> canvas.CanvasConnection:
@@ -202,7 +202,7 @@ class CanvasConnection(cogbuilder.Builder[canvas.CanvasConnection]):
 class CanvasElementOptions(cogbuilder.Builder[canvas.CanvasElementOptions]):
     _internal: canvas.CanvasElementOptions
 
-    def __init__(self):
+    def __init__(self) -> None:
         self._internal = canvas.CanvasElementOptions()
 
     def build(self) -> canvas.CanvasElementOptions:
@@ -265,7 +265,7 @@ class CanvasElementOptions(cogbuilder.Builder[canvas.CanvasElementOptions]):
 class CanvasOptionsRoot(cogbuilder.Builder[canvas.CanvasOptionsRoot]):
     _internal: canvas.CanvasOptionsRoot
 
-    def __init__(self):
+    def __init__(self) -> None:
         self._internal = canvas.CanvasOptionsRoot()        
         self._internal.type_val = "frame"
 
@@ -303,7 +303,7 @@ class Panel(cogbuilder.Builder[dashboard.Panel]):
     
     _internal: dashboard.Panel
 
-    def __init__(self):
+    def __init__(self) -> None:
         self._internal = dashboard.Panel()        
         self._internal.type_val = "canvas"
 

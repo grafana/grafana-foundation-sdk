@@ -13,7 +13,7 @@ class Dataquery(cogbuilder.Builder[athena.Dataquery]):
     
     _internal: athena.Dataquery
 
-    def __init__(self):
+    def __init__(self) -> None:
         self._internal = athena.Dataquery()
 
     def build(self) -> athena.Dataquery:
@@ -102,7 +102,7 @@ class Dataquery(cogbuilder.Builder[athena.Dataquery]):
 class ConnectionArgs(cogbuilder.Builder[athena.ConnectionArgs]):
     _internal: athena.ConnectionArgs
 
-    def __init__(self):
+    def __init__(self) -> None:
         self._internal = athena.ConnectionArgs()
 
     def build(self) -> athena.ConnectionArgs:

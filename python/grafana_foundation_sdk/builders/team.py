@@ -8,7 +8,7 @@ from ..models import team
 class Team(cogbuilder.Builder[team.Team]):
     _internal: team.Team
 
-    def __init__(self, name: str):
+    def __init__(self, name: str) -> None:
         self._internal = team.Team()        
         self._internal.name = name
 
