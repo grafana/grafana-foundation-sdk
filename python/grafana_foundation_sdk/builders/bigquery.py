@@ -13,7 +13,7 @@ class Dataquery(cogbuilder.Builder[bigquery.Dataquery]):
     
     _internal: bigquery.Dataquery
 
-    def __init__(self):
+    def __init__(self) -> None:
         self._internal = bigquery.Dataquery()
 
     def build(self) -> bigquery.Dataquery:
@@ -145,7 +145,7 @@ class Dataquery(cogbuilder.Builder[bigquery.Dataquery]):
 class SQLExpression(cogbuilder.Builder[bigquery.SQLExpression]):
     _internal: bigquery.SQLExpression
 
-    def __init__(self):
+    def __init__(self) -> None:
         self._internal = bigquery.SQLExpression()
 
     def build(self) -> bigquery.SQLExpression:
@@ -206,7 +206,7 @@ class SQLExpression(cogbuilder.Builder[bigquery.SQLExpression]):
 class QueryEditorFunctionExpression(cogbuilder.Builder[bigquery.QueryEditorFunctionExpression]):
     _internal: bigquery.QueryEditorFunctionExpression
 
-    def __init__(self):
+    def __init__(self) -> None:
         self._internal = bigquery.QueryEditorFunctionExpression()
 
     def build(self) -> bigquery.QueryEditorFunctionExpression:
@@ -231,7 +231,7 @@ class QueryEditorFunctionExpression(cogbuilder.Builder[bigquery.QueryEditorFunct
 class QueryEditorFunctionParameterExpression(cogbuilder.Builder[bigquery.QueryEditorFunctionParameterExpression]):
     _internal: bigquery.QueryEditorFunctionParameterExpression
 
-    def __init__(self):
+    def __init__(self) -> None:
         self._internal = bigquery.QueryEditorFunctionParameterExpression()
 
     def build(self) -> bigquery.QueryEditorFunctionParameterExpression:
@@ -250,7 +250,7 @@ class QueryEditorFunctionParameterExpression(cogbuilder.Builder[bigquery.QueryEd
 class QueryEditorGroupByExpression(cogbuilder.Builder[bigquery.QueryEditorGroupByExpression]):
     _internal: bigquery.QueryEditorGroupByExpression
 
-    def __init__(self):
+    def __init__(self) -> None:
         self._internal = bigquery.QueryEditorGroupByExpression()
 
     def build(self) -> bigquery.QueryEditorGroupByExpression:
@@ -270,7 +270,7 @@ class QueryEditorGroupByExpression(cogbuilder.Builder[bigquery.QueryEditorGroupB
 class QueryEditorProperty(cogbuilder.Builder[bigquery.QueryEditorProperty]):
     _internal: bigquery.QueryEditorProperty
 
-    def __init__(self):
+    def __init__(self) -> None:
         self._internal = bigquery.QueryEditorProperty()
 
     def build(self) -> bigquery.QueryEditorProperty:
@@ -289,7 +289,7 @@ class QueryEditorProperty(cogbuilder.Builder[bigquery.QueryEditorProperty]):
 class QueryEditorPropertyExpression(cogbuilder.Builder[bigquery.QueryEditorPropertyExpression]):
     _internal: bigquery.QueryEditorPropertyExpression
 
-    def __init__(self):
+    def __init__(self) -> None:
         self._internal = bigquery.QueryEditorPropertyExpression()
 
     def build(self) -> bigquery.QueryEditorPropertyExpression:

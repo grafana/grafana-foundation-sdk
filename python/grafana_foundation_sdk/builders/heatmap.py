@@ -15,7 +15,7 @@ class HeatmapColorOptions(cogbuilder.Builder[heatmap.HeatmapColorOptions]):
     
     _internal: heatmap.HeatmapColorOptions
 
-    def __init__(self):
+    def __init__(self) -> None:
         self._internal = heatmap.HeatmapColorOptions()
 
     def build(self) -> heatmap.HeatmapColorOptions:
@@ -118,7 +118,7 @@ class YAxisConfig(cogbuilder.Builder[heatmap.YAxisConfig]):
     
     _internal: heatmap.YAxisConfig
 
-    def __init__(self):
+    def __init__(self) -> None:
         self._internal = heatmap.YAxisConfig()
 
     def build(self) -> heatmap.YAxisConfig:
@@ -232,7 +232,7 @@ class CellValues(cogbuilder.Builder[heatmap.CellValues]):
     
     _internal: heatmap.CellValues
 
-    def __init__(self):
+    def __init__(self) -> None:
         self._internal = heatmap.CellValues()
 
     def build(self) -> heatmap.CellValues:
@@ -268,7 +268,7 @@ class FilterValueRange(cogbuilder.Builder[heatmap.FilterValueRange]):
     
     _internal: heatmap.FilterValueRange
 
-    def __init__(self):
+    def __init__(self) -> None:
         self._internal = heatmap.FilterValueRange()
 
     def build(self) -> heatmap.FilterValueRange:
@@ -304,7 +304,7 @@ class HeatmapTooltip(cogbuilder.Builder[heatmap.HeatmapTooltip]):
     
     _internal: heatmap.HeatmapTooltip
 
-    def __init__(self):
+    def __init__(self) -> None:
         self._internal = heatmap.HeatmapTooltip()
 
     def build(self) -> heatmap.HeatmapTooltip:
@@ -359,7 +359,7 @@ class HeatmapLegend(cogbuilder.Builder[heatmap.HeatmapLegend]):
     
     _internal: heatmap.HeatmapLegend
 
-    def __init__(self):
+    def __init__(self) -> None:
         self._internal = heatmap.HeatmapLegend()
 
     def build(self) -> heatmap.HeatmapLegend:
@@ -386,7 +386,7 @@ class ExemplarConfig(cogbuilder.Builder[heatmap.ExemplarConfig]):
     
     _internal: heatmap.ExemplarConfig
 
-    def __init__(self):
+    def __init__(self) -> None:
         self._internal = heatmap.ExemplarConfig()
 
     def build(self) -> heatmap.ExemplarConfig:
@@ -413,7 +413,7 @@ class RowsHeatmapOptions(cogbuilder.Builder[heatmap.RowsHeatmapOptions]):
     
     _internal: heatmap.RowsHeatmapOptions
 
-    def __init__(self):
+    def __init__(self) -> None:
         self._internal = heatmap.RowsHeatmapOptions()
 
     def build(self) -> heatmap.RowsHeatmapOptions:
@@ -449,7 +449,7 @@ class Panel(cogbuilder.Builder[dashboard.Panel]):
     
     _internal: dashboard.Panel
 
-    def __init__(self):
+    def __init__(self) -> None:
         self._internal = dashboard.Panel()        
         self._internal.type_val = "heatmap"
 

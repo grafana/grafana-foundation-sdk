@@ -9,7 +9,7 @@ from ..models import dashboard
 class Dataquery(cogbuilder.Builder[prometheus.Dataquery]):
     _internal: prometheus.Dataquery
 
-    def __init__(self):
+    def __init__(self) -> None:
         self._internal = prometheus.Dataquery()
 
     def build(self) -> prometheus.Dataquery:

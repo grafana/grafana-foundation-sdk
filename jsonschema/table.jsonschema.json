@@ -184,7 +184,7 @@
       "description": "Internally, this is the \"type\" of cell that's being displayed\nin the table such as colored text, JSON, gauge, etc.\nThe color-background-solid, gradient-gauge, and lcd-gauge\nmodes are deprecated in favor of new cell subOptions"
     },
     "TableCellOptions": {
-      "anyOf": [
+      "oneOf": [
         {
           "$ref": "#/definitions/TableAutoCellOptions"
         },
@@ -220,7 +220,11 @@
       ],
       "properties": {
         "type": {
-          "$ref": "#/definitions/TableCellDisplayMode",
+          "allOf": [
+            {
+              "$ref": "#/definitions/TableCellDisplayMode"
+            }
+          ],
           "default": "auto"
         },
         "wrapText": {
@@ -237,7 +241,11 @@
       ],
       "properties": {
         "type": {
-          "$ref": "#/definitions/TableCellDisplayMode",
+          "allOf": [
+            {
+              "$ref": "#/definitions/TableCellDisplayMode"
+            }
+          ],
           "default": "sparkline"
         },
         "drawStyle": {
@@ -322,7 +330,7 @@
           "type": "boolean"
         },
         "insertNulls": {
-          "anyOf": [
+          "oneOf": [
             {
               "type": "boolean"
             },
@@ -332,7 +340,7 @@
           ]
         },
         "spanNulls": {
-          "anyOf": [
+          "oneOf": [
             {
               "type": "boolean"
             },
@@ -365,7 +373,11 @@
       ],
       "properties": {
         "type": {
-          "$ref": "#/definitions/TableCellDisplayMode",
+          "allOf": [
+            {
+              "$ref": "#/definitions/TableCellDisplayMode"
+            }
+          ],
           "default": "gauge"
         },
         "mode": {
@@ -385,7 +397,11 @@
       ],
       "properties": {
         "type": {
-          "$ref": "#/definitions/TableCellDisplayMode",
+          "allOf": [
+            {
+              "$ref": "#/definitions/TableCellDisplayMode"
+            }
+          ],
           "default": "color-background"
         },
         "mode": {
@@ -408,7 +424,11 @@
       ],
       "properties": {
         "type": {
-          "$ref": "#/definitions/TableCellDisplayMode",
+          "allOf": [
+            {
+              "$ref": "#/definitions/TableCellDisplayMode"
+            }
+          ],
           "default": "color-text"
         },
         "wrapText": {
@@ -425,7 +445,11 @@
       ],
       "properties": {
         "type": {
-          "$ref": "#/definitions/TableCellDisplayMode",
+          "allOf": [
+            {
+              "$ref": "#/definitions/TableCellDisplayMode"
+            }
+          ],
           "default": "image"
         }
       },
@@ -439,7 +463,11 @@
       ],
       "properties": {
         "type": {
-          "$ref": "#/definitions/TableCellDisplayMode",
+          "allOf": [
+            {
+              "$ref": "#/definitions/TableCellDisplayMode"
+            }
+          ],
           "default": "data-links"
         }
       },
@@ -453,7 +481,11 @@
       ],
       "properties": {
         "type": {
-          "$ref": "#/definitions/TableCellDisplayMode",
+          "allOf": [
+            {
+              "$ref": "#/definitions/TableCellDisplayMode"
+            }
+          ],
           "default": "json-view"
         }
       },

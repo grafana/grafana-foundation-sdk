@@ -8,7 +8,7 @@ from ..models import resource
 class Manifest(cogbuilder.Builder[resource.Manifest]):
     _internal: resource.Manifest
 
-    def __init__(self):
+    def __init__(self) -> None:
         self._internal = resource.Manifest()
 
     def build(self) -> resource.Manifest:
@@ -43,7 +43,7 @@ class Manifest(cogbuilder.Builder[resource.Manifest]):
 class Metadata(cogbuilder.Builder[resource.Metadata]):
     _internal: resource.Metadata
 
-    def __init__(self):
+    def __init__(self) -> None:
         self._internal = resource.Metadata()
 
     def build(self) -> resource.Metadata:
