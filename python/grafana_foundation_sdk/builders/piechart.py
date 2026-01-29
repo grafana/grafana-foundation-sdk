@@ -11,7 +11,7 @@ from ..cog import variants as cogvariants
 class PieChartLegendOptions(cogbuilder.Builder[piechart.PieChartLegendOptions]):
     _internal: piechart.PieChartLegendOptions
 
-    def __init__(self):
+    def __init__(self) -> None:
         self._internal = piechart.PieChartLegendOptions()
 
     def build(self) -> piechart.PieChartLegendOptions:
@@ -79,7 +79,7 @@ class Panel(cogbuilder.Builder[dashboard.Panel]):
     
     _internal: dashboard.Panel
 
-    def __init__(self):
+    def __init__(self) -> None:
         self._internal = dashboard.Panel()        
         self._internal.type_val = "piechart"
 
