@@ -9,7 +9,7 @@ class Options:
     feed_url: typing.Optional[str]
     show_image: typing.Optional[bool]
 
-    def __init__(self, feed_url: typing.Optional[str] = None, show_image: typing.Optional[bool] = True):
+    def __init__(self, feed_url: typing.Optional[str] = None, show_image: typing.Optional[bool] = True) -> None:
         self.feed_url = feed_url
         self.show_image = show_image
 
