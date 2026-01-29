@@ -467,7 +467,7 @@
           "$ref": "#/definitions/LineStyle"
         },
         "spanNulls": {
-          "anyOf": [
+          "oneOf": [
             {
               "type": "boolean"
             },
@@ -1022,7 +1022,7 @@
           "$ref": "#/definitions/GraphTransform"
         },
         "spanNulls": {
-          "anyOf": [
+          "oneOf": [
             {
               "type": "boolean"
             },
@@ -1045,7 +1045,7 @@
           "type": "number"
         },
         "insertNulls": {
-          "anyOf": [
+          "oneOf": [
             {
               "type": "boolean"
             },
@@ -1183,7 +1183,11 @@
       ],
       "properties": {
         "type": {
-          "$ref": "#/definitions/TableCellDisplayMode",
+          "allOf": [
+            {
+              "$ref": "#/definitions/TableCellDisplayMode"
+            }
+          ],
           "default": "auto"
         }
       },
@@ -1197,7 +1201,11 @@
       ],
       "properties": {
         "type": {
-          "$ref": "#/definitions/TableCellDisplayMode",
+          "allOf": [
+            {
+              "$ref": "#/definitions/TableCellDisplayMode"
+            }
+          ],
           "default": "color-text"
         }
       },
@@ -1211,7 +1219,11 @@
       ],
       "properties": {
         "type": {
-          "$ref": "#/definitions/TableCellDisplayMode",
+          "allOf": [
+            {
+              "$ref": "#/definitions/TableCellDisplayMode"
+            }
+          ],
           "default": "json-view"
         }
       },
@@ -1225,7 +1237,11 @@
       ],
       "properties": {
         "type": {
-          "$ref": "#/definitions/TableCellDisplayMode",
+          "allOf": [
+            {
+              "$ref": "#/definitions/TableCellDisplayMode"
+            }
+          ],
           "default": "image"
         }
       },
@@ -1239,7 +1255,11 @@
       ],
       "properties": {
         "type": {
-          "$ref": "#/definitions/TableCellDisplayMode",
+          "allOf": [
+            {
+              "$ref": "#/definitions/TableCellDisplayMode"
+            }
+          ],
           "default": "gauge"
         },
         "mode": {
@@ -1259,7 +1279,11 @@
       ],
       "properties": {
         "type": {
-          "$ref": "#/definitions/TableCellDisplayMode",
+          "allOf": [
+            {
+              "$ref": "#/definitions/TableCellDisplayMode"
+            }
+          ],
           "default": "sparkline"
         },
         "drawStyle": {
@@ -1344,7 +1368,7 @@
           "$ref": "#/definitions/GraphTransform"
         },
         "spanNulls": {
-          "anyOf": [
+          "oneOf": [
             {
               "type": "boolean"
             },
@@ -1377,7 +1401,11 @@
       ],
       "properties": {
         "type": {
-          "$ref": "#/definitions/TableCellDisplayMode",
+          "allOf": [
+            {
+              "$ref": "#/definitions/TableCellDisplayMode"
+            }
+          ],
           "default": "color-background"
         },
         "mode": {
@@ -1396,7 +1424,7 @@
       "description": "Height of a table cell"
     },
     "TableCellOptions": {
-      "anyOf": [
+      "oneOf": [
         {
           "$ref": "#/definitions/TableAutoCellOptions"
         },

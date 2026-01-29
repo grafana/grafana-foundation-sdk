@@ -3,7 +3,7 @@
   "$ref": "#/definitions/expr",
   "definitions": {
     "expr": {
-      "anyOf": [
+      "oneOf": [
         {
           "$ref": "#/definitions/TypeMath"
         },
