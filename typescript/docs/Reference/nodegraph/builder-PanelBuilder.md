@@ -47,7 +47,7 @@ dataLinks(links: cog.Builder<dashboard.DashboardLink>[])
 The datasource used in all targets.
 
 ```typescript
-datasource(datasource: dashboard.DataSourceRef)
+datasource(datasource: common.DataSourceRef)
 ```
 
 ### <span class="badge object-method"></span> decimals
@@ -83,7 +83,7 @@ displayName(displayName: string)
 ### <span class="badge object-method"></span> edges
 
 ```typescript
-edges(edges: cog.Builder<nodegraph.EdgeOptions>)
+edges(edges: nodegraph.EdgeOptions)
 ```
 
 ### <span class="badge object-method"></span> gridPos
@@ -201,7 +201,7 @@ noValue(noValue: string)
 ### <span class="badge object-method"></span> nodes
 
 ```typescript
-nodes(nodes: cog.Builder<nodegraph.NodeOptions>)
+nodes(nodes: nodegraph.NodeOptions)
 ```
 
 ### <span class="badge object-method"></span> overrideByFieldType

@@ -17,11 +17,4 @@
  * <span class="badge object-type-enum"></span> [VerticalConstraint](./object-VerticalConstraint.md)
 ## Builders
 
- * <span class="badge builder"></span> [BackgroundConfigBuilder](./builder-BackgroundConfigBuilder.md)
- * <span class="badge builder"></span> [CanvasConnectionBuilder](./builder-CanvasConnectionBuilder.md)
- * <span class="badge builder"></span> [CanvasElementOptionsBuilder](./builder-CanvasElementOptionsBuilder.md)
- * <span class="badge builder"></span> [ConnectionCoordinatesBuilder](./builder-ConnectionCoordinatesBuilder.md)
- * <span class="badge builder"></span> [ConstraintBuilder](./builder-ConstraintBuilder.md)
- * <span class="badge builder"></span> [LineConfigBuilder](./builder-LineConfigBuilder.md)
  * <span class="badge builder"></span> [PanelBuilder](./builder-PanelBuilder.md)
- * <span class="badge builder"></span> [PlacementBuilder](./builder-PlacementBuilder.md)

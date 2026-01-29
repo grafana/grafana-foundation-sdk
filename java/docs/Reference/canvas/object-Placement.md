@@ -16,6 +16,3 @@ public class Placement {
   public Double rotation;
 }
 ```
-## See also
-
- * <span class="badge builder"></span> [PlacementBuilder](./builder-PlacementBuilder.md)

@@ -479,7 +479,7 @@ func PanelConverter(input dashboard.Panel) string {
 	if input.Options != nil && input.Options.(*Options).Code != nil {
 
 		buffer.WriteString(`Code(`)
-		arg0 := CodeOptionsConverter(*input.Options.(*Options).Code)
+		arg0 := cog.Dump(*input.Options.(*Options).Code)
 		buffer.WriteString(arg0)
 
 		buffer.WriteString(")")

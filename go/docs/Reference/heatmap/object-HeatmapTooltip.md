@@ -47,6 +47,3 @@ Validate checks all the validation constraints that may be defined on `HeatmapTo
 func (heatmapTooltip *HeatmapTooltip) Validate() error
 ```
 
-## See also
-
- * <span class="badge builder"></span> [HeatmapTooltipBuilder](./builder-HeatmapTooltipBuilder.md)

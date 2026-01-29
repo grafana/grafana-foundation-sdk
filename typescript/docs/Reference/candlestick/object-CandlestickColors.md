@@ -13,6 +13,3 @@ export interface CandlestickColors {
 }
 
 ```
-## See also
-
- * <span class="badge builder"></span> [CandlestickColorsBuilder](./builder-CandlestickColorsBuilder.md)

@@ -6,7 +6,7 @@ import com.grafana.foundation.dashboard.Panel;
 import java.util.List;
 import com.grafana.foundation.cog.variants.Dataquery;
 import java.util.LinkedList;
-import com.grafana.foundation.dashboard.DataSourceRef;
+import com.grafana.foundation.common.DataSourceRef;
 import com.grafana.foundation.dashboard.GridPos;
 import com.grafana.foundation.dashboard.DashboardLink;
 import com.grafana.foundation.dashboard.PanelRepeatDirection;
@@ -389,21 +389,19 @@ public class GeomapPanelBuilder implements com.grafana.foundation.cog.Builder<Pa
         return this;
     }
     
-    public GeomapPanelBuilder view(com.grafana.foundation.cog.Builder<MapViewConfig> view) {
+    public GeomapPanelBuilder view(MapViewConfig view) {
 		if (this.internal.options == null) {
 			this.internal.options = new com.grafana.foundation.geomap.Options();
 		}
-    MapViewConfig viewResource = view.build();
-        ((Options) this.internal.options).view = viewResource;
+        ((Options) this.internal.options).view = view;
         return this;
     }
     
-    public GeomapPanelBuilder controls(com.grafana.foundation.cog.Builder<ControlsOptions> controls) {
+    public GeomapPanelBuilder controls(ControlsOptions controls) {
 		if (this.internal.options == null) {
 			this.internal.options = new com.grafana.foundation.geomap.Options();
 		}
-    ControlsOptions controlsResource = controls.build();
-        ((Options) this.internal.options).controls = controlsResource;
+        ((Options) this.internal.options).controls = controls;
         return this;
     }
     
@@ -429,12 +427,11 @@ public class GeomapPanelBuilder implements com.grafana.foundation.cog.Builder<Pa
         return this;
     }
     
-    public GeomapPanelBuilder tooltip(com.grafana.foundation.cog.Builder<TooltipOptions> tooltip) {
+    public GeomapPanelBuilder tooltip(TooltipOptions tooltip) {
 		if (this.internal.options == null) {
 			this.internal.options = new com.grafana.foundation.geomap.Options();
 		}
-    TooltipOptions tooltipResource = tooltip.build();
-        ((Options) this.internal.options).tooltip = tooltipResource;
+        ((Options) this.internal.options).tooltip = tooltip;
         return this;
     }
     public Panel build() {

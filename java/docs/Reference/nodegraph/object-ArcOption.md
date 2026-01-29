@@ -11,6 +11,3 @@ public class ArcOption {
   public String color;
 }
 ```
-## See also
-
- * <span class="badge builder"></span> [ArcOptionBuilder](./builder-ArcOptionBuilder.md)

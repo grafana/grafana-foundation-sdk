@@ -38,10 +38,8 @@ colorScheme(\Grafana\Foundation\Cog\Builder $color)
 
 ### <span class="badge object-method"></span> counters
 
-@param \Grafana\Foundation\Cog\Builder<\Grafana\Foundation\Debug\UpdateConfig> $counters
-
 ```php
-counters(\Grafana\Foundation\Cog\Builder $counters)
+counters(\Grafana\Foundation\Debug\UpdateConfig $counters)
 ```
 
 ### <span class="badge object-method"></span> dataLinks
@@ -59,7 +57,7 @@ dataLinks(array $links)
 The datasource used in all targets.
 
 ```php
-datasource(\Grafana\Foundation\Dashboard\DataSourceRef $datasource)
+datasource(\Grafana\Foundation\Common\DataSourceRef $datasource)
 ```
 
 ### <span class="badge object-method"></span> decimals

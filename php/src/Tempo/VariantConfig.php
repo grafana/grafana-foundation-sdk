@@ -12,4 +12,5 @@ final class VariantConfig
             convert: [TempoQueryConverter::class, 'convert'],
         );
     }
+
 }

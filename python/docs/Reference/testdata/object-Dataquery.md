@@ -14,7 +14,7 @@ class Dataquery(cogvariants.Dataquery):
     csv_file_name: typing.Optional[str]
     csv_wave: typing.Optional[list[testdata.CSVWave]]
     # The datasource
-    datasource: typing.Optional[dashboard.DataSourceRef]
+    datasource: typing.Optional[common.DataSourceRef]
     # Drop percentage (the chance we will lose a point 0-100)
     drop_percent: typing.Optional[float]
     # Possible enum values:

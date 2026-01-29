@@ -33,7 +33,7 @@ def collapsed(collapsed: bool) -> typing.Self
 Name of default datasource for the row
 
 ```python
-def datasource(datasource: dashboard.DataSourceRef) -> typing.Self
+def datasource(datasource: common.DataSourceRef) -> typing.Self
 ```
 
 ### <span class="badge object-method"></span> grid_pos

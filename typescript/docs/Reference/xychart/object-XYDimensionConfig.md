@@ -15,6 +15,3 @@ export interface XYDimensionConfig {
 }
 
 ```
-## See also
-
- * <span class="badge builder"></span> [XYDimensionConfigBuilder](./builder-XYDimensionConfigBuilder.md)

@@ -105,7 +105,7 @@ dataLinks(array $links)
 The datasource used in all targets.
 
 ```php
-datasource(\Grafana\Foundation\Dashboard\DataSourceRef $datasource)
+datasource(\Grafana\Foundation\Common\DataSourceRef $datasource)
 ```
 
 ### <span class="badge object-method"></span> decimals
@@ -134,10 +134,8 @@ description(string $description)
 
 Table Mode (auto)
 
-@param \Grafana\Foundation\Cog\Builder<\Grafana\Foundation\Xychart\XYDimensionConfig> $dims
-
 ```php
-dims(\Grafana\Foundation\Cog\Builder $dims)
+dims(\Grafana\Foundation\Xychart\XYDimensionConfig $dims)
 ```
 
 ### <span class="badge object-method"></span> displayName
@@ -418,7 +416,7 @@ scaleDistribution(\Grafana\Foundation\Cog\Builder $scaleDistribution)
 
 Manual Mode
 
-@param array<\Grafana\Foundation\Cog\Builder<\Grafana\Foundation\Xychart\ScatterSeriesConfig>> $series
+@param array<\Grafana\Foundation\Xychart\ScatterSeriesConfig> $series
 
 ```php
 series(array $series)

@@ -12,6 +12,3 @@ public class HeatmapLegend {
   public Boolean show;
 }
 ```
-## See also
-
- * <span class="badge builder"></span> [HeatmapLegendBuilder](./builder-HeatmapLegendBuilder.md)

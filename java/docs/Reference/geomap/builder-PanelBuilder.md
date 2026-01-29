@@ -43,7 +43,7 @@ public PanelBuilder colorScheme(com.grafana.foundation.cog.Builder<FieldColor> c
 ### <span class="badge object-method"></span> controls
 
 ```java
-public PanelBuilder controls(com.grafana.foundation.cog.Builder<ControlsOptions> controls)
+public PanelBuilder controls(ControlsOptions controls)
 ```
 
 ### <span class="badge object-method"></span> dataLinks
@@ -345,7 +345,7 @@ public PanelBuilder title(String title)
 ### <span class="badge object-method"></span> tooltip
 
 ```java
-public PanelBuilder tooltip(com.grafana.foundation.cog.Builder<TooltipOptions> tooltip)
+public PanelBuilder tooltip(TooltipOptions tooltip)
 ```
 
 ### <span class="badge object-method"></span> transformations
@@ -397,7 +397,7 @@ public PanelBuilder unit(String unit)
 ### <span class="badge object-method"></span> view
 
 ```java
-public PanelBuilder view(com.grafana.foundation.cog.Builder<MapViewConfig> view)
+public PanelBuilder view(MapViewConfig view)
 ```
 
 ### <span class="badge object-method"></span> withOverride

@@ -6,7 +6,7 @@ import com.grafana.foundation.dashboard.Panel;
 import java.util.List;
 import com.grafana.foundation.cog.variants.Dataquery;
 import java.util.LinkedList;
-import com.grafana.foundation.dashboard.DataSourceRef;
+import com.grafana.foundation.common.DataSourceRef;
 import com.grafana.foundation.dashboard.GridPos;
 import com.grafana.foundation.dashboard.DashboardLink;
 import com.grafana.foundation.dashboard.PanelRepeatDirection;
@@ -396,12 +396,11 @@ public class TextPanelBuilder implements com.grafana.foundation.cog.Builder<Pane
         return this;
     }
     
-    public TextPanelBuilder code(com.grafana.foundation.cog.Builder<CodeOptions> code) {
+    public TextPanelBuilder code(CodeOptions code) {
 		if (this.internal.options == null) {
 			this.internal.options = new com.grafana.foundation.text.Options();
 		}
-    CodeOptions codeResource = code.build();
-        ((Options) this.internal.options).code = codeResource;
+        ((Options) this.internal.options).code = code;
         return this;
     }
     

@@ -515,7 +515,7 @@ func PanelConverter(input dashboard.Panel) string {
 	if input.Options != nil {
 
 		buffer.WriteString(`Root(`)
-		arg0 := CanvasOptionsRootConverter(input.Options.(*Options).Root)
+		arg0 := cog.Dump(input.Options.(*Options).Root)
 		buffer.WriteString(arg0)
 
 		buffer.WriteString(")")

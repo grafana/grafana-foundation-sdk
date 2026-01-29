@@ -11,6 +11,3 @@ public class Constraint {
   public VerticalConstraint vertical;
 }
 ```
-## See also
-
- * <span class="badge builder"></span> [ConstraintBuilder](./builder-ConstraintBuilder.md)

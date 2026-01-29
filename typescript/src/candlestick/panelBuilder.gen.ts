@@ -2,8 +2,8 @@
 
 import * as cog from '../cog';
 import * as dashboard from '../dashboard';
-import * as candlestick from '../candlestick';
 import * as common from '../common';
+import * as candlestick from '../candlestick';
 
 // Dashboard panels are the basic visualization building blocks.
 export class PanelBuilder implements cog.Builder<dashboard.Panel> {
@@ -63,7 +63,7 @@ export class PanelBuilder implements cog.Builder<dashboard.Panel> {
     }
 
     // The datasource used in all targets.
-    datasource(datasource: dashboard.DataSourceRef): this {
+    datasource(datasource: common.DataSourceRef): this {
         this.internal.datasource = datasource;
         return this;
     }
@@ -469,22 +469,20 @@ export class PanelBuilder implements cog.Builder<dashboard.Panel> {
     }
 
     // Map fields to appropriate dimension
-    fields(fields: cog.Builder<candlestick.CandlestickFieldMap>): this {
+    fields(fields: candlestick.CandlestickFieldMap): this {
         if (!this.internal.options) {
             this.internal.options = candlestick.defaultOptions();
         }
-        const fieldsResource = fields.build();
-        this.internal.options.fields = fieldsResource;
+        this.internal.options.fields = fields;
         return this;
     }
 
     // Set which colors are used when the price movement is up or down
-    colors(colors: cog.Builder<candlestick.CandlestickColors>): this {
+    colors(colors: candlestick.CandlestickColors): this {
         if (!this.internal.options) {
             this.internal.options = candlestick.defaultOptions();
         }
-        const colorsResource = colors.build();
-        this.internal.options.colors = colorsResource;
+        this.internal.options.colors = colors;
         return this;
     }
 

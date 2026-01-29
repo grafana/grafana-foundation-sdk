@@ -20,6 +20,3 @@ public class MapViewConfig {
   public Boolean shared;
 }
 ```
-## See also
-
- * <span class="badge builder"></span> [MapViewConfigBuilder](./builder-MapViewConfigBuilder.md)

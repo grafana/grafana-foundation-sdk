@@ -4,6 +4,7 @@ package dashboard
 
 import (
 	cog "github.com/grafana/grafana-foundation-sdk/go/cog"
+	common "github.com/grafana/grafana-foundation-sdk/go/common"
 )
 
 var _ cog.Builder[AnnotationQuery] = (*AnnotationQueryBuilder)(nil)
@@ -45,7 +46,7 @@ func (builder *AnnotationQueryBuilder) Name(name string) *AnnotationQueryBuilder
 }
 
 // Datasource where the annotations data is
-func (builder *AnnotationQueryBuilder) Datasource(datasource DataSourceRef) *AnnotationQueryBuilder {
+func (builder *AnnotationQueryBuilder) Datasource(datasource common.DataSourceRef) *AnnotationQueryBuilder {
 	builder.internal.Datasource = datasource
 
 	return builder

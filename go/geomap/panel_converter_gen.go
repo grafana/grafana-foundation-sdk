@@ -468,7 +468,7 @@ func PanelConverter(input dashboard.Panel) string {
 	if input.Options != nil {
 
 		buffer.WriteString(`View(`)
-		arg0 := MapViewConfigConverter(input.Options.(*Options).View)
+		arg0 := cog.Dump(input.Options.(*Options).View)
 		buffer.WriteString(arg0)
 
 		buffer.WriteString(")")
@@ -480,7 +480,7 @@ func PanelConverter(input dashboard.Panel) string {
 	if input.Options != nil {
 
 		buffer.WriteString(`Controls(`)
-		arg0 := ControlsOptionsConverter(input.Options.(*Options).Controls)
+		arg0 := cog.Dump(input.Options.(*Options).Controls)
 		buffer.WriteString(arg0)
 
 		buffer.WriteString(")")
@@ -521,7 +521,7 @@ func PanelConverter(input dashboard.Panel) string {
 	if input.Options != nil {
 
 		buffer.WriteString(`Tooltip(`)
-		arg0 := TooltipOptionsConverter(input.Options.(*Options).Tooltip)
+		arg0 := cog.Dump(input.Options.(*Options).Tooltip)
 		buffer.WriteString(arg0)
 
 		buffer.WriteString(")")

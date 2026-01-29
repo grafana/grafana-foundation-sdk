@@ -41,6 +41,3 @@ Validate checks all the validation constraints that may be defined on `EdgeOptio
 func (edgeOptions *EdgeOptions) Validate() error
 ```
 
-## See also
-
- * <span class="badge builder"></span> [EdgeOptionsBuilder](./builder-EdgeOptionsBuilder.md)

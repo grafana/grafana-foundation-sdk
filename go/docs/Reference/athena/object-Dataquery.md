@@ -17,7 +17,7 @@ type Dataquery struct {
     // A unique identifier for the query within the list of targets.
     // In server side expressions, the refId is used as a variable name to identify results.
     // By default, the UI will assign A->Z; however setting meaningful names may be useful.
-    RefId string `json:"refId"`
+    RefId *string `json:"refId,omitempty"`
     // If hide is set to true, Grafana will filter out the response(s) associated with this query before returning it to the panel.
     Hide *bool `json:"hide,omitempty"`
     // Specify the query flavor
@@ -28,7 +28,7 @@ type Dataquery struct {
     // For non mixed scenarios this is undefined.
     // TODO find a better way to do this ^ that's friendly to schema
     // TODO this shouldn't be unknown but DataSourceRef | null
-    Datasource *dashboard.DataSourceRef `json:"datasource,omitempty"`
+    Datasource *common.DataSourceRef `json:"datasource,omitempty"`
 }
 ```
 ## Methods
