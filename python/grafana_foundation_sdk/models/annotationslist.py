@@ -16,7 +16,7 @@ class Options:
     navigate_before: str
     navigate_after: str
 
-    def __init__(self, only_from_this_dashboard: bool = False, only_in_time_range: bool = False, tags: typing.Optional[list[str]] = None, limit: int = 10, show_user: bool = True, show_time: bool = True, show_tags: bool = True, navigate_to_panel: bool = True, navigate_before: str = "10m", navigate_after: str = "10m"):
+    def __init__(self, only_from_this_dashboard: bool = False, only_in_time_range: bool = False, tags: typing.Optional[list[str]] = None, limit: int = 10, show_user: bool = True, show_time: bool = True, show_tags: bool = True, navigate_to_panel: bool = True, navigate_before: str = "10m", navigate_after: str = "10m") -> None:
         self.only_from_this_dashboard = only_from_this_dashboard
         self.only_in_time_range = only_in_time_range
         self.tags = tags if tags is not None else []

@@ -9,7 +9,7 @@ from ..models import dashboard
 class TypeMath(cogbuilder.Builder[expr.TypeMath]):
     _internal: expr.TypeMath
 
-    def __init__(self):
+    def __init__(self) -> None:
         self._internal = expr.TypeMath()        
         self._internal.type_val = "math"
 
@@ -118,7 +118,7 @@ class TypeMath(cogbuilder.Builder[expr.TypeMath]):
 class TypeReduce(cogbuilder.Builder[expr.TypeReduce]):
     _internal: expr.TypeReduce
 
-    def __init__(self):
+    def __init__(self) -> None:
         self._internal = expr.TypeReduce()        
         self._internal.type_val = "reduce"
 
@@ -254,7 +254,7 @@ class TypeReduce(cogbuilder.Builder[expr.TypeReduce]):
 class TypeResample(cogbuilder.Builder[expr.TypeResample]):
     _internal: expr.TypeResample
 
-    def __init__(self):
+    def __init__(self) -> None:
         self._internal = expr.TypeResample()        
         self._internal.type_val = "resample"
 
@@ -404,7 +404,7 @@ class TypeResample(cogbuilder.Builder[expr.TypeResample]):
 class TypeClassicConditions(cogbuilder.Builder[expr.TypeClassicConditions]):
     _internal: expr.TypeClassicConditions
 
-    def __init__(self):
+    def __init__(self) -> None:
         self._internal = expr.TypeClassicConditions()        
         self._internal.type_val = "classic_conditions"
 
@@ -508,7 +508,7 @@ class TypeClassicConditions(cogbuilder.Builder[expr.TypeClassicConditions]):
 class TypeThreshold(cogbuilder.Builder[expr.TypeThreshold]):
     _internal: expr.TypeThreshold
 
-    def __init__(self):
+    def __init__(self) -> None:
         self._internal = expr.TypeThreshold()        
         self._internal.type_val = "threshold"
 
@@ -627,7 +627,7 @@ class TypeThreshold(cogbuilder.Builder[expr.TypeThreshold]):
 class TypeSql(cogbuilder.Builder[expr.TypeSql]):
     _internal: expr.TypeSql
 
-    def __init__(self):
+    def __init__(self) -> None:
         self._internal = expr.TypeSql()        
         self._internal.type_val = "sql"
 
@@ -737,7 +737,7 @@ class TypeSql(cogbuilder.Builder[expr.TypeSql]):
 class ExprTypeMathResultAssertions(cogbuilder.Builder[expr.ExprTypeMathResultAssertions]):
     _internal: expr.ExprTypeMathResultAssertions
 
-    def __init__(self):
+    def __init__(self) -> None:
         self._internal = expr.ExprTypeMathResultAssertions()
 
     def build(self) -> expr.ExprTypeMathResultAssertions:
@@ -791,7 +791,7 @@ class ExprTypeMathResultAssertions(cogbuilder.Builder[expr.ExprTypeMathResultAss
 class ExprTypeMathTimeRange(cogbuilder.Builder[expr.ExprTypeMathTimeRange]):
     _internal: expr.ExprTypeMathTimeRange
 
-    def __init__(self):
+    def __init__(self) -> None:
         self._internal = expr.ExprTypeMathTimeRange()
 
     def build(self) -> expr.ExprTypeMathTimeRange:
@@ -823,7 +823,7 @@ class ExprTypeMathTimeRange(cogbuilder.Builder[expr.ExprTypeMathTimeRange]):
 class ExprTypeReduceResultAssertions(cogbuilder.Builder[expr.ExprTypeReduceResultAssertions]):
     _internal: expr.ExprTypeReduceResultAssertions
 
-    def __init__(self):
+    def __init__(self) -> None:
         self._internal = expr.ExprTypeReduceResultAssertions()
 
     def build(self) -> expr.ExprTypeReduceResultAssertions:
@@ -877,7 +877,7 @@ class ExprTypeReduceResultAssertions(cogbuilder.Builder[expr.ExprTypeReduceResul
 class ExprTypeReduceSettings(cogbuilder.Builder[expr.ExprTypeReduceSettings]):
     _internal: expr.ExprTypeReduceSettings
 
-    def __init__(self):
+    def __init__(self) -> None:
         self._internal = expr.ExprTypeReduceSettings()
 
     def build(self) -> expr.ExprTypeReduceSettings:
@@ -912,7 +912,7 @@ class ExprTypeReduceSettings(cogbuilder.Builder[expr.ExprTypeReduceSettings]):
 class ExprTypeReduceTimeRange(cogbuilder.Builder[expr.ExprTypeReduceTimeRange]):
     _internal: expr.ExprTypeReduceTimeRange
 
-    def __init__(self):
+    def __init__(self) -> None:
         self._internal = expr.ExprTypeReduceTimeRange()
 
     def build(self) -> expr.ExprTypeReduceTimeRange:
@@ -944,7 +944,7 @@ class ExprTypeReduceTimeRange(cogbuilder.Builder[expr.ExprTypeReduceTimeRange]):
 class ExprTypeResampleResultAssertions(cogbuilder.Builder[expr.ExprTypeResampleResultAssertions]):
     _internal: expr.ExprTypeResampleResultAssertions
 
-    def __init__(self):
+    def __init__(self) -> None:
         self._internal = expr.ExprTypeResampleResultAssertions()
 
     def build(self) -> expr.ExprTypeResampleResultAssertions:
@@ -998,7 +998,7 @@ class ExprTypeResampleResultAssertions(cogbuilder.Builder[expr.ExprTypeResampleR
 class ExprTypeResampleTimeRange(cogbuilder.Builder[expr.ExprTypeResampleTimeRange]):
     _internal: expr.ExprTypeResampleTimeRange
 
-    def __init__(self):
+    def __init__(self) -> None:
         self._internal = expr.ExprTypeResampleTimeRange()
 
     def build(self) -> expr.ExprTypeResampleTimeRange:
@@ -1030,7 +1030,7 @@ class ExprTypeResampleTimeRange(cogbuilder.Builder[expr.ExprTypeResampleTimeRang
 class ExprTypeClassicConditionsConditionsEvaluator(cogbuilder.Builder[expr.ExprTypeClassicConditionsConditionsEvaluator]):
     _internal: expr.ExprTypeClassicConditionsConditionsEvaluator
 
-    def __init__(self):
+    def __init__(self) -> None:
         self._internal = expr.ExprTypeClassicConditionsConditionsEvaluator()
 
     def build(self) -> expr.ExprTypeClassicConditionsConditionsEvaluator:
@@ -1058,7 +1058,7 @@ class ExprTypeClassicConditionsConditionsEvaluator(cogbuilder.Builder[expr.ExprT
 class ExprTypeClassicConditionsConditionsOperator(cogbuilder.Builder[expr.ExprTypeClassicConditionsConditionsOperator]):
     _internal: expr.ExprTypeClassicConditionsConditionsOperator
 
-    def __init__(self):
+    def __init__(self) -> None:
         self._internal = expr.ExprTypeClassicConditionsConditionsOperator()
 
     def build(self) -> expr.ExprTypeClassicConditionsConditionsOperator:
@@ -1077,7 +1077,7 @@ class ExprTypeClassicConditionsConditionsOperator(cogbuilder.Builder[expr.ExprTy
 class ExprTypeClassicConditionsConditionsQuery(cogbuilder.Builder[expr.ExprTypeClassicConditionsConditionsQuery]):
     _internal: expr.ExprTypeClassicConditionsConditionsQuery
 
-    def __init__(self):
+    def __init__(self) -> None:
         self._internal = expr.ExprTypeClassicConditionsConditionsQuery()
 
     def build(self) -> expr.ExprTypeClassicConditionsConditionsQuery:
@@ -1096,7 +1096,7 @@ class ExprTypeClassicConditionsConditionsQuery(cogbuilder.Builder[expr.ExprTypeC
 class ExprTypeClassicConditionsConditionsReducer(cogbuilder.Builder[expr.ExprTypeClassicConditionsConditionsReducer]):
     _internal: expr.ExprTypeClassicConditionsConditionsReducer
 
-    def __init__(self):
+    def __init__(self) -> None:
         self._internal = expr.ExprTypeClassicConditionsConditionsReducer()
 
     def build(self) -> expr.ExprTypeClassicConditionsConditionsReducer:
@@ -1115,7 +1115,7 @@ class ExprTypeClassicConditionsConditionsReducer(cogbuilder.Builder[expr.ExprTyp
 class ExprTypeClassicConditionsConditions(cogbuilder.Builder[expr.ExprTypeClassicConditionsConditions]):
     _internal: expr.ExprTypeClassicConditionsConditions
 
-    def __init__(self):
+    def __init__(self) -> None:
         self._internal = expr.ExprTypeClassicConditionsConditions()
 
     def build(self) -> expr.ExprTypeClassicConditionsConditions:
@@ -1153,7 +1153,7 @@ class ExprTypeClassicConditionsConditions(cogbuilder.Builder[expr.ExprTypeClassi
 class ExprTypeClassicConditionsResultAssertions(cogbuilder.Builder[expr.ExprTypeClassicConditionsResultAssertions]):
     _internal: expr.ExprTypeClassicConditionsResultAssertions
 
-    def __init__(self):
+    def __init__(self) -> None:
         self._internal = expr.ExprTypeClassicConditionsResultAssertions()
 
     def build(self) -> expr.ExprTypeClassicConditionsResultAssertions:
@@ -1207,7 +1207,7 @@ class ExprTypeClassicConditionsResultAssertions(cogbuilder.Builder[expr.ExprType
 class ExprTypeClassicConditionsTimeRange(cogbuilder.Builder[expr.ExprTypeClassicConditionsTimeRange]):
     _internal: expr.ExprTypeClassicConditionsTimeRange
 
-    def __init__(self):
+    def __init__(self) -> None:
         self._internal = expr.ExprTypeClassicConditionsTimeRange()
 
     def build(self) -> expr.ExprTypeClassicConditionsTimeRange:
@@ -1239,7 +1239,7 @@ class ExprTypeClassicConditionsTimeRange(cogbuilder.Builder[expr.ExprTypeClassic
 class ExprTypeThresholdConditionsEvaluator(cogbuilder.Builder[expr.ExprTypeThresholdConditionsEvaluator]):
     _internal: expr.ExprTypeThresholdConditionsEvaluator
 
-    def __init__(self):
+    def __init__(self) -> None:
         self._internal = expr.ExprTypeThresholdConditionsEvaluator()
 
     def build(self) -> expr.ExprTypeThresholdConditionsEvaluator:
@@ -1267,7 +1267,7 @@ class ExprTypeThresholdConditionsEvaluator(cogbuilder.Builder[expr.ExprTypeThres
 class ExprTypeThresholdConditionsUnloadEvaluator(cogbuilder.Builder[expr.ExprTypeThresholdConditionsUnloadEvaluator]):
     _internal: expr.ExprTypeThresholdConditionsUnloadEvaluator
 
-    def __init__(self):
+    def __init__(self) -> None:
         self._internal = expr.ExprTypeThresholdConditionsUnloadEvaluator()
 
     def build(self) -> expr.ExprTypeThresholdConditionsUnloadEvaluator:
@@ -1295,7 +1295,7 @@ class ExprTypeThresholdConditionsUnloadEvaluator(cogbuilder.Builder[expr.ExprTyp
 class ExprTypeThresholdConditions(cogbuilder.Builder[expr.ExprTypeThresholdConditions]):
     _internal: expr.ExprTypeThresholdConditions
 
-    def __init__(self):
+    def __init__(self) -> None:
         self._internal = expr.ExprTypeThresholdConditions()
 
     def build(self) -> expr.ExprTypeThresholdConditions:
@@ -1326,7 +1326,7 @@ class ExprTypeThresholdConditions(cogbuilder.Builder[expr.ExprTypeThresholdCondi
 class ExprTypeThresholdResultAssertions(cogbuilder.Builder[expr.ExprTypeThresholdResultAssertions]):
     _internal: expr.ExprTypeThresholdResultAssertions
 
-    def __init__(self):
+    def __init__(self) -> None:
         self._internal = expr.ExprTypeThresholdResultAssertions()
 
     def build(self) -> expr.ExprTypeThresholdResultAssertions:
@@ -1380,7 +1380,7 @@ class ExprTypeThresholdResultAssertions(cogbuilder.Builder[expr.ExprTypeThreshol
 class ExprTypeThresholdTimeRange(cogbuilder.Builder[expr.ExprTypeThresholdTimeRange]):
     _internal: expr.ExprTypeThresholdTimeRange
 
-    def __init__(self):
+    def __init__(self) -> None:
         self._internal = expr.ExprTypeThresholdTimeRange()
 
     def build(self) -> expr.ExprTypeThresholdTimeRange:
@@ -1412,7 +1412,7 @@ class ExprTypeThresholdTimeRange(cogbuilder.Builder[expr.ExprTypeThresholdTimeRa
 class ExprTypeSqlResultAssertions(cogbuilder.Builder[expr.ExprTypeSqlResultAssertions]):
     _internal: expr.ExprTypeSqlResultAssertions
 
-    def __init__(self):
+    def __init__(self) -> None:
         self._internal = expr.ExprTypeSqlResultAssertions()
 
     def build(self) -> expr.ExprTypeSqlResultAssertions:
@@ -1466,7 +1466,7 @@ class ExprTypeSqlResultAssertions(cogbuilder.Builder[expr.ExprTypeSqlResultAsser
 class ExprTypeSqlTimeRange(cogbuilder.Builder[expr.ExprTypeSqlTimeRange]):
     _internal: expr.ExprTypeSqlTimeRange
 
-    def __init__(self):
+    def __init__(self) -> None:
         self._internal = expr.ExprTypeSqlTimeRange()
 
     def build(self) -> expr.ExprTypeSqlTimeRange:

@@ -42,7 +42,7 @@ from ..models import testdata
 from . import runtime as cogruntime
 
 
-def register_default_plugins():
+def register_default_plugins() -> None:
     # Panelcfg variants
     cogruntime.register_panelcfg_variant(annotationslist.variant_config())
     cogruntime.register_panelcfg_variant(barchart.variant_config())
