@@ -11,7 +11,7 @@
   "components": {
     "schemas": {
       "expr": {
-        "anyOf": [
+        "oneOf": [
           {
             "$ref": "#/components/schemas/TypeMath"
           },

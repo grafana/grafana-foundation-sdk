@@ -27,7 +27,7 @@ class MetricStat:
     # @deprecated use statistic
     statistics: typing.Optional[list[str]]
 
-    def __init__(self, region: str = "", namespace: str = "", metric_name: typing.Optional[str] = None, dimensions: typing.Optional['Dimensions'] = None, match_exact: typing.Optional[bool] = None, period: typing.Optional[str] = None, account_id: typing.Optional[str] = None, statistic: typing.Optional[str] = None, statistics: typing.Optional[list[str]] = None):
+    def __init__(self, region: str = "", namespace: str = "", metric_name: typing.Optional[str] = None, dimensions: typing.Optional['Dimensions'] = None, match_exact: typing.Optional[bool] = None, period: typing.Optional[str] = None, account_id: typing.Optional[str] = None, statistic: typing.Optional[str] = None, statistics: typing.Optional[list[str]] = None) -> None:
         self.region = region
         self.namespace = namespace
         self.metric_name = metric_name
@@ -148,7 +148,7 @@ class CloudWatchMetricsQuery(cogvariants.Dataquery):
     # @deprecated use statistic
     statistics: typing.Optional[list[str]]
 
-    def __init__(self, query_mode: typing.Optional['CloudWatchQueryMode'] = None, metric_query_type: typing.Optional['MetricQueryType'] = None, metric_editor_mode: typing.Optional['MetricEditorMode'] = None, id_val: str = "", alias: typing.Optional[str] = None, label: typing.Optional[str] = None, expression: typing.Optional[str] = None, sql_expression: typing.Optional[str] = None, ref_id: str = "", hide: typing.Optional[bool] = None, query_type: typing.Optional[str] = None, region: str = "", namespace: str = "", metric_name: typing.Optional[str] = None, dimensions: typing.Optional['Dimensions'] = None, match_exact: typing.Optional[bool] = None, period: typing.Optional[str] = None, account_id: typing.Optional[str] = None, statistic: typing.Optional[str] = None, sql: typing.Optional['SQLExpression'] = None, datasource: typing.Optional[dashboard.DataSourceRef] = None, statistics: typing.Optional[list[str]] = None):
+    def __init__(self, query_mode: typing.Optional['CloudWatchQueryMode'] = None, metric_query_type: typing.Optional['MetricQueryType'] = None, metric_editor_mode: typing.Optional['MetricEditorMode'] = None, id_val: str = "", alias: typing.Optional[str] = None, label: typing.Optional[str] = None, expression: typing.Optional[str] = None, sql_expression: typing.Optional[str] = None, ref_id: str = "", hide: typing.Optional[bool] = None, query_type: typing.Optional[str] = None, region: str = "", namespace: str = "", metric_name: typing.Optional[str] = None, dimensions: typing.Optional['Dimensions'] = None, match_exact: typing.Optional[bool] = None, period: typing.Optional[str] = None, account_id: typing.Optional[str] = None, statistic: typing.Optional[str] = None, sql: typing.Optional['SQLExpression'] = None, datasource: typing.Optional[dashboard.DataSourceRef] = None, statistics: typing.Optional[list[str]] = None) -> None:
         self.query_mode = query_mode if query_mode is not None else CloudWatchQueryMode.METRICS
         self.metric_query_type = metric_query_type
         self.metric_editor_mode = metric_editor_mode
@@ -300,7 +300,7 @@ class SQLExpression:
     # LIMIT part of the SQL expression
     limit: typing.Optional[int]
 
-    def __init__(self, select: typing.Optional['QueryEditorFunctionExpression'] = None, from_val: typing.Optional[typing.Union['QueryEditorPropertyExpression', 'QueryEditorFunctionExpression']] = None, where: typing.Optional['QueryEditorArrayExpression'] = None, group_by: typing.Optional['QueryEditorArrayExpression'] = None, order_by: typing.Optional['QueryEditorFunctionExpression'] = None, order_by_direction: typing.Optional[str] = None, limit: typing.Optional[int] = None):
+    def __init__(self, select: typing.Optional['QueryEditorFunctionExpression'] = None, from_val: typing.Optional[typing.Union['QueryEditorPropertyExpression', 'QueryEditorFunctionExpression']] = None, where: typing.Optional['QueryEditorArrayExpression'] = None, group_by: typing.Optional['QueryEditorArrayExpression'] = None, order_by: typing.Optional['QueryEditorFunctionExpression'] = None, order_by_direction: typing.Optional[str] = None, limit: typing.Optional[int] = None) -> None:
         self.select = select
         self.from_val = from_val
         self.where = where
@@ -356,7 +356,7 @@ class QueryEditorFunctionExpression:
     name: typing.Optional[str]
     parameters: typing.Optional[list['QueryEditorFunctionParameterExpression']]
 
-    def __init__(self, name: typing.Optional[str] = None, parameters: typing.Optional[list['QueryEditorFunctionParameterExpression']] = None):
+    def __init__(self, name: typing.Optional[str] = None, parameters: typing.Optional[list['QueryEditorFunctionParameterExpression']] = None) -> None:
         self.type_val = QueryEditorExpressionType.FUNCTION
         self.name = name
         self.parameters = parameters
@@ -397,7 +397,7 @@ class QueryEditorFunctionParameterExpression:
     type_val: str
     name: typing.Optional[str]
 
-    def __init__(self, name: typing.Optional[str] = None):
+    def __init__(self, name: typing.Optional[str] = None) -> None:
         self.type_val = QueryEditorExpressionType.FUNCTION_PARAMETER
         self.name = name
 
@@ -423,7 +423,7 @@ class QueryEditorPropertyExpression:
     type_val: str
     property_val: 'QueryEditorProperty'
 
-    def __init__(self, property_val: typing.Optional['QueryEditorProperty'] = None):
+    def __init__(self, property_val: typing.Optional['QueryEditorProperty'] = None) -> None:
         self.type_val = QueryEditorExpressionType.PROPERTY
         self.property_val = property_val if property_val is not None else QueryEditorProperty()
 
@@ -448,7 +448,7 @@ class QueryEditorProperty:
     type_val: str
     name: typing.Optional[str]
 
-    def __init__(self, name: typing.Optional[str] = None):
+    def __init__(self, name: typing.Optional[str] = None) -> None:
         self.type_val = QueryEditorPropertyType.STRING
         self.name = name
 
@@ -478,7 +478,7 @@ class QueryEditorArrayExpression:
     type_val: typing.Literal["and", "or"]
     expressions: list['QueryEditorExpression']
 
-    def __init__(self, type_val: typing.Optional[typing.Literal["and", "or"]] = None, expressions: typing.Optional[list['QueryEditorExpression']] = None):
+    def __init__(self, type_val: typing.Optional[typing.Literal["and", "or"]] = None, expressions: typing.Optional[list['QueryEditorExpression']] = None) -> None:
         self.type_val = type_val if type_val is not None else "and"
         self.expressions = expressions if expressions is not None else []
 
@@ -509,7 +509,7 @@ class QueryEditorGroupByExpression:
     type_val: str
     property_val: 'QueryEditorProperty'
 
-    def __init__(self, property_val: typing.Optional['QueryEditorProperty'] = None):
+    def __init__(self, property_val: typing.Optional['QueryEditorProperty'] = None) -> None:
         self.type_val = QueryEditorExpressionType.GROUP_BY
         self.property_val = property_val if property_val is not None else QueryEditorProperty()
 
@@ -536,7 +536,7 @@ class QueryEditorOperatorExpression:
     # TS type is operator: QueryEditorOperator<QueryEditorOperatorValueType>, extended in veneer
     operator: 'QueryEditorOperator'
 
-    def __init__(self, property_val: typing.Optional['QueryEditorProperty'] = None, operator: typing.Optional['QueryEditorOperator'] = None):
+    def __init__(self, property_val: typing.Optional['QueryEditorProperty'] = None, operator: typing.Optional['QueryEditorOperator'] = None) -> None:
         self.type_val = QueryEditorExpressionType.OPERATOR
         self.property_val = property_val if property_val is not None else QueryEditorProperty()
         self.operator = operator if operator is not None else QueryEditorOperator()
@@ -569,7 +569,7 @@ class QueryEditorOperator:
     name: typing.Optional[str]
     value: typing.Optional[typing.Union[str, bool, int, list['QueryEditorOperatorType']]]
 
-    def __init__(self, name: typing.Optional[str] = None, value: typing.Optional[typing.Union[str, bool, int, list['QueryEditorOperatorType']]] = None):
+    def __init__(self, name: typing.Optional[str] = None, value: typing.Optional[typing.Union[str, bool, int, list['QueryEditorOperatorType']]] = None) -> None:
         self.name = name
         self.value = value
 
@@ -635,7 +635,7 @@ class CloudWatchLogsQuery(cogvariants.Dataquery):
     # TODO this shouldn't be unknown but DataSourceRef | null
     datasource: typing.Optional[dashboard.DataSourceRef]
 
-    def __init__(self, query_mode: typing.Optional['CloudWatchQueryMode'] = None, id_val: str = "", region: str = "", expression: typing.Optional[str] = None, stats_groups: typing.Optional[list[str]] = None, log_groups: typing.Optional[list['LogGroup']] = None, ref_id: str = "", hide: typing.Optional[bool] = None, query_type: typing.Optional[str] = None, log_group_names: typing.Optional[list[str]] = None, datasource: typing.Optional[dashboard.DataSourceRef] = None):
+    def __init__(self, query_mode: typing.Optional['CloudWatchQueryMode'] = None, id_val: str = "", region: str = "", expression: typing.Optional[str] = None, stats_groups: typing.Optional[list[str]] = None, log_groups: typing.Optional[list['LogGroup']] = None, ref_id: str = "", hide: typing.Optional[bool] = None, query_type: typing.Optional[str] = None, log_group_names: typing.Optional[list[str]] = None, datasource: typing.Optional[dashboard.DataSourceRef] = None) -> None:
         self.query_mode = query_mode if query_mode is not None else CloudWatchQueryMode.LOGS
         self.id_val = id_val
         self.region = region
@@ -711,7 +711,7 @@ class LogGroup:
     # Label of the log group
     account_label: typing.Optional[str]
 
-    def __init__(self, arn: str = "", name: str = "", account_id: typing.Optional[str] = None, account_label: typing.Optional[str] = None):
+    def __init__(self, arn: str = "", name: str = "", account_id: typing.Optional[str] = None, account_label: typing.Optional[str] = None) -> None:
         self.arn = arn
         self.name = name
         self.account_id = account_id
@@ -800,7 +800,7 @@ class CloudWatchAnnotationQuery(cogvariants.Dataquery):
     # @deprecated use statistic
     statistics: typing.Optional[list[str]]
 
-    def __init__(self, query_mode: typing.Optional['CloudWatchQueryMode'] = None, prefix_matching: typing.Optional[bool] = None, action_prefix: typing.Optional[str] = None, ref_id: str = "", hide: typing.Optional[bool] = None, query_type: typing.Optional[str] = None, region: str = "", namespace: str = "", metric_name: typing.Optional[str] = None, dimensions: typing.Optional['Dimensions'] = None, match_exact: typing.Optional[bool] = None, period: typing.Optional[str] = None, account_id: typing.Optional[str] = None, statistic: typing.Optional[str] = None, alarm_name_prefix: typing.Optional[str] = None, datasource: typing.Optional[dashboard.DataSourceRef] = None, statistics: typing.Optional[list[str]] = None):
+    def __init__(self, query_mode: typing.Optional['CloudWatchQueryMode'] = None, prefix_matching: typing.Optional[bool] = None, action_prefix: typing.Optional[str] = None, ref_id: str = "", hide: typing.Optional[bool] = None, query_type: typing.Optional[str] = None, region: str = "", namespace: str = "", metric_name: typing.Optional[str] = None, dimensions: typing.Optional['Dimensions'] = None, match_exact: typing.Optional[bool] = None, period: typing.Optional[str] = None, account_id: typing.Optional[str] = None, statistic: typing.Optional[str] = None, alarm_name_prefix: typing.Optional[str] = None, datasource: typing.Optional[dashboard.DataSourceRef] = None, statistics: typing.Optional[list[str]] = None) -> None:
         self.query_mode = query_mode if query_mode is not None else CloudWatchQueryMode.ANNOTATIONS
         self.prefix_matching = prefix_matching
         self.action_prefix = action_prefix

@@ -12,7 +12,7 @@ class Options:
     # Expand all alert groups by default
     expand_all: bool
 
-    def __init__(self, labels: str = "", alertmanager: str = "", expand_all: bool = False):
+    def __init__(self, labels: str = "", alertmanager: str = "", expand_all: bool = False) -> None:
         self.labels = labels
         self.alertmanager = alertmanager
         self.expand_all = expand_all
