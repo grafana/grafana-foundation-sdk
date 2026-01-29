@@ -25,7 +25,7 @@ class Dataquery(cogvariants.Dataquery):
     # TODO this shouldn't be unknown but DataSourceRef | null
     datasource: typing.Optional[dashboard.DataSourceRef]
 
-    def __init__(self, panel_id: int = 0, ref_id: str = "", hide: typing.Optional[bool] = None, query_type: typing.Optional[str] = None, with_transforms: bool = False, datasource: typing.Optional[dashboard.DataSourceRef] = None):
+    def __init__(self, panel_id: int = 0, ref_id: str = "", hide: typing.Optional[bool] = None, query_type: typing.Optional[str] = None, with_transforms: bool = False, datasource: typing.Optional[dashboard.DataSourceRef] = None) -> None:
         self.panel_id = panel_id
         self.ref_id = ref_id
         self.hide = hide

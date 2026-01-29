@@ -129,6 +129,7 @@ public class Panel {
     public Panel() {
         this.type = "";
         this.transparent = false;
+        this.repeatDirection = PanelRepeatDirection.H;
     }
     public Panel(String type,Integer id,String pluginVersion,List<Dataquery> targets,String title,String description,Boolean transparent,DataSourceRef datasource,GridPos gridPos,List<DashboardLink> links,String repeat,PanelRepeatDirection repeatDirection,Double maxPerRow,Double maxDataPoints,List<DataTransformerConfig> transformations,String interval,String timeFrom,String timeShift,Boolean hideTimeOverride,LibraryPanelRef libraryPanel,String cacheTimeout,Double queryCachingTTL,Object options,FieldConfigSource fieldConfig) {
         this.type = type;

@@ -8,7 +8,7 @@ from ..models import publicdashboard
 class PublicDashboard(cogbuilder.Builder[publicdashboard.PublicDashboard]):
     _internal: publicdashboard.PublicDashboard
 
-    def __init__(self):
+    def __init__(self) -> None:
         self._internal = publicdashboard.PublicDashboard()
 
     def build(self) -> publicdashboard.PublicDashboard:
