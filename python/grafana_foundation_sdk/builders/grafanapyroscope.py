@@ -9,7 +9,7 @@ from ..models import dashboard
 class Dataquery(cogbuilder.Builder[grafanapyroscope.Dataquery]):
     _internal: grafanapyroscope.Dataquery
 
-    def __init__(self):
+    def __init__(self) -> None:
         self._internal = grafanapyroscope.Dataquery()
 
     def build(self) -> grafanapyroscope.Dataquery:

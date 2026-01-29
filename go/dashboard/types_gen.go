@@ -79,6 +79,7 @@ type Dashboard struct {
 // NewDashboard creates a new Dashboard object.
 func NewDashboard() *Dashboard {
 	return &Dashboard{
+		Style:                DashboardStyleDark,
 		Timezone:             (func(input string) *string { return &input })("browser"),
 		Editable:             true,
 		GraphTooltip:         DashboardCursorSyncOff,
@@ -190,8 +191,7 @@ func (resource *Dashboard) UnmarshalJSONStrict(raw []byte) error {
 
 		}
 		delete(fields, "style")
-	} else {
-		errs = append(errs, cog.MakeBuildErrors("style", errors.New("required field is missing from input"))...)
+
 	}
 	// Field "timezone"
 	if fields["timezone"] != nil {
@@ -754,6 +754,7 @@ type Panel struct {
 func NewPanel() *Panel {
 	return &Panel{
 		Transparent:     false,
+		RepeatDirection: (func(input PanelRepeatDirection) *PanelRepeatDirection { return &input })(PanelRepeatDirectionH),
 		Transformations: []DataTransformerConfig{},
 		FieldConfig:     *NewFieldConfigSource(),
 	}

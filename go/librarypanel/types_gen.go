@@ -621,6 +621,7 @@ type PanelModel struct {
 func NewPanelModel() *PanelModel {
 	return &PanelModel{
 		Transparent:     false,
+		RepeatDirection: (func(input PanelModelRepeatDirection) *PanelModelRepeatDirection { return &input })(PanelModelRepeatDirectionH),
 		Transformations: []dashboard.DataTransformerConfig{},
 		FieldConfig:     *dashboard.NewFieldConfigSource(),
 	}

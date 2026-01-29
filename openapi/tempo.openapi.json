@@ -99,7 +99,7 @@
             "description": "The operator that connects the tag to the value, for example: =, \u003e, !=, =~"
           },
           "value": {
-            "anyOf": [
+            "oneOf": [
               {
                 "type": "string"
               },

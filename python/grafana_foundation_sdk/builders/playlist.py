@@ -8,7 +8,7 @@ from ..models import playlist
 class Playlist(cogbuilder.Builder[playlist.Playlist]):
     _internal: playlist.Playlist
 
-    def __init__(self):
+    def __init__(self) -> None:
         self._internal = playlist.Playlist()
 
     def build(self) -> playlist.Playlist:
@@ -62,7 +62,7 @@ class Playlist(cogbuilder.Builder[playlist.Playlist]):
 class PlaylistItem(cogbuilder.Builder[playlist.PlaylistItem]):
     _internal: playlist.PlaylistItem
 
-    def __init__(self):
+    def __init__(self) -> None:
         self._internal = playlist.PlaylistItem()
 
     def build(self) -> playlist.PlaylistItem:

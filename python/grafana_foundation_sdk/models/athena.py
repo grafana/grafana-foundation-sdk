@@ -35,7 +35,7 @@ class Dataquery(cogvariants.Dataquery):
     # TODO this shouldn't be unknown but DataSourceRef | null
     datasource: typing.Optional[dashboard.DataSourceRef]
 
-    def __init__(self, format_val: typing.Optional['FormatOptions'] = None, connection_args: typing.Optional['ConnectionArgs'] = None, table: typing.Optional[str] = None, column: typing.Optional[str] = None, query_id: typing.Optional[str] = None, ref_id: str = "", hide: typing.Optional[bool] = None, query_type: typing.Optional[str] = None, raw_sql: str = "", datasource: typing.Optional[dashboard.DataSourceRef] = None):
+    def __init__(self, format_val: typing.Optional['FormatOptions'] = None, connection_args: typing.Optional['ConnectionArgs'] = None, table: typing.Optional[str] = None, column: typing.Optional[str] = None, query_id: typing.Optional[str] = None, ref_id: str = "", hide: typing.Optional[bool] = None, query_type: typing.Optional[str] = None, raw_sql: str = "", datasource: typing.Optional[dashboard.DataSourceRef] = None) -> None:
         self.format_val = format_val if format_val is not None else FormatOptions.TIME_SERIES
         self.connection_args = connection_args if connection_args is not None else ConnectionArgs()
         self.table = table
@@ -109,7 +109,7 @@ class ConnectionArgs:
     result_reuse_enabled: typing.Optional[bool]
     result_reuse_max_age_in_minutes: typing.Optional[float]
 
-    def __init__(self, region: typing.Optional[str] = "__default", catalog: typing.Optional[str] = "__default", database: typing.Optional[str] = "__default", result_reuse_enabled: typing.Optional[bool] = False, result_reuse_max_age_in_minutes: typing.Optional[float] = 60):
+    def __init__(self, region: typing.Optional[str] = "__default", catalog: typing.Optional[str] = "__default", database: typing.Optional[str] = "__default", result_reuse_enabled: typing.Optional[bool] = False, result_reuse_max_age_in_minutes: typing.Optional[float] = 60) -> None:
         self.region = region
         self.catalog = catalog
         self.database = database

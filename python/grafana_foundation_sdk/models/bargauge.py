@@ -15,7 +15,7 @@ class Options:
     min_viz_height: int
     orientation: common.VizOrientation
 
-    def __init__(self, display_mode: typing.Optional[common.BarGaugeDisplayMode] = None, value_mode: typing.Optional[common.BarGaugeValueMode] = None, show_unfilled: bool = True, min_viz_width: int = 0, reduce_options: typing.Optional[common.ReduceDataOptions] = None, text: typing.Optional[common.VizTextDisplayOptions] = None, min_viz_height: int = 10, orientation: typing.Optional[common.VizOrientation] = None):
+    def __init__(self, display_mode: typing.Optional[common.BarGaugeDisplayMode] = None, value_mode: typing.Optional[common.BarGaugeValueMode] = None, show_unfilled: bool = True, min_viz_width: int = 0, reduce_options: typing.Optional[common.ReduceDataOptions] = None, text: typing.Optional[common.VizTextDisplayOptions] = None, min_viz_height: int = 10, orientation: typing.Optional[common.VizOrientation] = None) -> None:
         self.display_mode = display_mode if display_mode is not None else common.BarGaugeDisplayMode.GRADIENT
         self.value_mode = value_mode if value_mode is not None else common.BarGaugeValueMode.COLOR
         self.show_unfilled = show_unfilled

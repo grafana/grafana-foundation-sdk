@@ -475,7 +475,7 @@
             "$ref": "#/components/schemas/LineStyle"
           },
           "spanNulls": {
-            "anyOf": [
+            "oneOf": [
               {
                 "type": "boolean"
               },
@@ -1024,7 +1024,7 @@
             "$ref": "#/components/schemas/GraphTransform"
           },
           "spanNulls": {
-            "anyOf": [
+            "oneOf": [
               {
                 "type": "boolean"
               },
@@ -1047,7 +1047,7 @@
             "type": "number"
           },
           "insertNulls": {
-            "anyOf": [
+            "oneOf": [
               {
                 "type": "boolean"
               },
@@ -1168,7 +1168,11 @@
         ],
         "properties": {
           "type": {
-            "$ref": "#/components/schemas/TableCellDisplayMode",
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/TableCellDisplayMode"
+              }
+            ],
             "default": "auto"
           }
         },
@@ -1182,7 +1186,11 @@
         ],
         "properties": {
           "type": {
-            "$ref": "#/components/schemas/TableCellDisplayMode",
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/TableCellDisplayMode"
+              }
+            ],
             "default": "color-text"
           }
         },
@@ -1196,7 +1204,11 @@
         ],
         "properties": {
           "type": {
-            "$ref": "#/components/schemas/TableCellDisplayMode",
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/TableCellDisplayMode"
+              }
+            ],
             "default": "json-view"
           }
         },
@@ -1210,7 +1222,11 @@
         ],
         "properties": {
           "type": {
-            "$ref": "#/components/schemas/TableCellDisplayMode",
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/TableCellDisplayMode"
+              }
+            ],
             "default": "image"
           }
         },
@@ -1224,7 +1240,11 @@
         ],
         "properties": {
           "type": {
-            "$ref": "#/components/schemas/TableCellDisplayMode",
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/TableCellDisplayMode"
+              }
+            ],
             "default": "gauge"
           },
           "mode": {
@@ -1244,7 +1264,11 @@
         ],
         "properties": {
           "type": {
-            "$ref": "#/components/schemas/TableCellDisplayMode",
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/TableCellDisplayMode"
+              }
+            ],
             "default": "sparkline"
           },
           "drawStyle": {
@@ -1323,7 +1347,7 @@
             "$ref": "#/components/schemas/GraphTransform"
           },
           "spanNulls": {
-            "anyOf": [
+            "oneOf": [
               {
                 "type": "boolean"
               },
@@ -1356,7 +1380,11 @@
         ],
         "properties": {
           "type": {
-            "$ref": "#/components/schemas/TableCellDisplayMode",
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/TableCellDisplayMode"
+              }
+            ],
             "default": "color-background"
           },
           "mode": {
@@ -1375,7 +1403,7 @@
         "description": "Height of a table cell"
       },
       "TableCellOptions": {
-        "anyOf": [
+        "oneOf": [
           {
             "$ref": "#/components/schemas/TableAutoCellOptions"
           },

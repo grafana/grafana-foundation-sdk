@@ -174,7 +174,7 @@ class Dashboard implements \JsonSerializable
         $this->revision = $revision;
         $this->gnetId = $gnetId;
         $this->tags = $tags;
-        $this->style = $style ?: \Grafana\Foundation\Dashboard\DashboardStyle::Light();
+        $this->style = $style ?: \Grafana\Foundation\Dashboard\DashboardStyle::dark();
         $this->timezone = $timezone;
         $this->editable = $editable ?: true;
         $this->graphTooltip = $graphTooltip ?: \Grafana\Foundation\Dashboard\DashboardCursorSync::off();

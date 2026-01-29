@@ -116,7 +116,7 @@ public class Dashboard {
     @JsonProperty("snapshot")
     public Snapshot snapshot;
     public Dashboard() {
-        this.style = DashboardStyle.LIGHT;
+        this.style = DashboardStyle.DARK;
         this.timezone = "browser";
         this.editable = true;
         this.graphTooltip = DashboardCursorSync.OFF;

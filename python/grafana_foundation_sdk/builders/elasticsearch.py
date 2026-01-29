@@ -9,7 +9,7 @@ from ..models import dashboard
 class DateHistogram(cogbuilder.Builder[elasticsearch.DateHistogram]):
     _internal: elasticsearch.DateHistogram
 
-    def __init__(self):
+    def __init__(self) -> None:
         self._internal = elasticsearch.DateHistogram()
 
     def build(self) -> elasticsearch.DateHistogram:
@@ -39,7 +39,7 @@ class DateHistogram(cogbuilder.Builder[elasticsearch.DateHistogram]):
 class Histogram(cogbuilder.Builder[elasticsearch.Histogram]):
     _internal: elasticsearch.Histogram
 
-    def __init__(self):
+    def __init__(self) -> None:
         self._internal = elasticsearch.Histogram()
 
     def build(self) -> elasticsearch.Histogram:
@@ -69,7 +69,7 @@ class Histogram(cogbuilder.Builder[elasticsearch.Histogram]):
 class Terms(cogbuilder.Builder[elasticsearch.Terms]):
     _internal: elasticsearch.Terms
 
-    def __init__(self):
+    def __init__(self) -> None:
         self._internal = elasticsearch.Terms()
 
     def build(self) -> elasticsearch.Terms:
@@ -99,7 +99,7 @@ class Terms(cogbuilder.Builder[elasticsearch.Terms]):
 class Filters(cogbuilder.Builder[elasticsearch.Filters]):
     _internal: elasticsearch.Filters
 
-    def __init__(self):
+    def __init__(self) -> None:
         self._internal = elasticsearch.Filters()
 
     def build(self) -> elasticsearch.Filters:
@@ -124,7 +124,7 @@ class Filters(cogbuilder.Builder[elasticsearch.Filters]):
 class Filter(cogbuilder.Builder[elasticsearch.Filter]):
     _internal: elasticsearch.Filter
 
-    def __init__(self):
+    def __init__(self) -> None:
         self._internal = elasticsearch.Filter()
 
     def build(self) -> elasticsearch.Filter:
@@ -148,7 +148,7 @@ class Filter(cogbuilder.Builder[elasticsearch.Filter]):
 class GeoHashGrid(cogbuilder.Builder[elasticsearch.GeoHashGrid]):
     _internal: elasticsearch.GeoHashGrid
 
-    def __init__(self):
+    def __init__(self) -> None:
         self._internal = elasticsearch.GeoHashGrid()
 
     def build(self) -> elasticsearch.GeoHashGrid:
@@ -178,7 +178,7 @@ class GeoHashGrid(cogbuilder.Builder[elasticsearch.GeoHashGrid]):
 class Nested(cogbuilder.Builder[elasticsearch.Nested]):
     _internal: elasticsearch.Nested
 
-    def __init__(self):
+    def __init__(self) -> None:
         self._internal = elasticsearch.Nested()
 
     def build(self) -> elasticsearch.Nested:
@@ -207,7 +207,7 @@ class Nested(cogbuilder.Builder[elasticsearch.Nested]):
 class Count(cogbuilder.Builder[elasticsearch.Count]):
     _internal: elasticsearch.Count
 
-    def __init__(self):
+    def __init__(self) -> None:
         self._internal = elasticsearch.Count()
 
     def build(self) -> elasticsearch.Count:
@@ -235,7 +235,7 @@ class MovingAverage(cogbuilder.Builder[elasticsearch.MovingAverage]):
     
     _internal: elasticsearch.MovingAverage
 
-    def __init__(self):
+    def __init__(self) -> None:
         self._internal = elasticsearch.MovingAverage()
 
     def build(self) -> elasticsearch.MovingAverage:
@@ -274,7 +274,7 @@ class MovingAverage(cogbuilder.Builder[elasticsearch.MovingAverage]):
 class Derivative(cogbuilder.Builder[elasticsearch.Derivative]):
     _internal: elasticsearch.Derivative
 
-    def __init__(self):
+    def __init__(self) -> None:
         self._internal = elasticsearch.Derivative()
 
     def build(self) -> elasticsearch.Derivative:
@@ -314,7 +314,7 @@ class Derivative(cogbuilder.Builder[elasticsearch.Derivative]):
 class CumulativeSum(cogbuilder.Builder[elasticsearch.CumulativeSum]):
     _internal: elasticsearch.CumulativeSum
 
-    def __init__(self):
+    def __init__(self) -> None:
         self._internal = elasticsearch.CumulativeSum()
 
     def build(self) -> elasticsearch.CumulativeSum:
@@ -354,7 +354,7 @@ class CumulativeSum(cogbuilder.Builder[elasticsearch.CumulativeSum]):
 class BucketScript(cogbuilder.Builder[elasticsearch.BucketScript]):
     _internal: elasticsearch.BucketScript
 
-    def __init__(self):
+    def __init__(self) -> None:
         self._internal = elasticsearch.BucketScript()
 
     def build(self) -> elasticsearch.BucketScript:
@@ -390,7 +390,7 @@ class BucketScript(cogbuilder.Builder[elasticsearch.BucketScript]):
 class PipelineVariable(cogbuilder.Builder[elasticsearch.PipelineVariable]):
     _internal: elasticsearch.PipelineVariable
 
-    def __init__(self):
+    def __init__(self) -> None:
         self._internal = elasticsearch.PipelineVariable()
 
     def build(self) -> elasticsearch.PipelineVariable:
@@ -414,7 +414,7 @@ class PipelineVariable(cogbuilder.Builder[elasticsearch.PipelineVariable]):
 class SerialDiff(cogbuilder.Builder[elasticsearch.SerialDiff]):
     _internal: elasticsearch.SerialDiff
 
-    def __init__(self):
+    def __init__(self) -> None:
         self._internal = elasticsearch.SerialDiff()
 
     def build(self) -> elasticsearch.SerialDiff:
@@ -454,7 +454,7 @@ class SerialDiff(cogbuilder.Builder[elasticsearch.SerialDiff]):
 class RawData(cogbuilder.Builder[elasticsearch.RawData]):
     _internal: elasticsearch.RawData
 
-    def __init__(self):
+    def __init__(self) -> None:
         self._internal = elasticsearch.RawData()
 
     def build(self) -> elasticsearch.RawData:
@@ -484,7 +484,7 @@ class RawData(cogbuilder.Builder[elasticsearch.RawData]):
 class RawDocument(cogbuilder.Builder[elasticsearch.RawDocument]):
     _internal: elasticsearch.RawDocument
 
-    def __init__(self):
+    def __init__(self) -> None:
         self._internal = elasticsearch.RawDocument()
 
     def build(self) -> elasticsearch.RawDocument:
@@ -514,7 +514,7 @@ class RawDocument(cogbuilder.Builder[elasticsearch.RawDocument]):
 class UniqueCount(cogbuilder.Builder[elasticsearch.UniqueCount]):
     _internal: elasticsearch.UniqueCount
 
-    def __init__(self):
+    def __init__(self) -> None:
         self._internal = elasticsearch.UniqueCount()
 
     def build(self) -> elasticsearch.UniqueCount:
@@ -549,7 +549,7 @@ class UniqueCount(cogbuilder.Builder[elasticsearch.UniqueCount]):
 class Percentiles(cogbuilder.Builder[elasticsearch.Percentiles]):
     _internal: elasticsearch.Percentiles
 
-    def __init__(self):
+    def __init__(self) -> None:
         self._internal = elasticsearch.Percentiles()
 
     def build(self) -> elasticsearch.Percentiles:
@@ -584,7 +584,7 @@ class Percentiles(cogbuilder.Builder[elasticsearch.Percentiles]):
 class ExtendedStats(cogbuilder.Builder[elasticsearch.ExtendedStats]):
     _internal: elasticsearch.ExtendedStats
 
-    def __init__(self):
+    def __init__(self) -> None:
         self._internal = elasticsearch.ExtendedStats()
 
     def build(self) -> elasticsearch.ExtendedStats:
@@ -624,7 +624,7 @@ class ExtendedStats(cogbuilder.Builder[elasticsearch.ExtendedStats]):
 class Min(cogbuilder.Builder[elasticsearch.Min]):
     _internal: elasticsearch.Min
 
-    def __init__(self):
+    def __init__(self) -> None:
         self._internal = elasticsearch.Min()
 
     def build(self) -> elasticsearch.Min:
@@ -659,7 +659,7 @@ class Min(cogbuilder.Builder[elasticsearch.Min]):
 class Max(cogbuilder.Builder[elasticsearch.Max]):
     _internal: elasticsearch.Max
 
-    def __init__(self):
+    def __init__(self) -> None:
         self._internal = elasticsearch.Max()
 
     def build(self) -> elasticsearch.Max:
@@ -694,7 +694,7 @@ class Max(cogbuilder.Builder[elasticsearch.Max]):
 class Sum(cogbuilder.Builder[elasticsearch.Sum]):
     _internal: elasticsearch.Sum
 
-    def __init__(self):
+    def __init__(self) -> None:
         self._internal = elasticsearch.Sum()
 
     def build(self) -> elasticsearch.Sum:
@@ -729,7 +729,7 @@ class Sum(cogbuilder.Builder[elasticsearch.Sum]):
 class Average(cogbuilder.Builder[elasticsearch.Average]):
     _internal: elasticsearch.Average
 
-    def __init__(self):
+    def __init__(self) -> None:
         self._internal = elasticsearch.Average()
 
     def build(self) -> elasticsearch.Average:
@@ -764,7 +764,7 @@ class Average(cogbuilder.Builder[elasticsearch.Average]):
 class MovingFunction(cogbuilder.Builder[elasticsearch.MovingFunction]):
     _internal: elasticsearch.MovingFunction
 
-    def __init__(self):
+    def __init__(self) -> None:
         self._internal = elasticsearch.MovingFunction()
 
     def build(self) -> elasticsearch.MovingFunction:
@@ -804,7 +804,7 @@ class MovingFunction(cogbuilder.Builder[elasticsearch.MovingFunction]):
 class Logs(cogbuilder.Builder[elasticsearch.Logs]):
     _internal: elasticsearch.Logs
 
-    def __init__(self):
+    def __init__(self) -> None:
         self._internal = elasticsearch.Logs()
 
     def build(self) -> elasticsearch.Logs:
@@ -834,7 +834,7 @@ class Logs(cogbuilder.Builder[elasticsearch.Logs]):
 class Rate(cogbuilder.Builder[elasticsearch.Rate]):
     _internal: elasticsearch.Rate
 
-    def __init__(self):
+    def __init__(self) -> None:
         self._internal = elasticsearch.Rate()
 
     def build(self) -> elasticsearch.Rate:
@@ -869,7 +869,7 @@ class Rate(cogbuilder.Builder[elasticsearch.Rate]):
 class TopMetrics(cogbuilder.Builder[elasticsearch.TopMetrics]):
     _internal: elasticsearch.TopMetrics
 
-    def __init__(self):
+    def __init__(self) -> None:
         self._internal = elasticsearch.TopMetrics()
 
     def build(self) -> elasticsearch.TopMetrics:
@@ -899,7 +899,7 @@ class TopMetrics(cogbuilder.Builder[elasticsearch.TopMetrics]):
 class BaseBucketAggregation(cogbuilder.Builder[elasticsearch.BaseBucketAggregation]):
     _internal: elasticsearch.BaseBucketAggregation
 
-    def __init__(self):
+    def __init__(self) -> None:
         self._internal = elasticsearch.BaseBucketAggregation()
 
     def build(self) -> elasticsearch.BaseBucketAggregation:
@@ -928,7 +928,7 @@ class BaseBucketAggregation(cogbuilder.Builder[elasticsearch.BaseBucketAggregati
 class BucketAggregationWithField(cogbuilder.Builder[elasticsearch.BucketAggregationWithField]):
     _internal: elasticsearch.BucketAggregationWithField
 
-    def __init__(self):
+    def __init__(self) -> None:
         self._internal = elasticsearch.BucketAggregationWithField()
 
     def build(self) -> elasticsearch.BucketAggregationWithField:
@@ -962,7 +962,7 @@ class BucketAggregationWithField(cogbuilder.Builder[elasticsearch.BucketAggregat
 class DateHistogramSettings(cogbuilder.Builder[elasticsearch.DateHistogramSettings]):
     _internal: elasticsearch.DateHistogramSettings
 
-    def __init__(self):
+    def __init__(self) -> None:
         self._internal = elasticsearch.DateHistogramSettings()
 
     def build(self) -> elasticsearch.DateHistogramSettings:
@@ -1001,7 +1001,7 @@ class DateHistogramSettings(cogbuilder.Builder[elasticsearch.DateHistogramSettin
 class HistogramSettings(cogbuilder.Builder[elasticsearch.HistogramSettings]):
     _internal: elasticsearch.HistogramSettings
 
-    def __init__(self):
+    def __init__(self) -> None:
         self._internal = elasticsearch.HistogramSettings()
 
     def build(self) -> elasticsearch.HistogramSettings:
@@ -1025,7 +1025,7 @@ class HistogramSettings(cogbuilder.Builder[elasticsearch.HistogramSettings]):
 class TermsSettings(cogbuilder.Builder[elasticsearch.TermsSettings]):
     _internal: elasticsearch.TermsSettings
 
-    def __init__(self):
+    def __init__(self) -> None:
         self._internal = elasticsearch.TermsSettings()
 
     def build(self) -> elasticsearch.TermsSettings:
@@ -1064,7 +1064,7 @@ class TermsSettings(cogbuilder.Builder[elasticsearch.TermsSettings]):
 class FiltersSettings(cogbuilder.Builder[elasticsearch.FiltersSettings]):
     _internal: elasticsearch.FiltersSettings
 
-    def __init__(self):
+    def __init__(self) -> None:
         self._internal = elasticsearch.FiltersSettings()
 
     def build(self) -> elasticsearch.FiltersSettings:
@@ -1084,7 +1084,7 @@ class FiltersSettings(cogbuilder.Builder[elasticsearch.FiltersSettings]):
 class GeoHashGridSettings(cogbuilder.Builder[elasticsearch.GeoHashGridSettings]):
     _internal: elasticsearch.GeoHashGridSettings
 
-    def __init__(self):
+    def __init__(self) -> None:
         self._internal = elasticsearch.GeoHashGridSettings()
 
     def build(self) -> elasticsearch.GeoHashGridSettings:
@@ -1103,7 +1103,7 @@ class GeoHashGridSettings(cogbuilder.Builder[elasticsearch.GeoHashGridSettings])
 class BaseMetricAggregation(cogbuilder.Builder[elasticsearch.BaseMetricAggregation]):
     _internal: elasticsearch.BaseMetricAggregation
 
-    def __init__(self):
+    def __init__(self) -> None:
         self._internal = elasticsearch.BaseMetricAggregation()
 
     def build(self) -> elasticsearch.BaseMetricAggregation:
@@ -1132,7 +1132,7 @@ class BaseMetricAggregation(cogbuilder.Builder[elasticsearch.BaseMetricAggregati
 class MetricAggregationWithField(cogbuilder.Builder[elasticsearch.MetricAggregationWithField]):
     _internal: elasticsearch.MetricAggregationWithField
 
-    def __init__(self):
+    def __init__(self) -> None:
         self._internal = elasticsearch.MetricAggregationWithField()
 
     def build(self) -> elasticsearch.MetricAggregationWithField:
@@ -1166,7 +1166,7 @@ class MetricAggregationWithField(cogbuilder.Builder[elasticsearch.MetricAggregat
 class MetricAggregationWithMissingSupport(cogbuilder.Builder[elasticsearch.MetricAggregationWithMissingSupport]):
     _internal: elasticsearch.MetricAggregationWithMissingSupport
 
-    def __init__(self):
+    def __init__(self) -> None:
         self._internal = elasticsearch.MetricAggregationWithMissingSupport()
 
     def build(self) -> elasticsearch.MetricAggregationWithMissingSupport:
@@ -1201,7 +1201,7 @@ class MetricAggregationWithMissingSupport(cogbuilder.Builder[elasticsearch.Metri
 class MetricAggregationWithInlineScript(cogbuilder.Builder[elasticsearch.MetricAggregationWithInlineScript]):
     _internal: elasticsearch.MetricAggregationWithInlineScript
 
-    def __init__(self):
+    def __init__(self) -> None:
         self._internal = elasticsearch.MetricAggregationWithInlineScript()
 
     def build(self) -> elasticsearch.MetricAggregationWithInlineScript:
@@ -1236,7 +1236,7 @@ class MetricAggregationWithInlineScript(cogbuilder.Builder[elasticsearch.MetricA
 class ExtendedStat(cogbuilder.Builder[elasticsearch.ExtendedStat]):
     _internal: elasticsearch.ExtendedStat
 
-    def __init__(self):
+    def __init__(self) -> None:
         self._internal = elasticsearch.ExtendedStat()
 
     def build(self) -> elasticsearch.ExtendedStat:
@@ -1260,7 +1260,7 @@ class ExtendedStat(cogbuilder.Builder[elasticsearch.ExtendedStat]):
 class BasePipelineMetricAggregation(cogbuilder.Builder[elasticsearch.BasePipelineMetricAggregation]):
     _internal: elasticsearch.BasePipelineMetricAggregation
 
-    def __init__(self):
+    def __init__(self) -> None:
         self._internal = elasticsearch.BasePipelineMetricAggregation()
 
     def build(self) -> elasticsearch.BasePipelineMetricAggregation:
@@ -1299,7 +1299,7 @@ class BasePipelineMetricAggregation(cogbuilder.Builder[elasticsearch.BasePipelin
 class PipelineMetricAggregationWithMultipleBucketPaths(cogbuilder.Builder[elasticsearch.PipelineMetricAggregationWithMultipleBucketPaths]):
     _internal: elasticsearch.PipelineMetricAggregationWithMultipleBucketPaths
 
-    def __init__(self):
+    def __init__(self) -> None:
         self._internal = elasticsearch.PipelineMetricAggregationWithMultipleBucketPaths()
 
     def build(self) -> elasticsearch.PipelineMetricAggregationWithMultipleBucketPaths:
@@ -1334,7 +1334,7 @@ class PipelineMetricAggregationWithMultipleBucketPaths(cogbuilder.Builder[elasti
 class MovingAverageModelOption(cogbuilder.Builder[elasticsearch.MovingAverageModelOption]):
     _internal: elasticsearch.MovingAverageModelOption
 
-    def __init__(self):
+    def __init__(self) -> None:
         self._internal = elasticsearch.MovingAverageModelOption()
 
     def build(self) -> elasticsearch.MovingAverageModelOption:
@@ -1358,7 +1358,7 @@ class MovingAverageModelOption(cogbuilder.Builder[elasticsearch.MovingAverageMod
 class BaseMovingAverageModelSettings(cogbuilder.Builder[elasticsearch.BaseMovingAverageModelSettings]):
     _internal: elasticsearch.BaseMovingAverageModelSettings
 
-    def __init__(self):
+    def __init__(self) -> None:
         self._internal = elasticsearch.BaseMovingAverageModelSettings()
 
     def build(self) -> elasticsearch.BaseMovingAverageModelSettings:
@@ -1387,7 +1387,7 @@ class BaseMovingAverageModelSettings(cogbuilder.Builder[elasticsearch.BaseMoving
 class MovingAverageSimpleModelSettings(cogbuilder.Builder[elasticsearch.MovingAverageSimpleModelSettings]):
     _internal: elasticsearch.MovingAverageSimpleModelSettings
 
-    def __init__(self):
+    def __init__(self) -> None:
         self._internal = elasticsearch.MovingAverageSimpleModelSettings()
 
     def build(self) -> elasticsearch.MovingAverageSimpleModelSettings:
@@ -1411,7 +1411,7 @@ class MovingAverageSimpleModelSettings(cogbuilder.Builder[elasticsearch.MovingAv
 class MovingAverageLinearModelSettings(cogbuilder.Builder[elasticsearch.MovingAverageLinearModelSettings]):
     _internal: elasticsearch.MovingAverageLinearModelSettings
 
-    def __init__(self):
+    def __init__(self) -> None:
         self._internal = elasticsearch.MovingAverageLinearModelSettings()
 
     def build(self) -> elasticsearch.MovingAverageLinearModelSettings:
@@ -1435,7 +1435,7 @@ class MovingAverageLinearModelSettings(cogbuilder.Builder[elasticsearch.MovingAv
 class MovingAverageEWMAModelSettings(cogbuilder.Builder[elasticsearch.MovingAverageEWMAModelSettings]):
     _internal: elasticsearch.MovingAverageEWMAModelSettings
 
-    def __init__(self):
+    def __init__(self) -> None:
         self._internal = elasticsearch.MovingAverageEWMAModelSettings()
 
     def build(self) -> elasticsearch.MovingAverageEWMAModelSettings:
@@ -1470,7 +1470,7 @@ class MovingAverageEWMAModelSettings(cogbuilder.Builder[elasticsearch.MovingAver
 class MovingAverageHoltModelSettings(cogbuilder.Builder[elasticsearch.MovingAverageHoltModelSettings]):
     _internal: elasticsearch.MovingAverageHoltModelSettings
 
-    def __init__(self):
+    def __init__(self) -> None:
         self._internal = elasticsearch.MovingAverageHoltModelSettings()
 
     def build(self) -> elasticsearch.MovingAverageHoltModelSettings:
@@ -1505,7 +1505,7 @@ class MovingAverageHoltModelSettings(cogbuilder.Builder[elasticsearch.MovingAver
 class MovingAverageHoltWintersModelSettings(cogbuilder.Builder[elasticsearch.MovingAverageHoltWintersModelSettings]):
     _internal: elasticsearch.MovingAverageHoltWintersModelSettings
 
-    def __init__(self):
+    def __init__(self) -> None:
         self._internal = elasticsearch.MovingAverageHoltWintersModelSettings()
 
     def build(self) -> elasticsearch.MovingAverageHoltWintersModelSettings:
@@ -1540,7 +1540,7 @@ class MovingAverageHoltWintersModelSettings(cogbuilder.Builder[elasticsearch.Mov
 class Dataquery(cogbuilder.Builder[elasticsearch.Dataquery]):
     _internal: elasticsearch.Dataquery
 
-    def __init__(self):
+    def __init__(self) -> None:
         self._internal = elasticsearch.Dataquery()
 
     def build(self) -> elasticsearch.Dataquery:
@@ -1645,7 +1645,7 @@ class Dataquery(cogbuilder.Builder[elasticsearch.Dataquery]):
 class ElasticsearchDateHistogramSettings(cogbuilder.Builder[elasticsearch.ElasticsearchDateHistogramSettings]):
     _internal: elasticsearch.ElasticsearchDateHistogramSettings
 
-    def __init__(self):
+    def __init__(self) -> None:
         self._internal = elasticsearch.ElasticsearchDateHistogramSettings()
 
     def build(self) -> elasticsearch.ElasticsearchDateHistogramSettings:
@@ -1684,7 +1684,7 @@ class ElasticsearchDateHistogramSettings(cogbuilder.Builder[elasticsearch.Elasti
 class ElasticsearchHistogramSettings(cogbuilder.Builder[elasticsearch.ElasticsearchHistogramSettings]):
     _internal: elasticsearch.ElasticsearchHistogramSettings
 
-    def __init__(self):
+    def __init__(self) -> None:
         self._internal = elasticsearch.ElasticsearchHistogramSettings()
 
     def build(self) -> elasticsearch.ElasticsearchHistogramSettings:
@@ -1708,7 +1708,7 @@ class ElasticsearchHistogramSettings(cogbuilder.Builder[elasticsearch.Elasticsea
 class ElasticsearchTermsSettings(cogbuilder.Builder[elasticsearch.ElasticsearchTermsSettings]):
     _internal: elasticsearch.ElasticsearchTermsSettings
 
-    def __init__(self):
+    def __init__(self) -> None:
         self._internal = elasticsearch.ElasticsearchTermsSettings()
 
     def build(self) -> elasticsearch.ElasticsearchTermsSettings:
@@ -1747,7 +1747,7 @@ class ElasticsearchTermsSettings(cogbuilder.Builder[elasticsearch.ElasticsearchT
 class ElasticsearchFiltersSettings(cogbuilder.Builder[elasticsearch.ElasticsearchFiltersSettings]):
     _internal: elasticsearch.ElasticsearchFiltersSettings
 
-    def __init__(self):
+    def __init__(self) -> None:
         self._internal = elasticsearch.ElasticsearchFiltersSettings()
 
     def build(self) -> elasticsearch.ElasticsearchFiltersSettings:
@@ -1767,7 +1767,7 @@ class ElasticsearchFiltersSettings(cogbuilder.Builder[elasticsearch.Elasticsearc
 class ElasticsearchGeoHashGridSettings(cogbuilder.Builder[elasticsearch.ElasticsearchGeoHashGridSettings]):
     _internal: elasticsearch.ElasticsearchGeoHashGridSettings
 
-    def __init__(self):
+    def __init__(self) -> None:
         self._internal = elasticsearch.ElasticsearchGeoHashGridSettings()
 
     def build(self) -> elasticsearch.ElasticsearchGeoHashGridSettings:
@@ -1786,7 +1786,7 @@ class ElasticsearchGeoHashGridSettings(cogbuilder.Builder[elasticsearch.Elastics
 class ElasticsearchDerivativeSettings(cogbuilder.Builder[elasticsearch.ElasticsearchDerivativeSettings]):
     _internal: elasticsearch.ElasticsearchDerivativeSettings
 
-    def __init__(self):
+    def __init__(self) -> None:
         self._internal = elasticsearch.ElasticsearchDerivativeSettings()
 
     def build(self) -> elasticsearch.ElasticsearchDerivativeSettings:
@@ -1805,7 +1805,7 @@ class ElasticsearchDerivativeSettings(cogbuilder.Builder[elasticsearch.Elasticse
 class ElasticsearchCumulativeSumSettings(cogbuilder.Builder[elasticsearch.ElasticsearchCumulativeSumSettings]):
     _internal: elasticsearch.ElasticsearchCumulativeSumSettings
 
-    def __init__(self):
+    def __init__(self) -> None:
         self._internal = elasticsearch.ElasticsearchCumulativeSumSettings()
 
     def build(self) -> elasticsearch.ElasticsearchCumulativeSumSettings:
@@ -1824,7 +1824,7 @@ class ElasticsearchCumulativeSumSettings(cogbuilder.Builder[elasticsearch.Elasti
 class ElasticsearchBucketScriptSettings(cogbuilder.Builder[elasticsearch.ElasticsearchBucketScriptSettings]):
     _internal: elasticsearch.ElasticsearchBucketScriptSettings
 
-    def __init__(self):
+    def __init__(self) -> None:
         self._internal = elasticsearch.ElasticsearchBucketScriptSettings()
 
     def build(self) -> elasticsearch.ElasticsearchBucketScriptSettings:
@@ -1844,7 +1844,7 @@ class ElasticsearchBucketScriptSettings(cogbuilder.Builder[elasticsearch.Elastic
 class ElasticsearchInlineScript(cogbuilder.Builder[elasticsearch.ElasticsearchInlineScript]):
     _internal: elasticsearch.ElasticsearchInlineScript
 
-    def __init__(self):
+    def __init__(self) -> None:
         self._internal = elasticsearch.ElasticsearchInlineScript()
 
     def build(self) -> elasticsearch.ElasticsearchInlineScript:
@@ -1863,7 +1863,7 @@ class ElasticsearchInlineScript(cogbuilder.Builder[elasticsearch.ElasticsearchIn
 class ElasticsearchSerialDiffSettings(cogbuilder.Builder[elasticsearch.ElasticsearchSerialDiffSettings]):
     _internal: elasticsearch.ElasticsearchSerialDiffSettings
 
-    def __init__(self):
+    def __init__(self) -> None:
         self._internal = elasticsearch.ElasticsearchSerialDiffSettings()
 
     def build(self) -> elasticsearch.ElasticsearchSerialDiffSettings:
@@ -1882,7 +1882,7 @@ class ElasticsearchSerialDiffSettings(cogbuilder.Builder[elasticsearch.Elasticse
 class ElasticsearchRawDataSettings(cogbuilder.Builder[elasticsearch.ElasticsearchRawDataSettings]):
     _internal: elasticsearch.ElasticsearchRawDataSettings
 
-    def __init__(self):
+    def __init__(self) -> None:
         self._internal = elasticsearch.ElasticsearchRawDataSettings()
 
     def build(self) -> elasticsearch.ElasticsearchRawDataSettings:
@@ -1901,7 +1901,7 @@ class ElasticsearchRawDataSettings(cogbuilder.Builder[elasticsearch.Elasticsearc
 class ElasticsearchRawDocumentSettings(cogbuilder.Builder[elasticsearch.ElasticsearchRawDocumentSettings]):
     _internal: elasticsearch.ElasticsearchRawDocumentSettings
 
-    def __init__(self):
+    def __init__(self) -> None:
         self._internal = elasticsearch.ElasticsearchRawDocumentSettings()
 
     def build(self) -> elasticsearch.ElasticsearchRawDocumentSettings:
@@ -1920,7 +1920,7 @@ class ElasticsearchRawDocumentSettings(cogbuilder.Builder[elasticsearch.Elastics
 class ElasticsearchUniqueCountSettings(cogbuilder.Builder[elasticsearch.ElasticsearchUniqueCountSettings]):
     _internal: elasticsearch.ElasticsearchUniqueCountSettings
 
-    def __init__(self):
+    def __init__(self) -> None:
         self._internal = elasticsearch.ElasticsearchUniqueCountSettings()
 
     def build(self) -> elasticsearch.ElasticsearchUniqueCountSettings:
@@ -1944,7 +1944,7 @@ class ElasticsearchUniqueCountSettings(cogbuilder.Builder[elasticsearch.Elastics
 class ElasticsearchPercentilesSettings(cogbuilder.Builder[elasticsearch.ElasticsearchPercentilesSettings]):
     _internal: elasticsearch.ElasticsearchPercentilesSettings
 
-    def __init__(self):
+    def __init__(self) -> None:
         self._internal = elasticsearch.ElasticsearchPercentilesSettings()
 
     def build(self) -> elasticsearch.ElasticsearchPercentilesSettings:
@@ -1974,7 +1974,7 @@ class ElasticsearchPercentilesSettings(cogbuilder.Builder[elasticsearch.Elastics
 class ElasticsearchExtendedStatsSettings(cogbuilder.Builder[elasticsearch.ElasticsearchExtendedStatsSettings]):
     _internal: elasticsearch.ElasticsearchExtendedStatsSettings
 
-    def __init__(self):
+    def __init__(self) -> None:
         self._internal = elasticsearch.ElasticsearchExtendedStatsSettings()
 
     def build(self) -> elasticsearch.ElasticsearchExtendedStatsSettings:
@@ -2004,7 +2004,7 @@ class ElasticsearchExtendedStatsSettings(cogbuilder.Builder[elasticsearch.Elasti
 class ElasticsearchMinSettings(cogbuilder.Builder[elasticsearch.ElasticsearchMinSettings]):
     _internal: elasticsearch.ElasticsearchMinSettings
 
-    def __init__(self):
+    def __init__(self) -> None:
         self._internal = elasticsearch.ElasticsearchMinSettings()
 
     def build(self) -> elasticsearch.ElasticsearchMinSettings:
@@ -2029,7 +2029,7 @@ class ElasticsearchMinSettings(cogbuilder.Builder[elasticsearch.ElasticsearchMin
 class ElasticsearchMaxSettings(cogbuilder.Builder[elasticsearch.ElasticsearchMaxSettings]):
     _internal: elasticsearch.ElasticsearchMaxSettings
 
-    def __init__(self):
+    def __init__(self) -> None:
         self._internal = elasticsearch.ElasticsearchMaxSettings()
 
     def build(self) -> elasticsearch.ElasticsearchMaxSettings:
@@ -2054,7 +2054,7 @@ class ElasticsearchMaxSettings(cogbuilder.Builder[elasticsearch.ElasticsearchMax
 class ElasticsearchSumSettings(cogbuilder.Builder[elasticsearch.ElasticsearchSumSettings]):
     _internal: elasticsearch.ElasticsearchSumSettings
 
-    def __init__(self):
+    def __init__(self) -> None:
         self._internal = elasticsearch.ElasticsearchSumSettings()
 
     def build(self) -> elasticsearch.ElasticsearchSumSettings:
@@ -2079,7 +2079,7 @@ class ElasticsearchSumSettings(cogbuilder.Builder[elasticsearch.ElasticsearchSum
 class ElasticsearchAverageSettings(cogbuilder.Builder[elasticsearch.ElasticsearchAverageSettings]):
     _internal: elasticsearch.ElasticsearchAverageSettings
 
-    def __init__(self):
+    def __init__(self) -> None:
         self._internal = elasticsearch.ElasticsearchAverageSettings()
 
     def build(self) -> elasticsearch.ElasticsearchAverageSettings:
@@ -2104,7 +2104,7 @@ class ElasticsearchAverageSettings(cogbuilder.Builder[elasticsearch.Elasticsearc
 class ElasticsearchMovingFunctionSettings(cogbuilder.Builder[elasticsearch.ElasticsearchMovingFunctionSettings]):
     _internal: elasticsearch.ElasticsearchMovingFunctionSettings
 
-    def __init__(self):
+    def __init__(self) -> None:
         self._internal = elasticsearch.ElasticsearchMovingFunctionSettings()
 
     def build(self) -> elasticsearch.ElasticsearchMovingFunctionSettings:
@@ -2134,7 +2134,7 @@ class ElasticsearchMovingFunctionSettings(cogbuilder.Builder[elasticsearch.Elast
 class ElasticsearchLogsSettings(cogbuilder.Builder[elasticsearch.ElasticsearchLogsSettings]):
     _internal: elasticsearch.ElasticsearchLogsSettings
 
-    def __init__(self):
+    def __init__(self) -> None:
         self._internal = elasticsearch.ElasticsearchLogsSettings()
 
     def build(self) -> elasticsearch.ElasticsearchLogsSettings:
@@ -2153,7 +2153,7 @@ class ElasticsearchLogsSettings(cogbuilder.Builder[elasticsearch.ElasticsearchLo
 class ElasticsearchRateSettings(cogbuilder.Builder[elasticsearch.ElasticsearchRateSettings]):
     _internal: elasticsearch.ElasticsearchRateSettings
 
-    def __init__(self):
+    def __init__(self) -> None:
         self._internal = elasticsearch.ElasticsearchRateSettings()
 
     def build(self) -> elasticsearch.ElasticsearchRateSettings:
@@ -2177,7 +2177,7 @@ class ElasticsearchRateSettings(cogbuilder.Builder[elasticsearch.ElasticsearchRa
 class ElasticsearchTopMetricsSettings(cogbuilder.Builder[elasticsearch.ElasticsearchTopMetricsSettings]):
     _internal: elasticsearch.ElasticsearchTopMetricsSettings
 
-    def __init__(self):
+    def __init__(self) -> None:
         self._internal = elasticsearch.ElasticsearchTopMetricsSettings()
 
     def build(self) -> elasticsearch.ElasticsearchTopMetricsSettings:
@@ -2206,7 +2206,7 @@ class ElasticsearchTopMetricsSettings(cogbuilder.Builder[elasticsearch.Elasticse
 class ElasticsearchMetricAggregationWithMissingSupportSettings(cogbuilder.Builder[elasticsearch.ElasticsearchMetricAggregationWithMissingSupportSettings]):
     _internal: elasticsearch.ElasticsearchMetricAggregationWithMissingSupportSettings
 
-    def __init__(self):
+    def __init__(self) -> None:
         self._internal = elasticsearch.ElasticsearchMetricAggregationWithMissingSupportSettings()
 
     def build(self) -> elasticsearch.ElasticsearchMetricAggregationWithMissingSupportSettings:
@@ -2225,7 +2225,7 @@ class ElasticsearchMetricAggregationWithMissingSupportSettings(cogbuilder.Builde
 class ElasticsearchMetricAggregationWithInlineScriptSettings(cogbuilder.Builder[elasticsearch.ElasticsearchMetricAggregationWithInlineScriptSettings]):
     _internal: elasticsearch.ElasticsearchMetricAggregationWithInlineScriptSettings
 
-    def __init__(self):
+    def __init__(self) -> None:
         self._internal = elasticsearch.ElasticsearchMetricAggregationWithInlineScriptSettings()
 
     def build(self) -> elasticsearch.ElasticsearchMetricAggregationWithInlineScriptSettings:
@@ -2245,7 +2245,7 @@ class ElasticsearchMetricAggregationWithInlineScriptSettings(cogbuilder.Builder[
 class ElasticsearchMovingAverageEWMAModelSettingsSettings(cogbuilder.Builder[elasticsearch.ElasticsearchMovingAverageEWMAModelSettingsSettings]):
     _internal: elasticsearch.ElasticsearchMovingAverageEWMAModelSettingsSettings
 
-    def __init__(self):
+    def __init__(self) -> None:
         self._internal = elasticsearch.ElasticsearchMovingAverageEWMAModelSettingsSettings()
 
     def build(self) -> elasticsearch.ElasticsearchMovingAverageEWMAModelSettingsSettings:
@@ -2264,7 +2264,7 @@ class ElasticsearchMovingAverageEWMAModelSettingsSettings(cogbuilder.Builder[ela
 class ElasticsearchMovingAverageHoltModelSettingsSettings(cogbuilder.Builder[elasticsearch.ElasticsearchMovingAverageHoltModelSettingsSettings]):
     _internal: elasticsearch.ElasticsearchMovingAverageHoltModelSettingsSettings
 
-    def __init__(self):
+    def __init__(self) -> None:
         self._internal = elasticsearch.ElasticsearchMovingAverageHoltModelSettingsSettings()
 
     def build(self) -> elasticsearch.ElasticsearchMovingAverageHoltModelSettingsSettings:
@@ -2288,7 +2288,7 @@ class ElasticsearchMovingAverageHoltModelSettingsSettings(cogbuilder.Builder[ela
 class ElasticsearchMovingAverageHoltWintersModelSettingsSettings(cogbuilder.Builder[elasticsearch.ElasticsearchMovingAverageHoltWintersModelSettingsSettings]):
     _internal: elasticsearch.ElasticsearchMovingAverageHoltWintersModelSettingsSettings
 
-    def __init__(self):
+    def __init__(self) -> None:
         self._internal = elasticsearch.ElasticsearchMovingAverageHoltWintersModelSettingsSettings()
 
     def build(self) -> elasticsearch.ElasticsearchMovingAverageHoltWintersModelSettingsSettings:

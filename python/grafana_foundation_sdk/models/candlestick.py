@@ -34,7 +34,7 @@ class CandlestickFieldMap:
     # Corresponds to the sample count in the given period. (e.g. number of trades)
     volume: typing.Optional[str]
 
-    def __init__(self, open_val: typing.Optional[str] = None, high: typing.Optional[str] = None, low: typing.Optional[str] = None, close: typing.Optional[str] = None, volume: typing.Optional[str] = None):
+    def __init__(self, open_val: typing.Optional[str] = None, high: typing.Optional[str] = None, low: typing.Optional[str] = None, close: typing.Optional[str] = None, volume: typing.Optional[str] = None) -> None:
         self.open_val = open_val
         self.high = high
         self.low = low
@@ -79,7 +79,7 @@ class CandlestickColors:
     down: str
     flat: str
 
-    def __init__(self, up: str = "green", down: str = "red", flat: str = "gray"):
+    def __init__(self, up: str = "green", down: str = "red", flat: str = "gray") -> None:
         self.up = up
         self.down = down
         self.flat = flat
@@ -121,7 +121,7 @@ class Options:
     # When enabled, all fields will be sent to the graph
     include_all_fields: typing.Optional[bool]
 
-    def __init__(self, mode: typing.Optional['VizDisplayMode'] = None, candle_style: typing.Optional['CandleStyle'] = None, color_strategy: typing.Optional['ColorStrategy'] = None, fields: typing.Optional['CandlestickFieldMap'] = None, colors: typing.Optional['CandlestickColors'] = None, legend: typing.Optional[common.VizLegendOptions] = None, include_all_fields: typing.Optional[bool] = False):
+    def __init__(self, mode: typing.Optional['VizDisplayMode'] = None, candle_style: typing.Optional['CandleStyle'] = None, color_strategy: typing.Optional['ColorStrategy'] = None, fields: typing.Optional['CandlestickFieldMap'] = None, colors: typing.Optional['CandlestickColors'] = None, legend: typing.Optional[common.VizLegendOptions] = None, include_all_fields: typing.Optional[bool] = False) -> None:
         self.mode = mode if mode is not None else VizDisplayMode.CANDLES_VOLUME
         self.candle_style = candle_style if candle_style is not None else CandleStyle.CANDLES
         self.color_strategy = color_strategy if color_strategy is not None else ColorStrategy.OPEN_CLOSE

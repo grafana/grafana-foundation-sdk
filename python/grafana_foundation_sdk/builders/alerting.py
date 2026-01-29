@@ -9,7 +9,7 @@ from ..cog import variants as cogvariants
 class Query(cogbuilder.Builder[alerting.Query]):
     _internal: alerting.Query
 
-    def __init__(self, ref_id: str):
+    def __init__(self, ref_id: str) -> None:
         self._internal = alerting.Query()        
         self._internal.ref_id = ref_id
 
@@ -72,7 +72,7 @@ class Query(cogbuilder.Builder[alerting.Query]):
 class RuleGroup(cogbuilder.Builder[alerting.RuleGroup]):
     _internal: alerting.RuleGroup
 
-    def __init__(self, title: str):
+    def __init__(self, title: str) -> None:
         self._internal = alerting.RuleGroup()        
         self._internal.title = title
 
@@ -127,7 +127,7 @@ class ContactPoint(cogbuilder.Builder[alerting.ContactPoint]):
     
     _internal: alerting.ContactPoint
 
-    def __init__(self):
+    def __init__(self) -> None:
         self._internal = alerting.ContactPoint()
 
     def build(self) -> alerting.ContactPoint:
@@ -181,7 +181,7 @@ class ContactPoint(cogbuilder.Builder[alerting.ContactPoint]):
 class Matcher(cogbuilder.Builder[alerting.Matcher]):
     _internal: alerting.Matcher
 
-    def __init__(self):
+    def __init__(self) -> None:
         self._internal = alerting.Matcher()
 
     def build(self) -> alerting.Matcher:
@@ -210,7 +210,7 @@ class Matcher(cogbuilder.Builder[alerting.Matcher]):
 class MuteTiming(cogbuilder.Builder[alerting.MuteTiming]):
     _internal: alerting.MuteTiming
 
-    def __init__(self):
+    def __init__(self) -> None:
         self._internal = alerting.MuteTiming()
 
     def build(self) -> alerting.MuteTiming:
@@ -235,7 +235,7 @@ class MuteTiming(cogbuilder.Builder[alerting.MuteTiming]):
 class NotificationTemplate(cogbuilder.Builder[alerting.NotificationTemplate]):
     _internal: alerting.NotificationTemplate
 
-    def __init__(self):
+    def __init__(self) -> None:
         self._internal = alerting.NotificationTemplate()
 
     def build(self) -> alerting.NotificationTemplate:
@@ -264,7 +264,7 @@ class NotificationTemplate(cogbuilder.Builder[alerting.NotificationTemplate]):
 class Rule(cogbuilder.Builder[alerting.Rule]):
     _internal: alerting.Rule
 
-    def __init__(self, title: str):
+    def __init__(self, title: str) -> None:
         self._internal = alerting.Rule()        
         if not len(title) >= 1:
             raise ValueError("len(title) must be >= 1")
@@ -391,7 +391,7 @@ class NotificationPolicy(cogbuilder.Builder[alerting.NotificationPolicy]):
     
     _internal: alerting.NotificationPolicy
 
-    def __init__(self):
+    def __init__(self) -> None:
         self._internal = alerting.NotificationPolicy()
 
     def build(self) -> alerting.NotificationPolicy:
@@ -487,7 +487,7 @@ class NotificationPolicy(cogbuilder.Builder[alerting.NotificationPolicy]):
 class TimeInterval(cogbuilder.Builder[alerting.TimeInterval]):
     _internal: alerting.TimeInterval
 
-    def __init__(self):
+    def __init__(self) -> None:
         self._internal = alerting.TimeInterval()
 
     def build(self) -> alerting.TimeInterval:
@@ -540,7 +540,7 @@ class TimeRange(cogbuilder.Builder[alerting.TimeRange]):
     
     _internal: alerting.TimeRange
 
-    def __init__(self):
+    def __init__(self) -> None:
         self._internal = alerting.TimeRange()
 
     def build(self) -> alerting.TimeRange:
@@ -564,7 +564,7 @@ class TimeRange(cogbuilder.Builder[alerting.TimeRange]):
 class WeekdayRange(cogbuilder.Builder[alerting.WeekdayRange]):
     _internal: alerting.WeekdayRange
 
-    def __init__(self):
+    def __init__(self) -> None:
         self._internal = alerting.WeekdayRange()
 
     def build(self) -> alerting.WeekdayRange:
@@ -588,7 +588,7 @@ class WeekdayRange(cogbuilder.Builder[alerting.WeekdayRange]):
 class DayOfMonthRange(cogbuilder.Builder[alerting.DayOfMonthRange]):
     _internal: alerting.DayOfMonthRange
 
-    def __init__(self):
+    def __init__(self) -> None:
         self._internal = alerting.DayOfMonthRange()
 
     def build(self) -> alerting.DayOfMonthRange:
@@ -612,7 +612,7 @@ class DayOfMonthRange(cogbuilder.Builder[alerting.DayOfMonthRange]):
 class YearRange(cogbuilder.Builder[alerting.YearRange]):
     _internal: alerting.YearRange
 
-    def __init__(self):
+    def __init__(self) -> None:
         self._internal = alerting.YearRange()
 
     def build(self) -> alerting.YearRange:
@@ -636,7 +636,7 @@ class YearRange(cogbuilder.Builder[alerting.YearRange]):
 class MonthRange(cogbuilder.Builder[alerting.MonthRange]):
     _internal: alerting.MonthRange
 
-    def __init__(self):
+    def __init__(self) -> None:
         self._internal = alerting.MonthRange()
 
     def build(self) -> alerting.MonthRange:

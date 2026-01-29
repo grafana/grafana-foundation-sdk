@@ -7,7 +7,7 @@ from ..cog import runtime as cogruntime
 class Options:
     selected_series: int
 
-    def __init__(self, selected_series: int = 0):
+    def __init__(self, selected_series: int = 0) -> None:
         self.selected_series = selected_series
 
     def to_json(self) -> dict[str, object]:
