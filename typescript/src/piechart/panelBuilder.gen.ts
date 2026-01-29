@@ -2,8 +2,8 @@
 
 import * as cog from '../cog';
 import * as dashboard from '../dashboard';
-import * as piechart from '../piechart';
 import * as common from '../common';
+import * as piechart from '../piechart';
 
 // Dashboard panels are the basic visualization building blocks.
 export class PanelBuilder implements cog.Builder<dashboard.Panel> {
@@ -63,7 +63,7 @@ export class PanelBuilder implements cog.Builder<dashboard.Panel> {
     }
 
     // The datasource used in all targets.
-    datasource(datasource: dashboard.DataSourceRef): this {
+    datasource(datasource: common.DataSourceRef): this {
         this.internal.datasource = datasource;
         return this;
     }
@@ -484,12 +484,11 @@ export class PanelBuilder implements cog.Builder<dashboard.Panel> {
         return this;
     }
 
-    legend(legend: cog.Builder<piechart.PieChartLegendOptions>): this {
+    legend(legend: piechart.PieChartLegendOptions): this {
         if (!this.internal.options) {
             this.internal.options = piechart.defaultOptions();
         }
-        const legendResource = legend.build();
-        this.internal.options.legend = legendResource;
+        this.internal.options.legend = legend;
         return this;
     }
 

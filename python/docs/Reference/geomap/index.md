@@ -10,10 +10,7 @@
  * <span class="badge object-type-class"></span> [TooltipOptions](./object-TooltipOptions.md)
 ## Builders
 
- * <span class="badge builder"></span> [ControlsOptions](./builder-ControlsOptions.md)
- * <span class="badge builder"></span> [MapViewConfig](./builder-MapViewConfig.md)
  * <span class="badge builder"></span> [Panel](./builder-Panel.md)
- * <span class="badge builder"></span> [TooltipOptions](./builder-TooltipOptions.md)
 ## Functions
 
 ### <span class="badge function"></span> variant_config

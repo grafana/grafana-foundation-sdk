@@ -32,6 +32,3 @@ export interface YAxisConfig {
 }
 
 ```
-## See also
-
- * <span class="badge builder"></span> [YAxisConfigBuilder](./builder-YAxisConfigBuilder.md)

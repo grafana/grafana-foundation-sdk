@@ -97,7 +97,7 @@ func (builder *PanelBuilder) Transparent(transparent bool) *PanelBuilder {
 }
 
 // The datasource used in all targets.
-func (builder *PanelBuilder) Datasource(datasource dashboard.DataSourceRef) *PanelBuilder {
+func (builder *PanelBuilder) Datasource(datasource common.DataSourceRef) *PanelBuilder {
 	builder.internal.Datasource = &datasource
 
 	return builder
@@ -482,30 +482,20 @@ func (builder *PanelBuilder) OverrideByQuery(queryRefId string, properties []das
 	return builder
 }
 
-func (builder *PanelBuilder) View(view cog.Builder[MapViewConfig]) *PanelBuilder {
+func (builder *PanelBuilder) View(view MapViewConfig) *PanelBuilder {
 	if builder.internal.Options == nil {
 		builder.internal.Options = NewOptions()
 	}
-	viewResource, err := view.Build()
-	if err != nil {
-		builder.errors = append(builder.errors, err.(cog.BuildErrors)...)
-		return builder
-	}
-	builder.internal.Options.(*Options).View = viewResource
+	builder.internal.Options.(*Options).View = view
 
 	return builder
 }
 
-func (builder *PanelBuilder) Controls(controls cog.Builder[ControlsOptions]) *PanelBuilder {
+func (builder *PanelBuilder) Controls(controls ControlsOptions) *PanelBuilder {
 	if builder.internal.Options == nil {
 		builder.internal.Options = NewOptions()
 	}
-	controlsResource, err := controls.Build()
-	if err != nil {
-		builder.errors = append(builder.errors, err.(cog.BuildErrors)...)
-		return builder
-	}
-	builder.internal.Options.(*Options).Controls = controlsResource
+	builder.internal.Options.(*Options).Controls = controls
 
 	return builder
 }
@@ -542,16 +532,11 @@ func (builder *PanelBuilder) Layers(layers []cog.Builder[common.MapLayerOptions]
 	return builder
 }
 
-func (builder *PanelBuilder) Tooltip(tooltip cog.Builder[TooltipOptions]) *PanelBuilder {
+func (builder *PanelBuilder) Tooltip(tooltip TooltipOptions) *PanelBuilder {
 	if builder.internal.Options == nil {
 		builder.internal.Options = NewOptions()
 	}
-	tooltipResource, err := tooltip.Build()
-	if err != nil {
-		builder.errors = append(builder.errors, err.(cog.BuildErrors)...)
-		return builder
-	}
-	builder.internal.Options.(*Options).Tooltip = tooltipResource
+	builder.internal.Options.(*Options).Tooltip = tooltip
 
 	return builder
 }

@@ -20,6 +20,3 @@ export interface PieChartLegendOptions {
 }
 
 ```
-## See also
-
- * <span class="badge builder"></span> [PieChartLegendOptionsBuilder](./builder-PieChartLegendOptionsBuilder.md)

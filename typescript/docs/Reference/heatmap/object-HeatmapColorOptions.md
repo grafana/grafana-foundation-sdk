@@ -30,6 +30,3 @@ export interface HeatmapColorOptions {
 }
 
 ```
-## See also
-
- * <span class="badge builder"></span> [HeatmapColorOptionsBuilder](./builder-HeatmapColorOptionsBuilder.md)

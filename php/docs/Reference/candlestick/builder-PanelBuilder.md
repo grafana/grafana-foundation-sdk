@@ -128,10 +128,8 @@ colorStrategy(\Grafana\Foundation\Candlestick\ColorStrategy $colorStrategy)
 
 Set which colors are used when the price movement is up or down
 
-@param \Grafana\Foundation\Cog\Builder<\Grafana\Foundation\Candlestick\CandlestickColors> $colors
-
 ```php
-colors(\Grafana\Foundation\Cog\Builder $colors)
+colors(\Grafana\Foundation\Candlestick\CandlestickColors $colors)
 ```
 
 ### <span class="badge object-method"></span> dataLinks
@@ -149,7 +147,7 @@ dataLinks(array $links)
 The datasource used in all targets.
 
 ```php
-datasource(\Grafana\Foundation\Dashboard\DataSourceRef $datasource)
+datasource(\Grafana\Foundation\Common\DataSourceRef $datasource)
 ```
 
 ### <span class="badge object-method"></span> decimals
@@ -192,10 +190,8 @@ drawStyle(\Grafana\Foundation\Common\GraphDrawStyle $drawStyle)
 
 Map fields to appropriate dimension
 
-@param \Grafana\Foundation\Cog\Builder<\Grafana\Foundation\Candlestick\CandlestickFieldMap> $fields
-
 ```php
-fields(\Grafana\Foundation\Cog\Builder $fields)
+fields(\Grafana\Foundation\Candlestick\CandlestickFieldMap $fields)
 ```
 
 ### <span class="badge object-method"></span> fillBelowTo

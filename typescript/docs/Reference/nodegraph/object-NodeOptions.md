@@ -16,6 +16,3 @@ export interface NodeOptions {
 }
 
 ```
-## See also
-
- * <span class="badge builder"></span> [NodeOptionsBuilder](./builder-NodeOptionsBuilder.md)

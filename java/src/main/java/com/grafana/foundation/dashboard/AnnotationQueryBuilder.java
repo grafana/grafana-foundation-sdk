@@ -2,6 +2,7 @@
 
 package com.grafana.foundation.dashboard;
 
+import com.grafana.foundation.common.DataSourceRef;
 
 public class AnnotationQueryBuilder implements com.grafana.foundation.cog.Builder<AnnotationQuery> {
     protected final AnnotationQuery internal;

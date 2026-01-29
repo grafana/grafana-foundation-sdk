@@ -84,7 +84,7 @@ final class PanelConverter
     
         
     $buffer = 'datasource(';
-        $arg0 ='(new \Grafana\Foundation\Dashboard\DataSourceRef('.(($input->datasource->type !== null) ? 'type: '.\var_export($input->datasource->type, true).', ' : '').''.(($input->datasource->uid !== null) ? 'uid: '.\var_export($input->datasource->uid, true).', ' : '').'))';
+        $arg0 ='(new \Grafana\Foundation\Common\DataSourceRef('.(($input->datasource->type !== null) ? 'type: '.\var_export($input->datasource->type, true).', ' : '').''.(($input->datasource->uid !== null) ? 'uid: '.\var_export($input->datasource->uid, true).', ' : '').'))';
         $buffer .= $arg0;
         
     $buffer .= ')';
@@ -583,7 +583,7 @@ final class PanelConverter
     
         
     $buffer = 'legend(';
-        $arg0 = \Grafana\Foundation\Piechart\PieChartLegendOptionsConverter::convert($input->options->legend);
+        $arg0 ='(new \Grafana\Foundation\Piechart\PieChartLegendOptions(values: '.\var_export($input->options->legend->values, true).',displayMode: '.'\Grafana\Foundation\Common\LegendDisplayMode::fromValue("'.$input->options->legend->displayMode.'")'.',placement: '.'\Grafana\Foundation\Common\LegendPlacement::fromValue("'.$input->options->legend->placement.'")'.',showLegend: '.\var_export($input->options->legend->showLegend, true).','.(($input->options->legend->asTable !== null) ? 'asTable: '.\var_export($input->options->legend->asTable, true).', ' : '').''.(($input->options->legend->isVisible !== null) ? 'isVisible: '.\var_export($input->options->legend->isVisible, true).', ' : '').''.(($input->options->legend->sortBy !== null) ? 'sortBy: '.\var_export($input->options->legend->sortBy, true).', ' : '').''.(($input->options->legend->sortDesc !== null) ? 'sortDesc: '.\var_export($input->options->legend->sortDesc, true).', ' : '').''.(($input->options->legend->width !== null) ? 'width: '.\var_export($input->options->legend->width, true).', ' : '').'calcs: '.\var_export($input->options->legend->calcs, true).',))';
         $buffer .= $arg0;
         
     $buffer .= ')';

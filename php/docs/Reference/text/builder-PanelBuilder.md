@@ -28,10 +28,8 @@ cacheTimeout(string $cacheTimeout)
 
 ### <span class="badge object-method"></span> code
 
-@param \Grafana\Foundation\Cog\Builder<\Grafana\Foundation\Text\CodeOptions> $code
-
 ```php
-code(\Grafana\Foundation\Cog\Builder $code)
+code(\Grafana\Foundation\Text\CodeOptions $code)
 ```
 
 ### <span class="badge object-method"></span> colorScheme
@@ -65,7 +63,7 @@ dataLinks(array $links)
 The datasource used in all targets.
 
 ```php
-datasource(\Grafana\Foundation\Dashboard\DataSourceRef $datasource)
+datasource(\Grafana\Foundation\Common\DataSourceRef $datasource)
 ```
 
 ### <span class="badge object-method"></span> decimals

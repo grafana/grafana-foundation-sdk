@@ -32,6 +32,3 @@ public class ScatterSeriesConfig {
   public Boolean axisBorderShow;
 }
 ```
-## See also
-
- * <span class="badge builder"></span> [ScatterSeriesConfigBuilder](./builder-ScatterSeriesConfigBuilder.md)

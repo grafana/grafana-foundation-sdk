@@ -41,7 +41,7 @@ class PanelModel implements \JsonSerializable
     /**
      * The datasource used in all targets.
      */
-    public ?\Grafana\Foundation\Dashboard\DataSourceRef $datasource;
+    public ?\Grafana\Foundation\Common\DataSourceRef $datasource;
 
     /**
      * Panel links.
@@ -140,7 +140,7 @@ class PanelModel implements \JsonSerializable
      * @param string|null $title
      * @param string|null $description
      * @param bool|null $transparent
-     * @param \Grafana\Foundation\Dashboard\DataSourceRef|null $datasource
+     * @param \Grafana\Foundation\Common\DataSourceRef|null $datasource
      * @param array<\Grafana\Foundation\Dashboard\DashboardLink>|null $links
      * @param string|null $repeat
      * @param \Grafana\Foundation\Librarypanel\PanelModelRepeatDirection|null $repeatDirection
@@ -156,7 +156,7 @@ class PanelModel implements \JsonSerializable
      * @param mixed|null $options
      * @param \Grafana\Foundation\Dashboard\FieldConfigSource|null $fieldConfig
      */
-    public function __construct(?string $type = null, ?string $pluginVersion = null, ?array $targets = null, ?string $title = null, ?string $description = null, ?bool $transparent = null, ?\Grafana\Foundation\Dashboard\DataSourceRef $datasource = null, ?array $links = null, ?string $repeat = null, ?\Grafana\Foundation\Librarypanel\PanelModelRepeatDirection $repeatDirection = null, ?float $maxPerRow = null, ?float $maxDataPoints = null, ?array $transformations = null, ?string $interval = null, ?string $timeFrom = null, ?string $timeShift = null, ?bool $hideTimeOverride = null, ?string $cacheTimeout = null, ?float $queryCachingTTL = null,  $options = null, ?\Grafana\Foundation\Dashboard\FieldConfigSource $fieldConfig = null)
+    public function __construct(?string $type = null, ?string $pluginVersion = null, ?array $targets = null, ?string $title = null, ?string $description = null, ?bool $transparent = null, ?\Grafana\Foundation\Common\DataSourceRef $datasource = null, ?array $links = null, ?string $repeat = null, ?\Grafana\Foundation\Librarypanel\PanelModelRepeatDirection $repeatDirection = null, ?float $maxPerRow = null, ?float $maxDataPoints = null, ?array $transformations = null, ?string $interval = null, ?string $timeFrom = null, ?string $timeShift = null, ?bool $hideTimeOverride = null, ?string $cacheTimeout = null, ?float $queryCachingTTL = null,  $options = null, ?\Grafana\Foundation\Dashboard\FieldConfigSource $fieldConfig = null)
     {
         $this->type = $type ?: "";
         $this->pluginVersion = $pluginVersion;
@@ -203,7 +203,7 @@ class PanelModel implements \JsonSerializable
             datasource: isset($data["datasource"]) ? (function($input) {
     	/** @var array{type?: string, uid?: string} */
     $val = $input;
-    	return \Grafana\Foundation\Dashboard\DataSourceRef::fromArray($val);
+    	return \Grafana\Foundation\Common\DataSourceRef::fromArray($val);
     })($data["datasource"]) : null,
             links: array_filter(array_map((function($input) {
     	/** @var array{title?: string, type?: string, icon?: string, tooltip?: string, url?: string, tags?: array<string>, asDropdown?: bool, targetBlank?: bool, includeVars?: bool, keepTime?: bool} */

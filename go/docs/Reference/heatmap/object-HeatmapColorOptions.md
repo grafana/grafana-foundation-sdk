@@ -57,6 +57,3 @@ Validate checks all the validation constraints that may be defined on `HeatmapCo
 func (heatmapColorOptions *HeatmapColorOptions) Validate() error
 ```
 
-## See also
-
- * <span class="badge builder"></span> [HeatmapColorOptionsBuilder](./builder-HeatmapColorOptionsBuilder.md)

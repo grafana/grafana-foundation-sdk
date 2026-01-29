@@ -101,7 +101,7 @@ func (builder *PanelBuilder) DataLinks(links []cog.Builder[dashboard.DashboardLi
 The datasource used in all targets.
 
 ```go
-func (builder *PanelBuilder) Datasource(datasource dashboard.DataSourceRef) *PanelBuilder
+func (builder *PanelBuilder) Datasource(datasource common.DataSourceRef) *PanelBuilder
 ```
 
 ### <span class="badge object-method"></span> Decimals
@@ -131,7 +131,7 @@ func (builder *PanelBuilder) Description(description string) *PanelBuilder
 Table Mode (auto)
 
 ```go
-func (builder *PanelBuilder) Dims(dims cog.Builder[xychart.XYDimensionConfig]) *PanelBuilder
+func (builder *PanelBuilder) Dims(dims xychart.XYDimensionConfig) *PanelBuilder
 ```
 
 ### <span class="badge object-method"></span> DisplayName
@@ -383,7 +383,7 @@ func (builder *PanelBuilder) ScaleDistribution(scaleDistribution cog.Builder[com
 Manual Mode
 
 ```go
-func (builder *PanelBuilder) Series(series []cog.Builder[xychart.ScatterSeriesConfig]) *PanelBuilder
+func (builder *PanelBuilder) Series(series []xychart.ScatterSeriesConfig) *PanelBuilder
 ```
 
 ### <span class="badge object-method"></span> SeriesMapping

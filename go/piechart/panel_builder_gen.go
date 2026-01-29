@@ -97,7 +97,7 @@ func (builder *PanelBuilder) Transparent(transparent bool) *PanelBuilder {
 }
 
 // The datasource used in all targets.
-func (builder *PanelBuilder) Datasource(datasource dashboard.DataSourceRef) *PanelBuilder {
+func (builder *PanelBuilder) Datasource(datasource common.DataSourceRef) *PanelBuilder {
 	builder.internal.Datasource = &datasource
 
 	return builder
@@ -542,16 +542,11 @@ func (builder *PanelBuilder) Text(text cog.Builder[common.VizTextDisplayOptions]
 	return builder
 }
 
-func (builder *PanelBuilder) Legend(legend cog.Builder[PieChartLegendOptions]) *PanelBuilder {
+func (builder *PanelBuilder) Legend(legend PieChartLegendOptions) *PanelBuilder {
 	if builder.internal.Options == nil {
 		builder.internal.Options = NewOptions()
 	}
-	legendResource, err := legend.Build()
-	if err != nil {
-		builder.errors = append(builder.errors, err.(cog.BuildErrors)...)
-		return builder
-	}
-	builder.internal.Options.(*Options).Legend = legendResource
+	builder.internal.Options.(*Options).Legend = legend
 
 	return builder
 }

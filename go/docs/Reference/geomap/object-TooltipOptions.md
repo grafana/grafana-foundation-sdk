@@ -38,6 +38,3 @@ Validate checks all the validation constraints that may be defined on `TooltipOp
 func (tooltipOptions *TooltipOptions) Validate() error
 ```
 
-## See also
-
- * <span class="badge builder"></span> [TooltipOptionsBuilder](./builder-TooltipOptionsBuilder.md)

@@ -11,6 +11,3 @@ public class ConnectionCoordinates {
   public Double y;
 }
 ```
-## See also
-
- * <span class="badge builder"></span> [ConnectionCoordinatesBuilder](./builder-ConnectionCoordinatesBuilder.md)

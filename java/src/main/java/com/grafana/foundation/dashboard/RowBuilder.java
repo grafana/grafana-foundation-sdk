@@ -2,6 +2,7 @@
 
 package com.grafana.foundation.dashboard;
 
+import com.grafana.foundation.common.DataSourceRef;
 import java.util.LinkedList;
 
 public class RowBuilder implements com.grafana.foundation.cog.Builder<RowPanel> {

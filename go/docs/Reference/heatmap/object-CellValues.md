@@ -43,6 +43,3 @@ Validate checks all the validation constraints that may be defined on `CellValue
 func (cellValues *CellValues) Validate() error
 ```
 
-## See also
-
- * <span class="badge builder"></span> [CellValuesBuilder](./builder-CellValuesBuilder.md)

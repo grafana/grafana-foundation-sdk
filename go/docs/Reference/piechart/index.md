@@ -11,7 +11,6 @@
 ## Builders
 
  * <span class="badge builder"></span> [PanelBuilder](./builder-PanelBuilder.md)
- * <span class="badge builder"></span> [PieChartLegendOptionsBuilder](./builder-PieChartLegendOptionsBuilder.md)
 ## Functions
 
 ### <span class="badge function"></span> NewPieChartLegendOptions
@@ -46,14 +45,6 @@ This configuration describes how to unmarshal it, convert it to code, …
 
 ```go
 func VariantConfig() variants.PanelcfgConfig
-```
-
-### <span class="badge function"></span> PieChartLegendOptionsConverter
-
-PieChartLegendOptionsConverter accepts a `PieChartLegendOptions` object and generates the Go code to build this object using builders.
-
-```go
-func PieChartLegendOptionsConverter(input PieChartLegendOptions) string
 ```
 
 ### <span class="badge function"></span> PanelConverter

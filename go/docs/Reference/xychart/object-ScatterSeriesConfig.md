@@ -60,6 +60,3 @@ Validate checks all the validation constraints that may be defined on `ScatterSe
 func (scatterSeriesConfig *ScatterSeriesConfig) Validate() error
 ```
 
-## See also
-
- * <span class="badge builder"></span> [ScatterSeriesConfigBuilder](./builder-ScatterSeriesConfigBuilder.md)

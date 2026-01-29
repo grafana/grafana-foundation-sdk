@@ -37,7 +37,7 @@ func (builder *PanelBuilder) ColorScheme(color cog.Builder[dashboard.FieldColor]
 ### <span class="badge object-method"></span> Counters
 
 ```go
-func (builder *PanelBuilder) Counters(counters cog.Builder[debug.UpdateConfig]) *PanelBuilder
+func (builder *PanelBuilder) Counters(counters debug.UpdateConfig) *PanelBuilder
 ```
 
 ### <span class="badge object-method"></span> DataLinks
@@ -53,7 +53,7 @@ func (builder *PanelBuilder) DataLinks(links []cog.Builder[dashboard.DashboardLi
 The datasource used in all targets.
 
 ```go
-func (builder *PanelBuilder) Datasource(datasource dashboard.DataSourceRef) *PanelBuilder
+func (builder *PanelBuilder) Datasource(datasource common.DataSourceRef) *PanelBuilder
 ```
 
 ### <span class="badge object-method"></span> Decimals

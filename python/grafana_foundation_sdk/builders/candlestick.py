@@ -2,98 +2,10 @@
 
 import typing
 from ..cog import builder as cogbuilder
-from ..models import candlestick
 from ..models import dashboard
 from ..cog import variants as cogvariants
 from ..models import common
-
-
-class CandlestickFieldMap(cogbuilder.Builder[candlestick.CandlestickFieldMap]):
-    _internal: candlestick.CandlestickFieldMap
-
-    def __init__(self):
-        self._internal = candlestick.CandlestickFieldMap()
-
-    def build(self) -> candlestick.CandlestickFieldMap:
-        """
-        Builds the object.
-        """
-        return self._internal    
-    
-    def open(self, open_val: str) -> typing.Self:    
-        """
-        Corresponds to the starting value of the given period
-        """
-            
-        self._internal.open_val = open_val
-    
-        return self
-    
-    def high(self, high: str) -> typing.Self:    
-        """
-        Corresponds to the highest value of the given period
-        """
-            
-        self._internal.high = high
-    
-        return self
-    
-    def low(self, low: str) -> typing.Self:    
-        """
-        Corresponds to the lowest value of the given period
-        """
-            
-        self._internal.low = low
-    
-        return self
-    
-    def close(self, close: str) -> typing.Self:    
-        """
-        Corresponds to the final (end) value of the given period
-        """
-            
-        self._internal.close = close
-    
-        return self
-    
-    def volume(self, volume: str) -> typing.Self:    
-        """
-        Corresponds to the sample count in the given period. (e.g. number of trades)
-        """
-            
-        self._internal.volume = volume
-    
-        return self
-    
-
-
-class CandlestickColors(cogbuilder.Builder[candlestick.CandlestickColors]):
-    _internal: candlestick.CandlestickColors
-
-    def __init__(self):
-        self._internal = candlestick.CandlestickColors()
-
-    def build(self) -> candlestick.CandlestickColors:
-        """
-        Builds the object.
-        """
-        return self._internal    
-    
-    def up(self, up: str) -> typing.Self:    
-        self._internal.up = up
-    
-        return self
-    
-    def down(self, down: str) -> typing.Self:    
-        self._internal.down = down
-    
-        return self
-    
-    def flat(self, flat: str) -> typing.Self:    
-        self._internal.flat = flat
-    
-        return self
-    
+from ..models import candlestick
 
 
 class Panel(cogbuilder.Builder[dashboard.Panel]):    
@@ -103,7 +15,7 @@ class Panel(cogbuilder.Builder[dashboard.Panel]):
     
     _internal: dashboard.Panel
 
-    def __init__(self):
+    def __init__(self) -> None:
         self._internal = dashboard.Panel()        
         self._internal.type_val = "candlestick"
 
@@ -172,7 +84,7 @@ class Panel(cogbuilder.Builder[dashboard.Panel]):
     
         return self
     
-    def datasource(self, datasource: dashboard.DataSourceRef) -> typing.Self:    
+    def datasource(self, datasource: common.DataSourceRef) -> typing.Self:    
         """
         The datasource used in all targets.
         """
@@ -681,7 +593,7 @@ class Panel(cogbuilder.Builder[dashboard.Panel]):
     
         return self
     
-    def fields(self, fields: cogbuilder.Builder[candlestick.CandlestickFieldMap]) -> typing.Self:    
+    def fields(self, fields: candlestick.CandlestickFieldMap) -> typing.Self:    
         """
         Map fields to appropriate dimension
         """
@@ -689,12 +601,11 @@ class Panel(cogbuilder.Builder[dashboard.Panel]):
         if self._internal.options is None:
             self._internal.options = candlestick.Options()
         assert isinstance(self._internal.options, candlestick.Options)
-        fields_resource = fields.build()
-        self._internal.options.fields = fields_resource
+        self._internal.options.fields = fields
     
         return self
     
-    def colors(self, colors: cogbuilder.Builder[candlestick.CandlestickColors]) -> typing.Self:    
+    def colors(self, colors: candlestick.CandlestickColors) -> typing.Self:    
         """
         Set which colors are used when the price movement is up or down
         """
@@ -702,8 +613,7 @@ class Panel(cogbuilder.Builder[dashboard.Panel]):
         if self._internal.options is None:
             self._internal.options = candlestick.Options()
         assert isinstance(self._internal.options, candlestick.Options)
-        colors_resource = colors.build()
-        self._internal.options.colors = colors_resource
+        self._internal.options.colors = colors
     
         return self
     

@@ -43,7 +43,7 @@ func (builder *PanelBuilder) ColorScheme(color cog.Builder[dashboard.FieldColor]
 ### <span class="badge object-method"></span> Controls
 
 ```go
-func (builder *PanelBuilder) Controls(controls cog.Builder[geomap.ControlsOptions]) *PanelBuilder
+func (builder *PanelBuilder) Controls(controls geomap.ControlsOptions) *PanelBuilder
 ```
 
 ### <span class="badge object-method"></span> DataLinks
@@ -59,7 +59,7 @@ func (builder *PanelBuilder) DataLinks(links []cog.Builder[dashboard.DashboardLi
 The datasource used in all targets.
 
 ```go
-func (builder *PanelBuilder) Datasource(datasource dashboard.DataSourceRef) *PanelBuilder
+func (builder *PanelBuilder) Datasource(datasource common.DataSourceRef) *PanelBuilder
 ```
 
 ### <span class="badge object-method"></span> Decimals
@@ -345,7 +345,7 @@ func (builder *PanelBuilder) Title(title string) *PanelBuilder
 ### <span class="badge object-method"></span> Tooltip
 
 ```go
-func (builder *PanelBuilder) Tooltip(tooltip cog.Builder[geomap.TooltipOptions]) *PanelBuilder
+func (builder *PanelBuilder) Tooltip(tooltip geomap.TooltipOptions) *PanelBuilder
 ```
 
 ### <span class="badge object-method"></span> Transformations
@@ -397,7 +397,7 @@ func (builder *PanelBuilder) Unit(unit string) *PanelBuilder
 ### <span class="badge object-method"></span> View
 
 ```go
-func (builder *PanelBuilder) View(view cog.Builder[geomap.MapViewConfig]) *PanelBuilder
+func (builder *PanelBuilder) View(view geomap.MapViewConfig) *PanelBuilder
 ```
 
 ### <span class="badge object-method"></span> WithOverride

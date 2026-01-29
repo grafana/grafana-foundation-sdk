@@ -6,7 +6,7 @@ import com.grafana.foundation.dashboard.Panel;
 import java.util.List;
 import com.grafana.foundation.cog.variants.Dataquery;
 import java.util.LinkedList;
-import com.grafana.foundation.dashboard.DataSourceRef;
+import com.grafana.foundation.common.DataSourceRef;
 import com.grafana.foundation.dashboard.GridPos;
 import com.grafana.foundation.dashboard.DashboardLink;
 import com.grafana.foundation.dashboard.PanelRepeatDirection;
@@ -428,21 +428,19 @@ public class CandlestickPanelBuilder implements com.grafana.foundation.cog.Build
         return this;
     }
     
-    public CandlestickPanelBuilder fields(com.grafana.foundation.cog.Builder<CandlestickFieldMap> fields) {
+    public CandlestickPanelBuilder fields(CandlestickFieldMap fields) {
 		if (this.internal.options == null) {
 			this.internal.options = new com.grafana.foundation.candlestick.Options();
 		}
-    CandlestickFieldMap fieldsResource = fields.build();
-        ((Options) this.internal.options).fields = fieldsResource;
+        ((Options) this.internal.options).fields = fields;
         return this;
     }
     
-    public CandlestickPanelBuilder colors(com.grafana.foundation.cog.Builder<CandlestickColors> colors) {
+    public CandlestickPanelBuilder colors(CandlestickColors colors) {
 		if (this.internal.options == null) {
 			this.internal.options = new com.grafana.foundation.candlestick.Options();
 		}
-    CandlestickColors colorsResource = colors.build();
-        ((Options) this.internal.options).colors = colorsResource;
+        ((Options) this.internal.options).colors = colors;
         return this;
     }
     

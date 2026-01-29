@@ -35,6 +35,3 @@ Builds this object from a JSON-decoded dict.
 def from_json(data: dict[str, typing.Any]) -> typing.Self
 ```
 
-## See also
-
- * <span class="badge builder"></span> [ExemplarConfig](./builder-ExemplarConfig.md)

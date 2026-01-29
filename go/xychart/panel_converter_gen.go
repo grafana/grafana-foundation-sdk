@@ -708,7 +708,7 @@ func PanelConverter(input dashboard.Panel) string {
 	if input.Options != nil {
 
 		buffer.WriteString(`Dims(`)
-		arg0 := XYDimensionConfigConverter(input.Options.(*Options).Dims)
+		arg0 := cog.Dump(input.Options.(*Options).Dims)
 		buffer.WriteString(arg0)
 
 		buffer.WriteString(")")
@@ -746,10 +746,10 @@ func PanelConverter(input dashboard.Panel) string {
 		buffer.WriteString(`Series(`)
 		tmparg0 := []string{}
 		for _, arg1 := range input.Options.(*Options).Series {
-			tmpseriesarg1 := ScatterSeriesConfigConverter(arg1)
+			tmpseriesarg1 := cog.Dump(arg1)
 			tmparg0 = append(tmparg0, tmpseriesarg1)
 		}
-		arg0 := "[]cog.Builder[xychart.ScatterSeriesConfig]{" + strings.Join(tmparg0, ",\n") + "}"
+		arg0 := "[]xychart.ScatterSeriesConfig{" + strings.Join(tmparg0, ",\n") + "}"
 		buffer.WriteString(arg0)
 
 		buffer.WriteString(")")
