@@ -9,7 +9,7 @@ from ..models import dashboard
 class Dataquery(cogbuilder.Builder[datasource.Dataquery]):
     _internal: datasource.Dataquery
 
-    def __init__(self):
+    def __init__(self) -> None:
         self._internal = datasource.Dataquery()
 
     def build(self) -> datasource.Dataquery:

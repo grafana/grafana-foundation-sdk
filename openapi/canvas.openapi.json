@@ -158,7 +158,11 @@
             "type": "string"
           },
           "path": {
-            "$ref": "#/components/schemas/ConnectionPath",
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/ConnectionPath"
+              }
+            ],
             "default": "straight"
           },
           "color": {

@@ -484,7 +484,7 @@
             "$ref": "#/components/schemas/LineStyle"
           },
           "spanNulls": {
-            "anyOf": [
+            "oneOf": [
               {
                 "type": "boolean"
               },
@@ -1061,7 +1061,7 @@
             "$ref": "#/components/schemas/HideSeriesConfig"
           },
           "insertNulls": {
-            "anyOf": [
+            "oneOf": [
               {
                 "type": "boolean"
               },
@@ -1071,7 +1071,7 @@
             ]
           },
           "spanNulls": {
-            "anyOf": [
+            "oneOf": [
               {
                 "type": "boolean"
               },
@@ -1225,7 +1225,11 @@
         ],
         "properties": {
           "type": {
-            "$ref": "#/components/schemas/TableCellDisplayMode",
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/TableCellDisplayMode"
+              }
+            ],
             "default": "auto"
           },
           "wrapText": {
@@ -1242,7 +1246,11 @@
         ],
         "properties": {
           "type": {
-            "$ref": "#/components/schemas/TableCellDisplayMode",
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/TableCellDisplayMode"
+              }
+            ],
             "default": "color-text"
           },
           "wrapText": {
@@ -1259,7 +1267,11 @@
         ],
         "properties": {
           "type": {
-            "$ref": "#/components/schemas/TableCellDisplayMode",
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/TableCellDisplayMode"
+              }
+            ],
             "default": "json-view"
           }
         },
@@ -1273,7 +1285,11 @@
         ],
         "properties": {
           "type": {
-            "$ref": "#/components/schemas/TableCellDisplayMode",
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/TableCellDisplayMode"
+              }
+            ],
             "default": "image"
           },
           "alt": {
@@ -1293,7 +1309,11 @@
         ],
         "properties": {
           "type": {
-            "$ref": "#/components/schemas/TableCellDisplayMode",
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/TableCellDisplayMode"
+              }
+            ],
             "default": "data-links"
           }
         },
@@ -1307,7 +1327,11 @@
         ],
         "properties": {
           "type": {
-            "$ref": "#/components/schemas/TableCellDisplayMode",
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/TableCellDisplayMode"
+              }
+            ],
             "default": "actions"
           }
         },
@@ -1321,7 +1345,11 @@
         ],
         "properties": {
           "type": {
-            "$ref": "#/components/schemas/TableCellDisplayMode",
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/TableCellDisplayMode"
+              }
+            ],
             "default": "gauge"
           },
           "mode": {
@@ -1341,7 +1369,11 @@
         ],
         "properties": {
           "type": {
-            "$ref": "#/components/schemas/TableCellDisplayMode",
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/TableCellDisplayMode"
+              }
+            ],
             "default": "sparkline"
           },
           "drawStyle": {
@@ -1426,7 +1458,7 @@
             "type": "boolean"
           },
           "insertNulls": {
-            "anyOf": [
+            "oneOf": [
               {
                 "type": "boolean"
               },
@@ -1436,7 +1468,7 @@
             ]
           },
           "spanNulls": {
-            "anyOf": [
+            "oneOf": [
               {
                 "type": "boolean"
               },
@@ -1469,7 +1501,11 @@
         ],
         "properties": {
           "type": {
-            "$ref": "#/components/schemas/TableCellDisplayMode",
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/TableCellDisplayMode"
+              }
+            ],
             "default": "color-background"
           },
           "mode": {
@@ -1495,7 +1531,7 @@
         "description": "Height of a table cell"
       },
       "TableCellOptions": {
-        "anyOf": [
+        "oneOf": [
           {
             "$ref": "#/components/schemas/TableAutoCellOptions"
           },
