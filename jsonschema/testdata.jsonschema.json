@@ -281,7 +281,7 @@
           "items": {
             "type": "array",
             "items": {
-              "anyOf": [
+              "oneOf": [
                 {
                   "type": "string"
                 },

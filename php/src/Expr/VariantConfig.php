@@ -49,4 +49,5 @@ final class VariantConfig
 }),
         );
     }
+
 }

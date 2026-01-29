@@ -149,7 +149,11 @@
         ],
         "properties": {
           "type": {
-            "$ref": "#/components/schemas/QueryEditorExpressionType",
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/QueryEditorExpressionType"
+              }
+            ],
             "default": "function"
           },
           "name": {
@@ -183,7 +187,11 @@
         ],
         "properties": {
           "type": {
-            "$ref": "#/components/schemas/QueryEditorExpressionType",
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/QueryEditorExpressionType"
+              }
+            ],
             "default": "functionParameter"
           },
           "name": {
@@ -200,7 +208,11 @@
         ],
         "properties": {
           "type": {
-            "$ref": "#/components/schemas/QueryEditorExpressionType",
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/QueryEditorExpressionType"
+              }
+            ],
             "default": "groupBy"
           },
           "property": {
@@ -216,7 +228,11 @@
         ],
         "properties": {
           "type": {
-            "$ref": "#/components/schemas/QueryEditorPropertyType",
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/QueryEditorPropertyType"
+              }
+            ],
             "default": "string"
           },
           "name": {
@@ -239,7 +255,11 @@
         ],
         "properties": {
           "type": {
-            "$ref": "#/components/schemas/QueryEditorExpressionType",
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/QueryEditorExpressionType"
+              }
+            ],
             "default": "property"
           },
           "property": {

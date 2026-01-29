@@ -18,7 +18,7 @@ class Options:
     # Controls value alignment on the timelines
     align_value: typing.Optional[common.TimelineValueAlignment]
 
-    def __init__(self, show_value: typing.Optional[common.VisibilityMode] = None, row_height: float = 0.9, merge_values: typing.Optional[bool] = True, legend: typing.Optional[common.VizLegendOptions] = None, tooltip: typing.Optional[common.VizTooltipOptions] = None, timezone: typing.Optional[list[common.TimeZone]] = None, align_value: typing.Optional[common.TimelineValueAlignment] = None):
+    def __init__(self, show_value: typing.Optional[common.VisibilityMode] = None, row_height: float = 0.9, merge_values: typing.Optional[bool] = True, legend: typing.Optional[common.VizLegendOptions] = None, tooltip: typing.Optional[common.VizTooltipOptions] = None, timezone: typing.Optional[list[common.TimeZone]] = None, align_value: typing.Optional[common.TimelineValueAlignment] = None) -> None:
         self.show_value = show_value if show_value is not None else common.VisibilityMode.AUTO
         self.row_height = row_height
         self.merge_values = merge_values
@@ -69,7 +69,7 @@ class FieldConfig:
     hide_from: typing.Optional[common.HideSeriesConfig]
     fill_opacity: typing.Optional[int]
 
-    def __init__(self, line_width: typing.Optional[int] = 0, hide_from: typing.Optional[common.HideSeriesConfig] = None, fill_opacity: typing.Optional[int] = 70):
+    def __init__(self, line_width: typing.Optional[int] = 0, hide_from: typing.Optional[common.HideSeriesConfig] = None, fill_opacity: typing.Optional[int] = 70) -> None:
         self.line_width = line_width
         self.hide_from = hide_from
         self.fill_opacity = fill_opacity

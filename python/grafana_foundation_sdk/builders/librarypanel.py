@@ -10,7 +10,7 @@ from ..models import dashboard
 class LibraryPanel(cogbuilder.Builder[librarypanel.LibraryPanel]):
     _internal: librarypanel.LibraryPanel
 
-    def __init__(self):
+    def __init__(self) -> None:
         self._internal = librarypanel.LibraryPanel()
 
     def build(self) -> librarypanel.LibraryPanel:
@@ -112,7 +112,7 @@ class LibraryPanel(cogbuilder.Builder[librarypanel.LibraryPanel]):
 class LibraryElementDTOMeta(cogbuilder.Builder[librarypanel.LibraryElementDTOMeta]):
     _internal: librarypanel.LibraryElementDTOMeta
 
-    def __init__(self):
+    def __init__(self) -> None:
         self._internal = librarypanel.LibraryElementDTOMeta()
 
     def build(self) -> librarypanel.LibraryElementDTOMeta:
@@ -163,7 +163,7 @@ class LibraryElementDTOMeta(cogbuilder.Builder[librarypanel.LibraryElementDTOMet
 class LibraryElementDTOMetaUser(cogbuilder.Builder[librarypanel.LibraryElementDTOMetaUser]):
     _internal: librarypanel.LibraryElementDTOMetaUser
 
-    def __init__(self):
+    def __init__(self) -> None:
         self._internal = librarypanel.LibraryElementDTOMetaUser()
 
     def build(self) -> librarypanel.LibraryElementDTOMetaUser:
@@ -196,7 +196,7 @@ class PanelModel(cogbuilder.Builder[librarypanel.PanelModel]):
     
     _internal: librarypanel.PanelModel
 
-    def __init__(self):
+    def __init__(self) -> None:
         self._internal = librarypanel.PanelModel()
 
     def build(self) -> librarypanel.PanelModel:

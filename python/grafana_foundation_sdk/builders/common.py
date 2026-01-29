@@ -12,7 +12,7 @@ class DataSourceJsonData(cogbuilder.Builder[common.DataSourceJsonData]):
     
     _internal: common.DataSourceJsonData
 
-    def __init__(self):
+    def __init__(self) -> None:
         self._internal = common.DataSourceJsonData()
 
     def build(self) -> common.DataSourceJsonData:
@@ -57,7 +57,7 @@ class DataQuery(cogbuilder.Builder[common.DataQuery]):
     
     _internal: common.DataQuery
 
-    def __init__(self):
+    def __init__(self) -> None:
         self._internal = common.DataQuery()
 
     def build(self) -> common.DataQuery:
@@ -115,7 +115,7 @@ class DataQuery(cogbuilder.Builder[common.DataQuery]):
 class BaseDimensionConfig(cogbuilder.Builder[common.BaseDimensionConfig]):
     _internal: common.BaseDimensionConfig
 
-    def __init__(self):
+    def __init__(self) -> None:
         self._internal = common.BaseDimensionConfig()
 
     def build(self) -> common.BaseDimensionConfig:
@@ -138,7 +138,7 @@ class BaseDimensionConfig(cogbuilder.Builder[common.BaseDimensionConfig]):
 class ScaleDimensionConfig(cogbuilder.Builder[common.ScaleDimensionConfig]):
     _internal: common.ScaleDimensionConfig
 
-    def __init__(self):
+    def __init__(self) -> None:
         self._internal = common.ScaleDimensionConfig()
 
     def build(self) -> common.ScaleDimensionConfig:
@@ -185,7 +185,7 @@ class ScaleDimensionConfig(cogbuilder.Builder[common.ScaleDimensionConfig]):
 class ColorDimensionConfig(cogbuilder.Builder[common.ColorDimensionConfig]):
     _internal: common.ColorDimensionConfig
 
-    def __init__(self):
+    def __init__(self) -> None:
         self._internal = common.ColorDimensionConfig()
 
     def build(self) -> common.ColorDimensionConfig:
@@ -217,7 +217,7 @@ class ColorDimensionConfig(cogbuilder.Builder[common.ColorDimensionConfig]):
 class ScalarDimensionConfig(cogbuilder.Builder[common.ScalarDimensionConfig]):
     _internal: common.ScalarDimensionConfig
 
-    def __init__(self):
+    def __init__(self) -> None:
         self._internal = common.ScalarDimensionConfig()
 
     def build(self) -> common.ScalarDimensionConfig:
@@ -260,7 +260,7 @@ class ScalarDimensionConfig(cogbuilder.Builder[common.ScalarDimensionConfig]):
 class TextDimensionConfig(cogbuilder.Builder[common.TextDimensionConfig]):
     _internal: common.TextDimensionConfig
 
-    def __init__(self):
+    def __init__(self) -> None:
         self._internal = common.TextDimensionConfig()
 
     def build(self) -> common.TextDimensionConfig:
@@ -293,7 +293,7 @@ class TextDimensionConfig(cogbuilder.Builder[common.TextDimensionConfig]):
 class MapLayerOptions(cogbuilder.Builder[common.MapLayerOptions]):
     _internal: common.MapLayerOptions
 
-    def __init__(self):
+    def __init__(self) -> None:
         self._internal = common.MapLayerOptions()
 
     def build(self) -> common.MapLayerOptions:
@@ -369,7 +369,7 @@ class MapLayerOptions(cogbuilder.Builder[common.MapLayerOptions]):
 class FrameGeometrySource(cogbuilder.Builder[common.FrameGeometrySource]):
     _internal: common.FrameGeometrySource
 
-    def __init__(self):
+    def __init__(self) -> None:
         self._internal = common.FrameGeometrySource()
 
     def build(self) -> common.FrameGeometrySource:
@@ -426,7 +426,7 @@ class FrameGeometrySource(cogbuilder.Builder[common.FrameGeometrySource]):
 class HeatmapCalculationBucketConfig(cogbuilder.Builder[common.HeatmapCalculationBucketConfig]):
     _internal: common.HeatmapCalculationBucketConfig
 
-    def __init__(self):
+    def __init__(self) -> None:
         self._internal = common.HeatmapCalculationBucketConfig()
 
     def build(self) -> common.HeatmapCalculationBucketConfig:
@@ -472,7 +472,7 @@ class ScaleDistributionConfig(cogbuilder.Builder[common.ScaleDistributionConfig]
     
     _internal: common.ScaleDistributionConfig
 
-    def __init__(self):
+    def __init__(self) -> None:
         self._internal = common.ScaleDistributionConfig()
 
     def build(self) -> common.ScaleDistributionConfig:
@@ -505,7 +505,7 @@ class LineStyle(cogbuilder.Builder[common.LineStyle]):
     
     _internal: common.LineStyle
 
-    def __init__(self):
+    def __init__(self) -> None:
         self._internal = common.LineStyle()
 
     def build(self) -> common.LineStyle:
@@ -533,7 +533,7 @@ class LineConfig(cogbuilder.Builder[common.LineConfig]):
     
     _internal: common.LineConfig
 
-    def __init__(self):
+    def __init__(self) -> None:
         self._internal = common.LineConfig()
 
     def build(self) -> common.LineConfig:
@@ -583,7 +583,7 @@ class BarConfig(cogbuilder.Builder[common.BarConfig]):
     
     _internal: common.BarConfig
 
-    def __init__(self):
+    def __init__(self) -> None:
         self._internal = common.BarConfig()
 
     def build(self) -> common.BarConfig:
@@ -616,7 +616,7 @@ class FillConfig(cogbuilder.Builder[common.FillConfig]):
     
     _internal: common.FillConfig
 
-    def __init__(self):
+    def __init__(self) -> None:
         self._internal = common.FillConfig()
 
     def build(self) -> common.FillConfig:
@@ -649,7 +649,7 @@ class PointsConfig(cogbuilder.Builder[common.PointsConfig]):
     
     _internal: common.PointsConfig
 
-    def __init__(self):
+    def __init__(self) -> None:
         self._internal = common.PointsConfig()
 
     def build(self) -> common.PointsConfig:
@@ -687,7 +687,7 @@ class AxisConfig(cogbuilder.Builder[common.AxisConfig]):
     
     _internal: common.AxisConfig
 
-    def __init__(self):
+    def __init__(self) -> None:
         self._internal = common.AxisConfig()
 
     def build(self) -> common.AxisConfig:
@@ -756,7 +756,7 @@ class HideSeriesConfig(cogbuilder.Builder[common.HideSeriesConfig]):
     
     _internal: common.HideSeriesConfig
 
-    def __init__(self):
+    def __init__(self) -> None:
         self._internal = common.HideSeriesConfig()
 
     def build(self) -> common.HideSeriesConfig:
@@ -789,7 +789,7 @@ class StackingConfig(cogbuilder.Builder[common.StackingConfig]):
     
     _internal: common.StackingConfig
 
-    def __init__(self):
+    def __init__(self) -> None:
         self._internal = common.StackingConfig()
 
     def build(self) -> common.StackingConfig:
@@ -817,7 +817,7 @@ class StackableFieldConfig(cogbuilder.Builder[common.StackableFieldConfig]):
     
     _internal: common.StackableFieldConfig
 
-    def __init__(self):
+    def __init__(self) -> None:
         self._internal = common.StackableFieldConfig()
 
     def build(self) -> common.StackableFieldConfig:
@@ -841,7 +841,7 @@ class HideableFieldConfig(cogbuilder.Builder[common.HideableFieldConfig]):
     
     _internal: common.HideableFieldConfig
 
-    def __init__(self):
+    def __init__(self) -> None:
         self._internal = common.HideableFieldConfig()
 
     def build(self) -> common.HideableFieldConfig:
@@ -865,7 +865,7 @@ class GraphThresholdsStyleConfig(cogbuilder.Builder[common.GraphThresholdsStyleC
     
     _internal: common.GraphThresholdsStyleConfig
 
-    def __init__(self):
+    def __init__(self) -> None:
         self._internal = common.GraphThresholdsStyleConfig()
 
     def build(self) -> common.GraphThresholdsStyleConfig:
@@ -888,7 +888,7 @@ class SingleStatBaseOptions(cogbuilder.Builder[common.SingleStatBaseOptions]):
     
     _internal: common.SingleStatBaseOptions
 
-    def __init__(self):
+    def __init__(self) -> None:
         self._internal = common.SingleStatBaseOptions()
 
     def build(self) -> common.SingleStatBaseOptions:
@@ -923,7 +923,7 @@ class ReduceDataOptions(cogbuilder.Builder[common.ReduceDataOptions]):
     
     _internal: common.ReduceDataOptions
 
-    def __init__(self):
+    def __init__(self) -> None:
         self._internal = common.ReduceDataOptions()
 
     def build(self) -> common.ReduceDataOptions:
@@ -977,7 +977,7 @@ class VizTextDisplayOptions(cogbuilder.Builder[common.VizTextDisplayOptions]):
     
     _internal: common.VizTextDisplayOptions
 
-    def __init__(self):
+    def __init__(self) -> None:
         self._internal = common.VizTextDisplayOptions()
 
     def build(self) -> common.VizTextDisplayOptions:
@@ -1013,7 +1013,7 @@ class OptionsWithTooltip(cogbuilder.Builder[common.OptionsWithTooltip]):
     
     _internal: common.OptionsWithTooltip
 
-    def __init__(self):
+    def __init__(self) -> None:
         self._internal = common.OptionsWithTooltip()
 
     def build(self) -> common.OptionsWithTooltip:
@@ -1037,7 +1037,7 @@ class VizTooltipOptions(cogbuilder.Builder[common.VizTooltipOptions]):
     
     _internal: common.VizTooltipOptions
 
-    def __init__(self):
+    def __init__(self) -> None:
         self._internal = common.VizTooltipOptions()
 
     def build(self) -> common.VizTooltipOptions:
@@ -1065,7 +1065,7 @@ class OptionsWithLegend(cogbuilder.Builder[common.OptionsWithLegend]):
     
     _internal: common.OptionsWithLegend
 
-    def __init__(self):
+    def __init__(self) -> None:
         self._internal = common.OptionsWithLegend()
 
     def build(self) -> common.OptionsWithLegend:
@@ -1089,7 +1089,7 @@ class VizLegendOptions(cogbuilder.Builder[common.VizLegendOptions]):
     
     _internal: common.VizLegendOptions
 
-    def __init__(self):
+    def __init__(self) -> None:
         self._internal = common.VizLegendOptions()
 
     def build(self) -> common.VizLegendOptions:
@@ -1152,7 +1152,7 @@ class OptionsWithTimezones(cogbuilder.Builder[common.OptionsWithTimezones]):
     
     _internal: common.OptionsWithTimezones
 
-    def __init__(self):
+    def __init__(self) -> None:
         self._internal = common.OptionsWithTimezones()
 
     def build(self) -> common.OptionsWithTimezones:
@@ -1175,7 +1175,7 @@ class OptionsWithTextFormatting(cogbuilder.Builder[common.OptionsWithTextFormatt
     
     _internal: common.OptionsWithTextFormatting
 
-    def __init__(self):
+    def __init__(self) -> None:
         self._internal = common.OptionsWithTextFormatting()
 
     def build(self) -> common.OptionsWithTextFormatting:
@@ -1199,7 +1199,7 @@ class GraphFieldConfig(cogbuilder.Builder[common.GraphFieldConfig]):
     
     _internal: common.GraphFieldConfig
 
-    def __init__(self):
+    def __init__(self) -> None:
         self._internal = common.GraphFieldConfig()
 
     def build(self) -> common.GraphFieldConfig:
@@ -1388,7 +1388,7 @@ class TableSortByFieldState(cogbuilder.Builder[common.TableSortByFieldState]):
     
     _internal: common.TableSortByFieldState
 
-    def __init__(self):
+    def __init__(self) -> None:
         self._internal = common.TableSortByFieldState()
 
     def build(self) -> common.TableSortByFieldState:
@@ -1424,7 +1424,7 @@ class TableFooterOptions(cogbuilder.Builder[common.TableFooterOptions]):
     
     _internal: common.TableFooterOptions
 
-    def __init__(self):
+    def __init__(self) -> None:
         self._internal = common.TableFooterOptions()
 
     def build(self) -> common.TableFooterOptions:
@@ -1471,7 +1471,7 @@ class ResourceDimensionConfig(cogbuilder.Builder[common.ResourceDimensionConfig]
     
     _internal: common.ResourceDimensionConfig
 
-    def __init__(self):
+    def __init__(self) -> None:
         self._internal = common.ResourceDimensionConfig()
 
     def build(self) -> common.ResourceDimensionConfig:
@@ -1504,7 +1504,7 @@ class ResourceDimensionConfig(cogbuilder.Builder[common.ResourceDimensionConfig]
 class HeatmapCalculationOptions(cogbuilder.Builder[common.HeatmapCalculationOptions]):
     _internal: common.HeatmapCalculationOptions
 
-    def __init__(self):
+    def __init__(self) -> None:
         self._internal = common.HeatmapCalculationOptions()
 
     def build(self) -> common.HeatmapCalculationOptions:
@@ -1543,7 +1543,7 @@ class TableFieldOptions(cogbuilder.Builder[common.TableFieldOptions]):
     
     _internal: common.TableFieldOptions
 
-    def __init__(self):
+    def __init__(self) -> None:
         self._internal = common.TableFieldOptions()
 
     def build(self) -> common.TableFieldOptions:

@@ -9,7 +9,7 @@ from ..models import dashboard
 class CloudMonitoringQuery(cogbuilder.Builder[googlecloudmonitoring.CloudMonitoringQuery]):
     _internal: googlecloudmonitoring.CloudMonitoringQuery
 
-    def __init__(self):
+    def __init__(self) -> None:
         self._internal = googlecloudmonitoring.CloudMonitoringQuery()
 
     def build(self) -> googlecloudmonitoring.CloudMonitoringQuery:
@@ -131,7 +131,7 @@ class TimeSeriesList(cogbuilder.Builder[googlecloudmonitoring.TimeSeriesList]):
     
     _internal: googlecloudmonitoring.TimeSeriesList
 
-    def __init__(self):
+    def __init__(self) -> None:
         self._internal = googlecloudmonitoring.TimeSeriesList()
 
     def build(self) -> googlecloudmonitoring.TimeSeriesList:
@@ -275,7 +275,7 @@ class TimeSeriesQuery(cogbuilder.Builder[googlecloudmonitoring.TimeSeriesQuery])
     
     _internal: googlecloudmonitoring.TimeSeriesQuery
 
-    def __init__(self):
+    def __init__(self) -> None:
         self._internal = googlecloudmonitoring.TimeSeriesQuery()
 
     def build(self) -> googlecloudmonitoring.TimeSeriesQuery:
@@ -320,7 +320,7 @@ class SLOQuery(cogbuilder.Builder[googlecloudmonitoring.SLOQuery]):
     
     _internal: googlecloudmonitoring.SLOQuery
 
-    def __init__(self):
+    def __init__(self) -> None:
         self._internal = googlecloudmonitoring.SLOQuery()
 
     def build(self) -> googlecloudmonitoring.SLOQuery:
@@ -428,7 +428,7 @@ class PromQLQuery(cogbuilder.Builder[googlecloudmonitoring.PromQLQuery]):
     
     _internal: googlecloudmonitoring.PromQLQuery
 
-    def __init__(self):
+    def __init__(self) -> None:
         self._internal = googlecloudmonitoring.PromQLQuery()
 
     def build(self) -> googlecloudmonitoring.PromQLQuery:
@@ -473,7 +473,7 @@ class MetricQuery(cogbuilder.Builder[googlecloudmonitoring.MetricQuery]):
     
     _internal: googlecloudmonitoring.MetricQuery
 
-    def __init__(self):
+    def __init__(self) -> None:
         self._internal = googlecloudmonitoring.MetricQuery()
 
     def build(self) -> googlecloudmonitoring.MetricQuery:
@@ -606,7 +606,7 @@ class LegacyCloudMonitoringAnnotationQuery(cogbuilder.Builder[googlecloudmonitor
     
     _internal: googlecloudmonitoring.LegacyCloudMonitoringAnnotationQuery
 
-    def __init__(self):
+    def __init__(self) -> None:
         self._internal = googlecloudmonitoring.LegacyCloudMonitoringAnnotationQuery()
 
     def build(self) -> googlecloudmonitoring.LegacyCloudMonitoringAnnotationQuery:
@@ -684,7 +684,7 @@ class Filter(cogbuilder.Builder[googlecloudmonitoring.Filter]):
     
     _internal: googlecloudmonitoring.Filter
 
-    def __init__(self):
+    def __init__(self) -> None:
         self._internal = googlecloudmonitoring.Filter()
 
     def build(self) -> googlecloudmonitoring.Filter:

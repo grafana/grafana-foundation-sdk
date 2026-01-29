@@ -623,7 +623,8 @@ type PanelModel struct {
 // NewPanelModel creates a new PanelModel object.
 func NewPanelModel() *PanelModel {
 	return &PanelModel{
-		Transparent: (func(input bool) *bool { return &input })(false),
+		Transparent:     (func(input bool) *bool { return &input })(false),
+		RepeatDirection: (func(input PanelModelRepeatDirection) *PanelModelRepeatDirection { return &input })(PanelModelRepeatDirectionH),
 	}
 }
 

@@ -103,7 +103,7 @@
             "description": "Day when the week starts. Expressed by the name of the day in lowercase, e.g. \"monday\"."
           },
           "refresh": {
-            "anyOf": [
+            "oneOf": [
               {
                 "type": "string"
               },
@@ -126,7 +126,7 @@
           "panels": {
             "type": "array",
             "items": {
-              "anyOf": [
+              "oneOf": [
                 {
                   "$ref": "#/components/schemas/Panel"
                 },
@@ -679,7 +679,7 @@
         "description": "The data model used in Grafana, namely the data frame, is a columnar-oriented table structure that unifies both time series and table query results.\nEach column within this structure is called a field. A field can represent a single time series or table column.\nField options allow you to change how the data is displayed in your visualizations."
       },
       "ValueMapping": {
-        "anyOf": [
+        "oneOf": [
           {
             "$ref": "#/components/schemas/ValueMap"
           },
@@ -704,7 +704,11 @@
         ],
         "properties": {
           "type": {
-            "$ref": "#/components/schemas/MappingType",
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/MappingType"
+              }
+            ],
             "default": "value"
           },
           "options": {
@@ -759,7 +763,11 @@
         ],
         "properties": {
           "type": {
-            "$ref": "#/components/schemas/MappingType",
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/MappingType"
+              }
+            ],
             "default": "range"
           },
           "options": {
@@ -798,7 +806,11 @@
         ],
         "properties": {
           "type": {
-            "$ref": "#/components/schemas/MappingType",
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/MappingType"
+              }
+            ],
             "default": "regex"
           },
           "options": {
@@ -832,7 +844,11 @@
         ],
         "properties": {
           "type": {
-            "$ref": "#/components/schemas/MappingType",
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/MappingType"
+              }
+            ],
             "default": "special"
           },
           "options": {
@@ -1070,7 +1086,7 @@
             "description": "Description of variable. It can be defined but `null`."
           },
           "query": {
-            "anyOf": [
+            "oneOf": [
               {
                 "type": "string"
               },
@@ -1167,7 +1183,7 @@
             "description": "Whether the option is selected or not"
           },
           "text": {
-            "anyOf": [
+            "oneOf": [
               {
                 "type": "string"
               },
@@ -1181,7 +1197,7 @@
             "description": "Text to be displayed for the option"
           },
           "value": {
-            "anyOf": [
+            "oneOf": [
               {
                 "type": "string"
               },
