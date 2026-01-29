@@ -62,7 +62,7 @@
       "Dimensions": {
         "type": "object",
         "additionalProperties": {
-          "anyOf": [
+          "oneOf": [
             {
               "type": "string"
             },
@@ -213,7 +213,7 @@
             "description": "SELECT part of the SQL expression"
           },
           "from": {
-            "anyOf": [
+            "oneOf": [
               {
                 "$ref": "#/components/schemas/QueryEditorPropertyExpression"
               },
@@ -253,7 +253,11 @@
         ],
         "properties": {
           "type": {
-            "$ref": "#/components/schemas/QueryEditorExpressionType",
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/QueryEditorExpressionType"
+              }
+            ],
             "default": "function"
           },
           "name": {
@@ -287,7 +291,11 @@
         ],
         "properties": {
           "type": {
-            "$ref": "#/components/schemas/QueryEditorExpressionType",
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/QueryEditorExpressionType"
+              }
+            ],
             "default": "functionParameter"
           },
           "name": {
@@ -304,7 +312,11 @@
         ],
         "properties": {
           "type": {
-            "$ref": "#/components/schemas/QueryEditorExpressionType",
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/QueryEditorExpressionType"
+              }
+            ],
             "default": "property"
           },
           "property": {
@@ -320,7 +332,11 @@
         ],
         "properties": {
           "type": {
-            "$ref": "#/components/schemas/QueryEditorPropertyType",
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/QueryEditorPropertyType"
+              }
+            ],
             "default": "string"
           },
           "name": {
@@ -358,7 +374,7 @@
         }
       },
       "QueryEditorExpression": {
-        "anyOf": [
+        "oneOf": [
           {
             "$ref": "#/components/schemas/QueryEditorArrayExpression"
           },
@@ -388,7 +404,11 @@
         ],
         "properties": {
           "type": {
-            "$ref": "#/components/schemas/QueryEditorExpressionType",
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/QueryEditorExpressionType"
+              }
+            ],
             "default": "groupBy"
           },
           "property": {
@@ -406,7 +426,11 @@
         ],
         "properties": {
           "type": {
-            "$ref": "#/components/schemas/QueryEditorExpressionType",
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/QueryEditorExpressionType"
+              }
+            ],
             "default": "operator"
           },
           "property": {
@@ -426,7 +450,7 @@
             "type": "string"
           },
           "value": {
-            "anyOf": [
+            "oneOf": [
               {
                 "$ref": "#/components/schemas/QueryEditorOperatorType"
               },
@@ -442,7 +466,7 @@
         "description": "TS type is QueryEditorOperator\u003cT extends QueryEditorOperatorValueType\u003e, extended in veneer"
       },
       "QueryEditorOperatorType": {
-        "anyOf": [
+        "oneOf": [
           {
             "type": "string"
           },
@@ -455,7 +479,7 @@
         ]
       },
       "QueryEditorOperatorValueType": {
-        "anyOf": [
+        "oneOf": [
           {
             "$ref": "#/components/schemas/QueryEditorOperatorType"
           },
@@ -657,7 +681,7 @@
         "description": "Shape of a CloudWatch Annotation query\nTS type is CloudWatchDefaultQuery = Omit\u003cCloudWatchLogsQuery, 'queryMode'\u003e \u0026 CloudWatchMetricsQuery, declared in veneer\n#CloudWatchDefaultQuery: #CloudWatchLogsQuery \u0026 #CloudWatchMetricsQuery @cuetsy(kind=\"type\")"
       },
       "CloudWatchQuery": {
-        "anyOf": [
+        "oneOf": [
           {
             "$ref": "#/components/schemas/CloudWatchMetricsQuery"
           },

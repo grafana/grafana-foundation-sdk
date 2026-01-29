@@ -1,5 +1,5 @@
 # Installing
 
 ```shell
-yarn add '@grafana/grafana-foundation-sdk@~11.6.0-cogv0.0.x.1759917919'
+yarn add '@grafana/grafana-foundation-sdk@~11.6.0-cogv0.0.x.1769699379'
 ```

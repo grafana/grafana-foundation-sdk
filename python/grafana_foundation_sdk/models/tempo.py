@@ -54,7 +54,7 @@ class TempoQuery(cogvariants.Dataquery):
     # For metric queries, whether to run instant or range queries
     metrics_query_type: typing.Optional['MetricsQueryType']
 
-    def __init__(self, ref_id: str = "", hide: typing.Optional[bool] = None, query_type: typing.Optional[str] = None, query: typing.Optional[str] = None, search: typing.Optional[str] = None, service_name: typing.Optional[str] = None, span_name: typing.Optional[str] = None, min_duration: typing.Optional[str] = None, max_duration: typing.Optional[str] = None, service_map_query: typing.Optional[typing.Union[str, list[str]]] = None, service_map_include_namespace: typing.Optional[bool] = None, limit: typing.Optional[int] = None, spss: typing.Optional[int] = None, filters: typing.Optional[list['TraceqlFilter']] = None, group_by: typing.Optional[list['TraceqlFilter']] = None, table_type: typing.Optional['SearchTableType'] = None, step: typing.Optional[str] = None, exemplars: typing.Optional[int] = None, datasource: typing.Optional[dashboard.DataSourceRef] = None, metrics_query_type: typing.Optional['MetricsQueryType'] = None):
+    def __init__(self, ref_id: str = "", hide: typing.Optional[bool] = None, query_type: typing.Optional[str] = None, query: typing.Optional[str] = None, search: typing.Optional[str] = None, service_name: typing.Optional[str] = None, span_name: typing.Optional[str] = None, min_duration: typing.Optional[str] = None, max_duration: typing.Optional[str] = None, service_map_query: typing.Optional[typing.Union[str, list[str]]] = None, service_map_include_namespace: typing.Optional[bool] = None, limit: typing.Optional[int] = None, spss: typing.Optional[int] = None, filters: typing.Optional[list['TraceqlFilter']] = None, group_by: typing.Optional[list['TraceqlFilter']] = None, table_type: typing.Optional['SearchTableType'] = None, step: typing.Optional[str] = None, exemplars: typing.Optional[int] = None, datasource: typing.Optional[dashboard.DataSourceRef] = None, metrics_query_type: typing.Optional['MetricsQueryType'] = None) -> None:
         self.ref_id = ref_id
         self.hide = hide
         self.query_type = query_type
@@ -181,7 +181,7 @@ class TraceqlFilter:
     # The scope of the filter, can either be unscoped/all scopes, resource or span
     scope: typing.Optional['TraceqlSearchScope']
 
-    def __init__(self, id_val: str = "", tag: typing.Optional[str] = None, operator: typing.Optional[str] = None, value: typing.Optional[typing.Union[str, list[str]]] = None, value_type: typing.Optional[str] = None, scope: typing.Optional['TraceqlSearchScope'] = None):
+    def __init__(self, id_val: str = "", tag: typing.Optional[str] = None, operator: typing.Optional[str] = None, value: typing.Optional[typing.Union[str, list[str]]] = None, value_type: typing.Optional[str] = None, scope: typing.Optional['TraceqlSearchScope'] = None) -> None:
         self.id_val = id_val
         self.tag = tag
         self.operator = operator

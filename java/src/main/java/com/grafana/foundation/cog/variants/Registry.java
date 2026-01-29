@@ -26,7 +26,7 @@ public class Registry {
         registerPanel("logs", com.grafana.foundation.logs.Options.class, null);
         registerPanel("logsnew", com.grafana.foundation.logsnew.Options.class, null);
         registerPanel("news", com.grafana.foundation.news.Options.class, null);
-        registerPanel("nodegraph", com.grafana.foundation.nodegraph.Options.class, null);
+        registerPanel("nodeGraph", com.grafana.foundation.nodegraph.Options.class, null);
         registerPanel("piechart", com.grafana.foundation.piechart.Options.class, com.grafana.foundation.piechart.FieldConfig.class);
         registerPanel("stat", com.grafana.foundation.stat.Options.class, null);
         registerPanel("state-timeline", com.grafana.foundation.statetimeline.Options.class, com.grafana.foundation.statetimeline.FieldConfig.class);
