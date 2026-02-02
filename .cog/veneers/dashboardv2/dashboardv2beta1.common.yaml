@@ -267,6 +267,14 @@ builders:
       rename_options:
         datasource: old_datasource 
 
+  - properties:
+      by_name: QueryGroup
+      set:
+        - name: nextQueryId
+          type:
+            kind: scalar
+            scalar: {scalar_kind: uint32}
+
   #######################
   # Overrides shortcuts #
   #######################

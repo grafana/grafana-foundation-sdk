@@ -1,0 +1,7 @@
+{{- define "pre_assignment_QueryGroup_target" }}
+
+	if (querieResource.spec.refId == "") {
+		querieResource.spec.refId = String.format("query-%d", this.nextQueryId);
+		this.nextQueryId += 1;
+	}
+{{- end }}
