@@ -46,3 +46,13 @@ passes:
   - rename_object: 
       from: dashboardv2beta1.DashboardSpec
       to: Dashboard
+
+  # To get rid of the default value (each panel query needs a unique refId, and
+  # an empty value as default makes it easier to identify that a unique refId
+  # needs to be computed)
+  - retype_field:
+      field: dashboardv2beta1.PanelQuerySpec.refId
+      as:
+        kind: scalar
+        scalar:
+          scalar_kind: string
