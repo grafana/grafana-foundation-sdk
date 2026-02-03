@@ -1,0 +1,441 @@
+# yaml-language-server: $schema=https://raw.githubusercontent.com/grafana/cog/main/schemas/compiler_passes.json
+
+passes:
+  - unspec: {}
+  - dataquery_identification: {}
+
+  ############################################################################
+  # We don't have an explicit way to access the "identifier" (ie: plugin ID) #
+  # for panels and dataqueries.                                              #
+  # The heuristic we use sometimes gets things wrong, so we have to fix      #
+  # things here.                                                             #
+  ############################################################################
+
+  # Panels
+  - schema_set_identifier: { package: alertgroups, identifier: alertGroups }
+  - schema_set_identifier: { package: annotationslist, identifier: annolist }
+  - schema_set_identifier: { package: dashboardlist, identifier: dashlist }
+  - schema_set_identifier: { package: nodegraph, identifier: nodeGraph }
+  - schema_set_identifier: { package: statetimeline, identifier: state-timeline }
+  - schema_set_identifier: { package: statushistory, identifier: status-history }
+  - schema_set_identifier: { package: tableold, identifier: table-old }
+
+  #############
+  # Dashboard #
+  #############
+
+  # These fields are incorrectly set as non-required in the CUE schema.
+  # Loading a dashboard with these set to null will fail.
+  - fields_set_required:
+      fields: [
+        dashboard.Dashboard.annotations,
+        dashboard.Dashboard.templating,
+      ]
+
+  # Defined as an empty type in the CUE schemas.
+  # It is also not used at all: references to this type are replaced by a "composable slot"
+  - omit:
+      objects: [
+        dashboard.Target
+      ]
+
+  - name_anonymous_struct:
+      field: dashboard.Dashboard.timepicker
+      as: TimePicker
+
+  # From: `panels: [...#Panel | #RowPanel | #GraphPanel | #HeatmapPanel]`
+  # To: `panels: [...#Panel | #GraphPanel | #HeatmapPanel]`
+  - retype_field:
+      field: dashboard.Dashboard.panels
+      as:
+        kind: array
+        array:
+          value_type:
+            kind: disjunction
+            disjunction:
+              branches:
+                - { kind: ref, ref: { referred_pkg: dashboard, referred_type: Panel } }
+                - { kind: ref, ref: { referred_pkg: dashboard, referred_type: RowPanel } }
+              discriminator: type
+              discriminator_mapping:
+                row: RowPanel
+                cog_discriminator_catch_all: Panel
+
+  - retype_field:
+      field: dashboard.Panel.options
+      as:
+        kind: scalar
+        scalar: { scalar_kind: any }
+
+  - retype_field:
+      field: dashboard.FieldConfig.custom
+      as:
+        kind: scalar
+        scalar: { scalar_kind: any }
+
+  - retype_field:
+      field: dashboard.Panel.Targets
+      as:
+        kind: array
+        array:
+          value_type:
+            kind: composable_slot
+            composable_slot: { variant: dataquery }
+
+  # typed as `links?: [...]` in the original schema
+  - retype_field:
+      field: dashboard.FieldConfig.links
+      as:
+        kind: array
+        array:
+          value_type:
+            kind: ref
+            ref: { referred_pkg: dashboard, referred_type: DashboardLink }
+
+  # Add a few missing fields.
+  # This is meant to be removed once the schema is updated.
+  - add_fields:
+      to: dashboard.AnnotationQuery
+      fields:
+        - name: expr
+          type:
+            kind: scalar
+            scalar: { scalar_kind: string }
+
+  #######################
+  # Dashboard variables #
+  #######################
+
+  - add_fields:
+      to: dashboard.VariableModel
+      fields:
+        - name: auto
+          comments: [ 'Dynamically calculates interval by dividing time range by the count specified.' ]
+          type:
+            kind: scalar
+            scalar: { scalar_kind: bool }
+            default: false
+        - name: auto_min
+          comments: [ 'The minimum threshold below which the step count intervals will not divide the time.' ]
+          type:
+            kind: scalar
+            default: '10s'
+            scalar: { scalar_kind: string }
+        - name: auto_count
+          comments:
+            - 'How many times the current time range should be divided to calculate the value, similar to the Max data points query option.'
+            - 'For example, if the current visible time range is 30 minutes, then the auto interval groups the data into 30 one-minute increments.'
+          type:
+            kind: scalar
+            default: 30
+            scalar:
+              scalar_kind: int32
+              constraints:
+                - { op: '>', args: [0] }
+
+  ########################
+  # Prometheus dataquery #
+  ########################
+
+  # Add a few missing fields.
+  # This is meant to be removed once the schema is updated.
+  - add_fields:
+      to: prometheus.dataquery
+      fields:
+        - name: interval
+          comments: ['An additional lower limit for the step parameter of the Prometheus query and for the', '`$__interval` and `$__rate_interval` variables.']
+          type:
+            kind: scalar
+            scalar: { scalar_kind: string }
+
+  ######################
+  # testdata dataquery #
+  ######################
+
+  - name_anonymous_struct:
+      field: testdata.SimulationQuery.key
+      as: Key
+
+  #############
+  # row panel #
+  #############
+
+  # From: `panels: [...#Panel | #RowPanel]`
+  # To: `panels: [...#Panel]`
+  - retype_field:
+      field: dashboard.RowPanel.panels
+      as:
+        kind: array
+        array:
+          value_type:
+            kind: ref
+            ref: { referred_pkg: dashboard, referred_type: Panel }
+
+  ###############
+  # table panel #
+  ###############
+
+  - fields_set_not_required:
+      fields: [ common.TableFieldOptions.CellOptions ]
+
+  ##################
+  # piechart panel #
+  ##################
+
+  - fields_set_not_required:
+      fields: [ piechart.Options.displayLabels ]
+
+  #####################
+  # candlestick panel #
+  #####################
+
+  # This field is parsed incorrectly from the CUE schema: its definition and
+  # defaults are merged for some reason.
+  # TODO: remove once the parser is fixed.
+  # See: https://github.com/grafana/cog/issues/292
+  - retype_field:
+      field: candlestick.Options.colors
+      as:
+        kind: ref
+        ref: { referred_pkg: candlestick, referred_type: CandlestickColors }
+        default: { down: "red", up: "green", flat: "gray" }
+
+  #################
+  # heatmap panel #
+  #################
+
+  # These fields are parsed incorrectly from the CUE schema: their definitions and
+  # defaults are merged for some reason.
+  # TODO: remove once the parser is fixed.
+  # See: https://github.com/grafana/cog/issues/292
+  - retype_field:
+      field: heatmap.Options.legend
+      as:
+        kind: ref
+        ref: { referred_pkg: heatmap, referred_type: HeatmapLegend }
+        default: { show: true }
+  - retype_field:
+      field: heatmap.Options.exemplars
+      as:
+        kind: ref
+        ref: { referred_pkg: heatmap, referred_type: ExemplarConfig }
+        default: { color: "rgba(255,0,255,0.7)" }
+  - retype_field:
+      field: heatmap.Options.tooltip
+      as:
+        kind: ref
+        ref: { referred_pkg: heatmap, referred_type: HeatmapTooltip }
+
+  ###########################
+  # common.GraphFieldConfig #
+  ###########################
+
+  # The `insertNulls` field is missing.
+  # Added upstream here: https://github.com/grafana/grafana/pull/85861
+  - add_fields:
+      to: common.GraphFieldConfig
+      fields:
+        - name: insertNulls
+          type:
+            kind: disjunction
+            disjunction:
+              branches:
+                - { kind: scalar, scalar: { scalar_kind: bool } }
+                - { kind: scalar, scalar: { scalar_kind: uint32 } }
+
+  ###########################
+  # common.VizLegendOptions #
+  ###########################
+
+  # Without these values, some panels might misbehave when displayed in a dashboard
+  - fields_set_default:
+      defaults:
+        common.VizLegendOptions.displayMode: "list"
+        common.VizLegendOptions.placement: "bottom"
+        common.VizLegendOptions.calcs: []
+
+  ####################
+  # timeseries panel #
+  ####################
+
+  # Without these values, timeseries might not display any data or crash when editing in the UI
+  - fields_set_default:
+      defaults:
+        timeseries.Options.legend: { placement: "bottom", displayMode: "list", calcs: [] }
+
+  ############
+  # snapshot #
+  ############
+
+  - add_fields:
+      to: dashboard.Snapshot
+      fields:
+        - name: dashboard
+          type:
+            kind: ref
+            ref: { referred_pkg: dashboard, referred_type: Dashboard }
+
+  ###########################
+  # Google Cloud Monitoring #
+  ###########################
+
+  - retype_field:
+      field: googlecloudmonitoring.CloudMonitoringQuery.timeSeriesList
+      as:
+        kind: ref
+        ref: { referred_pkg: googlecloudmonitoring, referred_type: TimeSeriesList }
+
+  - add_fields:
+      to: googlecloudmonitoring.TimeSeriesList
+      fields:
+        - name: title
+          comments: [ "Annotation title." ]
+          type:
+            kind: scalar
+            scalar: { scalar_kind: string }
+        - name: text
+          comments: [ "Annotation text." ]
+          type:
+            kind: scalar
+            scalar: { scalar_kind: string }
+
+  ##############
+  # Cloudwatch #
+  ##############
+
+  # Simplify the definition of the `QueryEditorArrayExpression.expressions` field from
+  # `[...#QueryEditorExpression] | [...#QueryEditorArrayExpression]` to
+  # `[...#QueryEditorExpression]`.
+  # This should be semantically equivalent since `QueryEditorExpression` is a
+  # union type that includes `QueryEditorArrayExpression`.
+  - retype_field:
+      field: cloudwatch.QueryEditorArrayExpression.expressions
+      as:
+        kind: array
+        array:
+          value_type:
+            kind: ref
+            ref: { referred_pkg: cloudwatch, referred_type: QueryEditorExpression }
+
+  # Retype this object to manually define its disjunction mapping.
+  # TODO: check if we need to do this, or if the DisjunctionInferMapping would
+  # be able to infer it on its own.
+  - retype_object:
+      object: cloudwatch.QueryEditorExpression
+      as:
+        kind: disjunction
+        disjunction:
+          branches:
+            - { kind: ref, ref: { referred_pkg: cloudwatch, referred_type: QueryEditorArrayExpression } }
+            - { kind: ref, ref: { referred_pkg: cloudwatch, referred_type: QueryEditorPropertyExpression } }
+            - { kind: ref, ref: { referred_pkg: cloudwatch, referred_type: QueryEditorGroupByExpression } }
+            - { kind: ref, ref: { referred_pkg: cloudwatch, referred_type: QueryEditorFunctionExpression } }
+            - { kind: ref, ref: { referred_pkg: cloudwatch, referred_type: QueryEditorFunctionParameterExpression } }
+            - { kind: ref, ref: { referred_pkg: cloudwatch, referred_type: QueryEditorOperatorExpression } }
+          discriminator: type
+          discriminator_mapping:
+            and: QueryEditorArrayExpression
+            or: QueryEditorArrayExpression
+            property: QueryEditorPropertyExpression
+            groupBy: QueryEditorGroupByExpression
+            function: QueryEditorFunctionExpression
+            functionParameter: QueryEditorFunctionParameterExpression
+            operator: QueryEditorOperatorExpression
+
+  - add_object:
+      object: cloudwatch.CloudWatchQuery
+      as:
+        kind: disjunction
+        hints: { implements_variant: dataquery }
+        disjunction:
+          branches:
+            - { kind: ref, ref: { referred_pkg: cloudwatch, referred_type: CloudWatchMetricsQuery } }
+            - { kind: ref, ref: { referred_pkg: cloudwatch, referred_type: CloudWatchLogsQuery } }
+            - { kind: ref, ref: { referred_pkg: cloudwatch, referred_type: CloudWatchAnnotationQuery } }
+          discriminator: queryMode
+          discriminator_mapping:
+            Metrics: CloudWatchMetricsQuery
+            Logs: CloudWatchLogsQuery
+            Annotations: CloudWatchAnnotationQuery
+
+  - schema_set_entry_point:
+      package: cloudwatch
+      entry_point: CloudWatchQuery
+
+  - fields_set_default:
+      defaults:
+        cloudwatch.CloudWatchMetricsQuery.queryMode: Metrics
+        cloudwatch.CloudWatchLogsQuery.queryMode: Logs
+        cloudwatch.CloudWatchAnnotationQuery.queryMode: Annotations
+
+  - hint_object:
+      object: cloudwatch.CloudWatchMetricsQuery
+      hints:
+        skip_variant_plugin_registration: true
+
+  - hint_object:
+      object: cloudwatch.CloudWatchLogsQuery
+      hints:
+        skip_variant_plugin_registration: true
+
+  - hint_object:
+      object: cloudwatch.CloudWatchAnnotationQuery
+      hints:
+        skip_variant_plugin_registration: true
+
+  - fields_set_required:
+      fields:
+        - cloudwatch.CloudWatchMetricsQuery.queryMode
+        - cloudwatch.CloudWatchLogsQuery.queryMode
+        - cloudwatch.CloudWatchAnnotationQuery.queryMode
+
+  ##########
+  # Loki #
+  ##########
+
+  # Add a few missing fields.
+  # This is meant to be removed once the schema is updated.
+  - add_fields:
+      to: loki.Dataquery
+      fields:
+        - name: direction
+          type:
+            kind: ref
+            ref: { referred_pkg: loki, referred_type: LokiQueryDirection }
+
+  ##########
+  # Others #
+  ##########
+
+  - omit_fields:
+      fields: [ common.DataSourceRef.apiVersion ]
+
+  - retype_object:
+      object: common.TimeZone
+      as:
+        kind: scalar
+        scalar: { scalar_kind: string }
+        default: browser
+      comments:
+        - 'A specific timezone from https://en.wikipedia.org/wiki/Tz_database'
+
+  # In the original `librarypanel.PanelModel` schema, the "model" field is left
+  # mainly undefined but a comment indicates that it should be the same panel
+  # schema defined in dashboard with a few fields omitted:
+  #   model: Omit<dashboard.Panel, 'gridPos' | 'id' | 'libraryPanel'>
+  - duplicate_object:
+      object: dashboard.Panel
+      as: librarypanel.PanelModel
+      omit_fields:
+        - id
+        - gridPos
+        - libraryPanel
+  - retype_field:
+      field: librarypanel.LibraryPanel.model
+      as:
+        kind: ref
+        ref: { referred_pkg: librarypanel, referred_type: PanelModel }
+
+  - omit:
+      objects:
+        - dashboard.HeatmapPanel

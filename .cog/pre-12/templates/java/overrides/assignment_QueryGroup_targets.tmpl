@@ -1,0 +1,8 @@
+{{- define "pre_assignment_QueryGroup_targets" }}
+	for (PanelQueryKind query : queriesResources) {
+		if (query.spec.refId == "") {
+			query.spec.refId = String.format("query-%d", this.nextQueryId);
+			this.nextQueryId += 1;
+		}
+	}
+{{- end }}

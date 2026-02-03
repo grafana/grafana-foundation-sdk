@@ -1,0 +1,60 @@
+# yaml-language-server: $schema=https://raw.githubusercontent.com/grafana/cog/main/schemas/compiler_passes.json
+
+passes:
+  - disjunction_of_anonymous_structs_to_explicit: {}
+  - disjunction_infer_mapping: {}
+  - disjunction_to_type: {}
+
+  - retype_field:
+      field: expr.typeMath.datasource
+      as: &common_datasourceRef
+        kind: ref
+        ref: { referred_pkg: common, referred_type: DataSourceRef }
+  - retype_field:
+      field: expr.typeReduce.datasource
+      as: *common_datasourceRef
+  - retype_field:
+      field: expr.typeResample.datasource
+      as: *common_datasourceRef
+  - retype_field:
+      field: expr.typeClassicConditions.datasource
+      as: *common_datasourceRef
+  - retype_field:
+      field: expr.typeThreshold.datasource
+      as: *common_datasourceRef
+  - retype_field:
+      field: expr.typeSql.datasource
+      as: *common_datasourceRef
+
+  - retype_object:
+      object: expr.Expr
+      as:
+        kind: disjunction
+        hints: { implements_variant: dataquery }
+        disjunction:
+          branches:
+            - { kind: ref, ref: { referred_pkg: expr, referred_type: TypeMath } }
+            - { kind: ref, ref: { referred_pkg: expr, referred_type: TypeReduce } }
+            - { kind: ref, ref: { referred_pkg: expr, referred_type: TypeResample } }
+            - { kind: ref, ref: { referred_pkg: expr, referred_type: TypeClassicConditions } }
+            - { kind: ref, ref: { referred_pkg: expr, referred_type: TypeThreshold } }
+            - { kind: ref, ref: { referred_pkg: expr, referred_type: TypeSql } }
+
+  - hint_object:
+      object: expr.typeMath
+      hints: { implements_variant: dataquery, skip_variant_plugin_registration: true }
+  - hint_object:
+      object: expr.typeReduce
+      hints: { implements_variant: dataquery, skip_variant_plugin_registration: true }
+  - hint_object:
+      object: expr.typeResample
+      hints: { implements_variant: dataquery, skip_variant_plugin_registration: true }
+  - hint_object:
+      object: expr.typeClassicConditions
+      hints: { implements_variant: dataquery, skip_variant_plugin_registration: true }
+  - hint_object:
+      object: expr.typeThreshold
+      hints: { implements_variant: dataquery, skip_variant_plugin_registration: true }
+  - hint_object:
+      object: expr.typeSql
+      hints: { implements_variant: dataquery, skip_variant_plugin_registration: true }

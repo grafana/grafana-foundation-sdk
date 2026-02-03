@@ -1,0 +1,23 @@
+{{- define "object_dashboard_Panel_field_targets_custom_strict_unmarshal" -}}
+{{- /* Non-standard unmarshalling to use the possible datasourceRef defined on the panel when unmarshalling dataqueries */}}
+	rawDataqueries := []json.RawMessage{}
+	if err := json.Unmarshal(fields["targets"], &rawDataqueries); err != nil {
+		return err
+	}
+
+	dataqueryTypeHint := ""
+	if resource.Datasource != nil && resource.Datasource.Type != nil {
+		dataqueryTypeHint = *resource.Datasource.Type
+	}
+
+	for i1 := range rawDataqueries {
+		dataquery, err := cog.StrictUnmarshalDataquery(rawDataqueries[i1], dataqueryTypeHint)
+		if err != nil {
+			errs = append(errs, cog.MakeBuildErrors("targets["+strconv.Itoa(i1)+"]", err)...)
+			continue
+		}
+
+		resource.Targets = append(resource.Targets, dataquery)
+	}
+
+{{ end }}

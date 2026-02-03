@@ -1,0 +1,25 @@
+{{- define "schema_variant_dataquery" -}}
+{{- $_ := apiDeclareFunction (dict
+    "pkg" .Schema.Package
+    "name" "variant_config"
+    "comments" (listStr
+        (print "variant_config returns the configuration related to " (.Schema.Metadata.Identifier|lower) " data queries.")
+        "This configuration describes how to unmarshal it, convert it to code, …"
+    )
+    "return" "variants.DataqueryConfig"
+) -}}
+{{- $cogruntime := importModule "cogruntime" "..cog" "runtime" -}}
+{{- $fromJsonSetup := "" -}}
+{{- $fromJson := print (.Schema.EntryPoint|formatObjectName) ".from_json" -}}
+{{- if resolvesToDisjunction .Schema.EntryPointType -}}
+    {{- $code := unmarshalForType .Schema.EntryPointType "data" "entrypoint" -}}
+    {{- $fromJsonSetup = print $code.Setup "\n    " -}}
+    {{- $fromJson = print "lambda data: " $code.DecodingCall -}}
+{{- end -}}
+
+def variant_config() -> {{ $cogruntime }}.DataqueryConfig:
+    {{ $fromJsonSetup }}return {{ $cogruntime }}.DataqueryConfig(
+        identifier="{{ .Schema.Metadata.Identifier }}",
+        from_json_hook={{ $fromJson }},
+    )
+{{ end }}

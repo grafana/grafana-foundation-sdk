@@ -1,0 +1,54 @@
+{{- define "object_dashboardv2beta1_DataQueryKind_custom_unmarshal" }}
+package {{ importPkg .Object.SelfRef.ReferredPkg }};
+
+import com.fasterxml.jackson.core.JsonParser;
+import com.fasterxml.jackson.core.type.TypeReference;
+import com.fasterxml.jackson.databind.DeserializationContext;
+import com.fasterxml.jackson.databind.JsonDeserializer;
+import com.fasterxml.jackson.databind.JsonNode;
+import com.fasterxml.jackson.databind.ObjectMapper;
+
+import {{ importPkg "cog.variants.UnknownDataquery" }};
+import {{ importPkg "cog.variants.Dataquery" }};
+import {{ importPkg "cog.variants.Registry" }};
+
+import java.io.IOException;
+import java.util.Iterator;
+import java.util.Map;
+
+public class {{ .Object.Name | upperCamelCase }}Deserializer extends JsonDeserializer<{{ .Object.Name | upperCamelCase }}> {
+    
+    @Override
+    public {{ .Object.Name }} deserialize(JsonParser jp, DeserializationContext cxt) throws IOException {
+        ObjectMapper mapper = (ObjectMapper) jp.getCodec();
+        JsonNode root = mapper.readTree(jp);
+        
+        {{ .Object.Name | upperCamelCase }} {{ .Object.Name | lowerCamelCase }} = new {{ .Object.Name }}();
+        {{- range $i, $field := .Object.Type.AsStruct.Fields }}
+        {{- if eq $field.Name "spec" }}
+        {{ continue }}
+        {{- else }}
+        {{ if gt $i 0 }}else {{ end }}if (root.has("{{ .Name }}")) {
+            {{ $.Object.Name | lowerCamelCase }}.{{ $field.Name | lowerCamelCase }} = mapper.convertValue(root.get("{{ .Name }}"), new TypeReference<>() {});
+        }
+        {{- end }}
+        {{- end }}
+        if ({{ .Object.Name | lowerCamelCase }}.group != null && !{{ .Object.Name | lowerCamelCase }}.group.trim().isEmpty()) {
+            Class<? extends Dataquery> clazz = Registry.getDataquery({{ .Object.Name | lowerCamelCase }}.group);
+            if (clazz != null) {
+                {{ $.Object.Name | lowerCamelCase }}.spec = mapper.treeToValue(root.get("spec"), clazz);
+            } else {
+                UnknownDataquery unknownDataquery = new UnknownDataquery();
+                Iterator<Map.Entry<String, JsonNode>> fieldsIterator = root.get("spec").fields();
+                while (fieldsIterator.hasNext()) {
+                  Map.Entry<String, JsonNode> field = fieldsIterator.next();
+                  unknownDataquery.genericFields.put(field.getKey(), mapper.treeToValue(field.getValue(), Object.class));
+                }
+                {{ $.Object.Name | lowerCamelCase }}.spec = unknownDataquery;
+            }
+        }
+        
+        return {{ .Object.Name | lowerCamelCase }};
+    }
+}
+{{- end }}

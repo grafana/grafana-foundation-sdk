@@ -24,7 +24,7 @@ COG_VERSION="v0.0.x" # hardcoded for now
 COG_CMD=${COG_CMD:-"cog"} # Command used to run `cog`
 GH_CLI_CMD=${GH_CLI_CMD:-"gh"} # Command used to run `gh` (GitHub cli)
 
-CODEGEN_PIPELINE_CONFIG=${CODEGEN_PIPELINE_CONFIG:-"${__dir}/../.cog/config.yaml"} # Codegen pipeline config file to use.
+CODEGEN_PIPELINE_CONFIG=${CODEGEN_PIPELINE_CONFIG:-"${__dir}/../.cog/pre-12/config.yaml"} # Codegen pipeline config file to use.
 
 KIND_REGISTRY_PATH=${KIND_REGISTRY_PATH:-'../kind-registry'} # Path to the kind-registry
 
@@ -39,7 +39,7 @@ WORKSPACE_PATH=${WORKSPACE_PATH:-'./workspace'}
 ### Usage ###
 #################
 
-# LOG_LEVEL=7 ./scripts/release-version.sh v10.2.x
+# LOG_LEVEL=7 ./scripts-legacy/release-version.sh v10.2.x
 
 #################
 ### Utilities ###

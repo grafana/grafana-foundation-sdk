@@ -1,0 +1,100 @@
+{{- define "object_dashboardv2beta1_VizConfigKind_custom_unmarshal" }}
+{{- $fmt := importStdPkg "fmt" -}}
+{{- $json := importStdPkg "encoding/json" -}}
+func (resource *{{ .Object.Name|formatObjectName }}) UnmarshalJSON(raw []byte) error {
+    if raw == nil {
+        return nil
+    }
+
+    fields := make(map[string]json.RawMessage)
+    if err := json.Unmarshal(raw, &fields); err != nil {
+        return err
+    }
+    {{- range $field := .Object.Type.Struct.Fields }}
+	if fields["{{ $field.Name }}"] != nil {
+	{{- if eq $field.Name "spec" }}
+		{{ template "object_dashboardv2beta1_VizConfigKind_spec" (dict "Field" $field) }}
+	{{- else }}
+		if err := json.Unmarshal(fields["{{ $field.Name }}"], &resource.{{ $field.Name|formatFieldName }}); err != nil {
+			return fmt.Errorf("error decoding field '{{ $field.Name }}': %w", err)
+		}
+    {{- end }}
+	}
+    {{- end }}
+
+    return nil
+}
+
+{{ end }}
+
+{{- define "object_dashboardv2beta1_VizConfigKind_spec" -}}
+	{{- $fmt := importStdPkg "fmt" -}}
+	{{- $json := importStdPkg "encoding/json" -}}
+	spec := {{ .Field.Type|formatType }}{}
+	specFields := make(map[string]json.RawMessage)
+	if err := json.Unmarshal(fields["spec"], &specFields); err != nil {
+		return err
+	}
+
+	{{ range $field := (.Field.Type|resolveRefs).Struct.Fields }}
+		if specFields["{{ $field.Name }}"] != nil {
+		{{- if eq $field.Name "options" }}
+			{{ template "object_dashboardv2beta1_VizConfigKind_spec_options" }}
+		{{- else if eq $field.Name "fieldConfig" }}
+			{{ template "object_dashboardv2beta1_VizConfigKind_spec_fieldConfig" }}
+		{{- else }}
+			if err := json.Unmarshal(specFields["{{ $field.Name }}"], &spec.{{ $field.Name|formatFieldName }}); err != nil {
+				return fmt.Errorf("error decoding field 'spec.{{ $field.Name }}': %w", err)
+			}
+		{{- end }}
+		}
+	{{ end }}
+	resource.Spec = spec
+{{- end -}}
+
+{{- define "object_dashboardv2beta1_VizConfigKind_spec_fieldConfig" -}}
+	{{- $fmt := importStdPkg "fmt" -}}
+	{{- $json := importStdPkg "encoding/json" -}}
+	{{- $cog := importPkg "cog" -}}
+	if err := json.Unmarshal(specFields["fieldConfig"], &spec.FieldConfig); err != nil {
+		return fmt.Errorf("error decoding field 'fieldConfig': %w", err)
+	}
+
+	variantCfg, found := cog.ConfigForPanelcfgVariant(resource.Group)
+	if found && variantCfg.FieldConfigUnmarshaler != nil {
+		fakeFieldConfigSource := struct {
+			Defaults struct {
+				Custom json.RawMessage `json:"custom"`
+			} `json:"defaults"`
+		}{}
+		if err := json.Unmarshal(specFields["fieldConfig"], &fakeFieldConfigSource); err != nil {
+			return err
+		}
+
+		if fakeFieldConfigSource.Defaults.Custom != nil {
+			customFieldConfig, err := variantCfg.FieldConfigUnmarshaler(fakeFieldConfigSource.Defaults.Custom)
+			if err != nil {
+				return err
+			}
+
+			spec.FieldConfig.Defaults.Custom = customFieldConfig
+		}
+	}
+{{- end -}}
+
+{{- define "object_dashboardv2beta1_VizConfigKind_spec_options" -}}
+	{{- $json := importStdPkg "encoding/json" -}}
+	{{- $cog := importPkg "cog" -}}
+	variantCfg, found := cog.ConfigForPanelcfgVariant(resource.Group)
+	if found && variantCfg.OptionsUnmarshaler != nil {
+		options, err := variantCfg.OptionsUnmarshaler(specFields["options"])
+		if err != nil {
+			return err
+		}
+		spec.Options = options
+	} else {
+		if err := json.Unmarshal(specFields["options"], &spec.Options); err != nil {
+			return err
+		}
+	}
+{{- end -}}

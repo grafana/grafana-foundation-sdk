@@ -1,0 +1,92 @@
+{{- define "object_dashboardv2beta1_VizConfigKind_custom_unmarshal" }}
+/**
+ * @param array<string, mixed> $inputData
+ */
+public static function fromArray(array $inputData): self
+{
+    /** @var {{ typeShape .Object.Type }} $inputData */
+    $data = $inputData;
+    return new self(
+        {{- range $field := .Object.Type.Struct.Fields }}
+        {{- if eq $field.Name "spec" -}}
+        {{ $field.Name }}: {{ template "object_dashboardv2beta1_VizConfigKind_spec_unmarshal" (dict "Field" $field) }}
+        {{- else if or $field.Type.IsConcreteScalar $field.Type.IsConstantRef }}
+        {{ continue }}
+        {{- else -}}
+        {{ $field.Name }}: {{ unmarshalForType $field.Type (print "$data[\"" $field.Name "\"]") }}
+        {{- end -}},
+        {{- end }}
+   );
+}
+{{- end }}
+
+{{- define "object_dashboardv2beta1_VizConfigKind_spec_unmarshal" -}}
+isset($data['spec']) ? (function($input) {
+    /** @var {{ typeShape (.Field.Type|resolveRefs) }} $spec */
+    $spec = $input['spec'];
+    /** @var string $group */
+    $group = $input['group'] ?? '';
+    return new VizConfigSpec(
+        {{- range $field := (.Field.Type|resolveRefs).Struct.Fields }}
+        {{ $field.Name }}: {{ if eq $field.Name "options" -}}
+            {{ template "object_dashboardv2beta1_VizConfigKind_spec_options_unmarshal" }}
+        {{- else if eq $field.Name "fieldConfig" -}}
+            {{ template "object_dashboardv2beta1_VizConfigKind_spec_fieldConfig_unmarshal" }}
+        {{- else if $field.Type.IsConcreteScalar }}
+        {{ continue}}
+        {{- else -}}
+        {{ unmarshalForType $field.Type (print "$spec[\"" $field.Name "\"]") }}
+        {{- end -}},
+        {{- end }}
+   );
+})($data) : null
+{{- end }}
+
+{{- define "object_dashboardv2beta1_VizConfigKind_spec_fieldConfig_unmarshal" -}}
+isset($spec["fieldConfig"]) ? (function(string $panelType, $panel) {
+    /** @var array<string, mixed> $fieldConfigData */
+    $fieldConfigData = $panel["fieldConfig"];
+    $fieldConfigSource = FieldConfigSource::fromArray($fieldConfigData);
+
+    if (!\Grafana\Foundation\Cog\Runtime::get()->panelcfgVariantExists($panelType)) {
+        return $fieldConfigSource;
+    }
+
+    $config = \Grafana\Foundation\Cog\Runtime::get()->panelcfgVariantConfig($panelType);
+    if ($config->fieldConfigFromArray === null) {
+        return $fieldConfigSource;
+    }
+
+    if (!isset($fieldConfigData["defaults"])) {
+        return $fieldConfigSource;
+    }
+
+    /** @var array{custom?: array<string, mixed>} $defaults */
+    $defaults = $fieldConfigData["defaults"];
+    if (!isset($defaults["custom"])) {
+        return $fieldConfigSource;
+    }
+
+    $fieldConfigSource->defaults->custom = ($config->fieldConfigFromArray)($defaults["custom"]);
+
+    return $fieldConfigSource;
+})($group, $spec) : null
+{{- end }}
+
+{{- define "object_dashboardv2beta1_VizConfigKind_spec_options_unmarshal" -}}
+isset($spec["options"]) ? (function(string $panelType, $panel) {
+    /** @var array<string, mixed> $options */
+    $options = $panel["options"];
+
+    if (!\Grafana\Foundation\Cog\Runtime::get()->panelcfgVariantExists($panelType)) {
+        return $options;
+    }
+
+    $config = \Grafana\Foundation\Cog\Runtime::get()->panelcfgVariantConfig($panelType);
+    if ($config->optionsFromArray === null) {
+        return $options;
+    }
+
+    return ($config->optionsFromArray)($options);
+})($group, $spec) : null
+{{- end }}

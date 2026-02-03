@@ -1,0 +1,14 @@
+{{- define "object_variant_dataquery" -}}
+{{- $_ := apiDeclareMethod (dict
+    "object" .Object
+    "name" "dataqueryType"
+    "comments" (listStr
+        "Returns the type of this dataquery object."
+    )
+    "return" "string"
+) -}}
+public function dataqueryType(): string
+{
+    return '{{ .Schema.Metadata.Identifier|lower }}';
+}
+{{- end }}

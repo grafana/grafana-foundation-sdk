@@ -1,0 +1,11 @@
+# yaml-language-server: $schema=https://raw.githubusercontent.com/grafana/cog/main/schemas/veneers.json
+
+language: all
+
+package: accesspolicy
+
+builders: ~
+
+options:
+  - array_to_append:
+      by_name: AccessPolicy.rules

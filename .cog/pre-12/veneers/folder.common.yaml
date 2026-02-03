@@ -1,0 +1,15 @@
+# yaml-language-server: $schema=https://raw.githubusercontent.com/grafana/cog/main/schemas/veneers.json
+
+language: all
+
+package: folder
+
+builders:
+  ################
+  # Constructors #
+  ################
+  - promote_options_to_constructor:
+      by_name: Folder
+      options: [name]
+
+options: ~

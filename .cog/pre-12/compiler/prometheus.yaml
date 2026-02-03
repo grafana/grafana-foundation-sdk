@@ -1,0 +1,21 @@
+# yaml-language-server: $schema=https://raw.githubusercontent.com/grafana/cog/main/schemas/compiler_passes.json
+
+passes:
+  - unspec: {}
+
+  - retype_field:
+      field: prometheus.Dataquery.datasource
+      as:
+        kind: ref
+        ref: { referred_pkg: common, referred_type: DataSourceRef }
+
+  # Add a few missing fields.
+  # This is meant to be removed once the schema is updated.
+  - add_fields:
+      to: prometheus.dataquery
+      fields:
+        - name: interval
+          comments: ['An additional lower limit for the step parameter of the Prometheus query and for the', '`$__interval` and `$__rate_interval` variables.']
+          type:
+            kind: scalar
+            scalar: { scalar_kind: string }

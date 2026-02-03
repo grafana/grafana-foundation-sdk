@@ -1,0 +1,59 @@
+# yaml-language-server: $schema=https://raw.githubusercontent.com/grafana/cog/main/schemas/compiler_passes.json
+
+passes:
+  - dataquery_identification: {}
+
+  ############################################################################
+  # We don't have an explicit way to access the "identifier" (ie: plugin ID) #
+  # dataqueries.                                                             #
+  # The heuristic we use sometimes gets things wrong, so we have to fix      #
+  # things here.                                                             #
+  ############################################################################
+
+  - schema_set_identifier: { package: googlecloudmonitoring, identifier: cloud-monitoring }
+  - schema_set_identifier: { package: azuremonitor, identifier: grafana-azure-monitor-datasource }
+  - schema_set_identifier: { package: microsoftsqlserver, identifier: mssql }
+  - schema_set_identifier: { package: postgresql, identifier: postgres }
+
+  #################
+  # DataSourceRef #
+  #################
+
+  - retype_field:
+      field: azuremonitor.AzureMonitorQuery.datasource
+      as: &common_datasourceRef
+        kind: ref
+        ref: { referred_pkg: common, referred_type: DataSourceRef }
+  - retype_field:
+      field: bigquery.Dataquery.datasource
+      as: *common_datasourceRef
+  - retype_field:
+      field: cloudwatch.CloudWatchMetricsQuery.datasource
+      as: *common_datasourceRef
+  - retype_field:
+      field: cloudwatch.CloudWatchLogsQuery.datasource
+      as: *common_datasourceRef
+  - retype_field:
+      field: cloudwatch.CloudWatchAnnotationQuery.datasource
+      as: *common_datasourceRef
+  - retype_field:
+      field: datasource.Dataquery.datasource
+      as: *common_datasourceRef
+  - retype_field:
+      field: elasticsearch.Dataquery.datasource
+      as: *common_datasourceRef
+  - retype_field:
+      field: googlecloudmonitoring.CloudMonitoringQuery.datasource
+      as: *common_datasourceRef
+  - retype_field:
+      field: grafanapyroscope.Dataquery.datasource
+      as: *common_datasourceRef
+  - retype_field:
+      field: loki.Dataquery.datasource
+      as: *common_datasourceRef
+  - retype_field:
+      field: parca.Dataquery.datasource
+      as: *common_datasourceRef
+  - retype_field:
+      field: tempo.TempoQuery.datasource
+      as: *common_datasourceRef

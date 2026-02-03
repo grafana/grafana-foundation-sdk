@@ -1,0 +1,42 @@
+# yaml-language-server: $schema=https://raw.githubusercontent.com/grafana/cog/main/schemas/veneers.json
+
+language: python
+
+package: dashboard
+
+builders:
+  ##############
+  # Dashboards #
+  ##############
+
+  # We don't want these builders at all
+  - omit: { by_object: DashboardDashboardTime }
+  - omit: { by_object: ValueMappingResult }
+
+options:
+  ##############
+  # Dashboards #
+  ##############
+
+  # Time(from, to) instead of time(struct {From string `json:"from"`, To string `json:"to"`}{From: "lala", To: "lala})
+  - struct_fields_as_arguments:
+      by_name: Dashboard.time
+
+  ##############
+  #   Panels   #
+  ##############
+
+  # WithOverride(matcher, properties) instead of WithOverride(struct{...})
+  - struct_fields_as_arguments:
+      by_name: Panel.withOverride
+
+  ########################
+  # AnnotationPermission #
+  ########################
+
+  - rename:
+      by_name: AnnotationPermission.dashboard
+      as: dashboard_permissions
+  - rename:
+      by_name: AnnotationPermission.organization
+      as: organization_permissions

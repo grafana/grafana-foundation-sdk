@@ -1,0 +1,10 @@
+# yaml-language-server: $schema=https://raw.githubusercontent.com/grafana/cog/main/schemas/veneers.json
+
+language: typescript
+
+package: alerting
+
+options:
+  - rename:
+      by_name: Rule.for
+      as: forDuration

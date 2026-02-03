@@ -1,0 +1,20 @@
+{{- define "pre_assignment_Dashboard_withRow" }}
+
+    // Position the row on the grid
+    if (panelOrRowPanel.rowPanel.gridPos == null || (panelOrRowPanel.rowPanel.gridPos.x == 0 && panelOrRowPanel.rowPanel.gridPos.y == 0)) {
+        GridPos gridPos = new GridPos();
+        gridPos.x = 0; // beginning of the line
+        gridPos.y = this.currentY;
+        gridPos.h = 1;
+        gridPos.w = 24; // full width
+        panelOrRowPanel.rowPanel.gridPos = gridPos;
+    }
+{{- end }}
+
+{{- define "post_assignment_Dashboard_withRow" }}
+
+    // Reset the state for the next row
+	this.currentX = 0;
+	this.currentY += panelOrRowPanel.rowPanel.gridPos.h;
+	this.lastPanelHeight = 0;
+{{- end }}

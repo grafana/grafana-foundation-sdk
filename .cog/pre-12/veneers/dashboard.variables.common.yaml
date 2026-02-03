@@ -1,0 +1,201 @@
+# yaml-language-server: $schema=https://raw.githubusercontent.com/grafana/cog/main/schemas/veneers.json
+
+language: all
+
+package: dashboard
+
+builders:
+  #################
+  # VariableModel #
+  #################
+  - promote_options_to_constructor:
+      by_object: VariableModel
+      options: [name]
+
+  - duplicate:
+      by_name: VariableModel
+      as: QueryVariable
+      exclude_options: [type]
+  - initialize:
+      by_name: QueryVariable
+      set:
+        - { property: type, value: query }
+
+  - duplicate:
+      by_name: VariableModel
+      as: AdHocVariable
+      exclude_options: [type]
+  - initialize:
+      by_name: AdHocVariable
+      set:
+        - { property: type, value: adhoc }
+
+  - duplicate:
+      by_name: VariableModel
+      as: ConstantVariable
+      exclude_options: [type]
+  - initialize:
+      by_name: ConstantVariable
+      set:
+        - { property: type, value: constant }
+        - { property: hide, value: 2 } # hide label + value
+
+  - duplicate:
+      by_name: VariableModel
+      as: DatasourceVariable
+      exclude_options: [type]
+  - initialize:
+      by_name: DatasourceVariable
+      set:
+        - { property: type, value: datasource }
+
+  - duplicate:
+      by_name: VariableModel
+      as: IntervalVariable
+      exclude_options: [type]
+  - initialize:
+      by_name: IntervalVariable
+      set:
+        - { property: type, value: interval }
+
+  - duplicate:
+      by_name: VariableModel
+      as: TextBoxVariable
+      exclude_options: [type]
+  - initialize:
+      by_name: TextBoxVariable
+      set:
+        - { property: type, value: textbox }
+
+  - duplicate:
+      by_name: VariableModel
+      as: CustomVariable
+      exclude_options: [type]
+  - initialize:
+      by_name: CustomVariable
+      set:
+        - { property: type, value: custom }
+
+  # We don't need this generic builder anymore
+  - omit: { by_name: VariableModel }
+
+options:
+  #################
+  # QueryVariable #
+  #################
+  - omit: { by_builder: QueryVariable.skipUrlSync }
+  - omit: { by_builder: QueryVariable.auto }
+  - omit: { by_builder: QueryVariable.auto_min }
+  - omit: { by_builder: QueryVariable.auto_count }
+
+  #################
+  # AdHocVariable #
+  #################
+  - omit: { by_builder: AdHocVariable.skipUrlSync }
+  - omit: { by_builder: AdHocVariable.query }
+  - omit: { by_builder: AdHocVariable.current }
+  - omit: { by_builder: AdHocVariable.multi }
+  - omit: { by_builder: AdHocVariable.options }
+  - omit: { by_builder: AdHocVariable.refresh }
+  - omit: { by_builder: AdHocVariable.sort }
+  - omit: { by_builder: AdHocVariable.allValue }
+  - omit: { by_builder: AdHocVariable.regex }
+  - omit: { by_builder: AdHocVariable.includeAll }
+  - omit: { by_builder: AdHocVariable.auto }
+  - omit: { by_builder: AdHocVariable.auto_min }
+  - omit: { by_builder: AdHocVariable.auto_count }
+
+  ####################
+  # ConstantVariable #
+  ####################
+  - omit: { by_builder: ConstantVariable.skipUrlSync }
+  - omit: { by_builder: ConstantVariable.datasource }
+  - omit: { by_builder: ConstantVariable.multi }
+  - omit: { by_builder: ConstantVariable.sort }
+  - omit: { by_builder: ConstantVariable.refresh }
+  - omit: { by_builder: ConstantVariable.options }
+  - omit: { by_builder: ConstantVariable.current }
+  - omit: { by_builder: ConstantVariable.hide }
+  - omit: { by_builder: ConstantVariable.allValue }
+  - omit: { by_builder: ConstantVariable.regex }
+  - omit: { by_builder: ConstantVariable.includeAll }
+  - omit: { by_builder: ConstantVariable.auto }
+  - omit: { by_builder: ConstantVariable.auto_min }
+  - omit: { by_builder: ConstantVariable.auto_count }
+  - rename:
+      by_builder: ConstantVariable.query
+      as: value
+
+  ######################
+  # DatasourceVariable #
+  ######################
+  - omit: { by_builder: DatasourceVariable.skipUrlSync }
+  - omit: { by_builder: DatasourceVariable.datasource }
+  - omit: { by_builder: DatasourceVariable.sort }
+  - omit: { by_builder: DatasourceVariable.refresh }
+  - omit: { by_builder: DatasourceVariable.options }
+  - omit: { by_builder: DatasourceVariable.auto }
+  - omit: { by_builder: DatasourceVariable.auto_min }
+  - omit: { by_builder: DatasourceVariable.auto_count }
+  - rename:
+      by_builder: DatasourceVariable.query
+      as: type
+  # Type("prometheus") instead of explicit Type(StringOrAny{String: "prometheus"})
+  - struct_fields_as_arguments:
+      by_builder: DatasourceVariable.type
+      fields: [String]
+
+  ####################
+  # IntervalVariable #
+  ####################
+  - omit: { by_builder: IntervalVariable.skipUrlSync }
+  - omit: { by_builder: IntervalVariable.datasource }
+  - omit: { by_builder: IntervalVariable.multi }
+  - omit: { by_builder: IntervalVariable.sort }
+  - omit: { by_builder: IntervalVariable.refresh }
+  - omit: { by_builder: IntervalVariable.allValue }
+  - omit: { by_builder: IntervalVariable.regex }
+  - omit: { by_builder: IntervalVariable.includeAll }
+  # To mimic the names in the UI
+  - rename:
+      by_builder: IntervalVariable.query
+      as: values
+  - rename:
+      by_builder: IntervalVariable.auto_min
+      as: minInterval
+  - rename:
+      by_builder: IntervalVariable.auto_count
+      as: stepCount
+
+  ###################
+  # TextBoxVariable #
+  ###################
+  - omit: { by_builder: TextBoxVariable.skipUrlSync }
+  - omit: { by_builder: TextBoxVariable.datasource }
+  - omit: { by_builder: TextBoxVariable.sort }
+  - omit: { by_builder: TextBoxVariable.refresh }
+  - omit: { by_builder: TextBoxVariable.multi }
+  - omit: { by_builder: TextBoxVariable.allValue }
+  - omit: { by_builder: TextBoxVariable.regex }
+  - omit: { by_builder: TextBoxVariable.includeAll }
+  - omit: { by_builder: TextBoxVariable.auto }
+  - omit: { by_builder: TextBoxVariable.auto_min }
+  - omit: { by_builder: TextBoxVariable.auto_count }
+  - rename:
+      by_builder: TextBoxVariable.query
+      as: defaultValue
+
+  ##################
+  # CustomVariable #
+  ##################
+  - omit: { by_builder: CustomVariable.skipUrlSync }
+  - omit: { by_builder: CustomVariable.datasource }
+  - omit: { by_builder: CustomVariable.sort }
+  - omit: { by_builder: CustomVariable.refresh }
+  - omit: { by_builder: CustomVariable.regex }
+  - omit: { by_builder: CustomVariable.auto }
+  - omit: { by_builder: CustomVariable.auto_min }
+  - omit: { by_builder: CustomVariable.auto_count }
+  - rename:
+      by_builder: CustomVariable.query
+      as: values

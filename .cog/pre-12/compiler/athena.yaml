@@ -1,0 +1,16 @@
+# yaml-language-server: $schema=https://raw.githubusercontent.com/grafana/cog/main/schemas/compiler_passes.json
+
+passes:
+  ##########
+  # Athena #
+  ##########
+
+  - schema_set_entry_point:
+      package: athena
+      entry_point: Dataquery
+
+  - retype_field:
+      field: athena.Dataquery.datasource
+      as:
+        kind: ref
+        ref: { referred_pkg: common, referred_type: DataSourceRef }
