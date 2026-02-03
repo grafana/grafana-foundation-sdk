@@ -1,0 +1,17 @@
+{{- define "object_dashboard_Panel_field_options_custom_strict_unmarshal" -}}
+{{- /* Non-standard unmarshalling to parse the correct Options struct based on the panel type */}}
+	variantCfg, found := cog.ConfigForPanelcfgVariant(resource.Type)
+	if found && variantCfg.StrictOptionsUnmarshaler != nil {
+		options, err := variantCfg.StrictOptionsUnmarshaler(fields["options"])
+		if err != nil {
+			errs = append(errs, cog.MakeBuildErrors("options", err)...)
+		} else {
+			resource.Options = options
+		}
+	} else {
+		if err := json.Unmarshal(fields["options"], &resource.Options); err != nil {
+			errs = append(errs, cog.MakeBuildErrors("options", err)...)
+		}
+	}
+
+{{ end }}

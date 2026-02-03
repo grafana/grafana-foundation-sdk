@@ -1,0 +1,22 @@
+# yaml-language-server: $schema=https://raw.githubusercontent.com/grafana/cog/main/schemas/veneers.json
+
+language: all
+
+package: common
+
+builders:
+  ###############
+  # Table panel #
+  ###############
+
+  - omit: { by_name: TableAutoCellOptions }
+  - omit: { by_name: TableSparklineCellOptions }
+  - omit: { by_name: TableBarGaugeCellOptions }
+  - omit: { by_name: TableColoredBackgroundCellOptions }
+  - omit: { by_name: TableColorTextCellOptions }
+  - omit: { by_name: TableImageCellOptions }
+  - omit: { by_name: TableDataLinksCellOptions }
+  - omit: { by_name: TableActionsCellOptions }
+  - omit: { by_name: TableJsonViewCellOptions }
+
+  - omit: { by_name: DataSourceRef }

@@ -1,0 +1,54 @@
+{{- define "object_dashboard_Panel_custom_unmarshal" -}}
+@classmethod
+{{- $typing := importPkg "typing" "typing" }}
+def from_json(cls, data: dict[str, typing.Any]) -> typing.Self:
+    args: dict[str, typing.Any] = {}
+
+    {{- range $field := .Object.Type.Struct.Fields }}
+    {{- if eq $field.Name "options" }}
+    {{ template "unmarshal_dashboard_panel_options" }}
+    {{- else if eq $field.Name "fieldConfig" }}
+    {{ template "unmarshal_dashboard_panel_fieldConfig" }}
+    {{- else if eq $field.Name "targets" }}
+    {{ template "unmarshal_dashboard_panel_targets" }}
+    {{- else if $field.Type.IsConcreteScalar }}
+        {{ continue}}
+    {{- else if $field.Type.IsRef }}
+    if "{{ $field.Name }}" in data:
+        args["{{ $field.Name|formatIdentifier }}"] = {{ $field.Type.AsRef|formatFullyQualifiedRef }}.from_json(data["{{ $field.Name }}"])
+    {{- else }}
+    if "{{ $field.Name }}" in data:
+        args["{{ $field.Name|formatIdentifier }}"] = data["{{ $field.Name }}"]
+    {{- end }}
+    {{- end }}
+
+    return cls(**args)
+{{- end }}
+
+{{- define "unmarshal_dashboard_panel_options" }}
+    {{- $cogruntime := importModule "cogruntime" "..cog" "runtime" }}
+    if "options" in data:
+        config = cogruntime.panelcfg_config(data.get("type", ""))
+        if config is not None and config.options_from_json_hook is not None:
+            args["options"] = config.options_from_json_hook(data["options"])
+        else:
+            args["options"] = data["options"]
+{{- end }}
+
+{{- define "unmarshal_dashboard_panel_fieldConfig" }}
+    {{- $cogruntime := importModule "cogruntime" "..cog" "runtime" }}
+    if "fieldConfig" in data:
+        config = cogruntime.panelcfg_config(data.get("type", ""))
+        field_config = FieldConfigSource.from_json(data["fieldConfig"])
+
+        if config is not None and config.field_config_from_json_hook is not None:
+            custom_field_config = data["fieldConfig"].get("defaults", {}).get("custom", {})
+            field_config.defaults.custom = config.field_config_from_json_hook(custom_field_config)
+
+        args["field_config"] = field_config
+{{- end }}
+
+{{- define "unmarshal_dashboard_panel_targets" }}
+    if "targets" in data:
+        args["targets"] = [cogruntime.dataquery_from_json(dataquery_json, data["datasource"]["type"] if data.get("datasource") is not None and data["datasource"].get("type", "") != "" else "") for dataquery_json in data["targets"]]
+{{- end }}

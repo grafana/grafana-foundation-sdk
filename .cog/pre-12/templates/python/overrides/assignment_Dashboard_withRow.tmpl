@@ -1,0 +1,41 @@
+{{- define "pre_assignment_Dashboard_withRow" }}
+
+# Position the row on the grid
+if row_panel_resource.grid_pos is None or (row_panel_resource.grid_pos.x == 0 and row_panel_resource.grid_pos.y == 0):
+    row_panel_resource.grid_pos = dashboard.GridPos(
+        x=0,
+        y=self.__current_y + self.__last_panel_height,
+        h=1,
+        w=24,
+    )
+{{- end }}
+
+{{- define "post_assignment_Dashboard_withRow" }}
+
+# Reset the state for the next row
+self.__current_x = 0
+self.__current_y = row_panel_resource.grid_pos.y + 1
+self.__last_panel_height = 0
+
+# Position the row's panels on the grid
+for panel in row_panel_resource.panels:
+    # Position the panel on the grid
+    if panel.grid_pos is None:
+        panel.grid_pos = dashboard.GridPos()
+
+    # The panel either has no position set, or it is the first panel of the dashboard.
+    # In that case, we position it on the grid
+    if panel.grid_pos.x == 0 and panel.grid_pos.y == 0:
+        panel.grid_pos.x = self.__current_x
+        panel.grid_pos.y = self.__current_y
+
+    # Prepare the coordinates for the next panel
+    self.__current_x += panel.grid_pos.w
+    self.__last_panel_height = max(self.__last_panel_height, panel.grid_pos.h)
+
+    # Check for grid width overflow?
+    if self.__current_x >= 24:
+        self.__current_x = 0
+        self.__current_y += self.__last_panel_height
+        self.__last_panel_height = 0
+{{- end }}

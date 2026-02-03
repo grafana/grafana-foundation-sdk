@@ -1,0 +1,35 @@
+{{- define "api_reference_object_dashboard_Dashboard_extra" -}}
+## Examples
+
+### Marshalling to JSON
+
+```python
+from grafana_foundation_sdk.cog.encoder import JSONEncoder
+from grafana_foundation_sdk.models.dashboard import Dashboard
+
+
+if __name__ == '__main__':
+    dashboard = Dashboard()
+
+    encoder = JSONEncoder(sort_keys=True, indent=2)
+    print(encoder.encode(dashboard))
+```
+
+### Unmarshalling from JSON
+
+```python
+import json
+
+from grafana_foundation_sdk.cog.plugins import register_default_plugins
+from grafana_foundation_sdk.models.dashboard import Dashboard as DashboardModel
+
+
+if __name__ == '__main__':
+    # Required to correctly unmarshal panels and dataqueries
+    register_default_plugins()
+
+    with open("dashboard.json", "r") as f:
+        decoded_dashboard = DashboardModel.from_json(json.load(f))
+        print(decoded_dashboard)
+```
+{{ end }}

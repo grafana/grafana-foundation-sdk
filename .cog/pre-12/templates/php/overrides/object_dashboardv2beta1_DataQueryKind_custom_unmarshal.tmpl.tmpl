@@ -1,0 +1,29 @@
+{{- define "object_dashboardv2beta1_DataQueryKind_custom_unmarshal" }}
+/**
+ * @param array<string, mixed> $inputData
+ */
+public static function fromArray(array $inputData): self
+{
+    /** @var {{ typeShape .Object.Type }} $inputData */
+    $data = $inputData;
+    return new self(
+        {{- range $field := .Object.Type.Struct.Fields }} 
+        {{ if eq $field.Name "spec" -}}
+        {{ $field.Name }}: {{ template "dashboardv2beta1_DataQueryKind_spec_unmarshal" }}
+        {{- else if or $field.Type.IsConcreteScalar $field.Type.IsConstantRef }}
+        {{ continue }}
+        {{- else -}}
+        {{ $field.Name }}: {{ unmarshalForType $field.Type (print "$data[\"" $field.Name "\"]") }}
+        {{- end -}},
+        {{- end }}
+   );
+}
+{{- end }}
+
+{{- define "dashboardv2beta1_DataQueryKind_spec_unmarshal" -}}
+isset($data['spec']) ? (function($input) {
+    /** @var array<string, mixed> $spec */
+    $spec = $input['spec'];
+    return \Grafana\Foundation\Cog\Runtime::get()->dataqueryFromArray($spec, $input['group'] ?? '');
+})($data) : null
+{{- end }}

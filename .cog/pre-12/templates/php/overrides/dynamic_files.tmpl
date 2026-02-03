@@ -1,0 +1,113 @@
+{{- define "dynamic_files" -}}
+{{- $isPanelSchema := .Schema.IsComposableVariant "panelcfg" -}}
+{{ if $isPanelSchema }}
+    {{- $filename := print "src/" (.Schema.Package | formatPackageName) "/VariantConfig.php" -}}
+    {{- $content := include "schema_panelcfg_variantConfig_file" . -}}
+    {{- $_ := declareFile $filename $content -}}
+{{ end }}
+
+{{- $isDataquerySchema := and (.Schema.IsComposableVariant "dataquery") (ne .Schema.EntryPoint "") -}}
+{{ if $isDataquerySchema }}
+    {{- $filename := print "src/" (.Schema.Package | formatPackageName) "/VariantConfig.php" -}}
+    {{- $content := include "schema_dataquery_variantConfig_file" . -}}
+    {{- $_ := declareFile $filename $content -}}
+{{ end }}
+{{- end }}
+
+{{ define "schema_dataquery_variantConfig_file" -}}
+{{- $convert := "null" -}}
+{{- $convertv2 := "null" -}}
+{{- $fromArray := "null" -}}
+{{- $entryPointNotFound := not (schemaHasObject .Schema .Schema.EntryPoint) -}}
+
+{{- if and ($entryPointNotFound) (resolvesToDisjunction .Schema.EntryPointType)  -}}
+{{- $fromArray = unmarshalDisjunctionFunc .Schema.EntryPointType -}}
+{{- else if not $entryPointNotFound -}}
+{{- $fromArray = print "[" (.Schema.EntryPoint | formatObjectName) "::class, 'fromArray']" -}}
+{{-  end -}}
+
+{{- if .Config.Converters -}}
+    {{- $convert = print "[" (.Schema.EntryPoint | formatObjectName) "Converter::class, 'convert']" -}}
+    {{- if .Schema.EntryPointType|resolvesToDisjunction -}}
+    {{- $convert = convertDisjunctionFunc .Schema.EntryPointType -}}
+    {{- end -}}
+    
+    {{- if objectExists "dashboardv2beta1" "DataQueryKind" }}
+    {{- $convertv2 = print "[QueryConverter::class, 'convert']" -}}
+    {{- end }}
+    
+{{- end -}}
+<?php
+
+namespace {{ .Schema.Package | formatPackageName | fullNamespace }};
+
+final class VariantConfig
+{
+    public static function get(): {{ "Cog\\DataqueryConfig" | fullNamespaceRef }}
+    {
+        return new {{ "Cog\\DataqueryConfig" | fullNamespaceRef }}(
+            identifier: '{{ .Schema.Metadata.Identifier }}',
+            fromArray: {{ $fromArray }},
+            convert: {{ $convert }},
+            {{- if objectExists "dashboardv2beta1" "DataQueryKind" }}
+            convertv2: {{ $convertv2 }},
+            {{- end }}
+        );
+    }
+
+}
+{{ end }}
+
+{{ define "schema_panelcfg_variantConfig_file" }}
+{{- $options := "null" -}}
+{{- $fieldConfig := "null" -}}
+{{- $convert := "null" -}}
+
+{{- if .Schema.HasObject "Options" -}}
+{{- $options = "[Options::class, 'fromArray']" -}}
+{{- end -}}
+
+{{- if .Schema.HasObject "FieldConfig" -}}
+{{- $fieldConfig = "[FieldConfig::class, 'fromArray']" -}}
+{{- end -}}
+
+{{- if .Config.Converters -}}
+{{- if objectExists "dashboardv2beta1" "VizConfigKind" }}
+{{- $dashboardv2beta1 := fullNamespaceRef "dashboardv2beta1" }}
+{{- $convert = "[self::class, 'convert']" -}}
+{{- else }}
+{{- $convert = "[PanelConverter::class, 'convert']" -}}
+{{- end }}
+{{- end -}}
+<?php
+
+namespace {{ .Schema.Package | formatPackageName | fullNamespace }};
+
+final class VariantConfig
+{
+    public static function get(): {{ "Cog\\PanelcfgConfig" | fullNamespaceRef }}
+    {
+        return new {{ "Cog\\PanelcfgConfig" | fullNamespaceRef }}(
+            identifier: '{{ .Schema.Metadata.Identifier }}',
+            optionsFromArray: {{ $options }},
+            fieldConfigFromArray: {{ $fieldConfig }},
+            convert: {{ $convert }},
+        );
+    }
+    
+    {{- if objectExists "dashboardv2beta1" "VizConfigKind" }}
+    private static function convert(mixed $input): string
+        {
+            if ($input instanceof {{ fullNamespaceRef "Dashboard\\Panel" }}) {
+                return PanelConverter::convert($input);
+            }
+    
+            if ($input instanceof {{ fullNamespaceRef "Dashboardv2beta1\\VizConfigKind" }}) {
+                return VisualizationConverter::convert($input);
+            }
+    
+            return '/* could not convert panel */';
+        }
+    {{- end }}
+}
+{{ end }}

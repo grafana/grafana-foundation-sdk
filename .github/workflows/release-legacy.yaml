@@ -1,7 +1,22 @@
-name: Release
+name: Release legacy
 on:
-  push:
-    tags: ["v*"]
+  workflow_dispatch:
+    inputs:
+      version:
+        description: 'Version to release, or "all" to release all supported versions.'
+        required: true
+        default: 'all'
+        type: string
+      dryRun:
+        description: 'Dry-run mode runs the release pipeline without pushing its results.'
+        required: false
+        default: false
+        type: boolean
+      skipValidation:
+        description: 'Skip output validation (linters, compilation checks, ...).'
+        required: false
+        default: false
+        type: boolean
 
 env:
   DEVBOX_VERSION: '0.13.1'
@@ -25,13 +40,12 @@ defaults:
 
 jobs:
   build:
-    name: Build SDK and release
+    name: Build SDK and release legacy branches
     runs-on: ubuntu-latest
 
     steps:
       - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 #v4.2.2
         with:
-          ref: ${{ inputs.version }}
           persist-credentials: false
 
       - name: Setup cog
@@ -64,7 +78,11 @@ jobs:
           git config --global user.email 'github-actions[bot]@users.noreply.github.com'
           git config --global url."https://x-access-token:${{ env.GENERATED_GITHUB_TOKEN }}@github.com/".insteadOf "git@github.com:"
 
-          devbox run ./scripts/release.sh "${VERSION_TARGET}"
+          if [ "${VERSION_TARGET}" == "all" ]; then
+            devbox run ./scripts-legacy/release-all.sh
+          else
+            devbox run ./scripts-legacy/release-version.sh "${VERSION_TARGET}"
+          fi
         env:
           TERM: 'xterm'
           LOG_LEVEL: '7' # debug

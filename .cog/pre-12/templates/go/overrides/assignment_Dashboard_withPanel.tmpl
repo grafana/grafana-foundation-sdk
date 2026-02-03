@@ -1,0 +1,26 @@
+{{- define "pre_assignment_Dashboard_withPanel" }}
+
+	if panelResource.GridPos == nil {
+		panelResource.GridPos = NewGridPos()
+	}
+	// The panel either has no position set, or it is the first panel of the dashboard.
+	// In that case, we position it on the grid
+	if panelResource.GridPos.X == 0 && panelResource.GridPos.Y == 0 {
+		panelResource.GridPos.X = builder.currentX
+		panelResource.GridPos.Y = builder.currentY
+	}
+{{- end }}
+
+{{- define "post_assignment_Dashboard_withPanel" }}
+
+	// Prepare the coordinates for the next panel
+	builder.currentX += panelResource.GridPos.W
+	builder.lastPanelHeight = max(builder.lastPanelHeight, panelResource.GridPos.H)
+
+	// Check for grid width overflow?
+	if builder.currentX >= 24 {
+		builder.currentX = 0
+		builder.currentY += builder.lastPanelHeight
+		builder.lastPanelHeight = 0
+	}
+{{- end }}

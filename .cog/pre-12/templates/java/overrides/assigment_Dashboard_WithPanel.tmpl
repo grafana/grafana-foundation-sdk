@@ -1,0 +1,38 @@
+{{- define "pre_assignment_Dashboard_withPanel" }}
+
+    if (panelOrRowPanel.panel.gridPos == null) {
+        panelOrRowPanel.panel.gridPos = new GridPos();
+    }
+    if (panelOrRowPanel.panel.gridPos.x == null) {
+        panelOrRowPanel.panel.gridPos.x = 0;
+    }
+    if (panelOrRowPanel.panel.gridPos.y == null) {
+        panelOrRowPanel.panel.gridPos.y = 0;
+    }
+    if (panelOrRowPanel.panel.gridPos.w == null) {
+        panelOrRowPanel.panel.gridPos.w = 0;
+    }
+    if (panelOrRowPanel.panel.gridPos.h == null) {
+        panelOrRowPanel.panel.gridPos.h = 0;
+    }
+    // The panel either has no position set, or it is the first panel of the dashboard.
+    // In that case, we position it on the grid
+    if (panelOrRowPanel.panel.gridPos.x == 0 && panelOrRowPanel.panel.gridPos.y == 0) {
+        panelOrRowPanel.panel.gridPos.x = this.currentX;
+        panelOrRowPanel.panel.gridPos.y = this.currentY;
+    }
+{{- end }}
+
+{{- define "post_assignment_Dashboard_withPanel" }}
+
+	// Prepare the coordinates for the next panel
+	this.currentX += panelOrRowPanel.panel.gridPos.w;
+	this.lastPanelHeight = java.lang.Math.max(this.lastPanelHeight, panelOrRowPanel.panel.gridPos.h);
+
+	// Check for grid width overflow?
+	if (this.currentX >= 24) {
+		this.currentX = 0;
+		this.currentY += this.lastPanelHeight;
+		this.lastPanelHeight = 0;
+	}
+{{- end }}

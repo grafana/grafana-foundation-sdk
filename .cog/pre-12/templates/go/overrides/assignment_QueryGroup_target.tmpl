@@ -1,0 +1,7 @@
+{{- define "pre_assignment_QueryGroup_target" }}
+{{ $fmt := importStdPkg "fmt" }}
+	if querieResource.Spec.RefId == "" {
+		querieResource.Spec.RefId = fmt.Sprintf("query-%d", builder.nextQueryId)
+		builder.nextQueryId += 1
+	}
+{{- end }}

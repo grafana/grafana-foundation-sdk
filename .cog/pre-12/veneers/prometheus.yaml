@@ -1,0 +1,84 @@
+# yaml-language-server: $schema=https://raw.githubusercontent.com/grafana/cog/main/schemas/veneers.json
+
+language: all
+
+package: prometheus
+
+builders:
+  # Like the UI, support a "both instant and range" query
+  - add_option:
+      by_object: Dataquery # for dashboard v1
+      option:
+        name: rangeAndInstant
+        assignments:
+          - path: range
+            method: direct
+            value: { constant: true }
+          - path: instant
+            method: direct
+            value: { constant: true }
+
+  - add_option:
+      by_name: Query # for dashboard v2
+      option:
+        name: rangeAndInstant
+        assignments:
+          - path: range
+            method: direct
+            value: { constant: true }
+          - path: instant
+            method: direct
+            value: { constant: true }
+
+options:
+  # Ensure that enabling "range query mode" disables other modes
+  - unfold_boolean:
+      by_name: Dataquery.range # for dashboard v1
+      true_as: range
+      false_as: notRange
+  - omit: { by_name: Dataquery.notRange }
+  - add_assignment:
+      by_name: Dataquery.range # for dashboard v1
+      assignment:
+        path: instant
+        method: direct
+        value: { constant: false }
+
+  # Ensure that enabling "instant query mode" disables other modes
+  - unfold_boolean:
+      by_name: Dataquery.instant # for dashboard v1
+      true_as: instant
+      false_as: notInstant
+  - omit: { by_name: Dataquery.notInstant }
+  - add_assignment:
+      by_name: Dataquery.instant
+      assignment:
+        path: range
+        method: direct
+        value: { constant: false }
+
+  # Ensure that enabling "range query mode" disables other modes
+  - unfold_boolean:
+      by_builder: Query.range # for dashboard v2
+      true_as: range
+      false_as: notRange
+  - omit: { by_builder: Query.notRange }
+  - add_assignment:
+      by_builder: Query.range
+      assignment:
+        path: instant
+        method: direct
+        value: { constant: false }
+
+  # Ensure that enabling "instant query mode" disables other modes
+  - unfold_boolean:
+      by_builder: Query.instant # for dashboard v2
+      true_as: instant
+      false_as: notInstant
+  - omit: { by_builder: Query.notInstant }
+  - add_assignment:
+      by_builder: Query.instant # for dashboard v2
+      assignment:
+        path: range
+        method: direct
+        value: { constant: false }

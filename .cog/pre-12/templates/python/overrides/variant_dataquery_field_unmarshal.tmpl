@@ -1,0 +1,19 @@
+{{- define "variant_dataquery_field_unmarshal" -}}
+{{- $dataqueryHint := "\"\"" -}}
+{{- range $candidate := .Object.Type.Struct.Fields -}}
+    {{- if and ($candidate.Type.IsRef) (eq $candidate.Type.Ref.ReferredType "DataSourceRef") -}}
+    {{- $dataqueryHint = include "dataquery_field_unmarshal_hint" (dict "Candidate" $candidate) -}}
+    {{- end -}}
+{{- end -}}
+{{- $cogruntime := importModule "cogruntime" "..cog" "runtime" -}}
+
+{{- if .Field.Type.IsArray -}}
+[{{ $cogruntime }}.dataquery_from_json(dataquery_json, {{ $dataqueryHint }}) for dataquery_json in data["{{ .Field.Name }}"]]
+{{- else -}}
+{{ $cogruntime }}.dataquery_from_json(data["{{ .Field.Name }}"], {{ $dataqueryHint }})
+{{- end -}}
+{{- end }}
+
+{{- define "dataquery_field_unmarshal_hint" -}}
+data["{{ .Candidate.Name }}"]["type"] if data.get("{{ .Candidate.Name }}") is not None and data["{{ .Candidate.Name }}"].get("type", "") != "" else ""
+{{- end }}

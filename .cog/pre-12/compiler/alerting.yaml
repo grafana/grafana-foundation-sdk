@@ -1,0 +1,198 @@
+# yaml-language-server: $schema=https://raw.githubusercontent.com/grafana/cog/main/schemas/compiler_passes.json
+
+passes:
+  ############
+  # Alerting #
+  ############
+
+  - rename_object:
+      from: alerting.AlertRuleGroup
+      to: RuleGroup
+  - rename_object:
+      from: alerting.ProvisionedAlertRule
+      to: Rule
+  - rename_object:
+      from: alerting.AlertRuleNotificationSettings
+      to: NotificationSettings
+  - rename_object:
+      from: alerting.AlertQuery
+      to: Query
+
+  - rename_object:
+      from: alerting.EmbeddedContactPoint
+      to: ContactPoint
+  - rename_object:
+      from: alerting.Route
+      to: NotificationPolicy
+  - rename_object:
+      from: alerting.MuteTimeInterval
+      to: MuteTiming
+  - add_object:
+      object: alerting.TimeInterval
+      as:
+        kind: struct
+        struct:
+          fields:
+            - name: times
+              type:
+                kind: array
+                array:
+                  value_type:
+                    kind: ref
+                    ref: { referred_pkg: alerting, referred_type: TimeRange }
+            - name: weekdays
+              type:
+                kind: array
+                array:
+                  value_type:
+                    kind: ref
+                    ref: { referred_pkg: alerting, referred_type: WeekdayRange }
+            - name: days_of_month
+              type:
+                kind: array
+                array:
+                  value_type:
+                    kind: ref
+                    ref: { referred_pkg: alerting, referred_type: DayOfMonthRange }
+            - name: months
+              type:
+                kind: array
+                array:
+                  value_type:
+                    kind: ref
+                    ref: { referred_pkg: alerting, referred_type: MonthRange }
+            - name: years
+              type:
+                kind: array
+                array:
+                  value_type:
+                    kind: ref
+                    ref: { referred_pkg: alerting, referred_type: YearRange }
+            - name: location
+              type:
+                kind: ref
+                ref: { referred_pkg: alerting, referred_type: Location }
+  - add_object:
+      object: alerting.WeekdayRange
+      as:
+        kind: struct
+        struct:
+          fields:
+            - name: begin
+              type:
+                kind: scalar
+                scalar:
+                  scalar_kind: int32
+            - name: end
+              type:
+                kind: scalar
+                scalar:
+                  scalar_kind: int32
+  - add_object:
+      object: alerting.DayOfMonthRange
+      as:
+        kind: struct
+        struct:
+          fields:
+            - name: begin
+              type:
+                kind: scalar
+                scalar:
+                  scalar_kind: int32
+            - name: end
+              type:
+                kind: scalar
+                scalar:
+                  scalar_kind: int32
+  - add_object:
+      object: alerting.YearRange
+      as:
+        kind: struct
+        struct:
+          fields:
+            - name: begin
+              type:
+                kind: scalar
+                scalar:
+                  scalar_kind: int32
+            - name: end
+              type:
+                kind: scalar
+                scalar:
+                  scalar_kind: int32
+  - add_object:
+      object: alerting.MonthRange
+      as:
+        kind: struct
+        struct:
+          fields:
+            - name: begin
+              type:
+                kind: scalar
+                scalar:
+                  scalar_kind: int32
+            - name: end
+              type:
+                kind: scalar
+                scalar:
+                  scalar_kind: int32
+  - add_object:
+      object: alerting.Location
+      as:
+        kind: scalar
+        scalar:
+          scalar_kind: string
+
+  - retype_field:
+      field: alerting.Query.model
+      as:
+        kind: composable_slot
+        composable_slot: { variant: dataquery }
+
+  - retype_object:
+      object: alerting.Duration
+      as:
+        kind: scalar
+        scalar: { scalar_kind: int64 }
+      comments:
+        - 'Duration in seconds.'
+  - retype_field:
+      field: alerting.RuleGroup.interval
+      as:
+        kind: ref
+        ref: { referred_pkg: alerting, referred_type: Duration }
+      comments:
+        - 'The interval, in seconds, at which all rules in the group are evaluated.'
+        - 'If a group contains many rules, the rules are evaluated sequentially.'
+  - retype_field:
+      field: alerting.Rule.for
+      as:
+        kind: scalar
+        scalar: { scalar_kind: string }
+      comments:
+        - 'The amount of time, in seconds, for which the rule must be breached for the rule to be considered to be Firing.'
+        - 'Before this time has elapsed, the rule is only considered to be Pending.'
+  - retype_field:
+      field: alerting.TimeInterval.time_intervals
+      as:
+        kind: array
+        array:
+          value_type:
+            kind: ref
+            ref: { referred_pkg: alerting, referred_type: TimeIntervalItem }
+  - retype_object:
+      object: alerting.MatchType
+      as:
+        kind: enum
+        enum:
+          values:
+            - { type: { kind: scalar, scalar: { scalar_kind: string } }, name: 'equal', value: '=' }
+            - { type: { kind: scalar, scalar: { scalar_kind: string } }, name: 'not-equal', value: '!=' }
+            - { type: { kind: scalar, scalar: { scalar_kind: string } }, name: 'equal-regex', value: '=~' }
+            - { type: { kind: scalar, scalar: { scalar_kind: string } }, name: 'not-equal-regex', value: '!~' }
+
+  - rename_object:
+      from: alerting.Record
+      to: RecordRule
+
+  - trim_enum_values: {}

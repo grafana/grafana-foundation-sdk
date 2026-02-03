@@ -1,0 +1,132 @@
+plugins {
+    id 'java'
+    id 'maven-publish'
+    {{- if not .Data.Debug }}
+    id 'io.github.gradle-nexus.publish-plugin' version '2.0.0'
+    {{- end }}
+    id 'signing'
+    id 'com.gradleup.shadow' version '8.3.9'
+}
+
+group = "com.grafana"
+version = project.properties['grafanaFoundationSDKVersion']
+
+java {
+    sourceCompatibility = JavaVersion.VERSION_17
+    targetCompatibility = JavaVersion.VERSION_17
+
+    withJavadocJar()
+    withSourcesJar()
+}
+
+shadowJar {
+    // allows maven to read the artifact (by default, it's "plain")
+    archiveClassifier.set('')
+    relocate 'com.fasterxml.jackson', 'com.grafana.relocated.jackson'
+}
+
+allprojects {
+    version = rootProject.version
+    apply plugin: "java"
+
+    {{- if .Data.Debug }}
+    repositories {
+       mavenCentral()
+       mavenLocal()
+    }
+
+    test {
+        useJUnitPlatform()
+    }
+    {{- else }}
+    repositories {
+        mavenCentral()
+        maven {
+            url = uri("https://central.sonatype.com/repository/maven-snapshots/")
+            mavenContent {
+                snapshotsOnly()
+            }
+        }
+    }
+
+    test {
+        useJUnitPlatform()
+    }
+    {{- end }}
+}
+
+dependencies {
+    implementation 'com.fasterxml.jackson.core:jackson-databind:2.19.1'
+}
+
+tasks.withType(Javadoc).configureEach {
+    options.addStringOption('Xdoclint:-missing', '-quiet')
+}
+
+tasks.build.dependsOn shadowJar
+
+{{- if .Data.Debug }}
+publishing {
+    publications {
+        mavenJava(MavenPublication) {
+            from components.java
+        }
+    }
+}
+{{- else }}
+publishing {
+    publications {
+        mavenJava(MavenPublication) {
+            from components.java
+
+            pom {
+                name = 'Grafana Foundation SDK'
+                description = 'A set of tools, types and libraries for building and manipulating Grafana objects.'
+                url = 'https://github.com/grafana/grafana-foundation-sdk'
+                licenses {
+                    license {
+                        name = 'The Apache License, Version 2.0'
+                        url = 'http://www.apache.org/licenses/LICENSE-2.0.txt'
+                    }
+                }
+                developers {
+                    developer {
+                        id = "grafana"
+                        name = "Grafana Labs"
+                        email = "platform-cat@grafana.com"
+                    }
+                }
+                scm {
+                    connection = 'scm:git:git://github.com/grafana/grafana-foundation-sdk.git'
+                    developerConnection = 'scm:git:ssh://github.com/grafana/grafana-foundation-sdk.git'
+                    url = 'https://github.com/grafana/grafana-foundation-sdk'
+                }
+            }
+        }
+    }
+}
+
+nexusPublishing {
+    repositories {
+        sonatype {
+            nexusUrl.set(uri("https://ossrh-staging-api.central.sonatype.com/service/local/"))
+            snapshotRepositoryUrl.set(uri("https://central.sonatype.com/repository/maven-snapshots/"))
+    
+            username = System.getenv("MAVEN_USERNAME")
+            password = System.getenv("MAVEN_PASSWORD")
+        }
+    }    
+    transitionCheckOptions {
+        maxRetries = 100
+        delayBetween = Duration.ofSeconds(5)
+    }   
+}
+
+if (gradle.startParameter.taskNames.contains("publishToSonatype")) {
+    signing {
+        sign publishing.publications.mavenJava
+        useInMemoryPgpKeys(System.getenv("GPG_PRIVATE_KEY"), System.getenv("GPG_PASSPHRASE"))
+    }
+}
+
+{{- end }}

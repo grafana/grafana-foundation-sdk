@@ -1,0 +1,61 @@
+# yaml-language-server: $schema=https://raw.githubusercontent.com/grafana/cog/main/schemas/compiler_passes.json
+
+passes:
+  - anonymous_structs_to_named: {}
+
+  # To stay close to the pre-v11 object names
+
+  - omit:
+      objects:
+        - 'testdata.Testdata'
+        - 'testdata.TestdataTestdataTargetsDatasource'
+
+  - rename_object:
+      from: 'testdata.TestdataTestdataTargets'
+      to: 'dataquery'
+
+  - schema_set_entry_point:
+      package: testdata
+      entry_point: dataquery
+
+  - retype_field:
+      field: testdata.dataquery.datasource
+      as:
+        kind: ref
+        ref: { referred_pkg: common, referred_type: DataSourceRef }
+
+  - rename_object:
+      from: 'testdata.TestdataTestdataTargetsCsvWave'
+      to: 'CSVWave'
+
+  - rename_object:
+      from: 'testdata.TestdataTestdataTargetsNodes'
+      to: 'NodesQuery'
+
+  - rename_object:
+      from: 'testdata.TestdataTestdataTargetsPulseWave'
+      to: 'PulseWaveQuery'
+
+  - rename_object:
+      from: 'testdata.TestdataTestdataTargetsResultAssertions'
+      to: 'ResultAssertions'
+
+  - rename_object:
+      from: 'testdata.TestdataTestdataTargetsSimKey'
+      to: 'Key'
+
+  - rename_object:
+      from: 'testdata.TestdataTestdataTargetsSim'
+      to: 'SimulationQuery'
+
+  - rename_object:
+      from: 'testdata.TestdataTestdataTargetsStream'
+      to: 'StreamingQuery'
+
+  - rename_object:
+      from: 'testdata.TestdataTestdataTargetsTimeRange'
+      to: 'TimeRange'
+
+  - rename_object:
+      from: 'testdata.TestdataTestdataTargetsUsa'
+      to: 'USAQuery'

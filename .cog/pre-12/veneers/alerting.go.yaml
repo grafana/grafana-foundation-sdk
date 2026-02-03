@@ -1,0 +1,9 @@
+# yaml-language-server: $schema=https://raw.githubusercontent.com/grafana/cog/main/schemas/veneers.json
+
+language: go
+
+package: alerting
+
+options:
+  - struct_fields_as_arguments:
+      by_name: Query.relativeTimeRange

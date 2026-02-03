@@ -1,0 +1,64 @@
+{{- define "api_reference_object_dashboard_Dashboard_extra" -}}
+## Examples
+
+### Marshalling to JSON
+
+```go
+package main
+
+import (
+    "encoding/json"
+    "fmt"
+    "os"
+
+    "github.com/grafana/grafana-foundation-sdk/go/cog"
+    "github.com/grafana/grafana-foundation-sdk/go/dashboard"
+)
+
+func main() {
+    sampleDashboard := &dashboard.Dashboard{
+        Uid: cog.ToPtr("sample-dashboard-uid"),
+        Title: cog.ToPtr("Sample dashboard"),
+    }
+
+    dashboardJson, err := json.MarshalIndent(sampleDashboard, "", "  ")
+    if err != nil {
+        panic(err)
+    }
+
+    fmt.Println(string(dashboardJson))
+}
+```
+
+### Unmarshalling from JSON
+
+```go
+package main
+
+import (
+    "encoding/json"
+    "fmt"
+    "os"
+
+    "github.com/grafana/grafana-foundation-sdk/go/cog/plugins"
+    "github.com/grafana/grafana-foundation-sdk/go/dashboard"
+)
+
+func main() {
+    // Required to correctly unmarshal panels and dataqueries
+    plugins.RegisterDefaultPlugins()
+
+    dashboardJSON, err := os.ReadFile("dashboard.json")
+    if err != nil {
+        panic(err)
+    }
+
+    sampleDashboard := &dashboard.Dashboard{}
+    if err := json.Unmarshal(dashboardJSON, sampleDashboard); err != nil {
+        panic(fmt.Sprintf("%s", err))
+    }
+
+    fmt.Printf("%#v\n", sampleDashboard)
+}
+```
+{{ end }}

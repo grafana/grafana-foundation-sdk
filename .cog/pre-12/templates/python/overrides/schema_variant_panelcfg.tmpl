@@ -1,0 +1,21 @@
+{{- define "schema_variant_panelcfg" -}}
+{{- $_ := apiDeclareFunction (dict
+    "pkg" .Schema.Package
+    "name" "variant_config"
+    "comments" (listStr
+        (print "variant_config returns the configuration related to " (.Schema.Metadata.Identifier|lower) " panels.")
+        "This configuration describes how to unmarshal it, convert it to code, …"
+    )
+    "return" "variants.PanelcfgConfig"
+) -}}
+{{- $cogruntime := importModule "cogruntime" "..cog" "runtime" -}}
+{{- $options := ternary "Options.from_json" "None" (schemaHasObject .Schema "Options") -}}
+{{- $fieldConfig := ternary "FieldConfig.from_json" "None" (schemaHasObject .Schema "FieldConfig") -}}
+
+def variant_config() -> {{ $cogruntime }}.PanelCfgConfig:
+    return {{ $cogruntime }}.PanelCfgConfig(
+        identifier="{{ .Schema.Metadata.Identifier }}",
+        options_from_json_hook={{ $options }},
+        field_config_from_json_hook={{ $fieldConfig }},
+    )
+{{ end }}

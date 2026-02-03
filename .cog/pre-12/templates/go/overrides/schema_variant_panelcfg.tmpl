@@ -1,0 +1,83 @@
+{{- define "schema_variant_panelcfg" -}}
+{{- $variants := importPkg "cog/variants" -}}
+{{- $_ := apiDeclareFunction (dict
+    "pkg" .Schema.Package
+    "name" "VariantConfig"
+    "comments" (listStr
+        (print "VariantConfig returns the configuration related to " (.Schema.Metadata.Identifier|lower) " panels.")
+        "This configuration describes how to unmarshal it, convert it to code, …"
+    )
+    "return" "variants.PanelcfgConfig"
+) -}}
+// VariantConfig returns the configuration related to {{ .Schema.Metadata.Identifier|lower }} panels.
+// This configuration describes how to unmarshal it, convert it to code, …
+func VariantConfig() {{ $variants }}.PanelcfgConfig {
+	return {{ $variants }}.PanelcfgConfig{
+		Identifier: "{{ .Schema.Metadata.Identifier }}",
+		{{- if .Schema.HasObject "Options" }}
+		{{- $json := importStdPkg "encoding/json" }}
+		OptionsUnmarshaler: func (raw []byte) (any, error) {
+			options := &Options{}
+
+			if err := json.Unmarshal(raw, options); err != nil {
+				return nil, err
+			}
+
+			return options, nil
+		},
+		StrictOptionsUnmarshaler: func (raw []byte) (any, error) {
+			options := &Options{}
+
+			if err := options.UnmarshalJSONStrict(raw); err != nil {
+                return nil, err
+            }
+
+			return options, nil
+		},
+		{{- end }}
+		{{- if .Schema.HasObject "FieldConfig" }}
+		{{- $json := importStdPkg "encoding/json" }}
+		FieldConfigUnmarshaler: func (raw []byte) (any, error) {
+			fieldConfig := &FieldConfig{}
+
+			if err := json.Unmarshal(raw, fieldConfig); err != nil {
+				return nil, err
+			}
+
+			return fieldConfig, nil
+		},
+		StrictFieldConfigUnmarshaler: func (raw []byte) (any, error) {
+			fieldConfig := &FieldConfig{}
+
+			if err := fieldConfig.UnmarshalJSONStrict(raw); err != nil {
+                return nil, err
+            }
+
+			return fieldConfig, nil
+		},
+		{{- end }}
+		{{- if .Config.GenerateConverters }}
+		{{- $dashboard := importPkg "dashboard" }}
+		GoConverter: func(inputPanel any) string {
+			if panel, ok := inputPanel.(*{{ $dashboard }}.Panel); ok {
+				return PanelConverter(*panel)
+			}
+            {{- if objectExists "dashboardv2beta1" "VizConfigKind" }}
+            {{- $dashboardv2beta1 := importPkg "dashboardv2beta1" }}
+            if panel, ok := inputPanel.(dashboard.Panel); ok {
+                return PanelConverter(panel)
+            }
+            if panel, ok := inputPanel.(*dashboardv2beta1.VizConfigKind); ok {
+                return VisualizationConverter(*panel)
+            }
+            
+            return VisualizationConverter(inputPanel.(dashboardv2beta1.VizConfigKind))
+            {{- else }}
+            return PanelConverter(inputPanel.(dashboard.Panel))
+            {{- end }}
+		},
+		{{- end }}
+	}
+}
+
+{{ end }}
