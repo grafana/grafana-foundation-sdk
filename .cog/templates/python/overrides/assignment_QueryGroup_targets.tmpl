@@ -1,0 +1,6 @@
+{{- define "pre_assignment_QueryGroup_targets" }}
+for query in queries_resources:
+	if query.spec.ref_id == "":
+		query.spec.ref_id = "query-%d" % self.__next_query_id
+		self.__next_query_id += 1
+{{- end }}
