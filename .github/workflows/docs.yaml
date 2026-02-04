@@ -1,5 +1,7 @@
 name: Publish documentation
 on:
+  push:
+    tags: ["v*"]
   workflow_dispatch: ~
 
 env:
@@ -54,13 +56,13 @@ jobs:
 
       - name: Build documentation website
         run: |
-          devbox run ./scripts/docs/build.sh
+          devbox run ./scripts/build-docs.sh
 
       - name: Upload static files as artifact
         id: deployment
         uses: actions/upload-pages-artifact@56afc609e74202658d3ffba0e8f6dda462b719fa #v3.0.1
         with:
-          path: ./build/docs/
+          path: ./workspace/out/
 
   deploy:
     needs: build
