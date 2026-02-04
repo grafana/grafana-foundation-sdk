@@ -34,14 +34,14 @@ jobs:
         with:
           python-version: ${{ env.PYTHON_VERSION }}
 
-      - name: Install pypa/build
+      - name: Install pypa/build@54f238d1664124e06a68c6c22fd5b1418fa5feb2 #v1.4.0
         run: python3 -m pip install build --user
 
       - name: Build a binary wheel and a source tarball
         run: python3 -m build
 
       - name: Publish distribution 📦 to PyPI
-        uses: pypa/gh-action-pypi-publish@release/v1
+        uses: pypa/gh-action-pypi-publish@ed0c53931b1dc9bd32cbe73a98c7f6766f8a527e #v1.13.0
         with:
           packages-dir: python/dist/
           attestations: false
