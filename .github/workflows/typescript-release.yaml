@@ -35,6 +35,7 @@ jobs:
           node-version: ${{ env.NODE_VERSION }}
           scope: '@grafana'
           registry-url: 'https://registry.npmjs.org'
+          package-manager-cache: false
 
       - name: Ensure npm latest version
         run: npm install -g npm@latest
