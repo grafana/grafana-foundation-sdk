@@ -1,7 +1,8 @@
 name: Release
 on:
   push:
-    tags: ["v*"]
+    branches: ["main"]
+  workflow_dispatch: ~
 
 env:
   DEVBOX_VERSION: '0.13.1'
@@ -9,7 +10,6 @@ env:
 # Grant GITHUB_TOKEN the permissions required to make a release
 permissions:
   contents: write # to push new branches
-  actions: write # new branches will contain github actions
   pull-requests: write # to open PRs
   id-token: write # to retrieve vault secrets
 
@@ -24,14 +24,13 @@ defaults:
     shell: bash
 
 jobs:
-  build:
-    name: Build SDK and release
+  release:
+    name: Prepare and perform a release
     runs-on: ubuntu-latest
 
     steps:
       - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 #v4.2.2
         with:
-          ref: ${{ inputs.version }}
           persist-credentials: false
 
       - name: Setup cog
@@ -58,19 +57,32 @@ jobs:
           private-key: ${{ env.GITHUB_APP_PRIVATE_KEY }}
           owner: ${{ github.repository_owner }}
 
-      - name: Run the release script
+      - name: Prepare a release
         run: |
           git config --global user.name 'github-actions[bot]'
           git config --global user.email 'github-actions[bot]@users.noreply.github.com'
           git config --global url."https://x-access-token:${{ env.GENERATED_GITHUB_TOKEN }}@github.com/".insteadOf "git@github.com:"
 
-          devbox run ./scripts/release.sh "${VERSION_TARGET}"
+          ./scripts/prepare-release.sh
         env:
           TERM: 'xterm'
           LOG_LEVEL: '7' # debug
           GOGC: 'off'
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }} # to be used by `gh`
-          DRY_RUN: ${{ inputs.dryRun == true && 'yes' || 'no' }}
-          SKIP_VALIDATION: ${{ inputs.skipValidation == true && 'yes' || 'no' }}
-          VERSION_TARGET: ${{ inputs.version }}
+          DRY_RUN: 'no'
+          SKIP_VALIDATION: 'no'
+          GENERATED_GITHUB_TOKEN: ${{ steps.generate_github_token.outputs.token }}
+
+      - name: Release
+        run: |
+          git config --global user.name 'github-actions[bot]'
+          git config --global user.email 'github-actions[bot]@users.noreply.github.com'
+          git config --global url."https://x-access-token:${{ env.GENERATED_GITHUB_TOKEN }}@github.com/".insteadOf "git@github.com:"
+
+          ./scripts/release.sh
+        env:
+          TERM: 'xterm'
+          LOG_LEVEL: '7' # debug
+          GOGC: 'off'
+          DRY_RUN: 'no'
           GENERATED_GITHUB_TOKEN: ${{ steps.generate_github_token.outputs.token }}
