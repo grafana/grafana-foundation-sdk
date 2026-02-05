@@ -58,9 +58,9 @@ function clone_foundation_sdk() {
 foundation_sdk_path="${WORKSPACE_PATH}/foundation-sdk"
 release_file_marker=".release/tag"
 
-if [ ! -f ".release/tag" ]; then
-    notice "Release marker not found, aborting."
-    exit 0
+if [ ! -f "${release_file_marker}" ]; then
+  notice "Release marker not found, aborting."
+  exit 0
 fi
 
 if [ "${DRY_RUN}" == "no" ]; then

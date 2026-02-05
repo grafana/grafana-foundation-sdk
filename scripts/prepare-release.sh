@@ -134,8 +134,8 @@ release_branch='release-preview'
 release_file_marker="${foundation_sdk_path}/.release/tag"
 
 if [ -f ".release/tag" ]; then
-    notice "Release marker found, aborting."
-    exit 0
+  notice "Release marker found, aborting."
+  exit 0
 fi
 
 if [ "${DRY_RUN}" == "no" ]; then
