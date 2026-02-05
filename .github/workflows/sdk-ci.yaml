@@ -121,6 +121,8 @@ jobs:
             --unified \
             --recursive \
             --exclude='.git' \
+            --exclude='.cog' \
+            --exclude='scripts*' \
             --exclude='gradle.properties' \
             --exclude='pyproject.toml' \
             --exclude='package.json' \
