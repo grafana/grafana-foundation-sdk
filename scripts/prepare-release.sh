@@ -53,6 +53,7 @@ function clone_foundation_sdk() {
   shift
 
   git clone "${FOUNDATION_SDK_REPO}" "${clone_into_dir}"
+  git_run "${clone_into_dir}" fetch origin --tags
 }
 
 function run_codegen() {
