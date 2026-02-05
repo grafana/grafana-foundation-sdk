@@ -51,6 +51,30 @@ function clone_foundation_sdk() {
   git clone "${FOUNDATION_SDK_REPO}" "${clone_into_dir}"
 }
 
+function should_abort_release() {
+  local release_marker=${1}
+  shift
+
+  # No release file means no release was ever made: nothing to release.
+  if [ ! -f "${release_marker}" ]; then
+    return 0
+  fi
+
+  latest_tag=$(git_run "${foundation_sdk_path}" describe --tags --abbrev=0 2>/dev/null || echo 'v0.0.0')
+  current_marker=$(cat "${release_marker}")
+
+  # The release marker and latest tags are equal: we just merged the
+  # release PR and already performed the release. Let's prepare a new one.
+  if [ "${latest_tag}" == "${current_marker}" ]; then
+    return 0
+  fi
+
+  # The release marker and latest tags are different: we just merged the
+  # release PR and should perform the release now.
+  return 1
+}
+
+
 ############
 ### Main ###
 ############
@@ -77,12 +101,11 @@ rm -rf "${WORKSPACE_PATH}"
 info "Cloning grafana-foundation-sdk into ${foundation_sdk_path}"
 clone_foundation_sdk "${foundation_sdk_path}"
 
+if should_abort_release "${release_file_marker}"; then
+    notice "No release is pending, aborting."
+    exit 0
+fi
+
 next_tag=$(cat "${foundation_sdk_path}/${release_file_marker}")
-
-git_run "${foundation_sdk_path}" rm "${release_file_marker}"
-git_run "${foundation_sdk_path}" commit -m "Remove release marker for ${next_tag}"
-
 run_when_safe git_run "${foundation_sdk_path}" tag "${next_tag}"
-
-run_when_safe git_run "${foundation_sdk_path}" push origin main
 run_when_safe git_run "${foundation_sdk_path}" push origin --tags
