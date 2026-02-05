@@ -174,7 +174,6 @@ debug "workspace path: ${WORKSPACE_PATH}"
 
 # Just in case there are leftovers from a previous run.
 rm -rf "${WORKSPACE_PATH}"
-fi
 
 info "Cloning grafana-foundation-sdk into ${foundation_sdk_path}"
 clone_foundation_sdk "${foundation_sdk_path}"
@@ -187,6 +186,7 @@ fi
 if [ ! -d "${KIND_REGISTRY_PATH}" ]; then
   info "Cloning kind-registry into ${KIND_REGISTRY_PATH}"
   clone_kind_registry "${KIND_REGISTRY_PATH}"
+fi
 
 info "Pulling kind-registry@main"
 git_run "${KIND_REGISTRY_PATH}" checkout main
