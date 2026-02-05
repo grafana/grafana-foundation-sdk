@@ -36,7 +36,7 @@ jobs:
       - name: Java setup gradle
         uses: gradle/actions/setup-gradle@f29f5a9d7b09a7c6b29859002d29d24e1674c884 #v5.0.1
         with:
-          gradle-version: '8.8'
+          gradle-version: '9.3'
           cache-disabled: true
 
       - name: Get secrets
