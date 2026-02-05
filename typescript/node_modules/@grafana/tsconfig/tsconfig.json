@@ -1,8 +1,0 @@
-{
-  "compilerOptions": {
-    "alwaysStrict": true,
-    "declaration": true,
-    "strict": true
-  },
-  "extends": "./base.json"
-}
