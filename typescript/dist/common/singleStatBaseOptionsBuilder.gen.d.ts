@@ -1,0 +1,13 @@
+import * as cog from '../cog';
+import * as common from '../common';
+export declare class SingleStatBaseOptionsBuilder implements cog.Builder<common.SingleStatBaseOptions> {
+    protected readonly internal: common.SingleStatBaseOptions;
+    constructor();
+    /**
+     * Builds the object.
+     */
+    build(): common.SingleStatBaseOptions;
+    reduceOptions(reduceOptions: cog.Builder<common.ReduceDataOptions>): this;
+    text(text: cog.Builder<common.VizTextDisplayOptions>): this;
+    orientation(orientation: common.VizOrientation): this;
+}

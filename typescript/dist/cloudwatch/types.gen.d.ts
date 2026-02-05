@@ -1,0 +1,181 @@
+import * as common from '../common';
+export interface MetricStat {
+    region: string;
+    namespace: string;
+    metricName?: string;
+    dimensions?: Dimensions;
+    matchExact?: boolean;
+    period?: string;
+    accountId?: string;
+    statistic?: string;
+    statistics?: string[];
+}
+export declare const defaultMetricStat: () => MetricStat;
+export type Dimensions = Record<string, string | string[]>;
+export declare const defaultDimensions: () => Dimensions;
+export interface CloudWatchMetricsQuery {
+    queryMode: CloudWatchQueryMode;
+    metricQueryType?: MetricQueryType;
+    metricEditorMode?: MetricEditorMode;
+    id: string;
+    alias?: string;
+    label?: string;
+    expression?: string;
+    sqlExpression?: string;
+    refId?: string;
+    hide?: boolean;
+    queryType?: string;
+    region: string;
+    namespace: string;
+    metricName?: string;
+    dimensions?: Dimensions;
+    matchExact?: boolean;
+    period?: string;
+    accountId?: string;
+    statistic?: string;
+    sql?: SQLExpression;
+    datasource?: common.DataSourceRef;
+    statistics?: string[];
+    _implementsDataqueryVariant(): void;
+}
+export declare const defaultCloudWatchMetricsQuery: () => CloudWatchMetricsQuery;
+export declare enum CloudWatchQueryMode {
+    Metrics = "Metrics",
+    Logs = "Logs",
+    Annotations = "Annotations"
+}
+export declare const defaultCloudWatchQueryMode: () => CloudWatchQueryMode;
+export declare enum MetricQueryType {
+    Search = 0,
+    Insights = 1
+}
+export declare const defaultMetricQueryType: () => MetricQueryType;
+export declare enum MetricEditorMode {
+    Builder = 0,
+    Code = 1
+}
+export declare const defaultMetricEditorMode: () => MetricEditorMode;
+export interface SQLExpression {
+    select?: QueryEditorFunctionExpression;
+    from?: QueryEditorPropertyExpression | QueryEditorFunctionExpression;
+    where?: QueryEditorArrayExpression;
+    groupBy?: QueryEditorArrayExpression;
+    orderBy?: QueryEditorFunctionExpression;
+    orderByDirection?: string;
+    limit?: number;
+}
+export declare const defaultSQLExpression: () => SQLExpression;
+export interface QueryEditorFunctionExpression {
+    type: QueryEditorExpressionType.Function;
+    name?: string;
+    parameters?: QueryEditorFunctionParameterExpression[];
+}
+export declare const defaultQueryEditorFunctionExpression: () => QueryEditorFunctionExpression;
+export declare enum QueryEditorExpressionType {
+    Property = "property",
+    Operator = "operator",
+    Or = "or",
+    And = "and",
+    GroupBy = "groupBy",
+    Function = "function",
+    FunctionParameter = "functionParameter"
+}
+export declare const defaultQueryEditorExpressionType: () => QueryEditorExpressionType;
+export interface QueryEditorFunctionParameterExpression {
+    type: QueryEditorExpressionType.FunctionParameter;
+    name?: string;
+}
+export declare const defaultQueryEditorFunctionParameterExpression: () => QueryEditorFunctionParameterExpression;
+export interface QueryEditorPropertyExpression {
+    type: QueryEditorExpressionType.Property;
+    property: QueryEditorProperty;
+}
+export declare const defaultQueryEditorPropertyExpression: () => QueryEditorPropertyExpression;
+export interface QueryEditorProperty {
+    type: QueryEditorPropertyType.String;
+    name?: string;
+}
+export declare const defaultQueryEditorProperty: () => QueryEditorProperty;
+export declare enum QueryEditorPropertyType {
+    String = "string"
+}
+export declare const defaultQueryEditorPropertyType: () => QueryEditorPropertyType;
+export interface QueryEditorArrayExpression {
+    type: "and" | "or";
+    expressions: QueryEditorExpression[];
+}
+export declare const defaultQueryEditorArrayExpression: () => QueryEditorArrayExpression;
+export type QueryEditorExpression = QueryEditorArrayExpression | QueryEditorPropertyExpression | QueryEditorGroupByExpression | QueryEditorFunctionExpression | QueryEditorFunctionParameterExpression | QueryEditorOperatorExpression;
+export declare const defaultQueryEditorExpression: () => QueryEditorExpression;
+export interface QueryEditorGroupByExpression {
+    type: QueryEditorExpressionType.GroupBy;
+    property: QueryEditorProperty;
+}
+export declare const defaultQueryEditorGroupByExpression: () => QueryEditorGroupByExpression;
+export interface QueryEditorOperatorExpression {
+    type: QueryEditorExpressionType.Operator;
+    property: QueryEditorProperty;
+    operator: QueryEditorOperator;
+}
+export declare const defaultQueryEditorOperatorExpression: () => QueryEditorOperatorExpression;
+export interface QueryEditorOperator {
+    name?: string;
+    value?: QueryEditorOperatorType | QueryEditorOperatorType[];
+}
+export declare const defaultQueryEditorOperator: () => QueryEditorOperator;
+export type QueryEditorOperatorType = string | boolean | number;
+export declare const defaultQueryEditorOperatorType: () => QueryEditorOperatorType;
+export type QueryEditorOperatorValueType = QueryEditorOperatorType | QueryEditorOperatorType[];
+export declare const defaultQueryEditorOperatorValueType: () => QueryEditorOperatorValueType;
+export declare enum LogsQueryLanguage {
+    CWLI = "CWLI",
+    SQL = "SQL",
+    PPL = "PPL"
+}
+export declare const defaultLogsQueryLanguage: () => LogsQueryLanguage;
+export interface CloudWatchLogsQuery {
+    queryMode: CloudWatchQueryMode;
+    id: string;
+    region: string;
+    expression?: string;
+    statsGroups?: string[];
+    logGroups?: LogGroup[];
+    logGroupNames?: string[];
+    refId?: string;
+    hide?: boolean;
+    queryType?: string;
+    queryLanguage?: LogsQueryLanguage;
+    datasource?: common.DataSourceRef;
+    _implementsDataqueryVariant(): void;
+}
+export declare const defaultCloudWatchLogsQuery: () => CloudWatchLogsQuery;
+export interface LogGroup {
+    arn: string;
+    name: string;
+    accountId?: string;
+    accountLabel?: string;
+}
+export declare const defaultLogGroup: () => LogGroup;
+export interface CloudWatchAnnotationQuery {
+    queryMode: CloudWatchQueryMode;
+    prefixMatching?: boolean;
+    actionPrefix?: string;
+    refId?: string;
+    hide?: boolean;
+    queryType?: string;
+    region: string;
+    namespace: string;
+    metricName?: string;
+    dimensions?: Dimensions;
+    matchExact?: boolean;
+    period?: string;
+    accountId?: string;
+    statistic?: string;
+    alarmNamePrefix?: string;
+    datasource?: common.DataSourceRef;
+    statistics?: string[];
+    _implementsDataqueryVariant(): void;
+}
+export declare const defaultCloudWatchAnnotationQuery: () => CloudWatchAnnotationQuery;
+export type CloudWatchQuery = CloudWatchMetricsQuery | CloudWatchLogsQuery | CloudWatchAnnotationQuery;
+export declare const defaultCloudWatchQuery: () => CloudWatchQuery;

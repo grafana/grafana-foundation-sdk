@@ -1,0 +1,102 @@
+import * as common from '../common';
+export declare enum HorizontalConstraint {
+    Left = "left",
+    Right = "right",
+    LeftRight = "leftright",
+    Center = "center",
+    Scale = "scale"
+}
+export declare const defaultHorizontalConstraint: () => HorizontalConstraint;
+export declare enum VerticalConstraint {
+    Top = "top",
+    Bottom = "bottom",
+    TopBottom = "topbottom",
+    Center = "center",
+    Scale = "scale"
+}
+export declare const defaultVerticalConstraint: () => VerticalConstraint;
+export interface Constraint {
+    horizontal?: HorizontalConstraint;
+    vertical?: VerticalConstraint;
+}
+export declare const defaultConstraint: () => Constraint;
+export interface Placement {
+    top?: number;
+    left?: number;
+    right?: number;
+    bottom?: number;
+    width?: number;
+    height?: number;
+    rotation?: number;
+}
+export declare const defaultPlacement: () => Placement;
+export declare enum BackgroundImageSize {
+    Original = "original",
+    Contain = "contain",
+    Cover = "cover",
+    Fill = "fill",
+    Tile = "tile"
+}
+export declare const defaultBackgroundImageSize: () => BackgroundImageSize;
+export interface BackgroundConfig {
+    color?: common.ColorDimensionConfig;
+    image?: common.ResourceDimensionConfig;
+    size?: BackgroundImageSize;
+}
+export declare const defaultBackgroundConfig: () => BackgroundConfig;
+export interface LineConfig {
+    color?: common.ColorDimensionConfig;
+    width?: number;
+    radius?: number;
+}
+export declare const defaultLineConfig: () => LineConfig;
+export declare enum HttpRequestMethod {
+    GET = "GET",
+    POST = "POST",
+    PUT = "PUT"
+}
+export declare const defaultHttpRequestMethod: () => HttpRequestMethod;
+export interface ConnectionCoordinates {
+    x: number;
+    y: number;
+}
+export declare const defaultConnectionCoordinates: () => ConnectionCoordinates;
+export declare enum ConnectionPath {
+    Straight = "straight"
+}
+export declare const defaultConnectionPath: () => ConnectionPath;
+export interface CanvasConnection {
+    source: ConnectionCoordinates;
+    target: ConnectionCoordinates;
+    targetName?: string;
+    path: ConnectionPath.Straight;
+    color?: common.ColorDimensionConfig;
+    size?: common.ScaleDimensionConfig;
+    vertices?: ConnectionCoordinates[];
+    sourceOriginal?: ConnectionCoordinates;
+    targetOriginal?: ConnectionCoordinates;
+}
+export declare const defaultCanvasConnection: () => CanvasConnection;
+export interface CanvasElementOptions {
+    name: string;
+    type: string;
+    config?: any;
+    constraint?: Constraint;
+    placement?: Placement;
+    background?: BackgroundConfig;
+    border?: LineConfig;
+    connections?: CanvasConnection[];
+}
+export declare const defaultCanvasElementOptions: () => CanvasElementOptions;
+export interface Options {
+    inlineEditing: boolean;
+    showAdvancedTypes: boolean;
+    panZoom: boolean;
+    infinitePan: boolean;
+    root: {
+        name: string;
+        type: "frame";
+        elements: CanvasElementOptions[];
+    };
+}
+export declare const defaultOptions: () => Options;

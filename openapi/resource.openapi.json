@@ -1,0 +1,96 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "title": "resource",
+    "version": "0.0.0",
+    "x-schema-identifier": "",
+    "x-schema-kind": ""
+  },
+  "paths": {},
+  "components": {
+    "schemas": {
+      "DashboardV2Beta1": {
+        "type": "string",
+        "const": "dashboard.grafana.app/v2beta1"
+      },
+      "DashboardV2Alpha1": {
+        "type": "string",
+        "const": "dashboard.grafana.app/v2alpha1"
+      },
+      "DashboardKind": {
+        "type": "string",
+        "const": "Dashboard"
+      },
+      "Manifest": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "apiVersion",
+          "kind",
+          "metadata",
+          "spec"
+        ],
+        "properties": {
+          "apiVersion": {
+            "type": "string"
+          },
+          "kind": {
+            "type": "string"
+          },
+          "metadata": {
+            "$ref": "#/components/schemas/Metadata"
+          },
+          "spec": {
+            "type": "object",
+            "additionalProperties": {}
+          }
+        }
+      },
+      "Metadata": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "name"
+        ],
+        "properties": {
+          "name": {
+            "type": "string"
+          },
+          "namespace": {
+            "type": "string"
+          },
+          "labels": {
+            "type": "object",
+            "additionalProperties": {
+              "type": "string"
+            }
+          },
+          "annotations": {
+            "type": "object",
+            "additionalProperties": {
+              "type": "string"
+            }
+          },
+          "uid": {
+            "type": "string"
+          },
+          "resourceVersion": {
+            "type": "string"
+          },
+          "generation": {
+            "type": "integer"
+          },
+          "creationTimestamp": {
+            "type": "string"
+          },
+          "updateTimestamp": {
+            "type": "string"
+          },
+          "deletionTimestamp": {
+            "type": "string"
+          }
+        }
+      }
+    }
+  }
+}

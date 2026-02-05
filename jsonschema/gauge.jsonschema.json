@@ -1,0 +1,114 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "definitions": {
+    "Options": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "showThresholdLabels",
+        "showThresholdMarkers",
+        "sizing",
+        "minVizWidth",
+        "reduceOptions",
+        "minVizHeight",
+        "orientation"
+      ],
+      "properties": {
+        "showThresholdLabels": {
+          "type": "boolean",
+          "default": false
+        },
+        "showThresholdMarkers": {
+          "type": "boolean",
+          "default": true
+        },
+        "sizing": {
+          "$ref": "#/definitions/BarGaugeSizing",
+          "default": "auto"
+        },
+        "minVizWidth": {
+          "type": "integer",
+          "default": 75
+        },
+        "reduceOptions": {
+          "$ref": "#/definitions/ReduceDataOptions"
+        },
+        "text": {
+          "$ref": "#/definitions/VizTextDisplayOptions"
+        },
+        "minVizHeight": {
+          "type": "integer",
+          "default": 75
+        },
+        "orientation": {
+          "$ref": "#/definitions/VizOrientation"
+        }
+      }
+    },
+    "BarGaugeSizing": {
+      "enum": [
+        "auto",
+        "manual"
+      ],
+      "type": "string",
+      "description": "Allows for the bar gauge size to be set explicitly"
+    },
+    "ReduceDataOptions": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "calcs"
+      ],
+      "properties": {
+        "values": {
+          "type": "boolean",
+          "description": "If true show each row value"
+        },
+        "limit": {
+          "type": "number",
+          "description": "if showing all values limit"
+        },
+        "calcs": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "description": "When !values, pick one value for the whole field"
+        },
+        "fields": {
+          "type": "string",
+          "description": "Which fields to show.  By default this is only numeric fields"
+        }
+      },
+      "description": "TODO docs"
+    },
+    "VizTextDisplayOptions": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "titleSize": {
+          "type": "number",
+          "description": "Explicit title text size"
+        },
+        "valueSize": {
+          "type": "number",
+          "description": "Explicit value text size"
+        },
+        "percentSize": {
+          "type": "number",
+          "description": "Explicit percent text size"
+        }
+      },
+      "description": "TODO docs"
+    },
+    "VizOrientation": {
+      "enum": [
+        "auto",
+        "vertical",
+        "horizontal"
+      ],
+      "type": "string",
+      "description": "TODO docs"
+    }
+  }
+}

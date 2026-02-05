@@ -1,0 +1,17 @@
+import * as cog from '../cog';
+import * as common from '../common';
+export declare class FrameGeometrySourceBuilder implements cog.Builder<common.FrameGeometrySource> {
+    protected readonly internal: common.FrameGeometrySource;
+    constructor();
+    /**
+     * Builds the object.
+     */
+    build(): common.FrameGeometrySource;
+    mode(mode: common.FrameGeometrySourceMode): this;
+    geohash(geohash: string): this;
+    latitude(latitude: string): this;
+    longitude(longitude: string): this;
+    wkt(wkt: string): this;
+    lookup(lookup: string): this;
+    gazetteer(gazetteer: string): this;
+}

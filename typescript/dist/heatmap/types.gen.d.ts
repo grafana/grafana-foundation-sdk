@@ -1,0 +1,100 @@
+import * as common from '../common';
+export declare enum HeatmapColorMode {
+    Opacity = "opacity",
+    Scheme = "scheme"
+}
+export declare const defaultHeatmapColorMode: () => HeatmapColorMode;
+export declare enum HeatmapColorScale {
+    Linear = "linear",
+    Exponential = "exponential"
+}
+export declare const defaultHeatmapColorScale: () => HeatmapColorScale;
+export declare enum HeatmapSelectionMode {
+    X = "x",
+    Y = "y",
+    Xy = "xy"
+}
+export declare const defaultHeatmapSelectionMode: () => HeatmapSelectionMode;
+export interface HeatmapColorOptions {
+    mode?: HeatmapColorMode;
+    scheme: string;
+    fill: string;
+    scale?: HeatmapColorScale;
+    exponent: number;
+    steps: number;
+    reverse: boolean;
+    min?: number;
+    max?: number;
+}
+export declare const defaultHeatmapColorOptions: () => HeatmapColorOptions;
+export interface YAxisConfig {
+    unit?: string;
+    reverse?: boolean;
+    decimals?: number;
+    min?: number;
+    axisPlacement?: common.AxisPlacement;
+    axisColorMode?: common.AxisColorMode;
+    axisLabel?: string;
+    axisWidth?: number;
+    axisSoftMin?: number;
+    axisSoftMax?: number;
+    axisGridShow?: boolean;
+    scaleDistribution?: common.ScaleDistributionConfig;
+    axisCenteredZero?: boolean;
+    max?: number;
+    axisBorderShow?: boolean;
+}
+export declare const defaultYAxisConfig: () => YAxisConfig;
+export interface CellValues {
+    unit?: string;
+    decimals?: number;
+}
+export declare const defaultCellValues: () => CellValues;
+export interface FilterValueRange {
+    le?: number;
+    ge?: number;
+}
+export declare const defaultFilterValueRange: () => FilterValueRange;
+export interface HeatmapTooltip {
+    mode: common.TooltipDisplayMode;
+    maxHeight?: number;
+    maxWidth?: number;
+    yHistogram?: boolean;
+    showColorScale?: boolean;
+}
+export declare const defaultHeatmapTooltip: () => HeatmapTooltip;
+export interface HeatmapLegend {
+    show: boolean;
+}
+export declare const defaultHeatmapLegend: () => HeatmapLegend;
+export interface ExemplarConfig {
+    color: string;
+}
+export declare const defaultExemplarConfig: () => ExemplarConfig;
+export interface RowsHeatmapOptions {
+    value?: string;
+    layout?: common.HeatmapCellLayout;
+}
+export declare const defaultRowsHeatmapOptions: () => RowsHeatmapOptions;
+export interface Options {
+    calculate?: boolean;
+    calculation?: common.HeatmapCalculationOptions;
+    color: HeatmapColorOptions;
+    filterValues?: FilterValueRange;
+    rowsFrame?: RowsHeatmapOptions;
+    showValue: common.VisibilityMode;
+    cellGap?: number;
+    cellRadius?: number;
+    cellValues?: CellValues;
+    yAxis: YAxisConfig;
+    legend: HeatmapLegend;
+    tooltip: HeatmapTooltip;
+    exemplars: ExemplarConfig;
+    selectionMode?: HeatmapSelectionMode;
+}
+export declare const defaultOptions: () => Options;
+export interface FieldConfig {
+    scaleDistribution?: common.ScaleDistributionConfig;
+    hideFrom?: common.HideSeriesConfig;
+}
+export declare const defaultFieldConfig: () => FieldConfig;

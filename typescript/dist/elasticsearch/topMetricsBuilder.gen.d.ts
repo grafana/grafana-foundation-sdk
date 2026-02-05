@@ -1,0 +1,17 @@
+import * as cog from '../cog';
+import * as elasticsearch from '../elasticsearch';
+export declare class TopMetricsBuilder implements cog.Builder<elasticsearch.TopMetrics> {
+    protected readonly internal: elasticsearch.TopMetrics;
+    constructor();
+    /**
+     * Builds the object.
+     */
+    build(): elasticsearch.TopMetrics;
+    id(id: string): this;
+    settings(settings: {
+        order?: string;
+        orderBy?: string;
+        metrics?: string[];
+    }): this;
+    hide(hide: boolean): this;
+}

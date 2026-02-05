@@ -1,0 +1,12 @@
+import * as cog from '../cog';
+import * as elasticsearch from '../elasticsearch';
+export declare class PipelineVariableBuilder implements cog.Builder<elasticsearch.PipelineVariable> {
+    protected readonly internal: elasticsearch.PipelineVariable;
+    constructor();
+    /**
+     * Builds the object.
+     */
+    build(): elasticsearch.PipelineVariable;
+    name(name: string): this;
+    pipelineAgg(pipelineAgg: string): this;
+}

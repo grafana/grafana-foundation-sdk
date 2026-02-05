@@ -1,0 +1,156 @@
+"use strict";
+// Code generated - EDITING IS FUTILE. DO NOT EDIT.
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.GraphFieldConfigBuilder = void 0;
+const tslib_1 = require("tslib");
+const common = tslib_1.__importStar(require("../common"));
+// TODO docs
+class GraphFieldConfigBuilder {
+    constructor() {
+        this.internal = common.defaultGraphFieldConfig();
+    }
+    /**
+     * Builds the object.
+     */
+    build() {
+        return this.internal;
+    }
+    drawStyle(drawStyle) {
+        this.internal.drawStyle = drawStyle;
+        return this;
+    }
+    gradientMode(gradientMode) {
+        this.internal.gradientMode = gradientMode;
+        return this;
+    }
+    thresholdsStyle(thresholdsStyle) {
+        const thresholdsStyleResource = thresholdsStyle.build();
+        this.internal.thresholdsStyle = thresholdsStyleResource;
+        return this;
+    }
+    transform(transform) {
+        this.internal.transform = transform;
+        return this;
+    }
+    lineColor(lineColor) {
+        this.internal.lineColor = lineColor;
+        return this;
+    }
+    lineWidth(lineWidth) {
+        this.internal.lineWidth = lineWidth;
+        return this;
+    }
+    lineInterpolation(lineInterpolation) {
+        this.internal.lineInterpolation = lineInterpolation;
+        return this;
+    }
+    lineStyle(lineStyle) {
+        const lineStyleResource = lineStyle.build();
+        this.internal.lineStyle = lineStyleResource;
+        return this;
+    }
+    fillColor(fillColor) {
+        this.internal.fillColor = fillColor;
+        return this;
+    }
+    fillOpacity(fillOpacity) {
+        this.internal.fillOpacity = fillOpacity;
+        return this;
+    }
+    showPoints(showPoints) {
+        this.internal.showPoints = showPoints;
+        return this;
+    }
+    pointSize(pointSize) {
+        this.internal.pointSize = pointSize;
+        return this;
+    }
+    pointColor(pointColor) {
+        this.internal.pointColor = pointColor;
+        return this;
+    }
+    axisPlacement(axisPlacement) {
+        this.internal.axisPlacement = axisPlacement;
+        return this;
+    }
+    axisColorMode(axisColorMode) {
+        this.internal.axisColorMode = axisColorMode;
+        return this;
+    }
+    axisLabel(axisLabel) {
+        this.internal.axisLabel = axisLabel;
+        return this;
+    }
+    axisWidth(axisWidth) {
+        this.internal.axisWidth = axisWidth;
+        return this;
+    }
+    axisSoftMin(axisSoftMin) {
+        this.internal.axisSoftMin = axisSoftMin;
+        return this;
+    }
+    axisSoftMax(axisSoftMax) {
+        this.internal.axisSoftMax = axisSoftMax;
+        return this;
+    }
+    axisGridShow(axisGridShow) {
+        this.internal.axisGridShow = axisGridShow;
+        return this;
+    }
+    scaleDistribution(scaleDistribution) {
+        const scaleDistributionResource = scaleDistribution.build();
+        this.internal.scaleDistribution = scaleDistributionResource;
+        return this;
+    }
+    axisCenteredZero(axisCenteredZero) {
+        this.internal.axisCenteredZero = axisCenteredZero;
+        return this;
+    }
+    barAlignment(barAlignment) {
+        this.internal.barAlignment = barAlignment;
+        return this;
+    }
+    barWidthFactor(barWidthFactor) {
+        this.internal.barWidthFactor = barWidthFactor;
+        return this;
+    }
+    stacking(stacking) {
+        const stackingResource = stacking.build();
+        this.internal.stacking = stackingResource;
+        return this;
+    }
+    hideFrom(hideFrom) {
+        const hideFromResource = hideFrom.build();
+        this.internal.hideFrom = hideFromResource;
+        return this;
+    }
+    insertNulls(insertNulls) {
+        this.internal.insertNulls = insertNulls;
+        return this;
+    }
+    // Indicate if null values should be treated as gaps or connected.
+    // When the value is a number, it represents the maximum delta in the
+    // X axis that should be considered connected.  For timeseries, this is milliseconds
+    spanNulls(spanNulls) {
+        this.internal.spanNulls = spanNulls;
+        return this;
+    }
+    fillBelowTo(fillBelowTo) {
+        this.internal.fillBelowTo = fillBelowTo;
+        return this;
+    }
+    pointSymbol(pointSymbol) {
+        this.internal.pointSymbol = pointSymbol;
+        return this;
+    }
+    axisBorderShow(axisBorderShow) {
+        this.internal.axisBorderShow = axisBorderShow;
+        return this;
+    }
+    barMaxWidth(barMaxWidth) {
+        this.internal.barMaxWidth = barMaxWidth;
+        return this;
+    }
+}
+exports.GraphFieldConfigBuilder = GraphFieldConfigBuilder;
+//# sourceMappingURL=graphFieldConfigBuilder.gen.js.map

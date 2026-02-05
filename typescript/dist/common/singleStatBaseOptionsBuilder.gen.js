@@ -1,0 +1,34 @@
+"use strict";
+// Code generated - EDITING IS FUTILE. DO NOT EDIT.
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.SingleStatBaseOptionsBuilder = void 0;
+const tslib_1 = require("tslib");
+const common = tslib_1.__importStar(require("../common"));
+// TODO docs
+class SingleStatBaseOptionsBuilder {
+    constructor() {
+        this.internal = common.defaultSingleStatBaseOptions();
+    }
+    /**
+     * Builds the object.
+     */
+    build() {
+        return this.internal;
+    }
+    reduceOptions(reduceOptions) {
+        const reduceOptionsResource = reduceOptions.build();
+        this.internal.reduceOptions = reduceOptionsResource;
+        return this;
+    }
+    text(text) {
+        const textResource = text.build();
+        this.internal.text = textResource;
+        return this;
+    }
+    orientation(orientation) {
+        this.internal.orientation = orientation;
+        return this;
+    }
+}
+exports.SingleStatBaseOptionsBuilder = SingleStatBaseOptionsBuilder;
+//# sourceMappingURL=singleStatBaseOptionsBuilder.gen.js.map

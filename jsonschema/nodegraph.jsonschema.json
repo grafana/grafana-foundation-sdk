@@ -1,0 +1,77 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "definitions": {
+    "ArcOption": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "field": {
+          "type": "string",
+          "description": "Field from which to get the value. Values should be less than 1, representing fraction of a circle."
+        },
+        "color": {
+          "type": "string",
+          "description": "The color of the arc."
+        }
+      }
+    },
+    "NodeOptions": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "mainStatUnit": {
+          "type": "string",
+          "description": "Unit for the main stat to override what ever is set in the data frame."
+        },
+        "secondaryStatUnit": {
+          "type": "string",
+          "description": "Unit for the secondary stat to override what ever is set in the data frame."
+        },
+        "arcs": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/ArcOption"
+          },
+          "description": "Define which fields are shown as part of the node arc (colored circle around the node)."
+        }
+      }
+    },
+    "EdgeOptions": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "mainStatUnit": {
+          "type": "string",
+          "description": "Unit for the main stat to override what ever is set in the data frame."
+        },
+        "secondaryStatUnit": {
+          "type": "string",
+          "description": "Unit for the secondary stat to override what ever is set in the data frame."
+        }
+      }
+    },
+    "ZoomMode": {
+      "enum": [
+        "cooperative",
+        "greedy"
+      ],
+      "type": "string"
+    },
+    "Options": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "nodes": {
+          "$ref": "#/definitions/NodeOptions"
+        },
+        "edges": {
+          "$ref": "#/definitions/EdgeOptions"
+        },
+        "zoomMode": {
+          "$ref": "#/definitions/ZoomMode",
+          "description": "How to handle zoom/scroll events in the node graph"
+        }
+      }
+    }
+  }
+}

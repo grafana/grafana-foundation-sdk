@@ -1,0 +1,57 @@
+// Code generated - EDITING IS FUTILE. DO NOT EDIT.
+
+package bigquery
+
+import (
+	cog "github.com/grafana/grafana-foundation-sdk/go/cog"
+)
+
+var _ cog.Builder[QueryEditorFunctionExpression] = (*QueryEditorFunctionExpressionBuilder)(nil)
+
+type QueryEditorFunctionExpressionBuilder struct {
+	internal *QueryEditorFunctionExpression
+	errors   cog.BuildErrors
+}
+
+func NewQueryEditorFunctionExpressionBuilder() *QueryEditorFunctionExpressionBuilder {
+	resource := NewQueryEditorFunctionExpression()
+	builder := &QueryEditorFunctionExpressionBuilder{
+		internal: resource,
+		errors:   make(cog.BuildErrors, 0),
+	}
+
+	return builder
+}
+
+func (builder *QueryEditorFunctionExpressionBuilder) Build() (QueryEditorFunctionExpression, error) {
+	if err := builder.internal.Validate(); err != nil {
+		return QueryEditorFunctionExpression{}, err
+	}
+
+	if len(builder.errors) > 0 {
+		return QueryEditorFunctionExpression{}, cog.MakeBuildErrors("bigquery.queryEditorFunctionExpression", builder.errors)
+	}
+
+	return *builder.internal, nil
+}
+
+func (builder *QueryEditorFunctionExpressionBuilder) Name(name string) *QueryEditorFunctionExpressionBuilder {
+	builder.internal.Name = &name
+
+	return builder
+}
+
+func (builder *QueryEditorFunctionExpressionBuilder) Parameters(parameters []cog.Builder[QueryEditorFunctionParameterExpression]) *QueryEditorFunctionExpressionBuilder {
+	parametersResources := make([]QueryEditorFunctionParameterExpression, 0, len(parameters))
+	for _, r1 := range parameters {
+		parametersDepth1, err := r1.Build()
+		if err != nil {
+			builder.errors = append(builder.errors, err.(cog.BuildErrors)...)
+			return builder
+		}
+		parametersResources = append(parametersResources, parametersDepth1)
+	}
+	builder.internal.Parameters = parametersResources
+
+	return builder
+}

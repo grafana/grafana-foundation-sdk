@@ -1,0 +1,72 @@
+import * as common from '../common';
+export interface TempoQuery {
+    refId?: string;
+    hide?: boolean;
+    queryType?: string;
+    query?: string;
+    search?: string;
+    serviceName?: string;
+    spanName?: string;
+    minDuration?: string;
+    maxDuration?: string;
+    serviceMapQuery?: string | string[];
+    serviceMapIncludeNamespace?: boolean;
+    limit?: number;
+    spss?: number;
+    filters: TraceqlFilter[];
+    groupBy?: TraceqlFilter[];
+    tableType?: SearchTableType;
+    step?: string;
+    exemplars?: number;
+    datasource?: common.DataSourceRef;
+    metricsQueryType?: MetricsQueryType;
+    _implementsDataqueryVariant(): void;
+}
+export declare const defaultTempoQuery: () => TempoQuery;
+export interface TraceqlFilter {
+    id: string;
+    tag?: string;
+    operator?: string;
+    value?: string | string[];
+    valueType?: string;
+    scope?: TraceqlSearchScope;
+}
+export declare const defaultTraceqlFilter: () => TraceqlFilter;
+export declare enum TraceqlSearchScope {
+    Intrinsic = "intrinsic",
+    Unscoped = "unscoped",
+    Event = "event",
+    Instrumentation = "instrumentation",
+    Link = "link",
+    Resource = "resource",
+    Span = "span"
+}
+export declare const defaultTraceqlSearchScope: () => TraceqlSearchScope;
+export declare enum SearchTableType {
+    Traces = "traces",
+    Spans = "spans",
+    Raw = "raw"
+}
+export declare const defaultSearchTableType: () => SearchTableType;
+export declare enum MetricsQueryType {
+    Range = "range",
+    Instant = "instant"
+}
+export declare const defaultMetricsQueryType: () => MetricsQueryType;
+export declare enum TempoQueryType {
+    Traceql = "traceql",
+    TraceqlSearch = "traceqlSearch",
+    ServiceMap = "serviceMap",
+    Upload = "upload",
+    NativeSearch = "nativeSearch",
+    TraceId = "traceId",
+    Clear = "clear"
+}
+export declare const defaultTempoQueryType: () => TempoQueryType;
+export declare enum SearchStreamingState {
+    Pending = "pending",
+    Streaming = "streaming",
+    Done = "done",
+    Error = "error"
+}
+export declare const defaultSearchStreamingState: () => SearchStreamingState;

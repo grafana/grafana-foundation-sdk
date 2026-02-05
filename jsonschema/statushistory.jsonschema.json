@@ -1,0 +1,292 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "definitions": {
+    "Options": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "rowHeight",
+        "showValue",
+        "legend",
+        "tooltip"
+      ],
+      "properties": {
+        "rowHeight": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 1,
+          "description": "Set the height of the rows",
+          "default": 0.9
+        },
+        "showValue": {
+          "$ref": "#/definitions/VisibilityMode",
+          "description": "Show values on the columns",
+          "default": "auto"
+        },
+        "colWidth": {
+          "type": "number",
+          "maximum": 1,
+          "description": "Controls the column width",
+          "default": 0.9
+        },
+        "legend": {
+          "$ref": "#/definitions/VizLegendOptions"
+        },
+        "tooltip": {
+          "$ref": "#/definitions/VizTooltipOptions"
+        },
+        "timezone": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/TimeZone"
+          }
+        },
+        "perPage": {
+          "type": "number",
+          "minimum": 1,
+          "description": "Enables pagination when \u003e 0",
+          "default": 20
+        }
+      }
+    },
+    "FieldConfig": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "lineWidth": {
+          "type": "integer",
+          "maximum": 10,
+          "default": 1
+        },
+        "axisPlacement": {
+          "$ref": "#/definitions/AxisPlacement"
+        },
+        "axisColorMode": {
+          "$ref": "#/definitions/AxisColorMode"
+        },
+        "axisLabel": {
+          "type": "string"
+        },
+        "axisWidth": {
+          "type": "number"
+        },
+        "axisSoftMin": {
+          "type": "number"
+        },
+        "axisSoftMax": {
+          "type": "number"
+        },
+        "axisGridShow": {
+          "type": "boolean"
+        },
+        "scaleDistribution": {
+          "$ref": "#/definitions/ScaleDistributionConfig"
+        },
+        "axisCenteredZero": {
+          "type": "boolean"
+        },
+        "hideFrom": {
+          "$ref": "#/definitions/HideSeriesConfig"
+        },
+        "fillOpacity": {
+          "type": "integer",
+          "maximum": 100,
+          "default": 70
+        },
+        "axisBorderShow": {
+          "type": "boolean"
+        }
+      }
+    },
+    "VisibilityMode": {
+      "enum": [
+        "auto",
+        "never",
+        "always"
+      ],
+      "type": "string",
+      "description": "TODO docs"
+    },
+    "VizLegendOptions": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "displayMode",
+        "placement",
+        "showLegend",
+        "calcs"
+      ],
+      "properties": {
+        "displayMode": {
+          "$ref": "#/definitions/LegendDisplayMode",
+          "default": "list"
+        },
+        "placement": {
+          "$ref": "#/definitions/LegendPlacement",
+          "default": "bottom"
+        },
+        "showLegend": {
+          "type": "boolean"
+        },
+        "asTable": {
+          "type": "boolean"
+        },
+        "isVisible": {
+          "type": "boolean"
+        },
+        "sortBy": {
+          "type": "string"
+        },
+        "sortDesc": {
+          "type": "boolean"
+        },
+        "width": {
+          "type": "number"
+        },
+        "calcs": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "default": []
+        }
+      },
+      "description": "TODO docs"
+    },
+    "VizTooltipOptions": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "mode",
+        "sort"
+      ],
+      "properties": {
+        "mode": {
+          "$ref": "#/definitions/TooltipDisplayMode"
+        },
+        "sort": {
+          "$ref": "#/definitions/SortOrder"
+        },
+        "maxWidth": {
+          "type": "number"
+        },
+        "maxHeight": {
+          "type": "number"
+        },
+        "hideZeros": {
+          "type": "boolean"
+        }
+      },
+      "description": "TODO docs"
+    },
+    "TimeZone": {
+      "type": "string",
+      "description": "A specific timezone from https://en.wikipedia.org/wiki/Tz_database"
+    },
+    "AxisPlacement": {
+      "enum": [
+        "auto",
+        "top",
+        "right",
+        "bottom",
+        "left",
+        "hidden"
+      ],
+      "type": "string",
+      "description": "TODO docs"
+    },
+    "AxisColorMode": {
+      "enum": [
+        "text",
+        "series"
+      ],
+      "type": "string",
+      "description": "TODO docs"
+    },
+    "ScaleDistributionConfig": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "type"
+      ],
+      "properties": {
+        "type": {
+          "$ref": "#/definitions/ScaleDistribution"
+        },
+        "log": {
+          "type": "number"
+        },
+        "linearThreshold": {
+          "type": "number"
+        }
+      },
+      "description": "TODO docs"
+    },
+    "HideSeriesConfig": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "tooltip",
+        "legend",
+        "viz"
+      ],
+      "properties": {
+        "tooltip": {
+          "type": "boolean"
+        },
+        "legend": {
+          "type": "boolean"
+        },
+        "viz": {
+          "type": "boolean"
+        }
+      },
+      "description": "TODO docs"
+    },
+    "LegendDisplayMode": {
+      "enum": [
+        "list",
+        "table",
+        "hidden"
+      ],
+      "type": "string",
+      "description": "TODO docs\nNote: \"hidden\" needs to remain as an option for plugins compatibility"
+    },
+    "LegendPlacement": {
+      "enum": [
+        "bottom",
+        "right"
+      ],
+      "type": "string",
+      "description": "TODO docs"
+    },
+    "TooltipDisplayMode": {
+      "enum": [
+        "single",
+        "multi",
+        "none"
+      ],
+      "type": "string",
+      "description": "TODO docs"
+    },
+    "SortOrder": {
+      "enum": [
+        "asc",
+        "desc",
+        "none"
+      ],
+      "type": "string",
+      "description": "TODO docs"
+    },
+    "ScaleDistribution": {
+      "enum": [
+        "linear",
+        "log",
+        "ordinal",
+        "symlog"
+      ],
+      "type": "string",
+      "description": "TODO docs"
+    }
+  }
+}

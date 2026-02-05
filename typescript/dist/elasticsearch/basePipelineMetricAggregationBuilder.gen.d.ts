@@ -1,0 +1,15 @@
+import * as cog from '../cog';
+import * as elasticsearch from '../elasticsearch';
+export declare class BasePipelineMetricAggregationBuilder implements cog.Builder<elasticsearch.BasePipelineMetricAggregation> {
+    protected readonly internal: elasticsearch.BasePipelineMetricAggregation;
+    constructor();
+    /**
+     * Builds the object.
+     */
+    build(): elasticsearch.BasePipelineMetricAggregation;
+    pipelineAgg(pipelineAgg: string): this;
+    field(field: string): this;
+    type(type: string): this;
+    id(id: string): this;
+    hide(hide: boolean): this;
+}

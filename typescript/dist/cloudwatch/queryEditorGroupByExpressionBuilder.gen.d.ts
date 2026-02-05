@@ -1,0 +1,11 @@
+import * as cog from '../cog';
+import * as cloudwatch from '../cloudwatch';
+export declare class QueryEditorGroupByExpressionBuilder implements cog.Builder<cloudwatch.QueryEditorGroupByExpression> {
+    protected readonly internal: cloudwatch.QueryEditorGroupByExpression;
+    constructor();
+    /**
+     * Builds the object.
+     */
+    build(): cloudwatch.QueryEditorGroupByExpression;
+    property(property: cog.Builder<cloudwatch.QueryEditorProperty>): this;
+}

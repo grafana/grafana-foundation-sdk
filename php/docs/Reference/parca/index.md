@@ -1,0 +1,10 @@
+# <span class="badge package-variant-dataquery"></span> parca
+
+## Objects
+
+ * <span class="badge object-type-enum"></span> [ParcaQueryType](./object-ParcaQueryType.md)
+ * <span class="badge object-type-class"></span> [Dataquery](./object-Dataquery.md)
+## Builders
+
+ * <span class="badge builder"></span> [QueryBuilder](./builder-QueryBuilder.md)
+ * <span class="badge builder"></span> [DataqueryBuilder](./builder-DataqueryBuilder.md)

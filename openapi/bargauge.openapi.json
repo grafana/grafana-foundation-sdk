@@ -1,0 +1,234 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "title": "bargauge",
+    "version": "0.0.0",
+    "x-schema-identifier": "bargauge",
+    "x-schema-kind": "composable",
+    "x-schema-variant": "panelcfg"
+  },
+  "paths": {},
+  "components": {
+    "schemas": {
+      "Options": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "displayMode",
+          "valueMode",
+          "namePlacement",
+          "showUnfilled",
+          "sizing",
+          "minVizWidth",
+          "minVizHeight",
+          "legend",
+          "reduceOptions",
+          "maxVizHeight",
+          "orientation"
+        ],
+        "properties": {
+          "displayMode": {
+            "$ref": "#/components/schemas/BarGaugeDisplayMode",
+            "default": "gradient"
+          },
+          "valueMode": {
+            "$ref": "#/components/schemas/BarGaugeValueMode",
+            "default": "color"
+          },
+          "namePlacement": {
+            "$ref": "#/components/schemas/BarGaugeNamePlacement",
+            "default": "auto"
+          },
+          "showUnfilled": {
+            "type": "boolean",
+            "default": true
+          },
+          "sizing": {
+            "$ref": "#/components/schemas/BarGaugeSizing",
+            "default": "auto"
+          },
+          "minVizWidth": {
+            "type": "integer",
+            "default": 8
+          },
+          "minVizHeight": {
+            "type": "integer",
+            "default": 16
+          },
+          "legend": {
+            "$ref": "#/components/schemas/VizLegendOptions"
+          },
+          "reduceOptions": {
+            "$ref": "#/components/schemas/ReduceDataOptions"
+          },
+          "text": {
+            "$ref": "#/components/schemas/VizTextDisplayOptions"
+          },
+          "maxVizHeight": {
+            "type": "integer",
+            "default": 300
+          },
+          "orientation": {
+            "$ref": "#/components/schemas/VizOrientation"
+          }
+        }
+      },
+      "BarGaugeDisplayMode": {
+        "enum": [
+          "basic",
+          "lcd",
+          "gradient"
+        ],
+        "type": "string",
+        "description": "Enum expressing the possible display modes\nfor the bar gauge component of Grafana UI"
+      },
+      "BarGaugeValueMode": {
+        "enum": [
+          "color",
+          "text",
+          "hidden"
+        ],
+        "type": "string",
+        "description": "Allows for the table cell gauge display type to set the gauge mode."
+      },
+      "BarGaugeNamePlacement": {
+        "enum": [
+          "auto",
+          "top",
+          "left",
+          "hidden"
+        ],
+        "type": "string",
+        "description": "Allows for the bar gauge name to be placed explicitly"
+      },
+      "BarGaugeSizing": {
+        "enum": [
+          "auto",
+          "manual"
+        ],
+        "type": "string",
+        "description": "Allows for the bar gauge size to be set explicitly"
+      },
+      "VizLegendOptions": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "displayMode",
+          "placement",
+          "showLegend",
+          "calcs"
+        ],
+        "properties": {
+          "displayMode": {
+            "$ref": "#/components/schemas/LegendDisplayMode",
+            "default": "list"
+          },
+          "placement": {
+            "$ref": "#/components/schemas/LegendPlacement",
+            "default": "bottom"
+          },
+          "showLegend": {
+            "type": "boolean"
+          },
+          "asTable": {
+            "type": "boolean"
+          },
+          "isVisible": {
+            "type": "boolean"
+          },
+          "sortBy": {
+            "type": "string"
+          },
+          "sortDesc": {
+            "type": "boolean"
+          },
+          "width": {
+            "type": "number"
+          },
+          "calcs": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "default": []
+          }
+        },
+        "description": "TODO docs"
+      },
+      "ReduceDataOptions": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "calcs"
+        ],
+        "properties": {
+          "values": {
+            "type": "boolean",
+            "description": "If true show each row value"
+          },
+          "limit": {
+            "type": "number",
+            "description": "if showing all values limit"
+          },
+          "calcs": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "description": "When !values, pick one value for the whole field"
+          },
+          "fields": {
+            "type": "string",
+            "description": "Which fields to show.  By default this is only numeric fields"
+          }
+        },
+        "description": "TODO docs"
+      },
+      "VizTextDisplayOptions": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "titleSize": {
+            "type": "number",
+            "description": "Explicit title text size"
+          },
+          "valueSize": {
+            "type": "number",
+            "description": "Explicit value text size"
+          },
+          "percentSize": {
+            "type": "number",
+            "description": "Explicit percent text size"
+          }
+        },
+        "description": "TODO docs"
+      },
+      "VizOrientation": {
+        "enum": [
+          "auto",
+          "vertical",
+          "horizontal"
+        ],
+        "type": "string",
+        "description": "TODO docs"
+      },
+      "LegendDisplayMode": {
+        "enum": [
+          "list",
+          "table",
+          "hidden"
+        ],
+        "type": "string",
+        "description": "TODO docs\nNote: \"hidden\" needs to remain as an option for plugins compatibility"
+      },
+      "LegendPlacement": {
+        "enum": [
+          "bottom",
+          "right"
+        ],
+        "type": "string",
+        "description": "TODO docs"
+      }
+    }
+  }
+}

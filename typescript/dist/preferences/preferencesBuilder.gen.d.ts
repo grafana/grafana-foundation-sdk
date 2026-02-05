@@ -1,0 +1,18 @@
+import * as cog from '../cog';
+import * as preferences from '../preferences';
+export declare class PreferencesBuilder implements cog.Builder<preferences.Preferences> {
+    protected readonly internal: preferences.Preferences;
+    constructor();
+    /**
+     * Builds the object.
+     */
+    build(): preferences.Preferences;
+    homeDashboardUID(homeDashboardUID: string): this;
+    timezone(timezone: string): this;
+    weekStart(weekStart: string): this;
+    theme(theme: string): this;
+    language(language: string): this;
+    queryHistory(queryHistory: cog.Builder<preferences.QueryHistoryPreference>): this;
+    cookiePreferences(cookiePreferences: cog.Builder<preferences.CookiePreferences>): this;
+    navbar(navbar: cog.Builder<preferences.NavbarPreference>): this;
+}

@@ -1,0 +1,32 @@
+"use strict";
+// Code generated - EDITING IS FUTILE. DO NOT EDIT.
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.FillConfigBuilder = void 0;
+const tslib_1 = require("tslib");
+const common = tslib_1.__importStar(require("../common"));
+// TODO docs
+class FillConfigBuilder {
+    constructor() {
+        this.internal = common.defaultFillConfig();
+    }
+    /**
+     * Builds the object.
+     */
+    build() {
+        return this.internal;
+    }
+    fillColor(fillColor) {
+        this.internal.fillColor = fillColor;
+        return this;
+    }
+    fillOpacity(fillOpacity) {
+        this.internal.fillOpacity = fillOpacity;
+        return this;
+    }
+    fillBelowTo(fillBelowTo) {
+        this.internal.fillBelowTo = fillBelowTo;
+        return this;
+    }
+}
+exports.FillConfigBuilder = FillConfigBuilder;
+//# sourceMappingURL=fillConfigBuilder.gen.js.map

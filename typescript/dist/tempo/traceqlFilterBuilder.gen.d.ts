@@ -1,0 +1,16 @@
+import * as cog from '../cog';
+import * as tempo from '../tempo';
+export declare class TraceqlFilterBuilder implements cog.Builder<tempo.TraceqlFilter> {
+    protected readonly internal: tempo.TraceqlFilter;
+    constructor();
+    /**
+     * Builds the object.
+     */
+    build(): tempo.TraceqlFilter;
+    id(id: string): this;
+    tag(tag: string): this;
+    operator(operator: string): this;
+    value(value: string | string[]): this;
+    valueType(valueType: string): this;
+    scope(scope: tempo.TraceqlSearchScope): this;
+}

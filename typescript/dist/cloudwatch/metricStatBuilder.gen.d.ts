@@ -1,0 +1,19 @@
+import * as cog from '../cog';
+import * as cloudwatch from '../cloudwatch';
+export declare class MetricStatBuilder implements cog.Builder<cloudwatch.MetricStat> {
+    protected readonly internal: cloudwatch.MetricStat;
+    constructor();
+    /**
+     * Builds the object.
+     */
+    build(): cloudwatch.MetricStat;
+    region(region: string): this;
+    namespace(namespace: string): this;
+    metricName(metricName: string): this;
+    dimensions(dimensions: cloudwatch.Dimensions): this;
+    matchExact(matchExact: boolean): this;
+    period(period: string): this;
+    accountId(accountId: string): this;
+    statistic(statistic: string): this;
+    statistics(statistics: string[]): this;
+}

@@ -1,0 +1,49 @@
+"use strict";
+// Code generated - EDITING IS FUTILE. DO NOT EDIT.
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.LibraryElementDTOMetaBuilder = void 0;
+const tslib_1 = require("tslib");
+const librarypanel = tslib_1.__importStar(require("../librarypanel"));
+class LibraryElementDTOMetaBuilder {
+    constructor() {
+        this.internal = librarypanel.defaultLibraryElementDTOMeta();
+    }
+    /**
+     * Builds the object.
+     */
+    build() {
+        return this.internal;
+    }
+    folderName(folderName) {
+        this.internal.folderName = folderName;
+        return this;
+    }
+    folderUid(folderUid) {
+        this.internal.folderUid = folderUid;
+        return this;
+    }
+    connectedDashboards(connectedDashboards) {
+        this.internal.connectedDashboards = connectedDashboards;
+        return this;
+    }
+    created(created) {
+        this.internal.created = created;
+        return this;
+    }
+    updated(updated) {
+        this.internal.updated = updated;
+        return this;
+    }
+    createdBy(createdBy) {
+        const createdByResource = createdBy.build();
+        this.internal.createdBy = createdByResource;
+        return this;
+    }
+    updatedBy(updatedBy) {
+        const updatedByResource = updatedBy.build();
+        this.internal.updatedBy = updatedByResource;
+        return this;
+    }
+}
+exports.LibraryElementDTOMetaBuilder = LibraryElementDTOMetaBuilder;
+//# sourceMappingURL=libraryElementDTOMetaBuilder.gen.js.map

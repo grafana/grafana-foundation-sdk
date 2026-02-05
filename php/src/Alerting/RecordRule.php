@@ -1,0 +1,50 @@
+<?php
+
+namespace Grafana\Foundation\Alerting;
+
+class RecordRule implements \JsonSerializable
+{
+    /**
+     * Which expression node should be used as the input for the recorded metric.
+     */
+    public string $from;
+
+    /**
+     * Name of the recorded metric.
+     */
+    public string $metric;
+
+    /**
+     * @param string|null $from
+     * @param string|null $metric
+     */
+    public function __construct(?string $from = null, ?string $metric = null)
+    {
+        $this->from = $from ?: "";
+        $this->metric = $metric ?: "";
+    }
+
+    /**
+     * @param array<string, mixed> $inputData
+     */
+    public static function fromArray(array $inputData): self
+    {
+        /** @var array{from?: string, metric?: string} $inputData */
+        $data = $inputData;
+        return new self(
+            from: $data["from"] ?? null,
+            metric: $data["metric"] ?? null,
+        );
+    }
+
+    /**
+     * @return mixed
+     */
+    public function jsonSerialize(): mixed
+    {
+        $data = new \stdClass;
+        $data->from = $this->from;
+        $data->metric = $this->metric;
+        return $data;
+    }
+}

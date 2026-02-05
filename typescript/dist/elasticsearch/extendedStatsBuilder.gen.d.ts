@@ -1,0 +1,19 @@
+import * as cog from '../cog';
+import * as elasticsearch from '../elasticsearch';
+export declare class ExtendedStatsBuilder implements cog.Builder<elasticsearch.ExtendedStats> {
+    protected readonly internal: elasticsearch.ExtendedStats;
+    constructor();
+    /**
+     * Builds the object.
+     */
+    build(): elasticsearch.ExtendedStats;
+    settings(settings: {
+        script?: elasticsearch.InlineScript;
+        missing?: string;
+        sigma?: string;
+    }): this;
+    field(field: string): this;
+    id(id: string): this;
+    meta(meta: any): this;
+    hide(hide: boolean): this;
+}

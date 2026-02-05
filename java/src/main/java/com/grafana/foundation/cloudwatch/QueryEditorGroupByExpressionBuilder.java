@@ -1,0 +1,20 @@
+// Code generated - EDITING IS FUTILE. DO NOT EDIT.
+
+package com.grafana.foundation.cloudwatch;
+
+
+public class QueryEditorGroupByExpressionBuilder implements com.grafana.foundation.cog.Builder<QueryEditorGroupByExpression> {
+    protected final QueryEditorGroupByExpression internal;
+    
+    public QueryEditorGroupByExpressionBuilder() {
+        this.internal = new QueryEditorGroupByExpression();
+    }
+    public QueryEditorGroupByExpressionBuilder property(com.grafana.foundation.cog.Builder<QueryEditorProperty> property) {
+    QueryEditorProperty propertyResource = property.build();
+        this.internal.property = propertyResource;
+        return this;
+    }
+    public QueryEditorGroupByExpression build() {
+        return this.internal;
+    }
+}

@@ -1,0 +1,14 @@
+import * as cog from '../cog';
+import * as elasticsearch from '../elasticsearch';
+export declare class PipelineMetricAggregationWithMultipleBucketPathsBuilder implements cog.Builder<elasticsearch.PipelineMetricAggregationWithMultipleBucketPaths> {
+    protected readonly internal: elasticsearch.PipelineMetricAggregationWithMultipleBucketPaths;
+    constructor();
+    /**
+     * Builds the object.
+     */
+    build(): elasticsearch.PipelineMetricAggregationWithMultipleBucketPaths;
+    pipelineVariables(pipelineVariables: cog.Builder<elasticsearch.PipelineVariable>[]): this;
+    type(type: elasticsearch.MetricAggregationType): this;
+    id(id: string): this;
+    hide(hide: boolean): this;
+}

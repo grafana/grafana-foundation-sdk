@@ -1,0 +1,32 @@
+"use strict";
+// Code generated - EDITING IS FUTILE. DO NOT EDIT.
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.BarConfigBuilder = void 0;
+const tslib_1 = require("tslib");
+const common = tslib_1.__importStar(require("../common"));
+// TODO docs
+class BarConfigBuilder {
+    constructor() {
+        this.internal = common.defaultBarConfig();
+    }
+    /**
+     * Builds the object.
+     */
+    build() {
+        return this.internal;
+    }
+    barAlignment(barAlignment) {
+        this.internal.barAlignment = barAlignment;
+        return this;
+    }
+    barWidthFactor(barWidthFactor) {
+        this.internal.barWidthFactor = barWidthFactor;
+        return this;
+    }
+    barMaxWidth(barMaxWidth) {
+        this.internal.barMaxWidth = barMaxWidth;
+        return this;
+    }
+}
+exports.BarConfigBuilder = BarConfigBuilder;
+//# sourceMappingURL=barConfigBuilder.gen.js.map

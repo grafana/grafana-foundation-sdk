@@ -1,0 +1,15 @@
+import * as cog from '../cog';
+import * as elasticsearch from '../elasticsearch';
+export declare class RawDataBuilder implements cog.Builder<elasticsearch.RawData> {
+    protected readonly internal: elasticsearch.RawData;
+    constructor();
+    /**
+     * Builds the object.
+     */
+    build(): elasticsearch.RawData;
+    id(id: string): this;
+    settings(settings: {
+        size?: string;
+    }): this;
+    hide(hide: boolean): this;
+}

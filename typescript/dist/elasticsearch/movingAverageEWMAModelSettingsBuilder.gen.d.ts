@@ -1,0 +1,16 @@
+import * as cog from '../cog';
+import * as elasticsearch from '../elasticsearch';
+export declare class MovingAverageEWMAModelSettingsBuilder implements cog.Builder<elasticsearch.MovingAverageEWMAModelSettings> {
+    protected readonly internal: elasticsearch.MovingAverageEWMAModelSettings;
+    constructor();
+    /**
+     * Builds the object.
+     */
+    build(): elasticsearch.MovingAverageEWMAModelSettings;
+    settings(settings: {
+        alpha?: string;
+    }): this;
+    window(window: string): this;
+    minimize(minimize: boolean): this;
+    predict(predict: string): this;
+}

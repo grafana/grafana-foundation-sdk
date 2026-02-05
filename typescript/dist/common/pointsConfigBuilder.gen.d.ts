@@ -1,0 +1,14 @@
+import * as cog from '../cog';
+import * as common from '../common';
+export declare class PointsConfigBuilder implements cog.Builder<common.PointsConfig> {
+    protected readonly internal: common.PointsConfig;
+    constructor();
+    /**
+     * Builds the object.
+     */
+    build(): common.PointsConfig;
+    showPoints(showPoints: common.VisibilityMode): this;
+    pointSize(pointSize: number): this;
+    pointColor(pointColor: string): this;
+    pointSymbol(pointSymbol: string): this;
+}
