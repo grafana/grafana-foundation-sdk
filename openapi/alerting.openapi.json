@@ -1,0 +1,554 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "title": "alerting",
+    "version": "0.0.0",
+    "x-schema-identifier": "AlertRuleGroup",
+    "x-schema-kind": "core"
+  },
+  "paths": {},
+  "components": {
+    "schemas": {
+      "Query": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "datasourceUid": {
+            "type": "string",
+            "description": "Grafana data source unique identifier; it should be '__expr__' for a Server Side Expression operation."
+          },
+          "model": {
+            "type": "object",
+            "additionalProperties": {},
+            "description": "JSON is the raw JSON query and includes the above properties as well as custom properties."
+          },
+          "queryType": {
+            "type": "string",
+            "description": "QueryType is an optional identifier for the type of query.\nIt can be used to distinguish different types of queries."
+          },
+          "refId": {
+            "type": "string",
+            "description": "RefID is the unique identifier of the query, set by the frontend call."
+          },
+          "relativeTimeRange": {
+            "$ref": "#/components/schemas/RelativeTimeRange",
+            "description": "RelativeTimeRange is the per query start and end time\nfor requests."
+          }
+        }
+      },
+      "RuleGroup": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "folderUid": {
+            "type": "string"
+          },
+          "interval": {
+            "$ref": "#/components/schemas/Duration",
+            "description": "The interval, in seconds, at which all rules in the group are evaluated.\nIf a group contains many rules, the rules are evaluated sequentially."
+          },
+          "rules": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Rule"
+            }
+          },
+          "title": {
+            "type": "string"
+          }
+        }
+      },
+      "NotificationSettings": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "receiver"
+        ],
+        "properties": {
+          "group_by": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "description": "Override the labels by which incoming alerts are grouped together. For example, multiple alerts coming in for\ncluster=A and alertname=LatencyHigh would be batched into a single group. To aggregate by all possible labels\nuse the special value '...' as the sole label name.\nThis effectively disables aggregation entirely, passing through all alerts as-is. This is unlikely to be what\nyou want, unless you have a very low alert volume or your upstream notification system performs its own grouping.\nMust include 'alertname' and 'grafana_folder' if not using '...'.",
+            "default": [
+              "alertname",
+              "grafana_folder"
+            ]
+          },
+          "group_interval": {
+            "type": "string",
+            "description": "Override how long to wait before sending a notification about new alerts that are added to a group of alerts for\nwhich an initial notification has already been sent. (Usually ~5m or more.)"
+          },
+          "group_wait": {
+            "type": "string",
+            "description": "Override how long to initially wait to send a notification for a group of alerts. Allows to wait for an\ninhibiting alert to arrive or collect more initial alerts for the same group. (Usually ~0s to few minutes.)"
+          },
+          "mute_time_intervals": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "description": "Override the times when notifications should be muted. These must match the name of a mute time interval defined\nin the alertmanager configuration mute_time_intervals section. When muted it will not send any notifications, but\notherwise acts normally."
+          },
+          "receiver": {
+            "type": "string",
+            "description": "Name of the receiver to send notifications to."
+          },
+          "repeat_interval": {
+            "type": "string",
+            "description": "Override how long to wait before sending a notification again if it has already been sent successfully for an\nalert. (Usually ~3h or more).\nNote that this parameter is implicitly bound by Alertmanager's `--data.retention` configuration flag.\nNotifications will be resent after either repeat_interval or the data retention period have passed, whichever\noccurs first. `repeat_interval` should not be less than `group_interval`."
+          }
+        }
+      },
+      "Duration": {
+        "type": "integer",
+        "description": "Duration in seconds."
+      },
+      "ContactPoint": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "settings",
+          "type"
+        ],
+        "properties": {
+          "disableResolveMessage": {
+            "type": "boolean"
+          },
+          "name": {
+            "type": "string",
+            "description": "Name is used as grouping key in the UI. Contact points with the\nsame name will be grouped in the UI."
+          },
+          "provenance": {
+            "type": "string"
+          },
+          "settings": {
+            "$ref": "#/components/schemas/Json"
+          },
+          "type": {
+            "enum": [
+              "alertmanager",
+              "dingding",
+              "discord",
+              "email",
+              "googlechat",
+              "kafka",
+              "line",
+              "opsgenie",
+              "pagerduty",
+              "pushover",
+              "sensugo",
+              "slack",
+              "teams",
+              "telegram",
+              "threema",
+              "victorops",
+              "webhook",
+              "wecom"
+            ],
+            "type": "string"
+          },
+          "uid": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 40,
+            "description": "UID is the unique identifier of the contact point. The UID can be\nset by the user."
+          }
+        },
+        "description": "EmbeddedContactPoint is the contact point type that is used\nby grafanas embedded alertmanager implementation."
+      },
+      "Json": {
+        "type": "object",
+        "additionalProperties": {}
+      },
+      "MatchRegexps": {
+        "type": "object",
+        "additionalProperties": {
+          "type": "string"
+        }
+      },
+      "MatchType": {
+        "enum": [
+          "=",
+          "!=",
+          "=~",
+          "!~"
+        ],
+        "type": "string"
+      },
+      "Matcher": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "Name": {
+            "type": "string"
+          },
+          "Type": {
+            "$ref": "#/components/schemas/MatchType"
+          },
+          "Value": {
+            "type": "string"
+          }
+        }
+      },
+      "Matchers": {
+        "type": "array",
+        "items": {
+          "$ref": "#/components/schemas/Matcher"
+        },
+        "description": "Matchers is a slice of Matchers that is sortable, implements Stringer, and\nprovides a Matches method to match a LabelSet against all Matchers in the\nslice. Note that some users of Matchers might require it to be sorted."
+      },
+      "MuteTiming": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "name": {
+            "type": "string"
+          },
+          "time_intervals": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/TimeInterval"
+            }
+          }
+        }
+      },
+      "NotificationTemplate": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "name": {
+            "type": "string"
+          },
+          "provenance": {
+            "$ref": "#/components/schemas/Provenance"
+          },
+          "template": {
+            "type": "string"
+          },
+          "version": {
+            "type": "string"
+          }
+        }
+      },
+      "ObjectMatcher": {
+        "type": "array",
+        "items": {
+          "type": "string"
+        }
+      },
+      "ObjectMatchers": {
+        "type": "array",
+        "items": {
+          "$ref": "#/components/schemas/ObjectMatcher"
+        }
+      },
+      "Provenance": {
+        "type": "string"
+      },
+      "Rule": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "condition",
+          "data",
+          "execErrState",
+          "folderUID",
+          "for",
+          "noDataState",
+          "orgID",
+          "ruleGroup",
+          "title"
+        ],
+        "properties": {
+          "annotations": {
+            "type": "object",
+            "additionalProperties": {
+              "type": "string"
+            }
+          },
+          "condition": {
+            "type": "string"
+          },
+          "data": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Query"
+            }
+          },
+          "execErrState": {
+            "enum": [
+              "OK",
+              "Alerting",
+              "Error"
+            ],
+            "type": "string"
+          },
+          "folderUID": {
+            "type": "string"
+          },
+          "for": {
+            "type": "string",
+            "description": "The amount of time, in seconds, for which the rule must be breached for the rule to be considered to be Firing.\nBefore this time has elapsed, the rule is only considered to be Pending."
+          },
+          "id": {
+            "type": "integer"
+          },
+          "isPaused": {
+            "type": "boolean"
+          },
+          "labels": {
+            "type": "object",
+            "additionalProperties": {
+              "type": "string"
+            }
+          },
+          "noDataState": {
+            "enum": [
+              "Alerting",
+              "NoData",
+              "OK"
+            ],
+            "type": "string"
+          },
+          "notification_settings": {
+            "$ref": "#/components/schemas/NotificationSettings"
+          },
+          "orgID": {
+            "type": "integer"
+          },
+          "provenance": {
+            "$ref": "#/components/schemas/Provenance"
+          },
+          "record": {
+            "$ref": "#/components/schemas/RecordRule"
+          },
+          "ruleGroup": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 190
+          },
+          "title": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 190
+          },
+          "uid": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 40
+          },
+          "updated": {
+            "type": "string",
+            "format": "date-time"
+          }
+        }
+      },
+      "RecordRule": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "from",
+          "metric"
+        ],
+        "properties": {
+          "from": {
+            "type": "string",
+            "description": "Which expression node should be used as the input for the recorded metric."
+          },
+          "metric": {
+            "type": "string",
+            "description": "Name of the recorded metric."
+          }
+        }
+      },
+      "RelativeTimeRange": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "from": {
+            "$ref": "#/components/schemas/Duration",
+            "description": "A Duration represents the elapsed time between two instants\nas an int64 nanosecond count. The representation limits the\nlargest representable duration to approximately 290 years."
+          },
+          "to": {
+            "$ref": "#/components/schemas/Duration",
+            "description": "A Duration represents the elapsed time between two instants\nas an int64 nanosecond count. The representation limits the\nlargest representable duration to approximately 290 years."
+          }
+        },
+        "description": "RelativeTimeRange is the per query start and end time\nfor requests."
+      },
+      "NotificationPolicy": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "active_time_intervals": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "continue": {
+            "type": "boolean"
+          },
+          "group_by": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "group_interval": {
+            "type": "string"
+          },
+          "group_wait": {
+            "type": "string"
+          },
+          "match": {
+            "type": "object",
+            "additionalProperties": {
+              "type": "string"
+            },
+            "description": "Deprecated. Remove before v1.0 release."
+          },
+          "match_re": {
+            "$ref": "#/components/schemas/MatchRegexps"
+          },
+          "matchers": {
+            "$ref": "#/components/schemas/Matchers",
+            "description": "Matchers is a slice of Matchers that is sortable, implements Stringer, and\nprovides a Matches method to match a LabelSet against all Matchers in the\nslice. Note that some users of Matchers might require it to be sorted."
+          },
+          "mute_time_intervals": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "object_matchers": {
+            "$ref": "#/components/schemas/ObjectMatchers"
+          },
+          "provenance": {
+            "$ref": "#/components/schemas/Provenance"
+          },
+          "receiver": {
+            "type": "string"
+          },
+          "repeat_interval": {
+            "type": "string"
+          },
+          "routes": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/NotificationPolicy"
+            }
+          }
+        },
+        "description": "A Route is a node that contains definitions of how to handle alerts. This is modified\nfrom the upstream alertmanager in that it adds the ObjectMatchers property."
+      },
+      "TimeInterval": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "times": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/TimeRange"
+            }
+          },
+          "weekdays": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/WeekdayRange"
+            }
+          },
+          "days_of_month": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/DayOfMonthRange"
+            }
+          },
+          "months": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/MonthRange"
+            }
+          },
+          "years": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/YearRange"
+            }
+          },
+          "location": {
+            "$ref": "#/components/schemas/Location"
+          }
+        }
+      },
+      "TimeRange": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "from": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "to": {
+            "type": "string",
+            "format": "date-time"
+          }
+        },
+        "description": "Redefining this to avoid an import cycle"
+      },
+      "WeekdayRange": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "begin": {
+            "type": "integer"
+          },
+          "end": {
+            "type": "integer"
+          }
+        }
+      },
+      "DayOfMonthRange": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "begin": {
+            "type": "integer"
+          },
+          "end": {
+            "type": "integer"
+          }
+        }
+      },
+      "YearRange": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "begin": {
+            "type": "integer"
+          },
+          "end": {
+            "type": "integer"
+          }
+        }
+      },
+      "MonthRange": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "begin": {
+            "type": "integer"
+          },
+          "end": {
+            "type": "integer"
+          }
+        }
+      },
+      "Location": {
+        "type": "string"
+      }
+    }
+  }
+}

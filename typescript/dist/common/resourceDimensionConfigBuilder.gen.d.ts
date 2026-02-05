@@ -1,0 +1,13 @@
+import * as cog from '../cog';
+import * as common from '../common';
+export declare class ResourceDimensionConfigBuilder implements cog.Builder<common.ResourceDimensionConfig> {
+    protected readonly internal: common.ResourceDimensionConfig;
+    constructor();
+    /**
+     * Builds the object.
+     */
+    build(): common.ResourceDimensionConfig;
+    mode(mode: common.ResourceDimensionMode): this;
+    field(field: string): this;
+    fixed(fixed: string): this;
+}

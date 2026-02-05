@@ -1,0 +1,75 @@
+"use strict";
+// Code generated - EDITING IS FUTILE. DO NOT EDIT.
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.defaultFieldConfig = exports.defaultOptions = exports.defaultRowsHeatmapOptions = exports.defaultExemplarConfig = exports.defaultHeatmapLegend = exports.defaultHeatmapTooltip = exports.defaultFilterValueRange = exports.defaultCellValues = exports.defaultYAxisConfig = exports.defaultHeatmapColorOptions = exports.defaultHeatmapSelectionMode = exports.HeatmapSelectionMode = exports.defaultHeatmapColorScale = exports.HeatmapColorScale = exports.defaultHeatmapColorMode = exports.HeatmapColorMode = void 0;
+const tslib_1 = require("tslib");
+const common = tslib_1.__importStar(require("../common"));
+// Controls the color mode of the heatmap
+var HeatmapColorMode;
+(function (HeatmapColorMode) {
+    HeatmapColorMode["Opacity"] = "opacity";
+    HeatmapColorMode["Scheme"] = "scheme";
+})(HeatmapColorMode || (exports.HeatmapColorMode = HeatmapColorMode = {}));
+const defaultHeatmapColorMode = () => (HeatmapColorMode.Opacity);
+exports.defaultHeatmapColorMode = defaultHeatmapColorMode;
+// Controls the color scale of the heatmap
+var HeatmapColorScale;
+(function (HeatmapColorScale) {
+    HeatmapColorScale["Linear"] = "linear";
+    HeatmapColorScale["Exponential"] = "exponential";
+})(HeatmapColorScale || (exports.HeatmapColorScale = HeatmapColorScale = {}));
+const defaultHeatmapColorScale = () => (HeatmapColorScale.Linear);
+exports.defaultHeatmapColorScale = defaultHeatmapColorScale;
+// Controls which axis to allow selection on
+var HeatmapSelectionMode;
+(function (HeatmapSelectionMode) {
+    HeatmapSelectionMode["X"] = "x";
+    HeatmapSelectionMode["Y"] = "y";
+    HeatmapSelectionMode["Xy"] = "xy";
+})(HeatmapSelectionMode || (exports.HeatmapSelectionMode = HeatmapSelectionMode = {}));
+const defaultHeatmapSelectionMode = () => (HeatmapSelectionMode.X);
+exports.defaultHeatmapSelectionMode = defaultHeatmapSelectionMode;
+const defaultHeatmapColorOptions = () => ({
+    scheme: "",
+    fill: "",
+    exponent: 0,
+    steps: 0,
+    reverse: false,
+});
+exports.defaultHeatmapColorOptions = defaultHeatmapColorOptions;
+const defaultYAxisConfig = () => ({});
+exports.defaultYAxisConfig = defaultYAxisConfig;
+const defaultCellValues = () => ({});
+exports.defaultCellValues = defaultCellValues;
+const defaultFilterValueRange = () => ({});
+exports.defaultFilterValueRange = defaultFilterValueRange;
+const defaultHeatmapTooltip = () => ({
+    mode: common.TooltipDisplayMode.Single,
+});
+exports.defaultHeatmapTooltip = defaultHeatmapTooltip;
+const defaultHeatmapLegend = () => ({
+    show: false,
+});
+exports.defaultHeatmapLegend = defaultHeatmapLegend;
+const defaultExemplarConfig = () => ({
+    color: "",
+});
+exports.defaultExemplarConfig = defaultExemplarConfig;
+const defaultRowsHeatmapOptions = () => ({});
+exports.defaultRowsHeatmapOptions = defaultRowsHeatmapOptions;
+const defaultOptions = () => ({
+    calculate: false,
+    color: { scheme: "Oranges", fill: "dark-orange", exponent: 0.5, steps: 64, reverse: false, },
+    filterValues: { le: 1e-09, },
+    showValue: common.VisibilityMode.Auto,
+    cellGap: 1,
+    yAxis: (0, exports.defaultYAxisConfig)(),
+    legend: { show: true, },
+    tooltip: (0, exports.defaultHeatmapTooltip)(),
+    exemplars: { color: "rgba(255,0,255,0.7)", },
+    selectionMode: HeatmapSelectionMode.X,
+});
+exports.defaultOptions = defaultOptions;
+const defaultFieldConfig = () => ({});
+exports.defaultFieldConfig = defaultFieldConfig;
+//# sourceMappingURL=types.gen.js.map

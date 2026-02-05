@@ -1,0 +1,12 @@
+import * as cog from '../cog';
+import * as azuremonitor from '../azuremonitor';
+export declare class WorkspacesQueryBuilder implements cog.Builder<azuremonitor.WorkspacesQuery> {
+    protected readonly internal: azuremonitor.WorkspacesQuery;
+    constructor();
+    /**
+     * Builds the object.
+     */
+    build(): azuremonitor.WorkspacesQuery;
+    rawQuery(rawQuery: string): this;
+    subscription(subscription: string): this;
+}

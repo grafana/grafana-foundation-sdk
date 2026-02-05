@@ -1,0 +1,16 @@
+import * as cog from '../cog';
+import * as elasticsearch from '../elasticsearch';
+export declare class BucketScriptBuilder implements cog.Builder<elasticsearch.BucketScript> {
+    protected readonly internal: elasticsearch.BucketScript;
+    constructor();
+    /**
+     * Builds the object.
+     */
+    build(): elasticsearch.BucketScript;
+    pipelineVariables(pipelineVariables: cog.Builder<elasticsearch.PipelineVariable>[]): this;
+    id(id: string): this;
+    settings(settings: {
+        script?: elasticsearch.InlineScript;
+    }): this;
+    hide(hide: boolean): this;
+}

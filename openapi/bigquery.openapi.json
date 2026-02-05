@@ -1,0 +1,292 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "title": "bigquery",
+    "version": "0.0.0",
+    "x-schema-identifier": "grafana-bigquery-datasource",
+    "x-schema-kind": "composable",
+    "x-schema-variant": "dataquery"
+  },
+  "paths": {},
+  "components": {
+    "schemas": {
+      "Dataquery": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "format",
+          "rawSql"
+        ],
+        "properties": {
+          "dataset": {
+            "type": "string"
+          },
+          "table": {
+            "type": "string"
+          },
+          "project": {
+            "type": "string"
+          },
+          "format": {
+            "$ref": "#/components/schemas/QueryFormat"
+          },
+          "rawQuery": {
+            "type": "boolean"
+          },
+          "rawSql": {
+            "type": "string"
+          },
+          "location": {
+            "type": "string"
+          },
+          "partitioned": {
+            "type": "boolean"
+          },
+          "partitionedField": {
+            "type": "string"
+          },
+          "convertToUTC": {
+            "type": "boolean"
+          },
+          "sharded": {
+            "type": "boolean"
+          },
+          "queryPriority": {
+            "$ref": "#/components/schemas/QueryPriority"
+          },
+          "timeShift": {
+            "type": "string"
+          },
+          "editorMode": {
+            "$ref": "#/components/schemas/EditorMode"
+          },
+          "sql": {
+            "$ref": "#/components/schemas/SQLExpression"
+          },
+          "refId": {
+            "type": "string",
+            "description": "A unique identifier for the query within the list of targets.\nIn server side expressions, the refId is used as a variable name to identify results.\nBy default, the UI will assign A-\u003eZ; however setting meaningful names may be useful."
+          },
+          "hide": {
+            "type": "boolean",
+            "description": "If hide is set to true, Grafana will filter out the response(s) associated with this query before returning it to the panel."
+          },
+          "queryType": {
+            "type": "string",
+            "description": "Specify the query flavor\nTODO make this required and give it a default"
+          },
+          "datasource": {
+            "$ref": "#/components/schemas/DataSourceRef",
+            "description": "For mixed data sources the selected datasource is on the query level.\nFor non mixed scenarios this is undefined.\nTODO find a better way to do this ^ that's friendly to schema\nTODO this shouldn't be unknown but DataSourceRef | null"
+          }
+        },
+        "description": "Manually converted from https://github.com/grafana/google-bigquery-datasource/blob/18680e42ba557791d109c7c540c2c3f2647592f0/src/types.ts#L75"
+      },
+      "QueryFormat": {
+        "enum": [
+          0,
+          1
+        ],
+        "type": "integer"
+      },
+      "QueryPriority": {
+        "enum": [
+          "INTERACTIVE",
+          "BATCH"
+        ],
+        "type": "string"
+      },
+      "EditorMode": {
+        "enum": [
+          "code",
+          "builder"
+        ],
+        "type": "string"
+      },
+      "SQLExpression": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "columns": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/QueryEditorFunctionExpression"
+            }
+          },
+          "from": {
+            "type": "string"
+          },
+          "whereString": {
+            "type": "string",
+            "description": "whereJsonTree?: _"
+          },
+          "groupBy": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/QueryEditorGroupByExpression"
+            }
+          },
+          "orderBy": {
+            "$ref": "#/components/schemas/QueryEditorPropertyExpression"
+          },
+          "orderByDirection": {
+            "$ref": "#/components/schemas/OrderByDirection"
+          },
+          "limit": {
+            "type": "integer"
+          },
+          "offset": {
+            "type": "integer"
+          }
+        }
+      },
+      "QueryEditorFunctionExpression": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "type"
+        ],
+        "properties": {
+          "type": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/QueryEditorExpressionType"
+              }
+            ],
+            "default": "function"
+          },
+          "name": {
+            "type": "string"
+          },
+          "parameters": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/QueryEditorFunctionParameterExpression"
+            }
+          }
+        }
+      },
+      "QueryEditorExpressionType": {
+        "enum": [
+          "property",
+          "operator",
+          "or",
+          "and",
+          "groupBy",
+          "function",
+          "functionParameter"
+        ],
+        "type": "string"
+      },
+      "QueryEditorFunctionParameterExpression": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "type"
+        ],
+        "properties": {
+          "type": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/QueryEditorExpressionType"
+              }
+            ],
+            "default": "functionParameter"
+          },
+          "name": {
+            "type": "string"
+          }
+        }
+      },
+      "QueryEditorGroupByExpression": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "type",
+          "property"
+        ],
+        "properties": {
+          "type": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/QueryEditorExpressionType"
+              }
+            ],
+            "default": "groupBy"
+          },
+          "property": {
+            "$ref": "#/components/schemas/QueryEditorProperty"
+          }
+        }
+      },
+      "QueryEditorProperty": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "type"
+        ],
+        "properties": {
+          "type": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/QueryEditorPropertyType"
+              }
+            ],
+            "default": "string"
+          },
+          "name": {
+            "type": "string"
+          }
+        }
+      },
+      "QueryEditorPropertyType": {
+        "enum": [
+          "string"
+        ],
+        "type": "string"
+      },
+      "QueryEditorPropertyExpression": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "type",
+          "property"
+        ],
+        "properties": {
+          "type": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/QueryEditorExpressionType"
+              }
+            ],
+            "default": "property"
+          },
+          "property": {
+            "$ref": "#/components/schemas/QueryEditorProperty"
+          }
+        }
+      },
+      "OrderByDirection": {
+        "enum": [
+          "ASC",
+          "DESC"
+        ],
+        "type": "string"
+      },
+      "DataSourceRef": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "type": {
+            "type": "string",
+            "description": "The plugin type-id"
+          },
+          "uid": {
+            "type": "string",
+            "description": "Specific datasource instance"
+          }
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,49 @@
+"use strict";
+// Code generated - EDITING IS FUTILE. DO NOT EDIT.
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.PublicDashboardBuilder = void 0;
+const tslib_1 = require("tslib");
+const publicdashboard = tslib_1.__importStar(require("../publicdashboard"));
+class PublicDashboardBuilder {
+    constructor() {
+        this.internal = publicdashboard.defaultPublicDashboard();
+    }
+    /**
+     * Builds the object.
+     */
+    build() {
+        return this.internal;
+    }
+    // Unique public dashboard identifier
+    uid(uid) {
+        this.internal.uid = uid;
+        return this;
+    }
+    // Dashboard unique identifier referenced by this public dashboard
+    dashboardUid(dashboardUid) {
+        this.internal.dashboardUid = dashboardUid;
+        return this;
+    }
+    // Unique public access token
+    accessToken(accessToken) {
+        this.internal.accessToken = accessToken;
+        return this;
+    }
+    // Flag that indicates if the public dashboard is enabled
+    isEnabled(isEnabled) {
+        this.internal.isEnabled = isEnabled;
+        return this;
+    }
+    // Flag that indicates if annotations are enabled
+    annotationsEnabled(annotationsEnabled) {
+        this.internal.annotationsEnabled = annotationsEnabled;
+        return this;
+    }
+    // Flag that indicates if the time range picker is enabled
+    timeSelectionEnabled(timeSelectionEnabled) {
+        this.internal.timeSelectionEnabled = timeSelectionEnabled;
+        return this;
+    }
+}
+exports.PublicDashboardBuilder = PublicDashboardBuilder;
+//# sourceMappingURL=publicDashboardBuilder.gen.js.map

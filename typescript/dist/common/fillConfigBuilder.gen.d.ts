@@ -1,0 +1,13 @@
+import * as cog from '../cog';
+import * as common from '../common';
+export declare class FillConfigBuilder implements cog.Builder<common.FillConfig> {
+    protected readonly internal: common.FillConfig;
+    constructor();
+    /**
+     * Builds the object.
+     */
+    build(): common.FillConfig;
+    fillColor(fillColor: string): this;
+    fillOpacity(fillOpacity: number): this;
+    fillBelowTo(fillBelowTo: string): this;
+}

@@ -1,0 +1,65 @@
+"use strict";
+// Code generated - EDITING IS FUTILE. DO NOT EDIT.
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.PreferencesBuilder = void 0;
+const tslib_1 = require("tslib");
+const preferences = tslib_1.__importStar(require("../preferences"));
+// Spec defines user, team or org Grafana preferences
+// swagger:model Preferences
+class PreferencesBuilder {
+    constructor() {
+        this.internal = preferences.defaultPreferences();
+    }
+    /**
+     * Builds the object.
+     */
+    build() {
+        return this.internal;
+    }
+    // UID for the home dashboard
+    homeDashboardUID(homeDashboardUID) {
+        this.internal.homeDashboardUID = homeDashboardUID;
+        return this;
+    }
+    // The timezone selection
+    // TODO: this should use the timezone defined in common
+    timezone(timezone) {
+        this.internal.timezone = timezone;
+        return this;
+    }
+    // day of the week (sunday, monday, etc)
+    weekStart(weekStart) {
+        this.internal.weekStart = weekStart;
+        return this;
+    }
+    // light, dark, empty is default
+    theme(theme) {
+        this.internal.theme = theme;
+        return this;
+    }
+    // Selected language (beta)
+    language(language) {
+        this.internal.language = language;
+        return this;
+    }
+    // Explore query history preferences
+    queryHistory(queryHistory) {
+        const queryHistoryResource = queryHistory.build();
+        this.internal.queryHistory = queryHistoryResource;
+        return this;
+    }
+    // Cookie preferences
+    cookiePreferences(cookiePreferences) {
+        const cookiePreferencesResource = cookiePreferences.build();
+        this.internal.cookiePreferences = cookiePreferencesResource;
+        return this;
+    }
+    // Navigation preferences
+    navbar(navbar) {
+        const navbarResource = navbar.build();
+        this.internal.navbar = navbarResource;
+        return this;
+    }
+}
+exports.PreferencesBuilder = PreferencesBuilder;
+//# sourceMappingURL=preferencesBuilder.gen.js.map

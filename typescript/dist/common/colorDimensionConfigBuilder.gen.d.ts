@@ -1,0 +1,12 @@
+import * as cog from '../cog';
+import * as common from '../common';
+export declare class ColorDimensionConfigBuilder implements cog.Builder<common.ColorDimensionConfig> {
+    protected readonly internal: common.ColorDimensionConfig;
+    constructor();
+    /**
+     * Builds the object.
+     */
+    build(): common.ColorDimensionConfig;
+    fixed(fixed: string): this;
+    field(field: string): this;
+}

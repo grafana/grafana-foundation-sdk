@@ -1,0 +1,31 @@
+"use strict";
+// Code generated - EDITING IS FUTILE. DO NOT EDIT.
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.BaseBucketAggregationBuilder = void 0;
+const tslib_1 = require("tslib");
+const elasticsearch = tslib_1.__importStar(require("../elasticsearch"));
+class BaseBucketAggregationBuilder {
+    constructor() {
+        this.internal = elasticsearch.defaultBaseBucketAggregation();
+    }
+    /**
+     * Builds the object.
+     */
+    build() {
+        return this.internal;
+    }
+    id(id) {
+        this.internal.id = id;
+        return this;
+    }
+    type(type) {
+        this.internal.type = type;
+        return this;
+    }
+    settings(settings) {
+        this.internal.settings = settings;
+        return this;
+    }
+}
+exports.BaseBucketAggregationBuilder = BaseBucketAggregationBuilder;
+//# sourceMappingURL=baseBucketAggregationBuilder.gen.js.map

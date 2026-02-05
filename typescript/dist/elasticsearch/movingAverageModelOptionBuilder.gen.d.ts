@@ -1,0 +1,12 @@
+import * as cog from '../cog';
+import * as elasticsearch from '../elasticsearch';
+export declare class MovingAverageModelOptionBuilder implements cog.Builder<elasticsearch.MovingAverageModelOption> {
+    protected readonly internal: elasticsearch.MovingAverageModelOption;
+    constructor();
+    /**
+     * Builds the object.
+     */
+    build(): elasticsearch.MovingAverageModelOption;
+    label(label: string): this;
+    value(value: elasticsearch.MovingAverageModel): this;
+}

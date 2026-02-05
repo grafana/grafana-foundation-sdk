@@ -1,0 +1,27 @@
+"use strict";
+// Code generated - EDITING IS FUTILE. DO NOT EDIT.
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.ExtendedStatBuilder = void 0;
+const tslib_1 = require("tslib");
+const elasticsearch = tslib_1.__importStar(require("../elasticsearch"));
+class ExtendedStatBuilder {
+    constructor() {
+        this.internal = elasticsearch.defaultExtendedStat();
+    }
+    /**
+     * Builds the object.
+     */
+    build() {
+        return this.internal;
+    }
+    label(label) {
+        this.internal.label = label;
+        return this;
+    }
+    value(value) {
+        this.internal.value = value;
+        return this;
+    }
+}
+exports.ExtendedStatBuilder = ExtendedStatBuilder;
+//# sourceMappingURL=extendedStatBuilder.gen.js.map

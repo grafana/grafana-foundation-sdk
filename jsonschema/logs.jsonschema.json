@@ -1,0 +1,115 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "definitions": {
+    "Options": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "showLabels",
+        "showCommonLabels",
+        "showTime",
+        "showLogContextToggle",
+        "wrapLogMessage",
+        "prettifyLogMessage",
+        "enableLogDetails",
+        "sortOrder",
+        "dedupStrategy"
+      ],
+      "properties": {
+        "showLabels": {
+          "type": "boolean"
+        },
+        "showCommonLabels": {
+          "type": "boolean"
+        },
+        "showTime": {
+          "type": "boolean"
+        },
+        "showLogContextToggle": {
+          "type": "boolean"
+        },
+        "wrapLogMessage": {
+          "type": "boolean"
+        },
+        "prettifyLogMessage": {
+          "type": "boolean"
+        },
+        "enableLogDetails": {
+          "type": "boolean"
+        },
+        "sortOrder": {
+          "$ref": "#/definitions/LogsSortOrder"
+        },
+        "dedupStrategy": {
+          "$ref": "#/definitions/LogsDedupStrategy"
+        },
+        "enableInfiniteScrolling": {
+          "type": "boolean"
+        },
+        "onClickFilterLabel": {
+          "type": "object",
+          "additionalProperties": {},
+          "description": "TODO: figure out how to define callbacks"
+        },
+        "onClickFilterOutLabel": {
+          "type": "object",
+          "additionalProperties": {}
+        },
+        "isFilterLabelActive": {
+          "type": "object",
+          "additionalProperties": {}
+        },
+        "onClickFilterString": {
+          "type": "object",
+          "additionalProperties": {}
+        },
+        "onClickFilterOutString": {
+          "type": "object",
+          "additionalProperties": {}
+        },
+        "onClickShowField": {
+          "type": "object",
+          "additionalProperties": {}
+        },
+        "onClickHideField": {
+          "type": "object",
+          "additionalProperties": {}
+        },
+        "logRowMenuIconsBefore": {
+          "type": "object",
+          "additionalProperties": {}
+        },
+        "logRowMenuIconsAfter": {
+          "type": "object",
+          "additionalProperties": {}
+        },
+        "onNewLogsReceived": {
+          "type": "object",
+          "additionalProperties": {}
+        },
+        "displayedFields": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "LogsSortOrder": {
+      "enum": [
+        "Descending",
+        "Ascending"
+      ],
+      "type": "string"
+    },
+    "LogsDedupStrategy": {
+      "enum": [
+        "none",
+        "exact",
+        "numbers",
+        "signature"
+      ],
+      "type": "string"
+    }
+  }
+}

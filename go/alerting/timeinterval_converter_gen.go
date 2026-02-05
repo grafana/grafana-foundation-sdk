@@ -1,0 +1,116 @@
+// Code generated - EDITING IS FUTILE. DO NOT EDIT.
+
+package alerting
+
+import (
+	"strings"
+
+	cog "github.com/grafana/grafana-foundation-sdk/go/cog"
+)
+
+// TimeIntervalConverter accepts a `TimeInterval` object and generates the Go code to build this object using builders.
+func TimeIntervalConverter(input TimeInterval) string {
+	calls := []string{
+		`alerting.NewTimeIntervalBuilder()`,
+	}
+	var buffer strings.Builder
+	if input.Times != nil && len(input.Times) >= 1 {
+
+		buffer.WriteString(`Times(`)
+		tmparg0 := []string{}
+		for _, arg1 := range input.Times {
+			tmptimesarg1 := TimeRangeConverter(arg1)
+			tmparg0 = append(tmparg0, tmptimesarg1)
+		}
+		arg0 := "[]cog.Builder[alerting.TimeRange]{" + strings.Join(tmparg0, ",\n") + "}"
+		buffer.WriteString(arg0)
+
+		buffer.WriteString(")")
+
+		calls = append(calls, buffer.String())
+		buffer.Reset()
+
+	}
+	if input.Weekdays != nil && len(input.Weekdays) >= 1 {
+
+		buffer.WriteString(`Weekdays(`)
+		tmparg0 := []string{}
+		for _, arg1 := range input.Weekdays {
+			tmpweekdaysarg1 := WeekdayRangeConverter(arg1)
+			tmparg0 = append(tmparg0, tmpweekdaysarg1)
+		}
+		arg0 := "[]cog.Builder[alerting.WeekdayRange]{" + strings.Join(tmparg0, ",\n") + "}"
+		buffer.WriteString(arg0)
+
+		buffer.WriteString(")")
+
+		calls = append(calls, buffer.String())
+		buffer.Reset()
+
+	}
+	if input.DaysOfMonth != nil && len(input.DaysOfMonth) >= 1 {
+
+		buffer.WriteString(`DaysOfMonth(`)
+		tmparg0 := []string{}
+		for _, arg1 := range input.DaysOfMonth {
+			tmpdays_of_montharg1 := DayOfMonthRangeConverter(arg1)
+			tmparg0 = append(tmparg0, tmpdays_of_montharg1)
+		}
+		arg0 := "[]cog.Builder[alerting.DayOfMonthRange]{" + strings.Join(tmparg0, ",\n") + "}"
+		buffer.WriteString(arg0)
+
+		buffer.WriteString(")")
+
+		calls = append(calls, buffer.String())
+		buffer.Reset()
+
+	}
+	if input.Months != nil && len(input.Months) >= 1 {
+
+		buffer.WriteString(`Months(`)
+		tmparg0 := []string{}
+		for _, arg1 := range input.Months {
+			tmpmonthsarg1 := MonthRangeConverter(arg1)
+			tmparg0 = append(tmparg0, tmpmonthsarg1)
+		}
+		arg0 := "[]cog.Builder[alerting.MonthRange]{" + strings.Join(tmparg0, ",\n") + "}"
+		buffer.WriteString(arg0)
+
+		buffer.WriteString(")")
+
+		calls = append(calls, buffer.String())
+		buffer.Reset()
+
+	}
+	if input.Years != nil && len(input.Years) >= 1 {
+
+		buffer.WriteString(`Years(`)
+		tmparg0 := []string{}
+		for _, arg1 := range input.Years {
+			tmpyearsarg1 := YearRangeConverter(arg1)
+			tmparg0 = append(tmparg0, tmpyearsarg1)
+		}
+		arg0 := "[]cog.Builder[alerting.YearRange]{" + strings.Join(tmparg0, ",\n") + "}"
+		buffer.WriteString(arg0)
+
+		buffer.WriteString(")")
+
+		calls = append(calls, buffer.String())
+		buffer.Reset()
+
+	}
+	if input.Location != nil {
+
+		buffer.WriteString(`Location(`)
+		arg0 := cog.Dump(*input.Location)
+		buffer.WriteString(arg0)
+
+		buffer.WriteString(")")
+
+		calls = append(calls, buffer.String())
+		buffer.Reset()
+
+	}
+
+	return strings.Join(calls, ".\t\n")
+}

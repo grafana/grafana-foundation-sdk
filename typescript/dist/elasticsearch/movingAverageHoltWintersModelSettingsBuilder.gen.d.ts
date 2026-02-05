@@ -1,0 +1,20 @@
+import * as cog from '../cog';
+import * as elasticsearch from '../elasticsearch';
+export declare class MovingAverageHoltWintersModelSettingsBuilder implements cog.Builder<elasticsearch.MovingAverageHoltWintersModelSettings> {
+    protected readonly internal: elasticsearch.MovingAverageHoltWintersModelSettings;
+    constructor();
+    /**
+     * Builds the object.
+     */
+    build(): elasticsearch.MovingAverageHoltWintersModelSettings;
+    settings(settings: {
+        alpha?: string;
+        beta?: string;
+        gamma?: string;
+        period?: string;
+        pad?: boolean;
+    }): this;
+    window(window: string): this;
+    minimize(minimize: boolean): this;
+    predict(predict: string): this;
+}

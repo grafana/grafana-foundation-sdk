@@ -1,0 +1,19 @@
+import * as cog from '../cog';
+import * as elasticsearch from '../elasticsearch';
+export declare class MovingFunctionBuilder implements cog.Builder<elasticsearch.MovingFunction> {
+    protected readonly internal: elasticsearch.MovingFunction;
+    constructor();
+    /**
+     * Builds the object.
+     */
+    build(): elasticsearch.MovingFunction;
+    pipelineAgg(pipelineAgg: string): this;
+    field(field: string): this;
+    id(id: string): this;
+    settings(settings: {
+        window?: string;
+        script?: elasticsearch.InlineScript;
+        shift?: string;
+    }): this;
+    hide(hide: boolean): this;
+}

@@ -1,0 +1,41 @@
+"use strict";
+// Code generated - EDITING IS FUTILE. DO NOT EDIT.
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.TableFooterOptionsBuilder = void 0;
+const tslib_1 = require("tslib");
+const common = tslib_1.__importStar(require("../common"));
+// Footer options
+class TableFooterOptionsBuilder {
+    constructor() {
+        this.internal = common.defaultTableFooterOptions();
+    }
+    /**
+     * Builds the object.
+     */
+    build() {
+        return this.internal;
+    }
+    show(show) {
+        this.internal.show = show;
+        return this;
+    }
+    // actually 1 value
+    reducer(reducer) {
+        this.internal.reducer = reducer;
+        return this;
+    }
+    fields(fields) {
+        this.internal.fields = fields;
+        return this;
+    }
+    enablePagination(enablePagination) {
+        this.internal.enablePagination = enablePagination;
+        return this;
+    }
+    countRows(countRows) {
+        this.internal.countRows = countRows;
+        return this;
+    }
+}
+exports.TableFooterOptionsBuilder = TableFooterOptionsBuilder;
+//# sourceMappingURL=tableFooterOptionsBuilder.gen.js.map

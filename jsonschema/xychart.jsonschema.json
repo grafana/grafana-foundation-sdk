@@ -1,0 +1,428 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "definitions": {
+    "PointShape": {
+      "enum": [
+        "circle",
+        "square"
+      ],
+      "type": "string"
+    },
+    "SeriesMapping": {
+      "enum": [
+        "auto",
+        "manual"
+      ],
+      "type": "string"
+    },
+    "XYShowMode": {
+      "enum": [
+        "points",
+        "lines",
+        "points+lines"
+      ],
+      "type": "string"
+    },
+    "MatcherConfig": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "id"
+      ],
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "The matcher id. This is used to find the matcher implementation from registry.",
+          "default": ""
+        },
+        "options": {
+          "type": "object",
+          "additionalProperties": {},
+          "description": "The matcher options. This is specific to the matcher implementation."
+        }
+      },
+      "description": "NOTE: (copied from dashboard_kind.cue, since not exported)\nMatcher is a predicate configuration. Based on the config a set of field(s) or values is filtered in order to apply override / transformation.\nIt comes with in id ( to resolve implementation from registry) and a configuration that’s specific to a particular matcher type."
+    },
+    "FieldConfig": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "show": {
+          "$ref": "#/definitions/XYShowMode",
+          "default": "points"
+        },
+        "pointSize": {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "fixed": {
+              "type": "integer",
+              "minimum": 0
+            },
+            "min": {
+              "type": "integer",
+              "minimum": 0
+            },
+            "max": {
+              "type": "integer",
+              "minimum": 0
+            }
+          }
+        },
+        "pointShape": {
+          "$ref": "#/definitions/PointShape"
+        },
+        "pointStrokeWidth": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "fillOpacity": {
+          "type": "integer",
+          "maximum": 100,
+          "default": 50
+        },
+        "lineWidth": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "hideFrom": {
+          "$ref": "#/definitions/HideSeriesConfig"
+        },
+        "axisPlacement": {
+          "$ref": "#/definitions/AxisPlacement"
+        },
+        "axisColorMode": {
+          "$ref": "#/definitions/AxisColorMode"
+        },
+        "axisLabel": {
+          "type": "string"
+        },
+        "axisWidth": {
+          "type": "number"
+        },
+        "axisSoftMin": {
+          "type": "number"
+        },
+        "axisSoftMax": {
+          "type": "number"
+        },
+        "axisGridShow": {
+          "type": "boolean"
+        },
+        "scaleDistribution": {
+          "$ref": "#/definitions/ScaleDistributionConfig"
+        },
+        "axisCenteredZero": {
+          "type": "boolean"
+        },
+        "lineStyle": {
+          "$ref": "#/definitions/LineStyle"
+        },
+        "axisBorderShow": {
+          "type": "boolean"
+        }
+      }
+    },
+    "XYSeriesConfig": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "name": {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "fixed": {
+              "type": "string"
+            }
+          }
+        },
+        "frame": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "matcher"
+          ],
+          "properties": {
+            "matcher": {
+              "$ref": "#/definitions/MatcherConfig"
+            }
+          }
+        },
+        "x": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "matcher"
+          ],
+          "properties": {
+            "matcher": {
+              "$ref": "#/definitions/MatcherConfig"
+            }
+          }
+        },
+        "y": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "matcher"
+          ],
+          "properties": {
+            "matcher": {
+              "$ref": "#/definitions/MatcherConfig"
+            }
+          }
+        },
+        "color": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "matcher"
+          ],
+          "properties": {
+            "matcher": {
+              "$ref": "#/definitions/MatcherConfig"
+            }
+          }
+        },
+        "size": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "matcher"
+          ],
+          "properties": {
+            "matcher": {
+              "$ref": "#/definitions/MatcherConfig"
+            }
+          }
+        }
+      }
+    },
+    "Options": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "mapping",
+        "legend",
+        "tooltip",
+        "series"
+      ],
+      "properties": {
+        "mapping": {
+          "$ref": "#/definitions/SeriesMapping"
+        },
+        "legend": {
+          "$ref": "#/definitions/VizLegendOptions"
+        },
+        "tooltip": {
+          "$ref": "#/definitions/VizTooltipOptions"
+        },
+        "series": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/XYSeriesConfig"
+          }
+        }
+      }
+    },
+    "HideSeriesConfig": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "tooltip",
+        "legend",
+        "viz"
+      ],
+      "properties": {
+        "tooltip": {
+          "type": "boolean"
+        },
+        "legend": {
+          "type": "boolean"
+        },
+        "viz": {
+          "type": "boolean"
+        }
+      },
+      "description": "TODO docs"
+    },
+    "AxisPlacement": {
+      "enum": [
+        "auto",
+        "top",
+        "right",
+        "bottom",
+        "left",
+        "hidden"
+      ],
+      "type": "string",
+      "description": "TODO docs"
+    },
+    "AxisColorMode": {
+      "enum": [
+        "text",
+        "series"
+      ],
+      "type": "string",
+      "description": "TODO docs"
+    },
+    "ScaleDistributionConfig": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "type"
+      ],
+      "properties": {
+        "type": {
+          "$ref": "#/definitions/ScaleDistribution"
+        },
+        "log": {
+          "type": "number"
+        },
+        "linearThreshold": {
+          "type": "number"
+        }
+      },
+      "description": "TODO docs"
+    },
+    "LineStyle": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "fill": {
+          "enum": [
+            "solid",
+            "dash",
+            "dot",
+            "square"
+          ],
+          "type": "string"
+        },
+        "dash": {
+          "type": "array",
+          "items": {
+            "type": "number"
+          }
+        }
+      },
+      "description": "TODO docs"
+    },
+    "VizLegendOptions": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "displayMode",
+        "placement",
+        "showLegend",
+        "calcs"
+      ],
+      "properties": {
+        "displayMode": {
+          "$ref": "#/definitions/LegendDisplayMode",
+          "default": "list"
+        },
+        "placement": {
+          "$ref": "#/definitions/LegendPlacement",
+          "default": "bottom"
+        },
+        "showLegend": {
+          "type": "boolean"
+        },
+        "asTable": {
+          "type": "boolean"
+        },
+        "isVisible": {
+          "type": "boolean"
+        },
+        "sortBy": {
+          "type": "string"
+        },
+        "sortDesc": {
+          "type": "boolean"
+        },
+        "width": {
+          "type": "number"
+        },
+        "calcs": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "default": []
+        }
+      },
+      "description": "TODO docs"
+    },
+    "VizTooltipOptions": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "mode",
+        "sort"
+      ],
+      "properties": {
+        "mode": {
+          "$ref": "#/definitions/TooltipDisplayMode"
+        },
+        "sort": {
+          "$ref": "#/definitions/SortOrder"
+        },
+        "maxWidth": {
+          "type": "number"
+        },
+        "maxHeight": {
+          "type": "number"
+        },
+        "hideZeros": {
+          "type": "boolean"
+        }
+      },
+      "description": "TODO docs"
+    },
+    "ScaleDistribution": {
+      "enum": [
+        "linear",
+        "log",
+        "ordinal",
+        "symlog"
+      ],
+      "type": "string",
+      "description": "TODO docs"
+    },
+    "LegendDisplayMode": {
+      "enum": [
+        "list",
+        "table",
+        "hidden"
+      ],
+      "type": "string",
+      "description": "TODO docs\nNote: \"hidden\" needs to remain as an option for plugins compatibility"
+    },
+    "LegendPlacement": {
+      "enum": [
+        "bottom",
+        "right"
+      ],
+      "type": "string",
+      "description": "TODO docs"
+    },
+    "TooltipDisplayMode": {
+      "enum": [
+        "single",
+        "multi",
+        "none"
+      ],
+      "type": "string",
+      "description": "TODO docs"
+    },
+    "SortOrder": {
+      "enum": [
+        "asc",
+        "desc",
+        "none"
+      ],
+      "type": "string",
+      "description": "TODO docs"
+    }
+  }
+}

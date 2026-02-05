@@ -1,0 +1,24 @@
+"use strict";
+// Code generated - EDITING IS FUTILE. DO NOT EDIT.
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.BaseDimensionConfigBuilder = void 0;
+const tslib_1 = require("tslib");
+const common = tslib_1.__importStar(require("../common"));
+class BaseDimensionConfigBuilder {
+    constructor() {
+        this.internal = common.defaultBaseDimensionConfig();
+    }
+    /**
+     * Builds the object.
+     */
+    build() {
+        return this.internal;
+    }
+    // fixed: T -- will be added by each element
+    field(field) {
+        this.internal.field = field;
+        return this;
+    }
+}
+exports.BaseDimensionConfigBuilder = BaseDimensionConfigBuilder;
+//# sourceMappingURL=baseDimensionConfigBuilder.gen.js.map

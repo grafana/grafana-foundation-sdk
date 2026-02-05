@@ -1,0 +1,12 @@
+import * as cog from '../cog';
+import * as elasticsearch from '../elasticsearch';
+export declare class ExtendedStatBuilder implements cog.Builder<elasticsearch.ExtendedStat> {
+    protected readonly internal: elasticsearch.ExtendedStat;
+    constructor();
+    /**
+     * Builds the object.
+     */
+    build(): elasticsearch.ExtendedStat;
+    label(label: string): this;
+    value(value: elasticsearch.ExtendedStatMetaType): this;
+}

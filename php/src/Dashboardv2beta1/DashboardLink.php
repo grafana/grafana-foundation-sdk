@@ -1,0 +1,138 @@
+<?php
+
+namespace Grafana\Foundation\Dashboardv2beta1;
+
+/**
+ * Links with references to other dashboards or external resources
+ */
+class DashboardLink implements \JsonSerializable
+{
+    /**
+     * Title to display with the link
+     */
+    public string $title;
+
+    /**
+     * Link type. Accepted values are dashboards (to refer to another dashboard) and link (to refer to an external resource)
+     * FIXME: The type is generated as `type: DashboardLinkType | dashboardLinkType.Link;` but it should be `type: DashboardLinkType`
+     */
+    public \Grafana\Foundation\Dashboardv2beta1\DashboardLinkType $type;
+
+    /**
+     * Icon name to be displayed with the link
+     */
+    public string $icon;
+
+    /**
+     * Tooltip to display when the user hovers their mouse over it
+     */
+    public string $tooltip;
+
+    /**
+     * Link URL. Only required/valid if the type is link
+     */
+    public ?string $url;
+
+    /**
+     * List of tags to limit the linked dashboards. If empty, all dashboards will be displayed. Only valid if the type is dashboards
+     * @var array<string>
+     */
+    public array $tags;
+
+    /**
+     * If true, all dashboards links will be displayed in a dropdown. If false, all dashboards links will be displayed side by side. Only valid if the type is dashboards
+     */
+    public bool $asDropdown;
+
+    /**
+     * If true, the link will be opened in a new tab
+     */
+    public bool $targetBlank;
+
+    /**
+     * If true, includes current template variables values in the link as query params
+     */
+    public bool $includeVars;
+
+    /**
+     * If true, includes current time range in the link as query params
+     */
+    public bool $keepTime;
+
+    /**
+     * Placement can be used to display the link somewhere else on the dashboard other than above the visualisations.
+     */
+    public ?string $placement;
+
+    /**
+     * @param string|null $title
+     * @param \Grafana\Foundation\Dashboardv2beta1\DashboardLinkType|null $type
+     * @param string|null $icon
+     * @param string|null $tooltip
+     * @param string|null $url
+     * @param array<string>|null $tags
+     * @param bool|null $asDropdown
+     * @param bool|null $targetBlank
+     * @param bool|null $includeVars
+     * @param bool|null $keepTime
+     */
+    public function __construct(?string $title = null, ?\Grafana\Foundation\Dashboardv2beta1\DashboardLinkType $type = null, ?string $icon = null, ?string $tooltip = null, ?string $url = null, ?array $tags = null, ?bool $asDropdown = null, ?bool $targetBlank = null, ?bool $includeVars = null, ?bool $keepTime = null)
+    {
+        $this->title = $title ?: "";
+        $this->type = $type ?: \Grafana\Foundation\Dashboardv2beta1\DashboardLinkType::Link();
+        $this->icon = $icon ?: "";
+        $this->tooltip = $tooltip ?: "";
+        $this->url = $url;
+        $this->tags = $tags ?: [];
+        $this->asDropdown = $asDropdown ?: false;
+        $this->targetBlank = $targetBlank ?: false;
+        $this->includeVars = $includeVars ?: false;
+        $this->keepTime = $keepTime ?: false;
+        $this->placement = \Grafana\Foundation\Dashboardv2beta1\Constants::DASHBOARD_LINK_PLACEMENT;
+    }
+
+    /**
+     * @param array<string, mixed> $inputData
+     */
+    public static function fromArray(array $inputData): self
+    {
+        /** @var array{title?: string, type?: string, icon?: string, tooltip?: string, url?: string, tags?: array<string>, asDropdown?: bool, targetBlank?: bool, includeVars?: bool, keepTime?: bool, placement?: "inControlsMenu"} $inputData */
+        $data = $inputData;
+        return new self(
+            title: $data["title"] ?? null,
+            type: isset($data["type"]) ? (function($input) { return \Grafana\Foundation\Dashboardv2beta1\DashboardLinkType::fromValue($input); })($data["type"]) : null,
+            icon: $data["icon"] ?? null,
+            tooltip: $data["tooltip"] ?? null,
+            url: $data["url"] ?? null,
+            tags: $data["tags"] ?? null,
+            asDropdown: $data["asDropdown"] ?? null,
+            targetBlank: $data["targetBlank"] ?? null,
+            includeVars: $data["includeVars"] ?? null,
+            keepTime: $data["keepTime"] ?? null,
+        );
+    }
+
+    /**
+     * @return mixed
+     */
+    public function jsonSerialize(): mixed
+    {
+        $data = new \stdClass;
+        $data->title = $this->title;
+        $data->type = $this->type;
+        $data->icon = $this->icon;
+        $data->tooltip = $this->tooltip;
+        $data->tags = $this->tags;
+        $data->asDropdown = $this->asDropdown;
+        $data->targetBlank = $this->targetBlank;
+        $data->includeVars = $this->includeVars;
+        $data->keepTime = $this->keepTime;
+        if (isset($this->url)) {
+            $data->url = $this->url;
+        }
+        if (isset($this->placement)) {
+            $data->placement = $this->placement;
+        }
+        return $data;
+    }
+}

@@ -1,0 +1,627 @@
+---
+title: <span class="badge builder"></span> PanelBuilder
+---
+# <span class="badge builder"></span> PanelBuilder
+
+## Constructor
+
+```typescript
+new PanelBuilder()
+```
+## Methods
+
+### <span class="badge object-method"></span> build
+
+Builds the object.
+
+```typescript
+build()
+```
+
+### <span class="badge object-method"></span> axisBorderShow
+
+```typescript
+axisBorderShow(axisBorderShow: boolean)
+```
+
+### <span class="badge object-method"></span> axisCenteredZero
+
+```typescript
+axisCenteredZero(axisCenteredZero: boolean)
+```
+
+### <span class="badge object-method"></span> axisColorMode
+
+```typescript
+axisColorMode(axisColorMode: common.AxisColorMode)
+```
+
+### <span class="badge object-method"></span> axisGridShow
+
+```typescript
+axisGridShow(axisGridShow: boolean)
+```
+
+### <span class="badge object-method"></span> axisLabel
+
+```typescript
+axisLabel(axisLabel: string)
+```
+
+### <span class="badge object-method"></span> axisPlacement
+
+```typescript
+axisPlacement(axisPlacement: common.AxisPlacement)
+```
+
+### <span class="badge object-method"></span> axisSoftMax
+
+```typescript
+axisSoftMax(axisSoftMax: number)
+```
+
+### <span class="badge object-method"></span> axisSoftMin
+
+```typescript
+axisSoftMin(axisSoftMin: number)
+```
+
+### <span class="badge object-method"></span> axisWidth
+
+```typescript
+axisWidth(axisWidth: number)
+```
+
+### <span class="badge object-method"></span> barRadius
+
+Controls the radius of each bar.
+
+```typescript
+barRadius(barRadius: number)
+```
+
+### <span class="badge object-method"></span> barWidth
+
+Controls the width of bars. 1 = Max width, 0 = Min width.
+
+```typescript
+barWidth(barWidth: number)
+```
+
+### <span class="badge object-method"></span> cacheTimeout
+
+Sets panel queries cache timeout.
+
+```typescript
+cacheTimeout(cacheTimeout: string)
+```
+
+### <span class="badge object-method"></span> colorByField
+
+Use the color value for a sibling field to color each bar value.
+
+```typescript
+colorByField(colorByField: string)
+```
+
+### <span class="badge object-method"></span> colorScheme
+
+Panel color configuration
+
+```typescript
+colorScheme(color: cog.Builder<dashboard.FieldColor>)
+```
+
+### <span class="badge object-method"></span> dataLinks
+
+The behavior when clicking on a result
+
+```typescript
+dataLinks(links: cog.Builder<dashboard.DashboardLink>[])
+```
+
+### <span class="badge object-method"></span> datasource
+
+The datasource used in all targets.
+
+```typescript
+datasource(datasource: common.DataSourceRef)
+```
+
+### <span class="badge object-method"></span> decimals
+
+Specify the number of decimals Grafana includes in the rendered value.
+
+If you leave this field blank, Grafana automatically truncates the number of decimals based on the value.
+
+For example 1.1234 will display as 1.12 and 100.456 will display as 100.
+
+To display all decimals, set the unit to `String`.
+
+```typescript
+decimals(decimals: number)
+```
+
+### <span class="badge object-method"></span> description
+
+Panel description.
+
+```typescript
+description(description: string)
+```
+
+### <span class="badge object-method"></span> displayName
+
+The display value for this field.  This supports template variables blank is auto
+
+```typescript
+displayName(displayName: string)
+```
+
+### <span class="badge object-method"></span> fillOpacity
+
+Controls the fill opacity of the bars.
+
+```typescript
+fillOpacity(fillOpacity: number)
+```
+
+### <span class="badge object-method"></span> fullHighlight
+
+Enables mode which highlights the entire bar area and shows tooltip when cursor
+
+hovers over highlighted area
+
+```typescript
+fullHighlight(fullHighlight: boolean)
+```
+
+### <span class="badge object-method"></span> gradientMode
+
+Set the mode of the gradient fill. Fill gradient is based on the line color. To change the color, use the standard color scheme field option.
+
+Gradient appearance is influenced by the Fill opacity setting.
+
+```typescript
+gradientMode(gradientMode: common.GraphGradientMode)
+```
+
+### <span class="badge object-method"></span> gridPos
+
+Grid position.
+
+```typescript
+gridPos(gridPos: dashboard.GridPos)
+```
+
+### <span class="badge object-method"></span> groupWidth
+
+Controls the width of groups. 1 = max with, 0 = min width.
+
+```typescript
+groupWidth(groupWidth: number)
+```
+
+### <span class="badge object-method"></span> height
+
+Panel height. The height is the number of rows from the top edge of the panel.
+
+```typescript
+height(h: number)
+```
+
+### <span class="badge object-method"></span> hideFrom
+
+```typescript
+hideFrom(hideFrom: cog.Builder<common.HideSeriesConfig>)
+```
+
+### <span class="badge object-method"></span> hideTimeOverride
+
+Controls if the timeFrom or timeShift overrides are shown in the panel header
+
+```typescript
+hideTimeOverride(hideTimeOverride: boolean)
+```
+
+### <span class="badge object-method"></span> id
+
+Unique identifier of the panel. Generated by Grafana when creating a new panel. It must be unique within a dashboard, but not globally.
+
+```typescript
+id(id: number)
+```
+
+### <span class="badge object-method"></span> interval
+
+The min time interval setting defines a lower limit for the $__interval and $__interval_ms variables.
+
+This value must be formatted as a number followed by a valid time
+
+identifier like: "40s", "3d", etc.
+
+See: https://grafana.com/docs/grafana/latest/panels-visualizations/query-transform-data/#query-options
+
+```typescript
+interval(interval: string)
+```
+
+### <span class="badge object-method"></span> legend
+
+```typescript
+legend(legend: cog.Builder<common.VizLegendOptions>)
+```
+
+### <span class="badge object-method"></span> libraryPanel
+
+Dynamically load the panel
+
+```typescript
+libraryPanel(libraryPanel: dashboard.LibraryPanelRef)
+```
+
+### <span class="badge object-method"></span> lineWidth
+
+Controls line width of the bars.
+
+```typescript
+lineWidth(lineWidth: number)
+```
+
+### <span class="badge object-method"></span> links
+
+Panel links.
+
+```typescript
+links(links: cog.Builder<dashboard.DashboardLink>[])
+```
+
+### <span class="badge object-method"></span> mappings
+
+Convert input values into a display string
+
+```typescript
+mappings(mappings: dashboard.ValueMapping[])
+```
+
+### <span class="badge object-method"></span> max
+
+The maximum value used in percentage threshold calculations. Leave blank for auto calculation based on all series and fields.
+
+```typescript
+max(max: number)
+```
+
+### <span class="badge object-method"></span> maxDataPoints
+
+The maximum number of data points that the panel queries are retrieving.
+
+```typescript
+maxDataPoints(maxDataPoints: number)
+```
+
+### <span class="badge object-method"></span> maxPerRow
+
+Option for repeated panels that controls max items per row
+
+Only relevant for horizontally repeated panels
+
+```typescript
+maxPerRow(maxPerRow: number)
+```
+
+### <span class="badge object-method"></span> min
+
+The minimum value used in percentage threshold calculations. Leave blank for auto calculation based on all series and fields.
+
+```typescript
+min(min: number)
+```
+
+### <span class="badge object-method"></span> noValue
+
+Alternative to empty string
+
+```typescript
+noValue(noValue: string)
+```
+
+### <span class="badge object-method"></span> orientation
+
+Controls the orientation of the bar chart, either vertical or horizontal.
+
+```typescript
+orientation(orientation: common.VizOrientation)
+```
+
+### <span class="badge object-method"></span> overrideByFieldType
+
+Adds override rules for all the fields of the given type.
+
+```typescript
+overrideByFieldType(fieldType: string, properties: dashboard.DynamicConfigValue[])
+```
+
+### <span class="badge object-method"></span> overrideByName
+
+Adds override rules for a specific field, referred to by its name.
+
+```typescript
+overrideByName(name: string, properties: dashboard.DynamicConfigValue[])
+```
+
+### <span class="badge object-method"></span> overrideByQuery
+
+```typescript
+overrideByQuery(queryRefId: string, properties: dashboard.DynamicConfigValue[])
+```
+
+### <span class="badge object-method"></span> overrideByRegexp
+
+Adds override rules for the fields whose name match the given regexp.
+
+```typescript
+overrideByRegexp(regexp: string, properties: dashboard.DynamicConfigValue[])
+```
+
+### <span class="badge object-method"></span> overrides
+
+Overrides are the options applied to specific fields overriding the defaults.
+
+```typescript
+overrides(overrides: {
+	matcher: dashboard.MatcherConfig;
+	properties: dashboard.DynamicConfigValue[];
+}[])
+```
+
+### <span class="badge object-method"></span> queryCachingTTL
+
+Overrides the data source configured time-to-live for a query cache item in milliseconds
+
+```typescript
+queryCachingTTL(queryCachingTTL: number)
+```
+
+### <span class="badge object-method"></span> repeat
+
+Name of template variable to repeat for.
+
+```typescript
+repeat(repeat: string)
+```
+
+### <span class="badge object-method"></span> repeatDirection
+
+Direction to repeat in if 'repeat' is set.
+
+`h` for horizontal, `v` for vertical.
+
+```typescript
+repeatDirection(repeatDirection: "h" | "v")
+```
+
+### <span class="badge object-method"></span> scaleDistribution
+
+```typescript
+scaleDistribution(scaleDistribution: cog.Builder<common.ScaleDistributionConfig>)
+```
+
+### <span class="badge object-method"></span> showValue
+
+This controls whether values are shown on top or to the left of bars.
+
+```typescript
+showValue(showValue: common.VisibilityMode)
+```
+
+### <span class="badge object-method"></span> span
+
+Panel width. The width is the number of columns from the left edge of the panel.
+
+```typescript
+span(w: number)
+```
+
+### <span class="badge object-method"></span> stacking
+
+Controls whether bars are stacked or not, either normally or in percent mode.
+
+```typescript
+stacking(stacking: common.StackingMode)
+```
+
+### <span class="badge object-method"></span> targets
+
+Depends on the panel plugin. See the plugin documentation for details.
+
+```typescript
+targets(targets: cog.Builder<cog.Dataquery>[])
+```
+
+### <span class="badge object-method"></span> text
+
+```typescript
+text(text: cog.Builder<common.VizTextDisplayOptions>)
+```
+
+### <span class="badge object-method"></span> thresholds
+
+Map numeric values to states
+
+```typescript
+thresholds(thresholds: cog.Builder<dashboard.ThresholdsConfig>)
+```
+
+### <span class="badge object-method"></span> thresholdsStyle
+
+Threshold rendering
+
+```typescript
+thresholdsStyle(thresholdsStyle: cog.Builder<common.GraphThresholdsStyleConfig>)
+```
+
+### <span class="badge object-method"></span> timeFrom
+
+Overrides the relative time range for individual panels,
+
+which causes them to be different than what is selected in
+
+the dashboard time picker in the top-right corner of the dashboard. You can use this to show metrics from different
+
+time periods or days on the same dashboard.
+
+The value is formatted as time operation like: `now-5m` (Last 5 minutes), `now/d` (the day so far),
+
+`now-5d/d`(Last 5 days), `now/w` (This week so far), `now-2y/y` (Last 2 years).
+
+Note: Panel time overrides have no effect when the dashboard’s time range is absolute.
+
+See: https://grafana.com/docs/grafana/latest/panels-visualizations/query-transform-data/#query-options
+
+```typescript
+timeFrom(timeFrom: string)
+```
+
+### <span class="badge object-method"></span> timeShift
+
+Overrides the time range for individual panels by shifting its start and end relative to the time picker.
+
+For example, you can shift the time range for the panel to be two hours earlier than the dashboard time picker setting `2h`.
+
+Note: Panel time overrides have no effect when the dashboard’s time range is absolute.
+
+See: https://grafana.com/docs/grafana/latest/panels-visualizations/query-transform-data/#query-options
+
+```typescript
+timeShift(timeShift: string)
+```
+
+### <span class="badge object-method"></span> title
+
+Panel title.
+
+```typescript
+title(title: string)
+```
+
+### <span class="badge object-method"></span> tooltip
+
+```typescript
+tooltip(tooltip: cog.Builder<common.VizTooltipOptions>)
+```
+
+### <span class="badge object-method"></span> transformations
+
+List of transformations that are applied to the panel data before rendering.
+
+When there are multiple transformations, Grafana applies them in the order they are listed.
+
+Each transformation creates a result set that then passes on to the next transformation in the processing pipeline.
+
+```typescript
+transformations(transformations: dashboard.DataTransformerConfig[])
+```
+
+### <span class="badge object-method"></span> transparent
+
+Whether to display the panel without a background.
+
+```typescript
+transparent(transparent: boolean)
+```
+
+### <span class="badge object-method"></span> unit
+
+Unit a field should use. The unit you select is applied to all fields except time.
+
+You can use the units ID availables in Grafana or a custom unit.
+
+Available units in Grafana: https://github.com/grafana/grafana/blob/main/packages/grafana-data/src/valueFormats/categories.ts
+
+As custom unit, you can use the following formats:
+
+`suffix:<suffix>` for custom unit that should go after value.
+
+`prefix:<prefix>` for custom unit that should go before value.
+
+`time:<format>` For custom date time formats type for example `time:YYYY-MM-DD`.
+
+`si:<base scale><unit characters>` for custom SI units. For example: `si: mF`. This one is a bit more advanced as you can specify both a unit and the source data scale. So if your source data is represented as milli (thousands of) something prefix the unit with that SI scale character.
+
+`count:<unit>` for a custom count unit.
+
+`currency:<unit>` for custom a currency unit.
+
+```typescript
+unit(unit: string)
+```
+
+### <span class="badge object-method"></span> withOverride
+
+Overrides are the options applied to specific fields overriding the defaults.
+
+```typescript
+withOverride(override: {
+	matcher: dashboard.MatcherConfig;
+	properties: dashboard.DynamicConfigValue[];
+})
+```
+
+### <span class="badge object-method"></span> withTarget
+
+Depends on the panel plugin. See the plugin documentation for details.
+
+```typescript
+withTarget(target: cog.Builder<cog.Dataquery>)
+```
+
+### <span class="badge object-method"></span> withTransformation
+
+List of transformations that are applied to the panel data before rendering.
+
+When there are multiple transformations, Grafana applies them in the order they are listed.
+
+Each transformation creates a result set that then passes on to the next transformation in the processing pipeline.
+
+```typescript
+withTransformation(transformation: dashboard.DataTransformerConfig)
+```
+
+### <span class="badge object-method"></span> xField
+
+Manually select which field from the dataset to represent the x field.
+
+```typescript
+xField(xField: string)
+```
+
+### <span class="badge object-method"></span> xTickLabelMaxLength
+
+Sets the max length that a label can have before it is truncated.
+
+```typescript
+xTickLabelMaxLength(xTickLabelMaxLength: number)
+```
+
+### <span class="badge object-method"></span> xTickLabelRotation
+
+Controls the rotation of the x axis labels.
+
+```typescript
+xTickLabelRotation(xTickLabelRotation: number)
+```
+
+### <span class="badge object-method"></span> xTickLabelSpacing
+
+Controls the spacing between x axis labels.
+
+negative values indicate backwards skipping behavior
+
+```typescript
+xTickLabelSpacing(xTickLabelSpacing: number)
+```
+
+## See also
+
+ * <span class="badge object-type-interface"></span> [dashboard.Panel](../dashboard/object-Panel.md)

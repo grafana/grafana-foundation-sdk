@@ -1,0 +1,3102 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "definitions": {
+    "Dashboard": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "annotations",
+        "cursorSync",
+        "elements",
+        "layout",
+        "links",
+        "preload",
+        "tags",
+        "timeSettings",
+        "title",
+        "variables"
+      ],
+      "properties": {
+        "annotations": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/AnnotationQueryKind"
+          }
+        },
+        "cursorSync": {
+          "$ref": "#/definitions/DashboardCursorSync",
+          "description": "Configuration of dashboard cursor sync behavior.\n\"Off\" for no shared crosshair or tooltip (default).\n\"Crosshair\" for shared crosshair.\n\"Tooltip\" for shared crosshair AND shared tooltip.",
+          "default": "Off"
+        },
+        "description": {
+          "type": "string",
+          "description": "Description of dashboard."
+        },
+        "editable": {
+          "type": "boolean",
+          "description": "Whether a dashboard is editable or not.",
+          "default": true
+        },
+        "elements": {
+          "type": "object",
+          "additionalProperties": {
+            "$ref": "#/definitions/Element"
+          }
+        },
+        "layout": {
+          "oneOf": [
+            {
+              "$ref": "#/definitions/GridLayoutKind"
+            },
+            {
+              "$ref": "#/definitions/RowsLayoutKind"
+            },
+            {
+              "$ref": "#/definitions/AutoGridLayoutKind"
+            },
+            {
+              "$ref": "#/definitions/TabsLayoutKind"
+            }
+          ]
+        },
+        "links": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/DashboardLink"
+          },
+          "description": "Links with references to other dashboards or external websites."
+        },
+        "liveNow": {
+          "type": "boolean",
+          "description": "When set to true, the dashboard will redraw panels at an interval matching the pixel width.\nThis will keep data \"moving left\" regardless of the query refresh rate. This setting helps\navoid dashboards presenting stale live data."
+        },
+        "preload": {
+          "type": "boolean",
+          "description": "When set to true, the dashboard will load all panels in the dashboard when it's loaded.",
+          "default": false
+        },
+        "revision": {
+          "type": "integer",
+          "description": "Plugins only. The version of the dashboard installed together with the plugin.\nThis is used to determine if the dashboard should be updated when the plugin is updated."
+        },
+        "tags": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "description": "Tags associated with dashboard."
+        },
+        "timeSettings": {
+          "$ref": "#/definitions/TimeSettingsSpec"
+        },
+        "title": {
+          "type": "string",
+          "description": "Title of dashboard."
+        },
+        "variables": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/VariableKind"
+          },
+          "description": "Configured template variables."
+        }
+      }
+    },
+    "AnnotationQueryKind": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "kind",
+        "spec"
+      ],
+      "properties": {
+        "kind": {
+          "type": "string",
+          "const": "AnnotationQuery"
+        },
+        "spec": {
+          "$ref": "#/definitions/AnnotationQuerySpec"
+        }
+      }
+    },
+    "AnnotationQuerySpec": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "query",
+        "enable",
+        "hide",
+        "iconColor",
+        "name"
+      ],
+      "properties": {
+        "query": {
+          "$ref": "#/definitions/DataQueryKind"
+        },
+        "enable": {
+          "type": "boolean"
+        },
+        "hide": {
+          "type": "boolean"
+        },
+        "iconColor": {
+          "type": "string"
+        },
+        "name": {
+          "type": "string"
+        },
+        "builtIn": {
+          "type": "boolean",
+          "default": false
+        },
+        "filter": {
+          "$ref": "#/definitions/AnnotationPanelFilter"
+        },
+        "placement": {
+          "$ref": "#/definitions/AnnotationQueryPlacement",
+          "description": "Placement can be used to display the annotation query somewhere else on the dashboard other than the default location."
+        },
+        "legacyOptions": {
+          "type": "object",
+          "additionalProperties": {
+            "type": "object",
+            "additionalProperties": {}
+          },
+          "description": "Catch-all field for datasource-specific properties. Should not be available in as code tooling."
+        }
+      }
+    },
+    "DataQueryKind": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "kind",
+        "group",
+        "version",
+        "spec"
+      ],
+      "properties": {
+        "kind": {
+          "type": "string",
+          "const": "DataQuery"
+        },
+        "group": {
+          "type": "string"
+        },
+        "version": {
+          "type": "string",
+          "default": "v0"
+        },
+        "datasource": {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "name": {
+              "type": "string"
+            }
+          },
+          "description": "New type for datasource reference\nNot creating a new type until we figure out how to handle DS refs for group by, adhoc, and every place that uses DataSourceRef in TS."
+        },
+        "spec": {
+          "type": "object",
+          "additionalProperties": {}
+        }
+      }
+    },
+    "AnnotationPanelFilter": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "ids"
+      ],
+      "properties": {
+        "exclude": {
+          "type": "boolean",
+          "description": "Should the specified panels be included or excluded",
+          "default": false
+        },
+        "ids": {
+          "type": "array",
+          "items": {
+            "type": "integer"
+          },
+          "description": "Panel IDs that should be included or excluded"
+        }
+      }
+    },
+    "AnnotationQueryPlacement": {
+      "type": "string",
+      "const": "inControlsMenu",
+      "description": "Annotation Query placement. Defines where the annotation query should be displayed.\n- \"inControlsMenu\" renders the annotation query in the dashboard controls dropdown menu"
+    },
+    "DashboardCursorSync": {
+      "enum": [
+        "Crosshair",
+        "Tooltip",
+        "Off"
+      ],
+      "type": "string",
+      "description": "\"Off\" for no shared crosshair or tooltip (default).\n\"Crosshair\" for shared crosshair.\n\"Tooltip\" for shared crosshair AND shared tooltip."
+    },
+    "Element": {
+      "oneOf": [
+        {
+          "$ref": "#/definitions/PanelKind"
+        },
+        {
+          "$ref": "#/definitions/LibraryPanelKind"
+        }
+      ],
+      "description": "Supported dashboard elements\n|* more element types in the future"
+    },
+    "PanelKind": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "kind",
+        "spec"
+      ],
+      "properties": {
+        "kind": {
+          "type": "string",
+          "const": "Panel"
+        },
+        "spec": {
+          "$ref": "#/definitions/PanelSpec"
+        }
+      }
+    },
+    "PanelSpec": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "id",
+        "title",
+        "description",
+        "links",
+        "data",
+        "vizConfig"
+      ],
+      "properties": {
+        "id": {
+          "type": "number"
+        },
+        "title": {
+          "type": "string"
+        },
+        "description": {
+          "type": "string"
+        },
+        "links": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/DataLink"
+          }
+        },
+        "data": {
+          "$ref": "#/definitions/QueryGroupKind"
+        },
+        "vizConfig": {
+          "$ref": "#/definitions/VizConfigKind"
+        },
+        "transparent": {
+          "type": "boolean"
+        }
+      }
+    },
+    "DataLink": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "title",
+        "url"
+      ],
+      "properties": {
+        "title": {
+          "type": "string"
+        },
+        "url": {
+          "type": "string"
+        },
+        "targetBlank": {
+          "type": "boolean"
+        }
+      }
+    },
+    "QueryGroupKind": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "kind",
+        "spec"
+      ],
+      "properties": {
+        "kind": {
+          "type": "string",
+          "const": "QueryGroup"
+        },
+        "spec": {
+          "$ref": "#/definitions/QueryGroupSpec"
+        }
+      }
+    },
+    "QueryGroupSpec": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "queries",
+        "transformations",
+        "queryOptions"
+      ],
+      "properties": {
+        "queries": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/PanelQueryKind"
+          }
+        },
+        "transformations": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/TransformationKind"
+          }
+        },
+        "queryOptions": {
+          "$ref": "#/definitions/QueryOptionsSpec"
+        }
+      }
+    },
+    "PanelQueryKind": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "kind",
+        "spec"
+      ],
+      "properties": {
+        "kind": {
+          "type": "string",
+          "const": "PanelQuery"
+        },
+        "spec": {
+          "$ref": "#/definitions/PanelQuerySpec"
+        }
+      }
+    },
+    "PanelQuerySpec": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "query",
+        "refId",
+        "hidden"
+      ],
+      "properties": {
+        "query": {
+          "$ref": "#/definitions/DataQueryKind"
+        },
+        "refId": {
+          "type": "string"
+        },
+        "hidden": {
+          "type": "boolean"
+        }
+      }
+    },
+    "TransformationKind": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "kind",
+        "spec"
+      ],
+      "properties": {
+        "kind": {
+          "type": "string",
+          "description": "The kind of a TransformationKind is the transformation ID"
+        },
+        "spec": {
+          "$ref": "#/definitions/DataTransformerConfig"
+        }
+      }
+    },
+    "DataTransformerConfig": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "id",
+        "options"
+      ],
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "Unique identifier of transformer"
+        },
+        "disabled": {
+          "type": "boolean",
+          "description": "Disabled transformations are skipped"
+        },
+        "filter": {
+          "$ref": "#/definitions/MatcherConfig",
+          "description": "Optional frame matcher. When missing it will be applied to all results"
+        },
+        "topic": {
+          "$ref": "#/definitions/DataTopic",
+          "description": "Where to pull DataFrames from as input to transformation"
+        },
+        "options": {
+          "type": "object",
+          "additionalProperties": {},
+          "description": "Options to be passed to the transformer\nValid options depend on the transformer id"
+        }
+      },
+      "description": "Transformations allow to manipulate data returned by a query before the system applies a visualization.\nUsing transformations you can: rename fields, join time series data, perform mathematical operations across queries,\nuse the output of one transformation as the input to another transformation, etc."
+    },
+    "MatcherConfig": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "id"
+      ],
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "The matcher id. This is used to find the matcher implementation from registry.",
+          "default": ""
+        },
+        "options": {
+          "type": "object",
+          "additionalProperties": {},
+          "description": "The matcher options. This is specific to the matcher implementation."
+        }
+      },
+      "description": "Matcher is a predicate configuration. Based on the config a set of field(s) or values is filtered in order to apply override / transformation.\nIt comes with in id ( to resolve implementation from registry) and a configuration that’s specific to a particular matcher type."
+    },
+    "DataTopic": {
+      "enum": [
+        "series",
+        "annotations",
+        "alertStates"
+      ],
+      "type": "string",
+      "description": "A topic is attached to DataFrame metadata in query results.\nThis specifies where the data should be used."
+    },
+    "QueryOptionsSpec": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "timeFrom": {
+          "type": "string"
+        },
+        "maxDataPoints": {
+          "type": "integer"
+        },
+        "timeShift": {
+          "type": "string"
+        },
+        "queryCachingTTL": {
+          "type": "integer"
+        },
+        "interval": {
+          "type": "string"
+        },
+        "cacheTimeout": {
+          "type": "string"
+        },
+        "hideTimeOverride": {
+          "type": "boolean"
+        },
+        "timeCompare": {
+          "type": "string"
+        }
+      }
+    },
+    "VizConfigKind": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "kind",
+        "group",
+        "version",
+        "spec"
+      ],
+      "properties": {
+        "kind": {
+          "type": "string",
+          "const": "VizConfig"
+        },
+        "group": {
+          "type": "string",
+          "description": "The group is the plugin ID"
+        },
+        "version": {
+          "type": "string"
+        },
+        "spec": {
+          "$ref": "#/definitions/VizConfigSpec"
+        }
+      }
+    },
+    "VizConfigSpec": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "options",
+        "fieldConfig"
+      ],
+      "properties": {
+        "options": {
+          "type": "object",
+          "additionalProperties": {}
+        },
+        "fieldConfig": {
+          "$ref": "#/definitions/FieldConfigSource"
+        }
+      },
+      "description": "--- Kinds ---"
+    },
+    "FieldConfigSource": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "defaults",
+        "overrides"
+      ],
+      "properties": {
+        "defaults": {
+          "$ref": "#/definitions/FieldConfig",
+          "description": "Defaults are the options applied to all fields."
+        },
+        "overrides": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+              "matcher",
+              "properties"
+            ],
+            "properties": {
+              "matcher": {
+                "$ref": "#/definitions/MatcherConfig"
+              },
+              "properties": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/definitions/DynamicConfigValue"
+                }
+              }
+            }
+          },
+          "description": "Overrides are the options applied to specific fields overriding the defaults."
+        }
+      },
+      "description": "The data model used in Grafana, namely the data frame, is a columnar-oriented table structure that unifies both time series and table query results.\nEach column within this structure is called a field. A field can represent a single time series or table column.\nField options allow you to change how the data is displayed in your visualizations."
+    },
+    "FieldConfig": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "displayName": {
+          "type": "string",
+          "description": "The display value for this field.  This supports template variables blank is auto"
+        },
+        "displayNameFromDS": {
+          "type": "string",
+          "description": "This can be used by data sources that return and explicit naming structure for values and labels\nWhen this property is configured, this value is used rather than the default naming strategy."
+        },
+        "description": {
+          "type": "string",
+          "description": "Human readable field metadata"
+        },
+        "path": {
+          "type": "string",
+          "description": "An explicit path to the field in the datasource.  When the frame meta includes a path,\nThis will default to `${frame.meta.path}/${field.name}\n\nWhen defined, this value can be used as an identifier within the datasource scope, and\nmay be used to update the results"
+        },
+        "writeable": {
+          "type": "boolean",
+          "description": "True if data source can write a value to the path. Auth/authz are supported separately"
+        },
+        "filterable": {
+          "type": "boolean",
+          "description": "True if data source field supports ad-hoc filters"
+        },
+        "unit": {
+          "type": "string",
+          "description": "Unit a field should use. The unit you select is applied to all fields except time.\nYou can use the units ID availables in Grafana or a custom unit.\nAvailable units in Grafana: https://github.com/grafana/grafana/blob/main/packages/grafana-data/src/valueFormats/categories.ts\nAs custom unit, you can use the following formats:\n`suffix:\u003csuffix\u003e` for custom unit that should go after value.\n`prefix:\u003cprefix\u003e` for custom unit that should go before value.\n`time:\u003cformat\u003e` For custom date time formats type for example `time:YYYY-MM-DD`.\n`si:\u003cbase scale\u003e\u003cunit characters\u003e` for custom SI units. For example: `si: mF`. This one is a bit more advanced as you can specify both a unit and the source data scale. So if your source data is represented as milli (thousands of) something prefix the unit with that SI scale character.\n`count:\u003cunit\u003e` for a custom count unit.\n`currency:\u003cunit\u003e` for custom a currency unit."
+        },
+        "decimals": {
+          "type": "number",
+          "description": "Specify the number of decimals Grafana includes in the rendered value.\nIf you leave this field blank, Grafana automatically truncates the number of decimals based on the value.\nFor example 1.1234 will display as 1.12 and 100.456 will display as 100.\nTo display all decimals, set the unit to `String`."
+        },
+        "min": {
+          "type": "number",
+          "description": "The minimum value used in percentage threshold calculations. Leave blank for auto calculation based on all series and fields."
+        },
+        "max": {
+          "type": "number",
+          "description": "The maximum value used in percentage threshold calculations. Leave blank for auto calculation based on all series and fields."
+        },
+        "mappings": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/ValueMapping"
+          },
+          "description": "Convert input values into a display string"
+        },
+        "thresholds": {
+          "$ref": "#/definitions/ThresholdsConfig",
+          "description": "Map numeric values to states"
+        },
+        "color": {
+          "$ref": "#/definitions/FieldColor",
+          "description": "Panel color configuration"
+        },
+        "links": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "additionalProperties": {}
+          },
+          "description": "The behavior when clicking on a result"
+        },
+        "actions": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Action"
+          },
+          "description": "Define interactive HTTP requests that can be triggered from data visualizations."
+        },
+        "noValue": {
+          "type": "string",
+          "description": "Alternative to empty string"
+        },
+        "custom": {
+          "type": "object",
+          "additionalProperties": {},
+          "description": "custom is specified by the FieldConfig field\nin panel plugin schemas."
+        }
+      },
+      "description": "The data model used in Grafana, namely the data frame, is a columnar-oriented table structure that unifies both time series and table query results.\nEach column within this structure is called a field. A field can represent a single time series or table column.\nField options allow you to change how the data is displayed in your visualizations."
+    },
+    "ValueMapping": {
+      "oneOf": [
+        {
+          "$ref": "#/definitions/ValueMap"
+        },
+        {
+          "$ref": "#/definitions/RangeMap"
+        },
+        {
+          "$ref": "#/definitions/RegexMap"
+        },
+        {
+          "$ref": "#/definitions/SpecialValueMap"
+        }
+      ]
+    },
+    "ValueMap": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "type",
+        "options"
+      ],
+      "properties": {
+        "type": {
+          "allOf": [
+            {
+              "$ref": "#/definitions/MappingType"
+            }
+          ],
+          "default": "value"
+        },
+        "options": {
+          "type": "object",
+          "additionalProperties": {
+            "$ref": "#/definitions/ValueMappingResult"
+          },
+          "description": "Map with \u003cvalue_to_match\u003e: ValueMappingResult. For example: { \"10\": { text: \"Perfection!\", color: \"green\" } }"
+        }
+      },
+      "description": "Maps text values to a color or different display text and color.\nFor example, you can configure a value mapping so that all instances of the value 10 appear as Perfection! rather than the number."
+    },
+    "MappingType": {
+      "enum": [
+        "value",
+        "range",
+        "regex",
+        "special"
+      ],
+      "type": "string",
+      "description": "Supported value mapping types\n`value`: Maps text values to a color or different display text and color. For example, you can configure a value mapping so that all instances of the value 10 appear as Perfection! rather than the number.\n`range`: Maps numerical ranges to a display text and color. For example, if a value is within a certain range, you can configure a range value mapping to display Low or High rather than the number.\n`regex`: Maps regular expressions to replacement text and a color. For example, if a value is www.example.com, you can configure a regex value mapping so that Grafana displays www and truncates the domain.\n`special`: Maps special values like Null, NaN (not a number), and boolean values like true and false to a display text and color. See SpecialValueMatch to see the list of special values. For example, you can configure a special value mapping so that null values appear as N/A."
+    },
+    "ValueMappingResult": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "text": {
+          "type": "string",
+          "description": "Text to display when the value matches"
+        },
+        "color": {
+          "type": "string",
+          "description": "Text to use when the value matches"
+        },
+        "icon": {
+          "type": "string",
+          "description": "Icon to display when the value matches. Only specific visualizations."
+        },
+        "index": {
+          "type": "integer",
+          "description": "Position in the mapping array. Only used internally."
+        }
+      },
+      "description": "Result used as replacement with text and color when the value matches"
+    },
+    "RangeMap": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "type",
+        "options"
+      ],
+      "properties": {
+        "type": {
+          "allOf": [
+            {
+              "$ref": "#/definitions/MappingType"
+            }
+          ],
+          "default": "range"
+        },
+        "options": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "from",
+            "to",
+            "result"
+          ],
+          "properties": {
+            "from": {
+              "type": "number",
+              "description": "Min value of the range. It can be null which means -Infinity"
+            },
+            "to": {
+              "type": "number",
+              "description": "Max value of the range. It can be null which means +Infinity"
+            },
+            "result": {
+              "$ref": "#/definitions/ValueMappingResult",
+              "description": "Config to apply when the value is within the range"
+            }
+          },
+          "description": "Range to match against and the result to apply when the value is within the range"
+        }
+      },
+      "description": "Maps numerical ranges to a display text and color.\nFor example, if a value is within a certain range, you can configure a range value mapping to display Low or High rather than the number."
+    },
+    "RegexMap": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "type",
+        "options"
+      ],
+      "properties": {
+        "type": {
+          "allOf": [
+            {
+              "$ref": "#/definitions/MappingType"
+            }
+          ],
+          "default": "regex"
+        },
+        "options": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "pattern",
+            "result"
+          ],
+          "properties": {
+            "pattern": {
+              "type": "string",
+              "description": "Regular expression to match against"
+            },
+            "result": {
+              "$ref": "#/definitions/ValueMappingResult",
+              "description": "Config to apply when the value matches the regex"
+            }
+          },
+          "description": "Regular expression to match against and the result to apply when the value matches the regex"
+        }
+      },
+      "description": "Maps regular expressions to replacement text and a color.\nFor example, if a value is www.example.com, you can configure a regex value mapping so that Grafana displays www and truncates the domain."
+    },
+    "SpecialValueMap": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "type",
+        "options"
+      ],
+      "properties": {
+        "type": {
+          "allOf": [
+            {
+              "$ref": "#/definitions/MappingType"
+            }
+          ],
+          "default": "special"
+        },
+        "options": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "match",
+            "result"
+          ],
+          "properties": {
+            "match": {
+              "$ref": "#/definitions/SpecialValueMatch",
+              "description": "Special value to match against"
+            },
+            "result": {
+              "$ref": "#/definitions/ValueMappingResult",
+              "description": "Config to apply when the value matches the special value"
+            }
+          }
+        }
+      },
+      "description": "Maps special values like Null, NaN (not a number), and boolean values like true and false to a display text and color.\nSee SpecialValueMatch to see the list of special values.\nFor example, you can configure a special value mapping so that null values appear as N/A."
+    },
+    "SpecialValueMatch": {
+      "enum": [
+        "true",
+        "false",
+        "null",
+        "nan",
+        "null+nan",
+        "empty"
+      ],
+      "type": "string",
+      "description": "Special value types supported by the `SpecialValueMap`"
+    },
+    "ThresholdsConfig": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "mode",
+        "steps"
+      ],
+      "properties": {
+        "mode": {
+          "$ref": "#/definitions/ThresholdsMode"
+        },
+        "steps": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Threshold"
+          }
+        }
+      }
+    },
+    "ThresholdsMode": {
+      "enum": [
+        "absolute",
+        "percentage"
+      ],
+      "type": "string"
+    },
+    "Threshold": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "value",
+        "color"
+      ],
+      "properties": {
+        "value": {
+          "type": "number"
+        },
+        "color": {
+          "type": "string"
+        }
+      }
+    },
+    "FieldColor": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "mode"
+      ],
+      "properties": {
+        "mode": {
+          "$ref": "#/definitions/FieldColorModeId",
+          "description": "The main color scheme mode."
+        },
+        "fixedColor": {
+          "type": "string",
+          "description": "The fixed color value for fixed or shades color modes."
+        },
+        "seriesBy": {
+          "$ref": "#/definitions/FieldColorSeriesByMode",
+          "description": "Some visualizations need to know how to assign a series color from by value color schemes."
+        }
+      },
+      "description": "Map a field to a color."
+    },
+    "FieldColorModeId": {
+      "enum": [
+        "thresholds",
+        "palette-classic",
+        "palette-classic-by-name",
+        "continuous-GrYlRd",
+        "continuous-RdYlGr",
+        "continuous-BlYlRd",
+        "continuous-YlRd",
+        "continuous-BlPu",
+        "continuous-YlBl",
+        "continuous-blues",
+        "continuous-reds",
+        "continuous-greens",
+        "continuous-purples",
+        "fixed",
+        "shades"
+      ],
+      "type": "string",
+      "description": "Color mode for a field. You can specify a single color, or select a continuous (gradient) color schemes, based on a value.\nContinuous color interpolates a color using the percentage of a value relative to min and max.\nAccepted values are:\n`thresholds`: From thresholds. Informs Grafana to take the color from the matching threshold\n`palette-classic`: Classic palette. Grafana will assign color by looking up a color in a palette by series index. Useful for Graphs and pie charts and other categorical data visualizations\n`palette-classic-by-name`: Classic palette (by name). Grafana will assign color by looking up a color in a palette by series name. Useful for Graphs and pie charts and other categorical data visualizations\n`continuous-GrYlRd`: ontinuous Green-Yellow-Red palette mode\n`continuous-RdYlGr`: Continuous Red-Yellow-Green palette mode\n`continuous-BlYlRd`: Continuous Blue-Yellow-Red palette mode\n`continuous-YlRd`: Continuous Yellow-Red palette mode\n`continuous-BlPu`: Continuous Blue-Purple palette mode\n`continuous-YlBl`: Continuous Yellow-Blue palette mode\n`continuous-blues`: Continuous Blue palette mode\n`continuous-reds`: Continuous Red palette mode\n`continuous-greens`: Continuous Green palette mode\n`continuous-purples`: Continuous Purple palette mode\n`shades`: Shades of a single color. Specify a single color, useful in an override rule.\n`fixed`: Fixed color mode. Specify a single color, useful in an override rule."
+    },
+    "FieldColorSeriesByMode": {
+      "enum": [
+        "min",
+        "max",
+        "last"
+      ],
+      "type": "string",
+      "description": "Defines how to assign a series color from \"by value\" color schemes. For example for an aggregated data points like a timeseries, the color can be assigned by the min, max or last value."
+    },
+    "Action": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "type",
+        "title"
+      ],
+      "properties": {
+        "type": {
+          "$ref": "#/definitions/ActionType"
+        },
+        "title": {
+          "type": "string"
+        },
+        "fetch": {
+          "$ref": "#/definitions/FetchOptions"
+        },
+        "infinity": {
+          "$ref": "#/definitions/InfinityOptions"
+        },
+        "confirmation": {
+          "type": "string"
+        },
+        "oneClick": {
+          "type": "boolean"
+        },
+        "variables": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/ActionVariable"
+          }
+        },
+        "style": {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "backgroundColor": {
+              "type": "string"
+            }
+          }
+        }
+      }
+    },
+    "ActionType": {
+      "enum": [
+        "fetch",
+        "infinity"
+      ],
+      "type": "string"
+    },
+    "FetchOptions": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "method",
+        "url"
+      ],
+      "properties": {
+        "method": {
+          "$ref": "#/definitions/HttpRequestMethod"
+        },
+        "url": {
+          "type": "string"
+        },
+        "body": {
+          "type": "string"
+        },
+        "queryParams": {
+          "type": "array",
+          "items": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "description": "These are 2D arrays of strings, each representing a key-value pair\nWe are defining them this way because we can't generate a go struct that\nthat would have exactly two strings in each sub-array"
+        },
+        "headers": {
+          "type": "array",
+          "items": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          }
+        }
+      }
+    },
+    "HttpRequestMethod": {
+      "enum": [
+        "GET",
+        "PUT",
+        "POST",
+        "DELETE",
+        "PATCH"
+      ],
+      "type": "string"
+    },
+    "InfinityOptions": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "method",
+        "url",
+        "datasourceUid"
+      ],
+      "properties": {
+        "method": {
+          "$ref": "#/definitions/HttpRequestMethod"
+        },
+        "url": {
+          "type": "string"
+        },
+        "body": {
+          "type": "string"
+        },
+        "queryParams": {
+          "type": "array",
+          "items": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "description": "These are 2D arrays of strings, each representing a key-value pair\nWe are defining them this way because we can't generate a go struct that\nthat would have exactly two strings in each sub-array"
+        },
+        "datasourceUid": {
+          "type": "string"
+        },
+        "headers": {
+          "type": "array",
+          "items": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          }
+        }
+      }
+    },
+    "ActionVariable": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "key",
+        "name",
+        "type"
+      ],
+      "properties": {
+        "key": {
+          "type": "string"
+        },
+        "name": {
+          "type": "string"
+        },
+        "type": {
+          "$ref": "#/definitions/ActionVariableType"
+        }
+      }
+    },
+    "ActionVariableType": {
+      "type": "string",
+      "const": "string",
+      "description": "Action variable type"
+    },
+    "DynamicConfigValue": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "id"
+      ],
+      "properties": {
+        "id": {
+          "type": "string",
+          "default": ""
+        },
+        "value": {
+          "type": "object",
+          "additionalProperties": {}
+        }
+      }
+    },
+    "LibraryPanelKind": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "kind",
+        "spec"
+      ],
+      "properties": {
+        "kind": {
+          "type": "string",
+          "const": "LibraryPanel"
+        },
+        "spec": {
+          "$ref": "#/definitions/LibraryPanelKindSpec"
+        }
+      }
+    },
+    "LibraryPanelKindSpec": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "id",
+        "title",
+        "libraryPanel"
+      ],
+      "properties": {
+        "id": {
+          "type": "number",
+          "description": "Panel ID for the library panel in the dashboard"
+        },
+        "title": {
+          "type": "string",
+          "description": "Title for the library panel in the dashboard"
+        },
+        "libraryPanel": {
+          "$ref": "#/definitions/LibraryPanelRef"
+        }
+      }
+    },
+    "LibraryPanelRef": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "name",
+        "uid"
+      ],
+      "properties": {
+        "name": {
+          "type": "string",
+          "description": "Library panel name"
+        },
+        "uid": {
+          "type": "string",
+          "description": "Library panel uid"
+        }
+      },
+      "description": "A library panel is a reusable panel that you can use in any dashboard.\nWhen you make a change to a library panel, that change propagates to all instances of where the panel is used.\nLibrary panels streamline reuse of panels across multiple dashboards."
+    },
+    "GridLayoutKind": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "kind",
+        "spec"
+      ],
+      "properties": {
+        "kind": {
+          "type": "string",
+          "const": "GridLayout"
+        },
+        "spec": {
+          "$ref": "#/definitions/GridLayoutSpec"
+        }
+      }
+    },
+    "GridLayoutSpec": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "items"
+      ],
+      "properties": {
+        "items": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/GridLayoutItemKind"
+          }
+        }
+      }
+    },
+    "GridLayoutItemKind": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "kind",
+        "spec"
+      ],
+      "properties": {
+        "kind": {
+          "type": "string",
+          "const": "GridLayoutItem"
+        },
+        "spec": {
+          "$ref": "#/definitions/GridLayoutItemSpec"
+        }
+      }
+    },
+    "GridLayoutItemSpec": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "x",
+        "y",
+        "width",
+        "height",
+        "element"
+      ],
+      "properties": {
+        "x": {
+          "type": "integer"
+        },
+        "y": {
+          "type": "integer"
+        },
+        "width": {
+          "type": "integer"
+        },
+        "height": {
+          "type": "integer"
+        },
+        "element": {
+          "$ref": "#/definitions/ElementReference",
+          "description": "reference to a PanelKind from dashboard.spec.elements Expressed as JSON Schema reference"
+        },
+        "repeat": {
+          "$ref": "#/definitions/RepeatOptions"
+        }
+      }
+    },
+    "ElementReference": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "kind",
+        "name"
+      ],
+      "properties": {
+        "kind": {
+          "type": "string",
+          "const": "ElementReference"
+        },
+        "name": {
+          "type": "string"
+        }
+      }
+    },
+    "RepeatOptions": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "mode",
+        "value"
+      ],
+      "properties": {
+        "mode": {
+          "allOf": [
+            {
+              "$ref": "#/definitions/RepeatMode"
+            }
+          ],
+          "default": "variable"
+        },
+        "value": {
+          "type": "string"
+        },
+        "direction": {
+          "enum": [
+            "h",
+            "v"
+          ],
+          "type": "string"
+        },
+        "maxPerRow": {
+          "type": "integer"
+        }
+      }
+    },
+    "RepeatMode": {
+      "enum": [
+        "variable"
+      ],
+      "type": "string",
+      "description": "other repeat modes will be added in the future: label, frame"
+    },
+    "RowsLayoutKind": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "kind",
+        "spec"
+      ],
+      "properties": {
+        "kind": {
+          "type": "string",
+          "const": "RowsLayout"
+        },
+        "spec": {
+          "$ref": "#/definitions/RowsLayoutSpec"
+        }
+      }
+    },
+    "RowsLayoutSpec": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "rows"
+      ],
+      "properties": {
+        "rows": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/RowsLayoutRowKind"
+          }
+        }
+      }
+    },
+    "RowsLayoutRowKind": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "kind",
+        "spec"
+      ],
+      "properties": {
+        "kind": {
+          "type": "string",
+          "const": "RowsLayoutRow"
+        },
+        "spec": {
+          "$ref": "#/definitions/RowsLayoutRowSpec"
+        }
+      }
+    },
+    "RowsLayoutRowSpec": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "layout"
+      ],
+      "properties": {
+        "title": {
+          "type": "string"
+        },
+        "collapse": {
+          "type": "boolean"
+        },
+        "hideHeader": {
+          "type": "boolean"
+        },
+        "fillScreen": {
+          "type": "boolean"
+        },
+        "conditionalRendering": {
+          "$ref": "#/definitions/ConditionalRenderingGroupKind"
+        },
+        "repeat": {
+          "$ref": "#/definitions/RowRepeatOptions"
+        },
+        "layout": {
+          "oneOf": [
+            {
+              "$ref": "#/definitions/GridLayoutKind"
+            },
+            {
+              "$ref": "#/definitions/AutoGridLayoutKind"
+            },
+            {
+              "$ref": "#/definitions/TabsLayoutKind"
+            },
+            {
+              "$ref": "#/definitions/RowsLayoutKind"
+            }
+          ]
+        }
+      }
+    },
+    "ConditionalRenderingGroupKind": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "kind",
+        "spec"
+      ],
+      "properties": {
+        "kind": {
+          "type": "string",
+          "const": "ConditionalRenderingGroup"
+        },
+        "spec": {
+          "$ref": "#/definitions/ConditionalRenderingGroupSpec"
+        }
+      }
+    },
+    "ConditionalRenderingGroupSpec": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "visibility",
+        "condition",
+        "items"
+      ],
+      "properties": {
+        "visibility": {
+          "enum": [
+            "show",
+            "hide"
+          ],
+          "type": "string"
+        },
+        "condition": {
+          "enum": [
+            "and",
+            "or"
+          ],
+          "type": "string"
+        },
+        "items": {
+          "type": "array",
+          "items": {
+            "oneOf": [
+              {
+                "$ref": "#/definitions/ConditionalRenderingVariableKind"
+              },
+              {
+                "$ref": "#/definitions/ConditionalRenderingDataKind"
+              },
+              {
+                "$ref": "#/definitions/ConditionalRenderingTimeRangeSizeKind"
+              }
+            ]
+          }
+        }
+      }
+    },
+    "ConditionalRenderingVariableKind": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "kind",
+        "spec"
+      ],
+      "properties": {
+        "kind": {
+          "type": "string",
+          "const": "ConditionalRenderingVariable"
+        },
+        "spec": {
+          "$ref": "#/definitions/ConditionalRenderingVariableSpec"
+        }
+      }
+    },
+    "ConditionalRenderingVariableSpec": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "variable",
+        "operator",
+        "value"
+      ],
+      "properties": {
+        "variable": {
+          "type": "string"
+        },
+        "operator": {
+          "enum": [
+            "equals",
+            "notEquals",
+            "matches",
+            "notMatches"
+          ],
+          "type": "string"
+        },
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "ConditionalRenderingDataKind": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "kind",
+        "spec"
+      ],
+      "properties": {
+        "kind": {
+          "type": "string",
+          "const": "ConditionalRenderingData"
+        },
+        "spec": {
+          "$ref": "#/definitions/ConditionalRenderingDataSpec"
+        }
+      }
+    },
+    "ConditionalRenderingDataSpec": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "value"
+      ],
+      "properties": {
+        "value": {
+          "type": "boolean"
+        }
+      }
+    },
+    "ConditionalRenderingTimeRangeSizeKind": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "kind",
+        "spec"
+      ],
+      "properties": {
+        "kind": {
+          "type": "string",
+          "const": "ConditionalRenderingTimeRangeSize"
+        },
+        "spec": {
+          "$ref": "#/definitions/ConditionalRenderingTimeRangeSizeSpec"
+        }
+      }
+    },
+    "ConditionalRenderingTimeRangeSizeSpec": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "value"
+      ],
+      "properties": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "RowRepeatOptions": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "mode",
+        "value"
+      ],
+      "properties": {
+        "mode": {
+          "allOf": [
+            {
+              "$ref": "#/definitions/RepeatMode"
+            }
+          ],
+          "default": "variable"
+        },
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "AutoGridLayoutKind": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "kind",
+        "spec"
+      ],
+      "properties": {
+        "kind": {
+          "type": "string",
+          "const": "AutoGridLayout"
+        },
+        "spec": {
+          "$ref": "#/definitions/AutoGridLayoutSpec"
+        }
+      }
+    },
+    "AutoGridLayoutSpec": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "columnWidthMode",
+        "rowHeightMode",
+        "items"
+      ],
+      "properties": {
+        "maxColumnCount": {
+          "type": "number",
+          "default": 3
+        },
+        "columnWidthMode": {
+          "enum": [
+            "narrow",
+            "standard",
+            "wide",
+            "custom"
+          ],
+          "type": "string",
+          "default": "standard"
+        },
+        "columnWidth": {
+          "type": "number"
+        },
+        "rowHeightMode": {
+          "enum": [
+            "short",
+            "standard",
+            "tall",
+            "custom"
+          ],
+          "type": "string",
+          "default": "standard"
+        },
+        "rowHeight": {
+          "type": "number"
+        },
+        "fillScreen": {
+          "type": "boolean",
+          "default": false
+        },
+        "items": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/AutoGridLayoutItemKind"
+          }
+        }
+      }
+    },
+    "AutoGridLayoutItemKind": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "kind",
+        "spec"
+      ],
+      "properties": {
+        "kind": {
+          "type": "string",
+          "const": "AutoGridLayoutItem"
+        },
+        "spec": {
+          "$ref": "#/definitions/AutoGridLayoutItemSpec"
+        }
+      }
+    },
+    "AutoGridLayoutItemSpec": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "element"
+      ],
+      "properties": {
+        "element": {
+          "$ref": "#/definitions/ElementReference"
+        },
+        "repeat": {
+          "$ref": "#/definitions/AutoGridRepeatOptions"
+        },
+        "conditionalRendering": {
+          "$ref": "#/definitions/ConditionalRenderingGroupKind"
+        }
+      }
+    },
+    "AutoGridRepeatOptions": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "mode",
+        "value"
+      ],
+      "properties": {
+        "mode": {
+          "allOf": [
+            {
+              "$ref": "#/definitions/RepeatMode"
+            }
+          ],
+          "default": "variable"
+        },
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "TabsLayoutKind": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "kind",
+        "spec"
+      ],
+      "properties": {
+        "kind": {
+          "type": "string",
+          "const": "TabsLayout"
+        },
+        "spec": {
+          "$ref": "#/definitions/TabsLayoutSpec"
+        }
+      }
+    },
+    "TabsLayoutSpec": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "tabs"
+      ],
+      "properties": {
+        "tabs": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/TabsLayoutTabKind"
+          }
+        }
+      }
+    },
+    "TabsLayoutTabKind": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "kind",
+        "spec"
+      ],
+      "properties": {
+        "kind": {
+          "type": "string",
+          "const": "TabsLayoutTab"
+        },
+        "spec": {
+          "$ref": "#/definitions/TabsLayoutTabSpec"
+        }
+      }
+    },
+    "TabsLayoutTabSpec": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "layout"
+      ],
+      "properties": {
+        "title": {
+          "type": "string"
+        },
+        "layout": {
+          "oneOf": [
+            {
+              "$ref": "#/definitions/GridLayoutKind"
+            },
+            {
+              "$ref": "#/definitions/RowsLayoutKind"
+            },
+            {
+              "$ref": "#/definitions/AutoGridLayoutKind"
+            },
+            {
+              "$ref": "#/definitions/TabsLayoutKind"
+            }
+          ]
+        },
+        "conditionalRendering": {
+          "$ref": "#/definitions/ConditionalRenderingGroupKind"
+        },
+        "repeat": {
+          "$ref": "#/definitions/TabRepeatOptions"
+        }
+      }
+    },
+    "TabRepeatOptions": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "mode",
+        "value"
+      ],
+      "properties": {
+        "mode": {
+          "allOf": [
+            {
+              "$ref": "#/definitions/RepeatMode"
+            }
+          ],
+          "default": "variable"
+        },
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "DashboardLink": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "title",
+        "type",
+        "icon",
+        "tooltip",
+        "tags",
+        "asDropdown",
+        "targetBlank",
+        "includeVars",
+        "keepTime"
+      ],
+      "properties": {
+        "title": {
+          "type": "string",
+          "description": "Title to display with the link"
+        },
+        "type": {
+          "$ref": "#/definitions/DashboardLinkType",
+          "description": "Link type. Accepted values are dashboards (to refer to another dashboard) and link (to refer to an external resource)\nFIXME: The type is generated as `type: DashboardLinkType | dashboardLinkType.Link;` but it should be `type: DashboardLinkType`"
+        },
+        "icon": {
+          "type": "string",
+          "description": "Icon name to be displayed with the link"
+        },
+        "tooltip": {
+          "type": "string",
+          "description": "Tooltip to display when the user hovers their mouse over it"
+        },
+        "url": {
+          "type": "string",
+          "description": "Link URL. Only required/valid if the type is link"
+        },
+        "tags": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "description": "List of tags to limit the linked dashboards. If empty, all dashboards will be displayed. Only valid if the type is dashboards"
+        },
+        "asDropdown": {
+          "type": "boolean",
+          "description": "If true, all dashboards links will be displayed in a dropdown. If false, all dashboards links will be displayed side by side. Only valid if the type is dashboards",
+          "default": false
+        },
+        "targetBlank": {
+          "type": "boolean",
+          "description": "If true, the link will be opened in a new tab",
+          "default": false
+        },
+        "includeVars": {
+          "type": "boolean",
+          "description": "If true, includes current template variables values in the link as query params",
+          "default": false
+        },
+        "keepTime": {
+          "type": "boolean",
+          "description": "If true, includes current time range in the link as query params",
+          "default": false
+        },
+        "placement": {
+          "$ref": "#/definitions/DashboardLinkPlacement",
+          "description": "Placement can be used to display the link somewhere else on the dashboard other than above the visualisations."
+        }
+      },
+      "description": "Links with references to other dashboards or external resources"
+    },
+    "DashboardLinkType": {
+      "enum": [
+        "link",
+        "dashboards"
+      ],
+      "type": "string",
+      "description": "Dashboard Link type. Accepted values are dashboards (to refer to another dashboard) and link (to refer to an external resource)"
+    },
+    "DashboardLinkPlacement": {
+      "type": "string",
+      "const": "inControlsMenu",
+      "description": "Dashboard Link placement. Defines where the link should be displayed.\n- \"inControlsMenu\" renders the link in bottom part of the dashboard controls dropdown menu"
+    },
+    "TimeSettingsSpec": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "from",
+        "to",
+        "autoRefresh",
+        "autoRefreshIntervals",
+        "hideTimepicker",
+        "fiscalYearStartMonth"
+      ],
+      "properties": {
+        "timezone": {
+          "type": "string",
+          "description": "Timezone of dashboard. Accepted values are IANA TZDB zone ID or \"browser\" or \"utc\".",
+          "default": "browser"
+        },
+        "from": {
+          "type": "string",
+          "description": "Start time range for dashboard.\nAccepted values are relative time strings like \"now-6h\" or absolute time strings like \"2020-07-10T08:00:00.000Z\".",
+          "default": "now-6h"
+        },
+        "to": {
+          "type": "string",
+          "description": "End time range for dashboard.\nAccepted values are relative time strings like \"now-6h\" or absolute time strings like \"2020-07-10T08:00:00.000Z\".",
+          "default": "now"
+        },
+        "autoRefresh": {
+          "type": "string",
+          "description": "Refresh rate of dashboard. Represented via interval string, e.g. \"5s\", \"1m\", \"1h\", \"1d\".\nv1: refresh",
+          "default": ""
+        },
+        "autoRefreshIntervals": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "description": "Interval options available in the refresh picker dropdown.\nv1: timepicker.refresh_intervals",
+          "default": [
+            "5s",
+            "10s",
+            "30s",
+            "1m",
+            "5m",
+            "15m",
+            "30m",
+            "1h",
+            "2h",
+            "1d"
+          ]
+        },
+        "quickRanges": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/TimeRangeOption"
+          },
+          "description": "Selectable options available in the time picker dropdown. Has no effect on provisioned dashboard.\nv1: timepicker.quick_ranges , not exposed in the UI"
+        },
+        "hideTimepicker": {
+          "type": "boolean",
+          "description": "Whether timepicker is visible or not.\nv1: timepicker.hidden",
+          "default": false
+        },
+        "weekStart": {
+          "enum": [
+            "saturday",
+            "monday",
+            "sunday"
+          ],
+          "type": "string",
+          "description": "Day when the week starts. Expressed by the name of the day in lowercase, e.g. \"monday\"."
+        },
+        "fiscalYearStartMonth": {
+          "type": "integer",
+          "description": "The month that the fiscal year starts on. 0 = January, 11 = December",
+          "default": 0
+        },
+        "nowDelay": {
+          "type": "string",
+          "description": "Override the now time by entering a time delay. Use this option to accommodate known delays in data aggregation to avoid null values.\nv1: timepicker.nowDelay"
+        }
+      },
+      "description": "Time configuration\nIt defines the default time config for the time picker, the refresh picker for the specific dashboard."
+    },
+    "TimeRangeOption": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "display",
+        "from",
+        "to"
+      ],
+      "properties": {
+        "display": {
+          "type": "string",
+          "default": "Last 6 hours"
+        },
+        "from": {
+          "type": "string",
+          "default": "now-6h"
+        },
+        "to": {
+          "type": "string",
+          "default": "now"
+        }
+      }
+    },
+    "VariableKind": {
+      "oneOf": [
+        {
+          "$ref": "#/definitions/QueryVariableKind"
+        },
+        {
+          "$ref": "#/definitions/TextVariableKind"
+        },
+        {
+          "$ref": "#/definitions/ConstantVariableKind"
+        },
+        {
+          "$ref": "#/definitions/DatasourceVariableKind"
+        },
+        {
+          "$ref": "#/definitions/IntervalVariableKind"
+        },
+        {
+          "$ref": "#/definitions/CustomVariableKind"
+        },
+        {
+          "$ref": "#/definitions/GroupByVariableKind"
+        },
+        {
+          "$ref": "#/definitions/AdhocVariableKind"
+        },
+        {
+          "$ref": "#/definitions/SwitchVariableKind"
+        }
+      ]
+    },
+    "QueryVariableKind": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "kind",
+        "spec"
+      ],
+      "properties": {
+        "kind": {
+          "type": "string",
+          "const": "QueryVariable"
+        },
+        "spec": {
+          "$ref": "#/definitions/QueryVariableSpec"
+        }
+      },
+      "description": "Query variable kind"
+    },
+    "QueryVariableSpec": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "name",
+        "current",
+        "hide",
+        "refresh",
+        "skipUrlSync",
+        "query",
+        "regex",
+        "sort",
+        "options",
+        "multi",
+        "includeAll",
+        "allowCustomValue"
+      ],
+      "properties": {
+        "name": {
+          "type": "string",
+          "default": ""
+        },
+        "current": {
+          "$ref": "#/definitions/VariableOption",
+          "default": {
+            "text": "",
+            "value": ""
+          }
+        },
+        "label": {
+          "type": "string"
+        },
+        "hide": {
+          "$ref": "#/definitions/VariableHide",
+          "default": "dontHide"
+        },
+        "refresh": {
+          "$ref": "#/definitions/VariableRefresh",
+          "default": "never"
+        },
+        "skipUrlSync": {
+          "type": "boolean",
+          "default": false
+        },
+        "description": {
+          "type": "string"
+        },
+        "query": {
+          "$ref": "#/definitions/DataQueryKind"
+        },
+        "regex": {
+          "type": "string",
+          "default": ""
+        },
+        "sort": {
+          "$ref": "#/definitions/VariableSort"
+        },
+        "definition": {
+          "type": "string"
+        },
+        "options": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/VariableOption"
+          }
+        },
+        "multi": {
+          "type": "boolean",
+          "default": false
+        },
+        "includeAll": {
+          "type": "boolean",
+          "default": false
+        },
+        "allValue": {
+          "type": "string"
+        },
+        "placeholder": {
+          "type": "string"
+        },
+        "allowCustomValue": {
+          "type": "boolean",
+          "default": true
+        },
+        "staticOptions": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/VariableOption"
+          }
+        },
+        "staticOptionsOrder": {
+          "enum": [
+            "before",
+            "after",
+            "sorted"
+          ],
+          "type": "string"
+        }
+      },
+      "description": "Query variable specification"
+    },
+    "VariableOption": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "text",
+        "value"
+      ],
+      "properties": {
+        "selected": {
+          "type": "boolean",
+          "description": "Whether the option is selected or not"
+        },
+        "text": {
+          "oneOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            }
+          ],
+          "description": "Text to be displayed for the option"
+        },
+        "value": {
+          "oneOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            }
+          ],
+          "description": "Value of the option"
+        }
+      },
+      "description": "Variable option specification"
+    },
+    "VariableHide": {
+      "enum": [
+        "dontHide",
+        "hideLabel",
+        "hideVariable",
+        "inControlsMenu"
+      ],
+      "type": "string",
+      "description": "Determine if the variable shows on dashboard\nAccepted values are `dontHide` (show label and value), `hideLabel` (show value only), `hideVariable` (show nothing), `inControlsMenu` (show in a drop-down menu)."
+    },
+    "VariableRefresh": {
+      "enum": [
+        "never",
+        "onDashboardLoad",
+        "onTimeRangeChanged"
+      ],
+      "type": "string",
+      "description": "Options to config when to refresh a variable\n`never`: Never refresh the variable\n`onDashboardLoad`: Queries the data source every time the dashboard loads.\n`onTimeRangeChanged`: Queries the data source when the dashboard time range changes."
+    },
+    "VariableSort": {
+      "enum": [
+        "disabled",
+        "alphabeticalAsc",
+        "alphabeticalDesc",
+        "numericalAsc",
+        "numericalDesc",
+        "alphabeticalCaseInsensitiveAsc",
+        "alphabeticalCaseInsensitiveDesc",
+        "naturalAsc",
+        "naturalDesc"
+      ],
+      "type": "string",
+      "description": "Sort variable options\nAccepted values are:\n`disabled`: No sorting\n`alphabeticalAsc`: Alphabetical ASC\n`alphabeticalDesc`: Alphabetical DESC\n`numericalAsc`: Numerical ASC\n`numericalDesc`: Numerical DESC\n`alphabeticalCaseInsensitiveAsc`: Alphabetical Case Insensitive ASC\n`alphabeticalCaseInsensitiveDesc`: Alphabetical Case Insensitive DESC\n`naturalAsc`: Natural ASC\n`naturalDesc`: Natural DESC\nVariableSort enum with default value"
+    },
+    "TextVariableKind": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "kind",
+        "spec"
+      ],
+      "properties": {
+        "kind": {
+          "type": "string",
+          "const": "TextVariable"
+        },
+        "spec": {
+          "$ref": "#/definitions/TextVariableSpec"
+        }
+      },
+      "description": "Text variable kind"
+    },
+    "TextVariableSpec": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "name",
+        "current",
+        "query",
+        "hide",
+        "skipUrlSync"
+      ],
+      "properties": {
+        "name": {
+          "type": "string",
+          "default": ""
+        },
+        "current": {
+          "$ref": "#/definitions/VariableOption",
+          "default": {
+            "text": "",
+            "value": ""
+          }
+        },
+        "query": {
+          "type": "string",
+          "default": ""
+        },
+        "label": {
+          "type": "string"
+        },
+        "hide": {
+          "$ref": "#/definitions/VariableHide",
+          "default": "dontHide"
+        },
+        "skipUrlSync": {
+          "type": "boolean",
+          "default": false
+        },
+        "description": {
+          "type": "string"
+        }
+      },
+      "description": "Text variable specification"
+    },
+    "ConstantVariableKind": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "kind",
+        "spec"
+      ],
+      "properties": {
+        "kind": {
+          "type": "string",
+          "const": "ConstantVariable"
+        },
+        "spec": {
+          "$ref": "#/definitions/ConstantVariableSpec"
+        }
+      },
+      "description": "Constant variable kind"
+    },
+    "ConstantVariableSpec": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "name",
+        "query",
+        "current",
+        "hide",
+        "skipUrlSync"
+      ],
+      "properties": {
+        "name": {
+          "type": "string",
+          "default": ""
+        },
+        "query": {
+          "type": "string",
+          "default": ""
+        },
+        "current": {
+          "$ref": "#/definitions/VariableOption",
+          "default": {
+            "text": "",
+            "value": ""
+          }
+        },
+        "label": {
+          "type": "string"
+        },
+        "hide": {
+          "$ref": "#/definitions/VariableHide",
+          "default": "dontHide"
+        },
+        "skipUrlSync": {
+          "type": "boolean",
+          "default": false
+        },
+        "description": {
+          "type": "string"
+        }
+      },
+      "description": "Constant variable specification"
+    },
+    "DatasourceVariableKind": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "kind",
+        "spec"
+      ],
+      "properties": {
+        "kind": {
+          "type": "string",
+          "const": "DatasourceVariable"
+        },
+        "spec": {
+          "$ref": "#/definitions/DatasourceVariableSpec"
+        }
+      },
+      "description": "Datasource variable kind"
+    },
+    "DatasourceVariableSpec": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "name",
+        "pluginId",
+        "refresh",
+        "regex",
+        "current",
+        "options",
+        "multi",
+        "includeAll",
+        "hide",
+        "skipUrlSync",
+        "allowCustomValue"
+      ],
+      "properties": {
+        "name": {
+          "type": "string",
+          "default": ""
+        },
+        "pluginId": {
+          "type": "string",
+          "default": ""
+        },
+        "refresh": {
+          "$ref": "#/definitions/VariableRefresh",
+          "default": "never"
+        },
+        "regex": {
+          "type": "string",
+          "default": ""
+        },
+        "current": {
+          "$ref": "#/definitions/VariableOption",
+          "default": {
+            "text": "",
+            "value": ""
+          }
+        },
+        "options": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/VariableOption"
+          }
+        },
+        "multi": {
+          "type": "boolean",
+          "default": false
+        },
+        "includeAll": {
+          "type": "boolean",
+          "default": false
+        },
+        "allValue": {
+          "type": "string"
+        },
+        "label": {
+          "type": "string"
+        },
+        "hide": {
+          "$ref": "#/definitions/VariableHide",
+          "default": "dontHide"
+        },
+        "skipUrlSync": {
+          "type": "boolean",
+          "default": false
+        },
+        "description": {
+          "type": "string"
+        },
+        "allowCustomValue": {
+          "type": "boolean",
+          "default": true
+        }
+      },
+      "description": "Datasource variable specification"
+    },
+    "IntervalVariableKind": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "kind",
+        "spec"
+      ],
+      "properties": {
+        "kind": {
+          "type": "string",
+          "const": "IntervalVariable"
+        },
+        "spec": {
+          "$ref": "#/definitions/IntervalVariableSpec"
+        }
+      },
+      "description": "Interval variable kind"
+    },
+    "IntervalVariableSpec": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "name",
+        "query",
+        "current",
+        "options",
+        "auto",
+        "auto_min",
+        "auto_count",
+        "refresh",
+        "hide",
+        "skipUrlSync"
+      ],
+      "properties": {
+        "name": {
+          "type": "string",
+          "default": ""
+        },
+        "query": {
+          "type": "string",
+          "default": ""
+        },
+        "current": {
+          "$ref": "#/definitions/VariableOption",
+          "default": {
+            "text": "",
+            "value": ""
+          }
+        },
+        "options": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/VariableOption"
+          }
+        },
+        "auto": {
+          "type": "boolean",
+          "default": false
+        },
+        "auto_min": {
+          "type": "string",
+          "default": ""
+        },
+        "auto_count": {
+          "type": "integer",
+          "default": 0
+        },
+        "refresh": {
+          "$ref": "#/definitions/VariableRefresh",
+          "default": "never"
+        },
+        "label": {
+          "type": "string"
+        },
+        "hide": {
+          "$ref": "#/definitions/VariableHide",
+          "default": "dontHide"
+        },
+        "skipUrlSync": {
+          "type": "boolean",
+          "default": false
+        },
+        "description": {
+          "type": "string"
+        }
+      },
+      "description": "Interval variable specification"
+    },
+    "CustomVariableKind": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "kind",
+        "spec"
+      ],
+      "properties": {
+        "kind": {
+          "type": "string",
+          "const": "CustomVariable"
+        },
+        "spec": {
+          "$ref": "#/definitions/CustomVariableSpec"
+        }
+      },
+      "description": "Custom variable kind"
+    },
+    "CustomVariableSpec": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "name",
+        "query",
+        "current",
+        "options",
+        "multi",
+        "includeAll",
+        "hide",
+        "skipUrlSync",
+        "allowCustomValue"
+      ],
+      "properties": {
+        "name": {
+          "type": "string",
+          "default": ""
+        },
+        "query": {
+          "type": "string",
+          "default": ""
+        },
+        "current": {
+          "$ref": "#/definitions/VariableOption"
+        },
+        "options": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/VariableOption"
+          }
+        },
+        "multi": {
+          "type": "boolean",
+          "default": false
+        },
+        "includeAll": {
+          "type": "boolean",
+          "default": false
+        },
+        "allValue": {
+          "type": "string"
+        },
+        "label": {
+          "type": "string"
+        },
+        "hide": {
+          "$ref": "#/definitions/VariableHide",
+          "default": "dontHide"
+        },
+        "skipUrlSync": {
+          "type": "boolean",
+          "default": false
+        },
+        "description": {
+          "type": "string"
+        },
+        "allowCustomValue": {
+          "type": "boolean",
+          "default": true
+        }
+      },
+      "description": "Custom variable specification"
+    },
+    "GroupByVariableKind": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "kind",
+        "group",
+        "spec"
+      ],
+      "properties": {
+        "kind": {
+          "type": "string",
+          "const": "GroupByVariable"
+        },
+        "group": {
+          "type": "string"
+        },
+        "datasource": {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "name": {
+              "type": "string"
+            }
+          }
+        },
+        "spec": {
+          "$ref": "#/definitions/GroupByVariableSpec"
+        }
+      },
+      "description": "Group variable kind"
+    },
+    "GroupByVariableSpec": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "name",
+        "current",
+        "options",
+        "multi",
+        "hide",
+        "skipUrlSync"
+      ],
+      "properties": {
+        "name": {
+          "type": "string",
+          "default": ""
+        },
+        "defaultValue": {
+          "$ref": "#/definitions/VariableOption"
+        },
+        "current": {
+          "$ref": "#/definitions/VariableOption",
+          "default": {
+            "text": "",
+            "value": ""
+          }
+        },
+        "options": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/VariableOption"
+          }
+        },
+        "multi": {
+          "type": "boolean",
+          "default": false
+        },
+        "label": {
+          "type": "string"
+        },
+        "hide": {
+          "$ref": "#/definitions/VariableHide",
+          "default": "dontHide"
+        },
+        "skipUrlSync": {
+          "type": "boolean",
+          "default": false
+        },
+        "description": {
+          "type": "string"
+        }
+      },
+      "description": "GroupBy variable specification"
+    },
+    "AdhocVariableKind": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "kind",
+        "group",
+        "spec"
+      ],
+      "properties": {
+        "kind": {
+          "type": "string",
+          "const": "AdhocVariable"
+        },
+        "group": {
+          "type": "string"
+        },
+        "datasource": {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "name": {
+              "type": "string"
+            }
+          }
+        },
+        "spec": {
+          "$ref": "#/definitions/AdhocVariableSpec"
+        }
+      },
+      "description": "Adhoc variable kind"
+    },
+    "AdhocVariableSpec": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "name",
+        "baseFilters",
+        "filters",
+        "defaultKeys",
+        "hide",
+        "skipUrlSync",
+        "allowCustomValue"
+      ],
+      "properties": {
+        "name": {
+          "type": "string",
+          "default": ""
+        },
+        "baseFilters": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/AdHocFilterWithLabels"
+          }
+        },
+        "filters": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/AdHocFilterWithLabels"
+          }
+        },
+        "defaultKeys": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/MetricFindValue"
+          }
+        },
+        "label": {
+          "type": "string"
+        },
+        "hide": {
+          "$ref": "#/definitions/VariableHide",
+          "default": "dontHide"
+        },
+        "skipUrlSync": {
+          "type": "boolean",
+          "default": false
+        },
+        "description": {
+          "type": "string"
+        },
+        "allowCustomValue": {
+          "type": "boolean",
+          "default": true
+        }
+      },
+      "description": "Adhoc variable specification"
+    },
+    "AdHocFilterWithLabels": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "key",
+        "operator",
+        "value"
+      ],
+      "properties": {
+        "key": {
+          "type": "string"
+        },
+        "operator": {
+          "type": "string"
+        },
+        "value": {
+          "type": "string"
+        },
+        "values": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "keyLabel": {
+          "type": "string"
+        },
+        "valueLabels": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "forceEdit": {
+          "type": "boolean"
+        },
+        "origin": {
+          "$ref": "#/definitions/FilterOrigin"
+        },
+        "condition": {
+          "type": "string",
+          "description": "@deprecated"
+        }
+      },
+      "description": "Define the AdHocFilterWithLabels type"
+    },
+    "FilterOrigin": {
+      "type": "string",
+      "const": "dashboard",
+      "description": "Determine the origin of the adhoc variable filter"
+    },
+    "MetricFindValue": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "text"
+      ],
+      "properties": {
+        "text": {
+          "type": "string"
+        },
+        "value": {
+          "oneOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "number"
+            }
+          ]
+        },
+        "group": {
+          "type": "string"
+        },
+        "expandable": {
+          "type": "boolean"
+        }
+      },
+      "description": "Define the MetricFindValue type"
+    },
+    "SwitchVariableKind": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "kind",
+        "spec"
+      ],
+      "properties": {
+        "kind": {
+          "type": "string",
+          "const": "SwitchVariable"
+        },
+        "spec": {
+          "$ref": "#/definitions/SwitchVariableSpec"
+        }
+      }
+    },
+    "SwitchVariableSpec": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "name",
+        "current",
+        "enabledValue",
+        "disabledValue",
+        "hide",
+        "skipUrlSync"
+      ],
+      "properties": {
+        "name": {
+          "type": "string",
+          "default": ""
+        },
+        "current": {
+          "type": "string",
+          "default": "false"
+        },
+        "enabledValue": {
+          "type": "string",
+          "default": "true"
+        },
+        "disabledValue": {
+          "type": "string",
+          "default": "false"
+        },
+        "label": {
+          "type": "string"
+        },
+        "hide": {
+          "$ref": "#/definitions/VariableHide",
+          "default": "dontHide"
+        },
+        "skipUrlSync": {
+          "type": "boolean",
+          "default": false
+        },
+        "description": {
+          "type": "string"
+        }
+      }
+    },
+    "Kind": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "kind",
+        "spec"
+      ],
+      "properties": {
+        "kind": {
+          "type": "string"
+        },
+        "spec": {
+          "type": "object",
+          "additionalProperties": {}
+        },
+        "metadata": {
+          "type": "object",
+          "additionalProperties": {}
+        }
+      },
+      "description": "--- Common types ---"
+    },
+    "VariableValue": {
+      "oneOf": [
+        {
+          "$ref": "#/definitions/VariableValueSingle"
+        },
+        {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/VariableValueSingle"
+          }
+        }
+      ],
+      "description": "Variable types"
+    },
+    "VariableValueSingle": {
+      "oneOf": [
+        {
+          "type": "string"
+        },
+        {
+          "type": "boolean"
+        },
+        {
+          "type": "number"
+        },
+        {
+          "$ref": "#/definitions/CustomVariableValue"
+        }
+      ]
+    },
+    "CustomVariableValue": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "formatter"
+      ],
+      "properties": {
+        "formatter": {
+          "type": "string",
+          "description": "The format name or function used in the expression"
+        }
+      },
+      "description": "Custom variable value"
+    },
+    "VariableType": {
+      "enum": [
+        "query",
+        "adhoc",
+        "groupby",
+        "constant",
+        "datasource",
+        "interval",
+        "textbox",
+        "custom",
+        "system",
+        "snapshot",
+        "switch"
+      ],
+      "type": "string",
+      "description": "Dashboard variable type\n`query`: Query-generated list of values such as metric names, server names, sensor IDs, data centers, and so on.\n`adhoc`: Key/value filters that are automatically added to all metric queries for a data source (Prometheus, Loki, InfluxDB, and Elasticsearch only).\n`constant`: \tDefine a hidden constant.\n`datasource`: Quickly change the data source for an entire dashboard.\n`interval`: Interval variables represent time spans.\n`textbox`: Display a free text input field with an optional default value.\n`custom`: Define the variable options manually using a comma-separated list.\n`system`: Variables defined by Grafana. See: https://grafana.com/docs/grafana/latest/dashboards/variables/add-template-variables/#global-variables"
+    },
+    "CustomFormatterVariable": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "name",
+        "type",
+        "multi",
+        "includeAll"
+      ],
+      "properties": {
+        "name": {
+          "type": "string"
+        },
+        "type": {
+          "$ref": "#/definitions/VariableType"
+        },
+        "multi": {
+          "type": "boolean"
+        },
+        "includeAll": {
+          "type": "boolean"
+        }
+      },
+      "description": "Custom formatter variable"
+    },
+    "VariableValueOption": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "label",
+        "value"
+      ],
+      "properties": {
+        "label": {
+          "type": "string"
+        },
+        "value": {
+          "$ref": "#/definitions/VariableValueSingle"
+        },
+        "group": {
+          "type": "string"
+        }
+      },
+      "description": "FIXME: should we introduce this? --- Variable value option"
+    }
+  }
+}

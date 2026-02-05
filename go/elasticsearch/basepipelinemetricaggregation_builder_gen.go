@@ -1,0 +1,66 @@
+// Code generated - EDITING IS FUTILE. DO NOT EDIT.
+
+package elasticsearch
+
+import (
+	cog "github.com/grafana/grafana-foundation-sdk/go/cog"
+)
+
+var _ cog.Builder[BasePipelineMetricAggregation] = (*BasePipelineMetricAggregationBuilder)(nil)
+
+type BasePipelineMetricAggregationBuilder struct {
+	internal *BasePipelineMetricAggregation
+	errors   cog.BuildErrors
+}
+
+func NewBasePipelineMetricAggregationBuilder() *BasePipelineMetricAggregationBuilder {
+	resource := NewBasePipelineMetricAggregation()
+	builder := &BasePipelineMetricAggregationBuilder{
+		internal: resource,
+		errors:   make(cog.BuildErrors, 0),
+	}
+
+	return builder
+}
+
+func (builder *BasePipelineMetricAggregationBuilder) Build() (BasePipelineMetricAggregation, error) {
+	if err := builder.internal.Validate(); err != nil {
+		return BasePipelineMetricAggregation{}, err
+	}
+
+	if len(builder.errors) > 0 {
+		return BasePipelineMetricAggregation{}, cog.MakeBuildErrors("elasticsearch.basePipelineMetricAggregation", builder.errors)
+	}
+
+	return *builder.internal, nil
+}
+
+func (builder *BasePipelineMetricAggregationBuilder) PipelineAgg(pipelineAgg string) *BasePipelineMetricAggregationBuilder {
+	builder.internal.PipelineAgg = &pipelineAgg
+
+	return builder
+}
+
+func (builder *BasePipelineMetricAggregationBuilder) Field(field string) *BasePipelineMetricAggregationBuilder {
+	builder.internal.Field = &field
+
+	return builder
+}
+
+func (builder *BasePipelineMetricAggregationBuilder) Type(typeArg string) *BasePipelineMetricAggregationBuilder {
+	builder.internal.Type = typeArg
+
+	return builder
+}
+
+func (builder *BasePipelineMetricAggregationBuilder) Id(id string) *BasePipelineMetricAggregationBuilder {
+	builder.internal.Id = id
+
+	return builder
+}
+
+func (builder *BasePipelineMetricAggregationBuilder) Hide(hide bool) *BasePipelineMetricAggregationBuilder {
+	builder.internal.Hide = &hide
+
+	return builder
+}

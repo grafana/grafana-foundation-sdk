@@ -1,0 +1,36 @@
+"use strict";
+// Code generated - EDITING IS FUTILE. DO NOT EDIT.
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.PointsConfigBuilder = void 0;
+const tslib_1 = require("tslib");
+const common = tslib_1.__importStar(require("../common"));
+// TODO docs
+class PointsConfigBuilder {
+    constructor() {
+        this.internal = common.defaultPointsConfig();
+    }
+    /**
+     * Builds the object.
+     */
+    build() {
+        return this.internal;
+    }
+    showPoints(showPoints) {
+        this.internal.showPoints = showPoints;
+        return this;
+    }
+    pointSize(pointSize) {
+        this.internal.pointSize = pointSize;
+        return this;
+    }
+    pointColor(pointColor) {
+        this.internal.pointColor = pointColor;
+        return this;
+    }
+    pointSymbol(pointSymbol) {
+        this.internal.pointSymbol = pointSymbol;
+        return this;
+    }
+}
+exports.PointsConfigBuilder = PointsConfigBuilder;
+//# sourceMappingURL=pointsConfigBuilder.gen.js.map

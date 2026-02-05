@@ -1,0 +1,82 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "title": "text",
+    "version": "0.0.0",
+    "x-schema-identifier": "text",
+    "x-schema-kind": "composable",
+    "x-schema-variant": "panelcfg"
+  },
+  "paths": {},
+  "components": {
+    "schemas": {
+      "TextMode": {
+        "enum": [
+          "html",
+          "markdown",
+          "code"
+        ],
+        "type": "string"
+      },
+      "CodeLanguage": {
+        "enum": [
+          "json",
+          "yaml",
+          "xml",
+          "typescript",
+          "sql",
+          "go",
+          "markdown",
+          "html",
+          "plaintext"
+        ],
+        "type": "string"
+      },
+      "CodeOptions": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "language",
+          "showLineNumbers",
+          "showMiniMap"
+        ],
+        "properties": {
+          "language": {
+            "$ref": "#/components/schemas/CodeLanguage",
+            "description": "The language passed to monaco code editor",
+            "default": "plaintext"
+          },
+          "showLineNumbers": {
+            "type": "boolean",
+            "default": false
+          },
+          "showMiniMap": {
+            "type": "boolean",
+            "default": false
+          }
+        }
+      },
+      "Options": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "mode",
+          "content"
+        ],
+        "properties": {
+          "mode": {
+            "$ref": "#/components/schemas/TextMode",
+            "default": "markdown"
+          },
+          "code": {
+            "$ref": "#/components/schemas/CodeOptions"
+          },
+          "content": {
+            "type": "string",
+            "default": "# Title\n\nFor markdown syntax help: [commonmark.org/help](https://commonmark.org/help/)"
+          }
+        }
+      }
+    }
+  }
+}

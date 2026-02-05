@@ -1,0 +1,17 @@
+import * as common from '../common';
+export declare enum ParcaQueryType {
+    Metrics = "metrics",
+    Profile = "profile",
+    Both = "both"
+}
+export declare const defaultParcaQueryType: () => ParcaQueryType;
+export interface dataquery {
+    labelSelector: string;
+    profileTypeId: string;
+    refId?: string;
+    hide?: boolean;
+    queryType?: string;
+    datasource?: common.DataSourceRef;
+    _implementsDataqueryVariant(): void;
+}
+export declare const defaultDataquery: () => dataquery;

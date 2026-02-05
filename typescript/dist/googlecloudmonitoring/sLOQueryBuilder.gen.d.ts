@@ -1,0 +1,20 @@
+import * as cog from '../cog';
+import * as googlecloudmonitoring from '../googlecloudmonitoring';
+export declare class SLOQueryBuilder implements cog.Builder<googlecloudmonitoring.SLOQuery> {
+    protected readonly internal: googlecloudmonitoring.SLOQuery;
+    constructor();
+    /**
+     * Builds the object.
+     */
+    build(): googlecloudmonitoring.SLOQuery;
+    projectName(projectName: string): this;
+    perSeriesAligner(perSeriesAligner: string): this;
+    alignmentPeriod(alignmentPeriod: string): this;
+    selectorName(selectorName: string): this;
+    serviceId(serviceId: string): this;
+    serviceName(serviceName: string): this;
+    sloId(sloId: string): this;
+    sloName(sloName: string): this;
+    goal(goal: number): this;
+    lookbackPeriod(lookbackPeriod: string): this;
+}

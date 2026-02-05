@@ -1,0 +1,44 @@
+import * as cog from '../cog';
+import * as dashboard from '../dashboard';
+export declare class DashboardBuilder implements cog.Builder<dashboard.Dashboard> {
+    protected readonly internal: dashboard.Dashboard;
+    private currentY;
+    private currentX;
+    private lastPanelHeight;
+    constructor(title: string);
+    /**
+     * Builds the object.
+     */
+    build(): dashboard.Dashboard;
+    id(id: number | null): this;
+    uid(uid: string): this;
+    title(title: string): this;
+    description(description: string): this;
+    revision(revision: number): this;
+    gnetId(gnetId: string): this;
+    tags(tags: string[]): this;
+    timezone(timezone: string): this;
+    editable(): this;
+    readonly(): this;
+    tooltip(graphTooltip: dashboard.DashboardCursorSync): this;
+    time(time: {
+        from: string;
+        to: string;
+    }): this;
+    timepicker(timepicker: cog.Builder<dashboard.TimePickerConfig>): this;
+    fiscalYearStartMonth(fiscalYearStartMonth: number): this;
+    liveNow(liveNow: boolean): this;
+    weekStart(weekStart: string): this;
+    refresh(refresh: string): this;
+    version(version: number): this;
+    withPanel(panel: cog.Builder<dashboard.Panel>): this;
+    withRow(rowPanel: cog.Builder<dashboard.RowPanel>): this;
+    variables(variables: cog.Builder<dashboard.VariableModel>[]): this;
+    withVariable(variable: cog.Builder<dashboard.VariableModel>): this;
+    annotations(annotations: cog.Builder<dashboard.AnnotationQuery>[]): this;
+    annotation(annotation: cog.Builder<dashboard.AnnotationQuery>): this;
+    links(links: cog.Builder<dashboard.DashboardLink>[]): this;
+    link(link: cog.Builder<dashboard.DashboardLink>): this;
+    snapshot(snapshot: cog.Builder<dashboard.Snapshot>): this;
+    preload(preload: boolean): this;
+}

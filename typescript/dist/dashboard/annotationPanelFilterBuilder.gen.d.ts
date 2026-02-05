@@ -1,0 +1,12 @@
+import * as cog from '../cog';
+import * as dashboard from '../dashboard';
+export declare class AnnotationPanelFilterBuilder implements cog.Builder<dashboard.AnnotationPanelFilter> {
+    protected readonly internal: dashboard.AnnotationPanelFilter;
+    constructor();
+    /**
+     * Builds the object.
+     */
+    build(): dashboard.AnnotationPanelFilter;
+    exclude(exclude: boolean): this;
+    ids(ids: number[]): this;
+}
