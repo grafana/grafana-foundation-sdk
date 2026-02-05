@@ -1,15 +1,15 @@
 parameters:
   level: 9 # https://phpstan.org/user-guide/rule-levels
   paths:
-    - ../../../php/src
+    - ../../php/src
 
   ignoreErrors:
     - identifier: identical.alwaysFalse # not a big deal, duplicated enum values come from the schema
       paths:
-        - ../../../php/src/Common/ScaleDirection.php
+        - ../../php/src/Common/ScaleDirection.php
     - identifier: offsetAccess.nonOffsetAccessible
       paths:
-        - ../../../php/src/Cog/Runtime.php
+        - ../../php/src/Cog/Runtime.php
 
     # cog being very defensive isn't a bad thing
     - identifier: isset.variable

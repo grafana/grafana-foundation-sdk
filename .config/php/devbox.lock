@@ -1,0 +1,105 @@
+{
+  "lockfile_version": "1",
+  "packages": {
+    "github:NixOS/nixpkgs/nixpkgs-unstable": {
+      "last_modified": "2026-02-04T01:49:30Z",
+      "resolved": "github:NixOS/nixpkgs/aa290c9891fa4ebe88f8889e59633d20cc06a5f2?lastModified=1770169770&narHash=sha256-awR8qIwJxJJiOmcEGgP2KUqYmHG4v%2Fz8XpL9z8FnT1A%3D"
+    },
+    "php83Packages.composer@2.7": {
+      "last_modified": "2024-10-02T21:32:52Z",
+      "resolved": "github:NixOS/nixpkgs/fd698a4ab779fb7fb95425f1b56974ba9c2fa16c#php83Packages.composer",
+      "source": "devbox-search",
+      "version": "2.7.9",
+      "systems": {
+        "aarch64-darwin": {
+          "outputs": [
+            {
+              "name": "out",
+              "path": "/nix/store/s7n47h9xp19sgbvajyrqgwdl420pddqh-composer-2.7.9",
+              "default": true
+            }
+          ],
+          "store_path": "/nix/store/s7n47h9xp19sgbvajyrqgwdl420pddqh-composer-2.7.9"
+        },
+        "aarch64-linux": {
+          "outputs": [
+            {
+              "name": "out",
+              "path": "/nix/store/g6a0z92yr8pmay8jrsddvffd5whk1njk-composer-2.7.9",
+              "default": true
+            }
+          ],
+          "store_path": "/nix/store/g6a0z92yr8pmay8jrsddvffd5whk1njk-composer-2.7.9"
+        },
+        "x86_64-darwin": {
+          "outputs": [
+            {
+              "name": "out",
+              "path": "/nix/store/mbrshzf58k6843kg852ab717frd41z8v-composer-2.7.9",
+              "default": true
+            }
+          ],
+          "store_path": "/nix/store/mbrshzf58k6843kg852ab717frd41z8v-composer-2.7.9"
+        },
+        "x86_64-linux": {
+          "outputs": [
+            {
+              "name": "out",
+              "path": "/nix/store/xr2p0ghgny9bgbrdqgv5z38nsp0zlnp0-composer-2.7.9",
+              "default": true
+            }
+          ],
+          "store_path": "/nix/store/xr2p0ghgny9bgbrdqgv5z38nsp0zlnp0-composer-2.7.9"
+        }
+      }
+    },
+    "php83Packages.phpstan@2.1.1": {
+      "last_modified": "2025-01-25T23:17:58Z",
+      "resolved": "github:NixOS/nixpkgs/b582bb5b0d7af253b05d58314b85ab8ec46b8d19#php83Packages.phpstan",
+      "source": "devbox-search",
+      "version": "2.1.1",
+      "systems": {
+        "aarch64-darwin": {
+          "outputs": [
+            {
+              "name": "out",
+              "path": "/nix/store/jly06w68p2shjrscxgnaw7k04m2bz13h-phpstan-2.1.1",
+              "default": true
+            }
+          ],
+          "store_path": "/nix/store/jly06w68p2shjrscxgnaw7k04m2bz13h-phpstan-2.1.1"
+        },
+        "aarch64-linux": {
+          "outputs": [
+            {
+              "name": "out",
+              "path": "/nix/store/id87a78h5ch2lylvf8jpxzs3gscx6vc4-phpstan-2.1.1",
+              "default": true
+            }
+          ],
+          "store_path": "/nix/store/id87a78h5ch2lylvf8jpxzs3gscx6vc4-phpstan-2.1.1"
+        },
+        "x86_64-darwin": {
+          "outputs": [
+            {
+              "name": "out",
+              "path": "/nix/store/26li9wcij0y6fbd3gnpin3nvsy6ncka7-phpstan-2.1.1",
+              "default": true
+            }
+          ],
+          "store_path": "/nix/store/26li9wcij0y6fbd3gnpin3nvsy6ncka7-phpstan-2.1.1"
+        },
+        "x86_64-linux": {
+          "outputs": [
+            {
+              "name": "out",
+              "path": "/nix/store/r71q2zsjd6r0afnqkhk9s939dwg58jns-phpstan-2.1.1",
+              "default": true
+            }
+          ],
+          "store_path": "/nix/store/r71q2zsjd6r0afnqkhk9s939dwg58jns-phpstan-2.1.1"
+        }
+      }
+    }
+  }
+}

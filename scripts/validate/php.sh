@@ -10,13 +10,9 @@ set -o nounset
 set -o pipefail
 
 __dir="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
-source "${__dir}/../libs/logs.sh"
+source "${__dir}/../libs/devbox.sh"
 
-release_path=${1:-"./"}
+release_path=${1:-$PWD}
 
-cd "${release_path}"
-
-composer install
-
-debug "  → running phpstan"
-phpstan analyze --memory-limit 512M -c .config/ci/php/phpstan.neon
+devbox_run php "${release_path}" composer install
+devbox_run php "${release_path}" phpstan analyze --memory-limit 512M -c .config/php/phpstan.neon

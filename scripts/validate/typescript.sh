@@ -9,10 +9,10 @@ set -o nounset
 # Catch the error in case mysqldump fails (but gzip succeeds) in `mysqldump | gzip`
 set -o pipefail
 
-release_path=${1:-"./"}
+__dir="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+source "${__dir}/../libs/devbox.sh"
 
-cd "${release_path}/typescript"
+release_path=${1:-$PWD}
 
-yarn install
-
-yarn build
+devbox_run typescript "${release_path}/typescript" yarn install
+devbox_run typescript "${release_path}/typescript" yarn build

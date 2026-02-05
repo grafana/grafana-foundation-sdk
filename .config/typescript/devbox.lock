@@ -1,0 +1,57 @@
+{
+  "lockfile_version": "1",
+  "packages": {
+    "github:NixOS/nixpkgs/nixpkgs-unstable": {
+      "last_modified": "2026-02-04T01:49:30Z",
+      "resolved": "github:NixOS/nixpkgs/aa290c9891fa4ebe88f8889e59633d20cc06a5f2?lastModified=1770169770&narHash=sha256-awR8qIwJxJJiOmcEGgP2KUqYmHG4v%2Fz8XpL9z8FnT1A%3D"
+    },
+    "yarn@1.22": {
+      "last_modified": "2026-01-23T17:20:52Z",
+      "resolved": "github:NixOS/nixpkgs/a1bab9e494f5f4939442a57a58d0449a109593fe#yarn",
+      "source": "devbox-search",
+      "version": "1.22.22",
+      "systems": {
+        "aarch64-darwin": {
+          "outputs": [
+            {
+              "name": "out",
+              "path": "/nix/store/0cd64z50gqis8fcvcixhifd3c093gxma-yarn-1.22.22",
+              "default": true
+            }
+          ],
+          "store_path": "/nix/store/0cd64z50gqis8fcvcixhifd3c093gxma-yarn-1.22.22"
+        },
+        "aarch64-linux": {
+          "outputs": [
+            {
+              "name": "out",
+              "path": "/nix/store/r26rphs7kpljdnshd1nci1g5qjw0ayn2-yarn-1.22.22",
+              "default": true
+            }
+          ],
+          "store_path": "/nix/store/r26rphs7kpljdnshd1nci1g5qjw0ayn2-yarn-1.22.22"
+        },
+        "x86_64-darwin": {
+          "outputs": [
+            {
+              "name": "out",
+              "path": "/nix/store/n78iwihflnr0c8bf0xyhvm6nivq0yng2-yarn-1.22.22",
+              "default": true
+            }
+          ],
+          "store_path": "/nix/store/n78iwihflnr0c8bf0xyhvm6nivq0yng2-yarn-1.22.22"
+        },
+        "x86_64-linux": {
+          "outputs": [
+            {
+              "name": "out",
+              "path": "/nix/store/5yc7qn8vaawl2v2gqd0rv2igir9wasg3-yarn-1.22.22",
+              "default": true
+            }
+          ],
+          "store_path": "/nix/store/5yc7qn8vaawl2v2gqd0rv2igir9wasg3-yarn-1.22.22"
+        }
+      }
+    }
+  }
+}

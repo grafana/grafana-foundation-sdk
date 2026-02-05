@@ -1,0 +1,6 @@
+{
+  "$schema": "https://raw.githubusercontent.com/jetify-com/devbox/main/.schema/devbox.schema.json",
+  "packages": [
+    "yarn@1.22"
+  ]
+}

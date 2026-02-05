@@ -1,17 +1,5 @@
 {
-  "$schema": "https://raw.githubusercontent.com/jetify-com/devbox/main/.schema/devbox.schema.json",
-  "packages": [
-    "python312@3.12.12",
-    "go@1.23",
-    "php83Packages.composer@2.7",
-    "php83Packages.phpstan@2.1.1",
-    "yarn@1.22",
-    "gradle@8.10"
-  ],
-  "shell": {
-    "init_hook": [
-      "echo 'Entering Python venv' && . $VENV_DIR/bin/activate",
-      "echo 'Installing Python dependencies' && pip install -qq -r requirements.txt"
-    ]
+    "$schema": "https://raw.githubusercontent.com/jetify-com/devbox/0.16.0/.schema/devbox.schema.json",
+    "packages": []
   }
-}
+  

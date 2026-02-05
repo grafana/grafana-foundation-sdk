@@ -9,10 +9,16 @@ set -o nounset
 # Catch the error in case mysqldump fails (but gzip succeeds) in `mysqldump | gzip`
 set -o pipefail
 
-release_path=${1:-"./"}
+__dir="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+source "${__dir}/../libs/devbox.sh"
 
-cd "${release_path}/go"
+release_path=${1:-$PWD}
 
-for d in */ ; do
-  [[ "$d" != "docs/" ]] && (echo "Building $d"; go build "./$d")
+for d in ${release_path}/go/*/ ; do
+  pkg=${d#"$release_path/go/"}
+
+  if [[ "$pkg" != "docs/" ]]; then
+    echo "Building $pkg"
+    devbox_run go "$release_path/go" go build ./$pkg
+  fi
 done

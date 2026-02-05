@@ -10,6 +10,7 @@ set -o nounset
 set -o pipefail
 
 __dir="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+source "${__dir}/libs/devbox.sh"
 source "${__dir}/libs/logs.sh"
 
 workspace="${__dir}/../workspace"
@@ -32,7 +33,7 @@ find "./" -maxdepth 1 -mindepth 1 -type d -not -path "./.mkdocs" -not -path "./b
     fi
 done
 
-mkdocs build -f ${build_dir}/mkdocs.yml -d ${output_dir}
+devbox_run python "$PWD" mkdocs build -f ${build_dir}/mkdocs.yml -d ${output_dir}
 
 echo "🪧 Minifying HTML"
 minhtml --do-not-minify-doctype --ensure-spec-compliant-unquoted-attribute-values --keep-closing-tags --keep-input-type-text-attr --keep-html-and-head-opening-tags --preserve-brace-template-syntax --keep-spaces-between-attributes ${output_dir}/*/*/*/*.html

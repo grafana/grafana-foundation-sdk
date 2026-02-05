@@ -12,7 +12,7 @@ set -o pipefail
 __dir="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 source "${__dir}/libs/logs.sh"
 
-release_path=${1:-"./"}
+release_path=${1:-$PWD}
 
 find "${release_path}" -maxdepth 1 -mindepth 1 -type d -not -path '*/.*' -print | while read -r target; do
   target=${target#"$release_path/"}
