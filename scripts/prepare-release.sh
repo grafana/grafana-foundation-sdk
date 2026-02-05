@@ -116,6 +116,29 @@ function next_version() {
   echo "v$MAJOR.$MINOR.$PATCH"
 }
 
+function should_abort_prepare() {
+  local release_marker=${1}
+  shift
+
+  # No release file means no release was ever made: no need to abort.
+  if [ ! -f "${release_marker}" ]; then
+    return 1
+  fi
+
+  latest_tag=$(git_run "${foundation_sdk_path}" describe --tags --abbrev=0 2>/dev/null || echo 'v0.0.0')
+  current_marker=$(cat "${release_marker}")
+
+  # The release marker and latest tags are equal: we just merged the
+  # release PR and already performed the release. Let's prepare a new one.
+  if [ "${latest_tag}" == "${current_marker}" ]; then
+    return 1
+  fi
+
+  # The release marker and latest tags are different: we just merged the
+  # release PR and should perform the release now.
+  return 0
+}
+
 ############
 ### Main ###
 ############
@@ -132,11 +155,6 @@ codegen_output_path="${WORKSPACE_PATH}/codegen"
 foundation_sdk_path="${WORKSPACE_PATH}/foundation-sdk"
 release_branch='release-preview'
 release_file_marker="${foundation_sdk_path}/.release/tag"
-
-if [ -f ".release/tag" ]; then
-  notice "Release marker found, aborting."
-  exit 0
-fi
 
 if [ "${DRY_RUN}" == "no" ]; then
   warning "Dry-run is OFF."
@@ -156,14 +174,19 @@ debug "workspace path: ${WORKSPACE_PATH}"
 
 # Just in case there are leftovers from a previous run.
 rm -rf "${WORKSPACE_PATH}"
-
-if [ ! -d "${KIND_REGISTRY_PATH}" ]; then
-  info "Cloning kind-registry into ${KIND_REGISTRY_PATH}"
-  clone_kind_registry "${KIND_REGISTRY_PATH}"
 fi
 
 info "Cloning grafana-foundation-sdk into ${foundation_sdk_path}"
 clone_foundation_sdk "${foundation_sdk_path}"
+
+if should_abort_prepare ".release/tag"; then
+  notice "A release is pending, aborting."
+  exit 0
+fi
+
+if [ ! -d "${KIND_REGISTRY_PATH}" ]; then
+  info "Cloning kind-registry into ${KIND_REGISTRY_PATH}"
+  clone_kind_registry "${KIND_REGISTRY_PATH}"
 
 info "Pulling kind-registry@main"
 git_run "${KIND_REGISTRY_PATH}" checkout main
