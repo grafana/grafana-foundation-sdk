@@ -122,6 +122,7 @@ jobs:
             --recursive \
             --exclude='.git' \
             --exclude='.cog' \
+            --exclude='typescript/dist' \
             --exclude='scripts*' \
             --exclude='gradle.properties' \
             --exclude='pyproject.toml' \
