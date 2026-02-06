@@ -6,4 +6,7 @@
 /workspace
 /vendor
 /typescript/node_modules
+/typescript/.yarn/
+/typescript/.yarnrc.yml
+/typescript/dist/
 /java/build/
