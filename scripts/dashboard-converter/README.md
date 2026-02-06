@@ -9,17 +9,27 @@ This enables you to:
 - Generate dashboards within your Go applications
 - Integrate with existing Go-based tooling
 
-## Installation
+## Usage
+
+### With Docker
 
 ```bash
-make build
+# From file
+docker run -v $(pwd):/workspace grafana/dashboard-converter \
+  /workspace/my-dashboard.json -o /workspace/dashboard.go
+
+# From stdin
+cat my-dashboard.json | docker run -i grafana/dashboard-converter > dashboard.go
 ```
 
-## Usage
+### With local binary
 
 ```bash
 # From file
 ./build/dashboard-converter my-dashboard.json -o dashboard.go
+
+# From stdin
+cat my-dashboard.json | ./build/dashboard-converter > dashboard.go
 ```
 
 ## Flags
@@ -39,15 +49,6 @@ make build
 
 # Convert a dashboard file to Go
 ./build/dashboard-converter my-dashboard.json -o /path/to/my-ascode-dashboard/dashboard.go
-```
-
-```
-cd /path/to/my-ascode-dashboard
-go mod init my-ascode-dashboard
-go get github.com/grafana/grafana-foundation-sdk/go@v11.6.x+cog-v0.0.x
-go mod tidy
-
-go run dashboard.go > dashboard.json
 ```
 
 ### Flags
