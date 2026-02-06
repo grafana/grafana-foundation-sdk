@@ -1,1 +1,0 @@
-{"version":3,"file":"types.gen.js","sourceRoot":"","sources":["../../src/logsnew/types.gen.ts"],"names":[],"mappings":";AAAA,mDAAmD;;;;AAEnD,0DAAoC;AAa7B,MAAM,cAAc,GAAG,GAAY,EAAE,CAAC,CAAC;IAC7C,QAAQ,EAAE,KAAK;IACf,cAAc,EAAE,KAAK;IACrB,gBAAgB,EAAE,KAAK;IACvB,SAAS,EAAE,MAAM,CAAC,aAAa,CAAC,UAAU;IAC1C,aAAa,EAAE,MAAM,CAAC,iBAAiB,CAAC,IAAI;CAC5C,CAAC,CAAC;AANU,QAAA,cAAc,kBAMxB"}
