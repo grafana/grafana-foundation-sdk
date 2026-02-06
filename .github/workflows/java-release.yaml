@@ -4,7 +4,7 @@ on:
     tags: ["v*"]
 
 env:
-  JAVA_VERSION: '17'
+  DEVBOX_VERSION: '0.13.1'
 
 jobs:
   release:
@@ -26,19 +26,11 @@ jobs:
           fetch-depth: 0
           persist-credentials: false
 
-      - name: Uses Java SDK ${{ env.JAVA_VERSION }}
-        uses: actions/setup-java@be666c2fcd27ec809703dec50e508c2fdc7f6654 #v5.2.0
+      - name: Install devbox
+        uses: jetify-com/devbox-install-action@a03caf5813591bc882139eba6ae947930a83a427 #v0.11.0
         with:
-          java-version: ${{ env.JAVA_VERSION }}
-          distribution: 'temurin'
-          check-latest: true
-
-      - name: Java setup gradle
-        uses: gradle/actions/setup-gradle@f29f5a9d7b09a7c6b29859002d29d24e1674c884 #v5.0.1
-        with:
-          gradle-version: '8.8'
-          cache-disabled: true
-          validate-wrappers: false
+          enable-cache: 'true'
+          devbox-version: ${{ env.DEVBOX_VERSION }}
 
       - name: Get secrets
         uses: grafana/shared-workflows/actions/get-vault-secrets@75804962c1ba608148988c1e2dc35fbb0ee21746
@@ -57,4 +49,5 @@ jobs:
           GPG_PASSPHRASE: ${{ env.GPG_PASSPHRASE }}
           GPG_PUBLIC_KEY: ${{ env.GPG_PUBLIC_KEY }}
           GPG_PRIVATE_KEY: ${{ env.GPG_PRIVATE_KEY }}
-        run: gradle publishToSonatype closeAndReleaseSonatypeStagingRepository
+        run: |
+          devbox run gradle publishToSonatype closeAndReleaseSonatypeStagingRepository
