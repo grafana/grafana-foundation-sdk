@@ -22,14 +22,16 @@ docker run -v $(pwd):/workspace grafana/dashboard-converter \
 cat my-dashboard.json | docker run -i grafana/dashboard-converter > dashboard.go
 ```
 
-### With local binary
+### From source
+
+From the `scripts/dashboard-converter` directory:
 
 ```bash
 # From file
-./build/dashboard-converter my-dashboard.json -o dashboard.go
+go run . my-dashboard.json -o dashboard.go
 
 # From stdin
-cat my-dashboard.json | ./build/dashboard-converter > dashboard.go
+cat my-dashboard.json | go run . > dashboard.go
 ```
 
 ## Flags
