@@ -60,7 +60,7 @@ function should_abort_release() {
     return 0
   fi
 
-  latest_tag=$(git_run "${foundation_sdk_path}" describe --tags --abbrev=0 2>/dev/null || echo 'v0.0.0')
+  latest_tag=$(git_run "${foundation_sdk_path}" describe --tags --exclude 'go/*' --abbrev=0 2>/dev/null || echo 'v0.0.0')
   current_marker=$(cat "${release_marker}")
 
   # The release marker and latest tags are equal: we just merged the

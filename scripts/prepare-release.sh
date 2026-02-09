@@ -125,7 +125,7 @@ function should_abort_prepare() {
     return 1
   fi
 
-  latest_tag=$(git_run "${foundation_sdk_path}" describe --tags --abbrev=0 2>/dev/null || echo 'v0.0.0')
+  latest_tag=$(git_run "${foundation_sdk_path}" describe --tags --exclude 'go/*' --abbrev=0 2>/dev/null || echo 'v0.0.0')
   current_marker=$(cat "${release_marker}")
 
   # The release marker and latest tags are equal: we just merged the
@@ -195,7 +195,7 @@ git_run "${KIND_REGISTRY_PATH}" pull --ff-only origin main
 release_branch_exists=$(git_has_branch "${foundation_sdk_path}" "${release_branch}")
 if [ "$release_branch_exists" != "0" ]; then
   debug "No existing release branch: next version will be determined from the latest tag"
-  latest_tag=$(git_run "${foundation_sdk_path}" describe --tags --abbrev=0 2>/dev/null || echo 'v0.0.0')
+  latest_tag=$(git_run "${foundation_sdk_path}" describe --tags --exclude 'go/*' --abbrev=0 2>/dev/null || echo 'v0.0.0')
   next_tag=$(next_version "${latest_tag}" patch)
 else
   debug "Existing release branch found: next version will be read from it"
@@ -208,6 +208,7 @@ else
   git_run "${foundation_sdk_path}" branch -D "${release_branch}"
 fi
 
+debug "Current version: ${latest_tag}"
 debug "Next version: ${next_tag}"
 
 info "Creating new release branch"
