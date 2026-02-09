@@ -266,7 +266,7 @@ if [ "$release_branch_exists" != "0" ]; then
     --base main \
     --head "${release_branch}" \
     --title "Next release" \
-    --body "Next release."
+    --body "Note to maintainers: merging this PR will trigger the creation of a new release with all the modifications included on this branch. See the [release docs](https://github.com/grafana/grafana-foundation-sdk/blob/main/maintainers/releasing.md) for more information."
 fi
 
 if [ "${DRY_RUN}" != "no" ]; then

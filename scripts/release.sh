@@ -74,7 +74,6 @@ function should_abort_release() {
   return 1
 }
 
-
 ############
 ### Main ###
 ############
