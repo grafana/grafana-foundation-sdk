@@ -33,11 +33,28 @@ jobs:
           path: kind-registry
           persist-credentials: false
 
+      - name: Get secrets
+        uses: grafana/shared-workflows/actions/get-vault-secrets@75804962c1ba608148988c1e2dc35fbb0ee21746
+        with:
+          repo_secrets: |
+            GITHUB_APP_ID=github_app:app-id
+            GITHUB_APP_PRIVATE_KEY=github_app:private-key
+
+      - name: Generate github private token
+        id: generate_github_token
+        uses: actions/create-github-app-token@df432ceedc7162793a195dd1713ff69aefc7379e # v2.0.6
+        with:
+          app-id: ${{ env.GITHUB_APP_ID }}
+          private-key: ${{ env.GITHUB_APP_PRIVATE_KEY }}
+          owner: ${{ github.repository_owner }}
+
       - name: Validate cog's config
         run: |
           cog inspect --config .cog/post-12/config.yaml \
             --ir builders \
             --parameters 'kind_registry_path=./kind-registry'
+        env: 
+          GITHUB_AUTH_TOKEN: ${{ steps.generate_github_token.outputs.token }}
 
   diff_preview:
     name: Generate diff
