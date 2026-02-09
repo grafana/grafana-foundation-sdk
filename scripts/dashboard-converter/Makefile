@@ -28,4 +28,4 @@ clean:
 	@go clean
 	@rm -f $(TARGET)
 
-.PHONY: all build test test-it lint vet clean fmt push
+.PHONY: all build test lint vet clean fmt
