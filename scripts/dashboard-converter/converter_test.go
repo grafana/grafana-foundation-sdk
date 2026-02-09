@@ -28,7 +28,6 @@ func (m *MockHTTPClient) Do(req *http.Request) (*http.Response, error) {
 // TestNewConverter tests the creation of a new Converter
 func TestNewConverter(t *testing.T) {
 	config := Config{
-		Format:    "go",
 		InputPath: "test.json",
 		Output:    "output.go",
 	}
@@ -61,7 +60,6 @@ func TestReadInputFromFile(t *testing.T) {
 
 	// Create converter with the temp file as input
 	config := Config{
-		Format:    "go",
 		InputPath: tempFile.Name(),
 		Output:    "-",
 	}
@@ -104,7 +102,6 @@ func TestReadInputFromStdin(t *testing.T) {
 
 	// Create converter with stdin as input
 	config := Config{
-		Format:    "go",
 		InputPath: "-",
 		Output:    "-",
 	}
@@ -216,7 +213,6 @@ func TestConvert(t *testing.T) {
 
 	// Create converter with test configuration
 	config := Config{
-		Format:    "go",
 		InputPath: inputPath,
 		Output:    outputPath,
 		Cleanup:   true,

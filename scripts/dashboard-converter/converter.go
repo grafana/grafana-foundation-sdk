@@ -33,12 +33,8 @@ func NewConverter(config Config) *Converter {
 	}
 }
 
-// Convert processes the dashboard conversion
+// Convert processes the dashboard conversion (Go output only).
 func (c *Converter) Convert(ctx context.Context) error {
-	if c.config.Format != "go" {
-		return fmt.Errorf("unsupported format: %s", c.config.Format)
-	}
-
 	plugins.RegisterDefaultPlugins()
 
 	data, err := c.readInput(ctx)

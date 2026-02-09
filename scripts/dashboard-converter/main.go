@@ -9,7 +9,6 @@ import (
 
 // Config holds the application configuration
 type Config struct {
-	Format    string
 	Output    string
 	Cleanup   bool
 	InputPath string
@@ -91,8 +90,6 @@ func cleanJSONWithPath(data any, path []string) any {
 func parseArgs() (Config, error) {
 	var config Config
 
-	flag.StringVar(&config.Format, "format", "go", "Output format (only 'go' is currently supported)")
-	flag.StringVar(&config.Format, "f", "go", "Output format (short for --format)")
 	flag.StringVar(&config.Output, "output", "-", "Output path ('-' for stdout)")
 	flag.StringVar(&config.Output, "o", "-", "Output path (short for --output)")
 	flag.BoolVar(&config.Cleanup, "cleanup", true, "Remove empty strings and null values from JSON")

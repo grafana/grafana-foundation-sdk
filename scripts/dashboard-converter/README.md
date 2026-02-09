@@ -34,20 +34,9 @@ cat my-dashboard.json | ./build/dashboard-converter > dashboard.go
 
 ## Flags
 
-| Flag | Default | Description |
-|------|---------|-------------|
-| `-f, --format` | `go` | Output format |
-| `-o, --output` | `-` | Output path ('-' for stdout) |
-| `--cleanup` | `true` | Remove empty strings and null values |
-| `--verbose` | `false` | Verbose output |
-
-
-### Flags
-
 | Flag | Short | Default | Description |
 |------|-------|---------|-------------|
-| `--format`, | `-f` | `go` | Output format (only 'go' is currently supported) |
-| `--output`, | `-o` | `-` | Output path ('-' for stdout, or file.go file) |
+| `--output` | `-o` | `-` | Output path ('-' for stdout) |
 | `--cleanup` | | `true` | Remove empty strings and null values from JSON |
 | `--verbose` | | `false` | Enable verbose output for additional process information |
 
