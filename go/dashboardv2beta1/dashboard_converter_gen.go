@@ -244,6 +244,36 @@ func DashboardConverter(input Dashboard) string {
 		buffer.Reset()
 
 	}
+	if input.Elements != nil {
+		for key, value := range input.Elements {
+			if value.PanelKind != nil {
+				buffer.WriteString(`Panel(`)
+				arg0 := fmt.Sprintf("%#v", key)
+				buffer.WriteString(arg0)
+				buffer.WriteString(", ")
+				arg1 := PanelConverter(*value.PanelKind)
+				buffer.WriteString(arg1)
+
+				buffer.WriteString(")")
+
+				calls = append(calls, buffer.String())
+				buffer.Reset()
+			}
+			if value.LibraryPanelKind != nil {
+				buffer.WriteString(`LibraryPanel(`)
+				arg0 := fmt.Sprintf("%#v", key)
+				buffer.WriteString(arg0)
+				buffer.WriteString(", ")
+				arg1 := LibraryPanelConverter(*value.LibraryPanelKind)
+				buffer.WriteString(arg1)
+
+				buffer.WriteString(")")
+
+				calls = append(calls, buffer.String())
+				buffer.Reset()
+			}
+		}
+	}
 	if input.Variables != nil && len(input.Variables) >= 1 {
 		for _, item := range input.Variables {
 			if item.QueryVariableKind != nil {
@@ -330,36 +360,6 @@ func DashboardConverter(input Dashboard) string {
 				buffer.WriteString(`SwitchVariableKind(`)
 				arg0 := SwitchVariableKindConverter(*item.SwitchVariableKind)
 				buffer.WriteString(arg0)
-
-				buffer.WriteString(")")
-
-				calls = append(calls, buffer.String())
-				buffer.Reset()
-			}
-		}
-	}
-	if input.Elements != nil {
-		for key, value := range input.Elements {
-			if value.PanelKind != nil {
-				buffer.WriteString(`Panel(`)
-				arg0 := fmt.Sprintf("%#v", key)
-				buffer.WriteString(arg0)
-				buffer.WriteString(", ")
-				arg1 := PanelConverter(*value.PanelKind)
-				buffer.WriteString(arg1)
-
-				buffer.WriteString(")")
-
-				calls = append(calls, buffer.String())
-				buffer.Reset()
-			}
-			if value.LibraryPanelKind != nil {
-				buffer.WriteString(`LibraryPanel(`)
-				arg0 := fmt.Sprintf("%#v", key)
-				buffer.WriteString(arg0)
-				buffer.WriteString(", ")
-				arg1 := LibraryPanelConverter(*value.LibraryPanelKind)
-				buffer.WriteString(arg1)
 
 				buffer.WriteString(")")
 
