@@ -132,6 +132,15 @@ inputs:
         kind: core
       transformations:
         - '%__config_dir%/compiler/dashboardv2beta1.yaml'
+          
+  # SLO
+  - cue:
+      url: 'https://raw.githubusercontent.com/grafana/slo/refs/heads/main/schemas/resource/slo.cue'
+      subpath: 'slo_v0_0.schema.spec'
+      forced_envelope: 'Slo'
+      package: slov0
+      metadata:
+        kind: core 
 
   # The schema for units
   - cue:
