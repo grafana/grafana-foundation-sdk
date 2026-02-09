@@ -108,4 +108,7 @@ fi
 
 next_tag=$(cat "${foundation_sdk_path}/${release_file_marker}")
 run_when_safe git_run "${foundation_sdk_path}" tag "${next_tag}"
+# Go needs a specific tag since we declared the module in a subdirectory
+# See https://go.dev/ref/mod#vcs-version
+run_when_safe git_run "${foundation_sdk_path}" tag "go/${next_tag}" 
 run_when_safe git_run "${foundation_sdk_path}" push origin --tags
