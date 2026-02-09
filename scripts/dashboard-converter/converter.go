@@ -2,13 +2,13 @@ package main
 
 import (
 	"context"
+	"encoding/json"
 	"fmt"
 	"io"
 	"os"
 
 	_ "embed"
 
-	"github.com/goccy/go-json"
 	"github.com/grafana/grafana-foundation-sdk/go/cog/plugins"
 	"github.com/grafana/grafana-foundation-sdk/go/dashboard"
 	"golang.org/x/tools/imports"

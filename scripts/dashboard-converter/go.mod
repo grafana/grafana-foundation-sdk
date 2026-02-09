@@ -3,7 +3,6 @@ module github.com/grafana/deployment_tools/integrations/grafana-foundation-sdk/s
 go 1.23.3
 
 require (
-	github.com/goccy/go-json v0.10.5
 	github.com/grafana/grafana-foundation-sdk/go v0.0.0-20260205162145-040ed1a86345
 	github.com/stretchr/testify v1.11.1
 	golang.org/x/tools v0.32.0
