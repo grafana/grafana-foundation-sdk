@@ -8,7 +8,7 @@ env:
 
 permissions:
   contents: read
-  id-token: read
+  id-token: write
 
 defaults:
   run:
