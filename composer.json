@@ -12,5 +12,10 @@
         "traces",
         "metrics"
     ],
+    "autoload": {
+        "psr-4": {
+            "Grafana\\Foundation\\": "php/src/"
+        }
+    },
     "require": {}
 }
