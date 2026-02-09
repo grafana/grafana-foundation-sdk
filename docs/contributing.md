@@ -36,13 +36,15 @@ The ideal approach is to find a replacement with a schema that is actively updat
 
 ## Compiler Passes
 
-Compiler passes are used to modify the generated code and are defined in the [compiler directory](../.cog/post-12/compiler). Documentation is available [here](https://grafana.github.io/cog/reference/schema_transformations/).
+Compiler passes are used to modify the generated code and are defined in the [compiler directory](../.cog/post-12/compiler).
 
 In general, you have to fix the schema directly, but there are some cases where you might want to:
 
 * **Omit fields**: Fields that exist in the schema but don't make sense to generate in Foundation SDK.
 * **Add references**: Add references from a field to another schema. For example, datasources use a `retype_field` rule to use the same object in the `datasource` field.
 * **Cog bugs**: Bugs in cog that aren't resolved yet.
+
+Documentation is available [here](https://grafana.github.io/cog/reference/schema_transformations/).
 
 ## Veneers
 
@@ -56,6 +58,8 @@ They are mainly used to "prettify" the output, and it's desirable to add some to
 * Create new options. Useful when we have disjunctions and want to create different options for each value.
 * Promote fields to have them as constructor arguments.
 * And more...
+
+Documentation is available [here](https://grafana.github.io/cog/reference/builders_transformations/).
 
 ## Generation
 
@@ -87,21 +91,9 @@ These templates are located in the [templates](../.cog/post-12/templates) folder
 If you need to work with them, it is desirable to do it for every language, but not all languages need them. It can be complex because you need to know the syntax of each language.
 You can find the kinds of accepted templates [here](https://github.com/grafana/cog/blob/main/internal/jennies/template/blocks.go). They have a specific structure depending on the result you want to achieve.
 
-### Template Types
+You can find documentation about the templates [here](https://grafana.github.io/cog/reference/template_blocks/).
 
-* **object_\<package\>_\<object\>_custom_unmarshal**: Override the default unmarshaling of an object.
-* **object_\<package\>_\<object\>_custom_strict_unmarshal**: Same as above but for strict unmarshaling.
-* **api_reference_object_\<package\>_\<object\>_extra**: Add an extra information block for an object in documentation.
-* **api_reference_builder_\<package\>_\<object\>_extra**: Add an extra information block for a builder in documentation.
-* **api_reference_package_\<package\>_extra**: Add an extra information block for a package in documentation.
-* **object_variant_\<variant\>**: Add extra methods to a variant.
-* **object_\<package\>_\<object\>_custom_methods**: Add extra methods to an object.
-* **schema_variant_\<variant\>**: Add extra code into an object to make the variants work properly.
-* **variant_\<variant\>_field_unmarshal**: Define variant unmarshal functions.
-* **dynamic_files**: Generate extra files.
-* **assignment_\<package\>_\<object\>**: This one isn't defined in the template blocks, but it's used to generate custom assignment functions for builders. It can be combined with the `properties` compiler pass.
-
-  Example: [WithPanel function](https://github.com/grafana/grafana-foundation-sdk/blob/next%2Bcog-v0.0.x/go/dashboard/dashboard_builder_gen.go#L185) + [properties](https://github.com/grafana/grafana-foundation-sdk/blob/next%2Bcog-v0.0.x/go/dashboard/dashboard_builder_gen.go#L14-L16).
+Example: [WithPanel function](https://github.com/grafana/grafana-foundation-sdk/blob/next%2Bcog-v0.0.x/go/dashboard/dashboard_builder_gen.go#L185) + [properties](https://github.com/grafana/grafana-foundation-sdk/blob/next%2Bcog-v0.0.x/go/dashboard/dashboard_builder_gen.go#L14-L16).
 
 ## Missing Compiler Passes or Veneer Actions
 
