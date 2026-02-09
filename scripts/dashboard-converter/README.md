@@ -41,15 +41,6 @@ cat my-dashboard.json | ./build/dashboard-converter > dashboard.go
 | `--cleanup` | `true` | Remove empty strings and null values |
 | `--verbose` | `false` | Verbose output |
 
-## Tips
-
-```bash
-# Use stdin and stdout
-./build/dashboard-converter < my-dashboard.json > /path/to/my-ascode-dashboard/dashboard.go
-
-# Convert a dashboard file to Go
-./build/dashboard-converter my-dashboard.json -o /path/to/my-ascode-dashboard/dashboard.go
-```
 
 ### Flags
 
@@ -74,4 +65,13 @@ The generated Go code works out-of-the-box, but you may want to clean it up for 
 
 ```bash
 make test
+```
+
+## How to create a release for the dashboard-converter
+
+Releases are triggered by pushing a tag with the format `dashboard-converter-vX.Y.Z`. The [Dashboard Converter Release workflow](https://github.com/grafana/grafana-foundation-sdk/actions/workflows/dashboard-converter-release.yaml) runs automatically on tag push.
+
+```console
+git tag dashboard-converter-v1.0.0
+git push origin dashboard-converter-v1.0.0
 ```
