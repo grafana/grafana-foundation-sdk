@@ -4,7 +4,7 @@ language: go
 
 package: tempo
 
-builders: ~
+builders: []
 
 options:
   - struct_fields_as_arguments:
