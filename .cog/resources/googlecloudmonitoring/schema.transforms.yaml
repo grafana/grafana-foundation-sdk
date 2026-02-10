@@ -1,0 +1,22 @@
+# yaml-language-server: $schema=https://raw.githubusercontent.com/grafana/cog/main/schemas/compiler_passes.json
+
+passes:
+  - retype_field:
+      field: googlecloudmonitoring.CloudMonitoringQuery.timeSeriesList
+      as:
+        kind: ref
+        ref: { referred_pkg: googlecloudmonitoring, referred_type: TimeSeriesList }
+
+  - add_fields:
+      to: googlecloudmonitoring.TimeSeriesList
+      fields:
+        - name: title
+          comments: [ "Annotation title." ]
+          type:
+            kind: scalar
+            scalar: { scalar_kind: string }
+        - name: text
+          comments: [ "Annotation text." ]
+          type:
+            kind: scalar
+            scalar: { scalar_kind: string }

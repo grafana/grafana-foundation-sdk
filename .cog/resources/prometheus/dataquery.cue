@@ -36,6 +36,9 @@ kindsys.Composable & {
 				intervalFactor?:  number
 				#QueryEditorMode: "code" | "builder"                  @cuetsy(kind="enum")
 				#PromQueryFormat: "time_series" | "table" | "heatmap" @cuetsy(kind="type")
+				// An additional lower limit for the step parameter of the Prometheus query and for the
+				// `$__interval` and `$__rate_interval` variables.
+				interval?: string
 			}
 		}]
 		name: "Prometheus" + "DataQuery"

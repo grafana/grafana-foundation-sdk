@@ -1,0 +1,24 @@
+# yaml-language-server: $schema=https://raw.githubusercontent.com/grafana/cog/main/schemas/compiler_passes.json
+
+passes:
+  # These fields are parsed incorrectly from the CUE schema: their definitions and
+  # defaults are merged for some reason.
+  # TODO: remove once the parser is fixed.
+  # See: https://github.com/grafana/cog/issues/292
+  - retype_field:
+      field: heatmap.Options.legend
+      as:
+        kind: ref
+        ref: { referred_pkg: heatmap, referred_type: HeatmapLegend }
+        default: { show: true }
+  - retype_field:
+      field: heatmap.Options.exemplars
+      as:
+        kind: ref
+        ref: { referred_pkg: heatmap, referred_type: ExemplarConfig }
+        default: { color: "rgba(255,0,255,0.7)" }
+  - retype_field:
+      field: heatmap.Options.tooltip
+      as:
+        kind: ref
+        ref: { referred_pkg: heatmap, referred_type: HeatmapTooltip }
