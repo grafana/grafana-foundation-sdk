@@ -7,7 +7,7 @@ toolchain go1.24.12
 replace github.com/grafana/grafana-foundation-sdk/examples/go/linux-node-overview => ../../go/linux-node-overview
 
 require (
-	github.com/grafana/grafana-foundation-sdk/examples/go/linux-node-overview v0.0.1-any
+	github.com/grafana/grafana-foundation-sdk/examples/go/linux-node-overview v0.0.4
 	github.com/pulumi/pulumi/sdk/v3 v3.117.0
 	github.com/pulumiverse/pulumi-grafana/sdk v0.5.0
 )
@@ -38,7 +38,7 @@ require (
 	github.com/golang/glog v1.2.4 // indirect
 	github.com/golang/groupcache v0.0.0-20210331224755-41bb18bfe9da // indirect
 	github.com/google/uuid v1.6.0 // indirect
-	github.com/grafana/grafana-foundation-sdk/go v0.0.0-20250501220944-e22983a17bec // indirect
+	github.com/grafana/grafana-foundation-sdk/go v0.0.6 // indirect
 	github.com/grpc-ecosystem/grpc-opentracing v0.0.0-20180507213350-8e809c8a8645 // indirect
 	github.com/hashicorp/errwrap v1.1.0 // indirect
 	github.com/hashicorp/go-multierror v1.1.1 // indirect
