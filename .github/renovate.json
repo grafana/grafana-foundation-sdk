@@ -1,0 +1,7 @@
+{
+    "ignorePaths": [
+        "./examples/**",
+        "**/node_modules/**",
+        "**/vendor/**"
+    ]
+}
