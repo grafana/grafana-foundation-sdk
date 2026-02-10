@@ -4,7 +4,7 @@ language: all
 
 package: heatmap
 
-builders: ~
+builders: []
 
 options:
     # ExemplarsColor(color: string) instead of Exemplars(exemplarsConfig: ExemplarConfig)
