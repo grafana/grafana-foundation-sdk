@@ -197,6 +197,7 @@ if [ "$release_branch_exists" != "0" ]; then
   debug "No existing release branch: next version will be determined from the latest tag"
   latest_tag=$(git_run "${foundation_sdk_path}" describe --tags --exclude 'go/*' --abbrev=0 2>/dev/null || echo 'v0.0.0')
   next_tag=$(next_version "${latest_tag}" patch)
+  debug "Current version: ${latest_tag}"
 else
   debug "Existing release branch found: next version will be read from it"
   git_run "${foundation_sdk_path}" fetch origin "${release_branch}"
@@ -208,7 +209,6 @@ else
   git_run "${foundation_sdk_path}" branch -D "${release_branch}"
 fi
 
-debug "Current version: ${latest_tag}"
 debug "Next version: ${next_tag}"
 
 info "Creating new release branch"
