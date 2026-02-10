@@ -25,7 +25,7 @@ allprojects {
 }
 
 dependencies {
-    implementation("com.grafana:grafana-foundation-sdk:v0.0.6")
+    implementation("com.grafana:grafana-foundation-sdk:11.6.0-1769699379")
 }
 
 tasks.withType(Javadoc).configureEach {
