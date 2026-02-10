@@ -1,5 +1,5 @@
 # yaml-language-server: $schema=https://raw.githubusercontent.com/grafana/cog/main/schemas/compiler_passes.json
 
 passes:
-  - unspec: {}
-  - dataquery_identification: {}
+  - fields_set_not_required:
+      fields: [ piechart.Options.displayLabels ]

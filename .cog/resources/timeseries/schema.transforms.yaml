@@ -1,0 +1,7 @@
+# yaml-language-server: $schema=https://raw.githubusercontent.com/grafana/cog/main/schemas/compiler_passes.json
+
+passes:
+  # Without these values, timeseries might not display any data or crash when editing in the UI
+  - fields_set_default:
+      defaults:
+        timeseries.Options.legend: { placement: "bottom", displayMode: "list", calcs: [] }

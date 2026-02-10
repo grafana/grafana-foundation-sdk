@@ -1,0 +1,49 @@
+# yaml-language-server: $schema=https://raw.githubusercontent.com/grafana/cog/main/schemas/compiler_passes.json
+
+passes:
+  - omit_fields:
+      fields: [ common.DataSourceRef.apiVersion ]
+
+  - retype_object:
+      object: common.TimeZone
+      as:
+        kind: scalar
+        scalar: { scalar_kind: string }
+        default: browser
+      comments:
+        - 'A specific timezone from https://en.wikipedia.org/wiki/Tz_database'
+
+  ###########################
+  # common.VizLegendOptions #
+  ###########################
+
+  # Without these values, some panels might misbehave when displayed in a dashboard
+  - fields_set_default:
+      defaults:
+        common.VizLegendOptions.displayMode: "list"
+        common.VizLegendOptions.placement: "bottom"
+        common.VizLegendOptions.calcs: []
+
+  ###########################
+  # common.GraphFieldConfig #
+  ###########################
+
+  # The `insertNulls` field is missing.
+  # Added upstream here: https://github.com/grafana/grafana/pull/85861
+  - add_fields:
+      to: common.GraphFieldConfig
+      fields:
+        - name: insertNulls
+          type:
+            kind: disjunction
+            disjunction:
+              branches:
+                - { kind: scalar, scalar: { scalar_kind: bool } }
+                - { kind: scalar, scalar: { scalar_kind: uint32 } }
+
+  ###############
+  # table panel #
+  ###############
+
+  - fields_set_not_required:
+      fields: [ common.TableFieldOptions.CellOptions ]

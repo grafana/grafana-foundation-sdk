@@ -11,3 +11,164 @@ passes:
       as:
         kind: ref
         ref: { referred_pkg: common, referred_type: DataSourceRef }
+
+  #############
+  # Dashboard #
+  #############
+
+  # These fields are incorrectly set as non-required in the CUE schema.
+  # Loading a dashboard with these set to null will fail.
+  - fields_set_required:
+      fields: [
+        dashboard.Dashboard.annotations,
+        dashboard.Dashboard.templating,
+      ]
+
+  # Defined as an empty type in the CUE schemas.
+  # It is also not used at all: references to this type are replaced by a "composable slot"
+  - omit:
+      objects: [
+        dashboard.Target
+      ]
+
+  - name_anonymous_struct:
+      field: dashboard.Dashboard.timepicker
+      as: TimePicker
+
+  # From: `panels: [...#Panel | #RowPanel | #GraphPanel | #HeatmapPanel]`
+  # To: `panels: [...#Panel | #GraphPanel | #HeatmapPanel]`
+  - retype_field:
+      field: dashboard.Dashboard.panels
+      as:
+        kind: array
+        array:
+          value_type:
+            kind: disjunction
+            disjunction:
+              branches:
+                - { kind: ref, ref: { referred_pkg: dashboard, referred_type: Panel } }
+                - { kind: ref, ref: { referred_pkg: dashboard, referred_type: RowPanel } }
+              discriminator: type
+              discriminator_mapping:
+                row: RowPanel
+                cog_discriminator_catch_all: Panel
+
+  - retype_field:
+      field: dashboard.Panel.options
+      as:
+        kind: scalar
+        scalar: { scalar_kind: any }
+
+  - retype_field:
+      field: dashboard.FieldConfig.custom
+      as:
+        kind: scalar
+        scalar: { scalar_kind: any }
+
+  - retype_field:
+      field: dashboard.Panel.Targets
+      as:
+        kind: array
+        array:
+          value_type:
+            kind: composable_slot
+            composable_slot: { variant: dataquery }
+
+  # typed as `links?: [...]` in the original schema
+  - retype_field:
+      field: dashboard.FieldConfig.links
+      as:
+        kind: array
+        array:
+          value_type:
+            kind: ref
+            ref: { referred_pkg: dashboard, referred_type: DashboardLink }
+
+  # Add a few missing fields.
+  # This is meant to be removed once the schema is updated.
+  - add_fields:
+      to: dashboard.AnnotationQuery
+      fields:
+        - name: expr
+          type:
+            kind: scalar
+            scalar: { scalar_kind: string }
+
+  #######################
+  # Dashboard variables #
+  #######################
+
+  - add_fields:
+      to: dashboard.VariableModel
+      fields:
+        - name: auto
+          comments: [ 'Dynamically calculates interval by dividing time range by the count specified.' ]
+          type:
+            kind: scalar
+            scalar: { scalar_kind: bool }
+            default: false
+        - name: auto_min
+          comments: [ 'The minimum threshold below which the step count intervals will not divide the time.' ]
+          type:
+            kind: scalar
+            default: '10s'
+            scalar: { scalar_kind: string }
+        - name: auto_count
+          comments:
+            - 'How many times the current time range should be divided to calculate the value, similar to the Max data points query option.'
+            - 'For example, if the current visible time range is 30 minutes, then the auto interval groups the data into 30 one-minute increments.'
+          type:
+            kind: scalar
+            default: 30
+            scalar:
+              scalar_kind: int32
+              constraints:
+                - { op: '>', args: [0] }
+
+  #############
+  # row panel #
+  #############
+
+  # From: `panels: [...#Panel | #RowPanel]`
+  # To: `panels: [...#Panel]`
+  - retype_field:
+      field: dashboard.RowPanel.panels
+      as:
+        kind: array
+        array:
+          value_type:
+            kind: ref
+            ref: { referred_pkg: dashboard, referred_type: Panel }
+
+  ############
+  # snapshot #
+  ############
+
+  - add_fields:
+      to: dashboard.Snapshot
+      fields:
+        - name: dashboard
+          type:
+            kind: ref
+            ref: { referred_pkg: dashboard, referred_type: Dashboard }
+
+  # In the original `librarypanel.PanelModel` schema, the "model" field is left
+  # mainly undefined but a comment indicates that it should be the same panel
+  # schema defined in dashboard with a few fields omitted:
+  #   model: Omit<dashboard.Panel, 'gridPos' | 'id' | 'libraryPanel'>
+  - duplicate_object:
+      object: dashboard.Panel
+      as: librarypanel.PanelModel
+      omit_fields:
+        - id
+        - gridPos
+        - libraryPanel
+  - retype_field:
+      field: librarypanel.LibraryPanel.model
+      as:
+        kind: ref
+        ref: { referred_pkg: librarypanel, referred_type: PanelModel }
+
+  - omit:
+      objects:
+        - dashboard.HeatmapPanel

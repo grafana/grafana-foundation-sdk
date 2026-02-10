@@ -59,3 +59,7 @@ passes:
   - rename_object:
       from: 'testdata.TestdataTestdataTargetsUsa'
       to: 'USAQuery'
+
+  - name_anonymous_struct:
+      field: testdata.SimulationQuery.key
+      as: Key
