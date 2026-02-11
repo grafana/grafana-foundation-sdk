@@ -1,0 +1,30 @@
+package main
+
+import (
+    "encoding/json"
+    "fmt"
+
+    "github.com/grafana/grafana-foundation-sdk/go/dashboard"
+)
+
+// Main entry point to generate the dashboard JSON, by calling builder.Build()
+func GetBuilder() *dashboard.DashboardBuilder {
+    builder := %s
+    return builder
+}
+
+// When run, it'll output the JSON of the dashboard to stdout.
+func main() {
+    builder := GetBuilder()
+    dash, err := builder.Build()
+    if err != nil {
+        panic(err)
+    }
+
+    dashboardJSON, err := json.MarshalIndent(dash, "", "  ")
+    if err != nil {
+        panic(err)
+    }
+
+    fmt.Println(string(dashboardJSON))
+}
