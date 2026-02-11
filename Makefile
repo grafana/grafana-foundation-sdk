@@ -1,4 +1,4 @@
-COG_VERSION = v0.0.52
+COG_VERSION = v0.0.54
 COG_DIR     = $(shell go env GOPATH)/bin/cog-$(COG_VERSION)
 COG_BIN     = $(COG_DIR)/cli
 
