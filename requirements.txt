@@ -1,4 +1,4 @@
-Babel==2.15.0
+Babel==2.18.0
 brotlicffi==1.1.0.0
 certifi==2024.7.4
 cffi==1.17.1
