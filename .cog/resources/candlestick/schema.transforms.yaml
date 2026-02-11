@@ -1,0 +1,13 @@
+# yaml-language-server: $schema=https://raw.githubusercontent.com/grafana/cog/main/schemas/compiler_passes.json
+
+passes:
+  # This field is parsed incorrectly from the CUE schema: its definition and
+  # defaults are merged for some reason.
+  # TODO: remove once the parser is fixed.
+  # See: https://github.com/grafana/cog/issues/292
+  - retype_field:
+      field: candlestick.Options.colors
+      as:
+        kind: ref
+        ref: { referred_pkg: candlestick, referred_type: CandlestickColors }
+        default: { down: "red", up: "green", flat: "gray" }

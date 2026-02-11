@@ -1,0 +1,19 @@
+# yaml-language-server: $schema=https://raw.githubusercontent.com/grafana/cog/main/schemas/compiler_passes.json
+
+passes:
+  ############################################################################
+  # We don't have an explicit way to access the "identifier" (ie: plugin ID) #
+  # for panels and dataqueries.                                              #
+  # The heuristic we use sometimes gets things wrong, so we have to fix      #
+  # things here.                                                             #
+  ############################################################################
+
+  # Panels
+  - schema_set_identifier: { package: alertgroups, identifier: alertGroups }
+  - schema_set_identifier: { package: annotationslist, identifier: annolist }
+  - schema_set_identifier: { package: dashboardlist, identifier: dashlist }
+  - schema_set_identifier: { package: nodegraph, identifier: nodeGraph }
+  - schema_set_identifier: { package: statetimeline, identifier: state-timeline }
+  - schema_set_identifier: { package: statushistory, identifier: status-history }
+  - schema_set_identifier: { package: tableold, identifier: table-old }
+

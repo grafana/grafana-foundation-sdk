@@ -3,7 +3,7 @@ on:
   pull_request: ~
 
 env:
-  DEVBOX_VERSION: '0.13.1'
+  DEVBOX_VERSION: '0.16.0'
   FOUNDATION_SDK_REPO: https://github.com/grafana/grafana-foundation-sdk.git
 
 permissions:
@@ -51,7 +51,7 @@ jobs:
 
       - name: Validate cog's config
         run: |
-          cog inspect --config .cog/post-12/config.yaml \
+          cog inspect --config .cog/config.yaml \
             --ir builders \
             --parameters 'kind_registry_path=./kind-registry'
         env:
@@ -72,7 +72,7 @@ jobs:
         uses: ./.github/actions/setup-cog
 
       - name: Install devbox
-        uses: jetify-com/devbox-install-action@a03caf5813591bc882139eba6ae947930a83a427 #v0.11.0
+        uses: jetify-com/devbox-install-action@a0d2d53632934ae004f878c840055956d9f741b0 #v0.14.0
         with:
           enable-cache: 'true'
           devbox-version: ${{ env.DEVBOX_VERSION }}
@@ -125,7 +125,7 @@ jobs:
           <details>
           <summary>
           
-          ### 🔎 Changes to `grafana-foundation-sdk@next+cog-v0.0.x`
+          ### 🔎 Changes to `main`
           
           </summary>
           

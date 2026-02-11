@@ -1,0 +1,88 @@
+# yaml-language-server: $schema=https://raw.githubusercontent.com/grafana/cog/main/schemas/compiler_passes.json
+
+passes:
+  # Simplify the definition of the `QueryEditorArrayExpression.expressions` field from
+  # `[...#QueryEditorExpression] | [...#QueryEditorArrayExpression]` to
+  # `[...#QueryEditorExpression]`.
+  # This should be semantically equivalent since `QueryEditorExpression` is a
+  # union type that includes `QueryEditorArrayExpression`.
+  - retype_field:
+      field: cloudwatch.QueryEditorArrayExpression.expressions
+      as:
+        kind: array
+        array:
+          value_type:
+            kind: ref
+            ref: { referred_pkg: cloudwatch, referred_type: QueryEditorExpression }
+
+  # Retype this object to manually define its disjunction mapping.
+  # TODO: check if we need to do this, or if the DisjunctionInferMapping would
+  # be able to infer it on its own.
+  - retype_object:
+      object: cloudwatch.QueryEditorExpression
+      as:
+        kind: disjunction
+        disjunction:
+          branches:
+            - { kind: ref, ref: { referred_pkg: cloudwatch, referred_type: QueryEditorArrayExpression } }
+            - { kind: ref, ref: { referred_pkg: cloudwatch, referred_type: QueryEditorPropertyExpression } }
+            - { kind: ref, ref: { referred_pkg: cloudwatch, referred_type: QueryEditorGroupByExpression } }
+            - { kind: ref, ref: { referred_pkg: cloudwatch, referred_type: QueryEditorFunctionExpression } }
+            - { kind: ref, ref: { referred_pkg: cloudwatch, referred_type: QueryEditorFunctionParameterExpression } }
+            - { kind: ref, ref: { referred_pkg: cloudwatch, referred_type: QueryEditorOperatorExpression } }
+          discriminator: type
+          discriminator_mapping:
+            and: QueryEditorArrayExpression
+            or: QueryEditorArrayExpression
+            property: QueryEditorPropertyExpression
+            groupBy: QueryEditorGroupByExpression
+            function: QueryEditorFunctionExpression
+            functionParameter: QueryEditorFunctionParameterExpression
+            operator: QueryEditorOperatorExpression
+
+  - add_object:
+      object: cloudwatch.CloudWatchQuery
+      as:
+        kind: disjunction
+        hints: { implements_variant: dataquery }
+        disjunction:
+          branches:
+            - { kind: ref, ref: { referred_pkg: cloudwatch, referred_type: CloudWatchMetricsQuery } }
+            - { kind: ref, ref: { referred_pkg: cloudwatch, referred_type: CloudWatchLogsQuery } }
+            - { kind: ref, ref: { referred_pkg: cloudwatch, referred_type: CloudWatchAnnotationQuery } }
+          discriminator: queryMode
+          discriminator_mapping:
+            Metrics: CloudWatchMetricsQuery
+            Logs: CloudWatchLogsQuery
+            Annotations: CloudWatchAnnotationQuery
+
+  - schema_set_entry_point:
+      package: cloudwatch
+      entry_point: CloudWatchQuery
+
+  - fields_set_default:
+      defaults:
+        cloudwatch.CloudWatchMetricsQuery.queryMode: Metrics
+        cloudwatch.CloudWatchLogsQuery.queryMode: Logs
+        cloudwatch.CloudWatchAnnotationQuery.queryMode: Annotations
+
+  - hint_object:
+      object: cloudwatch.CloudWatchMetricsQuery
+      hints:
+        skip_variant_plugin_registration: true
+
+  - hint_object:
+      object: cloudwatch.CloudWatchLogsQuery
+      hints:
+        skip_variant_plugin_registration: true
+
+  - hint_object:
+      object: cloudwatch.CloudWatchAnnotationQuery
+      hints:
+        skip_variant_plugin_registration: true
+
+  - fields_set_required:
+      fields:
+        - cloudwatch.CloudWatchMetricsQuery.queryMode
+        - cloudwatch.CloudWatchLogsQuery.queryMode
+        - cloudwatch.CloudWatchAnnotationQuery.queryMode

@@ -20,7 +20,7 @@ DRY_RUN=${DRY_RUN:-"yes"} # Some kind of fail-safe to ensure that we're only pus
 COG_CMD=${COG_CMD:-"cog"} # Command used to run `cog`
 GH_CLI_CMD=${GH_CLI_CMD:-"gh"} # Command used to run `gh` (GitHub cli)
 
-CODEGEN_PIPELINE_CONFIG=${CODEGEN_PIPELINE_CONFIG:-"${__dir}/../.cog/post-12/config.yaml"} # Codegen pipeline config file to use.
+CODEGEN_PIPELINE_CONFIG=${CODEGEN_PIPELINE_CONFIG:-"${__dir}/../.cog/config.yaml"} # Codegen pipeline config file to use.
 
 KIND_REGISTRY_PATH=${KIND_REGISTRY_PATH:-'../kind-registry'} # Path to the kind-registry
 
@@ -125,7 +125,7 @@ function should_abort_prepare() {
     return 1
   fi
 
-  latest_tag=$(git_run "${foundation_sdk_path}" describe --tags --abbrev=0 2>/dev/null || echo 'v0.0.0')
+  latest_tag=$(git_run "${foundation_sdk_path}" describe --tags --exclude 'go/*' --abbrev=0 2>/dev/null || echo 'v0.0.0')
   current_marker=$(cat "${release_marker}")
 
   # The release marker and latest tags are equal: we just merged the
@@ -195,8 +195,9 @@ git_run "${KIND_REGISTRY_PATH}" pull --ff-only origin main
 release_branch_exists=$(git_has_branch "${foundation_sdk_path}" "${release_branch}")
 if [ "$release_branch_exists" != "0" ]; then
   debug "No existing release branch: next version will be determined from the latest tag"
-  latest_tag=$(git_run "${foundation_sdk_path}" describe --tags --abbrev=0 2>/dev/null || echo 'v0.0.0')
+  latest_tag=$(git_run "${foundation_sdk_path}" describe --tags --exclude 'go/*' --abbrev=0 2>/dev/null || echo 'v0.0.0')
   next_tag=$(next_version "${latest_tag}" patch)
+  debug "Current version: ${latest_tag}"
 else
   debug "Existing release branch found: next version will be read from it"
   git_run "${foundation_sdk_path}" fetch origin "${release_branch}"
@@ -265,7 +266,7 @@ if [ "$release_branch_exists" != "0" ]; then
     --base main \
     --head "${release_branch}" \
     --title "Next release" \
-    --body "Next release."
+    --body "Note to maintainers: merging this PR will trigger the creation of a new release with all the modifications included on this branch. See the [release docs](https://github.com/grafana/grafana-foundation-sdk/blob/main/maintainers/releasing.md) for more information."
 fi
 
 if [ "${DRY_RUN}" != "no" ]; then

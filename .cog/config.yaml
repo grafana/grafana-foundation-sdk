@@ -1,0 +1,243 @@
+# yaml-language-server: $schema=https://raw.githubusercontent.com/grafana/cog/main/schemas/pipeline.json
+
+debug: false
+
+parameters:
+  output_dir: './generated/%l'
+  kind_registry_path: './kind-registry'
+  kind_registry_version: 'v11.6.x'
+
+  go_package_root: 'github.com/grafana/grafana-foundation-sdk/go'
+  java_package_path: 'com.grafana.foundation'
+  php_namespace_root: 'Grafana\Foundation'
+
+  release_tag: 'v0.0.0'
+
+inputs:
+  - kind_registry:
+      path: '%kind_registry_path%'
+      version: '%kind_registry_version%'
+      transformations:
+        - '%__config_dir%/resources/kind_registry.schema.transforms.yaml'
+        - '%__config_dir%/resources/candlestick/schema.transforms.yaml'
+        - '%__config_dir%/resources/cloudwatch/schema.transforms.yaml'
+        - '%__config_dir%/resources/common/schema.transforms.yaml'
+        - '%__config_dir%/resources/googlecloudmonitoring/schema.transforms.yaml'
+        - '%__config_dir%/resources/heatmap/schema.transforms.yaml'
+        - '%__config_dir%/resources/loki/schema.transforms.yaml'
+        - '%__config_dir%/resources/piechart/schema.transforms.yaml'
+        - '%__config_dir%/resources/timeseries/schema.transforms.yaml'
+  - openapi:
+      url: 'https://raw.githubusercontent.com/grafana/grafana/v11.6.0/public/openapi3.json'
+      no_validate: true
+      package: dashboard
+      metadata:
+        kind: core
+        identifier: Dashboard
+      allowed_objects:
+        - DashboardMeta
+
+  - jsonschema:
+      url: 'https://raw.githubusercontent.com/grafana/grafana/main/pkg/expr/query.request.schema.json'
+      package: expr
+      metadata:
+        kind: composable
+        variant: dataquery
+        identifier: __expr__
+      transformations:
+        - '%__config_dir%/resources/expr/schema.transforms.yaml'
+
+  - openapi:
+      url: 'https://raw.githubusercontent.com/grafana/grafana/v11.6.0/public/openapi3.json'
+      no_validate: true
+      package: alerting
+      metadata:
+        kind: core
+        identifier: AlertRuleGroup
+      allowed_objects:
+        - AlertRuleGroup
+        - EmbeddedContactPoint
+        - Route
+        - MuteTimeInterval
+        - NotificationTemplate
+        - TimeRange
+      transformations:
+        - '%__config_dir%/resources/alerting/schema.transforms.yaml'
+
+  # The schema for teams is gone from the kind-registry since v11.2.x
+  - openapi:
+      url: 'https://raw.githubusercontent.com/grafana/grafana/v11.6.0/public/openapi3.json'
+      no_validate: true
+      package: team
+      metadata:
+        kind: core
+        identifier: Team
+      allowed_objects:
+        - CreateTeamCommand
+      transformations:
+        - '%__config_dir%/resources/team/schema.transforms.yaml'
+
+  # The schema for testdata queries is gone from the kind-registry since v11.0.x
+  - jsonschema:
+      url: 'https://raw.githubusercontent.com/grafana/grafana/v11.6.0/pkg/tsdb/grafana-testdata-datasource/kinds/query.panel.schema.json'
+      package: testdata
+      metadata:
+        kind: composable
+        variant: dataquery
+        identifier: testdata
+      transformations:
+        - '%__config_dir%/resources/testdata/schema.transforms.yaml'
+
+  # The schema for prometheus queries is gone from the kind-registry since v11.0.x
+  - kindsys_composable:
+      entrypoint: '%__config_dir%/resources/prometheus/'
+      metadata:
+        kind: composable
+        variant: dataquery
+        identifier: prometheus
+      cue_imports:
+        - '%kind_registry_path%/grafana/%kind_registry_version%/common:github.com/grafana/grafana/packages/grafana-schema/src/common'
+      transformations:
+        - '%__config_dir%/resources/prometheus/schema.transforms.yaml'
+
+  # Bigquery queries
+  - cue:
+      entrypoint: '%__config_dir%/resources/bigquery'
+      metadata:
+        kind: composable
+        variant: dataquery
+        identifier: grafana-bigquery-datasource
+      cue_imports:
+        - '%kind_registry_path%/grafana/%kind_registry_version%/common:github.com/grafana/grafana/packages/grafana-schema/src/common'
+
+  # Athena queries
+  - cue:
+      entrypoint: '%__config_dir%/resources/athena'
+      metadata:
+        kind: composable
+        variant: dataquery
+        identifier: grafana-athena-datasource
+      cue_imports:
+        - '%kind_registry_path%/grafana/%kind_registry_version%/common:github.com/grafana/grafana/packages/grafana-schema/src/common'
+      transformations:
+        - '%__config_dir%/resources/athena/schema.transforms.yaml'
+
+  # "datasource" queries
+  - cue:
+      entrypoint: '%__config_dir%/resources/datasource'
+      metadata:
+        kind: composable
+        variant: dataquery
+        identifier: datasource
+      cue_imports:
+        - '%kind_registry_path%/grafana/%kind_registry_version%/common:github.com/grafana/grafana/packages/grafana-schema/src/common'
+
+  # Dashboard v2
+  - cue:
+      url: 'https://raw.githubusercontent.com/grafana/grafana/v12.3.2/apps/dashboard/kinds/v2beta1/dashboard_spec.cue'
+      package: dashboardv2beta1
+      metadata:
+        kind: core
+      transformations:
+        - '%__config_dir%/resources/dashboardv2beta1/schema.transforms.yaml'
+          
+  # SLO
+  - cue:
+      url: 'https://raw.githubusercontent.com/grafana/slo/refs/heads/main/schemas/resource/slo.cue'
+      subpath: 'slo_v0_0.schema.spec'
+      forced_envelope: 'Slo'
+      package: slov0
+      metadata:
+        kind: core
+
+  # Units
+  - cue:
+      entrypoint: '%__config_dir%/resources/units'
+
+  # Resource manifests
+  - cue:
+      entrypoint: '%__config_dir%/resources/resource'
+
+transformations:
+  schemas:
+    - { path: '%__config_dir%/resources/common.schema.transforms.yaml' }
+    - { path: '%__config_dir%/resources/dataqueries.schema.transforms.yaml' }
+    - { path: '%__config_dir%/resources/panels.schema.transforms.yaml' }
+    - { path: '%__config_dir%/resources/dashboard/schema.transforms.yaml' }
+    # To avoid it to conflict with the refid in the dataquery schema.
+    - { path: '%__config_dir%/resources/dashboardv2beta1/dataqueries_refid.schema.transforms.yaml' }
+
+  builders:
+    - { path: '%__config_dir%/resources/old_datasource.builder.transforms.yaml' }
+
+    - { path: '%__config_dir%/resources/accesspolicy/common.builder.transforms.yaml' }
+    - { path: '%__config_dir%/resources/prometheus/common.builder.transforms.yaml' }
+    - { path: '%__config_dir%/resources/dashboard/builder-transforms' }
+    - { path: '%__config_dir%/resources/dashboardv2beta1/builder-transforms' }
+    - { path: '%__config_dir%/resources/alerting/builder-transforms' }
+    - { path: '%__config_dir%/resources/common/common.builder.transforms.yaml' }
+    - { path: '%__config_dir%/resources/datasource/builder-transforms' }
+    - { path: '%__config_dir%/resources/cloudwatch/go.builder.transforms.yaml' }
+    - { path: '%__config_dir%/resources/elasticsearch/common.builder.transforms.yaml' }
+    - { path: '%__config_dir%/resources/expr/common.builder.transforms.yaml' }
+    - { path: '%__config_dir%/resources/folder/common.builder.transforms.yaml' }
+    - { path: '%__config_dir%/resources/heatmap/common.builder.transforms.yaml' }
+    - { path: '%__config_dir%/resources/team/common.builder.transforms.yaml' }
+    - { path: '%__config_dir%/resources/tempo/go.builder.transforms.yaml' }
+
+  converters: '%__config_dir%/converters/config.yaml'
+
+output:
+  directory: '%output_dir%'
+
+  types: true
+  builders: true
+  converters: true
+  api_reference: true
+
+  templates_data:
+    ReleaseTag: '%release_tag%'
+
+  output_options:
+    replace_extension:
+      tmpl: 'yaml'
+
+  languages:
+    - go:
+        generate_json_marshaller: true
+        generate_strict_unmarshaller: true
+        generate_equal: true
+        generate_validate: true
+        package_root: '%go_package_root%'
+        extra_files_templates:
+          - '%__config_dir%/templates/go/extra'
+        overrides_templates:
+          - '%__config_dir%/templates/go/overrides'
+    - jsonschema: {}
+    - openapi: {}
+    - php:
+        generate_json_marshaller: true
+        namespace_root: '%php_namespace_root%'
+        extra_files_templates:
+          - '%__config_dir%/templates/php/extra'
+        overrides_templates:
+          - '%__config_dir%/templates/php/overrides'
+    - python:
+        generate_json_marshaller: true
+        path_prefix: grafana_foundation_sdk
+        extra_files_templates:
+          - '%__config_dir%/templates/python/extra'
+        overrides_templates:
+          - '%__config_dir%/templates/python/overrides'
+    - typescript:
+        extra_files_templates:
+          - '%__config_dir%/templates/typescript/extra'
+        overrides_templates:
+          - '%__config_dir%/templates/typescript/overrides'
+    - java:
+        generate_json_marshaller: true
+        package_path: '%java_package_path%'
+        extra_files_templates:
+          - '%__config_dir%/templates/java/extra'
+        overrides_templates:
+          - '%__config_dir%/templates/java/overrides'

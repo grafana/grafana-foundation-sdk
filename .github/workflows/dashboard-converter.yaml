@@ -1,0 +1,112 @@
+name: Dashboard Converter
+
+on:
+  pull_request:
+    paths:
+      - 'scripts/dashboard-converter/**'
+      - '.github/workflows/dashboard-converter.yaml'
+  push:
+    branches: [main]
+    paths:
+      - 'scripts/dashboard-converter/**'
+      - '.github/workflows/dashboard-converter.yaml'
+    tags: ['dashboard-converter-v*']
+
+permissions:
+  contents: read
+
+jobs:
+  test:
+    if: github.event_name != 'push' || !startsWith(github.ref, 'refs/tags/dashboard-converter-')
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: scripts/dashboard-converter
+    steps:
+      - name: Checkout
+        uses: actions/checkout@93cb6efe18208431cddfb8368fd83d5badbf9bfd # v5.0.1
+        with:
+          persist-credentials: false
+      - name: Set up Go
+        uses: actions/setup-go@40f1582b2485089dde7abd97c1529aa768e1baff # v5.6.0
+        with:
+          go-version: '1.24'
+          cache: false
+      - name: Run tests
+        run: make test
+
+  version:
+    if: startsWith(github.ref, 'refs/tags/dashboard-converter-')
+    runs-on: ubuntu-latest
+    outputs:
+      version: ${{ steps.version.outputs.version }}
+    steps:
+      - name: Extract version
+        id: version
+        run: |
+          echo "version=${GITHUB_REF#refs/tags/dashboard-converter-}" >> $GITHUB_OUTPUT
+
+  build-and-export-digest:
+    needs: version
+    permissions:
+      contents: read
+      id-token: write
+    outputs:
+      images: ${{ steps.build.outputs.images }}
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - runnerType: ubuntu-24.04-arm
+            platform: linux/arm64
+          - runnerType: ubuntu-24.04
+            platform: linux/amd64
+    runs-on: ${{ matrix.runnerType }}
+    steps:
+      - name: Checkout
+        uses: actions/checkout@93cb6efe18208431cddfb8368fd83d5badbf9bfd # v5.0.1
+        with:
+          persist-credentials: false
+          ref: ${{ github.ref }}
+          fetch-depth: 0
+      - name: Build and Push Image
+        id: build
+        uses: grafana/shared-workflows/actions/docker-build-push-image@ef27c620a88acc9f3007f30be5e9407324e8975b # docker-build-push-image/v0.3.0
+        with:
+          registries: dockerhub
+          repository: grafana/dashboard-converter
+          platforms: ${{ matrix.platform }}
+          outputs: "type=image,push-by-digest=true,name-canonical=true,push=true"
+          push: true
+          tags: |
+            type=semver,pattern={{ version }}
+          include-tags-in-push: false
+          context: scripts/dashboard-converter
+          file: scripts/dashboard-converter/Dockerfile
+        env:
+          version: ${{ needs.version.outputs.version }}
+          GITHUB_REF: refs/tags/${{ needs.version.outputs.version }}
+      - name: Export Docker Digest
+        id: export
+        uses: grafana/shared-workflows/actions/docker-export-digest@1d3e79a89e5fe2e14e27c7d083484f16abc1438b # docker-export-digest/v0.1.1
+        with:
+          digest: ${{ steps.build.outputs.digest }}
+          platform: ${{ matrix.platform }}
+
+  push-manifest:
+    needs: [version, build-and-export-digest]
+    runs-on: ubuntu-24.04
+    permissions:
+      contents: read
+      id-token: write
+    steps:
+      - name: Download Multi-Arch Digests, Construct and Upload Manifest
+        uses: grafana/shared-workflows/actions/docker-import-digests-push-manifest@c7c3322b5815fd007586605e0ea286969f6aeae2 # docker-import-digests-push-manifest/v0.1.1
+        with:
+          images: ${{ needs.build-and-export-digest.outputs.images }}
+          push: true
+          tags: |
+            type=semver,pattern={{ version }}
+        env:
+          version: ${{ needs.version.outputs.version }}
+          GITHUB_REF: refs/tags/${{ needs.version.outputs.version }}

@@ -1,6 +1,0 @@
-{{- define "object_variant_dataquery" -}}
-func (resource {{ .Object.Name|formatObjectName }}) DataqueryType() string {
-	return "{{ .Schema.Metadata.Identifier|lower }}"
-}
-
-{{ end }}

@@ -1,0 +1,12 @@
+# yaml-language-server: $schema=https://raw.githubusercontent.com/grafana/cog/main/schemas/compiler_passes.json
+
+passes:
+  # Add a few missing fields.
+  # This is meant to be removed once the schema is updated.
+  - add_fields:
+      to: loki.Dataquery
+      fields:
+        - name: direction
+          type:
+            kind: ref
+            ref: { referred_pkg: loki, referred_type: LokiQueryDirection }
