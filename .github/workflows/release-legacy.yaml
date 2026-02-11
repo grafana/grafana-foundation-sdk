@@ -19,7 +19,7 @@ on:
         type: boolean
 
 env:
-  DEVBOX_VERSION: '0.13.1'
+  DEVBOX_VERSION: '0.16.0'
 
 # Grant GITHUB_TOKEN the permissions required to make a release
 permissions:
@@ -52,7 +52,7 @@ jobs:
         uses: ./.github/actions/setup-cog
 
       - name: Install devbox
-        uses: jetify-com/devbox-install-action@a03caf5813591bc882139eba6ae947930a83a427 #v0.11.0
+        uses: jetify-com/devbox-install-action@a0d2d53632934ae004f878c840055956d9f741b0 #v0.14.0
         with:
           enable-cache: 'true'
           devbox-version: ${{ env.DEVBOX_VERSION }}
