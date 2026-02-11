@@ -93,6 +93,14 @@ passes:
           type:
             kind: scalar
             scalar: { scalar_kind: string }
+            
+  - add_fields:
+      to: dashboard.FieldConfig
+      fields:
+        - name: fieldMinMax
+          type:
+            kind: scalar
+            scalar: { scalar_kind: bool }
 
   #######################
   # Dashboard variables #
