@@ -1,8 +1,0 @@
-{{- define "pre_assignment_QueryGroup_targets" }}
-	queriesResources.forEach((query) => {
-		if (query.spec.refId === "") {
-			query.spec.refId = `query-${this.nextQueryId}`;
-			this.nextQueryId += 1;
-		}
-	});
-{{- end }}
