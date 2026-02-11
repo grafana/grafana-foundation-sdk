@@ -1,0 +1,3 @@
+inputs:
+  - cue:
+      entrypoint: '%__config_dir%'

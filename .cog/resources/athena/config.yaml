@@ -1,0 +1,11 @@
+inputs:
+  - cue:
+      entrypoint: '%__config_dir%/'
+      metadata:
+        kind: composable
+        variant: dataquery
+        identifier: grafana-athena-datasource
+      cue_imports:
+        - '%kind_registry_path%/grafana/%kind_registry_version%/common:github.com/grafana/grafana/packages/grafana-schema/src/common'
+      transformations:
+        - '%__config_dir%/schema.transforms.yaml'

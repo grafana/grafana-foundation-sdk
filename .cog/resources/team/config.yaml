@@ -1,0 +1,15 @@
+inputs:
+  - openapi:
+      url: 'https://raw.githubusercontent.com/grafana/grafana/v11.6.0/public/openapi3.json'
+      no_validate: true
+      package: team
+      metadata:
+        kind: core
+        identifier: Team
+      allowed_objects:
+        - CreateTeamCommand
+      transformations:
+        - '%__config_dir%/schema.transforms.yaml'
+
+builder_transformations:
+  - '%__config_dir%/common.builder.transforms.yaml'

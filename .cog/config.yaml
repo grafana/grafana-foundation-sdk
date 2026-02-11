@@ -13,6 +13,9 @@ parameters:
 
   release_tag: 'v0.0.0'
 
+units_from:
+  - '%__config_dir%/resources/*/config.yaml'
+
 inputs:
   - kind_registry:
       path: '%kind_registry_path%'
@@ -38,145 +41,24 @@ inputs:
       allowed_objects:
         - DashboardMeta
 
-  - jsonschema:
-      url: 'https://raw.githubusercontent.com/grafana/grafana/main/pkg/expr/query.request.schema.json'
-      package: expr
-      metadata:
-        kind: composable
-        variant: dataquery
-        identifier: __expr__
-      transformations:
-        - '%__config_dir%/resources/expr/schema.transforms.yaml'
-
-  - openapi:
-      url: 'https://raw.githubusercontent.com/grafana/grafana/v11.6.0/public/openapi3.json'
-      no_validate: true
-      package: alerting
-      metadata:
-        kind: core
-        identifier: AlertRuleGroup
-      allowed_objects:
-        - AlertRuleGroup
-        - EmbeddedContactPoint
-        - Route
-        - MuteTimeInterval
-        - NotificationTemplate
-        - TimeRange
-      transformations:
-        - '%__config_dir%/resources/alerting/schema.transforms.yaml'
-
-  # The schema for teams is gone from the kind-registry since v11.2.x
-  - openapi:
-      url: 'https://raw.githubusercontent.com/grafana/grafana/v11.6.0/public/openapi3.json'
-      no_validate: true
-      package: team
-      metadata:
-        kind: core
-        identifier: Team
-      allowed_objects:
-        - CreateTeamCommand
-      transformations:
-        - '%__config_dir%/resources/team/schema.transforms.yaml'
-
-  # The schema for testdata queries is gone from the kind-registry since v11.0.x
-  - jsonschema:
-      url: 'https://raw.githubusercontent.com/grafana/grafana/v11.6.0/pkg/tsdb/grafana-testdata-datasource/kinds/query.panel.schema.json'
-      package: testdata
-      metadata:
-        kind: composable
-        variant: dataquery
-        identifier: testdata
-      transformations:
-        - '%__config_dir%/resources/testdata/schema.transforms.yaml'
-
-  # The schema for prometheus queries is gone from the kind-registry since v11.0.x
-  - kindsys_composable:
-      entrypoint: '%__config_dir%/resources/prometheus/'
-      metadata:
-        kind: composable
-        variant: dataquery
-        identifier: prometheus
-      cue_imports:
-        - '%kind_registry_path%/grafana/%kind_registry_version%/common:github.com/grafana/grafana/packages/grafana-schema/src/common'
-      transformations:
-        - '%__config_dir%/resources/prometheus/schema.transforms.yaml'
-
-  # Bigquery queries
-  - cue:
-      entrypoint: '%__config_dir%/resources/bigquery'
-      metadata:
-        kind: composable
-        variant: dataquery
-        identifier: grafana-bigquery-datasource
-      cue_imports:
-        - '%kind_registry_path%/grafana/%kind_registry_version%/common:github.com/grafana/grafana/packages/grafana-schema/src/common'
-
-  # Athena queries
-  - cue:
-      entrypoint: '%__config_dir%/resources/athena'
-      metadata:
-        kind: composable
-        variant: dataquery
-        identifier: grafana-athena-datasource
-      cue_imports:
-        - '%kind_registry_path%/grafana/%kind_registry_version%/common:github.com/grafana/grafana/packages/grafana-schema/src/common'
-      transformations:
-        - '%__config_dir%/resources/athena/schema.transforms.yaml'
-
-  # "datasource" queries
-  - cue:
-      entrypoint: '%__config_dir%/resources/datasource'
-      metadata:
-        kind: composable
-        variant: dataquery
-        identifier: datasource
-      cue_imports:
-        - '%kind_registry_path%/grafana/%kind_registry_version%/common:github.com/grafana/grafana/packages/grafana-schema/src/common'
-
-  # Dashboard v2
-  - cue:
-      url: 'https://raw.githubusercontent.com/grafana/grafana/v12.3.2/apps/dashboard/kinds/v2beta1/dashboard_spec.cue'
-      package: dashboardv2beta1
-      metadata:
-        kind: core
-      transformations:
-        - '%__config_dir%/resources/dashboardv2beta1/schema.transforms.yaml'
-
-  # Units
-  - cue:
-      entrypoint: '%__config_dir%/resources/units'
-
-  # Resource manifests
-  - cue:
-      entrypoint: '%__config_dir%/resources/resource'
-
 transformations:
+  # Globally applied schema transformations
   schemas:
-    - { path: '%__config_dir%/resources/common.schema.transforms.yaml' }
-    - { path: '%__config_dir%/resources/dataqueries.schema.transforms.yaml' }
-    - { path: '%__config_dir%/resources/panels.schema.transforms.yaml' }
-    - { path: '%__config_dir%/resources/dashboard/schema.transforms.yaml' }
+    - '%__config_dir%/resources/common.schema.transforms.yaml'
+    - '%__config_dir%/resources/dataqueries.schema.transforms.yaml'
+    - '%__config_dir%/resources/panels.schema.transforms.yaml'
+    - '%__config_dir%/resources/dashboard/schema.transforms.yaml'
     # To avoid it to conflict with the refid in the dataquery schema.
-    - { path: '%__config_dir%/resources/dashboardv2beta1/dataqueries_refid.schema.transforms.yaml' }
+    - '%__config_dir%/resources/dashboardv2beta1/dataqueries_refid.schema.transforms.yaml'
 
   builders:
-    - { path: '%__config_dir%/resources/old_datasource.builder.transforms.yaml' }
+    - '%__config_dir%/resources/old_datasource.builder.transforms.yaml'
 
-    - { path: '%__config_dir%/resources/accesspolicy/common.builder.transforms.yaml' }
-    - { path: '%__config_dir%/resources/prometheus/common.builder.transforms.yaml' }
-    - { path: '%__config_dir%/resources/dashboard/builder-transforms' }
-    - { path: '%__config_dir%/resources/dashboardv2beta1/builder-transforms' }
-    - { path: '%__config_dir%/resources/alerting/builder-transforms' }
-    - { path: '%__config_dir%/resources/common/common.builder.transforms.yaml' }
-    - { path: '%__config_dir%/resources/datasource/builder-transforms' }
-    - { path: '%__config_dir%/resources/cloudwatch/go.builder.transforms.yaml' }
-    - { path: '%__config_dir%/resources/elasticsearch/common.builder.transforms.yaml' }
-    - { path: '%__config_dir%/resources/expr/common.builder.transforms.yaml' }
-    - { path: '%__config_dir%/resources/folder/common.builder.transforms.yaml' }
-    - { path: '%__config_dir%/resources/heatmap/common.builder.transforms.yaml' }
-    - { path: '%__config_dir%/resources/team/common.builder.transforms.yaml' }
-    - { path: '%__config_dir%/resources/tempo/go.builder.transforms.yaml' }
-    - { path: '%__config_dir%/resources/statetimeline/go.builder.transforms.yaml' }
+    # These are coming from kind-registry
+    - '%__config_dir%/resources/dashboard/builder-transforms'
+    - '%__config_dir%/resources/common/common.builder.transforms.yaml'
+    - '%__config_dir%/resources/cloudwatch/go.builder.transforms.yaml'
+    - '%__config_dir%/resources/heatmap/common.builder.transforms.yaml'
 
   converters: '%__config_dir%/converters/config.yaml'
 
