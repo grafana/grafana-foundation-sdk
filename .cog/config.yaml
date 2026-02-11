@@ -4,7 +4,7 @@ debug: false
 
 parameters:
   output_dir: './generated/%l'
-  kind_registry_path: '../../kind-registry'
+  kind_registry_path: './kind-registry'
   kind_registry_version: 'v11.6.x'
 
   go_package_root: 'github.com/grafana/grafana-foundation-sdk/go'

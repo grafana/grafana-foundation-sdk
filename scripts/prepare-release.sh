@@ -20,7 +20,7 @@ DRY_RUN=${DRY_RUN:-"yes"} # Some kind of fail-safe to ensure that we're only pus
 COG_CMD=${COG_CMD:-"cog"} # Command used to run `cog`
 GH_CLI_CMD=${GH_CLI_CMD:-"gh"} # Command used to run `gh` (GitHub cli)
 
-CODEGEN_PIPELINE_CONFIG=${CODEGEN_PIPELINE_CONFIG:-"${__dir}/../.cog/post-12/config.yaml"} # Codegen pipeline config file to use.
+CODEGEN_PIPELINE_CONFIG=${CODEGEN_PIPELINE_CONFIG:-"${__dir}/../.cog/config.yaml"} # Codegen pipeline config file to use.
 
 KIND_REGISTRY_PATH=${KIND_REGISTRY_PATH:-'../kind-registry'} # Path to the kind-registry
 

@@ -1,7 +1,0 @@
-{{- define "pre_assignment_QueryGroup_target" }}
-
-	if ($querieResource->spec->refId === "") {
-		$querieResource->spec->refId = "query-" . $this->nextQueryId;
-		$this->nextQueryId += 1;
-	}
-{{- end }}
