@@ -1,0 +1,20 @@
+inputs:
+  - openapi:
+      url: 'https://raw.githubusercontent.com/grafana/grafana/v11.6.0/public/openapi3.json'
+      no_validate: true
+      package: alerting
+      metadata:
+        kind: core
+        identifier: AlertRuleGroup
+      allowed_objects:
+        - AlertRuleGroup
+        - EmbeddedContactPoint
+        - Route
+        - MuteTimeInterval
+        - NotificationTemplate
+        - TimeRange
+      transformations:
+        - '%__config_dir%/schema.transforms.yaml'
+
+builder_transformations:
+  - '%__config_dir%/builder-transforms/'
