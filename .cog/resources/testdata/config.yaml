@@ -1,0 +1,10 @@
+inputs:
+  - jsonschema:
+      url: 'https://raw.githubusercontent.com/grafana/grafana/v11.6.0/pkg/tsdb/grafana-testdata-datasource/kinds/query.panel.schema.json'
+      package: testdata
+      metadata:
+        kind: composable
+        variant: dataquery
+        identifier: testdata
+      transformations:
+        - '%__config_dir%/schema.transforms.yaml'

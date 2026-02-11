@@ -1,0 +1,13 @@
+inputs:
+  - jsonschema:
+      url: 'https://raw.githubusercontent.com/grafana/grafana/main/pkg/expr/query.request.schema.json'
+      package: expr
+      metadata:
+        kind: composable
+        variant: dataquery
+        identifier: __expr__
+      transformations:
+        - '%__config_dir%/schema.transforms.yaml'
+
+builder_transformations:
+  - '%__config_dir%/common.builder.transforms.yaml'
