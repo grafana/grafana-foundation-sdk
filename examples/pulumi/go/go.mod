@@ -7,7 +7,7 @@ toolchain go1.24.12
 replace github.com/grafana/grafana-foundation-sdk/examples/go/linux-node-overview => ../../go/linux-node-overview
 
 require (
-	github.com/grafana/grafana-foundation-sdk/examples/go/linux-node-overview v0.0.1-any
+	github.com/grafana/grafana-foundation-sdk/examples/go/linux-node-overview v0.0.4
 	github.com/pulumi/pulumi/sdk/v3 v3.117.0
 	github.com/pulumiverse/pulumi-grafana/sdk v0.5.0
 )
