@@ -58,11 +58,6 @@ The generated Go code works out-of-the-box, but you may want to clean it up for 
 make test
 ```
 
-## How to create a release for the dashboard-converter
+## Releasing
 
-Releases are triggered by pushing a tag with the format `dashboard-converter-vX.Y.Z`. The [Dashboard Converter workflow](https://github.com/grafana/grafana-foundation-sdk/actions/workflows/dashboard-converter.yaml) runs automatically on tag push.
-
-```console
-git tag dashboard-converter-v1.0.0
-git push origin dashboard-converter-v1.0.0
-```
+See [maintainers/releasing.md](../../maintainers/releasing.md#dashboard-converter) for release steps.
