@@ -26,6 +26,7 @@ inputs:
         - '%__config_dir%/resources/heatmap/schema.transforms.yaml'
         - '%__config_dir%/resources/loki/schema.transforms.yaml'
         - '%__config_dir%/resources/piechart/schema.transforms.yaml'
+        - '%__config_dir%/resources/statetimeline/schema.transforms.yaml'
         - '%__config_dir%/resources/timeseries/schema.transforms.yaml'
   - openapi:
       url: 'https://raw.githubusercontent.com/grafana/grafana/v11.6.0/public/openapi3.json'
