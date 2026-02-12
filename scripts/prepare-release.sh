@@ -125,7 +125,7 @@ function should_abort_prepare() {
     return 1
   fi
 
-  latest_tag=$(git_run "${foundation_sdk_path}" describe --tags --exclude 'go/*' --abbrev=0 2>/dev/null || echo 'v0.0.0')
+  latest_tag=$(git_run "${foundation_sdk_path}" describe --tags --match 'v*.*.*' --abbrev=0 2>/dev/null || echo 'v0.0.0')
   current_marker=$(cat "${release_marker}")
 
   # The release marker and latest tags are equal: we just merged the
@@ -195,7 +195,7 @@ git_run "${KIND_REGISTRY_PATH}" pull --ff-only origin main
 release_branch_exists=$(git_has_branch "${foundation_sdk_path}" "${release_branch}")
 if [ "$release_branch_exists" != "0" ]; then
   debug "No existing release branch: next version will be determined from the latest tag"
-  latest_tag=$(git_run "${foundation_sdk_path}" describe --tags --exclude 'go/*' --abbrev=0 2>/dev/null || echo 'v0.0.0')
+  latest_tag=$(git_run "${foundation_sdk_path}" describe --tags --match 'v*.*.*' --abbrev=0 2>/dev/null || echo 'v0.0.0')
   next_tag=$(next_version "${latest_tag}" patch)
   debug "Current version: ${latest_tag}"
 else
@@ -220,7 +220,6 @@ if [ ! -d "${release_dir}" ]; then
 fi
 
 echo "${next_tag}" > "${release_file_marker}"
-debug "Next version: ${next_tag}"
 
 info "Running cog"
 run_codegen "output_dir=${codegen_output_path}/%l,kind_registry_path=${KIND_REGISTRY_PATH},release_tag=${next_tag}"

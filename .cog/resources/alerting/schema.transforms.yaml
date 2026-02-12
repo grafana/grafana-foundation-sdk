@@ -194,5 +194,27 @@ passes:
   - rename_object:
       from: alerting.Record
       to: RecordRule
+      
+  - retype_field:
+      field: alerting.Rule.noDataState
+      as:
+        kind: enum
+        enum:
+          values:
+            - { type: { kind: scalar, scalar: { scalar_kind: string } }, name: 'OK', value: 'OK' }
+            - { type: { kind: scalar, scalar: { scalar_kind: string } }, name: 'Alerting', value: 'Alerting' }
+            - { type: { kind: scalar, scalar: { scalar_kind: string } }, name: 'NoData', value: 'NoData' }
+            - { type: { kind: scalar, scalar: { scalar_kind: string } }, name: 'KeepLast', value: 'KeepLast' }
+              
+  - retype_field:
+      field: alerting.Rule.execErrState
+      as:
+        kind: enum
+        enum:
+          values:
+            - { type: { kind: scalar, scalar: { scalar_kind: string } }, name: 'Alerting', value: 'Alerting' }
+            - { type: { kind: scalar, scalar: { scalar_kind: string } }, name: 'Error', value: 'Error' }
+            - { type: { kind: scalar, scalar: { scalar_kind: string } }, name: 'OK', value: 'OK' }
+            - { type: { kind: scalar, scalar: { scalar_kind: string } }, name: 'KeepLast', value: 'KeepLast' }
 
   - trim_enum_values: {}
