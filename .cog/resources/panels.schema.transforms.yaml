@@ -17,3 +17,12 @@ passes:
   - schema_set_identifier: { package: statushistory, identifier: status-history }
   - schema_set_identifier: { package: tableold, identifier: table-old }
 
+  - add_fields:
+      to: panels.Panel
+      fields:
+        - name: pluginVersion
+          comments: [ "Plugin version." ]
+          type:
+            kind: scalar
+            nullable: true
+            scalar: { scalar_kind: string }
