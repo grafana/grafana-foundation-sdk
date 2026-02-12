@@ -1,0 +1,21 @@
+# yaml-language-server: $schema=https://raw.githubusercontent.com/grafana/cog/main/schemas/compiler_passes.json
+
+passes:
+  # Without these values, timeseries might not display any data or crash when editing in the UI
+  - add_fields:
+      to: statetimeline.FieldConfig
+      fields:
+        - name: spanNulls
+          type:
+            kind: disjunction
+            disjunction:
+              branches:
+                - { kind: scalar, scalar: { scalar_kind: bool } }
+                - { kind: scalar, scalar: { scalar_kind: uint32 } }
+        - name: insertNulls
+          type:
+            kind: disjunction
+            disjunction:
+              branches:
+                - { kind: scalar, scalar: { scalar_kind: bool } }
+                - { kind: scalar, scalar: { scalar_kind: uint32 } }
