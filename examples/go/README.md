@@ -39,6 +39,6 @@ $ go run .
 ```
 
 > [!NOTE]
-> [Grizzly](https://github.com/grafana/grizzly/) can be used to preview the examples locally:
+> [grafanactl](https://grafana.github.io/grafanactl/) can be used to preview the dashboards locally:
 >
-> `grr serve -w -S 'go run .' .`
+> `grafanactl resources serve --script 'go run .'`
