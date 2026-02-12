@@ -48,6 +48,8 @@ jobs:
           repo_secrets: |
             GITHUB_APP_ID=github_app:app-id
             GITHUB_APP_PRIVATE_KEY=github_app:private-key
+            SCHEMA_READER_APP_ID=schema_reader:app-id
+            SCHEMA_READER_PRIVATE_KEY=schema_reader:private-key
 
       - name: Generate github private token
         id: generate_github_token
@@ -55,6 +57,14 @@ jobs:
         with:
           app-id: ${{ env.GITHUB_APP_ID }}
           private-key: ${{ env.GITHUB_APP_PRIVATE_KEY }}
+          owner: ${{ github.repository_owner }}
+          
+      - name: Generate github private token
+        id: generate_reader_token
+        uses: actions/create-github-app-token@29824e69f54612133e76f7eaac726eef6c875baf # v2.2.1
+        with:
+          app-id: ${{ env.SCHEMA_READER_APP_ID }}
+          private-key: ${{ env.SCHEMA_READER_PRIVATE_KEY }}
           owner: ${{ github.repository_owner }}
 
       - name: Prepare a release
@@ -72,6 +82,7 @@ jobs:
           DRY_RUN: 'no'
           SKIP_VALIDATION: 'no'
           GENERATED_GITHUB_TOKEN: ${{ steps.generate_github_token.outputs.token }}
+          GITHUB_AUTH_TOKEN: ${{ steps.generate_reader_token.outputs.token }}
 
       - name: Release
         run: |
