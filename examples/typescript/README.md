@@ -5,6 +5,10 @@ This folder contains a collection of Grafana dashboards written in Typescript.
 Each example showcases different aspects of building dashboards as code:
 
 * [`alert-rule`](./alert-rule): definition and usage of alert rule and rule group types
+* [`dashboard-with-tabs-and-rows`](./dashboard-with-tabs-and-rows):
+    * dashboard v2 example with tabs and rows
+    * uses tabs, rows, grid and auto-grid layouts
+    * outputs a dashboard manifest (`apiVersion`, `kind`, `metadata`, `spec`)
 * [`custom-panel`](./custom-panel): definition and usage of a _custom_ Panel type
 * [`custom-query`](./custom-query): definition and usage of a _custom_ Query type
 * [`grafana-agent-overview`](./grafana-agent-overview):
