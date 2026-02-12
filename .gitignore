@@ -10,3 +10,5 @@
 /typescript/.yarnrc.yml
 /typescript/dist/
 /java/build/
+
+.idea
