@@ -43,6 +43,6 @@ $ yarn dev
 ```
 
 > [!NOTE]
-> [Grizzly](https://github.com/grafana/grizzly/) can be used to preview the examples locally:
+> [grafanactl](https://grafana.github.io/grafanactl/) can be used to preview the dashboards locally:
 >
-> `grr serve -w -S 'yarn dev' .`
+> `grafanactl resources serve --script 'yarn dev'`
