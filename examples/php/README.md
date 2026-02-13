@@ -38,6 +38,6 @@ $ php index.php
 ```
 
 > [!NOTE]
-> [Grizzly](https://github.com/grafana/grizzly/) can be used to preview the examples locally:
+> [grafanactl](https://grafana.github.io/grafanactl/) can be used to preview the dashboards locally:
 >
-> `grr serve -w -S 'php index.php' .`
+> `grafanactl resources serve --script 'php index.php'`
