@@ -5,4 +5,13 @@ const redDashboard = red({
   serviceIds: ["sample-service", "payments", "front-gateway"],
 });
 
-console.log(JSON.stringify(redDashboard.build(), null, 2));
+const dashboard = redDashboard.build();
+
+console.log(JSON.stringify({
+    apiVersion: 'dashboard.grafana.app/v1beta1',
+    kind: 'Dashboard',
+    metadata: {
+        name: dashboard.uid!,
+    },
+    spec: dashboard,
+}, null, 2));
