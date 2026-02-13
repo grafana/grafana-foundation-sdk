@@ -1,0 +1,44 @@
+# yaml-language-server: $schema=https://raw.githubusercontent.com/grafana/cog/main/schemas/veneers.json
+
+language: go
+
+package: statetimeline
+
+builders: ~
+
+options:
+  - duplicate:
+      by_builder: Panel.spanNulls
+      as: enableSpanNulls
+      
+  - struct_fields_as_arguments:
+      by_builder: Panel.enableSpanNulls
+      fields: [Bool]
+
+  - rename_arguments:
+      by_builder: Panel.enableSpanNulls
+      as: [enable]
+  
+  - rename:
+      by_builder: Panel.spanNulls
+      as: spanNullsThreshold
+
+  - struct_fields_as_arguments:
+      by_builder: Panel.spanNullsThreshold
+      fields: [Uint32]
+      
+  - rename_arguments:
+      by_builder: Panel.spanNullsThreshold
+      as: [threshold]
+      
+  - struct_fields_as_arguments:
+      by_builder: Panel.insertNulls
+      fields: [Uint32]
+      
+  - rename:
+      by_builder: Panel.insertNulls
+      as: insertNullsThreshold
+
+  - rename_arguments:
+      by_builder: Panel.insertNullsThreshold
+      as: [threshold]
