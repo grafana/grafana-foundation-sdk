@@ -96,18 +96,18 @@ final class VariantConfig
     }
     
     {{- if objectExists "dashboardv2beta1" "VizConfigKind" }}
-    private static function convert(mixed $input): string
-        {
-            if ($input instanceof {{ fullNamespaceRef "Dashboard\\Panel" }}) {
-                return PanelConverter::convert($input);
-            }
-    
-            if ($input instanceof {{ fullNamespaceRef "Dashboardv2beta1\\VizConfigKind" }}) {
-                return VisualizationConverter::convert($input);
-            }
-    
-            return '/* could not convert panel */';
+    public static function convert(mixed $input): string
+    {
+        if ($input instanceof {{ fullNamespaceRef "Dashboard\\Panel" }}) {
+            return PanelConverter::convert($input);
         }
+    
+        if ($input instanceof {{ fullNamespaceRef "Dashboardv2beta1\\VizConfigKind" }}) {
+            return VisualizationConverter::convert($input);
+        }
+    
+        return '/* could not convert panel */';
+    }
     {{- end }}
 }
 {{ end }}
