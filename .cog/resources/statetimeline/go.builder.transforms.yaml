@@ -7,6 +7,9 @@ package: statetimeline
 builders: []
 
 options: 
+  #############
+  # spanNulls #
+  #############
   - duplicate:
       by_builder: Panel.spanNulls
       as: enableSpanNulls
@@ -32,6 +35,9 @@ options:
       by_builder: Panel.spanNullsThreshold
       as: [threshold]
 
+  ###############
+  # insertNulls #
+  ###############
   - duplicate:
       by_builder: Panel.insertNulls
       as: enableInsertNulls
@@ -48,6 +54,10 @@ options:
   - rename:
       by_builder: Panel.insertNulls
       as: insertNullsThreshold
+
+  - struct_fields_as_arguments:
+      by_builder: Panel.insertNullsThreshold
+      fields: [Uint32]
 
   - rename_arguments:
       by_builder: Panel.insertNullsThreshold
