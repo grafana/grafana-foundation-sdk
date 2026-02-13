@@ -176,7 +176,7 @@ transformations:
     - { path: '%__config_dir%/resources/heatmap/common.builder.transforms.yaml' }
     - { path: '%__config_dir%/resources/team/common.builder.transforms.yaml' }
     - { path: '%__config_dir%/resources/tempo/go.builder.transforms.yaml' }
-    # - { path: '%__config_dir%/resources/statetimeline/common.builder.transforms.yaml' }
+    - { path: '%__config_dir%/resources/statetimeline/go.builder.transforms.yaml' }
 
   converters: '%__config_dir%/converters/config.yaml'
 
