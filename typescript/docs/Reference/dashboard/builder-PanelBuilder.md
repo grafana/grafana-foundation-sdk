@@ -106,6 +106,12 @@ Field options allow you to change how the data is displayed in your visualizatio
 fieldConfig(fieldConfig: dashboard.FieldConfigSource)
 ```
 
+### <span class="badge object-method"></span> fieldMinMax
+
+```typescript
+fieldMinMax(fieldMinMax: boolean)
+```
+
 ### <span class="badge object-method"></span> gridPos
 
 Grid position.

@@ -10,7 +10,7 @@ class Rule:
     annotations: typing.Optional[dict[str, str]]
     condition: str
     data: list[alerting.Query]
-    exec_err_state: typing.Literal["OK", "Alerting", "Error"]
+    exec_err_state: typing.Literal["Alerting", "Error", "OK", "KeepLast"]
     folder_uid: str
     # The amount of time, in seconds, for which the rule must be breached for the rule to be considered to be Firing.
     # Before this time has elapsed, the rule is only considered to be Pending.
@@ -18,7 +18,7 @@ class Rule:
     id_val: typing.Optional[int]
     is_paused: typing.Optional[bool]
     labels: typing.Optional[dict[str, str]]
-    no_data_state: typing.Literal["Alerting", "NoData", "OK"]
+    no_data_state: typing.Literal["OK", "Alerting", "NoData", "KeepLast"]
     notification_settings: typing.Optional[alerting.NotificationSettings]
     org_id: int
     provenance: typing.Optional[alerting.Provenance]

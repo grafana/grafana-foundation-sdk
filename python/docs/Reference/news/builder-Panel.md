@@ -88,6 +88,12 @@ empty/missing will default to grafana blog
 def feed_url(feed_url: str) -> typing.Self
 ```
 
+### <span class="badge object-method"></span> field_min_max
+
+```python
+def field_min_max(field_min_max: bool) -> typing.Self
+```
+
 ### <span class="badge object-method"></span> grid_pos
 
 Grid position.

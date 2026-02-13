@@ -88,6 +88,12 @@ empty/missing will default to grafana blog
 feedUrl(feedUrl: string)
 ```
 
+### <span class="badge object-method"></span> fieldMinMax
+
+```typescript
+fieldMinMax(fieldMinMax: boolean)
+```
+
 ### <span class="badge object-method"></span> gridPos
 
 Grid position.

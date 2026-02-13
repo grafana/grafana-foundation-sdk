@@ -387,6 +387,15 @@ func (builder *PanelBuilder) NoValue(noValue string) *PanelBuilder {
 	return builder
 }
 
+func (builder *PanelBuilder) FieldMinMax(fieldMinMax bool) *PanelBuilder {
+	if builder.internal.FieldConfig == nil {
+		builder.internal.FieldConfig = dashboard.NewFieldConfigSource()
+	}
+	builder.internal.FieldConfig.Defaults.FieldMinMax = &fieldMinMax
+
+	return builder
+}
+
 // Overrides are the options applied to specific fields overriding the defaults.
 func (builder *PanelBuilder) Overrides(overrides []cog.Builder[dashboard.DashboardFieldConfigSourceOverrides]) *PanelBuilder {
 	if builder.internal.FieldConfig == nil {
@@ -731,6 +740,100 @@ func (builder *PanelBuilder) AxisBorderShow(axisBorderShow bool) *PanelBuilder {
 		builder.internal.FieldConfig.Defaults.Custom = NewFieldConfig()
 	}
 	builder.internal.FieldConfig.Defaults.Custom.(*FieldConfig).AxisBorderShow = &axisBorderShow
+
+	return builder
+}
+
+func (builder *PanelBuilder) SpanNullsThreshold(threshold uint32) *PanelBuilder {
+	if builder.internal.FieldConfig == nil {
+		builder.internal.FieldConfig = dashboard.NewFieldConfigSource()
+	}
+	if builder.internal.FieldConfig.Defaults.Custom == nil {
+		builder.internal.FieldConfig.Defaults.Custom = NewFieldConfig()
+	}
+	if builder.internal.FieldConfig.Defaults.Custom.(*FieldConfig).SpanNulls == nil {
+		builder.internal.FieldConfig.Defaults.Custom.(*FieldConfig).SpanNulls = NewBoolOrUint32()
+	}
+	builder.internal.FieldConfig.Defaults.Custom.(*FieldConfig).SpanNulls.Uint32 = &threshold
+
+	return builder
+}
+
+func (builder *PanelBuilder) AlwaysSpanNulls() *PanelBuilder {
+	if builder.internal.FieldConfig == nil {
+		builder.internal.FieldConfig = dashboard.NewFieldConfigSource()
+	}
+	if builder.internal.FieldConfig.Defaults.Custom == nil {
+		builder.internal.FieldConfig.Defaults.Custom = NewFieldConfig()
+	}
+	if builder.internal.FieldConfig.Defaults.Custom.(*FieldConfig).SpanNulls == nil {
+		builder.internal.FieldConfig.Defaults.Custom.(*FieldConfig).SpanNulls = NewBoolOrUint32()
+	}
+	valBool := true
+	builder.internal.FieldConfig.Defaults.Custom.(*FieldConfig).SpanNulls.Bool = &valBool
+
+	return builder
+}
+
+func (builder *PanelBuilder) NeverSpanNulls() *PanelBuilder {
+	if builder.internal.FieldConfig == nil {
+		builder.internal.FieldConfig = dashboard.NewFieldConfigSource()
+	}
+	if builder.internal.FieldConfig.Defaults.Custom == nil {
+		builder.internal.FieldConfig.Defaults.Custom = NewFieldConfig()
+	}
+	if builder.internal.FieldConfig.Defaults.Custom.(*FieldConfig).SpanNulls == nil {
+		builder.internal.FieldConfig.Defaults.Custom.(*FieldConfig).SpanNulls = NewBoolOrUint32()
+	}
+	valBool := false
+	builder.internal.FieldConfig.Defaults.Custom.(*FieldConfig).SpanNulls.Bool = &valBool
+
+	return builder
+}
+
+func (builder *PanelBuilder) InsertNullsThreshold(threshold uint32) *PanelBuilder {
+	if builder.internal.FieldConfig == nil {
+		builder.internal.FieldConfig = dashboard.NewFieldConfigSource()
+	}
+	if builder.internal.FieldConfig.Defaults.Custom == nil {
+		builder.internal.FieldConfig.Defaults.Custom = NewFieldConfig()
+	}
+	if builder.internal.FieldConfig.Defaults.Custom.(*FieldConfig).InsertNulls == nil {
+		builder.internal.FieldConfig.Defaults.Custom.(*FieldConfig).InsertNulls = NewBoolOrUint32()
+	}
+	builder.internal.FieldConfig.Defaults.Custom.(*FieldConfig).InsertNulls.Uint32 = &threshold
+
+	return builder
+}
+
+func (builder *PanelBuilder) AlwaysInsertNulls() *PanelBuilder {
+	if builder.internal.FieldConfig == nil {
+		builder.internal.FieldConfig = dashboard.NewFieldConfigSource()
+	}
+	if builder.internal.FieldConfig.Defaults.Custom == nil {
+		builder.internal.FieldConfig.Defaults.Custom = NewFieldConfig()
+	}
+	if builder.internal.FieldConfig.Defaults.Custom.(*FieldConfig).InsertNulls == nil {
+		builder.internal.FieldConfig.Defaults.Custom.(*FieldConfig).InsertNulls = NewBoolOrUint32()
+	}
+	valBool := true
+	builder.internal.FieldConfig.Defaults.Custom.(*FieldConfig).InsertNulls.Bool = &valBool
+
+	return builder
+}
+
+func (builder *PanelBuilder) NeverInsertNulls() *PanelBuilder {
+	if builder.internal.FieldConfig == nil {
+		builder.internal.FieldConfig = dashboard.NewFieldConfigSource()
+	}
+	if builder.internal.FieldConfig.Defaults.Custom == nil {
+		builder.internal.FieldConfig.Defaults.Custom = NewFieldConfig()
+	}
+	if builder.internal.FieldConfig.Defaults.Custom.(*FieldConfig).InsertNulls == nil {
+		builder.internal.FieldConfig.Defaults.Custom.(*FieldConfig).InsertNulls = NewBoolOrUint32()
+	}
+	valBool := false
+	builder.internal.FieldConfig.Defaults.Custom.(*FieldConfig).InsertNulls.Bool = &valBool
 
 	return builder
 }

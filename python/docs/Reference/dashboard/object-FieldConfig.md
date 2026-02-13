@@ -69,6 +69,7 @@ class FieldConfig:
     # custom is specified by the FieldConfig field
     # in panel plugin schemas.
     custom: typing.Optional[object]
+    field_min_max: typing.Optional[bool]
 ```
 ## Methods
 

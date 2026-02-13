@@ -88,6 +88,12 @@ empty/missing will default to grafana blog
 func (builder *PanelBuilder) FeedUrl(feedUrl string) *PanelBuilder
 ```
 
+### <span class="badge object-method"></span> FieldMinMax
+
+```go
+func (builder *PanelBuilder) FieldMinMax(fieldMinMax bool) *PanelBuilder
+```
+
 ### <span class="badge object-method"></span> GridPos
 
 Grid position.

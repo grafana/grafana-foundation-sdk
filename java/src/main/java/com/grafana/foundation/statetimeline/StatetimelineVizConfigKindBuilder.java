@@ -669,6 +669,40 @@ public class StatetimelineVizConfigKindBuilder implements com.grafana.foundation
         ((FieldConfig) this.internal.spec.fieldConfig.defaults.custom).axisBorderShow = axisBorderShow;
         return this;
     }
+    
+    public StatetimelineVizConfigKindBuilder spanNulls(BoolOrUint32 spanNulls) {
+		if (this.internal.spec == null) {
+			this.internal.spec = new com.grafana.foundation.dashboardv2beta1.VizConfigSpec();
+		}
+		if (this.internal.spec.fieldConfig == null) {
+			this.internal.spec.fieldConfig = new com.grafana.foundation.dashboardv2beta1.FieldConfigSource();
+		}
+		if (this.internal.spec.fieldConfig.defaults == null) {
+			this.internal.spec.fieldConfig.defaults = new com.grafana.foundation.dashboardv2beta1.FieldConfig();
+		}
+		if (this.internal.spec.fieldConfig.defaults.custom == null) {
+			this.internal.spec.fieldConfig.defaults.custom = new com.grafana.foundation.statetimeline.FieldConfig();
+		}
+        ((FieldConfig) this.internal.spec.fieldConfig.defaults.custom).spanNulls = spanNulls;
+        return this;
+    }
+    
+    public StatetimelineVizConfigKindBuilder insertNulls(BoolOrUint32 insertNulls) {
+		if (this.internal.spec == null) {
+			this.internal.spec = new com.grafana.foundation.dashboardv2beta1.VizConfigSpec();
+		}
+		if (this.internal.spec.fieldConfig == null) {
+			this.internal.spec.fieldConfig = new com.grafana.foundation.dashboardv2beta1.FieldConfigSource();
+		}
+		if (this.internal.spec.fieldConfig.defaults == null) {
+			this.internal.spec.fieldConfig.defaults = new com.grafana.foundation.dashboardv2beta1.FieldConfig();
+		}
+		if (this.internal.spec.fieldConfig.defaults.custom == null) {
+			this.internal.spec.fieldConfig.defaults.custom = new com.grafana.foundation.statetimeline.FieldConfig();
+		}
+        ((FieldConfig) this.internal.spec.fieldConfig.defaults.custom).insertNulls = insertNulls;
+        return this;
+    }
     public VizConfigKind build() {
         return this.internal;
     }

@@ -67,13 +67,13 @@ public class DataqueryBuilder implements com.grafana.foundation.cog.Builder<com.
         return this;
     }
     
-    public DataqueryBuilder datasource(DataSourceRef datasource) {
-        this.internal.datasource = datasource;
+    public DataqueryBuilder interval(String interval) {
+        this.internal.interval = interval;
         return this;
     }
     
-    public DataqueryBuilder interval(String interval) {
-        this.internal.interval = interval;
+    public DataqueryBuilder datasource(DataSourceRef datasource) {
+        this.internal.datasource = datasource;
         return this;
     }
     

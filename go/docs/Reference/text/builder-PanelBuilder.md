@@ -92,6 +92,12 @@ The display value for this field.  This supports template variables blank is aut
 func (builder *PanelBuilder) DisplayName(displayName string) *PanelBuilder
 ```
 
+### <span class="badge object-method"></span> FieldMinMax
+
+```go
+func (builder *PanelBuilder) FieldMinMax(fieldMinMax bool) *PanelBuilder
+```
+
 ### <span class="badge object-method"></span> GridPos
 
 Grid position.

@@ -188,6 +188,12 @@ displayName(string $displayName)
 drawStyle(\Grafana\Foundation\Common\GraphDrawStyle $drawStyle)
 ```
 
+### <span class="badge object-method"></span> fieldMinMax
+
+```php
+fieldMinMax(bool $fieldMinMax)
+```
+
 ### <span class="badge object-method"></span> fields
 
 Map fields to appropriate dimension

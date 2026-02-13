@@ -110,6 +110,8 @@ class FieldConfig implements \JsonSerializable
      */
     public $custom;
 
+    public ?bool $fieldMinMax;
+
     /**
      * @param string|null $displayName
      * @param string|null $displayNameFromDS
@@ -127,8 +129,9 @@ class FieldConfig implements \JsonSerializable
      * @param array<\Grafana\Foundation\Dashboard\DashboardLink>|null $links
      * @param string|null $noValue
      * @param mixed|null $custom
+     * @param bool|null $fieldMinMax
      */
-    public function __construct(?string $displayName = null, ?string $displayNameFromDS = null, ?string $description = null, ?string $path = null, ?bool $writeable = null, ?bool $filterable = null, ?string $unit = null, ?float $decimals = null, ?float $min = null, ?float $max = null, ?array $mappings = null, ?\Grafana\Foundation\Dashboard\ThresholdsConfig $thresholds = null, ?\Grafana\Foundation\Dashboard\FieldColor $color = null, ?array $links = null, ?string $noValue = null,  $custom = null)
+    public function __construct(?string $displayName = null, ?string $displayNameFromDS = null, ?string $description = null, ?string $path = null, ?bool $writeable = null, ?bool $filterable = null, ?string $unit = null, ?float $decimals = null, ?float $min = null, ?float $max = null, ?array $mappings = null, ?\Grafana\Foundation\Dashboard\ThresholdsConfig $thresholds = null, ?\Grafana\Foundation\Dashboard\FieldColor $color = null, ?array $links = null, ?string $noValue = null,  $custom = null, ?bool $fieldMinMax = null)
     {
         $this->displayName = $displayName;
         $this->displayNameFromDS = $displayNameFromDS;
@@ -146,6 +149,7 @@ class FieldConfig implements \JsonSerializable
         $this->links = $links;
         $this->noValue = $noValue;
         $this->custom = $custom;
+        $this->fieldMinMax = $fieldMinMax;
     }
 
     /**
@@ -153,7 +157,7 @@ class FieldConfig implements \JsonSerializable
      */
     public static function fromArray(array $inputData): self
     {
-        /** @var array{displayName?: string, displayNameFromDS?: string, description?: string, path?: string, writeable?: bool, filterable?: bool, unit?: string, decimals?: float, min?: float, max?: float, mappings?: array<mixed|mixed|mixed|mixed>, thresholds?: mixed, color?: mixed, links?: array<mixed>, noValue?: string, custom?: mixed} $inputData */
+        /** @var array{displayName?: string, displayNameFromDS?: string, description?: string, path?: string, writeable?: bool, filterable?: bool, unit?: string, decimals?: float, min?: float, max?: float, mappings?: array<mixed|mixed|mixed|mixed>, thresholds?: mixed, color?: mixed, links?: array<mixed>, noValue?: string, custom?: mixed, fieldMinMax?: bool} $inputData */
         $data = $inputData;
         return new self(
             displayName: $data["displayName"] ?? null,
@@ -199,6 +203,7 @@ class FieldConfig implements \JsonSerializable
     }), $data["links"] ?? [])),
             noValue: $data["noValue"] ?? null,
             custom: $data["custom"] ?? null,
+            fieldMinMax: $data["fieldMinMax"] ?? null,
         );
     }
 
@@ -255,6 +260,9 @@ class FieldConfig implements \JsonSerializable
         }
         if (isset($this->custom)) {
             $data->custom = $this->custom;
+        }
+        if (isset($this->fieldMinMax)) {
+            $data->fieldMinMax = $this->fieldMinMax;
         }
         return $data;
     }

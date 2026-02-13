@@ -20,6 +20,8 @@ type FieldConfig struct {
     HideFrom *common.HideSeriesConfig `json:"hideFrom,omitempty"`
     FillOpacity *uint32 `json:"fillOpacity,omitempty"`
     AxisBorderShow *bool `json:"axisBorderShow,omitempty"`
+    SpanNulls *statetimeline.BoolOrUint32 `json:"spanNulls,omitempty"`
+    InsertNulls *statetimeline.BoolOrUint32 `json:"insertNulls,omitempty"`
 }
 ```
 ## Methods

@@ -88,6 +88,12 @@ empty/missing will default to grafana blog
 public PanelBuilder feedUrl(String feedUrl)
 ```
 
+### <span class="badge object-method"></span> fieldMinMax
+
+```java
+public PanelBuilder fieldMinMax(Boolean fieldMinMax)
+```
+
 ### <span class="badge object-method"></span> gridPos
 
 Grid position.

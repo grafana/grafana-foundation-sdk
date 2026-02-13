@@ -182,6 +182,12 @@ func (builder *PanelBuilder) DisplayName(displayName string) *PanelBuilder
 func (builder *PanelBuilder) DrawStyle(drawStyle common.GraphDrawStyle) *PanelBuilder
 ```
 
+### <span class="badge object-method"></span> FieldMinMax
+
+```go
+func (builder *PanelBuilder) FieldMinMax(fieldMinMax bool) *PanelBuilder
+```
+
 ### <span class="badge object-method"></span> Fields
 
 Map fields to appropriate dimension

@@ -156,6 +156,12 @@ func (builder *VisualizationBuilder) FillOpacity(fillOpacity uint32) *Visualizat
 func (builder *VisualizationBuilder) HideFrom(hideFrom cog.Builder[common.HideSeriesConfig]) *VisualizationBuilder
 ```
 
+### <span class="badge object-method"></span> InsertNulls
+
+```go
+func (builder *VisualizationBuilder) InsertNulls(insertNulls statetimeline.BoolOrUint32) *VisualizationBuilder
+```
+
 ### <span class="badge object-method"></span> Legend
 
 ```go
@@ -298,6 +304,12 @@ Show timeline values on chart
 
 ```go
 func (builder *VisualizationBuilder) ShowValue(showValue common.VisibilityMode) *VisualizationBuilder
+```
+
+### <span class="badge object-method"></span> SpanNulls
+
+```go
+func (builder *VisualizationBuilder) SpanNulls(spanNulls statetimeline.BoolOrUint32) *VisualizationBuilder
 ```
 
 ### <span class="badge object-method"></span> Thresholds

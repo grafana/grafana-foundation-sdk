@@ -470,6 +470,19 @@ final class PanelConverter
     
     
     }
+            if ($input->fieldConfig !== null && $input->fieldConfig->defaults->fieldMinMax !== null) {
+    
+        
+    $buffer = 'fieldMinMax(';
+        $arg0 =\var_export($input->fieldConfig->defaults->fieldMinMax, true);
+        $buffer .= $arg0;
+        
+    $buffer .= ')';
+
+    $calls[] = $buffer;
+    
+    
+    }
             if ($input->fieldConfig !== null && count($input->fieldConfig->overrides) >= 1) {
     
         

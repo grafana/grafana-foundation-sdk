@@ -1,5 +1,5 @@
 # Installing
 
 ```shell
-composer require "grafana/foundation-sdk:v0.0.6"
+composer require "grafana/foundation-sdk:v0.0.7"
 ```

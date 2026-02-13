@@ -85,8 +85,10 @@ class FieldConfig:
     hide_from: typing.Optional[common.HideSeriesConfig]
     fill_opacity: typing.Optional[int]
     axis_border_show: typing.Optional[bool]
+    span_nulls: typing.Optional[typing.Union[bool, int]]
+    insert_nulls: typing.Optional[typing.Union[bool, int]]
 
-    def __init__(self, line_width: typing.Optional[int] = 0, axis_placement: typing.Optional[common.AxisPlacement] = None, axis_color_mode: typing.Optional[common.AxisColorMode] = None, axis_label: typing.Optional[str] = None, axis_width: typing.Optional[float] = None, axis_soft_min: typing.Optional[float] = None, axis_soft_max: typing.Optional[float] = None, axis_grid_show: typing.Optional[bool] = None, scale_distribution: typing.Optional[common.ScaleDistributionConfig] = None, axis_centered_zero: typing.Optional[bool] = None, hide_from: typing.Optional[common.HideSeriesConfig] = None, fill_opacity: typing.Optional[int] = 70, axis_border_show: typing.Optional[bool] = None) -> None:
+    def __init__(self, line_width: typing.Optional[int] = 0, axis_placement: typing.Optional[common.AxisPlacement] = None, axis_color_mode: typing.Optional[common.AxisColorMode] = None, axis_label: typing.Optional[str] = None, axis_width: typing.Optional[float] = None, axis_soft_min: typing.Optional[float] = None, axis_soft_max: typing.Optional[float] = None, axis_grid_show: typing.Optional[bool] = None, scale_distribution: typing.Optional[common.ScaleDistributionConfig] = None, axis_centered_zero: typing.Optional[bool] = None, hide_from: typing.Optional[common.HideSeriesConfig] = None, fill_opacity: typing.Optional[int] = 70, axis_border_show: typing.Optional[bool] = None, span_nulls: typing.Optional[typing.Union[bool, int]] = None, insert_nulls: typing.Optional[typing.Union[bool, int]] = None) -> None:
         self.line_width = line_width
         self.axis_placement = axis_placement
         self.axis_color_mode = axis_color_mode
@@ -100,6 +102,8 @@ class FieldConfig:
         self.hide_from = hide_from
         self.fill_opacity = fill_opacity
         self.axis_border_show = axis_border_show
+        self.span_nulls = span_nulls
+        self.insert_nulls = insert_nulls
 
     def to_json(self) -> dict[str, object]:
         payload: dict[str, object] = {
@@ -130,6 +134,10 @@ class FieldConfig:
             payload["fillOpacity"] = self.fill_opacity
         if self.axis_border_show is not None:
             payload["axisBorderShow"] = self.axis_border_show
+        if self.span_nulls is not None:
+            payload["spanNulls"] = self.span_nulls
+        if self.insert_nulls is not None:
+            payload["insertNulls"] = self.insert_nulls
         return payload
 
     @classmethod
@@ -161,7 +169,11 @@ class FieldConfig:
         if "fillOpacity" in data:
             args["fill_opacity"] = data["fillOpacity"]
         if "axisBorderShow" in data:
-            args["axis_border_show"] = data["axisBorderShow"]        
+            args["axis_border_show"] = data["axisBorderShow"]
+        if "spanNulls" in data:
+            args["span_nulls"] = data["spanNulls"]
+        if "insertNulls" in data:
+            args["insert_nulls"] = data["insertNulls"]        
 
         return cls(**args)
 

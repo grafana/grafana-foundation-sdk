@@ -2783,7 +2783,8 @@ type FieldConfig struct {
 	NoValue *string `json:"noValue,omitempty"`
 	// custom is specified by the FieldConfig field
 	// in panel plugin schemas.
-	Custom any `json:"custom,omitempty"`
+	Custom      any   `json:"custom,omitempty"`
+	FieldMinMax *bool `json:"fieldMinMax,omitempty"`
 }
 
 // NewFieldConfig creates a new FieldConfig object.
@@ -3007,6 +3008,17 @@ func (resource *FieldConfig) UnmarshalJSONStrict(raw []byte) error {
 		delete(fields, "custom")
 
 	}
+	// Field "fieldMinMax"
+	if fields["fieldMinMax"] != nil {
+		if string(fields["fieldMinMax"]) != "null" {
+			if err := json.Unmarshal(fields["fieldMinMax"], &resource.FieldMinMax); err != nil {
+				errs = append(errs, cog.MakeBuildErrors("fieldMinMax", err)...)
+			}
+
+		}
+		delete(fields, "fieldMinMax")
+
+	}
 
 	for field := range fields {
 		errs = append(errs, cog.MakeBuildErrors("FieldConfig", fmt.Errorf("unexpected field '%s'", field))...)
@@ -3161,6 +3173,15 @@ func (resource FieldConfig) Equals(other FieldConfig) bool {
 	// is DeepEqual good enough here?
 	if !reflect.DeepEqual(resource.Custom, other.Custom) {
 		return false
+	}
+	if resource.FieldMinMax == nil && other.FieldMinMax != nil || resource.FieldMinMax != nil && other.FieldMinMax == nil {
+		return false
+	}
+
+	if resource.FieldMinMax != nil {
+		if *resource.FieldMinMax != *other.FieldMinMax {
+			return false
+		}
 	}
 
 	return true

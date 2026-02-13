@@ -343,6 +343,17 @@ export class PanelBuilder implements cog.Builder<dashboard.Panel> {
         return this;
     }
 
+    fieldMinMax(fieldMinMax: boolean): this {
+        if (!this.internal.fieldConfig) {
+            this.internal.fieldConfig = dashboard.defaultFieldConfigSource();
+        }
+        if (!this.internal.fieldConfig.defaults) {
+            this.internal.fieldConfig.defaults = dashboard.defaultFieldConfig();
+        }
+        this.internal.fieldConfig.defaults.fieldMinMax = fieldMinMax;
+        return this;
+    }
+
     // Overrides are the options applied to specific fields overriding the defaults.
     overrides(overrides: {
 	matcher: dashboard.MatcherConfig;

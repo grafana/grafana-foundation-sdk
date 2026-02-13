@@ -102,6 +102,12 @@ enableInfiniteScrolling(bool $enableInfiniteScrolling)
 enableLogDetails(bool $enableLogDetails)
 ```
 
+### <span class="badge object-method"></span> fieldMinMax
+
+```php
+fieldMinMax(bool $fieldMinMax)
+```
+
 ### <span class="badge object-method"></span> gridPos
 
 Grid position.

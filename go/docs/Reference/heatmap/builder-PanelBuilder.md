@@ -136,6 +136,12 @@ Controls exemplar options
 func (builder *PanelBuilder) ExemplarsColor(color string) *PanelBuilder
 ```
 
+### <span class="badge object-method"></span> FieldMinMax
+
+```go
+func (builder *PanelBuilder) FieldMinMax(fieldMinMax bool) *PanelBuilder
+```
+
 ### <span class="badge object-method"></span> FilterValues
 
 Filters values between a given range

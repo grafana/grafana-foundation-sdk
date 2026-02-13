@@ -156,6 +156,12 @@ public VisualizationBuilder fillOpacity(Integer fillOpacity)
 public VisualizationBuilder hideFrom(com.grafana.foundation.cog.Builder<HideSeriesConfig> hideFrom)
 ```
 
+### <span class="badge object-method"></span> insertNulls
+
+```java
+public VisualizationBuilder insertNulls(BoolOrUint32 insertNulls)
+```
+
 ### <span class="badge object-method"></span> legend
 
 ```java
@@ -298,6 +304,12 @@ Show timeline values on chart
 
 ```java
 public VisualizationBuilder showValue(VisibilityMode showValue)
+```
+
+### <span class="badge object-method"></span> spanNulls
+
+```java
+public VisualizationBuilder spanNulls(BoolOrUint32 spanNulls)
 ```
 
 ### <span class="badge object-method"></span> thresholds

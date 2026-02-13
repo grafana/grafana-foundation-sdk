@@ -34,6 +34,16 @@ class FieldConfig implements \JsonSerializable
 
     public ?bool $axisBorderShow;
 
+    /**
+     * @var bool|int|null
+     */
+    public $spanNulls;
+
+    /**
+     * @var bool|int|null
+     */
+    public $insertNulls;
+
 }
 ```
 ## Methods

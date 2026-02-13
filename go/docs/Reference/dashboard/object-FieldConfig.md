@@ -63,6 +63,7 @@ type FieldConfig struct {
     // custom is specified by the FieldConfig field
     // in panel plugin schemas.
     Custom any `json:"custom,omitempty"`
+    FieldMinMax *bool `json:"fieldMinMax,omitempty"`
 }
 ```
 ## Methods

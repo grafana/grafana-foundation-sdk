@@ -45,16 +45,16 @@ class Dataquery(cogvariants.Dataquery):
     # Specify the query flavor
     # TODO make this required and give it a default
     query_type: typing.Optional[str]
+    # An additional lower limit for the step parameter of the Prometheus query and for the
+    # `$__interval` and `$__rate_interval` variables.
+    interval: typing.Optional[str]
     # For mixed data sources the selected datasource is on the query level.
     # For non mixed scenarios this is undefined.
     # TODO find a better way to do this ^ that's friendly to schema
     # TODO this shouldn't be unknown but DataSourceRef | null
     datasource: typing.Optional[common.DataSourceRef]
-    # An additional lower limit for the step parameter of the Prometheus query and for the
-    # `$__interval` and `$__rate_interval` variables.
-    interval: typing.Optional[str]
 
-    def __init__(self, expr: str = "", instant: typing.Optional[bool] = None, range_val: typing.Optional[bool] = None, exemplar: typing.Optional[bool] = None, editor_mode: typing.Optional['QueryEditorMode'] = None, format_val: typing.Optional['PromQueryFormat'] = None, legend_format: typing.Optional[str] = None, interval_factor: typing.Optional[float] = None, ref_id: typing.Optional[str] = None, hide: typing.Optional[bool] = None, query_type: typing.Optional[str] = None, datasource: typing.Optional[common.DataSourceRef] = None, interval: typing.Optional[str] = None) -> None:
+    def __init__(self, expr: str = "", instant: typing.Optional[bool] = None, range_val: typing.Optional[bool] = None, exemplar: typing.Optional[bool] = None, editor_mode: typing.Optional['QueryEditorMode'] = None, format_val: typing.Optional['PromQueryFormat'] = None, legend_format: typing.Optional[str] = None, interval_factor: typing.Optional[float] = None, ref_id: typing.Optional[str] = None, hide: typing.Optional[bool] = None, query_type: typing.Optional[str] = None, interval: typing.Optional[str] = None, datasource: typing.Optional[common.DataSourceRef] = None) -> None:
         self.expr = expr
         self.instant = instant
         self.range_val = range_val
@@ -66,8 +66,8 @@ class Dataquery(cogvariants.Dataquery):
         self.ref_id = ref_id
         self.hide = hide
         self.query_type = query_type
-        self.datasource = datasource
         self.interval = interval
+        self.datasource = datasource
 
     def to_json(self) -> dict[str, object]:
         payload: dict[str, object] = {
@@ -93,10 +93,10 @@ class Dataquery(cogvariants.Dataquery):
             payload["hide"] = self.hide
         if self.query_type is not None:
             payload["queryType"] = self.query_type
-        if self.datasource is not None:
-            payload["datasource"] = self.datasource
         if self.interval is not None:
             payload["interval"] = self.interval
+        if self.datasource is not None:
+            payload["datasource"] = self.datasource
         return payload
 
     @classmethod
@@ -125,10 +125,10 @@ class Dataquery(cogvariants.Dataquery):
             args["hide"] = data["hide"]
         if "queryType" in data:
             args["query_type"] = data["queryType"]
-        if "datasource" in data:
-            args["datasource"] = common.DataSourceRef.from_json(data["datasource"])
         if "interval" in data:
-            args["interval"] = data["interval"]        
+            args["interval"] = data["interval"]
+        if "datasource" in data:
+            args["datasource"] = common.DataSourceRef.from_json(data["datasource"])        
 
         return cls(**args)
 

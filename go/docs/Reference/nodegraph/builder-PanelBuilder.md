@@ -86,6 +86,12 @@ func (builder *PanelBuilder) DisplayName(displayName string) *PanelBuilder
 func (builder *PanelBuilder) Edges(edges cog.Builder[nodegraph.EdgeOptions]) *PanelBuilder
 ```
 
+### <span class="badge object-method"></span> FieldMinMax
+
+```go
+func (builder *PanelBuilder) FieldMinMax(fieldMinMax bool) *PanelBuilder
+```
+
 ### <span class="badge object-method"></span> GridPos
 
 Grid position.

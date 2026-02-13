@@ -98,6 +98,26 @@
         },
         "axisBorderShow": {
           "type": "boolean"
+        },
+        "spanNulls": {
+          "oneOf": [
+            {
+              "type": "boolean"
+            },
+            {
+              "type": "integer"
+            }
+          ]
+        },
+        "insertNulls": {
+          "oneOf": [
+            {
+              "type": "boolean"
+            },
+            {
+              "type": "integer"
+            }
+          ]
         }
       }
     },

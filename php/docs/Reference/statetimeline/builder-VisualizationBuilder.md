@@ -164,6 +164,14 @@ fillOpacity(int $fillOpacity)
 hideFrom(\Grafana\Foundation\Cog\Builder $hideFrom)
 ```
 
+### <span class="badge object-method"></span> insertNulls
+
+@param bool|int $insertNulls
+
+```php
+insertNulls($insertNulls)
+```
+
 ### <span class="badge object-method"></span> legend
 
 @param \Grafana\Foundation\Cog\Builder<\Grafana\Foundation\Common\VizLegendOptions> $legend
@@ -324,6 +332,14 @@ Show timeline values on chart
 
 ```php
 showValue(\Grafana\Foundation\Common\VisibilityMode $showValue)
+```
+
+### <span class="badge object-method"></span> spanNulls
+
+@param bool|int $spanNulls
+
+```php
+spanNulls($spanNulls)
 ```
 
 ### <span class="badge object-method"></span> thresholds

@@ -161,7 +161,7 @@ export interface Rule {
 	annotations?: Record<string, string>;
 	condition: string;
 	data: Query[];
-	execErrState: "OK" | "Alerting" | "Error";
+	execErrState: "Alerting" | "Error" | "OK" | "KeepLast";
 	folderUID: string;
 	// The amount of time, in seconds, for which the rule must be breached for the rule to be considered to be Firing.
 	// Before this time has elapsed, the rule is only considered to be Pending.
@@ -169,7 +169,7 @@ export interface Rule {
 	id?: number;
 	isPaused?: boolean;
 	labels?: Record<string, string>;
-	noDataState: "Alerting" | "NoData" | "OK";
+	noDataState: "OK" | "Alerting" | "NoData" | "KeepLast";
 	notification_settings?: NotificationSettings;
 	orgID: number;
 	provenance?: Provenance;
@@ -183,10 +183,10 @@ export interface Rule {
 export const defaultRule = (): Rule => ({
 	condition: "",
 	data: [],
-	execErrState: "OK",
+	execErrState: "Alerting",
 	folderUID: "",
 	for: "",
-	noDataState: "Alerting",
+	noDataState: "OK",
 	orgID: 0,
 	ruleGroup: "",
 	title: "",

@@ -10,7 +10,7 @@ export interface Rule {
 	annotations?: Record<string, string>;
 	condition: string;
 	data: alerting.Query[];
-	execErrState: "OK" | "Alerting" | "Error";
+	execErrState: "Alerting" | "Error" | "OK" | "KeepLast";
 	folderUID: string;
 	// The amount of time, in seconds, for which the rule must be breached for the rule to be considered to be Firing.
 	// Before this time has elapsed, the rule is only considered to be Pending.
@@ -18,7 +18,7 @@ export interface Rule {
 	id?: number;
 	isPaused?: boolean;
 	labels?: Record<string, string>;
-	noDataState: "Alerting" | "NoData" | "OK";
+	noDataState: "OK" | "Alerting" | "NoData" | "KeepLast";
 	notification_settings?: alerting.NotificationSettings;
 	orgID: number;
 	provenance?: alerting.Provenance;

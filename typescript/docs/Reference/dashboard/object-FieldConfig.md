@@ -63,6 +63,7 @@ export interface FieldConfig {
 	// custom is specified by the FieldConfig field
 	// in panel plugin schemas.
 	custom?: any;
+	fieldMinMax?: boolean;
 }
 
 ```

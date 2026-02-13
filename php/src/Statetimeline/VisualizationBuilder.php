@@ -564,4 +564,32 @@ class VisualizationBuilder implements \Grafana\Foundation\Cog\Builder
         return $this;
     }
 
+    /**
+     * @param bool|int $spanNulls
+     */
+    public function spanNulls( $spanNulls): static
+    {    
+        if ($this->internal->spec->fieldConfig->defaults->custom === null) {
+            $this->internal->spec->fieldConfig->defaults->custom = new \Grafana\Foundation\Statetimeline\FieldConfig();
+        }
+        assert($this->internal->spec->fieldConfig->defaults->custom instanceof \Grafana\Foundation\Statetimeline\FieldConfig);
+        $this->internal->spec->fieldConfig->defaults->custom->spanNulls = $spanNulls;
+    
+        return $this;
+    }
+
+    /**
+     * @param bool|int $insertNulls
+     */
+    public function insertNulls( $insertNulls): static
+    {    
+        if ($this->internal->spec->fieldConfig->defaults->custom === null) {
+            $this->internal->spec->fieldConfig->defaults->custom = new \Grafana\Foundation\Statetimeline\FieldConfig();
+        }
+        assert($this->internal->spec->fieldConfig->defaults->custom instanceof \Grafana\Foundation\Statetimeline\FieldConfig);
+        $this->internal->spec->fieldConfig->defaults->custom->insertNulls = $insertNulls;
+    
+        return $this;
+    }
+
 }

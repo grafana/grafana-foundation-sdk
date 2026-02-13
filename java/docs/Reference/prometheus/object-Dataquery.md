@@ -18,8 +18,8 @@ public class Dataquery extends com.grafana.foundation.cog.variants.Dataquery {
   public String refId;
   public Boolean hide;
   public String queryType;
-  public DataSourceRef datasource;
   public String interval;
+  public DataSourceRef datasource;
 }
 ```
 ## See also

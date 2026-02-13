@@ -20,6 +20,8 @@ export interface FieldConfig {
 	hideFrom?: common.HideSeriesConfig;
 	fillOpacity?: number;
 	axisBorderShow?: boolean;
+	spanNulls?: boolean | number;
+	insertNulls?: boolean | number;
 }
 
 ```

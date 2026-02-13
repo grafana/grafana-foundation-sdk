@@ -52,11 +52,17 @@ public class FieldConfig {
     @JsonInclude(JsonInclude.Include.NON_NULL)
     @JsonProperty("axisBorderShow")
     public Boolean axisBorderShow;
+    @JsonInclude(JsonInclude.Include.NON_NULL)
+    @JsonProperty("spanNulls")
+    public BoolOrUint32 spanNulls;
+    @JsonInclude(JsonInclude.Include.NON_NULL)
+    @JsonProperty("insertNulls")
+    public BoolOrUint32 insertNulls;
     public FieldConfig() {
         this.lineWidth = 0;
         this.fillOpacity = 70;
     }
-    public FieldConfig(Integer lineWidth,AxisPlacement axisPlacement,AxisColorMode axisColorMode,String axisLabel,Double axisWidth,Double axisSoftMin,Double axisSoftMax,Boolean axisGridShow,ScaleDistributionConfig scaleDistribution,Boolean axisCenteredZero,HideSeriesConfig hideFrom,Integer fillOpacity,Boolean axisBorderShow) {
+    public FieldConfig(Integer lineWidth,AxisPlacement axisPlacement,AxisColorMode axisColorMode,String axisLabel,Double axisWidth,Double axisSoftMin,Double axisSoftMax,Boolean axisGridShow,ScaleDistributionConfig scaleDistribution,Boolean axisCenteredZero,HideSeriesConfig hideFrom,Integer fillOpacity,Boolean axisBorderShow,BoolOrUint32 spanNulls,BoolOrUint32 insertNulls) {
         this.lineWidth = lineWidth;
         this.axisPlacement = axisPlacement;
         this.axisColorMode = axisColorMode;
@@ -70,6 +76,8 @@ public class FieldConfig {
         this.hideFrom = hideFrom;
         this.fillOpacity = fillOpacity;
         this.axisBorderShow = axisBorderShow;
+        this.spanNulls = spanNulls;
+        this.insertNulls = insertNulls;
     }
     
     public String toJSON() throws JsonProcessingException {

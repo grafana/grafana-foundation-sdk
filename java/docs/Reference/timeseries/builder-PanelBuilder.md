@@ -158,6 +158,12 @@ public PanelBuilder displayName(String displayName)
 public PanelBuilder drawStyle(GraphDrawStyle drawStyle)
 ```
 
+### <span class="badge object-method"></span> fieldMinMax
+
+```java
+public PanelBuilder fieldMinMax(Boolean fieldMinMax)
+```
+
 ### <span class="badge object-method"></span> fillBelowTo
 
 ```java

@@ -124,6 +124,16 @@ class Dataquery(cogbuilder.Builder[prometheus.Dataquery]):
     
         return self
     
+    def interval(self, interval: str) -> typing.Self:    
+        """
+        An additional lower limit for the step parameter of the Prometheus query and for the
+        `$__interval` and `$__rate_interval` variables.
+        """
+            
+        self._internal.interval = interval
+    
+        return self
+    
     def datasource(self, datasource: common.DataSourceRef) -> typing.Self:    
         """
         For mixed data sources the selected datasource is on the query level.
@@ -133,16 +143,6 @@ class Dataquery(cogbuilder.Builder[prometheus.Dataquery]):
         """
             
         self._internal.datasource = datasource
-    
-        return self
-    
-    def interval(self, interval: str) -> typing.Self:    
-        """
-        An additional lower limit for the step parameter of the Prometheus query and for the
-        `$__interval` and `$__rate_interval` variables.
-        """
-            
-        self._internal.interval = interval
     
         return self
     

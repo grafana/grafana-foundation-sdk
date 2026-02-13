@@ -20,5 +20,7 @@ public class FieldConfig {
   public HideSeriesConfig hideFrom;
   public Integer fillOpacity;
   public Boolean axisBorderShow;
+  public BoolOrUint32 spanNulls;
+  public BoolOrUint32 insertNulls;
 }
 ```

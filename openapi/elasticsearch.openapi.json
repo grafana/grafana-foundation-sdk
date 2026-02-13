@@ -426,10 +426,7 @@
           },
           "settings": {
             "type": "object",
-            "additionalProperties": {
-              "type": "object",
-              "additionalProperties": {}
-            }
+            "additionalProperties": true
           },
           "hide": {
             "type": "boolean"

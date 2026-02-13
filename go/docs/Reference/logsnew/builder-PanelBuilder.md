@@ -98,6 +98,12 @@ func (builder *PanelBuilder) EnableInfiniteScrolling(enableInfiniteScrolling boo
 func (builder *PanelBuilder) EnableLogDetails(enableLogDetails bool) *PanelBuilder
 ```
 
+### <span class="badge object-method"></span> FieldMinMax
+
+```go
+func (builder *PanelBuilder) FieldMinMax(fieldMinMax bool) *PanelBuilder
+```
+
 ### <span class="badge object-method"></span> GridPos
 
 Grid position.

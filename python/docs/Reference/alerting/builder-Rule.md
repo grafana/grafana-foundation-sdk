@@ -33,7 +33,7 @@ def condition(condition: str) -> typing.Self
 ### <span class="badge object-method"></span> exec_err_state
 
 ```python
-def exec_err_state(exec_err_state: typing.Literal["OK", "Alerting", "Error"]) -> typing.Self
+def exec_err_state(exec_err_state: typing.Literal["Alerting", "Error", "OK", "KeepLast"]) -> typing.Self
 ```
 
 ### <span class="badge object-method"></span> folder_uid
@@ -73,7 +73,7 @@ def labels(labels: dict[str, str]) -> typing.Self
 ### <span class="badge object-method"></span> no_data_state
 
 ```python
-def no_data_state(no_data_state: typing.Literal["Alerting", "NoData", "OK"]) -> typing.Self
+def no_data_state(no_data_state: typing.Literal["OK", "Alerting", "NoData", "KeepLast"]) -> typing.Self
 ```
 
 ### <span class="badge object-method"></span> notification_settings

@@ -2,6 +2,7 @@
 
 ## Objects
 
+ * <span class="badge object-type-struct"></span> [BoolOrUint32](./object-BoolOrUint32.md)
  * <span class="badge object-type-struct"></span> [FieldConfig](./object-FieldConfig.md)
  * <span class="badge object-type-struct"></span> [Options](./object-Options.md)
 ## Builders
@@ -24,6 +25,14 @@ NewFieldConfig creates a new FieldConfig object.
 
 ```go
 func NewFieldConfig() *FieldConfig
+```
+
+### <span class="badge function"></span> NewBoolOrUint32
+
+NewBoolOrUint32 creates a new BoolOrUint32 object.
+
+```go
+func NewBoolOrUint32() *BoolOrUint32
 ```
 
 ### <span class="badge function"></span> VariantConfig

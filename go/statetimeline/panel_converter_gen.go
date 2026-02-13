@@ -426,6 +426,18 @@ func PanelConverter(input dashboard.Panel) string {
 		buffer.Reset()
 
 	}
+	if input.FieldConfig != nil && input.FieldConfig.Defaults.FieldMinMax != nil {
+
+		buffer.WriteString(`FieldMinMax(`)
+		arg0 := fmt.Sprintf("%#v", *input.FieldConfig.Defaults.FieldMinMax)
+		buffer.WriteString(arg0)
+
+		buffer.WriteString(")")
+
+		calls = append(calls, buffer.String())
+		buffer.Reset()
+
+	}
 	if input.FieldConfig != nil && input.FieldConfig.Overrides != nil && len(input.FieldConfig.Overrides) >= 1 {
 
 		buffer.WriteString(`Overrides(`)
@@ -716,6 +728,66 @@ func PanelConverter(input dashboard.Panel) string {
 		arg0 := fmt.Sprintf("%#v", *input.FieldConfig.Defaults.Custom.(*FieldConfig).AxisBorderShow)
 		buffer.WriteString(arg0)
 
+		buffer.WriteString(")")
+
+		calls = append(calls, buffer.String())
+		buffer.Reset()
+
+	}
+	if input.FieldConfig != nil && input.FieldConfig.Defaults.Custom != nil && input.FieldConfig.Defaults.Custom.(*FieldConfig).SpanNulls != nil && input.FieldConfig.Defaults.Custom.(*FieldConfig).SpanNulls.Uint32 != nil {
+
+		buffer.WriteString(`SpanNullsThreshold(`)
+		arg0 := fmt.Sprintf("%#v", *input.FieldConfig.Defaults.Custom.(*FieldConfig).SpanNulls.Uint32)
+		buffer.WriteString(arg0)
+
+		buffer.WriteString(")")
+
+		calls = append(calls, buffer.String())
+		buffer.Reset()
+
+	}
+	if input.FieldConfig != nil && input.FieldConfig.Defaults.Custom != nil && input.FieldConfig.Defaults.Custom.(*FieldConfig).SpanNulls != nil && input.FieldConfig.Defaults.Custom.(*FieldConfig).SpanNulls.Bool != nil && *input.FieldConfig.Defaults.Custom.(*FieldConfig).SpanNulls.Bool == true {
+
+		buffer.WriteString(`AlwaysSpanNulls(`)
+		buffer.WriteString(")")
+
+		calls = append(calls, buffer.String())
+		buffer.Reset()
+
+	}
+	if input.FieldConfig != nil && input.FieldConfig.Defaults.Custom != nil && input.FieldConfig.Defaults.Custom.(*FieldConfig).SpanNulls != nil && input.FieldConfig.Defaults.Custom.(*FieldConfig).SpanNulls.Bool != nil && *input.FieldConfig.Defaults.Custom.(*FieldConfig).SpanNulls.Bool == false {
+
+		buffer.WriteString(`NeverSpanNulls(`)
+		buffer.WriteString(")")
+
+		calls = append(calls, buffer.String())
+		buffer.Reset()
+
+	}
+	if input.FieldConfig != nil && input.FieldConfig.Defaults.Custom != nil && input.FieldConfig.Defaults.Custom.(*FieldConfig).InsertNulls != nil && input.FieldConfig.Defaults.Custom.(*FieldConfig).InsertNulls.Uint32 != nil {
+
+		buffer.WriteString(`InsertNullsThreshold(`)
+		arg0 := fmt.Sprintf("%#v", *input.FieldConfig.Defaults.Custom.(*FieldConfig).InsertNulls.Uint32)
+		buffer.WriteString(arg0)
+
+		buffer.WriteString(")")
+
+		calls = append(calls, buffer.String())
+		buffer.Reset()
+
+	}
+	if input.FieldConfig != nil && input.FieldConfig.Defaults.Custom != nil && input.FieldConfig.Defaults.Custom.(*FieldConfig).InsertNulls != nil && input.FieldConfig.Defaults.Custom.(*FieldConfig).InsertNulls.Bool != nil && *input.FieldConfig.Defaults.Custom.(*FieldConfig).InsertNulls.Bool == true {
+
+		buffer.WriteString(`AlwaysInsertNulls(`)
+		buffer.WriteString(")")
+
+		calls = append(calls, buffer.String())
+		buffer.Reset()
+
+	}
+	if input.FieldConfig != nil && input.FieldConfig.Defaults.Custom != nil && input.FieldConfig.Defaults.Custom.(*FieldConfig).InsertNulls != nil && input.FieldConfig.Defaults.Custom.(*FieldConfig).InsertNulls.Bool != nil && *input.FieldConfig.Defaults.Custom.(*FieldConfig).InsertNulls.Bool == false {
+
+		buffer.WriteString(`NeverInsertNulls(`)
 		buffer.WriteString(")")
 
 		calls = append(calls, buffer.String())

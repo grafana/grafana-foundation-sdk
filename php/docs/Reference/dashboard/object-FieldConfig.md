@@ -115,6 +115,8 @@ class FieldConfig implements \JsonSerializable
      */
     public $custom;
 
+    public ?bool $fieldMinMax;
+
 }
 ```
 ## Methods

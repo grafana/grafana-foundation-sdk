@@ -92,6 +92,12 @@ empty/missing will default to grafana blog
 feedUrl(string $feedUrl)
 ```
 
+### <span class="badge object-method"></span> fieldMinMax
+
+```php
+fieldMinMax(bool $fieldMinMax)
+```
+
 ### <span class="badge object-method"></span> gridPos
 
 Grid position.

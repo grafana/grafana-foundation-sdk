@@ -166,10 +166,7 @@
           },
           "legacyOptions": {
             "type": "object",
-            "additionalProperties": {
-              "type": "object",
-              "additionalProperties": {}
-            },
+            "additionalProperties": true,
             "description": "Catch-all field for datasource-specific properties. Should not be available in as code tooling."
           }
         }

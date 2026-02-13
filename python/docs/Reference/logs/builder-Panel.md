@@ -104,6 +104,12 @@ def enable_infinite_scrolling(enable_infinite_scrolling: bool) -> typing.Self
 def enable_log_details(enable_log_details: bool) -> typing.Self
 ```
 
+### <span class="badge object-method"></span> field_min_max
+
+```python
+def field_min_max(field_min_max: bool) -> typing.Self
+```
+
 ### <span class="badge object-method"></span> grid_pos
 
 Grid position.

@@ -463,3 +463,21 @@ func (builder *VisualizationBuilder) AxisBorderShow(axisBorderShow bool) *Visual
 
 	return builder
 }
+
+func (builder *VisualizationBuilder) SpanNulls(spanNulls BoolOrUint32) *VisualizationBuilder {
+	if builder.internal.Spec.FieldConfig.Defaults.Custom == nil {
+		builder.internal.Spec.FieldConfig.Defaults.Custom = NewFieldConfig()
+	}
+	builder.internal.Spec.FieldConfig.Defaults.Custom.(*FieldConfig).SpanNulls = &spanNulls
+
+	return builder
+}
+
+func (builder *VisualizationBuilder) InsertNulls(insertNulls BoolOrUint32) *VisualizationBuilder {
+	if builder.internal.Spec.FieldConfig.Defaults.Custom == nil {
+		builder.internal.Spec.FieldConfig.Defaults.Custom = NewFieldConfig()
+	}
+	builder.internal.Spec.FieldConfig.Defaults.Custom.(*FieldConfig).InsertNulls = &insertNulls
+
+	return builder
+}
