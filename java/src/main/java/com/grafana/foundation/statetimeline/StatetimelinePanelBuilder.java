@@ -303,6 +303,17 @@ public class StatetimelinePanelBuilder implements com.grafana.foundation.cog.Bui
         return this;
     }
     
+    public StatetimelinePanelBuilder fieldMinMax(Boolean fieldMinMax) {
+		if (this.internal.fieldConfig == null) {
+			this.internal.fieldConfig = new com.grafana.foundation.dashboard.FieldConfigSource();
+		}
+		if (this.internal.fieldConfig.defaults == null) {
+			this.internal.fieldConfig.defaults = new com.grafana.foundation.dashboard.FieldConfig();
+		}
+        this.internal.fieldConfig.defaults.fieldMinMax = fieldMinMax;
+        return this;
+    }
+    
     public StatetimelinePanelBuilder overrides(List<com.grafana.foundation.cog.Builder<DashboardFieldConfigSourceOverrides>> overrides) {
 		if (this.internal.fieldConfig == null) {
 			this.internal.fieldConfig = new com.grafana.foundation.dashboard.FieldConfigSource();
@@ -655,6 +666,34 @@ public class StatetimelinePanelBuilder implements com.grafana.foundation.cog.Bui
 			this.internal.fieldConfig.defaults.custom = new com.grafana.foundation.statetimeline.FieldConfig();
 		}
         ((FieldConfig) this.internal.fieldConfig.defaults.custom).axisBorderShow = axisBorderShow;
+        return this;
+    }
+    
+    public StatetimelinePanelBuilder spanNulls(BoolOrUint32 spanNulls) {
+		if (this.internal.fieldConfig == null) {
+			this.internal.fieldConfig = new com.grafana.foundation.dashboard.FieldConfigSource();
+		}
+		if (this.internal.fieldConfig.defaults == null) {
+			this.internal.fieldConfig.defaults = new com.grafana.foundation.dashboard.FieldConfig();
+		}
+		if (this.internal.fieldConfig.defaults.custom == null) {
+			this.internal.fieldConfig.defaults.custom = new com.grafana.foundation.statetimeline.FieldConfig();
+		}
+        ((FieldConfig) this.internal.fieldConfig.defaults.custom).spanNulls = spanNulls;
+        return this;
+    }
+    
+    public StatetimelinePanelBuilder insertNulls(BoolOrUint32 insertNulls) {
+		if (this.internal.fieldConfig == null) {
+			this.internal.fieldConfig = new com.grafana.foundation.dashboard.FieldConfigSource();
+		}
+		if (this.internal.fieldConfig.defaults == null) {
+			this.internal.fieldConfig.defaults = new com.grafana.foundation.dashboard.FieldConfig();
+		}
+		if (this.internal.fieldConfig.defaults.custom == null) {
+			this.internal.fieldConfig.defaults.custom = new com.grafana.foundation.statetimeline.FieldConfig();
+		}
+        ((FieldConfig) this.internal.fieldConfig.defaults.custom).insertNulls = insertNulls;
         return this;
     }
     public Panel build() {

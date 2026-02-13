@@ -156,6 +156,12 @@ fillOpacity(fillOpacity: number)
 hideFrom(hideFrom: cog.Builder<common.HideSeriesConfig>)
 ```
 
+### <span class="badge object-method"></span> insertNulls
+
+```typescript
+insertNulls(insertNulls: boolean | number)
+```
+
 ### <span class="badge object-method"></span> legend
 
 ```typescript
@@ -304,6 +310,12 @@ Show timeline values on chart
 
 ```typescript
 showValue(showValue: common.VisibilityMode)
+```
+
+### <span class="badge object-method"></span> spanNulls
+
+```typescript
+spanNulls(spanNulls: boolean | number)
 ```
 
 ### <span class="badge object-method"></span> thresholds

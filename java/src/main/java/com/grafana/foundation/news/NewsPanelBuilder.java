@@ -295,6 +295,17 @@ public class NewsPanelBuilder implements com.grafana.foundation.cog.Builder<Pane
         return this;
     }
     
+    public NewsPanelBuilder fieldMinMax(Boolean fieldMinMax) {
+		if (this.internal.fieldConfig == null) {
+			this.internal.fieldConfig = new com.grafana.foundation.dashboard.FieldConfigSource();
+		}
+		if (this.internal.fieldConfig.defaults == null) {
+			this.internal.fieldConfig.defaults = new com.grafana.foundation.dashboard.FieldConfig();
+		}
+        this.internal.fieldConfig.defaults.fieldMinMax = fieldMinMax;
+        return this;
+    }
+    
     public NewsPanelBuilder overrides(List<com.grafana.foundation.cog.Builder<DashboardFieldConfigSourceOverrides>> overrides) {
 		if (this.internal.fieldConfig == null) {
 			this.internal.fieldConfig = new com.grafana.foundation.dashboard.FieldConfigSource();

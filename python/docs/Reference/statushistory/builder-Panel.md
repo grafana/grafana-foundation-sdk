@@ -142,6 +142,12 @@ The display value for this field.  This supports template variables blank is aut
 def display_name(display_name: str) -> typing.Self
 ```
 
+### <span class="badge object-method"></span> field_min_max
+
+```python
+def field_min_max(field_min_max: bool) -> typing.Self
+```
+
 ### <span class="badge object-method"></span> fill_opacity
 
 ```python

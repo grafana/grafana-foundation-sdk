@@ -2942,15 +2942,17 @@ const (
 type RuleExecErrState string
 
 const (
-	RuleExecErrStateOK       RuleExecErrState = "OK"
 	RuleExecErrStateAlerting RuleExecErrState = "Alerting"
 	RuleExecErrStateError    RuleExecErrState = "Error"
+	RuleExecErrStateOK       RuleExecErrState = "OK"
+	RuleExecErrStateKeepLast RuleExecErrState = "KeepLast"
 )
 
 type RuleNoDataState string
 
 const (
+	RuleNoDataStateOK       RuleNoDataState = "OK"
 	RuleNoDataStateAlerting RuleNoDataState = "Alerting"
 	RuleNoDataStateNoData   RuleNoDataState = "NoData"
-	RuleNoDataStateOK       RuleNoDataState = "OK"
+	RuleNoDataStateKeepLast RuleNoDataState = "KeepLast"
 )

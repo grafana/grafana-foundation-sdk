@@ -279,9 +279,10 @@
           },
           "execErrState": {
             "enum": [
-              "OK",
               "Alerting",
-              "Error"
+              "Error",
+              "OK",
+              "KeepLast"
             ],
             "type": "string"
           },
@@ -306,9 +307,10 @@
           },
           "noDataState": {
             "enum": [
+              "OK",
               "Alerting",
               "NoData",
-              "OK"
+              "KeepLast"
             ],
             "type": "string"
           },

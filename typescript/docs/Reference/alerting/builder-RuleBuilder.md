@@ -33,7 +33,7 @@ condition(condition: string)
 ### <span class="badge object-method"></span> execErrState
 
 ```typescript
-execErrState(execErrState: "OK" | "Alerting" | "Error")
+execErrState(execErrState: "Alerting" | "Error" | "OK" | "KeepLast")
 ```
 
 ### <span class="badge object-method"></span> folderUID
@@ -73,7 +73,7 @@ labels(labels: Record<string, string>)
 ### <span class="badge object-method"></span> noDataState
 
 ```typescript
-noDataState(noDataState: "Alerting" | "NoData" | "OK")
+noDataState(noDataState: "OK" | "Alerting" | "NoData" | "KeepLast")
 ```
 
 ### <span class="badge object-method"></span> notificationSettings

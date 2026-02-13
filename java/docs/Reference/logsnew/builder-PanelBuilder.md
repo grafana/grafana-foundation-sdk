@@ -98,6 +98,12 @@ public PanelBuilder enableInfiniteScrolling(Boolean enableInfiniteScrolling)
 public PanelBuilder enableLogDetails(Boolean enableLogDetails)
 ```
 
+### <span class="badge object-method"></span> fieldMinMax
+
+```java
+public PanelBuilder fieldMinMax(Boolean fieldMinMax)
+```
+
 ### <span class="badge object-method"></span> gridPos
 
 Grid position.

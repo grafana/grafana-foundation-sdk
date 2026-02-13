@@ -343,6 +343,17 @@ export class PanelBuilder implements cog.Builder<dashboard.Panel> {
         return this;
     }
 
+    fieldMinMax(fieldMinMax: boolean): this {
+        if (!this.internal.fieldConfig) {
+            this.internal.fieldConfig = dashboard.defaultFieldConfigSource();
+        }
+        if (!this.internal.fieldConfig.defaults) {
+            this.internal.fieldConfig.defaults = dashboard.defaultFieldConfig();
+        }
+        this.internal.fieldConfig.defaults.fieldMinMax = fieldMinMax;
+        return this;
+    }
+
     // Overrides are the options applied to specific fields overriding the defaults.
     overrides(overrides: {
 	matcher: dashboard.MatcherConfig;
@@ -705,6 +716,34 @@ export class PanelBuilder implements cog.Builder<dashboard.Panel> {
             this.internal.fieldConfig.defaults.custom = statetimeline.defaultFieldConfig();
         }
         this.internal.fieldConfig.defaults.custom.axisBorderShow = axisBorderShow;
+        return this;
+    }
+
+    spanNulls(spanNulls: boolean | number): this {
+        if (!this.internal.fieldConfig) {
+            this.internal.fieldConfig = dashboard.defaultFieldConfigSource();
+        }
+        if (!this.internal.fieldConfig.defaults) {
+            this.internal.fieldConfig.defaults = dashboard.defaultFieldConfig();
+        }
+        if (!this.internal.fieldConfig.defaults.custom) {
+            this.internal.fieldConfig.defaults.custom = statetimeline.defaultFieldConfig();
+        }
+        this.internal.fieldConfig.defaults.custom.spanNulls = spanNulls;
+        return this;
+    }
+
+    insertNulls(insertNulls: boolean | number): this {
+        if (!this.internal.fieldConfig) {
+            this.internal.fieldConfig = dashboard.defaultFieldConfigSource();
+        }
+        if (!this.internal.fieldConfig.defaults) {
+            this.internal.fieldConfig.defaults = dashboard.defaultFieldConfig();
+        }
+        if (!this.internal.fieldConfig.defaults.custom) {
+            this.internal.fieldConfig.defaults.custom = statetimeline.defaultFieldConfig();
+        }
+        this.internal.fieldConfig.defaults.custom.insertNulls = insertNulls;
         return this;
     }
 }

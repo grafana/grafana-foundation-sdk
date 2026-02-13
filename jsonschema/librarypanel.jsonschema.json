@@ -479,6 +479,9 @@
           "type": "object",
           "additionalProperties": {},
           "description": "custom is specified by the FieldConfig field\nin panel plugin schemas."
+        },
+        "fieldMinMax": {
+          "type": "boolean"
         }
       },
       "description": "The data model used in Grafana, namely the data frame, is a columnar-oriented table structure that unifies both time series and table query results.\nEach column within this structure is called a field. A field can represent a single time series or table column.\nField options allow you to change how the data is displayed in your visualizations."

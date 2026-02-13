@@ -158,6 +158,12 @@ displayName(displayName: string)
 drawStyle(drawStyle: common.GraphDrawStyle)
 ```
 
+### <span class="badge object-method"></span> fieldMinMax
+
+```typescript
+fieldMinMax(fieldMinMax: boolean)
+```
+
 ### <span class="badge object-method"></span> fillBelowTo
 
 ```typescript

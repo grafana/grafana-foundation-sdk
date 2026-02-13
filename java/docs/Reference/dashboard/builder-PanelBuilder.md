@@ -106,6 +106,12 @@ Field options allow you to change how the data is displayed in your visualizatio
 public PanelBuilder fieldConfig(FieldConfigSource fieldConfig)
 ```
 
+### <span class="badge object-method"></span> fieldMinMax
+
+```java
+public PanelBuilder fieldMinMax(Boolean fieldMinMax)
+```
+
 ### <span class="badge object-method"></span> gridPos
 
 Grid position.

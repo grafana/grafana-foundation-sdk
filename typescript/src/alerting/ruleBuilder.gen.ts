@@ -49,7 +49,7 @@ export class RuleBuilder implements cog.Builder<alerting.Rule> {
         return this;
     }
 
-    execErrState(execErrState: "OK" | "Alerting" | "Error"): this {
+    execErrState(execErrState: "Alerting" | "Error" | "OK" | "KeepLast"): this {
         this.internal.execErrState = execErrState;
         return this;
     }
@@ -81,7 +81,7 @@ export class RuleBuilder implements cog.Builder<alerting.Rule> {
         return this;
     }
 
-    noDataState(noDataState: "Alerting" | "NoData" | "OK"): this {
+    noDataState(noDataState: "OK" | "Alerting" | "NoData" | "KeepLast"): this {
         this.internal.noDataState = noDataState;
         return this;
     }

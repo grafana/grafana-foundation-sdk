@@ -106,6 +106,12 @@ Field options allow you to change how the data is displayed in your visualizatio
 def field_config(field_config: dashboard.FieldConfigSource) -> typing.Self
 ```
 
+### <span class="badge object-method"></span> field_min_max
+
+```python
+def field_min_max(field_min_max: bool) -> typing.Self
+```
+
 ### <span class="badge object-method"></span> grid_pos
 
 Grid position.

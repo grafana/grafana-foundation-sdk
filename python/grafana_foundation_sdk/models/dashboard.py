@@ -882,8 +882,9 @@ class FieldConfig:
     # custom is specified by the FieldConfig field
     # in panel plugin schemas.
     custom: typing.Optional[object]
+    field_min_max: typing.Optional[bool]
 
-    def __init__(self, display_name: typing.Optional[str] = None, display_name_from_ds: typing.Optional[str] = None, description: typing.Optional[str] = None, path: typing.Optional[str] = None, writeable: typing.Optional[bool] = None, filterable: typing.Optional[bool] = None, unit: typing.Optional[str] = None, decimals: typing.Optional[float] = None, min_val: typing.Optional[float] = None, max_val: typing.Optional[float] = None, mappings: typing.Optional[list['ValueMapping']] = None, thresholds: typing.Optional['ThresholdsConfig'] = None, color: typing.Optional['FieldColor'] = None, links: typing.Optional[list['DashboardLink']] = None, no_value: typing.Optional[str] = None, custom: typing.Optional[object] = None) -> None:
+    def __init__(self, display_name: typing.Optional[str] = None, display_name_from_ds: typing.Optional[str] = None, description: typing.Optional[str] = None, path: typing.Optional[str] = None, writeable: typing.Optional[bool] = None, filterable: typing.Optional[bool] = None, unit: typing.Optional[str] = None, decimals: typing.Optional[float] = None, min_val: typing.Optional[float] = None, max_val: typing.Optional[float] = None, mappings: typing.Optional[list['ValueMapping']] = None, thresholds: typing.Optional['ThresholdsConfig'] = None, color: typing.Optional['FieldColor'] = None, links: typing.Optional[list['DashboardLink']] = None, no_value: typing.Optional[str] = None, custom: typing.Optional[object] = None, field_min_max: typing.Optional[bool] = None) -> None:
         self.display_name = display_name
         self.display_name_from_ds = display_name_from_ds
         self.description = description
@@ -900,6 +901,7 @@ class FieldConfig:
         self.links = links
         self.no_value = no_value
         self.custom = custom
+        self.field_min_max = field_min_max
 
     def to_json(self) -> dict[str, object]:
         payload: dict[str, object] = {
@@ -936,6 +938,8 @@ class FieldConfig:
             payload["noValue"] = self.no_value
         if self.custom is not None:
             payload["custom"] = self.custom
+        if self.field_min_max is not None:
+            payload["fieldMinMax"] = self.field_min_max
         return payload
 
     @classmethod
@@ -974,7 +978,9 @@ class FieldConfig:
         if "noValue" in data:
             args["no_value"] = data["noValue"]
         if "custom" in data:
-            args["custom"] = data["custom"]        
+            args["custom"] = data["custom"]
+        if "fieldMinMax" in data:
+            args["field_min_max"] = data["fieldMinMax"]        
 
         return cls(**args)
 

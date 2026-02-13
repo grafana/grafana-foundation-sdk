@@ -106,6 +106,12 @@ Field options allow you to change how the data is displayed in your visualizatio
 func (builder *PanelBuilder) FieldConfig(fieldConfig dashboard.FieldConfigSource) *PanelBuilder
 ```
 
+### <span class="badge object-method"></span> FieldMinMax
+
+```go
+func (builder *PanelBuilder) FieldMinMax(fieldMinMax bool) *PanelBuilder
+```
+
 ### <span class="badge object-method"></span> GridPos
 
 Grid position.

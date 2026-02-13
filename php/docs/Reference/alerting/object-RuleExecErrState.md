@@ -22,15 +22,6 @@ final class RuleExecErrState implements \JsonSerializable, \Stringable {
         $this->value = $value;
     }
 
-    public static function oK(): self
-    {
-        if (!isset(self::$instances["OK"])) {
-            self::$instances["OK"] = new self("OK");
-        }
-
-        return self::$instances["OK"];
-    }
-
     public static function alerting(): self
     {
         if (!isset(self::$instances["Alerting"])) {
@@ -49,18 +40,40 @@ final class RuleExecErrState implements \JsonSerializable, \Stringable {
         return self::$instances["Error"];
     }
 
-    public static function fromValue(string $value): self
+    public static function oK(): self
     {
-        if ($value === "OK") {
-            return self::oK();
+        if (!isset(self::$instances["OK"])) {
+            self::$instances["OK"] = new self("OK");
         }
 
+        return self::$instances["OK"];
+    }
+
+    public static function keepLast(): self
+    {
+        if (!isset(self::$instances["KeepLast"])) {
+            self::$instances["KeepLast"] = new self("KeepLast");
+        }
+
+        return self::$instances["KeepLast"];
+    }
+
+    public static function fromValue(string $value): self
+    {
         if ($value === "Alerting") {
             return self::alerting();
         }
 
         if ($value === "Error") {
             return self::error();
+        }
+
+        if ($value === "OK") {
+            return self::oK();
+        }
+
+        if ($value === "KeepLast") {
+            return self::keepLast();
         }
 
         throw new \UnexpectedValueException("Value '$value' is not part of the enum RuleExecErrState");

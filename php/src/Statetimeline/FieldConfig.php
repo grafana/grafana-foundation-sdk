@@ -31,6 +31,16 @@ class FieldConfig implements \JsonSerializable
     public ?bool $axisBorderShow;
 
     /**
+     * @var bool|int|null
+     */
+    public $spanNulls;
+
+    /**
+     * @var bool|int|null
+     */
+    public $insertNulls;
+
+    /**
      * @param int|null $lineWidth
      * @param \Grafana\Foundation\Common\AxisPlacement|null $axisPlacement
      * @param \Grafana\Foundation\Common\AxisColorMode|null $axisColorMode
@@ -44,8 +54,10 @@ class FieldConfig implements \JsonSerializable
      * @param \Grafana\Foundation\Common\HideSeriesConfig|null $hideFrom
      * @param int|null $fillOpacity
      * @param bool|null $axisBorderShow
+     * @param bool|int|null $spanNulls
+     * @param bool|int|null $insertNulls
      */
-    public function __construct(?int $lineWidth = null, ?\Grafana\Foundation\Common\AxisPlacement $axisPlacement = null, ?\Grafana\Foundation\Common\AxisColorMode $axisColorMode = null, ?string $axisLabel = null, ?float $axisWidth = null, ?float $axisSoftMin = null, ?float $axisSoftMax = null, ?bool $axisGridShow = null, ?\Grafana\Foundation\Common\ScaleDistributionConfig $scaleDistribution = null, ?bool $axisCenteredZero = null, ?\Grafana\Foundation\Common\HideSeriesConfig $hideFrom = null, ?int $fillOpacity = null, ?bool $axisBorderShow = null)
+    public function __construct(?int $lineWidth = null, ?\Grafana\Foundation\Common\AxisPlacement $axisPlacement = null, ?\Grafana\Foundation\Common\AxisColorMode $axisColorMode = null, ?string $axisLabel = null, ?float $axisWidth = null, ?float $axisSoftMin = null, ?float $axisSoftMax = null, ?bool $axisGridShow = null, ?\Grafana\Foundation\Common\ScaleDistributionConfig $scaleDistribution = null, ?bool $axisCenteredZero = null, ?\Grafana\Foundation\Common\HideSeriesConfig $hideFrom = null, ?int $fillOpacity = null, ?bool $axisBorderShow = null,  $spanNulls = null,  $insertNulls = null)
     {
         $this->lineWidth = $lineWidth;
         $this->axisPlacement = $axisPlacement;
@@ -60,6 +72,8 @@ class FieldConfig implements \JsonSerializable
         $this->hideFrom = $hideFrom;
         $this->fillOpacity = $fillOpacity;
         $this->axisBorderShow = $axisBorderShow;
+        $this->spanNulls = $spanNulls;
+        $this->insertNulls = $insertNulls;
     }
 
     /**
@@ -67,7 +81,7 @@ class FieldConfig implements \JsonSerializable
      */
     public static function fromArray(array $inputData): self
     {
-        /** @var array{lineWidth?: int, axisPlacement?: string, axisColorMode?: string, axisLabel?: string, axisWidth?: float, axisSoftMin?: float, axisSoftMax?: float, axisGridShow?: bool, scaleDistribution?: mixed, axisCenteredZero?: bool, hideFrom?: mixed, fillOpacity?: int, axisBorderShow?: bool} $inputData */
+        /** @var array{lineWidth?: int, axisPlacement?: string, axisColorMode?: string, axisLabel?: string, axisWidth?: float, axisSoftMin?: float, axisSoftMax?: float, axisGridShow?: bool, scaleDistribution?: mixed, axisCenteredZero?: bool, hideFrom?: mixed, fillOpacity?: int, axisBorderShow?: bool, spanNulls?: bool|int, insertNulls?: bool|int} $inputData */
         $data = $inputData;
         return new self(
             lineWidth: $data["lineWidth"] ?? null,
@@ -91,6 +105,26 @@ class FieldConfig implements \JsonSerializable
     })($data["hideFrom"]) : null,
             fillOpacity: $data["fillOpacity"] ?? null,
             axisBorderShow: $data["axisBorderShow"] ?? null,
+            spanNulls: isset($data["spanNulls"]) ? (function($input) {
+        switch (true) {
+        case is_bool($input):
+            return $input;
+        case is_int($input):
+            return $input;
+        default:
+            throw new \ValueError('incorrect value for disjunction');
+    }
+    })($data["spanNulls"]) : null,
+            insertNulls: isset($data["insertNulls"]) ? (function($input) {
+        switch (true) {
+        case is_bool($input):
+            return $input;
+        case is_int($input):
+            return $input;
+        default:
+            throw new \ValueError('incorrect value for disjunction');
+    }
+    })($data["insertNulls"]) : null,
         );
     }
 
@@ -138,6 +172,12 @@ class FieldConfig implements \JsonSerializable
         }
         if (isset($this->axisBorderShow)) {
             $data->axisBorderShow = $this->axisBorderShow;
+        }
+        if (isset($this->spanNulls)) {
+            $data->spanNulls = $this->spanNulls;
+        }
+        if (isset($this->insertNulls)) {
+            $data->insertNulls = $this->insertNulls;
         }
         return $data;
     }

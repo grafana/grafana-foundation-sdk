@@ -14,9 +14,10 @@ import com.fasterxml.jackson.annotation.JsonValue;
 
 @JsonFormat(shape = JsonFormat.Shape.OBJECT)
 public enum RuleExecErrState {
-    OK("OK"),
     ALERTING("Alerting"),
     ERROR("Error"),
+    OK("OK"),
+    KEEP_LAST("KeepLast"),
     _EMPTY("");
 
     private final String value;

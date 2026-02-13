@@ -146,6 +146,12 @@ Controls exemplar options
 exemplarsColor(string $color)
 ```
 
+### <span class="badge object-method"></span> fieldMinMax
+
+```php
+fieldMinMax(bool $fieldMinMax)
+```
+
 ### <span class="badge object-method"></span> filterValues
 
 Filters values between a given range

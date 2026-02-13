@@ -104,6 +104,12 @@ enableInfiniteScrolling(enableInfiniteScrolling: boolean)
 enableLogDetails(enableLogDetails: boolean)
 ```
 
+### <span class="badge object-method"></span> fieldMinMax
+
+```typescript
+fieldMinMax(fieldMinMax: boolean)
+```
+
 ### <span class="badge object-method"></span> gridPos
 
 Grid position.

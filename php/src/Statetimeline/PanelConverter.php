@@ -470,6 +470,19 @@ final class PanelConverter
     
     
     }
+            if ($input->fieldConfig !== null && $input->fieldConfig->defaults->fieldMinMax !== null) {
+    
+        
+    $buffer = 'fieldMinMax(';
+        $arg0 =\var_export($input->fieldConfig->defaults->fieldMinMax, true);
+        $buffer .= $arg0;
+        
+    $buffer .= ')';
+
+    $calls[] = $buffer;
+    
+    
+    }
             if ($input->fieldConfig !== null && count($input->fieldConfig->overrides) >= 1) {
     
         
@@ -779,6 +792,54 @@ final class PanelConverter
         
     $buffer = 'axisBorderShow(';
         $arg0 =\var_export($input->fieldConfig->defaults->custom->axisBorderShow, true);
+        $buffer .= $arg0;
+        
+    $buffer .= ')';
+
+    $calls[] = $buffer;
+    
+    
+    }
+            if ($input->fieldConfig !== null && $input->fieldConfig->defaults->custom !== null && $input->fieldConfig->defaults->custom instanceof \Grafana\Foundation\Statetimeline\FieldConfig && $input->fieldConfig->defaults->custom->spanNulls !== null) {
+    
+        
+    $buffer = 'spanNulls(';
+        switch (true) {
+            case is_bool($input->fieldConfig->defaults->custom->spanNulls):
+                $disjunctionspanNulls =\var_export($input->fieldConfig->defaults->custom->spanNulls, true);
+                $arg0 = $disjunctionspanNulls;
+                break;
+            case is_int($input->fieldConfig->defaults->custom->spanNulls):
+                $disjunctionspanNulls =\var_export($input->fieldConfig->defaults->custom->spanNulls, true);
+                $arg0 = $disjunctionspanNulls;
+                break;
+            default:
+                throw new \ValueError('disjunction branch not handled');
+        }
+        $buffer .= $arg0;
+        
+    $buffer .= ')';
+
+    $calls[] = $buffer;
+    
+    
+    }
+            if ($input->fieldConfig !== null && $input->fieldConfig->defaults->custom !== null && $input->fieldConfig->defaults->custom instanceof \Grafana\Foundation\Statetimeline\FieldConfig && $input->fieldConfig->defaults->custom->insertNulls !== null) {
+    
+        
+    $buffer = 'insertNulls(';
+        switch (true) {
+            case is_bool($input->fieldConfig->defaults->custom->insertNulls):
+                $disjunctioninsertNulls =\var_export($input->fieldConfig->defaults->custom->insertNulls, true);
+                $arg0 = $disjunctioninsertNulls;
+                break;
+            case is_int($input->fieldConfig->defaults->custom->insertNulls):
+                $disjunctioninsertNulls =\var_export($input->fieldConfig->defaults->custom->insertNulls, true);
+                $arg0 = $disjunctioninsertNulls;
+                break;
+            default:
+                throw new \ValueError('disjunction branch not handled');
+        }
         $buffer .= $arg0;
         
     $buffer .= ')';

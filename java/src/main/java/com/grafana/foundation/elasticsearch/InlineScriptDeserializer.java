@@ -10,9 +10,6 @@ import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 import java.io.IOException;
-import java.util.List;
-import com.grafana.foundation.cog.variants.Dataquery;
-import com.grafana.foundation.cog.variants.Registry;
 
 public class InlineScriptDeserializer extends JsonDeserializer<InlineScript> {
 

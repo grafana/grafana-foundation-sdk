@@ -29,5 +29,6 @@ public class FieldConfig {
   public List<DashboardLink> links;
   public String noValue;
   public Object custom;
+  public Boolean fieldMinMax;
 }
 ```

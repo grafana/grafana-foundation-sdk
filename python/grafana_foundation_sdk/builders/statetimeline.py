@@ -447,6 +447,17 @@ class Panel(cogbuilder.Builder[dashboard.Panel]):
     
         return self
     
+    def field_min_max(self, field_min_max: bool) -> typing.Self:    
+        if self._internal.field_config is None:
+            self._internal.field_config = dashboard.FieldConfigSource()
+        assert isinstance(self._internal.field_config, dashboard.FieldConfigSource)
+        if self._internal.field_config.defaults is None:
+            self._internal.field_config.defaults = dashboard.FieldConfig()
+        assert isinstance(self._internal.field_config.defaults, dashboard.FieldConfig)
+        self._internal.field_config.defaults.field_min_max = field_min_max
+    
+        return self
+    
     def overrides(self, overrides: list[cogbuilder.Builder[dashboard.DashboardFieldConfigSourceOverrides]]) -> typing.Self:    
         """
         Overrides are the options applied to specific fields overriding the defaults.
@@ -833,6 +844,34 @@ class Panel(cogbuilder.Builder[dashboard.Panel]):
             self._internal.field_config.defaults.custom = statetimeline.FieldConfig()
         assert isinstance(self._internal.field_config.defaults.custom, statetimeline.FieldConfig)
         self._internal.field_config.defaults.custom.axis_border_show = axis_border_show
+    
+        return self
+    
+    def span_nulls(self, span_nulls: typing.Union[bool, int]) -> typing.Self:    
+        if self._internal.field_config is None:
+            self._internal.field_config = dashboard.FieldConfigSource()
+        assert isinstance(self._internal.field_config, dashboard.FieldConfigSource)
+        if self._internal.field_config.defaults is None:
+            self._internal.field_config.defaults = dashboard.FieldConfig()
+        assert isinstance(self._internal.field_config.defaults, dashboard.FieldConfig)
+        if self._internal.field_config.defaults.custom is None:
+            self._internal.field_config.defaults.custom = statetimeline.FieldConfig()
+        assert isinstance(self._internal.field_config.defaults.custom, statetimeline.FieldConfig)
+        self._internal.field_config.defaults.custom.span_nulls = span_nulls
+    
+        return self
+    
+    def insert_nulls(self, insert_nulls: typing.Union[bool, int]) -> typing.Self:    
+        if self._internal.field_config is None:
+            self._internal.field_config = dashboard.FieldConfigSource()
+        assert isinstance(self._internal.field_config, dashboard.FieldConfigSource)
+        if self._internal.field_config.defaults is None:
+            self._internal.field_config.defaults = dashboard.FieldConfig()
+        assert isinstance(self._internal.field_config.defaults, dashboard.FieldConfig)
+        if self._internal.field_config.defaults.custom is None:
+            self._internal.field_config.defaults.custom = statetimeline.FieldConfig()
+        assert isinstance(self._internal.field_config.defaults.custom, statetimeline.FieldConfig)
+        self._internal.field_config.defaults.custom.insert_nulls = insert_nulls
     
         return self
     
@@ -1589,6 +1628,40 @@ class Visualization(cogbuilder.Builder[dashboardv2beta1.VizConfigKind]):
             self._internal.spec.field_config.defaults.custom = statetimeline.FieldConfig()
         assert isinstance(self._internal.spec.field_config.defaults.custom, statetimeline.FieldConfig)
         self._internal.spec.field_config.defaults.custom.axis_border_show = axis_border_show
+    
+        return self
+    
+    def span_nulls(self, span_nulls: typing.Union[bool, int]) -> typing.Self:    
+        if self._internal.spec is None:
+            self._internal.spec = dashboardv2beta1.VizConfigSpec()
+        assert isinstance(self._internal.spec, dashboardv2beta1.VizConfigSpec)
+        if self._internal.spec.field_config is None:
+            self._internal.spec.field_config = dashboardv2beta1.FieldConfigSource()
+        assert isinstance(self._internal.spec.field_config, dashboardv2beta1.FieldConfigSource)
+        if self._internal.spec.field_config.defaults is None:
+            self._internal.spec.field_config.defaults = dashboardv2beta1.FieldConfig()
+        assert isinstance(self._internal.spec.field_config.defaults, dashboardv2beta1.FieldConfig)
+        if self._internal.spec.field_config.defaults.custom is None:
+            self._internal.spec.field_config.defaults.custom = statetimeline.FieldConfig()
+        assert isinstance(self._internal.spec.field_config.defaults.custom, statetimeline.FieldConfig)
+        self._internal.spec.field_config.defaults.custom.span_nulls = span_nulls
+    
+        return self
+    
+    def insert_nulls(self, insert_nulls: typing.Union[bool, int]) -> typing.Self:    
+        if self._internal.spec is None:
+            self._internal.spec = dashboardv2beta1.VizConfigSpec()
+        assert isinstance(self._internal.spec, dashboardv2beta1.VizConfigSpec)
+        if self._internal.spec.field_config is None:
+            self._internal.spec.field_config = dashboardv2beta1.FieldConfigSource()
+        assert isinstance(self._internal.spec.field_config, dashboardv2beta1.FieldConfigSource)
+        if self._internal.spec.field_config.defaults is None:
+            self._internal.spec.field_config.defaults = dashboardv2beta1.FieldConfig()
+        assert isinstance(self._internal.spec.field_config.defaults, dashboardv2beta1.FieldConfig)
+        if self._internal.spec.field_config.defaults.custom is None:
+            self._internal.spec.field_config.defaults.custom = statetimeline.FieldConfig()
+        assert isinstance(self._internal.spec.field_config.defaults.custom, statetimeline.FieldConfig)
+        self._internal.spec.field_config.defaults.custom.insert_nulls = insert_nulls
     
         return self
     

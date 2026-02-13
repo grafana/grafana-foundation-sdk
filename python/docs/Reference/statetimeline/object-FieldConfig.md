@@ -20,6 +20,8 @@ class FieldConfig:
     hide_from: typing.Optional[common.HideSeriesConfig]
     fill_opacity: typing.Optional[int]
     axis_border_show: typing.Optional[bool]
+    span_nulls: typing.Optional[typing.Union[bool, int]]
+    insert_nulls: typing.Optional[typing.Union[bool, int]]
 ```
 ## Methods
 

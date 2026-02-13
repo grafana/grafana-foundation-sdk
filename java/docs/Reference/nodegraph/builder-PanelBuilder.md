@@ -86,6 +86,12 @@ public PanelBuilder displayName(String displayName)
 public PanelBuilder edges(com.grafana.foundation.cog.Builder<EdgeOptions> edges)
 ```
 
+### <span class="badge object-method"></span> fieldMinMax
+
+```java
+public PanelBuilder fieldMinMax(Boolean fieldMinMax)
+```
+
 ### <span class="badge object-method"></span> gridPos
 
 Grid position.

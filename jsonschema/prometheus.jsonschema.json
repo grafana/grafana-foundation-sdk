@@ -68,13 +68,13 @@
           "type": "string",
           "description": "Specify the query flavor\nTODO make this required and give it a default"
         },
-        "datasource": {
-          "$ref": "#/definitions/DataSourceRef",
-          "description": "For mixed data sources the selected datasource is on the query level.\nFor non mixed scenarios this is undefined.\nTODO find a better way to do this ^ that's friendly to schema\nTODO this shouldn't be unknown but DataSourceRef | null"
-        },
         "interval": {
           "type": "string",
           "description": "An additional lower limit for the step parameter of the Prometheus query and for the\n`$__interval` and `$__rate_interval` variables."
+        },
+        "datasource": {
+          "$ref": "#/definitions/DataSourceRef",
+          "description": "For mixed data sources the selected datasource is on the query level.\nFor non mixed scenarios this is undefined.\nTODO find a better way to do this ^ that's friendly to schema\nTODO this shouldn't be unknown but DataSourceRef | null"
         }
       }
     },

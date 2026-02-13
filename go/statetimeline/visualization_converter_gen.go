@@ -496,6 +496,30 @@ func VisualizationConverter(input dashboardv2beta1.VizConfigKind) string {
 		buffer.Reset()
 
 	}
+	if input.Spec.FieldConfig.Defaults.Custom != nil && input.Spec.FieldConfig.Defaults.Custom.(*FieldConfig).SpanNulls != nil {
+
+		buffer.WriteString(`SpanNulls(`)
+		arg0 := cog.Dump(*input.Spec.FieldConfig.Defaults.Custom.(*FieldConfig).SpanNulls)
+		buffer.WriteString(arg0)
+
+		buffer.WriteString(")")
+
+		calls = append(calls, buffer.String())
+		buffer.Reset()
+
+	}
+	if input.Spec.FieldConfig.Defaults.Custom != nil && input.Spec.FieldConfig.Defaults.Custom.(*FieldConfig).InsertNulls != nil {
+
+		buffer.WriteString(`InsertNulls(`)
+		arg0 := cog.Dump(*input.Spec.FieldConfig.Defaults.Custom.(*FieldConfig).InsertNulls)
+		buffer.WriteString(arg0)
+
+		buffer.WriteString(")")
+
+		calls = append(calls, buffer.String())
+		buffer.Reset()
+
+	}
 
 	return strings.Join(calls, ".\t\n")
 }

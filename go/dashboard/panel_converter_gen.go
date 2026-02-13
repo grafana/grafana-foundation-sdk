@@ -484,6 +484,18 @@ func PanelConverter(input Panel) string {
 		buffer.Reset()
 
 	}
+	if input.FieldConfig != nil && input.FieldConfig.Defaults.FieldMinMax != nil {
+
+		buffer.WriteString(`FieldMinMax(`)
+		arg0 := fmt.Sprintf("%#v", *input.FieldConfig.Defaults.FieldMinMax)
+		buffer.WriteString(arg0)
+
+		buffer.WriteString(")")
+
+		calls = append(calls, buffer.String())
+		buffer.Reset()
+
+	}
 	if input.FieldConfig != nil {
 
 		buffer.WriteString(`Defaults(`)

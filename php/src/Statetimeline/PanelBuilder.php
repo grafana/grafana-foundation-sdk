@@ -484,6 +484,17 @@ class PanelBuilder implements \Grafana\Foundation\Cog\Builder
         return $this;
     }
 
+    public function fieldMinMax(bool $fieldMinMax): static
+    {    
+        if ($this->internal->fieldConfig === null) {
+            $this->internal->fieldConfig = new \Grafana\Foundation\Dashboard\FieldConfigSource();
+        }
+        assert($this->internal->fieldConfig instanceof \Grafana\Foundation\Dashboard\FieldConfigSource);
+        $this->internal->fieldConfig->defaults->fieldMinMax = $fieldMinMax;
+    
+        return $this;
+    }
+
     /**
      * Overrides are the options applied to specific fields overriding the defaults.
      * @param array<\Grafana\Foundation\Cog\Builder<\Grafana\Foundation\Dashboard\DashboardFieldConfigSourceOverrides>> $overrides
@@ -929,6 +940,42 @@ class PanelBuilder implements \Grafana\Foundation\Cog\Builder
         }
         assert($this->internal->fieldConfig->defaults->custom instanceof \Grafana\Foundation\Statetimeline\FieldConfig);
         $this->internal->fieldConfig->defaults->custom->axisBorderShow = $axisBorderShow;
+    
+        return $this;
+    }
+
+    /**
+     * @param bool|int $spanNulls
+     */
+    public function spanNulls( $spanNulls): static
+    {    
+        if ($this->internal->fieldConfig === null) {
+            $this->internal->fieldConfig = new \Grafana\Foundation\Dashboard\FieldConfigSource();
+        }
+        assert($this->internal->fieldConfig instanceof \Grafana\Foundation\Dashboard\FieldConfigSource);    
+        if ($this->internal->fieldConfig->defaults->custom === null) {
+            $this->internal->fieldConfig->defaults->custom = new \Grafana\Foundation\Statetimeline\FieldConfig();
+        }
+        assert($this->internal->fieldConfig->defaults->custom instanceof \Grafana\Foundation\Statetimeline\FieldConfig);
+        $this->internal->fieldConfig->defaults->custom->spanNulls = $spanNulls;
+    
+        return $this;
+    }
+
+    /**
+     * @param bool|int $insertNulls
+     */
+    public function insertNulls( $insertNulls): static
+    {    
+        if ($this->internal->fieldConfig === null) {
+            $this->internal->fieldConfig = new \Grafana\Foundation\Dashboard\FieldConfigSource();
+        }
+        assert($this->internal->fieldConfig instanceof \Grafana\Foundation\Dashboard\FieldConfigSource);    
+        if ($this->internal->fieldConfig->defaults->custom === null) {
+            $this->internal->fieldConfig->defaults->custom = new \Grafana\Foundation\Statetimeline\FieldConfig();
+        }
+        assert($this->internal->fieldConfig->defaults->custom instanceof \Grafana\Foundation\Statetimeline\FieldConfig);
+        $this->internal->fieldConfig->defaults->custom->insertNulls = $insertNulls;
     
         return $this;
     }

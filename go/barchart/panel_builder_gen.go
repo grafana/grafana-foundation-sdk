@@ -387,6 +387,15 @@ func (builder *PanelBuilder) NoValue(noValue string) *PanelBuilder {
 	return builder
 }
 
+func (builder *PanelBuilder) FieldMinMax(fieldMinMax bool) *PanelBuilder {
+	if builder.internal.FieldConfig == nil {
+		builder.internal.FieldConfig = dashboard.NewFieldConfigSource()
+	}
+	builder.internal.FieldConfig.Defaults.FieldMinMax = &fieldMinMax
+
+	return builder
+}
+
 // Overrides are the options applied to specific fields overriding the defaults.
 func (builder *PanelBuilder) Overrides(overrides []cog.Builder[dashboard.DashboardFieldConfigSourceOverrides]) *PanelBuilder {
 	if builder.internal.FieldConfig == nil {

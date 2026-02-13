@@ -140,6 +140,17 @@ class DataqueryBuilder implements \Grafana\Foundation\Cog\Builder
     }
 
     /**
+     * An additional lower limit for the step parameter of the Prometheus query and for the
+     * `$__interval` and `$__rate_interval` variables.
+     */
+    public function interval(string $interval): static
+    {
+        $this->internal->interval = $interval;
+    
+        return $this;
+    }
+
+    /**
      * For mixed data sources the selected datasource is on the query level.
      * For non mixed scenarios this is undefined.
      * TODO find a better way to do this ^ that's friendly to schema
@@ -148,17 +159,6 @@ class DataqueryBuilder implements \Grafana\Foundation\Cog\Builder
     public function datasource(\Grafana\Foundation\Common\DataSourceRef $datasource): static
     {
         $this->internal->datasource = $datasource;
-    
-        return $this;
-    }
-
-    /**
-     * An additional lower limit for the step parameter of the Prometheus query and for the
-     * `$__interval` and `$__rate_interval` variables.
-     */
-    public function interval(string $interval): static
-    {
-        $this->internal->interval = $interval;
     
         return $this;
     }

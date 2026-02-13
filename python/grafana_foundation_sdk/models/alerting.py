@@ -375,7 +375,7 @@ class Rule:
     annotations: typing.Optional[dict[str, str]]
     condition: str
     data: list['Query']
-    exec_err_state: typing.Literal["OK", "Alerting", "Error"]
+    exec_err_state: typing.Literal["Alerting", "Error", "OK", "KeepLast"]
     folder_uid: str
     # The amount of time, in seconds, for which the rule must be breached for the rule to be considered to be Firing.
     # Before this time has elapsed, the rule is only considered to be Pending.
@@ -383,7 +383,7 @@ class Rule:
     id_val: typing.Optional[int]
     is_paused: typing.Optional[bool]
     labels: typing.Optional[dict[str, str]]
-    no_data_state: typing.Literal["Alerting", "NoData", "OK"]
+    no_data_state: typing.Literal["OK", "Alerting", "NoData", "KeepLast"]
     notification_settings: typing.Optional['NotificationSettings']
     org_id: int
     provenance: typing.Optional['Provenance']
@@ -393,17 +393,17 @@ class Rule:
     uid: typing.Optional[str]
     updated: typing.Optional[str]
 
-    def __init__(self, annotations: typing.Optional[dict[str, str]] = None, condition: str = "", data: typing.Optional[list['Query']] = None, exec_err_state: typing.Optional[typing.Literal["OK", "Alerting", "Error"]] = None, folder_uid: str = "", for_val: str = "", id_val: typing.Optional[int] = None, is_paused: typing.Optional[bool] = None, labels: typing.Optional[dict[str, str]] = None, no_data_state: typing.Optional[typing.Literal["Alerting", "NoData", "OK"]] = None, notification_settings: typing.Optional['NotificationSettings'] = None, org_id: int = 0, provenance: typing.Optional['Provenance'] = None, record: typing.Optional['RecordRule'] = None, rule_group: str = "", title: str = "", uid: typing.Optional[str] = None, updated: typing.Optional[str] = None) -> None:
+    def __init__(self, annotations: typing.Optional[dict[str, str]] = None, condition: str = "", data: typing.Optional[list['Query']] = None, exec_err_state: typing.Optional[typing.Literal["Alerting", "Error", "OK", "KeepLast"]] = None, folder_uid: str = "", for_val: str = "", id_val: typing.Optional[int] = None, is_paused: typing.Optional[bool] = None, labels: typing.Optional[dict[str, str]] = None, no_data_state: typing.Optional[typing.Literal["OK", "Alerting", "NoData", "KeepLast"]] = None, notification_settings: typing.Optional['NotificationSettings'] = None, org_id: int = 0, provenance: typing.Optional['Provenance'] = None, record: typing.Optional['RecordRule'] = None, rule_group: str = "", title: str = "", uid: typing.Optional[str] = None, updated: typing.Optional[str] = None) -> None:
         self.annotations = annotations
         self.condition = condition
         self.data = data if data is not None else []
-        self.exec_err_state = exec_err_state if exec_err_state is not None else "OK"
+        self.exec_err_state = exec_err_state if exec_err_state is not None else "Alerting"
         self.folder_uid = folder_uid
         self.for_val = for_val
         self.id_val = id_val
         self.is_paused = is_paused
         self.labels = labels
-        self.no_data_state = no_data_state if no_data_state is not None else "Alerting"
+        self.no_data_state = no_data_state if no_data_state is not None else "OK"
         self.notification_settings = notification_settings
         self.org_id = org_id
         self.provenance = provenance

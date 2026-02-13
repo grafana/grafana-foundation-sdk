@@ -146,6 +146,12 @@ The display value for this field.  This supports template variables blank is aut
 displayName(string $displayName)
 ```
 
+### <span class="badge object-method"></span> fieldMinMax
+
+```php
+fieldMinMax(bool $fieldMinMax)
+```
+
 ### <span class="badge object-method"></span> fillOpacity
 
 ```php

@@ -68,18 +68,18 @@ class Dataquery implements \JsonSerializable, \Grafana\Foundation\Cog\Dataquery
     public ?string $queryType;
 
     /**
+     * An additional lower limit for the step parameter of the Prometheus query and for the
+     * `$__interval` and `$__rate_interval` variables.
+     */
+    public ?string $interval;
+
+    /**
      * For mixed data sources the selected datasource is on the query level.
      * For non mixed scenarios this is undefined.
      * TODO find a better way to do this ^ that's friendly to schema
      * TODO this shouldn't be unknown but DataSourceRef | null
      */
     public ?\Grafana\Foundation\Common\DataSourceRef $datasource;
-
-    /**
-     * An additional lower limit for the step parameter of the Prometheus query and for the
-     * `$__interval` and `$__rate_interval` variables.
-     */
-    public ?string $interval;
 
 }
 ```

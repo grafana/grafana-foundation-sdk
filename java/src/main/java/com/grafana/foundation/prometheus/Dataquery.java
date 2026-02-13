@@ -57,6 +57,11 @@ public class Dataquery implements com.grafana.foundation.cog.variants.Dataquery 
     @JsonInclude(JsonInclude.Include.NON_NULL)
     @JsonProperty("queryType")
     public String queryType;
+    // An additional lower limit for the step parameter of the Prometheus query and for the
+    // `$__interval` and `$__rate_interval` variables.
+    @JsonInclude(JsonInclude.Include.NON_NULL)
+    @JsonProperty("interval")
+    public String interval;
     // For mixed data sources the selected datasource is on the query level.
     // For non mixed scenarios this is undefined.
     // TODO find a better way to do this ^ that's friendly to schema
@@ -64,15 +69,10 @@ public class Dataquery implements com.grafana.foundation.cog.variants.Dataquery 
     @JsonInclude(JsonInclude.Include.NON_NULL)
     @JsonProperty("datasource")
     public DataSourceRef datasource;
-    // An additional lower limit for the step parameter of the Prometheus query and for the
-    // `$__interval` and `$__rate_interval` variables.
-    @JsonInclude(JsonInclude.Include.NON_NULL)
-    @JsonProperty("interval")
-    public String interval;
     public Dataquery() {
         this.expr = "";
     }
-    public Dataquery(String expr,Boolean instant,Boolean range,Boolean exemplar,QueryEditorMode editorMode,PromQueryFormat format,String legendFormat,Double intervalFactor,String refId,Boolean hide,String queryType,DataSourceRef datasource,String interval) {
+    public Dataquery(String expr,Boolean instant,Boolean range,Boolean exemplar,QueryEditorMode editorMode,PromQueryFormat format,String legendFormat,Double intervalFactor,String refId,Boolean hide,String queryType,String interval,DataSourceRef datasource) {
         this.expr = expr;
         this.instant = instant;
         this.range = range;
@@ -84,8 +84,8 @@ public class Dataquery implements com.grafana.foundation.cog.variants.Dataquery 
         this.refId = refId;
         this.hide = hide;
         this.queryType = queryType;
-        this.datasource = datasource;
         this.interval = interval;
+        this.datasource = datasource;
     }
     public String dataqueryName() {
         return "prometheus";

@@ -424,6 +424,15 @@ func (builder *PanelBuilder) Custom(custom any) *PanelBuilder {
 	return builder
 }
 
+func (builder *PanelBuilder) FieldMinMax(fieldMinMax bool) *PanelBuilder {
+	if builder.internal.FieldConfig == nil {
+		builder.internal.FieldConfig = NewFieldConfigSource()
+	}
+	builder.internal.FieldConfig.Defaults.FieldMinMax = &fieldMinMax
+
+	return builder
+}
+
 // Defaults are the options applied to all fields.
 func (builder *PanelBuilder) Defaults(defaults FieldConfig) *PanelBuilder {
 	if builder.internal.FieldConfig == nil {

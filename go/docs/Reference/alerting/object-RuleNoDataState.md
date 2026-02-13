@@ -8,9 +8,10 @@ title: <span class="badge object-type-enum"></span> RuleNoDataState
 ```go
 type RuleNoDataState string
 const (
+	RuleNoDataStateOK RuleNoDataState = "OK"
 	RuleNoDataStateAlerting RuleNoDataState = "Alerting"
 	RuleNoDataStateNoData RuleNoDataState = "NoData"
-	RuleNoDataStateOK RuleNoDataState = "OK"
+	RuleNoDataStateKeepLast RuleNoDataState = "KeepLast"
 )
 
 ```

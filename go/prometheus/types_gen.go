@@ -55,14 +55,14 @@ type Dataquery struct {
 	// Specify the query flavor
 	// TODO make this required and give it a default
 	QueryType *string `json:"queryType,omitempty"`
+	// An additional lower limit for the step parameter of the Prometheus query and for the
+	// `$__interval` and `$__rate_interval` variables.
+	Interval *string `json:"interval,omitempty"`
 	// For mixed data sources the selected datasource is on the query level.
 	// For non mixed scenarios this is undefined.
 	// TODO find a better way to do this ^ that's friendly to schema
 	// TODO this shouldn't be unknown but DataSourceRef | null
 	Datasource *common.DataSourceRef `json:"datasource,omitempty"`
-	// An additional lower limit for the step parameter of the Prometheus query and for the
-	// `$__interval` and `$__rate_interval` variables.
-	Interval *string `json:"interval,omitempty"`
 }
 
 func (resource Dataquery) ImplementsDataqueryVariant() {}
@@ -212,6 +212,17 @@ func (resource *Dataquery) UnmarshalJSONStrict(raw []byte) error {
 		delete(fields, "queryType")
 
 	}
+	// Field "interval"
+	if fields["interval"] != nil {
+		if string(fields["interval"]) != "null" {
+			if err := json.Unmarshal(fields["interval"], &resource.Interval); err != nil {
+				errs = append(errs, cog.MakeBuildErrors("interval", err)...)
+			}
+
+		}
+		delete(fields, "interval")
+
+	}
 	// Field "datasource"
 	if fields["datasource"] != nil {
 		if string(fields["datasource"]) != "null" {
@@ -223,17 +234,6 @@ func (resource *Dataquery) UnmarshalJSONStrict(raw []byte) error {
 
 		}
 		delete(fields, "datasource")
-
-	}
-	// Field "interval"
-	if fields["interval"] != nil {
-		if string(fields["interval"]) != "null" {
-			if err := json.Unmarshal(fields["interval"], &resource.Interval); err != nil {
-				errs = append(errs, cog.MakeBuildErrors("interval", err)...)
-			}
-
-		}
-		delete(fields, "interval")
 
 	}
 
@@ -351,21 +351,21 @@ func (resource Dataquery) Equals(otherCandidate variants.Dataquery) bool {
 			return false
 		}
 	}
-	if resource.Datasource == nil && other.Datasource != nil || resource.Datasource != nil && other.Datasource == nil {
-		return false
-	}
-
-	if resource.Datasource != nil {
-		if !resource.Datasource.Equals(*other.Datasource) {
-			return false
-		}
-	}
 	if resource.Interval == nil && other.Interval != nil || resource.Interval != nil && other.Interval == nil {
 		return false
 	}
 
 	if resource.Interval != nil {
 		if *resource.Interval != *other.Interval {
+			return false
+		}
+	}
+	if resource.Datasource == nil && other.Datasource != nil || resource.Datasource != nil && other.Datasource == nil {
+		return false
+	}
+
+	if resource.Datasource != nil {
+		if !resource.Datasource.Equals(*other.Datasource) {
 			return false
 		}
 	}

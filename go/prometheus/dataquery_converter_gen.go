@@ -141,10 +141,10 @@ func DataqueryConverter(input Dataquery) string {
 		buffer.Reset()
 
 	}
-	if input.Datasource != nil {
+	if input.Interval != nil && *input.Interval != "" {
 
-		buffer.WriteString(`Datasource(`)
-		arg0 := cog.Dump(*input.Datasource)
+		buffer.WriteString(`Interval(`)
+		arg0 := fmt.Sprintf("%#v", *input.Interval)
 		buffer.WriteString(arg0)
 
 		buffer.WriteString(")")
@@ -153,10 +153,10 @@ func DataqueryConverter(input Dataquery) string {
 		buffer.Reset()
 
 	}
-	if input.Interval != nil && *input.Interval != "" {
+	if input.Datasource != nil {
 
-		buffer.WriteString(`Interval(`)
-		arg0 := fmt.Sprintf("%#v", *input.Interval)
+		buffer.WriteString(`Datasource(`)
+		arg0 := cog.Dump(*input.Datasource)
 		buffer.WriteString(arg0)
 
 		buffer.WriteString(")")

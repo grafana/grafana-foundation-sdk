@@ -66,10 +66,10 @@ public class Rule {
     public Rule() {
         this.condition = "";
         this.data = new LinkedList<>();
-        this.execErrState = RuleExecErrState.OK;
+        this.execErrState = RuleExecErrState.ALERTING;
         this.folderUID = "";
         this.forArg = "";
-        this.noDataState = RuleNoDataState.ALERTING;
+        this.noDataState = RuleNoDataState.OK;
         this.orgID = 0L;
         this.ruleGroup = "";
         this.title = "";

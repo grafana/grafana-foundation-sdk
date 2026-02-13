@@ -78,13 +78,13 @@ class Rule implements \JsonSerializable
         $this->annotations = $annotations;
         $this->condition = $condition ?: "";
         $this->data = $data ?: [];
-        $this->execErrState = $execErrState ?: \Grafana\Foundation\Alerting\RuleExecErrState::OK();
+        $this->execErrState = $execErrState ?: \Grafana\Foundation\Alerting\RuleExecErrState::Alerting();
         $this->folderUID = $folderUID ?: "";
         $this->for = $for ?: "";
         $this->id = $id;
         $this->isPaused = $isPaused;
         $this->labels = $labels;
-        $this->noDataState = $noDataState ?: \Grafana\Foundation\Alerting\RuleNoDataState::Alerting();
+        $this->noDataState = $noDataState ?: \Grafana\Foundation\Alerting\RuleNoDataState::OK();
         $this->notificationSettings = $notificationSettings;
         $this->orgID = $orgID ?: 0;
         $this->provenance = $provenance ?: "";

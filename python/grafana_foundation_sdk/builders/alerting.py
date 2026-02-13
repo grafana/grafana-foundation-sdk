@@ -393,7 +393,7 @@ class Rule(cogbuilder.Builder[alerting.Rule]):
     
         return self
     
-    def exec_err_state(self, exec_err_state: typing.Literal["OK", "Alerting", "Error"]) -> typing.Self:    
+    def exec_err_state(self, exec_err_state: typing.Literal["Alerting", "Error", "OK", "KeepLast"]) -> typing.Self:    
         self._internal.exec_err_state = exec_err_state
     
         return self
@@ -428,7 +428,7 @@ class Rule(cogbuilder.Builder[alerting.Rule]):
     
         return self
     
-    def no_data_state(self, no_data_state: typing.Literal["Alerting", "NoData", "OK"]) -> typing.Self:    
+    def no_data_state(self, no_data_state: typing.Literal["OK", "Alerting", "NoData", "KeepLast"]) -> typing.Self:    
         self._internal.no_data_state = no_data_state
     
         return self

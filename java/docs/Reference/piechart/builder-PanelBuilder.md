@@ -86,6 +86,12 @@ The display value for this field.  This supports template variables blank is aut
 public PanelBuilder displayName(String displayName)
 ```
 
+### <span class="badge object-method"></span> fieldMinMax
+
+```java
+public PanelBuilder fieldMinMax(Boolean fieldMinMax)
+```
+
 ### <span class="badge object-method"></span> gridPos
 
 Grid position.

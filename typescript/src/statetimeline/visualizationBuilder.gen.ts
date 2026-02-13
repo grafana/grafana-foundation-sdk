@@ -696,5 +696,39 @@ export class VisualizationBuilder implements cog.Builder<dashboardv2beta1.VizCon
         this.internal.spec.fieldConfig.defaults.custom.axisBorderShow = axisBorderShow;
         return this;
     }
+
+    spanNulls(spanNulls: boolean | number): this {
+        if (!this.internal.spec) {
+            this.internal.spec = dashboardv2beta1.defaultVizConfigSpec();
+        }
+        if (!this.internal.spec.fieldConfig) {
+            this.internal.spec.fieldConfig = dashboardv2beta1.defaultFieldConfigSource();
+        }
+        if (!this.internal.spec.fieldConfig.defaults) {
+            this.internal.spec.fieldConfig.defaults = dashboardv2beta1.defaultFieldConfig();
+        }
+        if (!this.internal.spec.fieldConfig.defaults.custom) {
+            this.internal.spec.fieldConfig.defaults.custom = statetimeline.defaultFieldConfig();
+        }
+        this.internal.spec.fieldConfig.defaults.custom.spanNulls = spanNulls;
+        return this;
+    }
+
+    insertNulls(insertNulls: boolean | number): this {
+        if (!this.internal.spec) {
+            this.internal.spec = dashboardv2beta1.defaultVizConfigSpec();
+        }
+        if (!this.internal.spec.fieldConfig) {
+            this.internal.spec.fieldConfig = dashboardv2beta1.defaultFieldConfigSource();
+        }
+        if (!this.internal.spec.fieldConfig.defaults) {
+            this.internal.spec.fieldConfig.defaults = dashboardv2beta1.defaultFieldConfig();
+        }
+        if (!this.internal.spec.fieldConfig.defaults.custom) {
+            this.internal.spec.fieldConfig.defaults.custom = statetimeline.defaultFieldConfig();
+        }
+        this.internal.spec.fieldConfig.defaults.custom.insertNulls = insertNulls;
+        return this;
+    }
 }
 

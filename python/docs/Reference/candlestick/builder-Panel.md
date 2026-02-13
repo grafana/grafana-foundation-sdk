@@ -182,6 +182,12 @@ def display_name(display_name: str) -> typing.Self
 def draw_style(draw_style: common.GraphDrawStyle) -> typing.Self
 ```
 
+### <span class="badge object-method"></span> field_min_max
+
+```python
+def field_min_max(field_min_max: bool) -> typing.Self
+```
+
 ### <span class="badge object-method"></span> fields
 
 Map fields to appropriate dimension

@@ -484,6 +484,17 @@ class PanelBuilder implements \Grafana\Foundation\Cog\Builder
         return $this;
     }
 
+    public function fieldMinMax(bool $fieldMinMax): static
+    {    
+        if ($this->internal->fieldConfig === null) {
+            $this->internal->fieldConfig = new \Grafana\Foundation\Dashboard\FieldConfigSource();
+        }
+        assert($this->internal->fieldConfig instanceof \Grafana\Foundation\Dashboard\FieldConfigSource);
+        $this->internal->fieldConfig->defaults->fieldMinMax = $fieldMinMax;
+    
+        return $this;
+    }
+
     /**
      * Overrides are the options applied to specific fields overriding the defaults.
      * @param array<\Grafana\Foundation\Cog\Builder<\Grafana\Foundation\Dashboard\DashboardFieldConfigSourceOverrides>> $overrides

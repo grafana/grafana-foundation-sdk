@@ -95,9 +95,12 @@ public class FieldConfig {
     @JsonInclude(JsonInclude.Include.NON_NULL)
     @JsonProperty("custom")
     public Object custom;
+    @JsonInclude(JsonInclude.Include.NON_NULL)
+    @JsonProperty("fieldMinMax")
+    public Boolean fieldMinMax;
     public FieldConfig() {
     }
-    public FieldConfig(String displayName,String displayNameFromDS,String description,String path,Boolean writeable,Boolean filterable,String unit,Double decimals,Double min,Double max,List<ValueMapping> mappings,ThresholdsConfig thresholds,FieldColor color,List<DashboardLink> links,String noValue,Object custom) {
+    public FieldConfig(String displayName,String displayNameFromDS,String description,String path,Boolean writeable,Boolean filterable,String unit,Double decimals,Double min,Double max,List<ValueMapping> mappings,ThresholdsConfig thresholds,FieldColor color,List<DashboardLink> links,String noValue,Object custom,Boolean fieldMinMax) {
         this.displayName = displayName;
         this.displayNameFromDS = displayNameFromDS;
         this.description = description;
@@ -114,6 +117,7 @@ public class FieldConfig {
         this.links = links;
         this.noValue = noValue;
         this.custom = custom;
+        this.fieldMinMax = fieldMinMax;
     }
     
     public String toJSON() throws JsonProcessingException {

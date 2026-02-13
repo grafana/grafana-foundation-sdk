@@ -447,6 +447,17 @@ class Panel(cogbuilder.Builder[dashboard.Panel]):
     
         return self
     
+    def field_min_max(self, field_min_max: bool) -> typing.Self:    
+        if self._internal.field_config is None:
+            self._internal.field_config = dashboard.FieldConfigSource()
+        assert isinstance(self._internal.field_config, dashboard.FieldConfigSource)
+        if self._internal.field_config.defaults is None:
+            self._internal.field_config.defaults = dashboard.FieldConfig()
+        assert isinstance(self._internal.field_config.defaults, dashboard.FieldConfig)
+        self._internal.field_config.defaults.field_min_max = field_min_max
+    
+        return self
+    
     def overrides(self, overrides: list[cogbuilder.Builder[dashboard.DashboardFieldConfigSourceOverrides]]) -> typing.Self:    
         """
         Overrides are the options applied to specific fields overriding the defaults.

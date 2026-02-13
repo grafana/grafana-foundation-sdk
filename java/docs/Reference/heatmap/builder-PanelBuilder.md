@@ -136,6 +136,12 @@ Controls exemplar options
 public PanelBuilder exemplarsColor(String color)
 ```
 
+### <span class="badge object-method"></span> fieldMinMax
+
+```java
+public PanelBuilder fieldMinMax(Boolean fieldMinMax)
+```
+
 ### <span class="badge object-method"></span> filterValues
 
 Filters values between a given range

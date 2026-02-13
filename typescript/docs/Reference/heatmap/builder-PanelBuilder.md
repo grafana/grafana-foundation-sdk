@@ -136,6 +136,12 @@ Controls exemplar options
 exemplarsColor(color: string)
 ```
 
+### <span class="badge object-method"></span> fieldMinMax
+
+```typescript
+fieldMinMax(fieldMinMax: boolean)
+```
+
 ### <span class="badge object-method"></span> filterValues
 
 Filters values between a given range

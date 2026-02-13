@@ -156,6 +156,12 @@ def fill_opacity(fill_opacity: int) -> typing.Self
 def hide_from(hide_from: cogbuilder.Builder[common.HideSeriesConfig]) -> typing.Self
 ```
 
+### <span class="badge object-method"></span> insert_nulls
+
+```python
+def insert_nulls(insert_nulls: typing.Union[bool, int]) -> typing.Self
+```
+
 ### <span class="badge object-method"></span> legend
 
 ```python
@@ -298,6 +304,12 @@ Show timeline values on chart
 
 ```python
 def show_value(show_value: common.VisibilityMode) -> typing.Self
+```
+
+### <span class="badge object-method"></span> span_nulls
+
+```python
+def span_nulls(span_nulls: typing.Union[bool, int]) -> typing.Self
 ```
 
 ### <span class="badge object-method"></span> thresholds

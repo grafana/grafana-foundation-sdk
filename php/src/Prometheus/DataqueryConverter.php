@@ -147,11 +147,11 @@ final class DataqueryConverter
     
     
     }
-            if ($input->datasource !== null) {
+            if ($input->interval !== null && $input->interval !== "") {
     
         
-    $buffer = 'datasource(';
-        $arg0 ='(new \Grafana\Foundation\Common\DataSourceRef('.(($input->datasource->type !== null) ? 'type: '.\var_export($input->datasource->type, true).', ' : '').''.(($input->datasource->uid !== null) ? 'uid: '.\var_export($input->datasource->uid, true).', ' : '').'))';
+    $buffer = 'interval(';
+        $arg0 =\var_export($input->interval, true);
         $buffer .= $arg0;
         
     $buffer .= ')';
@@ -160,11 +160,11 @@ final class DataqueryConverter
     
     
     }
-            if ($input->interval !== null && $input->interval !== "") {
+            if ($input->datasource !== null) {
     
         
-    $buffer = 'interval(';
-        $arg0 =\var_export($input->interval, true);
+    $buffer = 'datasource(';
+        $arg0 ='(new \Grafana\Foundation\Common\DataSourceRef('.(($input->datasource->type !== null) ? 'type: '.\var_export($input->datasource->type, true).', ' : '').''.(($input->datasource->uid !== null) ? 'uid: '.\var_export($input->datasource->uid, true).', ' : '').'))';
         $buffer .= $arg0;
         
     $buffer .= ')';

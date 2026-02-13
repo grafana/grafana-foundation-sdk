@@ -270,6 +270,8 @@ type FieldConfig struct {
 	HideFrom          *common.HideSeriesConfig        `json:"hideFrom,omitempty"`
 	FillOpacity       *uint32                         `json:"fillOpacity,omitempty"`
 	AxisBorderShow    *bool                           `json:"axisBorderShow,omitempty"`
+	SpanNulls         *BoolOrUint32                   `json:"spanNulls,omitempty"`
+	InsertNulls       *BoolOrUint32                   `json:"insertNulls,omitempty"`
 }
 
 // NewFieldConfig creates a new FieldConfig object.
@@ -439,6 +441,32 @@ func (resource *FieldConfig) UnmarshalJSONStrict(raw []byte) error {
 		delete(fields, "axisBorderShow")
 
 	}
+	// Field "spanNulls"
+	if fields["spanNulls"] != nil {
+		if string(fields["spanNulls"]) != "null" {
+
+			resource.SpanNulls = &BoolOrUint32{}
+			if err := resource.SpanNulls.UnmarshalJSONStrict(fields["spanNulls"]); err != nil {
+				errs = append(errs, cog.MakeBuildErrors("spanNulls", err)...)
+			}
+
+		}
+		delete(fields, "spanNulls")
+
+	}
+	// Field "insertNulls"
+	if fields["insertNulls"] != nil {
+		if string(fields["insertNulls"]) != "null" {
+
+			resource.InsertNulls = &BoolOrUint32{}
+			if err := resource.InsertNulls.UnmarshalJSONStrict(fields["insertNulls"]); err != nil {
+				errs = append(errs, cog.MakeBuildErrors("insertNulls", err)...)
+			}
+
+		}
+		delete(fields, "insertNulls")
+
+	}
 
 	for field := range fields {
 		errs = append(errs, cog.MakeBuildErrors("FieldConfig", fmt.Errorf("unexpected field '%s'", field))...)
@@ -570,6 +598,24 @@ func (resource FieldConfig) Equals(other FieldConfig) bool {
 			return false
 		}
 	}
+	if resource.SpanNulls == nil && other.SpanNulls != nil || resource.SpanNulls != nil && other.SpanNulls == nil {
+		return false
+	}
+
+	if resource.SpanNulls != nil {
+		if !resource.SpanNulls.Equals(*other.SpanNulls) {
+			return false
+		}
+	}
+	if resource.InsertNulls == nil && other.InsertNulls != nil || resource.InsertNulls != nil && other.InsertNulls == nil {
+		return false
+	}
+
+	if resource.InsertNulls != nil {
+		if !resource.InsertNulls.Equals(*other.InsertNulls) {
+			return false
+		}
+	}
 
 	return true
 }
@@ -603,12 +649,145 @@ func (resource FieldConfig) Validate() error {
 			)...)
 		}
 	}
+	if resource.SpanNulls != nil {
+		if err := resource.SpanNulls.Validate(); err != nil {
+			errs = append(errs, cog.MakeBuildErrors("spanNulls", err)...)
+		}
+	}
+	if resource.InsertNulls != nil {
+		if err := resource.InsertNulls.Validate(); err != nil {
+			errs = append(errs, cog.MakeBuildErrors("insertNulls", err)...)
+		}
+	}
 
 	if len(errs) == 0 {
 		return nil
 	}
 
 	return errs
+}
+
+type BoolOrUint32 struct {
+	Bool   *bool   `json:"Bool,omitempty"`
+	Uint32 *uint32 `json:"Uint32,omitempty"`
+}
+
+// NewBoolOrUint32 creates a new BoolOrUint32 object.
+func NewBoolOrUint32() *BoolOrUint32 {
+	return &BoolOrUint32{}
+}
+
+// MarshalJSON implements a custom JSON marshalling logic to encode `BoolOrUint32` as JSON.
+func (resource BoolOrUint32) MarshalJSON() ([]byte, error) {
+	if resource.Bool != nil {
+		return json.Marshal(resource.Bool)
+	}
+
+	if resource.Uint32 != nil {
+		return json.Marshal(resource.Uint32)
+	}
+
+	return []byte("null"), nil
+}
+
+// UnmarshalJSON implements a custom JSON unmarshalling logic to decode `BoolOrUint32` from JSON.
+func (resource *BoolOrUint32) UnmarshalJSON(raw []byte) error {
+	if raw == nil {
+		return nil
+	}
+
+	var errList []error
+
+	// Bool
+	var Bool bool
+	if err := json.Unmarshal(raw, &Bool); err != nil {
+		errList = append(errList, err)
+		resource.Bool = nil
+	} else {
+		resource.Bool = &Bool
+		return nil
+	}
+
+	// Uint32
+	var Uint32 uint32
+	if err := json.Unmarshal(raw, &Uint32); err != nil {
+		errList = append(errList, err)
+		resource.Uint32 = nil
+	} else {
+		resource.Uint32 = &Uint32
+		return nil
+	}
+
+	return errors.Join(errList...)
+}
+
+// UnmarshalJSONStrict implements a custom JSON unmarshalling logic to decode `BoolOrUint32` from JSON.
+// Note: the unmarshalling done by this function is strict. It will fail over required fields being absent from the input, fields having an incorrect type, unexpected fields being present, …
+func (resource *BoolOrUint32) UnmarshalJSONStrict(raw []byte) error {
+	if raw == nil {
+		return nil
+	}
+	var errs cog.BuildErrors
+	var errList []error
+
+	// Bool
+	var Bool bool
+
+	if err := json.Unmarshal(raw, &Bool); err != nil {
+		errList = append(errList, err)
+	} else {
+		resource.Bool = &Bool
+		return nil
+	}
+
+	// Uint32
+	var Uint32 uint32
+
+	if err := json.Unmarshal(raw, &Uint32); err != nil {
+		errList = append(errList, err)
+	} else {
+		resource.Uint32 = &Uint32
+		return nil
+	}
+
+	if len(errList) != 0 {
+		errs = append(errs, cog.MakeBuildErrors("BoolOrUint32", errors.Join(errList...))...)
+	}
+
+	if len(errs) == 0 {
+		return nil
+	}
+
+	return errs
+}
+
+// Equals tests the equality of two `BoolOrUint32` objects.
+func (resource BoolOrUint32) Equals(other BoolOrUint32) bool {
+	if resource.Bool == nil && other.Bool != nil || resource.Bool != nil && other.Bool == nil {
+		return false
+	}
+
+	if resource.Bool != nil {
+		if *resource.Bool != *other.Bool {
+			return false
+		}
+	}
+	if resource.Uint32 == nil && other.Uint32 != nil || resource.Uint32 != nil && other.Uint32 == nil {
+		return false
+	}
+
+	if resource.Uint32 != nil {
+		if *resource.Uint32 != *other.Uint32 {
+			return false
+		}
+	}
+
+	return true
+}
+
+// Validate checks all the validation constraints that may be defined on `BoolOrUint32` fields for violations and returns them.
+func (resource BoolOrUint32) Validate() error {
+	return nil
 }
 
 // VariantConfig returns the configuration related to state-timeline panels.
