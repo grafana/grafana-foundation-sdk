@@ -5,6 +5,7 @@ from grafana_foundation_sdk.models.dashboard import (
     DashboardLinkType,
     VariableHide,
 )
+from grafana_foundation_sdk.models.resource import Manifest, Metadata, DashboardKind
 
 from src import common, cpu, disk, host, memory, network
 
@@ -106,4 +107,13 @@ builder = (
 )
 
 if __name__ == "__main__":
-    print(JSONEncoder(sort_keys=True, indent=2).encode(builder.build()))
+    dashboard = builder.build()
+
+    manifest = Manifest(
+        api_version="dashboard.grafana.app/v1beta1",
+        kind=DashboardKind,
+        metadata=Metadata(name=dashboard.uid),
+        spec=dashboard,
+    )
+
+    print(JSONEncoder(sort_keys=True, indent=2).encode(manifest))

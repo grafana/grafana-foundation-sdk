@@ -7,6 +7,7 @@ import (
 	"github.com/grafana/grafana-foundation-sdk/go/cog"
 	"github.com/grafana/grafana-foundation-sdk/go/cog/plugins"
 	"github.com/grafana/grafana-foundation-sdk/go/dashboard"
+	"github.com/grafana/grafana-foundation-sdk/go/resource"
 )
 
 func main() {
@@ -29,10 +30,19 @@ func main() {
 		panic(err)
 	}
 
-	dashboardJson, err := json.MarshalIndent(sampleDashboard, "", "  ")
+	manifest := resource.Manifest{
+		ApiVersion: "dashboard.grafana.app/v1beta1",
+		Kind:       resource.DashboardKind,
+		Metadata: resource.Metadata{
+			Name: *sampleDashboard.Uid,
+		},
+		Spec: sampleDashboard,
+	}
+
+	manifestJson, err := json.MarshalIndent(manifest, "", "  ")
 	if err != nil {
 		panic(err)
 	}
 
-	fmt.Println(string(dashboardJson))
+	fmt.Println(string(manifestJson))
 }

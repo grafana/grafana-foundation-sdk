@@ -9,4 +9,13 @@ const builder = new DashboardBuilder('[Example] Custom panel')
       .makeBeautiful()
   );
 
-console.log(JSON.stringify(builder.build(), null, 2));
+const dashboard = builder.build();
+
+console.log(JSON.stringify({
+    apiVersion: 'dashboard.grafana.app/v1beta1',
+    kind: 'Dashboard',
+    metadata: {
+        name: dashboard.uid!,
+    },
+    spec: dashboard,
+}, null, 2));

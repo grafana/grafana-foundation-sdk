@@ -3,6 +3,7 @@
 use App\Custom;
 use Grafana\Foundation\Cog;
 use Grafana\Foundation\Dashboard\DashboardBuilder;
+use Grafana\Foundation\Resource;
 use Grafana\Foundation\Timeseries;
 
 require_once __DIR__.'/vendor/autoload.php';
@@ -22,4 +23,13 @@ $builder = (new DashboardBuilder(title: '[Example] Custom query'))
     )
 ;
 
-var_dump($builder->build());
+$dashboard = $builder->build();
+
+$manifest = new Resource\Manifest(
+    apiVersion: 'dashboard.grafana.app/v1beta1',
+    kind: Resource\Constants::DASHBOARD_KIND,
+    metadata: new Resource\Metadata(name: $dashboard->uid),
+    spec: $dashboard,
+);
+
+echo json_encode($manifest, JSON_PRETTY_PRINT).PHP_EOL;

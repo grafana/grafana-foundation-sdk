@@ -8,6 +8,7 @@ from grafana_foundation_sdk.models.dashboard import (
     VariableRefresh,
     VariableSort,
 )
+from grafana_foundation_sdk.models.resource import Manifest, Metadata, DashboardKind
 
 from src import overview, discovery, retrieval
 
@@ -78,4 +79,14 @@ if __name__ == "__main__":
         .with_panel(retrieval.appended_samples_timeseries())
     )
 
-    print(JSONEncoder(sort_keys=True, indent=2).encode(builder.build()))
+    dashboard = builder.build()
+
+    manifest = Manifest(
+        api_version="dashboard.grafana.app/v1beta1",
+        kind=DashboardKind,
+        metadata=Metadata(name=dashboard.uid),
+        spec=dashboard,
+    )
+
+    print(JSONEncoder(sort_keys=True, indent=2).encode(manifest))
+

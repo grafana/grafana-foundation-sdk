@@ -1,6 +1,7 @@
 <?php
 
 use App\Red;
+use Grafana\Foundation\Resource;
 
 require_once __DIR__.'/vendor/autoload.php';
 
@@ -9,4 +10,11 @@ $redDashboard = Red\Dashboard::generate(
     serviceIDs: ['sample-service', 'payments', 'front-gateway'],
 );
 
-echo json_encode($redDashboard, JSON_PRETTY_PRINT | JSON_UNESCAPED_SLASHES).PHP_EOL;
+$manifest = new Resource\Manifest(
+    apiVersion: 'dashboard.grafana.app/v1beta1',
+    kind: Resource\Constants::DASHBOARD_KIND,
+    metadata: new Resource\Metadata(name: $redDashboard->uid),
+    spec: $redDashboard,
+);
+
+echo json_encode($manifest, JSON_PRETTY_PRINT).PHP_EOL;

@@ -1,6 +1,8 @@
 /build
 .gradle
 /examples/java/*/build/
+/examples/typescript/*/.yarn/
+/examples/typescript/*/.yarnrc.yml
 
 /kind-registry
 /workspace

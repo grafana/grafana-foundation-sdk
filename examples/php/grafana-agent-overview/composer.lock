@@ -4,20 +4,20 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "31ebe14bbfc1a7cd53c5ce06d1ab55b4",
+    "content-hash": "18783d516b0b533fa8cc2722ffddcbfa",
     "packages": [
         {
             "name": "grafana/foundation-sdk",
-            "version": "v0.0.6",
+            "version": "v0.0.7",
             "source": {
                 "type": "git",
                 "url": "https://github.com/grafana/grafana-foundation-sdk.git",
-                "reference": "c4108c10a4a15b6d25c113166c6896685f1b8b24"
+                "reference": "af02db348903ecd95d3a732fef881bc71ddd0714"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/grafana/grafana-foundation-sdk/zipball/c4108c10a4a15b6d25c113166c6896685f1b8b24",
-                "reference": "c4108c10a4a15b6d25c113166c6896685f1b8b24",
+                "url": "https://api.github.com/repos/grafana/grafana-foundation-sdk/zipball/af02db348903ecd95d3a732fef881bc71ddd0714",
+                "reference": "af02db348903ecd95d3a732fef881bc71ddd0714",
                 "shasum": ""
             },
             "type": "library",
@@ -42,9 +42,9 @@
             ],
             "support": {
                 "issues": "https://github.com/grafana/grafana-foundation-sdk/issues",
-                "source": "https://github.com/grafana/grafana-foundation-sdk/tree/v0.0.6"
+                "source": "https://github.com/grafana/grafana-foundation-sdk/tree/v0.0.7"
             },
-            "time": "2026-02-09T16:38:23+00:00"
+            "time": "2026-02-13T21:53:34+00:00"
         }
     ],
     "packages-dev": [],

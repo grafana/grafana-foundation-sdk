@@ -99,4 +99,13 @@ export const builder = new DashboardBuilder('[Example] Linux node / overview')
   .withPanel(network.errorsTimeseries().height(8))
   ;
 
-console.log(JSON.stringify(builder.build(), null, 2));
+const dashboard = builder.build();
+
+console.log(JSON.stringify({
+    apiVersion: 'dashboard.grafana.app/v1beta1',
+    kind: 'Dashboard',
+    metadata: {
+        name: dashboard.uid!,
+    },
+    spec: dashboard,
+}, null, 2));

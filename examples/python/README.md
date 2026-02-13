@@ -43,5 +43,6 @@ $ python main.py
 ```
 
 > [!NOTE]
-> [Grizzly](https://github.com/grafana/grizzly/) can be used to preview the examples locally:
-> `grr serve -w -S 'python main.py' .`
+> [grafanactl](https://grafana.github.io/grafanactl/) can be used to preview the dashboards locally:
+>
+> `grafanactl resources serve --script 'python main.py'`
