@@ -4,6 +4,13 @@ COG_BIN     = $(COG_DIR)/cli
 
 KIND_REGISTRY_PATH="./kind-registry"
 
+# Within devbox
+ifneq "$(DEVBOX_CONFIG_DIR)" ""
+    RUN_DEVBOX:=
+else # Normal shell
+    RUN_DEVBOX:=devbox run
+endif
+
 .PHONY: install-cog
 install-cog: echodir $(COG_BIN)
 
@@ -14,6 +21,19 @@ $(COG_BIN):
 	@mkdir -p $(COG_DIR)
 	GOBIN=$(COG_DIR) go install github.com/grafana/cog/cmd/cli@$(COG_VERSION)
 	@touch $@
+
+.PHONY: deps
+deps: php-deps python-deps
+
+.PHONY: php-deps
+php-deps:
+	echo "Installing PHP dependencies"
+	$(RUN_DEVBOX) composer install
+
+.PHONY: python-deps
+python-deps:
+	echo "Installing Python dependencies"
+	$(RUN_DEVBOX) pip install -r requirements.txt
 
 .PHONY: clone-kind-registry
 clone-kind-registry:

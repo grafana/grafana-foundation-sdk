@@ -56,6 +56,7 @@ jobs:
 
       - name: Build documentation website
         run: |
+          devbox run make python-deps
           devbox run ./scripts/build-docs.sh
 
       - name: Upload static files as artifact

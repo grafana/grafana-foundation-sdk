@@ -17,5 +17,10 @@
             "Grafana\\Foundation\\": "php/src/"
         }
     },
-    "require": {}
+    "require-dev": {
+        "phpstan/phpstan": "^2.1"
+    },
+    "scripts": {
+        "phpstan": "phpstan analyze --memory-limit 512M -c .config/ci/php/phpstan.neon"
+    }
 }
