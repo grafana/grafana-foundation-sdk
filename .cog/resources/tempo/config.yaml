@@ -1,0 +1,2 @@
+builder_transformations:
+  - '%__config_dir%/go.builder.transforms.yaml'

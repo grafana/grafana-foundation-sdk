@@ -1,0 +1,11 @@
+inputs:
+  - cue:
+      url: 'https://raw.githubusercontent.com/grafana/grafana/v12.3.2/apps/dashboard/kinds/v2beta1/dashboard_spec.cue'
+      package: dashboardv2beta1
+      metadata:
+        kind: core
+      transformations:
+        - '%__config_dir%/schema.transforms.yaml'
+
+builder_transformations:
+  - '%__config_dir%/builder-transforms'
