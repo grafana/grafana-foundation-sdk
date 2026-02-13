@@ -73,29 +73,16 @@ jobs:
           LOG_LEVEL: '7' # debug
           GOGC: 'off'
 
+      - name: Identify latest branch
+        id: latest_branch
+        run: |
+          echo "ref=$(./scripts/release-preview-or-main.sh)" >> $GITHUB_OUTPUT
+
       - name: Checkout main branch
         uses: actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5 # v4.3.1
         with:
-          ref: main
+          ref: ${{ steps.latest_branch.outputs.ref }}
           persist-credentials: false
-
-      # re-install cog since the PR and main branch might use different versions.
-      - name: Setup cog
-        uses: ./.github/actions/setup-cog
-
-      - name: Dry-run release with main branch
-        run: |
-          git config --global user.email "cog-ci@grafana.com"
-          git config --global user.name "cog - CI"
-
-          devbox run ./scripts/prepare-release.sh
-        env:
-          TERM: 'xterm'
-          WORKSPACE_PATH: /tmp/foundation-workspace-main
-          CLEANUP_WORKSPACE: 'no'
-          SKIP_VALIDATION: 'yes'
-          LOG_LEVEL: '7' # debug
-          GOGC: 'off'
 
       - name: Preview diff
         run: |
@@ -128,7 +115,7 @@ jobs:
             --exclude='pyproject.toml' \
             --exclude='package.json' \
             --exclude='*.md' \
-            /tmp/foundation-workspace-main/foundation-sdk/ /tmp/foundation-workspace-current/foundation-sdk/ >> preview.md || true # diff returns 1 if the two targets have differences
+            ./ /tmp/foundation-workspace-current/foundation-sdk/ >> preview.md || true # diff returns 1 if the two targets have differences
           
           cat <<'EOF' >> preview.md
           ```
