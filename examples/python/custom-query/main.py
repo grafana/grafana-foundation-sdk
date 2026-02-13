@@ -3,6 +3,7 @@ from grafana_foundation_sdk.builders.timeseries import Panel as Timeseries
 from grafana_foundation_sdk.cog.encoder import JSONEncoder
 from grafana_foundation_sdk.cog.plugins import register_default_plugins
 from grafana_foundation_sdk.cog.runtime import register_dataquery_variant
+from grafana_foundation_sdk.models.resource import Manifest, Metadata, DashboardKind
 
 from src.customquery import custom_query_variant_config, CustomQueryBuilder
 
@@ -24,4 +25,11 @@ if __name__ == "__main__":
         )
     ).build()
 
-    print(JSONEncoder(sort_keys=True, indent=2).encode(dashboard))
+    manifest = Manifest(
+        api_version="dashboard.grafana.app/v1beta1",
+        kind=DashboardKind,
+        metadata=Metadata(name=dashboard.uid),
+        spec=dashboard,
+    )
+
+    print(JSONEncoder(sort_keys=True, indent=2).encode(manifest))
