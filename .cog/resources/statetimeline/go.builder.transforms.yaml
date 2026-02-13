@@ -6,19 +6,20 @@ package: statetimeline
 
 builders: ~
 
-options:
+options: 
   - duplicate:
       by_builder: Panel.spanNulls
       as: enableSpanNulls
-      
+
   - struct_fields_as_arguments:
       by_builder: Panel.enableSpanNulls
       fields: [Bool]
 
-  - rename_arguments:
+  - unfold_boolean:
       by_builder: Panel.enableSpanNulls
-      as: [enable]
-  
+      true_as: alwaysSpanNulls
+      false_as: neverSpanNulls
+
   - rename:
       by_builder: Panel.spanNulls
       as: spanNullsThreshold
@@ -26,15 +27,24 @@ options:
   - struct_fields_as_arguments:
       by_builder: Panel.spanNullsThreshold
       fields: [Uint32]
-      
+
   - rename_arguments:
       by_builder: Panel.spanNullsThreshold
       as: [threshold]
-      
-  - struct_fields_as_arguments:
+
+  - duplicate:
       by_builder: Panel.insertNulls
-      fields: [Uint32]
-      
+      as: enableInsertNulls
+
+  - struct_fields_as_arguments:
+      by_builder: Panel.enableInsertNulls
+      fields: [Bool]
+
+  - unfold_boolean:
+      by_builder: Panel.enableInsertNulls
+      true_as: alwaysInsertNulls
+      false_as: neverInsertNulls
+
   - rename:
       by_builder: Panel.insertNulls
       as: insertNullsThreshold
