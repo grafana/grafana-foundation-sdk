@@ -150,6 +150,7 @@ jobs:
             --exclude='gradle.properties' \
             --exclude='pyproject.toml' \
             --exclude='package.json' \
+            --exclude='yarn.lock' \
             --exclude='*.md' \
             ./ /tmp/foundation-workspace-current/foundation-sdk/ >> preview.md || true # diff returns 1 if the two targets have differences
           
