@@ -10,7 +10,6 @@
   "shell": {
     "init_hook": [
       "echo 'Entering Python venv' && . $VENV_DIR/bin/activate",
-      "echo 'Installing Composer' && make bin/composer"
     ]
   }
 }

@@ -17,4 +17,4 @@ release_path=${1:-"./"}
 cd "${release_path}"
 
 debug "  → running phpstan"
-"${__dir}/../../bin/composer" run phpstan
+composer run phpstan

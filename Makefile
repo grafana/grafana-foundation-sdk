@@ -1,6 +1,3 @@
-DEPS_BIN_DIR = bin
-COMPOSER_VERSION = 2.9.5
-COMPOSER_BIN = $(DEPS_BIN_DIR)/composer
 COG_VERSION = v0.0.54
 COG_DIR     = $(shell go env GOPATH)/bin/cog-$(COG_VERSION)
 COG_BIN     = $(COG_DIR)/cli
@@ -24,11 +21,6 @@ $(COG_BIN):
 	@mkdir -p $(COG_DIR)
 	GOBIN=$(COG_DIR) go install github.com/grafana/cog/cmd/cli@$(COG_VERSION)
 	@touch $@
-
-$(COMPOSER_BIN):
-	@mkdir -p $(DEPS_BIN_DIR)
-	curl -o "$(COMPOSER_BIN)" https://getcomposer.org/download/$(COMPOSER_VERSION)/composer.phar
-	@chmod u+x "$(COMPOSER_BIN)"
 
 .PHONY: deps
 deps: php-deps python-deps
