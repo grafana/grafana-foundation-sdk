@@ -17,11 +17,28 @@ jobs:
   validate_cog_config:
     name: Validate cog config
     runs-on: ubuntu-latest
+    permissions:
+      id-token: write
 
     steps:
       - uses: actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5 # v4.3.1
         with:
           persist-credentials: false
+
+      - name: Get secrets
+        uses: grafana/shared-workflows/actions/get-vault-secrets@75804962c1ba608148988c1e2dc35fbb0ee21746
+        with:
+          repo_secrets: |
+            SCHEMA_READER_APP_ID=schema_reader:app-id
+            SCHEMA_READER_PRIVATE_KEY=schema_reader:private-key
+
+      - name: Generate github private token
+        id: generate_reader_token
+        uses: actions/create-github-app-token@df432ceedc7162793a195dd1713ff69aefc7379e # v2.0.6
+        with:
+          app-id: ${{ env.SCHEMA_READER_APP_ID }}
+          private-key: ${{ env.SCHEMA_READER_PRIVATE_KEY }}
+          owner: ${{ github.repository_owner }}
 
       - name: Setup cog
         uses: ./.github/actions/setup-cog
@@ -38,12 +55,15 @@ jobs:
           cog inspect --config .cog/config.yaml \
             --ir builders \
             --parameters 'kind_registry_path=./kind-registry'
+        env:
+          GITHUB_AUTH_TOKEN: ${{ steps.generate_reader_token.outputs.token }}
 
   diff_preview:
     name: Generate diff
     runs-on: ubuntu-latest
     permissions:
       pull-requests: write
+      id-token: write
 
     steps:
       - uses: actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5 # v4.3.1
@@ -59,6 +79,21 @@ jobs:
           enable-cache: 'true'
           devbox-version: ${{ env.DEVBOX_VERSION }}
 
+      - name: Get secrets
+        uses: grafana/shared-workflows/actions/get-vault-secrets@75804962c1ba608148988c1e2dc35fbb0ee21746
+        with:
+          repo_secrets: |
+            SCHEMA_READER_APP_ID=schema_reader:app-id
+            SCHEMA_READER_PRIVATE_KEY=schema_reader:private-key
+
+      - name: Generate github private token
+        id: generate_reader_token
+        uses: actions/create-github-app-token@df432ceedc7162793a195dd1713ff69aefc7379e # v2.0.6
+        with:
+          app-id: ${{ env.SCHEMA_READER_APP_ID }}
+          private-key: ${{ env.SCHEMA_READER_PRIVATE_KEY }}
+          owner: ${{ github.repository_owner }}
+
       - name: Dry-run release with current branch
         run: |
           git config --global user.email "cog-ci@grafana.com"
@@ -72,6 +107,7 @@ jobs:
           SKIP_VALIDATION: 'yes'
           LOG_LEVEL: '7' # debug
           GOGC: 'off'
+          GITHUB_AUTH_TOKEN: ${{ steps.generate_reader_token.outputs.token }}
 
       - name: Identify latest branch
         id: latest_branch
