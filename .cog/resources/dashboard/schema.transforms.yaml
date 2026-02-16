@@ -102,6 +102,12 @@ passes:
             kind: scalar
             scalar: { scalar_kind: bool }
 
+  - retype_field:
+      field: dashboard.AnnotationQuery.target
+      as:
+        kind: composable_slot
+        composable_slot: { variant: dataquery }
+
   #######################
   # Dashboard variables #
   #######################
