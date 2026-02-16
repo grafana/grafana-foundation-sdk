@@ -143,6 +143,15 @@ passes:
         scalar:
           scalar_kind: string
 
+  - add_fields:
+      to: alerting.Rule
+      fields:
+        - name: keepFiringFor
+          type:
+            kind: scalar
+            scalar: { scalar_kind: string }
+            hints: { string_format_datetime: true }
+
   - retype_field:
       field: alerting.Query.model
       as:
