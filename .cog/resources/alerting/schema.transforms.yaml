@@ -147,6 +147,9 @@ passes:
       to: alerting.Rule
       fields:
         - name: keepFiringFor
+          comments: 
+            - 'You can set a Keep firing for period to avoid repeated firing-resolving-firing notifications caused by flapping conditions.'
+            - 'Value is in nanoseconds'
           type:
             kind: scalar
             scalar: { scalar_kind: int64 }
