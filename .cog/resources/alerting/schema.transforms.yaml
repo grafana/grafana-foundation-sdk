@@ -149,8 +149,7 @@ passes:
         - name: keepFiringFor
           type:
             kind: scalar
-            scalar: { scalar_kind: string }
-            hints: { string_format_datetime: true }
+            scalar: { scalar_kind: int64 }
 
   - retype_field:
       field: alerting.Query.model
