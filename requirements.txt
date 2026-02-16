@@ -1,5 +1,5 @@
 Babel==2.18.0
-brotlicffi==1.1.0.0
+brotlicffi==1.2.0.0
 certifi==2024.12.14
 cffi==1.17.1
 charset-normalizer==3.3.2
