@@ -23,6 +23,11 @@ passes:
         dashboard.Dashboard.annotations,
         dashboard.Dashboard.templating,
       ]
+      
+  - fields_set_not_required:
+      fields: [
+        dashboard.AnnotationQuery.datasource, # This field is nullable when we have to check it for a specific Dataquery type.
+      ]
 
   # Defined as an empty type in the CUE schemas.
   # It is also not used at all: references to this type are replaced by a "composable slot"
