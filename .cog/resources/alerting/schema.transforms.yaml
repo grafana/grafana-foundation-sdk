@@ -143,6 +143,17 @@ passes:
         scalar:
           scalar_kind: string
 
+  - add_fields:
+      to: alerting.Rule
+      fields:
+        - name: keepFiringFor
+          comments: 
+            - 'You can set a Keep firing for period to avoid repeated firing-resolving-firing notifications caused by flapping conditions.'
+            - 'Value is in nanoseconds'
+          type:
+            kind: scalar
+            scalar: { scalar_kind: int64 }
+
   - retype_field:
       field: alerting.Query.model
       as:
