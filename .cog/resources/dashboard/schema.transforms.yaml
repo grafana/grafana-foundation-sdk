@@ -144,8 +144,9 @@ passes:
               constraints:
                 - { op: '>', args: [0] }
         - name: definition
-          type: scalar
-          scalar: { scalar_kind: string }
+          type: 
+            kind: scalar
+            scalar: { scalar_kind: string }
 
   #############
   # row panel #
