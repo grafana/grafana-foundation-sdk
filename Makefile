@@ -23,3 +23,7 @@ clone-kind-registry:
 generate: install-cog clone-kind-registry
 	$(COG_BIN) generate --config .cog/config.yaml \
 		--parameters "output_dir=%l,kind_registry_path=$(KIND_REGISTRY_PATH),release_tag=$(shell cat .release/tag)"
+
+.PHONY: preview
+preview: install-cog clone-kind-registry
+	COG_CMD=$(COG_BIN) SKIP_VALIDATION='yes' CLEANUP_WORKSPACE='no' ./scripts/prepare-release.sh
