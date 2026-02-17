@@ -22,7 +22,7 @@ clone-kind-registry:
 .PHONY: generate
 generate: install-cog clone-kind-registry
 	$(COG_BIN) generate --config .cog/config.yaml \
-		--parameters "output_dir=preview/%l,kind_registry_path=$(KIND_REGISTRY_PATH),release_tag=$(shell cat .release/tag)"
+		--parameters "output_dir=%l,kind_registry_path=$(KIND_REGISTRY_PATH),release_tag=$(shell cat .release/tag)"
 
 .PHONY: preview
 preview: install-cog clone-kind-registry
