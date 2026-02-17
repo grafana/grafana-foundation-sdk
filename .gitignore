@@ -4,7 +4,6 @@
 /examples/typescript/*/.yarn/
 /examples/typescript/*/.yarnrc.yml
 
-/kind-registry
 /workspace
 /vendor
 /typescript/node_modules

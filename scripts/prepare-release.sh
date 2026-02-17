@@ -20,9 +20,7 @@ DRY_RUN=${DRY_RUN:-"yes"} # Some kind of fail-safe to ensure that we're only pus
 COG_CMD=${COG_CMD:-"cog"} # Command used to run `cog`
 GH_CLI_CMD=${GH_CLI_CMD:-"gh"} # Command used to run `gh` (GitHub cli)
 
-CODEGEN_PIPELINE_CONFIG=${CODEGEN_PIPELINE_CONFIG:-"${__dir}/../.cog/config.yaml"} # Codegen pipeline config file to use.
-
-KIND_REGISTRY_PATH=${KIND_REGISTRY_PATH:-'../kind-registry'} # Path to the kind-registry
+CODEGEN_PIPELINE_CONFIG=${CODEGEN_PIPELINE_CONFIG:-"${__dir}/../cog/config.yaml"} # Codegen pipeline config file to use.
 
 KIND_REGISTRY_REPO=${KIND_REGISTRY_REPO:-'https://github.com/grafana/kind-registry.git'}
 FOUNDATION_SDK_REPO=${FOUNDATION_SDK_REPO:-'git@github.com:grafana/grafana-foundation-sdk.git'}
@@ -153,6 +151,7 @@ fi
 
 codegen_output_path="${WORKSPACE_PATH}/codegen"
 foundation_sdk_path="${WORKSPACE_PATH}/foundation-sdk"
+kind_registry_path="${WORKSPACE_PATH}/kind-registry"
 release_branch='release-preview'
 release_file_marker="${foundation_sdk_path}/.release/tag"
 
@@ -169,11 +168,12 @@ else
 fi
 
 debug "Release branch: ${release_branch}"
-debug "kind-registry path: ${KIND_REGISTRY_PATH}"
+debug "kind-registry path: ${kind_registry_path}"
 debug "workspace path: ${WORKSPACE_PATH}"
 
 # Just in case there are leftovers from a previous run.
-rm -rf "${WORKSPACE_PATH}"
+rm -rf "${codegen_output_path}"
+rm -rf "${foundation_sdk_path}"
 
 info "Cloning grafana-foundation-sdk into ${foundation_sdk_path}"
 clone_foundation_sdk "${foundation_sdk_path}"
@@ -183,14 +183,14 @@ if should_abort_prepare ".release/tag"; then
   exit 0
 fi
 
-if [ ! -d "${KIND_REGISTRY_PATH}" ]; then
-  info "Cloning kind-registry into ${KIND_REGISTRY_PATH}"
-  clone_kind_registry "${KIND_REGISTRY_PATH}"
+if [ ! -d "${kind_registry_path}" ]; then
+  info "Cloning kind-registry into ${kind_registry_path}"
+  clone_kind_registry "${kind_registry_path}"
 fi
 
 info "Pulling kind-registry@main"
-git_run "${KIND_REGISTRY_PATH}" checkout main
-git_run "${KIND_REGISTRY_PATH}" pull --ff-only origin main
+git_run "${kind_registry_path}" checkout main
+git_run "${kind_registry_path}" pull --ff-only origin main
 
 release_branch_exists=$(git_has_branch "${foundation_sdk_path}" "${release_branch}")
 if [ "$release_branch_exists" != "0" ]; then
@@ -222,7 +222,7 @@ fi
 echo "${next_tag}" > "${release_file_marker}"
 
 info "Running cog"
-run_codegen "output_dir=${codegen_output_path}/%l,kind_registry_path=${KIND_REGISTRY_PATH},release_tag=${next_tag}"
+run_codegen "output_dir=${codegen_output_path}/%l,kind_registry_path=${kind_registry_path},release_tag=${next_tag}"
 
 debug "Copying generated content to grafana-foundation-sdk"
 find "${codegen_output_path}" -maxdepth 1 -mindepth 1 -print | while read -r target; do

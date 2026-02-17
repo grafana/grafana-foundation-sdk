@@ -13,7 +13,7 @@ __dir="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 source "${__dir}/libs/logs.sh"
 
 workspace="${__dir}/../workspace"
-mkdocs_dir="${__dir}/../.mkdocs"
+mkdocs_dir="${__dir}/../mkdocs"
 build_dir="${workspace}/build"
 output_dir="${workspace}/out"
 

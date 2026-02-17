@@ -52,7 +52,7 @@ jobs:
 
       - name: Validate cog's config
         run: |
-          cog inspect --config .cog/config.yaml \
+          cog inspect --config cog/config.yaml \
             --ir builders \
             --parameters 'kind_registry_path=./kind-registry'
         env:
@@ -144,7 +144,7 @@ jobs:
             --unified \
             --recursive \
             --exclude='.git' \
-            --exclude='.cog' \
+            --exclude='cog' \
             --exclude='typescript/dist' \
             --exclude='scripts*' \
             --exclude='gradle.properties' \

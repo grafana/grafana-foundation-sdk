@@ -19,4 +19,4 @@ cd "${release_path}"
 composer install
 
 debug "  → running phpstan"
-phpstan analyze --memory-limit 512M -c .config/ci/php/phpstan.neon
+phpstan analyze --memory-limit 512M -c scripts/ci/php/phpstan.neon

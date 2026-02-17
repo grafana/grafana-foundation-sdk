@@ -2,7 +2,7 @@ COG_VERSION = v0.0.56
 COG_DIR     = $(shell go env GOPATH)/bin/cog-$(COG_VERSION)
 COG_BIN     = $(COG_DIR)/cli
 
-KIND_REGISTRY_PATH="./kind-registry"
+KIND_REGISTRY_PATH="./workspace/kind-registry"
 
 .PHONY: install-cog
 install-cog: echodir $(COG_BIN)
@@ -17,13 +17,13 @@ $(COG_BIN):
 
 .PHONY: clone-kind-registry
 clone-kind-registry:
-	./scripts/fetch-kind-registry.sh
+	KIND_REGISTRY_DIR=$(KIND_REGISTRY_PATH) ./scripts/fetch-kind-registry.sh
 
 .PHONY: generate
 generate: install-cog clone-kind-registry
-	$(COG_BIN) generate --config .cog/config.yaml \
+	$(COG_BIN) generate --config cog/config.yaml \
 		--parameters "output_dir=%l,kind_registry_path=$(KIND_REGISTRY_PATH),release_tag=$(shell cat .release/tag)"
 
 .PHONY: preview
-preview: install-cog clone-kind-registry
+preview: install-cog
 	COG_CMD=$(COG_BIN) SKIP_VALIDATION='yes' CLEANUP_WORKSPACE='no' ./scripts/prepare-release.sh
