@@ -143,6 +143,9 @@ passes:
               scalar_kind: int32
               constraints:
                 - { op: '>', args: [0] }
+        - name: definition
+          type: scalar
+          scalar: { scalar_kind: string }
 
   #############
   # row panel #
