@@ -26,7 +26,7 @@ jobs:
           persist-credentials: false
 
       - name: Get secrets
-        uses: grafana/shared-workflows/actions/get-vault-secrets@75804962c1ba608148988c1e2dc35fbb0ee21746
+        uses: grafana/shared-workflows/actions/get-vault-secrets@438c8d6321147607b3f6f0e922508e78e746af9b
         with:
           repo_secrets: |
             SCHEMA_READER_APP_ID=schema_reader:app-id
@@ -88,7 +88,7 @@ jobs:
           devbox-version: ${{ env.DEVBOX_VERSION }}
 
       - name: Get secrets
-        uses: grafana/shared-workflows/actions/get-vault-secrets@75804962c1ba608148988c1e2dc35fbb0ee21746
+        uses: grafana/shared-workflows/actions/get-vault-secrets@438c8d6321147607b3f6f0e922508e78e746af9b
         with:
           repo_secrets: |
             SCHEMA_READER_APP_ID=schema_reader:app-id
