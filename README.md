@@ -19,7 +19,7 @@ Here's a quick overview of how the SDK works:
 
 * **Builder pattern**: The SDK implements the builder pattern to let you define dashboards fluently. You start with a `DashboardBuilder`, then add panels, queries, and other components step by step.
 * **Strong typing**: Everything in the SDK is strongly typed. This gives you autocompletion in your IDE, catches mistakes early, and helps ensure you're always using valid configuration values.
-* **Structured options**: When a configuration get complex (like data reduction or display settings), the SDK uses typed option builders to keep things readable and predictable.
+* **Structured options**: When a configuration gets complex (like data reduction or display settings), the SDK uses typed option builders to keep things readable and predictable.
 * **Resources**: Multiple resources are supported by the SDK. Dashboards, alerts, …
 
 For example, here is how a dashboard can be built in Go:
@@ -72,7 +72,7 @@ func main() {
 ```
 
 > [!NOTE]
->  More examples can be found in the [`./examples/`](https://github.com/grafana/grafana-foundation-sdk/tree/main/examples) folder.
+> More examples can be found in the [`./examples/`](https://github.com/grafana/grafana-foundation-sdk/tree/main/examples) folder.
 
 ## Publishing resources
 
@@ -83,9 +83,9 @@ output the result as a JSON.
 With the JSON payload, you can:
 
 * Call [Grafana's API](https://grafana.com/docs/grafana/latest/developer-resources/api-reference/http-api/) to programmatically manage the resource.
-* Use [Grafana CLI](https://grafana.com/docs/grafana/latest/as-code/observability-as-code/grafana-cli/) publish the resource from CLI.
+* Use [Grafana CLI](https://grafana.com/docs/grafana/latest/as-code/observability-as-code/grafana-cli/) to publish the resource from CLI.
 
-## Next steps
+## Next steps
 
 With the basics of using the Grafana Foundation SDK in mind, here are some possible next steps:
 
@@ -93,6 +93,10 @@ With the basics of using the Grafana Foundation SDK in mind, here are some possi
 * **Version control your resources**: Store your resources code in Git to track changes over time.
 * **Automate provisioning with CI/CD**: [Integrate the SDK into your CI/CD pipeline](https://grafana.com/docs/grafana/latest/as-code/observability-as-code/foundation-sdk/dashboard-automation/) to deploy dashboards and other resources automatically.
 * **Explore a more [real-world example of using the SDK](https://www.youtube.com/watch?v=ZjWdGVsrCiQ)**
+
+## Contributing
+
+Contributions are welcome! See [CONTRIBUTING.md](./CONTRIBUTING.md) for more information.
 
 ## Maturity
 
