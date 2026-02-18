@@ -1,0 +1,19 @@
+# yaml-language-server: $schema=https://raw.githubusercontent.com/grafana/cog/main/schemas/unit.json
+
+inputs:
+  - cue:
+      url: 'https://raw.githubusercontent.com/grafana/grafana/v12.3.2/apps/playlist/kinds/playlist.cue'
+
+      # Name of the package in which code for this resource will be generated.
+      package: playlistv0alpha1
+
+      # The actual schema for a playlist isn't at the root of the file, so we
+      # have to tell cog where to find it.
+      subpath: playlistv0alpha1.schema.spec
+
+      # The playlist schema is defined under the `spec` name, which cog will use
+      # unless told otherwise. Playlist is a better name here.
+      forced_envelope: Playlist
+
+builder_transformations:
+  - '%__config_dir%/common.builder.transforms.yaml'
