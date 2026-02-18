@@ -1,0 +1,12 @@
+# yaml-language-server: $schema=https://raw.githubusercontent.com/grafana/cog/main/schemas/unit.json
+
+inputs:
+  - kindsys_core:
+      url: 'https://raw.githubusercontent.com/grafana/grafana/v12.3.3/kinds/dashboard/dashboard_kind.cue'
+      package: dashboard
+      transformations:
+        - '%__config_dir%/../kind_registry.schema.transforms.yaml'
+        - '%__config_dir%/schema.transforms.yaml'
+
+builder_transformations:
+  - '%__config_dir%/builder-transforms'
