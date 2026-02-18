@@ -27,6 +27,9 @@ class Rule:
     title: str
     uid: typing.Optional[str]
     updated: typing.Optional[str]
+    # You can set a Keep firing for period to avoid repeated firing-resolving-firing notifications caused by flapping conditions.
+    # Value is in nanoseconds
+    keep_firing_for: typing.Optional[int]
 ```
 ## Methods
 

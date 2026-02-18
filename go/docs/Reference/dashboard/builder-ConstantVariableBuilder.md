@@ -26,6 +26,12 @@ Allow custom values to be entered in the variable
 func (builder *ConstantVariableBuilder) AllowCustomValue(allowCustomValue bool) *ConstantVariableBuilder
 ```
 
+### <span class="badge object-method"></span> Definition
+
+```go
+func (builder *ConstantVariableBuilder) Definition(definition string) *ConstantVariableBuilder
+```
+
 ### <span class="badge object-method"></span> Description
 
 Description of variable. It can be defined but `null`.

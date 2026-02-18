@@ -4545,7 +4545,8 @@ type VariableModel struct {
 	AutoMin *string `json:"auto_min,omitempty"`
 	// How many times the current time range should be divided to calculate the value, similar to the Max data points query option.
 	// For example, if the current visible time range is 30 minutes, then the auto interval groups the data into 30 one-minute increments.
-	AutoCount *int32 `json:"auto_count,omitempty"`
+	AutoCount  *int32  `json:"auto_count,omitempty"`
+	Definition *string `json:"definition,omitempty"`
 }
 
 // NewVariableModel creates a new VariableModel object.
@@ -4557,7 +4558,7 @@ func NewVariableModel() *VariableModel {
 		IncludeAll:       (func(input bool) *bool { return &input })(false),
 		Auto:             (func(input bool) *bool { return &input })(false),
 		AutoMin:          (func(input string) *string { return &input })("10s"),
-		AutoCount:        (func(input int32) *int32 { return &input })(30),
+		AutoCount:        (func(input int32) *int32 { return &input })(0x1e),
 	}
 }
 
@@ -4817,6 +4818,17 @@ func (resource *VariableModel) UnmarshalJSONStrict(raw []byte) error {
 		delete(fields, "auto_count")
 
 	}
+	// Field "definition"
+	if fields["definition"] != nil {
+		if string(fields["definition"]) != "null" {
+			if err := json.Unmarshal(fields["definition"], &resource.Definition); err != nil {
+				errs = append(errs, cog.MakeBuildErrors("definition", err)...)
+			}
+
+		}
+		delete(fields, "definition")
+
+	}
 
 	for field := range fields {
 		errs = append(errs, cog.MakeBuildErrors("VariableModel", fmt.Errorf("unexpected field '%s'", field))...)
@@ -5000,6 +5012,15 @@ func (resource VariableModel) Equals(other VariableModel) bool {
 			return false
 		}
 	}
+	if resource.Definition == nil && other.Definition != nil || resource.Definition != nil && other.Definition == nil {
+		return false
+	}
+
+	if resource.Definition != nil {
+		if *resource.Definition != *other.Definition {
+			return false
+		}
+	}
 
 	return true
 }
@@ -5029,7 +5050,7 @@ func (resource VariableModel) Validate() error {
 		}
 	}
 	if resource.AutoCount != nil {
-		if !(*resource.AutoCount > 0) {
+		if !(*resource.AutoCount > 0x0) {
 			errs = append(errs, cog.MakeBuildErrors(
 				"auto_count",
 				errors.New("must be > 0"),
@@ -5338,7 +5359,7 @@ type AnnotationQuery struct {
 	// Name of annotation.
 	Name string `json:"name"`
 	// Datasource where the annotations data is
-	Datasource common.DataSourceRef `json:"datasource"`
+	Datasource *common.DataSourceRef `json:"datasource,omitempty"`
 	// When enabled the annotation query is issued with every dashboard refresh
 	Enable bool `json:"enable"`
 	// Annotation queries can be toggled on or off at the top of the dashboard.
@@ -5349,7 +5370,7 @@ type AnnotationQuery struct {
 	// Filters to apply when fetching annotations
 	Filter *AnnotationPanelFilter `json:"filter,omitempty"`
 	// TODO.. this should just be a normal query target
-	Target *AnnotationTarget `json:"target,omitempty"`
+	Target variants.Dataquery `json:"target,omitempty"`
 	// TODO -- this should not exist here, it is based on the --grafana-- datasource
 	Type *string `json:"type,omitempty"`
 	// Set to 1 for the standard annotation query all dashboards have by default.
@@ -5360,11 +5381,91 @@ type AnnotationQuery struct {
 // NewAnnotationQuery creates a new AnnotationQuery object.
 func NewAnnotationQuery() *AnnotationQuery {
 	return &AnnotationQuery{
-		Datasource: *common.NewDataSourceRef(),
-		Enable:     true,
-		Hide:       (func(input bool) *bool { return &input })(false),
-		BuiltIn:    (func(input float64) *float64 { return &input })(0),
+		Enable:  true,
+		Hide:    (func(input bool) *bool { return &input })(false),
+		BuiltIn: (func(input float64) *float64 { return &input })(0),
 	}
+}
+
+// UnmarshalJSON implements a custom JSON unmarshalling logic to decode AnnotationQuery from JSON.
+func (resource *AnnotationQuery) UnmarshalJSON(raw []byte) error {
+	if raw == nil {
+		return nil
+	}
+	fields := make(map[string]json.RawMessage)
+	if err := json.Unmarshal(raw, &fields); err != nil {
+		return err
+	}
+
+	if fields["name"] != nil {
+		if err := json.Unmarshal(fields["name"], &resource.Name); err != nil {
+			return fmt.Errorf("error decoding field 'name': %w", err)
+		}
+	}
+
+	if fields["datasource"] != nil {
+		if err := json.Unmarshal(fields["datasource"], &resource.Datasource); err != nil {
+			return fmt.Errorf("error decoding field 'datasource': %w", err)
+		}
+	}
+
+	if fields["enable"] != nil {
+		if err := json.Unmarshal(fields["enable"], &resource.Enable); err != nil {
+			return fmt.Errorf("error decoding field 'enable': %w", err)
+		}
+	}
+
+	if fields["hide"] != nil {
+		if err := json.Unmarshal(fields["hide"], &resource.Hide); err != nil {
+			return fmt.Errorf("error decoding field 'hide': %w", err)
+		}
+	}
+
+	if fields["iconColor"] != nil {
+		if err := json.Unmarshal(fields["iconColor"], &resource.IconColor); err != nil {
+			return fmt.Errorf("error decoding field 'iconColor': %w", err)
+		}
+	}
+
+	if fields["filter"] != nil {
+		if err := json.Unmarshal(fields["filter"], &resource.Filter); err != nil {
+			return fmt.Errorf("error decoding field 'filter': %w", err)
+		}
+	}
+
+	if fields["type"] != nil {
+		if err := json.Unmarshal(fields["type"], &resource.Type); err != nil {
+			return fmt.Errorf("error decoding field 'type': %w", err)
+		}
+	}
+
+	if fields["builtIn"] != nil {
+		if err := json.Unmarshal(fields["builtIn"], &resource.BuiltIn); err != nil {
+			return fmt.Errorf("error decoding field 'builtIn': %w", err)
+		}
+	}
+
+	if fields["expr"] != nil {
+		if err := json.Unmarshal(fields["expr"], &resource.Expr); err != nil {
+			return fmt.Errorf("error decoding field 'expr': %w", err)
+		}
+	}
+
+	if fields["target"] != nil {
+		dataqueryTypeHint := ""
+
+		if resource.Datasource != nil && resource.Datasource.Type != nil {
+			dataqueryTypeHint = *resource.Datasource.Type
+		}
+
+		target, err := cog.UnmarshalDataquery(fields["target"], dataqueryTypeHint)
+		if err != nil {
+			return err
+		}
+		resource.Target = target
+	}
+
+	return nil
 }
 
 // UnmarshalJSONStrict implements a custom JSON unmarshalling logic to decode `AnnotationQuery` from JSON.
@@ -5397,17 +5498,14 @@ func (resource *AnnotationQuery) UnmarshalJSONStrict(raw []byte) error {
 	if fields["datasource"] != nil {
 		if string(fields["datasource"]) != "null" {
 
-			resource.Datasource = common.DataSourceRef{}
+			resource.Datasource = &common.DataSourceRef{}
 			if err := resource.Datasource.UnmarshalJSONStrict(fields["datasource"]); err != nil {
 				errs = append(errs, cog.MakeBuildErrors("datasource", err)...)
 			}
-		} else {
-			errs = append(errs, cog.MakeBuildErrors("datasource", errors.New("required field is null"))...)
 
 		}
 		delete(fields, "datasource")
-	} else {
-		errs = append(errs, cog.MakeBuildErrors("datasource", errors.New("required field is missing from input"))...)
+
 	}
 	// Field "enable"
 	if fields["enable"] != nil {
@@ -5464,9 +5562,11 @@ func (resource *AnnotationQuery) UnmarshalJSONStrict(raw []byte) error {
 	if fields["target"] != nil {
 		if string(fields["target"]) != "null" {
 
-			resource.Target = &AnnotationTarget{}
-			if err := resource.Target.UnmarshalJSONStrict(fields["target"]); err != nil {
+			dataquery, err := cog.StrictUnmarshalDataquery(fields["target"], "")
+			if err != nil {
 				errs = append(errs, cog.MakeBuildErrors("target", err)...)
+			} else {
+				resource.Target = dataquery
 			}
 
 		}
@@ -5523,8 +5623,14 @@ func (resource AnnotationQuery) Equals(other AnnotationQuery) bool {
 	if resource.Name != other.Name {
 		return false
 	}
-	if !resource.Datasource.Equals(other.Datasource) {
+	if resource.Datasource == nil && other.Datasource != nil || resource.Datasource != nil && other.Datasource == nil {
 		return false
+	}
+
+	if resource.Datasource != nil {
+		if !resource.Datasource.Equals(*other.Datasource) {
+			return false
+		}
 	}
 	if resource.Enable != other.Enable {
 		return false
@@ -5555,7 +5661,7 @@ func (resource AnnotationQuery) Equals(other AnnotationQuery) bool {
 	}
 
 	if resource.Target != nil {
-		if !resource.Target.Equals(*other.Target) {
+		if !resource.Target.Equals(other.Target) {
 			return false
 		}
 	}
@@ -5593,8 +5699,10 @@ func (resource AnnotationQuery) Equals(other AnnotationQuery) bool {
 // Validate checks all the validation constraints that may be defined on `AnnotationQuery` fields for violations and returns them.
 func (resource AnnotationQuery) Validate() error {
 	var errs cog.BuildErrors
-	if err := resource.Datasource.Validate(); err != nil {
-		errs = append(errs, cog.MakeBuildErrors("datasource", err)...)
+	if resource.Datasource != nil {
+		if err := resource.Datasource.Validate(); err != nil {
+			errs = append(errs, cog.MakeBuildErrors("datasource", err)...)
+		}
 	}
 	if resource.Filter != nil {
 		if err := resource.Filter.Validate(); err != nil {

@@ -50,6 +50,12 @@ Data source used to fetch values for a variable. It can be defined but `null`.
 func (builder *QueryVariableBuilder) Datasource(datasource common.DataSourceRef) *QueryVariableBuilder
 ```
 
+### <span class="badge object-method"></span> Definition
+
+```go
+func (builder *QueryVariableBuilder) Definition(definition string) *QueryVariableBuilder
+```
+
 ### <span class="badge object-method"></span> Description
 
 Description of variable. It can be defined but `null`.

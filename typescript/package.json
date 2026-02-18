@@ -1,6 +1,6 @@
 {
   "name": "@grafana/grafana-foundation-sdk",
-  "version": "v0.0.7",
+  "version": "v0.0.8",
   "description": "A set of tools, types and libraries for building and manipulating Grafana objects.",
   "keywords": [
     "observability",
@@ -167,6 +167,10 @@
       "types": "./dist/piechart/index.d.ts",
       "default": "./dist/piechart/index.js"
     },
+    "./playlistv0alpha1": {
+      "types": "./dist/playlistv0alpha1/index.d.ts",
+      "default": "./dist/playlistv0alpha1/index.js"
+    },
     "./preferences": {
       "types": "./dist/preferences/index.d.ts",
       "default": "./dist/preferences/index.js"
@@ -237,7 +241,7 @@
   },
   "devDependencies": {
     "@babel/core": "^7.12.9",
-    "@babel/plugin-transform-classes": "7.10.4",
+    "@babel/plugin-transform-classes": "^7.28.6",
     "@babel/plugin-transform-runtime": "^7.12.10",
     "@babel/preset-env": "^7.12.7",
     "@babel/preset-typescript": "^7.12.7",

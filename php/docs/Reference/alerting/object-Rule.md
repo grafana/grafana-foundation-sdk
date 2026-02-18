@@ -57,6 +57,12 @@ class Rule implements \JsonSerializable
 
     public ?string $updated;
 
+    /**
+     * You can set a Keep firing for period to avoid repeated firing-resolving-firing notifications caused by flapping conditions.
+     * Value is in nanoseconds
+     */
+    public ?int $keepFiringFor;
+
 }
 ```
 ## Methods

@@ -36,6 +36,11 @@ public class ConstantVariableBuilder implements com.grafana.foundation.cog.Build
         this.internal.allowCustomValue = allowCustomValue;
         return this;
     }
+    
+    public ConstantVariableBuilder definition(String definition) {
+        this.internal.definition = definition;
+        return this;
+    }
     public VariableModel build() {
         return this.internal;
     }

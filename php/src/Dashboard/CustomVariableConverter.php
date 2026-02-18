@@ -174,6 +174,19 @@ final class CustomVariableConverter
     
     
     }
+            if ($input->definition !== null && $input->definition !== "") {
+    
+        
+    $buffer = 'definition(';
+        $arg0 =\var_export($input->definition, true);
+        $buffer .= $arg0;
+        
+    $buffer .= ')';
+
+    $calls[] = $buffer;
+    
+    
+    }
 
         return \implode("\n\t->", $calls);
     }

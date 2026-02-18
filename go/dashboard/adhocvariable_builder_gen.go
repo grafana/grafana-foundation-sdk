@@ -80,3 +80,9 @@ func (builder *AdHocVariableBuilder) AllowCustomValue(allowCustomValue bool) *Ad
 
 	return builder
 }
+
+func (builder *AdHocVariableBuilder) Definition(definition string) *AdHocVariableBuilder {
+	builder.internal.Definition = &definition
+
+	return builder
+}

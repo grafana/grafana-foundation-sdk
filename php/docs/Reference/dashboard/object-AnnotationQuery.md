@@ -20,7 +20,7 @@ class AnnotationQuery implements \JsonSerializable
     /**
      * Datasource where the annotations data is
      */
-    public \Grafana\Foundation\Common\DataSourceRef $datasource;
+    public ?\Grafana\Foundation\Common\DataSourceRef $datasource;
 
     /**
      * When enabled the annotation query is issued with every dashboard refresh
@@ -45,8 +45,9 @@ class AnnotationQuery implements \JsonSerializable
 
     /**
      * TODO.. this should just be a normal query target
+     * @var \Grafana\Foundation\Cog\Dataquery|null
      */
-    public ?\Grafana\Foundation\Dashboard\AnnotationTarget $target;
+    public ?\Grafana\Foundation\Cog\Dataquery $target;
 
     /**
      * TODO -- this should not exist here, it is based on the --grafana-- datasource

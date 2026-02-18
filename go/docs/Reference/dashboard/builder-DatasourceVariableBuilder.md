@@ -42,6 +42,12 @@ Shows current selected variable text/value on the dashboard
 func (builder *DatasourceVariableBuilder) Current(current dashboard.VariableOption) *DatasourceVariableBuilder
 ```
 
+### <span class="badge object-method"></span> Definition
+
+```go
+func (builder *DatasourceVariableBuilder) Definition(definition string) *DatasourceVariableBuilder
+```
+
 ### <span class="badge object-method"></span> Description
 
 Description of variable. It can be defined but `null`.

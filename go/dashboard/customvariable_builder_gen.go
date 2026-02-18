@@ -114,3 +114,9 @@ func (builder *CustomVariableBuilder) AllValue(allValue string) *CustomVariableB
 
 	return builder
 }
+
+func (builder *CustomVariableBuilder) Definition(definition string) *CustomVariableBuilder {
+	builder.internal.Definition = &definition
+
+	return builder
+}

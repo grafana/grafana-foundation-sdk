@@ -118,3 +118,9 @@ func (builder *DatasourceVariableBuilder) Regex(regex string) *DatasourceVariabl
 
 	return builder
 }
+
+func (builder *DatasourceVariableBuilder) Definition(definition string) *DatasourceVariableBuilder {
+	builder.internal.Definition = &definition
+
+	return builder
+}

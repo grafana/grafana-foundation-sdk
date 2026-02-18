@@ -4,6 +4,7 @@ package dashboard
 
 import (
 	cog "github.com/grafana/grafana-foundation-sdk/go/cog"
+	variants "github.com/grafana/grafana-foundation-sdk/go/cog/variants"
 	common "github.com/grafana/grafana-foundation-sdk/go/common"
 )
 
@@ -47,7 +48,7 @@ func (builder *AnnotationQueryBuilder) Name(name string) *AnnotationQueryBuilder
 
 // Datasource where the annotations data is
 func (builder *AnnotationQueryBuilder) Datasource(datasource common.DataSourceRef) *AnnotationQueryBuilder {
-	builder.internal.Datasource = datasource
+	builder.internal.Datasource = &datasource
 
 	return builder
 }
@@ -87,13 +88,13 @@ func (builder *AnnotationQueryBuilder) Filter(filter cog.Builder[AnnotationPanel
 }
 
 // TODO.. this should just be a normal query target
-func (builder *AnnotationQueryBuilder) Target(target cog.Builder[AnnotationTarget]) *AnnotationQueryBuilder {
+func (builder *AnnotationQueryBuilder) Target(target cog.Builder[variants.Dataquery]) *AnnotationQueryBuilder {
 	targetResource, err := target.Build()
 	if err != nil {
 		builder.errors = append(builder.errors, err.(cog.BuildErrors)...)
 		return builder
 	}
-	builder.internal.Target = &targetResource
+	builder.internal.Target = targetResource
 
 	return builder
 }

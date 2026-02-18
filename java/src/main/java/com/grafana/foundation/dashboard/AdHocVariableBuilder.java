@@ -41,6 +41,11 @@ public class AdHocVariableBuilder implements com.grafana.foundation.cog.Builder<
         this.internal.allowCustomValue = allowCustomValue;
         return this;
     }
+    
+    public AdHocVariableBuilder definition(String definition) {
+        this.internal.definition = definition;
+        return this;
+    }
     public VariableModel build() {
         return this.internal;
     }

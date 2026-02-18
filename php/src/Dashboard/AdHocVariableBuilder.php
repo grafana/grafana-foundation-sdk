@@ -86,4 +86,11 @@ class AdHocVariableBuilder implements \Grafana\Foundation\Cog\Builder
         return $this;
     }
 
+    public function definition(string $definition): static
+    {
+        $this->internal->definition = $definition;
+    
+        return $this;
+    }
+
 }

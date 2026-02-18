@@ -1162,6 +1162,9 @@ type Rule struct {
 	Title                string                `json:"title"`
 	Uid                  *string               `json:"uid,omitempty"`
 	Updated              *time.Time            `json:"updated,omitempty"`
+	// You can set a Keep firing for period to avoid repeated firing-resolving-firing notifications caused by flapping conditions.
+	// Value is in nanoseconds
+	KeepFiringFor *int64 `json:"keepFiringFor,omitempty"`
 }
 
 // NewRule creates a new Rule object.
@@ -1426,6 +1429,17 @@ func (resource *Rule) UnmarshalJSONStrict(raw []byte) error {
 		delete(fields, "updated")
 
 	}
+	// Field "keepFiringFor"
+	if fields["keepFiringFor"] != nil {
+		if string(fields["keepFiringFor"]) != "null" {
+			if err := json.Unmarshal(fields["keepFiringFor"], &resource.KeepFiringFor); err != nil {
+				errs = append(errs, cog.MakeBuildErrors("keepFiringFor", err)...)
+			}
+
+		}
+		delete(fields, "keepFiringFor")
+
+	}
 
 	for field := range fields {
 		errs = append(errs, cog.MakeBuildErrors("Rule", fmt.Errorf("unexpected field '%s'", field))...)
@@ -1554,6 +1568,15 @@ func (resource Rule) Equals(other Rule) bool {
 
 	if resource.Updated != nil {
 		if *resource.Updated != *other.Updated {
+			return false
+		}
+	}
+	if resource.KeepFiringFor == nil && other.KeepFiringFor != nil || resource.KeepFiringFor != nil && other.KeepFiringFor == nil {
+		return false
+	}
+
+	if resource.KeepFiringFor != nil {
+		if *resource.KeepFiringFor != *other.KeepFiringFor {
 			return false
 		}
 	}

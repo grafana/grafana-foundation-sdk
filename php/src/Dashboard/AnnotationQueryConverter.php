@@ -23,9 +23,9 @@ final class AnnotationQueryConverter
     
     
     }
-            
+            if ($input->datasource !== null) {
     
-        {
+        
     $buffer = 'datasource(';
         $arg0 ='(new \Grafana\Foundation\Common\DataSourceRef('.(($input->datasource->type !== null) ? 'type: '.\var_export($input->datasource->type, true).', ' : '').''.(($input->datasource->uid !== null) ? 'uid: '.\var_export($input->datasource->uid, true).', ' : '').'))';
         $buffer .= $arg0;
@@ -33,9 +33,9 @@ final class AnnotationQueryConverter
     $buffer .= ')';
 
     $calls[] = $buffer;
+    
+    
     }
-    
-    
             if ($input->enable !== true) {
     
         
@@ -92,7 +92,7 @@ final class AnnotationQueryConverter
     
         
     $buffer = 'target(';
-        $arg0 = \Grafana\Foundation\Dashboard\AnnotationTargetConverter::convert($input->target);
+        $arg0 = \Grafana\Foundation\Cog\Runtime::get()->convertDataqueryToCode($input->target, );
         $buffer .= $arg0;
         
     $buffer .= ')';

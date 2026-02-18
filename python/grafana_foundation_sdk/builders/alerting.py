@@ -487,6 +487,16 @@ class Rule(cogbuilder.Builder[alerting.Rule]):
     
         return self
     
+    def keep_firing_for(self, keep_firing_for: int) -> typing.Self:    
+        """
+        You can set a Keep firing for period to avoid repeated firing-resolving-firing notifications caused by flapping conditions.
+        Value is in nanoseconds
+        """
+            
+        self._internal.keep_firing_for = keep_firing_for
+    
+        return self
+    
 
 
 class RecordRule(cogbuilder.Builder[alerting.RecordRule]):

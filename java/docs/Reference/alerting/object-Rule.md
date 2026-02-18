@@ -25,6 +25,7 @@ public class Rule {
   public String title;
   public String uid;
   public String updated;
+  public Long keepFiringFor;
 }
 ```
 ## See also

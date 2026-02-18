@@ -49,7 +49,7 @@ final class QueryConverter
     
     
     }
-            if ($input->spec !== null && $input->spec instanceof \Grafana\Foundation\Prometheus\Dataquery && $input->spec->instant !== null && $input->spec->instant === true) {
+            if ($input->spec !== null && $input->spec instanceof \Grafana\Foundation\Prometheus\Dataquery && $input->spec->instant !== null && $input->spec->instant === true && $input->spec->range !== null && $input->spec->range === false) {
     
         
     $buffer = 'instant(';
@@ -59,7 +59,7 @@ final class QueryConverter
     
     
     }
-            if ($input->spec !== null && $input->spec instanceof \Grafana\Foundation\Prometheus\Dataquery && $input->spec->range !== null && $input->spec->range === true) {
+            if ($input->spec !== null && $input->spec instanceof \Grafana\Foundation\Prometheus\Dataquery && $input->spec->range !== null && $input->spec->range === true && $input->spec->instant !== null && $input->spec->instant === false) {
     
         
     $buffer = 'range(';

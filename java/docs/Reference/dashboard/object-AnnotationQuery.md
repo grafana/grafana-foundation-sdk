@@ -17,7 +17,7 @@ public class AnnotationQuery {
   public Boolean hide;
   public String iconColor;
   public AnnotationPanelFilter filter;
-  public AnnotationTarget target;
+  public Dataquery target;
   public String type;
   public Double builtIn;
   public String expr;

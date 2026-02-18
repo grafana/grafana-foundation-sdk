@@ -161,11 +161,24 @@ final class IntervalVariableConverter
     
     
     }
-            if ($input->autoCount !== null && $input->autoCount !== 30) {
+            if ($input->autoCount !== null && $input->autoCount !== 0x1e) {
     
         
     $buffer = 'stepCount(';
         $arg0 =\var_export($input->autoCount, true);
+        $buffer .= $arg0;
+        
+    $buffer .= ')';
+
+    $calls[] = $buffer;
+    
+    
+    }
+            if ($input->definition !== null && $input->definition !== "") {
+    
+        
+    $buffer = 'definition(';
+        $arg0 =\var_export($input->definition, true);
         $buffer .= $arg0;
         
     $buffer .= ')';

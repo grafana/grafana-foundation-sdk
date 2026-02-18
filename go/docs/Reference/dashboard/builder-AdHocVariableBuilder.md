@@ -34,6 +34,12 @@ Data source used to fetch values for a variable. It can be defined but `null`.
 func (builder *AdHocVariableBuilder) Datasource(datasource common.DataSourceRef) *AdHocVariableBuilder
 ```
 
+### <span class="badge object-method"></span> Definition
+
+```go
+func (builder *AdHocVariableBuilder) Definition(definition string) *AdHocVariableBuilder
+```
+
 ### <span class="badge object-method"></span> Description
 
 Description of variable. It can be defined but `null`.

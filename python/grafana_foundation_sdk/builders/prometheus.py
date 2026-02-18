@@ -204,7 +204,8 @@ class Query(cogbuilder.Builder[dashboardv2beta1.DataQueryKind]):
         if self._internal.spec is None:
             self._internal.spec = prometheus.Dataquery()
         assert isinstance(self._internal.spec, prometheus.Dataquery)
-        self._internal.spec.instant = True
+        self._internal.spec.instant = True    
+        self._internal.spec.range_val = False
     
         return self
     
@@ -216,7 +217,8 @@ class Query(cogbuilder.Builder[dashboardv2beta1.DataQueryKind]):
         if self._internal.spec is None:
             self._internal.spec = prometheus.Dataquery()
         assert isinstance(self._internal.spec, prometheus.Dataquery)
-        self._internal.spec.range_val = True
+        self._internal.spec.range_val = True    
+        self._internal.spec.instant = False
     
         return self
     

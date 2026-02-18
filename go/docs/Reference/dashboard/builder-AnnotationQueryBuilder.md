@@ -87,7 +87,7 @@ func (builder *AnnotationQueryBuilder) Name(name string) *AnnotationQueryBuilder
 TODO.. this should just be a normal query target
 
 ```go
-func (builder *AnnotationQueryBuilder) Target(target cog.Builder[dashboard.AnnotationTarget]) *AnnotationQueryBuilder
+func (builder *AnnotationQueryBuilder) Target(target cog.Builder[cog/variants.Dataquery]) *AnnotationQueryBuilder
 ```
 
 ### <span class="badge object-method"></span> Type

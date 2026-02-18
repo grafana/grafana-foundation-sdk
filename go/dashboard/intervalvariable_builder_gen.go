@@ -115,3 +115,9 @@ func (builder *IntervalVariableBuilder) StepCount(autoCount int32) *IntervalVari
 
 	return builder
 }
+
+func (builder *IntervalVariableBuilder) Definition(definition string) *IntervalVariableBuilder {
+	builder.internal.Definition = &definition
+
+	return builder
+}

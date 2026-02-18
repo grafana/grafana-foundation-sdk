@@ -87,7 +87,7 @@ public AnnotationQueryBuilder name(String name)
 TODO.. this should just be a normal query target
 
 ```java
-public AnnotationQueryBuilder target(com.grafana.foundation.cog.Builder<AnnotationTarget> target)
+public AnnotationQueryBuilder target(com.grafana.foundation.cog.Builder<Dataquery> target)
 ```
 
 ### <span class="badge object-method"></span> type

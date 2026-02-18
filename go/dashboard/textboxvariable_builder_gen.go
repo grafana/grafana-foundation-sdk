@@ -93,3 +93,9 @@ func (builder *TextBoxVariableBuilder) Options(options []VariableOption) *TextBo
 
 	return builder
 }
+
+func (builder *TextBoxVariableBuilder) Definition(definition string) *TextBoxVariableBuilder {
+	builder.internal.Definition = &definition
+
+	return builder
+}

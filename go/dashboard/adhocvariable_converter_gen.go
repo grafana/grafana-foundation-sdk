@@ -87,6 +87,18 @@ func AdHocVariableConverter(input VariableModel) string {
 		buffer.Reset()
 
 	}
+	if input.Definition != nil && *input.Definition != "" {
+
+		buffer.WriteString(`Definition(`)
+		arg0 := fmt.Sprintf("%#v", *input.Definition)
+		buffer.WriteString(arg0)
+
+		buffer.WriteString(")")
+
+		calls = append(calls, buffer.String())
+		buffer.Reset()
+
+	}
 
 	return strings.Join(calls, ".\t\n")
 }

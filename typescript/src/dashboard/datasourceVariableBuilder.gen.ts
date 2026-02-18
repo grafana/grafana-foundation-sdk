@@ -86,5 +86,10 @@ export class DatasourceVariableBuilder implements cog.Builder<dashboard.Variable
         this.internal.regex = regex;
         return this;
     }
+
+    definition(definition: string): this {
+        this.internal.definition = definition;
+        return this;
+    }
 }
 

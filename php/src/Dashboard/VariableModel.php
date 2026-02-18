@@ -111,6 +111,8 @@ class VariableModel implements \JsonSerializable
      */
     public ?int $autoCount;
 
+    public ?string $definition;
+
     /**
      * @param \Grafana\Foundation\Dashboard\VariableType|null $type
      * @param string|null $name
@@ -132,8 +134,9 @@ class VariableModel implements \JsonSerializable
      * @param bool|null $auto
      * @param string|null $autoMin
      * @param int|null $autoCount
+     * @param string|null $definition
      */
-    public function __construct(?\Grafana\Foundation\Dashboard\VariableType $type = null, ?string $name = null, ?string $label = null, ?\Grafana\Foundation\Dashboard\VariableHide $hide = null, ?bool $skipUrlSync = null, ?string $description = null,  $query = null, ?\Grafana\Foundation\Common\DataSourceRef $datasource = null, ?\Grafana\Foundation\Dashboard\VariableOption $current = null, ?bool $multi = null, ?bool $allowCustomValue = null, ?array $options = null, ?\Grafana\Foundation\Dashboard\VariableRefresh $refresh = null, ?\Grafana\Foundation\Dashboard\VariableSort $sort = null, ?bool $includeAll = null, ?string $allValue = null, ?string $regex = null, ?bool $auto = null, ?string $autoMin = null, ?int $autoCount = null)
+    public function __construct(?\Grafana\Foundation\Dashboard\VariableType $type = null, ?string $name = null, ?string $label = null, ?\Grafana\Foundation\Dashboard\VariableHide $hide = null, ?bool $skipUrlSync = null, ?string $description = null,  $query = null, ?\Grafana\Foundation\Common\DataSourceRef $datasource = null, ?\Grafana\Foundation\Dashboard\VariableOption $current = null, ?bool $multi = null, ?bool $allowCustomValue = null, ?array $options = null, ?\Grafana\Foundation\Dashboard\VariableRefresh $refresh = null, ?\Grafana\Foundation\Dashboard\VariableSort $sort = null, ?bool $includeAll = null, ?string $allValue = null, ?string $regex = null, ?bool $auto = null, ?string $autoMin = null, ?int $autoCount = null, ?string $definition = null)
     {
         $this->type = $type ?: \Grafana\Foundation\Dashboard\VariableType::Query();
         $this->name = $name ?: "";
@@ -155,6 +158,7 @@ class VariableModel implements \JsonSerializable
         $this->auto = $auto;
         $this->autoMin = $autoMin;
         $this->autoCount = $autoCount;
+        $this->definition = $definition;
     }
 
     /**
@@ -162,7 +166,7 @@ class VariableModel implements \JsonSerializable
      */
     public static function fromArray(array $inputData): self
     {
-        /** @var array{type?: string, name?: string, label?: string, hide?: int, skipUrlSync?: bool, description?: string, query?: string|array<string, mixed>, datasource?: mixed, current?: mixed, multi?: bool, allowCustomValue?: bool, options?: array<mixed>, refresh?: int, sort?: int, includeAll?: bool, allValue?: string, regex?: string, auto?: bool, auto_min?: string, auto_count?: int} $inputData */
+        /** @var array{type?: string, name?: string, label?: string, hide?: int, skipUrlSync?: bool, description?: string, query?: string|array<string, mixed>, datasource?: mixed, current?: mixed, multi?: bool, allowCustomValue?: bool, options?: array<mixed>, refresh?: int, sort?: int, includeAll?: bool, allValue?: string, regex?: string, auto?: bool, auto_min?: string, auto_count?: int, definition?: string} $inputData */
         $data = $inputData;
         return new self(
             type: isset($data["type"]) ? (function($input) { return \Grafana\Foundation\Dashboard\VariableType::fromValue($input); })($data["type"]) : null,
@@ -204,6 +208,7 @@ class VariableModel implements \JsonSerializable
             auto: $data["auto"] ?? null,
             autoMin: $data["auto_min"] ?? null,
             autoCount: $data["auto_count"] ?? null,
+            definition: $data["definition"] ?? null,
         );
     }
 
@@ -268,6 +273,9 @@ class VariableModel implements \JsonSerializable
         }
         if (isset($this->autoCount)) {
             $data->auto_count = $this->autoCount;
+        }
+        if (isset($this->definition)) {
+            $data->definition = $this->definition;
         }
         return $data;
     }

@@ -34,6 +34,12 @@ Data source used to fetch values for a variable. It can be defined but `null`.
 public AdHocVariableBuilder datasource(DataSourceRef datasource)
 ```
 
+### <span class="badge object-method"></span> definition
+
+```java
+public AdHocVariableBuilder definition(String definition)
+```
+
 ### <span class="badge object-method"></span> description
 
 Description of variable. It can be defined but `null`.

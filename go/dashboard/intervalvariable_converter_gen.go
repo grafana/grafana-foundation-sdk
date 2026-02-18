@@ -140,10 +140,22 @@ func IntervalVariableConverter(input VariableModel) string {
 		buffer.Reset()
 
 	}
-	if input.AutoCount != nil && *input.AutoCount != 30 {
+	if input.AutoCount != nil && *input.AutoCount != 0x1e {
 
 		buffer.WriteString(`StepCount(`)
 		arg0 := fmt.Sprintf("%#v", *input.AutoCount)
+		buffer.WriteString(arg0)
+
+		buffer.WriteString(")")
+
+		calls = append(calls, buffer.String())
+		buffer.Reset()
+
+	}
+	if input.Definition != nil && *input.Definition != "" {
+
+		buffer.WriteString(`Definition(`)
+		arg0 := fmt.Sprintf("%#v", *input.Definition)
 		buffer.WriteString(arg0)
 
 		buffer.WriteString(")")

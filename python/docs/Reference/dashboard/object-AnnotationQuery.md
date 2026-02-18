@@ -19,7 +19,7 @@ class AnnotationQuery:
     # Name of annotation.
     name: str
     # Datasource where the annotations data is
-    datasource: common.DataSourceRef
+    datasource: typing.Optional[common.DataSourceRef]
     # When enabled the annotation query is issued with every dashboard refresh
     enable: bool
     # Annotation queries can be toggled on or off at the top of the dashboard.
@@ -30,7 +30,7 @@ class AnnotationQuery:
     # Filters to apply when fetching annotations
     filter_val: typing.Optional[dashboard.AnnotationPanelFilter]
     # TODO.. this should just be a normal query target
-    target: typing.Optional[dashboard.AnnotationTarget]
+    target: typing.Optional[cogvariants.Dataquery]
     # TODO -- this should not exist here, it is based on the --grafana-- datasource
     type_val: typing.Optional[str]
     # Set to 1 for the standard annotation query all dashboards have by default.

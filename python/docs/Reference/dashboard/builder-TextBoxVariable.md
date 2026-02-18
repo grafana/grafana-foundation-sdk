@@ -42,6 +42,12 @@ Query used to fetch values for a variable
 def default_value(query: typing.Union[str, dict[str, object]]) -> typing.Self
 ```
 
+### <span class="badge object-method"></span> definition
+
+```python
+def definition(definition: str) -> typing.Self
+```
+
 ### <span class="badge object-method"></span> description
 
 Description of variable. It can be defined but `null`.

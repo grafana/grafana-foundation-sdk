@@ -144,3 +144,9 @@ func (builder *QueryVariableBuilder) Regex(regex string) *QueryVariableBuilder {
 
 	return builder
 }
+
+func (builder *QueryVariableBuilder) Definition(definition string) *QueryVariableBuilder {
+	builder.internal.Definition = &definition
+
+	return builder
+}

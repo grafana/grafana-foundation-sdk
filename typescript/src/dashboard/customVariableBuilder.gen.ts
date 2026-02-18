@@ -85,5 +85,10 @@ export class CustomVariableBuilder implements cog.Builder<dashboard.VariableMode
         this.internal.allValue = allValue;
         return this;
     }
+
+    definition(definition: string): this {
+        this.internal.definition = definition;
+        return this;
+    }
 }
 

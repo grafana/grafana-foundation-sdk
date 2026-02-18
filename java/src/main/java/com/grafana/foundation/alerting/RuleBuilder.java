@@ -142,6 +142,11 @@ public class RuleBuilder implements com.grafana.foundation.cog.Builder<Rule> {
         this.internal.updated = updated;
         return this;
     }
+    
+    public RuleBuilder keepFiringFor(Long keepFiringFor) {
+        this.internal.keepFiringFor = keepFiringFor;
+        return this;
+    }
     public Rule build() {
         return this.internal;
     }

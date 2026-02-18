@@ -259,6 +259,19 @@ final class RuleConverter
     
     
     }
+            if ($input->keepFiringFor !== null) {
+    
+        
+    $buffer = 'keepFiringFor(';
+        $arg0 =\var_export($input->keepFiringFor, true);
+        $buffer .= $arg0;
+        
+    $buffer .= ')';
+
+    $calls[] = $buffer;
+    
+    
+    }
 
         return \implode("\n\t->", $calls);
     }

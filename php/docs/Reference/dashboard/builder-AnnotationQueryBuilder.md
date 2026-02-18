@@ -88,7 +88,7 @@ name(string $name)
 
 TODO.. this should just be a normal query target
 
-@param \Grafana\Foundation\Cog\Builder<\Grafana\Foundation\Dashboard\AnnotationTarget> $target
+@param \Grafana\Foundation\Cog\Builder<\Grafana\Foundation\Cog\Dataquery> $target
 
 ```php
 target(\Grafana\Foundation\Cog\Builder $target)

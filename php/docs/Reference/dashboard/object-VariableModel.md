@@ -114,6 +114,8 @@ class VariableModel implements \JsonSerializable
      */
     public ?int $autoCount;
 
+    public ?string $definition;
+
 }
 ```
 ## Methods

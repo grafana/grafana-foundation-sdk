@@ -56,5 +56,10 @@ export class AdHocVariableBuilder implements cog.Builder<dashboard.VariableModel
         this.internal.allowCustomValue = allowCustomValue;
         return this;
     }
+
+    definition(definition: string): this {
+        this.internal.definition = definition;
+        return this;
+    }
 }
 

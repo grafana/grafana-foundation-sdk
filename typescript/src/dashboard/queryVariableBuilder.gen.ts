@@ -111,5 +111,10 @@ export class QueryVariableBuilder implements cog.Builder<dashboard.VariableModel
         this.internal.regex = regex;
         return this;
     }
+
+    definition(definition: string): this {
+        this.internal.definition = definition;
+        return this;
+    }
 }
 

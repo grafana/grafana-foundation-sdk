@@ -3,6 +3,7 @@
 package com.grafana.foundation.dashboard;
 
 import com.grafana.foundation.common.DataSourceRef;
+import com.grafana.foundation.cog.variants.Dataquery;
 
 public class AnnotationQueryBuilder implements com.grafana.foundation.cog.Builder<AnnotationQuery> {
     protected final AnnotationQuery internal;
@@ -41,8 +42,8 @@ public class AnnotationQueryBuilder implements com.grafana.foundation.cog.Builde
         return this;
     }
     
-    public AnnotationQueryBuilder target(com.grafana.foundation.cog.Builder<AnnotationTarget> target) {
-    AnnotationTarget targetResource = target.build();
+    public AnnotationQueryBuilder target(com.grafana.foundation.cog.Builder<Dataquery> target) {
+    Dataquery targetResource = target.build();
         this.internal.target = targetResource;
         return this;
     }

@@ -27,6 +27,9 @@ type Rule struct {
     Title string `json:"title"`
     Uid *string `json:"uid,omitempty"`
     Updated *time.Time `json:"updated,omitempty"`
+    // You can set a Keep firing for period to avoid repeated firing-resolving-firing notifications caused by flapping conditions.
+    // Value is in nanoseconds
+    KeepFiringFor *int64 `json:"keepFiringFor,omitempty"`
 }
 ```
 ## Methods

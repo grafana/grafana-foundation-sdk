@@ -6,17 +6,20 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.ObjectWriter;
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.grafana.foundation.common.DataSourceRef;
+import com.grafana.foundation.cog.variants.Dataquery;
 
 // TODO docs
 // FROM: AnnotationQuery in grafana-data/src/types/annotations.ts
+@JsonDeserialize(using = AnnotationQueryDeserializer.class)
 public class AnnotationQuery {
     // Name of annotation.
     @JsonProperty("name")
     public String name;
     // Datasource where the annotations data is
-    @JsonInclude(JsonInclude.Include.NON_EMPTY)
+    @JsonInclude(JsonInclude.Include.NON_NULL)
     @JsonProperty("datasource")
     public DataSourceRef datasource;
     // When enabled the annotation query is issued with every dashboard refresh
@@ -37,7 +40,7 @@ public class AnnotationQuery {
     // TODO.. this should just be a normal query target
     @JsonInclude(JsonInclude.Include.NON_NULL)
     @JsonProperty("target")
-    public AnnotationTarget target;
+    public Dataquery target;
     // TODO -- this should not exist here, it is based on the --grafana-- datasource
     @JsonInclude(JsonInclude.Include.NON_NULL)
     @JsonProperty("type")
@@ -51,13 +54,12 @@ public class AnnotationQuery {
     public String expr;
     public AnnotationQuery() {
         this.name = "";
-        this.datasource = new com.grafana.foundation.common.DataSourceRef();
         this.enable = true;
         this.hide = false;
         this.iconColor = "";
         this.builtIn = 0.0;
     }
-    public AnnotationQuery(String name,DataSourceRef datasource,Boolean enable,Boolean hide,String iconColor,AnnotationPanelFilter filter,AnnotationTarget target,String type,Double builtIn,String expr) {
+    public AnnotationQuery(String name,DataSourceRef datasource,Boolean enable,Boolean hide,String iconColor,AnnotationPanelFilter filter,Dataquery target,String type,Double builtIn,String expr) {
         this.name = name;
         this.datasource = datasource;
         this.enable = enable;

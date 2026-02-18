@@ -42,6 +42,12 @@ Shows current selected variable text/value on the dashboard
 public IntervalVariableBuilder current(VariableOption current)
 ```
 
+### <span class="badge object-method"></span> definition
+
+```java
+public IntervalVariableBuilder definition(String definition)
+```
+
 ### <span class="badge object-method"></span> description
 
 Description of variable. It can be defined but `null`.

@@ -42,6 +42,12 @@ Shows current selected variable text/value on the dashboard
 func (builder *IntervalVariableBuilder) Current(current dashboard.VariableOption) *IntervalVariableBuilder
 ```
 
+### <span class="badge object-method"></span> Definition
+
+```go
+func (builder *IntervalVariableBuilder) Definition(definition string) *IntervalVariableBuilder
+```
+
 ### <span class="badge object-method"></span> Description
 
 Description of variable. It can be defined but `null`.
