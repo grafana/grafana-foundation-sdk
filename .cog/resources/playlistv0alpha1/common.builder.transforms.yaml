@@ -1,0 +1,18 @@
+# yaml-language-server: $schema=https://raw.githubusercontent.com/grafana/cog/main/schemas/veneers.json
+
+language: all
+
+package: playlistv0alpha1
+
+builders:
+  - promote_options_to_constructor:
+      by_name: Playlist
+      options: [title]
+
+options:
+  # Append a single `item` instead of a list of everything
+  - duplicate:
+      by_name: Playlist.items
+      as: item
+  - array_to_append:
+      by_name: Playlist.item
