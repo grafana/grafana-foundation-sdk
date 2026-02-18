@@ -69,6 +69,11 @@ public class IntervalVariableBuilder implements com.grafana.foundation.cog.Build
         this.internal.autoCount = autoCount;
         return this;
     }
+    
+    public IntervalVariableBuilder definition(String definition) {
+        this.internal.definition = definition;
+        return this;
+    }
     public VariableModel build() {
         return this.internal;
     }

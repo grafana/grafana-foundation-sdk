@@ -33,6 +33,7 @@
  * <span class="badge package-variant-panelcfg"></span> [nodegraph](./nodegraph/index.md)
  * <span class="badge package-variant-dataquery"></span> [parca](./parca/index.md)
  * <span class="badge package-variant-panelcfg"></span> [piechart](./piechart/index.md)
+ * [playlistv0alpha1](./playlistv0alpha1/index.md)
  * <span class="badge package-core"></span> [preferences](./preferences/index.md)
  * <span class="badge package-variant-dataquery"></span> [prometheus](./prometheus/index.md)
  * <span class="badge package-core"></span> [publicdashboard](./publicdashboard/index.md)

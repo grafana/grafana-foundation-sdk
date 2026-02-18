@@ -54,6 +54,12 @@ class Rule implements \JsonSerializable
     public ?string $updated;
 
     /**
+     * You can set a Keep firing for period to avoid repeated firing-resolving-firing notifications caused by flapping conditions.
+     * Value is in nanoseconds
+     */
+    public ?int $keepFiringFor;
+
+    /**
      * @param array<string, string>|null $annotations
      * @param string|null $condition
      * @param array<\Grafana\Foundation\Alerting\Query>|null $data
@@ -72,8 +78,9 @@ class Rule implements \JsonSerializable
      * @param string|null $title
      * @param string|null $uid
      * @param string|null $updated
+     * @param int|null $keepFiringFor
      */
-    public function __construct(?array $annotations = null, ?string $condition = null, ?array $data = null, ?\Grafana\Foundation\Alerting\RuleExecErrState $execErrState = null, ?string $folderUID = null, ?string $for = null, ?int $id = null, ?bool $isPaused = null, ?array $labels = null, ?\Grafana\Foundation\Alerting\RuleNoDataState $noDataState = null, ?\Grafana\Foundation\Alerting\NotificationSettings $notificationSettings = null, ?int $orgID = null, ?string $provenance = null, ?\Grafana\Foundation\Alerting\RecordRule $record = null, ?string $ruleGroup = null, ?string $title = null, ?string $uid = null, ?string $updated = null)
+    public function __construct(?array $annotations = null, ?string $condition = null, ?array $data = null, ?\Grafana\Foundation\Alerting\RuleExecErrState $execErrState = null, ?string $folderUID = null, ?string $for = null, ?int $id = null, ?bool $isPaused = null, ?array $labels = null, ?\Grafana\Foundation\Alerting\RuleNoDataState $noDataState = null, ?\Grafana\Foundation\Alerting\NotificationSettings $notificationSettings = null, ?int $orgID = null, ?string $provenance = null, ?\Grafana\Foundation\Alerting\RecordRule $record = null, ?string $ruleGroup = null, ?string $title = null, ?string $uid = null, ?string $updated = null, ?int $keepFiringFor = null)
     {
         $this->annotations = $annotations;
         $this->condition = $condition ?: "";
@@ -93,6 +100,7 @@ class Rule implements \JsonSerializable
         $this->title = $title ?: "";
         $this->uid = $uid;
         $this->updated = $updated;
+        $this->keepFiringFor = $keepFiringFor;
     }
 
     /**
@@ -100,7 +108,7 @@ class Rule implements \JsonSerializable
      */
     public static function fromArray(array $inputData): self
     {
-        /** @var array{annotations?: array<string, string>, condition?: string, data?: array<mixed>, execErrState?: string, folderUID?: string, for?: string, id?: int, isPaused?: bool, labels?: array<string, string>, noDataState?: string, notification_settings?: mixed, orgID?: int, provenance?: string, record?: mixed, ruleGroup?: string, title?: string, uid?: string, updated?: string} $inputData */
+        /** @var array{annotations?: array<string, string>, condition?: string, data?: array<mixed>, execErrState?: string, folderUID?: string, for?: string, id?: int, isPaused?: bool, labels?: array<string, string>, noDataState?: string, notification_settings?: mixed, orgID?: int, provenance?: string, record?: mixed, ruleGroup?: string, title?: string, uid?: string, updated?: string, keepFiringFor?: int} $inputData */
         $data = $inputData;
         return new self(
             annotations: $data["annotations"] ?? null,
@@ -133,6 +141,7 @@ class Rule implements \JsonSerializable
             title: $data["title"] ?? null,
             uid: $data["uid"] ?? null,
             updated: $data["updated"] ?? null,
+            keepFiringFor: $data["keepFiringFor"] ?? null,
         );
     }
 
@@ -175,6 +184,9 @@ class Rule implements \JsonSerializable
         }
         if (isset($this->updated)) {
             $data->updated = $this->updated;
+        }
+        if (isset($this->keepFiringFor)) {
+            $data->keepFiringFor = $this->keepFiringFor;
         }
         return $data;
     }

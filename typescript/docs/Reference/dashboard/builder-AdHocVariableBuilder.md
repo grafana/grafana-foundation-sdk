@@ -34,6 +34,12 @@ Data source used to fetch values for a variable. It can be defined but `null`.
 datasource(datasource: common.DataSourceRef)
 ```
 
+### <span class="badge object-method"></span> definition
+
+```typescript
+definition(definition: string)
+```
+
 ### <span class="badge object-method"></span> description
 
 Description of variable. It can be defined but `null`.

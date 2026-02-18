@@ -42,6 +42,12 @@ Shows current selected variable text/value on the dashboard
 current(current: dashboard.VariableOption)
 ```
 
+### <span class="badge object-method"></span> definition
+
+```typescript
+definition(definition: string)
+```
+
 ### <span class="badge object-method"></span> description
 
 Description of variable. It can be defined but `null`.

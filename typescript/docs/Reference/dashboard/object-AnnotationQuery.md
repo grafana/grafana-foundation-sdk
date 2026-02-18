@@ -14,7 +14,7 @@ export interface AnnotationQuery {
 	// Name of annotation.
 	name: string;
 	// Datasource where the annotations data is
-	datasource: common.DataSourceRef;
+	datasource?: common.DataSourceRef;
 	// When enabled the annotation query is issued with every dashboard refresh
 	enable: boolean;
 	// Annotation queries can be toggled on or off at the top of the dashboard.
@@ -25,7 +25,7 @@ export interface AnnotationQuery {
 	// Filters to apply when fetching annotations
 	filter?: dashboard.AnnotationPanelFilter;
 	// TODO.. this should just be a normal query target
-	target?: dashboard.AnnotationTarget;
+	target?: cog.Dataquery;
 	// TODO -- this should not exist here, it is based on the --grafana-- datasource
 	type?: string;
 	// Set to 1 for the standard annotation query all dashboards have by default.

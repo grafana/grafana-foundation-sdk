@@ -1167,6 +1167,9 @@
             "exclusiveMinimum": true,
             "description": "How many times the current time range should be divided to calculate the value, similar to the Max data points query option.\nFor example, if the current visible time range is 30 minutes, then the auto interval groups the data into 30 one-minute increments.",
             "default": 30
+          },
+          "definition": {
+            "type": "string"
           }
         },
         "description": "A variable is a placeholder for a value. You can use variables in metric queries and in panel titles."
@@ -1282,7 +1285,6 @@
         "additionalProperties": false,
         "required": [
           "name",
-          "datasource",
           "enable",
           "iconColor"
         ],
@@ -1314,7 +1316,8 @@
             "description": "Filters to apply when fetching annotations"
           },
           "target": {
-            "$ref": "#/components/schemas/AnnotationTarget",
+            "type": "object",
+            "additionalProperties": {},
             "description": "TODO.. this should just be a normal query target"
           },
           "type": {

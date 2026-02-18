@@ -69,6 +69,7 @@ class QueryBuilder implements \Grafana\Foundation\Cog\Builder
         }
         assert($this->internal->spec instanceof \Grafana\Foundation\Prometheus\Dataquery);
         $this->internal->spec->instant = true;
+        $this->internal->spec->range = false;
     
         return $this;
     }
@@ -83,6 +84,7 @@ class QueryBuilder implements \Grafana\Foundation\Cog\Builder
         }
         assert($this->internal->spec instanceof \Grafana\Foundation\Prometheus\Dataquery);
         $this->internal->spec->range = true;
+        $this->internal->spec->instant = false;
     
         return $this;
     }

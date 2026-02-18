@@ -1,0 +1,52 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$ref": "#/definitions/Playlist",
+  "definitions": {
+    "Item": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "type",
+        "value"
+      ],
+      "properties": {
+        "type": {
+          "enum": [
+            "dashboard_by_tag",
+            "dashboard_by_uid",
+            "dashboard_by_id"
+          ],
+          "type": "string",
+          "description": "type of the item."
+        },
+        "value": {
+          "type": "string",
+          "description": "Value depends on type and describes the playlist item.\n - dashboard_by_id: The value is an internal numerical identifier set by Grafana. This\n is not portable as the numerical identifier is non-deterministic between different instances.\n Will be replaced by dashboard_by_uid in the future. (deprecated)\n - dashboard_by_tag: The value is a tag which is set on any number of dashboards. All\n dashboards behind the tag will be added to the playlist.\n - dashboard_by_uid: The value is the dashboard UID"
+        }
+      }
+    },
+    "Playlist": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "title",
+        "interval",
+        "items"
+      ],
+      "properties": {
+        "title": {
+          "type": "string"
+        },
+        "interval": {
+          "type": "string"
+        },
+        "items": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Item"
+          }
+        }
+      }
+    }
+  }
+}

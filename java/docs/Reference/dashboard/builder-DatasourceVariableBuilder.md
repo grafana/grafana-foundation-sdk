@@ -42,6 +42,12 @@ Shows current selected variable text/value on the dashboard
 public DatasourceVariableBuilder current(VariableOption current)
 ```
 
+### <span class="badge object-method"></span> definition
+
+```java
+public DatasourceVariableBuilder definition(String definition)
+```
+
 ### <span class="badge object-method"></span> description
 
 Description of variable. It can be defined but `null`.

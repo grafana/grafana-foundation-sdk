@@ -51,6 +51,11 @@ public class TextBoxVariableBuilder implements com.grafana.foundation.cog.Builde
         this.internal.options = options;
         return this;
     }
+    
+    public TextBoxVariableBuilder definition(String definition) {
+        this.internal.definition = definition;
+        return this;
+    }
     public VariableModel build() {
         return this.internal;
     }

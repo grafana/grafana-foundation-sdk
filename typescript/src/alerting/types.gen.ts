@@ -178,6 +178,9 @@ export interface Rule {
 	title: string;
 	uid?: string;
 	updated?: string;
+	// You can set a Keep firing for period to avoid repeated firing-resolving-firing notifications caused by flapping conditions.
+	// Value is in nanoseconds
+	keepFiringFor?: number;
 }
 
 export const defaultRule = (): Rule => ({

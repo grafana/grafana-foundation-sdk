@@ -67,5 +67,10 @@ export class TextBoxVariableBuilder implements cog.Builder<dashboard.VariableMod
         this.internal.options = options;
         return this;
     }
+
+    definition(definition: string): this {
+        this.internal.definition = definition;
+        return this;
+    }
 }
 

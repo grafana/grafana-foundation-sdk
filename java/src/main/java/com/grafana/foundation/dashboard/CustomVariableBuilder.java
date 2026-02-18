@@ -66,6 +66,11 @@ public class CustomVariableBuilder implements com.grafana.foundation.cog.Builder
         this.internal.allValue = allValue;
         return this;
     }
+    
+    public CustomVariableBuilder definition(String definition) {
+        this.internal.definition = definition;
+        return this;
+    }
     public VariableModel build() {
         return this.internal;
     }

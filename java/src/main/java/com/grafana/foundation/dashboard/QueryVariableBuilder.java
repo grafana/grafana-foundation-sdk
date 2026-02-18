@@ -87,6 +87,11 @@ public class QueryVariableBuilder implements com.grafana.foundation.cog.Builder<
         this.internal.regex = regex;
         return this;
     }
+    
+    public QueryVariableBuilder definition(String definition) {
+        this.internal.definition = definition;
+        return this;
+    }
     public VariableModel build() {
         return this.internal;
     }

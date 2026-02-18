@@ -87,7 +87,7 @@ def name(name: str) -> typing.Self
 TODO.. this should just be a normal query target
 
 ```python
-def target(target: cogbuilder.Builder[dashboard.AnnotationTarget]) -> typing.Self
+def target(target: cogbuilder.Builder[cogvariants.Dataquery]) -> typing.Self
 ```
 
 ### <span class="badge object-method"></span> type_val

@@ -49,6 +49,7 @@ export class QueryBuilder implements cog.Builder<dashboardv2beta1.DataQueryKind>
             this.internal.spec = prometheus.defaultDataquery();
         }
         this.internal.spec.instant = true;
+        this.internal.spec.range = false;
         return this;
     }
 
@@ -58,6 +59,7 @@ export class QueryBuilder implements cog.Builder<dashboardv2beta1.DataQueryKind>
             this.internal.spec = prometheus.defaultDataquery();
         }
         this.internal.spec.range = true;
+        this.internal.spec.instant = false;
         return this;
     }
 

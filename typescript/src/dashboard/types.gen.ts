@@ -710,6 +710,7 @@ export interface VariableModel {
 	// How many times the current time range should be divided to calculate the value, similar to the Max data points query option.
 	// For example, if the current visible time range is 30 minutes, then the auto interval groups the data into 30 one-minute increments.
 	auto_count?: number;
+	definition?: string;
 }
 
 export const defaultVariableModel = (): VariableModel => ({
@@ -721,7 +722,7 @@ export const defaultVariableModel = (): VariableModel => ({
 	includeAll: false,
 	auto: false,
 	auto_min: "10s",
-	auto_count: 30,
+	auto_count: 0x1e,
 });
 
 // Dashboard variable type
@@ -828,7 +829,7 @@ export interface AnnotationQuery {
 	// Name of annotation.
 	name: string;
 	// Datasource where the annotations data is
-	datasource: common.DataSourceRef;
+	datasource?: common.DataSourceRef;
 	// When enabled the annotation query is issued with every dashboard refresh
 	enable: boolean;
 	// Annotation queries can be toggled on or off at the top of the dashboard.
@@ -839,7 +840,7 @@ export interface AnnotationQuery {
 	// Filters to apply when fetching annotations
 	filter?: AnnotationPanelFilter;
 	// TODO.. this should just be a normal query target
-	target?: AnnotationTarget;
+	target?: cog.Dataquery;
 	// TODO -- this should not exist here, it is based on the --grafana-- datasource
 	type?: string;
 	// Set to 1 for the standard annotation query all dashboards have by default.
@@ -849,7 +850,6 @@ export interface AnnotationQuery {
 
 export const defaultAnnotationQuery = (): AnnotationQuery => ({
 	name: "",
-	datasource: common.defaultDataSourceRef(),
 	enable: true,
 	hide: false,
 	iconColor: "",

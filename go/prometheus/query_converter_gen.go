@@ -52,7 +52,7 @@ func QueryConverter(input dashboardv2beta1.DataQueryKind) string {
 		buffer.Reset()
 
 	}
-	if input.Spec != nil && input.Spec.(*Dataquery).Instant != nil && *input.Spec.(*Dataquery).Instant == true {
+	if input.Spec != nil && input.Spec.(*Dataquery).Instant != nil && *input.Spec.(*Dataquery).Instant == true && input.Spec.(*Dataquery).Range != nil && *input.Spec.(*Dataquery).Range == false {
 
 		buffer.WriteString(`Instant(`)
 		buffer.WriteString(")")
@@ -61,7 +61,7 @@ func QueryConverter(input dashboardv2beta1.DataQueryKind) string {
 		buffer.Reset()
 
 	}
-	if input.Spec != nil && input.Spec.(*Dataquery).Range != nil && *input.Spec.(*Dataquery).Range == true {
+	if input.Spec != nil && input.Spec.(*Dataquery).Range != nil && *input.Spec.(*Dataquery).Range == true && input.Spec.(*Dataquery).Instant != nil && *input.Spec.(*Dataquery).Instant == false {
 
 		buffer.WriteString(`Range(`)
 		buffer.WriteString(")")

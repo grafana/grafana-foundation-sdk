@@ -37,6 +37,7 @@ public class PrometheusDataQueryKindBuilder implements com.grafana.foundation.co
 			this.internal.spec = new com.grafana.foundation.prometheus.DataqueryBuilder().build();
 		}
         ((Dataquery) this.internal.spec).instant = true;
+        ((Dataquery) this.internal.spec).range = false;
         return this;
     }
     
@@ -45,6 +46,7 @@ public class PrometheusDataQueryKindBuilder implements com.grafana.foundation.co
 			this.internal.spec = new com.grafana.foundation.prometheus.DataqueryBuilder().build();
 		}
         ((Dataquery) this.internal.spec).range = true;
+        ((Dataquery) this.internal.spec).instant = false;
         return this;
     }
     

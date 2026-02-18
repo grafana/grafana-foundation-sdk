@@ -27,18 +27,18 @@ func AnnotationQueryConverter(input AnnotationQuery) string {
 		buffer.Reset()
 
 	}
+	if input.Datasource != nil {
 
-	{
 		buffer.WriteString(`Datasource(`)
-		arg0 := cog.Dump(input.Datasource)
+		arg0 := cog.Dump(*input.Datasource)
 		buffer.WriteString(arg0)
 
 		buffer.WriteString(")")
 
 		calls = append(calls, buffer.String())
 		buffer.Reset()
-	}
 
+	}
 	if input.Enable != true {
 
 		buffer.WriteString(`Enable(`)
@@ -90,7 +90,7 @@ func AnnotationQueryConverter(input AnnotationQuery) string {
 	if input.Target != nil {
 
 		buffer.WriteString(`Target(`)
-		arg0 := AnnotationTargetConverter(*input.Target)
+		arg0 := cog.ConvertDataqueryToCode(input.Target)
 		buffer.WriteString(arg0)
 
 		buffer.WriteString(")")

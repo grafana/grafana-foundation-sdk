@@ -44,7 +44,7 @@ class RuleGroup implements \JsonSerializable
             folderUid: $data["folderUid"] ?? null,
             interval: $data["interval"] ?? null,
             rules: array_filter(array_map((function($input) {
-    	/** @var array{annotations?: array<string, string>, condition?: string, data?: array<mixed>, execErrState?: string, folderUID?: string, for?: string, id?: int, isPaused?: bool, labels?: array<string, string>, noDataState?: string, notification_settings?: mixed, orgID?: int, provenance?: string, record?: mixed, ruleGroup?: string, title?: string, uid?: string, updated?: string} */
+    	/** @var array{annotations?: array<string, string>, condition?: string, data?: array<mixed>, execErrState?: string, folderUID?: string, for?: string, id?: int, isPaused?: bool, labels?: array<string, string>, noDataState?: string, notification_settings?: mixed, orgID?: int, provenance?: string, record?: mixed, ruleGroup?: string, title?: string, uid?: string, updated?: string, keepFiringFor?: int} */
     $val = $input;
     	return \Grafana\Foundation\Alerting\Rule::fromArray($val);
     }), $data["rules"] ?? [])),

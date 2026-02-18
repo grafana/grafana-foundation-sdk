@@ -64,6 +64,16 @@ def id_val(id_val: int) -> typing.Self
 def is_paused(is_paused: bool) -> typing.Self
 ```
 
+### <span class="badge object-method"></span> keep_firing_for
+
+You can set a Keep firing for period to avoid repeated firing-resolving-firing notifications caused by flapping conditions.
+
+Value is in nanoseconds
+
+```python
+def keep_firing_for(keep_firing_for: int) -> typing.Self
+```
+
 ### <span class="badge object-method"></span> labels
 
 ```python

@@ -336,6 +336,10 @@
         "updated": {
           "type": "string",
           "format": "date-time"
+        },
+        "keepFiringFor": {
+          "type": "integer",
+          "description": "You can set a Keep firing for period to avoid repeated firing-resolving-firing notifications caused by flapping conditions.\nValue is in nanoseconds"
         }
       }
     },

@@ -87,7 +87,7 @@ name(name: string)
 TODO.. this should just be a normal query target
 
 ```typescript
-target(target: cog.Builder<dashboard.AnnotationTarget>)
+target(target: cog.Builder<cog.Dataquery>)
 ```
 
 ### <span class="badge object-method"></span> type

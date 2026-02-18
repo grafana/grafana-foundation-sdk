@@ -246,6 +246,18 @@ func RuleConverter(input Rule) string {
 		buffer.Reset()
 
 	}
+	if input.KeepFiringFor != nil {
+
+		buffer.WriteString(`KeepFiringFor(`)
+		arg0 := fmt.Sprintf("%#v", *input.KeepFiringFor)
+		buffer.WriteString(arg0)
+
+		buffer.WriteString(")")
+
+		calls = append(calls, buffer.String())
+		buffer.Reset()
+
+	}
 
 	return strings.Join(calls, ".\t\n")
 }

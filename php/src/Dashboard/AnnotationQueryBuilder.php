@@ -90,7 +90,7 @@ class AnnotationQueryBuilder implements \Grafana\Foundation\Cog\Builder
 
     /**
      * TODO.. this should just be a normal query target
-     * @param \Grafana\Foundation\Cog\Builder<\Grafana\Foundation\Dashboard\AnnotationTarget> $target
+     * @param \Grafana\Foundation\Cog\Builder<\Grafana\Foundation\Cog\Dataquery> $target
      */
     public function target(\Grafana\Foundation\Cog\Builder $target): static
     {

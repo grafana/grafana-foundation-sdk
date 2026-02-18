@@ -14,7 +14,7 @@ type AnnotationQuery struct {
     // Name of annotation.
     Name string `json:"name"`
     // Datasource where the annotations data is
-    Datasource common.DataSourceRef `json:"datasource"`
+    Datasource *common.DataSourceRef `json:"datasource,omitempty"`
     // When enabled the annotation query is issued with every dashboard refresh
     Enable bool `json:"enable"`
     // Annotation queries can be toggled on or off at the top of the dashboard.
@@ -25,7 +25,7 @@ type AnnotationQuery struct {
     // Filters to apply when fetching annotations
     Filter *dashboard.AnnotationPanelFilter `json:"filter,omitempty"`
     // TODO.. this should just be a normal query target
-    Target *dashboard.AnnotationTarget `json:"target,omitempty"`
+    Target cog/variants.Dataquery `json:"target,omitempty"`
     // TODO -- this should not exist here, it is based on the --grafana-- datasource
     Type *string `json:"type,omitempty"`
     // Set to 1 for the standard annotation query all dashboards have by default.
@@ -34,6 +34,14 @@ type AnnotationQuery struct {
 }
 ```
 ## Methods
+
+### <span class="badge object-method"></span> UnmarshalJSON
+
+UnmarshalJSON implements a custom JSON unmarshalling logic to decode `AnnotationQuery` from JSON.
+
+```go
+func (annotationQuery *AnnotationQuery) UnmarshalJSON(raw []byte) error
+```
 
 ### <span class="badge object-method"></span> UnmarshalJSONStrict
 

@@ -59,7 +59,7 @@ export class AnnotationQueryBuilder implements cog.Builder<dashboard.AnnotationQ
     }
 
     // TODO.. this should just be a normal query target
-    target(target: cog.Builder<dashboard.AnnotationTarget>): this {
+    target(target: cog.Builder<cog.Dataquery>): this {
         const targetResource = target.build();
         this.internal.target = targetResource;
         return this;

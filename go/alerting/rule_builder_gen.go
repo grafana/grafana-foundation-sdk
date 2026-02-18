@@ -177,3 +177,11 @@ func (builder *RuleBuilder) Updated(updated time.Time) *RuleBuilder {
 
 	return builder
 }
+
+// You can set a Keep firing for period to avoid repeated firing-resolving-firing notifications caused by flapping conditions.
+// Value is in nanoseconds
+func (builder *RuleBuilder) KeepFiringFor(keepFiringFor int64) *RuleBuilder {
+	builder.internal.KeepFiringFor = &keepFiringFor
+
+	return builder
+}

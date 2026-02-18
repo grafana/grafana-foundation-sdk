@@ -89,5 +89,10 @@ export class IntervalVariableBuilder implements cog.Builder<dashboard.VariableMo
         this.internal.auto_count = autoCount;
         return this;
     }
+
+    definition(definition: string): this {
+        this.internal.definition = definition;
+        return this;
+    }
 }
 

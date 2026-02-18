@@ -210,4 +210,15 @@ class RuleBuilder implements \Grafana\Foundation\Cog\Builder
         return $this;
     }
 
+    /**
+     * You can set a Keep firing for period to avoid repeated firing-resolving-firing notifications caused by flapping conditions.
+     * Value is in nanoseconds
+     */
+    public function keepFiringFor(int $keepFiringFor): static
+    {
+        $this->internal->keepFiringFor = $keepFiringFor;
+    
+        return $this;
+    }
+
 }

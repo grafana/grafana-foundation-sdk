@@ -29,6 +29,7 @@ public class VariableModel {
   public Boolean auto;
   public String autoMin;
   public Integer autoCount;
+  public String definition;
 }
 ```
 ## See also

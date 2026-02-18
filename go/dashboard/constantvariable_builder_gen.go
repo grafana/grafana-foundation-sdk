@@ -74,3 +74,9 @@ func (builder *ConstantVariableBuilder) AllowCustomValue(allowCustomValue bool) 
 
 	return builder
 }
+
+func (builder *ConstantVariableBuilder) Definition(definition string) *ConstantVariableBuilder {
+	builder.internal.Definition = &definition
+
+	return builder
+}

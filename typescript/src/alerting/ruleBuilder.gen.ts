@@ -145,5 +145,12 @@ export class RuleBuilder implements cog.Builder<alerting.Rule> {
         this.internal.updated = updated;
         return this;
     }
+
+    // You can set a Keep firing for period to avoid repeated firing-resolving-firing notifications caused by flapping conditions.
+    // Value is in nanoseconds
+    keepFiringFor(keepFiringFor: number): this {
+        this.internal.keepFiringFor = keepFiringFor;
+        return this;
+    }
 }
 

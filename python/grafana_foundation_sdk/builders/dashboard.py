@@ -1449,7 +1449,7 @@ class AnnotationQuery(cogbuilder.Builder[dashboard.AnnotationQuery]):
     
         return self
     
-    def target(self, target: cogbuilder.Builder[dashboard.AnnotationTarget]) -> typing.Self:    
+    def target(self, target: cogbuilder.Builder[cogvariants.Dataquery]) -> typing.Self:    
         """
         TODO.. this should just be a normal query target
         """
@@ -2200,6 +2200,11 @@ class QueryVariable(cogbuilder.Builder[dashboard.VariableModel]):
     
         return self
     
+    def definition(self, definition: str) -> typing.Self:    
+        self._internal.definition = definition
+    
+        return self
+    
 
 
 class AdHocVariable(cogbuilder.Builder[dashboard.VariableModel]):    
@@ -2274,6 +2279,11 @@ class AdHocVariable(cogbuilder.Builder[dashboard.VariableModel]):
     
         return self
     
+    def definition(self, definition: str) -> typing.Self:    
+        self._internal.definition = definition
+    
+        return self
+    
 
 
 class ConstantVariable(cogbuilder.Builder[dashboard.VariableModel]):    
@@ -2337,6 +2347,11 @@ class ConstantVariable(cogbuilder.Builder[dashboard.VariableModel]):
         """
             
         self._internal.allow_custom_value = allow_custom_value
+    
+        return self
+    
+    def definition(self, definition: str) -> typing.Self:    
+        self._internal.definition = definition
     
         return self
     
@@ -2457,6 +2472,11 @@ class DatasourceVariable(cogbuilder.Builder[dashboard.VariableModel]):
         """
             
         self._internal.regex = regex
+    
+        return self
+    
+    def definition(self, definition: str) -> typing.Self:    
+        self._internal.definition = definition
     
         return self
     
@@ -2582,6 +2602,11 @@ class IntervalVariable(cogbuilder.Builder[dashboard.VariableModel]):
     
         return self
     
+    def definition(self, definition: str) -> typing.Self:    
+        self._internal.definition = definition
+    
+        return self
+    
 
 
 class TextBoxVariable(cogbuilder.Builder[dashboard.VariableModel]):    
@@ -2671,6 +2696,11 @@ class TextBoxVariable(cogbuilder.Builder[dashboard.VariableModel]):
         """
             
         self._internal.options = options
+    
+        return self
+    
+    def definition(self, definition: str) -> typing.Self:    
+        self._internal.definition = definition
     
         return self
     
@@ -2790,6 +2820,11 @@ class CustomVariable(cogbuilder.Builder[dashboard.VariableModel]):
         """
             
         self._internal.all_value = all_value
+    
+        return self
+    
+    def definition(self, definition: str) -> typing.Self:    
+        self._internal.definition = definition
     
         return self
     

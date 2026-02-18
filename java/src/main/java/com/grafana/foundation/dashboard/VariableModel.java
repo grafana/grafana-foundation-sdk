@@ -93,6 +93,9 @@ public class VariableModel {
     @JsonInclude(JsonInclude.Include.NON_NULL)
     @JsonProperty("auto_count")
     public Integer autoCount;
+    @JsonInclude(JsonInclude.Include.NON_NULL)
+    @JsonProperty("definition")
+    public String definition;
     public VariableModel() {
         this.type = VariableType.QUERY;
         this.name = "";
@@ -104,7 +107,7 @@ public class VariableModel {
         this.autoMin = "10s";
         this.autoCount = 30;
     }
-    public VariableModel(VariableType type,String name,String label,VariableHide hide,Boolean skipUrlSync,String description,StringOrMap query,DataSourceRef datasource,VariableOption current,Boolean multi,Boolean allowCustomValue,List<VariableOption> options,VariableRefresh refresh,VariableSort sort,Boolean includeAll,String allValue,String regex,Boolean auto,String autoMin,Integer autoCount) {
+    public VariableModel(VariableType type,String name,String label,VariableHide hide,Boolean skipUrlSync,String description,StringOrMap query,DataSourceRef datasource,VariableOption current,Boolean multi,Boolean allowCustomValue,List<VariableOption> options,VariableRefresh refresh,VariableSort sort,Boolean includeAll,String allValue,String regex,Boolean auto,String autoMin,Integer autoCount,String definition) {
         this.type = type;
         this.name = name;
         this.label = label;
@@ -125,6 +128,7 @@ public class VariableModel {
         this.auto = auto;
         this.autoMin = autoMin;
         this.autoCount = autoCount;
+        this.definition = definition;
     }
     
     public String toJSON() throws JsonProcessingException {

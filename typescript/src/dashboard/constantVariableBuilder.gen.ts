@@ -50,5 +50,10 @@ export class ConstantVariableBuilder implements cog.Builder<dashboard.VariableMo
         this.internal.allowCustomValue = allowCustomValue;
         return this;
     }
+
+    definition(definition: string): this {
+        this.internal.definition = definition;
+        return this;
+    }
 }
 

@@ -74,6 +74,8 @@ func (builder *QueryBuilder) Instant() *QueryBuilder {
 	}
 	valInstant := true
 	builder.internal.Spec.(*Dataquery).Instant = &valInstant
+	valRange := false
+	builder.internal.Spec.(*Dataquery).Range = &valRange
 
 	return builder
 }
@@ -85,6 +87,8 @@ func (builder *QueryBuilder) Range() *QueryBuilder {
 	}
 	valRange := true
 	builder.internal.Spec.(*Dataquery).Range = &valRange
+	valInstant := false
+	builder.internal.Spec.(*Dataquery).Instant = &valInstant
 
 	return builder
 }

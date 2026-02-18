@@ -68,6 +68,11 @@ public class DatasourceVariableBuilder implements com.grafana.foundation.cog.Bui
         this.internal.regex = regex;
         return this;
     }
+    
+    public DatasourceVariableBuilder definition(String definition) {
+        this.internal.definition = definition;
+        return this;
+    }
     public VariableModel build() {
         return this.internal;
     }

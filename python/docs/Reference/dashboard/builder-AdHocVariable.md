@@ -34,6 +34,12 @@ Data source used to fetch values for a variable. It can be defined but `null`.
 def datasource(datasource: common.DataSourceRef) -> typing.Self
 ```
 
+### <span class="badge object-method"></span> definition
+
+```python
+def definition(definition: str) -> typing.Self
+```
+
 ### <span class="badge object-method"></span> description
 
 Description of variable. It can be defined but `null`.

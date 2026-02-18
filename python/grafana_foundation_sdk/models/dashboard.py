@@ -1503,8 +1503,9 @@ class VariableModel:
     # How many times the current time range should be divided to calculate the value, similar to the Max data points query option.
     # For example, if the current visible time range is 30 minutes, then the auto interval groups the data into 30 one-minute increments.
     auto_count: typing.Optional[int]
+    definition: typing.Optional[str]
 
-    def __init__(self, type_val: typing.Optional['VariableType'] = None, name: str = "", label: typing.Optional[str] = None, hide: typing.Optional['VariableHide'] = None, skip_url_sync: typing.Optional[bool] = False, description: typing.Optional[str] = None, query: typing.Optional[typing.Union[str, dict[str, object]]] = None, datasource: typing.Optional[common.DataSourceRef] = None, current: typing.Optional['VariableOption'] = None, multi: typing.Optional[bool] = False, allow_custom_value: typing.Optional[bool] = True, options: typing.Optional[list['VariableOption']] = None, refresh: typing.Optional['VariableRefresh'] = None, sort: typing.Optional['VariableSort'] = None, include_all: typing.Optional[bool] = False, all_value: typing.Optional[str] = None, regex: typing.Optional[str] = None, auto: typing.Optional[bool] = False, auto_min: typing.Optional[str] = "10s", auto_count: typing.Optional[int] = 30) -> None:
+    def __init__(self, type_val: typing.Optional['VariableType'] = None, name: str = "", label: typing.Optional[str] = None, hide: typing.Optional['VariableHide'] = None, skip_url_sync: typing.Optional[bool] = False, description: typing.Optional[str] = None, query: typing.Optional[typing.Union[str, dict[str, object]]] = None, datasource: typing.Optional[common.DataSourceRef] = None, current: typing.Optional['VariableOption'] = None, multi: typing.Optional[bool] = False, allow_custom_value: typing.Optional[bool] = True, options: typing.Optional[list['VariableOption']] = None, refresh: typing.Optional['VariableRefresh'] = None, sort: typing.Optional['VariableSort'] = None, include_all: typing.Optional[bool] = False, all_value: typing.Optional[str] = None, regex: typing.Optional[str] = None, auto: typing.Optional[bool] = False, auto_min: typing.Optional[str] = "10s", auto_count: typing.Optional[int] = 0x1e, definition: typing.Optional[str] = None) -> None:
         self.type_val = type_val if type_val is not None else VariableType.QUERY
         self.name = name
         self.label = label
@@ -1525,6 +1526,7 @@ class VariableModel:
         self.auto = auto
         self.auto_min = auto_min
         self.auto_count = auto_count
+        self.definition = definition
 
     def to_json(self) -> dict[str, object]:
         payload: dict[str, object] = {
@@ -1567,6 +1569,8 @@ class VariableModel:
             payload["auto_min"] = self.auto_min
         if self.auto_count is not None:
             payload["auto_count"] = self.auto_count
+        if self.definition is not None:
+            payload["definition"] = self.definition
         return payload
 
     @classmethod
@@ -1612,7 +1616,9 @@ class VariableModel:
         if "auto_min" in data:
             args["auto_min"] = data["auto_min"]
         if "auto_count" in data:
-            args["auto_count"] = data["auto_count"]        
+            args["auto_count"] = data["auto_count"]
+        if "definition" in data:
+            args["definition"] = data["definition"]        
 
         return cls(**args)
 
@@ -1772,7 +1778,7 @@ class AnnotationQuery:
     # Name of annotation.
     name: str
     # Datasource where the annotations data is
-    datasource: common.DataSourceRef
+    datasource: typing.Optional[common.DataSourceRef]
     # When enabled the annotation query is issued with every dashboard refresh
     enable: bool
     # Annotation queries can be toggled on or off at the top of the dashboard.
@@ -1783,16 +1789,16 @@ class AnnotationQuery:
     # Filters to apply when fetching annotations
     filter_val: typing.Optional['AnnotationPanelFilter']
     # TODO.. this should just be a normal query target
-    target: typing.Optional['AnnotationTarget']
+    target: typing.Optional[cogvariants.Dataquery]
     # TODO -- this should not exist here, it is based on the --grafana-- datasource
     type_val: typing.Optional[str]
     # Set to 1 for the standard annotation query all dashboards have by default.
     built_in: typing.Optional[float]
     expr: typing.Optional[str]
 
-    def __init__(self, name: str = "", datasource: typing.Optional[common.DataSourceRef] = None, enable: bool = True, hide: typing.Optional[bool] = False, icon_color: str = "", filter_val: typing.Optional['AnnotationPanelFilter'] = None, target: typing.Optional['AnnotationTarget'] = None, type_val: typing.Optional[str] = None, built_in: typing.Optional[float] = 0, expr: typing.Optional[str] = None) -> None:
+    def __init__(self, name: str = "", datasource: typing.Optional[common.DataSourceRef] = None, enable: bool = True, hide: typing.Optional[bool] = False, icon_color: str = "", filter_val: typing.Optional['AnnotationPanelFilter'] = None, target: typing.Optional[cogvariants.Dataquery] = None, type_val: typing.Optional[str] = None, built_in: typing.Optional[float] = 0, expr: typing.Optional[str] = None) -> None:
         self.name = name
-        self.datasource = datasource if datasource is not None else common.DataSourceRef()
+        self.datasource = datasource
         self.enable = enable
         self.hide = hide
         self.icon_color = icon_color
@@ -1805,10 +1811,11 @@ class AnnotationQuery:
     def to_json(self) -> dict[str, object]:
         payload: dict[str, object] = {
             "name": self.name,
-            "datasource": self.datasource,
             "enable": self.enable,
             "iconColor": self.icon_color,
         }
+        if self.datasource is not None:
+            payload["datasource"] = self.datasource
         if self.hide is not None:
             payload["hide"] = self.hide
         if self.filter_val is not None:
@@ -1840,7 +1847,7 @@ class AnnotationQuery:
         if "filter" in data:
             args["filter_val"] = AnnotationPanelFilter.from_json(data["filter"])
         if "target" in data:
-            args["target"] = AnnotationTarget.from_json(data["target"])
+            args["target"] = cogruntime.dataquery_from_json(data["target"], data["datasource"]["type"] if data.get("datasource") is not None and data["datasource"].get("type", "") != "" else "")
         if "type" in data:
             args["type_val"] = data["type"]
         if "builtIn" in data:

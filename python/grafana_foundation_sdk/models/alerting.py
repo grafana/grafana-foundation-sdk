@@ -392,8 +392,11 @@ class Rule:
     title: str
     uid: typing.Optional[str]
     updated: typing.Optional[str]
+    # You can set a Keep firing for period to avoid repeated firing-resolving-firing notifications caused by flapping conditions.
+    # Value is in nanoseconds
+    keep_firing_for: typing.Optional[int]
 
-    def __init__(self, annotations: typing.Optional[dict[str, str]] = None, condition: str = "", data: typing.Optional[list['Query']] = None, exec_err_state: typing.Optional[typing.Literal["Alerting", "Error", "OK", "KeepLast"]] = None, folder_uid: str = "", for_val: str = "", id_val: typing.Optional[int] = None, is_paused: typing.Optional[bool] = None, labels: typing.Optional[dict[str, str]] = None, no_data_state: typing.Optional[typing.Literal["OK", "Alerting", "NoData", "KeepLast"]] = None, notification_settings: typing.Optional['NotificationSettings'] = None, org_id: int = 0, provenance: typing.Optional['Provenance'] = None, record: typing.Optional['RecordRule'] = None, rule_group: str = "", title: str = "", uid: typing.Optional[str] = None, updated: typing.Optional[str] = None) -> None:
+    def __init__(self, annotations: typing.Optional[dict[str, str]] = None, condition: str = "", data: typing.Optional[list['Query']] = None, exec_err_state: typing.Optional[typing.Literal["Alerting", "Error", "OK", "KeepLast"]] = None, folder_uid: str = "", for_val: str = "", id_val: typing.Optional[int] = None, is_paused: typing.Optional[bool] = None, labels: typing.Optional[dict[str, str]] = None, no_data_state: typing.Optional[typing.Literal["OK", "Alerting", "NoData", "KeepLast"]] = None, notification_settings: typing.Optional['NotificationSettings'] = None, org_id: int = 0, provenance: typing.Optional['Provenance'] = None, record: typing.Optional['RecordRule'] = None, rule_group: str = "", title: str = "", uid: typing.Optional[str] = None, updated: typing.Optional[str] = None, keep_firing_for: typing.Optional[int] = None) -> None:
         self.annotations = annotations
         self.condition = condition
         self.data = data if data is not None else []
@@ -412,6 +415,7 @@ class Rule:
         self.title = title
         self.uid = uid
         self.updated = updated
+        self.keep_firing_for = keep_firing_for
 
     def to_json(self) -> dict[str, object]:
         payload: dict[str, object] = {
@@ -443,6 +447,8 @@ class Rule:
             payload["uid"] = self.uid
         if self.updated is not None:
             payload["updated"] = self.updated
+        if self.keep_firing_for is not None:
+            payload["keepFiringFor"] = self.keep_firing_for
         return payload
 
     @classmethod
@@ -484,7 +490,9 @@ class Rule:
         if "uid" in data:
             args["uid"] = data["uid"]
         if "updated" in data:
-            args["updated"] = data["updated"]        
+            args["updated"] = data["updated"]
+        if "keepFiringFor" in data:
+            args["keep_firing_for"] = data["keepFiringFor"]        
 
         return cls(**args)
 

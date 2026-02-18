@@ -26,6 +26,12 @@ Allow custom values to be entered in the variable
 public ConstantVariableBuilder allowCustomValue(Boolean allowCustomValue)
 ```
 
+### <span class="badge object-method"></span> definition
+
+```java
+public ConstantVariableBuilder definition(String definition)
+```
+
 ### <span class="badge object-method"></span> description
 
 Description of variable. It can be defined but `null`.

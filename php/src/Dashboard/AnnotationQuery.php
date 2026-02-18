@@ -16,7 +16,7 @@ class AnnotationQuery implements \JsonSerializable
     /**
      * Datasource where the annotations data is
      */
-    public \Grafana\Foundation\Common\DataSourceRef $datasource;
+    public ?\Grafana\Foundation\Common\DataSourceRef $datasource;
 
     /**
      * When enabled the annotation query is issued with every dashboard refresh
@@ -41,8 +41,9 @@ class AnnotationQuery implements \JsonSerializable
 
     /**
      * TODO.. this should just be a normal query target
+     * @var \Grafana\Foundation\Cog\Dataquery|null
      */
-    public ?\Grafana\Foundation\Dashboard\AnnotationTarget $target;
+    public ?\Grafana\Foundation\Cog\Dataquery $target;
 
     /**
      * TODO -- this should not exist here, it is based on the --grafana-- datasource
@@ -63,15 +64,15 @@ class AnnotationQuery implements \JsonSerializable
      * @param bool|null $hide
      * @param string|null $iconColor
      * @param \Grafana\Foundation\Dashboard\AnnotationPanelFilter|null $filter
-     * @param \Grafana\Foundation\Dashboard\AnnotationTarget|null $target
+     * @param \Grafana\Foundation\Cog\Dataquery|null $target
      * @param string|null $type
      * @param float|null $builtIn
      * @param string|null $expr
      */
-    public function __construct(?string $name = null, ?\Grafana\Foundation\Common\DataSourceRef $datasource = null, ?bool $enable = null, ?bool $hide = null, ?string $iconColor = null, ?\Grafana\Foundation\Dashboard\AnnotationPanelFilter $filter = null, ?\Grafana\Foundation\Dashboard\AnnotationTarget $target = null, ?string $type = null, ?float $builtIn = null, ?string $expr = null)
+    public function __construct(?string $name = null, ?\Grafana\Foundation\Common\DataSourceRef $datasource = null, ?bool $enable = null, ?bool $hide = null, ?string $iconColor = null, ?\Grafana\Foundation\Dashboard\AnnotationPanelFilter $filter = null, ?\Grafana\Foundation\Cog\Dataquery $target = null, ?string $type = null, ?float $builtIn = null, ?string $expr = null)
     {
         $this->name = $name ?: "";
-        $this->datasource = $datasource ?: new \Grafana\Foundation\Common\DataSourceRef();
+        $this->datasource = $datasource;
         $this->enable = $enable ?: true;
         $this->hide = $hide;
         $this->iconColor = $iconColor ?: "";
@@ -104,10 +105,12 @@ class AnnotationQuery implements \JsonSerializable
     $val = $input;
     	return \Grafana\Foundation\Dashboard\AnnotationPanelFilter::fromArray($val);
     })($data["filter"]) : null,
-            target: isset($data["target"]) ? (function($input) {
-    	/** @var array{limit?: int, matchAny?: bool, tags?: array<string>, type?: string} */
-    $val = $input;
-    	return \Grafana\Foundation\Dashboard\AnnotationTarget::fromArray($val);
+            target: isset($data["target"]) ? (function ($in) {
+    	/** @var array{datasource?: array{type?: mixed}} $in */
+        $hint = (isset($in["datasource"], $in["datasource"]["type"]) && is_string($in["datasource"]["type"])) ? $in["datasource"]["type"] : "";
+    
+        /** @var array<string, mixed> $in */
+        return \Grafana\Foundation\Cog\Runtime::get()->dataqueryFromArray($in, $hint);
     })($data["target"]) : null,
             type: $data["type"] ?? null,
             builtIn: $data["builtIn"] ?? null,
@@ -122,9 +125,11 @@ class AnnotationQuery implements \JsonSerializable
     {
         $data = new \stdClass;
         $data->name = $this->name;
-        $data->datasource = $this->datasource;
         $data->enable = $this->enable;
         $data->iconColor = $this->iconColor;
+        if (isset($this->datasource)) {
+            $data->datasource = $this->datasource;
+        }
         if (isset($this->hide)) {
             $data->hide = $this->hide;
         }
