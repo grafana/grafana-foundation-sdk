@@ -53,6 +53,10 @@ If everything looks good, edit the [`.github/CODEOWNERS`](../.github/CODEOWNERS)
 file to set your team as owner of the `.cog/resources/[new-resource]/` directory
 and submit a PR.
 
+The following PRs can be used as examples of how to add new resources to the SDK:
+
+* [Playlist.v0alpha1](https://github.com/grafana/grafana-foundation-sdk/pull/1107)
+
 ## Adding a panel or dataquery schema
 
 To handle panel and dataqueries correctly, schemas need to explicitly be identified as such.
