@@ -164,23 +164,6 @@ passes:
             kind: ref
             ref: { referred_pkg: dashboard, referred_type: Dashboard }
 
-  # In the original `librarypanel.PanelModel` schema, the "model" field is left
-  # mainly undefined but a comment indicates that it should be the same panel
-  # schema defined in dashboard with a few fields omitted:
-  #   model: Omit<dashboard.Panel, 'gridPos' | 'id' | 'libraryPanel'>
-  - duplicate_object:
-      object: dashboard.Panel
-      as: librarypanel.PanelModel
-      omit_fields:
-        - id
-        - gridPos
-        - libraryPanel
-  - retype_field:
-      field: librarypanel.LibraryPanel.model
-      as:
-        kind: ref
-        ref: { referred_pkg: librarypanel, referred_type: PanelModel }
-
   - omit:
       objects:
         - dashboard.HeatmapPanel
