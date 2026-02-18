@@ -53,6 +53,11 @@ If everything looks good, edit the [`.github/CODEOWNERS`](../.github/CODEOWNERS)
 file to set your team as owner of the `.cog/resources/[new-resource]/` directory
 and submit a PR.
 
+> [!NOTE]
+> Only the codegen configuration is needed to add a resource to the SDK. No need
+> to commit and push the generated code as there is automation that handles it
+> for us.
+
 The following PRs can be used as examples of how to add new resources to the SDK:
 
 * [Playlist.v0alpha1](https://github.com/grafana/grafana-foundation-sdk/pull/1107)
