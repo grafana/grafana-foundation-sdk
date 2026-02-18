@@ -14,8 +14,8 @@ defaults:
     shell: bash
 
 jobs:
-  validate_cog_config:
-    name: Validate cog config
+  run_codegen:
+    name: Run codegen pipeline
     runs-on: ubuntu-latest
     permissions:
       id-token: write
@@ -43,19 +43,25 @@ jobs:
       - name: Setup cog
         uses: ./.github/actions/setup-cog
 
-      - name: Checkout grafana/kind-registry
-        uses: actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5 # v4.3.1
+      - name: Install devbox
+        uses: jetify-com/devbox-install-action@a0d2d53632934ae004f878c840055956d9f741b0 #v0.14.0
         with:
-          repository: grafana/kind-registry
-          path: kind-registry
-          persist-credentials: false
+          enable-cache: 'true'
+          devbox-version: ${{ env.DEVBOX_VERSION }}
 
-      - name: Validate cog's config
+      - name: Run codegen pipeline
         run: |
-          cog inspect --config .cog/config.yaml \
-            --ir builders \
-            --parameters 'kind_registry_path=./kind-registry'
+          git config --global user.email "cog-ci@grafana.com"
+          git config --global user.name "cog - CI"
+
+          devbox run ./scripts/prepare-release.sh
         env:
+          TERM: 'xterm'
+          WORKSPACE_PATH: /tmp/foundation-workspace-current
+          CLEANUP_WORKSPACE: 'no'
+          SKIP_VALIDATION: 'no'
+          LOG_LEVEL: '7' # debug
+          GOGC: 'off'
           GITHUB_AUTH_TOKEN: ${{ steps.generate_reader_token.outputs.token }}
 
   diff_preview:
