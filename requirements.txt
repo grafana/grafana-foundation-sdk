@@ -33,7 +33,7 @@ regex==2024.11.6
 requests==2.32.5
 six==1.16.0
 toml==0.10.2
-typing_extensions==4.12.2
+typing_extensions==4.15.0
 urllib3==2.6.3
 watchdog==4.0.2
 zipp==3.19.2
