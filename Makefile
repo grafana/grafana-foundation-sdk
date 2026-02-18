@@ -1,4 +1,4 @@
-COG_VERSION = v0.0.57
+COG_VERSION = v0.0.58
 COG_DIR     = $(shell go env GOPATH)/bin/cog-$(COG_VERSION)
 COG_BIN     = $(COG_DIR)/cli
 
@@ -21,7 +21,7 @@ clone-kind-registry:
 
 .PHONY: generate
 generate: install-cog clone-kind-registry
-	cog generate --config .cog/config.yaml \
+	$(COG_BIN) generate --config .cog/config.yaml \
 		--parameters "output_dir=%l,kind_registry_path=$(KIND_REGISTRY_PATH),release_tag=$(shell cat .release/tag)"
 
 .PHONY: preview
