@@ -167,3 +167,10 @@ passes:
   - omit:
       objects:
         - dashboard.HeatmapPanel
+
+  # Some future-proofing
+  - constant_to_enum:
+      objects:
+        - dashboard.DashboardLinkPlacement
+        - dashboard.ActionVariableType
+        - dashboard.AnnotationQueryPlacement
