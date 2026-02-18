@@ -26,7 +26,7 @@ Here's a quick overview of how the SDK works:
 
 * **Builder pattern**: The SDK implements the builder pattern to let you define dashboards fluently. You start with a `DashboardBuilder`, then add panels, queries, and other components step by step.
 * **Strong typing**: Everything in the SDK is strongly typed. This gives you autocompletion in your IDE, catches mistakes early, and helps ensure you're always using valid configuration values.
-* **Structured options**: When a configuration get complex (like data reduction or display settings), the SDK uses typed option builders to keep things readable and predictable.
+* **Structured options**: When a configuration gets complex (like data reduction or display settings), the SDK uses typed option builders to keep things readable and predictable.
 * **Resources**: Multiple resources are supported by the SDK. Dashboards, alerts, …
 
 For example, here is how dashboards can be built:
@@ -251,7 +251,7 @@ output the result as a JSON.
 With the JSON payload, you can:
 
 * Call [Grafana's API](https://grafana.com/docs/grafana/latest/developer-resources/api-reference/http-api/) to programmatically manage the resource.
-* Use [Grafana CLI](https://grafana.com/docs/grafana/latest/as-code/observability-as-code/grafana-cli/) publish the resource from CLI.
+* Use [Grafana CLI](https://grafana.com/docs/grafana/latest/as-code/observability-as-code/grafana-cli/) to publish the resource from CLI.
 
 ## Next steps
 
