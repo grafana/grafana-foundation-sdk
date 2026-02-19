@@ -1,0 +1,9 @@
+# yaml-language-server: $schema=https://raw.githubusercontent.com/grafana/cog/main/schemas/compiler_passes.json
+
+passes:
+  # Add a few useful constants
+  - add_object:
+      object: starsv1alpha1.StarsKind
+      as:
+        kind: scalar
+        scalar: { scalar_kind: string, value: "Stars" }

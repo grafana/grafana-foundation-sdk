@@ -1,0 +1,15 @@
+# yaml-language-server: $schema=https://raw.githubusercontent.com/grafana/cog/main/schemas/compiler_passes.json
+
+passes:
+  # Add a few useful constants
+  - add_object:
+      object: folderv1beta1.FolderV1Beta1
+      as:
+        kind: scalar
+        scalar: { scalar_kind: string, value: "folder.grafana.app/v1beta1" }
+
+  - add_object:
+      object: folderv1beta1.FolderKind
+      as:
+        kind: scalar
+        scalar: { scalar_kind: string, value: "Folder" }

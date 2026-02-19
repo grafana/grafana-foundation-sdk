@@ -1,6 +1,19 @@
 # yaml-language-server: $schema=https://raw.githubusercontent.com/grafana/cog/main/schemas/compiler_passes.json
 
 passes:
+  # Add a few useful constants
+  - add_object:
+      object: dashboardv2beta1.DashboardV2Beta1
+      as:
+        kind: scalar
+        scalar: { scalar_kind: string, value: "dashboard.grafana.app/v2beta1" }
+
+  - add_object:
+      object: dashboardv2beta1.DashboardKind
+      as:
+        kind: scalar
+        scalar: { scalar_kind: string, value: "Dashboard" }
+
   ######################
   # Dashboard v2beta1 #
   ######################

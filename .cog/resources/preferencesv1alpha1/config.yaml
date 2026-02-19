@@ -14,3 +14,6 @@ inputs:
       # The schema is defined under the `spec` field, which cog will use as
       # resource name unless told otherwise. Preferences is a better name here.
       forced_envelope: Preferences
+
+      transformations:
+        - '%__config_dir%/schema.transforms.yaml'

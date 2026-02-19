@@ -15,5 +15,8 @@ inputs:
       # unless told otherwise. Playlist is a better name here.
       forced_envelope: Playlist
 
+      transformations:
+        - '%__config_dir%/schema.transforms.yaml'
+
 builder_transformations:
   - '%__config_dir%/common.builder.transforms.yaml'
