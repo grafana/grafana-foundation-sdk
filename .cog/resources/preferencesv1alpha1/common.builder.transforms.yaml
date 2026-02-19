@@ -2,20 +2,16 @@
 
 language: all
 
-package: folderv1beta1
+package: preferencesv1alpha1
 
 builders:
-  - promote_options_to_constructor:
-      by_name: Folder
-      options: [title]
-
   - add_factory:
-      by_name: Folder
+      by_name: Preferences
       factory:
         name: manifest
         builder_ref: {referred_pkg: resource, referred_type: Manifest}
         comments:
-          - "Creates a resource manifest from a Folder."
+          - "Creates a resource manifest from Preferences."
         arguments:
           - &name_argument
             name: name
@@ -23,20 +19,20 @@ builders:
               kind: scalar
               scalar: {scalar_kind: string}
           - &spec_argument
-            name: folder
+            name: preferences
             type:
               kind: ref
-              ref: {referred_pkg: folderv1beta1, referred_type: Folder}
+              ref: {referred_pkg: preferencesv1alpha1, referred_type: Preferences}
         options:
           - name: apiVersion
             parameters:
               - constant:
-                  value: "folder.grafana.app/v1beta1"
+                  value: "preferences.grafana.app/v1alpha1"
                   type: *type_string
           - name: kind
             parameters:
               - constant:
-                  value: "Folder"
+                  value: "Preferences"
                   type: *type_string
           - name: metadata
             parameters:

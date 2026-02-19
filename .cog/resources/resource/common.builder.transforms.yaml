@@ -1,0 +1,25 @@
+# yaml-language-server: $schema=https://raw.githubusercontent.com/grafana/cog/main/schemas/veneers.json
+
+language: all
+
+package: resource
+
+builders:
+  - add_factory:
+      by_name: Metadata
+      factory:
+        name: named
+        comments:
+          - "Creates metadata for a named resource."
+        arguments:
+          - &name_argument
+            name: name
+            type:
+              kind: scalar
+              scalar: {scalar_kind: string}
+        options:
+          - name: name
+            parameters:
+              - { argument: *name_argument }
+
+options: []

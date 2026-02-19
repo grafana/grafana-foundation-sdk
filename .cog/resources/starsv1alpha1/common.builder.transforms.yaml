@@ -4,7 +4,45 @@ language: all
 
 package: starsv1alpha1
 
-builders: []
+builders:
+  - add_factory:
+      by_name: Stars
+      factory:
+        name: manifest
+        builder_ref: {referred_pkg: resource, referred_type: Manifest}
+        comments:
+          - "Creates a resource manifest from Stars."
+        arguments:
+          - &name_argument
+            name: name
+            type: &type_string
+              kind: scalar
+              scalar: {scalar_kind: string}
+          - &spec_argument
+            name: stars
+            type:
+              kind: ref
+              ref: {referred_pkg: starsv1alpha1, referred_type: Stars}
+        options:
+          - name: apiVersion
+            parameters:
+              - constant:
+                  value: "preferences.grafana.app/v1alpha1"
+                  type: *type_string
+          - name: metadata
+            parameters:
+              - factory:
+                  ref: { package: resource, builder: Metadata, factory: named }
+                  parameters:
+                    - { argument: *name_argument }
+          - name: kind
+            parameters:
+              - constant:
+                  value: "Stars"
+                  type: *type_string
+          - name: spec
+            parameters:
+              - { argument: *spec_argument, force_build: true }
 
 options:
   - rename:

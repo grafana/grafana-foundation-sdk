@@ -9,6 +9,45 @@ builders:
       by_name: Playlist
       options: [title]
 
+  - add_factory:
+      by_name: Playlist
+      factory:
+        name: manifest
+        builder_ref: {referred_pkg: resource, referred_type: Manifest}
+        comments:
+          - "Creates a resource manifest from a Playlist."
+        arguments:
+          - &name_argument
+            name: name
+            type: &type_string
+              kind: scalar
+              scalar: {scalar_kind: string}
+          - &spec_argument
+            name: playlist
+            type:
+              kind: ref
+              ref: {referred_pkg: playlistv0alpha1, referred_type: Playlist}
+        options:
+          - name: apiVersion
+            parameters:
+              - constant:
+                  value: "playlist.grafana.app/playlistv0alpha1"
+                  type: *type_string
+          - name: kind
+            parameters:
+              - constant:
+                  value: "Playlist"
+                  type: *type_string
+          - name: metadata
+            parameters:
+              - factory:
+                  ref: { package: resource, builder: Metadata, factory: named }
+                  parameters:
+                    - { argument: *name_argument }
+          - name: spec
+            parameters:
+              - { argument: *spec_argument, force_build: true }
+
 options:
   # Append a single `item` instead of a list of everything
   - duplicate:
