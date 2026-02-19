@@ -1,0 +1,19 @@
+# yaml-language-server: $schema=https://raw.githubusercontent.com/grafana/cog/main/schemas/veneers.json
+
+language: all
+
+package: starsv1alpha1
+
+builders: []
+
+options:
+  - rename:
+      by_name: Stars.resource
+      as: resources
+
+  # Append a single `item` instead of a list of everything
+  - duplicate:
+      by_name: Stars.resources
+      as: resource
+  - array_to_append:
+      by_name: Stars.resource
