@@ -1,0 +1,16 @@
+# yaml-language-server: $schema=https://raw.githubusercontent.com/grafana/cog/main/schemas/unit.json
+
+inputs:
+  - cue:
+      url: 'https://raw.githubusercontent.com/grafana/grafana/v12.3.2/apps/preferences/kinds/preferences.cue'
+
+      # Name of the package in which code for this resource will be generated.
+      package: preferencesv1alpha1
+
+      # The actual schema isn't at the root of the file, so we have to tell cog
+      # where to find it.
+      subpath: preferencesV1alpha1.schema.spec
+
+      # The schema is defined under the `spec` field, which cog will use as
+      # resource name unless told otherwise. Preferences is a better name here.
+      forced_envelope: Preferences
