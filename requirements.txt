@@ -22,7 +22,7 @@ mypy-extensions==1.1.0
 packaging==24.2
 paginate==0.5.7
 pathspec==0.12.1
-platformdirs==4.9.1
+platformdirs==4.9.2
 pycparser==2.23
 Pygments==2.19.2
 pymdown-extensions==10.21
