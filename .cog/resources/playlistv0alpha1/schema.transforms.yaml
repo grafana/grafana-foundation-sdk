@@ -1,0 +1,15 @@
+# yaml-language-server: $schema=https://raw.githubusercontent.com/grafana/cog/main/schemas/compiler_passes.json
+
+passes:
+  # Add a few useful constants
+  - add_object:
+      object: playlistv0alpha1.PlaylistV0Alpha1
+      as:
+        kind: scalar
+        scalar: { scalar_kind: string, value: "playlist.grafana.app/playlistv0alpha1" }
+
+  - add_object:
+      object: playlistv0alpha1.PlaylistKind
+      as:
+        kind: scalar
+        scalar: { scalar_kind: string, value: "Playlist" }

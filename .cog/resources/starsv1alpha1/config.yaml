@@ -15,5 +15,8 @@ inputs:
       # resource name unless told otherwise. Stars is a better name here.
       forced_envelope: Stars
 
+      transformations:
+        - '%__config_dir%/schema.transforms.yaml'
+
 builder_transformations:
   - '%__config_dir%/common.builder.transforms.yaml'
