@@ -3,3 +3,6 @@
 inputs:
   - cue:
       entrypoint: '%__config_dir%'
+
+builder_transformations:
+  - '%__config_dir%/common.builder.transforms.yaml'
