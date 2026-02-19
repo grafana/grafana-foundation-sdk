@@ -2,14 +2,11 @@
 
 language: all
 
-package: folder
+package: folderv1beta1
 
 builders:
-  ################
-  # Constructors #
-  ################
   - promote_options_to_constructor:
       by_name: Folder
-      options: [name]
+      options: [title]
 
-options: ~
+options: []

@@ -1,0 +1,19 @@
+# yaml-language-server: $schema=https://raw.githubusercontent.com/grafana/cog/main/schemas/unit.json
+
+inputs:
+  - cue:
+      url: 'https://raw.githubusercontent.com/grafana/grafana/v12.3.2/apps/folder/kinds/folder.cue'
+
+      # Name of the package in which code for this resource will be generated.
+      package: folderv1beta1
+
+      # The actual schema isn't at the root of the file, so we have to tell cog
+      # where to find it.
+      subpath: folder.versions.v1beta1.schema.spec
+
+      # The schema is defined under the `spec` field, which cog will use as
+      # resource name unless told otherwise.
+      forced_envelope: Folder
+
+builder_transformations:
+  - '%__config_dir%/common.builder.transforms.yaml'
