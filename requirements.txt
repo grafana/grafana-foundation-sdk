@@ -23,7 +23,7 @@ packaging==24.2
 paginate==0.5.7
 pathspec==0.12.1
 platformdirs==4.9.2
-pycparser==2.23
+pycparser==3.0
 Pygments==2.19.2
 pymdown-extensions==10.21
 python-dateutil==2.9.0.post0
