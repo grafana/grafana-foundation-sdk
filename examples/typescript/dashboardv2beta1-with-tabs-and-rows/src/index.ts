@@ -59,7 +59,7 @@ const dashboard = new DashboardBuilder('[Example] Dashboard with tabs and rows')
           new RowsLayoutBuilder()
             .row(
               new RowsLayoutRowBuilder('Row without tabs')
-                .collapse(true)
+                .collapse(false)
                 .autoGridLayout(
                   new AutoGridLayoutBuilder().item(
                     new AutoGridLayoutItemBuilder('panel-2')
@@ -69,10 +69,24 @@ const dashboard = new DashboardBuilder('[Example] Dashboard with tabs and rows')
             .row(
               new RowsLayoutRowBuilder('Row with tabs')
                 .collapse(true)
-                .autoGridLayout(
-                  new AutoGridLayoutBuilder()
-                    .item(new AutoGridLayoutItemBuilder('panel-3'))
-                    .item(new AutoGridLayoutItemBuilder('panel-4'))
+                .tabsLayout(
+                  new TabsLayoutBuilder()
+                    .tab(
+                      new TabsLayoutTabBuilder("First tab")
+                        .autoGridLayout(
+                          new AutoGridLayoutBuilder().item(
+                            new AutoGridLayoutItemBuilder('panel-3')
+                          )
+                        )
+                    )
+                    .tab(
+                      new TabsLayoutTabBuilder("Second tab")
+                        .autoGridLayout(
+                          new AutoGridLayoutBuilder().item(
+                            new AutoGridLayoutItemBuilder('panel-4')
+                          )
+                        )
+                    )
                 )
             )
             .row(
