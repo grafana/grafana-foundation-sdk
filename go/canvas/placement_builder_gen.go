@@ -35,6 +35,11 @@ func (builder *PlacementBuilder) Build() (Placement, error) {
 	return *builder.internal, nil
 }
 
+func (builder *PlacementBuilder) RecordError(path string, err error) *PlacementBuilder {
+	builder.errors = append(builder.errors, cog.MakeBuildErrors(path, err)...)
+	return builder
+}
+
 func (builder *PlacementBuilder) Top(top float64) *PlacementBuilder {
 	builder.internal.Top = &top
 

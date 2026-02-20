@@ -4136,6 +4136,12 @@ class VariableValueOption:
         return cls(**args)
 
 
+DashboardV2Beta1: typing.Literal["dashboard.grafana.app/v2beta1"] = "dashboard.grafana.app/v2beta1"
+
+
+DashboardKind: typing.Literal["Dashboard"] = "Dashboard"
+
+
 class Dashboardv2beta1DataQueryKindDatasource:
     name: typing.Optional[str]
 

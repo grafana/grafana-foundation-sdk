@@ -4,7 +4,7 @@ namespace Grafana\Foundation\Dashboard;
 
 /**
  * Determine if the variable shows on dashboard
- * Accepted values are 0 (show label and value), 1 (show value only), 2 (show nothing).
+ * Accepted values are 0 (show label and value), 1 (show value only), 2 (show nothing), 3 (show under the controls dropdown menu).
  */
 final class VariableHide implements \JsonSerializable, \Stringable {
     /**
@@ -49,6 +49,15 @@ final class VariableHide implements \JsonSerializable, \Stringable {
         return self::$instances["hideVariable"];
     }
 
+    public static function inControlsMenu(): self
+    {
+        if (!isset(self::$instances["inControlsMenu"])) {
+            self::$instances["inControlsMenu"] = new self(3);
+        }
+
+        return self::$instances["inControlsMenu"];
+    }
+
     public static function fromValue(int $value): self
     {
         if ($value === 0) {
@@ -61,6 +70,10 @@ final class VariableHide implements \JsonSerializable, \Stringable {
 
         if ($value === 2) {
             return self::hideVariable();
+        }
+
+        if ($value === 3) {
+            return self::inControlsMenu();
         }
 
         throw new \UnexpectedValueException("Value '$value' is not part of the enum VariableHide");

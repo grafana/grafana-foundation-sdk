@@ -37,6 +37,11 @@ func (builder *ContactPointBuilder) Build() (ContactPoint, error) {
 	return *builder.internal, nil
 }
 
+func (builder *ContactPointBuilder) RecordError(path string, err error) *ContactPointBuilder {
+	builder.errors = append(builder.errors, cog.MakeBuildErrors(path, err)...)
+	return builder
+}
+
 func (builder *ContactPointBuilder) DisableResolveMessage(disableResolveMessage bool) *ContactPointBuilder {
 	builder.internal.DisableResolveMessage = &disableResolveMessage
 

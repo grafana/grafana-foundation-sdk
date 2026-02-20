@@ -35,6 +35,11 @@ func (builder *ExprTypeThresholdConditionsUnloadEvaluatorBuilder) Build() (ExprT
 	return *builder.internal, nil
 }
 
+func (builder *ExprTypeThresholdConditionsUnloadEvaluatorBuilder) RecordError(path string, err error) *ExprTypeThresholdConditionsUnloadEvaluatorBuilder {
+	builder.errors = append(builder.errors, cog.MakeBuildErrors(path, err)...)
+	return builder
+}
+
 func (builder *ExprTypeThresholdConditionsUnloadEvaluatorBuilder) Params(params []float64) *ExprTypeThresholdConditionsUnloadEvaluatorBuilder {
 	builder.internal.Params = params
 

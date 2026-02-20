@@ -35,6 +35,8 @@ class AnnotationQuery:
     type_val: typing.Optional[str]
     # Set to 1 for the standard annotation query all dashboards have by default.
     built_in: typing.Optional[float]
+    # Placement can be used to display the annotation query somewhere else on the dashboard other than the default location.
+    placement: str
     expr: typing.Optional[str]
 ```
 ## Methods

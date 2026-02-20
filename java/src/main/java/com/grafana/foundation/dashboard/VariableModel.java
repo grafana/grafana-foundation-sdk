@@ -80,6 +80,14 @@ public class VariableModel {
     @JsonInclude(JsonInclude.Include.NON_NULL)
     @JsonProperty("regex")
     public String regex;
+    // Additional static options for query variable
+    @JsonInclude(JsonInclude.Include.NON_NULL)
+    @JsonProperty("staticOptions")
+    public List<VariableOption> staticOptions;
+    // Ordering of static options in relation to options returned from data source for query variable
+    @JsonInclude(JsonInclude.Include.NON_NULL)
+    @JsonProperty("staticOptionsOrder")
+    public VariableModelStaticOptionsOrder staticOptionsOrder;
     // Dynamically calculates interval by dividing time range by the count specified.
     @JsonInclude(JsonInclude.Include.NON_NULL)
     @JsonProperty("auto")
@@ -107,7 +115,7 @@ public class VariableModel {
         this.autoMin = "10s";
         this.autoCount = 30;
     }
-    public VariableModel(VariableType type,String name,String label,VariableHide hide,Boolean skipUrlSync,String description,StringOrMap query,DataSourceRef datasource,VariableOption current,Boolean multi,Boolean allowCustomValue,List<VariableOption> options,VariableRefresh refresh,VariableSort sort,Boolean includeAll,String allValue,String regex,Boolean auto,String autoMin,Integer autoCount,String definition) {
+    public VariableModel(VariableType type,String name,String label,VariableHide hide,Boolean skipUrlSync,String description,StringOrMap query,DataSourceRef datasource,VariableOption current,Boolean multi,Boolean allowCustomValue,List<VariableOption> options,VariableRefresh refresh,VariableSort sort,Boolean includeAll,String allValue,String regex,List<VariableOption> staticOptions,VariableModelStaticOptionsOrder staticOptionsOrder,Boolean auto,String autoMin,Integer autoCount,String definition) {
         this.type = type;
         this.name = name;
         this.label = label;
@@ -125,6 +133,8 @@ public class VariableModel {
         this.includeAll = includeAll;
         this.allValue = allValue;
         this.regex = regex;
+        this.staticOptions = staticOptions;
+        this.staticOptionsOrder = staticOptionsOrder;
         this.auto = auto;
         this.autoMin = autoMin;
         this.autoCount = autoCount;

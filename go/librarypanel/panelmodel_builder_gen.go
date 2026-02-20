@@ -39,6 +39,11 @@ func (builder *PanelModelBuilder) Build() (PanelModel, error) {
 	return *builder.internal, nil
 }
 
+func (builder *PanelModelBuilder) RecordError(path string, err error) *PanelModelBuilder {
+	builder.errors = append(builder.errors, cog.MakeBuildErrors(path, err)...)
+	return builder
+}
+
 // The panel plugin type id. This is used to find the plugin to display the panel.
 func (builder *PanelModelBuilder) Type(typeArg string) *PanelModelBuilder {
 	builder.internal.Type = typeArg
@@ -189,6 +194,14 @@ func (builder *PanelModelBuilder) TimeShift(timeShift string) *PanelModelBuilder
 // Controls if the timeFrom or timeShift overrides are shown in the panel header
 func (builder *PanelModelBuilder) HideTimeOverride(hideTimeOverride bool) *PanelModelBuilder {
 	builder.internal.HideTimeOverride = &hideTimeOverride
+
+	return builder
+}
+
+// Compare the current time range with a previous period
+// For example "1d" to compare current period but shifted back 1 day
+func (builder *PanelModelBuilder) TimeCompare(timeCompare string) *PanelModelBuilder {
+	builder.internal.TimeCompare = &timeCompare
 
 	return builder
 }

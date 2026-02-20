@@ -22,4 +22,6 @@ final class Constants
      * Determine the origin of the adhoc variable filter
      */
     const FILTER_ORIGIN = "dashboard";
+    const DASHBOARD_V2_BETA1 = "dashboard.grafana.app/v2beta1";
+    const DASHBOARD_KIND = "Dashboard";
 }

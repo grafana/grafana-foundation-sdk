@@ -35,6 +35,11 @@ func (builder *MetricStatBuilder) Build() (MetricStat, error) {
 	return *builder.internal, nil
 }
 
+func (builder *MetricStatBuilder) RecordError(path string, err error) *MetricStatBuilder {
+	builder.errors = append(builder.errors, cog.MakeBuildErrors(path, err)...)
+	return builder
+}
+
 // AWS region to query for the metric
 func (builder *MetricStatBuilder) Region(region string) *MetricStatBuilder {
 	builder.internal.Region = region

@@ -2,6 +2,7 @@
 
 import * as cog from '../cog';
 import * as playlistv0alpha1 from '../playlistv0alpha1';
+import * as resource from '../resource';
 
 export class PlaylistBuilder implements cog.Builder<playlistv0alpha1.Playlist> {
     protected readonly internal: playlistv0alpha1.Playlist;
@@ -42,5 +43,18 @@ export class PlaylistBuilder implements cog.Builder<playlistv0alpha1.Playlist> {
         this.internal.items.push(itemResource);
         return this;
     }
+}
+
+/**
+ * Creates a resource manifest from a Playlist.
+ */
+export function manifest(name: string,playlist: cog.Builder<playlistv0alpha1.Playlist>): cog.Builder<resource.Manifest> {
+	const builder = new resource.ManifestBuilder();
+	builder.apiVersion("playlist.grafana.app/playlistv0alpha1");
+	builder.kind("Playlist");
+	builder.metadata(resource.named(name));
+	builder.spec(playlist.build());
+
+	return builder;
 }
 

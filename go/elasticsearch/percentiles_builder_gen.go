@@ -35,6 +35,11 @@ func (builder *PercentilesBuilder) Build() (Percentiles, error) {
 	return *builder.internal, nil
 }
 
+func (builder *PercentilesBuilder) RecordError(path string, err error) *PercentilesBuilder {
+	builder.errors = append(builder.errors, cog.MakeBuildErrors(path, err)...)
+	return builder
+}
+
 func (builder *PercentilesBuilder) Field(field string) *PercentilesBuilder {
 	builder.internal.Field = &field
 

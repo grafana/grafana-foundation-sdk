@@ -36,6 +36,11 @@ func (builder *AutoGridLayoutBuilder) Build() (AutoGridLayoutKind, error) {
 	return *builder.internal, nil
 }
 
+func (builder *AutoGridLayoutBuilder) RecordError(path string, err error) *AutoGridLayoutBuilder {
+	builder.errors = append(builder.errors, cog.MakeBuildErrors(path, err)...)
+	return builder
+}
+
 func (builder *AutoGridLayoutBuilder) MaxColumnCount(maxColumnCount float64) *AutoGridLayoutBuilder {
 	builder.internal.Spec.MaxColumnCount = &maxColumnCount
 

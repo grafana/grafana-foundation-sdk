@@ -36,6 +36,11 @@ func (builder *OptionsWithLegendBuilder) Build() (OptionsWithLegend, error) {
 	return *builder.internal, nil
 }
 
+func (builder *OptionsWithLegendBuilder) RecordError(path string, err error) *OptionsWithLegendBuilder {
+	builder.errors = append(builder.errors, cog.MakeBuildErrors(path, err)...)
+	return builder
+}
+
 func (builder *OptionsWithLegendBuilder) Legend(legend cog.Builder[VizLegendOptions]) *OptionsWithLegendBuilder {
 	legendResource, err := legend.Build()
 	if err != nil {

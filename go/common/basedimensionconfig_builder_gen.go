@@ -35,6 +35,11 @@ func (builder *BaseDimensionConfigBuilder) Build() (BaseDimensionConfig, error) 
 	return *builder.internal, nil
 }
 
+func (builder *BaseDimensionConfigBuilder) RecordError(path string, err error) *BaseDimensionConfigBuilder {
+	builder.errors = append(builder.errors, cog.MakeBuildErrors(path, err)...)
+	return builder
+}
+
 // fixed: T -- will be added by each element
 func (builder *BaseDimensionConfigBuilder) Field(field string) *BaseDimensionConfigBuilder {
 	builder.internal.Field = &field

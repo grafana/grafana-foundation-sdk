@@ -26,6 +26,8 @@ public class VariableModel {
   public Boolean includeAll;
   public String allValue;
   public String regex;
+  public List<VariableOption> staticOptions;
+  public VariableModelStaticOptionsOrder staticOptionsOrder;
   public Boolean auto;
   public String autoMin;
   public Integer autoCount;

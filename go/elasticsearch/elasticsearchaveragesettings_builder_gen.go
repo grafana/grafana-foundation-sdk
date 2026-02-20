@@ -35,6 +35,11 @@ func (builder *ElasticsearchAverageSettingsBuilder) Build() (ElasticsearchAverag
 	return *builder.internal, nil
 }
 
+func (builder *ElasticsearchAverageSettingsBuilder) RecordError(path string, err error) *ElasticsearchAverageSettingsBuilder {
+	builder.errors = append(builder.errors, cog.MakeBuildErrors(path, err)...)
+	return builder
+}
+
 func (builder *ElasticsearchAverageSettingsBuilder) Script(script InlineScript) *ElasticsearchAverageSettingsBuilder {
 	builder.internal.Script = &script
 

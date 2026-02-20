@@ -35,6 +35,11 @@ func (builder *TraceqlFilterBuilder) Build() (TraceqlFilter, error) {
 	return *builder.internal, nil
 }
 
+func (builder *TraceqlFilterBuilder) RecordError(path string, err error) *TraceqlFilterBuilder {
+	builder.errors = append(builder.errors, cog.MakeBuildErrors(path, err)...)
+	return builder
+}
+
 // Uniquely identify the filter, will not be used in the query generation
 func (builder *TraceqlFilterBuilder) Id(id string) *TraceqlFilterBuilder {
 	builder.internal.Id = id

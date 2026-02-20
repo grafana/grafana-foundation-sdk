@@ -104,6 +104,22 @@ Options that can be selected for a variable.
 func (builder *CustomVariableBuilder) Options(options []dashboard.VariableOption) *CustomVariableBuilder
 ```
 
+### <span class="badge object-method"></span> StaticOptions
+
+Additional static options for query variable
+
+```go
+func (builder *CustomVariableBuilder) StaticOptions(staticOptions []dashboard.VariableOption) *CustomVariableBuilder
+```
+
+### <span class="badge object-method"></span> StaticOptionsOrder
+
+Ordering of static options in relation to options returned from data source for query variable
+
+```go
+func (builder *CustomVariableBuilder) StaticOptionsOrder(staticOptionsOrder dashboard.VariableModelStaticOptionsOrder) *CustomVariableBuilder
+```
+
 ### <span class="badge object-method"></span> Values
 
 Query used to fetch values for a variable

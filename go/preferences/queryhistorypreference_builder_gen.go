@@ -35,6 +35,11 @@ func (builder *QueryHistoryPreferenceBuilder) Build() (QueryHistoryPreference, e
 	return *builder.internal, nil
 }
 
+func (builder *QueryHistoryPreferenceBuilder) RecordError(path string, err error) *QueryHistoryPreferenceBuilder {
+	builder.errors = append(builder.errors, cog.MakeBuildErrors(path, err)...)
+	return builder
+}
+
 // one of: ” | 'query' | 'starred';
 func (builder *QueryHistoryPreferenceBuilder) HomeTab(homeTab string) *QueryHistoryPreferenceBuilder {
 	builder.internal.HomeTab = &homeTab

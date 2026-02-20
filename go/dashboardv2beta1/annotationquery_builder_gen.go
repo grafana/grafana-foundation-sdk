@@ -36,6 +36,11 @@ func (builder *AnnotationQueryBuilder) Build() (AnnotationQueryKind, error) {
 	return *builder.internal, nil
 }
 
+func (builder *AnnotationQueryBuilder) RecordError(path string, err error) *AnnotationQueryBuilder {
+	builder.errors = append(builder.errors, cog.MakeBuildErrors(path, err)...)
+	return builder
+}
+
 func (builder *AnnotationQueryBuilder) Spec(spec cog.Builder[AnnotationQuerySpec]) *AnnotationQueryBuilder {
 	specResource, err := spec.Build()
 	if err != nil {

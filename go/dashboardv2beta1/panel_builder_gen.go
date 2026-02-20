@@ -36,6 +36,11 @@ func (builder *PanelBuilder) Build() (PanelKind, error) {
 	return *builder.internal, nil
 }
 
+func (builder *PanelBuilder) RecordError(path string, err error) *PanelBuilder {
+	builder.errors = append(builder.errors, cog.MakeBuildErrors(path, err)...)
+	return builder
+}
+
 func (builder *PanelBuilder) Id(id float64) *PanelBuilder {
 	builder.internal.Spec.Id = id
 

@@ -35,6 +35,11 @@ func (builder *CodeOptionsBuilder) Build() (CodeOptions, error) {
 	return *builder.internal, nil
 }
 
+func (builder *CodeOptionsBuilder) RecordError(path string, err error) *CodeOptionsBuilder {
+	builder.errors = append(builder.errors, cog.MakeBuildErrors(path, err)...)
+	return builder
+}
+
 // The language passed to monaco code editor
 func (builder *CodeOptionsBuilder) Language(language CodeLanguage) *CodeOptionsBuilder {
 	builder.internal.Language = language

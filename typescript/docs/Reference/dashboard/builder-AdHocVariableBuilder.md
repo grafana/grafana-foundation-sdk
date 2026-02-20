@@ -72,6 +72,22 @@ Name of variable
 name(name: string)
 ```
 
+### <span class="badge object-method"></span> staticOptions
+
+Additional static options for query variable
+
+```typescript
+staticOptions(staticOptions: dashboard.VariableOption[])
+```
+
+### <span class="badge object-method"></span> staticOptionsOrder
+
+Ordering of static options in relation to options returned from data source for query variable
+
+```typescript
+staticOptionsOrder(staticOptionsOrder: "before" | "after" | "sorted")
+```
+
 ## See also
 
  * <span class="badge object-type-interface"></span> [VariableModel](./object-VariableModel.md)

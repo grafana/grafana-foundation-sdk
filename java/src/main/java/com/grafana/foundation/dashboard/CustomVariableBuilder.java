@@ -67,6 +67,16 @@ public class CustomVariableBuilder implements com.grafana.foundation.cog.Builder
         return this;
     }
     
+    public CustomVariableBuilder staticOptions(List<VariableOption> staticOptions) {
+        this.internal.staticOptions = staticOptions;
+        return this;
+    }
+    
+    public CustomVariableBuilder staticOptionsOrder(VariableModelStaticOptionsOrder staticOptionsOrder) {
+        this.internal.staticOptionsOrder = staticOptionsOrder;
+        return this;
+    }
+    
     public CustomVariableBuilder definition(String definition) {
         this.internal.definition = definition;
         return this;

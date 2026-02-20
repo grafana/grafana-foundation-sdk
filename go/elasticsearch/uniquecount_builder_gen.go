@@ -35,6 +35,11 @@ func (builder *UniqueCountBuilder) Build() (UniqueCount, error) {
 	return *builder.internal, nil
 }
 
+func (builder *UniqueCountBuilder) RecordError(path string, err error) *UniqueCountBuilder {
+	builder.errors = append(builder.errors, cog.MakeBuildErrors(path, err)...)
+	return builder
+}
+
 func (builder *UniqueCountBuilder) Field(field string) *UniqueCountBuilder {
 	builder.internal.Field = &field
 

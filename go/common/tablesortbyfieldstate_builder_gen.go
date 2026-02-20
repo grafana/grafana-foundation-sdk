@@ -36,6 +36,11 @@ func (builder *TableSortByFieldStateBuilder) Build() (TableSortByFieldState, err
 	return *builder.internal, nil
 }
 
+func (builder *TableSortByFieldStateBuilder) RecordError(path string, err error) *TableSortByFieldStateBuilder {
+	builder.errors = append(builder.errors, cog.MakeBuildErrors(path, err)...)
+	return builder
+}
+
 // Sets the display name of the field to sort by
 func (builder *TableSortByFieldStateBuilder) DisplayName(displayName string) *TableSortByFieldStateBuilder {
 	builder.internal.DisplayName = displayName

@@ -40,9 +40,11 @@
  * <span class="badge object-type-struct"></span> [CustomVariableValue](./object-CustomVariableValue.md)
  * <span class="badge object-type-struct"></span> [Dashboard](./object-Dashboard.md)
  * <span class="badge object-type-enum"></span> [DashboardCursorSync](./object-DashboardCursorSync.md)
+ * <span class="badge object-type-scalar"></span> [DashboardKind](./object-DashboardKind.md)
  * <span class="badge object-type-struct"></span> [DashboardLink](./object-DashboardLink.md)
  * <span class="badge object-type-scalar"></span> [DashboardLinkPlacement](./object-DashboardLinkPlacement.md)
  * <span class="badge object-type-enum"></span> [DashboardLinkType](./object-DashboardLinkType.md)
+ * <span class="badge object-type-scalar"></span> [DashboardV2Beta1](./object-DashboardV2Beta1.md)
  * <span class="badge object-type-struct"></span> [Dashboardv2beta1ActionStyle](./object-Dashboardv2beta1ActionStyle.md)
  * <span class="badge object-type-struct"></span> [Dashboardv2beta1AdhocVariableKindDatasource](./object-Dashboardv2beta1AdhocVariableKindDatasource.md)
  * <span class="badge object-type-struct"></span> [Dashboardv2beta1DataQueryKindDatasource](./object-Dashboardv2beta1DataQueryKindDatasource.md)
@@ -1154,6 +1156,14 @@ NewStringOrBoolOrFloat64OrCustomVariableValue creates a new StringOrBoolOrFloat6
 
 ```go
 func NewStringOrBoolOrFloat64OrCustomVariableValue() *StringOrBoolOrFloat64OrCustomVariableValue
+```
+
+### <span class="badge function"></span> Manifest
+
+Creates a resource manifest from a Dashboard.
+
+```go
+func Manifest(name string, dashboard cog.Builder[Dashboard]) *DashboardBuilder
 ```
 
 ### <span class="badge function"></span> DashboardConverter

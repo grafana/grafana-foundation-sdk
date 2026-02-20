@@ -36,6 +36,11 @@ func (builder *SingleStatBaseOptionsBuilder) Build() (SingleStatBaseOptions, err
 	return *builder.internal, nil
 }
 
+func (builder *SingleStatBaseOptionsBuilder) RecordError(path string, err error) *SingleStatBaseOptionsBuilder {
+	builder.errors = append(builder.errors, cog.MakeBuildErrors(path, err)...)
+	return builder
+}
+
 func (builder *SingleStatBaseOptionsBuilder) ReduceOptions(reduceOptions cog.Builder[ReduceDataOptions]) *SingleStatBaseOptionsBuilder {
 	reduceOptionsResource, err := reduceOptions.Build()
 	if err != nil {

@@ -38,6 +38,11 @@ func (builder *DatasourceVariableBuilder) Build() (DatasourceVariableKind, error
 	return *builder.internal, nil
 }
 
+func (builder *DatasourceVariableBuilder) RecordError(path string, err error) *DatasourceVariableBuilder {
+	builder.errors = append(builder.errors, cog.MakeBuildErrors(path, err)...)
+	return builder
+}
+
 func (builder *DatasourceVariableBuilder) Spec(spec DatasourceVariableSpec) *DatasourceVariableBuilder {
 	builder.internal.Spec = spec
 

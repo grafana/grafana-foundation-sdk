@@ -35,6 +35,11 @@ func (builder *ExprTypeThresholdResultAssertionsBuilder) Build() (ExprTypeThresh
 	return *builder.internal, nil
 }
 
+func (builder *ExprTypeThresholdResultAssertionsBuilder) RecordError(path string, err error) *ExprTypeThresholdResultAssertionsBuilder {
+	builder.errors = append(builder.errors, cog.MakeBuildErrors(path, err)...)
+	return builder
+}
+
 // Maximum frame count
 func (builder *ExprTypeThresholdResultAssertionsBuilder) MaxFrames(maxFrames int64) *ExprTypeThresholdResultAssertionsBuilder {
 	builder.internal.MaxFrames = &maxFrames

@@ -38,6 +38,11 @@ func (builder *DataqueryBuilder) Build() (variants.Dataquery, error) {
 	return *builder.internal, nil
 }
 
+func (builder *DataqueryBuilder) RecordError(path string, err error) *DataqueryBuilder {
+	builder.errors = append(builder.errors, cog.MakeBuildErrors(path, err)...)
+	return builder
+}
+
 func (builder *DataqueryBuilder) Dataset(dataset string) *DataqueryBuilder {
 	builder.internal.Dataset = &dataset
 

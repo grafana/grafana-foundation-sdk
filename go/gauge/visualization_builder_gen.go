@@ -39,6 +39,11 @@ func (builder *VisualizationBuilder) Build() (dashboardv2beta1.VizConfigKind, er
 	return *builder.internal, nil
 }
 
+func (builder *VisualizationBuilder) RecordError(path string, err error) *VisualizationBuilder {
+	builder.errors = append(builder.errors, cog.MakeBuildErrors(path, err)...)
+	return builder
+}
+
 // The display value for this field.  This supports template variables blank is auto
 func (builder *VisualizationBuilder) DisplayName(displayName string) *VisualizationBuilder {
 	builder.internal.Spec.FieldConfig.Defaults.DisplayName = &displayName

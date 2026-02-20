@@ -35,6 +35,11 @@ func (builder *RawDocumentBuilder) Build() (RawDocument, error) {
 	return *builder.internal, nil
 }
 
+func (builder *RawDocumentBuilder) RecordError(path string, err error) *RawDocumentBuilder {
+	builder.errors = append(builder.errors, cog.MakeBuildErrors(path, err)...)
+	return builder
+}
+
 func (builder *RawDocumentBuilder) Id(id string) *RawDocumentBuilder {
 	builder.internal.Id = id
 

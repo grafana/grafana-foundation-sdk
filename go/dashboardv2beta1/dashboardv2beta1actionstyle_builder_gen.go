@@ -35,6 +35,11 @@ func (builder *Dashboardv2beta1ActionStyleBuilder) Build() (Dashboardv2beta1Acti
 	return *builder.internal, nil
 }
 
+func (builder *Dashboardv2beta1ActionStyleBuilder) RecordError(path string, err error) *Dashboardv2beta1ActionStyleBuilder {
+	builder.errors = append(builder.errors, cog.MakeBuildErrors(path, err)...)
+	return builder
+}
+
 func (builder *Dashboardv2beta1ActionStyleBuilder) BackgroundColor(backgroundColor string) *Dashboardv2beta1ActionStyleBuilder {
 	builder.internal.BackgroundColor = &backgroundColor
 

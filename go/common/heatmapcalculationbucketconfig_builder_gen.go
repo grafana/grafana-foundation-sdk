@@ -35,6 +35,11 @@ func (builder *HeatmapCalculationBucketConfigBuilder) Build() (HeatmapCalculatio
 	return *builder.internal, nil
 }
 
+func (builder *HeatmapCalculationBucketConfigBuilder) RecordError(path string, err error) *HeatmapCalculationBucketConfigBuilder {
+	builder.errors = append(builder.errors, cog.MakeBuildErrors(path, err)...)
+	return builder
+}
+
 // Sets the bucket calculation mode
 func (builder *HeatmapCalculationBucketConfigBuilder) Mode(mode HeatmapCalculationMode) *HeatmapCalculationBucketConfigBuilder {
 	builder.internal.Mode = &mode

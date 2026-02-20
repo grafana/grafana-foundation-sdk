@@ -37,6 +37,11 @@ func (builder *PreferencesBuilder) Build() (Preferences, error) {
 	return *builder.internal, nil
 }
 
+func (builder *PreferencesBuilder) RecordError(path string, err error) *PreferencesBuilder {
+	builder.errors = append(builder.errors, cog.MakeBuildErrors(path, err)...)
+	return builder
+}
+
 // UID for the home dashboard
 func (builder *PreferencesBuilder) HomeDashboardUID(homeDashboardUID string) *PreferencesBuilder {
 	builder.internal.HomeDashboardUID = &homeDashboardUID

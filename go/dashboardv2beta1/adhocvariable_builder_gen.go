@@ -38,6 +38,11 @@ func (builder *AdhocVariableBuilder) Build() (AdhocVariableKind, error) {
 	return *builder.internal, nil
 }
 
+func (builder *AdhocVariableBuilder) RecordError(path string, err error) *AdhocVariableBuilder {
+	builder.errors = append(builder.errors, cog.MakeBuildErrors(path, err)...)
+	return builder
+}
+
 func (builder *AdhocVariableBuilder) Group(group string) *AdhocVariableBuilder {
 	builder.internal.Group = group
 

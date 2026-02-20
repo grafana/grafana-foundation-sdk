@@ -203,6 +203,13 @@ export class PanelBuilder implements cog.Builder<dashboard.Panel> {
         return this;
     }
 
+    // Compare the current time range with a previous period
+    // For example "1d" to compare current period but shifted back 1 day
+    timeCompare(timeCompare: string): this {
+        this.internal.timeCompare = timeCompare;
+        return this;
+    }
+
     // Dynamically load the panel
     libraryPanel(libraryPanel: dashboard.LibraryPanelRef): this {
         this.internal.libraryPanel = libraryPanel;
@@ -353,6 +360,19 @@ export class PanelBuilder implements cog.Builder<dashboard.Panel> {
         }
         const linksResources = links.map(builder1 => builder1.build());
         this.internal.fieldConfig.defaults.links = linksResources;
+        return this;
+    }
+
+    // Define interactive HTTP requests that can be triggered from data visualizations.
+    actions(actions: cog.Builder<dashboard.Action>[]): this {
+        if (!this.internal.fieldConfig) {
+            this.internal.fieldConfig = dashboard.defaultFieldConfigSource();
+        }
+        if (!this.internal.fieldConfig.defaults) {
+            this.internal.fieldConfig.defaults = dashboard.defaultFieldConfig();
+        }
+        const actionsResources = actions.map(builder1 => builder1.build());
+        this.internal.fieldConfig.defaults.actions = actionsResources;
         return this;
     }
 

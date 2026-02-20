@@ -36,6 +36,11 @@ func (builder *AppInsightsMetricNameQueryBuilder) Build() (AppInsightsMetricName
 	return *builder.internal, nil
 }
 
+func (builder *AppInsightsMetricNameQueryBuilder) RecordError(path string, err error) *AppInsightsMetricNameQueryBuilder {
+	builder.errors = append(builder.errors, cog.MakeBuildErrors(path, err)...)
+	return builder
+}
+
 func (builder *AppInsightsMetricNameQueryBuilder) RawQuery(rawQuery string) *AppInsightsMetricNameQueryBuilder {
 	builder.internal.RawQuery = &rawQuery
 

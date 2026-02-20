@@ -228,6 +228,10 @@ func (resource Playlist) Validate() error {
 	return errs
 }
 
+const PlaylistV0Alpha1 = "playlist.grafana.app/playlistv0alpha1"
+
+const PlaylistKind = "Playlist"
+
 type ItemType string
 
 const (

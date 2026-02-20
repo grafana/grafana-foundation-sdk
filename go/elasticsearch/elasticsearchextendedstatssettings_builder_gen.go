@@ -35,6 +35,11 @@ func (builder *ElasticsearchExtendedStatsSettingsBuilder) Build() (Elasticsearch
 	return *builder.internal, nil
 }
 
+func (builder *ElasticsearchExtendedStatsSettingsBuilder) RecordError(path string, err error) *ElasticsearchExtendedStatsSettingsBuilder {
+	builder.errors = append(builder.errors, cog.MakeBuildErrors(path, err)...)
+	return builder
+}
+
 func (builder *ElasticsearchExtendedStatsSettingsBuilder) Script(script InlineScript) *ElasticsearchExtendedStatsSettingsBuilder {
 	builder.internal.Script = &script
 

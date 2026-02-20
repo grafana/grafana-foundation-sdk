@@ -30,6 +30,8 @@ type AnnotationQuery struct {
     Type *string `json:"type,omitempty"`
     // Set to 1 for the standard annotation query all dashboards have by default.
     BuiltIn *float64 `json:"builtIn,omitempty"`
+    // Placement can be used to display the annotation query somewhere else on the dashboard other than the default location.
+    Placement *dashboard.AnnotationQueryPlacement `json:"placement,omitempty"`
     Expr *string `json:"expr,omitempty"`
 }
 ```

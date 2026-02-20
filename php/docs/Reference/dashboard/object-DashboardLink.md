@@ -47,6 +47,11 @@ class DashboardLink implements \JsonSerializable
     public bool $asDropdown;
 
     /**
+     * Placement can be used to display the link somewhere else on the dashboard other than above the visualisations.
+     */
+    public ?\Grafana\Foundation\Dashboard\DashboardLinkPlacement $placement;
+
+    /**
      * If true, the link will be opened in a new tab
      */
     public bool $targetBlank;

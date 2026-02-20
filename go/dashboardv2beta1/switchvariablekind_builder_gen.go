@@ -36,6 +36,11 @@ func (builder *SwitchVariableKindBuilder) Build() (SwitchVariableKind, error) {
 	return *builder.internal, nil
 }
 
+func (builder *SwitchVariableKindBuilder) RecordError(path string, err error) *SwitchVariableKindBuilder {
+	builder.errors = append(builder.errors, cog.MakeBuildErrors(path, err)...)
+	return builder
+}
+
 func (builder *SwitchVariableKindBuilder) Spec(spec cog.Builder[SwitchVariableSpec]) *SwitchVariableKindBuilder {
 	specResource, err := spec.Build()
 	if err != nil {

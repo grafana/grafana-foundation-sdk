@@ -35,6 +35,11 @@ func (builder *BasePipelineMetricAggregationBuilder) Build() (BasePipelineMetric
 	return *builder.internal, nil
 }
 
+func (builder *BasePipelineMetricAggregationBuilder) RecordError(path string, err error) *BasePipelineMetricAggregationBuilder {
+	builder.errors = append(builder.errors, cog.MakeBuildErrors(path, err)...)
+	return builder
+}
+
 func (builder *BasePipelineMetricAggregationBuilder) PipelineAgg(pipelineAgg string) *BasePipelineMetricAggregationBuilder {
 	builder.internal.PipelineAgg = &pipelineAgg
 

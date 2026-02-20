@@ -35,6 +35,11 @@ func (builder *ExprTypeClassicConditionsTimeRangeBuilder) Build() (ExprTypeClass
 	return *builder.internal, nil
 }
 
+func (builder *ExprTypeClassicConditionsTimeRangeBuilder) RecordError(path string, err error) *ExprTypeClassicConditionsTimeRangeBuilder {
+	builder.errors = append(builder.errors, cog.MakeBuildErrors(path, err)...)
+	return builder
+}
+
 // From is the start time of the query.
 func (builder *ExprTypeClassicConditionsTimeRangeBuilder) From(from string) *ExprTypeClassicConditionsTimeRangeBuilder {
 	builder.internal.From = from

@@ -35,6 +35,11 @@ func (builder *StreamingQueryBuilder) Build() (StreamingQuery, error) {
 	return *builder.internal, nil
 }
 
+func (builder *StreamingQueryBuilder) RecordError(path string, err error) *StreamingQueryBuilder {
+	builder.errors = append(builder.errors, cog.MakeBuildErrors(path, err)...)
+	return builder
+}
+
 func (builder *StreamingQueryBuilder) Bands(bands int64) *StreamingQueryBuilder {
 	builder.internal.Bands = &bands
 

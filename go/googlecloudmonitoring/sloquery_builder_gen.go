@@ -36,6 +36,11 @@ func (builder *SLOQueryBuilder) Build() (SLOQuery, error) {
 	return *builder.internal, nil
 }
 
+func (builder *SLOQueryBuilder) RecordError(path string, err error) *SLOQueryBuilder {
+	builder.errors = append(builder.errors, cog.MakeBuildErrors(path, err)...)
+	return builder
+}
+
 // GCP project to execute the query against.
 func (builder *SLOQueryBuilder) ProjectName(projectName string) *SLOQueryBuilder {
 	builder.internal.ProjectName = projectName

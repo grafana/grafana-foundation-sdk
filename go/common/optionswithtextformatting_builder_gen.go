@@ -36,6 +36,11 @@ func (builder *OptionsWithTextFormattingBuilder) Build() (OptionsWithTextFormatt
 	return *builder.internal, nil
 }
 
+func (builder *OptionsWithTextFormattingBuilder) RecordError(path string, err error) *OptionsWithTextFormattingBuilder {
+	builder.errors = append(builder.errors, cog.MakeBuildErrors(path, err)...)
+	return builder
+}
+
 func (builder *OptionsWithTextFormattingBuilder) Text(text cog.Builder[VizTextDisplayOptions]) *OptionsWithTextFormattingBuilder {
 	textResource, err := text.Build()
 	if err != nil {

@@ -36,6 +36,11 @@ func (builder *CellValuesBuilder) Build() (CellValues, error) {
 	return *builder.internal, nil
 }
 
+func (builder *CellValuesBuilder) RecordError(path string, err error) *CellValuesBuilder {
+	builder.errors = append(builder.errors, cog.MakeBuildErrors(path, err)...)
+	return builder
+}
+
 // Controls the cell value unit
 func (builder *CellValuesBuilder) Unit(unit string) *CellValuesBuilder {
 	builder.internal.Unit = &unit

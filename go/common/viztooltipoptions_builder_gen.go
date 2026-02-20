@@ -36,6 +36,11 @@ func (builder *VizTooltipOptionsBuilder) Build() (VizTooltipOptions, error) {
 	return *builder.internal, nil
 }
 
+func (builder *VizTooltipOptionsBuilder) RecordError(path string, err error) *VizTooltipOptionsBuilder {
+	builder.errors = append(builder.errors, cog.MakeBuildErrors(path, err)...)
+	return builder
+}
+
 func (builder *VizTooltipOptionsBuilder) Mode(mode TooltipDisplayMode) *VizTooltipOptionsBuilder {
 	builder.internal.Mode = mode
 

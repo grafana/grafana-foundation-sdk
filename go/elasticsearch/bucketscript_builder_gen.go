@@ -35,6 +35,11 @@ func (builder *BucketScriptBuilder) Build() (BucketScript, error) {
 	return *builder.internal, nil
 }
 
+func (builder *BucketScriptBuilder) RecordError(path string, err error) *BucketScriptBuilder {
+	builder.errors = append(builder.errors, cog.MakeBuildErrors(path, err)...)
+	return builder
+}
+
 func (builder *BucketScriptBuilder) PipelineVariables(pipelineVariables []cog.Builder[PipelineVariable]) *BucketScriptBuilder {
 	pipelineVariablesResources := make([]PipelineVariable, 0, len(pipelineVariables))
 	for _, r1 := range pipelineVariables {

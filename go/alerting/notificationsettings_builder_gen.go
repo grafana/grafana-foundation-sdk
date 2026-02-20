@@ -35,6 +35,11 @@ func (builder *NotificationSettingsBuilder) Build() (NotificationSettings, error
 	return *builder.internal, nil
 }
 
+func (builder *NotificationSettingsBuilder) RecordError(path string, err error) *NotificationSettingsBuilder {
+	builder.errors = append(builder.errors, cog.MakeBuildErrors(path, err)...)
+	return builder
+}
+
 // Override the labels by which incoming alerts are grouped together. For example, multiple alerts coming in for
 // cluster=A and alertname=LatencyHigh would be batched into a single group. To aggregate by all possible labels
 // use the special value '...' as the sole label name.

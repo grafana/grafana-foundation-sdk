@@ -35,6 +35,11 @@ func (builder *DataLinkBuilder) Build() (DataLink, error) {
 	return *builder.internal, nil
 }
 
+func (builder *DataLinkBuilder) RecordError(path string, err error) *DataLinkBuilder {
+	builder.errors = append(builder.errors, cog.MakeBuildErrors(path, err)...)
+	return builder
+}
+
 func (builder *DataLinkBuilder) Title(title string) *DataLinkBuilder {
 	builder.internal.Title = title
 

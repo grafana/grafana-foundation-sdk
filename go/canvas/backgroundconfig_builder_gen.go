@@ -36,6 +36,11 @@ func (builder *BackgroundConfigBuilder) Build() (BackgroundConfig, error) {
 	return *builder.internal, nil
 }
 
+func (builder *BackgroundConfigBuilder) RecordError(path string, err error) *BackgroundConfigBuilder {
+	builder.errors = append(builder.errors, cog.MakeBuildErrors(path, err)...)
+	return builder
+}
+
 func (builder *BackgroundConfigBuilder) Color(color cog.Builder[common.ColorDimensionConfig]) *BackgroundConfigBuilder {
 	colorResource, err := color.Build()
 	if err != nil {

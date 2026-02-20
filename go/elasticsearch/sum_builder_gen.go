@@ -35,6 +35,11 @@ func (builder *SumBuilder) Build() (Sum, error) {
 	return *builder.internal, nil
 }
 
+func (builder *SumBuilder) RecordError(path string, err error) *SumBuilder {
+	builder.errors = append(builder.errors, cog.MakeBuildErrors(path, err)...)
+	return builder
+}
+
 func (builder *SumBuilder) Field(field string) *SumBuilder {
 	builder.internal.Field = &field
 

@@ -38,6 +38,11 @@ func (builder *TextBoxVariableBuilder) Build() (VariableModel, error) {
 	return *builder.internal, nil
 }
 
+func (builder *TextBoxVariableBuilder) RecordError(path string, err error) *TextBoxVariableBuilder {
+	builder.errors = append(builder.errors, cog.MakeBuildErrors(path, err)...)
+	return builder
+}
+
 // Name of variable
 func (builder *TextBoxVariableBuilder) Name(name string) *TextBoxVariableBuilder {
 	builder.internal.Name = name
@@ -90,6 +95,20 @@ func (builder *TextBoxVariableBuilder) AllowCustomValue(allowCustomValue bool) *
 // Options that can be selected for a variable.
 func (builder *TextBoxVariableBuilder) Options(options []VariableOption) *TextBoxVariableBuilder {
 	builder.internal.Options = options
+
+	return builder
+}
+
+// Additional static options for query variable
+func (builder *TextBoxVariableBuilder) StaticOptions(staticOptions []VariableOption) *TextBoxVariableBuilder {
+	builder.internal.StaticOptions = staticOptions
+
+	return builder
+}
+
+// Ordering of static options in relation to options returned from data source for query variable
+func (builder *TextBoxVariableBuilder) StaticOptionsOrder(staticOptionsOrder VariableModelStaticOptionsOrder) *TextBoxVariableBuilder {
+	builder.internal.StaticOptionsOrder = &staticOptionsOrder
 
 	return builder
 }

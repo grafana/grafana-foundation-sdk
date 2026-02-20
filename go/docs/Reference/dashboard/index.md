@@ -2,18 +2,25 @@
 
 ## Objects
 
+ * <span class="badge object-type-struct"></span> [Action](./object-Action.md)
+ * <span class="badge object-type-enum"></span> [ActionType](./object-ActionType.md)
+ * <span class="badge object-type-struct"></span> [ActionVariable](./object-ActionVariable.md)
+ * <span class="badge object-type-enum"></span> [ActionVariableType](./object-ActionVariableType.md)
  * <span class="badge object-type-struct"></span> [AnnotationActions](./object-AnnotationActions.md)
  * <span class="badge object-type-struct"></span> [AnnotationContainer](./object-AnnotationContainer.md)
  * <span class="badge object-type-struct"></span> [AnnotationPanelFilter](./object-AnnotationPanelFilter.md)
  * <span class="badge object-type-struct"></span> [AnnotationPermission](./object-AnnotationPermission.md)
  * <span class="badge object-type-struct"></span> [AnnotationQuery](./object-AnnotationQuery.md)
+ * <span class="badge object-type-enum"></span> [AnnotationQueryPlacement](./object-AnnotationQueryPlacement.md)
  * <span class="badge object-type-struct"></span> [AnnotationTarget](./object-AnnotationTarget.md)
  * <span class="badge object-type-struct"></span> [Dashboard](./object-Dashboard.md)
+ * <span class="badge object-type-struct"></span> [DashboardActionStyle](./object-DashboardActionStyle.md)
  * <span class="badge object-type-enum"></span> [DashboardCursorSync](./object-DashboardCursorSync.md)
  * <span class="badge object-type-struct"></span> [DashboardDashboardTemplating](./object-DashboardDashboardTemplating.md)
  * <span class="badge object-type-struct"></span> [DashboardDashboardTime](./object-DashboardDashboardTime.md)
  * <span class="badge object-type-struct"></span> [DashboardFieldConfigSourceOverrides](./object-DashboardFieldConfigSourceOverrides.md)
  * <span class="badge object-type-struct"></span> [DashboardLink](./object-DashboardLink.md)
+ * <span class="badge object-type-enum"></span> [DashboardLinkPlacement](./object-DashboardLinkPlacement.md)
  * <span class="badge object-type-enum"></span> [DashboardLinkType](./object-DashboardLinkType.md)
  * <span class="badge object-type-struct"></span> [DashboardMeta](./object-DashboardMeta.md)
  * <span class="badge object-type-struct"></span> [DashboardRangeMapOptions](./object-DashboardRangeMapOptions.md)
@@ -23,12 +30,15 @@
  * <span class="badge object-type-struct"></span> [DataTransformerConfig](./object-DataTransformerConfig.md)
  * <span class="badge object-type-enum"></span> [DataTransformerConfigTopic](./object-DataTransformerConfigTopic.md)
  * <span class="badge object-type-struct"></span> [DynamicConfigValue](./object-DynamicConfigValue.md)
+ * <span class="badge object-type-struct"></span> [FetchOptions](./object-FetchOptions.md)
  * <span class="badge object-type-struct"></span> [FieldColor](./object-FieldColor.md)
  * <span class="badge object-type-enum"></span> [FieldColorModeId](./object-FieldColorModeId.md)
  * <span class="badge object-type-enum"></span> [FieldColorSeriesByMode](./object-FieldColorSeriesByMode.md)
  * <span class="badge object-type-struct"></span> [FieldConfig](./object-FieldConfig.md)
  * <span class="badge object-type-struct"></span> [FieldConfigSource](./object-FieldConfigSource.md)
  * <span class="badge object-type-struct"></span> [GridPos](./object-GridPos.md)
+ * <span class="badge object-type-enum"></span> [HttpRequestMethod](./object-HttpRequestMethod.md)
+ * <span class="badge object-type-struct"></span> [InfinityOptions](./object-InfinityOptions.md)
  * <span class="badge object-type-struct"></span> [LibraryPanelRef](./object-LibraryPanelRef.md)
  * <span class="badge object-type-enum"></span> [MappingType](./object-MappingType.md)
  * <span class="badge object-type-struct"></span> [MatcherConfig](./object-MatcherConfig.md)
@@ -54,12 +64,15 @@
  * <span class="badge object-type-struct"></span> [ValueMappingResult](./object-ValueMappingResult.md)
  * <span class="badge object-type-enum"></span> [VariableHide](./object-VariableHide.md)
  * <span class="badge object-type-struct"></span> [VariableModel](./object-VariableModel.md)
+ * <span class="badge object-type-enum"></span> [VariableModelStaticOptionsOrder](./object-VariableModelStaticOptionsOrder.md)
  * <span class="badge object-type-struct"></span> [VariableOption](./object-VariableOption.md)
  * <span class="badge object-type-enum"></span> [VariableRefresh](./object-VariableRefresh.md)
  * <span class="badge object-type-enum"></span> [VariableSort](./object-VariableSort.md)
  * <span class="badge object-type-enum"></span> [VariableType](./object-VariableType.md)
 ## Builders
 
+ * <span class="badge builder"></span> [ActionBuilder](./builder-ActionBuilder.md)
+ * <span class="badge builder"></span> [ActionVariableBuilder](./builder-ActionVariableBuilder.md)
  * <span class="badge builder"></span> [AdHocVariableBuilder](./builder-AdHocVariableBuilder.md)
  * <span class="badge builder"></span> [AnnotationActionsBuilder](./builder-AnnotationActionsBuilder.md)
  * <span class="badge builder"></span> [AnnotationPanelFilterBuilder](./builder-AnnotationPanelFilterBuilder.md)
@@ -69,6 +82,7 @@
  * <span class="badge builder"></span> [ConstantVariableBuilder](./builder-ConstantVariableBuilder.md)
  * <span class="badge builder"></span> [CustomVariableBuilder](./builder-CustomVariableBuilder.md)
  * <span class="badge builder"></span> [DashboardBuilder](./builder-DashboardBuilder.md)
+ * <span class="badge builder"></span> [DashboardActionStyleBuilder](./builder-DashboardActionStyleBuilder.md)
  * <span class="badge builder"></span> [DashboardDashboardTemplatingBuilder](./builder-DashboardDashboardTemplatingBuilder.md)
  * <span class="badge builder"></span> [DashboardDashboardTimeBuilder](./builder-DashboardDashboardTimeBuilder.md)
  * <span class="badge builder"></span> [DashboardFieldConfigSourceOverridesBuilder](./builder-DashboardFieldConfigSourceOverridesBuilder.md)
@@ -78,7 +92,9 @@
  * <span class="badge builder"></span> [DashboardRegexMapOptionsBuilder](./builder-DashboardRegexMapOptionsBuilder.md)
  * <span class="badge builder"></span> [DashboardSpecialValueMapOptionsBuilder](./builder-DashboardSpecialValueMapOptionsBuilder.md)
  * <span class="badge builder"></span> [DatasourceVariableBuilder](./builder-DatasourceVariableBuilder.md)
+ * <span class="badge builder"></span> [FetchOptionsBuilder](./builder-FetchOptionsBuilder.md)
  * <span class="badge builder"></span> [FieldColorBuilder](./builder-FieldColorBuilder.md)
+ * <span class="badge builder"></span> [InfinityOptionsBuilder](./builder-InfinityOptionsBuilder.md)
  * <span class="badge builder"></span> [IntervalVariableBuilder](./builder-IntervalVariableBuilder.md)
  * <span class="badge builder"></span> [PanelBuilder](./builder-PanelBuilder.md)
  * <span class="badge builder"></span> [QueryVariableBuilder](./builder-QueryVariableBuilder.md)
@@ -89,6 +105,30 @@
  * <span class="badge builder"></span> [TimeOptionBuilder](./builder-TimeOptionBuilder.md)
  * <span class="badge builder"></span> [TimePickerBuilder](./builder-TimePickerBuilder.md)
 ## Functions
+
+### <span class="badge function"></span> NewAnnotationActions
+
+NewAnnotationActions creates a new AnnotationActions object.
+
+```go
+func NewAnnotationActions() *AnnotationActions
+```
+
+### <span class="badge function"></span> NewAnnotationPermission
+
+NewAnnotationPermission creates a new AnnotationPermission object.
+
+```go
+func NewAnnotationPermission() *AnnotationPermission
+```
+
+### <span class="badge function"></span> NewDashboardMeta
+
+NewDashboardMeta creates a new DashboardMeta object.
+
+```go
+func NewDashboardMeta() *DashboardMeta
+```
 
 ### <span class="badge function"></span> NewDashboard
 
@@ -258,6 +298,38 @@ NewFieldColor creates a new FieldColor object.
 func NewFieldColor() *FieldColor
 ```
 
+### <span class="badge function"></span> NewAction
+
+NewAction creates a new Action object.
+
+```go
+func NewAction() *Action
+```
+
+### <span class="badge function"></span> NewFetchOptions
+
+NewFetchOptions creates a new FetchOptions object.
+
+```go
+func NewFetchOptions() *FetchOptions
+```
+
+### <span class="badge function"></span> NewInfinityOptions
+
+NewInfinityOptions creates a new InfinityOptions object.
+
+```go
+func NewInfinityOptions() *InfinityOptions
+```
+
+### <span class="badge function"></span> NewActionVariable
+
+NewActionVariable creates a new ActionVariable object.
+
+```go
+func NewActionVariable() *ActionVariable
+```
+
 ### <span class="badge function"></span> NewDynamicConfigValue
 
 NewDynamicConfigValue creates a new DynamicConfigValue object.
@@ -330,30 +402,6 @@ NewSnapshot creates a new Snapshot object.
 func NewSnapshot() *Snapshot
 ```
 
-### <span class="badge function"></span> NewAnnotationActions
-
-NewAnnotationActions creates a new AnnotationActions object.
-
-```go
-func NewAnnotationActions() *AnnotationActions
-```
-
-### <span class="badge function"></span> NewAnnotationPermission
-
-NewAnnotationPermission creates a new AnnotationPermission object.
-
-```go
-func NewAnnotationPermission() *AnnotationPermission
-```
-
-### <span class="badge function"></span> NewDashboardMeta
-
-NewDashboardMeta creates a new DashboardMeta object.
-
-```go
-func NewDashboardMeta() *DashboardMeta
-```
-
 ### <span class="badge function"></span> NewDashboardDashboardTime
 
 NewDashboardDashboardTime creates a new DashboardDashboardTime object.
@@ -402,6 +450,14 @@ NewDashboardSpecialValueMapOptions creates a new DashboardSpecialValueMapOptions
 func NewDashboardSpecialValueMapOptions() *DashboardSpecialValueMapOptions
 ```
 
+### <span class="badge function"></span> NewDashboardActionStyle
+
+NewDashboardActionStyle creates a new DashboardActionStyle object.
+
+```go
+func NewDashboardActionStyle() *DashboardActionStyle
+```
+
 ### <span class="badge function"></span> NewPanelOrRowPanel
 
 NewPanelOrRowPanel creates a new PanelOrRowPanel object.
@@ -432,6 +488,30 @@ NewStringOrArrayOfString creates a new StringOrArrayOfString object.
 
 ```go
 func NewStringOrArrayOfString() *StringOrArrayOfString
+```
+
+### <span class="badge function"></span> AnnotationActionsConverter
+
+AnnotationActionsConverter accepts a `AnnotationActions` object and generates the Go code to build this object using builders.
+
+```go
+func AnnotationActionsConverter(input AnnotationActions) string
+```
+
+### <span class="badge function"></span> AnnotationPermissionConverter
+
+AnnotationPermissionConverter accepts a `AnnotationPermission` object and generates the Go code to build this object using builders.
+
+```go
+func AnnotationPermissionConverter(input AnnotationPermission) string
+```
+
+### <span class="badge function"></span> DashboardMetaConverter
+
+DashboardMetaConverter accepts a `DashboardMeta` object and generates the Go code to build this object using builders.
+
+```go
+func DashboardMetaConverter(input DashboardMeta) string
 ```
 
 ### <span class="badge function"></span> DashboardConverter
@@ -490,6 +570,38 @@ FieldColorConverter accepts a `FieldColor` object and generates the Go code to b
 func FieldColorConverter(input FieldColor) string
 ```
 
+### <span class="badge function"></span> ActionConverter
+
+ActionConverter accepts a `Action` object and generates the Go code to build this object using builders.
+
+```go
+func ActionConverter(input Action) string
+```
+
+### <span class="badge function"></span> FetchOptionsConverter
+
+FetchOptionsConverter accepts a `FetchOptions` object and generates the Go code to build this object using builders.
+
+```go
+func FetchOptionsConverter(input FetchOptions) string
+```
+
+### <span class="badge function"></span> InfinityOptionsConverter
+
+InfinityOptionsConverter accepts a `InfinityOptions` object and generates the Go code to build this object using builders.
+
+```go
+func InfinityOptionsConverter(input InfinityOptions) string
+```
+
+### <span class="badge function"></span> ActionVariableConverter
+
+ActionVariableConverter accepts a `ActionVariable` object and generates the Go code to build this object using builders.
+
+```go
+func ActionVariableConverter(input ActionVariable) string
+```
+
 ### <span class="badge function"></span> RowConverter
 
 RowConverter accepts a `Row` object and generates the Go code to build this object using builders.
@@ -528,30 +640,6 @@ SnapshotConverter accepts a `Snapshot` object and generates the Go code to build
 
 ```go
 func SnapshotConverter(input Snapshot) string
-```
-
-### <span class="badge function"></span> AnnotationActionsConverter
-
-AnnotationActionsConverter accepts a `AnnotationActions` object and generates the Go code to build this object using builders.
-
-```go
-func AnnotationActionsConverter(input AnnotationActions) string
-```
-
-### <span class="badge function"></span> AnnotationPermissionConverter
-
-AnnotationPermissionConverter accepts a `AnnotationPermission` object and generates the Go code to build this object using builders.
-
-```go
-func AnnotationPermissionConverter(input AnnotationPermission) string
-```
-
-### <span class="badge function"></span> DashboardMetaConverter
-
-DashboardMetaConverter accepts a `DashboardMeta` object and generates the Go code to build this object using builders.
-
-```go
-func DashboardMetaConverter(input DashboardMeta) string
 ```
 
 ### <span class="badge function"></span> DashboardDashboardTimeConverter
@@ -600,6 +688,14 @@ DashboardSpecialValueMapOptionsConverter accepts a `DashboardSpecialValueMapOpti
 
 ```go
 func DashboardSpecialValueMapOptionsConverter(input DashboardSpecialValueMapOptions) string
+```
+
+### <span class="badge function"></span> DashboardActionStyleConverter
+
+DashboardActionStyleConverter accepts a `DashboardActionStyle` object and generates the Go code to build this object using builders.
+
+```go
+func DashboardActionStyleConverter(input DashboardActionStyle) string
 ```
 
 ### <span class="badge function"></span> QueryVariableConverter

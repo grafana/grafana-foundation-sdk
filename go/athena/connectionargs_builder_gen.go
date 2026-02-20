@@ -35,6 +35,11 @@ func (builder *ConnectionArgsBuilder) Build() (ConnectionArgs, error) {
 	return *builder.internal, nil
 }
 
+func (builder *ConnectionArgsBuilder) RecordError(path string, err error) *ConnectionArgsBuilder {
+	builder.errors = append(builder.errors, cog.MakeBuildErrors(path, err)...)
+	return builder
+}
+
 func (builder *ConnectionArgsBuilder) Region(region string) *ConnectionArgsBuilder {
 	builder.internal.Region = &region
 

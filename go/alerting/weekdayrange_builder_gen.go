@@ -35,6 +35,11 @@ func (builder *WeekdayRangeBuilder) Build() (WeekdayRange, error) {
 	return *builder.internal, nil
 }
 
+func (builder *WeekdayRangeBuilder) RecordError(path string, err error) *WeekdayRangeBuilder {
+	builder.errors = append(builder.errors, cog.MakeBuildErrors(path, err)...)
+	return builder
+}
+
 func (builder *WeekdayRangeBuilder) Begin(begin int32) *WeekdayRangeBuilder {
 	builder.internal.Begin = &begin
 

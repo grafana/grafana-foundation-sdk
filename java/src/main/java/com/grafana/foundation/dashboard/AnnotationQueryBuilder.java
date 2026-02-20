@@ -58,6 +58,11 @@ public class AnnotationQueryBuilder implements com.grafana.foundation.cog.Builde
         return this;
     }
     
+    public AnnotationQueryBuilder placement(AnnotationQueryPlacement placement) {
+        this.internal.placement = placement;
+        return this;
+    }
+    
     public AnnotationQueryBuilder expr(String expr) {
         this.internal.expr = expr;
         return this;

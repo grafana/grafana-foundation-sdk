@@ -37,6 +37,11 @@ func (builder *YAxisConfigBuilder) Build() (YAxisConfig, error) {
 	return *builder.internal, nil
 }
 
+func (builder *YAxisConfigBuilder) RecordError(path string, err error) *YAxisConfigBuilder {
+	builder.errors = append(builder.errors, cog.MakeBuildErrors(path, err)...)
+	return builder
+}
+
 // Sets the yAxis unit
 func (builder *YAxisConfigBuilder) Unit(unit string) *YAxisConfigBuilder {
 	builder.internal.Unit = &unit

@@ -36,6 +36,11 @@ func (builder *WorkspacesQueryBuilder) Build() (WorkspacesQuery, error) {
 	return *builder.internal, nil
 }
 
+func (builder *WorkspacesQueryBuilder) RecordError(path string, err error) *WorkspacesQueryBuilder {
+	builder.errors = append(builder.errors, cog.MakeBuildErrors(path, err)...)
+	return builder
+}
+
 func (builder *WorkspacesQueryBuilder) RawQuery(rawQuery string) *WorkspacesQueryBuilder {
 	builder.internal.RawQuery = &rawQuery
 

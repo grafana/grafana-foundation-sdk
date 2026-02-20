@@ -35,6 +35,11 @@ func (builder *FiltersSettingsBuilder) Build() (FiltersSettings, error) {
 	return *builder.internal, nil
 }
 
+func (builder *FiltersSettingsBuilder) RecordError(path string, err error) *FiltersSettingsBuilder {
+	builder.errors = append(builder.errors, cog.MakeBuildErrors(path, err)...)
+	return builder
+}
+
 func (builder *FiltersSettingsBuilder) Filters(filters []cog.Builder[Filter]) *FiltersSettingsBuilder {
 	filtersResources := make([]Filter, 0, len(filters))
 	for _, r1 := range filters {

@@ -36,6 +36,11 @@ func (builder *AzureLogsQueryBuilder) Build() (AzureLogsQuery, error) {
 	return *builder.internal, nil
 }
 
+func (builder *AzureLogsQueryBuilder) RecordError(path string, err error) *AzureLogsQueryBuilder {
+	builder.errors = append(builder.errors, cog.MakeBuildErrors(path, err)...)
+	return builder
+}
+
 // KQL query to be executed.
 func (builder *AzureLogsQueryBuilder) Query(query string) *AzureLogsQueryBuilder {
 	builder.internal.Query = &query

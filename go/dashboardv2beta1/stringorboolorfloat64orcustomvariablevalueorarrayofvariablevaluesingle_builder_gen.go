@@ -35,6 +35,11 @@ func (builder *StringOrBoolOrFloat64OrCustomVariableValueOrArrayOfVariableValueS
 	return *builder.internal, nil
 }
 
+func (builder *StringOrBoolOrFloat64OrCustomVariableValueOrArrayOfVariableValueSingleBuilder) RecordError(path string, err error) *StringOrBoolOrFloat64OrCustomVariableValueOrArrayOfVariableValueSingleBuilder {
+	builder.errors = append(builder.errors, cog.MakeBuildErrors(path, err)...)
+	return builder
+}
+
 func (builder *StringOrBoolOrFloat64OrCustomVariableValueOrArrayOfVariableValueSingleBuilder) String(stringArg string) *StringOrBoolOrFloat64OrCustomVariableValueOrArrayOfVariableValueSingleBuilder {
 	builder.internal.String = &stringArg
 

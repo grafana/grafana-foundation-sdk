@@ -68,6 +68,18 @@ export class TextBoxVariableBuilder implements cog.Builder<dashboard.VariableMod
         return this;
     }
 
+    // Additional static options for query variable
+    staticOptions(staticOptions: dashboard.VariableOption[]): this {
+        this.internal.staticOptions = staticOptions;
+        return this;
+    }
+
+    // Ordering of static options in relation to options returned from data source for query variable
+    staticOptionsOrder(staticOptionsOrder: "before" | "after" | "sorted"): this {
+        this.internal.staticOptionsOrder = staticOptionsOrder;
+        return this;
+    }
+
     definition(definition: string): this {
         this.internal.definition = definition;
         return this;

@@ -36,6 +36,11 @@ func (builder *OptionsWithTooltipBuilder) Build() (OptionsWithTooltip, error) {
 	return *builder.internal, nil
 }
 
+func (builder *OptionsWithTooltipBuilder) RecordError(path string, err error) *OptionsWithTooltipBuilder {
+	builder.errors = append(builder.errors, cog.MakeBuildErrors(path, err)...)
+	return builder
+}
+
 func (builder *OptionsWithTooltipBuilder) Tooltip(tooltip cog.Builder[VizTooltipOptions]) *OptionsWithTooltipBuilder {
 	tooltipResource, err := tooltip.Build()
 	if err != nil {

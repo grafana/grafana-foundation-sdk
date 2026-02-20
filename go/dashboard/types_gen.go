@@ -15,9 +15,845 @@ import (
 	common "github.com/grafana/grafana-foundation-sdk/go/common"
 )
 
+type AnnotationActions struct {
+	CanAdd    *bool `json:"canAdd,omitempty"`
+	CanDelete *bool `json:"canDelete,omitempty"`
+	CanEdit   *bool `json:"canEdit,omitempty"`
+}
+
+// NewAnnotationActions creates a new AnnotationActions object.
+func NewAnnotationActions() *AnnotationActions {
+	return &AnnotationActions{}
+}
+
+// UnmarshalJSONStrict implements a custom JSON unmarshalling logic to decode `AnnotationActions` from JSON.
+// Note: the unmarshalling done by this function is strict. It will fail over required fields being absent from the input, fields having an incorrect type, unexpected fields being present, …
+func (resource *AnnotationActions) UnmarshalJSONStrict(raw []byte) error {
+	if raw == nil {
+		return nil
+	}
+	var errs cog.BuildErrors
+
+	fields := make(map[string]json.RawMessage)
+	if err := json.Unmarshal(raw, &fields); err != nil {
+		return err
+	}
+	// Field "canAdd"
+	if fields["canAdd"] != nil {
+		if string(fields["canAdd"]) != "null" {
+			if err := json.Unmarshal(fields["canAdd"], &resource.CanAdd); err != nil {
+				errs = append(errs, cog.MakeBuildErrors("canAdd", err)...)
+			}
+
+		}
+		delete(fields, "canAdd")
+
+	}
+	// Field "canDelete"
+	if fields["canDelete"] != nil {
+		if string(fields["canDelete"]) != "null" {
+			if err := json.Unmarshal(fields["canDelete"], &resource.CanDelete); err != nil {
+				errs = append(errs, cog.MakeBuildErrors("canDelete", err)...)
+			}
+
+		}
+		delete(fields, "canDelete")
+
+	}
+	// Field "canEdit"
+	if fields["canEdit"] != nil {
+		if string(fields["canEdit"]) != "null" {
+			if err := json.Unmarshal(fields["canEdit"], &resource.CanEdit); err != nil {
+				errs = append(errs, cog.MakeBuildErrors("canEdit", err)...)
+			}
+
+		}
+		delete(fields, "canEdit")
+
+	}
+
+	for field := range fields {
+		errs = append(errs, cog.MakeBuildErrors("AnnotationActions", fmt.Errorf("unexpected field '%s'", field))...)
+	}
+
+	if len(errs) == 0 {
+		return nil
+	}
+
+	return errs
+}
+
+// Equals tests the equality of two `AnnotationActions` objects.
+func (resource AnnotationActions) Equals(other AnnotationActions) bool {
+	if resource.CanAdd == nil && other.CanAdd != nil || resource.CanAdd != nil && other.CanAdd == nil {
+		return false
+	}
+
+	if resource.CanAdd != nil {
+		if *resource.CanAdd != *other.CanAdd {
+			return false
+		}
+	}
+	if resource.CanDelete == nil && other.CanDelete != nil || resource.CanDelete != nil && other.CanDelete == nil {
+		return false
+	}
+
+	if resource.CanDelete != nil {
+		if *resource.CanDelete != *other.CanDelete {
+			return false
+		}
+	}
+	if resource.CanEdit == nil && other.CanEdit != nil || resource.CanEdit != nil && other.CanEdit == nil {
+		return false
+	}
+
+	if resource.CanEdit != nil {
+		if *resource.CanEdit != *other.CanEdit {
+			return false
+		}
+	}
+
+	return true
+}
+
+// Validate checks all the validation constraints that may be defined on `AnnotationActions` fields for violations and returns them.
+func (resource AnnotationActions) Validate() error {
+	return nil
+}
+
+type AnnotationPermission struct {
+	Dashboard    *AnnotationActions `json:"dashboard,omitempty"`
+	Organization *AnnotationActions `json:"organization,omitempty"`
+}
+
+// NewAnnotationPermission creates a new AnnotationPermission object.
+func NewAnnotationPermission() *AnnotationPermission {
+	return &AnnotationPermission{}
+}
+
+// UnmarshalJSONStrict implements a custom JSON unmarshalling logic to decode `AnnotationPermission` from JSON.
+// Note: the unmarshalling done by this function is strict. It will fail over required fields being absent from the input, fields having an incorrect type, unexpected fields being present, …
+func (resource *AnnotationPermission) UnmarshalJSONStrict(raw []byte) error {
+	if raw == nil {
+		return nil
+	}
+	var errs cog.BuildErrors
+
+	fields := make(map[string]json.RawMessage)
+	if err := json.Unmarshal(raw, &fields); err != nil {
+		return err
+	}
+	// Field "dashboard"
+	if fields["dashboard"] != nil {
+		if string(fields["dashboard"]) != "null" {
+
+			resource.Dashboard = &AnnotationActions{}
+			if err := resource.Dashboard.UnmarshalJSONStrict(fields["dashboard"]); err != nil {
+				errs = append(errs, cog.MakeBuildErrors("dashboard", err)...)
+			}
+
+		}
+		delete(fields, "dashboard")
+
+	}
+	// Field "organization"
+	if fields["organization"] != nil {
+		if string(fields["organization"]) != "null" {
+
+			resource.Organization = &AnnotationActions{}
+			if err := resource.Organization.UnmarshalJSONStrict(fields["organization"]); err != nil {
+				errs = append(errs, cog.MakeBuildErrors("organization", err)...)
+			}
+
+		}
+		delete(fields, "organization")
+
+	}
+
+	for field := range fields {
+		errs = append(errs, cog.MakeBuildErrors("AnnotationPermission", fmt.Errorf("unexpected field '%s'", field))...)
+	}
+
+	if len(errs) == 0 {
+		return nil
+	}
+
+	return errs
+}
+
+// Equals tests the equality of two `AnnotationPermission` objects.
+func (resource AnnotationPermission) Equals(other AnnotationPermission) bool {
+	if resource.Dashboard == nil && other.Dashboard != nil || resource.Dashboard != nil && other.Dashboard == nil {
+		return false
+	}
+
+	if resource.Dashboard != nil {
+		if !resource.Dashboard.Equals(*other.Dashboard) {
+			return false
+		}
+	}
+	if resource.Organization == nil && other.Organization != nil || resource.Organization != nil && other.Organization == nil {
+		return false
+	}
+
+	if resource.Organization != nil {
+		if !resource.Organization.Equals(*other.Organization) {
+			return false
+		}
+	}
+
+	return true
+}
+
+// Validate checks all the validation constraints that may be defined on `AnnotationPermission` fields for violations and returns them.
+func (resource AnnotationPermission) Validate() error {
+	var errs cog.BuildErrors
+	if resource.Dashboard != nil {
+		if err := resource.Dashboard.Validate(); err != nil {
+			errs = append(errs, cog.MakeBuildErrors("dashboard", err)...)
+		}
+	}
+	if resource.Organization != nil {
+		if err := resource.Organization.Validate(); err != nil {
+			errs = append(errs, cog.MakeBuildErrors("organization", err)...)
+		}
+	}
+
+	if len(errs) == 0 {
+		return nil
+	}
+
+	return errs
+}
+
+type DashboardMeta struct {
+	AnnotationsPermissions *AnnotationPermission `json:"annotationsPermissions,omitempty"`
+	ApiVersion             *string               `json:"apiVersion,omitempty"`
+	CanAdmin               *bool                 `json:"canAdmin,omitempty"`
+	CanDelete              *bool                 `json:"canDelete,omitempty"`
+	CanEdit                *bool                 `json:"canEdit,omitempty"`
+	CanSave                *bool                 `json:"canSave,omitempty"`
+	CanStar                *bool                 `json:"canStar,omitempty"`
+	Created                *time.Time            `json:"created,omitempty"`
+	CreatedBy              *string               `json:"createdBy,omitempty"`
+	Expires                *time.Time            `json:"expires,omitempty"`
+	// Deprecated: use FolderUID instead
+	FolderId               *int64     `json:"folderId,omitempty"`
+	FolderTitle            *string    `json:"folderTitle,omitempty"`
+	FolderUid              *string    `json:"folderUid,omitempty"`
+	FolderUrl              *string    `json:"folderUrl,omitempty"`
+	HasAcl                 *bool      `json:"hasAcl,omitempty"`
+	IsFolder               *bool      `json:"isFolder,omitempty"`
+	IsSnapshot             *bool      `json:"isSnapshot,omitempty"`
+	IsStarred              *bool      `json:"isStarred,omitempty"`
+	Provisioned            *bool      `json:"provisioned,omitempty"`
+	ProvisionedExternalId  *string    `json:"provisionedExternalId,omitempty"`
+	PublicDashboardEnabled *bool      `json:"publicDashboardEnabled,omitempty"`
+	Slug                   *string    `json:"slug,omitempty"`
+	Type                   *string    `json:"type,omitempty"`
+	Updated                *time.Time `json:"updated,omitempty"`
+	UpdatedBy              *string    `json:"updatedBy,omitempty"`
+	Url                    *string    `json:"url,omitempty"`
+	Version                *int64     `json:"version,omitempty"`
+}
+
+// NewDashboardMeta creates a new DashboardMeta object.
+func NewDashboardMeta() *DashboardMeta {
+	return &DashboardMeta{}
+}
+
+// UnmarshalJSONStrict implements a custom JSON unmarshalling logic to decode `DashboardMeta` from JSON.
+// Note: the unmarshalling done by this function is strict. It will fail over required fields being absent from the input, fields having an incorrect type, unexpected fields being present, …
+func (resource *DashboardMeta) UnmarshalJSONStrict(raw []byte) error {
+	if raw == nil {
+		return nil
+	}
+	var errs cog.BuildErrors
+
+	fields := make(map[string]json.RawMessage)
+	if err := json.Unmarshal(raw, &fields); err != nil {
+		return err
+	}
+	// Field "annotationsPermissions"
+	if fields["annotationsPermissions"] != nil {
+		if string(fields["annotationsPermissions"]) != "null" {
+
+			resource.AnnotationsPermissions = &AnnotationPermission{}
+			if err := resource.AnnotationsPermissions.UnmarshalJSONStrict(fields["annotationsPermissions"]); err != nil {
+				errs = append(errs, cog.MakeBuildErrors("annotationsPermissions", err)...)
+			}
+
+		}
+		delete(fields, "annotationsPermissions")
+
+	}
+	// Field "apiVersion"
+	if fields["apiVersion"] != nil {
+		if string(fields["apiVersion"]) != "null" {
+			if err := json.Unmarshal(fields["apiVersion"], &resource.ApiVersion); err != nil {
+				errs = append(errs, cog.MakeBuildErrors("apiVersion", err)...)
+			}
+
+		}
+		delete(fields, "apiVersion")
+
+	}
+	// Field "canAdmin"
+	if fields["canAdmin"] != nil {
+		if string(fields["canAdmin"]) != "null" {
+			if err := json.Unmarshal(fields["canAdmin"], &resource.CanAdmin); err != nil {
+				errs = append(errs, cog.MakeBuildErrors("canAdmin", err)...)
+			}
+
+		}
+		delete(fields, "canAdmin")
+
+	}
+	// Field "canDelete"
+	if fields["canDelete"] != nil {
+		if string(fields["canDelete"]) != "null" {
+			if err := json.Unmarshal(fields["canDelete"], &resource.CanDelete); err != nil {
+				errs = append(errs, cog.MakeBuildErrors("canDelete", err)...)
+			}
+
+		}
+		delete(fields, "canDelete")
+
+	}
+	// Field "canEdit"
+	if fields["canEdit"] != nil {
+		if string(fields["canEdit"]) != "null" {
+			if err := json.Unmarshal(fields["canEdit"], &resource.CanEdit); err != nil {
+				errs = append(errs, cog.MakeBuildErrors("canEdit", err)...)
+			}
+
+		}
+		delete(fields, "canEdit")
+
+	}
+	// Field "canSave"
+	if fields["canSave"] != nil {
+		if string(fields["canSave"]) != "null" {
+			if err := json.Unmarshal(fields["canSave"], &resource.CanSave); err != nil {
+				errs = append(errs, cog.MakeBuildErrors("canSave", err)...)
+			}
+
+		}
+		delete(fields, "canSave")
+
+	}
+	// Field "canStar"
+	if fields["canStar"] != nil {
+		if string(fields["canStar"]) != "null" {
+			if err := json.Unmarshal(fields["canStar"], &resource.CanStar); err != nil {
+				errs = append(errs, cog.MakeBuildErrors("canStar", err)...)
+			}
+
+		}
+		delete(fields, "canStar")
+
+	}
+	// Field "created"
+	if fields["created"] != nil {
+		if string(fields["created"]) != "null" {
+			if err := json.Unmarshal(fields["created"], &resource.Created); err != nil {
+				errs = append(errs, cog.MakeBuildErrors("created", err)...)
+			}
+
+		}
+		delete(fields, "created")
+
+	}
+	// Field "createdBy"
+	if fields["createdBy"] != nil {
+		if string(fields["createdBy"]) != "null" {
+			if err := json.Unmarshal(fields["createdBy"], &resource.CreatedBy); err != nil {
+				errs = append(errs, cog.MakeBuildErrors("createdBy", err)...)
+			}
+
+		}
+		delete(fields, "createdBy")
+
+	}
+	// Field "expires"
+	if fields["expires"] != nil {
+		if string(fields["expires"]) != "null" {
+			if err := json.Unmarshal(fields["expires"], &resource.Expires); err != nil {
+				errs = append(errs, cog.MakeBuildErrors("expires", err)...)
+			}
+
+		}
+		delete(fields, "expires")
+
+	}
+	// Field "folderId"
+	if fields["folderId"] != nil {
+		if string(fields["folderId"]) != "null" {
+			if err := json.Unmarshal(fields["folderId"], &resource.FolderId); err != nil {
+				errs = append(errs, cog.MakeBuildErrors("folderId", err)...)
+			}
+
+		}
+		delete(fields, "folderId")
+
+	}
+	// Field "folderTitle"
+	if fields["folderTitle"] != nil {
+		if string(fields["folderTitle"]) != "null" {
+			if err := json.Unmarshal(fields["folderTitle"], &resource.FolderTitle); err != nil {
+				errs = append(errs, cog.MakeBuildErrors("folderTitle", err)...)
+			}
+
+		}
+		delete(fields, "folderTitle")
+
+	}
+	// Field "folderUid"
+	if fields["folderUid"] != nil {
+		if string(fields["folderUid"]) != "null" {
+			if err := json.Unmarshal(fields["folderUid"], &resource.FolderUid); err != nil {
+				errs = append(errs, cog.MakeBuildErrors("folderUid", err)...)
+			}
+
+		}
+		delete(fields, "folderUid")
+
+	}
+	// Field "folderUrl"
+	if fields["folderUrl"] != nil {
+		if string(fields["folderUrl"]) != "null" {
+			if err := json.Unmarshal(fields["folderUrl"], &resource.FolderUrl); err != nil {
+				errs = append(errs, cog.MakeBuildErrors("folderUrl", err)...)
+			}
+
+		}
+		delete(fields, "folderUrl")
+
+	}
+	// Field "hasAcl"
+	if fields["hasAcl"] != nil {
+		if string(fields["hasAcl"]) != "null" {
+			if err := json.Unmarshal(fields["hasAcl"], &resource.HasAcl); err != nil {
+				errs = append(errs, cog.MakeBuildErrors("hasAcl", err)...)
+			}
+
+		}
+		delete(fields, "hasAcl")
+
+	}
+	// Field "isFolder"
+	if fields["isFolder"] != nil {
+		if string(fields["isFolder"]) != "null" {
+			if err := json.Unmarshal(fields["isFolder"], &resource.IsFolder); err != nil {
+				errs = append(errs, cog.MakeBuildErrors("isFolder", err)...)
+			}
+
+		}
+		delete(fields, "isFolder")
+
+	}
+	// Field "isSnapshot"
+	if fields["isSnapshot"] != nil {
+		if string(fields["isSnapshot"]) != "null" {
+			if err := json.Unmarshal(fields["isSnapshot"], &resource.IsSnapshot); err != nil {
+				errs = append(errs, cog.MakeBuildErrors("isSnapshot", err)...)
+			}
+
+		}
+		delete(fields, "isSnapshot")
+
+	}
+	// Field "isStarred"
+	if fields["isStarred"] != nil {
+		if string(fields["isStarred"]) != "null" {
+			if err := json.Unmarshal(fields["isStarred"], &resource.IsStarred); err != nil {
+				errs = append(errs, cog.MakeBuildErrors("isStarred", err)...)
+			}
+
+		}
+		delete(fields, "isStarred")
+
+	}
+	// Field "provisioned"
+	if fields["provisioned"] != nil {
+		if string(fields["provisioned"]) != "null" {
+			if err := json.Unmarshal(fields["provisioned"], &resource.Provisioned); err != nil {
+				errs = append(errs, cog.MakeBuildErrors("provisioned", err)...)
+			}
+
+		}
+		delete(fields, "provisioned")
+
+	}
+	// Field "provisionedExternalId"
+	if fields["provisionedExternalId"] != nil {
+		if string(fields["provisionedExternalId"]) != "null" {
+			if err := json.Unmarshal(fields["provisionedExternalId"], &resource.ProvisionedExternalId); err != nil {
+				errs = append(errs, cog.MakeBuildErrors("provisionedExternalId", err)...)
+			}
+
+		}
+		delete(fields, "provisionedExternalId")
+
+	}
+	// Field "publicDashboardEnabled"
+	if fields["publicDashboardEnabled"] != nil {
+		if string(fields["publicDashboardEnabled"]) != "null" {
+			if err := json.Unmarshal(fields["publicDashboardEnabled"], &resource.PublicDashboardEnabled); err != nil {
+				errs = append(errs, cog.MakeBuildErrors("publicDashboardEnabled", err)...)
+			}
+
+		}
+		delete(fields, "publicDashboardEnabled")
+
+	}
+	// Field "slug"
+	if fields["slug"] != nil {
+		if string(fields["slug"]) != "null" {
+			if err := json.Unmarshal(fields["slug"], &resource.Slug); err != nil {
+				errs = append(errs, cog.MakeBuildErrors("slug", err)...)
+			}
+
+		}
+		delete(fields, "slug")
+
+	}
+	// Field "type"
+	if fields["type"] != nil {
+		if string(fields["type"]) != "null" {
+			if err := json.Unmarshal(fields["type"], &resource.Type); err != nil {
+				errs = append(errs, cog.MakeBuildErrors("type", err)...)
+			}
+
+		}
+		delete(fields, "type")
+
+	}
+	// Field "updated"
+	if fields["updated"] != nil {
+		if string(fields["updated"]) != "null" {
+			if err := json.Unmarshal(fields["updated"], &resource.Updated); err != nil {
+				errs = append(errs, cog.MakeBuildErrors("updated", err)...)
+			}
+
+		}
+		delete(fields, "updated")
+
+	}
+	// Field "updatedBy"
+	if fields["updatedBy"] != nil {
+		if string(fields["updatedBy"]) != "null" {
+			if err := json.Unmarshal(fields["updatedBy"], &resource.UpdatedBy); err != nil {
+				errs = append(errs, cog.MakeBuildErrors("updatedBy", err)...)
+			}
+
+		}
+		delete(fields, "updatedBy")
+
+	}
+	// Field "url"
+	if fields["url"] != nil {
+		if string(fields["url"]) != "null" {
+			if err := json.Unmarshal(fields["url"], &resource.Url); err != nil {
+				errs = append(errs, cog.MakeBuildErrors("url", err)...)
+			}
+
+		}
+		delete(fields, "url")
+
+	}
+	// Field "version"
+	if fields["version"] != nil {
+		if string(fields["version"]) != "null" {
+			if err := json.Unmarshal(fields["version"], &resource.Version); err != nil {
+				errs = append(errs, cog.MakeBuildErrors("version", err)...)
+			}
+
+		}
+		delete(fields, "version")
+
+	}
+
+	for field := range fields {
+		errs = append(errs, cog.MakeBuildErrors("DashboardMeta", fmt.Errorf("unexpected field '%s'", field))...)
+	}
+
+	if len(errs) == 0 {
+		return nil
+	}
+
+	return errs
+}
+
+// Equals tests the equality of two `DashboardMeta` objects.
+func (resource DashboardMeta) Equals(other DashboardMeta) bool {
+	if resource.AnnotationsPermissions == nil && other.AnnotationsPermissions != nil || resource.AnnotationsPermissions != nil && other.AnnotationsPermissions == nil {
+		return false
+	}
+
+	if resource.AnnotationsPermissions != nil {
+		if !resource.AnnotationsPermissions.Equals(*other.AnnotationsPermissions) {
+			return false
+		}
+	}
+	if resource.ApiVersion == nil && other.ApiVersion != nil || resource.ApiVersion != nil && other.ApiVersion == nil {
+		return false
+	}
+
+	if resource.ApiVersion != nil {
+		if *resource.ApiVersion != *other.ApiVersion {
+			return false
+		}
+	}
+	if resource.CanAdmin == nil && other.CanAdmin != nil || resource.CanAdmin != nil && other.CanAdmin == nil {
+		return false
+	}
+
+	if resource.CanAdmin != nil {
+		if *resource.CanAdmin != *other.CanAdmin {
+			return false
+		}
+	}
+	if resource.CanDelete == nil && other.CanDelete != nil || resource.CanDelete != nil && other.CanDelete == nil {
+		return false
+	}
+
+	if resource.CanDelete != nil {
+		if *resource.CanDelete != *other.CanDelete {
+			return false
+		}
+	}
+	if resource.CanEdit == nil && other.CanEdit != nil || resource.CanEdit != nil && other.CanEdit == nil {
+		return false
+	}
+
+	if resource.CanEdit != nil {
+		if *resource.CanEdit != *other.CanEdit {
+			return false
+		}
+	}
+	if resource.CanSave == nil && other.CanSave != nil || resource.CanSave != nil && other.CanSave == nil {
+		return false
+	}
+
+	if resource.CanSave != nil {
+		if *resource.CanSave != *other.CanSave {
+			return false
+		}
+	}
+	if resource.CanStar == nil && other.CanStar != nil || resource.CanStar != nil && other.CanStar == nil {
+		return false
+	}
+
+	if resource.CanStar != nil {
+		if *resource.CanStar != *other.CanStar {
+			return false
+		}
+	}
+	if resource.Created == nil && other.Created != nil || resource.Created != nil && other.Created == nil {
+		return false
+	}
+
+	if resource.Created != nil {
+		if *resource.Created != *other.Created {
+			return false
+		}
+	}
+	if resource.CreatedBy == nil && other.CreatedBy != nil || resource.CreatedBy != nil && other.CreatedBy == nil {
+		return false
+	}
+
+	if resource.CreatedBy != nil {
+		if *resource.CreatedBy != *other.CreatedBy {
+			return false
+		}
+	}
+	if resource.Expires == nil && other.Expires != nil || resource.Expires != nil && other.Expires == nil {
+		return false
+	}
+
+	if resource.Expires != nil {
+		if *resource.Expires != *other.Expires {
+			return false
+		}
+	}
+	if resource.FolderId == nil && other.FolderId != nil || resource.FolderId != nil && other.FolderId == nil {
+		return false
+	}
+
+	if resource.FolderId != nil {
+		if *resource.FolderId != *other.FolderId {
+			return false
+		}
+	}
+	if resource.FolderTitle == nil && other.FolderTitle != nil || resource.FolderTitle != nil && other.FolderTitle == nil {
+		return false
+	}
+
+	if resource.FolderTitle != nil {
+		if *resource.FolderTitle != *other.FolderTitle {
+			return false
+		}
+	}
+	if resource.FolderUid == nil && other.FolderUid != nil || resource.FolderUid != nil && other.FolderUid == nil {
+		return false
+	}
+
+	if resource.FolderUid != nil {
+		if *resource.FolderUid != *other.FolderUid {
+			return false
+		}
+	}
+	if resource.FolderUrl == nil && other.FolderUrl != nil || resource.FolderUrl != nil && other.FolderUrl == nil {
+		return false
+	}
+
+	if resource.FolderUrl != nil {
+		if *resource.FolderUrl != *other.FolderUrl {
+			return false
+		}
+	}
+	if resource.HasAcl == nil && other.HasAcl != nil || resource.HasAcl != nil && other.HasAcl == nil {
+		return false
+	}
+
+	if resource.HasAcl != nil {
+		if *resource.HasAcl != *other.HasAcl {
+			return false
+		}
+	}
+	if resource.IsFolder == nil && other.IsFolder != nil || resource.IsFolder != nil && other.IsFolder == nil {
+		return false
+	}
+
+	if resource.IsFolder != nil {
+		if *resource.IsFolder != *other.IsFolder {
+			return false
+		}
+	}
+	if resource.IsSnapshot == nil && other.IsSnapshot != nil || resource.IsSnapshot != nil && other.IsSnapshot == nil {
+		return false
+	}
+
+	if resource.IsSnapshot != nil {
+		if *resource.IsSnapshot != *other.IsSnapshot {
+			return false
+		}
+	}
+	if resource.IsStarred == nil && other.IsStarred != nil || resource.IsStarred != nil && other.IsStarred == nil {
+		return false
+	}
+
+	if resource.IsStarred != nil {
+		if *resource.IsStarred != *other.IsStarred {
+			return false
+		}
+	}
+	if resource.Provisioned == nil && other.Provisioned != nil || resource.Provisioned != nil && other.Provisioned == nil {
+		return false
+	}
+
+	if resource.Provisioned != nil {
+		if *resource.Provisioned != *other.Provisioned {
+			return false
+		}
+	}
+	if resource.ProvisionedExternalId == nil && other.ProvisionedExternalId != nil || resource.ProvisionedExternalId != nil && other.ProvisionedExternalId == nil {
+		return false
+	}
+
+	if resource.ProvisionedExternalId != nil {
+		if *resource.ProvisionedExternalId != *other.ProvisionedExternalId {
+			return false
+		}
+	}
+	if resource.PublicDashboardEnabled == nil && other.PublicDashboardEnabled != nil || resource.PublicDashboardEnabled != nil && other.PublicDashboardEnabled == nil {
+		return false
+	}
+
+	if resource.PublicDashboardEnabled != nil {
+		if *resource.PublicDashboardEnabled != *other.PublicDashboardEnabled {
+			return false
+		}
+	}
+	if resource.Slug == nil && other.Slug != nil || resource.Slug != nil && other.Slug == nil {
+		return false
+	}
+
+	if resource.Slug != nil {
+		if *resource.Slug != *other.Slug {
+			return false
+		}
+	}
+	if resource.Type == nil && other.Type != nil || resource.Type != nil && other.Type == nil {
+		return false
+	}
+
+	if resource.Type != nil {
+		if *resource.Type != *other.Type {
+			return false
+		}
+	}
+	if resource.Updated == nil && other.Updated != nil || resource.Updated != nil && other.Updated == nil {
+		return false
+	}
+
+	if resource.Updated != nil {
+		if *resource.Updated != *other.Updated {
+			return false
+		}
+	}
+	if resource.UpdatedBy == nil && other.UpdatedBy != nil || resource.UpdatedBy != nil && other.UpdatedBy == nil {
+		return false
+	}
+
+	if resource.UpdatedBy != nil {
+		if *resource.UpdatedBy != *other.UpdatedBy {
+			return false
+		}
+	}
+	if resource.Url == nil && other.Url != nil || resource.Url != nil && other.Url == nil {
+		return false
+	}
+
+	if resource.Url != nil {
+		if *resource.Url != *other.Url {
+			return false
+		}
+	}
+	if resource.Version == nil && other.Version != nil || resource.Version != nil && other.Version == nil {
+		return false
+	}
+
+	if resource.Version != nil {
+		if *resource.Version != *other.Version {
+			return false
+		}
+	}
+
+	return true
+}
+
+// Validate checks all the validation constraints that may be defined on `DashboardMeta` fields for violations and returns them.
+func (resource DashboardMeta) Validate() error {
+	var errs cog.BuildErrors
+	if resource.AnnotationsPermissions != nil {
+		if err := resource.AnnotationsPermissions.Validate(); err != nil {
+			errs = append(errs, cog.MakeBuildErrors("annotationsPermissions", err)...)
+		}
+	}
+
+	if len(errs) == 0 {
+		return nil
+	}
+
+	return errs
+}
+
 type Dashboard struct {
 	// Unique numeric identifier for the dashboard.
 	// `id` is internal to a specific Grafana instance. `uid` should be used to identify a dashboard across Grafana instances.
+	// TODO eliminate this null option
 	Id *int64 `json:"id,omitempty"`
 	// Unique dashboard identifier that can be generated by anyone. string (8-40)
 	Uid *string `json:"uid,omitempty"`
@@ -83,7 +919,7 @@ func NewDashboard() *Dashboard {
 		Editable:             (func(input bool) *bool { return &input })(true),
 		GraphTooltip:         (func(input DashboardCursorSync) *DashboardCursorSync { return &input })(DashboardCursorSyncOff),
 		FiscalYearStartMonth: (func(input uint8) *uint8 { return &input })(0),
-		SchemaVersion:        41,
+		SchemaVersion:        42,
 		Templating:           *NewDashboardDashboardTemplating(),
 		Annotations:          *NewAnnotationContainer(),
 	}
@@ -1008,6 +1844,9 @@ type Panel struct {
 	TimeShift *string `json:"timeShift,omitempty"`
 	// Controls if the timeFrom or timeShift overrides are shown in the panel header
 	HideTimeOverride *bool `json:"hideTimeOverride,omitempty"`
+	// Compare the current time range with a previous period
+	// For example "1d" to compare current period but shifted back 1 day
+	TimeCompare *string `json:"timeCompare,omitempty"`
 	// Dynamically load the panel
 	LibraryPanel *LibraryPanelRef `json:"libraryPanel,omitempty"`
 	// Sets panel queries cache timeout.
@@ -1126,6 +1965,11 @@ func (resource *Panel) UnmarshalJSON(raw []byte) error {
 	if fields["hideTimeOverride"] != nil {
 		if err := json.Unmarshal(fields["hideTimeOverride"], &resource.HideTimeOverride); err != nil {
 			return fmt.Errorf("error decoding field 'hideTimeOverride': %w", err)
+		}
+	}
+	if fields["timeCompare"] != nil {
+		if err := json.Unmarshal(fields["timeCompare"], &resource.TimeCompare); err != nil {
+			return fmt.Errorf("error decoding field 'timeCompare': %w", err)
 		}
 	}
 	if fields["libraryPanel"] != nil {
@@ -1469,6 +2313,17 @@ func (resource *Panel) UnmarshalJSONStrict(raw []byte) error {
 		delete(fields, "hideTimeOverride")
 
 	}
+	// Field "timeCompare"
+	if fields["timeCompare"] != nil {
+		if string(fields["timeCompare"]) != "null" {
+			if err := json.Unmarshal(fields["timeCompare"], &resource.TimeCompare); err != nil {
+				errs = append(errs, cog.MakeBuildErrors("timeCompare", err)...)
+			}
+
+		}
+		delete(fields, "timeCompare")
+
+	}
 	// Field "libraryPanel"
 	if fields["libraryPanel"] != nil {
 		if string(fields["libraryPanel"]) != "null" {
@@ -1738,6 +2593,15 @@ func (resource Panel) Equals(other Panel) bool {
 
 	if resource.HideTimeOverride != nil {
 		if *resource.HideTimeOverride != *other.HideTimeOverride {
+			return false
+		}
+	}
+	if resource.TimeCompare == nil && other.TimeCompare != nil || resource.TimeCompare != nil && other.TimeCompare == nil {
+		return false
+	}
+
+	if resource.TimeCompare != nil {
+		if *resource.TimeCompare != *other.TimeCompare {
 			return false
 		}
 	}
@@ -2037,6 +2901,8 @@ type DashboardLink struct {
 	Tags []string `json:"tags"`
 	// If true, all dashboards links will be displayed in a dropdown. If false, all dashboards links will be displayed side by side. Only valid if the type is dashboards
 	AsDropdown bool `json:"asDropdown"`
+	// Placement can be used to display the link somewhere else on the dashboard other than above the visualisations.
+	Placement *DashboardLinkPlacement `json:"placement,omitempty"`
 	// If true, the link will be opened in a new tab
 	TargetBlank bool `json:"targetBlank"`
 	// If true, includes current template variables values in the link as query params
@@ -2050,6 +2916,7 @@ func NewDashboardLink() *DashboardLink {
 	return &DashboardLink{
 		Tags:        []string{},
 		AsDropdown:  false,
+		Placement:   (func(input DashboardLinkPlacement) *DashboardLinkPlacement { return &input })(DashboardLinkPlacementInControlsMenu),
 		TargetBlank: false,
 		IncludeVars: false,
 		KeepTime:    false,
@@ -2163,6 +3030,17 @@ func (resource *DashboardLink) UnmarshalJSONStrict(raw []byte) error {
 		delete(fields, "asDropdown")
 
 	}
+	// Field "placement"
+	if fields["placement"] != nil {
+		if string(fields["placement"]) != "null" {
+			if err := json.Unmarshal(fields["placement"], &resource.Placement); err != nil {
+				errs = append(errs, cog.MakeBuildErrors("placement", err)...)
+			}
+
+		}
+		delete(fields, "placement")
+
+	}
 	// Field "targetBlank"
 	if fields["targetBlank"] != nil {
 		if string(fields["targetBlank"]) != "null" {
@@ -2250,6 +3128,15 @@ func (resource DashboardLink) Equals(other DashboardLink) bool {
 	if resource.AsDropdown != other.AsDropdown {
 		return false
 	}
+	if resource.Placement == nil && other.Placement != nil || resource.Placement != nil && other.Placement == nil {
+		return false
+	}
+
+	if resource.Placement != nil {
+		if *resource.Placement != *other.Placement {
+			return false
+		}
+	}
 	if resource.TargetBlank != other.TargetBlank {
 		return false
 	}
@@ -2265,7 +3152,18 @@ func (resource DashboardLink) Equals(other DashboardLink) bool {
 
 // Validate checks all the validation constraints that may be defined on `DashboardLink` fields for violations and returns them.
 func (resource DashboardLink) Validate() error {
-	return nil
+	var errs cog.BuildErrors
+	if resource.Placement != nil {
+		if *resource.Placement != "inControlsMenu" {
+			errs = append(errs, cog.MakeBuildErrors("placement", errors.New("must be inControlsMenu"))...)
+		}
+	}
+
+	if len(errs) == 0 {
+		return nil
+	}
+
+	return errs
 }
 
 // Dashboard Link type. Accepted values are dashboards (to refer to another dashboard) and link (to refer to an external resource)
@@ -2274,6 +3172,14 @@ type DashboardLinkType string
 const (
 	DashboardLinkTypeLink       DashboardLinkType = "link"
 	DashboardLinkTypeDashboards DashboardLinkType = "dashboards"
+)
+
+// Dashboard Link placement. Defines where the link should be displayed.
+// - "inControlsMenu" renders the link in bottom part of the dashboard controls dropdown menu
+type DashboardLinkPlacement string
+
+const (
+	DashboardLinkPlacementInControlsMenu DashboardLinkPlacement = "inControlsMenu"
 )
 
 // Transformations allow to manipulate data returned by a query before the system applies a visualization.
@@ -2287,6 +3193,7 @@ type DataTransformerConfig struct {
 	// Optional frame matcher. When missing it will be applied to all results
 	Filter *MatcherConfig `json:"filter,omitempty"`
 	// Where to pull DataFrames from as input to transformation
+	// replaced with common.DataTopic
 	Topic *DataTransformerConfigTopic `json:"topic,omitempty"`
 	// Options to be passed to the transformer
 	// Valid options depend on the transformer id
@@ -2779,6 +3686,8 @@ type FieldConfig struct {
 	Color *FieldColor `json:"color,omitempty"`
 	// The behavior when clicking on a result
 	Links []DashboardLink `json:"links,omitempty"`
+	// Define interactive HTTP requests that can be triggered from data visualizations.
+	Actions []Action `json:"actions,omitempty"`
 	// Alternative to empty string
 	NoValue *string `json:"noValue,omitempty"`
 	// custom is specified by the FieldConfig field
@@ -2986,6 +3895,29 @@ func (resource *FieldConfig) UnmarshalJSONStrict(raw []byte) error {
 		delete(fields, "links")
 
 	}
+	// Field "actions"
+	if fields["actions"] != nil {
+		if string(fields["actions"]) != "null" {
+
+			partialArray := []json.RawMessage{}
+			if err := json.Unmarshal(fields["actions"], &partialArray); err != nil {
+				return err
+			}
+
+			for i1 := range partialArray {
+				var result1 Action
+
+				result1 = Action{}
+				if err := result1.UnmarshalJSONStrict(partialArray[i1]); err != nil {
+					errs = append(errs, cog.MakeBuildErrors("actions["+strconv.Itoa(i1)+"]", err)...)
+				}
+				resource.Actions = append(resource.Actions, result1)
+			}
+
+		}
+		delete(fields, "actions")
+
+	}
 	// Field "noValue"
 	if fields["noValue"] != nil {
 		if string(fields["noValue"]) != "null" {
@@ -3161,6 +4093,16 @@ func (resource FieldConfig) Equals(other FieldConfig) bool {
 			return false
 		}
 	}
+
+	if len(resource.Actions) != len(other.Actions) {
+		return false
+	}
+
+	for i1 := range resource.Actions {
+		if !resource.Actions[i1].Equals(other.Actions[i1]) {
+			return false
+		}
+	}
 	if resource.NoValue == nil && other.NoValue != nil || resource.NoValue != nil && other.NoValue == nil {
 		return false
 	}
@@ -3210,6 +4152,12 @@ func (resource FieldConfig) Validate() error {
 	for i1 := range resource.Links {
 		if err := resource.Links[i1].Validate(); err != nil {
 			errs = append(errs, cog.MakeBuildErrors("links["+strconv.Itoa(i1)+"]", err)...)
+		}
+	}
+
+	for i1 := range resource.Actions {
+		if err := resource.Actions[i1].Validate(); err != nil {
+			errs = append(errs, cog.MakeBuildErrors("actions["+strconv.Itoa(i1)+"]", err)...)
 		}
 	}
 
@@ -4168,6 +5116,737 @@ const (
 	FieldColorSeriesByModeLast FieldColorSeriesByMode = "last"
 )
 
+// Dashboard action
+type Action struct {
+	Type         ActionType            `json:"type"`
+	Title        string                `json:"title"`
+	Fetch        *FetchOptions         `json:"fetch,omitempty"`
+	Infinity     *InfinityOptions      `json:"infinity,omitempty"`
+	Confirmation *string               `json:"confirmation,omitempty"`
+	OneClick     *bool                 `json:"oneClick,omitempty"`
+	Variables    []ActionVariable      `json:"variables,omitempty"`
+	Style        *DashboardActionStyle `json:"style,omitempty"`
+}
+
+// NewAction creates a new Action object.
+func NewAction() *Action {
+	return &Action{}
+}
+
+// UnmarshalJSONStrict implements a custom JSON unmarshalling logic to decode `Action` from JSON.
+// Note: the unmarshalling done by this function is strict. It will fail over required fields being absent from the input, fields having an incorrect type, unexpected fields being present, …
+func (resource *Action) UnmarshalJSONStrict(raw []byte) error {
+	if raw == nil {
+		return nil
+	}
+	var errs cog.BuildErrors
+
+	fields := make(map[string]json.RawMessage)
+	if err := json.Unmarshal(raw, &fields); err != nil {
+		return err
+	}
+	// Field "type"
+	if fields["type"] != nil {
+		if string(fields["type"]) != "null" {
+			if err := json.Unmarshal(fields["type"], &resource.Type); err != nil {
+				errs = append(errs, cog.MakeBuildErrors("type", err)...)
+			}
+		} else {
+			errs = append(errs, cog.MakeBuildErrors("type", errors.New("required field is null"))...)
+
+		}
+		delete(fields, "type")
+	} else {
+		errs = append(errs, cog.MakeBuildErrors("type", errors.New("required field is missing from input"))...)
+	}
+	// Field "title"
+	if fields["title"] != nil {
+		if string(fields["title"]) != "null" {
+			if err := json.Unmarshal(fields["title"], &resource.Title); err != nil {
+				errs = append(errs, cog.MakeBuildErrors("title", err)...)
+			}
+		} else {
+			errs = append(errs, cog.MakeBuildErrors("title", errors.New("required field is null"))...)
+
+		}
+		delete(fields, "title")
+	} else {
+		errs = append(errs, cog.MakeBuildErrors("title", errors.New("required field is missing from input"))...)
+	}
+	// Field "fetch"
+	if fields["fetch"] != nil {
+		if string(fields["fetch"]) != "null" {
+
+			resource.Fetch = &FetchOptions{}
+			if err := resource.Fetch.UnmarshalJSONStrict(fields["fetch"]); err != nil {
+				errs = append(errs, cog.MakeBuildErrors("fetch", err)...)
+			}
+
+		}
+		delete(fields, "fetch")
+
+	}
+	// Field "infinity"
+	if fields["infinity"] != nil {
+		if string(fields["infinity"]) != "null" {
+
+			resource.Infinity = &InfinityOptions{}
+			if err := resource.Infinity.UnmarshalJSONStrict(fields["infinity"]); err != nil {
+				errs = append(errs, cog.MakeBuildErrors("infinity", err)...)
+			}
+
+		}
+		delete(fields, "infinity")
+
+	}
+	// Field "confirmation"
+	if fields["confirmation"] != nil {
+		if string(fields["confirmation"]) != "null" {
+			if err := json.Unmarshal(fields["confirmation"], &resource.Confirmation); err != nil {
+				errs = append(errs, cog.MakeBuildErrors("confirmation", err)...)
+			}
+
+		}
+		delete(fields, "confirmation")
+
+	}
+	// Field "oneClick"
+	if fields["oneClick"] != nil {
+		if string(fields["oneClick"]) != "null" {
+			if err := json.Unmarshal(fields["oneClick"], &resource.OneClick); err != nil {
+				errs = append(errs, cog.MakeBuildErrors("oneClick", err)...)
+			}
+
+		}
+		delete(fields, "oneClick")
+
+	}
+	// Field "variables"
+	if fields["variables"] != nil {
+		if string(fields["variables"]) != "null" {
+
+			partialArray := []json.RawMessage{}
+			if err := json.Unmarshal(fields["variables"], &partialArray); err != nil {
+				return err
+			}
+
+			for i1 := range partialArray {
+				var result1 ActionVariable
+
+				result1 = ActionVariable{}
+				if err := result1.UnmarshalJSONStrict(partialArray[i1]); err != nil {
+					errs = append(errs, cog.MakeBuildErrors("variables["+strconv.Itoa(i1)+"]", err)...)
+				}
+				resource.Variables = append(resource.Variables, result1)
+			}
+
+		}
+		delete(fields, "variables")
+
+	}
+	// Field "style"
+	if fields["style"] != nil {
+		if string(fields["style"]) != "null" {
+
+			resource.Style = &DashboardActionStyle{}
+			if err := resource.Style.UnmarshalJSONStrict(fields["style"]); err != nil {
+				errs = append(errs, cog.MakeBuildErrors("style", err)...)
+			}
+
+		}
+		delete(fields, "style")
+
+	}
+
+	for field := range fields {
+		errs = append(errs, cog.MakeBuildErrors("Action", fmt.Errorf("unexpected field '%s'", field))...)
+	}
+
+	if len(errs) == 0 {
+		return nil
+	}
+
+	return errs
+}
+
+// Equals tests the equality of two `Action` objects.
+func (resource Action) Equals(other Action) bool {
+	if resource.Type != other.Type {
+		return false
+	}
+	if resource.Title != other.Title {
+		return false
+	}
+	if resource.Fetch == nil && other.Fetch != nil || resource.Fetch != nil && other.Fetch == nil {
+		return false
+	}
+
+	if resource.Fetch != nil {
+		if !resource.Fetch.Equals(*other.Fetch) {
+			return false
+		}
+	}
+	if resource.Infinity == nil && other.Infinity != nil || resource.Infinity != nil && other.Infinity == nil {
+		return false
+	}
+
+	if resource.Infinity != nil {
+		if !resource.Infinity.Equals(*other.Infinity) {
+			return false
+		}
+	}
+	if resource.Confirmation == nil && other.Confirmation != nil || resource.Confirmation != nil && other.Confirmation == nil {
+		return false
+	}
+
+	if resource.Confirmation != nil {
+		if *resource.Confirmation != *other.Confirmation {
+			return false
+		}
+	}
+	if resource.OneClick == nil && other.OneClick != nil || resource.OneClick != nil && other.OneClick == nil {
+		return false
+	}
+
+	if resource.OneClick != nil {
+		if *resource.OneClick != *other.OneClick {
+			return false
+		}
+	}
+
+	if len(resource.Variables) != len(other.Variables) {
+		return false
+	}
+
+	for i1 := range resource.Variables {
+		if !resource.Variables[i1].Equals(other.Variables[i1]) {
+			return false
+		}
+	}
+	if resource.Style == nil && other.Style != nil || resource.Style != nil && other.Style == nil {
+		return false
+	}
+
+	if resource.Style != nil {
+		if !resource.Style.Equals(*other.Style) {
+			return false
+		}
+	}
+
+	return true
+}
+
+// Validate checks all the validation constraints that may be defined on `Action` fields for violations and returns them.
+func (resource Action) Validate() error {
+	var errs cog.BuildErrors
+	if resource.Fetch != nil {
+		if err := resource.Fetch.Validate(); err != nil {
+			errs = append(errs, cog.MakeBuildErrors("fetch", err)...)
+		}
+	}
+	if resource.Infinity != nil {
+		if err := resource.Infinity.Validate(); err != nil {
+			errs = append(errs, cog.MakeBuildErrors("infinity", err)...)
+		}
+	}
+
+	for i1 := range resource.Variables {
+		if err := resource.Variables[i1].Validate(); err != nil {
+			errs = append(errs, cog.MakeBuildErrors("variables["+strconv.Itoa(i1)+"]", err)...)
+		}
+	}
+	if resource.Style != nil {
+		if err := resource.Style.Validate(); err != nil {
+			errs = append(errs, cog.MakeBuildErrors("style", err)...)
+		}
+	}
+
+	if len(errs) == 0 {
+		return nil
+	}
+
+	return errs
+}
+
+// Dashboard action type
+type ActionType string
+
+const (
+	ActionTypeFetch    ActionType = "fetch"
+	ActionTypeInfinity ActionType = "infinity"
+)
+
+// Fetch options
+type FetchOptions struct {
+	Method HttpRequestMethod `json:"method"`
+	Url    string            `json:"url"`
+	Body   *string           `json:"body,omitempty"`
+	// These are 2D arrays of strings, each representing a key-value pair
+	// We are defining this way because we can't generate a go struct that
+	// that would have exactly two strings in each sub-array
+	QueryParams [][]string `json:"queryParams,omitempty"`
+	Headers     [][]string `json:"headers,omitempty"`
+}
+
+// NewFetchOptions creates a new FetchOptions object.
+func NewFetchOptions() *FetchOptions {
+	return &FetchOptions{}
+}
+
+// UnmarshalJSONStrict implements a custom JSON unmarshalling logic to decode `FetchOptions` from JSON.
+// Note: the unmarshalling done by this function is strict. It will fail over required fields being absent from the input, fields having an incorrect type, unexpected fields being present, …
+func (resource *FetchOptions) UnmarshalJSONStrict(raw []byte) error {
+	if raw == nil {
+		return nil
+	}
+	var errs cog.BuildErrors
+
+	fields := make(map[string]json.RawMessage)
+	if err := json.Unmarshal(raw, &fields); err != nil {
+		return err
+	}
+	// Field "method"
+	if fields["method"] != nil {
+		if string(fields["method"]) != "null" {
+			if err := json.Unmarshal(fields["method"], &resource.Method); err != nil {
+				errs = append(errs, cog.MakeBuildErrors("method", err)...)
+			}
+		} else {
+			errs = append(errs, cog.MakeBuildErrors("method", errors.New("required field is null"))...)
+
+		}
+		delete(fields, "method")
+	} else {
+		errs = append(errs, cog.MakeBuildErrors("method", errors.New("required field is missing from input"))...)
+	}
+	// Field "url"
+	if fields["url"] != nil {
+		if string(fields["url"]) != "null" {
+			if err := json.Unmarshal(fields["url"], &resource.Url); err != nil {
+				errs = append(errs, cog.MakeBuildErrors("url", err)...)
+			}
+		} else {
+			errs = append(errs, cog.MakeBuildErrors("url", errors.New("required field is null"))...)
+
+		}
+		delete(fields, "url")
+	} else {
+		errs = append(errs, cog.MakeBuildErrors("url", errors.New("required field is missing from input"))...)
+	}
+	// Field "body"
+	if fields["body"] != nil {
+		if string(fields["body"]) != "null" {
+			if err := json.Unmarshal(fields["body"], &resource.Body); err != nil {
+				errs = append(errs, cog.MakeBuildErrors("body", err)...)
+			}
+
+		}
+		delete(fields, "body")
+
+	}
+	// Field "queryParams"
+	if fields["queryParams"] != nil {
+		if string(fields["queryParams"]) != "null" {
+
+			if err := json.Unmarshal(fields["queryParams"], &resource.QueryParams); err != nil {
+				errs = append(errs, cog.MakeBuildErrors("queryParams", err)...)
+			}
+
+		}
+		delete(fields, "queryParams")
+
+	}
+	// Field "headers"
+	if fields["headers"] != nil {
+		if string(fields["headers"]) != "null" {
+
+			if err := json.Unmarshal(fields["headers"], &resource.Headers); err != nil {
+				errs = append(errs, cog.MakeBuildErrors("headers", err)...)
+			}
+
+		}
+		delete(fields, "headers")
+
+	}
+
+	for field := range fields {
+		errs = append(errs, cog.MakeBuildErrors("FetchOptions", fmt.Errorf("unexpected field '%s'", field))...)
+	}
+
+	if len(errs) == 0 {
+		return nil
+	}
+
+	return errs
+}
+
+// Equals tests the equality of two `FetchOptions` objects.
+func (resource FetchOptions) Equals(other FetchOptions) bool {
+	if resource.Method != other.Method {
+		return false
+	}
+	if resource.Url != other.Url {
+		return false
+	}
+	if resource.Body == nil && other.Body != nil || resource.Body != nil && other.Body == nil {
+		return false
+	}
+
+	if resource.Body != nil {
+		if *resource.Body != *other.Body {
+			return false
+		}
+	}
+
+	if len(resource.QueryParams) != len(other.QueryParams) {
+		return false
+	}
+
+	for i1 := range resource.QueryParams {
+
+		if len(resource.QueryParams[i1]) != len(other.QueryParams[i1]) {
+			return false
+		}
+
+		for i2 := range resource.QueryParams[i1] {
+			if resource.QueryParams[i1][i2] != other.QueryParams[i1][i2] {
+				return false
+			}
+		}
+	}
+
+	if len(resource.Headers) != len(other.Headers) {
+		return false
+	}
+
+	for i1 := range resource.Headers {
+
+		if len(resource.Headers[i1]) != len(other.Headers[i1]) {
+			return false
+		}
+
+		for i2 := range resource.Headers[i1] {
+			if resource.Headers[i1][i2] != other.Headers[i1][i2] {
+				return false
+			}
+		}
+	}
+
+	return true
+}
+
+// Validate checks all the validation constraints that may be defined on `FetchOptions` fields for violations and returns them.
+func (resource FetchOptions) Validate() error {
+	return nil
+}
+
+type HttpRequestMethod string
+
+const (
+	HttpRequestMethodGET    HttpRequestMethod = "GET"
+	HttpRequestMethodPUT    HttpRequestMethod = "PUT"
+	HttpRequestMethodPOST   HttpRequestMethod = "POST"
+	HttpRequestMethodDELETE HttpRequestMethod = "DELETE"
+	HttpRequestMethodPATCH  HttpRequestMethod = "PATCH"
+)
+
+// Infinity options
+type InfinityOptions struct {
+	Method HttpRequestMethod `json:"method"`
+	Url    string            `json:"url"`
+	Body   *string           `json:"body,omitempty"`
+	// These are 2D arrays of strings, each representing a key-value pair
+	// We are defining them this way because we can't generate a go struct that
+	// that would have exactly two strings in each sub-array
+	QueryParams   [][]string `json:"queryParams,omitempty"`
+	Headers       [][]string `json:"headers,omitempty"`
+	DatasourceUid string     `json:"datasourceUid"`
+}
+
+// NewInfinityOptions creates a new InfinityOptions object.
+func NewInfinityOptions() *InfinityOptions {
+	return &InfinityOptions{}
+}
+
+// UnmarshalJSONStrict implements a custom JSON unmarshalling logic to decode `InfinityOptions` from JSON.
+// Note: the unmarshalling done by this function is strict. It will fail over required fields being absent from the input, fields having an incorrect type, unexpected fields being present, …
+func (resource *InfinityOptions) UnmarshalJSONStrict(raw []byte) error {
+	if raw == nil {
+		return nil
+	}
+	var errs cog.BuildErrors
+
+	fields := make(map[string]json.RawMessage)
+	if err := json.Unmarshal(raw, &fields); err != nil {
+		return err
+	}
+	// Field "method"
+	if fields["method"] != nil {
+		if string(fields["method"]) != "null" {
+			if err := json.Unmarshal(fields["method"], &resource.Method); err != nil {
+				errs = append(errs, cog.MakeBuildErrors("method", err)...)
+			}
+		} else {
+			errs = append(errs, cog.MakeBuildErrors("method", errors.New("required field is null"))...)
+
+		}
+		delete(fields, "method")
+	} else {
+		errs = append(errs, cog.MakeBuildErrors("method", errors.New("required field is missing from input"))...)
+	}
+	// Field "url"
+	if fields["url"] != nil {
+		if string(fields["url"]) != "null" {
+			if err := json.Unmarshal(fields["url"], &resource.Url); err != nil {
+				errs = append(errs, cog.MakeBuildErrors("url", err)...)
+			}
+		} else {
+			errs = append(errs, cog.MakeBuildErrors("url", errors.New("required field is null"))...)
+
+		}
+		delete(fields, "url")
+	} else {
+		errs = append(errs, cog.MakeBuildErrors("url", errors.New("required field is missing from input"))...)
+	}
+	// Field "body"
+	if fields["body"] != nil {
+		if string(fields["body"]) != "null" {
+			if err := json.Unmarshal(fields["body"], &resource.Body); err != nil {
+				errs = append(errs, cog.MakeBuildErrors("body", err)...)
+			}
+
+		}
+		delete(fields, "body")
+
+	}
+	// Field "queryParams"
+	if fields["queryParams"] != nil {
+		if string(fields["queryParams"]) != "null" {
+
+			if err := json.Unmarshal(fields["queryParams"], &resource.QueryParams); err != nil {
+				errs = append(errs, cog.MakeBuildErrors("queryParams", err)...)
+			}
+
+		}
+		delete(fields, "queryParams")
+
+	}
+	// Field "headers"
+	if fields["headers"] != nil {
+		if string(fields["headers"]) != "null" {
+
+			if err := json.Unmarshal(fields["headers"], &resource.Headers); err != nil {
+				errs = append(errs, cog.MakeBuildErrors("headers", err)...)
+			}
+
+		}
+		delete(fields, "headers")
+
+	}
+	// Field "datasourceUid"
+	if fields["datasourceUid"] != nil {
+		if string(fields["datasourceUid"]) != "null" {
+			if err := json.Unmarshal(fields["datasourceUid"], &resource.DatasourceUid); err != nil {
+				errs = append(errs, cog.MakeBuildErrors("datasourceUid", err)...)
+			}
+		} else {
+			errs = append(errs, cog.MakeBuildErrors("datasourceUid", errors.New("required field is null"))...)
+
+		}
+		delete(fields, "datasourceUid")
+	} else {
+		errs = append(errs, cog.MakeBuildErrors("datasourceUid", errors.New("required field is missing from input"))...)
+	}
+
+	for field := range fields {
+		errs = append(errs, cog.MakeBuildErrors("InfinityOptions", fmt.Errorf("unexpected field '%s'", field))...)
+	}
+
+	if len(errs) == 0 {
+		return nil
+	}
+
+	return errs
+}
+
+// Equals tests the equality of two `InfinityOptions` objects.
+func (resource InfinityOptions) Equals(other InfinityOptions) bool {
+	if resource.Method != other.Method {
+		return false
+	}
+	if resource.Url != other.Url {
+		return false
+	}
+	if resource.Body == nil && other.Body != nil || resource.Body != nil && other.Body == nil {
+		return false
+	}
+
+	if resource.Body != nil {
+		if *resource.Body != *other.Body {
+			return false
+		}
+	}
+
+	if len(resource.QueryParams) != len(other.QueryParams) {
+		return false
+	}
+
+	for i1 := range resource.QueryParams {
+
+		if len(resource.QueryParams[i1]) != len(other.QueryParams[i1]) {
+			return false
+		}
+
+		for i2 := range resource.QueryParams[i1] {
+			if resource.QueryParams[i1][i2] != other.QueryParams[i1][i2] {
+				return false
+			}
+		}
+	}
+
+	if len(resource.Headers) != len(other.Headers) {
+		return false
+	}
+
+	for i1 := range resource.Headers {
+
+		if len(resource.Headers[i1]) != len(other.Headers[i1]) {
+			return false
+		}
+
+		for i2 := range resource.Headers[i1] {
+			if resource.Headers[i1][i2] != other.Headers[i1][i2] {
+				return false
+			}
+		}
+	}
+	if resource.DatasourceUid != other.DatasourceUid {
+		return false
+	}
+
+	return true
+}
+
+// Validate checks all the validation constraints that may be defined on `InfinityOptions` fields for violations and returns them.
+func (resource InfinityOptions) Validate() error {
+	return nil
+}
+
+type ActionVariable struct {
+	Key  string             `json:"key"`
+	Name string             `json:"name"`
+	Type ActionVariableType `json:"type"`
+}
+
+// NewActionVariable creates a new ActionVariable object.
+func NewActionVariable() *ActionVariable {
+	return &ActionVariable{
+		Type: ActionVariableTypeString,
+	}
+}
+
+// UnmarshalJSONStrict implements a custom JSON unmarshalling logic to decode `ActionVariable` from JSON.
+// Note: the unmarshalling done by this function is strict. It will fail over required fields being absent from the input, fields having an incorrect type, unexpected fields being present, …
+func (resource *ActionVariable) UnmarshalJSONStrict(raw []byte) error {
+	if raw == nil {
+		return nil
+	}
+	var errs cog.BuildErrors
+
+	fields := make(map[string]json.RawMessage)
+	if err := json.Unmarshal(raw, &fields); err != nil {
+		return err
+	}
+	// Field "key"
+	if fields["key"] != nil {
+		if string(fields["key"]) != "null" {
+			if err := json.Unmarshal(fields["key"], &resource.Key); err != nil {
+				errs = append(errs, cog.MakeBuildErrors("key", err)...)
+			}
+		} else {
+			errs = append(errs, cog.MakeBuildErrors("key", errors.New("required field is null"))...)
+
+		}
+		delete(fields, "key")
+	} else {
+		errs = append(errs, cog.MakeBuildErrors("key", errors.New("required field is missing from input"))...)
+	}
+	// Field "name"
+	if fields["name"] != nil {
+		if string(fields["name"]) != "null" {
+			if err := json.Unmarshal(fields["name"], &resource.Name); err != nil {
+				errs = append(errs, cog.MakeBuildErrors("name", err)...)
+			}
+		} else {
+			errs = append(errs, cog.MakeBuildErrors("name", errors.New("required field is null"))...)
+
+		}
+		delete(fields, "name")
+	} else {
+		errs = append(errs, cog.MakeBuildErrors("name", errors.New("required field is missing from input"))...)
+	}
+	// Field "type"
+	if fields["type"] != nil {
+		if string(fields["type"]) != "null" {
+			if err := json.Unmarshal(fields["type"], &resource.Type); err != nil {
+				errs = append(errs, cog.MakeBuildErrors("type", err)...)
+			}
+		} else {
+			errs = append(errs, cog.MakeBuildErrors("type", errors.New("required field is null"))...)
+
+		}
+		delete(fields, "type")
+	} else {
+		errs = append(errs, cog.MakeBuildErrors("type", errors.New("required field is missing from input"))...)
+	}
+
+	for field := range fields {
+		errs = append(errs, cog.MakeBuildErrors("ActionVariable", fmt.Errorf("unexpected field '%s'", field))...)
+	}
+
+	if len(errs) == 0 {
+		return nil
+	}
+
+	return errs
+}
+
+// Equals tests the equality of two `ActionVariable` objects.
+func (resource ActionVariable) Equals(other ActionVariable) bool {
+	if resource.Key != other.Key {
+		return false
+	}
+	if resource.Name != other.Name {
+		return false
+	}
+	if resource.Type != other.Type {
+		return false
+	}
+
+	return true
+}
+
+// Validate checks all the validation constraints that may be defined on `ActionVariable` fields for violations and returns them.
+func (resource ActionVariable) Validate() error {
+	var errs cog.BuildErrors
+	if resource.Type != "string" {
+		errs = append(errs, cog.MakeBuildErrors("type", errors.New("must be string"))...)
+	}
+
+	if len(errs) == 0 {
+		return nil
+	}
+
+	return errs
+}
+
+// Action variable type
+type ActionVariableType string
+
+const (
+	ActionVariableTypeString ActionVariableType = "string"
+)
+
 type DynamicConfigValue struct {
 	Id    string `json:"id"`
 	Value any    `json:"value,omitempty"`
@@ -4539,6 +6218,10 @@ type VariableModel struct {
 	// Optional field, if you want to extract part of a series name or metric node segment.
 	// Named capture groups can be used to separate the display text and value.
 	Regex *string `json:"regex,omitempty"`
+	// Additional static options for query variable
+	StaticOptions []VariableOption `json:"staticOptions,omitempty"`
+	// Ordering of static options in relation to options returned from data source for query variable
+	StaticOptionsOrder *VariableModelStaticOptionsOrder `json:"staticOptionsOrder,omitempty"`
 	// Dynamically calculates interval by dividing time range by the count specified.
 	Auto *bool `json:"auto,omitempty"`
 	// The minimum threshold below which the step count intervals will not divide the time.
@@ -4785,6 +6468,40 @@ func (resource *VariableModel) UnmarshalJSONStrict(raw []byte) error {
 		delete(fields, "regex")
 
 	}
+	// Field "staticOptions"
+	if fields["staticOptions"] != nil {
+		if string(fields["staticOptions"]) != "null" {
+
+			partialArray := []json.RawMessage{}
+			if err := json.Unmarshal(fields["staticOptions"], &partialArray); err != nil {
+				return err
+			}
+
+			for i1 := range partialArray {
+				var result1 VariableOption
+
+				result1 = VariableOption{}
+				if err := result1.UnmarshalJSONStrict(partialArray[i1]); err != nil {
+					errs = append(errs, cog.MakeBuildErrors("staticOptions["+strconv.Itoa(i1)+"]", err)...)
+				}
+				resource.StaticOptions = append(resource.StaticOptions, result1)
+			}
+
+		}
+		delete(fields, "staticOptions")
+
+	}
+	// Field "staticOptionsOrder"
+	if fields["staticOptionsOrder"] != nil {
+		if string(fields["staticOptionsOrder"]) != "null" {
+			if err := json.Unmarshal(fields["staticOptionsOrder"], &resource.StaticOptionsOrder); err != nil {
+				errs = append(errs, cog.MakeBuildErrors("staticOptionsOrder", err)...)
+			}
+
+		}
+		delete(fields, "staticOptionsOrder")
+
+	}
 	// Field "auto"
 	if fields["auto"] != nil {
 		if string(fields["auto"]) != "null" {
@@ -4985,6 +6702,25 @@ func (resource VariableModel) Equals(other VariableModel) bool {
 			return false
 		}
 	}
+
+	if len(resource.StaticOptions) != len(other.StaticOptions) {
+		return false
+	}
+
+	for i1 := range resource.StaticOptions {
+		if !resource.StaticOptions[i1].Equals(other.StaticOptions[i1]) {
+			return false
+		}
+	}
+	if resource.StaticOptionsOrder == nil && other.StaticOptionsOrder != nil || resource.StaticOptionsOrder != nil && other.StaticOptionsOrder == nil {
+		return false
+	}
+
+	if resource.StaticOptionsOrder != nil {
+		if *resource.StaticOptionsOrder != *other.StaticOptionsOrder {
+			return false
+		}
+	}
 	if resource.Auto == nil && other.Auto != nil || resource.Auto != nil && other.Auto == nil {
 		return false
 	}
@@ -5049,6 +6785,12 @@ func (resource VariableModel) Validate() error {
 			errs = append(errs, cog.MakeBuildErrors("options["+strconv.Itoa(i1)+"]", err)...)
 		}
 	}
+
+	for i1 := range resource.StaticOptions {
+		if err := resource.StaticOptions[i1].Validate(); err != nil {
+			errs = append(errs, cog.MakeBuildErrors("staticOptions["+strconv.Itoa(i1)+"]", err)...)
+		}
+	}
 	if resource.AutoCount != nil {
 		if !(*resource.AutoCount > 0x0) {
 			errs = append(errs, cog.MakeBuildErrors(
@@ -5074,6 +6816,7 @@ func (resource VariableModel) Validate() error {
 // `textbox`: Display a free text input field with an optional default value.
 // `custom`: Define the variable options manually using a comma-separated list.
 // `system`: Variables defined by Grafana. See: https://grafana.com/docs/grafana/latest/dashboards/variables/add-template-variables/#global-variables
+// `switch`: Boolean variables rendered as a switch
 type VariableType string
 
 const (
@@ -5087,16 +6830,18 @@ const (
 	VariableTypeCustom     VariableType = "custom"
 	VariableTypeSystem     VariableType = "system"
 	VariableTypeSnapshot   VariableType = "snapshot"
+	VariableTypeSwitch     VariableType = "switch"
 )
 
 // Determine if the variable shows on dashboard
-// Accepted values are 0 (show label and value), 1 (show value only), 2 (show nothing).
+// Accepted values are 0 (show label and value), 1 (show value only), 2 (show nothing), 3 (show under the controls dropdown menu).
 type VariableHide int64
 
 const (
-	VariableHideDontHide     VariableHide = 0
-	VariableHideHideLabel    VariableHide = 1
-	VariableHideHideVariable VariableHide = 2
+	VariableHideDontHide       VariableHide = 0
+	VariableHideHideLabel      VariableHide = 1
+	VariableHideHideVariable   VariableHide = 2
+	VariableHideInControlsMenu VariableHide = 3
 )
 
 // Option to be selected in a variable.
@@ -5375,15 +7120,18 @@ type AnnotationQuery struct {
 	Type *string `json:"type,omitempty"`
 	// Set to 1 for the standard annotation query all dashboards have by default.
 	BuiltIn *float64 `json:"builtIn,omitempty"`
-	Expr    *string  `json:"expr,omitempty"`
+	// Placement can be used to display the annotation query somewhere else on the dashboard other than the default location.
+	Placement *AnnotationQueryPlacement `json:"placement,omitempty"`
+	Expr      *string                   `json:"expr,omitempty"`
 }
 
 // NewAnnotationQuery creates a new AnnotationQuery object.
 func NewAnnotationQuery() *AnnotationQuery {
 	return &AnnotationQuery{
-		Enable:  true,
-		Hide:    (func(input bool) *bool { return &input })(false),
-		BuiltIn: (func(input float64) *float64 { return &input })(0),
+		Enable:    true,
+		Hide:      (func(input bool) *bool { return &input })(false),
+		BuiltIn:   (func(input float64) *float64 { return &input })(0),
+		Placement: (func(input AnnotationQueryPlacement) *AnnotationQueryPlacement { return &input })(AnnotationQueryPlacementInControlsMenu),
 	}
 }
 
@@ -5442,6 +7190,12 @@ func (resource *AnnotationQuery) UnmarshalJSON(raw []byte) error {
 	if fields["builtIn"] != nil {
 		if err := json.Unmarshal(fields["builtIn"], &resource.BuiltIn); err != nil {
 			return fmt.Errorf("error decoding field 'builtIn': %w", err)
+		}
+	}
+
+	if fields["placement"] != nil {
+		if err := json.Unmarshal(fields["placement"], &resource.Placement); err != nil {
+			return fmt.Errorf("error decoding field 'placement': %w", err)
 		}
 	}
 
@@ -5595,6 +7349,17 @@ func (resource *AnnotationQuery) UnmarshalJSONStrict(raw []byte) error {
 		delete(fields, "builtIn")
 
 	}
+	// Field "placement"
+	if fields["placement"] != nil {
+		if string(fields["placement"]) != "null" {
+			if err := json.Unmarshal(fields["placement"], &resource.Placement); err != nil {
+				errs = append(errs, cog.MakeBuildErrors("placement", err)...)
+			}
+
+		}
+		delete(fields, "placement")
+
+	}
 	// Field "expr"
 	if fields["expr"] != nil {
 		if string(fields["expr"]) != "null" {
@@ -5683,6 +7448,15 @@ func (resource AnnotationQuery) Equals(other AnnotationQuery) bool {
 			return false
 		}
 	}
+	if resource.Placement == nil && other.Placement != nil || resource.Placement != nil && other.Placement == nil {
+		return false
+	}
+
+	if resource.Placement != nil {
+		if *resource.Placement != *other.Placement {
+			return false
+		}
+	}
 	if resource.Expr == nil && other.Expr != nil || resource.Expr != nil && other.Expr == nil {
 		return false
 	}
@@ -5712,6 +7486,11 @@ func (resource AnnotationQuery) Validate() error {
 	if resource.Target != nil {
 		if err := resource.Target.Validate(); err != nil {
 			errs = append(errs, cog.MakeBuildErrors("target", err)...)
+		}
+	}
+	if resource.Placement != nil {
+		if *resource.Placement != "inControlsMenu" {
+			errs = append(errs, cog.MakeBuildErrors("placement", errors.New("must be inControlsMenu"))...)
 		}
 	}
 
@@ -5951,6 +7730,14 @@ func (resource AnnotationTarget) Equals(other AnnotationTarget) bool {
 func (resource AnnotationTarget) Validate() error {
 	return nil
 }
+
+// Annotation Query placement. Defines where the annotation query should be displayed.
+// - "inControlsMenu" renders the annotation query in the dashboard controls dropdown menu
+type AnnotationQueryPlacement string
+
+const (
+	AnnotationQueryPlacementInControlsMenu AnnotationQueryPlacement = "inControlsMenu"
+)
 
 // A dashboard snapshot shares an interactive dashboard publicly.
 // It is a read-only version of a dashboard, and is not editable.
@@ -6255,841 +8042,6 @@ func (resource Snapshot) Validate() error {
 	if resource.Dashboard != nil {
 		if err := resource.Dashboard.Validate(); err != nil {
 			errs = append(errs, cog.MakeBuildErrors("dashboard", err)...)
-		}
-	}
-
-	if len(errs) == 0 {
-		return nil
-	}
-
-	return errs
-}
-
-type AnnotationActions struct {
-	CanAdd    *bool `json:"canAdd,omitempty"`
-	CanDelete *bool `json:"canDelete,omitempty"`
-	CanEdit   *bool `json:"canEdit,omitempty"`
-}
-
-// NewAnnotationActions creates a new AnnotationActions object.
-func NewAnnotationActions() *AnnotationActions {
-	return &AnnotationActions{}
-}
-
-// UnmarshalJSONStrict implements a custom JSON unmarshalling logic to decode `AnnotationActions` from JSON.
-// Note: the unmarshalling done by this function is strict. It will fail over required fields being absent from the input, fields having an incorrect type, unexpected fields being present, …
-func (resource *AnnotationActions) UnmarshalJSONStrict(raw []byte) error {
-	if raw == nil {
-		return nil
-	}
-	var errs cog.BuildErrors
-
-	fields := make(map[string]json.RawMessage)
-	if err := json.Unmarshal(raw, &fields); err != nil {
-		return err
-	}
-	// Field "canAdd"
-	if fields["canAdd"] != nil {
-		if string(fields["canAdd"]) != "null" {
-			if err := json.Unmarshal(fields["canAdd"], &resource.CanAdd); err != nil {
-				errs = append(errs, cog.MakeBuildErrors("canAdd", err)...)
-			}
-
-		}
-		delete(fields, "canAdd")
-
-	}
-	// Field "canDelete"
-	if fields["canDelete"] != nil {
-		if string(fields["canDelete"]) != "null" {
-			if err := json.Unmarshal(fields["canDelete"], &resource.CanDelete); err != nil {
-				errs = append(errs, cog.MakeBuildErrors("canDelete", err)...)
-			}
-
-		}
-		delete(fields, "canDelete")
-
-	}
-	// Field "canEdit"
-	if fields["canEdit"] != nil {
-		if string(fields["canEdit"]) != "null" {
-			if err := json.Unmarshal(fields["canEdit"], &resource.CanEdit); err != nil {
-				errs = append(errs, cog.MakeBuildErrors("canEdit", err)...)
-			}
-
-		}
-		delete(fields, "canEdit")
-
-	}
-
-	for field := range fields {
-		errs = append(errs, cog.MakeBuildErrors("AnnotationActions", fmt.Errorf("unexpected field '%s'", field))...)
-	}
-
-	if len(errs) == 0 {
-		return nil
-	}
-
-	return errs
-}
-
-// Equals tests the equality of two `AnnotationActions` objects.
-func (resource AnnotationActions) Equals(other AnnotationActions) bool {
-	if resource.CanAdd == nil && other.CanAdd != nil || resource.CanAdd != nil && other.CanAdd == nil {
-		return false
-	}
-
-	if resource.CanAdd != nil {
-		if *resource.CanAdd != *other.CanAdd {
-			return false
-		}
-	}
-	if resource.CanDelete == nil && other.CanDelete != nil || resource.CanDelete != nil && other.CanDelete == nil {
-		return false
-	}
-
-	if resource.CanDelete != nil {
-		if *resource.CanDelete != *other.CanDelete {
-			return false
-		}
-	}
-	if resource.CanEdit == nil && other.CanEdit != nil || resource.CanEdit != nil && other.CanEdit == nil {
-		return false
-	}
-
-	if resource.CanEdit != nil {
-		if *resource.CanEdit != *other.CanEdit {
-			return false
-		}
-	}
-
-	return true
-}
-
-// Validate checks all the validation constraints that may be defined on `AnnotationActions` fields for violations and returns them.
-func (resource AnnotationActions) Validate() error {
-	return nil
-}
-
-type AnnotationPermission struct {
-	Dashboard    *AnnotationActions `json:"dashboard,omitempty"`
-	Organization *AnnotationActions `json:"organization,omitempty"`
-}
-
-// NewAnnotationPermission creates a new AnnotationPermission object.
-func NewAnnotationPermission() *AnnotationPermission {
-	return &AnnotationPermission{}
-}
-
-// UnmarshalJSONStrict implements a custom JSON unmarshalling logic to decode `AnnotationPermission` from JSON.
-// Note: the unmarshalling done by this function is strict. It will fail over required fields being absent from the input, fields having an incorrect type, unexpected fields being present, …
-func (resource *AnnotationPermission) UnmarshalJSONStrict(raw []byte) error {
-	if raw == nil {
-		return nil
-	}
-	var errs cog.BuildErrors
-
-	fields := make(map[string]json.RawMessage)
-	if err := json.Unmarshal(raw, &fields); err != nil {
-		return err
-	}
-	// Field "dashboard"
-	if fields["dashboard"] != nil {
-		if string(fields["dashboard"]) != "null" {
-
-			resource.Dashboard = &AnnotationActions{}
-			if err := resource.Dashboard.UnmarshalJSONStrict(fields["dashboard"]); err != nil {
-				errs = append(errs, cog.MakeBuildErrors("dashboard", err)...)
-			}
-
-		}
-		delete(fields, "dashboard")
-
-	}
-	// Field "organization"
-	if fields["organization"] != nil {
-		if string(fields["organization"]) != "null" {
-
-			resource.Organization = &AnnotationActions{}
-			if err := resource.Organization.UnmarshalJSONStrict(fields["organization"]); err != nil {
-				errs = append(errs, cog.MakeBuildErrors("organization", err)...)
-			}
-
-		}
-		delete(fields, "organization")
-
-	}
-
-	for field := range fields {
-		errs = append(errs, cog.MakeBuildErrors("AnnotationPermission", fmt.Errorf("unexpected field '%s'", field))...)
-	}
-
-	if len(errs) == 0 {
-		return nil
-	}
-
-	return errs
-}
-
-// Equals tests the equality of two `AnnotationPermission` objects.
-func (resource AnnotationPermission) Equals(other AnnotationPermission) bool {
-	if resource.Dashboard == nil && other.Dashboard != nil || resource.Dashboard != nil && other.Dashboard == nil {
-		return false
-	}
-
-	if resource.Dashboard != nil {
-		if !resource.Dashboard.Equals(*other.Dashboard) {
-			return false
-		}
-	}
-	if resource.Organization == nil && other.Organization != nil || resource.Organization != nil && other.Organization == nil {
-		return false
-	}
-
-	if resource.Organization != nil {
-		if !resource.Organization.Equals(*other.Organization) {
-			return false
-		}
-	}
-
-	return true
-}
-
-// Validate checks all the validation constraints that may be defined on `AnnotationPermission` fields for violations and returns them.
-func (resource AnnotationPermission) Validate() error {
-	var errs cog.BuildErrors
-	if resource.Dashboard != nil {
-		if err := resource.Dashboard.Validate(); err != nil {
-			errs = append(errs, cog.MakeBuildErrors("dashboard", err)...)
-		}
-	}
-	if resource.Organization != nil {
-		if err := resource.Organization.Validate(); err != nil {
-			errs = append(errs, cog.MakeBuildErrors("organization", err)...)
-		}
-	}
-
-	if len(errs) == 0 {
-		return nil
-	}
-
-	return errs
-}
-
-type DashboardMeta struct {
-	AnnotationsPermissions *AnnotationPermission `json:"annotationsPermissions,omitempty"`
-	ApiVersion             *string               `json:"apiVersion,omitempty"`
-	CanAdmin               *bool                 `json:"canAdmin,omitempty"`
-	CanDelete              *bool                 `json:"canDelete,omitempty"`
-	CanEdit                *bool                 `json:"canEdit,omitempty"`
-	CanSave                *bool                 `json:"canSave,omitempty"`
-	CanStar                *bool                 `json:"canStar,omitempty"`
-	Created                *time.Time            `json:"created,omitempty"`
-	CreatedBy              *string               `json:"createdBy,omitempty"`
-	Expires                *time.Time            `json:"expires,omitempty"`
-	// Deprecated: use FolderUID instead
-	FolderId               *int64     `json:"folderId,omitempty"`
-	FolderTitle            *string    `json:"folderTitle,omitempty"`
-	FolderUid              *string    `json:"folderUid,omitempty"`
-	FolderUrl              *string    `json:"folderUrl,omitempty"`
-	HasAcl                 *bool      `json:"hasAcl,omitempty"`
-	IsFolder               *bool      `json:"isFolder,omitempty"`
-	IsSnapshot             *bool      `json:"isSnapshot,omitempty"`
-	IsStarred              *bool      `json:"isStarred,omitempty"`
-	Provisioned            *bool      `json:"provisioned,omitempty"`
-	ProvisionedExternalId  *string    `json:"provisionedExternalId,omitempty"`
-	PublicDashboardEnabled *bool      `json:"publicDashboardEnabled,omitempty"`
-	Slug                   *string    `json:"slug,omitempty"`
-	Type                   *string    `json:"type,omitempty"`
-	Updated                *time.Time `json:"updated,omitempty"`
-	UpdatedBy              *string    `json:"updatedBy,omitempty"`
-	Url                    *string    `json:"url,omitempty"`
-	Version                *int64     `json:"version,omitempty"`
-}
-
-// NewDashboardMeta creates a new DashboardMeta object.
-func NewDashboardMeta() *DashboardMeta {
-	return &DashboardMeta{}
-}
-
-// UnmarshalJSONStrict implements a custom JSON unmarshalling logic to decode `DashboardMeta` from JSON.
-// Note: the unmarshalling done by this function is strict. It will fail over required fields being absent from the input, fields having an incorrect type, unexpected fields being present, …
-func (resource *DashboardMeta) UnmarshalJSONStrict(raw []byte) error {
-	if raw == nil {
-		return nil
-	}
-	var errs cog.BuildErrors
-
-	fields := make(map[string]json.RawMessage)
-	if err := json.Unmarshal(raw, &fields); err != nil {
-		return err
-	}
-	// Field "annotationsPermissions"
-	if fields["annotationsPermissions"] != nil {
-		if string(fields["annotationsPermissions"]) != "null" {
-
-			resource.AnnotationsPermissions = &AnnotationPermission{}
-			if err := resource.AnnotationsPermissions.UnmarshalJSONStrict(fields["annotationsPermissions"]); err != nil {
-				errs = append(errs, cog.MakeBuildErrors("annotationsPermissions", err)...)
-			}
-
-		}
-		delete(fields, "annotationsPermissions")
-
-	}
-	// Field "apiVersion"
-	if fields["apiVersion"] != nil {
-		if string(fields["apiVersion"]) != "null" {
-			if err := json.Unmarshal(fields["apiVersion"], &resource.ApiVersion); err != nil {
-				errs = append(errs, cog.MakeBuildErrors("apiVersion", err)...)
-			}
-
-		}
-		delete(fields, "apiVersion")
-
-	}
-	// Field "canAdmin"
-	if fields["canAdmin"] != nil {
-		if string(fields["canAdmin"]) != "null" {
-			if err := json.Unmarshal(fields["canAdmin"], &resource.CanAdmin); err != nil {
-				errs = append(errs, cog.MakeBuildErrors("canAdmin", err)...)
-			}
-
-		}
-		delete(fields, "canAdmin")
-
-	}
-	// Field "canDelete"
-	if fields["canDelete"] != nil {
-		if string(fields["canDelete"]) != "null" {
-			if err := json.Unmarshal(fields["canDelete"], &resource.CanDelete); err != nil {
-				errs = append(errs, cog.MakeBuildErrors("canDelete", err)...)
-			}
-
-		}
-		delete(fields, "canDelete")
-
-	}
-	// Field "canEdit"
-	if fields["canEdit"] != nil {
-		if string(fields["canEdit"]) != "null" {
-			if err := json.Unmarshal(fields["canEdit"], &resource.CanEdit); err != nil {
-				errs = append(errs, cog.MakeBuildErrors("canEdit", err)...)
-			}
-
-		}
-		delete(fields, "canEdit")
-
-	}
-	// Field "canSave"
-	if fields["canSave"] != nil {
-		if string(fields["canSave"]) != "null" {
-			if err := json.Unmarshal(fields["canSave"], &resource.CanSave); err != nil {
-				errs = append(errs, cog.MakeBuildErrors("canSave", err)...)
-			}
-
-		}
-		delete(fields, "canSave")
-
-	}
-	// Field "canStar"
-	if fields["canStar"] != nil {
-		if string(fields["canStar"]) != "null" {
-			if err := json.Unmarshal(fields["canStar"], &resource.CanStar); err != nil {
-				errs = append(errs, cog.MakeBuildErrors("canStar", err)...)
-			}
-
-		}
-		delete(fields, "canStar")
-
-	}
-	// Field "created"
-	if fields["created"] != nil {
-		if string(fields["created"]) != "null" {
-			if err := json.Unmarshal(fields["created"], &resource.Created); err != nil {
-				errs = append(errs, cog.MakeBuildErrors("created", err)...)
-			}
-
-		}
-		delete(fields, "created")
-
-	}
-	// Field "createdBy"
-	if fields["createdBy"] != nil {
-		if string(fields["createdBy"]) != "null" {
-			if err := json.Unmarshal(fields["createdBy"], &resource.CreatedBy); err != nil {
-				errs = append(errs, cog.MakeBuildErrors("createdBy", err)...)
-			}
-
-		}
-		delete(fields, "createdBy")
-
-	}
-	// Field "expires"
-	if fields["expires"] != nil {
-		if string(fields["expires"]) != "null" {
-			if err := json.Unmarshal(fields["expires"], &resource.Expires); err != nil {
-				errs = append(errs, cog.MakeBuildErrors("expires", err)...)
-			}
-
-		}
-		delete(fields, "expires")
-
-	}
-	// Field "folderId"
-	if fields["folderId"] != nil {
-		if string(fields["folderId"]) != "null" {
-			if err := json.Unmarshal(fields["folderId"], &resource.FolderId); err != nil {
-				errs = append(errs, cog.MakeBuildErrors("folderId", err)...)
-			}
-
-		}
-		delete(fields, "folderId")
-
-	}
-	// Field "folderTitle"
-	if fields["folderTitle"] != nil {
-		if string(fields["folderTitle"]) != "null" {
-			if err := json.Unmarshal(fields["folderTitle"], &resource.FolderTitle); err != nil {
-				errs = append(errs, cog.MakeBuildErrors("folderTitle", err)...)
-			}
-
-		}
-		delete(fields, "folderTitle")
-
-	}
-	// Field "folderUid"
-	if fields["folderUid"] != nil {
-		if string(fields["folderUid"]) != "null" {
-			if err := json.Unmarshal(fields["folderUid"], &resource.FolderUid); err != nil {
-				errs = append(errs, cog.MakeBuildErrors("folderUid", err)...)
-			}
-
-		}
-		delete(fields, "folderUid")
-
-	}
-	// Field "folderUrl"
-	if fields["folderUrl"] != nil {
-		if string(fields["folderUrl"]) != "null" {
-			if err := json.Unmarshal(fields["folderUrl"], &resource.FolderUrl); err != nil {
-				errs = append(errs, cog.MakeBuildErrors("folderUrl", err)...)
-			}
-
-		}
-		delete(fields, "folderUrl")
-
-	}
-	// Field "hasAcl"
-	if fields["hasAcl"] != nil {
-		if string(fields["hasAcl"]) != "null" {
-			if err := json.Unmarshal(fields["hasAcl"], &resource.HasAcl); err != nil {
-				errs = append(errs, cog.MakeBuildErrors("hasAcl", err)...)
-			}
-
-		}
-		delete(fields, "hasAcl")
-
-	}
-	// Field "isFolder"
-	if fields["isFolder"] != nil {
-		if string(fields["isFolder"]) != "null" {
-			if err := json.Unmarshal(fields["isFolder"], &resource.IsFolder); err != nil {
-				errs = append(errs, cog.MakeBuildErrors("isFolder", err)...)
-			}
-
-		}
-		delete(fields, "isFolder")
-
-	}
-	// Field "isSnapshot"
-	if fields["isSnapshot"] != nil {
-		if string(fields["isSnapshot"]) != "null" {
-			if err := json.Unmarshal(fields["isSnapshot"], &resource.IsSnapshot); err != nil {
-				errs = append(errs, cog.MakeBuildErrors("isSnapshot", err)...)
-			}
-
-		}
-		delete(fields, "isSnapshot")
-
-	}
-	// Field "isStarred"
-	if fields["isStarred"] != nil {
-		if string(fields["isStarred"]) != "null" {
-			if err := json.Unmarshal(fields["isStarred"], &resource.IsStarred); err != nil {
-				errs = append(errs, cog.MakeBuildErrors("isStarred", err)...)
-			}
-
-		}
-		delete(fields, "isStarred")
-
-	}
-	// Field "provisioned"
-	if fields["provisioned"] != nil {
-		if string(fields["provisioned"]) != "null" {
-			if err := json.Unmarshal(fields["provisioned"], &resource.Provisioned); err != nil {
-				errs = append(errs, cog.MakeBuildErrors("provisioned", err)...)
-			}
-
-		}
-		delete(fields, "provisioned")
-
-	}
-	// Field "provisionedExternalId"
-	if fields["provisionedExternalId"] != nil {
-		if string(fields["provisionedExternalId"]) != "null" {
-			if err := json.Unmarshal(fields["provisionedExternalId"], &resource.ProvisionedExternalId); err != nil {
-				errs = append(errs, cog.MakeBuildErrors("provisionedExternalId", err)...)
-			}
-
-		}
-		delete(fields, "provisionedExternalId")
-
-	}
-	// Field "publicDashboardEnabled"
-	if fields["publicDashboardEnabled"] != nil {
-		if string(fields["publicDashboardEnabled"]) != "null" {
-			if err := json.Unmarshal(fields["publicDashboardEnabled"], &resource.PublicDashboardEnabled); err != nil {
-				errs = append(errs, cog.MakeBuildErrors("publicDashboardEnabled", err)...)
-			}
-
-		}
-		delete(fields, "publicDashboardEnabled")
-
-	}
-	// Field "slug"
-	if fields["slug"] != nil {
-		if string(fields["slug"]) != "null" {
-			if err := json.Unmarshal(fields["slug"], &resource.Slug); err != nil {
-				errs = append(errs, cog.MakeBuildErrors("slug", err)...)
-			}
-
-		}
-		delete(fields, "slug")
-
-	}
-	// Field "type"
-	if fields["type"] != nil {
-		if string(fields["type"]) != "null" {
-			if err := json.Unmarshal(fields["type"], &resource.Type); err != nil {
-				errs = append(errs, cog.MakeBuildErrors("type", err)...)
-			}
-
-		}
-		delete(fields, "type")
-
-	}
-	// Field "updated"
-	if fields["updated"] != nil {
-		if string(fields["updated"]) != "null" {
-			if err := json.Unmarshal(fields["updated"], &resource.Updated); err != nil {
-				errs = append(errs, cog.MakeBuildErrors("updated", err)...)
-			}
-
-		}
-		delete(fields, "updated")
-
-	}
-	// Field "updatedBy"
-	if fields["updatedBy"] != nil {
-		if string(fields["updatedBy"]) != "null" {
-			if err := json.Unmarshal(fields["updatedBy"], &resource.UpdatedBy); err != nil {
-				errs = append(errs, cog.MakeBuildErrors("updatedBy", err)...)
-			}
-
-		}
-		delete(fields, "updatedBy")
-
-	}
-	// Field "url"
-	if fields["url"] != nil {
-		if string(fields["url"]) != "null" {
-			if err := json.Unmarshal(fields["url"], &resource.Url); err != nil {
-				errs = append(errs, cog.MakeBuildErrors("url", err)...)
-			}
-
-		}
-		delete(fields, "url")
-
-	}
-	// Field "version"
-	if fields["version"] != nil {
-		if string(fields["version"]) != "null" {
-			if err := json.Unmarshal(fields["version"], &resource.Version); err != nil {
-				errs = append(errs, cog.MakeBuildErrors("version", err)...)
-			}
-
-		}
-		delete(fields, "version")
-
-	}
-
-	for field := range fields {
-		errs = append(errs, cog.MakeBuildErrors("DashboardMeta", fmt.Errorf("unexpected field '%s'", field))...)
-	}
-
-	if len(errs) == 0 {
-		return nil
-	}
-
-	return errs
-}
-
-// Equals tests the equality of two `DashboardMeta` objects.
-func (resource DashboardMeta) Equals(other DashboardMeta) bool {
-	if resource.AnnotationsPermissions == nil && other.AnnotationsPermissions != nil || resource.AnnotationsPermissions != nil && other.AnnotationsPermissions == nil {
-		return false
-	}
-
-	if resource.AnnotationsPermissions != nil {
-		if !resource.AnnotationsPermissions.Equals(*other.AnnotationsPermissions) {
-			return false
-		}
-	}
-	if resource.ApiVersion == nil && other.ApiVersion != nil || resource.ApiVersion != nil && other.ApiVersion == nil {
-		return false
-	}
-
-	if resource.ApiVersion != nil {
-		if *resource.ApiVersion != *other.ApiVersion {
-			return false
-		}
-	}
-	if resource.CanAdmin == nil && other.CanAdmin != nil || resource.CanAdmin != nil && other.CanAdmin == nil {
-		return false
-	}
-
-	if resource.CanAdmin != nil {
-		if *resource.CanAdmin != *other.CanAdmin {
-			return false
-		}
-	}
-	if resource.CanDelete == nil && other.CanDelete != nil || resource.CanDelete != nil && other.CanDelete == nil {
-		return false
-	}
-
-	if resource.CanDelete != nil {
-		if *resource.CanDelete != *other.CanDelete {
-			return false
-		}
-	}
-	if resource.CanEdit == nil && other.CanEdit != nil || resource.CanEdit != nil && other.CanEdit == nil {
-		return false
-	}
-
-	if resource.CanEdit != nil {
-		if *resource.CanEdit != *other.CanEdit {
-			return false
-		}
-	}
-	if resource.CanSave == nil && other.CanSave != nil || resource.CanSave != nil && other.CanSave == nil {
-		return false
-	}
-
-	if resource.CanSave != nil {
-		if *resource.CanSave != *other.CanSave {
-			return false
-		}
-	}
-	if resource.CanStar == nil && other.CanStar != nil || resource.CanStar != nil && other.CanStar == nil {
-		return false
-	}
-
-	if resource.CanStar != nil {
-		if *resource.CanStar != *other.CanStar {
-			return false
-		}
-	}
-	if resource.Created == nil && other.Created != nil || resource.Created != nil && other.Created == nil {
-		return false
-	}
-
-	if resource.Created != nil {
-		if *resource.Created != *other.Created {
-			return false
-		}
-	}
-	if resource.CreatedBy == nil && other.CreatedBy != nil || resource.CreatedBy != nil && other.CreatedBy == nil {
-		return false
-	}
-
-	if resource.CreatedBy != nil {
-		if *resource.CreatedBy != *other.CreatedBy {
-			return false
-		}
-	}
-	if resource.Expires == nil && other.Expires != nil || resource.Expires != nil && other.Expires == nil {
-		return false
-	}
-
-	if resource.Expires != nil {
-		if *resource.Expires != *other.Expires {
-			return false
-		}
-	}
-	if resource.FolderId == nil && other.FolderId != nil || resource.FolderId != nil && other.FolderId == nil {
-		return false
-	}
-
-	if resource.FolderId != nil {
-		if *resource.FolderId != *other.FolderId {
-			return false
-		}
-	}
-	if resource.FolderTitle == nil && other.FolderTitle != nil || resource.FolderTitle != nil && other.FolderTitle == nil {
-		return false
-	}
-
-	if resource.FolderTitle != nil {
-		if *resource.FolderTitle != *other.FolderTitle {
-			return false
-		}
-	}
-	if resource.FolderUid == nil && other.FolderUid != nil || resource.FolderUid != nil && other.FolderUid == nil {
-		return false
-	}
-
-	if resource.FolderUid != nil {
-		if *resource.FolderUid != *other.FolderUid {
-			return false
-		}
-	}
-	if resource.FolderUrl == nil && other.FolderUrl != nil || resource.FolderUrl != nil && other.FolderUrl == nil {
-		return false
-	}
-
-	if resource.FolderUrl != nil {
-		if *resource.FolderUrl != *other.FolderUrl {
-			return false
-		}
-	}
-	if resource.HasAcl == nil && other.HasAcl != nil || resource.HasAcl != nil && other.HasAcl == nil {
-		return false
-	}
-
-	if resource.HasAcl != nil {
-		if *resource.HasAcl != *other.HasAcl {
-			return false
-		}
-	}
-	if resource.IsFolder == nil && other.IsFolder != nil || resource.IsFolder != nil && other.IsFolder == nil {
-		return false
-	}
-
-	if resource.IsFolder != nil {
-		if *resource.IsFolder != *other.IsFolder {
-			return false
-		}
-	}
-	if resource.IsSnapshot == nil && other.IsSnapshot != nil || resource.IsSnapshot != nil && other.IsSnapshot == nil {
-		return false
-	}
-
-	if resource.IsSnapshot != nil {
-		if *resource.IsSnapshot != *other.IsSnapshot {
-			return false
-		}
-	}
-	if resource.IsStarred == nil && other.IsStarred != nil || resource.IsStarred != nil && other.IsStarred == nil {
-		return false
-	}
-
-	if resource.IsStarred != nil {
-		if *resource.IsStarred != *other.IsStarred {
-			return false
-		}
-	}
-	if resource.Provisioned == nil && other.Provisioned != nil || resource.Provisioned != nil && other.Provisioned == nil {
-		return false
-	}
-
-	if resource.Provisioned != nil {
-		if *resource.Provisioned != *other.Provisioned {
-			return false
-		}
-	}
-	if resource.ProvisionedExternalId == nil && other.ProvisionedExternalId != nil || resource.ProvisionedExternalId != nil && other.ProvisionedExternalId == nil {
-		return false
-	}
-
-	if resource.ProvisionedExternalId != nil {
-		if *resource.ProvisionedExternalId != *other.ProvisionedExternalId {
-			return false
-		}
-	}
-	if resource.PublicDashboardEnabled == nil && other.PublicDashboardEnabled != nil || resource.PublicDashboardEnabled != nil && other.PublicDashboardEnabled == nil {
-		return false
-	}
-
-	if resource.PublicDashboardEnabled != nil {
-		if *resource.PublicDashboardEnabled != *other.PublicDashboardEnabled {
-			return false
-		}
-	}
-	if resource.Slug == nil && other.Slug != nil || resource.Slug != nil && other.Slug == nil {
-		return false
-	}
-
-	if resource.Slug != nil {
-		if *resource.Slug != *other.Slug {
-			return false
-		}
-	}
-	if resource.Type == nil && other.Type != nil || resource.Type != nil && other.Type == nil {
-		return false
-	}
-
-	if resource.Type != nil {
-		if *resource.Type != *other.Type {
-			return false
-		}
-	}
-	if resource.Updated == nil && other.Updated != nil || resource.Updated != nil && other.Updated == nil {
-		return false
-	}
-
-	if resource.Updated != nil {
-		if *resource.Updated != *other.Updated {
-			return false
-		}
-	}
-	if resource.UpdatedBy == nil && other.UpdatedBy != nil || resource.UpdatedBy != nil && other.UpdatedBy == nil {
-		return false
-	}
-
-	if resource.UpdatedBy != nil {
-		if *resource.UpdatedBy != *other.UpdatedBy {
-			return false
-		}
-	}
-	if resource.Url == nil && other.Url != nil || resource.Url != nil && other.Url == nil {
-		return false
-	}
-
-	if resource.Url != nil {
-		if *resource.Url != *other.Url {
-			return false
-		}
-	}
-	if resource.Version == nil && other.Version != nil || resource.Version != nil && other.Version == nil {
-		return false
-	}
-
-	if resource.Version != nil {
-		if *resource.Version != *other.Version {
-			return false
-		}
-	}
-
-	return true
-}
-
-// Validate checks all the validation constraints that may be defined on `DashboardMeta` fields for violations and returns them.
-func (resource DashboardMeta) Validate() error {
-	var errs cog.BuildErrors
-	if resource.AnnotationsPermissions != nil {
-		if err := resource.AnnotationsPermissions.Validate(); err != nil {
-			errs = append(errs, cog.MakeBuildErrors("annotationsPermissions", err)...)
 		}
 	}
 
@@ -7697,6 +8649,70 @@ func (resource DashboardSpecialValueMapOptions) Validate() error {
 	return errs
 }
 
+type DashboardActionStyle struct {
+	BackgroundColor *string `json:"backgroundColor,omitempty"`
+}
+
+// NewDashboardActionStyle creates a new DashboardActionStyle object.
+func NewDashboardActionStyle() *DashboardActionStyle {
+	return &DashboardActionStyle{}
+}
+
+// UnmarshalJSONStrict implements a custom JSON unmarshalling logic to decode `DashboardActionStyle` from JSON.
+// Note: the unmarshalling done by this function is strict. It will fail over required fields being absent from the input, fields having an incorrect type, unexpected fields being present, …
+func (resource *DashboardActionStyle) UnmarshalJSONStrict(raw []byte) error {
+	if raw == nil {
+		return nil
+	}
+	var errs cog.BuildErrors
+
+	fields := make(map[string]json.RawMessage)
+	if err := json.Unmarshal(raw, &fields); err != nil {
+		return err
+	}
+	// Field "backgroundColor"
+	if fields["backgroundColor"] != nil {
+		if string(fields["backgroundColor"]) != "null" {
+			if err := json.Unmarshal(fields["backgroundColor"], &resource.BackgroundColor); err != nil {
+				errs = append(errs, cog.MakeBuildErrors("backgroundColor", err)...)
+			}
+
+		}
+		delete(fields, "backgroundColor")
+
+	}
+
+	for field := range fields {
+		errs = append(errs, cog.MakeBuildErrors("DashboardActionStyle", fmt.Errorf("unexpected field '%s'", field))...)
+	}
+
+	if len(errs) == 0 {
+		return nil
+	}
+
+	return errs
+}
+
+// Equals tests the equality of two `DashboardActionStyle` objects.
+func (resource DashboardActionStyle) Equals(other DashboardActionStyle) bool {
+	if resource.BackgroundColor == nil && other.BackgroundColor != nil || resource.BackgroundColor != nil && other.BackgroundColor == nil {
+		return false
+	}
+
+	if resource.BackgroundColor != nil {
+		if *resource.BackgroundColor != *other.BackgroundColor {
+			return false
+		}
+	}
+
+	return true
+}
+
+// Validate checks all the validation constraints that may be defined on `DashboardActionStyle` fields for violations and returns them.
+func (resource DashboardActionStyle) Validate() error {
+	return nil
+}
+
 type PanelRepeatDirection string
 
 const (
@@ -7710,6 +8726,14 @@ const (
 	DataTransformerConfigTopicSeries      DataTransformerConfigTopic = "series"
 	DataTransformerConfigTopicAnnotations DataTransformerConfigTopic = "annotations"
 	DataTransformerConfigTopicAlertStates DataTransformerConfigTopic = "alertStates"
+)
+
+type VariableModelStaticOptionsOrder string
+
+const (
+	VariableModelStaticOptionsOrderBefore VariableModelStaticOptionsOrder = "before"
+	VariableModelStaticOptionsOrderAfter  VariableModelStaticOptionsOrder = "after"
+	VariableModelStaticOptionsOrderSorted VariableModelStaticOptionsOrder = "sorted"
 )
 
 type PanelOrRowPanel struct {

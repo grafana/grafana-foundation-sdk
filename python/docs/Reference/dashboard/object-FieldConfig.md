@@ -64,6 +64,8 @@ class FieldConfig:
     color: typing.Optional[dashboard.FieldColor]
     # The behavior when clicking on a result
     links: typing.Optional[list[dashboard.DashboardLink]]
+    # Define interactive HTTP requests that can be triggered from data visualizations.
+    actions: typing.Optional[list[dashboard.Action]]
     # Alternative to empty string
     no_value: typing.Optional[str]
     # custom is specified by the FieldConfig field

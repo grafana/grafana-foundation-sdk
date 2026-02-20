@@ -35,6 +35,11 @@ func (builder *PulseWaveQueryBuilder) Build() (PulseWaveQuery, error) {
 	return *builder.internal, nil
 }
 
+func (builder *PulseWaveQueryBuilder) RecordError(path string, err error) *PulseWaveQueryBuilder {
+	builder.errors = append(builder.errors, cog.MakeBuildErrors(path, err)...)
+	return builder
+}
+
 func (builder *PulseWaveQueryBuilder) OffCount(offCount int64) *PulseWaveQueryBuilder {
 	builder.internal.OffCount = &offCount
 

@@ -88,6 +88,22 @@ Options that can be selected for a variable.
 public TextBoxVariableBuilder options(List<VariableOption> options)
 ```
 
+### <span class="badge object-method"></span> staticOptions
+
+Additional static options for query variable
+
+```java
+public TextBoxVariableBuilder staticOptions(List<VariableOption> staticOptions)
+```
+
+### <span class="badge object-method"></span> staticOptionsOrder
+
+Ordering of static options in relation to options returned from data source for query variable
+
+```java
+public TextBoxVariableBuilder staticOptionsOrder(VariableModelStaticOptionsOrder staticOptionsOrder)
+```
+
 ## See also
 
  * <span class="badge object-type-class"></span> [VariableModel](./object-VariableModel.md)

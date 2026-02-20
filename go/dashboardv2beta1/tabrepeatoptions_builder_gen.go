@@ -35,6 +35,11 @@ func (builder *TabRepeatOptionsBuilder) Build() (TabRepeatOptions, error) {
 	return *builder.internal, nil
 }
 
+func (builder *TabRepeatOptionsBuilder) RecordError(path string, err error) *TabRepeatOptionsBuilder {
+	builder.errors = append(builder.errors, cog.MakeBuildErrors(path, err)...)
+	return builder
+}
+
 func (builder *TabRepeatOptionsBuilder) Value(value string) *TabRepeatOptionsBuilder {
 	builder.internal.Value = value
 

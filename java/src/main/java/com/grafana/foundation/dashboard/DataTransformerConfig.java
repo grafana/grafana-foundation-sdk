@@ -24,6 +24,7 @@ public class DataTransformerConfig {
     @JsonProperty("filter")
     public MatcherConfig filter;
     // Where to pull DataFrames from as input to transformation
+    // replaced with common.DataTopic
     @JsonInclude(JsonInclude.Include.NON_NULL)
     @JsonProperty("topic")
     public DataTransformerConfigTopic topic;

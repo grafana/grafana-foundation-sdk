@@ -35,6 +35,11 @@ func (builder *MetricAggregationWithFieldBuilder) Build() (MetricAggregationWith
 	return *builder.internal, nil
 }
 
+func (builder *MetricAggregationWithFieldBuilder) RecordError(path string, err error) *MetricAggregationWithFieldBuilder {
+	builder.errors = append(builder.errors, cog.MakeBuildErrors(path, err)...)
+	return builder
+}
+
 func (builder *MetricAggregationWithFieldBuilder) Field(field string) *MetricAggregationWithFieldBuilder {
 	builder.internal.Field = &field
 

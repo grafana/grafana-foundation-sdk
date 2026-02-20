@@ -99,6 +99,12 @@ class FieldConfig implements \JsonSerializable
     public ?array $links;
 
     /**
+     * Define interactive HTTP requests that can be triggered from data visualizations.
+     * @var array<\Grafana\Foundation\Dashboard\Action>|null
+     */
+    public ?array $actions;
+
+    /**
      * Alternative to empty string
      */
     public ?string $noValue;
@@ -127,11 +133,12 @@ class FieldConfig implements \JsonSerializable
      * @param \Grafana\Foundation\Dashboard\ThresholdsConfig|null $thresholds
      * @param \Grafana\Foundation\Dashboard\FieldColor|null $color
      * @param array<\Grafana\Foundation\Dashboard\DashboardLink>|null $links
+     * @param array<\Grafana\Foundation\Dashboard\Action>|null $actions
      * @param string|null $noValue
      * @param mixed|null $custom
      * @param bool|null $fieldMinMax
      */
-    public function __construct(?string $displayName = null, ?string $displayNameFromDS = null, ?string $description = null, ?string $path = null, ?bool $writeable = null, ?bool $filterable = null, ?string $unit = null, ?float $decimals = null, ?float $min = null, ?float $max = null, ?array $mappings = null, ?\Grafana\Foundation\Dashboard\ThresholdsConfig $thresholds = null, ?\Grafana\Foundation\Dashboard\FieldColor $color = null, ?array $links = null, ?string $noValue = null,  $custom = null, ?bool $fieldMinMax = null)
+    public function __construct(?string $displayName = null, ?string $displayNameFromDS = null, ?string $description = null, ?string $path = null, ?bool $writeable = null, ?bool $filterable = null, ?string $unit = null, ?float $decimals = null, ?float $min = null, ?float $max = null, ?array $mappings = null, ?\Grafana\Foundation\Dashboard\ThresholdsConfig $thresholds = null, ?\Grafana\Foundation\Dashboard\FieldColor $color = null, ?array $links = null, ?array $actions = null, ?string $noValue = null,  $custom = null, ?bool $fieldMinMax = null)
     {
         $this->displayName = $displayName;
         $this->displayNameFromDS = $displayNameFromDS;
@@ -147,6 +154,7 @@ class FieldConfig implements \JsonSerializable
         $this->thresholds = $thresholds;
         $this->color = $color;
         $this->links = $links;
+        $this->actions = $actions;
         $this->noValue = $noValue;
         $this->custom = $custom;
         $this->fieldMinMax = $fieldMinMax;
@@ -157,7 +165,7 @@ class FieldConfig implements \JsonSerializable
      */
     public static function fromArray(array $inputData): self
     {
-        /** @var array{displayName?: string, displayNameFromDS?: string, description?: string, path?: string, writeable?: bool, filterable?: bool, unit?: string, decimals?: float, min?: float, max?: float, mappings?: array<mixed|mixed|mixed|mixed>, thresholds?: mixed, color?: mixed, links?: array<mixed>, noValue?: string, custom?: mixed, fieldMinMax?: bool} $inputData */
+        /** @var array{displayName?: string, displayNameFromDS?: string, description?: string, path?: string, writeable?: bool, filterable?: bool, unit?: string, decimals?: float, min?: float, max?: float, mappings?: array<mixed|mixed|mixed|mixed>, thresholds?: mixed, color?: mixed, links?: array<mixed>, actions?: array<mixed>, noValue?: string, custom?: mixed, fieldMinMax?: bool} $inputData */
         $data = $inputData;
         return new self(
             displayName: $data["displayName"] ?? null,
@@ -197,10 +205,15 @@ class FieldConfig implements \JsonSerializable
     	return \Grafana\Foundation\Dashboard\FieldColor::fromArray($val);
     })($data["color"]) : null,
             links: array_filter(array_map((function($input) {
-    	/** @var array{title?: string, type?: string, icon?: string, tooltip?: string, url?: string, tags?: array<string>, asDropdown?: bool, targetBlank?: bool, includeVars?: bool, keepTime?: bool} */
+    	/** @var array{title?: string, type?: string, icon?: string, tooltip?: string, url?: string, tags?: array<string>, asDropdown?: bool, placement?: "inControlsMenu", targetBlank?: bool, includeVars?: bool, keepTime?: bool} */
     $val = $input;
     	return \Grafana\Foundation\Dashboard\DashboardLink::fromArray($val);
     }), $data["links"] ?? [])),
+            actions: array_filter(array_map((function($input) {
+    	/** @var array{type?: string, title?: string, fetch?: mixed, infinity?: mixed, confirmation?: string, oneClick?: bool, variables?: array<mixed>, style?: mixed} */
+    $val = $input;
+    	return \Grafana\Foundation\Dashboard\Action::fromArray($val);
+    }), $data["actions"] ?? [])),
             noValue: $data["noValue"] ?? null,
             custom: $data["custom"] ?? null,
             fieldMinMax: $data["fieldMinMax"] ?? null,
@@ -254,6 +267,9 @@ class FieldConfig implements \JsonSerializable
         }
         if (isset($this->links)) {
             $data->links = $this->links;
+        }
+        if (isset($this->actions)) {
+            $data->actions = $this->actions;
         }
         if (isset($this->noValue)) {
             $data->noValue = $this->noValue;

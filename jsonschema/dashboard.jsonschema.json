@@ -2,6 +2,124 @@
   "$schema": "http://json-schema.org/draft-07/schema#",
   "$ref": "#/definitions/Dashboard",
   "definitions": {
+    "AnnotationActions": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "canAdd": {
+          "type": "boolean"
+        },
+        "canDelete": {
+          "type": "boolean"
+        },
+        "canEdit": {
+          "type": "boolean"
+        }
+      }
+    },
+    "AnnotationPermission": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "dashboard": {
+          "$ref": "#/definitions/AnnotationActions"
+        },
+        "organization": {
+          "$ref": "#/definitions/AnnotationActions"
+        }
+      }
+    },
+    "DashboardMeta": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "annotationsPermissions": {
+          "$ref": "#/definitions/AnnotationPermission"
+        },
+        "apiVersion": {
+          "type": "string"
+        },
+        "canAdmin": {
+          "type": "boolean"
+        },
+        "canDelete": {
+          "type": "boolean"
+        },
+        "canEdit": {
+          "type": "boolean"
+        },
+        "canSave": {
+          "type": "boolean"
+        },
+        "canStar": {
+          "type": "boolean"
+        },
+        "created": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "createdBy": {
+          "type": "string"
+        },
+        "expires": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "folderId": {
+          "type": "integer",
+          "description": "Deprecated: use FolderUID instead"
+        },
+        "folderTitle": {
+          "type": "string"
+        },
+        "folderUid": {
+          "type": "string"
+        },
+        "folderUrl": {
+          "type": "string"
+        },
+        "hasAcl": {
+          "type": "boolean"
+        },
+        "isFolder": {
+          "type": "boolean"
+        },
+        "isSnapshot": {
+          "type": "boolean"
+        },
+        "isStarred": {
+          "type": "boolean"
+        },
+        "provisioned": {
+          "type": "boolean"
+        },
+        "provisionedExternalId": {
+          "type": "string"
+        },
+        "publicDashboardEnabled": {
+          "type": "boolean"
+        },
+        "slug": {
+          "type": "string"
+        },
+        "type": {
+          "type": "string"
+        },
+        "updated": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "updatedBy": {
+          "type": "string"
+        },
+        "url": {
+          "type": "string"
+        },
+        "version": {
+          "type": "integer"
+        }
+      }
+    },
     "Dashboard": {
       "type": "object",
       "additionalProperties": false,
@@ -13,7 +131,7 @@
       "properties": {
         "id": {
           "type": "integer",
-          "description": "Unique numeric identifier for the dashboard.\n`id` is internal to a specific Grafana instance. `uid` should be used to identify a dashboard across Grafana instances."
+          "description": "Unique numeric identifier for the dashboard.\n`id` is internal to a specific Grafana instance. `uid` should be used to identify a dashboard across Grafana instances.\nTODO eliminate this null option"
         },
         "uid": {
           "type": "string",
@@ -101,7 +219,7 @@
         "schemaVersion": {
           "type": "integer",
           "description": "Version of the JSON schema, incremented each time a Grafana update brings\nchanges to said schema.",
-          "default": 41
+          "default": 42
         },
         "version": {
           "type": "integer",
@@ -328,6 +446,10 @@
           "type": "boolean",
           "description": "Controls if the timeFrom or timeShift overrides are shown in the panel header"
         },
+        "timeCompare": {
+          "type": "string",
+          "description": "Compare the current time range with a previous period\nFor example \"1d\" to compare current period but shifted back 1 day"
+        },
         "libraryPanel": {
           "$ref": "#/definitions/LibraryPanelRef",
           "description": "Dynamically load the panel"
@@ -454,6 +576,15 @@
           "description": "If true, all dashboards links will be displayed in a dropdown. If false, all dashboards links will be displayed side by side. Only valid if the type is dashboards",
           "default": false
         },
+        "placement": {
+          "allOf": [
+            {
+              "$ref": "#/definitions/DashboardLinkPlacement"
+            }
+          ],
+          "default": "inControlsMenu",
+          "description": "Placement can be used to display the link somewhere else on the dashboard other than above the visualisations."
+        },
         "targetBlank": {
           "type": "boolean",
           "description": "If true, the link will be opened in a new tab",
@@ -479,6 +610,13 @@
       ],
       "type": "string",
       "description": "Dashboard Link type. Accepted values are dashboards (to refer to another dashboard) and link (to refer to an external resource)"
+    },
+    "DashboardLinkPlacement": {
+      "enum": [
+        "inControlsMenu"
+      ],
+      "type": "string",
+      "description": "Dashboard Link placement. Defines where the link should be displayed.\n- \"inControlsMenu\" renders the link in bottom part of the dashboard controls dropdown menu"
     },
     "DataTransformerConfig": {
       "type": "object",
@@ -507,7 +645,7 @@
             "alertStates"
           ],
           "type": "string",
-          "description": "Where to pull DataFrames from as input to transformation"
+          "description": "Where to pull DataFrames from as input to transformation\nreplaced with common.DataTopic"
         },
         "options": {
           "type": "object",
@@ -659,6 +797,13 @@
             "$ref": "#/definitions/DashboardLink"
           },
           "description": "The behavior when clicking on a result"
+        },
+        "actions": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Action"
+          },
+          "description": "Define interactive HTTP requests that can be triggered from data visualizations."
         },
         "noValue": {
           "type": "string",
@@ -982,6 +1127,182 @@
       "type": "string",
       "description": "Defines how to assign a series color from \"by value\" color schemes. For example for an aggregated data points like a timeseries, the color can be assigned by the min, max or last value."
     },
+    "Action": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "type",
+        "title"
+      ],
+      "properties": {
+        "type": {
+          "$ref": "#/definitions/ActionType"
+        },
+        "title": {
+          "type": "string"
+        },
+        "fetch": {
+          "$ref": "#/definitions/FetchOptions"
+        },
+        "infinity": {
+          "$ref": "#/definitions/InfinityOptions"
+        },
+        "confirmation": {
+          "type": "string"
+        },
+        "oneClick": {
+          "type": "boolean"
+        },
+        "variables": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/ActionVariable"
+          }
+        },
+        "style": {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "backgroundColor": {
+              "type": "string"
+            }
+          }
+        }
+      },
+      "description": "Dashboard action"
+    },
+    "ActionType": {
+      "enum": [
+        "fetch",
+        "infinity"
+      ],
+      "type": "string",
+      "description": "Dashboard action type"
+    },
+    "FetchOptions": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "method",
+        "url"
+      ],
+      "properties": {
+        "method": {
+          "$ref": "#/definitions/HttpRequestMethod"
+        },
+        "url": {
+          "type": "string"
+        },
+        "body": {
+          "type": "string"
+        },
+        "queryParams": {
+          "type": "array",
+          "items": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "description": "These are 2D arrays of strings, each representing a key-value pair\nWe are defining this way because we can't generate a go struct that\nthat would have exactly two strings in each sub-array"
+        },
+        "headers": {
+          "type": "array",
+          "items": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          }
+        }
+      },
+      "description": "Fetch options"
+    },
+    "HttpRequestMethod": {
+      "enum": [
+        "GET",
+        "PUT",
+        "POST",
+        "DELETE",
+        "PATCH"
+      ],
+      "type": "string"
+    },
+    "InfinityOptions": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "method",
+        "url",
+        "datasourceUid"
+      ],
+      "properties": {
+        "method": {
+          "$ref": "#/definitions/HttpRequestMethod"
+        },
+        "url": {
+          "type": "string"
+        },
+        "body": {
+          "type": "string"
+        },
+        "queryParams": {
+          "type": "array",
+          "items": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "description": "These are 2D arrays of strings, each representing a key-value pair\nWe are defining them this way because we can't generate a go struct that\nthat would have exactly two strings in each sub-array"
+        },
+        "headers": {
+          "type": "array",
+          "items": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          }
+        },
+        "datasourceUid": {
+          "type": "string"
+        }
+      },
+      "description": "Infinity options"
+    },
+    "ActionVariable": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "key",
+        "name",
+        "type"
+      ],
+      "properties": {
+        "key": {
+          "type": "string"
+        },
+        "name": {
+          "type": "string"
+        },
+        "type": {
+          "allOf": [
+            {
+              "$ref": "#/definitions/ActionVariableType"
+            }
+          ],
+          "default": "string"
+        }
+      }
+    },
+    "ActionVariableType": {
+      "enum": [
+        "string"
+      ],
+      "type": "string",
+      "description": "Action variable type"
+    },
     "DynamicConfigValue": {
       "type": "object",
       "additionalProperties": false,
@@ -1143,6 +1464,22 @@
           "type": "string",
           "description": "Optional field, if you want to extract part of a series name or metric node segment.\nNamed capture groups can be used to separate the display text and value."
         },
+        "staticOptions": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/VariableOption"
+          },
+          "description": "Additional static options for query variable"
+        },
+        "staticOptionsOrder": {
+          "enum": [
+            "before",
+            "after",
+            "sorted"
+          ],
+          "type": "string",
+          "description": "Ordering of static options in relation to options returned from data source for query variable"
+        },
         "auto": {
           "type": "boolean",
           "description": "Dynamically calculates interval by dividing time range by the count specified.",
@@ -1176,19 +1513,21 @@
         "textbox",
         "custom",
         "system",
-        "snapshot"
+        "snapshot",
+        "switch"
       ],
       "type": "string",
-      "description": "Dashboard variable type\n`query`: Query-generated list of values such as metric names, server names, sensor IDs, data centers, and so on.\n`adhoc`: Key/value filters that are automatically added to all metric queries for a data source (Prometheus, Loki, InfluxDB, and Elasticsearch only).\n`constant`: \tDefine a hidden constant.\n`datasource`: Quickly change the data source for an entire dashboard.\n`interval`: Interval variables represent time spans.\n`textbox`: Display a free text input field with an optional default value.\n`custom`: Define the variable options manually using a comma-separated list.\n`system`: Variables defined by Grafana. See: https://grafana.com/docs/grafana/latest/dashboards/variables/add-template-variables/#global-variables"
+      "description": "Dashboard variable type\n`query`: Query-generated list of values such as metric names, server names, sensor IDs, data centers, and so on.\n`adhoc`: Key/value filters that are automatically added to all metric queries for a data source (Prometheus, Loki, InfluxDB, and Elasticsearch only).\n`constant`: \tDefine a hidden constant.\n`datasource`: Quickly change the data source for an entire dashboard.\n`interval`: Interval variables represent time spans.\n`textbox`: Display a free text input field with an optional default value.\n`custom`: Define the variable options manually using a comma-separated list.\n`system`: Variables defined by Grafana. See: https://grafana.com/docs/grafana/latest/dashboards/variables/add-template-variables/#global-variables\n`switch`: Boolean variables rendered as a switch"
     },
     "VariableHide": {
       "enum": [
         0,
         1,
-        2
+        2,
+        3
       ],
       "type": "integer",
-      "description": "Determine if the variable shows on dashboard\nAccepted values are 0 (show label and value), 1 (show value only), 2 (show nothing)."
+      "description": "Determine if the variable shows on dashboard\nAccepted values are 0 (show label and value), 1 (show value only), 2 (show nothing), 3 (show under the controls dropdown menu)."
     },
     "VariableOption": {
       "type": "object",
@@ -1320,6 +1659,15 @@
           "description": "Set to 1 for the standard annotation query all dashboards have by default.",
           "default": 0
         },
+        "placement": {
+          "allOf": [
+            {
+              "$ref": "#/definitions/AnnotationQueryPlacement"
+            }
+          ],
+          "default": "inControlsMenu",
+          "description": "Placement can be used to display the annotation query somewhere else on the dashboard other than the default location."
+        },
         "expr": {
           "type": "string"
         }
@@ -1378,6 +1726,13 @@
         }
       },
       "description": "TODO: this should be a regular DataQuery that depends on the selected dashboard\nthese match the properties of the \"grafana\" datasouce that is default in most dashboards"
+    },
+    "AnnotationQueryPlacement": {
+      "enum": [
+        "inControlsMenu"
+      ],
+      "type": "string",
+      "description": "Annotation Query placement. Defines where the annotation query should be displayed.\n- \"inControlsMenu\" renders the annotation query in the dashboard controls dropdown menu"
     },
     "Snapshot": {
       "type": "object",
@@ -1451,124 +1806,6 @@
         }
       },
       "description": "A dashboard snapshot shares an interactive dashboard publicly.\nIt is a read-only version of a dashboard, and is not editable.\nIt is possible to create a snapshot of a snapshot.\nGrafana strips away all sensitive information from the dashboard.\nSensitive information stripped: queries (metric, template,annotation) and panel links."
-    },
-    "AnnotationActions": {
-      "type": "object",
-      "additionalProperties": false,
-      "properties": {
-        "canAdd": {
-          "type": "boolean"
-        },
-        "canDelete": {
-          "type": "boolean"
-        },
-        "canEdit": {
-          "type": "boolean"
-        }
-      }
-    },
-    "AnnotationPermission": {
-      "type": "object",
-      "additionalProperties": false,
-      "properties": {
-        "dashboard": {
-          "$ref": "#/definitions/AnnotationActions"
-        },
-        "organization": {
-          "$ref": "#/definitions/AnnotationActions"
-        }
-      }
-    },
-    "DashboardMeta": {
-      "type": "object",
-      "additionalProperties": false,
-      "properties": {
-        "annotationsPermissions": {
-          "$ref": "#/definitions/AnnotationPermission"
-        },
-        "apiVersion": {
-          "type": "string"
-        },
-        "canAdmin": {
-          "type": "boolean"
-        },
-        "canDelete": {
-          "type": "boolean"
-        },
-        "canEdit": {
-          "type": "boolean"
-        },
-        "canSave": {
-          "type": "boolean"
-        },
-        "canStar": {
-          "type": "boolean"
-        },
-        "created": {
-          "type": "string",
-          "format": "date-time"
-        },
-        "createdBy": {
-          "type": "string"
-        },
-        "expires": {
-          "type": "string",
-          "format": "date-time"
-        },
-        "folderId": {
-          "type": "integer",
-          "description": "Deprecated: use FolderUID instead"
-        },
-        "folderTitle": {
-          "type": "string"
-        },
-        "folderUid": {
-          "type": "string"
-        },
-        "folderUrl": {
-          "type": "string"
-        },
-        "hasAcl": {
-          "type": "boolean"
-        },
-        "isFolder": {
-          "type": "boolean"
-        },
-        "isSnapshot": {
-          "type": "boolean"
-        },
-        "isStarred": {
-          "type": "boolean"
-        },
-        "provisioned": {
-          "type": "boolean"
-        },
-        "provisionedExternalId": {
-          "type": "string"
-        },
-        "publicDashboardEnabled": {
-          "type": "boolean"
-        },
-        "slug": {
-          "type": "string"
-        },
-        "type": {
-          "type": "string"
-        },
-        "updated": {
-          "type": "string",
-          "format": "date-time"
-        },
-        "updatedBy": {
-          "type": "string"
-        },
-        "url": {
-          "type": "string"
-        },
-        "version": {
-          "type": "integer"
-        }
-      }
     }
   }
 }

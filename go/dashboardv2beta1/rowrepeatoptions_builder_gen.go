@@ -35,6 +35,11 @@ func (builder *RowRepeatOptionsBuilder) Build() (RowRepeatOptions, error) {
 	return *builder.internal, nil
 }
 
+func (builder *RowRepeatOptionsBuilder) RecordError(path string, err error) *RowRepeatOptionsBuilder {
+	builder.errors = append(builder.errors, cog.MakeBuildErrors(path, err)...)
+	return builder
+}
+
 func (builder *RowRepeatOptionsBuilder) Value(value string) *RowRepeatOptionsBuilder {
 	builder.internal.Value = value
 

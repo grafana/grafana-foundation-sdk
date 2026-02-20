@@ -35,6 +35,11 @@ func (builder *LibraryElementDTOMetaUserBuilder) Build() (LibraryElementDTOMetaU
 	return *builder.internal, nil
 }
 
+func (builder *LibraryElementDTOMetaUserBuilder) RecordError(path string, err error) *LibraryElementDTOMetaUserBuilder {
+	builder.errors = append(builder.errors, cog.MakeBuildErrors(path, err)...)
+	return builder
+}
+
 func (builder *LibraryElementDTOMetaUserBuilder) Id(id int64) *LibraryElementDTOMetaUserBuilder {
 	builder.internal.Id = id
 

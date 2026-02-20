@@ -35,6 +35,11 @@ func (builder *AzureMetricQueryBuilder) Build() (AzureMetricQuery, error) {
 	return *builder.internal, nil
 }
 
+func (builder *AzureMetricQueryBuilder) RecordError(path string, err error) *AzureMetricQueryBuilder {
+	builder.errors = append(builder.errors, cog.MakeBuildErrors(path, err)...)
+	return builder
+}
+
 // Array of resource URIs to be queried.
 func (builder *AzureMetricQueryBuilder) Resources(resources []cog.Builder[AzureMonitorResource]) *AzureMetricQueryBuilder {
 	resourcesResources := make([]AzureMonitorResource, 0, len(resources))

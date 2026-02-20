@@ -44,6 +44,11 @@ class DashboardLink implements \JsonSerializable
     public bool $asDropdown;
 
     /**
+     * Placement can be used to display the link somewhere else on the dashboard other than above the visualisations.
+     */
+    public ?\Grafana\Foundation\Dashboard\DashboardLinkPlacement $placement;
+
+    /**
      * If true, the link will be opened in a new tab
      */
     public bool $targetBlank;
@@ -79,6 +84,7 @@ class DashboardLink implements \JsonSerializable
         $this->url = $url;
         $this->tags = $tags ?: [];
         $this->asDropdown = $asDropdown ?: false;
+        $this->placement = \Grafana\Foundation\Dashboard\DashboardLinkPlacement::inControlsMenu();
         $this->targetBlank = $targetBlank ?: false;
         $this->includeVars = $includeVars ?: false;
         $this->keepTime = $keepTime ?: false;
@@ -89,7 +95,7 @@ class DashboardLink implements \JsonSerializable
      */
     public static function fromArray(array $inputData): self
     {
-        /** @var array{title?: string, type?: string, icon?: string, tooltip?: string, url?: string, tags?: array<string>, asDropdown?: bool, targetBlank?: bool, includeVars?: bool, keepTime?: bool} $inputData */
+        /** @var array{title?: string, type?: string, icon?: string, tooltip?: string, url?: string, tags?: array<string>, asDropdown?: bool, placement?: "inControlsMenu", targetBlank?: bool, includeVars?: bool, keepTime?: bool} $inputData */
         $data = $inputData;
         return new self(
             title: $data["title"] ?? null,
@@ -122,6 +128,9 @@ class DashboardLink implements \JsonSerializable
         $data->keepTime = $this->keepTime;
         if (isset($this->url)) {
             $data->url = $this->url;
+        }
+        if (isset($this->placement)) {
+            $data->placement = $this->placement;
         }
         return $data;
     }

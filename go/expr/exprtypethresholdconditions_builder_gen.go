@@ -35,6 +35,11 @@ func (builder *ExprTypeThresholdConditionsBuilder) Build() (ExprTypeThresholdCon
 	return *builder.internal, nil
 }
 
+func (builder *ExprTypeThresholdConditionsBuilder) RecordError(path string, err error) *ExprTypeThresholdConditionsBuilder {
+	builder.errors = append(builder.errors, cog.MakeBuildErrors(path, err)...)
+	return builder
+}
+
 func (builder *ExprTypeThresholdConditionsBuilder) Evaluator(evaluator cog.Builder[ExprTypeThresholdConditionsEvaluator]) *ExprTypeThresholdConditionsBuilder {
 	evaluatorResource, err := evaluator.Build()
 	if err != nil {

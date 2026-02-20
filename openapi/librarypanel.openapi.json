@@ -210,6 +210,10 @@
             "type": "boolean",
             "description": "Controls if the timeFrom or timeShift overrides are shown in the panel header"
           },
+          "timeCompare": {
+            "type": "string",
+            "description": "Compare the current time range with a previous period\nFor example \"1d\" to compare current period but shifted back 1 day"
+          },
           "cacheTimeout": {
             "type": "string",
             "description": "Sets panel queries cache timeout."
@@ -291,6 +295,15 @@
             "description": "If true, all dashboards links will be displayed in a dropdown. If false, all dashboards links will be displayed side by side. Only valid if the type is dashboards",
             "default": false
           },
+          "placement": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/DashboardLinkPlacement"
+              }
+            ],
+            "default": "inControlsMenu",
+            "description": "Placement can be used to display the link somewhere else on the dashboard other than above the visualisations."
+          },
           "targetBlank": {
             "type": "boolean",
             "description": "If true, the link will be opened in a new tab",
@@ -336,7 +349,7 @@
               "alertStates"
             ],
             "type": "string",
-            "description": "Where to pull DataFrames from as input to transformation"
+            "description": "Where to pull DataFrames from as input to transformation\nreplaced with common.DataTopic"
           },
           "options": {
             "type": "object",
@@ -391,6 +404,13 @@
         ],
         "type": "string",
         "description": "Dashboard Link type. Accepted values are dashboards (to refer to another dashboard) and link (to refer to an external resource)"
+      },
+      "DashboardLinkPlacement": {
+        "enum": [
+          "inControlsMenu"
+        ],
+        "type": "string",
+        "description": "Dashboard Link placement. Defines where the link should be displayed.\n- \"inControlsMenu\" renders the link in bottom part of the dashboard controls dropdown menu"
       },
       "MatcherConfig": {
         "type": "object",
@@ -477,6 +497,13 @@
               "$ref": "#/components/schemas/DashboardLink"
             },
             "description": "The behavior when clicking on a result"
+          },
+          "actions": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Action"
+            },
+            "description": "Define interactive HTTP requests that can be triggered from data visualizations."
           },
           "noValue": {
             "type": "string",
@@ -570,6 +597,50 @@
           }
         },
         "description": "Map a field to a color."
+      },
+      "Action": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "type",
+          "title"
+        ],
+        "properties": {
+          "type": {
+            "$ref": "#/components/schemas/ActionType"
+          },
+          "title": {
+            "type": "string"
+          },
+          "fetch": {
+            "$ref": "#/components/schemas/FetchOptions"
+          },
+          "infinity": {
+            "$ref": "#/components/schemas/InfinityOptions"
+          },
+          "confirmation": {
+            "type": "string"
+          },
+          "oneClick": {
+            "type": "boolean"
+          },
+          "variables": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ActionVariable"
+            }
+          },
+          "style": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+              "backgroundColor": {
+                "type": "string"
+              }
+            }
+          }
+        },
+        "description": "Dashboard action"
       },
       "ValueMap": {
         "type": "object",
@@ -772,6 +843,121 @@
         "type": "string",
         "description": "Defines how to assign a series color from \"by value\" color schemes. For example for an aggregated data points like a timeseries, the color can be assigned by the min, max or last value."
       },
+      "ActionType": {
+        "enum": [
+          "fetch",
+          "infinity"
+        ],
+        "type": "string",
+        "description": "Dashboard action type"
+      },
+      "FetchOptions": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "method",
+          "url"
+        ],
+        "properties": {
+          "method": {
+            "$ref": "#/components/schemas/HttpRequestMethod"
+          },
+          "url": {
+            "type": "string"
+          },
+          "body": {
+            "type": "string"
+          },
+          "queryParams": {
+            "type": "array",
+            "items": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            },
+            "description": "These are 2D arrays of strings, each representing a key-value pair\nWe are defining this way because we can't generate a go struct that\nthat would have exactly two strings in each sub-array"
+          },
+          "headers": {
+            "type": "array",
+            "items": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            }
+          }
+        },
+        "description": "Fetch options"
+      },
+      "InfinityOptions": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "method",
+          "url",
+          "datasourceUid"
+        ],
+        "properties": {
+          "method": {
+            "$ref": "#/components/schemas/HttpRequestMethod"
+          },
+          "url": {
+            "type": "string"
+          },
+          "body": {
+            "type": "string"
+          },
+          "queryParams": {
+            "type": "array",
+            "items": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            },
+            "description": "These are 2D arrays of strings, each representing a key-value pair\nWe are defining them this way because we can't generate a go struct that\nthat would have exactly two strings in each sub-array"
+          },
+          "headers": {
+            "type": "array",
+            "items": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            }
+          },
+          "datasourceUid": {
+            "type": "string"
+          }
+        },
+        "description": "Infinity options"
+      },
+      "ActionVariable": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "key",
+          "name",
+          "type"
+        ],
+        "properties": {
+          "key": {
+            "type": "string"
+          },
+          "name": {
+            "type": "string"
+          },
+          "type": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/ActionVariableType"
+              }
+            ],
+            "default": "string"
+          }
+        }
+      },
       "MappingType": {
         "enum": [
           "value",
@@ -816,6 +1002,23 @@
         ],
         "type": "string",
         "description": "Special value types supported by the `SpecialValueMap`"
+      },
+      "HttpRequestMethod": {
+        "enum": [
+          "GET",
+          "PUT",
+          "POST",
+          "DELETE",
+          "PATCH"
+        ],
+        "type": "string"
+      },
+      "ActionVariableType": {
+        "enum": [
+          "string"
+        ],
+        "type": "string",
+        "description": "Action variable type"
       }
     }
   }

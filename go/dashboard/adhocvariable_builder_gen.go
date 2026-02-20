@@ -39,6 +39,11 @@ func (builder *AdHocVariableBuilder) Build() (VariableModel, error) {
 	return *builder.internal, nil
 }
 
+func (builder *AdHocVariableBuilder) RecordError(path string, err error) *AdHocVariableBuilder {
+	builder.errors = append(builder.errors, cog.MakeBuildErrors(path, err)...)
+	return builder
+}
+
 // Name of variable
 func (builder *AdHocVariableBuilder) Name(name string) *AdHocVariableBuilder {
 	builder.internal.Name = name
@@ -77,6 +82,20 @@ func (builder *AdHocVariableBuilder) Datasource(datasource common.DataSourceRef)
 // Allow custom values to be entered in the variable
 func (builder *AdHocVariableBuilder) AllowCustomValue(allowCustomValue bool) *AdHocVariableBuilder {
 	builder.internal.AllowCustomValue = &allowCustomValue
+
+	return builder
+}
+
+// Additional static options for query variable
+func (builder *AdHocVariableBuilder) StaticOptions(staticOptions []VariableOption) *AdHocVariableBuilder {
+	builder.internal.StaticOptions = staticOptions
+
+	return builder
+}
+
+// Ordering of static options in relation to options returned from data source for query variable
+func (builder *AdHocVariableBuilder) StaticOptionsOrder(staticOptionsOrder VariableModelStaticOptionsOrder) *AdHocVariableBuilder {
+	builder.internal.StaticOptionsOrder = &staticOptionsOrder
 
 	return builder
 }

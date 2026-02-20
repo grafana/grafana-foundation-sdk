@@ -35,6 +35,11 @@ func (builder *SQLExpressionBuilder) Build() (SQLExpression, error) {
 	return *builder.internal, nil
 }
 
+func (builder *SQLExpressionBuilder) RecordError(path string, err error) *SQLExpressionBuilder {
+	builder.errors = append(builder.errors, cog.MakeBuildErrors(path, err)...)
+	return builder
+}
+
 // SELECT part of the SQL expression
 func (builder *SQLExpressionBuilder) Select(selectArg cog.Builder[QueryEditorFunctionExpression]) *SQLExpressionBuilder {
 	selectArgResource, err := selectArg.Build()

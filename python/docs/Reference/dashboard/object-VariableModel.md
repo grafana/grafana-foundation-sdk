@@ -48,6 +48,10 @@ class VariableModel:
     # Optional field, if you want to extract part of a series name or metric node segment.
     # Named capture groups can be used to separate the display text and value.
     regex: typing.Optional[str]
+    # Additional static options for query variable
+    static_options: typing.Optional[list[dashboard.VariableOption]]
+    # Ordering of static options in relation to options returned from data source for query variable
+    static_options_order: typing.Optional[typing.Literal["before", "after", "sorted"]]
     # Dynamically calculates interval by dividing time range by the count specified.
     auto: typing.Optional[bool]
     # The minimum threshold below which the step count intervals will not divide the time.

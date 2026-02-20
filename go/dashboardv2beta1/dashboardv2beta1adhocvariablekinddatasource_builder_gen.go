@@ -35,6 +35,11 @@ func (builder *Dashboardv2beta1AdhocVariableKindDatasourceBuilder) Build() (Dash
 	return *builder.internal, nil
 }
 
+func (builder *Dashboardv2beta1AdhocVariableKindDatasourceBuilder) RecordError(path string, err error) *Dashboardv2beta1AdhocVariableKindDatasourceBuilder {
+	builder.errors = append(builder.errors, cog.MakeBuildErrors(path, err)...)
+	return builder
+}
+
 func (builder *Dashboardv2beta1AdhocVariableKindDatasourceBuilder) Name(name string) *Dashboardv2beta1AdhocVariableKindDatasourceBuilder {
 	builder.internal.Name = &name
 

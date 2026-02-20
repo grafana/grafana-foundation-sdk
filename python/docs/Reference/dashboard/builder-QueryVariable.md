@@ -146,6 +146,22 @@ Options sort order
 def sort(sort: dashboard.VariableSort) -> typing.Self
 ```
 
+### <span class="badge object-method"></span> static_options
+
+Additional static options for query variable
+
+```python
+def static_options(static_options: list[dashboard.VariableOption]) -> typing.Self
+```
+
+### <span class="badge object-method"></span> static_options_order
+
+Ordering of static options in relation to options returned from data source for query variable
+
+```python
+def static_options_order(static_options_order: typing.Literal["before", "after", "sorted"]) -> typing.Self
+```
+
 ## See also
 
  * <span class="badge object-type-class"></span> [VariableModel](./object-VariableModel.md)

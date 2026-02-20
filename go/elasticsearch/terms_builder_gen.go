@@ -35,6 +35,11 @@ func (builder *TermsBuilder) Build() (Terms, error) {
 	return *builder.internal, nil
 }
 
+func (builder *TermsBuilder) RecordError(path string, err error) *TermsBuilder {
+	builder.errors = append(builder.errors, cog.MakeBuildErrors(path, err)...)
+	return builder
+}
+
 func (builder *TermsBuilder) Field(field string) *TermsBuilder {
 	builder.internal.Field = &field
 

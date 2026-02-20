@@ -82,6 +82,14 @@ Name of annotation.
 name(name: string)
 ```
 
+### <span class="badge object-method"></span> placement
+
+Placement can be used to display the annotation query somewhere else on the dashboard other than the default location.
+
+```typescript
+placement(placement: dashboard.AnnotationQueryPlacement.InControlsMenu)
+```
+
 ### <span class="badge object-method"></span> target
 
 TODO.. this should just be a normal query target

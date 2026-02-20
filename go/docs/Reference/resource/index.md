@@ -29,6 +29,14 @@ NewMetadata creates a new Metadata object.
 func NewMetadata() *Metadata
 ```
 
+### <span class="badge function"></span> Named
+
+Creates metadata for a named resource.
+
+```go
+func Named(name string) *MetadataBuilder
+```
+
 ### <span class="badge function"></span> ManifestConverter
 
 ManifestConverter accepts a `Manifest` object and generates the Go code to build this object using builders.

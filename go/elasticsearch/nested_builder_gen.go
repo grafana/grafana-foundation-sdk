@@ -35,6 +35,11 @@ func (builder *NestedBuilder) Build() (Nested, error) {
 	return *builder.internal, nil
 }
 
+func (builder *NestedBuilder) RecordError(path string, err error) *NestedBuilder {
+	builder.errors = append(builder.errors, cog.MakeBuildErrors(path, err)...)
+	return builder
+}
+
 func (builder *NestedBuilder) Field(field string) *NestedBuilder {
 	builder.internal.Field = &field
 

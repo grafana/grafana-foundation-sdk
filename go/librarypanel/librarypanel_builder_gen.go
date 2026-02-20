@@ -35,6 +35,11 @@ func (builder *LibraryPanelBuilder) Build() (LibraryPanel, error) {
 	return *builder.internal, nil
 }
 
+func (builder *LibraryPanelBuilder) RecordError(path string, err error) *LibraryPanelBuilder {
+	builder.errors = append(builder.errors, cog.MakeBuildErrors(path, err)...)
+	return builder
+}
+
 // Folder UID
 func (builder *LibraryPanelBuilder) FolderUid(folderUid string) *LibraryPanelBuilder {
 	builder.internal.FolderUid = &folderUid

@@ -36,6 +36,11 @@ func (builder *CanvasConnectionBuilder) Build() (CanvasConnection, error) {
 	return *builder.internal, nil
 }
 
+func (builder *CanvasConnectionBuilder) RecordError(path string, err error) *CanvasConnectionBuilder {
+	builder.errors = append(builder.errors, cog.MakeBuildErrors(path, err)...)
+	return builder
+}
+
 func (builder *CanvasConnectionBuilder) Source(source cog.Builder[ConnectionCoordinates]) *CanvasConnectionBuilder {
 	sourceResource, err := source.Build()
 	if err != nil {

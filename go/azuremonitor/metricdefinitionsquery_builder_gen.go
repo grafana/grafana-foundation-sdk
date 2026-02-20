@@ -37,6 +37,11 @@ func (builder *MetricDefinitionsQueryBuilder) Build() (MetricDefinitionsQuery, e
 	return *builder.internal, nil
 }
 
+func (builder *MetricDefinitionsQueryBuilder) RecordError(path string, err error) *MetricDefinitionsQueryBuilder {
+	builder.errors = append(builder.errors, cog.MakeBuildErrors(path, err)...)
+	return builder
+}
+
 func (builder *MetricDefinitionsQueryBuilder) RawQuery(rawQuery string) *MetricDefinitionsQueryBuilder {
 	builder.internal.RawQuery = &rawQuery
 

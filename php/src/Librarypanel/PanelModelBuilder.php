@@ -226,6 +226,17 @@ class PanelModelBuilder implements \Grafana\Foundation\Cog\Builder
     }
 
     /**
+     * Compare the current time range with a previous period
+     * For example "1d" to compare current period but shifted back 1 day
+     */
+    public function timeCompare(string $timeCompare): static
+    {
+        $this->internal->timeCompare = $timeCompare;
+    
+        return $this;
+    }
+
+    /**
      * Sets panel queries cache timeout.
      */
     public function cacheTimeout(string $cacheTimeout): static

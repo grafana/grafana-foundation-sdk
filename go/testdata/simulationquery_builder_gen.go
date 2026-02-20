@@ -35,6 +35,11 @@ func (builder *SimulationQueryBuilder) Build() (SimulationQuery, error) {
 	return *builder.internal, nil
 }
 
+func (builder *SimulationQueryBuilder) RecordError(path string, err error) *SimulationQueryBuilder {
+	builder.errors = append(builder.errors, cog.MakeBuildErrors(path, err)...)
+	return builder
+}
+
 func (builder *SimulationQueryBuilder) Config(config any) *SimulationQueryBuilder {
 	builder.internal.Config = &config
 

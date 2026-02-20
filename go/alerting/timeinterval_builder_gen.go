@@ -35,6 +35,11 @@ func (builder *TimeIntervalBuilder) Build() (TimeInterval, error) {
 	return *builder.internal, nil
 }
 
+func (builder *TimeIntervalBuilder) RecordError(path string, err error) *TimeIntervalBuilder {
+	builder.errors = append(builder.errors, cog.MakeBuildErrors(path, err)...)
+	return builder
+}
+
 func (builder *TimeIntervalBuilder) Times(times []cog.Builder[TimeRange]) *TimeIntervalBuilder {
 	timesResources := make([]TimeRange, 0, len(times))
 	for _, r1 := range times {

@@ -59,6 +59,11 @@ class AnnotationQuery implements \JsonSerializable
      */
     public ?float $builtIn;
 
+    /**
+     * Placement can be used to display the annotation query somewhere else on the dashboard other than the default location.
+     */
+    public ?\Grafana\Foundation\Dashboard\AnnotationQueryPlacement $placement;
+
     public ?string $expr;
 
 }

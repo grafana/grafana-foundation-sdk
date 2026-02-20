@@ -36,6 +36,11 @@ func (builder *PieChartLegendOptionsBuilder) Build() (PieChartLegendOptions, err
 	return *builder.internal, nil
 }
 
+func (builder *PieChartLegendOptionsBuilder) RecordError(path string, err error) *PieChartLegendOptionsBuilder {
+	builder.errors = append(builder.errors, cog.MakeBuildErrors(path, err)...)
+	return builder
+}
+
 func (builder *PieChartLegendOptionsBuilder) Values(values []PieChartLegendValues) *PieChartLegendOptionsBuilder {
 	builder.internal.Values = values
 

@@ -35,6 +35,11 @@ func (builder *CandlestickColorsBuilder) Build() (CandlestickColors, error) {
 	return *builder.internal, nil
 }
 
+func (builder *CandlestickColorsBuilder) RecordError(path string, err error) *CandlestickColorsBuilder {
+	builder.errors = append(builder.errors, cog.MakeBuildErrors(path, err)...)
+	return builder
+}
+
 func (builder *CandlestickColorsBuilder) Up(up string) *CandlestickColorsBuilder {
 	builder.internal.Up = up
 

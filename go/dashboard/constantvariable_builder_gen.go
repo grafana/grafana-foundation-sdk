@@ -40,6 +40,11 @@ func (builder *ConstantVariableBuilder) Build() (VariableModel, error) {
 	return *builder.internal, nil
 }
 
+func (builder *ConstantVariableBuilder) RecordError(path string, err error) *ConstantVariableBuilder {
+	builder.errors = append(builder.errors, cog.MakeBuildErrors(path, err)...)
+	return builder
+}
+
 // Name of variable
 func (builder *ConstantVariableBuilder) Name(name string) *ConstantVariableBuilder {
 	builder.internal.Name = name
@@ -71,6 +76,20 @@ func (builder *ConstantVariableBuilder) Value(query StringOrMap) *ConstantVariab
 // Allow custom values to be entered in the variable
 func (builder *ConstantVariableBuilder) AllowCustomValue(allowCustomValue bool) *ConstantVariableBuilder {
 	builder.internal.AllowCustomValue = &allowCustomValue
+
+	return builder
+}
+
+// Additional static options for query variable
+func (builder *ConstantVariableBuilder) StaticOptions(staticOptions []VariableOption) *ConstantVariableBuilder {
+	builder.internal.StaticOptions = staticOptions
+
+	return builder
+}
+
+// Ordering of static options in relation to options returned from data source for query variable
+func (builder *ConstantVariableBuilder) StaticOptionsOrder(staticOptionsOrder VariableModelStaticOptionsOrder) *ConstantVariableBuilder {
+	builder.internal.StaticOptionsOrder = &staticOptionsOrder
 
 	return builder
 }

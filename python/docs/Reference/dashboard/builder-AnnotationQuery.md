@@ -82,6 +82,14 @@ Name of annotation.
 def name(name: str) -> typing.Self
 ```
 
+### <span class="badge object-method"></span> placement
+
+Placement can be used to display the annotation query somewhere else on the dashboard other than the default location.
+
+```python
+def placement(placement: str) -> typing.Self
+```
+
 ### <span class="badge object-method"></span> target
 
 TODO.. this should just be a normal query target

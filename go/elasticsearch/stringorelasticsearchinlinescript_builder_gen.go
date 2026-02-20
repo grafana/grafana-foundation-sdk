@@ -35,6 +35,11 @@ func (builder *StringOrElasticsearchInlineScriptBuilder) Build() (StringOrElasti
 	return *builder.internal, nil
 }
 
+func (builder *StringOrElasticsearchInlineScriptBuilder) RecordError(path string, err error) *StringOrElasticsearchInlineScriptBuilder {
+	builder.errors = append(builder.errors, cog.MakeBuildErrors(path, err)...)
+	return builder
+}
+
 func (builder *StringOrElasticsearchInlineScriptBuilder) String(stringArg string) *StringOrElasticsearchInlineScriptBuilder {
 	builder.internal.String = &stringArg
 

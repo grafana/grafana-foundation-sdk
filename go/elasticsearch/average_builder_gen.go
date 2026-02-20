@@ -35,6 +35,11 @@ func (builder *AverageBuilder) Build() (Average, error) {
 	return *builder.internal, nil
 }
 
+func (builder *AverageBuilder) RecordError(path string, err error) *AverageBuilder {
+	builder.errors = append(builder.errors, cog.MakeBuildErrors(path, err)...)
+	return builder
+}
+
 func (builder *AverageBuilder) Field(field string) *AverageBuilder {
 	builder.internal.Field = &field
 

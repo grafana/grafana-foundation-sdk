@@ -36,6 +36,11 @@ func (builder *PromQLQueryBuilder) Build() (PromQLQuery, error) {
 	return *builder.internal, nil
 }
 
+func (builder *PromQLQueryBuilder) RecordError(path string, err error) *PromQLQueryBuilder {
+	builder.errors = append(builder.errors, cog.MakeBuildErrors(path, err)...)
+	return builder
+}
+
 // GCP project to execute the query against.
 func (builder *PromQLQueryBuilder) ProjectName(projectName string) *PromQLQueryBuilder {
 	builder.internal.ProjectName = projectName

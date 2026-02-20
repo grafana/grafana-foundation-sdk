@@ -35,6 +35,11 @@ func (builder *FetchOptionsBuilder) Build() (FetchOptions, error) {
 	return *builder.internal, nil
 }
 
+func (builder *FetchOptionsBuilder) RecordError(path string, err error) *FetchOptionsBuilder {
+	builder.errors = append(builder.errors, cog.MakeBuildErrors(path, err)...)
+	return builder
+}
+
 func (builder *FetchOptionsBuilder) Method(method HttpRequestMethod) *FetchOptionsBuilder {
 	builder.internal.Method = method
 

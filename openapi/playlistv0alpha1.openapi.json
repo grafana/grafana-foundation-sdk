@@ -54,6 +54,14 @@
             }
           }
         }
+      },
+      "PlaylistV0Alpha1": {
+        "type": "string",
+        "const": "playlist.grafana.app/playlistv0alpha1"
+      },
+      "PlaylistKind": {
+        "type": "string",
+        "const": "Playlist"
       }
     }
   }

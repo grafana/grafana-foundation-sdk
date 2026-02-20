@@ -52,6 +52,16 @@ public class TextBoxVariableBuilder implements com.grafana.foundation.cog.Builde
         return this;
     }
     
+    public TextBoxVariableBuilder staticOptions(List<VariableOption> staticOptions) {
+        this.internal.staticOptions = staticOptions;
+        return this;
+    }
+    
+    public TextBoxVariableBuilder staticOptionsOrder(VariableModelStaticOptionsOrder staticOptionsOrder) {
+        this.internal.staticOptionsOrder = staticOptionsOrder;
+        return this;
+    }
+    
     public TextBoxVariableBuilder definition(String definition) {
         this.internal.definition = definition;
         return this;

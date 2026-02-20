@@ -35,6 +35,11 @@ func (builder *NodeOptionsBuilder) Build() (NodeOptions, error) {
 	return *builder.internal, nil
 }
 
+func (builder *NodeOptionsBuilder) RecordError(path string, err error) *NodeOptionsBuilder {
+	builder.errors = append(builder.errors, cog.MakeBuildErrors(path, err)...)
+	return builder
+}
+
 // Unit for the main stat to override what ever is set in the data frame.
 func (builder *NodeOptionsBuilder) MainStatUnit(mainStatUnit string) *NodeOptionsBuilder {
 	builder.internal.MainStatUnit = &mainStatUnit

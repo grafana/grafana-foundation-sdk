@@ -35,6 +35,11 @@ func (builder *MetricAggregationWithMissingSupportBuilder) Build() (MetricAggreg
 	return *builder.internal, nil
 }
 
+func (builder *MetricAggregationWithMissingSupportBuilder) RecordError(path string, err error) *MetricAggregationWithMissingSupportBuilder {
+	builder.errors = append(builder.errors, cog.MakeBuildErrors(path, err)...)
+	return builder
+}
+
 func (builder *MetricAggregationWithMissingSupportBuilder) Settings(settings cog.Builder[ElasticsearchMetricAggregationWithMissingSupportSettings]) *MetricAggregationWithMissingSupportBuilder {
 	settingsResource, err := settings.Build()
 	if err != nil {

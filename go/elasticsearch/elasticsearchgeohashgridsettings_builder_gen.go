@@ -35,6 +35,11 @@ func (builder *ElasticsearchGeoHashGridSettingsBuilder) Build() (ElasticsearchGe
 	return *builder.internal, nil
 }
 
+func (builder *ElasticsearchGeoHashGridSettingsBuilder) RecordError(path string, err error) *ElasticsearchGeoHashGridSettingsBuilder {
+	builder.errors = append(builder.errors, cog.MakeBuildErrors(path, err)...)
+	return builder
+}
+
 func (builder *ElasticsearchGeoHashGridSettingsBuilder) Precision(precision string) *ElasticsearchGeoHashGridSettingsBuilder {
 	builder.internal.Precision = &precision
 

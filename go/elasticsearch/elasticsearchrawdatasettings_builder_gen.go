@@ -35,6 +35,11 @@ func (builder *ElasticsearchRawDataSettingsBuilder) Build() (ElasticsearchRawDat
 	return *builder.internal, nil
 }
 
+func (builder *ElasticsearchRawDataSettingsBuilder) RecordError(path string, err error) *ElasticsearchRawDataSettingsBuilder {
+	builder.errors = append(builder.errors, cog.MakeBuildErrors(path, err)...)
+	return builder
+}
+
 func (builder *ElasticsearchRawDataSettingsBuilder) Size(size string) *ElasticsearchRawDataSettingsBuilder {
 	builder.internal.Size = &size
 

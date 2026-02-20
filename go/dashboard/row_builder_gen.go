@@ -39,6 +39,11 @@ func (builder *RowBuilder) Build() (RowPanel, error) {
 	return *builder.internal, nil
 }
 
+func (builder *RowBuilder) RecordError(path string, err error) *RowBuilder {
+	builder.errors = append(builder.errors, cog.MakeBuildErrors(path, err)...)
+	return builder
+}
+
 // Whether this row should be collapsed or not.
 // Note: panels added directly to a row will be stripped by Grafana unless the row is collapsed
 func (builder *RowBuilder) Collapsed(collapsed bool) *RowBuilder {

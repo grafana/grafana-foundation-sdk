@@ -16,6 +16,7 @@ public class DashboardLink {
   public String url;
   public List<String> tags;
   public Boolean asDropdown;
+  public DashboardLinkPlacement placement;
   public Boolean targetBlank;
   public Boolean includeVars;
   public Boolean keepTime;

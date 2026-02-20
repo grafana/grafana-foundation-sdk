@@ -20,6 +20,7 @@ export interface DataTransformerConfig {
 	// Optional frame matcher. When missing it will be applied to all results
 	filter?: dashboard.MatcherConfig;
 	// Where to pull DataFrames from as input to transformation
+	// replaced with common.DataTopic
 	topic?: "series" | "annotations" | "alertStates";
 	// Options to be passed to the transformer
 	// Valid options depend on the transformer id

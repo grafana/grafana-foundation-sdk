@@ -35,6 +35,11 @@ func (builder *NotificationTemplateBuilder) Build() (NotificationTemplate, error
 	return *builder.internal, nil
 }
 
+func (builder *NotificationTemplateBuilder) RecordError(path string, err error) *NotificationTemplateBuilder {
+	builder.errors = append(builder.errors, cog.MakeBuildErrors(path, err)...)
+	return builder
+}
+
 func (builder *NotificationTemplateBuilder) Name(name string) *NotificationTemplateBuilder {
 	builder.internal.Name = &name
 

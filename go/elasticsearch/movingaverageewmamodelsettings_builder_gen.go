@@ -35,6 +35,11 @@ func (builder *MovingAverageEWMAModelSettingsBuilder) Build() (MovingAverageEWMA
 	return *builder.internal, nil
 }
 
+func (builder *MovingAverageEWMAModelSettingsBuilder) RecordError(path string, err error) *MovingAverageEWMAModelSettingsBuilder {
+	builder.errors = append(builder.errors, cog.MakeBuildErrors(path, err)...)
+	return builder
+}
+
 func (builder *MovingAverageEWMAModelSettingsBuilder) Settings(settings cog.Builder[ElasticsearchMovingAverageEWMAModelSettingsSettings]) *MovingAverageEWMAModelSettingsBuilder {
 	settingsResource, err := settings.Build()
 	if err != nil {

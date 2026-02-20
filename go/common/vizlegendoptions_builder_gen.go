@@ -36,6 +36,11 @@ func (builder *VizLegendOptionsBuilder) Build() (VizLegendOptions, error) {
 	return *builder.internal, nil
 }
 
+func (builder *VizLegendOptionsBuilder) RecordError(path string, err error) *VizLegendOptionsBuilder {
+	builder.errors = append(builder.errors, cog.MakeBuildErrors(path, err)...)
+	return builder
+}
+
 func (builder *VizLegendOptionsBuilder) DisplayMode(displayMode LegendDisplayMode) *VizLegendOptionsBuilder {
 	builder.internal.DisplayMode = displayMode
 

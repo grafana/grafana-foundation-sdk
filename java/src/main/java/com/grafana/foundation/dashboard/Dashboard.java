@@ -12,6 +12,7 @@ import java.util.List;
 public class Dashboard {
     // Unique numeric identifier for the dashboard.
     // `id` is internal to a specific Grafana instance. `uid` should be used to identify a dashboard across Grafana instances.
+    // TODO eliminate this null option
     @JsonInclude(JsonInclude.Include.NON_NULL)
     @JsonProperty("id")
     public Long id;
@@ -120,7 +121,7 @@ public class Dashboard {
         this.editable = true;
         this.graphTooltip = DashboardCursorSync.OFF;
         this.fiscalYearStartMonth = 0;
-        this.schemaVersion = 41;
+        this.schemaVersion = 42;
         this.templating = new com.grafana.foundation.dashboard.DashboardDashboardTemplating();
         this.annotations = new com.grafana.foundation.dashboard.AnnotationContainer();
     }

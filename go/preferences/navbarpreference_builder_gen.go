@@ -35,6 +35,11 @@ func (builder *NavbarPreferenceBuilder) Build() (NavbarPreference, error) {
 	return *builder.internal, nil
 }
 
+func (builder *NavbarPreferenceBuilder) RecordError(path string, err error) *NavbarPreferenceBuilder {
+	builder.errors = append(builder.errors, cog.MakeBuildErrors(path, err)...)
+	return builder
+}
+
 func (builder *NavbarPreferenceBuilder) BookmarkUrls(bookmarkUrls []string) *NavbarPreferenceBuilder {
 	builder.internal.BookmarkUrls = bookmarkUrls
 

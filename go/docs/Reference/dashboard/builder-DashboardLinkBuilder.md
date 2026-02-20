@@ -50,6 +50,14 @@ If true, includes current time range in the link as query params
 func (builder *DashboardLinkBuilder) KeepTime(keepTime bool) *DashboardLinkBuilder
 ```
 
+### <span class="badge object-method"></span> Placement
+
+Placement can be used to display the link somewhere else on the dashboard other than above the visualisations.
+
+```go
+func (builder *DashboardLinkBuilder) Placement(placement dashboard.DashboardLinkPlacement) *DashboardLinkBuilder
+```
+
 ### <span class="badge object-method"></span> Tags
 
 List of tags to limit the linked dashboards. If empty, all dashboards will be displayed. Only valid if the type is dashboards

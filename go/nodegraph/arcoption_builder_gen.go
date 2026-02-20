@@ -35,6 +35,11 @@ func (builder *ArcOptionBuilder) Build() (ArcOption, error) {
 	return *builder.internal, nil
 }
 
+func (builder *ArcOptionBuilder) RecordError(path string, err error) *ArcOptionBuilder {
+	builder.errors = append(builder.errors, cog.MakeBuildErrors(path, err)...)
+	return builder
+}
+
 // Field from which to get the value. Values should be less than 1, representing fraction of a circle.
 func (builder *ArcOptionBuilder) Field(field string) *ArcOptionBuilder {
 	builder.internal.Field = &field

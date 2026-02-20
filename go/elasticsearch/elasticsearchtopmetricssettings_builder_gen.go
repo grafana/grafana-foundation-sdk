@@ -35,6 +35,11 @@ func (builder *ElasticsearchTopMetricsSettingsBuilder) Build() (ElasticsearchTop
 	return *builder.internal, nil
 }
 
+func (builder *ElasticsearchTopMetricsSettingsBuilder) RecordError(path string, err error) *ElasticsearchTopMetricsSettingsBuilder {
+	builder.errors = append(builder.errors, cog.MakeBuildErrors(path, err)...)
+	return builder
+}
+
 func (builder *ElasticsearchTopMetricsSettingsBuilder) Order(order string) *ElasticsearchTopMetricsSettingsBuilder {
 	builder.internal.Order = &order
 

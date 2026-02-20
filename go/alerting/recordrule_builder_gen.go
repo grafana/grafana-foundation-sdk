@@ -35,6 +35,11 @@ func (builder *RecordRuleBuilder) Build() (RecordRule, error) {
 	return *builder.internal, nil
 }
 
+func (builder *RecordRuleBuilder) RecordError(path string, err error) *RecordRuleBuilder {
+	builder.errors = append(builder.errors, cog.MakeBuildErrors(path, err)...)
+	return builder
+}
+
 // Which expression node should be used as the input for the recorded metric.
 func (builder *RecordRuleBuilder) From(from string) *RecordRuleBuilder {
 	builder.internal.From = from

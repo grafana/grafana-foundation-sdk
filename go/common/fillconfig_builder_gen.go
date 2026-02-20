@@ -36,6 +36,11 @@ func (builder *FillConfigBuilder) Build() (FillConfig, error) {
 	return *builder.internal, nil
 }
 
+func (builder *FillConfigBuilder) RecordError(path string, err error) *FillConfigBuilder {
+	builder.errors = append(builder.errors, cog.MakeBuildErrors(path, err)...)
+	return builder
+}
+
 func (builder *FillConfigBuilder) FillColor(fillColor string) *FillConfigBuilder {
 	builder.internal.FillColor = &fillColor
 

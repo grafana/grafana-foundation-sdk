@@ -64,6 +64,9 @@ class PanelModel:
     time_shift: typing.Optional[str]
     # Controls if the timeFrom or timeShift overrides are shown in the panel header
     hide_time_override: typing.Optional[bool]
+    # Compare the current time range with a previous period
+    # For example "1d" to compare current period but shifted back 1 day
+    time_compare: typing.Optional[str]
     # Sets panel queries cache timeout.
     cache_timeout: typing.Optional[str]
     # Overrides the data source configured time-to-live for a query cache item in milliseconds

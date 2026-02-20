@@ -35,6 +35,11 @@ func (builder *XychartXYSeriesConfigNameBuilder) Build() (XychartXYSeriesConfigN
 	return *builder.internal, nil
 }
 
+func (builder *XychartXYSeriesConfigNameBuilder) RecordError(path string, err error) *XychartXYSeriesConfigNameBuilder {
+	builder.errors = append(builder.errors, cog.MakeBuildErrors(path, err)...)
+	return builder
+}
+
 func (builder *XychartXYSeriesConfigNameBuilder) Fixed(fixed string) *XychartXYSeriesConfigNameBuilder {
 	builder.internal.Fixed = &fixed
 

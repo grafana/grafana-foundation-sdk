@@ -56,6 +56,22 @@ Name of variable
 public ConstantVariableBuilder name(String name)
 ```
 
+### <span class="badge object-method"></span> staticOptions
+
+Additional static options for query variable
+
+```java
+public ConstantVariableBuilder staticOptions(List<VariableOption> staticOptions)
+```
+
+### <span class="badge object-method"></span> staticOptionsOrder
+
+Ordering of static options in relation to options returned from data source for query variable
+
+```java
+public ConstantVariableBuilder staticOptionsOrder(VariableModelStaticOptionsOrder staticOptionsOrder)
+```
+
 ### <span class="badge object-method"></span> value
 
 Query used to fetch values for a variable

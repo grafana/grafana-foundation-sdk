@@ -2,6 +2,7 @@
 
 import * as cog from '../cog';
 import * as dashboardv2beta1 from '../dashboardv2beta1';
+import * as resource from '../resource';
 
 export class DashboardBuilder implements cog.Builder<dashboardv2beta1.Dashboard> {
     protected readonly internal: dashboardv2beta1.Dashboard;
@@ -153,5 +154,18 @@ export class DashboardBuilder implements cog.Builder<dashboardv2beta1.Dashboard>
         this.internal.variables.push(variableResource);
         return this;
     }
+}
+
+/**
+ * Creates a resource manifest from a Dashboard.
+ */
+export function manifest(name: string,dashboard: cog.Builder<dashboardv2beta1.Dashboard>): cog.Builder<resource.Manifest> {
+	const builder = new resource.ManifestBuilder();
+	builder.apiVersion("dashboard.grafana.app/v2beta1");
+	builder.kind("Dashboard");
+	builder.metadata(resource.named(name));
+	builder.spec(dashboard.build());
+
+	return builder;
 }
 

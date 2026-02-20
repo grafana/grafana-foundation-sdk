@@ -82,6 +82,14 @@ Name of annotation.
 public AnnotationQueryBuilder name(String name)
 ```
 
+### <span class="badge object-method"></span> placement
+
+Placement can be used to display the annotation query somewhere else on the dashboard other than the default location.
+
+```java
+public AnnotationQueryBuilder placement(AnnotationQueryPlacement placement)
+```
+
 ### <span class="badge object-method"></span> target
 
 TODO.. this should just be a normal query target

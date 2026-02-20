@@ -35,6 +35,11 @@ func (builder *ElasticsearchMaxSettingsBuilder) Build() (ElasticsearchMaxSetting
 	return *builder.internal, nil
 }
 
+func (builder *ElasticsearchMaxSettingsBuilder) RecordError(path string, err error) *ElasticsearchMaxSettingsBuilder {
+	builder.errors = append(builder.errors, cog.MakeBuildErrors(path, err)...)
+	return builder
+}
+
 func (builder *ElasticsearchMaxSettingsBuilder) Script(script InlineScript) *ElasticsearchMaxSettingsBuilder {
 	builder.internal.Script = &script
 

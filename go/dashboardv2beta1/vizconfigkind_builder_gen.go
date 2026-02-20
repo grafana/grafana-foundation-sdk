@@ -36,6 +36,11 @@ func (builder *VizConfigKindBuilder) Build() (VizConfigKind, error) {
 	return *builder.internal, nil
 }
 
+func (builder *VizConfigKindBuilder) RecordError(path string, err error) *VizConfigKindBuilder {
+	builder.errors = append(builder.errors, cog.MakeBuildErrors(path, err)...)
+	return builder
+}
+
 // The group is the plugin ID
 func (builder *VizConfigKindBuilder) Group(group string) *VizConfigKindBuilder {
 	builder.internal.Group = group

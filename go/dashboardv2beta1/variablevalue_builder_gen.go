@@ -36,6 +36,11 @@ func (builder *VariableValueBuilder) Build() (VariableValue, error) {
 	return *builder.internal, nil
 }
 
+func (builder *VariableValueBuilder) RecordError(path string, err error) *VariableValueBuilder {
+	builder.errors = append(builder.errors, cog.MakeBuildErrors(path, err)...)
+	return builder
+}
+
 func (builder *VariableValueBuilder) String(stringArg string) *VariableValueBuilder {
 	builder.internal.String = &stringArg
 

@@ -35,6 +35,11 @@ func (builder *PipelineVariableBuilder) Build() (PipelineVariable, error) {
 	return *builder.internal, nil
 }
 
+func (builder *PipelineVariableBuilder) RecordError(path string, err error) *PipelineVariableBuilder {
+	builder.errors = append(builder.errors, cog.MakeBuildErrors(path, err)...)
+	return builder
+}
+
 func (builder *PipelineVariableBuilder) Name(name string) *PipelineVariableBuilder {
 	builder.internal.Name = name
 

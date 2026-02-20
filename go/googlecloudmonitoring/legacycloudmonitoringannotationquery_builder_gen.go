@@ -36,6 +36,11 @@ func (builder *LegacyCloudMonitoringAnnotationQueryBuilder) Build() (LegacyCloud
 	return *builder.internal, nil
 }
 
+func (builder *LegacyCloudMonitoringAnnotationQueryBuilder) RecordError(path string, err error) *LegacyCloudMonitoringAnnotationQueryBuilder {
+	builder.errors = append(builder.errors, cog.MakeBuildErrors(path, err)...)
+	return builder
+}
+
 // GCP project to execute the query against.
 func (builder *LegacyCloudMonitoringAnnotationQueryBuilder) ProjectName(projectName string) *LegacyCloudMonitoringAnnotationQueryBuilder {
 	builder.internal.ProjectName = projectName

@@ -86,6 +86,10 @@ public class FieldConfig {
     @JsonInclude(JsonInclude.Include.NON_NULL)
     @JsonProperty("links")
     public List<DashboardLink> links;
+    // Define interactive HTTP requests that can be triggered from data visualizations.
+    @JsonInclude(JsonInclude.Include.NON_NULL)
+    @JsonProperty("actions")
+    public List<Action> actions;
     // Alternative to empty string
     @JsonInclude(JsonInclude.Include.NON_NULL)
     @JsonProperty("noValue")
@@ -100,7 +104,7 @@ public class FieldConfig {
     public Boolean fieldMinMax;
     public FieldConfig() {
     }
-    public FieldConfig(String displayName,String displayNameFromDS,String description,String path,Boolean writeable,Boolean filterable,String unit,Double decimals,Double min,Double max,List<ValueMapping> mappings,ThresholdsConfig thresholds,FieldColor color,List<DashboardLink> links,String noValue,Object custom,Boolean fieldMinMax) {
+    public FieldConfig(String displayName,String displayNameFromDS,String description,String path,Boolean writeable,Boolean filterable,String unit,Double decimals,Double min,Double max,List<ValueMapping> mappings,ThresholdsConfig thresholds,FieldColor color,List<DashboardLink> links,List<Action> actions,String noValue,Object custom,Boolean fieldMinMax) {
         this.displayName = displayName;
         this.displayNameFromDS = displayNameFromDS;
         this.description = description;
@@ -115,6 +119,7 @@ public class FieldConfig {
         this.thresholds = thresholds;
         this.color = color;
         this.links = links;
+        this.actions = actions;
         this.noValue = noValue;
         this.custom = custom;
         this.fieldMinMax = fieldMinMax;

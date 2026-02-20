@@ -35,6 +35,11 @@ func (builder *AzureResourceGraphQueryBuilder) Build() (AzureResourceGraphQuery,
 	return *builder.internal, nil
 }
 
+func (builder *AzureResourceGraphQueryBuilder) RecordError(path string, err error) *AzureResourceGraphQueryBuilder {
+	builder.errors = append(builder.errors, cog.MakeBuildErrors(path, err)...)
+	return builder
+}
+
 // Azure Resource Graph KQL query to be executed.
 func (builder *AzureResourceGraphQueryBuilder) Query(query string) *AzureResourceGraphQueryBuilder {
 	builder.internal.Query = &query

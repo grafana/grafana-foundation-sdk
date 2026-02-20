@@ -96,6 +96,22 @@ Options that can be selected for a variable.
 public IntervalVariableBuilder options(List<VariableOption> options)
 ```
 
+### <span class="badge object-method"></span> staticOptions
+
+Additional static options for query variable
+
+```java
+public IntervalVariableBuilder staticOptions(List<VariableOption> staticOptions)
+```
+
+### <span class="badge object-method"></span> staticOptionsOrder
+
+Ordering of static options in relation to options returned from data source for query variable
+
+```java
+public IntervalVariableBuilder staticOptionsOrder(VariableModelStaticOptionsOrder staticOptionsOrder)
+```
+
 ### <span class="badge object-method"></span> stepCount
 
 How many times the current time range should be divided to calculate the value, similar to the Max data points query option.

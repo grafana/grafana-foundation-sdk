@@ -36,6 +36,11 @@ func (builder *AppInsightsGroupByQueryBuilder) Build() (AppInsightsGroupByQuery,
 	return *builder.internal, nil
 }
 
+func (builder *AppInsightsGroupByQueryBuilder) RecordError(path string, err error) *AppInsightsGroupByQueryBuilder {
+	builder.errors = append(builder.errors, cog.MakeBuildErrors(path, err)...)
+	return builder
+}
+
 func (builder *AppInsightsGroupByQueryBuilder) RawQuery(rawQuery string) *AppInsightsGroupByQueryBuilder {
 	builder.internal.RawQuery = &rawQuery
 

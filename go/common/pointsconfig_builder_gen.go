@@ -36,6 +36,11 @@ func (builder *PointsConfigBuilder) Build() (PointsConfig, error) {
 	return *builder.internal, nil
 }
 
+func (builder *PointsConfigBuilder) RecordError(path string, err error) *PointsConfigBuilder {
+	builder.errors = append(builder.errors, cog.MakeBuildErrors(path, err)...)
+	return builder
+}
+
 func (builder *PointsConfigBuilder) ShowPoints(showPoints VisibilityMode) *PointsConfigBuilder {
 	builder.internal.ShowPoints = &showPoints
 

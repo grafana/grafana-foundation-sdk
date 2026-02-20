@@ -88,6 +88,16 @@ public class QueryVariableBuilder implements com.grafana.foundation.cog.Builder<
         return this;
     }
     
+    public QueryVariableBuilder staticOptions(List<VariableOption> staticOptions) {
+        this.internal.staticOptions = staticOptions;
+        return this;
+    }
+    
+    public QueryVariableBuilder staticOptionsOrder(VariableModelStaticOptionsOrder staticOptionsOrder) {
+        this.internal.staticOptionsOrder = staticOptionsOrder;
+        return this;
+    }
+    
     public QueryVariableBuilder definition(String definition) {
         this.internal.definition = definition;
         return this;

@@ -35,6 +35,11 @@ func (builder *DashboardDashboardTemplatingBuilder) Build() (DashboardDashboardT
 	return *builder.internal, nil
 }
 
+func (builder *DashboardDashboardTemplatingBuilder) RecordError(path string, err error) *DashboardDashboardTemplatingBuilder {
+	builder.errors = append(builder.errors, cog.MakeBuildErrors(path, err)...)
+	return builder
+}
+
 // List of configured template variables with their saved values along with some other metadata
 func (builder *DashboardDashboardTemplatingBuilder) List(list []cog.Builder[VariableModel]) *DashboardDashboardTemplatingBuilder {
 	listResources := make([]VariableModel, 0, len(list))

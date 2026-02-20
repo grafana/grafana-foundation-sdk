@@ -3,6 +3,8 @@
 import typing
 from ..cog import builder as cogbuilder
 from ..models import dashboardv2beta1
+from ..builders import resource as resource_builder
+from ..models import resource
 
 
 class Dashboard(cogbuilder.Builder[dashboardv2beta1.Dashboard]):
@@ -180,6 +182,18 @@ class Dashboard(cogbuilder.Builder[dashboardv2beta1.Dashboard]):
     
         return self
     
+
+"""
+Creates a resource manifest from a Dashboard.
+"""
+def manifest(name: str, dashboard: cogbuilder.Builder[dashboardv2beta1.Dashboard]) -> cogbuilder.Builder[resource.Manifest]:
+    builder = resource_builder.Manifest()
+    builder.api_version("dashboard.grafana.app/v2beta1")
+    builder.kind("Dashboard")
+    builder.metadata(resource_builder.named(name))
+    builder.spec(dashboard.build())
+
+    return builder
 
 
 class AnnotationQuery(cogbuilder.Builder[dashboardv2beta1.AnnotationQueryKind]):

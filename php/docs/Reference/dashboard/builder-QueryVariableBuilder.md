@@ -150,6 +150,24 @@ Options sort order
 sort(\Grafana\Foundation\Dashboard\VariableSort $sort)
 ```
 
+### <span class="badge object-method"></span> staticOptions
+
+Additional static options for query variable
+
+@param array<\Grafana\Foundation\Dashboard\VariableOption> $staticOptions
+
+```php
+staticOptions(array $staticOptions)
+```
+
+### <span class="badge object-method"></span> staticOptionsOrder
+
+Ordering of static options in relation to options returned from data source for query variable
+
+```php
+staticOptionsOrder(\Grafana\Foundation\Dashboard\VariableModelStaticOptionsOrder $staticOptionsOrder)
+```
+
 ## See also
 
  * <span class="badge object-type-class"></span> [VariableModel](./object-VariableModel.md)

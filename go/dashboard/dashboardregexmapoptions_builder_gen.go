@@ -35,6 +35,11 @@ func (builder *DashboardRegexMapOptionsBuilder) Build() (DashboardRegexMapOption
 	return *builder.internal, nil
 }
 
+func (builder *DashboardRegexMapOptionsBuilder) RecordError(path string, err error) *DashboardRegexMapOptionsBuilder {
+	builder.errors = append(builder.errors, cog.MakeBuildErrors(path, err)...)
+	return builder
+}
+
 // Regular expression to match against
 func (builder *DashboardRegexMapOptionsBuilder) Pattern(pattern string) *DashboardRegexMapOptionsBuilder {
 	builder.internal.Pattern = pattern

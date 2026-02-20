@@ -38,6 +38,11 @@ func (builder *AutoGridLayoutItemBuilder) Build() (AutoGridLayoutItemKind, error
 	return *builder.internal, nil
 }
 
+func (builder *AutoGridLayoutItemBuilder) RecordError(path string, err error) *AutoGridLayoutItemBuilder {
+	builder.errors = append(builder.errors, cog.MakeBuildErrors(path, err)...)
+	return builder
+}
+
 func (builder *AutoGridLayoutItemBuilder) Element(element cog.Builder[ElementReference]) *AutoGridLayoutItemBuilder {
 	elementResource, err := element.Build()
 	if err != nil {

@@ -36,6 +36,11 @@ func (builder *ReduceDataOptionsBuilder) Build() (ReduceDataOptions, error) {
 	return *builder.internal, nil
 }
 
+func (builder *ReduceDataOptionsBuilder) RecordError(path string, err error) *ReduceDataOptionsBuilder {
+	builder.errors = append(builder.errors, cog.MakeBuildErrors(path, err)...)
+	return builder
+}
+
 // If true show each row value
 func (builder *ReduceDataOptionsBuilder) Values(values bool) *ReduceDataOptionsBuilder {
 	builder.internal.Values = &values

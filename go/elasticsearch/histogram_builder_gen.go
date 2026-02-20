@@ -35,6 +35,11 @@ func (builder *HistogramBuilder) Build() (Histogram, error) {
 	return *builder.internal, nil
 }
 
+func (builder *HistogramBuilder) RecordError(path string, err error) *HistogramBuilder {
+	builder.errors = append(builder.errors, cog.MakeBuildErrors(path, err)...)
+	return builder
+}
+
 func (builder *HistogramBuilder) Field(field string) *HistogramBuilder {
 	builder.internal.Field = &field
 

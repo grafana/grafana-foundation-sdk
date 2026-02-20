@@ -380,6 +380,16 @@ class PanelModel(cogbuilder.Builder[librarypanel.PanelModel]):
     
         return self
     
+    def time_compare(self, time_compare: str) -> typing.Self:    
+        """
+        Compare the current time range with a previous period
+        For example "1d" to compare current period but shifted back 1 day
+        """
+            
+        self._internal.time_compare = time_compare
+    
+        return self
+    
     def cache_timeout(self, cache_timeout: str) -> typing.Self:    
         """
         Sets panel queries cache timeout.

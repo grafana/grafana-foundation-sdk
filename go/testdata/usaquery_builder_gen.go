@@ -35,6 +35,11 @@ func (builder *USAQueryBuilder) Build() (USAQuery, error) {
 	return *builder.internal, nil
 }
 
+func (builder *USAQueryBuilder) RecordError(path string, err error) *USAQueryBuilder {
+	builder.errors = append(builder.errors, cog.MakeBuildErrors(path, err)...)
+	return builder
+}
+
 func (builder *USAQueryBuilder) Fields(fields []string) *USAQueryBuilder {
 	builder.internal.Fields = fields
 

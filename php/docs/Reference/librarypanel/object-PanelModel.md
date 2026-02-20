@@ -116,6 +116,12 @@ class PanelModel implements \JsonSerializable
     public ?bool $hideTimeOverride;
 
     /**
+     * Compare the current time range with a previous period
+     * For example "1d" to compare current period but shifted back 1 day
+     */
+    public ?string $timeCompare;
+
+    /**
      * Sets panel queries cache timeout.
      */
     public ?string $cacheTimeout;

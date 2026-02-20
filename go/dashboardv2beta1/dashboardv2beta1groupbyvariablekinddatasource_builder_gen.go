@@ -35,6 +35,11 @@ func (builder *Dashboardv2beta1GroupByVariableKindDatasourceBuilder) Build() (Da
 	return *builder.internal, nil
 }
 
+func (builder *Dashboardv2beta1GroupByVariableKindDatasourceBuilder) RecordError(path string, err error) *Dashboardv2beta1GroupByVariableKindDatasourceBuilder {
+	builder.errors = append(builder.errors, cog.MakeBuildErrors(path, err)...)
+	return builder
+}
+
 func (builder *Dashboardv2beta1GroupByVariableKindDatasourceBuilder) Name(name string) *Dashboardv2beta1GroupByVariableKindDatasourceBuilder {
 	builder.internal.Name = &name
 

@@ -35,6 +35,11 @@ func (builder *ElasticsearchSerialDiffSettingsBuilder) Build() (ElasticsearchSer
 	return *builder.internal, nil
 }
 
+func (builder *ElasticsearchSerialDiffSettingsBuilder) RecordError(path string, err error) *ElasticsearchSerialDiffSettingsBuilder {
+	builder.errors = append(builder.errors, cog.MakeBuildErrors(path, err)...)
+	return builder
+}
+
 func (builder *ElasticsearchSerialDiffSettingsBuilder) Lag(lag string) *ElasticsearchSerialDiffSettingsBuilder {
 	builder.internal.Lag = &lag
 

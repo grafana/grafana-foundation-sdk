@@ -35,6 +35,11 @@ func (builder *ConditionalRenderingGroupSpecBuilder) Build() (ConditionalRenderi
 	return *builder.internal, nil
 }
 
+func (builder *ConditionalRenderingGroupSpecBuilder) RecordError(path string, err error) *ConditionalRenderingGroupSpecBuilder {
+	builder.errors = append(builder.errors, cog.MakeBuildErrors(path, err)...)
+	return builder
+}
+
 func (builder *ConditionalRenderingGroupSpecBuilder) Visibility(visibility ConditionalRenderingGroupSpecVisibility) *ConditionalRenderingGroupSpecBuilder {
 	builder.internal.Visibility = visibility
 

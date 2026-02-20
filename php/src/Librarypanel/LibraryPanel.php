@@ -90,7 +90,7 @@ class LibraryPanel implements \JsonSerializable
             schemaVersion: $data["schemaVersion"] ?? null,
             version: $data["version"] ?? null,
             model: isset($data["model"]) ? (function($input) {
-    	/** @var array{type?: string, pluginVersion?: string, targets?: array<mixed>, title?: string, description?: string, transparent?: bool, datasource?: mixed, links?: array<mixed>, repeat?: string, repeatDirection?: string, maxPerRow?: float, maxDataPoints?: float, transformations?: array<mixed>, interval?: string, timeFrom?: string, timeShift?: string, hideTimeOverride?: bool, cacheTimeout?: string, queryCachingTTL?: float, options?: mixed, fieldConfig?: mixed} */
+    	/** @var array{type?: string, pluginVersion?: string, targets?: array<mixed>, title?: string, description?: string, transparent?: bool, datasource?: mixed, links?: array<mixed>, repeat?: string, repeatDirection?: string, maxPerRow?: float, maxDataPoints?: float, transformations?: array<mixed>, interval?: string, timeFrom?: string, timeShift?: string, hideTimeOverride?: bool, timeCompare?: string, cacheTimeout?: string, queryCachingTTL?: float, options?: mixed, fieldConfig?: mixed} */
     $val = $input;
     	return \Grafana\Foundation\Librarypanel\PanelModel::fromArray($val);
     })($data["model"]) : null,

@@ -37,6 +37,11 @@ func (builder *DataqueryBuilder) Build() (variants.Dataquery, error) {
 	return *builder.internal, nil
 }
 
+func (builder *DataqueryBuilder) RecordError(path string, err error) *DataqueryBuilder {
+	builder.errors = append(builder.errors, cog.MakeBuildErrors(path, err)...)
+	return builder
+}
+
 // Specifies the query label selectors.
 func (builder *DataqueryBuilder) LabelSelector(labelSelector string) *DataqueryBuilder {
 	builder.internal.LabelSelector = labelSelector

@@ -92,7 +92,7 @@ class RowPanel implements \JsonSerializable
     })($data["gridPos"]) : null,
             id: $data["id"] ?? null,
             panels: array_filter(array_map((function($input) {
-    	/** @var array{type?: string, id?: int, pluginVersion?: string, targets?: array<mixed>, title?: string, description?: string, transparent?: bool, datasource?: mixed, gridPos?: mixed, links?: array<mixed>, repeat?: string, repeatDirection?: string, maxPerRow?: float, maxDataPoints?: float, transformations?: array<mixed>, interval?: string, timeFrom?: string, timeShift?: string, hideTimeOverride?: bool, libraryPanel?: mixed, cacheTimeout?: string, queryCachingTTL?: float, options?: mixed, fieldConfig?: mixed} */
+    	/** @var array{type?: string, id?: int, pluginVersion?: string, targets?: array<mixed>, title?: string, description?: string, transparent?: bool, datasource?: mixed, gridPos?: mixed, links?: array<mixed>, repeat?: string, repeatDirection?: string, maxPerRow?: float, maxDataPoints?: float, transformations?: array<mixed>, interval?: string, timeFrom?: string, timeShift?: string, hideTimeOverride?: bool, timeCompare?: string, libraryPanel?: mixed, cacheTimeout?: string, queryCachingTTL?: float, options?: mixed, fieldConfig?: mixed} */
     $val = $input;
     	return \Grafana\Foundation\Dashboard\Panel::fromArray($val);
     }), $data["panels"] ?? [])),

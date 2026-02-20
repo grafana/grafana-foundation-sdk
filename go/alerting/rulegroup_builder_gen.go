@@ -36,6 +36,11 @@ func (builder *RuleGroupBuilder) Build() (RuleGroup, error) {
 	return *builder.internal, nil
 }
 
+func (builder *RuleGroupBuilder) RecordError(path string, err error) *RuleGroupBuilder {
+	builder.errors = append(builder.errors, cog.MakeBuildErrors(path, err)...)
+	return builder
+}
+
 func (builder *RuleGroupBuilder) FolderUid(folderUid string) *RuleGroupBuilder {
 	builder.internal.FolderUid = &folderUid
 

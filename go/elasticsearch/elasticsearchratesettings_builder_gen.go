@@ -35,6 +35,11 @@ func (builder *ElasticsearchRateSettingsBuilder) Build() (ElasticsearchRateSetti
 	return *builder.internal, nil
 }
 
+func (builder *ElasticsearchRateSettingsBuilder) RecordError(path string, err error) *ElasticsearchRateSettingsBuilder {
+	builder.errors = append(builder.errors, cog.MakeBuildErrors(path, err)...)
+	return builder
+}
+
 func (builder *ElasticsearchRateSettingsBuilder) Unit(unit string) *ElasticsearchRateSettingsBuilder {
 	builder.internal.Unit = &unit
 

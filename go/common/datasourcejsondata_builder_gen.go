@@ -36,6 +36,11 @@ func (builder *DataSourceJsonDataBuilder) Build() (DataSourceJsonData, error) {
 	return *builder.internal, nil
 }
 
+func (builder *DataSourceJsonDataBuilder) RecordError(path string, err error) *DataSourceJsonDataBuilder {
+	builder.errors = append(builder.errors, cog.MakeBuildErrors(path, err)...)
+	return builder
+}
+
 func (builder *DataSourceJsonDataBuilder) AuthType(authType string) *DataSourceJsonDataBuilder {
 	builder.internal.AuthType = &authType
 

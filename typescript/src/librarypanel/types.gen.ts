@@ -120,6 +120,9 @@ export interface PanelModel {
 	timeShift?: string;
 	// Controls if the timeFrom or timeShift overrides are shown in the panel header
 	hideTimeOverride?: boolean;
+	// Compare the current time range with a previous period
+	// For example "1d" to compare current period but shifted back 1 day
+	timeCompare?: string;
 	// Sets panel queries cache timeout.
 	cacheTimeout?: string;
 	// Overrides the data source configured time-to-live for a query cache item in milliseconds

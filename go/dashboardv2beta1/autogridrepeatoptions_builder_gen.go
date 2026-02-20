@@ -35,6 +35,11 @@ func (builder *AutoGridRepeatOptionsBuilder) Build() (AutoGridRepeatOptions, err
 	return *builder.internal, nil
 }
 
+func (builder *AutoGridRepeatOptionsBuilder) RecordError(path string, err error) *AutoGridRepeatOptionsBuilder {
+	builder.errors = append(builder.errors, cog.MakeBuildErrors(path, err)...)
+	return builder
+}
+
 func (builder *AutoGridRepeatOptionsBuilder) Value(value string) *AutoGridRepeatOptionsBuilder {
 	builder.internal.Value = value
 

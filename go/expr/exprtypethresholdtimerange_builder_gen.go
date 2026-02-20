@@ -35,6 +35,11 @@ func (builder *ExprTypeThresholdTimeRangeBuilder) Build() (ExprTypeThresholdTime
 	return *builder.internal, nil
 }
 
+func (builder *ExprTypeThresholdTimeRangeBuilder) RecordError(path string, err error) *ExprTypeThresholdTimeRangeBuilder {
+	builder.errors = append(builder.errors, cog.MakeBuildErrors(path, err)...)
+	return builder
+}
+
 // From is the start time of the query.
 func (builder *ExprTypeThresholdTimeRangeBuilder) From(from string) *ExprTypeThresholdTimeRangeBuilder {
 	builder.internal.From = from

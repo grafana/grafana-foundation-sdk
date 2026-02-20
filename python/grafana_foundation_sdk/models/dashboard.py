@@ -7,9 +7,254 @@ from ..models import common
 from ..cog import runtime as cogruntime
 
 
+class AnnotationActions:
+    can_add: typing.Optional[bool]
+    can_delete: typing.Optional[bool]
+    can_edit: typing.Optional[bool]
+
+    def __init__(self, can_add: typing.Optional[bool] = None, can_delete: typing.Optional[bool] = None, can_edit: typing.Optional[bool] = None) -> None:
+        self.can_add = can_add
+        self.can_delete = can_delete
+        self.can_edit = can_edit
+
+    def to_json(self) -> dict[str, object]:
+        payload: dict[str, object] = {
+        }
+        if self.can_add is not None:
+            payload["canAdd"] = self.can_add
+        if self.can_delete is not None:
+            payload["canDelete"] = self.can_delete
+        if self.can_edit is not None:
+            payload["canEdit"] = self.can_edit
+        return payload
+
+    @classmethod
+    def from_json(cls, data: dict[str, typing.Any]) -> typing.Self:
+        args: dict[str, typing.Any] = {}
+        
+        if "canAdd" in data:
+            args["can_add"] = data["canAdd"]
+        if "canDelete" in data:
+            args["can_delete"] = data["canDelete"]
+        if "canEdit" in data:
+            args["can_edit"] = data["canEdit"]        
+
+        return cls(**args)
+
+
+class AnnotationPermission:
+    dashboard: typing.Optional['AnnotationActions']
+    organization: typing.Optional['AnnotationActions']
+
+    def __init__(self, dashboard: typing.Optional['AnnotationActions'] = None, organization: typing.Optional['AnnotationActions'] = None) -> None:
+        self.dashboard = dashboard
+        self.organization = organization
+
+    def to_json(self) -> dict[str, object]:
+        payload: dict[str, object] = {
+        }
+        if self.dashboard is not None:
+            payload["dashboard"] = self.dashboard
+        if self.organization is not None:
+            payload["organization"] = self.organization
+        return payload
+
+    @classmethod
+    def from_json(cls, data: dict[str, typing.Any]) -> typing.Self:
+        args: dict[str, typing.Any] = {}
+        
+        if "dashboard" in data:
+            args["dashboard"] = AnnotationActions.from_json(data["dashboard"])
+        if "organization" in data:
+            args["organization"] = AnnotationActions.from_json(data["organization"])        
+
+        return cls(**args)
+
+
+class DashboardMeta:
+    annotations_permissions: typing.Optional['AnnotationPermission']
+    api_version: typing.Optional[str]
+    can_admin: typing.Optional[bool]
+    can_delete: typing.Optional[bool]
+    can_edit: typing.Optional[bool]
+    can_save: typing.Optional[bool]
+    can_star: typing.Optional[bool]
+    created: typing.Optional[str]
+    created_by: typing.Optional[str]
+    expires: typing.Optional[str]
+    # Deprecated: use FolderUID instead
+    folder_id: typing.Optional[int]
+    folder_title: typing.Optional[str]
+    folder_uid: typing.Optional[str]
+    folder_url: typing.Optional[str]
+    has_acl: typing.Optional[bool]
+    is_folder: typing.Optional[bool]
+    is_snapshot: typing.Optional[bool]
+    is_starred: typing.Optional[bool]
+    provisioned: typing.Optional[bool]
+    provisioned_external_id: typing.Optional[str]
+    public_dashboard_enabled: typing.Optional[bool]
+    slug: typing.Optional[str]
+    type_val: typing.Optional[str]
+    updated: typing.Optional[str]
+    updated_by: typing.Optional[str]
+    url: typing.Optional[str]
+    version: typing.Optional[int]
+
+    def __init__(self, annotations_permissions: typing.Optional['AnnotationPermission'] = None, api_version: typing.Optional[str] = None, can_admin: typing.Optional[bool] = None, can_delete: typing.Optional[bool] = None, can_edit: typing.Optional[bool] = None, can_save: typing.Optional[bool] = None, can_star: typing.Optional[bool] = None, created: typing.Optional[str] = None, created_by: typing.Optional[str] = None, expires: typing.Optional[str] = None, folder_id: typing.Optional[int] = None, folder_title: typing.Optional[str] = None, folder_uid: typing.Optional[str] = None, folder_url: typing.Optional[str] = None, has_acl: typing.Optional[bool] = None, is_folder: typing.Optional[bool] = None, is_snapshot: typing.Optional[bool] = None, is_starred: typing.Optional[bool] = None, provisioned: typing.Optional[bool] = None, provisioned_external_id: typing.Optional[str] = None, public_dashboard_enabled: typing.Optional[bool] = None, slug: typing.Optional[str] = None, type_val: typing.Optional[str] = None, updated: typing.Optional[str] = None, updated_by: typing.Optional[str] = None, url: typing.Optional[str] = None, version: typing.Optional[int] = None) -> None:
+        self.annotations_permissions = annotations_permissions
+        self.api_version = api_version
+        self.can_admin = can_admin
+        self.can_delete = can_delete
+        self.can_edit = can_edit
+        self.can_save = can_save
+        self.can_star = can_star
+        self.created = created
+        self.created_by = created_by
+        self.expires = expires
+        self.folder_id = folder_id
+        self.folder_title = folder_title
+        self.folder_uid = folder_uid
+        self.folder_url = folder_url
+        self.has_acl = has_acl
+        self.is_folder = is_folder
+        self.is_snapshot = is_snapshot
+        self.is_starred = is_starred
+        self.provisioned = provisioned
+        self.provisioned_external_id = provisioned_external_id
+        self.public_dashboard_enabled = public_dashboard_enabled
+        self.slug = slug
+        self.type_val = type_val
+        self.updated = updated
+        self.updated_by = updated_by
+        self.url = url
+        self.version = version
+
+    def to_json(self) -> dict[str, object]:
+        payload: dict[str, object] = {
+        }
+        if self.annotations_permissions is not None:
+            payload["annotationsPermissions"] = self.annotations_permissions
+        if self.api_version is not None:
+            payload["apiVersion"] = self.api_version
+        if self.can_admin is not None:
+            payload["canAdmin"] = self.can_admin
+        if self.can_delete is not None:
+            payload["canDelete"] = self.can_delete
+        if self.can_edit is not None:
+            payload["canEdit"] = self.can_edit
+        if self.can_save is not None:
+            payload["canSave"] = self.can_save
+        if self.can_star is not None:
+            payload["canStar"] = self.can_star
+        if self.created is not None:
+            payload["created"] = self.created
+        if self.created_by is not None:
+            payload["createdBy"] = self.created_by
+        if self.expires is not None:
+            payload["expires"] = self.expires
+        if self.folder_id is not None:
+            payload["folderId"] = self.folder_id
+        if self.folder_title is not None:
+            payload["folderTitle"] = self.folder_title
+        if self.folder_uid is not None:
+            payload["folderUid"] = self.folder_uid
+        if self.folder_url is not None:
+            payload["folderUrl"] = self.folder_url
+        if self.has_acl is not None:
+            payload["hasAcl"] = self.has_acl
+        if self.is_folder is not None:
+            payload["isFolder"] = self.is_folder
+        if self.is_snapshot is not None:
+            payload["isSnapshot"] = self.is_snapshot
+        if self.is_starred is not None:
+            payload["isStarred"] = self.is_starred
+        if self.provisioned is not None:
+            payload["provisioned"] = self.provisioned
+        if self.provisioned_external_id is not None:
+            payload["provisionedExternalId"] = self.provisioned_external_id
+        if self.public_dashboard_enabled is not None:
+            payload["publicDashboardEnabled"] = self.public_dashboard_enabled
+        if self.slug is not None:
+            payload["slug"] = self.slug
+        if self.type_val is not None:
+            payload["type"] = self.type_val
+        if self.updated is not None:
+            payload["updated"] = self.updated
+        if self.updated_by is not None:
+            payload["updatedBy"] = self.updated_by
+        if self.url is not None:
+            payload["url"] = self.url
+        if self.version is not None:
+            payload["version"] = self.version
+        return payload
+
+    @classmethod
+    def from_json(cls, data: dict[str, typing.Any]) -> typing.Self:
+        args: dict[str, typing.Any] = {}
+        
+        if "annotationsPermissions" in data:
+            args["annotations_permissions"] = AnnotationPermission.from_json(data["annotationsPermissions"])
+        if "apiVersion" in data:
+            args["api_version"] = data["apiVersion"]
+        if "canAdmin" in data:
+            args["can_admin"] = data["canAdmin"]
+        if "canDelete" in data:
+            args["can_delete"] = data["canDelete"]
+        if "canEdit" in data:
+            args["can_edit"] = data["canEdit"]
+        if "canSave" in data:
+            args["can_save"] = data["canSave"]
+        if "canStar" in data:
+            args["can_star"] = data["canStar"]
+        if "created" in data:
+            args["created"] = data["created"]
+        if "createdBy" in data:
+            args["created_by"] = data["createdBy"]
+        if "expires" in data:
+            args["expires"] = data["expires"]
+        if "folderId" in data:
+            args["folder_id"] = data["folderId"]
+        if "folderTitle" in data:
+            args["folder_title"] = data["folderTitle"]
+        if "folderUid" in data:
+            args["folder_uid"] = data["folderUid"]
+        if "folderUrl" in data:
+            args["folder_url"] = data["folderUrl"]
+        if "hasAcl" in data:
+            args["has_acl"] = data["hasAcl"]
+        if "isFolder" in data:
+            args["is_folder"] = data["isFolder"]
+        if "isSnapshot" in data:
+            args["is_snapshot"] = data["isSnapshot"]
+        if "isStarred" in data:
+            args["is_starred"] = data["isStarred"]
+        if "provisioned" in data:
+            args["provisioned"] = data["provisioned"]
+        if "provisionedExternalId" in data:
+            args["provisioned_external_id"] = data["provisionedExternalId"]
+        if "publicDashboardEnabled" in data:
+            args["public_dashboard_enabled"] = data["publicDashboardEnabled"]
+        if "slug" in data:
+            args["slug"] = data["slug"]
+        if "type" in data:
+            args["type_val"] = data["type"]
+        if "updated" in data:
+            args["updated"] = data["updated"]
+        if "updatedBy" in data:
+            args["updated_by"] = data["updatedBy"]
+        if "url" in data:
+            args["url"] = data["url"]
+        if "version" in data:
+            args["version"] = data["version"]        
+
+        return cls(**args)
+
+
 class Dashboard:
     # Unique numeric identifier for the dashboard.
     # `id` is internal to a specific Grafana instance. `uid` should be used to identify a dashboard across Grafana instances.
+    # TODO eliminate this null option
     id_val: typing.Optional[int]
     # Unique dashboard identifier that can be generated by anyone. string (8-40)
     uid: typing.Optional[str]
@@ -67,7 +312,7 @@ class Dashboard:
     # When set to true, the dashboard will load all panels in the dashboard when it's loaded.
     preload: typing.Optional[bool]
 
-    def __init__(self, id_val: typing.Optional[int] = None, uid: typing.Optional[str] = None, title: typing.Optional[str] = None, description: typing.Optional[str] = None, revision: typing.Optional[int] = None, gnet_id: typing.Optional[str] = None, tags: typing.Optional[list[str]] = None, timezone: typing.Optional[str] = "browser", editable: typing.Optional[bool] = True, graph_tooltip: typing.Optional['DashboardCursorSync'] = None, time: typing.Optional['DashboardDashboardTime'] = None, timepicker: typing.Optional['TimePickerConfig'] = None, fiscal_year_start_month: typing.Optional[int] = 0, live_now: typing.Optional[bool] = None, week_start: typing.Optional[str] = None, refresh: typing.Optional[str] = None, schema_version: int = 41, version: typing.Optional[int] = None, panels: typing.Optional[list[typing.Union['Panel', 'RowPanel']]] = None, templating: typing.Optional['DashboardDashboardTemplating'] = None, annotations: typing.Optional['AnnotationContainer'] = None, links: typing.Optional[list['DashboardLink']] = None, snapshot: typing.Optional['Snapshot'] = None, preload: typing.Optional[bool] = None) -> None:
+    def __init__(self, id_val: typing.Optional[int] = None, uid: typing.Optional[str] = None, title: typing.Optional[str] = None, description: typing.Optional[str] = None, revision: typing.Optional[int] = None, gnet_id: typing.Optional[str] = None, tags: typing.Optional[list[str]] = None, timezone: typing.Optional[str] = "browser", editable: typing.Optional[bool] = True, graph_tooltip: typing.Optional['DashboardCursorSync'] = None, time: typing.Optional['DashboardDashboardTime'] = None, timepicker: typing.Optional['TimePickerConfig'] = None, fiscal_year_start_month: typing.Optional[int] = 0, live_now: typing.Optional[bool] = None, week_start: typing.Optional[str] = None, refresh: typing.Optional[str] = None, schema_version: int = 42, version: typing.Optional[int] = None, panels: typing.Optional[list[typing.Union['Panel', 'RowPanel']]] = None, templating: typing.Optional['DashboardDashboardTemplating'] = None, annotations: typing.Optional['AnnotationContainer'] = None, links: typing.Optional[list['DashboardLink']] = None, snapshot: typing.Optional['Snapshot'] = None, preload: typing.Optional[bool] = None) -> None:
         self.id_val = id_val
         self.uid = uid
         self.title = title
@@ -358,6 +603,9 @@ class Panel:
     time_shift: typing.Optional[str]
     # Controls if the timeFrom or timeShift overrides are shown in the panel header
     hide_time_override: typing.Optional[bool]
+    # Compare the current time range with a previous period
+    # For example "1d" to compare current period but shifted back 1 day
+    time_compare: typing.Optional[str]
     # Dynamically load the panel
     library_panel: typing.Optional['LibraryPanelRef']
     # Sets panel queries cache timeout.
@@ -369,7 +617,7 @@ class Panel:
     # Field options allow you to change how the data is displayed in your visualizations.
     field_config: typing.Optional['FieldConfigSource']
 
-    def __init__(self, type_val: str = "", id_val: typing.Optional[int] = None, plugin_version: typing.Optional[str] = None, targets: typing.Optional[list[cogvariants.Dataquery]] = None, title: typing.Optional[str] = None, description: typing.Optional[str] = None, transparent: typing.Optional[bool] = False, datasource: typing.Optional[common.DataSourceRef] = None, grid_pos: typing.Optional['GridPos'] = None, links: typing.Optional[list['DashboardLink']] = None, repeat: typing.Optional[str] = None, repeat_direction: typing.Optional[typing.Literal["h", "v"]] = None, max_per_row: typing.Optional[float] = None, max_data_points: typing.Optional[float] = None, transformations: typing.Optional[list['DataTransformerConfig']] = None, interval: typing.Optional[str] = None, time_from: typing.Optional[str] = None, time_shift: typing.Optional[str] = None, hide_time_override: typing.Optional[bool] = None, library_panel: typing.Optional['LibraryPanelRef'] = None, cache_timeout: typing.Optional[str] = None, query_caching_ttl: typing.Optional[float] = None, options: typing.Optional[object] = None, field_config: typing.Optional['FieldConfigSource'] = None) -> None:
+    def __init__(self, type_val: str = "", id_val: typing.Optional[int] = None, plugin_version: typing.Optional[str] = None, targets: typing.Optional[list[cogvariants.Dataquery]] = None, title: typing.Optional[str] = None, description: typing.Optional[str] = None, transparent: typing.Optional[bool] = False, datasource: typing.Optional[common.DataSourceRef] = None, grid_pos: typing.Optional['GridPos'] = None, links: typing.Optional[list['DashboardLink']] = None, repeat: typing.Optional[str] = None, repeat_direction: typing.Optional[typing.Literal["h", "v"]] = None, max_per_row: typing.Optional[float] = None, max_data_points: typing.Optional[float] = None, transformations: typing.Optional[list['DataTransformerConfig']] = None, interval: typing.Optional[str] = None, time_from: typing.Optional[str] = None, time_shift: typing.Optional[str] = None, hide_time_override: typing.Optional[bool] = None, time_compare: typing.Optional[str] = None, library_panel: typing.Optional['LibraryPanelRef'] = None, cache_timeout: typing.Optional[str] = None, query_caching_ttl: typing.Optional[float] = None, options: typing.Optional[object] = None, field_config: typing.Optional['FieldConfigSource'] = None) -> None:
         self.type_val = type_val
         self.id_val = id_val
         self.plugin_version = plugin_version
@@ -389,6 +637,7 @@ class Panel:
         self.time_from = time_from
         self.time_shift = time_shift
         self.hide_time_override = hide_time_override
+        self.time_compare = time_compare
         self.library_panel = library_panel
         self.cache_timeout = cache_timeout
         self.query_caching_ttl = query_caching_ttl
@@ -435,6 +684,8 @@ class Panel:
             payload["timeShift"] = self.time_shift
         if self.hide_time_override is not None:
             payload["hideTimeOverride"] = self.hide_time_override
+        if self.time_compare is not None:
+            payload["timeCompare"] = self.time_compare
         if self.library_panel is not None:
             payload["libraryPanel"] = self.library_panel
         if self.cache_timeout is not None:
@@ -489,6 +740,8 @@ class Panel:
             args["time_shift"] = data["timeShift"]
         if "hideTimeOverride" in data:
             args["hide_time_override"] = data["hideTimeOverride"]
+        if "timeCompare" in data:
+            args["time_compare"] = data["timeCompare"]
         if "libraryPanel" in data:
             args["library_panel"] = LibraryPanelRef.from_json(data["libraryPanel"])
         if "cacheTimeout" in data:
@@ -591,6 +844,8 @@ class DashboardLink:
     tags: list[str]
     # If true, all dashboards links will be displayed in a dropdown. If false, all dashboards links will be displayed side by side. Only valid if the type is dashboards
     as_dropdown: bool
+    # Placement can be used to display the link somewhere else on the dashboard other than above the visualisations.
+    placement: str
     # If true, the link will be opened in a new tab
     target_blank: bool
     # If true, includes current template variables values in the link as query params
@@ -606,6 +861,7 @@ class DashboardLink:
         self.url = url
         self.tags = tags if tags is not None else []
         self.as_dropdown = as_dropdown
+        self.placement = DashboardLinkPlacement.IN_CONTROLS_MENU
         self.target_blank = target_blank
         self.include_vars = include_vars
         self.keep_time = keep_time
@@ -624,6 +880,8 @@ class DashboardLink:
         }
         if self.url is not None:
             payload["url"] = self.url
+        if self.placement is not None:
+            payload["placement"] = self.placement
         return payload
 
     @classmethod
@@ -663,6 +921,15 @@ class DashboardLinkType(enum.StrEnum):
     DASHBOARDS = "dashboards"
 
 
+class DashboardLinkPlacement(enum.StrEnum):
+    """
+    Dashboard Link placement. Defines where the link should be displayed.
+    - "inControlsMenu" renders the link in bottom part of the dashboard controls dropdown menu
+    """
+
+    IN_CONTROLS_MENU = "inControlsMenu"
+
+
 class DataTransformerConfig:
     """
     Transformations allow to manipulate data returned by a query before the system applies a visualization.
@@ -677,6 +944,7 @@ class DataTransformerConfig:
     # Optional frame matcher. When missing it will be applied to all results
     filter_val: typing.Optional['MatcherConfig']
     # Where to pull DataFrames from as input to transformation
+    # replaced with common.DataTopic
     topic: typing.Optional[typing.Literal["series", "annotations", "alertStates"]]
     # Options to be passed to the transformer
     # Valid options depend on the transformer id
@@ -877,6 +1145,8 @@ class FieldConfig:
     color: typing.Optional['FieldColor']
     # The behavior when clicking on a result
     links: typing.Optional[list['DashboardLink']]
+    # Define interactive HTTP requests that can be triggered from data visualizations.
+    actions: typing.Optional[list['Action']]
     # Alternative to empty string
     no_value: typing.Optional[str]
     # custom is specified by the FieldConfig field
@@ -884,7 +1154,7 @@ class FieldConfig:
     custom: typing.Optional[object]
     field_min_max: typing.Optional[bool]
 
-    def __init__(self, display_name: typing.Optional[str] = None, display_name_from_ds: typing.Optional[str] = None, description: typing.Optional[str] = None, path: typing.Optional[str] = None, writeable: typing.Optional[bool] = None, filterable: typing.Optional[bool] = None, unit: typing.Optional[str] = None, decimals: typing.Optional[float] = None, min_val: typing.Optional[float] = None, max_val: typing.Optional[float] = None, mappings: typing.Optional[list['ValueMapping']] = None, thresholds: typing.Optional['ThresholdsConfig'] = None, color: typing.Optional['FieldColor'] = None, links: typing.Optional[list['DashboardLink']] = None, no_value: typing.Optional[str] = None, custom: typing.Optional[object] = None, field_min_max: typing.Optional[bool] = None) -> None:
+    def __init__(self, display_name: typing.Optional[str] = None, display_name_from_ds: typing.Optional[str] = None, description: typing.Optional[str] = None, path: typing.Optional[str] = None, writeable: typing.Optional[bool] = None, filterable: typing.Optional[bool] = None, unit: typing.Optional[str] = None, decimals: typing.Optional[float] = None, min_val: typing.Optional[float] = None, max_val: typing.Optional[float] = None, mappings: typing.Optional[list['ValueMapping']] = None, thresholds: typing.Optional['ThresholdsConfig'] = None, color: typing.Optional['FieldColor'] = None, links: typing.Optional[list['DashboardLink']] = None, actions: typing.Optional[list['Action']] = None, no_value: typing.Optional[str] = None, custom: typing.Optional[object] = None, field_min_max: typing.Optional[bool] = None) -> None:
         self.display_name = display_name
         self.display_name_from_ds = display_name_from_ds
         self.description = description
@@ -899,6 +1169,7 @@ class FieldConfig:
         self.thresholds = thresholds
         self.color = color
         self.links = links
+        self.actions = actions
         self.no_value = no_value
         self.custom = custom
         self.field_min_max = field_min_max
@@ -934,6 +1205,8 @@ class FieldConfig:
             payload["color"] = self.color
         if self.links is not None:
             payload["links"] = self.links
+        if self.actions is not None:
+            payload["actions"] = self.actions
         if self.no_value is not None:
             payload["noValue"] = self.no_value
         if self.custom is not None:
@@ -975,6 +1248,8 @@ class FieldConfig:
             args["color"] = FieldColor.from_json(data["color"])
         if "links" in data:
             args["links"] = [DashboardLink.from_json(item) for item in data["links"]]
+        if "actions" in data:
+            args["actions"] = [Action.from_json(item) for item in data["actions"]]
         if "noValue" in data:
             args["no_value"] = data["noValue"]
         if "custom" in data:
@@ -1357,6 +1632,237 @@ class FieldColorSeriesByMode(enum.StrEnum):
     LAST = "last"
 
 
+class Action:
+    """
+    Dashboard action
+    """
+
+    type_val: 'ActionType'
+    title: str
+    fetch: typing.Optional['FetchOptions']
+    infinity: typing.Optional['InfinityOptions']
+    confirmation: typing.Optional[str]
+    one_click: typing.Optional[bool]
+    variables: typing.Optional[list['ActionVariable']]
+    style: typing.Optional['DashboardActionStyle']
+
+    def __init__(self, type_val: typing.Optional['ActionType'] = None, title: str = "", fetch: typing.Optional['FetchOptions'] = None, infinity: typing.Optional['InfinityOptions'] = None, confirmation: typing.Optional[str] = None, one_click: typing.Optional[bool] = None, variables: typing.Optional[list['ActionVariable']] = None, style: typing.Optional['DashboardActionStyle'] = None) -> None:
+        self.type_val = type_val if type_val is not None else ActionType.FETCH
+        self.title = title
+        self.fetch = fetch
+        self.infinity = infinity
+        self.confirmation = confirmation
+        self.one_click = one_click
+        self.variables = variables
+        self.style = style
+
+    def to_json(self) -> dict[str, object]:
+        payload: dict[str, object] = {
+            "type": self.type_val,
+            "title": self.title,
+        }
+        if self.fetch is not None:
+            payload["fetch"] = self.fetch
+        if self.infinity is not None:
+            payload["infinity"] = self.infinity
+        if self.confirmation is not None:
+            payload["confirmation"] = self.confirmation
+        if self.one_click is not None:
+            payload["oneClick"] = self.one_click
+        if self.variables is not None:
+            payload["variables"] = self.variables
+        if self.style is not None:
+            payload["style"] = self.style
+        return payload
+
+    @classmethod
+    def from_json(cls, data: dict[str, typing.Any]) -> typing.Self:
+        args: dict[str, typing.Any] = {}
+        
+        if "type" in data:
+            args["type_val"] = data["type"]
+        if "title" in data:
+            args["title"] = data["title"]
+        if "fetch" in data:
+            args["fetch"] = FetchOptions.from_json(data["fetch"])
+        if "infinity" in data:
+            args["infinity"] = InfinityOptions.from_json(data["infinity"])
+        if "confirmation" in data:
+            args["confirmation"] = data["confirmation"]
+        if "oneClick" in data:
+            args["one_click"] = data["oneClick"]
+        if "variables" in data:
+            args["variables"] = [ActionVariable.from_json(item) for item in data["variables"]]
+        if "style" in data:
+            args["style"] = DashboardActionStyle.from_json(data["style"])        
+
+        return cls(**args)
+
+
+class ActionType(enum.StrEnum):
+    """
+    Dashboard action type
+    """
+
+    FETCH = "fetch"
+    INFINITY = "infinity"
+
+
+class FetchOptions:
+    """
+    Fetch options
+    """
+
+    method: 'HttpRequestMethod'
+    url: str
+    body: typing.Optional[str]
+    # These are 2D arrays of strings, each representing a key-value pair
+    # We are defining this way because we can't generate a go struct that
+    # that would have exactly two strings in each sub-array
+    query_params: typing.Optional[list[list[str]]]
+    headers: typing.Optional[list[list[str]]]
+
+    def __init__(self, method: typing.Optional['HttpRequestMethod'] = None, url: str = "", body: typing.Optional[str] = None, query_params: typing.Optional[list[list[str]]] = None, headers: typing.Optional[list[list[str]]] = None) -> None:
+        self.method = method if method is not None else HttpRequestMethod.GET
+        self.url = url
+        self.body = body
+        self.query_params = query_params
+        self.headers = headers
+
+    def to_json(self) -> dict[str, object]:
+        payload: dict[str, object] = {
+            "method": self.method,
+            "url": self.url,
+        }
+        if self.body is not None:
+            payload["body"] = self.body
+        if self.query_params is not None:
+            payload["queryParams"] = self.query_params
+        if self.headers is not None:
+            payload["headers"] = self.headers
+        return payload
+
+    @classmethod
+    def from_json(cls, data: dict[str, typing.Any]) -> typing.Self:
+        args: dict[str, typing.Any] = {}
+        
+        if "method" in data:
+            args["method"] = data["method"]
+        if "url" in data:
+            args["url"] = data["url"]
+        if "body" in data:
+            args["body"] = data["body"]
+        if "queryParams" in data:
+            args["query_params"] = [item for item in data["queryParams"]]
+        if "headers" in data:
+            args["headers"] = [item for item in data["headers"]]        
+
+        return cls(**args)
+
+
+class HttpRequestMethod(enum.StrEnum):
+    GET = "GET"
+    PUT = "PUT"
+    POST = "POST"
+    DELETE = "DELETE"
+    PATCH = "PATCH"
+
+
+class InfinityOptions:
+    """
+    Infinity options
+    """
+
+    method: 'HttpRequestMethod'
+    url: str
+    body: typing.Optional[str]
+    # These are 2D arrays of strings, each representing a key-value pair
+    # We are defining them this way because we can't generate a go struct that
+    # that would have exactly two strings in each sub-array
+    query_params: typing.Optional[list[list[str]]]
+    headers: typing.Optional[list[list[str]]]
+    datasource_uid: str
+
+    def __init__(self, method: typing.Optional['HttpRequestMethod'] = None, url: str = "", body: typing.Optional[str] = None, query_params: typing.Optional[list[list[str]]] = None, headers: typing.Optional[list[list[str]]] = None, datasource_uid: str = "") -> None:
+        self.method = method if method is not None else HttpRequestMethod.GET
+        self.url = url
+        self.body = body
+        self.query_params = query_params
+        self.headers = headers
+        self.datasource_uid = datasource_uid
+
+    def to_json(self) -> dict[str, object]:
+        payload: dict[str, object] = {
+            "method": self.method,
+            "url": self.url,
+            "datasourceUid": self.datasource_uid,
+        }
+        if self.body is not None:
+            payload["body"] = self.body
+        if self.query_params is not None:
+            payload["queryParams"] = self.query_params
+        if self.headers is not None:
+            payload["headers"] = self.headers
+        return payload
+
+    @classmethod
+    def from_json(cls, data: dict[str, typing.Any]) -> typing.Self:
+        args: dict[str, typing.Any] = {}
+        
+        if "method" in data:
+            args["method"] = data["method"]
+        if "url" in data:
+            args["url"] = data["url"]
+        if "body" in data:
+            args["body"] = data["body"]
+        if "queryParams" in data:
+            args["query_params"] = [item for item in data["queryParams"]]
+        if "headers" in data:
+            args["headers"] = [item for item in data["headers"]]
+        if "datasourceUid" in data:
+            args["datasource_uid"] = data["datasourceUid"]        
+
+        return cls(**args)
+
+
+class ActionVariable:
+    key: str
+    name: str
+    type_val: str
+
+    def __init__(self, key: str = "", name: str = "") -> None:
+        self.key = key
+        self.name = name
+        self.type_val = ActionVariableType.STRING
+
+    def to_json(self) -> dict[str, object]:
+        payload: dict[str, object] = {
+            "key": self.key,
+            "name": self.name,
+            "type": self.type_val,
+        }
+        return payload
+
+    @classmethod
+    def from_json(cls, data: dict[str, typing.Any]) -> typing.Self:
+        args: dict[str, typing.Any] = {}
+        
+        if "key" in data:
+            args["key"] = data["key"]
+        if "name" in data:
+            args["name"] = data["name"]        
+
+        return cls(**args)
+
+
+class ActionVariableType(enum.StrEnum):
+    """
+    Action variable type
+    """
+
+    STRING = "string"
+
+
 class DynamicConfigValue:
     id_val: str
     value: typing.Optional[object]
@@ -1496,6 +2002,10 @@ class VariableModel:
     # Optional field, if you want to extract part of a series name or metric node segment.
     # Named capture groups can be used to separate the display text and value.
     regex: typing.Optional[str]
+    # Additional static options for query variable
+    static_options: typing.Optional[list['VariableOption']]
+    # Ordering of static options in relation to options returned from data source for query variable
+    static_options_order: typing.Optional[typing.Literal["before", "after", "sorted"]]
     # Dynamically calculates interval by dividing time range by the count specified.
     auto: typing.Optional[bool]
     # The minimum threshold below which the step count intervals will not divide the time.
@@ -1505,7 +2015,7 @@ class VariableModel:
     auto_count: typing.Optional[int]
     definition: typing.Optional[str]
 
-    def __init__(self, type_val: typing.Optional['VariableType'] = None, name: str = "", label: typing.Optional[str] = None, hide: typing.Optional['VariableHide'] = None, skip_url_sync: typing.Optional[bool] = False, description: typing.Optional[str] = None, query: typing.Optional[typing.Union[str, dict[str, object]]] = None, datasource: typing.Optional[common.DataSourceRef] = None, current: typing.Optional['VariableOption'] = None, multi: typing.Optional[bool] = False, allow_custom_value: typing.Optional[bool] = True, options: typing.Optional[list['VariableOption']] = None, refresh: typing.Optional['VariableRefresh'] = None, sort: typing.Optional['VariableSort'] = None, include_all: typing.Optional[bool] = False, all_value: typing.Optional[str] = None, regex: typing.Optional[str] = None, auto: typing.Optional[bool] = False, auto_min: typing.Optional[str] = "10s", auto_count: typing.Optional[int] = 0x1e, definition: typing.Optional[str] = None) -> None:
+    def __init__(self, type_val: typing.Optional['VariableType'] = None, name: str = "", label: typing.Optional[str] = None, hide: typing.Optional['VariableHide'] = None, skip_url_sync: typing.Optional[bool] = False, description: typing.Optional[str] = None, query: typing.Optional[typing.Union[str, dict[str, object]]] = None, datasource: typing.Optional[common.DataSourceRef] = None, current: typing.Optional['VariableOption'] = None, multi: typing.Optional[bool] = False, allow_custom_value: typing.Optional[bool] = True, options: typing.Optional[list['VariableOption']] = None, refresh: typing.Optional['VariableRefresh'] = None, sort: typing.Optional['VariableSort'] = None, include_all: typing.Optional[bool] = False, all_value: typing.Optional[str] = None, regex: typing.Optional[str] = None, static_options: typing.Optional[list['VariableOption']] = None, static_options_order: typing.Optional[typing.Literal["before", "after", "sorted"]] = None, auto: typing.Optional[bool] = False, auto_min: typing.Optional[str] = "10s", auto_count: typing.Optional[int] = 0x1e, definition: typing.Optional[str] = None) -> None:
         self.type_val = type_val if type_val is not None else VariableType.QUERY
         self.name = name
         self.label = label
@@ -1523,6 +2033,8 @@ class VariableModel:
         self.include_all = include_all
         self.all_value = all_value
         self.regex = regex
+        self.static_options = static_options
+        self.static_options_order = static_options_order
         self.auto = auto
         self.auto_min = auto_min
         self.auto_count = auto_count
@@ -1563,6 +2075,10 @@ class VariableModel:
             payload["allValue"] = self.all_value
         if self.regex is not None:
             payload["regex"] = self.regex
+        if self.static_options is not None:
+            payload["staticOptions"] = self.static_options
+        if self.static_options_order is not None:
+            payload["staticOptionsOrder"] = self.static_options_order
         if self.auto is not None:
             payload["auto"] = self.auto
         if self.auto_min is not None:
@@ -1611,6 +2127,10 @@ class VariableModel:
             args["all_value"] = data["allValue"]
         if "regex" in data:
             args["regex"] = data["regex"]
+        if "staticOptions" in data:
+            args["static_options"] = [VariableOption.from_json(item) for item in data["staticOptions"]]
+        if "staticOptionsOrder" in data:
+            args["static_options_order"] = data["staticOptionsOrder"]
         if "auto" in data:
             args["auto"] = data["auto"]
         if "auto_min" in data:
@@ -1634,6 +2154,7 @@ class VariableType(enum.StrEnum):
     `textbox`: Display a free text input field with an optional default value.
     `custom`: Define the variable options manually using a comma-separated list.
     `system`: Variables defined by Grafana. See: https://grafana.com/docs/grafana/latest/dashboards/variables/add-template-variables/#global-variables
+    `switch`: Boolean variables rendered as a switch
     """
 
     QUERY = "query"
@@ -1646,17 +2167,19 @@ class VariableType(enum.StrEnum):
     CUSTOM = "custom"
     SYSTEM = "system"
     SNAPSHOT = "snapshot"
+    SWITCH = "switch"
 
 
 class VariableHide(enum.IntEnum):
     """
     Determine if the variable shows on dashboard
-    Accepted values are 0 (show label and value), 1 (show value only), 2 (show nothing).
+    Accepted values are 0 (show label and value), 1 (show value only), 2 (show nothing), 3 (show under the controls dropdown menu).
     """
 
     DONT_HIDE = 0
     HIDE_LABEL = 1
     HIDE_VARIABLE = 2
+    IN_CONTROLS_MENU = 3
 
 
 class VariableOption:
@@ -1794,6 +2317,8 @@ class AnnotationQuery:
     type_val: typing.Optional[str]
     # Set to 1 for the standard annotation query all dashboards have by default.
     built_in: typing.Optional[float]
+    # Placement can be used to display the annotation query somewhere else on the dashboard other than the default location.
+    placement: str
     expr: typing.Optional[str]
 
     def __init__(self, name: str = "", datasource: typing.Optional[common.DataSourceRef] = None, enable: bool = True, hide: typing.Optional[bool] = False, icon_color: str = "", filter_val: typing.Optional['AnnotationPanelFilter'] = None, target: typing.Optional[cogvariants.Dataquery] = None, type_val: typing.Optional[str] = None, built_in: typing.Optional[float] = 0, expr: typing.Optional[str] = None) -> None:
@@ -1806,6 +2331,7 @@ class AnnotationQuery:
         self.target = target
         self.type_val = type_val
         self.built_in = built_in
+        self.placement = AnnotationQueryPlacement.IN_CONTROLS_MENU
         self.expr = expr
 
     def to_json(self) -> dict[str, object]:
@@ -1826,6 +2352,8 @@ class AnnotationQuery:
             payload["type"] = self.type_val
         if self.built_in is not None:
             payload["builtIn"] = self.built_in
+        if self.placement is not None:
+            payload["placement"] = self.placement
         if self.expr is not None:
             payload["expr"] = self.expr
         return payload
@@ -1938,6 +2466,15 @@ class AnnotationTarget:
         return cls(**args)
 
 
+class AnnotationQueryPlacement(enum.StrEnum):
+    """
+    Annotation Query placement. Defines where the annotation query should be displayed.
+    - "inControlsMenu" renders the annotation query in the dashboard controls dropdown menu
+    """
+
+    IN_CONTROLS_MENU = "inControlsMenu"
+
+
 class Snapshot:
     """
     A dashboard snapshot shares an interactive dashboard publicly.
@@ -2038,250 +2575,6 @@ class Snapshot:
             args["user_id"] = data["userId"]
         if "dashboard" in data:
             args["dashboard"] = Dashboard.from_json(data["dashboard"])        
-
-        return cls(**args)
-
-
-class AnnotationActions:
-    can_add: typing.Optional[bool]
-    can_delete: typing.Optional[bool]
-    can_edit: typing.Optional[bool]
-
-    def __init__(self, can_add: typing.Optional[bool] = None, can_delete: typing.Optional[bool] = None, can_edit: typing.Optional[bool] = None) -> None:
-        self.can_add = can_add
-        self.can_delete = can_delete
-        self.can_edit = can_edit
-
-    def to_json(self) -> dict[str, object]:
-        payload: dict[str, object] = {
-        }
-        if self.can_add is not None:
-            payload["canAdd"] = self.can_add
-        if self.can_delete is not None:
-            payload["canDelete"] = self.can_delete
-        if self.can_edit is not None:
-            payload["canEdit"] = self.can_edit
-        return payload
-
-    @classmethod
-    def from_json(cls, data: dict[str, typing.Any]) -> typing.Self:
-        args: dict[str, typing.Any] = {}
-        
-        if "canAdd" in data:
-            args["can_add"] = data["canAdd"]
-        if "canDelete" in data:
-            args["can_delete"] = data["canDelete"]
-        if "canEdit" in data:
-            args["can_edit"] = data["canEdit"]        
-
-        return cls(**args)
-
-
-class AnnotationPermission:
-    dashboard: typing.Optional['AnnotationActions']
-    organization: typing.Optional['AnnotationActions']
-
-    def __init__(self, dashboard: typing.Optional['AnnotationActions'] = None, organization: typing.Optional['AnnotationActions'] = None) -> None:
-        self.dashboard = dashboard
-        self.organization = organization
-
-    def to_json(self) -> dict[str, object]:
-        payload: dict[str, object] = {
-        }
-        if self.dashboard is not None:
-            payload["dashboard"] = self.dashboard
-        if self.organization is not None:
-            payload["organization"] = self.organization
-        return payload
-
-    @classmethod
-    def from_json(cls, data: dict[str, typing.Any]) -> typing.Self:
-        args: dict[str, typing.Any] = {}
-        
-        if "dashboard" in data:
-            args["dashboard"] = AnnotationActions.from_json(data["dashboard"])
-        if "organization" in data:
-            args["organization"] = AnnotationActions.from_json(data["organization"])        
-
-        return cls(**args)
-
-
-class DashboardMeta:
-    annotations_permissions: typing.Optional['AnnotationPermission']
-    api_version: typing.Optional[str]
-    can_admin: typing.Optional[bool]
-    can_delete: typing.Optional[bool]
-    can_edit: typing.Optional[bool]
-    can_save: typing.Optional[bool]
-    can_star: typing.Optional[bool]
-    created: typing.Optional[str]
-    created_by: typing.Optional[str]
-    expires: typing.Optional[str]
-    # Deprecated: use FolderUID instead
-    folder_id: typing.Optional[int]
-    folder_title: typing.Optional[str]
-    folder_uid: typing.Optional[str]
-    folder_url: typing.Optional[str]
-    has_acl: typing.Optional[bool]
-    is_folder: typing.Optional[bool]
-    is_snapshot: typing.Optional[bool]
-    is_starred: typing.Optional[bool]
-    provisioned: typing.Optional[bool]
-    provisioned_external_id: typing.Optional[str]
-    public_dashboard_enabled: typing.Optional[bool]
-    slug: typing.Optional[str]
-    type_val: typing.Optional[str]
-    updated: typing.Optional[str]
-    updated_by: typing.Optional[str]
-    url: typing.Optional[str]
-    version: typing.Optional[int]
-
-    def __init__(self, annotations_permissions: typing.Optional['AnnotationPermission'] = None, api_version: typing.Optional[str] = None, can_admin: typing.Optional[bool] = None, can_delete: typing.Optional[bool] = None, can_edit: typing.Optional[bool] = None, can_save: typing.Optional[bool] = None, can_star: typing.Optional[bool] = None, created: typing.Optional[str] = None, created_by: typing.Optional[str] = None, expires: typing.Optional[str] = None, folder_id: typing.Optional[int] = None, folder_title: typing.Optional[str] = None, folder_uid: typing.Optional[str] = None, folder_url: typing.Optional[str] = None, has_acl: typing.Optional[bool] = None, is_folder: typing.Optional[bool] = None, is_snapshot: typing.Optional[bool] = None, is_starred: typing.Optional[bool] = None, provisioned: typing.Optional[bool] = None, provisioned_external_id: typing.Optional[str] = None, public_dashboard_enabled: typing.Optional[bool] = None, slug: typing.Optional[str] = None, type_val: typing.Optional[str] = None, updated: typing.Optional[str] = None, updated_by: typing.Optional[str] = None, url: typing.Optional[str] = None, version: typing.Optional[int] = None) -> None:
-        self.annotations_permissions = annotations_permissions
-        self.api_version = api_version
-        self.can_admin = can_admin
-        self.can_delete = can_delete
-        self.can_edit = can_edit
-        self.can_save = can_save
-        self.can_star = can_star
-        self.created = created
-        self.created_by = created_by
-        self.expires = expires
-        self.folder_id = folder_id
-        self.folder_title = folder_title
-        self.folder_uid = folder_uid
-        self.folder_url = folder_url
-        self.has_acl = has_acl
-        self.is_folder = is_folder
-        self.is_snapshot = is_snapshot
-        self.is_starred = is_starred
-        self.provisioned = provisioned
-        self.provisioned_external_id = provisioned_external_id
-        self.public_dashboard_enabled = public_dashboard_enabled
-        self.slug = slug
-        self.type_val = type_val
-        self.updated = updated
-        self.updated_by = updated_by
-        self.url = url
-        self.version = version
-
-    def to_json(self) -> dict[str, object]:
-        payload: dict[str, object] = {
-        }
-        if self.annotations_permissions is not None:
-            payload["annotationsPermissions"] = self.annotations_permissions
-        if self.api_version is not None:
-            payload["apiVersion"] = self.api_version
-        if self.can_admin is not None:
-            payload["canAdmin"] = self.can_admin
-        if self.can_delete is not None:
-            payload["canDelete"] = self.can_delete
-        if self.can_edit is not None:
-            payload["canEdit"] = self.can_edit
-        if self.can_save is not None:
-            payload["canSave"] = self.can_save
-        if self.can_star is not None:
-            payload["canStar"] = self.can_star
-        if self.created is not None:
-            payload["created"] = self.created
-        if self.created_by is not None:
-            payload["createdBy"] = self.created_by
-        if self.expires is not None:
-            payload["expires"] = self.expires
-        if self.folder_id is not None:
-            payload["folderId"] = self.folder_id
-        if self.folder_title is not None:
-            payload["folderTitle"] = self.folder_title
-        if self.folder_uid is not None:
-            payload["folderUid"] = self.folder_uid
-        if self.folder_url is not None:
-            payload["folderUrl"] = self.folder_url
-        if self.has_acl is not None:
-            payload["hasAcl"] = self.has_acl
-        if self.is_folder is not None:
-            payload["isFolder"] = self.is_folder
-        if self.is_snapshot is not None:
-            payload["isSnapshot"] = self.is_snapshot
-        if self.is_starred is not None:
-            payload["isStarred"] = self.is_starred
-        if self.provisioned is not None:
-            payload["provisioned"] = self.provisioned
-        if self.provisioned_external_id is not None:
-            payload["provisionedExternalId"] = self.provisioned_external_id
-        if self.public_dashboard_enabled is not None:
-            payload["publicDashboardEnabled"] = self.public_dashboard_enabled
-        if self.slug is not None:
-            payload["slug"] = self.slug
-        if self.type_val is not None:
-            payload["type"] = self.type_val
-        if self.updated is not None:
-            payload["updated"] = self.updated
-        if self.updated_by is not None:
-            payload["updatedBy"] = self.updated_by
-        if self.url is not None:
-            payload["url"] = self.url
-        if self.version is not None:
-            payload["version"] = self.version
-        return payload
-
-    @classmethod
-    def from_json(cls, data: dict[str, typing.Any]) -> typing.Self:
-        args: dict[str, typing.Any] = {}
-        
-        if "annotationsPermissions" in data:
-            args["annotations_permissions"] = AnnotationPermission.from_json(data["annotationsPermissions"])
-        if "apiVersion" in data:
-            args["api_version"] = data["apiVersion"]
-        if "canAdmin" in data:
-            args["can_admin"] = data["canAdmin"]
-        if "canDelete" in data:
-            args["can_delete"] = data["canDelete"]
-        if "canEdit" in data:
-            args["can_edit"] = data["canEdit"]
-        if "canSave" in data:
-            args["can_save"] = data["canSave"]
-        if "canStar" in data:
-            args["can_star"] = data["canStar"]
-        if "created" in data:
-            args["created"] = data["created"]
-        if "createdBy" in data:
-            args["created_by"] = data["createdBy"]
-        if "expires" in data:
-            args["expires"] = data["expires"]
-        if "folderId" in data:
-            args["folder_id"] = data["folderId"]
-        if "folderTitle" in data:
-            args["folder_title"] = data["folderTitle"]
-        if "folderUid" in data:
-            args["folder_uid"] = data["folderUid"]
-        if "folderUrl" in data:
-            args["folder_url"] = data["folderUrl"]
-        if "hasAcl" in data:
-            args["has_acl"] = data["hasAcl"]
-        if "isFolder" in data:
-            args["is_folder"] = data["isFolder"]
-        if "isSnapshot" in data:
-            args["is_snapshot"] = data["isSnapshot"]
-        if "isStarred" in data:
-            args["is_starred"] = data["isStarred"]
-        if "provisioned" in data:
-            args["provisioned"] = data["provisioned"]
-        if "provisionedExternalId" in data:
-            args["provisioned_external_id"] = data["provisionedExternalId"]
-        if "publicDashboardEnabled" in data:
-            args["public_dashboard_enabled"] = data["publicDashboardEnabled"]
-        if "slug" in data:
-            args["slug"] = data["slug"]
-        if "type" in data:
-            args["type_val"] = data["type"]
-        if "updated" in data:
-            args["updated"] = data["updated"]
-        if "updatedBy" in data:
-            args["updated_by"] = data["updatedBy"]
-        if "url" in data:
-            args["url"] = data["url"]
-        if "version" in data:
-            args["version"] = data["version"]        
 
         return cls(**args)
 
@@ -2453,6 +2746,29 @@ class DashboardSpecialValueMapOptions:
             args["match"] = data["match"]
         if "result" in data:
             args["result"] = ValueMappingResult.from_json(data["result"])        
+
+        return cls(**args)
+
+
+class DashboardActionStyle:
+    background_color: typing.Optional[str]
+
+    def __init__(self, background_color: typing.Optional[str] = None) -> None:
+        self.background_color = background_color
+
+    def to_json(self) -> dict[str, object]:
+        payload: dict[str, object] = {
+        }
+        if self.background_color is not None:
+            payload["backgroundColor"] = self.background_color
+        return payload
+
+    @classmethod
+    def from_json(cls, data: dict[str, typing.Any]) -> typing.Self:
+        args: dict[str, typing.Any] = {}
+        
+        if "backgroundColor" in data:
+            args["background_color"] = data["backgroundColor"]        
 
         return cls(**args)
 

@@ -38,6 +38,11 @@ func (builder *CustomVariableBuilder) Build() (VariableModel, error) {
 	return *builder.internal, nil
 }
 
+func (builder *CustomVariableBuilder) RecordError(path string, err error) *CustomVariableBuilder {
+	builder.errors = append(builder.errors, cog.MakeBuildErrors(path, err)...)
+	return builder
+}
+
 // Name of variable
 func (builder *CustomVariableBuilder) Name(name string) *CustomVariableBuilder {
 	builder.internal.Name = name
@@ -111,6 +116,20 @@ func (builder *CustomVariableBuilder) IncludeAll(includeAll bool) *CustomVariabl
 // Custom all value
 func (builder *CustomVariableBuilder) AllValue(allValue string) *CustomVariableBuilder {
 	builder.internal.AllValue = &allValue
+
+	return builder
+}
+
+// Additional static options for query variable
+func (builder *CustomVariableBuilder) StaticOptions(staticOptions []VariableOption) *CustomVariableBuilder {
+	builder.internal.StaticOptions = staticOptions
+
+	return builder
+}
+
+// Ordering of static options in relation to options returned from data source for query variable
+func (builder *CustomVariableBuilder) StaticOptionsOrder(staticOptionsOrder VariableModelStaticOptionsOrder) *CustomVariableBuilder {
+	builder.internal.StaticOptionsOrder = &staticOptionsOrder
 
 	return builder
 }

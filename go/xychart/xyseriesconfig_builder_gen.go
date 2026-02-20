@@ -35,6 +35,11 @@ func (builder *XYSeriesConfigBuilder) Build() (XYSeriesConfig, error) {
 	return *builder.internal, nil
 }
 
+func (builder *XYSeriesConfigBuilder) RecordError(path string, err error) *XYSeriesConfigBuilder {
+	builder.errors = append(builder.errors, cog.MakeBuildErrors(path, err)...)
+	return builder
+}
+
 func (builder *XYSeriesConfigBuilder) Name(name cog.Builder[XychartXYSeriesConfigName]) *XYSeriesConfigBuilder {
 	nameResource, err := name.Build()
 	if err != nil {

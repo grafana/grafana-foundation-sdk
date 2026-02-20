@@ -38,6 +38,11 @@ func (builder *DatasourceVariableBuilder) Build() (VariableModel, error) {
 	return *builder.internal, nil
 }
 
+func (builder *DatasourceVariableBuilder) RecordError(path string, err error) *DatasourceVariableBuilder {
+	builder.errors = append(builder.errors, cog.MakeBuildErrors(path, err)...)
+	return builder
+}
+
 // Name of variable
 func (builder *DatasourceVariableBuilder) Name(name string) *DatasourceVariableBuilder {
 	builder.internal.Name = name
@@ -115,6 +120,20 @@ func (builder *DatasourceVariableBuilder) AllValue(allValue string) *DatasourceV
 // Named capture groups can be used to separate the display text and value.
 func (builder *DatasourceVariableBuilder) Regex(regex string) *DatasourceVariableBuilder {
 	builder.internal.Regex = &regex
+
+	return builder
+}
+
+// Additional static options for query variable
+func (builder *DatasourceVariableBuilder) StaticOptions(staticOptions []VariableOption) *DatasourceVariableBuilder {
+	builder.internal.StaticOptions = staticOptions
+
+	return builder
+}
+
+// Ordering of static options in relation to options returned from data source for query variable
+func (builder *DatasourceVariableBuilder) StaticOptionsOrder(staticOptionsOrder VariableModelStaticOptionsOrder) *DatasourceVariableBuilder {
+	builder.internal.StaticOptionsOrder = &staticOptionsOrder
 
 	return builder
 }

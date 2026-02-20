@@ -35,6 +35,11 @@ func (builder *InfinityOptionsBuilder) Build() (InfinityOptions, error) {
 	return *builder.internal, nil
 }
 
+func (builder *InfinityOptionsBuilder) RecordError(path string, err error) *InfinityOptionsBuilder {
+	builder.errors = append(builder.errors, cog.MakeBuildErrors(path, err)...)
+	return builder
+}
+
 func (builder *InfinityOptionsBuilder) Method(method HttpRequestMethod) *InfinityOptionsBuilder {
 	builder.internal.Method = method
 

@@ -35,6 +35,11 @@ func (builder *ExtendedStatBuilder) Build() (ExtendedStat, error) {
 	return *builder.internal, nil
 }
 
+func (builder *ExtendedStatBuilder) RecordError(path string, err error) *ExtendedStatBuilder {
+	builder.errors = append(builder.errors, cog.MakeBuildErrors(path, err)...)
+	return builder
+}
+
 func (builder *ExtendedStatBuilder) Label(label string) *ExtendedStatBuilder {
 	builder.internal.Label = label
 

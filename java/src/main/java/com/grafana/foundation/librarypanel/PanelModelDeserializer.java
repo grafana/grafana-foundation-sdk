@@ -83,6 +83,9 @@ public class PanelModelDeserializer extends JsonDeserializer<PanelModel> {
         if (root.has("hideTimeOverride")) {
             panelModel.hideTimeOverride = mapper.convertValue(root.get("hideTimeOverride"), new TypeReference<>() {});
         }
+        if (root.has("timeCompare")) {
+            panelModel.timeCompare = mapper.convertValue(root.get("timeCompare"), new TypeReference<>() {});
+        }
         if (root.has("cacheTimeout")) {
             panelModel.cacheTimeout = mapper.convertValue(root.get("cacheTimeout"), new TypeReference<>() {});
         }

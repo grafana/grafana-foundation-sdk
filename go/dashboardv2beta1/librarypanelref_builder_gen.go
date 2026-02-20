@@ -38,6 +38,11 @@ func (builder *LibraryPanelRefBuilder) Build() (LibraryPanelRef, error) {
 	return *builder.internal, nil
 }
 
+func (builder *LibraryPanelRefBuilder) RecordError(path string, err error) *LibraryPanelRefBuilder {
+	builder.errors = append(builder.errors, cog.MakeBuildErrors(path, err)...)
+	return builder
+}
+
 // Library panel name
 func (builder *LibraryPanelRefBuilder) Name(name string) *LibraryPanelRefBuilder {
 	builder.internal.Name = name

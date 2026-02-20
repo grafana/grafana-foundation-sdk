@@ -36,6 +36,11 @@ func (builder *SubscriptionsQueryBuilder) Build() (SubscriptionsQuery, error) {
 	return *builder.internal, nil
 }
 
+func (builder *SubscriptionsQueryBuilder) RecordError(path string, err error) *SubscriptionsQueryBuilder {
+	builder.errors = append(builder.errors, cog.MakeBuildErrors(path, err)...)
+	return builder
+}
+
 func (builder *SubscriptionsQueryBuilder) RawQuery(rawQuery string) *SubscriptionsQueryBuilder {
 	builder.internal.RawQuery = &rawQuery
 

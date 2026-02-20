@@ -35,6 +35,11 @@ func (builder *AnnotationActionsBuilder) Build() (AnnotationActions, error) {
 	return *builder.internal, nil
 }
 
+func (builder *AnnotationActionsBuilder) RecordError(path string, err error) *AnnotationActionsBuilder {
+	builder.errors = append(builder.errors, cog.MakeBuildErrors(path, err)...)
+	return builder
+}
+
 func (builder *AnnotationActionsBuilder) CanAdd(canAdd bool) *AnnotationActionsBuilder {
 	builder.internal.CanAdd = &canAdd
 

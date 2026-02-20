@@ -21,6 +21,8 @@ Dashboard variable type
 
 `system`: Variables defined by Grafana. See: https://grafana.com/docs/grafana/latest/dashboards/variables/add-template-variables/#global-variables
 
+`switch`: Boolean variables rendered as a switch
+
 ## Definition
 
 ```typescript
@@ -35,6 +37,7 @@ export enum VariableType {
 	Custom = "custom",
 	System = "system",
 	Snapshot = "snapshot",
+	Switch = "switch",
 }
 
 ```

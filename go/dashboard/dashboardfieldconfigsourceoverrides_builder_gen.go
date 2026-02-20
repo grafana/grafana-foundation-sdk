@@ -35,6 +35,11 @@ func (builder *DashboardFieldConfigSourceOverridesBuilder) Build() (DashboardFie
 	return *builder.internal, nil
 }
 
+func (builder *DashboardFieldConfigSourceOverridesBuilder) RecordError(path string, err error) *DashboardFieldConfigSourceOverridesBuilder {
+	builder.errors = append(builder.errors, cog.MakeBuildErrors(path, err)...)
+	return builder
+}
+
 func (builder *DashboardFieldConfigSourceOverridesBuilder) Matcher(matcher MatcherConfig) *DashboardFieldConfigSourceOverridesBuilder {
 	builder.internal.Matcher = matcher
 

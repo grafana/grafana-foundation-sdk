@@ -36,6 +36,11 @@ func (builder *CustomFormatterVariableBuilder) Build() (CustomFormatterVariable,
 	return *builder.internal, nil
 }
 
+func (builder *CustomFormatterVariableBuilder) RecordError(path string, err error) *CustomFormatterVariableBuilder {
+	builder.errors = append(builder.errors, cog.MakeBuildErrors(path, err)...)
+	return builder
+}
+
 func (builder *CustomFormatterVariableBuilder) Name(name string) *CustomFormatterVariableBuilder {
 	builder.internal.Name = name
 

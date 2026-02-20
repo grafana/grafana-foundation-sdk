@@ -148,6 +148,16 @@ Depends on the panel plugin. See the plugin documentation for details.
 targets(targets: cog.Builder<cog.Dataquery>[])
 ```
 
+### <span class="badge object-method"></span> timeCompare
+
+Compare the current time range with a previous period
+
+For example "1d" to compare current period but shifted back 1 day
+
+```typescript
+timeCompare(timeCompare: string)
+```
+
 ### <span class="badge object-method"></span> timeFrom
 
 Overrides the relative time range for individual panels,

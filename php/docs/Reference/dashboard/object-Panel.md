@@ -126,6 +126,12 @@ class Panel implements \JsonSerializable
     public ?bool $hideTimeOverride;
 
     /**
+     * Compare the current time range with a previous period
+     * For example "1d" to compare current period but shifted back 1 day
+     */
+    public ?string $timeCompare;
+
+    /**
      * Dynamically load the panel
      */
     public ?\Grafana\Foundation\Dashboard\LibraryPanelRef $libraryPanel;

@@ -35,6 +35,11 @@ func (builder *CookiePreferencesBuilder) Build() (CookiePreferences, error) {
 	return *builder.internal, nil
 }
 
+func (builder *CookiePreferencesBuilder) RecordError(path string, err error) *CookiePreferencesBuilder {
+	builder.errors = append(builder.errors, cog.MakeBuildErrors(path, err)...)
+	return builder
+}
+
 func (builder *CookiePreferencesBuilder) Analytics(analytics any) *CookiePreferencesBuilder {
 	builder.internal.Analytics = &analytics
 

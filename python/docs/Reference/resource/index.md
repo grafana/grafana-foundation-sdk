@@ -11,3 +11,13 @@
 
  * <span class="badge builder"></span> [Manifest](./builder-Manifest.md)
  * <span class="badge builder"></span> [Metadata](./builder-Metadata.md)
+## Functions
+
+### <span class="badge function"></span> named
+
+Creates metadata for a named resource.
+
+```python
+def named(name: str) -> Metadata
+```
+

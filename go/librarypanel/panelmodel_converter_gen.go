@@ -235,6 +235,18 @@ func PanelModelConverter(input PanelModel) string {
 		buffer.Reset()
 
 	}
+	if input.TimeCompare != nil && *input.TimeCompare != "" {
+
+		buffer.WriteString(`TimeCompare(`)
+		arg0 := fmt.Sprintf("%#v", *input.TimeCompare)
+		buffer.WriteString(arg0)
+
+		buffer.WriteString(")")
+
+		calls = append(calls, buffer.String())
+		buffer.Reset()
+
+	}
 	if input.CacheTimeout != nil && *input.CacheTimeout != "" {
 
 		buffer.WriteString(`CacheTimeout(`)

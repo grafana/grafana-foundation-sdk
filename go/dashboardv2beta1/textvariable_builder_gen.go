@@ -38,6 +38,11 @@ func (builder *TextVariableBuilder) Build() (TextVariableKind, error) {
 	return *builder.internal, nil
 }
 
+func (builder *TextVariableBuilder) RecordError(path string, err error) *TextVariableBuilder {
+	builder.errors = append(builder.errors, cog.MakeBuildErrors(path, err)...)
+	return builder
+}
+
 func (builder *TextVariableBuilder) Spec(spec TextVariableSpec) *TextVariableBuilder {
 	builder.internal.Spec = spec
 

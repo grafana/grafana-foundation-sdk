@@ -98,6 +98,24 @@ Options that can be selected for a variable.
 options(array $options)
 ```
 
+### <span class="badge object-method"></span> staticOptions
+
+Additional static options for query variable
+
+@param array<\Grafana\Foundation\Dashboard\VariableOption> $staticOptions
+
+```php
+staticOptions(array $staticOptions)
+```
+
+### <span class="badge object-method"></span> staticOptionsOrder
+
+Ordering of static options in relation to options returned from data source for query variable
+
+```php
+staticOptionsOrder(\Grafana\Foundation\Dashboard\VariableModelStaticOptionsOrder $staticOptionsOrder)
+```
+
 ### <span class="badge object-method"></span> stepCount
 
 How many times the current time range should be divided to calculate the value, similar to the Max data points query option.

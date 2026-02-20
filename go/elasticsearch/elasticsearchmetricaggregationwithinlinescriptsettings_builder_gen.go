@@ -35,6 +35,11 @@ func (builder *ElasticsearchMetricAggregationWithInlineScriptSettingsBuilder) Bu
 	return *builder.internal, nil
 }
 
+func (builder *ElasticsearchMetricAggregationWithInlineScriptSettingsBuilder) RecordError(path string, err error) *ElasticsearchMetricAggregationWithInlineScriptSettingsBuilder {
+	builder.errors = append(builder.errors, cog.MakeBuildErrors(path, err)...)
+	return builder
+}
+
 func (builder *ElasticsearchMetricAggregationWithInlineScriptSettingsBuilder) Script(script InlineScript) *ElasticsearchMetricAggregationWithInlineScriptSettingsBuilder {
 	builder.internal.Script = &script
 

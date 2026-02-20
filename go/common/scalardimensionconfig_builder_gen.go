@@ -35,6 +35,11 @@ func (builder *ScalarDimensionConfigBuilder) Build() (ScalarDimensionConfig, err
 	return *builder.internal, nil
 }
 
+func (builder *ScalarDimensionConfigBuilder) RecordError(path string, err error) *ScalarDimensionConfigBuilder {
+	builder.errors = append(builder.errors, cog.MakeBuildErrors(path, err)...)
+	return builder
+}
+
 func (builder *ScalarDimensionConfigBuilder) Min(min float64) *ScalarDimensionConfigBuilder {
 	builder.internal.Min = min
 

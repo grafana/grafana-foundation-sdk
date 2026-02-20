@@ -36,6 +36,11 @@ func (builder *HideSeriesConfigBuilder) Build() (HideSeriesConfig, error) {
 	return *builder.internal, nil
 }
 
+func (builder *HideSeriesConfigBuilder) RecordError(path string, err error) *HideSeriesConfigBuilder {
+	builder.errors = append(builder.errors, cog.MakeBuildErrors(path, err)...)
+	return builder
+}
+
 func (builder *HideSeriesConfigBuilder) Tooltip(tooltip bool) *HideSeriesConfigBuilder {
 	builder.internal.Tooltip = tooltip
 

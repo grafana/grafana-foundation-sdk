@@ -38,6 +38,11 @@ func (builder *MatcherConfigBuilder) Build() (MatcherConfig, error) {
 	return *builder.internal, nil
 }
 
+func (builder *MatcherConfigBuilder) RecordError(path string, err error) *MatcherConfigBuilder {
+	builder.errors = append(builder.errors, cog.MakeBuildErrors(path, err)...)
+	return builder
+}
+
 // The matcher id. This is used to find the matcher implementation from registry.
 func (builder *MatcherConfigBuilder) Id(id string) *MatcherConfigBuilder {
 	builder.internal.Id = id

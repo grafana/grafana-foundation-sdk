@@ -146,6 +146,22 @@ Options sort order
 func (builder *QueryVariableBuilder) Sort(sort dashboard.VariableSort) *QueryVariableBuilder
 ```
 
+### <span class="badge object-method"></span> StaticOptions
+
+Additional static options for query variable
+
+```go
+func (builder *QueryVariableBuilder) StaticOptions(staticOptions []dashboard.VariableOption) *QueryVariableBuilder
+```
+
+### <span class="badge object-method"></span> StaticOptionsOrder
+
+Ordering of static options in relation to options returned from data source for query variable
+
+```go
+func (builder *QueryVariableBuilder) StaticOptionsOrder(staticOptionsOrder dashboard.VariableModelStaticOptionsOrder) *QueryVariableBuilder
+```
+
 ## See also
 
  * <span class="badge object-type-struct"></span> [VariableModel](./object-VariableModel.md)

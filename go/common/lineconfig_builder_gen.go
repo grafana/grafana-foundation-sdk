@@ -36,6 +36,11 @@ func (builder *LineConfigBuilder) Build() (LineConfig, error) {
 	return *builder.internal, nil
 }
 
+func (builder *LineConfigBuilder) RecordError(path string, err error) *LineConfigBuilder {
+	builder.errors = append(builder.errors, cog.MakeBuildErrors(path, err)...)
+	return builder
+}
+
 func (builder *LineConfigBuilder) LineColor(lineColor string) *LineConfigBuilder {
 	builder.internal.LineColor = &lineColor
 

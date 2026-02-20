@@ -1,6 +1,6 @@
 {
   "name": "@grafana/grafana-foundation-sdk",
-  "version": "v0.0.8",
+  "version": "v0.0.9",
   "description": "A set of tools, types and libraries for building and manipulating Grafana objects.",
   "keywords": [
     "observability",
@@ -111,6 +111,10 @@
       "types": "./dist/expr/index.d.ts",
       "default": "./dist/expr/index.js"
     },
+    "./folderv1beta1": {
+      "types": "./dist/folderv1beta1/index.d.ts",
+      "default": "./dist/folderv1beta1/index.js"
+    },
     "./gauge": {
       "types": "./dist/gauge/index.d.ts",
       "default": "./dist/gauge/index.js"
@@ -175,6 +179,10 @@
       "types": "./dist/preferences/index.d.ts",
       "default": "./dist/preferences/index.js"
     },
+    "./preferencesv1alpha1": {
+      "types": "./dist/preferencesv1alpha1/index.d.ts",
+      "default": "./dist/preferencesv1alpha1/index.js"
+    },
     "./prometheus": {
       "types": "./dist/prometheus/index.d.ts",
       "default": "./dist/prometheus/index.js"
@@ -186,6 +194,10 @@
     "./resource": {
       "types": "./dist/resource/index.d.ts",
       "default": "./dist/resource/index.js"
+    },
+    "./starsv1alpha1": {
+      "types": "./dist/starsv1alpha1/index.d.ts",
+      "default": "./dist/starsv1alpha1/index.js"
     },
     "./stat": {
       "types": "./dist/stat/index.d.ts",

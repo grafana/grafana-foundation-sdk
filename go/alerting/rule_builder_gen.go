@@ -38,6 +38,11 @@ func (builder *RuleBuilder) Build() (Rule, error) {
 	return *builder.internal, nil
 }
 
+func (builder *RuleBuilder) RecordError(path string, err error) *RuleBuilder {
+	builder.errors = append(builder.errors, cog.MakeBuildErrors(path, err)...)
+	return builder
+}
+
 func (builder *RuleBuilder) Annotations(annotations map[string]string) *RuleBuilder {
 	builder.internal.Annotations = annotations
 

@@ -35,6 +35,11 @@ func (builder *RawDataBuilder) Build() (RawData, error) {
 	return *builder.internal, nil
 }
 
+func (builder *RawDataBuilder) RecordError(path string, err error) *RawDataBuilder {
+	builder.errors = append(builder.errors, cog.MakeBuildErrors(path, err)...)
+	return builder
+}
+
 func (builder *RawDataBuilder) Id(id string) *RawDataBuilder {
 	builder.internal.Id = id
 

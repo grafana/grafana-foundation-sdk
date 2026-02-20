@@ -315,6 +315,17 @@ class PanelBuilder implements \Grafana\Foundation\Cog\Builder
     }
 
     /**
+     * Compare the current time range with a previous period
+     * For example "1d" to compare current period but shifted back 1 day
+     */
+    public function timeCompare(string $timeCompare): static
+    {
+        $this->internal->timeCompare = $timeCompare;
+    
+        return $this;
+    }
+
+    /**
      * Dynamically load the panel
      */
     public function libraryPanel(\Grafana\Foundation\Dashboard\LibraryPanelRef $libraryPanel): static
@@ -509,6 +520,25 @@ class PanelBuilder implements \Grafana\Foundation\Cog\Builder
                     $linksResources[] = $r1->build();
             }
         $this->internal->fieldConfig->defaults->links = $linksResources;
+    
+        return $this;
+    }
+
+    /**
+     * Define interactive HTTP requests that can be triggered from data visualizations.
+     * @param array<\Grafana\Foundation\Cog\Builder<\Grafana\Foundation\Dashboard\Action>> $actions
+     */
+    public function actions(array $actions): static
+    {    
+        if ($this->internal->fieldConfig === null) {
+            $this->internal->fieldConfig = new \Grafana\Foundation\Dashboard\FieldConfigSource();
+        }
+        assert($this->internal->fieldConfig instanceof \Grafana\Foundation\Dashboard\FieldConfigSource);
+            $actionsResources = [];
+            foreach ($actions as $r1) {
+                    $actionsResources[] = $r1->build();
+            }
+        $this->internal->fieldConfig->defaults->actions = $actionsResources;
     
         return $this;
     }

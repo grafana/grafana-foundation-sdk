@@ -35,6 +35,11 @@ func (builder *LogsBuilder) Build() (Logs, error) {
 	return *builder.internal, nil
 }
 
+func (builder *LogsBuilder) RecordError(path string, err error) *LogsBuilder {
+	builder.errors = append(builder.errors, cog.MakeBuildErrors(path, err)...)
+	return builder
+}
+
 func (builder *LogsBuilder) Id(id string) *LogsBuilder {
 	builder.internal.Id = id
 

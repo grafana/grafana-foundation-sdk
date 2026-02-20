@@ -37,6 +37,11 @@ func (builder *NotificationPolicyBuilder) Build() (NotificationPolicy, error) {
 	return *builder.internal, nil
 }
 
+func (builder *NotificationPolicyBuilder) RecordError(path string, err error) *NotificationPolicyBuilder {
+	builder.errors = append(builder.errors, cog.MakeBuildErrors(path, err)...)
+	return builder
+}
+
 func (builder *NotificationPolicyBuilder) ActiveTimeIntervals(activeTimeIntervals []string) *NotificationPolicyBuilder {
 	builder.internal.ActiveTimeIntervals = activeTimeIntervals
 

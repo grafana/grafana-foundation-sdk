@@ -38,6 +38,11 @@ func (builder *TypeThresholdBuilder) Build() (variants.Dataquery, error) {
 	return *builder.internal, nil
 }
 
+func (builder *TypeThresholdBuilder) RecordError(path string, err error) *TypeThresholdBuilder {
+	builder.errors = append(builder.errors, cog.MakeBuildErrors(path, err)...)
+	return builder
+}
+
 // Threshold Conditions
 func (builder *TypeThresholdBuilder) Conditions(conditions []cog.Builder[ExprTypeThresholdConditions]) *TypeThresholdBuilder {
 	conditionsResources := make([]ExprTypeThresholdConditions, 0, len(conditions))

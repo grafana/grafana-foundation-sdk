@@ -36,6 +36,11 @@ func (builder *HeatmapLegendBuilder) Build() (HeatmapLegend, error) {
 	return *builder.internal, nil
 }
 
+func (builder *HeatmapLegendBuilder) RecordError(path string, err error) *HeatmapLegendBuilder {
+	builder.errors = append(builder.errors, cog.MakeBuildErrors(path, err)...)
+	return builder
+}
+
 // Controls if the legend is shown
 func (builder *HeatmapLegendBuilder) Show(show bool) *HeatmapLegendBuilder {
 	builder.internal.Show = show

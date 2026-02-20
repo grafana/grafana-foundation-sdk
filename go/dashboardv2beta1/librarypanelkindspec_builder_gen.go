@@ -35,6 +35,11 @@ func (builder *LibraryPanelKindSpecBuilder) Build() (LibraryPanelKindSpec, error
 	return *builder.internal, nil
 }
 
+func (builder *LibraryPanelKindSpecBuilder) RecordError(path string, err error) *LibraryPanelKindSpecBuilder {
+	builder.errors = append(builder.errors, cog.MakeBuildErrors(path, err)...)
+	return builder
+}
+
 // Panel ID for the library panel in the dashboard
 func (builder *LibraryPanelKindSpecBuilder) Id(id float64) *LibraryPanelKindSpecBuilder {
 	builder.internal.Id = id

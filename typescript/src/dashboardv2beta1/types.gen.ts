@@ -1692,3 +1692,7 @@ export const defaultVariableValueOption = (): VariableValueOption => ({
 	value: defaultVariableValueSingle(),
 });
 
+export const DashboardV2Beta1 = "dashboard.grafana.app/v2beta1";
+
+export const DashboardKind = "Dashboard";
+

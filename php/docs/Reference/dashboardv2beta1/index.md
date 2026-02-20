@@ -39,9 +39,11 @@
  * <span class="badge object-type-class"></span> [CustomVariableValue](./object-CustomVariableValue.md)
  * <span class="badge object-type-class"></span> [Dashboard](./object-Dashboard.md)
  * <span class="badge object-type-enum"></span> [DashboardCursorSync](./object-DashboardCursorSync.md)
+ * <span class="badge object-type-scalar"></span> [DashboardKind](./object-DashboardKind.md)
  * <span class="badge object-type-class"></span> [DashboardLink](./object-DashboardLink.md)
  * <span class="badge object-type-scalar"></span> [DashboardLinkPlacement](./object-DashboardLinkPlacement.md)
  * <span class="badge object-type-enum"></span> [DashboardLinkType](./object-DashboardLinkType.md)
+ * <span class="badge object-type-scalar"></span> [DashboardV2Beta1](./object-DashboardV2Beta1.md)
  * <span class="badge object-type-class"></span> [Dashboardv2beta1ActionStyle](./object-Dashboardv2beta1ActionStyle.md)
  * <span class="badge object-type-class"></span> [Dashboardv2beta1AdhocVariableKindDatasource](./object-Dashboardv2beta1AdhocVariableKindDatasource.md)
  * <span class="badge object-type-class"></span> [Dashboardv2beta1DataQueryKindDatasource](./object-Dashboardv2beta1DataQueryKindDatasource.md)
@@ -130,6 +132,7 @@
  * <span class="badge object-type-class"></span> [VariableValueOption](./object-VariableValueOption.md)
  * <span class="badge object-type-class"></span> [VizConfigKind](./object-VizConfigKind.md)
  * <span class="badge object-type-class"></span> [VizConfigSpec](./object-VizConfigSpec.md)
+ * <span class="badge object-type-class"></span> [Dashboardv2beta1](./object-Dashboardv2beta1.md)
 ## Builders
 
  * <span class="badge builder"></span> [ActionBuilder](./builder-ActionBuilder.md)

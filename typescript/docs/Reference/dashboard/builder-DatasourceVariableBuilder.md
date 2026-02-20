@@ -106,6 +106,22 @@ Named capture groups can be used to separate the display text and value.
 regex(regex: string)
 ```
 
+### <span class="badge object-method"></span> staticOptions
+
+Additional static options for query variable
+
+```typescript
+staticOptions(staticOptions: dashboard.VariableOption[])
+```
+
+### <span class="badge object-method"></span> staticOptionsOrder
+
+Ordering of static options in relation to options returned from data source for query variable
+
+```typescript
+staticOptionsOrder(staticOptionsOrder: "before" | "after" | "sorted")
+```
+
 ### <span class="badge object-method"></span> type
 
 Query used to fetch values for a variable

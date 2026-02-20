@@ -36,6 +36,11 @@ func (builder *MetricQueryBuilder) Build() (MetricQuery, error) {
 	return *builder.internal, nil
 }
 
+func (builder *MetricQueryBuilder) RecordError(path string, err error) *MetricQueryBuilder {
+	builder.errors = append(builder.errors, cog.MakeBuildErrors(path, err)...)
+	return builder
+}
+
 // GCP project to execute the query against.
 func (builder *MetricQueryBuilder) ProjectName(projectName string) *MetricQueryBuilder {
 	builder.internal.ProjectName = projectName

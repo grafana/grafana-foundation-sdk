@@ -35,6 +35,11 @@ func (builder *QueryOptionsSpecBuilder) Build() (QueryOptionsSpec, error) {
 	return *builder.internal, nil
 }
 
+func (builder *QueryOptionsSpecBuilder) RecordError(path string, err error) *QueryOptionsSpecBuilder {
+	builder.errors = append(builder.errors, cog.MakeBuildErrors(path, err)...)
+	return builder
+}
+
 func (builder *QueryOptionsSpecBuilder) TimeFrom(timeFrom string) *QueryOptionsSpecBuilder {
 	builder.internal.TimeFrom = &timeFrom
 

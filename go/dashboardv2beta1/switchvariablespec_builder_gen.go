@@ -35,6 +35,11 @@ func (builder *SwitchVariableSpecBuilder) Build() (SwitchVariableSpec, error) {
 	return *builder.internal, nil
 }
 
+func (builder *SwitchVariableSpecBuilder) RecordError(path string, err error) *SwitchVariableSpecBuilder {
+	builder.errors = append(builder.errors, cog.MakeBuildErrors(path, err)...)
+	return builder
+}
+
 func (builder *SwitchVariableSpecBuilder) Name(name string) *SwitchVariableSpecBuilder {
 	builder.internal.Name = name
 

@@ -37,6 +37,11 @@ func (builder *TimeSettingsBuilder) Build() (TimeSettingsSpec, error) {
 	return *builder.internal, nil
 }
 
+func (builder *TimeSettingsBuilder) RecordError(path string, err error) *TimeSettingsBuilder {
+	builder.errors = append(builder.errors, cog.MakeBuildErrors(path, err)...)
+	return builder
+}
+
 // Timezone of dashboard. Accepted values are IANA TZDB zone ID or "browser" or "utc".
 func (builder *TimeSettingsBuilder) Timezone(timezone string) *TimeSettingsBuilder {
 	builder.internal.Timezone = &timezone

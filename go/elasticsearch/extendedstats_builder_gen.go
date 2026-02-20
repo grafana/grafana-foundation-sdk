@@ -35,6 +35,11 @@ func (builder *ExtendedStatsBuilder) Build() (ExtendedStats, error) {
 	return *builder.internal, nil
 }
 
+func (builder *ExtendedStatsBuilder) RecordError(path string, err error) *ExtendedStatsBuilder {
+	builder.errors = append(builder.errors, cog.MakeBuildErrors(path, err)...)
+	return builder
+}
+
 func (builder *ExtendedStatsBuilder) Settings(settings cog.Builder[ElasticsearchExtendedStatsSettings]) *ExtendedStatsBuilder {
 	settingsResource, err := settings.Build()
 	if err != nil {

@@ -35,6 +35,11 @@ func (builder *MaxBuilder) Build() (Max, error) {
 	return *builder.internal, nil
 }
 
+func (builder *MaxBuilder) RecordError(path string, err error) *MaxBuilder {
+	builder.errors = append(builder.errors, cog.MakeBuildErrors(path, err)...)
+	return builder
+}
+
 func (builder *MaxBuilder) Field(field string) *MaxBuilder {
 	builder.internal.Field = &field
 

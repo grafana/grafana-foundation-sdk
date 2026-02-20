@@ -88,6 +88,37 @@ final class AdHocVariableConverter
     
     
     }
+            if ($input->staticOptions !== null && count($input->staticOptions) >= 1) {
+    
+        
+    $buffer = 'staticOptions(';
+        $tmparg0 = [];
+        foreach ($input->staticOptions as $arg1) {
+        $tmpstaticOptionsarg1 ='(new \Grafana\Foundation\Dashboard\VariableOption('.(($arg1->selected !== null) ? 'selected: '.\var_export($arg1->selected, true).', ' : '').'text: '.\var_export($arg1->text, true).',value: '.\var_export($arg1->value, true).',))';
+        $tmparg0[] = $tmpstaticOptionsarg1;
+        }
+        $arg0 = "[" . implode(", \n", $tmparg0) . "]";
+        $buffer .= $arg0;
+        
+    $buffer .= ')';
+
+    $calls[] = $buffer;
+    
+    
+    }
+            if ($input->staticOptionsOrder !== null) {
+    
+        
+    $buffer = 'staticOptionsOrder(';
+        $arg0 ='\Grafana\Foundation\Dashboard\VariableModelStaticOptionsOrder::fromValue("'.$input->staticOptionsOrder.'")';
+        $buffer .= $arg0;
+        
+    $buffer .= ')';
+
+    $calls[] = $buffer;
+    
+    
+    }
             if ($input->definition !== null && $input->definition !== "") {
     
         

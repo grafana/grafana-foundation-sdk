@@ -34,9 +34,11 @@
  * <span class="badge object-type-interface"></span> [CustomVariableValue](./object-CustomVariableValue.md)
  * <span class="badge object-type-interface"></span> [Dashboard](./object-Dashboard.md)
  * <span class="badge object-type-enum"></span> [DashboardCursorSync](./object-DashboardCursorSync.md)
+ * <span class="badge object-type-scalar"></span> [DashboardKind](./object-DashboardKind.md)
  * <span class="badge object-type-interface"></span> [DashboardLink](./object-DashboardLink.md)
  * <span class="badge object-type-scalar"></span> [DashboardLinkPlacement](./object-DashboardLinkPlacement.md)
  * <span class="badge object-type-enum"></span> [DashboardLinkType](./object-DashboardLinkType.md)
+ * <span class="badge object-type-scalar"></span> [DashboardV2Beta1](./object-DashboardV2Beta1.md)
  * <span class="badge object-type-interface"></span> [DataLink](./object-DataLink.md)
  * <span class="badge object-type-interface"></span> [DataQueryKind](./object-DataQueryKind.md)
  * <span class="badge object-type-enum"></span> [DataTopic](./object-DataTopic.md)
@@ -188,3 +190,13 @@
  * <span class="badge builder"></span> [ValueMappingResultBuilder](./builder-ValueMappingResultBuilder.md)
  * <span class="badge builder"></span> [VariableValueOptionBuilder](./builder-VariableValueOptionBuilder.md)
  * <span class="badge builder"></span> [VizConfigKindBuilder](./builder-VizConfigKindBuilder.md)
+## Functions
+
+### <span class="badge function"></span> manifest
+
+Creates a resource manifest from a Dashboard.
+
+```typescript
+manifest(name: string, dashboard: cog.Builder<dashboardv2beta1.Dashboard>)
+```
+

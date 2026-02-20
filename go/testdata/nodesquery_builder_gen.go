@@ -35,6 +35,11 @@ func (builder *NodesQueryBuilder) Build() (NodesQuery, error) {
 	return *builder.internal, nil
 }
 
+func (builder *NodesQueryBuilder) RecordError(path string, err error) *NodesQueryBuilder {
+	builder.errors = append(builder.errors, cog.MakeBuildErrors(path, err)...)
+	return builder
+}
+
 func (builder *NodesQueryBuilder) Count(count int64) *NodesQueryBuilder {
 	builder.internal.Count = &count
 

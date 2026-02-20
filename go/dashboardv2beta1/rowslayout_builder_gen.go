@@ -36,6 +36,11 @@ func (builder *RowsLayoutBuilder) Build() (RowsLayoutKind, error) {
 	return *builder.internal, nil
 }
 
+func (builder *RowsLayoutBuilder) RecordError(path string, err error) *RowsLayoutBuilder {
+	builder.errors = append(builder.errors, cog.MakeBuildErrors(path, err)...)
+	return builder
+}
+
 func (builder *RowsLayoutBuilder) Rows(rows []cog.Builder[RowsLayoutRowKind]) *RowsLayoutBuilder {
 	rowsResources := make([]RowsLayoutRowKind, 0, len(rows))
 	for _, r1 := range rows {

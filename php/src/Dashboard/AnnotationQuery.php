@@ -55,6 +55,11 @@ class AnnotationQuery implements \JsonSerializable
      */
     public ?float $builtIn;
 
+    /**
+     * Placement can be used to display the annotation query somewhere else on the dashboard other than the default location.
+     */
+    public ?\Grafana\Foundation\Dashboard\AnnotationQueryPlacement $placement;
+
     public ?string $expr;
 
     /**
@@ -80,6 +85,7 @@ class AnnotationQuery implements \JsonSerializable
         $this->target = $target;
         $this->type = $type;
         $this->builtIn = $builtIn;
+        $this->placement = \Grafana\Foundation\Dashboard\AnnotationQueryPlacement::inControlsMenu();
         $this->expr = $expr;
     }
 
@@ -88,7 +94,7 @@ class AnnotationQuery implements \JsonSerializable
      */
     public static function fromArray(array $inputData): self
     {
-        /** @var array{name?: string, datasource?: mixed, enable?: bool, hide?: bool, iconColor?: string, filter?: mixed, target?: mixed, type?: string, builtIn?: float, expr?: string} $inputData */
+        /** @var array{name?: string, datasource?: mixed, enable?: bool, hide?: bool, iconColor?: string, filter?: mixed, target?: mixed, type?: string, builtIn?: float, placement?: "inControlsMenu", expr?: string} $inputData */
         $data = $inputData;
         return new self(
             name: $data["name"] ?? null,
@@ -144,6 +150,9 @@ class AnnotationQuery implements \JsonSerializable
         }
         if (isset($this->builtIn)) {
             $data->builtIn = $this->builtIn;
+        }
+        if (isset($this->placement)) {
+            $data->placement = $this->placement;
         }
         if (isset($this->expr)) {
             $data->expr = $this->expr;

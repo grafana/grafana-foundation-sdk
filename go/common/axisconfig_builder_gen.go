@@ -36,6 +36,11 @@ func (builder *AxisConfigBuilder) Build() (AxisConfig, error) {
 	return *builder.internal, nil
 }
 
+func (builder *AxisConfigBuilder) RecordError(path string, err error) *AxisConfigBuilder {
+	builder.errors = append(builder.errors, cog.MakeBuildErrors(path, err)...)
+	return builder
+}
+
 func (builder *AxisConfigBuilder) AxisPlacement(axisPlacement AxisPlacement) *AxisConfigBuilder {
 	builder.internal.AxisPlacement = &axisPlacement
 

@@ -255,6 +255,16 @@ class Panel(cogbuilder.Builder[dashboard.Panel]):
     
         return self
     
+    def time_compare(self, time_compare: str) -> typing.Self:    
+        """
+        Compare the current time range with a previous period
+        For example "1d" to compare current period but shifted back 1 day
+        """
+            
+        self._internal.time_compare = time_compare
+    
+        return self
+    
     def library_panel(self, library_panel: dashboard.LibraryPanelRef) -> typing.Self:    
         """
         Dynamically load the panel
@@ -429,6 +439,22 @@ class Panel(cogbuilder.Builder[dashboard.Panel]):
         assert isinstance(self._internal.field_config.defaults, dashboard.FieldConfig)
         links_resources = [r1.build() for r1 in links]
         self._internal.field_config.defaults.links = links_resources
+    
+        return self
+    
+    def actions(self, actions: list[cogbuilder.Builder[dashboard.Action]]) -> typing.Self:    
+        """
+        Define interactive HTTP requests that can be triggered from data visualizations.
+        """
+            
+        if self._internal.field_config is None:
+            self._internal.field_config = dashboard.FieldConfigSource()
+        assert isinstance(self._internal.field_config, dashboard.FieldConfigSource)
+        if self._internal.field_config.defaults is None:
+            self._internal.field_config.defaults = dashboard.FieldConfig()
+        assert isinstance(self._internal.field_config.defaults, dashboard.FieldConfig)
+        actions_resources = [r1.build() for r1 in actions]
+        self._internal.field_config.defaults.actions = actions_resources
     
         return self
     

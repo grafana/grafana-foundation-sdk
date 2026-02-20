@@ -2,6 +2,7 @@
 
 package com.grafana.foundation.dashboard;
 
+import java.util.List;
 
 public class ConstantVariableBuilder implements com.grafana.foundation.cog.Builder<VariableModel> {
     protected final VariableModel internal;
@@ -34,6 +35,16 @@ public class ConstantVariableBuilder implements com.grafana.foundation.cog.Build
     
     public ConstantVariableBuilder allowCustomValue(Boolean allowCustomValue) {
         this.internal.allowCustomValue = allowCustomValue;
+        return this;
+    }
+    
+    public ConstantVariableBuilder staticOptions(List<VariableOption> staticOptions) {
+        this.internal.staticOptions = staticOptions;
+        return this;
+    }
+    
+    public ConstantVariableBuilder staticOptionsOrder(VariableModelStaticOptionsOrder staticOptionsOrder) {
+        this.internal.staticOptionsOrder = staticOptionsOrder;
         return this;
     }
     

@@ -36,6 +36,11 @@ func (builder *ExemplarConfigBuilder) Build() (ExemplarConfig, error) {
 	return *builder.internal, nil
 }
 
+func (builder *ExemplarConfigBuilder) RecordError(path string, err error) *ExemplarConfigBuilder {
+	builder.errors = append(builder.errors, cog.MakeBuildErrors(path, err)...)
+	return builder
+}
+
 // Sets the color of the exemplar markers
 func (builder *ExemplarConfigBuilder) Color(color string) *ExemplarConfigBuilder {
 	builder.internal.Color = color

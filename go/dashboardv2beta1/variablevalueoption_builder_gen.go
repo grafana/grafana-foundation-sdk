@@ -36,6 +36,11 @@ func (builder *VariableValueOptionBuilder) Build() (VariableValueOption, error) 
 	return *builder.internal, nil
 }
 
+func (builder *VariableValueOptionBuilder) RecordError(path string, err error) *VariableValueOptionBuilder {
+	builder.errors = append(builder.errors, cog.MakeBuildErrors(path, err)...)
+	return builder
+}
+
 func (builder *VariableValueOptionBuilder) Label(label string) *VariableValueOptionBuilder {
 	builder.internal.Label = label
 

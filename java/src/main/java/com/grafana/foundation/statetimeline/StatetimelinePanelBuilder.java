@@ -15,6 +15,7 @@ import com.grafana.foundation.dashboard.LibraryPanelRef;
 import com.grafana.foundation.dashboard.ValueMapping;
 import com.grafana.foundation.dashboard.ThresholdsConfig;
 import com.grafana.foundation.dashboard.FieldColor;
+import com.grafana.foundation.dashboard.Action;
 import com.grafana.foundation.dashboard.DashboardFieldConfigSourceOverrides;
 import com.grafana.foundation.dashboard.DynamicConfigValue;
 import com.grafana.foundation.dashboard.MatcherConfig;
@@ -171,6 +172,11 @@ public class StatetimelinePanelBuilder implements com.grafana.foundation.cog.Bui
         return this;
     }
     
+    public StatetimelinePanelBuilder timeCompare(String timeCompare) {
+        this.internal.timeCompare = timeCompare;
+        return this;
+    }
+    
     public StatetimelinePanelBuilder libraryPanel(LibraryPanelRef libraryPanel) {
         this.internal.libraryPanel = libraryPanel;
         return this;
@@ -289,6 +295,22 @@ public class StatetimelinePanelBuilder implements com.grafana.foundation.cog.Bui
                 linksResources.add(linksDepth1); 
         }
         this.internal.fieldConfig.defaults.links = linksResources;
+        return this;
+    }
+    
+    public StatetimelinePanelBuilder actions(List<com.grafana.foundation.cog.Builder<Action>> actions) {
+		if (this.internal.fieldConfig == null) {
+			this.internal.fieldConfig = new com.grafana.foundation.dashboard.FieldConfigSource();
+		}
+		if (this.internal.fieldConfig.defaults == null) {
+			this.internal.fieldConfig.defaults = new com.grafana.foundation.dashboard.FieldConfig();
+		}
+        List<Action> actionsResources = new LinkedList<>();
+        for (com.grafana.foundation.cog.Builder<Action> r1 : actions) {
+                Action actionsDepth1 = r1.build();
+                actionsResources.add(actionsDepth1); 
+        }
+        this.internal.fieldConfig.defaults.actions = actionsResources;
         return this;
     }
     

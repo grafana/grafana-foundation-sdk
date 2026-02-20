@@ -36,6 +36,11 @@ func (builder *ScaleDistributionConfigBuilder) Build() (ScaleDistributionConfig,
 	return *builder.internal, nil
 }
 
+func (builder *ScaleDistributionConfigBuilder) RecordError(path string, err error) *ScaleDistributionConfigBuilder {
+	builder.errors = append(builder.errors, cog.MakeBuildErrors(path, err)...)
+	return builder
+}
+
 func (builder *ScaleDistributionConfigBuilder) Type(typeArg ScaleDistribution) *ScaleDistributionConfigBuilder {
 	builder.internal.Type = typeArg
 

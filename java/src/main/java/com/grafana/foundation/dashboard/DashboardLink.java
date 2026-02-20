@@ -38,6 +38,10 @@ public class DashboardLink {
     // If true, all dashboards links will be displayed in a dropdown. If false, all dashboards links will be displayed side by side. Only valid if the type is dashboards
     @JsonProperty("asDropdown")
     public Boolean asDropdown;
+    // Placement can be used to display the link somewhere else on the dashboard other than above the visualisations.
+    @JsonInclude(JsonInclude.Include.NON_NULL)
+    @JsonProperty("placement")
+    public DashboardLinkPlacement placement;
     // If true, the link will be opened in a new tab
     @JsonProperty("targetBlank")
     public Boolean targetBlank;
@@ -54,6 +58,7 @@ public class DashboardLink {
         this.tooltip = "";
         this.tags = new LinkedList<>();
         this.asDropdown = false;
+        this.placement = DashboardLinkPlacement.IN_CONTROLS_MENU;
         this.targetBlank = false;
         this.includeVars = false;
         this.keepTime = false;
@@ -66,6 +71,7 @@ public class DashboardLink {
         this.url = url;
         this.tags = tags;
         this.asDropdown = asDropdown;
+        this.placement = DashboardLinkPlacement.IN_CONTROLS_MENU;
         this.targetBlank = targetBlank;
         this.includeVars = includeVars;
         this.keepTime = keepTime;

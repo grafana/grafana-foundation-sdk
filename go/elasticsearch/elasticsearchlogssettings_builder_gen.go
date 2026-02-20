@@ -35,6 +35,11 @@ func (builder *ElasticsearchLogsSettingsBuilder) Build() (ElasticsearchLogsSetti
 	return *builder.internal, nil
 }
 
+func (builder *ElasticsearchLogsSettingsBuilder) RecordError(path string, err error) *ElasticsearchLogsSettingsBuilder {
+	builder.errors = append(builder.errors, cog.MakeBuildErrors(path, err)...)
+	return builder
+}
+
 func (builder *ElasticsearchLogsSettingsBuilder) Limit(limit string) *ElasticsearchLogsSettingsBuilder {
 	builder.internal.Limit = &limit
 

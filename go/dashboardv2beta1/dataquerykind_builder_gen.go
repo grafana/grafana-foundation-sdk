@@ -36,6 +36,11 @@ func (builder *DataQueryKindBuilder) Build() (DataQueryKind, error) {
 	return *builder.internal, nil
 }
 
+func (builder *DataQueryKindBuilder) RecordError(path string, err error) *DataQueryKindBuilder {
+	builder.errors = append(builder.errors, cog.MakeBuildErrors(path, err)...)
+	return builder
+}
+
 func (builder *DataQueryKindBuilder) Group(group string) *DataQueryKindBuilder {
 	builder.internal.Group = group
 

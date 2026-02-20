@@ -39,6 +39,11 @@ func (builder *QueryGroupBuilder) Build() (QueryGroupKind, error) {
 	return *builder.internal, nil
 }
 
+func (builder *QueryGroupBuilder) RecordError(path string, err error) *QueryGroupBuilder {
+	builder.errors = append(builder.errors, cog.MakeBuildErrors(path, err)...)
+	return builder
+}
+
 func (builder *QueryGroupBuilder) Targets(queries []cog.Builder[PanelQueryKind]) *QueryGroupBuilder {
 	queriesResources := make([]PanelQueryKind, 0, len(queries))
 	for _, r1 := range queries {

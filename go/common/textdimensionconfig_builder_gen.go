@@ -35,6 +35,11 @@ func (builder *TextDimensionConfigBuilder) Build() (TextDimensionConfig, error) 
 	return *builder.internal, nil
 }
 
+func (builder *TextDimensionConfigBuilder) RecordError(path string, err error) *TextDimensionConfigBuilder {
+	builder.errors = append(builder.errors, cog.MakeBuildErrors(path, err)...)
+	return builder
+}
+
 func (builder *TextDimensionConfigBuilder) Mode(mode TextDimensionMode) *TextDimensionConfigBuilder {
 	builder.internal.Mode = mode
 

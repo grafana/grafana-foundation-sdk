@@ -58,6 +58,8 @@ type FieldConfig struct {
     Color *dashboard.FieldColor `json:"color,omitempty"`
     // The behavior when clicking on a result
     Links []dashboard.DashboardLink `json:"links,omitempty"`
+    // Define interactive HTTP requests that can be triggered from data visualizations.
+    Actions []dashboard.Action `json:"actions,omitempty"`
     // Alternative to empty string
     NoValue *string `json:"noValue,omitempty"`
     // custom is specified by the FieldConfig field

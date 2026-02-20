@@ -35,6 +35,11 @@ func (builder *Dashboardv2beta1SpecialValueMapOptionsBuilder) Build() (Dashboard
 	return *builder.internal, nil
 }
 
+func (builder *Dashboardv2beta1SpecialValueMapOptionsBuilder) RecordError(path string, err error) *Dashboardv2beta1SpecialValueMapOptionsBuilder {
+	builder.errors = append(builder.errors, cog.MakeBuildErrors(path, err)...)
+	return builder
+}
+
 // Special value to match against
 func (builder *Dashboardv2beta1SpecialValueMapOptionsBuilder) Match(match SpecialValueMatch) *Dashboardv2beta1SpecialValueMapOptionsBuilder {
 	builder.internal.Match = match

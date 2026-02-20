@@ -35,6 +35,11 @@ func (builder *TooltipOptionsBuilder) Build() (TooltipOptions, error) {
 	return *builder.internal, nil
 }
 
+func (builder *TooltipOptionsBuilder) RecordError(path string, err error) *TooltipOptionsBuilder {
+	builder.errors = append(builder.errors, cog.MakeBuildErrors(path, err)...)
+	return builder
+}
+
 func (builder *TooltipOptionsBuilder) Mode(mode TooltipMode) *TooltipOptionsBuilder {
 	builder.internal.Mode = mode
 

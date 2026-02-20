@@ -35,6 +35,11 @@ func (builder *ElasticsearchInlineScriptBuilder) Build() (ElasticsearchInlineScr
 	return *builder.internal, nil
 }
 
+func (builder *ElasticsearchInlineScriptBuilder) RecordError(path string, err error) *ElasticsearchInlineScriptBuilder {
+	builder.errors = append(builder.errors, cog.MakeBuildErrors(path, err)...)
+	return builder
+}
+
 func (builder *ElasticsearchInlineScriptBuilder) Inline(inline string) *ElasticsearchInlineScriptBuilder {
 	builder.internal.Inline = &inline
 

@@ -35,6 +35,11 @@ func (builder *ActionBuilder) Build() (Action, error) {
 	return *builder.internal, nil
 }
 
+func (builder *ActionBuilder) RecordError(path string, err error) *ActionBuilder {
+	builder.errors = append(builder.errors, cog.MakeBuildErrors(path, err)...)
+	return builder
+}
+
 func (builder *ActionBuilder) Type(typeArg ActionType) *ActionBuilder {
 	builder.internal.Type = typeArg
 

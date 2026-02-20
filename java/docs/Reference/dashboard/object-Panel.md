@@ -28,6 +28,7 @@ public class Panel {
   public String timeFrom;
   public String timeShift;
   public Boolean hideTimeOverride;
+  public String timeCompare;
   public LibraryPanelRef libraryPanel;
   public String cacheTimeout;
   public Double queryCachingTTL;

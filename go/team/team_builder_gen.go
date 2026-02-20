@@ -36,6 +36,11 @@ func (builder *TeamBuilder) Build() (Team, error) {
 	return *builder.internal, nil
 }
 
+func (builder *TeamBuilder) RecordError(path string, err error) *TeamBuilder {
+	builder.errors = append(builder.errors, cog.MakeBuildErrors(path, err)...)
+	return builder
+}
+
 func (builder *TeamBuilder) Email(email string) *TeamBuilder {
 	builder.internal.Email = &email
 

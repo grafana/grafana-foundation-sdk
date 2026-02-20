@@ -18,6 +18,14 @@ Builds the object.
 func (builder *PanelBuilder) Build() (dashboard.Panel, error)
 ```
 
+### <span class="badge object-method"></span> Actions
+
+Define interactive HTTP requests that can be triggered from data visualizations.
+
+```go
+func (builder *PanelBuilder) Actions(actions []cog.Builder[dashboard.Action]) *PanelBuilder
+```
+
 ### <span class="badge object-method"></span> CacheTimeout
 
 Sets panel queries cache timeout.
@@ -462,6 +470,16 @@ Map numeric values to states
 
 ```go
 func (builder *PanelBuilder) Thresholds(thresholds cog.Builder[dashboard.ThresholdsConfig]) *PanelBuilder
+```
+
+### <span class="badge object-method"></span> TimeCompare
+
+Compare the current time range with a previous period
+
+For example "1d" to compare current period but shifted back 1 day
+
+```go
+func (builder *PanelBuilder) TimeCompare(timeCompare string) *PanelBuilder
 ```
 
 ### <span class="badge object-method"></span> TimeFrom

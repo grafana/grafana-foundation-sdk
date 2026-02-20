@@ -18,6 +18,14 @@ Builds the object.
 def build() -> dashboard.Panel
 ```
 
+### <span class="badge object-method"></span> actions
+
+Define interactive HTTP requests that can be triggered from data visualizations.
+
+```python
+def actions(actions: list[cogbuilder.Builder[dashboard.Action]]) -> typing.Self
+```
+
 ### <span class="badge object-method"></span> axis_border_show
 
 ```python
@@ -488,6 +496,16 @@ def thresholds(thresholds: cogbuilder.Builder[dashboard.ThresholdsConfig]) -> ty
 
 ```python
 def thresholds_style(thresholds_style: cogbuilder.Builder[common.GraphThresholdsStyleConfig]) -> typing.Self
+```
+
+### <span class="badge object-method"></span> time_compare
+
+Compare the current time range with a previous period
+
+For example "1d" to compare current period but shifted back 1 day
+
+```python
+def time_compare(time_compare: str) -> typing.Self
 ```
 
 ### <span class="badge object-method"></span> time_from

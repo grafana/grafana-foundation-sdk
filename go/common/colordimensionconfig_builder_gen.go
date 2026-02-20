@@ -35,6 +35,11 @@ func (builder *ColorDimensionConfigBuilder) Build() (ColorDimensionConfig, error
 	return *builder.internal, nil
 }
 
+func (builder *ColorDimensionConfigBuilder) RecordError(path string, err error) *ColorDimensionConfigBuilder {
+	builder.errors = append(builder.errors, cog.MakeBuildErrors(path, err)...)
+	return builder
+}
+
 // color value
 func (builder *ColorDimensionConfigBuilder) Fixed(fixed string) *ColorDimensionConfigBuilder {
 	builder.internal.Fixed = &fixed

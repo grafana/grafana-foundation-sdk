@@ -35,6 +35,11 @@ func (builder *ActionVariableBuilder) Build() (ActionVariable, error) {
 	return *builder.internal, nil
 }
 
+func (builder *ActionVariableBuilder) RecordError(path string, err error) *ActionVariableBuilder {
+	builder.errors = append(builder.errors, cog.MakeBuildErrors(path, err)...)
+	return builder
+}
+
 func (builder *ActionVariableBuilder) Key(key string) *ActionVariableBuilder {
 	builder.internal.Key = key
 

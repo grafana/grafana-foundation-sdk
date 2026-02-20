@@ -35,6 +35,11 @@ func (builder *AnnotationPermissionBuilder) Build() (AnnotationPermission, error
 	return *builder.internal, nil
 }
 
+func (builder *AnnotationPermissionBuilder) RecordError(path string, err error) *AnnotationPermissionBuilder {
+	builder.errors = append(builder.errors, cog.MakeBuildErrors(path, err)...)
+	return builder
+}
+
 func (builder *AnnotationPermissionBuilder) Dashboard(dashboard cog.Builder[AnnotationActions]) *AnnotationPermissionBuilder {
 	dashboardResource, err := dashboard.Build()
 	if err != nil {

@@ -37,6 +37,11 @@ func (builder *DataqueryBuilder) Build() (variants.Dataquery, error) {
 	return *builder.internal, nil
 }
 
+func (builder *DataqueryBuilder) RecordError(path string, err error) *DataqueryBuilder {
+	builder.errors = append(builder.errors, cog.MakeBuildErrors(path, err)...)
+	return builder
+}
+
 // The actual expression/query that will be evaluated by Prometheus
 func (builder *DataqueryBuilder) Expr(expr string) *DataqueryBuilder {
 	builder.internal.Expr = expr
