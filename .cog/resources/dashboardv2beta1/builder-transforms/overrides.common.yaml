@@ -1,0 +1,140 @@
+# yaml-language-server: $schema=https://raw.githubusercontent.com/grafana/cog/main/schemas/veneers.json
+
+languages: [all]
+
+package: dashboardv2beta1
+
+builders:
+  #######################
+  # Overrides shortcuts #
+  #######################
+
+  # byName
+  - add_option:
+      by_object: FieldConfigSource
+      option:
+        name: overrideByName
+        comments:
+          - Adds override rules for a specific field, referred to by its name.
+        arguments:
+          - name: name
+            type: &type_string
+              kind: scalar
+              scalar: {scalar_kind: string}
+          - name: properties
+            type: &type_DynamicConfigValue_array
+              kind: array
+              array: {value_type: {kind: ref, ref: {referred_pkg: dashboardv2beta1, referred_type: DynamicConfigValue}}}
+        assignments:
+          - method: append
+            path: overrides
+            value:
+              envelope:
+                values:
+                  # Matcher
+                  - field: matcher
+                    value:
+                      envelope:
+                        values:
+                          - field: id
+                            value: {constant: byName}
+                          - field: options
+                            value: {argument: {name: name, type: *type_string}}
+                  # Properties
+                  - field: properties
+                    value:
+                      argument: { name: properties, type: *type_DynamicConfigValue_array }
+
+  # byRegexp
+  - add_option:
+      by_object: FieldConfigSource
+      option:
+        name: overrideByRegexp
+        comments:
+          - Adds override rules for the fields whose name match the given regexp.
+        arguments:
+          - name: regexp
+            type: *type_string
+          - name: properties
+            type: *type_DynamicConfigValue_array
+        assignments:
+          - method: append
+            path: overrides
+            value:
+              envelope:
+                values:
+                  # Matcher
+                  - field: matcher
+                    value:
+                      envelope:
+                        values:
+                          - field: id
+                            value: {constant: byRegexp}
+                          - field: options
+                            value: {argument: {name: regexp, type: *type_string}}
+                  # Properties
+                  - field: properties
+                    value:
+                      argument: {name: properties, type: *type_DynamicConfigValue_array}
+
+  # byType
+  - add_option:
+      by_object: FieldConfigSource
+      option:
+        name: overrideByFieldType
+        comments:
+          - Adds override rules for all the fields of the given type.
+        arguments:
+          - name: fieldType
+            type: *type_string
+          - name: properties
+            type: *type_DynamicConfigValue_array
+        assignments:
+          - method: append
+            path: overrides
+            value:
+              envelope:
+                values:
+                  # Matcher
+                  - field: matcher
+                    value:
+                      envelope:
+                        values:
+                          - field: id
+                            value: {constant: byType}
+                          - field: options
+                            value: {argument: {name: fieldType, type: *type_string}}
+                  # Properties
+                  - field: properties
+                    value:
+                      argument: {name: properties, type: *type_DynamicConfigValue_array}
+
+  # byFrameRefID
+  - add_option:
+      by_object: FieldConfigSource
+      option:
+        name: overrideByQuery
+        arguments:
+          - name: queryRefId
+            type: *type_string
+          - name: properties
+            type: *type_DynamicConfigValue_array
+        assignments:
+          - method: append
+            path: overrides
+            value:
+              envelope:
+                values:
+                  # Matcher
+                  - field: matcher
+                    value:
+                      envelope:
+                        values:
+                          - field: id
+                            value: {constant: byFrameRefID}
+                          - field: options
+                            value: {argument: {name: queryRefId, type: *type_string}}
+                  # Properties
+                  - field: properties
+                    value:
+                      argument: {name: properties, type: *type_DynamicConfigValue_array}

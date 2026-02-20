@@ -11,7 +11,7 @@
     "build:watch": "tsc -w -p tsconfig.json"
   },
   "dependencies": {
-    "@grafana/grafana-foundation-sdk": "~0.0.9",
+    "@grafana/grafana-foundation-sdk": "file:../../../typescript/",
     "tslib": "~2.6"
   },
   "devDependencies": {
