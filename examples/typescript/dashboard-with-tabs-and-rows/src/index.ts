@@ -11,13 +11,8 @@ import {
   TabsLayoutBuilder,
   TabsLayoutTabBuilder,
   TargetBuilder,
+  manifest,
 } from '@grafana/grafana-foundation-sdk/dashboardv2beta1';
-import {
-  DashboardKind,
-  DashboardV2Beta1,
-  ManifestBuilder,
-  MetadataBuilder,
-} from '@grafana/grafana-foundation-sdk/resource';
 import { QueryBuilder as TestDataQueryBuilder } from '@grafana/grafana-foundation-sdk/testdata';
 import { VisualizationBuilder as TimeSeriesVisualizationBuilder } from '@grafana/grafana-foundation-sdk/timeseries';
 
@@ -94,16 +89,6 @@ const dashboard = new DashboardBuilder('[Example] Dashboard with tabs and rows')
       )
   );
 
-const dashboardManifest = new ManifestBuilder()
-  .apiVersion(DashboardV2Beta1)
-  .kind(DashboardKind)
-  .metadata(
-    new MetadataBuilder()
-      .name('example-dashboard-with-tabs-and-rows')
-      .annotations({
-        'grafana.app/folder': '',
-      })
-  )
-  .spec(dashboard.build());
+const dashboardManifest = manifest('example-dashboard-with-tabs-and-rows', dashboard);
 
 console.log(JSON.stringify(dashboardManifest.build(), null, 2));
