@@ -36,6 +36,11 @@ func (builder *VizTextDisplayOptionsBuilder) Build() (VizTextDisplayOptions, err
 	return *builder.internal, nil
 }
 
+func (builder *VizTextDisplayOptionsBuilder) RecordError(path string, err error) *VizTextDisplayOptionsBuilder {
+	builder.errors = append(builder.errors, cog.MakeBuildErrors(path, err)...)
+	return builder
+}
+
 // Explicit title text size
 func (builder *VizTextDisplayOptionsBuilder) TitleSize(titleSize float64) *VizTextDisplayOptionsBuilder {
 	builder.internal.TitleSize = &titleSize

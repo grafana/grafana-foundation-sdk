@@ -36,6 +36,11 @@ func (builder *BarConfigBuilder) Build() (BarConfig, error) {
 	return *builder.internal, nil
 }
 
+func (builder *BarConfigBuilder) RecordError(path string, err error) *BarConfigBuilder {
+	builder.errors = append(builder.errors, cog.MakeBuildErrors(path, err)...)
+	return builder
+}
+
 func (builder *BarConfigBuilder) BarAlignment(barAlignment BarAlignment) *BarConfigBuilder {
 	builder.internal.BarAlignment = &barAlignment
 

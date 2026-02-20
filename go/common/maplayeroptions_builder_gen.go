@@ -35,6 +35,11 @@ func (builder *MapLayerOptionsBuilder) Build() (MapLayerOptions, error) {
 	return *builder.internal, nil
 }
 
+func (builder *MapLayerOptionsBuilder) RecordError(path string, err error) *MapLayerOptionsBuilder {
+	builder.errors = append(builder.errors, cog.MakeBuildErrors(path, err)...)
+	return builder
+}
+
 func (builder *MapLayerOptionsBuilder) Type(typeArg string) *MapLayerOptionsBuilder {
 	builder.internal.Type = typeArg
 

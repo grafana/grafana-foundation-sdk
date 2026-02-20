@@ -38,6 +38,11 @@ func (builder *GroupByVariableBuilder) Build() (GroupByVariableKind, error) {
 	return *builder.internal, nil
 }
 
+func (builder *GroupByVariableBuilder) RecordError(path string, err error) *GroupByVariableBuilder {
+	builder.errors = append(builder.errors, cog.MakeBuildErrors(path, err)...)
+	return builder
+}
+
 func (builder *GroupByVariableBuilder) Group(group string) *GroupByVariableBuilder {
 	builder.internal.Group = group
 

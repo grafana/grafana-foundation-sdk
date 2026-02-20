@@ -114,6 +114,11 @@ public class PanelModelBuilder implements com.grafana.foundation.cog.Builder<Pan
         return this;
     }
     
+    public PanelModelBuilder timeCompare(String timeCompare) {
+        this.internal.timeCompare = timeCompare;
+        return this;
+    }
+    
     public PanelModelBuilder cacheTimeout(String cacheTimeout) {
         this.internal.cacheTimeout = cacheTimeout;
         return this;

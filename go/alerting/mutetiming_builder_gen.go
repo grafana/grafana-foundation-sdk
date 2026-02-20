@@ -35,6 +35,11 @@ func (builder *MuteTimingBuilder) Build() (MuteTiming, error) {
 	return *builder.internal, nil
 }
 
+func (builder *MuteTimingBuilder) RecordError(path string, err error) *MuteTimingBuilder {
+	builder.errors = append(builder.errors, cog.MakeBuildErrors(path, err)...)
+	return builder
+}
+
 func (builder *MuteTimingBuilder) Name(name string) *MuteTimingBuilder {
 	builder.internal.Name = &name
 

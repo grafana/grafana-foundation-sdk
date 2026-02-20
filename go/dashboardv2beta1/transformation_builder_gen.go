@@ -35,6 +35,11 @@ func (builder *TransformationBuilder) Build() (TransformationKind, error) {
 	return *builder.internal, nil
 }
 
+func (builder *TransformationBuilder) RecordError(path string, err error) *TransformationBuilder {
+	builder.errors = append(builder.errors, cog.MakeBuildErrors(path, err)...)
+	return builder
+}
+
 // The kind of a TransformationKind is the transformation ID
 func (builder *TransformationBuilder) Kind(kind string) *TransformationBuilder {
 	builder.internal.Kind = kind

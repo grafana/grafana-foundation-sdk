@@ -38,6 +38,11 @@ func (builder *QueryBuilder) Build() (dashboardv2beta1.DataQueryKind, error) {
 	return *builder.internal, nil
 }
 
+func (builder *QueryBuilder) RecordError(path string, err error) *QueryBuilder {
+	builder.errors = append(builder.errors, cog.MakeBuildErrors(path, err)...)
+	return builder
+}
+
 func (builder *QueryBuilder) Version(version string) *QueryBuilder {
 	builder.internal.Version = version
 

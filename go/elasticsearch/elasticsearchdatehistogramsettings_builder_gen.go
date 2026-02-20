@@ -35,6 +35,11 @@ func (builder *ElasticsearchDateHistogramSettingsBuilder) Build() (Elasticsearch
 	return *builder.internal, nil
 }
 
+func (builder *ElasticsearchDateHistogramSettingsBuilder) RecordError(path string, err error) *ElasticsearchDateHistogramSettingsBuilder {
+	builder.errors = append(builder.errors, cog.MakeBuildErrors(path, err)...)
+	return builder
+}
+
 func (builder *ElasticsearchDateHistogramSettingsBuilder) Interval(interval string) *ElasticsearchDateHistogramSettingsBuilder {
 	builder.internal.Interval = &interval
 

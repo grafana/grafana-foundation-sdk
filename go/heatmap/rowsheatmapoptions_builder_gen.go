@@ -37,6 +37,11 @@ func (builder *RowsHeatmapOptionsBuilder) Build() (RowsHeatmapOptions, error) {
 	return *builder.internal, nil
 }
 
+func (builder *RowsHeatmapOptionsBuilder) RecordError(path string, err error) *RowsHeatmapOptionsBuilder {
+	builder.errors = append(builder.errors, cog.MakeBuildErrors(path, err)...)
+	return builder
+}
+
 // Sets the name of the cell when not calculating from data
 func (builder *RowsHeatmapOptionsBuilder) Value(value string) *RowsHeatmapOptionsBuilder {
 	builder.internal.Value = &value

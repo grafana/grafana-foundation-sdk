@@ -35,6 +35,11 @@ func (builder *ElasticsearchCumulativeSumSettingsBuilder) Build() (Elasticsearch
 	return *builder.internal, nil
 }
 
+func (builder *ElasticsearchCumulativeSumSettingsBuilder) RecordError(path string, err error) *ElasticsearchCumulativeSumSettingsBuilder {
+	builder.errors = append(builder.errors, cog.MakeBuildErrors(path, err)...)
+	return builder
+}
+
 func (builder *ElasticsearchCumulativeSumSettingsBuilder) Format(format string) *ElasticsearchCumulativeSumSettingsBuilder {
 	builder.internal.Format = &format
 

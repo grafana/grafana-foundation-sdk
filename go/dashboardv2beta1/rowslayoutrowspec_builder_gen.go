@@ -35,6 +35,11 @@ func (builder *RowsLayoutRowSpecBuilder) Build() (RowsLayoutRowSpec, error) {
 	return *builder.internal, nil
 }
 
+func (builder *RowsLayoutRowSpecBuilder) RecordError(path string, err error) *RowsLayoutRowSpecBuilder {
+	builder.errors = append(builder.errors, cog.MakeBuildErrors(path, err)...)
+	return builder
+}
+
 func (builder *RowsLayoutRowSpecBuilder) Title(title string) *RowsLayoutRowSpecBuilder {
 	builder.internal.Title = &title
 

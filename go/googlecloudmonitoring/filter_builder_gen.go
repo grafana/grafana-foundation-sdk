@@ -36,6 +36,11 @@ func (builder *FilterBuilder) Build() (Filter, error) {
 	return *builder.internal, nil
 }
 
+func (builder *FilterBuilder) RecordError(path string, err error) *FilterBuilder {
+	builder.errors = append(builder.errors, cog.MakeBuildErrors(path, err)...)
+	return builder
+}
+
 // Filter key.
 func (builder *FilterBuilder) Key(key string) *FilterBuilder {
 	builder.internal.Key = key

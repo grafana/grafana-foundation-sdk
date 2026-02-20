@@ -13838,6 +13838,10 @@ func (resource VariableValueOption) Validate() error {
 	return errs
 }
 
+const DashboardV2Beta1 = "dashboard.grafana.app/v2beta1"
+
+const DashboardKind = "Dashboard"
+
 type Dashboardv2beta1DataQueryKindDatasource struct {
 	Name *string `json:"name,omitempty"`
 }

@@ -35,6 +35,11 @@ func (builder *ItemBuilder) Build() (Item, error) {
 	return *builder.internal, nil
 }
 
+func (builder *ItemBuilder) RecordError(path string, err error) *ItemBuilder {
+	builder.errors = append(builder.errors, cog.MakeBuildErrors(path, err)...)
+	return builder
+}
+
 // type of the item.
 func (builder *ItemBuilder) Type(typeArg ItemType) *ItemBuilder {
 	builder.internal.Type = typeArg

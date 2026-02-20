@@ -37,6 +37,11 @@ func (builder *TableFieldOptionsBuilder) Build() (TableFieldOptions, error) {
 	return *builder.internal, nil
 }
 
+func (builder *TableFieldOptionsBuilder) RecordError(path string, err error) *TableFieldOptionsBuilder {
+	builder.errors = append(builder.errors, cog.MakeBuildErrors(path, err)...)
+	return builder
+}
+
 func (builder *TableFieldOptionsBuilder) Width(width float64) *TableFieldOptionsBuilder {
 	builder.internal.Width = &width
 

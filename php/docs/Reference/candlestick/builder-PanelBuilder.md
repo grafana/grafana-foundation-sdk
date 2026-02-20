@@ -18,6 +18,16 @@ Builds the object.
 build()
 ```
 
+### <span class="badge object-method"></span> actions
+
+Define interactive HTTP requests that can be triggered from data visualizations.
+
+@param array<\Grafana\Foundation\Cog\Builder<\Grafana\Foundation\Dashboard\Action>> $actions
+
+```php
+actions(array $actions)
+```
+
 ### <span class="badge object-method"></span> axisBorderShow
 
 ```php
@@ -572,6 +582,16 @@ thresholds(\Grafana\Foundation\Cog\Builder $thresholds)
 
 ```php
 thresholdsStyle(\Grafana\Foundation\Cog\Builder $thresholdsStyle)
+```
+
+### <span class="badge object-method"></span> timeCompare
+
+Compare the current time range with a previous period
+
+For example "1d" to compare current period but shifted back 1 day
+
+```php
+timeCompare(string $timeCompare)
 ```
 
 ### <span class="badge object-method"></span> timeFrom

@@ -96,6 +96,22 @@ Options that can be selected for a variable.
 def options(options: list[dashboard.VariableOption]) -> typing.Self
 ```
 
+### <span class="badge object-method"></span> static_options
+
+Additional static options for query variable
+
+```python
+def static_options(static_options: list[dashboard.VariableOption]) -> typing.Self
+```
+
+### <span class="badge object-method"></span> static_options_order
+
+Ordering of static options in relation to options returned from data source for query variable
+
+```python
+def static_options_order(static_options_order: typing.Literal["before", "after", "sorted"]) -> typing.Self
+```
+
 ### <span class="badge object-method"></span> step_count
 
 How many times the current time range should be divided to calculate the value, similar to the Max data points query option.

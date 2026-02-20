@@ -7,6 +7,215 @@ from ..cog import variants as cogvariants
 from ..models import common
 
 
+class AnnotationActions(cogbuilder.Builder[dashboard.AnnotationActions]):
+    _internal: dashboard.AnnotationActions
+
+    def __init__(self) -> None:
+        self._internal = dashboard.AnnotationActions()
+
+    def build(self) -> dashboard.AnnotationActions:
+        """
+        Builds the object.
+        """
+        return self._internal    
+    
+    def can_add(self, can_add: bool) -> typing.Self:    
+        self._internal.can_add = can_add
+    
+        return self
+    
+    def can_delete(self, can_delete: bool) -> typing.Self:    
+        self._internal.can_delete = can_delete
+    
+        return self
+    
+    def can_edit(self, can_edit: bool) -> typing.Self:    
+        self._internal.can_edit = can_edit
+    
+        return self
+    
+
+
+class AnnotationPermission(cogbuilder.Builder[dashboard.AnnotationPermission]):
+    _internal: dashboard.AnnotationPermission
+
+    def __init__(self) -> None:
+        self._internal = dashboard.AnnotationPermission()
+
+    def build(self) -> dashboard.AnnotationPermission:
+        """
+        Builds the object.
+        """
+        return self._internal    
+    
+    def dashboard_permissions(self, dashboard: cogbuilder.Builder[dashboard.AnnotationActions]) -> typing.Self:    
+        dashboard_resource = dashboard.build()
+        self._internal.dashboard = dashboard_resource
+    
+        return self
+    
+    def organization_permissions(self, organization: cogbuilder.Builder[dashboard.AnnotationActions]) -> typing.Self:    
+        organization_resource = organization.build()
+        self._internal.organization = organization_resource
+    
+        return self
+    
+
+
+class DashboardMeta(cogbuilder.Builder[dashboard.DashboardMeta]):
+    _internal: dashboard.DashboardMeta
+
+    def __init__(self) -> None:
+        self._internal = dashboard.DashboardMeta()
+
+    def build(self) -> dashboard.DashboardMeta:
+        """
+        Builds the object.
+        """
+        return self._internal    
+    
+    def annotations_permissions(self, annotations_permissions: cogbuilder.Builder[dashboard.AnnotationPermission]) -> typing.Self:    
+        annotations_permissions_resource = annotations_permissions.build()
+        self._internal.annotations_permissions = annotations_permissions_resource
+    
+        return self
+    
+    def api_version(self, api_version: str) -> typing.Self:    
+        self._internal.api_version = api_version
+    
+        return self
+    
+    def can_admin(self, can_admin: bool) -> typing.Self:    
+        self._internal.can_admin = can_admin
+    
+        return self
+    
+    def can_delete(self, can_delete: bool) -> typing.Self:    
+        self._internal.can_delete = can_delete
+    
+        return self
+    
+    def can_edit(self, can_edit: bool) -> typing.Self:    
+        self._internal.can_edit = can_edit
+    
+        return self
+    
+    def can_save(self, can_save: bool) -> typing.Self:    
+        self._internal.can_save = can_save
+    
+        return self
+    
+    def can_star(self, can_star: bool) -> typing.Self:    
+        self._internal.can_star = can_star
+    
+        return self
+    
+    def created(self, created: str) -> typing.Self:    
+        self._internal.created = created
+    
+        return self
+    
+    def created_by(self, created_by: str) -> typing.Self:    
+        self._internal.created_by = created_by
+    
+        return self
+    
+    def expires(self, expires: str) -> typing.Self:    
+        self._internal.expires = expires
+    
+        return self
+    
+    def folder_id(self, folder_id: int) -> typing.Self:    
+        """
+        Deprecated: use FolderUID instead
+        """
+            
+        self._internal.folder_id = folder_id
+    
+        return self
+    
+    def folder_title(self, folder_title: str) -> typing.Self:    
+        self._internal.folder_title = folder_title
+    
+        return self
+    
+    def folder_uid(self, folder_uid: str) -> typing.Self:    
+        self._internal.folder_uid = folder_uid
+    
+        return self
+    
+    def folder_url(self, folder_url: str) -> typing.Self:    
+        self._internal.folder_url = folder_url
+    
+        return self
+    
+    def has_acl(self, has_acl: bool) -> typing.Self:    
+        self._internal.has_acl = has_acl
+    
+        return self
+    
+    def is_folder(self, is_folder: bool) -> typing.Self:    
+        self._internal.is_folder = is_folder
+    
+        return self
+    
+    def is_snapshot(self, is_snapshot: bool) -> typing.Self:    
+        self._internal.is_snapshot = is_snapshot
+    
+        return self
+    
+    def is_starred(self, is_starred: bool) -> typing.Self:    
+        self._internal.is_starred = is_starred
+    
+        return self
+    
+    def provisioned(self, provisioned: bool) -> typing.Self:    
+        self._internal.provisioned = provisioned
+    
+        return self
+    
+    def provisioned_external_id(self, provisioned_external_id: str) -> typing.Self:    
+        self._internal.provisioned_external_id = provisioned_external_id
+    
+        return self
+    
+    def public_dashboard_enabled(self, public_dashboard_enabled: bool) -> typing.Self:    
+        self._internal.public_dashboard_enabled = public_dashboard_enabled
+    
+        return self
+    
+    def slug(self, slug: str) -> typing.Self:    
+        self._internal.slug = slug
+    
+        return self
+    
+    def type(self, type_val: str) -> typing.Self:    
+        self._internal.type_val = type_val
+    
+        return self
+    
+    def updated(self, updated: str) -> typing.Self:    
+        self._internal.updated = updated
+    
+        return self
+    
+    def updated_by(self, updated_by: str) -> typing.Self:    
+        self._internal.updated_by = updated_by
+    
+        return self
+    
+    def url(self, url: str) -> typing.Self:    
+        self._internal.url = url
+    
+        return self
+    
+    def version(self, version: int) -> typing.Self:    
+        self._internal.version = version
+    
+        return self
+    
+
+
 class Dashboard(cogbuilder.Builder[dashboard.Dashboard]):
     _internal: dashboard.Dashboard
     __current_y: int = 0
@@ -27,6 +236,7 @@ class Dashboard(cogbuilder.Builder[dashboard.Dashboard]):
         """
         Unique numeric identifier for the dashboard.
         `id` is internal to a specific Grafana instance. `uid` should be used to identify a dashboard across Grafana instances.
+        TODO eliminate this null option
         """
             
         self._internal.id_val = id_val
@@ -733,6 +943,16 @@ class Panel(cogbuilder.Builder[dashboard.Panel]):
     
         return self
     
+    def time_compare(self, time_compare: str) -> typing.Self:    
+        """
+        Compare the current time range with a previous period
+        For example "1d" to compare current period but shifted back 1 day
+        """
+            
+        self._internal.time_compare = time_compare
+    
+        return self
+    
     def library_panel(self, library_panel: dashboard.LibraryPanelRef) -> typing.Self:    
         """
         Dynamically load the panel
@@ -925,6 +1145,22 @@ class Panel(cogbuilder.Builder[dashboard.Panel]):
         assert isinstance(self._internal.field_config.defaults, dashboard.FieldConfig)
         links_resources = [r1.build() for r1 in links]
         self._internal.field_config.defaults.links = links_resources
+    
+        return self
+    
+    def actions(self, actions: list[cogbuilder.Builder[dashboard.Action]]) -> typing.Self:    
+        """
+        Define interactive HTTP requests that can be triggered from data visualizations.
+        """
+            
+        if self._internal.field_config is None:
+            self._internal.field_config = dashboard.FieldConfigSource()
+        assert isinstance(self._internal.field_config, dashboard.FieldConfigSource)
+        if self._internal.field_config.defaults is None:
+            self._internal.field_config.defaults = dashboard.FieldConfig()
+        assert isinstance(self._internal.field_config.defaults, dashboard.FieldConfig)
+        actions_resources = [r1.build() for r1 in actions]
+        self._internal.field_config.defaults.actions = actions_resources
     
         return self
     
@@ -1175,6 +1411,15 @@ class DashboardLink(cogbuilder.Builder[dashboard.DashboardLink]):
     
         return self
     
+    def placement(self, placement: str) -> typing.Self:    
+        """
+        Placement can be used to display the link somewhere else on the dashboard other than above the visualisations.
+        """
+            
+        self._internal.placement = placement
+    
+        return self
+    
     def target_blank(self, target_blank: bool) -> typing.Self:    
         """
         If true, the link will be opened in a new tab
@@ -1280,6 +1525,195 @@ class FieldColor(cogbuilder.Builder[dashboard.FieldColor]):
         """
             
         self._internal.series_by = series_by
+    
+        return self
+    
+
+
+class Action(cogbuilder.Builder[dashboard.Action]):    
+    """
+    Dashboard action
+    """
+    
+    _internal: dashboard.Action
+
+    def __init__(self) -> None:
+        self._internal = dashboard.Action()
+
+    def build(self) -> dashboard.Action:
+        """
+        Builds the object.
+        """
+        return self._internal    
+    
+    def type(self, type_val: dashboard.ActionType) -> typing.Self:    
+        self._internal.type_val = type_val
+    
+        return self
+    
+    def title(self, title: str) -> typing.Self:    
+        self._internal.title = title
+    
+        return self
+    
+    def fetch(self, fetch: cogbuilder.Builder[dashboard.FetchOptions]) -> typing.Self:    
+        fetch_resource = fetch.build()
+        self._internal.fetch = fetch_resource
+    
+        return self
+    
+    def infinity(self, infinity: cogbuilder.Builder[dashboard.InfinityOptions]) -> typing.Self:    
+        infinity_resource = infinity.build()
+        self._internal.infinity = infinity_resource
+    
+        return self
+    
+    def confirmation(self, confirmation: str) -> typing.Self:    
+        self._internal.confirmation = confirmation
+    
+        return self
+    
+    def one_click(self, one_click: bool) -> typing.Self:    
+        self._internal.one_click = one_click
+    
+        return self
+    
+    def variables(self, variables: list[cogbuilder.Builder[dashboard.ActionVariable]]) -> typing.Self:    
+        variables_resources = [r1.build() for r1 in variables]
+        self._internal.variables = variables_resources
+    
+        return self
+    
+    def style(self, style: cogbuilder.Builder[dashboard.DashboardActionStyle]) -> typing.Self:    
+        style_resource = style.build()
+        self._internal.style = style_resource
+    
+        return self
+    
+
+
+class FetchOptions(cogbuilder.Builder[dashboard.FetchOptions]):    
+    """
+    Fetch options
+    """
+    
+    _internal: dashboard.FetchOptions
+
+    def __init__(self) -> None:
+        self._internal = dashboard.FetchOptions()
+
+    def build(self) -> dashboard.FetchOptions:
+        """
+        Builds the object.
+        """
+        return self._internal    
+    
+    def method(self, method: dashboard.HttpRequestMethod) -> typing.Self:    
+        self._internal.method = method
+    
+        return self
+    
+    def url(self, url: str) -> typing.Self:    
+        self._internal.url = url
+    
+        return self
+    
+    def body(self, body: str) -> typing.Self:    
+        self._internal.body = body
+    
+        return self
+    
+    def query_params(self, query_params: list[list[str]]) -> typing.Self:    
+        """
+        These are 2D arrays of strings, each representing a key-value pair
+        We are defining this way because we can't generate a go struct that
+        that would have exactly two strings in each sub-array
+        """
+            
+        self._internal.query_params = query_params
+    
+        return self
+    
+    def headers(self, headers: list[list[str]]) -> typing.Self:    
+        self._internal.headers = headers
+    
+        return self
+    
+
+
+class InfinityOptions(cogbuilder.Builder[dashboard.InfinityOptions]):    
+    """
+    Infinity options
+    """
+    
+    _internal: dashboard.InfinityOptions
+
+    def __init__(self) -> None:
+        self._internal = dashboard.InfinityOptions()
+
+    def build(self) -> dashboard.InfinityOptions:
+        """
+        Builds the object.
+        """
+        return self._internal    
+    
+    def method(self, method: dashboard.HttpRequestMethod) -> typing.Self:    
+        self._internal.method = method
+    
+        return self
+    
+    def url(self, url: str) -> typing.Self:    
+        self._internal.url = url
+    
+        return self
+    
+    def body(self, body: str) -> typing.Self:    
+        self._internal.body = body
+    
+        return self
+    
+    def query_params(self, query_params: list[list[str]]) -> typing.Self:    
+        """
+        These are 2D arrays of strings, each representing a key-value pair
+        We are defining them this way because we can't generate a go struct that
+        that would have exactly two strings in each sub-array
+        """
+            
+        self._internal.query_params = query_params
+    
+        return self
+    
+    def headers(self, headers: list[list[str]]) -> typing.Self:    
+        self._internal.headers = headers
+    
+        return self
+    
+    def datasource_uid(self, datasource_uid: str) -> typing.Self:    
+        self._internal.datasource_uid = datasource_uid
+    
+        return self
+    
+
+
+class ActionVariable(cogbuilder.Builder[dashboard.ActionVariable]):
+    _internal: dashboard.ActionVariable
+
+    def __init__(self) -> None:
+        self._internal = dashboard.ActionVariable()
+
+    def build(self) -> dashboard.ActionVariable:
+        """
+        Builds the object.
+        """
+        return self._internal    
+    
+    def key(self, key: str) -> typing.Self:    
+        self._internal.key = key
+    
+        return self
+    
+    def name(self, name: str) -> typing.Self:    
+        self._internal.name = name
     
         return self
     
@@ -1474,6 +1908,15 @@ class AnnotationQuery(cogbuilder.Builder[dashboard.AnnotationQuery]):
         """
             
         self._internal.built_in = built_in
+    
+        return self
+    
+    def placement(self, placement: str) -> typing.Self:    
+        """
+        Placement can be used to display the annotation query somewhere else on the dashboard other than the default location.
+        """
+            
+        self._internal.placement = placement
     
         return self
     
@@ -1684,215 +2127,6 @@ class Snapshot(cogbuilder.Builder[dashboard.Snapshot]):
     
 
 
-class AnnotationActions(cogbuilder.Builder[dashboard.AnnotationActions]):
-    _internal: dashboard.AnnotationActions
-
-    def __init__(self) -> None:
-        self._internal = dashboard.AnnotationActions()
-
-    def build(self) -> dashboard.AnnotationActions:
-        """
-        Builds the object.
-        """
-        return self._internal    
-    
-    def can_add(self, can_add: bool) -> typing.Self:    
-        self._internal.can_add = can_add
-    
-        return self
-    
-    def can_delete(self, can_delete: bool) -> typing.Self:    
-        self._internal.can_delete = can_delete
-    
-        return self
-    
-    def can_edit(self, can_edit: bool) -> typing.Self:    
-        self._internal.can_edit = can_edit
-    
-        return self
-    
-
-
-class AnnotationPermission(cogbuilder.Builder[dashboard.AnnotationPermission]):
-    _internal: dashboard.AnnotationPermission
-
-    def __init__(self) -> None:
-        self._internal = dashboard.AnnotationPermission()
-
-    def build(self) -> dashboard.AnnotationPermission:
-        """
-        Builds the object.
-        """
-        return self._internal    
-    
-    def dashboard_permissions(self, dashboard: cogbuilder.Builder[dashboard.AnnotationActions]) -> typing.Self:    
-        dashboard_resource = dashboard.build()
-        self._internal.dashboard = dashboard_resource
-    
-        return self
-    
-    def organization_permissions(self, organization: cogbuilder.Builder[dashboard.AnnotationActions]) -> typing.Self:    
-        organization_resource = organization.build()
-        self._internal.organization = organization_resource
-    
-        return self
-    
-
-
-class DashboardMeta(cogbuilder.Builder[dashboard.DashboardMeta]):
-    _internal: dashboard.DashboardMeta
-
-    def __init__(self) -> None:
-        self._internal = dashboard.DashboardMeta()
-
-    def build(self) -> dashboard.DashboardMeta:
-        """
-        Builds the object.
-        """
-        return self._internal    
-    
-    def annotations_permissions(self, annotations_permissions: cogbuilder.Builder[dashboard.AnnotationPermission]) -> typing.Self:    
-        annotations_permissions_resource = annotations_permissions.build()
-        self._internal.annotations_permissions = annotations_permissions_resource
-    
-        return self
-    
-    def api_version(self, api_version: str) -> typing.Self:    
-        self._internal.api_version = api_version
-    
-        return self
-    
-    def can_admin(self, can_admin: bool) -> typing.Self:    
-        self._internal.can_admin = can_admin
-    
-        return self
-    
-    def can_delete(self, can_delete: bool) -> typing.Self:    
-        self._internal.can_delete = can_delete
-    
-        return self
-    
-    def can_edit(self, can_edit: bool) -> typing.Self:    
-        self._internal.can_edit = can_edit
-    
-        return self
-    
-    def can_save(self, can_save: bool) -> typing.Self:    
-        self._internal.can_save = can_save
-    
-        return self
-    
-    def can_star(self, can_star: bool) -> typing.Self:    
-        self._internal.can_star = can_star
-    
-        return self
-    
-    def created(self, created: str) -> typing.Self:    
-        self._internal.created = created
-    
-        return self
-    
-    def created_by(self, created_by: str) -> typing.Self:    
-        self._internal.created_by = created_by
-    
-        return self
-    
-    def expires(self, expires: str) -> typing.Self:    
-        self._internal.expires = expires
-    
-        return self
-    
-    def folder_id(self, folder_id: int) -> typing.Self:    
-        """
-        Deprecated: use FolderUID instead
-        """
-            
-        self._internal.folder_id = folder_id
-    
-        return self
-    
-    def folder_title(self, folder_title: str) -> typing.Self:    
-        self._internal.folder_title = folder_title
-    
-        return self
-    
-    def folder_uid(self, folder_uid: str) -> typing.Self:    
-        self._internal.folder_uid = folder_uid
-    
-        return self
-    
-    def folder_url(self, folder_url: str) -> typing.Self:    
-        self._internal.folder_url = folder_url
-    
-        return self
-    
-    def has_acl(self, has_acl: bool) -> typing.Self:    
-        self._internal.has_acl = has_acl
-    
-        return self
-    
-    def is_folder(self, is_folder: bool) -> typing.Self:    
-        self._internal.is_folder = is_folder
-    
-        return self
-    
-    def is_snapshot(self, is_snapshot: bool) -> typing.Self:    
-        self._internal.is_snapshot = is_snapshot
-    
-        return self
-    
-    def is_starred(self, is_starred: bool) -> typing.Self:    
-        self._internal.is_starred = is_starred
-    
-        return self
-    
-    def provisioned(self, provisioned: bool) -> typing.Self:    
-        self._internal.provisioned = provisioned
-    
-        return self
-    
-    def provisioned_external_id(self, provisioned_external_id: str) -> typing.Self:    
-        self._internal.provisioned_external_id = provisioned_external_id
-    
-        return self
-    
-    def public_dashboard_enabled(self, public_dashboard_enabled: bool) -> typing.Self:    
-        self._internal.public_dashboard_enabled = public_dashboard_enabled
-    
-        return self
-    
-    def slug(self, slug: str) -> typing.Self:    
-        self._internal.slug = slug
-    
-        return self
-    
-    def type(self, type_val: str) -> typing.Self:    
-        self._internal.type_val = type_val
-    
-        return self
-    
-    def updated(self, updated: str) -> typing.Self:    
-        self._internal.updated = updated
-    
-        return self
-    
-    def updated_by(self, updated_by: str) -> typing.Self:    
-        self._internal.updated_by = updated_by
-    
-        return self
-    
-    def url(self, url: str) -> typing.Self:    
-        self._internal.url = url
-    
-        return self
-    
-    def version(self, version: int) -> typing.Self:    
-        self._internal.version = version
-    
-        return self
-    
-
-
 class DashboardDashboardTemplating(cogbuilder.Builder[dashboard.DashboardDashboardTemplating]):
     _internal: dashboard.DashboardDashboardTemplating
 
@@ -2041,6 +2275,25 @@ class DashboardSpecialValueMapOptions(cogbuilder.Builder[dashboard.DashboardSpec
         """
             
         self._internal.result = result
+    
+        return self
+    
+
+
+class DashboardActionStyle(cogbuilder.Builder[dashboard.DashboardActionStyle]):
+    _internal: dashboard.DashboardActionStyle
+
+    def __init__(self) -> None:
+        self._internal = dashboard.DashboardActionStyle()
+
+    def build(self) -> dashboard.DashboardActionStyle:
+        """
+        Builds the object.
+        """
+        return self._internal    
+    
+    def background_color(self, background_color: str) -> typing.Self:    
+        self._internal.background_color = background_color
     
         return self
     
@@ -2200,6 +2453,24 @@ class QueryVariable(cogbuilder.Builder[dashboard.VariableModel]):
     
         return self
     
+    def static_options(self, static_options: list[dashboard.VariableOption]) -> typing.Self:    
+        """
+        Additional static options for query variable
+        """
+            
+        self._internal.static_options = static_options
+    
+        return self
+    
+    def static_options_order(self, static_options_order: typing.Literal["before", "after", "sorted"]) -> typing.Self:    
+        """
+        Ordering of static options in relation to options returned from data source for query variable
+        """
+            
+        self._internal.static_options_order = static_options_order
+    
+        return self
+    
     def definition(self, definition: str) -> typing.Self:    
         self._internal.definition = definition
     
@@ -2279,6 +2550,24 @@ class AdHocVariable(cogbuilder.Builder[dashboard.VariableModel]):
     
         return self
     
+    def static_options(self, static_options: list[dashboard.VariableOption]) -> typing.Self:    
+        """
+        Additional static options for query variable
+        """
+            
+        self._internal.static_options = static_options
+    
+        return self
+    
+    def static_options_order(self, static_options_order: typing.Literal["before", "after", "sorted"]) -> typing.Self:    
+        """
+        Ordering of static options in relation to options returned from data source for query variable
+        """
+            
+        self._internal.static_options_order = static_options_order
+    
+        return self
+    
     def definition(self, definition: str) -> typing.Self:    
         self._internal.definition = definition
     
@@ -2347,6 +2636,24 @@ class ConstantVariable(cogbuilder.Builder[dashboard.VariableModel]):
         """
             
         self._internal.allow_custom_value = allow_custom_value
+    
+        return self
+    
+    def static_options(self, static_options: list[dashboard.VariableOption]) -> typing.Self:    
+        """
+        Additional static options for query variable
+        """
+            
+        self._internal.static_options = static_options
+    
+        return self
+    
+    def static_options_order(self, static_options_order: typing.Literal["before", "after", "sorted"]) -> typing.Self:    
+        """
+        Ordering of static options in relation to options returned from data source for query variable
+        """
+            
+        self._internal.static_options_order = static_options_order
     
         return self
     
@@ -2475,6 +2782,24 @@ class DatasourceVariable(cogbuilder.Builder[dashboard.VariableModel]):
     
         return self
     
+    def static_options(self, static_options: list[dashboard.VariableOption]) -> typing.Self:    
+        """
+        Additional static options for query variable
+        """
+            
+        self._internal.static_options = static_options
+    
+        return self
+    
+    def static_options_order(self, static_options_order: typing.Literal["before", "after", "sorted"]) -> typing.Self:    
+        """
+        Ordering of static options in relation to options returned from data source for query variable
+        """
+            
+        self._internal.static_options_order = static_options_order
+    
+        return self
+    
     def definition(self, definition: str) -> typing.Self:    
         self._internal.definition = definition
     
@@ -2569,6 +2894,24 @@ class IntervalVariable(cogbuilder.Builder[dashboard.VariableModel]):
         """
             
         self._internal.options = options
+    
+        return self
+    
+    def static_options(self, static_options: list[dashboard.VariableOption]) -> typing.Self:    
+        """
+        Additional static options for query variable
+        """
+            
+        self._internal.static_options = static_options
+    
+        return self
+    
+    def static_options_order(self, static_options_order: typing.Literal["before", "after", "sorted"]) -> typing.Self:    
+        """
+        Ordering of static options in relation to options returned from data source for query variable
+        """
+            
+        self._internal.static_options_order = static_options_order
     
         return self
     
@@ -2699,6 +3042,24 @@ class TextBoxVariable(cogbuilder.Builder[dashboard.VariableModel]):
     
         return self
     
+    def static_options(self, static_options: list[dashboard.VariableOption]) -> typing.Self:    
+        """
+        Additional static options for query variable
+        """
+            
+        self._internal.static_options = static_options
+    
+        return self
+    
+    def static_options_order(self, static_options_order: typing.Literal["before", "after", "sorted"]) -> typing.Self:    
+        """
+        Ordering of static options in relation to options returned from data source for query variable
+        """
+            
+        self._internal.static_options_order = static_options_order
+    
+        return self
+    
     def definition(self, definition: str) -> typing.Self:    
         self._internal.definition = definition
     
@@ -2820,6 +3181,24 @@ class CustomVariable(cogbuilder.Builder[dashboard.VariableModel]):
         """
             
         self._internal.all_value = all_value
+    
+        return self
+    
+    def static_options(self, static_options: list[dashboard.VariableOption]) -> typing.Self:    
+        """
+        Additional static options for query variable
+        """
+            
+        self._internal.static_options = static_options
+    
+        return self
+    
+    def static_options_order(self, static_options_order: typing.Literal["before", "after", "sorted"]) -> typing.Self:    
+        """
+        Ordering of static options in relation to options returned from data source for query variable
+        """
+            
+        self._internal.static_options_order = static_options_order
     
         return self
     

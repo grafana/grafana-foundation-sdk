@@ -38,6 +38,11 @@ func (builder *IntervalVariableBuilder) Build() (IntervalVariableKind, error) {
 	return *builder.internal, nil
 }
 
+func (builder *IntervalVariableBuilder) RecordError(path string, err error) *IntervalVariableBuilder {
+	builder.errors = append(builder.errors, cog.MakeBuildErrors(path, err)...)
+	return builder
+}
+
 func (builder *IntervalVariableBuilder) Spec(spec IntervalVariableSpec) *IntervalVariableBuilder {
 	builder.internal.Spec = spec
 

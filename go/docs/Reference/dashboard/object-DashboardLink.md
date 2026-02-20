@@ -23,6 +23,8 @@ type DashboardLink struct {
     Tags []string `json:"tags"`
     // If true, all dashboards links will be displayed in a dropdown. If false, all dashboards links will be displayed side by side. Only valid if the type is dashboards
     AsDropdown bool `json:"asDropdown"`
+    // Placement can be used to display the link somewhere else on the dashboard other than above the visualisations.
+    Placement *dashboard.DashboardLinkPlacement `json:"placement,omitempty"`
     // If true, the link will be opened in a new tab
     TargetBlank bool `json:"targetBlank"`
     // If true, includes current template variables values in the link as query params

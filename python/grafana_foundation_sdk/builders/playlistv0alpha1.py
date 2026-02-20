@@ -3,6 +3,8 @@
 import typing
 from ..cog import builder as cogbuilder
 from ..models import playlistv0alpha1
+from ..builders import resource as resource_builder
+from ..models import resource
 
 
 class Item(cogbuilder.Builder[playlistv0alpha1.Item]):
@@ -81,3 +83,15 @@ class Playlist(cogbuilder.Builder[playlistv0alpha1.Playlist]):
     
         return self
     
+
+"""
+Creates a resource manifest from a Playlist.
+"""
+def manifest(name: str, playlist: cogbuilder.Builder[playlistv0alpha1.Playlist]) -> cogbuilder.Builder[resource.Manifest]:
+    builder = resource_builder.Manifest()
+    builder.api_version("playlist.grafana.app/playlistv0alpha1")
+    builder.kind("Playlist")
+    builder.metadata(resource_builder.named(name))
+    builder.spec(playlist.build())
+
+    return builder

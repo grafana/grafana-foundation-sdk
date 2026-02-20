@@ -35,6 +35,11 @@ func (builder *BaseGrafanaTemplateVariableQueryBuilder) Build() (BaseGrafanaTemp
 	return *builder.internal, nil
 }
 
+func (builder *BaseGrafanaTemplateVariableQueryBuilder) RecordError(path string, err error) *BaseGrafanaTemplateVariableQueryBuilder {
+	builder.errors = append(builder.errors, cog.MakeBuildErrors(path, err)...)
+	return builder
+}
+
 func (builder *BaseGrafanaTemplateVariableQueryBuilder) RawQuery(rawQuery string) *BaseGrafanaTemplateVariableQueryBuilder {
 	builder.internal.RawQuery = &rawQuery
 

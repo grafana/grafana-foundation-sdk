@@ -35,6 +35,11 @@ func (builder *AzureMetricDimensionBuilder) Build() (AzureMetricDimension, error
 	return *builder.internal, nil
 }
 
+func (builder *AzureMetricDimensionBuilder) RecordError(path string, err error) *AzureMetricDimensionBuilder {
+	builder.errors = append(builder.errors, cog.MakeBuildErrors(path, err)...)
+	return builder
+}
+
 // Name of Dimension to be filtered on.
 func (builder *AzureMetricDimensionBuilder) Dimension(dimension string) *AzureMetricDimensionBuilder {
 	builder.internal.Dimension = &dimension

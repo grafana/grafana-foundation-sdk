@@ -35,6 +35,11 @@ func (builder *MovingAverageLinearModelSettingsBuilder) Build() (MovingAverageLi
 	return *builder.internal, nil
 }
 
+func (builder *MovingAverageLinearModelSettingsBuilder) RecordError(path string, err error) *MovingAverageLinearModelSettingsBuilder {
+	builder.errors = append(builder.errors, cog.MakeBuildErrors(path, err)...)
+	return builder
+}
+
 func (builder *MovingAverageLinearModelSettingsBuilder) Window(window string) *MovingAverageLinearModelSettingsBuilder {
 	builder.internal.Window = window
 

@@ -35,6 +35,11 @@ func (builder *ElasticsearchMovingAverageHoltModelSettingsSettingsBuilder) Build
 	return *builder.internal, nil
 }
 
+func (builder *ElasticsearchMovingAverageHoltModelSettingsSettingsBuilder) RecordError(path string, err error) *ElasticsearchMovingAverageHoltModelSettingsSettingsBuilder {
+	builder.errors = append(builder.errors, cog.MakeBuildErrors(path, err)...)
+	return builder
+}
+
 func (builder *ElasticsearchMovingAverageHoltModelSettingsSettingsBuilder) Alpha(alpha string) *ElasticsearchMovingAverageHoltModelSettingsSettingsBuilder {
 	builder.internal.Alpha = &alpha
 

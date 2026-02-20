@@ -99,6 +99,17 @@ class VariableModel implements \JsonSerializable
     public ?string $regex;
 
     /**
+     * Additional static options for query variable
+     * @var array<\Grafana\Foundation\Dashboard\VariableOption>|null
+     */
+    public ?array $staticOptions;
+
+    /**
+     * Ordering of static options in relation to options returned from data source for query variable
+     */
+    public ?\Grafana\Foundation\Dashboard\VariableModelStaticOptionsOrder $staticOptionsOrder;
+
+    /**
      * Dynamically calculates interval by dividing time range by the count specified.
      */
     public ?bool $auto;

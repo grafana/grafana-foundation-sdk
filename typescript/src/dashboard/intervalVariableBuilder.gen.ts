@@ -68,6 +68,18 @@ export class IntervalVariableBuilder implements cog.Builder<dashboard.VariableMo
         return this;
     }
 
+    // Additional static options for query variable
+    staticOptions(staticOptions: dashboard.VariableOption[]): this {
+        this.internal.staticOptions = staticOptions;
+        return this;
+    }
+
+    // Ordering of static options in relation to options returned from data source for query variable
+    staticOptionsOrder(staticOptionsOrder: "before" | "after" | "sorted"): this {
+        this.internal.staticOptionsOrder = staticOptionsOrder;
+        return this;
+    }
+
     // Dynamically calculates interval by dividing time range by the count specified.
     auto(auto: boolean): this {
         this.internal.auto = auto;

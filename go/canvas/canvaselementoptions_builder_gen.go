@@ -35,6 +35,11 @@ func (builder *CanvasElementOptionsBuilder) Build() (CanvasElementOptions, error
 	return *builder.internal, nil
 }
 
+func (builder *CanvasElementOptionsBuilder) RecordError(path string, err error) *CanvasElementOptionsBuilder {
+	builder.errors = append(builder.errors, cog.MakeBuildErrors(path, err)...)
+	return builder
+}
+
 func (builder *CanvasElementOptionsBuilder) Name(name string) *CanvasElementOptionsBuilder {
 	builder.internal.Name = name
 

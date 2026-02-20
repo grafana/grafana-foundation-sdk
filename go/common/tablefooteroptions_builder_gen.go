@@ -36,6 +36,11 @@ func (builder *TableFooterOptionsBuilder) Build() (TableFooterOptions, error) {
 	return *builder.internal, nil
 }
 
+func (builder *TableFooterOptionsBuilder) RecordError(path string, err error) *TableFooterOptionsBuilder {
+	builder.errors = append(builder.errors, cog.MakeBuildErrors(path, err)...)
+	return builder
+}
+
 func (builder *TableFooterOptionsBuilder) Show(show bool) *TableFooterOptionsBuilder {
 	builder.internal.Show = show
 

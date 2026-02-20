@@ -36,6 +36,11 @@ func (builder *TimeSeriesListBuilder) Build() (TimeSeriesList, error) {
 	return *builder.internal, nil
 }
 
+func (builder *TimeSeriesListBuilder) RecordError(path string, err error) *TimeSeriesListBuilder {
+	builder.errors = append(builder.errors, cog.MakeBuildErrors(path, err)...)
+	return builder
+}
+
 // GCP project to execute the query against.
 func (builder *TimeSeriesListBuilder) ProjectName(projectName string) *TimeSeriesListBuilder {
 	builder.internal.ProjectName = projectName

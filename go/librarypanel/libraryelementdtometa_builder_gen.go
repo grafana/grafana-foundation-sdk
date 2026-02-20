@@ -37,6 +37,11 @@ func (builder *LibraryElementDTOMetaBuilder) Build() (LibraryElementDTOMeta, err
 	return *builder.internal, nil
 }
 
+func (builder *LibraryElementDTOMetaBuilder) RecordError(path string, err error) *LibraryElementDTOMetaBuilder {
+	builder.errors = append(builder.errors, cog.MakeBuildErrors(path, err)...)
+	return builder
+}
+
 func (builder *LibraryElementDTOMetaBuilder) FolderName(folderName string) *LibraryElementDTOMetaBuilder {
 	builder.internal.FolderName = folderName
 

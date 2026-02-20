@@ -35,6 +35,11 @@ func (builder *ExprTypeResampleTimeRangeBuilder) Build() (ExprTypeResampleTimeRa
 	return *builder.internal, nil
 }
 
+func (builder *ExprTypeResampleTimeRangeBuilder) RecordError(path string, err error) *ExprTypeResampleTimeRangeBuilder {
+	builder.errors = append(builder.errors, cog.MakeBuildErrors(path, err)...)
+	return builder
+}
+
 // From is the start time of the query.
 func (builder *ExprTypeResampleTimeRangeBuilder) From(from string) *ExprTypeResampleTimeRangeBuilder {
 	builder.internal.From = from

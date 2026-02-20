@@ -5,6 +5,8 @@ package com.grafana.foundation.dashboardv2beta1;
 public class Constants {
     public static final String ActionVariableType = "string";
     public static final String AnnotationQueryPlacement = "inControlsMenu";
+    public static final String DashboardKind = "Dashboard";
     public static final String DashboardLinkPlacement = "inControlsMenu";
+    public static final String DashboardV2Beta1 = "dashboard.grafana.app/v2beta1";
     public static final String FilterOrigin = "dashboard";
 }

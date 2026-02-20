@@ -82,6 +82,14 @@ Name of annotation.
 func (builder *AnnotationQueryBuilder) Name(name string) *AnnotationQueryBuilder
 ```
 
+### <span class="badge object-method"></span> Placement
+
+Placement can be used to display the annotation query somewhere else on the dashboard other than the default location.
+
+```go
+func (builder *AnnotationQueryBuilder) Placement(placement dashboard.AnnotationQueryPlacement) *AnnotationQueryBuilder
+```
+
 ### <span class="badge object-method"></span> Target
 
 TODO.. this should just be a normal query target

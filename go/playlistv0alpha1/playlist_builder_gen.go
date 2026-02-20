@@ -4,6 +4,7 @@ package playlistv0alpha1
 
 import (
 	cog "github.com/grafana/grafana-foundation-sdk/go/cog"
+	resource "github.com/grafana/grafana-foundation-sdk/go/resource"
 )
 
 var _ cog.Builder[Playlist] = (*PlaylistBuilder)(nil)
@@ -24,6 +25,25 @@ func NewPlaylistBuilder(title string) *PlaylistBuilder {
 	return builder
 }
 
+// Creates a resource manifest from a Playlist.
+func Manifest(name string, playlist cog.Builder[Playlist]) *resource.ManifestBuilder {
+	builder := resource.NewManifestBuilder()
+
+	builder.ApiVersion("playlist.grafana.app/playlistv0alpha1")
+
+	builder.Kind("Playlist")
+
+	builder.Metadata(resource.Named(name))
+	playlistResource, err := playlist.Build()
+	if err != nil {
+		builder.RecordError("Manifest(playlist)", err)
+		return builder
+	}
+	builder.Spec(playlistResource)
+
+	return builder
+}
+
 func (builder *PlaylistBuilder) Build() (Playlist, error) {
 	if err := builder.internal.Validate(); err != nil {
 		return Playlist{}, err
@@ -34,6 +54,11 @@ func (builder *PlaylistBuilder) Build() (Playlist, error) {
 	}
 
 	return *builder.internal, nil
+}
+
+func (builder *PlaylistBuilder) RecordError(path string, err error) *PlaylistBuilder {
+	builder.errors = append(builder.errors, cog.MakeBuildErrors(path, err)...)
+	return builder
 }
 
 func (builder *PlaylistBuilder) Title(title string) *PlaylistBuilder {

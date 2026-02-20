@@ -104,6 +104,12 @@ class FieldConfig implements \JsonSerializable
     public ?array $links;
 
     /**
+     * Define interactive HTTP requests that can be triggered from data visualizations.
+     * @var array<\Grafana\Foundation\Dashboard\Action>|null
+     */
+    public ?array $actions;
+
+    /**
      * Alternative to empty string
      */
     public ?string $noValue;

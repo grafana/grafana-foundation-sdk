@@ -1,5 +1,6 @@
 {
   "$schema": "http://json-schema.org/draft-07/schema#",
+  "$ref": "#/definitions/DashboardV2Beta1",
   "definitions": {
     "Dashboard": {
       "type": "object",
@@ -3097,6 +3098,14 @@
         }
       },
       "description": "FIXME: should we introduce this? --- Variable value option"
+    },
+    "DashboardV2Beta1": {
+      "type": "string",
+      "const": "dashboard.grafana.app/v2beta1"
+    },
+    "DashboardKind": {
+      "type": "string",
+      "const": "Dashboard"
     }
   }
 }

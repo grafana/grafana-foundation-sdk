@@ -1,5 +1,5 @@
 # Installing
 
 ```shell
-go get github.com/grafana/grafana-foundation-sdk/go@v0.0.8
+go get github.com/grafana/grafana-foundation-sdk/go@v0.0.9
 ```

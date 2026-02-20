@@ -35,6 +35,11 @@ func (builder *RowsLayoutSpecBuilder) Build() (RowsLayoutSpec, error) {
 	return *builder.internal, nil
 }
 
+func (builder *RowsLayoutSpecBuilder) RecordError(path string, err error) *RowsLayoutSpecBuilder {
+	builder.errors = append(builder.errors, cog.MakeBuildErrors(path, err)...)
+	return builder
+}
+
 func (builder *RowsLayoutSpecBuilder) Rows(rows []cog.Builder[RowsLayoutRowKind]) *RowsLayoutSpecBuilder {
 	rowsResources := make([]RowsLayoutRowKind, 0, len(rows))
 	for _, r1 := range rows {

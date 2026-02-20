@@ -36,6 +36,11 @@ func (builder *KindBuilder) Build() (Kind, error) {
 	return *builder.internal, nil
 }
 
+func (builder *KindBuilder) RecordError(path string, err error) *KindBuilder {
+	builder.errors = append(builder.errors, cog.MakeBuildErrors(path, err)...)
+	return builder
+}
+
 func (builder *KindBuilder) Kind(kind string) *KindBuilder {
 	builder.internal.Kind = kind
 

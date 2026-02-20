@@ -35,6 +35,11 @@ func (builder *LogGroupBuilder) Build() (LogGroup, error) {
 	return *builder.internal, nil
 }
 
+func (builder *LogGroupBuilder) RecordError(path string, err error) *LogGroupBuilder {
+	builder.errors = append(builder.errors, cog.MakeBuildErrors(path, err)...)
+	return builder
+}
+
 // ARN of the log group
 func (builder *LogGroupBuilder) Arn(arn string) *LogGroupBuilder {
 	builder.internal.Arn = arn

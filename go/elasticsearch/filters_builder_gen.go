@@ -35,6 +35,11 @@ func (builder *FiltersBuilder) Build() (Filters, error) {
 	return *builder.internal, nil
 }
 
+func (builder *FiltersBuilder) RecordError(path string, err error) *FiltersBuilder {
+	builder.errors = append(builder.errors, cog.MakeBuildErrors(path, err)...)
+	return builder
+}
+
 func (builder *FiltersBuilder) Id(id string) *FiltersBuilder {
 	builder.internal.Id = id
 

@@ -163,6 +163,11 @@ public class PanelBuilder<T extends PanelBuilder<T>> implements com.grafana.foun
         return (T) this;
     }
     
+    public T timeCompare(String timeCompare) {
+        this.internal.timeCompare = timeCompare;
+        return (T) this;
+    }
+    
     public T libraryPanel(LibraryPanelRef libraryPanel) {
         this.internal.libraryPanel = libraryPanel;
         return (T) this;
@@ -291,6 +296,22 @@ public class PanelBuilder<T extends PanelBuilder<T>> implements com.grafana.foun
                 linksResources.add(linksDepth1); 
         }
         this.internal.fieldConfig.defaults.links = linksResources;
+        return (T) this;
+    }
+    
+    public T actions(List<com.grafana.foundation.cog.Builder<Action>> actions) {
+		if (this.internal.fieldConfig == null) {
+			this.internal.fieldConfig = new com.grafana.foundation.dashboard.FieldConfigSource();
+		}
+		if (this.internal.fieldConfig.defaults == null) {
+			this.internal.fieldConfig.defaults = new com.grafana.foundation.dashboard.FieldConfig();
+		}
+        List<Action> actionsResources = new LinkedList<>();
+        for (com.grafana.foundation.cog.Builder<Action> r1 : actions) {
+                Action actionsDepth1 = r1.build();
+                actionsResources.add(actionsDepth1); 
+        }
+        this.internal.fieldConfig.defaults.actions = actionsResources;
         return (T) this;
     }
     

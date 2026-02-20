@@ -106,6 +106,22 @@ Named capture groups can be used to separate the display text and value.
 func (builder *DatasourceVariableBuilder) Regex(regex string) *DatasourceVariableBuilder
 ```
 
+### <span class="badge object-method"></span> StaticOptions
+
+Additional static options for query variable
+
+```go
+func (builder *DatasourceVariableBuilder) StaticOptions(staticOptions []dashboard.VariableOption) *DatasourceVariableBuilder
+```
+
+### <span class="badge object-method"></span> StaticOptionsOrder
+
+Ordering of static options in relation to options returned from data source for query variable
+
+```go
+func (builder *DatasourceVariableBuilder) StaticOptionsOrder(staticOptionsOrder dashboard.VariableModelStaticOptionsOrder) *DatasourceVariableBuilder
+```
+
 ### <span class="badge object-method"></span> Type
 
 Query used to fetch values for a variable

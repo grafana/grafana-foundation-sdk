@@ -148,6 +148,16 @@ Depends on the panel plugin. See the plugin documentation for details.
 public PanelModelBuilder targets(List<com.grafana.foundation.cog.Builder<Dataquery>> targets)
 ```
 
+### <span class="badge object-method"></span> timeCompare
+
+Compare the current time range with a previous period
+
+For example "1d" to compare current period but shifted back 1 day
+
+```java
+public PanelModelBuilder timeCompare(String timeCompare)
+```
+
 ### <span class="badge object-method"></span> timeFrom
 
 Overrides the relative time range for individual panels,

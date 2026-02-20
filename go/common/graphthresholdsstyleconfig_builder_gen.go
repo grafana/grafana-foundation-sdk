@@ -36,6 +36,11 @@ func (builder *GraphThresholdsStyleConfigBuilder) Build() (GraphThresholdsStyleC
 	return *builder.internal, nil
 }
 
+func (builder *GraphThresholdsStyleConfigBuilder) RecordError(path string, err error) *GraphThresholdsStyleConfigBuilder {
+	builder.errors = append(builder.errors, cog.MakeBuildErrors(path, err)...)
+	return builder
+}
+
 func (builder *GraphThresholdsStyleConfigBuilder) Mode(mode GraphThresholdsStyleMode) *GraphThresholdsStyleConfigBuilder {
 	builder.internal.Mode = mode
 

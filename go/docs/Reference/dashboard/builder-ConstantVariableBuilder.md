@@ -56,6 +56,22 @@ Name of variable
 func (builder *ConstantVariableBuilder) Name(name string) *ConstantVariableBuilder
 ```
 
+### <span class="badge object-method"></span> StaticOptions
+
+Additional static options for query variable
+
+```go
+func (builder *ConstantVariableBuilder) StaticOptions(staticOptions []dashboard.VariableOption) *ConstantVariableBuilder
+```
+
+### <span class="badge object-method"></span> StaticOptionsOrder
+
+Ordering of static options in relation to options returned from data source for query variable
+
+```go
+func (builder *ConstantVariableBuilder) StaticOptionsOrder(staticOptionsOrder dashboard.VariableModelStaticOptionsOrder) *ConstantVariableBuilder
+```
+
 ### <span class="badge object-method"></span> Value
 
 Query used to fetch values for a variable

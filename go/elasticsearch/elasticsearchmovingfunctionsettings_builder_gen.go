@@ -35,6 +35,11 @@ func (builder *ElasticsearchMovingFunctionSettingsBuilder) Build() (Elasticsearc
 	return *builder.internal, nil
 }
 
+func (builder *ElasticsearchMovingFunctionSettingsBuilder) RecordError(path string, err error) *ElasticsearchMovingFunctionSettingsBuilder {
+	builder.errors = append(builder.errors, cog.MakeBuildErrors(path, err)...)
+	return builder
+}
+
 func (builder *ElasticsearchMovingFunctionSettingsBuilder) Window(window string) *ElasticsearchMovingFunctionSettingsBuilder {
 	builder.internal.Window = &window
 

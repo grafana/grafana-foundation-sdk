@@ -35,6 +35,11 @@ func (builder *BaseMovingAverageModelSettingsBuilder) Build() (BaseMovingAverage
 	return *builder.internal, nil
 }
 
+func (builder *BaseMovingAverageModelSettingsBuilder) RecordError(path string, err error) *BaseMovingAverageModelSettingsBuilder {
+	builder.errors = append(builder.errors, cog.MakeBuildErrors(path, err)...)
+	return builder
+}
+
 func (builder *BaseMovingAverageModelSettingsBuilder) Model(model MovingAverageModel) *BaseMovingAverageModelSettingsBuilder {
 	builder.internal.Model = model
 

@@ -35,6 +35,11 @@ func (builder *YearRangeBuilder) Build() (YearRange, error) {
 	return *builder.internal, nil
 }
 
+func (builder *YearRangeBuilder) RecordError(path string, err error) *YearRangeBuilder {
+	builder.errors = append(builder.errors, cog.MakeBuildErrors(path, err)...)
+	return builder
+}
+
 func (builder *YearRangeBuilder) Begin(begin int32) *YearRangeBuilder {
 	builder.internal.Begin = &begin
 

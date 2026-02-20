@@ -1,0 +1,99 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$ref": "#/definitions/Preferences",
+  "definitions": {
+    "QueryHistoryPreference": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "homeTab": {
+          "type": "string",
+          "description": "one of: '' | 'query' | 'starred';"
+        }
+      }
+    },
+    "CookiePreferences": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "analytics": {
+          "type": "object",
+          "additionalProperties": {}
+        },
+        "performance": {
+          "type": "object",
+          "additionalProperties": {}
+        },
+        "functional": {
+          "type": "object",
+          "additionalProperties": {}
+        }
+      }
+    },
+    "NavbarPreference": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "bookmarkUrls"
+      ],
+      "properties": {
+        "bookmarkUrls": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "Preferences": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "homeDashboardUID": {
+          "type": "string",
+          "description": "UID for the home dashboard"
+        },
+        "timezone": {
+          "type": "string",
+          "description": "The timezone selection\nTODO: this should use the timezone defined in common"
+        },
+        "weekStart": {
+          "type": "string",
+          "description": "day of the week (sunday, monday, etc)"
+        },
+        "theme": {
+          "type": "string",
+          "description": "light, dark, empty is default"
+        },
+        "language": {
+          "type": "string",
+          "description": "Selected language (beta)"
+        },
+        "regionalFormat": {
+          "type": "string",
+          "description": "Selected locale (beta)"
+        },
+        "queryHistory": {
+          "$ref": "#/definitions/QueryHistoryPreference",
+          "description": "Explore query history preferences"
+        },
+        "cookiePreferences": {
+          "$ref": "#/definitions/CookiePreferences",
+          "description": "Cookie preferences"
+        },
+        "navbar": {
+          "$ref": "#/definitions/NavbarPreference",
+          "description": "Navigation preferences"
+        }
+      }
+    },
+    "PreferencesV1Alpha1": {
+      "type": "string",
+      "const": "preferences.grafana.app/v1alpha1"
+    },
+    "PreferencesKind": {
+      "type": "string",
+      "const": "Preferences"
+    }
+  }
+}

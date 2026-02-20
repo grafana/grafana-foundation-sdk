@@ -2,6 +2,7 @@
 
 package com.grafana.foundation.dashboard;
 
+import java.util.List;
 
 public class DatasourceVariableBuilder implements com.grafana.foundation.cog.Builder<VariableModel> {
     protected final VariableModel internal;
@@ -66,6 +67,16 @@ public class DatasourceVariableBuilder implements com.grafana.foundation.cog.Bui
     
     public DatasourceVariableBuilder regex(String regex) {
         this.internal.regex = regex;
+        return this;
+    }
+    
+    public DatasourceVariableBuilder staticOptions(List<VariableOption> staticOptions) {
+        this.internal.staticOptions = staticOptions;
+        return this;
+    }
+    
+    public DatasourceVariableBuilder staticOptionsOrder(VariableModelStaticOptionsOrder staticOptionsOrder) {
+        this.internal.staticOptionsOrder = staticOptionsOrder;
         return this;
     }
     

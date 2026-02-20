@@ -37,6 +37,11 @@ func (builder *DashboardLinkBuilder) Build() (DashboardLink, error) {
 	return *builder.internal, nil
 }
 
+func (builder *DashboardLinkBuilder) RecordError(path string, err error) *DashboardLinkBuilder {
+	builder.errors = append(builder.errors, cog.MakeBuildErrors(path, err)...)
+	return builder
+}
+
 // Title to display with the link
 func (builder *DashboardLinkBuilder) Title(title string) *DashboardLinkBuilder {
 	builder.internal.Title = title
@@ -82,6 +87,13 @@ func (builder *DashboardLinkBuilder) Tags(tags []string) *DashboardLinkBuilder {
 // If true, all dashboards links will be displayed in a dropdown. If false, all dashboards links will be displayed side by side. Only valid if the type is dashboards
 func (builder *DashboardLinkBuilder) AsDropdown(asDropdown bool) *DashboardLinkBuilder {
 	builder.internal.AsDropdown = asDropdown
+
+	return builder
+}
+
+// Placement can be used to display the link somewhere else on the dashboard other than above the visualisations.
+func (builder *DashboardLinkBuilder) Placement(placement DashboardLinkPlacement) *DashboardLinkBuilder {
+	builder.internal.Placement = &placement
 
 	return builder
 }

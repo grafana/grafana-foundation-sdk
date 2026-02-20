@@ -35,6 +35,11 @@ func (builder *SerialDiffBuilder) Build() (SerialDiff, error) {
 	return *builder.internal, nil
 }
 
+func (builder *SerialDiffBuilder) RecordError(path string, err error) *SerialDiffBuilder {
+	builder.errors = append(builder.errors, cog.MakeBuildErrors(path, err)...)
+	return builder
+}
+
 func (builder *SerialDiffBuilder) PipelineAgg(pipelineAgg string) *SerialDiffBuilder {
 	builder.internal.PipelineAgg = &pipelineAgg
 

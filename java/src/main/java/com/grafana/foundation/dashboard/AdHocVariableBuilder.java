@@ -3,6 +3,7 @@
 package com.grafana.foundation.dashboard;
 
 import com.grafana.foundation.common.DataSourceRef;
+import java.util.List;
 
 public class AdHocVariableBuilder implements com.grafana.foundation.cog.Builder<VariableModel> {
     protected final VariableModel internal;
@@ -39,6 +40,16 @@ public class AdHocVariableBuilder implements com.grafana.foundation.cog.Builder<
     
     public AdHocVariableBuilder allowCustomValue(Boolean allowCustomValue) {
         this.internal.allowCustomValue = allowCustomValue;
+        return this;
+    }
+    
+    public AdHocVariableBuilder staticOptions(List<VariableOption> staticOptions) {
+        this.internal.staticOptions = staticOptions;
+        return this;
+    }
+    
+    public AdHocVariableBuilder staticOptionsOrder(VariableModelStaticOptionsOrder staticOptionsOrder) {
+        this.internal.staticOptionsOrder = staticOptionsOrder;
         return this;
     }
     

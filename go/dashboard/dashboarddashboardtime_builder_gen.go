@@ -35,6 +35,11 @@ func (builder *DashboardDashboardTimeBuilder) Build() (DashboardDashboardTime, e
 	return *builder.internal, nil
 }
 
+func (builder *DashboardDashboardTimeBuilder) RecordError(path string, err error) *DashboardDashboardTimeBuilder {
+	builder.errors = append(builder.errors, cog.MakeBuildErrors(path, err)...)
+	return builder
+}
+
 func (builder *DashboardDashboardTimeBuilder) From(from string) *DashboardDashboardTimeBuilder {
 	builder.internal.From = from
 

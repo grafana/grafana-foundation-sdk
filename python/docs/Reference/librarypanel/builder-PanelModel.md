@@ -148,6 +148,16 @@ Depends on the panel plugin. See the plugin documentation for details.
 def targets(targets: list[cogbuilder.Builder[cogvariants.Dataquery]]) -> typing.Self
 ```
 
+### <span class="badge object-method"></span> time_compare
+
+Compare the current time range with a previous period
+
+For example "1d" to compare current period but shifted back 1 day
+
+```python
+def time_compare(time_compare: str) -> typing.Self
+```
+
 ### <span class="badge object-method"></span> time_from
 
 Overrides the relative time range for individual panels,

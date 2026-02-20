@@ -35,6 +35,11 @@ func (builder *ExprTypeReduceSettingsBuilder) Build() (ExprTypeReduceSettings, e
 	return *builder.internal, nil
 }
 
+func (builder *ExprTypeReduceSettingsBuilder) RecordError(path string, err error) *ExprTypeReduceSettingsBuilder {
+	builder.errors = append(builder.errors, cog.MakeBuildErrors(path, err)...)
+	return builder
+}
+
 // Non-number reduce behavior
 // Possible enum values:
 //   - `"dropNN"` Drop non-numbers

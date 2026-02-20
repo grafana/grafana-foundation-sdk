@@ -37,6 +37,11 @@ func (builder *QueryBuilder) Build() (Query, error) {
 	return *builder.internal, nil
 }
 
+func (builder *QueryBuilder) RecordError(path string, err error) *QueryBuilder {
+	builder.errors = append(builder.errors, cog.MakeBuildErrors(path, err)...)
+	return builder
+}
+
 // Grafana data source unique identifier; it should be '__expr__' for a Server Side Expression operation.
 func (builder *QueryBuilder) DatasourceUid(datasourceUid string) *QueryBuilder {
 	builder.internal.DatasourceUid = &datasourceUid

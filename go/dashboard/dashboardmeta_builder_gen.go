@@ -37,6 +37,11 @@ func (builder *DashboardMetaBuilder) Build() (DashboardMeta, error) {
 	return *builder.internal, nil
 }
 
+func (builder *DashboardMetaBuilder) RecordError(path string, err error) *DashboardMetaBuilder {
+	builder.errors = append(builder.errors, cog.MakeBuildErrors(path, err)...)
+	return builder
+}
+
 func (builder *DashboardMetaBuilder) AnnotationsPermissions(annotationsPermissions cog.Builder[AnnotationPermission]) *DashboardMetaBuilder {
 	annotationsPermissionsResource, err := annotationsPermissions.Build()
 	if err != nil {

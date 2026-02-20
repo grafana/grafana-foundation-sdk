@@ -144,6 +144,13 @@ export class PanelModelBuilder implements cog.Builder<librarypanel.PanelModel> {
         return this;
     }
 
+    // Compare the current time range with a previous period
+    // For example "1d" to compare current period but shifted back 1 day
+    timeCompare(timeCompare: string): this {
+        this.internal.timeCompare = timeCompare;
+        return this;
+    }
+
     // Sets panel queries cache timeout.
     cacheTimeout(cacheTimeout: string): this {
         this.internal.cacheTimeout = cacheTimeout;

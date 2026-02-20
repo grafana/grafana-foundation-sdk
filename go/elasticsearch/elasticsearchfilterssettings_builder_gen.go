@@ -35,6 +35,11 @@ func (builder *ElasticsearchFiltersSettingsBuilder) Build() (ElasticsearchFilter
 	return *builder.internal, nil
 }
 
+func (builder *ElasticsearchFiltersSettingsBuilder) RecordError(path string, err error) *ElasticsearchFiltersSettingsBuilder {
+	builder.errors = append(builder.errors, cog.MakeBuildErrors(path, err)...)
+	return builder
+}
+
 func (builder *ElasticsearchFiltersSettingsBuilder) Filters(filters []cog.Builder[Filter]) *ElasticsearchFiltersSettingsBuilder {
 	filtersResources := make([]Filter, 0, len(filters))
 	for _, r1 := range filters {

@@ -86,6 +86,27 @@ class AdHocVariableBuilder implements \Grafana\Foundation\Cog\Builder
         return $this;
     }
 
+    /**
+     * Additional static options for query variable
+     * @param array<\Grafana\Foundation\Dashboard\VariableOption> $staticOptions
+     */
+    public function staticOptions(array $staticOptions): static
+    {
+        $this->internal->staticOptions = $staticOptions;
+    
+        return $this;
+    }
+
+    /**
+     * Ordering of static options in relation to options returned from data source for query variable
+     */
+    public function staticOptionsOrder(\Grafana\Foundation\Dashboard\VariableModelStaticOptionsOrder $staticOptionsOrder): static
+    {
+        $this->internal->staticOptionsOrder = $staticOptionsOrder;
+    
+        return $this;
+    }
+
     public function definition(string $definition): static
     {
         $this->internal->definition = $definition;

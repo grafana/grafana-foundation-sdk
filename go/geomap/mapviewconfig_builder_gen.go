@@ -35,6 +35,11 @@ func (builder *MapViewConfigBuilder) Build() (MapViewConfig, error) {
 	return *builder.internal, nil
 }
 
+func (builder *MapViewConfigBuilder) RecordError(path string, err error) *MapViewConfigBuilder {
+	builder.errors = append(builder.errors, cog.MakeBuildErrors(path, err)...)
+	return builder
+}
+
 func (builder *MapViewConfigBuilder) Id(id string) *MapViewConfigBuilder {
 	builder.internal.Id = id
 

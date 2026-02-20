@@ -46,6 +46,11 @@ public class DashboardLinkBuilder implements com.grafana.foundation.cog.Builder<
         return this;
     }
     
+    public DashboardLinkBuilder placement(DashboardLinkPlacement placement) {
+        this.internal.placement = placement;
+        return this;
+    }
+    
     public DashboardLinkBuilder targetBlank(Boolean targetBlank) {
         this.internal.targetBlank = targetBlank;
         return this;

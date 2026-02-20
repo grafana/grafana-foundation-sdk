@@ -35,6 +35,11 @@ func (builder *ElasticsearchDerivativeSettingsBuilder) Build() (ElasticsearchDer
 	return *builder.internal, nil
 }
 
+func (builder *ElasticsearchDerivativeSettingsBuilder) RecordError(path string, err error) *ElasticsearchDerivativeSettingsBuilder {
+	builder.errors = append(builder.errors, cog.MakeBuildErrors(path, err)...)
+	return builder
+}
+
 func (builder *ElasticsearchDerivativeSettingsBuilder) Unit(unit string) *ElasticsearchDerivativeSettingsBuilder {
 	builder.internal.Unit = &unit
 

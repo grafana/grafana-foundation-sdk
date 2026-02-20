@@ -35,6 +35,11 @@ func (builder *Dashboardv2beta1RangeMapOptionsBuilder) Build() (Dashboardv2beta1
 	return *builder.internal, nil
 }
 
+func (builder *Dashboardv2beta1RangeMapOptionsBuilder) RecordError(path string, err error) *Dashboardv2beta1RangeMapOptionsBuilder {
+	builder.errors = append(builder.errors, cog.MakeBuildErrors(path, err)...)
+	return builder
+}
+
 // Min value of the range. It can be null which means -Infinity
 func (builder *Dashboardv2beta1RangeMapOptionsBuilder) From(from float64) *Dashboardv2beta1RangeMapOptionsBuilder {
 	builder.internal.From = &from

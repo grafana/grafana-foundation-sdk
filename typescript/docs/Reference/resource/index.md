@@ -11,3 +11,13 @@
 
  * <span class="badge builder"></span> [ManifestBuilder](./builder-ManifestBuilder.md)
  * <span class="badge builder"></span> [MetadataBuilder](./builder-MetadataBuilder.md)
+## Functions
+
+### <span class="badge function"></span> named
+
+Creates metadata for a named resource.
+
+```typescript
+named(name: string)
+```
+

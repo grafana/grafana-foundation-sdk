@@ -44,6 +44,10 @@ type VariableModel struct {
     // Optional field, if you want to extract part of a series name or metric node segment.
     // Named capture groups can be used to separate the display text and value.
     Regex *string `json:"regex,omitempty"`
+    // Additional static options for query variable
+    StaticOptions []dashboard.VariableOption `json:"staticOptions,omitempty"`
+    // Ordering of static options in relation to options returned from data source for query variable
+    StaticOptionsOrder *dashboard.VariableModelStaticOptionsOrder `json:"staticOptionsOrder,omitempty"`
     // Dynamically calculates interval by dividing time range by the count specified.
     Auto *bool `json:"auto,omitempty"`
     // The minimum threshold below which the step count intervals will not divide the time.

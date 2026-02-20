@@ -68,6 +68,9 @@ class Panel:
     time_shift: typing.Optional[str]
     # Controls if the timeFrom or timeShift overrides are shown in the panel header
     hide_time_override: typing.Optional[bool]
+    # Compare the current time range with a previous period
+    # For example "1d" to compare current period but shifted back 1 day
+    time_compare: typing.Optional[str]
     # Dynamically load the panel
     library_panel: typing.Optional[dashboard.LibraryPanelRef]
     # Sets panel queries cache timeout.

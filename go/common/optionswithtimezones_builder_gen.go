@@ -36,6 +36,11 @@ func (builder *OptionsWithTimezonesBuilder) Build() (OptionsWithTimezones, error
 	return *builder.internal, nil
 }
 
+func (builder *OptionsWithTimezonesBuilder) RecordError(path string, err error) *OptionsWithTimezonesBuilder {
+	builder.errors = append(builder.errors, cog.MakeBuildErrors(path, err)...)
+	return builder
+}
+
 func (builder *OptionsWithTimezonesBuilder) Timezone(timezone []TimeZone) *OptionsWithTimezonesBuilder {
 	builder.internal.Timezone = timezone
 

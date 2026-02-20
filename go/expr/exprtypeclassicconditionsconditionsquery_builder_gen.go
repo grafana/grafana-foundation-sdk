@@ -35,6 +35,11 @@ func (builder *ExprTypeClassicConditionsConditionsQueryBuilder) Build() (ExprTyp
 	return *builder.internal, nil
 }
 
+func (builder *ExprTypeClassicConditionsConditionsQueryBuilder) RecordError(path string, err error) *ExprTypeClassicConditionsConditionsQueryBuilder {
+	builder.errors = append(builder.errors, cog.MakeBuildErrors(path, err)...)
+	return builder
+}
+
 func (builder *ExprTypeClassicConditionsConditionsQueryBuilder) Params(params []string) *ExprTypeClassicConditionsConditionsQueryBuilder {
 	builder.internal.Params = params
 

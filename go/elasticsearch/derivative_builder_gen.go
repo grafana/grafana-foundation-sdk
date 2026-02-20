@@ -35,6 +35,11 @@ func (builder *DerivativeBuilder) Build() (Derivative, error) {
 	return *builder.internal, nil
 }
 
+func (builder *DerivativeBuilder) RecordError(path string, err error) *DerivativeBuilder {
+	builder.errors = append(builder.errors, cog.MakeBuildErrors(path, err)...)
+	return builder
+}
+
 func (builder *DerivativeBuilder) PipelineAgg(pipelineAgg string) *DerivativeBuilder {
 	builder.internal.PipelineAgg = &pipelineAgg
 

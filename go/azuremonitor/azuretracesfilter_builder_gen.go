@@ -35,6 +35,11 @@ func (builder *AzureTracesFilterBuilder) Build() (AzureTracesFilter, error) {
 	return *builder.internal, nil
 }
 
+func (builder *AzureTracesFilterBuilder) RecordError(path string, err error) *AzureTracesFilterBuilder {
+	builder.errors = append(builder.errors, cog.MakeBuildErrors(path, err)...)
+	return builder
+}
+
 // Property name, auto-populated based on available traces.
 func (builder *AzureTracesFilterBuilder) Property(property string) *AzureTracesFilterBuilder {
 	builder.internal.Property = property

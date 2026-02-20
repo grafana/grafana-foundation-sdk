@@ -36,6 +36,11 @@ func (builder *MovingAverageBuilder) Build() (MovingAverage, error) {
 	return *builder.internal, nil
 }
 
+func (builder *MovingAverageBuilder) RecordError(path string, err error) *MovingAverageBuilder {
+	builder.errors = append(builder.errors, cog.MakeBuildErrors(path, err)...)
+	return builder
+}
+
 func (builder *MovingAverageBuilder) PipelineAgg(pipelineAgg string) *MovingAverageBuilder {
 	builder.internal.PipelineAgg = &pipelineAgg
 

@@ -106,6 +106,24 @@ Named capture groups can be used to separate the display text and value.
 regex(string $regex)
 ```
 
+### <span class="badge object-method"></span> staticOptions
+
+Additional static options for query variable
+
+@param array<\Grafana\Foundation\Dashboard\VariableOption> $staticOptions
+
+```php
+staticOptions(array $staticOptions)
+```
+
+### <span class="badge object-method"></span> staticOptionsOrder
+
+Ordering of static options in relation to options returned from data source for query variable
+
+```php
+staticOptionsOrder(\Grafana\Foundation\Dashboard\VariableModelStaticOptionsOrder $staticOptionsOrder)
+```
+
 ### <span class="badge object-method"></span> type
 
 Query used to fetch values for a variable

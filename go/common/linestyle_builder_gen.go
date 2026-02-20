@@ -36,6 +36,11 @@ func (builder *LineStyleBuilder) Build() (LineStyle, error) {
 	return *builder.internal, nil
 }
 
+func (builder *LineStyleBuilder) RecordError(path string, err error) *LineStyleBuilder {
+	builder.errors = append(builder.errors, cog.MakeBuildErrors(path, err)...)
+	return builder
+}
+
 func (builder *LineStyleBuilder) Fill(fill LineStyleFill) *LineStyleBuilder {
 	builder.internal.Fill = &fill
 

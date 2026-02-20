@@ -35,6 +35,11 @@ func (builder *CSVWaveBuilder) Build() (CSVWave, error) {
 	return *builder.internal, nil
 }
 
+func (builder *CSVWaveBuilder) RecordError(path string, err error) *CSVWaveBuilder {
+	builder.errors = append(builder.errors, cog.MakeBuildErrors(path, err)...)
+	return builder
+}
+
 func (builder *CSVWaveBuilder) Labels(labels string) *CSVWaveBuilder {
 	builder.internal.Labels = &labels
 

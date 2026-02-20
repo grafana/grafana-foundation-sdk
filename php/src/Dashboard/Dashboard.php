@@ -7,6 +7,7 @@ class Dashboard implements \JsonSerializable
     /**
      * Unique numeric identifier for the dashboard.
      * `id` is internal to a specific Grafana instance. `uid` should be used to identify a dashboard across Grafana instances.
+     * TODO eliminate this null option
      */
     public ?int $id;
 
@@ -181,7 +182,7 @@ class Dashboard implements \JsonSerializable
         $this->liveNow = $liveNow;
         $this->weekStart = $weekStart;
         $this->refresh = $refresh;
-        $this->schemaVersion = $schemaVersion ?: 41;
+        $this->schemaVersion = $schemaVersion ?: 42;
         $this->version = $version;
         $this->panels = $panels;
         $this->templating = $templating ?: new \Grafana\Foundation\Dashboard\DashboardDashboardTemplating();
@@ -246,7 +247,7 @@ class Dashboard implements \JsonSerializable
     	return \Grafana\Foundation\Dashboard\AnnotationContainer::fromArray($val);
     })($data["annotations"]) : null,
             links: array_filter(array_map((function($input) {
-    	/** @var array{title?: string, type?: string, icon?: string, tooltip?: string, url?: string, tags?: array<string>, asDropdown?: bool, targetBlank?: bool, includeVars?: bool, keepTime?: bool} */
+    	/** @var array{title?: string, type?: string, icon?: string, tooltip?: string, url?: string, tags?: array<string>, asDropdown?: bool, placement?: "inControlsMenu", targetBlank?: bool, includeVars?: bool, keepTime?: bool} */
     $val = $input;
     	return \Grafana\Foundation\Dashboard\DashboardLink::fromArray($val);
     }), $data["links"] ?? [])),

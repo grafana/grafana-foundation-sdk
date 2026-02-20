@@ -30,6 +30,8 @@ export interface AnnotationQuery {
 	type?: string;
 	// Set to 1 for the standard annotation query all dashboards have by default.
 	builtIn?: number;
+	// Placement can be used to display the annotation query somewhere else on the dashboard other than the default location.
+	placement?: dashboard.AnnotationQueryPlacement.InControlsMenu;
 	expr?: string;
 }
 

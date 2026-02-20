@@ -282,6 +282,18 @@ func PanelConverter(input Panel) string {
 		buffer.Reset()
 
 	}
+	if input.TimeCompare != nil && *input.TimeCompare != "" {
+
+		buffer.WriteString(`TimeCompare(`)
+		arg0 := fmt.Sprintf("%#v", *input.TimeCompare)
+		buffer.WriteString(arg0)
+
+		buffer.WriteString(")")
+
+		calls = append(calls, buffer.String())
+		buffer.Reset()
+
+	}
 	if input.LibraryPanel != nil {
 
 		buffer.WriteString(`LibraryPanel(`)
@@ -452,6 +464,23 @@ func PanelConverter(input Panel) string {
 			tmparg0 = append(tmparg0, tmplinksarg1)
 		}
 		arg0 := "[]cog.Builder[dashboard.DashboardLink]{" + strings.Join(tmparg0, ",\n") + "}"
+		buffer.WriteString(arg0)
+
+		buffer.WriteString(")")
+
+		calls = append(calls, buffer.String())
+		buffer.Reset()
+
+	}
+	if input.FieldConfig != nil && input.FieldConfig.Defaults.Actions != nil && len(input.FieldConfig.Defaults.Actions) >= 1 {
+
+		buffer.WriteString(`Actions(`)
+		tmparg0 := []string{}
+		for _, arg1 := range input.FieldConfig.Defaults.Actions {
+			tmpactionsarg1 := ActionConverter(arg1)
+			tmparg0 = append(tmparg0, tmpactionsarg1)
+		}
+		arg0 := "[]cog.Builder[dashboard.Action]{" + strings.Join(tmparg0, ",\n") + "}"
 		buffer.WriteString(arg0)
 
 		buffer.WriteString(")")

@@ -38,6 +38,11 @@ func (builder *TypeClassicConditionsBuilder) Build() (variants.Dataquery, error)
 	return *builder.internal, nil
 }
 
+func (builder *TypeClassicConditionsBuilder) RecordError(path string, err error) *TypeClassicConditionsBuilder {
+	builder.errors = append(builder.errors, cog.MakeBuildErrors(path, err)...)
+	return builder
+}
+
 func (builder *TypeClassicConditionsBuilder) Conditions(conditions []cog.Builder[ExprTypeClassicConditionsConditions]) *TypeClassicConditionsBuilder {
 	conditionsResources := make([]ExprTypeClassicConditionsConditions, 0, len(conditions))
 	for _, r1 := range conditions {

@@ -36,6 +36,11 @@ func (builder *StackingConfigBuilder) Build() (StackingConfig, error) {
 	return *builder.internal, nil
 }
 
+func (builder *StackingConfigBuilder) RecordError(path string, err error) *StackingConfigBuilder {
+	builder.errors = append(builder.errors, cog.MakeBuildErrors(path, err)...)
+	return builder
+}
+
 func (builder *StackingConfigBuilder) Mode(mode StackingMode) *StackingConfigBuilder {
 	builder.internal.Mode = &mode
 

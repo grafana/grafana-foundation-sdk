@@ -35,6 +35,11 @@ func (builder *TabsLayoutTabSpecBuilder) Build() (TabsLayoutTabSpec, error) {
 	return *builder.internal, nil
 }
 
+func (builder *TabsLayoutTabSpecBuilder) RecordError(path string, err error) *TabsLayoutTabSpecBuilder {
+	builder.errors = append(builder.errors, cog.MakeBuildErrors(path, err)...)
+	return builder
+}
+
 func (builder *TabsLayoutTabSpecBuilder) Title(title string) *TabsLayoutTabSpecBuilder {
 	builder.internal.Title = &title
 

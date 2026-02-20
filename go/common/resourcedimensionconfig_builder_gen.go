@@ -36,6 +36,11 @@ func (builder *ResourceDimensionConfigBuilder) Build() (ResourceDimensionConfig,
 	return *builder.internal, nil
 }
 
+func (builder *ResourceDimensionConfigBuilder) RecordError(path string, err error) *ResourceDimensionConfigBuilder {
+	builder.errors = append(builder.errors, cog.MakeBuildErrors(path, err)...)
+	return builder
+}
+
 func (builder *ResourceDimensionConfigBuilder) Mode(mode ResourceDimensionMode) *ResourceDimensionConfigBuilder {
 	builder.internal.Mode = mode
 

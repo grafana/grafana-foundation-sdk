@@ -23,6 +23,8 @@ export interface DashboardLink {
 	tags: string[];
 	// If true, all dashboards links will be displayed in a dropdown. If false, all dashboards links will be displayed side by side. Only valid if the type is dashboards
 	asDropdown: boolean;
+	// Placement can be used to display the link somewhere else on the dashboard other than above the visualisations.
+	placement?: dashboard.DashboardLinkPlacement.InControlsMenu;
 	// If true, the link will be opened in a new tab
 	targetBlank: boolean;
 	// If true, includes current template variables values in the link as query params

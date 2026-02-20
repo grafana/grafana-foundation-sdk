@@ -102,6 +102,11 @@ public class PanelModel {
     @JsonInclude(JsonInclude.Include.NON_NULL)
     @JsonProperty("hideTimeOverride")
     public Boolean hideTimeOverride;
+    // Compare the current time range with a previous period
+    // For example "1d" to compare current period but shifted back 1 day
+    @JsonInclude(JsonInclude.Include.NON_NULL)
+    @JsonProperty("timeCompare")
+    public String timeCompare;
     // Sets panel queries cache timeout.
     @JsonInclude(JsonInclude.Include.NON_NULL)
     @JsonProperty("cacheTimeout")
@@ -123,7 +128,7 @@ public class PanelModel {
         this.transparent = false;
         this.repeatDirection = PanelModelRepeatDirection.H;
     }
-    public PanelModel(String type,String pluginVersion,List<Dataquery> targets,String title,String description,Boolean transparent,DataSourceRef datasource,List<DashboardLink> links,String repeat,PanelModelRepeatDirection repeatDirection,Double maxPerRow,Double maxDataPoints,List<DataTransformerConfig> transformations,String interval,String timeFrom,String timeShift,Boolean hideTimeOverride,String cacheTimeout,Double queryCachingTTL,Object options,FieldConfigSource fieldConfig) {
+    public PanelModel(String type,String pluginVersion,List<Dataquery> targets,String title,String description,Boolean transparent,DataSourceRef datasource,List<DashboardLink> links,String repeat,PanelModelRepeatDirection repeatDirection,Double maxPerRow,Double maxDataPoints,List<DataTransformerConfig> transformations,String interval,String timeFrom,String timeShift,Boolean hideTimeOverride,String timeCompare,String cacheTimeout,Double queryCachingTTL,Object options,FieldConfigSource fieldConfig) {
         this.type = type;
         this.pluginVersion = pluginVersion;
         this.targets = targets;
@@ -141,6 +146,7 @@ public class PanelModel {
         this.timeFrom = timeFrom;
         this.timeShift = timeShift;
         this.hideTimeOverride = hideTimeOverride;
+        this.timeCompare = timeCompare;
         this.cacheTimeout = cacheTimeout;
         this.queryCachingTTL = queryCachingTTL;
         this.options = options;

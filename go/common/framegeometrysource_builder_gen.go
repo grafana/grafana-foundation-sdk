@@ -35,6 +35,11 @@ func (builder *FrameGeometrySourceBuilder) Build() (FrameGeometrySource, error) 
 	return *builder.internal, nil
 }
 
+func (builder *FrameGeometrySourceBuilder) RecordError(path string, err error) *FrameGeometrySourceBuilder {
+	builder.errors = append(builder.errors, cog.MakeBuildErrors(path, err)...)
+	return builder
+}
+
 func (builder *FrameGeometrySourceBuilder) Mode(mode FrameGeometrySourceMode) *FrameGeometrySourceBuilder {
 	builder.internal.Mode = mode
 

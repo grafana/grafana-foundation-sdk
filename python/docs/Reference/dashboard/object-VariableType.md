@@ -21,6 +21,8 @@ Dashboard variable type
 
 `system`: Variables defined by Grafana. See: https://grafana.com/docs/grafana/latest/dashboards/variables/add-template-variables/#global-variables
 
+`switch`: Boolean variables rendered as a switch
+
 ## Definition
 
 ```python
@@ -35,6 +37,7 @@ class VariableType(enum.StrEnum):
     `textbox`: Display a free text input field with an optional default value.
     `custom`: Define the variable options manually using a comma-separated list.
     `system`: Variables defined by Grafana. See: https://grafana.com/docs/grafana/latest/dashboards/variables/add-template-variables/#global-variables
+    `switch`: Boolean variables rendered as a switch
     """
 
     QUERY = "query"
@@ -47,4 +50,5 @@ class VariableType(enum.StrEnum):
     CUSTOM = "custom"
     SYSTEM = "system"
     SNAPSHOT = "snapshot"
+    SWITCH = "switch"
 ```

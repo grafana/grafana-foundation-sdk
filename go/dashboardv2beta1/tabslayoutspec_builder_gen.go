@@ -35,6 +35,11 @@ func (builder *TabsLayoutSpecBuilder) Build() (TabsLayoutSpec, error) {
 	return *builder.internal, nil
 }
 
+func (builder *TabsLayoutSpecBuilder) RecordError(path string, err error) *TabsLayoutSpecBuilder {
+	builder.errors = append(builder.errors, cog.MakeBuildErrors(path, err)...)
+	return builder
+}
+
 func (builder *TabsLayoutSpecBuilder) Tabs(tabs []cog.Builder[TabsLayoutTabKind]) *TabsLayoutSpecBuilder {
 	tabsResources := make([]TabsLayoutTabKind, 0, len(tabs))
 	for _, r1 := range tabs {

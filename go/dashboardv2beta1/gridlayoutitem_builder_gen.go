@@ -38,6 +38,11 @@ func (builder *GridLayoutItemBuilder) Build() (GridLayoutItemKind, error) {
 	return *builder.internal, nil
 }
 
+func (builder *GridLayoutItemBuilder) RecordError(path string, err error) *GridLayoutItemBuilder {
+	builder.errors = append(builder.errors, cog.MakeBuildErrors(path, err)...)
+	return builder
+}
+
 func (builder *GridLayoutItemBuilder) X(x int64) *GridLayoutItemBuilder {
 	builder.internal.Spec.X = x
 

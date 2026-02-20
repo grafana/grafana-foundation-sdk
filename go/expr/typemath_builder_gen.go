@@ -38,6 +38,11 @@ func (builder *TypeMathBuilder) Build() (variants.Dataquery, error) {
 	return *builder.internal, nil
 }
 
+func (builder *TypeMathBuilder) RecordError(path string, err error) *TypeMathBuilder {
+	builder.errors = append(builder.errors, cog.MakeBuildErrors(path, err)...)
+	return builder
+}
+
 // The datasource
 func (builder *TypeMathBuilder) Datasource(datasource common.DataSourceRef) *TypeMathBuilder {
 	builder.internal.Datasource = &datasource

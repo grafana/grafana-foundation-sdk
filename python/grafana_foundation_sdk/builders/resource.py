@@ -102,3 +102,12 @@ class Metadata(cogbuilder.Builder[resource.Metadata]):
     
         return self
     
+
+"""
+Creates metadata for a named resource.
+"""
+def named(name: str) -> Metadata:
+    builder = Metadata()
+    builder.name(name)
+
+    return builder

@@ -37,6 +37,11 @@ func (builder *TimePickerBuilder) Build() (TimePickerConfig, error) {
 	return *builder.internal, nil
 }
 
+func (builder *TimePickerBuilder) RecordError(path string, err error) *TimePickerBuilder {
+	builder.errors = append(builder.errors, cog.MakeBuildErrors(path, err)...)
+	return builder
+}
+
 // Whether timepicker is visible or not.
 func (builder *TimePickerBuilder) Hidden(hidden bool) *TimePickerBuilder {
 	builder.internal.Hidden = &hidden

@@ -36,6 +36,11 @@ func (builder *TargetBuilder) Build() (PanelQueryKind, error) {
 	return *builder.internal, nil
 }
 
+func (builder *TargetBuilder) RecordError(path string, err error) *TargetBuilder {
+	builder.errors = append(builder.errors, cog.MakeBuildErrors(path, err)...)
+	return builder
+}
+
 func (builder *TargetBuilder) Query(query cog.Builder[DataQueryKind]) *TargetBuilder {
 	queryResource, err := query.Build()
 	if err != nil {

@@ -35,6 +35,11 @@ func (builder *HistogramSettingsBuilder) Build() (HistogramSettings, error) {
 	return *builder.internal, nil
 }
 
+func (builder *HistogramSettingsBuilder) RecordError(path string, err error) *HistogramSettingsBuilder {
+	builder.errors = append(builder.errors, cog.MakeBuildErrors(path, err)...)
+	return builder
+}
+
 func (builder *HistogramSettingsBuilder) Interval(interval string) *HistogramSettingsBuilder {
 	builder.internal.Interval = &interval
 

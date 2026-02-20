@@ -52,6 +52,16 @@ public class IntervalVariableBuilder implements com.grafana.foundation.cog.Build
         return this;
     }
     
+    public IntervalVariableBuilder staticOptions(List<VariableOption> staticOptions) {
+        this.internal.staticOptions = staticOptions;
+        return this;
+    }
+    
+    public IntervalVariableBuilder staticOptionsOrder(VariableModelStaticOptionsOrder staticOptionsOrder) {
+        this.internal.staticOptionsOrder = staticOptionsOrder;
+        return this;
+    }
+    
     public IntervalVariableBuilder auto(Boolean auto) {
         this.internal.auto = auto;
         return this;

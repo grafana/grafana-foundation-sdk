@@ -35,6 +35,11 @@ func (builder *EdgeOptionsBuilder) Build() (EdgeOptions, error) {
 	return *builder.internal, nil
 }
 
+func (builder *EdgeOptionsBuilder) RecordError(path string, err error) *EdgeOptionsBuilder {
+	builder.errors = append(builder.errors, cog.MakeBuildErrors(path, err)...)
+	return builder
+}
+
 // Unit for the main stat to override what ever is set in the data frame.
 func (builder *EdgeOptionsBuilder) MainStatUnit(mainStatUnit string) *EdgeOptionsBuilder {
 	builder.internal.MainStatUnit = &mainStatUnit

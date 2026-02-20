@@ -35,6 +35,11 @@ func (builder *BucketAggregationWithFieldBuilder) Build() (BucketAggregationWith
 	return *builder.internal, nil
 }
 
+func (builder *BucketAggregationWithFieldBuilder) RecordError(path string, err error) *BucketAggregationWithFieldBuilder {
+	builder.errors = append(builder.errors, cog.MakeBuildErrors(path, err)...)
+	return builder
+}
+
 func (builder *BucketAggregationWithFieldBuilder) Field(field string) *BucketAggregationWithFieldBuilder {
 	builder.internal.Field = &field
 

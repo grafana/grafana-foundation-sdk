@@ -1,0 +1,49 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$ref": "#/definitions/Stars",
+  "definitions": {
+    "Resource": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "group",
+        "kind",
+        "names"
+      ],
+      "properties": {
+        "group": {
+          "type": "string"
+        },
+        "kind": {
+          "type": "string"
+        },
+        "names": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "description": "The set of resources\n+listType=set"
+        }
+      }
+    },
+    "Stars": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "resource"
+      ],
+      "properties": {
+        "resource": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Resource"
+          }
+        }
+      }
+    },
+    "StarsKind": {
+      "type": "string",
+      "const": "Stars"
+    }
+  }
+}

@@ -39,6 +39,11 @@ func (builder *AnnotationQueryBuilder) Build() (AnnotationQuery, error) {
 	return *builder.internal, nil
 }
 
+func (builder *AnnotationQueryBuilder) RecordError(path string, err error) *AnnotationQueryBuilder {
+	builder.errors = append(builder.errors, cog.MakeBuildErrors(path, err)...)
+	return builder
+}
+
 // Name of annotation.
 func (builder *AnnotationQueryBuilder) Name(name string) *AnnotationQueryBuilder {
 	builder.internal.Name = name
@@ -109,6 +114,13 @@ func (builder *AnnotationQueryBuilder) Type(typeArg string) *AnnotationQueryBuil
 // Set to 1 for the standard annotation query all dashboards have by default.
 func (builder *AnnotationQueryBuilder) BuiltIn(builtIn float64) *AnnotationQueryBuilder {
 	builder.internal.BuiltIn = &builtIn
+
+	return builder
+}
+
+// Placement can be used to display the annotation query somewhere else on the dashboard other than the default location.
+func (builder *AnnotationQueryBuilder) Placement(placement AnnotationQueryPlacement) *AnnotationQueryBuilder {
+	builder.internal.Placement = &placement
 
 	return builder
 }

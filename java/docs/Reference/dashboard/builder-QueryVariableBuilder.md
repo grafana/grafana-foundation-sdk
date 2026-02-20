@@ -146,6 +146,22 @@ Options sort order
 public QueryVariableBuilder sort(VariableSort sort)
 ```
 
+### <span class="badge object-method"></span> staticOptions
+
+Additional static options for query variable
+
+```java
+public QueryVariableBuilder staticOptions(List<VariableOption> staticOptions)
+```
+
+### <span class="badge object-method"></span> staticOptionsOrder
+
+Ordering of static options in relation to options returned from data source for query variable
+
+```java
+public QueryVariableBuilder staticOptionsOrder(VariableModelStaticOptionsOrder staticOptionsOrder)
+```
+
 ## See also
 
  * <span class="badge object-type-class"></span> [VariableModel](./object-VariableModel.md)

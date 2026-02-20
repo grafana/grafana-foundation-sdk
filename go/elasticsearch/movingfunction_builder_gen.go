@@ -35,6 +35,11 @@ func (builder *MovingFunctionBuilder) Build() (MovingFunction, error) {
 	return *builder.internal, nil
 }
 
+func (builder *MovingFunctionBuilder) RecordError(path string, err error) *MovingFunctionBuilder {
+	builder.errors = append(builder.errors, cog.MakeBuildErrors(path, err)...)
+	return builder
+}
+
 func (builder *MovingFunctionBuilder) PipelineAgg(pipelineAgg string) *MovingFunctionBuilder {
 	builder.internal.PipelineAgg = &pipelineAgg
 

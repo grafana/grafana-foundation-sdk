@@ -38,6 +38,11 @@ func (builder *TimeRangeBuilder) Build() (TimeRange, error) {
 	return *builder.internal, nil
 }
 
+func (builder *TimeRangeBuilder) RecordError(path string, err error) *TimeRangeBuilder {
+	builder.errors = append(builder.errors, cog.MakeBuildErrors(path, err)...)
+	return builder
+}
+
 func (builder *TimeRangeBuilder) From(from time.Time) *TimeRangeBuilder {
 	builder.internal.From = &from
 

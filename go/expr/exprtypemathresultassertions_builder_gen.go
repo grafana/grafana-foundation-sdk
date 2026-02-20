@@ -35,6 +35,11 @@ func (builder *ExprTypeMathResultAssertionsBuilder) Build() (ExprTypeMathResultA
 	return *builder.internal, nil
 }
 
+func (builder *ExprTypeMathResultAssertionsBuilder) RecordError(path string, err error) *ExprTypeMathResultAssertionsBuilder {
+	builder.errors = append(builder.errors, cog.MakeBuildErrors(path, err)...)
+	return builder
+}
+
 // Maximum frame count
 func (builder *ExprTypeMathResultAssertionsBuilder) MaxFrames(maxFrames int64) *ExprTypeMathResultAssertionsBuilder {
 	builder.internal.MaxFrames = &maxFrames

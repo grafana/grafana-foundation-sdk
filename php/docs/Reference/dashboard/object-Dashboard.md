@@ -11,6 +11,7 @@ class Dashboard implements \JsonSerializable
     /**
      * Unique numeric identifier for the dashboard.
      * `id` is internal to a specific Grafana instance. `uid` should be used to identify a dashboard across Grafana instances.
+     * TODO eliminate this null option
      */
     public ?int $id;
 

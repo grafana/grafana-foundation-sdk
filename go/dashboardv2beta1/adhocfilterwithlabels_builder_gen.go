@@ -36,6 +36,11 @@ func (builder *AdHocFilterWithLabelsBuilder) Build() (AdHocFilterWithLabels, err
 	return *builder.internal, nil
 }
 
+func (builder *AdHocFilterWithLabelsBuilder) RecordError(path string, err error) *AdHocFilterWithLabelsBuilder {
+	builder.errors = append(builder.errors, cog.MakeBuildErrors(path, err)...)
+	return builder
+}
+
 func (builder *AdHocFilterWithLabelsBuilder) Key(key string) *AdHocFilterWithLabelsBuilder {
 	builder.internal.Key = key
 

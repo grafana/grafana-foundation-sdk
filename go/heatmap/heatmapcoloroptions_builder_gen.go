@@ -36,6 +36,11 @@ func (builder *HeatmapColorOptionsBuilder) Build() (HeatmapColorOptions, error) 
 	return *builder.internal, nil
 }
 
+func (builder *HeatmapColorOptionsBuilder) RecordError(path string, err error) *HeatmapColorOptionsBuilder {
+	builder.errors = append(builder.errors, cog.MakeBuildErrors(path, err)...)
+	return builder
+}
+
 // Sets the color mode
 func (builder *HeatmapColorOptionsBuilder) Mode(mode HeatmapColorMode) *HeatmapColorOptionsBuilder {
 	builder.internal.Mode = &mode

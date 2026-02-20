@@ -35,6 +35,11 @@ func (builder *QueryEditorArrayExpressionBuilder) Build() (QueryEditorArrayExpre
 	return *builder.internal, nil
 }
 
+func (builder *QueryEditorArrayExpressionBuilder) RecordError(path string, err error) *QueryEditorArrayExpressionBuilder {
+	builder.errors = append(builder.errors, cog.MakeBuildErrors(path, err)...)
+	return builder
+}
+
 func (builder *QueryEditorArrayExpressionBuilder) Type(typeArg QueryEditorArrayExpressionType) *QueryEditorArrayExpressionBuilder {
 	builder.internal.Type = typeArg
 

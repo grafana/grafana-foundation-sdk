@@ -35,6 +35,11 @@ func (builder *MinBuilder) Build() (Min, error) {
 	return *builder.internal, nil
 }
 
+func (builder *MinBuilder) RecordError(path string, err error) *MinBuilder {
+	builder.errors = append(builder.errors, cog.MakeBuildErrors(path, err)...)
+	return builder
+}
+
 func (builder *MinBuilder) Field(field string) *MinBuilder {
 	builder.internal.Field = &field
 

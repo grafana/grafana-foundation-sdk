@@ -37,6 +37,11 @@ func (builder *AnnotationTargetBuilder) Build() (AnnotationTarget, error) {
 	return *builder.internal, nil
 }
 
+func (builder *AnnotationTargetBuilder) RecordError(path string, err error) *AnnotationTargetBuilder {
+	builder.errors = append(builder.errors, cog.MakeBuildErrors(path, err)...)
+	return builder
+}
+
 // Only required/valid for the grafana datasource...
 // but code+tests is already depending on it so hard to change
 func (builder *AnnotationTargetBuilder) Limit(limit int64) *AnnotationTargetBuilder {

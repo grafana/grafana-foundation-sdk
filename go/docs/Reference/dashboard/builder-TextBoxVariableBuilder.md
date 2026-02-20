@@ -88,6 +88,22 @@ Options that can be selected for a variable.
 func (builder *TextBoxVariableBuilder) Options(options []dashboard.VariableOption) *TextBoxVariableBuilder
 ```
 
+### <span class="badge object-method"></span> StaticOptions
+
+Additional static options for query variable
+
+```go
+func (builder *TextBoxVariableBuilder) StaticOptions(staticOptions []dashboard.VariableOption) *TextBoxVariableBuilder
+```
+
+### <span class="badge object-method"></span> StaticOptionsOrder
+
+Ordering of static options in relation to options returned from data source for query variable
+
+```go
+func (builder *TextBoxVariableBuilder) StaticOptionsOrder(staticOptionsOrder dashboard.VariableModelStaticOptionsOrder) *TextBoxVariableBuilder
+```
+
 ## See also
 
  * <span class="badge object-type-struct"></span> [VariableModel](./object-VariableModel.md)

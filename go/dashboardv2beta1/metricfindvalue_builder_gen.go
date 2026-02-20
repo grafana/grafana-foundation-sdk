@@ -36,6 +36,11 @@ func (builder *MetricFindValueBuilder) Build() (MetricFindValue, error) {
 	return *builder.internal, nil
 }
 
+func (builder *MetricFindValueBuilder) RecordError(path string, err error) *MetricFindValueBuilder {
+	builder.errors = append(builder.errors, cog.MakeBuildErrors(path, err)...)
+	return builder
+}
+
 func (builder *MetricFindValueBuilder) Text(text string) *MetricFindValueBuilder {
 	builder.internal.Text = text
 

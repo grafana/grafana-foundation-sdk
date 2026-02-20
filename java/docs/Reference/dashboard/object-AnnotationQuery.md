@@ -20,6 +20,7 @@ public class AnnotationQuery {
   public Dataquery target;
   public String type;
   public Double builtIn;
+  public AnnotationQueryPlacement placement;
   public String expr;
 }
 ```

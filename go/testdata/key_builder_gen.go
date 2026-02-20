@@ -35,6 +35,11 @@ func (builder *KeyBuilder) Build() (Key, error) {
 	return *builder.internal, nil
 }
 
+func (builder *KeyBuilder) RecordError(path string, err error) *KeyBuilder {
+	builder.errors = append(builder.errors, cog.MakeBuildErrors(path, err)...)
+	return builder
+}
+
 func (builder *KeyBuilder) Tick(tick float64) *KeyBuilder {
 	builder.internal.Tick = tick
 

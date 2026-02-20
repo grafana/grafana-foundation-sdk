@@ -35,6 +35,11 @@ func (builder *MonthRangeBuilder) Build() (MonthRange, error) {
 	return *builder.internal, nil
 }
 
+func (builder *MonthRangeBuilder) RecordError(path string, err error) *MonthRangeBuilder {
+	builder.errors = append(builder.errors, cog.MakeBuildErrors(path, err)...)
+	return builder
+}
+
 func (builder *MonthRangeBuilder) Begin(begin int32) *MonthRangeBuilder {
 	builder.internal.Begin = &begin
 

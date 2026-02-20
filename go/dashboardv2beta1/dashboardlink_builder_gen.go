@@ -36,6 +36,11 @@ func (builder *DashboardLinkBuilder) Build() (DashboardLink, error) {
 	return *builder.internal, nil
 }
 
+func (builder *DashboardLinkBuilder) RecordError(path string, err error) *DashboardLinkBuilder {
+	builder.errors = append(builder.errors, cog.MakeBuildErrors(path, err)...)
+	return builder
+}
+
 // Title to display with the link
 func (builder *DashboardLinkBuilder) Title(title string) *DashboardLinkBuilder {
 	builder.internal.Title = title

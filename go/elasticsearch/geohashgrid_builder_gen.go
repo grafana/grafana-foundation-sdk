@@ -35,6 +35,11 @@ func (builder *GeoHashGridBuilder) Build() (GeoHashGrid, error) {
 	return *builder.internal, nil
 }
 
+func (builder *GeoHashGridBuilder) RecordError(path string, err error) *GeoHashGridBuilder {
+	builder.errors = append(builder.errors, cog.MakeBuildErrors(path, err)...)
+	return builder
+}
+
 func (builder *GeoHashGridBuilder) Field(field string) *GeoHashGridBuilder {
 	builder.internal.Field = &field
 

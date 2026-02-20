@@ -4,6 +4,7 @@ package dashboardv2beta1
 
 import (
 	cog "github.com/grafana/grafana-foundation-sdk/go/cog"
+	resource "github.com/grafana/grafana-foundation-sdk/go/resource"
 )
 
 var _ cog.Builder[Dashboard] = (*DashboardBuilder)(nil)
@@ -24,6 +25,25 @@ func NewDashboardBuilder(title string) *DashboardBuilder {
 	return builder
 }
 
+// Creates a resource manifest from a Dashboard.
+func Manifest(name string, dashboard cog.Builder[Dashboard]) *resource.ManifestBuilder {
+	builder := resource.NewManifestBuilder()
+
+	builder.ApiVersion("dashboard.grafana.app/v2beta1")
+
+	builder.Kind("Dashboard")
+
+	builder.Metadata(resource.Named(name))
+	dashboardResource, err := dashboard.Build()
+	if err != nil {
+		builder.RecordError("Manifest(dashboard)", err)
+		return builder
+	}
+	builder.Spec(dashboardResource)
+
+	return builder
+}
+
 func (builder *DashboardBuilder) Build() (Dashboard, error) {
 	if err := builder.internal.Validate(); err != nil {
 		return Dashboard{}, err
@@ -34,6 +54,11 @@ func (builder *DashboardBuilder) Build() (Dashboard, error) {
 	}
 
 	return *builder.internal, nil
+}
+
+func (builder *DashboardBuilder) RecordError(path string, err error) *DashboardBuilder {
+	builder.errors = append(builder.errors, cog.MakeBuildErrors(path, err)...)
+	return builder
 }
 
 func (builder *DashboardBuilder) Annotations(annotations []cog.Builder[AnnotationQueryKind]) *DashboardBuilder {

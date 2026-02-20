@@ -35,6 +35,11 @@ func (builder *UpdateConfigBuilder) Build() (UpdateConfig, error) {
 	return *builder.internal, nil
 }
 
+func (builder *UpdateConfigBuilder) RecordError(path string, err error) *UpdateConfigBuilder {
+	builder.errors = append(builder.errors, cog.MakeBuildErrors(path, err)...)
+	return builder
+}
+
 func (builder *UpdateConfigBuilder) Render(render bool) *UpdateConfigBuilder {
 	builder.internal.Render = render
 

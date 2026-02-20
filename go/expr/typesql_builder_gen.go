@@ -38,6 +38,11 @@ func (builder *TypeSqlBuilder) Build() (variants.Dataquery, error) {
 	return *builder.internal, nil
 }
 
+func (builder *TypeSqlBuilder) RecordError(path string, err error) *TypeSqlBuilder {
+	builder.errors = append(builder.errors, cog.MakeBuildErrors(path, err)...)
+	return builder
+}
+
 // The datasource
 func (builder *TypeSqlBuilder) Datasource(datasource common.DataSourceRef) *TypeSqlBuilder {
 	builder.internal.Datasource = &datasource

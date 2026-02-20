@@ -35,6 +35,11 @@ func (builder *ExprTypeClassicConditionsConditionsBuilder) Build() (ExprTypeClas
 	return *builder.internal, nil
 }
 
+func (builder *ExprTypeClassicConditionsConditionsBuilder) RecordError(path string, err error) *ExprTypeClassicConditionsConditionsBuilder {
+	builder.errors = append(builder.errors, cog.MakeBuildErrors(path, err)...)
+	return builder
+}
+
 func (builder *ExprTypeClassicConditionsConditionsBuilder) Evaluator(evaluator cog.Builder[ExprTypeClassicConditionsConditionsEvaluator]) *ExprTypeClassicConditionsConditionsBuilder {
 	evaluatorResource, err := evaluator.Build()
 	if err != nil {

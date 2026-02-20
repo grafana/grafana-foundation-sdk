@@ -35,6 +35,11 @@ func (builder *PipelineMetricAggregationWithMultipleBucketPathsBuilder) Build() 
 	return *builder.internal, nil
 }
 
+func (builder *PipelineMetricAggregationWithMultipleBucketPathsBuilder) RecordError(path string, err error) *PipelineMetricAggregationWithMultipleBucketPathsBuilder {
+	builder.errors = append(builder.errors, cog.MakeBuildErrors(path, err)...)
+	return builder
+}
+
 func (builder *PipelineMetricAggregationWithMultipleBucketPathsBuilder) PipelineVariables(pipelineVariables []cog.Builder[PipelineVariable]) *PipelineMetricAggregationWithMultipleBucketPathsBuilder {
 	pipelineVariablesResources := make([]PipelineVariable, 0, len(pipelineVariables))
 	for _, r1 := range pipelineVariables {

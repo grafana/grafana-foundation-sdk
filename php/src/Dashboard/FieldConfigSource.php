@@ -39,7 +39,7 @@ class FieldConfigSource implements \JsonSerializable
         $data = $inputData;
         return new self(
             defaults: isset($data["defaults"]) ? (function($input) {
-    	/** @var array{displayName?: string, displayNameFromDS?: string, description?: string, path?: string, writeable?: bool, filterable?: bool, unit?: string, decimals?: float, min?: float, max?: float, mappings?: array<mixed|mixed|mixed|mixed>, thresholds?: mixed, color?: mixed, links?: array<mixed>, noValue?: string, custom?: mixed, fieldMinMax?: bool} */
+    	/** @var array{displayName?: string, displayNameFromDS?: string, description?: string, path?: string, writeable?: bool, filterable?: bool, unit?: string, decimals?: float, min?: float, max?: float, mappings?: array<mixed|mixed|mixed|mixed>, thresholds?: mixed, color?: mixed, links?: array<mixed>, actions?: array<mixed>, noValue?: string, custom?: mixed, fieldMinMax?: bool} */
     $val = $input;
     	return \Grafana\Foundation\Dashboard\FieldConfig::fromArray($val);
     })($data["defaults"]) : null,

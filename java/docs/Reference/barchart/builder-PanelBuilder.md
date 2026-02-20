@@ -18,6 +18,14 @@ Builds the object.
 public Panel build()
 ```
 
+### <span class="badge object-method"></span> actions
+
+Define interactive HTTP requests that can be triggered from data visualizations.
+
+```java
+public PanelBuilder actions(List<com.grafana.foundation.cog.Builder<Action>> actions)
+```
+
 ### <span class="badge object-method"></span> axisBorderShow
 
 ```java
@@ -462,6 +470,16 @@ Threshold rendering
 
 ```java
 public PanelBuilder thresholdsStyle(com.grafana.foundation.cog.Builder<GraphThresholdsStyleConfig> thresholdsStyle)
+```
+
+### <span class="badge object-method"></span> timeCompare
+
+Compare the current time range with a previous period
+
+For example "1d" to compare current period but shifted back 1 day
+
+```java
+public PanelBuilder timeCompare(String timeCompare)
 ```
 
 ### <span class="badge object-method"></span> timeFrom

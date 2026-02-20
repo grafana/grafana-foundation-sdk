@@ -36,6 +36,11 @@ func (builder *FieldColorBuilder) Build() (FieldColor, error) {
 	return *builder.internal, nil
 }
 
+func (builder *FieldColorBuilder) RecordError(path string, err error) *FieldColorBuilder {
+	builder.errors = append(builder.errors, cog.MakeBuildErrors(path, err)...)
+	return builder
+}
+
 // The main color scheme mode.
 func (builder *FieldColorBuilder) Mode(mode FieldColorModeId) *FieldColorBuilder {
 	builder.internal.Mode = mode

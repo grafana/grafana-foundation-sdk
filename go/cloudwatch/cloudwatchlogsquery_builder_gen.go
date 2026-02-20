@@ -38,6 +38,11 @@ func (builder *CloudWatchLogsQueryBuilder) Build() (variants.Dataquery, error) {
 	return *builder.internal, nil
 }
 
+func (builder *CloudWatchLogsQueryBuilder) RecordError(path string, err error) *CloudWatchLogsQueryBuilder {
+	builder.errors = append(builder.errors, cog.MakeBuildErrors(path, err)...)
+	return builder
+}
+
 // Whether a query is a Metrics, Logs, or Annotations query
 func (builder *CloudWatchLogsQueryBuilder) QueryMode(queryMode CloudWatchQueryMode) *CloudWatchLogsQueryBuilder {
 	builder.internal.QueryMode = queryMode

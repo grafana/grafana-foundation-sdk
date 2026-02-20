@@ -104,6 +104,18 @@ func DashboardLinkConverter(input DashboardLink) string {
 		buffer.Reset()
 
 	}
+	if input.Placement != nil {
+
+		buffer.WriteString(`Placement(`)
+		arg0 := cog.Dump(*input.Placement)
+		buffer.WriteString(arg0)
+
+		buffer.WriteString(")")
+
+		calls = append(calls, buffer.String())
+		buffer.Reset()
+
+	}
 	if input.TargetBlank != false {
 
 		buffer.WriteString(`TargetBlank(`)

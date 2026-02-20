@@ -36,6 +36,11 @@ func (builder *ResourceGroupsQueryBuilder) Build() (ResourceGroupsQuery, error) 
 	return *builder.internal, nil
 }
 
+func (builder *ResourceGroupsQueryBuilder) RecordError(path string, err error) *ResourceGroupsQueryBuilder {
+	builder.errors = append(builder.errors, cog.MakeBuildErrors(path, err)...)
+	return builder
+}
+
 func (builder *ResourceGroupsQueryBuilder) RawQuery(rawQuery string) *ResourceGroupsQueryBuilder {
 	builder.internal.RawQuery = &rawQuery
 

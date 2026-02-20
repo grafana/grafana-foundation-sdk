@@ -36,6 +36,11 @@ func (builder *ValueMappingResultBuilder) Build() (ValueMappingResult, error) {
 	return *builder.internal, nil
 }
 
+func (builder *ValueMappingResultBuilder) RecordError(path string, err error) *ValueMappingResultBuilder {
+	builder.errors = append(builder.errors, cog.MakeBuildErrors(path, err)...)
+	return builder
+}
+
 // Text to display when the value matches
 func (builder *ValueMappingResultBuilder) Text(text string) *ValueMappingResultBuilder {
 	builder.internal.Text = &text

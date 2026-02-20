@@ -50,6 +50,14 @@ If true, includes current time range in the link as query params
 public DashboardLinkBuilder keepTime(Boolean keepTime)
 ```
 
+### <span class="badge object-method"></span> placement
+
+Placement can be used to display the link somewhere else on the dashboard other than above the visualisations.
+
+```java
+public DashboardLinkBuilder placement(DashboardLinkPlacement placement)
+```
+
 ### <span class="badge object-method"></span> tags
 
 List of tags to limit the linked dashboards. If empty, all dashboards will be displayed. Only valid if the type is dashboards

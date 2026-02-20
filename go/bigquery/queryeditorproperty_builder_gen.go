@@ -35,6 +35,11 @@ func (builder *QueryEditorPropertyBuilder) Build() (QueryEditorProperty, error) 
 	return *builder.internal, nil
 }
 
+func (builder *QueryEditorPropertyBuilder) RecordError(path string, err error) *QueryEditorPropertyBuilder {
+	builder.errors = append(builder.errors, cog.MakeBuildErrors(path, err)...)
+	return builder
+}
+
 func (builder *QueryEditorPropertyBuilder) Name(name string) *QueryEditorPropertyBuilder {
 	builder.internal.Name = &name
 

@@ -35,6 +35,11 @@ func (builder *ControlsOptionsBuilder) Build() (ControlsOptions, error) {
 	return *builder.internal, nil
 }
 
+func (builder *ControlsOptionsBuilder) RecordError(path string, err error) *ControlsOptionsBuilder {
+	builder.errors = append(builder.errors, cog.MakeBuildErrors(path, err)...)
+	return builder
+}
+
 // Zoom (upper left)
 func (builder *ControlsOptionsBuilder) ShowZoom(showZoom bool) *ControlsOptionsBuilder {
 	builder.internal.ShowZoom = &showZoom

@@ -35,6 +35,11 @@ func (builder *PublicDashboardBuilder) Build() (PublicDashboard, error) {
 	return *builder.internal, nil
 }
 
+func (builder *PublicDashboardBuilder) RecordError(path string, err error) *PublicDashboardBuilder {
+	builder.errors = append(builder.errors, cog.MakeBuildErrors(path, err)...)
+	return builder
+}
+
 // Unique public dashboard identifier
 func (builder *PublicDashboardBuilder) Uid(uid string) *PublicDashboardBuilder {
 	builder.internal.Uid = uid

@@ -20,6 +20,7 @@ type DataTransformerConfig struct {
     // Optional frame matcher. When missing it will be applied to all results
     Filter *dashboard.MatcherConfig `json:"filter,omitempty"`
     // Where to pull DataFrames from as input to transformation
+    // replaced with common.DataTopic
     Topic *dashboard.DataTransformerConfigTopic `json:"topic,omitempty"`
     // Options to be passed to the transformer
     // Valid options depend on the transformer id

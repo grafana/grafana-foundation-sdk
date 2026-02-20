@@ -106,6 +106,19 @@ final class DashboardLinkConverter
     
     
     }
+            if ($input->placement !== null) {
+    
+        
+    $buffer = 'placement(';
+        $arg0 =\var_export($input->placement, true);
+        $buffer .= $arg0;
+        
+    $buffer .= ')';
+
+    $calls[] = $buffer;
+    
+    
+    }
             if ($input->targetBlank !== false) {
     
         

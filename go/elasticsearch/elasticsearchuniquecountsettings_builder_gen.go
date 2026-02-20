@@ -35,6 +35,11 @@ func (builder *ElasticsearchUniqueCountSettingsBuilder) Build() (ElasticsearchUn
 	return *builder.internal, nil
 }
 
+func (builder *ElasticsearchUniqueCountSettingsBuilder) RecordError(path string, err error) *ElasticsearchUniqueCountSettingsBuilder {
+	builder.errors = append(builder.errors, cog.MakeBuildErrors(path, err)...)
+	return builder
+}
+
 func (builder *ElasticsearchUniqueCountSettingsBuilder) PrecisionThreshold(precisionThreshold string) *ElasticsearchUniqueCountSettingsBuilder {
 	builder.internal.PrecisionThreshold = &precisionThreshold
 

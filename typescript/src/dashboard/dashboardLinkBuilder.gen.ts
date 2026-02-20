@@ -61,6 +61,12 @@ export class DashboardLinkBuilder implements cog.Builder<dashboard.DashboardLink
         return this;
     }
 
+    // Placement can be used to display the link somewhere else on the dashboard other than above the visualisations.
+    placement(placement: dashboard.DashboardLinkPlacement.InControlsMenu): this {
+        this.internal.placement = placement;
+        return this;
+    }
+
     // If true, the link will be opened in a new tab
     targetBlank(targetBlank: boolean): this {
         this.internal.targetBlank = targetBlank;

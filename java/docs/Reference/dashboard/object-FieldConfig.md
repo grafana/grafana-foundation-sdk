@@ -27,6 +27,7 @@ public class FieldConfig {
   public ThresholdsConfig thresholds;
   public FieldColor color;
   public List<DashboardLink> links;
+  public List<Action> actions;
   public String noValue;
   public Object custom;
   public Boolean fieldMinMax;

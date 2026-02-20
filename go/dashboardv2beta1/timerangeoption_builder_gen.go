@@ -35,6 +35,11 @@ func (builder *TimeRangeOptionBuilder) Build() (TimeRangeOption, error) {
 	return *builder.internal, nil
 }
 
+func (builder *TimeRangeOptionBuilder) RecordError(path string, err error) *TimeRangeOptionBuilder {
+	builder.errors = append(builder.errors, cog.MakeBuildErrors(path, err)...)
+	return builder
+}
+
 func (builder *TimeRangeOptionBuilder) Display(display string) *TimeRangeOptionBuilder {
 	builder.internal.Display = display
 

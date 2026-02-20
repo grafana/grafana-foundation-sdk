@@ -36,6 +36,11 @@ func (builder *ElementReferenceBuilder) Build() (ElementReference, error) {
 	return *builder.internal, nil
 }
 
+func (builder *ElementReferenceBuilder) RecordError(path string, err error) *ElementReferenceBuilder {
+	builder.errors = append(builder.errors, cog.MakeBuildErrors(path, err)...)
+	return builder
+}
+
 func (builder *ElementReferenceBuilder) Name(name string) *ElementReferenceBuilder {
 	builder.internal.Name = name
 

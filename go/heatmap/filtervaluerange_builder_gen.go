@@ -36,6 +36,11 @@ func (builder *FilterValueRangeBuilder) Build() (FilterValueRange, error) {
 	return *builder.internal, nil
 }
 
+func (builder *FilterValueRangeBuilder) RecordError(path string, err error) *FilterValueRangeBuilder {
+	builder.errors = append(builder.errors, cog.MakeBuildErrors(path, err)...)
+	return builder
+}
+
 // Sets the filter range to values less than or equal to the given value
 func (builder *FilterValueRangeBuilder) Le(le float32) *FilterValueRangeBuilder {
 	builder.internal.Le = &le

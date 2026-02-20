@@ -35,6 +35,11 @@ func (builder *ConstraintBuilder) Build() (Constraint, error) {
 	return *builder.internal, nil
 }
 
+func (builder *ConstraintBuilder) RecordError(path string, err error) *ConstraintBuilder {
+	builder.errors = append(builder.errors, cog.MakeBuildErrors(path, err)...)
+	return builder
+}
+
 func (builder *ConstraintBuilder) Horizontal(horizontal HorizontalConstraint) *ConstraintBuilder {
 	builder.internal.Horizontal = &horizontal
 

@@ -38,6 +38,11 @@ func (builder *PanelBuilder) Build() (Panel, error) {
 	return *builder.internal, nil
 }
 
+func (builder *PanelBuilder) RecordError(path string, err error) *PanelBuilder {
+	builder.errors = append(builder.errors, cog.MakeBuildErrors(path, err)...)
+	return builder
+}
+
 // The panel plugin type id. This is used to find the plugin to display the panel.
 func (builder *PanelBuilder) Type(typeArg string) *PanelBuilder {
 	builder.internal.Type = typeArg
@@ -247,6 +252,14 @@ func (builder *PanelBuilder) HideTimeOverride(hideTimeOverride bool) *PanelBuild
 	return builder
 }
 
+// Compare the current time range with a previous period
+// For example "1d" to compare current period but shifted back 1 day
+func (builder *PanelBuilder) TimeCompare(timeCompare string) *PanelBuilder {
+	builder.internal.TimeCompare = &timeCompare
+
+	return builder
+}
+
 // Dynamically load the panel
 func (builder *PanelBuilder) LibraryPanel(libraryPanel LibraryPanelRef) *PanelBuilder {
 	builder.internal.LibraryPanel = &libraryPanel
@@ -399,6 +412,25 @@ func (builder *PanelBuilder) DataLinks(links []cog.Builder[DashboardLink]) *Pane
 		linksResources = append(linksResources, linksDepth1)
 	}
 	builder.internal.FieldConfig.Defaults.Links = linksResources
+
+	return builder
+}
+
+// Define interactive HTTP requests that can be triggered from data visualizations.
+func (builder *PanelBuilder) Actions(actions []cog.Builder[Action]) *PanelBuilder {
+	if builder.internal.FieldConfig == nil {
+		builder.internal.FieldConfig = NewFieldConfigSource()
+	}
+	actionsResources := make([]Action, 0, len(actions))
+	for _, r1 := range actions {
+		actionsDepth1, err := r1.Build()
+		if err != nil {
+			builder.errors = append(builder.errors, err.(cog.BuildErrors)...)
+			return builder
+		}
+		actionsResources = append(actionsResources, actionsDepth1)
+	}
+	builder.internal.FieldConfig.Defaults.Actions = actionsResources
 
 	return builder
 }

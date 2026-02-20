@@ -36,6 +36,11 @@ func (builder *UnknownQueryBuilder) Build() (UnknownQuery, error) {
 	return *builder.internal, nil
 }
 
+func (builder *UnknownQueryBuilder) RecordError(path string, err error) *UnknownQueryBuilder {
+	builder.errors = append(builder.errors, cog.MakeBuildErrors(path, err)...)
+	return builder
+}
+
 func (builder *UnknownQueryBuilder) RawQuery(rawQuery string) *UnknownQueryBuilder {
 	builder.internal.RawQuery = &rawQuery
 

@@ -35,6 +35,11 @@ func (builder *ManifestBuilder) Build() (Manifest, error) {
 	return *builder.internal, nil
 }
 
+func (builder *ManifestBuilder) RecordError(path string, err error) *ManifestBuilder {
+	builder.errors = append(builder.errors, cog.MakeBuildErrors(path, err)...)
+	return builder
+}
+
 func (builder *ManifestBuilder) ApiVersion(apiVersion string) *ManifestBuilder {
 	builder.internal.ApiVersion = apiVersion
 

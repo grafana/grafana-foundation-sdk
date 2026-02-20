@@ -38,6 +38,11 @@ func (builder *IntervalVariableBuilder) Build() (VariableModel, error) {
 	return *builder.internal, nil
 }
 
+func (builder *IntervalVariableBuilder) RecordError(path string, err error) *IntervalVariableBuilder {
+	builder.errors = append(builder.errors, cog.MakeBuildErrors(path, err)...)
+	return builder
+}
+
 // Name of variable
 func (builder *IntervalVariableBuilder) Name(name string) *IntervalVariableBuilder {
 	builder.internal.Name = name
@@ -90,6 +95,20 @@ func (builder *IntervalVariableBuilder) AllowCustomValue(allowCustomValue bool) 
 // Options that can be selected for a variable.
 func (builder *IntervalVariableBuilder) Options(options []VariableOption) *IntervalVariableBuilder {
 	builder.internal.Options = options
+
+	return builder
+}
+
+// Additional static options for query variable
+func (builder *IntervalVariableBuilder) StaticOptions(staticOptions []VariableOption) *IntervalVariableBuilder {
+	builder.internal.StaticOptions = staticOptions
+
+	return builder
+}
+
+// Ordering of static options in relation to options returned from data source for query variable
+func (builder *IntervalVariableBuilder) StaticOptionsOrder(staticOptionsOrder VariableModelStaticOptionsOrder) *IntervalVariableBuilder {
+	builder.internal.StaticOptionsOrder = &staticOptionsOrder
 
 	return builder
 }

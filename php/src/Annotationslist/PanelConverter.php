@@ -272,6 +272,19 @@ final class PanelConverter
     
     
     }
+            if ($input->timeCompare !== null && $input->timeCompare !== "") {
+    
+        
+    $buffer = 'timeCompare(';
+        $arg0 =\var_export($input->timeCompare, true);
+        $buffer .= $arg0;
+        
+    $buffer .= ')';
+
+    $calls[] = $buffer;
+    
+    
+    }
             if ($input->libraryPanel !== null) {
     
         
@@ -447,6 +460,24 @@ final class PanelConverter
         foreach ($input->fieldConfig->defaults->links as $arg1) {
         $tmplinksarg1 = \Grafana\Foundation\Dashboard\DashboardLinkConverter::convert($arg1);
         $tmparg0[] = $tmplinksarg1;
+        }
+        $arg0 = "[" . implode(", \n", $tmparg0) . "]";
+        $buffer .= $arg0;
+        
+    $buffer .= ')';
+
+    $calls[] = $buffer;
+    
+    
+    }
+            if ($input->fieldConfig !== null && $input->fieldConfig->defaults->actions !== null && count($input->fieldConfig->defaults->actions) >= 1) {
+    
+        
+    $buffer = 'actions(';
+        $tmparg0 = [];
+        foreach ($input->fieldConfig->defaults->actions as $arg1) {
+        $tmpactionsarg1 = \Grafana\Foundation\Dashboard\ActionConverter::convert($arg1);
+        $tmparg0[] = $tmpactionsarg1;
         }
         $arg0 = "[" . implode(", \n", $tmparg0) . "]";
         $buffer .= $arg0;

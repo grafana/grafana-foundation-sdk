@@ -116,6 +116,35 @@ func TextBoxVariableConverter(input VariableModel) string {
 		buffer.Reset()
 
 	}
+	if input.StaticOptions != nil && len(input.StaticOptions) >= 1 {
+
+		buffer.WriteString(`StaticOptions(`)
+		tmparg0 := []string{}
+		for _, arg1 := range input.StaticOptions {
+			tmpstaticOptionsarg1 := cog.Dump(arg1)
+			tmparg0 = append(tmparg0, tmpstaticOptionsarg1)
+		}
+		arg0 := "[]dashboard.VariableOption{" + strings.Join(tmparg0, ",\n") + "}"
+		buffer.WriteString(arg0)
+
+		buffer.WriteString(")")
+
+		calls = append(calls, buffer.String())
+		buffer.Reset()
+
+	}
+	if input.StaticOptionsOrder != nil {
+
+		buffer.WriteString(`StaticOptionsOrder(`)
+		arg0 := cog.Dump(*input.StaticOptionsOrder)
+		buffer.WriteString(arg0)
+
+		buffer.WriteString(")")
+
+		calls = append(calls, buffer.String())
+		buffer.Reset()
+
+	}
 	if input.Definition != nil && *input.Definition != "" {
 
 		buffer.WriteString(`Definition(`)

@@ -49,6 +49,10 @@ public class AnnotationQuery {
     @JsonInclude(JsonInclude.Include.NON_NULL)
     @JsonProperty("builtIn")
     public Double builtIn;
+    // Placement can be used to display the annotation query somewhere else on the dashboard other than the default location.
+    @JsonInclude(JsonInclude.Include.NON_NULL)
+    @JsonProperty("placement")
+    public AnnotationQueryPlacement placement;
     @JsonInclude(JsonInclude.Include.NON_NULL)
     @JsonProperty("expr")
     public String expr;
@@ -58,6 +62,7 @@ public class AnnotationQuery {
         this.hide = false;
         this.iconColor = "";
         this.builtIn = 0.0;
+        this.placement = AnnotationQueryPlacement.IN_CONTROLS_MENU;
     }
     public AnnotationQuery(String name,DataSourceRef datasource,Boolean enable,Boolean hide,String iconColor,AnnotationPanelFilter filter,Dataquery target,String type,Double builtIn,String expr) {
         this.name = name;
@@ -69,6 +74,7 @@ public class AnnotationQuery {
         this.target = target;
         this.type = type;
         this.builtIn = builtIn;
+        this.placement = AnnotationQueryPlacement.IN_CONTROLS_MENU;
         this.expr = expr;
     }
     

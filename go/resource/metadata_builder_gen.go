@@ -23,6 +23,15 @@ func NewMetadataBuilder() *MetadataBuilder {
 	return builder
 }
 
+// Creates metadata for a named resource.
+func Named(name string) *MetadataBuilder {
+	builder := NewMetadataBuilder()
+
+	builder.Name(name)
+
+	return builder
+}
+
 func (builder *MetadataBuilder) Build() (Metadata, error) {
 	if err := builder.internal.Validate(); err != nil {
 		return Metadata{}, err
@@ -33,6 +42,11 @@ func (builder *MetadataBuilder) Build() (Metadata, error) {
 	}
 
 	return *builder.internal, nil
+}
+
+func (builder *MetadataBuilder) RecordError(path string, err error) *MetadataBuilder {
+	builder.errors = append(builder.errors, cog.MakeBuildErrors(path, err)...)
+	return builder
 }
 
 func (builder *MetadataBuilder) Name(name string) *MetadataBuilder {

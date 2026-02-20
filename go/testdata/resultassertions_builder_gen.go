@@ -35,6 +35,11 @@ func (builder *ResultAssertionsBuilder) Build() (ResultAssertions, error) {
 	return *builder.internal, nil
 }
 
+func (builder *ResultAssertionsBuilder) RecordError(path string, err error) *ResultAssertionsBuilder {
+	builder.errors = append(builder.errors, cog.MakeBuildErrors(path, err)...)
+	return builder
+}
+
 // Maximum frame count
 func (builder *ResultAssertionsBuilder) MaxFrames(maxFrames int64) *ResultAssertionsBuilder {
 	builder.internal.MaxFrames = &maxFrames

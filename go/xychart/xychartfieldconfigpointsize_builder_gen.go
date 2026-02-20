@@ -35,6 +35,11 @@ func (builder *XychartFieldConfigPointSizeBuilder) Build() (XychartFieldConfigPo
 	return *builder.internal, nil
 }
 
+func (builder *XychartFieldConfigPointSizeBuilder) RecordError(path string, err error) *XychartFieldConfigPointSizeBuilder {
+	builder.errors = append(builder.errors, cog.MakeBuildErrors(path, err)...)
+	return builder
+}
+
 func (builder *XychartFieldConfigPointSizeBuilder) Fixed(fixed int32) *XychartFieldConfigPointSizeBuilder {
 	builder.internal.Fixed = &fixed
 

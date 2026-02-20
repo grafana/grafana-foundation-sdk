@@ -97,6 +97,16 @@ class DashboardLinkBuilder implements \Grafana\Foundation\Cog\Builder
     }
 
     /**
+     * Placement can be used to display the link somewhere else on the dashboard other than above the visualisations.
+     */
+    public function placement(\Grafana\Foundation\Dashboard\DashboardLinkPlacement $placement): static
+    {
+        $this->internal->placement = $placement;
+    
+        return $this;
+    }
+
+    /**
      * If true, the link will be opened in a new tab
      */
     public function targetBlank(bool $targetBlank): static

@@ -35,6 +35,11 @@ func (builder *ElasticsearchTermsSettingsBuilder) Build() (ElasticsearchTermsSet
 	return *builder.internal, nil
 }
 
+func (builder *ElasticsearchTermsSettingsBuilder) RecordError(path string, err error) *ElasticsearchTermsSettingsBuilder {
+	builder.errors = append(builder.errors, cog.MakeBuildErrors(path, err)...)
+	return builder
+}
+
 func (builder *ElasticsearchTermsSettingsBuilder) Order(order TermsOrder) *ElasticsearchTermsSettingsBuilder {
 	builder.internal.Order = &order
 

@@ -35,6 +35,11 @@ func (builder *TopMetricsBuilder) Build() (TopMetrics, error) {
 	return *builder.internal, nil
 }
 
+func (builder *TopMetricsBuilder) RecordError(path string, err error) *TopMetricsBuilder {
+	builder.errors = append(builder.errors, cog.MakeBuildErrors(path, err)...)
+	return builder
+}
+
 func (builder *TopMetricsBuilder) Id(id string) *TopMetricsBuilder {
 	builder.internal.Id = id
 

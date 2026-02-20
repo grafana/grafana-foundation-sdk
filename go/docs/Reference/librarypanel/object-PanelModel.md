@@ -60,6 +60,9 @@ type PanelModel struct {
     TimeShift *string `json:"timeShift,omitempty"`
     // Controls if the timeFrom or timeShift overrides are shown in the panel header
     HideTimeOverride *bool `json:"hideTimeOverride,omitempty"`
+    // Compare the current time range with a previous period
+    // For example "1d" to compare current period but shifted back 1 day
+    TimeCompare *string `json:"timeCompare,omitempty"`
     // Sets panel queries cache timeout.
     CacheTimeout *string `json:"cacheTimeout,omitempty"`
     // Overrides the data source configured time-to-live for a query cache item in milliseconds

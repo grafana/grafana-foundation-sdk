@@ -35,6 +35,11 @@ func (builder *AzureMonitorResourceBuilder) Build() (AzureMonitorResource, error
 	return *builder.internal, nil
 }
 
+func (builder *AzureMonitorResourceBuilder) RecordError(path string, err error) *AzureMonitorResourceBuilder {
+	builder.errors = append(builder.errors, cog.MakeBuildErrors(path, err)...)
+	return builder
+}
+
 func (builder *AzureMonitorResourceBuilder) Subscription(subscription string) *AzureMonitorResourceBuilder {
 	builder.internal.Subscription = &subscription
 

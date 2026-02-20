@@ -36,6 +36,11 @@ func (builder *ThresholdsConfigBuilder) Build() (ThresholdsConfig, error) {
 	return *builder.internal, nil
 }
 
+func (builder *ThresholdsConfigBuilder) RecordError(path string, err error) *ThresholdsConfigBuilder {
+	builder.errors = append(builder.errors, cog.MakeBuildErrors(path, err)...)
+	return builder
+}
+
 // Thresholds mode.
 func (builder *ThresholdsConfigBuilder) Mode(mode ThresholdsMode) *ThresholdsConfigBuilder {
 	builder.internal.Mode = mode

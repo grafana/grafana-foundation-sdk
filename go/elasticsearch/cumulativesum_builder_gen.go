@@ -35,6 +35,11 @@ func (builder *CumulativeSumBuilder) Build() (CumulativeSum, error) {
 	return *builder.internal, nil
 }
 
+func (builder *CumulativeSumBuilder) RecordError(path string, err error) *CumulativeSumBuilder {
+	builder.errors = append(builder.errors, cog.MakeBuildErrors(path, err)...)
+	return builder
+}
+
 func (builder *CumulativeSumBuilder) PipelineAgg(pipelineAgg string) *CumulativeSumBuilder {
 	builder.internal.PipelineAgg = &pipelineAgg
 

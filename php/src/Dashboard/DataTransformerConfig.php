@@ -26,6 +26,7 @@ class DataTransformerConfig implements \JsonSerializable
 
     /**
      * Where to pull DataFrames from as input to transformation
+     * replaced with common.DataTopic
      */
     public ?\Grafana\Foundation\Dashboard\DataTransformerConfigTopic $topic;
 

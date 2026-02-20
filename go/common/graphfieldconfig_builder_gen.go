@@ -36,6 +36,11 @@ func (builder *GraphFieldConfigBuilder) Build() (GraphFieldConfig, error) {
 	return *builder.internal, nil
 }
 
+func (builder *GraphFieldConfigBuilder) RecordError(path string, err error) *GraphFieldConfigBuilder {
+	builder.errors = append(builder.errors, cog.MakeBuildErrors(path, err)...)
+	return builder
+}
+
 func (builder *GraphFieldConfigBuilder) DrawStyle(drawStyle GraphDrawStyle) *GraphFieldConfigBuilder {
 	builder.internal.DrawStyle = &drawStyle
 

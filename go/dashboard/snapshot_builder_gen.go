@@ -40,6 +40,11 @@ func (builder *SnapshotBuilder) Build() (Snapshot, error) {
 	return *builder.internal, nil
 }
 
+func (builder *SnapshotBuilder) RecordError(path string, err error) *SnapshotBuilder {
+	builder.errors = append(builder.errors, cog.MakeBuildErrors(path, err)...)
+	return builder
+}
+
 // Time when the snapshot expires, default is never to expire
 func (builder *SnapshotBuilder) Expires(expires string) *SnapshotBuilder {
 	builder.internal.Expires = expires

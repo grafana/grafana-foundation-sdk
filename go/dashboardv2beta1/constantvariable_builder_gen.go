@@ -38,6 +38,11 @@ func (builder *ConstantVariableBuilder) Build() (ConstantVariableKind, error) {
 	return *builder.internal, nil
 }
 
+func (builder *ConstantVariableBuilder) RecordError(path string, err error) *ConstantVariableBuilder {
+	builder.errors = append(builder.errors, cog.MakeBuildErrors(path, err)...)
+	return builder
+}
+
 func (builder *ConstantVariableBuilder) Spec(spec ConstantVariableSpec) *ConstantVariableBuilder {
 	builder.internal.Spec = spec
 

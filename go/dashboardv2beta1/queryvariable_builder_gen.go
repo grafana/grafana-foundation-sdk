@@ -38,6 +38,11 @@ func (builder *QueryVariableBuilder) Build() (QueryVariableKind, error) {
 	return *builder.internal, nil
 }
 
+func (builder *QueryVariableBuilder) RecordError(path string, err error) *QueryVariableBuilder {
+	builder.errors = append(builder.errors, cog.MakeBuildErrors(path, err)...)
+	return builder
+}
+
 func (builder *QueryVariableBuilder) Spec(spec QueryVariableSpec) *QueryVariableBuilder {
 	builder.internal.Spec = spec
 

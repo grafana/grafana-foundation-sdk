@@ -36,6 +36,11 @@ func (builder *HideableFieldConfigBuilder) Build() (HideableFieldConfig, error) 
 	return *builder.internal, nil
 }
 
+func (builder *HideableFieldConfigBuilder) RecordError(path string, err error) *HideableFieldConfigBuilder {
+	builder.errors = append(builder.errors, cog.MakeBuildErrors(path, err)...)
+	return builder
+}
+
 func (builder *HideableFieldConfigBuilder) HideFrom(hideFrom cog.Builder[HideSeriesConfig]) *HideableFieldConfigBuilder {
 	hideFromResource, err := hideFrom.Build()
 	if err != nil {

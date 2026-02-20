@@ -35,6 +35,11 @@ func (builder *MatcherBuilder) Build() (Matcher, error) {
 	return *builder.internal, nil
 }
 
+func (builder *MatcherBuilder) RecordError(path string, err error) *MatcherBuilder {
+	builder.errors = append(builder.errors, cog.MakeBuildErrors(path, err)...)
+	return builder
+}
+
 func (builder *MatcherBuilder) Name(name string) *MatcherBuilder {
 	builder.internal.Name = &name
 

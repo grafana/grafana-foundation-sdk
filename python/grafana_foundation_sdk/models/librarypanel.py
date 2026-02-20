@@ -223,6 +223,9 @@ class PanelModel:
     time_shift: typing.Optional[str]
     # Controls if the timeFrom or timeShift overrides are shown in the panel header
     hide_time_override: typing.Optional[bool]
+    # Compare the current time range with a previous period
+    # For example "1d" to compare current period but shifted back 1 day
+    time_compare: typing.Optional[str]
     # Sets panel queries cache timeout.
     cache_timeout: typing.Optional[str]
     # Overrides the data source configured time-to-live for a query cache item in milliseconds
@@ -232,7 +235,7 @@ class PanelModel:
     # Field options allow you to change how the data is displayed in your visualizations.
     field_config: typing.Optional[dashboard.FieldConfigSource]
 
-    def __init__(self, type_val: str = "", plugin_version: typing.Optional[str] = None, targets: typing.Optional[list[cogvariants.Dataquery]] = None, title: typing.Optional[str] = None, description: typing.Optional[str] = None, transparent: typing.Optional[bool] = False, datasource: typing.Optional[common.DataSourceRef] = None, links: typing.Optional[list[dashboard.DashboardLink]] = None, repeat: typing.Optional[str] = None, repeat_direction: typing.Optional[typing.Literal["h", "v"]] = None, max_per_row: typing.Optional[float] = None, max_data_points: typing.Optional[float] = None, transformations: typing.Optional[list[dashboard.DataTransformerConfig]] = None, interval: typing.Optional[str] = None, time_from: typing.Optional[str] = None, time_shift: typing.Optional[str] = None, hide_time_override: typing.Optional[bool] = None, cache_timeout: typing.Optional[str] = None, query_caching_ttl: typing.Optional[float] = None, options: typing.Optional[object] = None, field_config: typing.Optional[dashboard.FieldConfigSource] = None) -> None:
+    def __init__(self, type_val: str = "", plugin_version: typing.Optional[str] = None, targets: typing.Optional[list[cogvariants.Dataquery]] = None, title: typing.Optional[str] = None, description: typing.Optional[str] = None, transparent: typing.Optional[bool] = False, datasource: typing.Optional[common.DataSourceRef] = None, links: typing.Optional[list[dashboard.DashboardLink]] = None, repeat: typing.Optional[str] = None, repeat_direction: typing.Optional[typing.Literal["h", "v"]] = None, max_per_row: typing.Optional[float] = None, max_data_points: typing.Optional[float] = None, transformations: typing.Optional[list[dashboard.DataTransformerConfig]] = None, interval: typing.Optional[str] = None, time_from: typing.Optional[str] = None, time_shift: typing.Optional[str] = None, hide_time_override: typing.Optional[bool] = None, time_compare: typing.Optional[str] = None, cache_timeout: typing.Optional[str] = None, query_caching_ttl: typing.Optional[float] = None, options: typing.Optional[object] = None, field_config: typing.Optional[dashboard.FieldConfigSource] = None) -> None:
         self.type_val = type_val
         self.plugin_version = plugin_version
         self.targets = targets
@@ -250,6 +253,7 @@ class PanelModel:
         self.time_from = time_from
         self.time_shift = time_shift
         self.hide_time_override = hide_time_override
+        self.time_compare = time_compare
         self.cache_timeout = cache_timeout
         self.query_caching_ttl = query_caching_ttl
         self.options = options
@@ -291,6 +295,8 @@ class PanelModel:
             payload["timeShift"] = self.time_shift
         if self.hide_time_override is not None:
             payload["hideTimeOverride"] = self.hide_time_override
+        if self.time_compare is not None:
+            payload["timeCompare"] = self.time_compare
         if self.cache_timeout is not None:
             payload["cacheTimeout"] = self.cache_timeout
         if self.query_caching_ttl is not None:
@@ -339,6 +345,8 @@ class PanelModel:
             args["time_shift"] = data["timeShift"]
         if "hideTimeOverride" in data:
             args["hide_time_override"] = data["hideTimeOverride"]
+        if "timeCompare" in data:
+            args["time_compare"] = data["timeCompare"]
         if "cacheTimeout" in data:
             args["cache_timeout"] = data["cacheTimeout"]
         if "queryCachingTTL" in data:

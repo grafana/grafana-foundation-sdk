@@ -5,6 +5,8 @@
  * <span class="badge object-type-struct"></span> [Item](./object-Item.md)
  * <span class="badge object-type-enum"></span> [ItemType](./object-ItemType.md)
  * <span class="badge object-type-struct"></span> [Playlist](./object-Playlist.md)
+ * <span class="badge object-type-scalar"></span> [PlaylistKind](./object-PlaylistKind.md)
+ * <span class="badge object-type-scalar"></span> [PlaylistV0Alpha1](./object-PlaylistV0Alpha1.md)
 ## Builders
 
  * <span class="badge builder"></span> [ItemBuilder](./builder-ItemBuilder.md)
@@ -25,6 +27,14 @@ NewPlaylist creates a new Playlist object.
 
 ```go
 func NewPlaylist() *Playlist
+```
+
+### <span class="badge function"></span> Manifest
+
+Creates a resource manifest from a Playlist.
+
+```go
+func Manifest(name string, playlist cog.Builder[Playlist]) *PlaylistBuilder
 ```
 
 ### <span class="badge function"></span> ItemConverter

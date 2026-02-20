@@ -35,6 +35,11 @@ func (builder *ExprTypeClassicConditionsResultAssertionsBuilder) Build() (ExprTy
 	return *builder.internal, nil
 }
 
+func (builder *ExprTypeClassicConditionsResultAssertionsBuilder) RecordError(path string, err error) *ExprTypeClassicConditionsResultAssertionsBuilder {
+	builder.errors = append(builder.errors, cog.MakeBuildErrors(path, err)...)
+	return builder
+}
+
 // Maximum frame count
 func (builder *ExprTypeClassicConditionsResultAssertionsBuilder) MaxFrames(maxFrames int64) *ExprTypeClassicConditionsResultAssertionsBuilder {
 	builder.internal.MaxFrames = &maxFrames

@@ -35,6 +35,11 @@ func (builder *QueryEditorPropertyExpressionBuilder) Build() (QueryEditorPropert
 	return *builder.internal, nil
 }
 
+func (builder *QueryEditorPropertyExpressionBuilder) RecordError(path string, err error) *QueryEditorPropertyExpressionBuilder {
+	builder.errors = append(builder.errors, cog.MakeBuildErrors(path, err)...)
+	return builder
+}
+
 func (builder *QueryEditorPropertyExpressionBuilder) Property(property cog.Builder[QueryEditorProperty]) *QueryEditorPropertyExpressionBuilder {
 	propertyResource, err := property.Build()
 	if err != nil {

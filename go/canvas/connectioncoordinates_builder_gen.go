@@ -35,6 +35,11 @@ func (builder *ConnectionCoordinatesBuilder) Build() (ConnectionCoordinates, err
 	return *builder.internal, nil
 }
 
+func (builder *ConnectionCoordinatesBuilder) RecordError(path string, err error) *ConnectionCoordinatesBuilder {
+	builder.errors = append(builder.errors, cog.MakeBuildErrors(path, err)...)
+	return builder
+}
+
 func (builder *ConnectionCoordinatesBuilder) X(x float64) *ConnectionCoordinatesBuilder {
 	builder.internal.X = x
 

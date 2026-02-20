@@ -36,6 +36,11 @@ func (builder *StackableFieldConfigBuilder) Build() (StackableFieldConfig, error
 	return *builder.internal, nil
 }
 
+func (builder *StackableFieldConfigBuilder) RecordError(path string, err error) *StackableFieldConfigBuilder {
+	builder.errors = append(builder.errors, cog.MakeBuildErrors(path, err)...)
+	return builder
+}
+
 func (builder *StackableFieldConfigBuilder) Stacking(stacking cog.Builder[StackingConfig]) *StackableFieldConfigBuilder {
 	stackingResource, err := stacking.Build()
 	if err != nil {

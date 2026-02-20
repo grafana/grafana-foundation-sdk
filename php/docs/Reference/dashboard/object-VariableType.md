@@ -21,6 +21,8 @@ Dashboard variable type
 
 `system`: Variables defined by Grafana. See: https://grafana.com/docs/grafana/latest/dashboards/variables/add-template-variables/#global-variables
 
+`switch`: Boolean variables rendered as a switch
+
 ## Definition
 
 ```php
@@ -130,6 +132,15 @@ final class VariableType implements \JsonSerializable, \Stringable {
         return self::$instances["snapshot"];
     }
 
+    public static function switch(): self
+    {
+        if (!isset(self::$instances["switch"])) {
+            self::$instances["switch"] = new self("switch");
+        }
+
+        return self::$instances["switch"];
+    }
+
     public static function fromValue(string $value): self
     {
         if ($value === "query") {
@@ -170,6 +181,10 @@ final class VariableType implements \JsonSerializable, \Stringable {
 
         if ($value === "snapshot") {
             return self::snapshot();
+        }
+
+        if ($value === "switch") {
+            return self::switch();
         }
 
         throw new \UnexpectedValueException("Value '$value' is not part of the enum VariableType");

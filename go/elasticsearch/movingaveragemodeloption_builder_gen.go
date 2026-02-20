@@ -35,6 +35,11 @@ func (builder *MovingAverageModelOptionBuilder) Build() (MovingAverageModelOptio
 	return *builder.internal, nil
 }
 
+func (builder *MovingAverageModelOptionBuilder) RecordError(path string, err error) *MovingAverageModelOptionBuilder {
+	builder.errors = append(builder.errors, cog.MakeBuildErrors(path, err)...)
+	return builder
+}
+
 func (builder *MovingAverageModelOptionBuilder) Label(label string) *MovingAverageModelOptionBuilder {
 	builder.internal.Label = label
 

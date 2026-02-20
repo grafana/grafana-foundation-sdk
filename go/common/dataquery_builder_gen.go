@@ -38,6 +38,11 @@ func (builder *DataQueryBuilder) Build() (DataQuery, error) {
 	return *builder.internal, nil
 }
 
+func (builder *DataQueryBuilder) RecordError(path string, err error) *DataQueryBuilder {
+	builder.errors = append(builder.errors, cog.MakeBuildErrors(path, err)...)
+	return builder
+}
+
 // A unique identifier for the query within the list of targets.
 // In server side expressions, the refId is used as a variable name to identify results.
 // By default, the UI will assign A->Z; however setting meaningful names may be useful.

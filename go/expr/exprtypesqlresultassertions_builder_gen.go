@@ -35,6 +35,11 @@ func (builder *ExprTypeSqlResultAssertionsBuilder) Build() (ExprTypeSqlResultAss
 	return *builder.internal, nil
 }
 
+func (builder *ExprTypeSqlResultAssertionsBuilder) RecordError(path string, err error) *ExprTypeSqlResultAssertionsBuilder {
+	builder.errors = append(builder.errors, cog.MakeBuildErrors(path, err)...)
+	return builder
+}
+
 // Maximum frame count
 func (builder *ExprTypeSqlResultAssertionsBuilder) MaxFrames(maxFrames int64) *ExprTypeSqlResultAssertionsBuilder {
 	builder.internal.MaxFrames = &maxFrames

@@ -58,6 +58,8 @@ export interface FieldConfig {
 	color?: dashboard.FieldColor;
 	// The behavior when clicking on a result
 	links?: dashboard.DashboardLink[];
+	// Define interactive HTTP requests that can be triggered from data visualizations.
+	actions?: dashboard.Action[];
 	// Alternative to empty string
 	noValue?: string;
 	// custom is specified by the FieldConfig field

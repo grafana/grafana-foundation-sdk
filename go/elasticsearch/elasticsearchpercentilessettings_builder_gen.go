@@ -35,6 +35,11 @@ func (builder *ElasticsearchPercentilesSettingsBuilder) Build() (ElasticsearchPe
 	return *builder.internal, nil
 }
 
+func (builder *ElasticsearchPercentilesSettingsBuilder) RecordError(path string, err error) *ElasticsearchPercentilesSettingsBuilder {
+	builder.errors = append(builder.errors, cog.MakeBuildErrors(path, err)...)
+	return builder
+}
+
 func (builder *ElasticsearchPercentilesSettingsBuilder) Script(script InlineScript) *ElasticsearchPercentilesSettingsBuilder {
 	builder.internal.Script = &script
 

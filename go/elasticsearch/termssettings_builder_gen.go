@@ -35,6 +35,11 @@ func (builder *TermsSettingsBuilder) Build() (TermsSettings, error) {
 	return *builder.internal, nil
 }
 
+func (builder *TermsSettingsBuilder) RecordError(path string, err error) *TermsSettingsBuilder {
+	builder.errors = append(builder.errors, cog.MakeBuildErrors(path, err)...)
+	return builder
+}
+
 func (builder *TermsSettingsBuilder) Order(order TermsOrder) *TermsSettingsBuilder {
 	builder.internal.Order = &order
 

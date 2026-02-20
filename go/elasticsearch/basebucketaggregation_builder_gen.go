@@ -35,6 +35,11 @@ func (builder *BaseBucketAggregationBuilder) Build() (BaseBucketAggregation, err
 	return *builder.internal, nil
 }
 
+func (builder *BaseBucketAggregationBuilder) RecordError(path string, err error) *BaseBucketAggregationBuilder {
+	builder.errors = append(builder.errors, cog.MakeBuildErrors(path, err)...)
+	return builder
+}
+
 func (builder *BaseBucketAggregationBuilder) Id(id string) *BaseBucketAggregationBuilder {
 	builder.internal.Id = id
 

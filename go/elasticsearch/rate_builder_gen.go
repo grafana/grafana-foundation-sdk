@@ -35,6 +35,11 @@ func (builder *RateBuilder) Build() (Rate, error) {
 	return *builder.internal, nil
 }
 
+func (builder *RateBuilder) RecordError(path string, err error) *RateBuilder {
+	builder.errors = append(builder.errors, cog.MakeBuildErrors(path, err)...)
+	return builder
+}
+
 func (builder *RateBuilder) Field(field string) *RateBuilder {
 	builder.internal.Field = &field
 

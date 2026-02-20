@@ -44,6 +44,10 @@ export interface VariableModel {
 	// Optional field, if you want to extract part of a series name or metric node segment.
 	// Named capture groups can be used to separate the display text and value.
 	regex?: string;
+	// Additional static options for query variable
+	staticOptions?: dashboard.VariableOption[];
+	// Ordering of static options in relation to options returned from data source for query variable
+	staticOptionsOrder?: "before" | "after" | "sorted";
 	// Dynamically calculates interval by dividing time range by the count specified.
 	auto?: boolean;
 	// The minimum threshold below which the step count intervals will not divide the time.

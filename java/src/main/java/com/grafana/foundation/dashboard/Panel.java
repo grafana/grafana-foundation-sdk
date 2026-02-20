@@ -107,6 +107,11 @@ public class Panel {
     @JsonInclude(JsonInclude.Include.NON_NULL)
     @JsonProperty("hideTimeOverride")
     public Boolean hideTimeOverride;
+    // Compare the current time range with a previous period
+    // For example "1d" to compare current period but shifted back 1 day
+    @JsonInclude(JsonInclude.Include.NON_NULL)
+    @JsonProperty("timeCompare")
+    public String timeCompare;
     // Dynamically load the panel
     @JsonInclude(JsonInclude.Include.NON_NULL)
     @JsonProperty("libraryPanel")
@@ -132,7 +137,7 @@ public class Panel {
         this.transparent = false;
         this.repeatDirection = PanelRepeatDirection.H;
     }
-    public Panel(String type,Integer id,String pluginVersion,List<Dataquery> targets,String title,String description,Boolean transparent,DataSourceRef datasource,GridPos gridPos,List<DashboardLink> links,String repeat,PanelRepeatDirection repeatDirection,Double maxPerRow,Double maxDataPoints,List<DataTransformerConfig> transformations,String interval,String timeFrom,String timeShift,Boolean hideTimeOverride,LibraryPanelRef libraryPanel,String cacheTimeout,Double queryCachingTTL,Object options,FieldConfigSource fieldConfig) {
+    public Panel(String type,Integer id,String pluginVersion,List<Dataquery> targets,String title,String description,Boolean transparent,DataSourceRef datasource,GridPos gridPos,List<DashboardLink> links,String repeat,PanelRepeatDirection repeatDirection,Double maxPerRow,Double maxDataPoints,List<DataTransformerConfig> transformations,String interval,String timeFrom,String timeShift,Boolean hideTimeOverride,String timeCompare,LibraryPanelRef libraryPanel,String cacheTimeout,Double queryCachingTTL,Object options,FieldConfigSource fieldConfig) {
         this.type = type;
         this.id = id;
         this.pluginVersion = pluginVersion;
@@ -152,6 +157,7 @@ public class Panel {
         this.timeFrom = timeFrom;
         this.timeShift = timeShift;
         this.hideTimeOverride = hideTimeOverride;
+        this.timeCompare = timeCompare;
         this.libraryPanel = libraryPanel;
         this.cacheTimeout = cacheTimeout;
         this.queryCachingTTL = queryCachingTTL;

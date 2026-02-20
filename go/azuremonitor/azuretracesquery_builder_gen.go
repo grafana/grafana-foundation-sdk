@@ -36,6 +36,11 @@ func (builder *AzureTracesQueryBuilder) Build() (AzureTracesQuery, error) {
 	return *builder.internal, nil
 }
 
+func (builder *AzureTracesQueryBuilder) RecordError(path string, err error) *AzureTracesQueryBuilder {
+	builder.errors = append(builder.errors, cog.MakeBuildErrors(path, err)...)
+	return builder
+}
+
 // Specifies the format results should be returned as.
 func (builder *AzureTracesQueryBuilder) ResultFormat(resultFormat ResultFormat) *AzureTracesQueryBuilder {
 	builder.internal.ResultFormat = &resultFormat

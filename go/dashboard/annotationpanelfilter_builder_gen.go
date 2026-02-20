@@ -35,6 +35,11 @@ func (builder *AnnotationPanelFilterBuilder) Build() (AnnotationPanelFilter, err
 	return *builder.internal, nil
 }
 
+func (builder *AnnotationPanelFilterBuilder) RecordError(path string, err error) *AnnotationPanelFilterBuilder {
+	builder.errors = append(builder.errors, cog.MakeBuildErrors(path, err)...)
+	return builder
+}
+
 // Should the specified panels be included or excluded
 func (builder *AnnotationPanelFilterBuilder) Exclude(exclude bool) *AnnotationPanelFilterBuilder {
 	builder.internal.Exclude = &exclude

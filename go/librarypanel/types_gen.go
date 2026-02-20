@@ -613,6 +613,9 @@ type PanelModel struct {
 	TimeShift *string `json:"timeShift,omitempty"`
 	// Controls if the timeFrom or timeShift overrides are shown in the panel header
 	HideTimeOverride *bool `json:"hideTimeOverride,omitempty"`
+	// Compare the current time range with a previous period
+	// For example "1d" to compare current period but shifted back 1 day
+	TimeCompare *string `json:"timeCompare,omitempty"`
 	// Sets panel queries cache timeout.
 	CacheTimeout *string `json:"cacheTimeout,omitempty"`
 	// Overrides the data source configured time-to-live for a query cache item in milliseconds
@@ -734,6 +737,12 @@ func (resource *PanelModel) UnmarshalJSON(raw []byte) error {
 	if fields["hideTimeOverride"] != nil {
 		if err := json.Unmarshal(fields["hideTimeOverride"], &resource.HideTimeOverride); err != nil {
 			return fmt.Errorf("error decoding field 'hideTimeOverride': %w", err)
+		}
+	}
+
+	if fields["timeCompare"] != nil {
+		if err := json.Unmarshal(fields["timeCompare"], &resource.TimeCompare); err != nil {
+			return fmt.Errorf("error decoding field 'timeCompare': %w", err)
 		}
 	}
 
@@ -1020,6 +1029,17 @@ func (resource *PanelModel) UnmarshalJSONStrict(raw []byte) error {
 		delete(fields, "hideTimeOverride")
 
 	}
+	// Field "timeCompare"
+	if fields["timeCompare"] != nil {
+		if string(fields["timeCompare"]) != "null" {
+			if err := json.Unmarshal(fields["timeCompare"], &resource.TimeCompare); err != nil {
+				errs = append(errs, cog.MakeBuildErrors("timeCompare", err)...)
+			}
+
+		}
+		delete(fields, "timeCompare")
+
+	}
 	// Field "cacheTimeout"
 	if fields["cacheTimeout"] != nil {
 		if string(fields["cacheTimeout"]) != "null" {
@@ -1227,6 +1247,15 @@ func (resource PanelModel) Equals(other PanelModel) bool {
 
 	if resource.HideTimeOverride != nil {
 		if *resource.HideTimeOverride != *other.HideTimeOverride {
+			return false
+		}
+	}
+	if resource.TimeCompare == nil && other.TimeCompare != nil || resource.TimeCompare != nil && other.TimeCompare == nil {
+		return false
+	}
+
+	if resource.TimeCompare != nil {
+		if *resource.TimeCompare != *other.TimeCompare {
 			return false
 		}
 	}

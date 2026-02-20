@@ -96,6 +96,22 @@ Options that can be selected for a variable.
 options(options: dashboard.VariableOption[])
 ```
 
+### <span class="badge object-method"></span> staticOptions
+
+Additional static options for query variable
+
+```typescript
+staticOptions(staticOptions: dashboard.VariableOption[])
+```
+
+### <span class="badge object-method"></span> staticOptionsOrder
+
+Ordering of static options in relation to options returned from data source for query variable
+
+```typescript
+staticOptionsOrder(staticOptionsOrder: "before" | "after" | "sorted")
+```
+
 ### <span class="badge object-method"></span> stepCount
 
 How many times the current time range should be divided to calculate the value, similar to the Max data points query option.

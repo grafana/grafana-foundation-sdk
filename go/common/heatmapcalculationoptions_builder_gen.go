@@ -35,6 +35,11 @@ func (builder *HeatmapCalculationOptionsBuilder) Build() (HeatmapCalculationOpti
 	return *builder.internal, nil
 }
 
+func (builder *HeatmapCalculationOptionsBuilder) RecordError(path string, err error) *HeatmapCalculationOptionsBuilder {
+	builder.errors = append(builder.errors, cog.MakeBuildErrors(path, err)...)
+	return builder
+}
+
 // The number of buckets to use for the xAxis in the heatmap
 func (builder *HeatmapCalculationOptionsBuilder) XBuckets(xBuckets cog.Builder[HeatmapCalculationBucketConfig]) *HeatmapCalculationOptionsBuilder {
 	xBucketsResource, err := xBuckets.Build()

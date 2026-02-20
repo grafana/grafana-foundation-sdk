@@ -59,6 +59,9 @@ public class AnnotationQueryDeserializer extends JsonDeserializer<AnnotationQuer
         if (root.has("builtIn")) {
             annotationQuery.builtIn = mapper.convertValue(root.get("builtIn"), new TypeReference<>() {});
         }
+        if (root.has("placement")) {
+            annotationQuery.placement = mapper.convertValue(root.get("placement"), new TypeReference<>() {});
+        }
         if (root.has("expr")) {
             annotationQuery.expr = mapper.convertValue(root.get("expr"), new TypeReference<>() {});
         }

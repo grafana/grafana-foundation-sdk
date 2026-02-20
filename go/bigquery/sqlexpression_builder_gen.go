@@ -35,6 +35,11 @@ func (builder *SQLExpressionBuilder) Build() (SQLExpression, error) {
 	return *builder.internal, nil
 }
 
+func (builder *SQLExpressionBuilder) RecordError(path string, err error) *SQLExpressionBuilder {
+	builder.errors = append(builder.errors, cog.MakeBuildErrors(path, err)...)
+	return builder
+}
+
 func (builder *SQLExpressionBuilder) Columns(columns []cog.Builder[QueryEditorFunctionExpression]) *SQLExpressionBuilder {
 	columnsResources := make([]QueryEditorFunctionExpression, 0, len(columns))
 	for _, r1 := range columns {

@@ -68,3 +68,13 @@ export class MetadataBuilder implements cog.Builder<resource.Metadata> {
     }
 }
 
+/**
+ * Creates metadata for a named resource.
+ */
+export function named(name: string): MetadataBuilder {
+	const builder = new MetadataBuilder();
+	builder.name(name);
+
+	return builder;
+}
+

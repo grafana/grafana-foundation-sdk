@@ -5,7 +5,7 @@ title: <span class="badge object-type-enum"></span> VariableHide
 
 Determine if the variable shows on dashboard
 
-Accepted values are 0 (show label and value), 1 (show value only), 2 (show nothing).
+Accepted values are 0 (show label and value), 1 (show value only), 2 (show nothing), 3 (show under the controls dropdown menu).
 
 ## Definition
 
@@ -15,6 +15,7 @@ const (
 	VariableHideDontHide VariableHide = 0
 	VariableHideHideLabel VariableHide = 1
 	VariableHideHideVariable VariableHide = 2
+	VariableHideInControlsMenu VariableHide = 3
 )
 
 ```

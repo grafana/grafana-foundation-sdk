@@ -37,6 +37,11 @@ func (builder *HeatmapTooltipBuilder) Build() (HeatmapTooltip, error) {
 	return *builder.internal, nil
 }
 
+func (builder *HeatmapTooltipBuilder) RecordError(path string, err error) *HeatmapTooltipBuilder {
+	builder.errors = append(builder.errors, cog.MakeBuildErrors(path, err)...)
+	return builder
+}
+
 // Controls how the tooltip is shown
 func (builder *HeatmapTooltipBuilder) Mode(mode common.TooltipDisplayMode) *HeatmapTooltipBuilder {
 	builder.internal.Mode = mode

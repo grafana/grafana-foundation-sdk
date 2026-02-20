@@ -35,6 +35,11 @@ func (builder *BaseMetricAggregationBuilder) Build() (BaseMetricAggregation, err
 	return *builder.internal, nil
 }
 
+func (builder *BaseMetricAggregationBuilder) RecordError(path string, err error) *BaseMetricAggregationBuilder {
+	builder.errors = append(builder.errors, cog.MakeBuildErrors(path, err)...)
+	return builder
+}
+
 func (builder *BaseMetricAggregationBuilder) Type(typeArg MetricAggregationType) *BaseMetricAggregationBuilder {
 	builder.internal.Type = typeArg
 

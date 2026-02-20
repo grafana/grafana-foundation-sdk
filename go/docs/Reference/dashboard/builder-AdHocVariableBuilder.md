@@ -72,6 +72,22 @@ Name of variable
 func (builder *AdHocVariableBuilder) Name(name string) *AdHocVariableBuilder
 ```
 
+### <span class="badge object-method"></span> StaticOptions
+
+Additional static options for query variable
+
+```go
+func (builder *AdHocVariableBuilder) StaticOptions(staticOptions []dashboard.VariableOption) *AdHocVariableBuilder
+```
+
+### <span class="badge object-method"></span> StaticOptionsOrder
+
+Ordering of static options in relation to options returned from data source for query variable
+
+```go
+func (builder *AdHocVariableBuilder) StaticOptionsOrder(staticOptionsOrder dashboard.VariableModelStaticOptionsOrder) *AdHocVariableBuilder
+```
+
 ## See also
 
  * <span class="badge object-type-struct"></span> [VariableModel](./object-VariableModel.md)

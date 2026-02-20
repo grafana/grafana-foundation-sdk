@@ -35,6 +35,11 @@ func (builder *ExprTypeClassicConditionsConditionsReducerBuilder) Build() (ExprT
 	return *builder.internal, nil
 }
 
+func (builder *ExprTypeClassicConditionsConditionsReducerBuilder) RecordError(path string, err error) *ExprTypeClassicConditionsConditionsReducerBuilder {
+	builder.errors = append(builder.errors, cog.MakeBuildErrors(path, err)...)
+	return builder
+}
+
 func (builder *ExprTypeClassicConditionsConditionsReducerBuilder) Type(typeArg string) *ExprTypeClassicConditionsConditionsReducerBuilder {
 	builder.internal.Type = typeArg
 

@@ -36,6 +36,11 @@ func (builder *GridLayoutBuilder) Build() (GridLayoutKind, error) {
 	return *builder.internal, nil
 }
 
+func (builder *GridLayoutBuilder) RecordError(path string, err error) *GridLayoutBuilder {
+	builder.errors = append(builder.errors, cog.MakeBuildErrors(path, err)...)
+	return builder
+}
+
 func (builder *GridLayoutBuilder) Items(items []cog.Builder[GridLayoutItemKind]) *GridLayoutBuilder {
 	itemsResources := make([]GridLayoutItemKind, 0, len(items))
 	for _, r1 := range items {

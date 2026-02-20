@@ -34,9 +34,11 @@
  * <span class="badge object-type-class"></span> [CustomVariableValue](./object-CustomVariableValue.md)
  * <span class="badge object-type-class"></span> [Dashboard](./object-Dashboard.md)
  * <span class="badge object-type-enum"></span> [DashboardCursorSync](./object-DashboardCursorSync.md)
+ * <span class="badge object-type-scalar"></span> [DashboardKind](./object-DashboardKind.md)
  * <span class="badge object-type-class"></span> [DashboardLink](./object-DashboardLink.md)
  * <span class="badge object-type-scalar"></span> [DashboardLinkPlacement](./object-DashboardLinkPlacement.md)
  * <span class="badge object-type-enum"></span> [DashboardLinkType](./object-DashboardLinkType.md)
+ * <span class="badge object-type-scalar"></span> [DashboardV2Beta1](./object-DashboardV2Beta1.md)
  * <span class="badge object-type-class"></span> [Dashboardv2beta1ActionStyle](./object-Dashboardv2beta1ActionStyle.md)
  * <span class="badge object-type-class"></span> [Dashboardv2beta1AdhocVariableKindDatasource](./object-Dashboardv2beta1AdhocVariableKindDatasource.md)
  * <span class="badge object-type-class"></span> [Dashboardv2beta1DataQueryKindDatasource](./object-Dashboardv2beta1DataQueryKindDatasource.md)
@@ -204,3 +206,13 @@
  * <span class="badge builder"></span> [ValueMappingResult](./builder-ValueMappingResult.md)
  * <span class="badge builder"></span> [VariableValueOption](./builder-VariableValueOption.md)
  * <span class="badge builder"></span> [VizConfigKind](./builder-VizConfigKind.md)
+## Functions
+
+### <span class="badge function"></span> manifest
+
+Creates a resource manifest from a Dashboard.
+
+```python
+def manifest(name: str, dashboard: cogbuilder.Builder[dashboardv2beta1.Dashboard]) -> Dashboard
+```
+

@@ -38,6 +38,11 @@ func (builder *TypeResampleBuilder) Build() (variants.Dataquery, error) {
 	return *builder.internal, nil
 }
 
+func (builder *TypeResampleBuilder) RecordError(path string, err error) *TypeResampleBuilder {
+	builder.errors = append(builder.errors, cog.MakeBuildErrors(path, err)...)
+	return builder
+}
+
 // The datasource
 func (builder *TypeResampleBuilder) Datasource(datasource common.DataSourceRef) *TypeResampleBuilder {
 	builder.internal.Datasource = &datasource

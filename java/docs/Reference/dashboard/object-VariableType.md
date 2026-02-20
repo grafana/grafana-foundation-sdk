@@ -21,6 +21,8 @@ Dashboard variable type
 
 `system`: Variables defined by Grafana. See: https://grafana.com/docs/grafana/latest/dashboards/variables/add-template-variables/#global-variables
 
+`switch`: Boolean variables rendered as a switch
+
 ## Definition
 
 ```java
@@ -39,6 +41,7 @@ import com.fasterxml.jackson.annotation.JsonValue;
 // `textbox`: Display a free text input field with an optional default value.
 // `custom`: Define the variable options manually using a comma-separated list.
 // `system`: Variables defined by Grafana. See: https://grafana.com/docs/grafana/latest/dashboards/variables/add-template-variables/#global-variables
+// `switch`: Boolean variables rendered as a switch
 @JsonFormat(shape = JsonFormat.Shape.OBJECT)
 public enum VariableType {
     QUERY("query"),
@@ -51,6 +54,7 @@ public enum VariableType {
     CUSTOM("custom"),
     SYSTEM("system"),
     SNAPSHOT("snapshot"),
+    SWITCH("switch"),
     _EMPTY("");
 
     private final String value;

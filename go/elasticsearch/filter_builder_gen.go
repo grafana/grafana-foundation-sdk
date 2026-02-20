@@ -35,6 +35,11 @@ func (builder *FilterBuilder) Build() (Filter, error) {
 	return *builder.internal, nil
 }
 
+func (builder *FilterBuilder) RecordError(path string, err error) *FilterBuilder {
+	builder.errors = append(builder.errors, cog.MakeBuildErrors(path, err)...)
+	return builder
+}
+
 func (builder *FilterBuilder) Query(query string) *FilterBuilder {
 	builder.internal.Query = query
 

@@ -36,6 +36,11 @@ func (builder *TimeOptionBuilder) Build() (TimeOption, error) {
 	return *builder.internal, nil
 }
 
+func (builder *TimeOptionBuilder) RecordError(path string, err error) *TimeOptionBuilder {
+	builder.errors = append(builder.errors, cog.MakeBuildErrors(path, err)...)
+	return builder
+}
+
 func (builder *TimeOptionBuilder) Display(display string) *TimeOptionBuilder {
 	builder.internal.Display = display
 

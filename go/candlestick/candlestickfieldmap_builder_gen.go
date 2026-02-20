@@ -35,6 +35,11 @@ func (builder *CandlestickFieldMapBuilder) Build() (CandlestickFieldMap, error) 
 	return *builder.internal, nil
 }
 
+func (builder *CandlestickFieldMapBuilder) RecordError(path string, err error) *CandlestickFieldMapBuilder {
+	builder.errors = append(builder.errors, cog.MakeBuildErrors(path, err)...)
+	return builder
+}
+
 // Corresponds to the starting value of the given period
 func (builder *CandlestickFieldMapBuilder) Open(open string) *CandlestickFieldMapBuilder {
 	builder.internal.Open = &open

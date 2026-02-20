@@ -18,6 +18,14 @@ Builds the object.
 build()
 ```
 
+### <span class="badge object-method"></span> actions
+
+Define interactive HTTP requests that can be triggered from data visualizations.
+
+```typescript
+actions(actions: cog.Builder<dashboard.Action>[])
+```
+
 ### <span class="badge object-method"></span> axisBorderShow
 
 ```typescript
@@ -491,6 +499,16 @@ thresholds(thresholds: cog.Builder<dashboard.ThresholdsConfig>)
 
 ```typescript
 thresholdsStyle(thresholdsStyle: cog.Builder<common.GraphThresholdsStyleConfig>)
+```
+
+### <span class="badge object-method"></span> timeCompare
+
+Compare the current time range with a previous period
+
+For example "1d" to compare current period but shifted back 1 day
+
+```typescript
+timeCompare(timeCompare: string)
 ```
 
 ### <span class="badge object-method"></span> timeFrom

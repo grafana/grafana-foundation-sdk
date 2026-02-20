@@ -35,6 +35,11 @@ func (builder *ElasticsearchSumSettingsBuilder) Build() (ElasticsearchSumSetting
 	return *builder.internal, nil
 }
 
+func (builder *ElasticsearchSumSettingsBuilder) RecordError(path string, err error) *ElasticsearchSumSettingsBuilder {
+	builder.errors = append(builder.errors, cog.MakeBuildErrors(path, err)...)
+	return builder
+}
+
 func (builder *ElasticsearchSumSettingsBuilder) Script(script InlineScript) *ElasticsearchSumSettingsBuilder {
 	builder.internal.Script = &script
 

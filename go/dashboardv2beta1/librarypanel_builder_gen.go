@@ -36,6 +36,11 @@ func (builder *LibraryPanelBuilder) Build() (LibraryPanelKind, error) {
 	return *builder.internal, nil
 }
 
+func (builder *LibraryPanelBuilder) RecordError(path string, err error) *LibraryPanelBuilder {
+	builder.errors = append(builder.errors, cog.MakeBuildErrors(path, err)...)
+	return builder
+}
+
 func (builder *LibraryPanelBuilder) Spec(spec cog.Builder[LibraryPanelKindSpec]) *LibraryPanelBuilder {
 	specResource, err := spec.Build()
 	if err != nil {

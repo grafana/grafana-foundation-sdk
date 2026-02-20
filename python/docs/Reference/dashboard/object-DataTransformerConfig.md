@@ -26,6 +26,7 @@ class DataTransformerConfig:
     # Optional frame matcher. When missing it will be applied to all results
     filter_val: typing.Optional[dashboard.MatcherConfig]
     # Where to pull DataFrames from as input to transformation
+    # replaced with common.DataTopic
     topic: typing.Optional[typing.Literal["series", "annotations", "alertStates"]]
     # Options to be passed to the transformer
     # Valid options depend on the transformer id

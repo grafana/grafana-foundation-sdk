@@ -35,6 +35,11 @@ func (builder *XychartXYSeriesConfigYBuilder) Build() (XychartXYSeriesConfigY, e
 	return *builder.internal, nil
 }
 
+func (builder *XychartXYSeriesConfigYBuilder) RecordError(path string, err error) *XychartXYSeriesConfigYBuilder {
+	builder.errors = append(builder.errors, cog.MakeBuildErrors(path, err)...)
+	return builder
+}
+
 func (builder *XychartXYSeriesConfigYBuilder) Matcher(matcher cog.Builder[MatcherConfig]) *XychartXYSeriesConfigYBuilder {
 	matcherResource, err := matcher.Build()
 	if err != nil {

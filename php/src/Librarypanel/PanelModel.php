@@ -113,6 +113,12 @@ class PanelModel implements \JsonSerializable
     public ?bool $hideTimeOverride;
 
     /**
+     * Compare the current time range with a previous period
+     * For example "1d" to compare current period but shifted back 1 day
+     */
+    public ?string $timeCompare;
+
+    /**
      * Sets panel queries cache timeout.
      */
     public ?string $cacheTimeout;
@@ -151,12 +157,13 @@ class PanelModel implements \JsonSerializable
      * @param string|null $timeFrom
      * @param string|null $timeShift
      * @param bool|null $hideTimeOverride
+     * @param string|null $timeCompare
      * @param string|null $cacheTimeout
      * @param float|null $queryCachingTTL
      * @param mixed|null $options
      * @param \Grafana\Foundation\Dashboard\FieldConfigSource|null $fieldConfig
      */
-    public function __construct(?string $type = null, ?string $pluginVersion = null, ?array $targets = null, ?string $title = null, ?string $description = null, ?bool $transparent = null, ?\Grafana\Foundation\Common\DataSourceRef $datasource = null, ?array $links = null, ?string $repeat = null, ?\Grafana\Foundation\Librarypanel\PanelModelRepeatDirection $repeatDirection = null, ?float $maxPerRow = null, ?float $maxDataPoints = null, ?array $transformations = null, ?string $interval = null, ?string $timeFrom = null, ?string $timeShift = null, ?bool $hideTimeOverride = null, ?string $cacheTimeout = null, ?float $queryCachingTTL = null,  $options = null, ?\Grafana\Foundation\Dashboard\FieldConfigSource $fieldConfig = null)
+    public function __construct(?string $type = null, ?string $pluginVersion = null, ?array $targets = null, ?string $title = null, ?string $description = null, ?bool $transparent = null, ?\Grafana\Foundation\Common\DataSourceRef $datasource = null, ?array $links = null, ?string $repeat = null, ?\Grafana\Foundation\Librarypanel\PanelModelRepeatDirection $repeatDirection = null, ?float $maxPerRow = null, ?float $maxDataPoints = null, ?array $transformations = null, ?string $interval = null, ?string $timeFrom = null, ?string $timeShift = null, ?bool $hideTimeOverride = null, ?string $timeCompare = null, ?string $cacheTimeout = null, ?float $queryCachingTTL = null,  $options = null, ?\Grafana\Foundation\Dashboard\FieldConfigSource $fieldConfig = null)
     {
         $this->type = $type ?: "";
         $this->pluginVersion = $pluginVersion;
@@ -175,6 +182,7 @@ class PanelModel implements \JsonSerializable
         $this->timeFrom = $timeFrom;
         $this->timeShift = $timeShift;
         $this->hideTimeOverride = $hideTimeOverride;
+        $this->timeCompare = $timeCompare;
         $this->cacheTimeout = $cacheTimeout;
         $this->queryCachingTTL = $queryCachingTTL;
         $this->options = $options;
@@ -186,7 +194,7 @@ class PanelModel implements \JsonSerializable
      */
     public static function fromArray(array $inputData): self
     {
-        /** @var array{type?: string, pluginVersion?: string, targets?: array<mixed>, title?: string, description?: string, transparent?: bool, datasource?: mixed, links?: array<mixed>, repeat?: string, repeatDirection?: string, maxPerRow?: float, maxDataPoints?: float, transformations?: array<mixed>, interval?: string, timeFrom?: string, timeShift?: string, hideTimeOverride?: bool, cacheTimeout?: string, queryCachingTTL?: float, options?: mixed, fieldConfig?: mixed} $inputData */
+        /** @var array{type?: string, pluginVersion?: string, targets?: array<mixed>, title?: string, description?: string, transparent?: bool, datasource?: mixed, links?: array<mixed>, repeat?: string, repeatDirection?: string, maxPerRow?: float, maxDataPoints?: float, transformations?: array<mixed>, interval?: string, timeFrom?: string, timeShift?: string, hideTimeOverride?: bool, timeCompare?: string, cacheTimeout?: string, queryCachingTTL?: float, options?: mixed, fieldConfig?: mixed} $inputData */
         $data = $inputData;
         return new self(
             type: $data["type"] ?? null,
@@ -206,7 +214,7 @@ class PanelModel implements \JsonSerializable
     	return \Grafana\Foundation\Common\DataSourceRef::fromArray($val);
     })($data["datasource"]) : null,
             links: array_filter(array_map((function($input) {
-    	/** @var array{title?: string, type?: string, icon?: string, tooltip?: string, url?: string, tags?: array<string>, asDropdown?: bool, targetBlank?: bool, includeVars?: bool, keepTime?: bool} */
+    	/** @var array{title?: string, type?: string, icon?: string, tooltip?: string, url?: string, tags?: array<string>, asDropdown?: bool, placement?: "inControlsMenu", targetBlank?: bool, includeVars?: bool, keepTime?: bool} */
     $val = $input;
     	return \Grafana\Foundation\Dashboard\DashboardLink::fromArray($val);
     }), $data["links"] ?? [])),
@@ -223,6 +231,7 @@ class PanelModel implements \JsonSerializable
             timeFrom: $data["timeFrom"] ?? null,
             timeShift: $data["timeShift"] ?? null,
             hideTimeOverride: $data["hideTimeOverride"] ?? null,
+            timeCompare: $data["timeCompare"] ?? null,
             cacheTimeout: $data["cacheTimeout"] ?? null,
             queryCachingTTL: $data["queryCachingTTL"] ?? null,
             options: $data["options"] ?? null,
@@ -288,6 +297,9 @@ class PanelModel implements \JsonSerializable
         }
         if (isset($this->hideTimeOverride)) {
             $data->hideTimeOverride = $this->hideTimeOverride;
+        }
+        if (isset($this->timeCompare)) {
+            $data->timeCompare = $this->timeCompare;
         }
         if (isset($this->cacheTimeout)) {
             $data->cacheTimeout = $this->cacheTimeout;

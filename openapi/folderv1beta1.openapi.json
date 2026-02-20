@@ -1,0 +1,37 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "title": "folderv1beta1",
+    "version": "0.0.0",
+    "x-schema-identifier": "",
+    "x-schema-kind": ""
+  },
+  "paths": {},
+  "components": {
+    "schemas": {
+      "Folder": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "title"
+        ],
+        "properties": {
+          "title": {
+            "type": "string"
+          },
+          "description": {
+            "type": "string"
+          }
+        }
+      },
+      "FolderV1Beta1": {
+        "type": "string",
+        "const": "folder.grafana.app/v1beta1"
+      },
+      "FolderKind": {
+        "type": "string",
+        "const": "Folder"
+      }
+    }
+  }
+}

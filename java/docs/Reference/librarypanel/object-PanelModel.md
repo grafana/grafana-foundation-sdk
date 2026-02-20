@@ -26,6 +26,7 @@ public class PanelModel {
   public String timeFrom;
   public String timeShift;
   public Boolean hideTimeOverride;
+  public String timeCompare;
   public String cacheTimeout;
   public Double queryCachingTTL;
   public Object options;

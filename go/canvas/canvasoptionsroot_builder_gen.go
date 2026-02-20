@@ -36,6 +36,11 @@ func (builder *CanvasOptionsRootBuilder) Build() (CanvasOptionsRoot, error) {
 	return *builder.internal, nil
 }
 
+func (builder *CanvasOptionsRootBuilder) RecordError(path string, err error) *CanvasOptionsRootBuilder {
+	builder.errors = append(builder.errors, cog.MakeBuildErrors(path, err)...)
+	return builder
+}
+
 // Name of the root element
 func (builder *CanvasOptionsRootBuilder) Name(name string) *CanvasOptionsRootBuilder {
 	builder.internal.Name = name

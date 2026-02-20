@@ -3102,6 +3102,14 @@
           }
         },
         "description": "FIXME: should we introduce this? --- Variable value option"
+      },
+      "DashboardV2Beta1": {
+        "type": "string",
+        "const": "dashboard.grafana.app/v2beta1"
+      },
+      "DashboardKind": {
+        "type": "string",
+        "const": "Dashboard"
       }
     }
   }
