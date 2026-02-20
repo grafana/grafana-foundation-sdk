@@ -1,0 +1,59 @@
+{
+    "_readme": [
+        "This file locks the dependencies of your project to a known state",
+        "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
+        "This file is @generated automatically"
+    ],
+    "content-hash": "70a4f227a13ecc9e0449cb83c2450a0a",
+    "packages": [
+        {
+            "name": "grafana/foundation-sdk",
+            "version": "v0.0.9",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/grafana/grafana-foundation-sdk.git",
+                "reference": "448bbe2863f48151cee1bd3e938bcc2bfa86d39e"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/grafana/grafana-foundation-sdk/zipball/448bbe2863f48151cee1bd3e938bcc2bfa86d39e",
+                "reference": "448bbe2863f48151cee1bd3e938bcc2bfa86d39e",
+                "shasum": ""
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Grafana\\Foundation\\": "php/src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "Apache-2.0"
+            ],
+            "description": "A set of tools, types and libraries for building and manipulating Grafana objects.",
+            "homepage": "https://github.com/grafana/grafana-foundation-sdk",
+            "keywords": [
+                "Metrics",
+                "grafana",
+                "logs",
+                "observability",
+                "sdk",
+                "traces"
+            ],
+            "support": {
+                "issues": "https://github.com/grafana/grafana-foundation-sdk/issues",
+                "source": "https://github.com/grafana/grafana-foundation-sdk/tree/v0.0.9"
+            },
+            "time": "2026-02-20T12:31:01+00:00"
+        }
+    ],
+    "packages-dev": [],
+    "aliases": [],
+    "minimum-stability": "stable",
+    "stability-flags": {},
+    "prefer-stable": false,
+    "prefer-lowest": false,
+    "platform": {},
+    "platform-dev": {},
+    "plugin-api-version": "2.9.0"
+}
