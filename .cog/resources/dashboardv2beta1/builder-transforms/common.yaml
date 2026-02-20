@@ -107,7 +107,7 @@ builders:
       under_path: spec
   - rename:
       by_object: AutoGridLayoutKind
-      as: AutoGridLayout
+      as: AutoGrid
 
   - merge_into:
       source: AutoGridLayoutItemSpec
@@ -115,15 +115,12 @@ builders:
       under_path: spec
   - rename:
       by_object: AutoGridLayoutItemKind
-      as: AutoGridLayoutItem
+      as: AutoGridItem
 
   - merge_into:
       source: ElementReference
-      destination: AutoGridLayoutItem
+      destination: AutoGridItem
       under_path: spec.element
-  - promote_options_to_constructor:
-      by_name: AutoGridLayoutItem
-      options: [name]
 
   ##############
   # RowsLayout #
@@ -135,7 +132,7 @@ builders:
       under_path: spec
   - rename:
       by_object: RowsLayoutKind
-      as: RowsLayout
+      as: Rows
 
   - merge_into:
       source: RowsLayoutItemSpec
@@ -143,14 +140,14 @@ builders:
       under_path: spec
   - rename:
       by_object: RowsLayoutItemKind
-      as: RowsLayoutItem
+      as: RowsItem
 
   - merge_into:
       source: ElementReference
-      destination: RowsLayoutItem
+      destination: RowsItem
       under_path: spec.element
   - promote_options_to_constructor:
-      by_object: RowsLayoutItemKind
+      by_object: RowsItem
       options: [name]
 
   - merge_into:
@@ -159,10 +156,7 @@ builders:
       under_path: spec
   - rename:
       by_object: RowsLayoutRowKind
-      as: RowsLayoutRow
-  - promote_options_to_constructor:
-      by_name: RowsLayoutRow
-      options: [title]
+      as: Row
 
   ##############
   # TabsLayout #
@@ -174,7 +168,7 @@ builders:
       under_path: spec
   - rename:
       by_object: TabsLayoutKind
-      as: TabsLayout
+      as: Tabs
 
   - merge_into:
       source: TabsLayoutTabSpec
@@ -182,11 +176,7 @@ builders:
       under_path: spec
   - rename:
       by_object: TabsLayoutTabKind
-      as: TabsLayoutTab
-
-  - promote_options_to_constructor:
-      by_name: TabsLayoutTab
-      options: [title]
+      as: Tab
 
   ##############
   # GridLayout #
@@ -198,7 +188,7 @@ builders:
       under_path: spec
   - rename:
       by_object: GridLayoutKind
-      as: GridLayout
+      as: Grid
 
   - merge_into:
       source: GridLayoutItemSpec
@@ -206,15 +196,12 @@ builders:
       under_path: spec
   - rename:
       by_object: GridLayoutItemKind
-      as: GridLayoutItem
+      as: GridItem
 
   - merge_into:
       source: ElementReference
-      destination: GridLayoutItem
+      destination: GridItem
       under_path: spec.element
-  - promote_options_to_constructor:
-      by_name: GridLayoutItem
-      options: [name]
 
   - merge_into:
       source: GridLayoutRowSpec
@@ -222,10 +209,7 @@ builders:
       under_path: spec
   - rename:
       by_object: GridLayoutRowKind
-      as: GridLayoutRow
-  - promote_options_to_constructor:
-      by_name: GridLayoutRow
-      options: [title]
+      as: GridRow
 
   - omit: { by_object: GridLayoutSpec }
   - omit: { by_object: GridLayoutRowSpec }
@@ -495,49 +479,6 @@ builders:
       by_name: DatasourceRef
       options: [ type, uid ]  
 
-  ############
-  # Manifest #
-  ############
-
-  - add_factory:
-      by_name: Dashboard
-      factory:
-        name: manifest
-        builder_ref: {referred_pkg: resource, referred_type: Manifest}
-        comments:
-          - "Creates a resource manifest from a Dashboard."
-        arguments:
-          - &name_argument
-            name: name
-            type: &type_string
-              kind: scalar
-              scalar: {scalar_kind: string}
-          - &spec_argument
-            name: dashboard
-            type:
-              kind: ref
-              ref: {referred_pkg: dashboardv2beta1, referred_type: Dashboard}
-        options:
-          - name: apiVersion
-            parameters:
-              - constant:
-                  value: "dashboard.grafana.app/v2beta1"
-                  type: *type_string
-          - name: kind
-            parameters:
-              - constant:
-                  value: "Dashboard"
-                  type: *type_string
-          - name: metadata
-            parameters:
-              - factory:
-                  ref: { package: resource, builder: Metadata, factory: named }
-                  parameters:
-                    - { argument: *name_argument }
-          - name: spec
-            parameters:
-              - { argument: *spec_argument, force_build: true }
-
 options:
   ###########
   # Layouts #
@@ -563,75 +504,77 @@ options:
   # RowsLayout #
   ##############
 
-  - omit: { by_builder: RowsLayout.spec }
-  - omit: { by_builder: RowsLayoutItem.spec }
-  - omit: { by_builder: RowsLayoutRow.spec }
+  - omit: { by_builder: Rows.spec }
+  - omit: { by_builder: RowsItem.spec }
+  - omit: { by_builder: Row.spec }
 
   # Append a single `row` value instead of a map of everything
   - duplicate:
-      by_builder: RowsLayout.rows
+      by_builder: Rows.rows
       as: row
   - array_to_append:
-      by_builder: RowsLayout.row
+      by_builder: Rows.row
 
   # GridLayoutKind + AutoGridLayoutKind + TabsLayoutKind + RowsLayoutKind
   - disjunction_as_options:
-      by_builder: RowsLayoutRow.Layout
+      by_builder: Row.Layout
   - rename:
-      by_builder: RowsLayoutRow.GridLayoutKind
+      by_builder: Row.GridLayoutKind
       as: gridLayout
   - rename:
-      by_builder: RowsLayoutRow.AutoGridLayoutKind
-      as: AutoGridLayout
+      by_builder: Row.AutoGridLayoutKind
+      as: autoGridLayout
   - rename:
-      by_builder: RowsLayoutRow.TabsLayoutKind
-      as: TabsLayout
+      by_builder: Row.TabsLayoutKind
+      as: tabsLayout
   - rename:
-      by_builder: RowsLayoutRow.RowsLayoutKind
-      as: RowsLayout
+      by_builder: Row.RowsLayoutKind
+      as: rowsLayout
 
   ##################
   # AutoGridLayout #
   ##################
 
-  - omit: { by_builder: AutoGridLayout.spec }
-  - omit: { by_builder: AutoGridLayoutItem.spec }
+  - omit: { by_builder: AutoGrid.spec }
+  - omit: { by_builder: AutoGridItem.spec }
 
   # Append a single `item` value instead of a map of everything
   - duplicate:
-      by_builder: AutoGridLayout.items
+      by_builder: AutoGrid.items
       as: item
   - array_to_append:
-      by_builder: AutoGridLayout.item
+      by_builder: AutoGrid.item
+
+  - omit: { by_builder: AutoGridItem.element }
 
   ##############
   # TabsLayout #
   ##############
 
-  - omit: { by_builder: TabsLayout.spec }
-  - omit: { by_builder: TabsLayoutTab.spec }
+  - omit: { by_builder: Tabs.spec }
+  - omit: { by_builder: Tab.spec }
 
   # Append a single `tab` value instead of a list of everything
   - duplicate:
-      by_builder: TabsLayout.tabs
+      by_builder: Tabs.tabs
       as: tab
   - array_to_append:
-      by_builder: TabsLayout.tab
+      by_builder: Tabs.tab
 
   # GridLayoutKind + AutoGridLayoutKind + TabsLayoutKind + RowsLayoutKind
   - disjunction_as_options:
-      by_builder: TabsLayoutTab.Layout
+      by_builder: Tab.Layout
   - rename:
-      by_builder: TabsLayoutTab.GridLayoutKind
+      by_builder: Tab.GridLayoutKind
       as: gridLayout
   - rename:
-      by_builder: TabsLayoutTab.AutoGridLayoutKind
+      by_builder: Tab.AutoGridLayoutKind
       as: AutoGridLayout
   - rename:
-      by_builder: TabsLayoutTab.TabsLayoutKind
+      by_builder: Tab.TabsLayoutKind
       as: TabsLayout
   - rename:
-      by_builder: TabsLayoutTab.RowsLayoutKind
+      by_builder: Tab.RowsLayoutKind
       as: RowsLayout
 
   ##############
@@ -639,40 +582,37 @@ options:
   ##############
 
   # spec options are leftovers from the merge_into veneer
-  - omit: { by_builder: GridLayout.spec }
-  - omit: { by_builder: GridLayoutItem.spec }
-  - omit: { by_builder: GridLayoutRow.spec }
+  - omit: { by_builder: Grid.spec }
+  - omit: { by_builder: GridItem.spec }
+  - omit: { by_builder: GridRow.spec }
 
   - rename:
-      by_builder: GridLayoutRow.elements
+      by_builder: GridRow.elements
       as: items
   # Append a single `item` value instead of a list of everything
   - duplicate:
-      by_builder: GridLayoutRow.items
+      by_builder: GridRow.items
       as: item
   - array_to_append:
-      by_builder: GridLayoutRow.item
+      by_builder: GridRow.item
 
   # Append a single `item` value instead of a list of everything
   - duplicate:
-      by_builder: GridLayout.items
+      by_builder: Grid.items
       as: item
   - array_to_append:
-      by_builder: GridLayout.item
+      by_builder: Grid.item
 
-  - omit: { by_builder: GridLayoutItem.element }
-  - rename:
-      by_builder: GridLayoutItem.name
-      as: element
+  - omit: { by_builder: GridItem.element }
 
   # GridLayoutItemKind + GridLayoutRowKind
   - disjunction_as_options:
-      by_builder: GridLayout.item
+      by_builder: Grid.item
   - rename:
-      by_builder: GridLayout.GridLayoutItemKind
+      by_builder: Grid.GridLayoutItemKind
       as: item
   - rename:
-      by_builder: GridLayout.GridLayoutRowKind
+      by_builder: Grid.GridLayoutRowKind
       as: row
 
   ###########

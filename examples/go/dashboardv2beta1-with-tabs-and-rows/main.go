@@ -35,47 +35,47 @@ func main() {
 		Panel("panel-4", randomWalkPanel(4, 1)).
 		// Layout building
 		TabsLayout(
-			dashboard.NewTabsLayoutBuilder().
-				Tab(dashboard.NewTabsLayoutTabBuilder("Tab without rows").GridLayout(
-					dashboard.NewGridLayoutBuilder().
-						Item(dashboard.NewGridLayoutItemBuilder("panel-1").Width(12).Height(8)),
+			dashboard.Tabs().
+				Tab(dashboard.Tab("Tab without rows").GridLayout(
+					dashboard.Grid().
+						Item(dashboard.GridItem("panel-1").Width(12).Height(8)),
 				)).
-				Tab(dashboard.NewTabsLayoutTabBuilder("Tab With Rows").RowsLayout(
-					dashboard.NewRowsLayoutBuilder().
+				Tab(dashboard.Tab("Tab With Rows").RowsLayout(
+					dashboard.Rows().
 						Row(
-							dashboard.NewRowsLayoutRowBuilder("Row without tabs").
+							dashboard.Row("Row without tabs").
 								Collapse(false).
 								AutoGridLayout(
-									dashboard.NewAutoGridLayoutBuilder().Item(dashboard.NewAutoGridLayoutItemBuilder("panel-2")),
+									dashboard.AutoGrid().Item(dashboard.AutoGridItem("panel-2")),
 								),
 						).
 						Row(
-							dashboard.NewRowsLayoutRowBuilder("Row with tabs").
+							dashboard.Row("Row with tabs").
 								Collapse(true).
 								TabsLayout(
-									dashboard.NewTabsLayoutBuilder().
+									dashboard.Tabs().
 										Tab(
-											dashboard.NewTabsLayoutTabBuilder("First tab").
+											dashboard.Tab("First tab").
 												AutoGridLayout(
-													dashboard.NewAutoGridLayoutBuilder().Item(dashboard.NewAutoGridLayoutItemBuilder("panel-3")),
+													dashboard.AutoGrid().Item(dashboard.AutoGridItem("panel-3")),
 												),
 										).
 										Tab(
-											dashboard.NewTabsLayoutTabBuilder("Second tab").
+											dashboard.Tab("Second tab").
 												AutoGridLayout(
-													dashboard.NewAutoGridLayoutBuilder().Item(dashboard.NewAutoGridLayoutItemBuilder("panel-4")),
+													dashboard.AutoGrid().Item(dashboard.AutoGridItem("panel-4")),
 												),
 										),
 								),
 						).
 						Row(
-							dashboard.NewRowsLayoutRowBuilder("Empty row").
-								AutoGridLayout(dashboard.NewAutoGridLayoutBuilder()),
+							dashboard.Row("Empty row").
+								AutoGridLayout(dashboard.AutoGrid()),
 						).
 						Row(
-							dashboard.NewRowsLayoutRowBuilder("Hide header row").
+							dashboard.Row("Hide header row").
 								HideHeader(true).
-								AutoGridLayout(dashboard.NewAutoGridLayoutBuilder()),
+								AutoGridLayout(dashboard.AutoGrid()),
 						),
 				)),
 		)
