@@ -71,7 +71,7 @@ jobs:
           fetch-depth: 0
       - name: Build and Push Image
         id: build
-        uses: grafana/shared-workflows/actions/docker-build-push-image@ef27c620a88acc9f3007f30be5e9407324e8975b # docker-build-push-image/v0.3.0
+        uses: grafana/shared-workflows/actions/docker-build-push-image@438c8d6321147607b3f6f0e922508e78e746af9b # docker-build-push-image/v0.3.1
         with:
           registries: dockerhub
           repository: grafana/dashboard-converter
