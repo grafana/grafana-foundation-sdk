@@ -68,20 +68,6 @@ options:
       as: RowsLayout
 
   ##############
-  # GridLayout #
-  ##############
-
-  # GridLayoutItemKind + GridLayoutRowKind
-  - disjunction_as_options:
-      by_builder: Grid.item
-  - rename:
-      by_builder: Grid.GridLayoutItemKind
-      as: item
-  - rename:
-      by_builder: Grid.GridLayoutRowKind
-      as: row
-
-  ##############
   # Dashboards #
   ##############
 

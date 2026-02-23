@@ -6,7 +6,6 @@ package: dashboardv2beta1
 
 builders:
   # overrides and transformations related
-  - omit: { by_object: DashboardFieldConfigSourceOverrides }
   - omit: { by_object: MatcherConfig }
   - omit: { by_object: DynamicConfigValue }
   - omit: { by_object: Threshold }
@@ -135,22 +134,6 @@ builders:
       as: Rows
 
   - merge_into:
-      source: RowsLayoutItemSpec
-      destination: RowsLayoutItemKind
-      under_path: spec
-  - rename:
-      by_object: RowsLayoutItemKind
-      as: RowsItem
-
-  - merge_into:
-      source: ElementReference
-      destination: RowsItem
-      under_path: spec.element
-  - promote_options_to_constructor:
-      by_object: RowsItem
-      options: [name]
-
-  - merge_into:
       source: RowsLayoutRowSpec
       destination: RowsLayoutRowKind
       under_path: spec
@@ -203,16 +186,7 @@ builders:
       destination: GridItem
       under_path: spec.element
 
-  - merge_into:
-      source: GridLayoutRowSpec
-      destination: GridLayoutRowKind
-      under_path: spec
-  - rename:
-      by_object: GridLayoutRowKind
-      as: GridRow
-
   - omit: { by_object: GridLayoutSpec }
-  - omit: { by_object: GridLayoutRowSpec }
   - omit: { by_object: GridLayoutItemSpec }
 
   ###########
@@ -276,10 +250,6 @@ builders:
   # Dashboards #
   ##############
   - rename:
-      by_object: DashboardSpec
-      as: Dashboard
-
-  - rename:
       by_object: TimeSettingsSpec
       as: TimeSettings
 
@@ -339,10 +309,6 @@ builders:
   - omit: { by_object: FieldConfig }
   - omit: { by_object: FieldConfigSource }
   - omit: { by_object: VizConfigSpec }
-    
-  - promote_options_to_constructor:
-      by_name: DatasourceRef
-      options: [ type, uid ]  
 
 options:
   ##############
@@ -350,7 +316,6 @@ options:
   ##############
 
   - omit: { by_builder: Rows.spec }
-  - omit: { by_builder: RowsItem.spec }
   - omit: { by_builder: Row.spec }
 
   # Append a single `row` value instead of a map of everything
@@ -397,17 +362,6 @@ options:
   # spec options are leftovers from the merge_into veneer
   - omit: { by_builder: Grid.spec }
   - omit: { by_builder: GridItem.spec }
-  - omit: { by_builder: GridRow.spec }
-
-  - rename:
-      by_builder: GridRow.elements
-      as: items
-  # Append a single `item` value instead of a list of everything
-  - duplicate:
-      by_builder: GridRow.items
-      as: item
-  - array_to_append:
-      by_builder: GridRow.item
 
   # Append a single `item` value instead of a list of everything
   - duplicate:
