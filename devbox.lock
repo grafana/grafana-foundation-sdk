@@ -2,8 +2,8 @@
   "lockfile_version": "1",
   "packages": {
     "github:NixOS/nixpkgs/nixpkgs-unstable": {
-      "last_modified": "2026-01-26T13:12:53Z",
-      "resolved": "github:NixOS/nixpkgs/13b0f9e6ac78abbbb736c635d87845c4f4bee51b?lastModified=1769433173&narHash=sha256-Gf1dFYgD344WZ3q0LPlRoWaNdNQq8kSBDLEWulRQSEs%3D"
+      "last_modified": "2026-02-16T02:09:13Z",
+      "resolved": "github:NixOS/nixpkgs/d1c15b7d5806069da59e819999d70e1cec0760bf?lastModified=1771207753&narHash=sha256-b9uG8yN50DRQ6A7JdZBfzq718ryYrlmGgqkRm9OOwCE%3D"
     },
     "go@1.26": {
       "last_modified": "2026-02-11T12:16:34Z",
@@ -151,57 +151,57 @@
       }
     },
     "php83Packages.phpstan@2.1.1": {
-      "last_modified": "2025-01-25T23:17:58Z",
-      "resolved": "github:NixOS/nixpkgs/b582bb5b0d7af253b05d58314b85ab8ec46b8d19#php83Packages.phpstan",
+      "last_modified": "2025-07-28T17:09:23Z",
+      "resolved": "github:NixOS/nixpkgs/648f70160c03151bc2121d179291337ad6bc564b#php83Packages.phpstan",
       "source": "devbox-search",
-      "version": "2.1.1",
+      "version": "2.1.19",
       "systems": {
         "aarch64-darwin": {
           "outputs": [
             {
               "name": "out",
-              "path": "/nix/store/jly06w68p2shjrscxgnaw7k04m2bz13h-phpstan-2.1.1",
+              "path": "/nix/store/63f8a7yncm85c30snxdhgk7jd0aqv748-phpstan-2.1.19",
               "default": true
             }
           ],
-          "store_path": "/nix/store/jly06w68p2shjrscxgnaw7k04m2bz13h-phpstan-2.1.1"
+          "store_path": "/nix/store/63f8a7yncm85c30snxdhgk7jd0aqv748-phpstan-2.1.19"
         },
         "aarch64-linux": {
           "outputs": [
             {
               "name": "out",
-              "path": "/nix/store/id87a78h5ch2lylvf8jpxzs3gscx6vc4-phpstan-2.1.1",
+              "path": "/nix/store/svz9brh5y3c3s13vl5g2isrkh42i2xyw-phpstan-2.1.19",
               "default": true
             }
           ],
-          "store_path": "/nix/store/id87a78h5ch2lylvf8jpxzs3gscx6vc4-phpstan-2.1.1"
+          "store_path": "/nix/store/svz9brh5y3c3s13vl5g2isrkh42i2xyw-phpstan-2.1.19"
         },
         "x86_64-darwin": {
           "outputs": [
             {
               "name": "out",
-              "path": "/nix/store/26li9wcij0y6fbd3gnpin3nvsy6ncka7-phpstan-2.1.1",
+              "path": "/nix/store/yblfk9k6173wng9wc6d2x5gc6pn4lb37-phpstan-2.1.19",
               "default": true
             }
           ],
-          "store_path": "/nix/store/26li9wcij0y6fbd3gnpin3nvsy6ncka7-phpstan-2.1.1"
+          "store_path": "/nix/store/yblfk9k6173wng9wc6d2x5gc6pn4lb37-phpstan-2.1.19"
         },
         "x86_64-linux": {
           "outputs": [
             {
               "name": "out",
-              "path": "/nix/store/r71q2zsjd6r0afnqkhk9s939dwg58jns-phpstan-2.1.1",
+              "path": "/nix/store/bskdharg4a6iv4s2brpn0hci0447y1ra-phpstan-2.1.19",
               "default": true
             }
           ],
-          "store_path": "/nix/store/r71q2zsjd6r0afnqkhk9s939dwg58jns-phpstan-2.1.1"
+          "store_path": "/nix/store/bskdharg4a6iv4s2brpn0hci0447y1ra-phpstan-2.1.19"
         }
       }
     },
     "python312@3.12.12": {
-      "last_modified": "2025-12-31T03:27:36Z",
+      "last_modified": "2026-01-23T17:20:52Z",
       "plugin_version": "0.0.4",
-      "resolved": "github:NixOS/nixpkgs/f665af0cdb70ed27e1bd8f9fdfecaf451260fc55#python312",
+      "resolved": "github:NixOS/nixpkgs/a1bab9e494f5f4939442a57a58d0449a109593fe#python312",
       "source": "devbox-search",
       "version": "3.12.12",
       "systems": {
@@ -209,55 +209,55 @@
           "outputs": [
             {
               "name": "out",
-              "path": "/nix/store/bzy1s8kfnz8hsc96ji7pwn0377wwsgw5-python3-3.12.12",
+              "path": "/nix/store/2j3gnwp0hsbvrirf23w1q344q7gbcy92-python3-3.12.12",
               "default": true
             }
           ],
-          "store_path": "/nix/store/bzy1s8kfnz8hsc96ji7pwn0377wwsgw5-python3-3.12.12"
+          "store_path": "/nix/store/2j3gnwp0hsbvrirf23w1q344q7gbcy92-python3-3.12.12"
         },
         "aarch64-linux": {
           "outputs": [
             {
               "name": "out",
-              "path": "/nix/store/wh5w9bgdwkfwamk5vs9pq36ncqj1rhwq-python3-3.12.12",
+              "path": "/nix/store/h2jzxh50f3sa4k8p8wv4rrf51ci1srq1-python3-3.12.12",
               "default": true
             },
             {
               "name": "debug",
-              "path": "/nix/store/nqi4qn3skyrn8pbfzszcc622ms7arbcp-python3-3.12.12-debug"
+              "path": "/nix/store/8rckkaw2jgbwz8l8gvhi75fx5q2wh87b-python3-3.12.12-debug"
             }
           ],
-          "store_path": "/nix/store/wh5w9bgdwkfwamk5vs9pq36ncqj1rhwq-python3-3.12.12"
+          "store_path": "/nix/store/h2jzxh50f3sa4k8p8wv4rrf51ci1srq1-python3-3.12.12"
         },
         "x86_64-darwin": {
           "outputs": [
             {
               "name": "out",
-              "path": "/nix/store/izh5ff9bjyz5sr7siaypz3333rfzifz0-python3-3.12.12",
+              "path": "/nix/store/1f8k4x22cjz9nj2x7dki3xsgkih1j4rx-python3-3.12.12",
               "default": true
             }
           ],
-          "store_path": "/nix/store/izh5ff9bjyz5sr7siaypz3333rfzifz0-python3-3.12.12"
+          "store_path": "/nix/store/1f8k4x22cjz9nj2x7dki3xsgkih1j4rx-python3-3.12.12"
         },
         "x86_64-linux": {
           "outputs": [
             {
               "name": "out",
-              "path": "/nix/store/iizfzmqjdfvbyx82gqw92glb5zl6m4my-python3-3.12.12",
+              "path": "/nix/store/by9gvhyjawm7g7gkkgpj28aas6fl8ws7-python3-3.12.12",
               "default": true
             },
             {
               "name": "debug",
-              "path": "/nix/store/czxfvqyngv5zg2l2ylcgbby5r51w7z2w-python3-3.12.12-debug"
+              "path": "/nix/store/j79a6bw3yqj9jvfazf6zpapzq7dh83q5-python3-3.12.12-debug"
             }
           ],
-          "store_path": "/nix/store/iizfzmqjdfvbyx82gqw92glb5zl6m4my-python3-3.12.12"
+          "store_path": "/nix/store/by9gvhyjawm7g7gkkgpj28aas6fl8ws7-python3-3.12.12"
         }
       }
     },
     "yarn@1.22": {
-      "last_modified": "2025-01-19T08:16:51Z",
-      "resolved": "github:NixOS/nixpkgs/50165c4f7eb48ce82bd063e1fb8047a0f515f8ce#yarn",
+      "last_modified": "2026-01-23T17:20:52Z",
+      "resolved": "github:NixOS/nixpkgs/a1bab9e494f5f4939442a57a58d0449a109593fe#yarn",
       "source": "devbox-search",
       "version": "1.22.22",
       "systems": {
@@ -265,41 +265,41 @@
           "outputs": [
             {
               "name": "out",
-              "path": "/nix/store/mmfij7f7gmdwj7s2w37papznjbz68y87-yarn-1.22.22",
+              "path": "/nix/store/0cd64z50gqis8fcvcixhifd3c093gxma-yarn-1.22.22",
               "default": true
             }
           ],
-          "store_path": "/nix/store/mmfij7f7gmdwj7s2w37papznjbz68y87-yarn-1.22.22"
+          "store_path": "/nix/store/0cd64z50gqis8fcvcixhifd3c093gxma-yarn-1.22.22"
         },
         "aarch64-linux": {
           "outputs": [
             {
               "name": "out",
-              "path": "/nix/store/gvmr94wic9z2nq310cf85nr4z39p0y7m-yarn-1.22.22",
+              "path": "/nix/store/r26rphs7kpljdnshd1nci1g5qjw0ayn2-yarn-1.22.22",
               "default": true
             }
           ],
-          "store_path": "/nix/store/gvmr94wic9z2nq310cf85nr4z39p0y7m-yarn-1.22.22"
+          "store_path": "/nix/store/r26rphs7kpljdnshd1nci1g5qjw0ayn2-yarn-1.22.22"
         },
         "x86_64-darwin": {
           "outputs": [
             {
               "name": "out",
-              "path": "/nix/store/zm8a8x82cbrmn6g46ia30whn4bz0s22c-yarn-1.22.22",
+              "path": "/nix/store/n78iwihflnr0c8bf0xyhvm6nivq0yng2-yarn-1.22.22",
               "default": true
             }
           ],
-          "store_path": "/nix/store/zm8a8x82cbrmn6g46ia30whn4bz0s22c-yarn-1.22.22"
+          "store_path": "/nix/store/n78iwihflnr0c8bf0xyhvm6nivq0yng2-yarn-1.22.22"
         },
         "x86_64-linux": {
           "outputs": [
             {
               "name": "out",
-              "path": "/nix/store/ya1438dfd9wd41lkhyr85wpni9g3zskb-yarn-1.22.22",
+              "path": "/nix/store/5yc7qn8vaawl2v2gqd0rv2igir9wasg3-yarn-1.22.22",
               "default": true
             }
           ],
-          "store_path": "/nix/store/ya1438dfd9wd41lkhyr85wpni9g3zskb-yarn-1.22.22"
+          "store_path": "/nix/store/5yc7qn8vaawl2v2gqd0rv2igir9wasg3-yarn-1.22.22"
         }
       }
     }
