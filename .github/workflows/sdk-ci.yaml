@@ -90,9 +90,6 @@ jobs:
           private-key: ${{ env.SCHEMA_READER_PRIVATE_KEY }}
           owner: ${{ github.repository_owner }}
 
-      - name: Setup cog
-        uses: ./.github/actions/setup-cog
-
       - name: Install devbox
         uses: jetify-com/devbox-install-action@a0d2d53632934ae004f878c840055956d9f741b0 #v0.14.0
         with:

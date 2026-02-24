@@ -81,10 +81,10 @@ class Dashboard
         return (new SDKDashboard\PanelBuilder())
             ->title("New panel {$panelId}")
             ->visualization(new Timeseries\VisualizationBuilder())
-            ->data(new SDKDashboard\QueryGroupBuilder()
-                ->target(new SDKDashboard\TargetBuilder()
+            ->data((new SDKDashboard\QueryGroupBuilder())
+                ->target((new SDKDashboard\TargetBuilder())
                     ->query(
-                        new Testdata\QueryBuilder()
+                        (new Testdata\QueryBuilder())
                             ->scenarioId(Testdata\DataqueryScenarioId::randomWalk())
                             ->seriesCount($seriesCount)
                     )
