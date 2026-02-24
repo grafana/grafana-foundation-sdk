@@ -9,10 +9,8 @@
   dependencies:
     "@jridgewell/trace-mapping" "0.3.9"
 
-"@grafana/grafana-foundation-sdk@~0.0.10":
+"@grafana/grafana-foundation-sdk@file:../../../typescript":
   version "0.0.10"
-  resolved "https://registry.yarnpkg.com/@grafana/grafana-foundation-sdk/-/grafana-foundation-sdk-0.0.10.tgz#9342b2061c66c06962826d1e98bb3ad63637f2bc"
-  integrity sha512-Afgch4zv+bd2zhpX8X60G8CEHV9BN1lvXjI2Dls/n7f2pPlFCxpXW81YG8faLJiaD9HPcn9PaWkCq8g5h7RCcg==
   dependencies:
     tslib "^2.6.2"
 
