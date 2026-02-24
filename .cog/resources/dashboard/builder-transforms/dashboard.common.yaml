@@ -235,9 +235,6 @@ builders:
   # Not needed
   - omit: { by_object: AnnotationContainer }
 
-  # No need for builders for structs generated from a disjunction
-  - omit: { generated_from_disjunction: true }
-
   ################
   # Constructors #
   ################
@@ -268,11 +265,6 @@ options:
       by_name: Dashboard.editable
       true_as: editable
       false_as: readonly
-
-  # Refresh(string) instead of Refresh(struct StringOrBool)
-  - struct_fields_as_arguments:
-      by_name: Dashboard.refresh
-      fields: [String]
 
   # Append a single `link` value instead of a list of everything
   - duplicate:

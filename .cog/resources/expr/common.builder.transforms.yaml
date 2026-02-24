@@ -1,8 +1,0 @@
-# yaml-language-server: $schema=https://raw.githubusercontent.com/grafana/cog/main/schemas/veneers.json
-
-languages: [all]
-
-package: expr
-
-builders:
-  - omit: { by_object: Expr }
