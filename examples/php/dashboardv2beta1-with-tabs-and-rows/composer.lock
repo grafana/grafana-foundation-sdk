@@ -4,22 +4,23 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "70a4f227a13ecc9e0449cb83c2450a0a",
+    "content-hash": "7a53cdd0e61fc7fddc53fb7dc0c186bd",
     "packages": [
         {
             "name": "grafana/foundation-sdk",
-            "version": "v0.0.9",
+            "version": "dev-main",
             "source": {
                 "type": "git",
                 "url": "https://github.com/grafana/grafana-foundation-sdk.git",
-                "reference": "448bbe2863f48151cee1bd3e938bcc2bfa86d39e"
+                "reference": "9fb214bb4aa2326e47c5270db91d30c6e7d9a2ab"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/grafana/grafana-foundation-sdk/zipball/448bbe2863f48151cee1bd3e938bcc2bfa86d39e",
-                "reference": "448bbe2863f48151cee1bd3e938bcc2bfa86d39e",
+                "url": "https://api.github.com/repos/grafana/grafana-foundation-sdk/zipball/9fb214bb4aa2326e47c5270db91d30c6e7d9a2ab",
+                "reference": "9fb214bb4aa2326e47c5270db91d30c6e7d9a2ab",
                 "shasum": ""
             },
+            "default-branch": true,
             "type": "library",
             "autoload": {
                 "psr-4": {
@@ -42,15 +43,17 @@
             ],
             "support": {
                 "issues": "https://github.com/grafana/grafana-foundation-sdk/issues",
-                "source": "https://github.com/grafana/grafana-foundation-sdk/tree/v0.0.9"
+                "source": "https://github.com/grafana/grafana-foundation-sdk/tree/main"
             },
-            "time": "2026-02-20T12:31:01+00:00"
+            "time": "2026-02-24T13:26:45+00:00"
         }
     ],
     "packages-dev": [],
     "aliases": [],
     "minimum-stability": "stable",
-    "stability-flags": {},
+    "stability-flags": {
+        "grafana/foundation-sdk": 20
+    },
     "prefer-stable": false,
     "prefer-lowest": false,
     "platform": {},
