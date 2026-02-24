@@ -2,6 +2,8 @@ module github.com/grafana/grafana-foundation-sdk/examples/go/grafana-openapi-cli
 
 go 1.22.0
 
+replace github.com/grafana/grafana-foundation-sdk/go => ../../../go/
+
 require (
 	github.com/go-openapi/strfmt v0.23.0
 	github.com/grafana/grafana-foundation-sdk/go v0.0.6

@@ -4,22 +4,23 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "18783d516b0b533fa8cc2722ffddcbfa",
+    "content-hash": "7a53cdd0e61fc7fddc53fb7dc0c186bd",
     "packages": [
         {
             "name": "grafana/foundation-sdk",
-            "version": "v0.0.7",
+            "version": "dev-main",
             "source": {
                 "type": "git",
                 "url": "https://github.com/grafana/grafana-foundation-sdk.git",
-                "reference": "af02db348903ecd95d3a732fef881bc71ddd0714"
+                "reference": "5394edbfc4c80800da01d7d92ad32ffd9829d6fb"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/grafana/grafana-foundation-sdk/zipball/af02db348903ecd95d3a732fef881bc71ddd0714",
-                "reference": "af02db348903ecd95d3a732fef881bc71ddd0714",
+                "url": "https://api.github.com/repos/grafana/grafana-foundation-sdk/zipball/5394edbfc4c80800da01d7d92ad32ffd9829d6fb",
+                "reference": "5394edbfc4c80800da01d7d92ad32ffd9829d6fb",
                 "shasum": ""
             },
+            "default-branch": true,
             "type": "library",
             "autoload": {
                 "psr-4": {
@@ -42,18 +43,20 @@
             ],
             "support": {
                 "issues": "https://github.com/grafana/grafana-foundation-sdk/issues",
-                "source": "https://github.com/grafana/grafana-foundation-sdk/tree/v0.0.7"
+                "source": "https://github.com/grafana/grafana-foundation-sdk/tree/main"
             },
-            "time": "2026-02-13T21:53:34+00:00"
+            "time": "2026-02-24T15:56:10+00:00"
         }
     ],
     "packages-dev": [],
     "aliases": [],
     "minimum-stability": "stable",
-    "stability-flags": [],
+    "stability-flags": {
+        "grafana/foundation-sdk": 20
+    },
     "prefer-stable": false,
     "prefer-lowest": false,
-    "platform": [],
-    "platform-dev": [],
-    "plugin-api-version": "2.6.0"
+    "platform": {},
+    "platform-dev": {},
+    "plugin-api-version": "2.9.0"
 }
