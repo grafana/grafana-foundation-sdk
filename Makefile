@@ -21,6 +21,7 @@ clone-kind-registry:
 
 .PHONY: generate
 generate: install-cog clone-kind-registry
+	@rm -rf go java jsonschema openapi php python typescript
 	$(COG_BIN) generate --config .cog/config.yaml \
 		--parameters "output_dir=%l,kind_registry_path=$(KIND_REGISTRY_PATH),release_tag=$(shell cat .release/tag)"
 
