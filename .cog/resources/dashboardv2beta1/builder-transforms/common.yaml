@@ -16,6 +16,7 @@ builders:
   - omit: { by_object: SpecialValueMap }
 
   - omit: { by_object: CustomVariableValue }
+  - omit: { by_object: Kind }
 
   ###################
   # AnnotationQuery #
@@ -324,70 +325,7 @@ builders:
   - omit: { by_object: FieldConfigSource }
   - omit: { by_object: VizConfigSpec }
 
-  ############
-  # Manifest #
-  ############
-
-  - add_factory:
-      by_name: Dashboard
-      factory:
-        name: manifest
-        builder_ref: {referred_pkg: resource, referred_type: Manifest}
-        comments:
-          - "Creates a resource manifest from a Dashboard."
-        arguments:
-          - &name_argument
-            name: name
-            type: &type_string
-              kind: scalar
-              scalar: {scalar_kind: string}
-          - &spec_argument
-            name: dashboard
-            type:
-              kind: ref
-              ref: {referred_pkg: dashboardv2beta1, referred_type: Dashboard}
-        options:
-          - name: apiVersion
-            parameters:
-              - constant:
-                  value: "dashboard.grafana.app/v2beta1"
-                  type: *type_string
-          - name: kind
-            parameters:
-              - constant:
-                  value: "Dashboard"
-                  type: *type_string
-          - name: metadata
-            parameters:
-              - factory:
-                  ref: { package: resource, builder: Metadata, factory: named }
-                  parameters:
-                    - { argument: *name_argument }
-          - name: spec
-            parameters:
-              - { argument: *spec_argument, force_build: true }
-
 options:
-  ###########
-  # Layouts #
-  ###########
-
-  # GridLayoutKind + RowsLayoutKind + AutoGridLayoutKind + TabsLayoutKind
-  - disjunction_as_options:
-      by_builder: Dashboard.Layout
-  - rename:
-      by_builder: Dashboard.GridLayoutKind
-      as: gridLayout
-  - rename:
-      by_builder: Dashboard.RowsLayoutKind
-      as: rowsLayout
-  - rename:
-      by_builder: Dashboard.AutoGridLayoutKind
-      as: autoGridLayout
-  - rename:
-      by_builder: Dashboard.TabsLayoutKind
-      as: tabsLayout
-
   ##############
   # RowsLayout #
   ##############
@@ -401,22 +339,6 @@ options:
       as: row
   - array_to_append:
       by_builder: RowsLayout.row
-
-  # GridLayoutKind + AutoGridLayoutKind + TabsLayoutKind + RowsLayoutKind
-  - disjunction_as_options:
-      by_builder: RowsLayoutRow.Layout
-  - rename:
-      by_builder: RowsLayoutRow.GridLayoutKind
-      as: gridLayout
-  - rename:
-      by_builder: RowsLayoutRow.AutoGridLayoutKind
-      as: AutoGridLayout
-  - rename:
-      by_builder: RowsLayoutRow.TabsLayoutKind
-      as: TabsLayout
-  - rename:
-      by_builder: RowsLayoutRow.RowsLayoutKind
-      as: RowsLayout
 
   ##################
   # AutoGridLayout #
@@ -445,22 +367,6 @@ options:
       as: tab
   - array_to_append:
       by_builder: TabsLayout.tab
-
-  # GridLayoutKind + AutoGridLayoutKind + TabsLayoutKind + RowsLayoutKind
-  - disjunction_as_options:
-      by_builder: TabsLayoutTab.Layout
-  - rename:
-      by_builder: TabsLayoutTab.GridLayoutKind
-      as: gridLayout
-  - rename:
-      by_builder: TabsLayoutTab.AutoGridLayoutKind
-      as: AutoGridLayout
-  - rename:
-      by_builder: TabsLayoutTab.TabsLayoutKind
-      as: TabsLayout
-  - rename:
-      by_builder: TabsLayoutTab.RowsLayoutKind
-      as: RowsLayout
 
   ##############
   # GridLayout #
@@ -533,16 +439,6 @@ options:
       as: element
   - map_to_index:
       by_builder: Dashboard.element
-  # panel + library panel
-  - disjunction_as_options:
-      by_builder: Dashboard.element
-      argument_index: 1
-  - rename:
-      by_builder: Dashboard.PanelKind
-      as: panel
-  - rename:
-      by_builder: Dashboard.LibraryPanelKind
-      as: libraryPanel
 
   # Append a single override instead forcing to define all of them at once
   - duplicate:

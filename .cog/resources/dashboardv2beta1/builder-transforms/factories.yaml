@@ -1,0 +1,49 @@
+# yaml-language-server: $schema=https://raw.githubusercontent.com/grafana/cog/main/schemas/veneers.json
+
+languages: [all]
+
+package: dashboardv2beta1
+
+builders:
+  ############
+  # Manifest #
+  ############
+
+  - add_factory:
+      by_name: Dashboard
+      factory:
+        name: manifest
+        builder_ref: {referred_pkg: resource, referred_type: Manifest}
+        comments:
+          - "Creates a resource manifest from a Dashboard."
+        arguments:
+          - &name_argument
+            name: name
+            type: &type_string
+              kind: scalar
+              scalar: {scalar_kind: string}
+          - &spec_argument
+            name: dashboard
+            type:
+              kind: ref
+              ref: {referred_pkg: dashboardv2beta1, referred_type: Dashboard}
+        options:
+          - name: apiVersion
+            parameters:
+              - constant:
+                  value: "dashboard.grafana.app/v2beta1"
+                  type: *type_string
+          - name: kind
+            parameters:
+              - constant:
+                  value: "Dashboard"
+                  type: *type_string
+          - name: metadata
+            parameters:
+              - factory:
+                  ref: { package: resource, builder: Metadata, factory: named }
+                  parameters:
+                    - { argument: *name_argument }
+          - name: spec
+            parameters:
+              - { argument: *spec_argument, force_build: true }
