@@ -126,3 +126,29 @@ builders:
   - promote_options_to_constructor:
       by_name: AdhocVariable
       options: [name]
+
+  ##################
+  # SwitchVariable #
+  ##################
+  - merge_into:
+      source: SwitchVariableSpec
+      destination: SwitchVariableKind
+      under_path: spec
+  - omit: { by_object: SwitchVariableSpec }
+  - rename:
+      by_object: SwitchVariableKind
+      as: SwitchVariable
+  - promote_options_to_constructor:
+      by_name: SwitchVariable
+      options: [name]
+
+options:
+  - omit: { by_builder: QueryVariable.spec }
+  - omit: { by_builder: TextVariable.spec }
+  - omit: { by_builder: ConstantVariable.spec }
+  - omit: { by_builder: DatasourceVariable.spec }
+  - omit: { by_builder: IntervalVariable.spec }
+  - omit: { by_builder: CustomVariable.spec }
+  - omit: { by_builder: GroupByVariable.spec }
+  - omit: { by_builder: AdhocVariable.spec }
+  - omit: { by_builder: SwitchVariable.spec }
