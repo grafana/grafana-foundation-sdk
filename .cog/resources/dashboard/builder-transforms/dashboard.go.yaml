@@ -4,8 +4,6 @@ languages: [go]
 
 package: dashboard
 
-builders: ~
-
 options:
   ##############
   # Dashboards #
