@@ -10,16 +10,19 @@ set -o nounset
 set -o pipefail
 
 __dir="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
-source "${__dir}/libs/logs.sh"
+source "${__dir}/../libs/logs.sh"
 
-notice "Go"
-${__dir}/examples/go.sh
+declare -a examples=(
+    "alert-rule"
+    "custom-panel"
+    "custom-query"
+    "grafana-agent-overview"
+    "linux-node-overview"
+    "red-method"
+)
 
-notice "PHP"
-${__dir}/examples/php.sh
-
-notice "Python"
-${__dir}/examples/python.sh
-
-notice "Typescript"
-${__dir}/examples/typescript.sh
+for i in "${examples[@]}"
+do
+    info "Running $i"
+    PYTHONPATH=$PYTHONPATH:"${__dir}/../../python" python "${__dir}/../../examples/python/$i/main.py"
+done
