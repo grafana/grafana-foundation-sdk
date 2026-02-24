@@ -33,19 +33,19 @@ options:
 
   # GridLayoutKind + AutoGridLayoutKind + TabsLayoutKind + RowsLayoutKind
   - disjunction_as_options:
-      by_builder: RowsLayoutRow.Layout
+      by_builder: row.Layout
   - rename:
-      by_builder: RowsLayoutRow.GridLayoutKind
+      by_builder: row.GridLayoutKind
       as: gridLayout
   - rename:
-      by_builder: RowsLayoutRow.AutoGridLayoutKind
-      as: AutoGridLayout
+      by_builder: row.AutoGridLayoutKind
+      as: autoGridLayout
   - rename:
-      by_builder: RowsLayoutRow.TabsLayoutKind
-      as: TabsLayout
+      by_builder: row.TabsLayoutKind
+      as: tabsLayout
   - rename:
-      by_builder: RowsLayoutRow.RowsLayoutKind
-      as: RowsLayout
+      by_builder: row.RowsLayoutKind
+      as: rowsLayout
 
   ##############
   # TabsLayout #
@@ -53,19 +53,19 @@ options:
 
   # GridLayoutKind + AutoGridLayoutKind + TabsLayoutKind + RowsLayoutKind
   - disjunction_as_options:
-      by_builder: TabsLayoutTab.Layout
+      by_builder: Tab.Layout
   - rename:
-      by_builder: TabsLayoutTab.GridLayoutKind
+      by_builder: Tab.GridLayoutKind
       as: gridLayout
   - rename:
-      by_builder: TabsLayoutTab.AutoGridLayoutKind
-      as: AutoGridLayout
+      by_builder: Tab.AutoGridLayoutKind
+      as: autoGridLayout
   - rename:
-      by_builder: TabsLayoutTab.TabsLayoutKind
-      as: TabsLayout
+      by_builder: Tab.TabsLayoutKind
+      as: tabsLayout
   - rename:
-      by_builder: TabsLayoutTab.RowsLayoutKind
-      as: RowsLayout
+      by_builder: Tab.RowsLayoutKind
+      as: rowsLayout
 
   ##############
   # Dashboards #

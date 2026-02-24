@@ -2,4 +2,6 @@ module github.com/grafana/grafana-foundation-sdk/examples/go/dashboardv2beta1-wi
 
 go 1.22.0
 
+replace github.com/grafana/grafana-foundation-sdk/go => ../../../go/
+
 require github.com/grafana/grafana-foundation-sdk/go v0.0.9
