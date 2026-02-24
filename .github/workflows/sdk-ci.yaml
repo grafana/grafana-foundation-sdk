@@ -64,6 +64,52 @@ jobs:
           GOGC: 'off'
           GITHUB_AUTH_TOKEN: ${{ steps.generate_reader_token.outputs.token }}
 
+  run_examples:
+    name: Run examples
+    runs-on: ubuntu-latest
+    permissions:
+      id-token: write
+
+    steps:
+      - uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
+        with:
+          persist-credentials: false
+
+      - name: Get secrets
+        uses: grafana/shared-workflows/actions/get-vault-secrets@c2f1df59dba624b3fd509e5181aa8da5217120c0
+        with:
+          repo_secrets: |
+            SCHEMA_READER_APP_ID=schema_reader:app-id
+            SCHEMA_READER_PRIVATE_KEY=schema_reader:private-key
+
+      - name: Generate github private token
+        id: generate_reader_token
+        uses: actions/create-github-app-token@29824e69f54612133e76f7eaac726eef6c875baf # v2.2.1
+        with:
+          app-id: ${{ env.SCHEMA_READER_APP_ID }}
+          private-key: ${{ env.SCHEMA_READER_PRIVATE_KEY }}
+          owner: ${{ github.repository_owner }}
+
+      - name: Setup cog
+        uses: ./.github/actions/setup-cog
+
+      - name: Install devbox
+        uses: jetify-com/devbox-install-action@a0d2d53632934ae004f878c840055956d9f741b0 #v0.14.0
+        with:
+          enable-cache: 'true'
+          devbox-version: ${{ env.DEVBOX_VERSION }}
+
+      - name: Run codegen pipeline
+        run: |
+          devbox run make generate
+        env:
+          GOGC: 'off'
+          GITHUB_AUTH_TOKEN: ${{ steps.generate_reader_token.outputs.token }}
+
+      - name: Run examples
+        run: |
+          devbox run ./scripts/run-examples.sh
+
   diff_preview:
     name: Generate diff
     runs-on: ubuntu-latest
