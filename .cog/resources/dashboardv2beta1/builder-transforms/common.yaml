@@ -44,6 +44,8 @@ builders:
       by_object: LibraryPanelKind
       as: LibraryPanel
 
+  - omit: { by_object: LibraryPanelKindSpec }
+
   # No need for builders for structs generated from a disjunction
   - omit: { generated_from_disjunction: true }
 
@@ -62,6 +64,7 @@ builders:
   - rename:
       by_object: AutoGridLayoutKind
       as: AutoGrid
+  - omit: { by_object: AutoGridLayoutSpec }
 
   - merge_into:
       source: AutoGridLayoutItemSpec
@@ -70,6 +73,7 @@ builders:
   - rename:
       by_object: AutoGridLayoutItemKind
       as: AutoGridItem
+  - omit: { by_object: AutoGridLayoutItemSpec }
 
   - merge_into:
       source: ElementReference
@@ -87,6 +91,7 @@ builders:
   - rename:
       by_object: RowsLayoutKind
       as: Rows
+  - omit: { by_object: RowsLayoutSpec }
 
   - merge_into:
       source: RowsLayoutRowSpec
@@ -95,6 +100,7 @@ builders:
   - rename:
       by_object: RowsLayoutRowKind
       as: Row
+  - omit: { by_object: RowsLayoutRowSpec }
 
   ##############
   # TabsLayout #
@@ -107,6 +113,7 @@ builders:
   - rename:
       by_object: TabsLayoutKind
       as: Tabs
+  - omit: { by_object: TabsLayoutSpec }
 
   - merge_into:
       source: TabsLayoutTabSpec
@@ -115,6 +122,7 @@ builders:
   - rename:
       by_object: TabsLayoutTabKind
       as: Tab
+  - omit: { by_object: TabsLayoutTabSpec }
 
   ##############
   # GridLayout #
@@ -127,6 +135,7 @@ builders:
   - rename:
       by_object: GridLayoutKind
       as: Grid
+  - omit: { by_object: GridLayoutSpec }
 
   - merge_into:
       source: GridLayoutItemSpec
@@ -135,14 +144,12 @@ builders:
   - rename:
       by_object: GridLayoutItemKind
       as: GridItem
+  - omit: { by_object: GridLayoutItemSpec }
 
   - merge_into:
       source: ElementReference
       destination: GridItem
       under_path: spec.element
-
-  - omit: { by_object: GridLayoutSpec }
-  - omit: { by_object: GridLayoutItemSpec }
 
   ###########
   # Queries #
@@ -179,6 +186,8 @@ builders:
       ]
       rename_options:
         datasource: old_datasource 
+
+  - omit: { by_name: DataQueryKind }
 
   - properties:
       by_name: QueryGroup
@@ -265,8 +274,12 @@ builders:
   - omit: { by_object: FieldConfig }
   - omit: { by_object: FieldConfigSource }
   - omit: { by_object: VizConfigSpec }
+  - omit: { by_name: VizConfigKind }
 
 options:
+  - omit: { by_builder: LibraryPanel.spec }
+  - omit: { by_builder: AnnotationQuery.spec }
+
   ##############
   # RowsLayout #
   ##############
