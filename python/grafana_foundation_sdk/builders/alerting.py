@@ -6,119 +6,6 @@ from ..models import alerting
 from ..cog import variants as cogvariants
 
 
-class Query(cogbuilder.Builder[alerting.Query]):
-    _internal: alerting.Query
-
-    def __init__(self, ref_id: str) -> None:
-        self._internal = alerting.Query()        
-        self._internal.ref_id = ref_id
-
-    def build(self) -> alerting.Query:
-        """
-        Builds the object.
-        """
-        return self._internal    
-    
-    def datasource_uid(self, datasource_uid: str) -> typing.Self:    
-        """
-        Grafana data source unique identifier; it should be '__expr__' for a Server Side Expression operation.
-        """
-            
-        self._internal.datasource_uid = datasource_uid
-    
-        return self
-    
-    def model(self, model: cogbuilder.Builder[cogvariants.Dataquery]) -> typing.Self:    
-        """
-        JSON is the raw JSON query and includes the above properties as well as custom properties.
-        """
-            
-        model_resource = model.build()
-        self._internal.model = model_resource
-    
-        return self
-    
-    def query_type(self, query_type: str) -> typing.Self:    
-        """
-        QueryType is an optional identifier for the type of query.
-        It can be used to distinguish different types of queries.
-        """
-            
-        self._internal.query_type = query_type
-    
-        return self
-    
-    def ref_id(self, ref_id: str) -> typing.Self:    
-        """
-        RefID is the unique identifier of the query, set by the frontend call.
-        """
-            
-        self._internal.ref_id = ref_id
-    
-        return self
-    
-    def relative_time_range(self, relative_time_range: alerting.RelativeTimeRange) -> typing.Self:    
-        """
-        RelativeTimeRange is the per query start and end time
-        for requests.
-        """
-            
-        self._internal.relative_time_range = relative_time_range
-    
-        return self
-    
-
-
-class RuleGroup(cogbuilder.Builder[alerting.RuleGroup]):
-    _internal: alerting.RuleGroup
-
-    def __init__(self, title: str) -> None:
-        self._internal = alerting.RuleGroup()        
-        self._internal.title = title
-
-    def build(self) -> alerting.RuleGroup:
-        """
-        Builds the object.
-        """
-        return self._internal    
-    
-    def folder_uid(self, folder_uid: str) -> typing.Self:    
-        self._internal.folder_uid = folder_uid
-    
-        return self
-    
-    def interval(self, interval: alerting.Duration) -> typing.Self:    
-        """
-        The interval, in seconds, at which all rules in the group are evaluated.
-        If a group contains many rules, the rules are evaluated sequentially.
-        """
-            
-        self._internal.interval = interval
-    
-        return self
-    
-    def rules(self, rules: list[cogbuilder.Builder[alerting.Rule]]) -> typing.Self:    
-        rules_resources = [r1.build() for r1 in rules]
-        self._internal.rules = rules_resources
-    
-        return self
-    
-    def with_rule(self, rule: cogbuilder.Builder[alerting.Rule]) -> typing.Self:    
-        if self._internal.rules is None:
-            self._internal.rules = []
-        
-        rule_resource = rule.build()
-        self._internal.rules.append(rule_resource)
-    
-        return self
-    
-    def title(self, title: str) -> typing.Self:    
-        self._internal.title = title
-    
-        return self
-    
-
-
 class NotificationSettings(cogbuilder.Builder[alerting.NotificationSettings]):
     _internal: alerting.NotificationSettings
 
@@ -346,154 +233,6 @@ class NotificationTemplate(cogbuilder.Builder[alerting.NotificationTemplate]):
     
     def version(self, version: str) -> typing.Self:    
         self._internal.version = version
-    
-        return self
-    
-
-
-class Rule(cogbuilder.Builder[alerting.Rule]):
-    _internal: alerting.Rule
-
-    def __init__(self, title: str) -> None:
-        self._internal = alerting.Rule()        
-        if not len(title) >= 1:
-            raise ValueError("len(title) must be >= 1")
-        if not len(title) <= 190:
-            raise ValueError("len(title) must be <= 190")
-        self._internal.title = title
-
-    def build(self) -> alerting.Rule:
-        """
-        Builds the object.
-        """
-        return self._internal    
-    
-    def annotations(self, annotations: dict[str, str]) -> typing.Self:    
-        self._internal.annotations = annotations
-    
-        return self
-    
-    def condition(self, condition: str) -> typing.Self:    
-        self._internal.condition = condition
-    
-        return self
-    
-    def queries(self, data: list[cogbuilder.Builder[alerting.Query]]) -> typing.Self:    
-        data_resources = [r1.build() for r1 in data]
-        self._internal.data = data_resources
-    
-        return self
-    
-    def with_query(self, data: cogbuilder.Builder[alerting.Query]) -> typing.Self:    
-        if self._internal.data is None:
-            self._internal.data = []
-        
-        data_resource = data.build()
-        self._internal.data.append(data_resource)
-    
-        return self
-    
-    def exec_err_state(self, exec_err_state: typing.Literal["Alerting", "Error", "OK", "KeepLast"]) -> typing.Self:    
-        self._internal.exec_err_state = exec_err_state
-    
-        return self
-    
-    def folder_uid(self, folder_uid: str) -> typing.Self:    
-        self._internal.folder_uid = folder_uid
-    
-        return self
-    
-    def for_val(self, for_val: str) -> typing.Self:    
-        """
-        The amount of time, in seconds, for which the rule must be breached for the rule to be considered to be Firing.
-        Before this time has elapsed, the rule is only considered to be Pending.
-        """
-            
-        self._internal.for_val = for_val
-    
-        return self
-    
-    def id(self, id_val: int) -> typing.Self:    
-        self._internal.id_val = id_val
-    
-        return self
-    
-    def is_paused(self, is_paused: bool) -> typing.Self:    
-        self._internal.is_paused = is_paused
-    
-        return self
-    
-    def labels(self, labels: dict[str, str]) -> typing.Self:    
-        self._internal.labels = labels
-    
-        return self
-    
-    def no_data_state(self, no_data_state: typing.Literal["OK", "Alerting", "NoData", "KeepLast"]) -> typing.Self:    
-        self._internal.no_data_state = no_data_state
-    
-        return self
-    
-    def notification_settings(self, notification_settings: cogbuilder.Builder[alerting.NotificationSettings]) -> typing.Self:    
-        notification_settings_resource = notification_settings.build()
-        self._internal.notification_settings = notification_settings_resource
-    
-        return self
-    
-    def org_id(self, org_id: int) -> typing.Self:    
-        self._internal.org_id = org_id
-    
-        return self
-    
-    def provenance(self, provenance: alerting.Provenance) -> typing.Self:    
-        self._internal.provenance = provenance
-    
-        return self
-    
-    def record(self, record: cogbuilder.Builder[alerting.RecordRule]) -> typing.Self:    
-        record_resource = record.build()
-        self._internal.record = record_resource
-    
-        return self
-    
-    def rule_group(self, rule_group: str) -> typing.Self:    
-        if not len(rule_group) >= 1:
-            raise ValueError("len(rule_group) must be >= 1")
-        if not len(rule_group) <= 190:
-            raise ValueError("len(rule_group) must be <= 190")
-        self._internal.rule_group = rule_group
-    
-        return self
-    
-    def title(self, title: str) -> typing.Self:    
-        if not len(title) >= 1:
-            raise ValueError("len(title) must be >= 1")
-        if not len(title) <= 190:
-            raise ValueError("len(title) must be <= 190")
-        self._internal.title = title
-    
-        return self
-    
-    def uid(self, uid: str) -> typing.Self:    
-        if not len(uid) >= 1:
-            raise ValueError("len(uid) must be >= 1")
-        if not len(uid) <= 40:
-            raise ValueError("len(uid) must be <= 40")
-        self._internal.uid = uid
-    
-        return self
-    
-    def updated(self, updated: str) -> typing.Self:    
-        self._internal.updated = updated
-    
-        return self
-    
-    def keep_firing_for(self, keep_firing_for: int) -> typing.Self:    
-        """
-        You can set a Keep firing for period to avoid repeated firing-resolving-firing notifications caused by flapping conditions.
-        Value is in nanoseconds
-        """
-            
-        self._internal.keep_firing_for = keep_firing_for
     
         return self
     
@@ -799,6 +538,267 @@ class MonthRange(cogbuilder.Builder[alerting.MonthRange]):
     
     def end(self, end: int) -> typing.Self:    
         self._internal.end = end
+    
+        return self
+    
+
+
+class RuleGroup(cogbuilder.Builder[alerting.RuleGroup]):
+    _internal: alerting.RuleGroup
+
+    def __init__(self, title: str) -> None:
+        self._internal = alerting.RuleGroup()        
+        self._internal.title = title
+
+    def build(self) -> alerting.RuleGroup:
+        """
+        Builds the object.
+        """
+        return self._internal    
+    
+    def folder_uid(self, folder_uid: str) -> typing.Self:    
+        self._internal.folder_uid = folder_uid
+    
+        return self
+    
+    def interval(self, interval: alerting.Duration) -> typing.Self:    
+        """
+        The interval, in seconds, at which all rules in the group are evaluated.
+        If a group contains many rules, the rules are evaluated sequentially.
+        """
+            
+        self._internal.interval = interval
+    
+        return self
+    
+    def rules(self, rules: list[cogbuilder.Builder[alerting.Rule]]) -> typing.Self:    
+        rules_resources = [r1.build() for r1 in rules]
+        self._internal.rules = rules_resources
+    
+        return self
+    
+    def with_rule(self, rule: cogbuilder.Builder[alerting.Rule]) -> typing.Self:    
+        if self._internal.rules is None:
+            self._internal.rules = []
+        
+        rule_resource = rule.build()
+        self._internal.rules.append(rule_resource)
+    
+        return self
+    
+    def title(self, title: str) -> typing.Self:    
+        self._internal.title = title
+    
+        return self
+    
+
+
+class Rule(cogbuilder.Builder[alerting.Rule]):
+    _internal: alerting.Rule
+
+    def __init__(self, title: str) -> None:
+        self._internal = alerting.Rule()        
+        if not len(title) >= 1:
+            raise ValueError("len(title) must be >= 1")
+        if not len(title) <= 190:
+            raise ValueError("len(title) must be <= 190")
+        self._internal.title = title
+
+    def build(self) -> alerting.Rule:
+        """
+        Builds the object.
+        """
+        return self._internal    
+    
+    def annotations(self, annotations: dict[str, str]) -> typing.Self:    
+        self._internal.annotations = annotations
+    
+        return self
+    
+    def condition(self, condition: str) -> typing.Self:    
+        self._internal.condition = condition
+    
+        return self
+    
+    def queries(self, data: list[cogbuilder.Builder[alerting.Query]]) -> typing.Self:    
+        data_resources = [r1.build() for r1 in data]
+        self._internal.data = data_resources
+    
+        return self
+    
+    def with_query(self, data: cogbuilder.Builder[alerting.Query]) -> typing.Self:    
+        if self._internal.data is None:
+            self._internal.data = []
+        
+        data_resource = data.build()
+        self._internal.data.append(data_resource)
+    
+        return self
+    
+    def exec_err_state(self, exec_err_state: typing.Literal["Alerting", "Error", "OK", "KeepLast"]) -> typing.Self:    
+        self._internal.exec_err_state = exec_err_state
+    
+        return self
+    
+    def folder_uid(self, folder_uid: str) -> typing.Self:    
+        self._internal.folder_uid = folder_uid
+    
+        return self
+    
+    def for_val(self, for_val: str) -> typing.Self:    
+        """
+        The amount of time, in seconds, for which the rule must be breached for the rule to be considered to be Firing.
+        Before this time has elapsed, the rule is only considered to be Pending.
+        """
+            
+        self._internal.for_val = for_val
+    
+        return self
+    
+    def id(self, id_val: int) -> typing.Self:    
+        self._internal.id_val = id_val
+    
+        return self
+    
+    def is_paused(self, is_paused: bool) -> typing.Self:    
+        self._internal.is_paused = is_paused
+    
+        return self
+    
+    def labels(self, labels: dict[str, str]) -> typing.Self:    
+        self._internal.labels = labels
+    
+        return self
+    
+    def no_data_state(self, no_data_state: typing.Literal["OK", "Alerting", "NoData", "KeepLast"]) -> typing.Self:    
+        self._internal.no_data_state = no_data_state
+    
+        return self
+    
+    def notification_settings(self, notification_settings: cogbuilder.Builder[alerting.NotificationSettings]) -> typing.Self:    
+        notification_settings_resource = notification_settings.build()
+        self._internal.notification_settings = notification_settings_resource
+    
+        return self
+    
+    def org_id(self, org_id: int) -> typing.Self:    
+        self._internal.org_id = org_id
+    
+        return self
+    
+    def provenance(self, provenance: alerting.Provenance) -> typing.Self:    
+        self._internal.provenance = provenance
+    
+        return self
+    
+    def record(self, record: cogbuilder.Builder[alerting.RecordRule]) -> typing.Self:    
+        record_resource = record.build()
+        self._internal.record = record_resource
+    
+        return self
+    
+    def rule_group(self, rule_group: str) -> typing.Self:    
+        if not len(rule_group) >= 1:
+            raise ValueError("len(rule_group) must be >= 1")
+        if not len(rule_group) <= 190:
+            raise ValueError("len(rule_group) must be <= 190")
+        self._internal.rule_group = rule_group
+    
+        return self
+    
+    def title(self, title: str) -> typing.Self:    
+        if not len(title) >= 1:
+            raise ValueError("len(title) must be >= 1")
+        if not len(title) <= 190:
+            raise ValueError("len(title) must be <= 190")
+        self._internal.title = title
+    
+        return self
+    
+    def uid(self, uid: str) -> typing.Self:    
+        if not len(uid) >= 1:
+            raise ValueError("len(uid) must be >= 1")
+        if not len(uid) <= 40:
+            raise ValueError("len(uid) must be <= 40")
+        self._internal.uid = uid
+    
+        return self
+    
+    def updated(self, updated: str) -> typing.Self:    
+        self._internal.updated = updated
+    
+        return self
+    
+    def keep_firing_for(self, keep_firing_for: int) -> typing.Self:    
+        """
+        You can set a Keep firing for period to avoid repeated firing-resolving-firing notifications caused by flapping conditions.
+        Value is in nanoseconds
+        """
+            
+        self._internal.keep_firing_for = keep_firing_for
+    
+        return self
+    
+
+
+class Query(cogbuilder.Builder[alerting.Query]):
+    _internal: alerting.Query
+
+    def __init__(self, ref_id: str) -> None:
+        self._internal = alerting.Query()        
+        self._internal.ref_id = ref_id
+
+    def build(self) -> alerting.Query:
+        """
+        Builds the object.
+        """
+        return self._internal    
+    
+    def datasource_uid(self, datasource_uid: str) -> typing.Self:    
+        """
+        Grafana data source unique identifier; it should be '__expr__' for a Server Side Expression operation.
+        """
+            
+        self._internal.datasource_uid = datasource_uid
+    
+        return self
+    
+    def model(self, model: cogbuilder.Builder[cogvariants.Dataquery]) -> typing.Self:    
+        """
+        JSON is the raw JSON query and includes the above properties as well as custom properties.
+        """
+            
+        model_resource = model.build()
+        self._internal.model = model_resource
+    
+        return self
+    
+    def query_type(self, query_type: str) -> typing.Self:    
+        """
+        QueryType is an optional identifier for the type of query.
+        It can be used to distinguish different types of queries.
+        """
+            
+        self._internal.query_type = query_type
+    
+        return self
+    
+    def ref_id(self, ref_id: str) -> typing.Self:    
+        """
+        RefID is the unique identifier of the query, set by the frontend call.
+        """
+            
+        self._internal.ref_id = ref_id
+    
+        return self
+    
+    def relative_time_range(self, relative_time_range: alerting.RelativeTimeRange) -> typing.Self:    
+        """
+        RelativeTimeRange is the per query start and end time
+        for requests.
+        """
+            
+        self._internal.relative_time_range = relative_time_range
     
         return self
     

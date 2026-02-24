@@ -187,22 +187,6 @@ NewMonthRange creates a new MonthRange object.
 func NewMonthRange() *MonthRange
 ```
 
-### <span class="badge function"></span> QueryConverter
-
-QueryConverter accepts a `Query` object and generates the Go code to build this object using builders.
-
-```go
-func QueryConverter(input Query) string
-```
-
-### <span class="badge function"></span> RuleGroupConverter
-
-RuleGroupConverter accepts a `RuleGroup` object and generates the Go code to build this object using builders.
-
-```go
-func RuleGroupConverter(input RuleGroup) string
-```
-
 ### <span class="badge function"></span> NotificationSettingsConverter
 
 NotificationSettingsConverter accepts a `NotificationSettings` object and generates the Go code to build this object using builders.
@@ -241,14 +225,6 @@ NotificationTemplateConverter accepts a `NotificationTemplate` object and genera
 
 ```go
 func NotificationTemplateConverter(input NotificationTemplate) string
-```
-
-### <span class="badge function"></span> RuleConverter
-
-RuleConverter accepts a `Rule` object and generates the Go code to build this object using builders.
-
-```go
-func RuleConverter(input Rule) string
 ```
 
 ### <span class="badge function"></span> RecordRuleConverter
@@ -313,5 +289,29 @@ MonthRangeConverter accepts a `MonthRange` object and generates the Go code to b
 
 ```go
 func MonthRangeConverter(input MonthRange) string
+```
+
+### <span class="badge function"></span> RuleGroupConverter
+
+RuleGroupConverter accepts a `RuleGroup` object and generates the Go code to build this object using builders.
+
+```go
+func RuleGroupConverter(input RuleGroup) string
+```
+
+### <span class="badge function"></span> RuleConverter
+
+RuleConverter accepts a `Rule` object and generates the Go code to build this object using builders.
+
+```go
+func RuleConverter(input Rule) string
+```
+
+### <span class="badge function"></span> QueryConverter
+
+QueryConverter accepts a `Query` object and generates the Go code to build this object using builders.
+
+```go
+func QueryConverter(input Query) string
 ```
 
