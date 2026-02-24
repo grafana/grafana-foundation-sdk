@@ -6,7 +6,6 @@ package: dashboardv2beta1
 
 builders:
   # overrides and transformations related
-  - omit: { by_object: DashboardFieldConfigSourceOverrides }
   - omit: { by_object: MatcherConfig }
   - omit: { by_object: DynamicConfigValue }
   - omit: { by_object: Threshold }
@@ -138,22 +137,6 @@ builders:
       as: RowsLayout
 
   - merge_into:
-      source: RowsLayoutItemSpec
-      destination: RowsLayoutItemKind
-      under_path: spec
-  - rename:
-      by_object: RowsLayoutItemKind
-      as: RowsLayoutItem
-
-  - merge_into:
-      source: ElementReference
-      destination: RowsLayoutItem
-      under_path: spec.element
-  - promote_options_to_constructor:
-      by_object: RowsLayoutItemKind
-      options: [name]
-
-  - merge_into:
       source: RowsLayoutRowSpec
       destination: RowsLayoutRowKind
       under_path: spec
@@ -216,19 +199,7 @@ builders:
       by_name: GridLayoutItem
       options: [name]
 
-  - merge_into:
-      source: GridLayoutRowSpec
-      destination: GridLayoutRowKind
-      under_path: spec
-  - rename:
-      by_object: GridLayoutRowKind
-      as: GridLayoutRow
-  - promote_options_to_constructor:
-      by_name: GridLayoutRow
-      options: [title]
-
   - omit: { by_object: GridLayoutSpec }
-  - omit: { by_object: GridLayoutRowSpec }
   - omit: { by_object: GridLayoutItemSpec }
 
   ###########
@@ -275,140 +246,6 @@ builders:
             kind: scalar
             scalar: {scalar_kind: uint32}
 
-  #######################
-  # Overrides shortcuts #
-  #######################
-
-  # byName
-  - add_option:
-      by_object: FieldConfigSource
-      option:
-        name: overrideByName
-        comments:
-          - Adds override rules for a specific field, referred to by its name.
-        arguments:
-          - name: name
-            type: &type_string
-              kind: scalar
-              scalar: {scalar_kind: string}
-          - name: properties
-            type: &type_DynamicConfigValue_array
-              kind: array
-              array: {value_type: {kind: ref, ref: {referred_pkg: dashboardv2beta1, referred_type: DynamicConfigValue}}}
-        assignments:
-          - method: append
-            path: overrides
-            value:
-              envelope:
-                values:
-                  # Matcher
-                  - field: matcher
-                    value:
-                      envelope:
-                        values:
-                          - field: id
-                            value: {constant: byName}
-                          - field: options
-                            value: {argument: {name: name, type: *type_string}}
-                  # Properties
-                  - field: properties
-                    value:
-                      argument: { name: properties, type: *type_DynamicConfigValue_array }
-
-  # byRegexp
-  - add_option:
-      by_object: FieldConfigSource
-      option:
-        name: overrideByRegexp
-        comments:
-          - Adds override rules for the fields whose name match the given regexp.
-        arguments:
-          - name: regexp
-            type: *type_string
-          - name: properties
-            type: *type_DynamicConfigValue_array
-        assignments:
-          - method: append
-            path: overrides
-            value:
-              envelope:
-                values:
-                  # Matcher
-                  - field: matcher
-                    value:
-                      envelope:
-                        values:
-                          - field: id
-                            value: {constant: byRegexp}
-                          - field: options
-                            value: {argument: {name: regexp, type: *type_string}}
-                  # Properties
-                  - field: properties
-                    value:
-                      argument: {name: properties, type: *type_DynamicConfigValue_array}
-
-  # byType
-  - add_option:
-      by_object: FieldConfigSource
-      option:
-        name: overrideByFieldType
-        comments:
-          - Adds override rules for all the fields of the given type.
-        arguments:
-          - name: fieldType
-            type: *type_string
-          - name: properties
-            type: *type_DynamicConfigValue_array
-        assignments:
-          - method: append
-            path: overrides
-            value:
-              envelope:
-                values:
-                  # Matcher
-                  - field: matcher
-                    value:
-                      envelope:
-                        values:
-                          - field: id
-                            value: {constant: byType}
-                          - field: options
-                            value: {argument: {name: fieldType, type: *type_string}}
-                  # Properties
-                  - field: properties
-                    value:
-                      argument: {name: properties, type: *type_DynamicConfigValue_array}
-
-  # byFrameRefID
-  - add_option:
-      by_object: FieldConfigSource
-      option:
-        name: overrideByQuery
-        arguments:
-          - name: queryRefId
-            type: *type_string
-          - name: properties
-            type: *type_DynamicConfigValue_array
-        assignments:
-          - method: append
-            path: overrides
-            value:
-              envelope:
-                values:
-                  # Matcher
-                  - field: matcher
-                    value:
-                      envelope:
-                        values:
-                          - field: id
-                            value: {constant: byFrameRefID}
-                          - field: options
-                            value: {argument: {name: queryRefId, type: *type_string}}
-                  # Properties
-                  - field: properties
-                    value:
-                      argument: {name: properties, type: *type_DynamicConfigValue_array}
-
   ###################
   # Transformations #
   ###################
@@ -425,10 +262,6 @@ builders:
   ##############
   # Dashboards #
   ##############
-
-  - rename:
-      by_object: DashboardSpec
-      as: Dashboard
 
   - rename:
       by_object: TimeSettingsSpec
@@ -490,10 +323,6 @@ builders:
   - omit: { by_object: FieldConfig }
   - omit: { by_object: FieldConfigSource }
   - omit: { by_object: VizConfigSpec }
-    
-  - promote_options_to_constructor:
-      by_name: DatasourceRef
-      options: [ type, uid ]  
 
   ############
   # Manifest #
@@ -564,7 +393,6 @@ options:
   ##############
 
   - omit: { by_builder: RowsLayout.spec }
-  - omit: { by_builder: RowsLayoutItem.spec }
   - omit: { by_builder: RowsLayoutRow.spec }
 
   # Append a single `row` value instead of a map of everything
@@ -641,17 +469,6 @@ options:
   # spec options are leftovers from the merge_into veneer
   - omit: { by_builder: GridLayout.spec }
   - omit: { by_builder: GridLayoutItem.spec }
-  - omit: { by_builder: GridLayoutRow.spec }
-
-  - rename:
-      by_builder: GridLayoutRow.elements
-      as: items
-  # Append a single `item` value instead of a list of everything
-  - duplicate:
-      by_builder: GridLayoutRow.items
-      as: item
-  - array_to_append:
-      by_builder: GridLayoutRow.item
 
   # Append a single `item` value instead of a list of everything
   - duplicate:
@@ -659,21 +476,6 @@ options:
       as: item
   - array_to_append:
       by_builder: GridLayout.item
-
-  - omit: { by_builder: GridLayoutItem.element }
-  - rename:
-      by_builder: GridLayoutItem.name
-      as: element
-
-  # GridLayoutItemKind + GridLayoutRowKind
-  - disjunction_as_options:
-      by_builder: GridLayout.item
-  - rename:
-      by_builder: GridLayout.GridLayoutItemKind
-      as: item
-  - rename:
-      by_builder: GridLayout.GridLayoutRowKind
-      as: row
 
   ###########
   # Queries #
