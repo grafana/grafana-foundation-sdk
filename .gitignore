@@ -3,6 +3,7 @@
 /examples/java/*/build/
 /examples/typescript/*/.yarn/
 /examples/typescript/*/.yarnrc.yml
+/devbox.d
 
 /kind-registry
 /workspace
