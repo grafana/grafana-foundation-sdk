@@ -3,6 +3,7 @@
 namespace App;
 
 use Grafana\Foundation\Dashboardv2beta1 as SDKDashboard;
+use Grafana\Foundation\Dashboardv2beta1\Dashboardv2beta1 as Dash;
 use Grafana\Foundation\Timeseries;
 use Grafana\Foundation\Testdata;
 
@@ -13,61 +14,61 @@ class Dashboard
         return (new SDKDashboard\DashboardBuilder(title: '[Example] Dashboard with tabs and rows'))
             ->description('Dashboard with tabs and rows generated with grafana-foundation-sdk')
             // Available panels
-            ->panel("panel-1", self::randomWalkPanel(1, 4))
-            ->panel("panel-2", self::randomWalkPanel(2, 5))
-            ->panel("panel-3", self::randomWalkPanel(3, 1))
-            ->panel("panel-4", self::randomWalkPanel(4, 1))
+            ->element("panel-1", self::randomWalkPanel(1, 4))
+            ->element("panel-2", self::randomWalkPanel(2, 5))
+            ->element("panel-3", self::randomWalkPanel(3, 1))
+            ->element("panel-4", self::randomWalkPanel(4, 1))
 		    // Layout building
-            ->tabsLayout(
-                (new SDKDashboard\TabsLayoutBuilder())
+            ->layout(
+                Dash::tabs()
                     ->tab(
-                        new SDKDashboard\TabsLayoutTabBuilder('Tab without rows')
-                            ->gridLayout(
-                                new SDKDashboard\GridLayoutBuilder()
-                                    ->item(new SDKDashboard\GridLayoutItemBuilder("panel-1")->width(12)->height(8))
+                        Dash::tab('Tab without rows')
+                            ->layout(
+                                Dash::grid()
+                                    ->item(Dash::gridItem("panel-1")->width(12)->height(8))
                             )
                     )
                     ->tab(
-                        new SDKDashboard\TabsLayoutTabBuilder('Tab with rows')
-                            ->rowsLayout(
-                                (new SDKDashboard\RowsLayoutBuilder())
+                        Dash::tab('Tab with rows')
+                            ->layout(
+                                Dash::rows()
                                     ->row(
-                                        new SDKDashboard\RowsLayoutRowBuilder('Row without tabs')
+                                        Dash::row('Row without tabs')
                                             ->collapse(false)
-                                            ->autoGridLayout(
-                                                new SDKDashboard\AutoGridLayoutBuilder()
-                                                    ->item(new SDKDashboard\AutoGridLayoutItemBuilder('panel-3'))
+                                            ->layout(
+                                                Dash::autoGrid()
+                                                    ->item(Dash::autoGridItem('panel-3'))
                                             )
                                     )
                                     ->row(
-                                        new SDKDashboard\RowsLayoutRowBuilder('Row with tabs')
+                                        Dash::row('Row with tabs')
                                             ->collapse(true)
-                                            ->tabsLayout(
-                                                new SDKDashboard\TabsLayoutBuilder()
+                                            ->layout(
+                                                Dash::tabs()
                                                     ->tab(
-                                                        new SDKDashboard\TabsLayoutTabBuilder('First tab')
-                                                            ->autoGridLayout(
-                                                                new SDKDashboard\AutoGridLayoutBuilder()
-                                                                    ->item(new SDKDashboard\AutoGridLayoutItemBuilder('panel-3'))
+                                                        Dash::tab('First tab')
+                                                            ->layout(
+                                                                Dash::autoGrid()
+                                                                    ->item(Dash::autoGridItem('panel-3'))
                                                             )
                                                     )
                                                     ->tab(
-                                                        new SDKDashboard\TabsLayoutTabBuilder('Second tab')
-                                                            ->autoGridLayout(
-                                                                new SDKDashboard\AutoGridLayoutBuilder()
-                                                                    ->item(new SDKDashboard\AutoGridLayoutItemBuilder('panel-4'))
+                                                        Dash::tab('Second tab')
+                                                            ->layout(
+                                                                Dash::autoGrid()
+                                                                    ->item(Dash::autoGridItem('panel-4'))
                                                             )
                                                     )
                                             )
                                     )
                                     ->row(
-                                        new SDKDashboard\RowsLayoutRowBuilder('Empty row')
-                                            ->autoGridLayout(new SDKDashboard\AutoGridLayoutBuilder())
+                                        Dash::row('Empty row')
+                                            ->layout(Dash::autoGrid())
                                     )
                                     ->row(
-                                        new SDKDashboard\RowsLayoutRowBuilder('Hide header row')
+                                        Dash::row('Hide header row')
                                             ->hideHeader(true)
-                                            ->autoGridLayout(new SDKDashboard\AutoGridLayoutBuilder())
+                                            ->layout(Dash::autoGrid())
                                     )
                             )
                     )
