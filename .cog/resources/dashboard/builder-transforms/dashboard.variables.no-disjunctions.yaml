@@ -1,0 +1,14 @@
+# yaml-language-server: $schema=https://raw.githubusercontent.com/grafana/cog/main/schemas/veneers.json
+
+languages: [go, java]
+
+package: dashboard
+
+options:
+  ######################
+  # DatasourceVariable #
+  ######################
+  # Type("prometheus") instead of explicit Type(StringOrAny{String: "prometheus"})
+  - struct_fields_as_arguments:
+      by_builder: DatasourceVariable.type
+      fields: [String]
