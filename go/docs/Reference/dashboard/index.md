@@ -514,44 +514,12 @@ DashboardMetaConverter accepts a `DashboardMeta` object and generates the Go cod
 func DashboardMetaConverter(input DashboardMeta) string
 ```
 
-### <span class="badge function"></span> DashboardConverter
-
-DashboardConverter accepts a `Dashboard` object and generates the Go code to build this object using builders.
-
-```go
-func DashboardConverter(input Dashboard) string
-```
-
-### <span class="badge function"></span> TimePickerConverter
-
-TimePickerConverter accepts a `TimePicker` object and generates the Go code to build this object using builders.
-
-```go
-func TimePickerConverter(input TimePickerConfig) string
-```
-
 ### <span class="badge function"></span> TimeOptionConverter
 
 TimeOptionConverter accepts a `TimeOption` object and generates the Go code to build this object using builders.
 
 ```go
 func TimeOptionConverter(input TimeOption) string
-```
-
-### <span class="badge function"></span> PanelConverter
-
-PanelConverter accepts a `Panel` object and generates the Go code to build this object using builders.
-
-```go
-func PanelConverter(input Panel) string
-```
-
-### <span class="badge function"></span> DashboardLinkConverter
-
-DashboardLinkConverter accepts a `DashboardLink` object and generates the Go code to build this object using builders.
-
-```go
-func DashboardLinkConverter(input DashboardLink) string
 ```
 
 ### <span class="badge function"></span> ThresholdsConfigConverter
@@ -600,14 +568,6 @@ ActionVariableConverter accepts a `ActionVariable` object and generates the Go c
 
 ```go
 func ActionVariableConverter(input ActionVariable) string
-```
-
-### <span class="badge function"></span> RowConverter
-
-RowConverter accepts a `Row` object and generates the Go code to build this object using builders.
-
-```go
-func RowConverter(input RowPanel) string
 ```
 
 ### <span class="badge function"></span> AnnotationQueryConverter
@@ -696,6 +656,46 @@ DashboardActionStyleConverter accepts a `DashboardActionStyle` object and genera
 
 ```go
 func DashboardActionStyleConverter(input DashboardActionStyle) string
+```
+
+### <span class="badge function"></span> TimePickerConverter
+
+TimePickerConverter accepts a `TimePicker` object and generates the Go code to build this object using builders.
+
+```go
+func TimePickerConverter(input TimePickerConfig) string
+```
+
+### <span class="badge function"></span> PanelConverter
+
+PanelConverter accepts a `Panel` object and generates the Go code to build this object using builders.
+
+```go
+func PanelConverter(input Panel) string
+```
+
+### <span class="badge function"></span> DashboardConverter
+
+DashboardConverter accepts a `Dashboard` object and generates the Go code to build this object using builders.
+
+```go
+func DashboardConverter(input Dashboard) string
+```
+
+### <span class="badge function"></span> RowConverter
+
+RowConverter accepts a `Row` object and generates the Go code to build this object using builders.
+
+```go
+func RowConverter(input RowPanel) string
+```
+
+### <span class="badge function"></span> DashboardLinkConverter
+
+DashboardLinkConverter accepts a `DashboardLink` object and generates the Go code to build this object using builders.
+
+```go
+func DashboardLinkConverter(input DashboardLink) string
 ```
 
 ### <span class="badge function"></span> QueryVariableConverter
