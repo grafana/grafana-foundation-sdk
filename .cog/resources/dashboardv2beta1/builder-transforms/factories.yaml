@@ -47,3 +47,86 @@ builders:
           - name: spec
             parameters:
               - { argument: *spec_argument, force_build: true }
+
+  ##############
+  # RowsLayout #
+  ##############
+
+  - add_factory:
+      by_name: Rows
+      factory:
+        name: rows
+
+  - add_factory:
+      by_name: Row
+      factory:
+        name: row
+        arguments:
+          - &title_argument
+            name: title
+            type: *type_string
+        options:
+          - name: title
+            parameters:
+              - { argument: *title_argument }
+
+  ##################
+  # AutoGridLayout #
+  ##################
+
+  - add_factory:
+      by_name: AutoGrid
+      factory:
+        name: autoGrid
+
+  - add_factory:
+      by_name: AutoGridItem
+      factory:
+        name: autoGridItem
+        arguments:
+          - *name_argument
+        options:
+          - &name_option
+            name: name
+            parameters:
+              - { argument: *name_argument }
+
+  ##############
+  # TabsLayout #
+  ##############
+
+  - add_factory:
+      by_name: Tabs
+      factory:
+        name: tabs
+
+  - add_factory:
+      by_name: Tab
+      factory:
+        name: tab
+        arguments:
+          - &title_argument
+            name: title
+            type: *type_string
+        options:
+          - name: title
+            parameters:
+              - { argument: *title_argument }
+
+  ##############
+  # GridLayout #
+  ##############
+
+  - add_factory:
+      by_name: Grid
+      factory:
+        name: grid
+
+  - add_factory:
+      by_name: GridItem
+      factory:
+        name: gridItem
+        arguments:
+          - *name_argument
+        options:
+          - *name_option
