@@ -1,0 +1,79 @@
+# yaml-language-server: $schema=https://raw.githubusercontent.com/grafana/cog/main/schemas/veneers.json
+
+languages: [all]
+
+package: dashboardv2beta1
+
+builders:
+  #############################
+  # ConditionalRenderingGroup #
+  #############################
+
+  - merge_into:
+      source: ConditionalRenderingGroupSpec
+      destination: ConditionalRenderingGroupKind
+      under_path: spec
+  - rename:
+      by_object: ConditionalRenderingGroupKind
+      as: ConditionalRenderingGroup
+
+  - omit: { by_object: ConditionalRenderingGroupSpec }
+
+  ############################
+  # ConditionalRenderingData #
+  ############################
+
+  - merge_into:
+      source: ConditionalRenderingDataSpec
+      destination: ConditionalRenderingDataKind
+      under_path: spec
+  - rename:
+      by_object: ConditionalRenderingDataKind
+      as: ConditionalRenderingData
+
+  - omit: { by_object: ConditionalRenderingDataSpec }
+
+  #####################################
+  # ConditionalRenderingTimeRangeSize #
+  #####################################
+
+  - merge_into:
+      source: ConditionalRenderingTimeRangeSizeSpec
+      destination: ConditionalRenderingTimeRangeSizeKind
+      under_path: spec
+  - rename:
+      by_object: ConditionalRenderingTimeRangeSizeKind
+      as: ConditionalRenderingTimeRangeSize
+
+  - omit: { by_object: ConditionalRenderingTimeRangeSizeSpec }
+
+  ################################
+  # ConditionalRenderingVariable #
+  ################################
+
+  - merge_into:
+      source: ConditionalRenderingVariableSpec
+      destination: ConditionalRenderingVariableKind
+      under_path: spec
+  - rename:
+      by_object: ConditionalRenderingVariableKind
+      as: ConditionalRenderingVariable
+
+  - omit: { by_object: ConditionalRenderingVariableSpec }
+
+options:
+  - omit: { by_builder: ConditionalRenderingGroup.spec }
+  - omit: { by_builder: ConditionalRenderingData.spec }
+  - omit: { by_builder: ConditionalRenderingTimeRangeSize.spec }
+  - omit: { by_builder: ConditionalRenderingVariable.spec }
+
+  #############################
+  # ConditionalRenderingGroup #
+  #############################
+
+  # Append a single `element` value instead of a map of everything
+  - duplicate:
+      by_builder: ConditionalRenderingGroup.items
+      as: item
+  - array_to_append:
+      by_builder: ConditionalRenderingGroup.item

@@ -30,53 +30,7 @@ builders:
       by_object: AnnotationQueryKind
       as: AnnotationQuery
 
-  #############################
-  # ConditionalRenderingGroup #
-  #############################
-
-  - merge_into:
-      source: ConditionalRenderingGroupSpec
-      destination: ConditionalRenderingGroupKind
-      under_path: spec
-  - rename:
-      by_object: ConditionalRenderingGroupKind
-      as: ConditionalRenderingGroup
-  
-  ############################
-  # ConditionalRenderingData #
-  ############################
-
-  - merge_into:
-      source: ConditionalRenderingDataSpec
-      destination: ConditionalRenderingDataKind
-      under_path: spec
-  - rename:
-      by_object: ConditionalRenderingDataKind
-      as: ConditionalRenderingData
-
-  #####################################
-  # ConditionalRenderingTimeRangeSize #
-  #####################################
-
-  - merge_into:
-      source: ConditionalRenderingTimeRangeSizeSpec
-      destination: ConditionalRenderingTimeRangeSizeKind
-      under_path: spec
-  - rename:
-      by_object: ConditionalRenderingTimeRangeSizeKind
-      as: ConditionalRenderingTimeRangeSize
-
-  ################################
-  # ConditionalRenderingVariable #
-  ################################
-
-  - merge_into:
-      source: ConditionalRenderingVariableSpec
-      destination: ConditionalRenderingVariableKind
-      under_path: spec
-  - rename:
-      by_object: ConditionalRenderingVariableKind
-      as: ConditionalRenderingVariable
+  - omit: { by_object: AnnotationQuerySpec }
 
   ####################
   # LibraryPanelKind #
