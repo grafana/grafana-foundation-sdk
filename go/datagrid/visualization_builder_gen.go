@@ -203,6 +203,15 @@ func (builder *VisualizationBuilder) Override(matcher dashboardv2beta1.MatcherCo
 	return builder
 }
 
+func (builder *VisualizationBuilder) SelectedSeries(selectedSeries int32) *VisualizationBuilder {
+	if builder.internal.Spec.Options == nil {
+		builder.internal.Spec.Options = NewOptions()
+	}
+	builder.internal.Spec.Options.(*Options).SelectedSeries = selectedSeries
+
+	return builder
+}
+
 // Adds override rules for a specific field, referred to by its name.
 func (builder *VisualizationBuilder) OverrideByName(name string, properties []dashboardv2beta1.DynamicConfigValue) *VisualizationBuilder {
 	builder.internal.Spec.FieldConfig.Overrides = append(builder.internal.Spec.FieldConfig.Overrides, dashboardv2beta1.Dashboardv2beta1FieldConfigSourceOverrides{
@@ -250,15 +259,6 @@ func (builder *VisualizationBuilder) OverrideByQuery(queryRefId string, properti
 		},
 		Properties: properties,
 	})
-
-	return builder
-}
-
-func (builder *VisualizationBuilder) SelectedSeries(selectedSeries int32) *VisualizationBuilder {
-	if builder.internal.Spec.Options == nil {
-		builder.internal.Spec.Options = NewOptions()
-	}
-	builder.internal.Spec.Options.(*Options).SelectedSeries = selectedSeries
 
 	return builder
 }

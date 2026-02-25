@@ -14,4 +14,4 @@ export interface GridLayoutKind {
 ```
 ## See also
 
- * <span class="badge builder"></span> [GridLayoutBuilder](./builder-GridLayoutBuilder.md)
+ * <span class="badge builder"></span> [GridBuilder](./builder-GridBuilder.md)

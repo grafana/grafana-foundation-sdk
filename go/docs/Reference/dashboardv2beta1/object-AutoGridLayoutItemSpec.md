@@ -40,6 +40,3 @@ Validate checks all the validation constraints that may be defined on `AutoGridL
 func (autoGridLayoutItemSpec *AutoGridLayoutItemSpec) Validate() error
 ```
 
-## See also
-
- * <span class="badge builder"></span> [AutoGridLayoutItemSpecBuilder](./builder-AutoGridLayoutItemSpecBuilder.md)

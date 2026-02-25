@@ -39,18 +39,6 @@ func AdhocVariableConverter(input AdhocVariableKind) string {
 		buffer.Reset()
 
 	}
-
-	{
-		buffer.WriteString(`Spec(`)
-		arg0 := cog.Dump(input.Spec)
-		buffer.WriteString(arg0)
-
-		buffer.WriteString(")")
-
-		calls = append(calls, buffer.String())
-		buffer.Reset()
-	}
-
 	if input.Spec.Name != "" {
 
 		buffer.WriteString(`Name(`)

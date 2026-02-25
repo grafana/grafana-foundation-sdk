@@ -31,4 +31,4 @@ def from_json(data: dict[str, typing.Any]) -> typing.Self
 
 ## See also
 
- * <span class="badge builder"></span> [GridLayoutItem](./builder-GridLayoutItem.md)
+ * <span class="badge builder"></span> [GridItem](./builder-GridItem.md)

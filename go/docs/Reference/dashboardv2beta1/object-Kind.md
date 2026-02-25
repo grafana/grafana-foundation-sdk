@@ -42,6 +42,3 @@ Validate checks all the validation constraints that may be defined on `Kind` fie
 func (kind *Kind) Validate() error
 ```
 
-## See also
-
- * <span class="badge builder"></span> [KindBuilder](./builder-KindBuilder.md)

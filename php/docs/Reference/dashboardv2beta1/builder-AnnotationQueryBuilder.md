@@ -82,14 +82,6 @@ placement(string $placement)
 query(\Grafana\Foundation\Cog\Builder $query)
 ```
 
-### <span class="badge object-method"></span> spec
-
-@param \Grafana\Foundation\Cog\Builder<\Grafana\Foundation\Dashboardv2beta1\AnnotationQuerySpec> $spec
-
-```php
-spec(\Grafana\Foundation\Cog\Builder $spec)
-```
-
 ## See also
 
  * <span class="badge object-type-class"></span> [AnnotationQueryKind](./object-AnnotationQueryKind.md)

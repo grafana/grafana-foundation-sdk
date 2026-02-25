@@ -15,11 +15,6 @@ public class CustomVariableBuilder implements com.grafana.foundation.cog.Builder
 		}
         this.internal.spec.name = name;
     }
-    public CustomVariableBuilder spec(CustomVariableSpec spec) {
-        this.internal.spec = spec;
-        return this;
-    }
-    
     public CustomVariableBuilder name(String name) {
 		if (this.internal.spec == null) {
 			this.internal.spec = new com.grafana.foundation.dashboardv2beta1.CustomVariableSpec();

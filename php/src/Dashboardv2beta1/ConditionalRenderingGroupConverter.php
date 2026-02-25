@@ -13,19 +13,6 @@ final class ConditionalRenderingGroupConverter
             
     
         {
-    $buffer = 'spec(';
-        $arg0 = \Grafana\Foundation\Dashboardv2beta1\ConditionalRenderingGroupSpecConverter::convert($input->spec);
-        $buffer .= $arg0;
-        
-    $buffer .= ')';
-
-    $calls[] = $buffer;
-    }
-    
-    
-            
-    
-        {
     $buffer = 'visibility(';
         $arg0 ='\Grafana\Foundation\Dashboardv2beta1\ConditionalRenderingGroupSpecVisibility::fromValue("'.$input->spec->visibility.'")';
         $buffer .= $arg0;

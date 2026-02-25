@@ -27,11 +27,6 @@ public class AdhocVariableBuilder implements com.grafana.foundation.cog.Builder<
         return this;
     }
     
-    public AdhocVariableBuilder spec(AdhocVariableSpec spec) {
-        this.internal.spec = spec;
-        return this;
-    }
-    
     public AdhocVariableBuilder name(String name) {
 		if (this.internal.spec == null) {
 			this.internal.spec = new com.grafana.foundation.dashboardv2beta1.AdhocVariableSpec();

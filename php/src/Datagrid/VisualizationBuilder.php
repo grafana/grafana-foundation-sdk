@@ -220,6 +220,20 @@ class VisualizationBuilder implements \Grafana\Foundation\Cog\Builder
         return $this;
     }
 
+    public function selectedSeries(int $selectedSeries): static
+    {
+        if (!($selectedSeries >= 0)) {
+            throw new \ValueError('$selectedSeries must be >= 0');
+        }    
+        if ($this->internal->spec->options === null) {
+            $this->internal->spec->options = new \Grafana\Foundation\Datagrid\Options();
+        }
+        assert($this->internal->spec->options instanceof \Grafana\Foundation\Datagrid\Options);
+        $this->internal->spec->options->selectedSeries = $selectedSeries;
+    
+        return $this;
+    }
+
     /**
      * Adds override rules for a specific field, referred to by its name.
      * @param array<\Grafana\Foundation\Dashboardv2beta1\DynamicConfigValue> $properties
@@ -283,20 +297,6 @@ class VisualizationBuilder implements \Grafana\Foundation\Cog\Builder
         ),
             properties: $properties,
         );
-    
-        return $this;
-    }
-
-    public function selectedSeries(int $selectedSeries): static
-    {
-        if (!($selectedSeries >= 0)) {
-            throw new \ValueError('$selectedSeries must be >= 0');
-        }    
-        if ($this->internal->spec->options === null) {
-            $this->internal->spec->options = new \Grafana\Foundation\Datagrid\Options();
-        }
-        assert($this->internal->spec->options instanceof \Grafana\Foundation\Datagrid\Options);
-        $this->internal->spec->options->selectedSeries = $selectedSeries;
     
         return $this;
     }

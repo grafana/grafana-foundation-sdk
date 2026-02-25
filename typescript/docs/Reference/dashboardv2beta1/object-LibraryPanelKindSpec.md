@@ -15,6 +15,3 @@ export interface LibraryPanelKindSpec {
 }
 
 ```
-## See also
-
- * <span class="badge builder"></span> [LibraryPanelKindSpecBuilder](./builder-LibraryPanelKindSpecBuilder.md)

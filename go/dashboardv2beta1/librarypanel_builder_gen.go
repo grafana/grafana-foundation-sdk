@@ -41,17 +41,6 @@ func (builder *LibraryPanelBuilder) RecordError(path string, err error) *Library
 	return builder
 }
 
-func (builder *LibraryPanelBuilder) Spec(spec cog.Builder[LibraryPanelKindSpec]) *LibraryPanelBuilder {
-	specResource, err := spec.Build()
-	if err != nil {
-		builder.errors = append(builder.errors, err.(cog.BuildErrors)...)
-		return builder
-	}
-	builder.internal.Spec = specResource
-
-	return builder
-}
-
 // Panel ID for the library panel in the dashboard
 func (builder *LibraryPanelBuilder) Id(id float64) *LibraryPanelBuilder {
 	builder.internal.Spec.Id = id

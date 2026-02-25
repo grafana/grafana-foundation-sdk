@@ -76,12 +76,6 @@ public AnnotationQueryBuilder placement(String placement)
 public AnnotationQueryBuilder query(com.grafana.foundation.cog.Builder<DataQueryKind> query)
 ```
 
-### <span class="badge object-method"></span> spec
-
-```java
-public AnnotationQueryBuilder spec(com.grafana.foundation.cog.Builder<AnnotationQuerySpec> spec)
-```
-
 ## See also
 
  * <span class="badge object-type-class"></span> [AnnotationQueryKind](./object-AnnotationQueryKind.md)

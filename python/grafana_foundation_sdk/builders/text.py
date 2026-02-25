@@ -976,6 +976,40 @@ class Visualization(cogbuilder.Builder[dashboardv2beta1.VizConfigKind]):
     
         return self
     
+    def mode(self, mode: text.TextMode) -> typing.Self:    
+        if self._internal.spec is None:
+            self._internal.spec = dashboardv2beta1.VizConfigSpec()
+        assert isinstance(self._internal.spec, dashboardv2beta1.VizConfigSpec)
+        if self._internal.spec.options is None:
+            self._internal.spec.options = text.Options()
+        assert isinstance(self._internal.spec.options, text.Options)
+        self._internal.spec.options.mode = mode
+    
+        return self
+    
+    def code(self, code: cogbuilder.Builder[text.CodeOptions]) -> typing.Self:    
+        if self._internal.spec is None:
+            self._internal.spec = dashboardv2beta1.VizConfigSpec()
+        assert isinstance(self._internal.spec, dashboardv2beta1.VizConfigSpec)
+        if self._internal.spec.options is None:
+            self._internal.spec.options = text.Options()
+        assert isinstance(self._internal.spec.options, text.Options)
+        code_resource = code.build()
+        self._internal.spec.options.code = code_resource
+    
+        return self
+    
+    def content(self, content: str) -> typing.Self:    
+        if self._internal.spec is None:
+            self._internal.spec = dashboardv2beta1.VizConfigSpec()
+        assert isinstance(self._internal.spec, dashboardv2beta1.VizConfigSpec)
+        if self._internal.spec.options is None:
+            self._internal.spec.options = text.Options()
+        assert isinstance(self._internal.spec.options, text.Options)
+        self._internal.spec.options.content = content
+    
+        return self
+    
     def override_by_name(self, name: str, properties: list[dashboardv2beta1.DynamicConfigValue]) -> typing.Self:    
         """
         Adds override rules for a specific field, referred to by its name.
@@ -1065,40 +1099,6 @@ class Visualization(cogbuilder.Builder[dashboardv2beta1.VizConfigKind]):
         ),
             properties=properties,
         ))
-    
-        return self
-    
-    def mode(self, mode: text.TextMode) -> typing.Self:    
-        if self._internal.spec is None:
-            self._internal.spec = dashboardv2beta1.VizConfigSpec()
-        assert isinstance(self._internal.spec, dashboardv2beta1.VizConfigSpec)
-        if self._internal.spec.options is None:
-            self._internal.spec.options = text.Options()
-        assert isinstance(self._internal.spec.options, text.Options)
-        self._internal.spec.options.mode = mode
-    
-        return self
-    
-    def code(self, code: cogbuilder.Builder[text.CodeOptions]) -> typing.Self:    
-        if self._internal.spec is None:
-            self._internal.spec = dashboardv2beta1.VizConfigSpec()
-        assert isinstance(self._internal.spec, dashboardv2beta1.VizConfigSpec)
-        if self._internal.spec.options is None:
-            self._internal.spec.options = text.Options()
-        assert isinstance(self._internal.spec.options, text.Options)
-        code_resource = code.build()
-        self._internal.spec.options.code = code_resource
-    
-        return self
-    
-    def content(self, content: str) -> typing.Self:    
-        if self._internal.spec is None:
-            self._internal.spec = dashboardv2beta1.VizConfigSpec()
-        assert isinstance(self._internal.spec, dashboardv2beta1.VizConfigSpec)
-        if self._internal.spec.options is None:
-            self._internal.spec.options = text.Options()
-        assert isinstance(self._internal.spec.options, text.Options)
-        self._internal.spec.options.content = content
     
         return self
     

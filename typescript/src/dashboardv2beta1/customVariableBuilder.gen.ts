@@ -20,11 +20,6 @@ export class CustomVariableBuilder implements cog.Builder<dashboardv2beta1.Custo
         return this.internal;
     }
 
-    spec(spec: dashboardv2beta1.CustomVariableSpec): this {
-        this.internal.spec = spec;
-        return this;
-    }
-
     name(name: string): this {
         if (!this.internal.spec) {
             this.internal.spec = dashboardv2beta1.defaultCustomVariableSpec();

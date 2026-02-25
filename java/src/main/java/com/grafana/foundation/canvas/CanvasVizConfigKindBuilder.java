@@ -257,6 +257,62 @@ public class CanvasVizConfigKindBuilder implements com.grafana.foundation.cog.Bu
         return this;
     }
     
+    public CanvasVizConfigKindBuilder inlineEditing(Boolean inlineEditing) {
+		if (this.internal.spec == null) {
+			this.internal.spec = new com.grafana.foundation.dashboardv2beta1.VizConfigSpec();
+		}
+		if (this.internal.spec.options == null) {
+			this.internal.spec.options = new com.grafana.foundation.canvas.Options();
+		}
+        ((Options) this.internal.spec.options).inlineEditing = inlineEditing;
+        return this;
+    }
+    
+    public CanvasVizConfigKindBuilder showAdvancedTypes(Boolean showAdvancedTypes) {
+		if (this.internal.spec == null) {
+			this.internal.spec = new com.grafana.foundation.dashboardv2beta1.VizConfigSpec();
+		}
+		if (this.internal.spec.options == null) {
+			this.internal.spec.options = new com.grafana.foundation.canvas.Options();
+		}
+        ((Options) this.internal.spec.options).showAdvancedTypes = showAdvancedTypes;
+        return this;
+    }
+    
+    public CanvasVizConfigKindBuilder panZoom(Boolean panZoom) {
+		if (this.internal.spec == null) {
+			this.internal.spec = new com.grafana.foundation.dashboardv2beta1.VizConfigSpec();
+		}
+		if (this.internal.spec.options == null) {
+			this.internal.spec.options = new com.grafana.foundation.canvas.Options();
+		}
+        ((Options) this.internal.spec.options).panZoom = panZoom;
+        return this;
+    }
+    
+    public CanvasVizConfigKindBuilder infinitePan(Boolean infinitePan) {
+		if (this.internal.spec == null) {
+			this.internal.spec = new com.grafana.foundation.dashboardv2beta1.VizConfigSpec();
+		}
+		if (this.internal.spec.options == null) {
+			this.internal.spec.options = new com.grafana.foundation.canvas.Options();
+		}
+        ((Options) this.internal.spec.options).infinitePan = infinitePan;
+        return this;
+    }
+    
+    public CanvasVizConfigKindBuilder root(com.grafana.foundation.cog.Builder<CanvasOptionsRoot> root) {
+		if (this.internal.spec == null) {
+			this.internal.spec = new com.grafana.foundation.dashboardv2beta1.VizConfigSpec();
+		}
+		if (this.internal.spec.options == null) {
+			this.internal.spec.options = new com.grafana.foundation.canvas.Options();
+		}
+    CanvasOptionsRoot rootResource = root.build();
+        ((Options) this.internal.spec.options).root = rootResource;
+        return this;
+    }
+    
     public CanvasVizConfigKindBuilder overrideByName(String name,List<DynamicConfigValue> properties) {
 		if (this.internal.spec == null) {
 			this.internal.spec = new com.grafana.foundation.dashboardv2beta1.VizConfigSpec();
@@ -334,62 +390,6 @@ public class CanvasVizConfigKindBuilder implements com.grafana.foundation.cog.Bu
         dashboardv2beta1FieldConfigSourceOverrides.matcher = matcherConfig;
         dashboardv2beta1FieldConfigSourceOverrides.properties = properties;
         this.internal.spec.fieldConfig.overrides.add(dashboardv2beta1FieldConfigSourceOverrides);
-        return this;
-    }
-    
-    public CanvasVizConfigKindBuilder inlineEditing(Boolean inlineEditing) {
-		if (this.internal.spec == null) {
-			this.internal.spec = new com.grafana.foundation.dashboardv2beta1.VizConfigSpec();
-		}
-		if (this.internal.spec.options == null) {
-			this.internal.spec.options = new com.grafana.foundation.canvas.Options();
-		}
-        ((Options) this.internal.spec.options).inlineEditing = inlineEditing;
-        return this;
-    }
-    
-    public CanvasVizConfigKindBuilder showAdvancedTypes(Boolean showAdvancedTypes) {
-		if (this.internal.spec == null) {
-			this.internal.spec = new com.grafana.foundation.dashboardv2beta1.VizConfigSpec();
-		}
-		if (this.internal.spec.options == null) {
-			this.internal.spec.options = new com.grafana.foundation.canvas.Options();
-		}
-        ((Options) this.internal.spec.options).showAdvancedTypes = showAdvancedTypes;
-        return this;
-    }
-    
-    public CanvasVizConfigKindBuilder panZoom(Boolean panZoom) {
-		if (this.internal.spec == null) {
-			this.internal.spec = new com.grafana.foundation.dashboardv2beta1.VizConfigSpec();
-		}
-		if (this.internal.spec.options == null) {
-			this.internal.spec.options = new com.grafana.foundation.canvas.Options();
-		}
-        ((Options) this.internal.spec.options).panZoom = panZoom;
-        return this;
-    }
-    
-    public CanvasVizConfigKindBuilder infinitePan(Boolean infinitePan) {
-		if (this.internal.spec == null) {
-			this.internal.spec = new com.grafana.foundation.dashboardv2beta1.VizConfigSpec();
-		}
-		if (this.internal.spec.options == null) {
-			this.internal.spec.options = new com.grafana.foundation.canvas.Options();
-		}
-        ((Options) this.internal.spec.options).infinitePan = infinitePan;
-        return this;
-    }
-    
-    public CanvasVizConfigKindBuilder root(com.grafana.foundation.cog.Builder<CanvasOptionsRoot> root) {
-		if (this.internal.spec == null) {
-			this.internal.spec = new com.grafana.foundation.dashboardv2beta1.VizConfigSpec();
-		}
-		if (this.internal.spec.options == null) {
-			this.internal.spec.options = new com.grafana.foundation.canvas.Options();
-		}
-    CanvasOptionsRoot rootResource = root.build();
-        ((Options) this.internal.spec.options).root = rootResource;
         return this;
     }
     public VizConfigKind build() {

@@ -99,7 +99,7 @@ final class DashboardConverter
             
     foreach ($input->elements as $key => $value) {
         {
-    $buffer = 'panel(';
+    $buffer = 'element(';
         $arg0 =\var_export($key, true);
         $buffer .= $arg0;
         $buffer .= ', ';
@@ -126,22 +126,22 @@ final class DashboardConverter
             
     
         {
-    $buffer = 'gridLayout(';
+    $buffer = 'layout(';
         switch (true) {
             case $input->layout instanceof \Grafana\Foundation\Dashboardv2beta1\GridLayoutKind:
-                $disjunctionlayout = \Grafana\Foundation\Dashboardv2beta1\GridLayoutConverter::convert($input->layout);
+                $disjunctionlayout = \Grafana\Foundation\Dashboardv2beta1\GridConverter::convert($input->layout);
                 $arg0 = $disjunctionlayout;
                 break;
             case $input->layout instanceof \Grafana\Foundation\Dashboardv2beta1\RowsLayoutKind:
-                $disjunctionlayout = \Grafana\Foundation\Dashboardv2beta1\RowsLayoutConverter::convert($input->layout);
+                $disjunctionlayout = \Grafana\Foundation\Dashboardv2beta1\RowsConverter::convert($input->layout);
                 $arg0 = $disjunctionlayout;
                 break;
             case $input->layout instanceof \Grafana\Foundation\Dashboardv2beta1\AutoGridLayoutKind:
-                $disjunctionlayout = \Grafana\Foundation\Dashboardv2beta1\AutoGridLayoutConverter::convert($input->layout);
+                $disjunctionlayout = \Grafana\Foundation\Dashboardv2beta1\AutoGridConverter::convert($input->layout);
                 $arg0 = $disjunctionlayout;
                 break;
             case $input->layout instanceof \Grafana\Foundation\Dashboardv2beta1\TabsLayoutKind:
-                $disjunctionlayout = \Grafana\Foundation\Dashboardv2beta1\TabsLayoutConverter::convert($input->layout);
+                $disjunctionlayout = \Grafana\Foundation\Dashboardv2beta1\TabsConverter::convert($input->layout);
                 $arg0 = $disjunctionlayout;
                 break;
             default:
@@ -296,7 +296,7 @@ final class DashboardConverter
                 $tmpvariablesarg1 = $disjunctionarg1;
                 break;
             case $arg1 instanceof \Grafana\Foundation\Dashboardv2beta1\SwitchVariableKind:
-                $disjunctionarg1 = \Grafana\Foundation\Dashboardv2beta1\SwitchVariableKindConverter::convert($arg1);
+                $disjunctionarg1 = \Grafana\Foundation\Dashboardv2beta1\SwitchVariableConverter::convert($arg1);
                 $tmpvariablesarg1 = $disjunctionarg1;
                 break;
             default:

@@ -43,12 +43,6 @@ func (builder *QueryVariableBuilder) RecordError(path string, err error) *QueryV
 	return builder
 }
 
-func (builder *QueryVariableBuilder) Spec(spec QueryVariableSpec) *QueryVariableBuilder {
-	builder.internal.Spec = spec
-
-	return builder
-}
-
 func (builder *QueryVariableBuilder) Name(name string) *QueryVariableBuilder {
 	builder.internal.Spec.Name = name
 

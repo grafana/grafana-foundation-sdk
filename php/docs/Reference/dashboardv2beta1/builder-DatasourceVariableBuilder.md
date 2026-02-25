@@ -104,12 +104,6 @@ regex(string $regex)
 skipUrlSync(bool $skipUrlSync)
 ```
 
-### <span class="badge object-method"></span> spec
-
-```php
-spec(\Grafana\Foundation\Dashboardv2beta1\DatasourceVariableSpec $spec)
-```
-
 ## See also
 
  * <span class="badge object-type-class"></span> [DatasourceVariableKind](./object-DatasourceVariableKind.md)

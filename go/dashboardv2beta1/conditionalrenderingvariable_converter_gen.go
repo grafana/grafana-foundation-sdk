@@ -15,18 +15,6 @@ func ConditionalRenderingVariableConverter(input ConditionalRenderingVariableKin
 		`dashboardv2beta1.NewConditionalRenderingVariableBuilder()`,
 	}
 	var buffer strings.Builder
-
-	{
-		buffer.WriteString(`Spec(`)
-		arg0 := ConditionalRenderingVariableSpecConverter(input.Spec)
-		buffer.WriteString(arg0)
-
-		buffer.WriteString(")")
-
-		calls = append(calls, buffer.String())
-		buffer.Reset()
-	}
-
 	if input.Spec.Variable != "" {
 
 		buffer.WriteString(`Variable(`)

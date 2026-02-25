@@ -32,12 +32,6 @@ public LibraryPanelBuilder id(Double id)
 public LibraryPanelBuilder libraryPanel(com.grafana.foundation.cog.Builder<LibraryPanelRef> libraryPanel)
 ```
 
-### <span class="badge object-method"></span> spec
-
-```java
-public LibraryPanelBuilder spec(com.grafana.foundation.cog.Builder<LibraryPanelKindSpec> spec)
-```
-
 ### <span class="badge object-method"></span> title
 
 Title for the library panel in the dashboard

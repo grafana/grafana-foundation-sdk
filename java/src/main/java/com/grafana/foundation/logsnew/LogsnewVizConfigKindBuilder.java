@@ -259,6 +259,83 @@ public class LogsnewVizConfigKindBuilder implements com.grafana.foundation.cog.B
         return this;
     }
     
+    public LogsnewVizConfigKindBuilder showTime(Boolean showTime) {
+		if (this.internal.spec == null) {
+			this.internal.spec = new com.grafana.foundation.dashboardv2beta1.VizConfigSpec();
+		}
+		if (this.internal.spec.options == null) {
+			this.internal.spec.options = new com.grafana.foundation.logsnew.Options();
+		}
+        ((Options) this.internal.spec.options).showTime = showTime;
+        return this;
+    }
+    
+    public LogsnewVizConfigKindBuilder wrapLogMessage(Boolean wrapLogMessage) {
+		if (this.internal.spec == null) {
+			this.internal.spec = new com.grafana.foundation.dashboardv2beta1.VizConfigSpec();
+		}
+		if (this.internal.spec.options == null) {
+			this.internal.spec.options = new com.grafana.foundation.logsnew.Options();
+		}
+        ((Options) this.internal.spec.options).wrapLogMessage = wrapLogMessage;
+        return this;
+    }
+    
+    public LogsnewVizConfigKindBuilder enableLogDetails(Boolean enableLogDetails) {
+		if (this.internal.spec == null) {
+			this.internal.spec = new com.grafana.foundation.dashboardv2beta1.VizConfigSpec();
+		}
+		if (this.internal.spec.options == null) {
+			this.internal.spec.options = new com.grafana.foundation.logsnew.Options();
+		}
+        ((Options) this.internal.spec.options).enableLogDetails = enableLogDetails;
+        return this;
+    }
+    
+    public LogsnewVizConfigKindBuilder sortOrder(LogsSortOrder sortOrder) {
+		if (this.internal.spec == null) {
+			this.internal.spec = new com.grafana.foundation.dashboardv2beta1.VizConfigSpec();
+		}
+		if (this.internal.spec.options == null) {
+			this.internal.spec.options = new com.grafana.foundation.logsnew.Options();
+		}
+        ((Options) this.internal.spec.options).sortOrder = sortOrder;
+        return this;
+    }
+    
+    public LogsnewVizConfigKindBuilder dedupStrategy(LogsDedupStrategy dedupStrategy) {
+		if (this.internal.spec == null) {
+			this.internal.spec = new com.grafana.foundation.dashboardv2beta1.VizConfigSpec();
+		}
+		if (this.internal.spec.options == null) {
+			this.internal.spec.options = new com.grafana.foundation.logsnew.Options();
+		}
+        ((Options) this.internal.spec.options).dedupStrategy = dedupStrategy;
+        return this;
+    }
+    
+    public LogsnewVizConfigKindBuilder enableInfiniteScrolling(Boolean enableInfiniteScrolling) {
+		if (this.internal.spec == null) {
+			this.internal.spec = new com.grafana.foundation.dashboardv2beta1.VizConfigSpec();
+		}
+		if (this.internal.spec.options == null) {
+			this.internal.spec.options = new com.grafana.foundation.logsnew.Options();
+		}
+        ((Options) this.internal.spec.options).enableInfiniteScrolling = enableInfiniteScrolling;
+        return this;
+    }
+    
+    public LogsnewVizConfigKindBuilder onNewLogsReceived(Object onNewLogsReceived) {
+		if (this.internal.spec == null) {
+			this.internal.spec = new com.grafana.foundation.dashboardv2beta1.VizConfigSpec();
+		}
+		if (this.internal.spec.options == null) {
+			this.internal.spec.options = new com.grafana.foundation.logsnew.Options();
+		}
+        ((Options) this.internal.spec.options).onNewLogsReceived = onNewLogsReceived;
+        return this;
+    }
+    
     public LogsnewVizConfigKindBuilder overrideByName(String name,List<DynamicConfigValue> properties) {
 		if (this.internal.spec == null) {
 			this.internal.spec = new com.grafana.foundation.dashboardv2beta1.VizConfigSpec();
@@ -336,83 +413,6 @@ public class LogsnewVizConfigKindBuilder implements com.grafana.foundation.cog.B
         dashboardv2beta1FieldConfigSourceOverrides.matcher = matcherConfig;
         dashboardv2beta1FieldConfigSourceOverrides.properties = properties;
         this.internal.spec.fieldConfig.overrides.add(dashboardv2beta1FieldConfigSourceOverrides);
-        return this;
-    }
-    
-    public LogsnewVizConfigKindBuilder showTime(Boolean showTime) {
-		if (this.internal.spec == null) {
-			this.internal.spec = new com.grafana.foundation.dashboardv2beta1.VizConfigSpec();
-		}
-		if (this.internal.spec.options == null) {
-			this.internal.spec.options = new com.grafana.foundation.logsnew.Options();
-		}
-        ((Options) this.internal.spec.options).showTime = showTime;
-        return this;
-    }
-    
-    public LogsnewVizConfigKindBuilder wrapLogMessage(Boolean wrapLogMessage) {
-		if (this.internal.spec == null) {
-			this.internal.spec = new com.grafana.foundation.dashboardv2beta1.VizConfigSpec();
-		}
-		if (this.internal.spec.options == null) {
-			this.internal.spec.options = new com.grafana.foundation.logsnew.Options();
-		}
-        ((Options) this.internal.spec.options).wrapLogMessage = wrapLogMessage;
-        return this;
-    }
-    
-    public LogsnewVizConfigKindBuilder enableLogDetails(Boolean enableLogDetails) {
-		if (this.internal.spec == null) {
-			this.internal.spec = new com.grafana.foundation.dashboardv2beta1.VizConfigSpec();
-		}
-		if (this.internal.spec.options == null) {
-			this.internal.spec.options = new com.grafana.foundation.logsnew.Options();
-		}
-        ((Options) this.internal.spec.options).enableLogDetails = enableLogDetails;
-        return this;
-    }
-    
-    public LogsnewVizConfigKindBuilder sortOrder(LogsSortOrder sortOrder) {
-		if (this.internal.spec == null) {
-			this.internal.spec = new com.grafana.foundation.dashboardv2beta1.VizConfigSpec();
-		}
-		if (this.internal.spec.options == null) {
-			this.internal.spec.options = new com.grafana.foundation.logsnew.Options();
-		}
-        ((Options) this.internal.spec.options).sortOrder = sortOrder;
-        return this;
-    }
-    
-    public LogsnewVizConfigKindBuilder dedupStrategy(LogsDedupStrategy dedupStrategy) {
-		if (this.internal.spec == null) {
-			this.internal.spec = new com.grafana.foundation.dashboardv2beta1.VizConfigSpec();
-		}
-		if (this.internal.spec.options == null) {
-			this.internal.spec.options = new com.grafana.foundation.logsnew.Options();
-		}
-        ((Options) this.internal.spec.options).dedupStrategy = dedupStrategy;
-        return this;
-    }
-    
-    public LogsnewVizConfigKindBuilder enableInfiniteScrolling(Boolean enableInfiniteScrolling) {
-		if (this.internal.spec == null) {
-			this.internal.spec = new com.grafana.foundation.dashboardv2beta1.VizConfigSpec();
-		}
-		if (this.internal.spec.options == null) {
-			this.internal.spec.options = new com.grafana.foundation.logsnew.Options();
-		}
-        ((Options) this.internal.spec.options).enableInfiniteScrolling = enableInfiniteScrolling;
-        return this;
-    }
-    
-    public LogsnewVizConfigKindBuilder onNewLogsReceived(Object onNewLogsReceived) {
-		if (this.internal.spec == null) {
-			this.internal.spec = new com.grafana.foundation.dashboardv2beta1.VizConfigSpec();
-		}
-		if (this.internal.spec.options == null) {
-			this.internal.spec.options = new com.grafana.foundation.logsnew.Options();
-		}
-        ((Options) this.internal.spec.options).onNewLogsReceived = onNewLogsReceived;
         return this;
     }
     public VizConfigKind build() {

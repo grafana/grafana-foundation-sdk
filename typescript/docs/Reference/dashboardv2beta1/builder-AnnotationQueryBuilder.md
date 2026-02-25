@@ -76,12 +76,6 @@ placement(placement: "inControlsMenu")
 query(query: cog.Builder<dashboardv2beta1.DataQueryKind>)
 ```
 
-### <span class="badge object-method"></span> spec
-
-```typescript
-spec(spec: cog.Builder<dashboardv2beta1.AnnotationQuerySpec>)
-```
-
 ## See also
 
  * <span class="badge object-type-interface"></span> [AnnotationQueryKind](./object-AnnotationQueryKind.md)

@@ -24,16 +24,16 @@ build()
 condition(condition: "and" | "or")
 ```
 
+### <span class="badge object-method"></span> item
+
+```typescript
+item(item: cog.Builder<dashboardv2beta1.ConditionalRenderingVariableKind> | cog.Builder<dashboardv2beta1.ConditionalRenderingDataKind> | cog.Builder<dashboardv2beta1.ConditionalRenderingTimeRangeSizeKind>)
+```
+
 ### <span class="badge object-method"></span> items
 
 ```typescript
 items(items: (cog.Builder<dashboardv2beta1.ConditionalRenderingVariableKind> | cog.Builder<dashboardv2beta1.ConditionalRenderingDataKind> | cog.Builder<dashboardv2beta1.ConditionalRenderingTimeRangeSizeKind>)[])
-```
-
-### <span class="badge object-method"></span> spec
-
-```typescript
-spec(spec: cog.Builder<dashboardv2beta1.ConditionalRenderingGroupSpec>)
 ```
 
 ### <span class="badge object-method"></span> visibility

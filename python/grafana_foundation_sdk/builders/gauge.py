@@ -984,6 +984,96 @@ class Visualization(cogbuilder.Builder[dashboardv2beta1.VizConfigKind]):
     
         return self
     
+    def show_threshold_labels(self, show_threshold_labels: bool) -> typing.Self:    
+        if self._internal.spec is None:
+            self._internal.spec = dashboardv2beta1.VizConfigSpec()
+        assert isinstance(self._internal.spec, dashboardv2beta1.VizConfigSpec)
+        if self._internal.spec.options is None:
+            self._internal.spec.options = gauge.Options()
+        assert isinstance(self._internal.spec.options, gauge.Options)
+        self._internal.spec.options.show_threshold_labels = show_threshold_labels
+    
+        return self
+    
+    def show_threshold_markers(self, show_threshold_markers: bool) -> typing.Self:    
+        if self._internal.spec is None:
+            self._internal.spec = dashboardv2beta1.VizConfigSpec()
+        assert isinstance(self._internal.spec, dashboardv2beta1.VizConfigSpec)
+        if self._internal.spec.options is None:
+            self._internal.spec.options = gauge.Options()
+        assert isinstance(self._internal.spec.options, gauge.Options)
+        self._internal.spec.options.show_threshold_markers = show_threshold_markers
+    
+        return self
+    
+    def sizing(self, sizing: common.BarGaugeSizing) -> typing.Self:    
+        if self._internal.spec is None:
+            self._internal.spec = dashboardv2beta1.VizConfigSpec()
+        assert isinstance(self._internal.spec, dashboardv2beta1.VizConfigSpec)
+        if self._internal.spec.options is None:
+            self._internal.spec.options = gauge.Options()
+        assert isinstance(self._internal.spec.options, gauge.Options)
+        self._internal.spec.options.sizing = sizing
+    
+        return self
+    
+    def min_viz_width(self, min_viz_width: int) -> typing.Self:    
+        if self._internal.spec is None:
+            self._internal.spec = dashboardv2beta1.VizConfigSpec()
+        assert isinstance(self._internal.spec, dashboardv2beta1.VizConfigSpec)
+        if self._internal.spec.options is None:
+            self._internal.spec.options = gauge.Options()
+        assert isinstance(self._internal.spec.options, gauge.Options)
+        self._internal.spec.options.min_viz_width = min_viz_width
+    
+        return self
+    
+    def reduce_options(self, reduce_options: cogbuilder.Builder[common.ReduceDataOptions]) -> typing.Self:    
+        if self._internal.spec is None:
+            self._internal.spec = dashboardv2beta1.VizConfigSpec()
+        assert isinstance(self._internal.spec, dashboardv2beta1.VizConfigSpec)
+        if self._internal.spec.options is None:
+            self._internal.spec.options = gauge.Options()
+        assert isinstance(self._internal.spec.options, gauge.Options)
+        reduce_options_resource = reduce_options.build()
+        self._internal.spec.options.reduce_options = reduce_options_resource
+    
+        return self
+    
+    def text(self, text: cogbuilder.Builder[common.VizTextDisplayOptions]) -> typing.Self:    
+        if self._internal.spec is None:
+            self._internal.spec = dashboardv2beta1.VizConfigSpec()
+        assert isinstance(self._internal.spec, dashboardv2beta1.VizConfigSpec)
+        if self._internal.spec.options is None:
+            self._internal.spec.options = gauge.Options()
+        assert isinstance(self._internal.spec.options, gauge.Options)
+        text_resource = text.build()
+        self._internal.spec.options.text = text_resource
+    
+        return self
+    
+    def min_viz_height(self, min_viz_height: int) -> typing.Self:    
+        if self._internal.spec is None:
+            self._internal.spec = dashboardv2beta1.VizConfigSpec()
+        assert isinstance(self._internal.spec, dashboardv2beta1.VizConfigSpec)
+        if self._internal.spec.options is None:
+            self._internal.spec.options = gauge.Options()
+        assert isinstance(self._internal.spec.options, gauge.Options)
+        self._internal.spec.options.min_viz_height = min_viz_height
+    
+        return self
+    
+    def orientation(self, orientation: common.VizOrientation) -> typing.Self:    
+        if self._internal.spec is None:
+            self._internal.spec = dashboardv2beta1.VizConfigSpec()
+        assert isinstance(self._internal.spec, dashboardv2beta1.VizConfigSpec)
+        if self._internal.spec.options is None:
+            self._internal.spec.options = gauge.Options()
+        assert isinstance(self._internal.spec.options, gauge.Options)
+        self._internal.spec.options.orientation = orientation
+    
+        return self
+    
     def override_by_name(self, name: str, properties: list[dashboardv2beta1.DynamicConfigValue]) -> typing.Self:    
         """
         Adds override rules for a specific field, referred to by its name.
@@ -1073,96 +1163,6 @@ class Visualization(cogbuilder.Builder[dashboardv2beta1.VizConfigKind]):
         ),
             properties=properties,
         ))
-    
-        return self
-    
-    def show_threshold_labels(self, show_threshold_labels: bool) -> typing.Self:    
-        if self._internal.spec is None:
-            self._internal.spec = dashboardv2beta1.VizConfigSpec()
-        assert isinstance(self._internal.spec, dashboardv2beta1.VizConfigSpec)
-        if self._internal.spec.options is None:
-            self._internal.spec.options = gauge.Options()
-        assert isinstance(self._internal.spec.options, gauge.Options)
-        self._internal.spec.options.show_threshold_labels = show_threshold_labels
-    
-        return self
-    
-    def show_threshold_markers(self, show_threshold_markers: bool) -> typing.Self:    
-        if self._internal.spec is None:
-            self._internal.spec = dashboardv2beta1.VizConfigSpec()
-        assert isinstance(self._internal.spec, dashboardv2beta1.VizConfigSpec)
-        if self._internal.spec.options is None:
-            self._internal.spec.options = gauge.Options()
-        assert isinstance(self._internal.spec.options, gauge.Options)
-        self._internal.spec.options.show_threshold_markers = show_threshold_markers
-    
-        return self
-    
-    def sizing(self, sizing: common.BarGaugeSizing) -> typing.Self:    
-        if self._internal.spec is None:
-            self._internal.spec = dashboardv2beta1.VizConfigSpec()
-        assert isinstance(self._internal.spec, dashboardv2beta1.VizConfigSpec)
-        if self._internal.spec.options is None:
-            self._internal.spec.options = gauge.Options()
-        assert isinstance(self._internal.spec.options, gauge.Options)
-        self._internal.spec.options.sizing = sizing
-    
-        return self
-    
-    def min_viz_width(self, min_viz_width: int) -> typing.Self:    
-        if self._internal.spec is None:
-            self._internal.spec = dashboardv2beta1.VizConfigSpec()
-        assert isinstance(self._internal.spec, dashboardv2beta1.VizConfigSpec)
-        if self._internal.spec.options is None:
-            self._internal.spec.options = gauge.Options()
-        assert isinstance(self._internal.spec.options, gauge.Options)
-        self._internal.spec.options.min_viz_width = min_viz_width
-    
-        return self
-    
-    def reduce_options(self, reduce_options: cogbuilder.Builder[common.ReduceDataOptions]) -> typing.Self:    
-        if self._internal.spec is None:
-            self._internal.spec = dashboardv2beta1.VizConfigSpec()
-        assert isinstance(self._internal.spec, dashboardv2beta1.VizConfigSpec)
-        if self._internal.spec.options is None:
-            self._internal.spec.options = gauge.Options()
-        assert isinstance(self._internal.spec.options, gauge.Options)
-        reduce_options_resource = reduce_options.build()
-        self._internal.spec.options.reduce_options = reduce_options_resource
-    
-        return self
-    
-    def text(self, text: cogbuilder.Builder[common.VizTextDisplayOptions]) -> typing.Self:    
-        if self._internal.spec is None:
-            self._internal.spec = dashboardv2beta1.VizConfigSpec()
-        assert isinstance(self._internal.spec, dashboardv2beta1.VizConfigSpec)
-        if self._internal.spec.options is None:
-            self._internal.spec.options = gauge.Options()
-        assert isinstance(self._internal.spec.options, gauge.Options)
-        text_resource = text.build()
-        self._internal.spec.options.text = text_resource
-    
-        return self
-    
-    def min_viz_height(self, min_viz_height: int) -> typing.Self:    
-        if self._internal.spec is None:
-            self._internal.spec = dashboardv2beta1.VizConfigSpec()
-        assert isinstance(self._internal.spec, dashboardv2beta1.VizConfigSpec)
-        if self._internal.spec.options is None:
-            self._internal.spec.options = gauge.Options()
-        assert isinstance(self._internal.spec.options, gauge.Options)
-        self._internal.spec.options.min_viz_height = min_viz_height
-    
-        return self
-    
-    def orientation(self, orientation: common.VizOrientation) -> typing.Self:    
-        if self._internal.spec is None:
-            self._internal.spec = dashboardv2beta1.VizConfigSpec()
-        assert isinstance(self._internal.spec, dashboardv2beta1.VizConfigSpec)
-        if self._internal.spec.options is None:
-            self._internal.spec.options = gauge.Options()
-        assert isinstance(self._internal.spec.options, gauge.Options)
-        self._internal.spec.options.orientation = orientation
     
         return self
     

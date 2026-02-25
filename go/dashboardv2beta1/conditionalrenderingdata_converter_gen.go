@@ -15,17 +15,6 @@ func ConditionalRenderingDataConverter(input ConditionalRenderingDataKind) strin
 	var buffer strings.Builder
 
 	{
-		buffer.WriteString(`Spec(`)
-		arg0 := ConditionalRenderingDataSpecConverter(input.Spec)
-		buffer.WriteString(arg0)
-
-		buffer.WriteString(")")
-
-		calls = append(calls, buffer.String())
-		buffer.Reset()
-	}
-
-	{
 		buffer.WriteString(`Value(`)
 		arg0 := fmt.Sprintf("%#v", input.Spec.Value)
 		buffer.WriteString(arg0)

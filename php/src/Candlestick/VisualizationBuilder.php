@@ -221,73 +221,6 @@ class VisualizationBuilder implements \Grafana\Foundation\Cog\Builder
     }
 
     /**
-     * Adds override rules for a specific field, referred to by its name.
-     * @param array<\Grafana\Foundation\Dashboardv2beta1\DynamicConfigValue> $properties
-     */
-    public function overrideByName(string $name, array $properties): static
-    {
-        $this->internal->spec->fieldConfig->overrides[] = new \Grafana\Foundation\Dashboardv2beta1\Dashboardv2beta1FieldConfigSourceOverrides(
-            matcher: new \Grafana\Foundation\Dashboardv2beta1\MatcherConfig(
-            id: "byName",
-            options: $name,
-        ),
-            properties: $properties,
-        );
-    
-        return $this;
-    }
-
-    /**
-     * Adds override rules for the fields whose name match the given regexp.
-     * @param array<\Grafana\Foundation\Dashboardv2beta1\DynamicConfigValue> $properties
-     */
-    public function overrideByRegexp(string $regexp, array $properties): static
-    {
-        $this->internal->spec->fieldConfig->overrides[] = new \Grafana\Foundation\Dashboardv2beta1\Dashboardv2beta1FieldConfigSourceOverrides(
-            matcher: new \Grafana\Foundation\Dashboardv2beta1\MatcherConfig(
-            id: "byRegexp",
-            options: $regexp,
-        ),
-            properties: $properties,
-        );
-    
-        return $this;
-    }
-
-    /**
-     * Adds override rules for all the fields of the given type.
-     * @param array<\Grafana\Foundation\Dashboardv2beta1\DynamicConfigValue> $properties
-     */
-    public function overrideByFieldType(string $fieldType, array $properties): static
-    {
-        $this->internal->spec->fieldConfig->overrides[] = new \Grafana\Foundation\Dashboardv2beta1\Dashboardv2beta1FieldConfigSourceOverrides(
-            matcher: new \Grafana\Foundation\Dashboardv2beta1\MatcherConfig(
-            id: "byType",
-            options: $fieldType,
-        ),
-            properties: $properties,
-        );
-    
-        return $this;
-    }
-
-    /**
-     * @param array<\Grafana\Foundation\Dashboardv2beta1\DynamicConfigValue> $properties
-     */
-    public function overrideByQuery(string $queryRefId, array $properties): static
-    {
-        $this->internal->spec->fieldConfig->overrides[] = new \Grafana\Foundation\Dashboardv2beta1\Dashboardv2beta1FieldConfigSourceOverrides(
-            matcher: new \Grafana\Foundation\Dashboardv2beta1\MatcherConfig(
-            id: "byFrameRefID",
-            options: $queryRefId,
-        ),
-            properties: $properties,
-        );
-    
-        return $this;
-    }
-
-    /**
      * Sets which dimensions are used for the visualization
      */
     public function mode(\Grafana\Foundation\Candlestick\VizDisplayMode $mode): static
@@ -782,6 +715,73 @@ class VisualizationBuilder implements \Grafana\Foundation\Cog\Builder
         }
         assert($this->internal->spec->fieldConfig->defaults->custom instanceof \Grafana\Foundation\Candlestick\FieldConfig);
         $this->internal->spec->fieldConfig->defaults->custom->barMaxWidth = $barMaxWidth;
+    
+        return $this;
+    }
+
+    /**
+     * Adds override rules for a specific field, referred to by its name.
+     * @param array<\Grafana\Foundation\Dashboardv2beta1\DynamicConfigValue> $properties
+     */
+    public function overrideByName(string $name, array $properties): static
+    {
+        $this->internal->spec->fieldConfig->overrides[] = new \Grafana\Foundation\Dashboardv2beta1\Dashboardv2beta1FieldConfigSourceOverrides(
+            matcher: new \Grafana\Foundation\Dashboardv2beta1\MatcherConfig(
+            id: "byName",
+            options: $name,
+        ),
+            properties: $properties,
+        );
+    
+        return $this;
+    }
+
+    /**
+     * Adds override rules for the fields whose name match the given regexp.
+     * @param array<\Grafana\Foundation\Dashboardv2beta1\DynamicConfigValue> $properties
+     */
+    public function overrideByRegexp(string $regexp, array $properties): static
+    {
+        $this->internal->spec->fieldConfig->overrides[] = new \Grafana\Foundation\Dashboardv2beta1\Dashboardv2beta1FieldConfigSourceOverrides(
+            matcher: new \Grafana\Foundation\Dashboardv2beta1\MatcherConfig(
+            id: "byRegexp",
+            options: $regexp,
+        ),
+            properties: $properties,
+        );
+    
+        return $this;
+    }
+
+    /**
+     * Adds override rules for all the fields of the given type.
+     * @param array<\Grafana\Foundation\Dashboardv2beta1\DynamicConfigValue> $properties
+     */
+    public function overrideByFieldType(string $fieldType, array $properties): static
+    {
+        $this->internal->spec->fieldConfig->overrides[] = new \Grafana\Foundation\Dashboardv2beta1\Dashboardv2beta1FieldConfigSourceOverrides(
+            matcher: new \Grafana\Foundation\Dashboardv2beta1\MatcherConfig(
+            id: "byType",
+            options: $fieldType,
+        ),
+            properties: $properties,
+        );
+    
+        return $this;
+    }
+
+    /**
+     * @param array<\Grafana\Foundation\Dashboardv2beta1\DynamicConfigValue> $properties
+     */
+    public function overrideByQuery(string $queryRefId, array $properties): static
+    {
+        $this->internal->spec->fieldConfig->overrides[] = new \Grafana\Foundation\Dashboardv2beta1\Dashboardv2beta1FieldConfigSourceOverrides(
+            matcher: new \Grafana\Foundation\Dashboardv2beta1\MatcherConfig(
+            id: "byFrameRefID",
+            options: $queryRefId,
+        ),
+            properties: $properties,
+        );
     
         return $this;
     }

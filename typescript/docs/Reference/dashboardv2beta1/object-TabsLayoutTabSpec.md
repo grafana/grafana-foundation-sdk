@@ -14,6 +14,3 @@ export interface TabsLayoutTabSpec {
 }
 
 ```
-## See also
-
- * <span class="badge builder"></span> [TabsLayoutTabSpecBuilder](./builder-TabsLayoutTabSpecBuilder.md)

@@ -244,27 +244,6 @@ final class VisualizationConverter
     
     
     }
-            if (count($input->spec->fieldConfig->overrides) >= 1) {
-    foreach ($input->spec->fieldConfig->overrides as $item) {
-        
-    $buffer = 'overrideByName(';
-        $arg0 ='(new \Grafana\Foundation\Dashboardv2beta1\MatcherConfig(id: '.\var_export($item->matcher->id, true).','.(($item->matcher->options !== null) ? 'options: '.\var_export($item->matcher->options, true).', ' : '').'))';
-        $buffer .= $arg0;
-        $buffer .= ', ';
-        $tmparg1 = [];
-        foreach ($item->properties as $arg1) {
-        $tmppropertiesarg1 ='(new \Grafana\Foundation\Dashboardv2beta1\DynamicConfigValue(id: '.\var_export($arg1->id, true).','.(($arg1->value !== null) ? 'value: '.\var_export($arg1->value, true).', ' : '').'))';
-        $tmparg1[] = $tmppropertiesarg1;
-        }
-        $arg1 = "[" . implode(", \n", $tmparg1) . "]";
-        $buffer .= $arg1;
-        
-    $buffer .= ')';
-
-    $calls[] = $buffer;
-    
-    }
-    }
             if ($input->spec->options !== null && $input->spec->options instanceof \Grafana\Foundation\Dashboardlist\Options && $input->spec->options->keepTime !== false) {
     
         
@@ -425,6 +404,27 @@ final class VisualizationConverter
     $calls[] = $buffer;
     
     
+    }
+            if (count($input->spec->fieldConfig->overrides) >= 1) {
+    foreach ($input->spec->fieldConfig->overrides as $item) {
+        
+    $buffer = 'overrideByName(';
+        $arg0 ='(new \Grafana\Foundation\Dashboardv2beta1\MatcherConfig(id: '.\var_export($item->matcher->id, true).','.(($item->matcher->options !== null) ? 'options: '.\var_export($item->matcher->options, true).', ' : '').'))';
+        $buffer .= $arg0;
+        $buffer .= ', ';
+        $tmparg1 = [];
+        foreach ($item->properties as $arg1) {
+        $tmppropertiesarg1 ='(new \Grafana\Foundation\Dashboardv2beta1\DynamicConfigValue(id: '.\var_export($arg1->id, true).','.(($arg1->value !== null) ? 'value: '.\var_export($arg1->value, true).', ' : '').'))';
+        $tmparg1[] = $tmppropertiesarg1;
+        }
+        $arg1 = "[" . implode(", \n", $tmparg1) . "]";
+        $buffer .= $arg1;
+        
+    $buffer .= ')';
+
+    $calls[] = $buffer;
+    
+    }
     }
 
         return \implode("\n\t->", $calls);

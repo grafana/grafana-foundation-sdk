@@ -1119,6 +1119,66 @@ class Visualization(cogbuilder.Builder[dashboardv2beta1.VizConfigKind]):
     
         return self
     
+    def view(self, view: cogbuilder.Builder[geomap.MapViewConfig]) -> typing.Self:    
+        if self._internal.spec is None:
+            self._internal.spec = dashboardv2beta1.VizConfigSpec()
+        assert isinstance(self._internal.spec, dashboardv2beta1.VizConfigSpec)
+        if self._internal.spec.options is None:
+            self._internal.spec.options = geomap.Options()
+        assert isinstance(self._internal.spec.options, geomap.Options)
+        view_resource = view.build()
+        self._internal.spec.options.view = view_resource
+    
+        return self
+    
+    def controls(self, controls: cogbuilder.Builder[geomap.ControlsOptions]) -> typing.Self:    
+        if self._internal.spec is None:
+            self._internal.spec = dashboardv2beta1.VizConfigSpec()
+        assert isinstance(self._internal.spec, dashboardv2beta1.VizConfigSpec)
+        if self._internal.spec.options is None:
+            self._internal.spec.options = geomap.Options()
+        assert isinstance(self._internal.spec.options, geomap.Options)
+        controls_resource = controls.build()
+        self._internal.spec.options.controls = controls_resource
+    
+        return self
+    
+    def basemap(self, basemap: cogbuilder.Builder[common.MapLayerOptions]) -> typing.Self:    
+        if self._internal.spec is None:
+            self._internal.spec = dashboardv2beta1.VizConfigSpec()
+        assert isinstance(self._internal.spec, dashboardv2beta1.VizConfigSpec)
+        if self._internal.spec.options is None:
+            self._internal.spec.options = geomap.Options()
+        assert isinstance(self._internal.spec.options, geomap.Options)
+        basemap_resource = basemap.build()
+        self._internal.spec.options.basemap = basemap_resource
+    
+        return self
+    
+    def layers(self, layers: list[cogbuilder.Builder[common.MapLayerOptions]]) -> typing.Self:    
+        if self._internal.spec is None:
+            self._internal.spec = dashboardv2beta1.VizConfigSpec()
+        assert isinstance(self._internal.spec, dashboardv2beta1.VizConfigSpec)
+        if self._internal.spec.options is None:
+            self._internal.spec.options = geomap.Options()
+        assert isinstance(self._internal.spec.options, geomap.Options)
+        layers_resources = [r1.build() for r1 in layers]
+        self._internal.spec.options.layers = layers_resources
+    
+        return self
+    
+    def tooltip(self, tooltip: cogbuilder.Builder[geomap.TooltipOptions]) -> typing.Self:    
+        if self._internal.spec is None:
+            self._internal.spec = dashboardv2beta1.VizConfigSpec()
+        assert isinstance(self._internal.spec, dashboardv2beta1.VizConfigSpec)
+        if self._internal.spec.options is None:
+            self._internal.spec.options = geomap.Options()
+        assert isinstance(self._internal.spec.options, geomap.Options)
+        tooltip_resource = tooltip.build()
+        self._internal.spec.options.tooltip = tooltip_resource
+    
+        return self
+    
     def override_by_name(self, name: str, properties: list[dashboardv2beta1.DynamicConfigValue]) -> typing.Self:    
         """
         Adds override rules for a specific field, referred to by its name.
@@ -1208,66 +1268,6 @@ class Visualization(cogbuilder.Builder[dashboardv2beta1.VizConfigKind]):
         ),
             properties=properties,
         ))
-    
-        return self
-    
-    def view(self, view: cogbuilder.Builder[geomap.MapViewConfig]) -> typing.Self:    
-        if self._internal.spec is None:
-            self._internal.spec = dashboardv2beta1.VizConfigSpec()
-        assert isinstance(self._internal.spec, dashboardv2beta1.VizConfigSpec)
-        if self._internal.spec.options is None:
-            self._internal.spec.options = geomap.Options()
-        assert isinstance(self._internal.spec.options, geomap.Options)
-        view_resource = view.build()
-        self._internal.spec.options.view = view_resource
-    
-        return self
-    
-    def controls(self, controls: cogbuilder.Builder[geomap.ControlsOptions]) -> typing.Self:    
-        if self._internal.spec is None:
-            self._internal.spec = dashboardv2beta1.VizConfigSpec()
-        assert isinstance(self._internal.spec, dashboardv2beta1.VizConfigSpec)
-        if self._internal.spec.options is None:
-            self._internal.spec.options = geomap.Options()
-        assert isinstance(self._internal.spec.options, geomap.Options)
-        controls_resource = controls.build()
-        self._internal.spec.options.controls = controls_resource
-    
-        return self
-    
-    def basemap(self, basemap: cogbuilder.Builder[common.MapLayerOptions]) -> typing.Self:    
-        if self._internal.spec is None:
-            self._internal.spec = dashboardv2beta1.VizConfigSpec()
-        assert isinstance(self._internal.spec, dashboardv2beta1.VizConfigSpec)
-        if self._internal.spec.options is None:
-            self._internal.spec.options = geomap.Options()
-        assert isinstance(self._internal.spec.options, geomap.Options)
-        basemap_resource = basemap.build()
-        self._internal.spec.options.basemap = basemap_resource
-    
-        return self
-    
-    def layers(self, layers: list[cogbuilder.Builder[common.MapLayerOptions]]) -> typing.Self:    
-        if self._internal.spec is None:
-            self._internal.spec = dashboardv2beta1.VizConfigSpec()
-        assert isinstance(self._internal.spec, dashboardv2beta1.VizConfigSpec)
-        if self._internal.spec.options is None:
-            self._internal.spec.options = geomap.Options()
-        assert isinstance(self._internal.spec.options, geomap.Options)
-        layers_resources = [r1.build() for r1 in layers]
-        self._internal.spec.options.layers = layers_resources
-    
-        return self
-    
-    def tooltip(self, tooltip: cogbuilder.Builder[geomap.TooltipOptions]) -> typing.Self:    
-        if self._internal.spec is None:
-            self._internal.spec = dashboardv2beta1.VizConfigSpec()
-        assert isinstance(self._internal.spec, dashboardv2beta1.VizConfigSpec)
-        if self._internal.spec.options is None:
-            self._internal.spec.options = geomap.Options()
-        assert isinstance(self._internal.spec.options, geomap.Options)
-        tooltip_resource = tooltip.build()
-        self._internal.spec.options.tooltip = tooltip_resource
     
         return self
     

@@ -18,12 +18,6 @@ Builds the object.
 func (builder *ConditionalRenderingDataBuilder) Build() (ConditionalRenderingDataKind, error)
 ```
 
-### <span class="badge object-method"></span> Spec
-
-```go
-func (builder *ConditionalRenderingDataBuilder) Spec(spec cog.Builder[dashboardv2beta1.ConditionalRenderingDataSpec]) *ConditionalRenderingDataBuilder
-```
-
 ### <span class="badge object-method"></span> Value
 
 ```go

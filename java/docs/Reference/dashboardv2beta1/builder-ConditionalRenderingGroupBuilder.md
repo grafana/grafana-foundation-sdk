@@ -24,16 +24,16 @@ public ConditionalRenderingGroup build()
 public ConditionalRenderingGroupBuilder condition(ConditionalRenderingGroupSpecCondition condition)
 ```
 
+### <span class="badge object-method"></span> item
+
+```java
+public ConditionalRenderingGroupBuilder item(ConditionalRenderingVariableKindOrConditionalRenderingDataKindOrConditionalRenderingTimeRangeSizeKind item)
+```
+
 ### <span class="badge object-method"></span> items
 
 ```java
 public ConditionalRenderingGroupBuilder items(List<ConditionalRenderingVariableKindOrConditionalRenderingDataKindOrConditionalRenderingTimeRangeSizeKind> items)
-```
-
-### <span class="badge object-method"></span> spec
-
-```java
-public ConditionalRenderingGroupBuilder spec(com.grafana.foundation.cog.Builder<ConditionalRenderingGroupSpec> spec)
 ```
 
 ### <span class="badge object-method"></span> visibility

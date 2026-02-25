@@ -283,6 +283,74 @@ export class VisualizationBuilder implements cog.Builder<dashboardv2beta1.VizCon
         return this;
     }
 
+    // Enable inline editing
+    inlineEditing(inlineEditing: boolean): this {
+        if (!this.internal.spec) {
+            this.internal.spec = dashboardv2beta1.defaultVizConfigSpec();
+        }
+        if (!this.internal.spec.options) {
+            this.internal.spec.options = canvas.defaultOptions();
+        }
+        this.internal.spec.options.inlineEditing = inlineEditing;
+        return this;
+    }
+
+    // Show all available element types
+    showAdvancedTypes(showAdvancedTypes: boolean): this {
+        if (!this.internal.spec) {
+            this.internal.spec = dashboardv2beta1.defaultVizConfigSpec();
+        }
+        if (!this.internal.spec.options) {
+            this.internal.spec.options = canvas.defaultOptions();
+        }
+        this.internal.spec.options.showAdvancedTypes = showAdvancedTypes;
+        return this;
+    }
+
+    // Enable pan and zoom
+    panZoom(panZoom: boolean): this {
+        if (!this.internal.spec) {
+            this.internal.spec = dashboardv2beta1.defaultVizConfigSpec();
+        }
+        if (!this.internal.spec.options) {
+            this.internal.spec.options = canvas.defaultOptions();
+        }
+        this.internal.spec.options.panZoom = panZoom;
+        return this;
+    }
+
+    // Enable infinite pan
+    infinitePan(infinitePan: boolean): this {
+        if (!this.internal.spec) {
+            this.internal.spec = dashboardv2beta1.defaultVizConfigSpec();
+        }
+        if (!this.internal.spec.options) {
+            this.internal.spec.options = canvas.defaultOptions();
+        }
+        this.internal.spec.options.infinitePan = infinitePan;
+        return this;
+    }
+
+    // The root element of canvas (frame), where all canvas elements are nested
+    // TODO: Figure out how to define a default value for this
+    root(root: {
+	// Name of the root element
+	name: string;
+	// Type of root element (frame)
+	type: "frame";
+	// The list of canvas elements attached to the root element
+	elements: canvas.CanvasElementOptions[];
+}): this {
+        if (!this.internal.spec) {
+            this.internal.spec = dashboardv2beta1.defaultVizConfigSpec();
+        }
+        if (!this.internal.spec.options) {
+            this.internal.spec.options = canvas.defaultOptions();
+        }
+        this.internal.spec.options.root = root;
+        return this;
+    }
+
     // Adds override rules for a specific field, referred to by its name.
     overrideByName(name: string,properties: dashboardv2beta1.DynamicConfigValue[]): this {
         if (!this.internal.spec) {
@@ -363,74 +431,6 @@ export class VisualizationBuilder implements cog.Builder<dashboardv2beta1.VizCon
     },
         properties: properties,
     });
-        return this;
-    }
-
-    // Enable inline editing
-    inlineEditing(inlineEditing: boolean): this {
-        if (!this.internal.spec) {
-            this.internal.spec = dashboardv2beta1.defaultVizConfigSpec();
-        }
-        if (!this.internal.spec.options) {
-            this.internal.spec.options = canvas.defaultOptions();
-        }
-        this.internal.spec.options.inlineEditing = inlineEditing;
-        return this;
-    }
-
-    // Show all available element types
-    showAdvancedTypes(showAdvancedTypes: boolean): this {
-        if (!this.internal.spec) {
-            this.internal.spec = dashboardv2beta1.defaultVizConfigSpec();
-        }
-        if (!this.internal.spec.options) {
-            this.internal.spec.options = canvas.defaultOptions();
-        }
-        this.internal.spec.options.showAdvancedTypes = showAdvancedTypes;
-        return this;
-    }
-
-    // Enable pan and zoom
-    panZoom(panZoom: boolean): this {
-        if (!this.internal.spec) {
-            this.internal.spec = dashboardv2beta1.defaultVizConfigSpec();
-        }
-        if (!this.internal.spec.options) {
-            this.internal.spec.options = canvas.defaultOptions();
-        }
-        this.internal.spec.options.panZoom = panZoom;
-        return this;
-    }
-
-    // Enable infinite pan
-    infinitePan(infinitePan: boolean): this {
-        if (!this.internal.spec) {
-            this.internal.spec = dashboardv2beta1.defaultVizConfigSpec();
-        }
-        if (!this.internal.spec.options) {
-            this.internal.spec.options = canvas.defaultOptions();
-        }
-        this.internal.spec.options.infinitePan = infinitePan;
-        return this;
-    }
-
-    // The root element of canvas (frame), where all canvas elements are nested
-    // TODO: Figure out how to define a default value for this
-    root(root: {
-	// Name of the root element
-	name: string;
-	// Type of root element (frame)
-	type: "frame";
-	// The list of canvas elements attached to the root element
-	elements: canvas.CanvasElementOptions[];
-}): this {
-        if (!this.internal.spec) {
-            this.internal.spec = dashboardv2beta1.defaultVizConfigSpec();
-        }
-        if (!this.internal.spec.options) {
-            this.internal.spec.options = canvas.defaultOptions();
-        }
-        this.internal.spec.options.root = root;
         return this;
     }
 }

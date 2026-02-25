@@ -15,11 +15,6 @@ public class QueryVariableBuilder implements com.grafana.foundation.cog.Builder<
 		}
         this.internal.spec.name = name;
     }
-    public QueryVariableBuilder spec(QueryVariableSpec spec) {
-        this.internal.spec = spec;
-        return this;
-    }
-    
     public QueryVariableBuilder name(String name) {
 		if (this.internal.spec == null) {
 			this.internal.spec = new com.grafana.foundation.dashboardv2beta1.QueryVariableSpec();

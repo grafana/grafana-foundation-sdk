@@ -18,12 +18,6 @@ Builds the object.
 public ConditionalRenderingData build()
 ```
 
-### <span class="badge object-method"></span> spec
-
-```java
-public ConditionalRenderingDataBuilder spec(com.grafana.foundation.cog.Builder<ConditionalRenderingDataSpec> spec)
-```
-
 ### <span class="badge object-method"></span> value
 
 ```java

@@ -964,6 +964,29 @@ class Visualization(cogbuilder.Builder[dashboardv2beta1.VizConfigKind]):
     
         return self
     
+    def mode(self, mode: debug.DebugMode) -> typing.Self:    
+        if self._internal.spec is None:
+            self._internal.spec = dashboardv2beta1.VizConfigSpec()
+        assert isinstance(self._internal.spec, dashboardv2beta1.VizConfigSpec)
+        if self._internal.spec.options is None:
+            self._internal.spec.options = debug.Options()
+        assert isinstance(self._internal.spec.options, debug.Options)
+        self._internal.spec.options.mode = mode
+    
+        return self
+    
+    def counters(self, counters: cogbuilder.Builder[debug.UpdateConfig]) -> typing.Self:    
+        if self._internal.spec is None:
+            self._internal.spec = dashboardv2beta1.VizConfigSpec()
+        assert isinstance(self._internal.spec, dashboardv2beta1.VizConfigSpec)
+        if self._internal.spec.options is None:
+            self._internal.spec.options = debug.Options()
+        assert isinstance(self._internal.spec.options, debug.Options)
+        counters_resource = counters.build()
+        self._internal.spec.options.counters = counters_resource
+    
+        return self
+    
     def override_by_name(self, name: str, properties: list[dashboardv2beta1.DynamicConfigValue]) -> typing.Self:    
         """
         Adds override rules for a specific field, referred to by its name.
@@ -1053,29 +1076,6 @@ class Visualization(cogbuilder.Builder[dashboardv2beta1.VizConfigKind]):
         ),
             properties=properties,
         ))
-    
-        return self
-    
-    def mode(self, mode: debug.DebugMode) -> typing.Self:    
-        if self._internal.spec is None:
-            self._internal.spec = dashboardv2beta1.VizConfigSpec()
-        assert isinstance(self._internal.spec, dashboardv2beta1.VizConfigSpec)
-        if self._internal.spec.options is None:
-            self._internal.spec.options = debug.Options()
-        assert isinstance(self._internal.spec.options, debug.Options)
-        self._internal.spec.options.mode = mode
-    
-        return self
-    
-    def counters(self, counters: cogbuilder.Builder[debug.UpdateConfig]) -> typing.Self:    
-        if self._internal.spec is None:
-            self._internal.spec = dashboardv2beta1.VizConfigSpec()
-        assert isinstance(self._internal.spec, dashboardv2beta1.VizConfigSpec)
-        if self._internal.spec.options is None:
-            self._internal.spec.options = debug.Options()
-        assert isinstance(self._internal.spec.options, debug.Options)
-        counters_resource = counters.build()
-        self._internal.spec.options.counters = counters_resource
     
         return self
     

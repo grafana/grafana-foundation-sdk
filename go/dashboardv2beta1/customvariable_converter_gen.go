@@ -15,18 +15,6 @@ func CustomVariableConverter(input CustomVariableKind) string {
 		`dashboardv2beta1.NewCustomVariableBuilder(` + fmt.Sprintf("%#v", input.Spec.Name) + `)`,
 	}
 	var buffer strings.Builder
-
-	{
-		buffer.WriteString(`Spec(`)
-		arg0 := cog.Dump(input.Spec)
-		buffer.WriteString(arg0)
-
-		buffer.WriteString(")")
-
-		calls = append(calls, buffer.String())
-		buffer.Reset()
-	}
-
 	if input.Spec.Name != "" {
 
 		buffer.WriteString(`Name(`)

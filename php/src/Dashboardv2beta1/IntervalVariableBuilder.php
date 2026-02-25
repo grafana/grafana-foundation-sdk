@@ -26,13 +26,6 @@ class IntervalVariableBuilder implements \Grafana\Foundation\Cog\Builder
         return $this->internal;
     }
 
-    public function spec(\Grafana\Foundation\Dashboardv2beta1\IntervalVariableSpec $spec): static
-    {
-        $this->internal->spec = $spec;
-    
-        return $this;
-    }
-
     public function name(string $name): static
     {
         $this->internal->spec->name = $name;

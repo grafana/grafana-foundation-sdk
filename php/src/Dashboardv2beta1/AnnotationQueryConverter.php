@@ -13,19 +13,6 @@ final class AnnotationQueryConverter
             
     
         {
-    $buffer = 'spec(';
-        $arg0 = \Grafana\Foundation\Dashboardv2beta1\AnnotationQuerySpecConverter::convert($input->spec);
-        $buffer .= $arg0;
-        
-    $buffer .= ')';
-
-    $calls[] = $buffer;
-    }
-    
-    
-            
-    
-        {
     $buffer = 'query(';
         $arg0 = \Grafana\Foundation\Cog\Runtime::get()->convertDataQueryKindToCode($input->spec->query, $input->spec->query->group, );
         $buffer .= $arg0;

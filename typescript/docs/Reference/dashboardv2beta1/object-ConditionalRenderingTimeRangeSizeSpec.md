@@ -11,6 +11,3 @@ export interface ConditionalRenderingTimeRangeSizeSpec {
 }
 
 ```
-## See also
-
- * <span class="badge builder"></span> [ConditionalRenderingTimeRangeSizeSpecBuilder](./builder-ConditionalRenderingTimeRangeSizeSpecBuilder.md)

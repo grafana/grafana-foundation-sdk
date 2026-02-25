@@ -259,86 +259,6 @@ public class LogsVizConfigKindBuilder implements com.grafana.foundation.cog.Buil
         return this;
     }
     
-    public LogsVizConfigKindBuilder overrideByName(String name,List<DynamicConfigValue> properties) {
-		if (this.internal.spec == null) {
-			this.internal.spec = new com.grafana.foundation.dashboardv2beta1.VizConfigSpec();
-		}
-		if (this.internal.spec.fieldConfig == null) {
-			this.internal.spec.fieldConfig = new com.grafana.foundation.dashboardv2beta1.FieldConfigSource();
-		}
-		if (this.internal.spec.fieldConfig.overrides == null) {
-			this.internal.spec.fieldConfig.overrides = new LinkedList<>();
-		}
-    MatcherConfig matcherConfig = new MatcherConfig();
-        matcherConfig.id = "byName";
-        matcherConfig.options = name;
-    Dashboardv2beta1FieldConfigSourceOverrides dashboardv2beta1FieldConfigSourceOverrides = new Dashboardv2beta1FieldConfigSourceOverrides();
-        dashboardv2beta1FieldConfigSourceOverrides.matcher = matcherConfig;
-        dashboardv2beta1FieldConfigSourceOverrides.properties = properties;
-        this.internal.spec.fieldConfig.overrides.add(dashboardv2beta1FieldConfigSourceOverrides);
-        return this;
-    }
-    
-    public LogsVizConfigKindBuilder overrideByRegexp(String regexp,List<DynamicConfigValue> properties) {
-		if (this.internal.spec == null) {
-			this.internal.spec = new com.grafana.foundation.dashboardv2beta1.VizConfigSpec();
-		}
-		if (this.internal.spec.fieldConfig == null) {
-			this.internal.spec.fieldConfig = new com.grafana.foundation.dashboardv2beta1.FieldConfigSource();
-		}
-		if (this.internal.spec.fieldConfig.overrides == null) {
-			this.internal.spec.fieldConfig.overrides = new LinkedList<>();
-		}
-    MatcherConfig matcherConfig = new MatcherConfig();
-        matcherConfig.id = "byRegexp";
-        matcherConfig.options = regexp;
-    Dashboardv2beta1FieldConfigSourceOverrides dashboardv2beta1FieldConfigSourceOverrides = new Dashboardv2beta1FieldConfigSourceOverrides();
-        dashboardv2beta1FieldConfigSourceOverrides.matcher = matcherConfig;
-        dashboardv2beta1FieldConfigSourceOverrides.properties = properties;
-        this.internal.spec.fieldConfig.overrides.add(dashboardv2beta1FieldConfigSourceOverrides);
-        return this;
-    }
-    
-    public LogsVizConfigKindBuilder overrideByFieldType(String fieldType,List<DynamicConfigValue> properties) {
-		if (this.internal.spec == null) {
-			this.internal.spec = new com.grafana.foundation.dashboardv2beta1.VizConfigSpec();
-		}
-		if (this.internal.spec.fieldConfig == null) {
-			this.internal.spec.fieldConfig = new com.grafana.foundation.dashboardv2beta1.FieldConfigSource();
-		}
-		if (this.internal.spec.fieldConfig.overrides == null) {
-			this.internal.spec.fieldConfig.overrides = new LinkedList<>();
-		}
-    MatcherConfig matcherConfig = new MatcherConfig();
-        matcherConfig.id = "byType";
-        matcherConfig.options = fieldType;
-    Dashboardv2beta1FieldConfigSourceOverrides dashboardv2beta1FieldConfigSourceOverrides = new Dashboardv2beta1FieldConfigSourceOverrides();
-        dashboardv2beta1FieldConfigSourceOverrides.matcher = matcherConfig;
-        dashboardv2beta1FieldConfigSourceOverrides.properties = properties;
-        this.internal.spec.fieldConfig.overrides.add(dashboardv2beta1FieldConfigSourceOverrides);
-        return this;
-    }
-    
-    public LogsVizConfigKindBuilder overrideByQuery(String queryRefId,List<DynamicConfigValue> properties) {
-		if (this.internal.spec == null) {
-			this.internal.spec = new com.grafana.foundation.dashboardv2beta1.VizConfigSpec();
-		}
-		if (this.internal.spec.fieldConfig == null) {
-			this.internal.spec.fieldConfig = new com.grafana.foundation.dashboardv2beta1.FieldConfigSource();
-		}
-		if (this.internal.spec.fieldConfig.overrides == null) {
-			this.internal.spec.fieldConfig.overrides = new LinkedList<>();
-		}
-    MatcherConfig matcherConfig = new MatcherConfig();
-        matcherConfig.id = "byFrameRefID";
-        matcherConfig.options = queryRefId;
-    Dashboardv2beta1FieldConfigSourceOverrides dashboardv2beta1FieldConfigSourceOverrides = new Dashboardv2beta1FieldConfigSourceOverrides();
-        dashboardv2beta1FieldConfigSourceOverrides.matcher = matcherConfig;
-        dashboardv2beta1FieldConfigSourceOverrides.properties = properties;
-        this.internal.spec.fieldConfig.overrides.add(dashboardv2beta1FieldConfigSourceOverrides);
-        return this;
-    }
-    
     public LogsVizConfigKindBuilder showLabels(Boolean showLabels) {
 		if (this.internal.spec == null) {
 			this.internal.spec = new com.grafana.foundation.dashboardv2beta1.VizConfigSpec();
@@ -567,6 +487,86 @@ public class LogsVizConfigKindBuilder implements com.grafana.foundation.cog.Buil
 			this.internal.spec.options = new com.grafana.foundation.logs.Options();
 		}
         ((Options) this.internal.spec.options).displayedFields = displayedFields;
+        return this;
+    }
+    
+    public LogsVizConfigKindBuilder overrideByName(String name,List<DynamicConfigValue> properties) {
+		if (this.internal.spec == null) {
+			this.internal.spec = new com.grafana.foundation.dashboardv2beta1.VizConfigSpec();
+		}
+		if (this.internal.spec.fieldConfig == null) {
+			this.internal.spec.fieldConfig = new com.grafana.foundation.dashboardv2beta1.FieldConfigSource();
+		}
+		if (this.internal.spec.fieldConfig.overrides == null) {
+			this.internal.spec.fieldConfig.overrides = new LinkedList<>();
+		}
+    MatcherConfig matcherConfig = new MatcherConfig();
+        matcherConfig.id = "byName";
+        matcherConfig.options = name;
+    Dashboardv2beta1FieldConfigSourceOverrides dashboardv2beta1FieldConfigSourceOverrides = new Dashboardv2beta1FieldConfigSourceOverrides();
+        dashboardv2beta1FieldConfigSourceOverrides.matcher = matcherConfig;
+        dashboardv2beta1FieldConfigSourceOverrides.properties = properties;
+        this.internal.spec.fieldConfig.overrides.add(dashboardv2beta1FieldConfigSourceOverrides);
+        return this;
+    }
+    
+    public LogsVizConfigKindBuilder overrideByRegexp(String regexp,List<DynamicConfigValue> properties) {
+		if (this.internal.spec == null) {
+			this.internal.spec = new com.grafana.foundation.dashboardv2beta1.VizConfigSpec();
+		}
+		if (this.internal.spec.fieldConfig == null) {
+			this.internal.spec.fieldConfig = new com.grafana.foundation.dashboardv2beta1.FieldConfigSource();
+		}
+		if (this.internal.spec.fieldConfig.overrides == null) {
+			this.internal.spec.fieldConfig.overrides = new LinkedList<>();
+		}
+    MatcherConfig matcherConfig = new MatcherConfig();
+        matcherConfig.id = "byRegexp";
+        matcherConfig.options = regexp;
+    Dashboardv2beta1FieldConfigSourceOverrides dashboardv2beta1FieldConfigSourceOverrides = new Dashboardv2beta1FieldConfigSourceOverrides();
+        dashboardv2beta1FieldConfigSourceOverrides.matcher = matcherConfig;
+        dashboardv2beta1FieldConfigSourceOverrides.properties = properties;
+        this.internal.spec.fieldConfig.overrides.add(dashboardv2beta1FieldConfigSourceOverrides);
+        return this;
+    }
+    
+    public LogsVizConfigKindBuilder overrideByFieldType(String fieldType,List<DynamicConfigValue> properties) {
+		if (this.internal.spec == null) {
+			this.internal.spec = new com.grafana.foundation.dashboardv2beta1.VizConfigSpec();
+		}
+		if (this.internal.spec.fieldConfig == null) {
+			this.internal.spec.fieldConfig = new com.grafana.foundation.dashboardv2beta1.FieldConfigSource();
+		}
+		if (this.internal.spec.fieldConfig.overrides == null) {
+			this.internal.spec.fieldConfig.overrides = new LinkedList<>();
+		}
+    MatcherConfig matcherConfig = new MatcherConfig();
+        matcherConfig.id = "byType";
+        matcherConfig.options = fieldType;
+    Dashboardv2beta1FieldConfigSourceOverrides dashboardv2beta1FieldConfigSourceOverrides = new Dashboardv2beta1FieldConfigSourceOverrides();
+        dashboardv2beta1FieldConfigSourceOverrides.matcher = matcherConfig;
+        dashboardv2beta1FieldConfigSourceOverrides.properties = properties;
+        this.internal.spec.fieldConfig.overrides.add(dashboardv2beta1FieldConfigSourceOverrides);
+        return this;
+    }
+    
+    public LogsVizConfigKindBuilder overrideByQuery(String queryRefId,List<DynamicConfigValue> properties) {
+		if (this.internal.spec == null) {
+			this.internal.spec = new com.grafana.foundation.dashboardv2beta1.VizConfigSpec();
+		}
+		if (this.internal.spec.fieldConfig == null) {
+			this.internal.spec.fieldConfig = new com.grafana.foundation.dashboardv2beta1.FieldConfigSource();
+		}
+		if (this.internal.spec.fieldConfig.overrides == null) {
+			this.internal.spec.fieldConfig.overrides = new LinkedList<>();
+		}
+    MatcherConfig matcherConfig = new MatcherConfig();
+        matcherConfig.id = "byFrameRefID";
+        matcherConfig.options = queryRefId;
+    Dashboardv2beta1FieldConfigSourceOverrides dashboardv2beta1FieldConfigSourceOverrides = new Dashboardv2beta1FieldConfigSourceOverrides();
+        dashboardv2beta1FieldConfigSourceOverrides.matcher = matcherConfig;
+        dashboardv2beta1FieldConfigSourceOverrides.properties = properties;
+        this.internal.spec.fieldConfig.overrides.add(dashboardv2beta1FieldConfigSourceOverrides);
         return this;
     }
     public VizConfigKind build() {

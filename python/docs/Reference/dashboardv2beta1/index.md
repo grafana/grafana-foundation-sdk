@@ -137,20 +137,13 @@
  * <span class="badge builder"></span> [AdhocVariable](./builder-AdhocVariable.md)
  * <span class="badge builder"></span> [AnnotationPanelFilter](./builder-AnnotationPanelFilter.md)
  * <span class="badge builder"></span> [AnnotationQuery](./builder-AnnotationQuery.md)
- * <span class="badge builder"></span> [AnnotationQuerySpec](./builder-AnnotationQuerySpec.md)
- * <span class="badge builder"></span> [AutoGridLayout](./builder-AutoGridLayout.md)
- * <span class="badge builder"></span> [AutoGridLayoutItem](./builder-AutoGridLayoutItem.md)
- * <span class="badge builder"></span> [AutoGridLayoutItemSpec](./builder-AutoGridLayoutItemSpec.md)
- * <span class="badge builder"></span> [AutoGridLayoutSpec](./builder-AutoGridLayoutSpec.md)
+ * <span class="badge builder"></span> [AutoGrid](./builder-AutoGrid.md)
+ * <span class="badge builder"></span> [AutoGridItem](./builder-AutoGridItem.md)
  * <span class="badge builder"></span> [AutoGridRepeatOptions](./builder-AutoGridRepeatOptions.md)
  * <span class="badge builder"></span> [ConditionalRenderingData](./builder-ConditionalRenderingData.md)
- * <span class="badge builder"></span> [ConditionalRenderingDataSpec](./builder-ConditionalRenderingDataSpec.md)
  * <span class="badge builder"></span> [ConditionalRenderingGroup](./builder-ConditionalRenderingGroup.md)
- * <span class="badge builder"></span> [ConditionalRenderingGroupSpec](./builder-ConditionalRenderingGroupSpec.md)
  * <span class="badge builder"></span> [ConditionalRenderingTimeRangeSize](./builder-ConditionalRenderingTimeRangeSize.md)
- * <span class="badge builder"></span> [ConditionalRenderingTimeRangeSizeSpec](./builder-ConditionalRenderingTimeRangeSizeSpec.md)
  * <span class="badge builder"></span> [ConditionalRenderingVariable](./builder-ConditionalRenderingVariable.md)
- * <span class="badge builder"></span> [ConditionalRenderingVariableSpec](./builder-ConditionalRenderingVariableSpec.md)
  * <span class="badge builder"></span> [ConstantVariable](./builder-ConstantVariable.md)
  * <span class="badge builder"></span> [CustomFormatterVariable](./builder-CustomFormatterVariable.md)
  * <span class="badge builder"></span> [CustomVariable](./builder-CustomVariable.md)
@@ -165,19 +158,16 @@
  * <span class="badge builder"></span> [Dashboardv2beta1RegexMapOptions](./builder-Dashboardv2beta1RegexMapOptions.md)
  * <span class="badge builder"></span> [Dashboardv2beta1SpecialValueMapOptions](./builder-Dashboardv2beta1SpecialValueMapOptions.md)
  * <span class="badge builder"></span> [DataLink](./builder-DataLink.md)
- * <span class="badge builder"></span> [DataQueryKind](./builder-DataQueryKind.md)
  * <span class="badge builder"></span> [DatasourceVariable](./builder-DatasourceVariable.md)
  * <span class="badge builder"></span> [ElementReference](./builder-ElementReference.md)
  * <span class="badge builder"></span> [FetchOptions](./builder-FetchOptions.md)
  * <span class="badge builder"></span> [FieldColor](./builder-FieldColor.md)
- * <span class="badge builder"></span> [GridLayout](./builder-GridLayout.md)
- * <span class="badge builder"></span> [GridLayoutItem](./builder-GridLayoutItem.md)
+ * <span class="badge builder"></span> [Grid](./builder-Grid.md)
+ * <span class="badge builder"></span> [GridItem](./builder-GridItem.md)
  * <span class="badge builder"></span> [GroupByVariable](./builder-GroupByVariable.md)
  * <span class="badge builder"></span> [InfinityOptions](./builder-InfinityOptions.md)
  * <span class="badge builder"></span> [IntervalVariable](./builder-IntervalVariable.md)
- * <span class="badge builder"></span> [Kind](./builder-Kind.md)
  * <span class="badge builder"></span> [LibraryPanel](./builder-LibraryPanel.md)
- * <span class="badge builder"></span> [LibraryPanelKindSpec](./builder-LibraryPanelKindSpec.md)
  * <span class="badge builder"></span> [LibraryPanelRef](./builder-LibraryPanelRef.md)
  * <span class="badge builder"></span> [MetricFindValue](./builder-MetricFindValue.md)
  * <span class="badge builder"></span> [Panel](./builder-Panel.md)
@@ -185,18 +175,13 @@
  * <span class="badge builder"></span> [QueryOptionsSpec](./builder-QueryOptionsSpec.md)
  * <span class="badge builder"></span> [QueryVariable](./builder-QueryVariable.md)
  * <span class="badge builder"></span> [RepeatOptions](./builder-RepeatOptions.md)
+ * <span class="badge builder"></span> [Row](./builder-Row.md)
  * <span class="badge builder"></span> [RowRepeatOptions](./builder-RowRepeatOptions.md)
- * <span class="badge builder"></span> [RowsLayout](./builder-RowsLayout.md)
- * <span class="badge builder"></span> [RowsLayoutRow](./builder-RowsLayoutRow.md)
- * <span class="badge builder"></span> [RowsLayoutRowSpec](./builder-RowsLayoutRowSpec.md)
- * <span class="badge builder"></span> [RowsLayoutSpec](./builder-RowsLayoutSpec.md)
- * <span class="badge builder"></span> [SwitchVariableKind](./builder-SwitchVariableKind.md)
- * <span class="badge builder"></span> [SwitchVariableSpec](./builder-SwitchVariableSpec.md)
+ * <span class="badge builder"></span> [Rows](./builder-Rows.md)
+ * <span class="badge builder"></span> [SwitchVariable](./builder-SwitchVariable.md)
+ * <span class="badge builder"></span> [Tab](./builder-Tab.md)
  * <span class="badge builder"></span> [TabRepeatOptions](./builder-TabRepeatOptions.md)
- * <span class="badge builder"></span> [TabsLayout](./builder-TabsLayout.md)
- * <span class="badge builder"></span> [TabsLayoutSpec](./builder-TabsLayoutSpec.md)
- * <span class="badge builder"></span> [TabsLayoutTab](./builder-TabsLayoutTab.md)
- * <span class="badge builder"></span> [TabsLayoutTabSpec](./builder-TabsLayoutTabSpec.md)
+ * <span class="badge builder"></span> [Tabs](./builder-Tabs.md)
  * <span class="badge builder"></span> [Target](./builder-Target.md)
  * <span class="badge builder"></span> [TextVariable](./builder-TextVariable.md)
  * <span class="badge builder"></span> [ThresholdsConfig](./builder-ThresholdsConfig.md)
@@ -205,7 +190,6 @@
  * <span class="badge builder"></span> [Transformation](./builder-Transformation.md)
  * <span class="badge builder"></span> [ValueMappingResult](./builder-ValueMappingResult.md)
  * <span class="badge builder"></span> [VariableValueOption](./builder-VariableValueOption.md)
- * <span class="badge builder"></span> [VizConfigKind](./builder-VizConfigKind.md)
 ## Functions
 
 ### <span class="badge function"></span> manifest
@@ -214,5 +198,53 @@ Creates a resource manifest from a Dashboard.
 
 ```python
 def manifest(name: str, dashboard: cogbuilder.Builder[dashboardv2beta1.Dashboard]) -> Dashboard
+```
+
+### <span class="badge function"></span> rows
+
+```python
+def rows() -> Rows
+```
+
+### <span class="badge function"></span> row
+
+```python
+def row(title: str) -> Row
+```
+
+### <span class="badge function"></span> auto_grid
+
+```python
+def auto_grid() -> AutoGrid
+```
+
+### <span class="badge function"></span> auto_grid_item
+
+```python
+def auto_grid_item(name: str) -> AutoGridItem
+```
+
+### <span class="badge function"></span> tabs
+
+```python
+def tabs() -> Tabs
+```
+
+### <span class="badge function"></span> tab
+
+```python
+def tab(title: str) -> Tab
+```
+
+### <span class="badge function"></span> grid
+
+```python
+def grid() -> Grid
+```
+
+### <span class="badge function"></span> grid_item
+
+```python
+def grid_item(name: str) -> GridItem
 ```
 

@@ -16,6 +16,3 @@ public class RowsLayoutRowSpec {
   public GridLayoutKindOrAutoGridLayoutKindOrTabsLayoutKindOrRowsLayoutKind layout;
 }
 ```
-## See also
-
- * <span class="badge builder"></span> [RowsLayoutRowSpecBuilder](./builder-RowsLayoutRowSpecBuilder.md)

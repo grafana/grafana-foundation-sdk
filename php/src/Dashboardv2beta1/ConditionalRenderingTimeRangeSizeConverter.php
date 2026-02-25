@@ -10,19 +10,6 @@ final class ConditionalRenderingTimeRangeSizeConverter
         $calls = [
             '(new \Grafana\Foundation\Dashboardv2beta1\ConditionalRenderingTimeRangeSizeBuilder())',
         ];
-            
-    
-        {
-    $buffer = 'spec(';
-        $arg0 = \Grafana\Foundation\Dashboardv2beta1\ConditionalRenderingTimeRangeSizeSpecConverter::convert($input->spec);
-        $buffer .= $arg0;
-        
-    $buffer .= ')';
-
-    $calls[] = $buffer;
-    }
-    
-    
             if ($input->spec->value !== "") {
     
         

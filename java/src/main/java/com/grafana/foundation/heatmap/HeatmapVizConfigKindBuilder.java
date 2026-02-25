@@ -261,86 +261,6 @@ public class HeatmapVizConfigKindBuilder implements com.grafana.foundation.cog.B
         return this;
     }
     
-    public HeatmapVizConfigKindBuilder overrideByName(String name,List<DynamicConfigValue> properties) {
-		if (this.internal.spec == null) {
-			this.internal.spec = new com.grafana.foundation.dashboardv2beta1.VizConfigSpec();
-		}
-		if (this.internal.spec.fieldConfig == null) {
-			this.internal.spec.fieldConfig = new com.grafana.foundation.dashboardv2beta1.FieldConfigSource();
-		}
-		if (this.internal.spec.fieldConfig.overrides == null) {
-			this.internal.spec.fieldConfig.overrides = new LinkedList<>();
-		}
-    MatcherConfig matcherConfig = new MatcherConfig();
-        matcherConfig.id = "byName";
-        matcherConfig.options = name;
-    Dashboardv2beta1FieldConfigSourceOverrides dashboardv2beta1FieldConfigSourceOverrides = new Dashboardv2beta1FieldConfigSourceOverrides();
-        dashboardv2beta1FieldConfigSourceOverrides.matcher = matcherConfig;
-        dashboardv2beta1FieldConfigSourceOverrides.properties = properties;
-        this.internal.spec.fieldConfig.overrides.add(dashboardv2beta1FieldConfigSourceOverrides);
-        return this;
-    }
-    
-    public HeatmapVizConfigKindBuilder overrideByRegexp(String regexp,List<DynamicConfigValue> properties) {
-		if (this.internal.spec == null) {
-			this.internal.spec = new com.grafana.foundation.dashboardv2beta1.VizConfigSpec();
-		}
-		if (this.internal.spec.fieldConfig == null) {
-			this.internal.spec.fieldConfig = new com.grafana.foundation.dashboardv2beta1.FieldConfigSource();
-		}
-		if (this.internal.spec.fieldConfig.overrides == null) {
-			this.internal.spec.fieldConfig.overrides = new LinkedList<>();
-		}
-    MatcherConfig matcherConfig = new MatcherConfig();
-        matcherConfig.id = "byRegexp";
-        matcherConfig.options = regexp;
-    Dashboardv2beta1FieldConfigSourceOverrides dashboardv2beta1FieldConfigSourceOverrides = new Dashboardv2beta1FieldConfigSourceOverrides();
-        dashboardv2beta1FieldConfigSourceOverrides.matcher = matcherConfig;
-        dashboardv2beta1FieldConfigSourceOverrides.properties = properties;
-        this.internal.spec.fieldConfig.overrides.add(dashboardv2beta1FieldConfigSourceOverrides);
-        return this;
-    }
-    
-    public HeatmapVizConfigKindBuilder overrideByFieldType(String fieldType,List<DynamicConfigValue> properties) {
-		if (this.internal.spec == null) {
-			this.internal.spec = new com.grafana.foundation.dashboardv2beta1.VizConfigSpec();
-		}
-		if (this.internal.spec.fieldConfig == null) {
-			this.internal.spec.fieldConfig = new com.grafana.foundation.dashboardv2beta1.FieldConfigSource();
-		}
-		if (this.internal.spec.fieldConfig.overrides == null) {
-			this.internal.spec.fieldConfig.overrides = new LinkedList<>();
-		}
-    MatcherConfig matcherConfig = new MatcherConfig();
-        matcherConfig.id = "byType";
-        matcherConfig.options = fieldType;
-    Dashboardv2beta1FieldConfigSourceOverrides dashboardv2beta1FieldConfigSourceOverrides = new Dashboardv2beta1FieldConfigSourceOverrides();
-        dashboardv2beta1FieldConfigSourceOverrides.matcher = matcherConfig;
-        dashboardv2beta1FieldConfigSourceOverrides.properties = properties;
-        this.internal.spec.fieldConfig.overrides.add(dashboardv2beta1FieldConfigSourceOverrides);
-        return this;
-    }
-    
-    public HeatmapVizConfigKindBuilder overrideByQuery(String queryRefId,List<DynamicConfigValue> properties) {
-		if (this.internal.spec == null) {
-			this.internal.spec = new com.grafana.foundation.dashboardv2beta1.VizConfigSpec();
-		}
-		if (this.internal.spec.fieldConfig == null) {
-			this.internal.spec.fieldConfig = new com.grafana.foundation.dashboardv2beta1.FieldConfigSource();
-		}
-		if (this.internal.spec.fieldConfig.overrides == null) {
-			this.internal.spec.fieldConfig.overrides = new LinkedList<>();
-		}
-    MatcherConfig matcherConfig = new MatcherConfig();
-        matcherConfig.id = "byFrameRefID";
-        matcherConfig.options = queryRefId;
-    Dashboardv2beta1FieldConfigSourceOverrides dashboardv2beta1FieldConfigSourceOverrides = new Dashboardv2beta1FieldConfigSourceOverrides();
-        dashboardv2beta1FieldConfigSourceOverrides.matcher = matcherConfig;
-        dashboardv2beta1FieldConfigSourceOverrides.properties = properties;
-        this.internal.spec.fieldConfig.overrides.add(dashboardv2beta1FieldConfigSourceOverrides);
-        return this;
-    }
-    
     public HeatmapVizConfigKindBuilder calculate(Boolean calculate) {
 		if (this.internal.spec == null) {
 			this.internal.spec = new com.grafana.foundation.dashboardv2beta1.VizConfigSpec();
@@ -540,6 +460,86 @@ public class HeatmapVizConfigKindBuilder implements com.grafana.foundation.cog.B
 		}
     HideSeriesConfig hideFromResource = hideFrom.build();
         ((FieldConfig) this.internal.spec.fieldConfig.defaults.custom).hideFrom = hideFromResource;
+        return this;
+    }
+    
+    public HeatmapVizConfigKindBuilder overrideByName(String name,List<DynamicConfigValue> properties) {
+		if (this.internal.spec == null) {
+			this.internal.spec = new com.grafana.foundation.dashboardv2beta1.VizConfigSpec();
+		}
+		if (this.internal.spec.fieldConfig == null) {
+			this.internal.spec.fieldConfig = new com.grafana.foundation.dashboardv2beta1.FieldConfigSource();
+		}
+		if (this.internal.spec.fieldConfig.overrides == null) {
+			this.internal.spec.fieldConfig.overrides = new LinkedList<>();
+		}
+    MatcherConfig matcherConfig = new MatcherConfig();
+        matcherConfig.id = "byName";
+        matcherConfig.options = name;
+    Dashboardv2beta1FieldConfigSourceOverrides dashboardv2beta1FieldConfigSourceOverrides = new Dashboardv2beta1FieldConfigSourceOverrides();
+        dashboardv2beta1FieldConfigSourceOverrides.matcher = matcherConfig;
+        dashboardv2beta1FieldConfigSourceOverrides.properties = properties;
+        this.internal.spec.fieldConfig.overrides.add(dashboardv2beta1FieldConfigSourceOverrides);
+        return this;
+    }
+    
+    public HeatmapVizConfigKindBuilder overrideByRegexp(String regexp,List<DynamicConfigValue> properties) {
+		if (this.internal.spec == null) {
+			this.internal.spec = new com.grafana.foundation.dashboardv2beta1.VizConfigSpec();
+		}
+		if (this.internal.spec.fieldConfig == null) {
+			this.internal.spec.fieldConfig = new com.grafana.foundation.dashboardv2beta1.FieldConfigSource();
+		}
+		if (this.internal.spec.fieldConfig.overrides == null) {
+			this.internal.spec.fieldConfig.overrides = new LinkedList<>();
+		}
+    MatcherConfig matcherConfig = new MatcherConfig();
+        matcherConfig.id = "byRegexp";
+        matcherConfig.options = regexp;
+    Dashboardv2beta1FieldConfigSourceOverrides dashboardv2beta1FieldConfigSourceOverrides = new Dashboardv2beta1FieldConfigSourceOverrides();
+        dashboardv2beta1FieldConfigSourceOverrides.matcher = matcherConfig;
+        dashboardv2beta1FieldConfigSourceOverrides.properties = properties;
+        this.internal.spec.fieldConfig.overrides.add(dashboardv2beta1FieldConfigSourceOverrides);
+        return this;
+    }
+    
+    public HeatmapVizConfigKindBuilder overrideByFieldType(String fieldType,List<DynamicConfigValue> properties) {
+		if (this.internal.spec == null) {
+			this.internal.spec = new com.grafana.foundation.dashboardv2beta1.VizConfigSpec();
+		}
+		if (this.internal.spec.fieldConfig == null) {
+			this.internal.spec.fieldConfig = new com.grafana.foundation.dashboardv2beta1.FieldConfigSource();
+		}
+		if (this.internal.spec.fieldConfig.overrides == null) {
+			this.internal.spec.fieldConfig.overrides = new LinkedList<>();
+		}
+    MatcherConfig matcherConfig = new MatcherConfig();
+        matcherConfig.id = "byType";
+        matcherConfig.options = fieldType;
+    Dashboardv2beta1FieldConfigSourceOverrides dashboardv2beta1FieldConfigSourceOverrides = new Dashboardv2beta1FieldConfigSourceOverrides();
+        dashboardv2beta1FieldConfigSourceOverrides.matcher = matcherConfig;
+        dashboardv2beta1FieldConfigSourceOverrides.properties = properties;
+        this.internal.spec.fieldConfig.overrides.add(dashboardv2beta1FieldConfigSourceOverrides);
+        return this;
+    }
+    
+    public HeatmapVizConfigKindBuilder overrideByQuery(String queryRefId,List<DynamicConfigValue> properties) {
+		if (this.internal.spec == null) {
+			this.internal.spec = new com.grafana.foundation.dashboardv2beta1.VizConfigSpec();
+		}
+		if (this.internal.spec.fieldConfig == null) {
+			this.internal.spec.fieldConfig = new com.grafana.foundation.dashboardv2beta1.FieldConfigSource();
+		}
+		if (this.internal.spec.fieldConfig.overrides == null) {
+			this.internal.spec.fieldConfig.overrides = new LinkedList<>();
+		}
+    MatcherConfig matcherConfig = new MatcherConfig();
+        matcherConfig.id = "byFrameRefID";
+        matcherConfig.options = queryRefId;
+    Dashboardv2beta1FieldConfigSourceOverrides dashboardv2beta1FieldConfigSourceOverrides = new Dashboardv2beta1FieldConfigSourceOverrides();
+        dashboardv2beta1FieldConfigSourceOverrides.matcher = matcherConfig;
+        dashboardv2beta1FieldConfigSourceOverrides.properties = properties;
+        this.internal.spec.fieldConfig.overrides.add(dashboardv2beta1FieldConfigSourceOverrides);
         return this;
     }
     public VizConfigKind build() {

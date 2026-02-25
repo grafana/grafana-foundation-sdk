@@ -88,7 +88,7 @@ func DashboardConverter(input Dashboard) string {
 	if input.Layout.GridLayoutKind != nil {
 		if input.Layout.GridLayoutKind != nil {
 			buffer.WriteString(`GridLayout(`)
-			arg0 := GridLayoutConverter(*input.Layout.GridLayoutKind)
+			arg0 := GridConverter(*input.Layout.GridLayoutKind)
 			buffer.WriteString(arg0)
 
 			buffer.WriteString(")")
@@ -100,7 +100,7 @@ func DashboardConverter(input Dashboard) string {
 	if input.Layout.RowsLayoutKind != nil {
 		if input.Layout.RowsLayoutKind != nil {
 			buffer.WriteString(`RowsLayout(`)
-			arg0 := RowsLayoutConverter(*input.Layout.RowsLayoutKind)
+			arg0 := RowsConverter(*input.Layout.RowsLayoutKind)
 			buffer.WriteString(arg0)
 
 			buffer.WriteString(")")
@@ -112,7 +112,7 @@ func DashboardConverter(input Dashboard) string {
 	if input.Layout.AutoGridLayoutKind != nil {
 		if input.Layout.AutoGridLayoutKind != nil {
 			buffer.WriteString(`AutoGridLayout(`)
-			arg0 := AutoGridLayoutConverter(*input.Layout.AutoGridLayoutKind)
+			arg0 := AutoGridConverter(*input.Layout.AutoGridLayoutKind)
 			buffer.WriteString(arg0)
 
 			buffer.WriteString(")")
@@ -124,7 +124,7 @@ func DashboardConverter(input Dashboard) string {
 	if input.Layout.TabsLayoutKind != nil {
 		if input.Layout.TabsLayoutKind != nil {
 			buffer.WriteString(`TabsLayout(`)
-			arg0 := TabsLayoutConverter(*input.Layout.TabsLayoutKind)
+			arg0 := TabsConverter(*input.Layout.TabsLayoutKind)
 			buffer.WriteString(arg0)
 
 			buffer.WriteString(")")
@@ -358,7 +358,7 @@ func DashboardConverter(input Dashboard) string {
 			}
 			if item.SwitchVariableKind != nil {
 				buffer.WriteString(`SwitchVariableKind(`)
-				arg0 := SwitchVariableKindConverter(*item.SwitchVariableKind)
+				arg0 := SwitchVariableConverter(*item.SwitchVariableKind)
 				buffer.WriteString(arg0)
 
 				buffer.WriteString(")")

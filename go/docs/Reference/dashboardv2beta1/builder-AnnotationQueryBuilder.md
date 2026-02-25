@@ -76,12 +76,6 @@ func (builder *AnnotationQueryBuilder) Placement(placement string) *AnnotationQu
 func (builder *AnnotationQueryBuilder) Query(query cog.Builder[dashboardv2beta1.DataQueryKind]) *AnnotationQueryBuilder
 ```
 
-### <span class="badge object-method"></span> Spec
-
-```go
-func (builder *AnnotationQueryBuilder) Spec(spec cog.Builder[dashboardv2beta1.AnnotationQuerySpec]) *AnnotationQueryBuilder
-```
-
 ## See also
 
  * <span class="badge object-type-struct"></span> [AnnotationQueryKind](./object-AnnotationQueryKind.md)

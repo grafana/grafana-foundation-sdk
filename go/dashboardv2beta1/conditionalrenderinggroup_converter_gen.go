@@ -16,17 +16,6 @@ func ConditionalRenderingGroupConverter(input ConditionalRenderingGroupKind) str
 	var buffer strings.Builder
 
 	{
-		buffer.WriteString(`Spec(`)
-		arg0 := ConditionalRenderingGroupSpecConverter(input.Spec)
-		buffer.WriteString(arg0)
-
-		buffer.WriteString(")")
-
-		calls = append(calls, buffer.String())
-		buffer.Reset()
-	}
-
-	{
 		buffer.WriteString(`Visibility(`)
 		arg0 := cog.Dump(input.Spec.Visibility)
 		buffer.WriteString(arg0)

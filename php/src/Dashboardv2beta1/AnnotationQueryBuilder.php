@@ -25,17 +25,6 @@ class AnnotationQueryBuilder implements \Grafana\Foundation\Cog\Builder
     }
 
     /**
-     * @param \Grafana\Foundation\Cog\Builder<\Grafana\Foundation\Dashboardv2beta1\AnnotationQuerySpec> $spec
-     */
-    public function spec(\Grafana\Foundation\Cog\Builder $spec): static
-    {
-        $specResource = $spec->build();
-        $this->internal->spec = $specResource;
-    
-        return $this;
-    }
-
-    /**
      * @param \Grafana\Foundation\Cog\Builder<\Grafana\Foundation\Dashboardv2beta1\DataQueryKind> $query
      */
     public function query(\Grafana\Foundation\Cog\Builder $query): static

@@ -608,73 +608,13 @@ export class PanelBuilder implements cog.Builder<dashboard.Panel> {
         return this;
     }
 
-    // Controls how the tooltip is shown
-    mode(mode: common.TooltipDisplayMode): this {
+    // Controls tooltip options
+    tooltip(tooltip: cog.Builder<heatmap.HeatmapTooltip>): this {
         if (!this.internal.options) {
             this.internal.options = heatmap.defaultOptions();
         }
-        if (!this.internal.options.tooltip) {
-            this.internal.options.tooltip = heatmap.defaultHeatmapTooltip();
-        }
-        this.internal.options.tooltip.mode = mode;
-        return this;
-    }
-
-    maxHeight(maxHeight: number): this {
-        if (!this.internal.options) {
-            this.internal.options = heatmap.defaultOptions();
-        }
-        if (!this.internal.options.tooltip) {
-            this.internal.options.tooltip = heatmap.defaultHeatmapTooltip();
-        }
-        this.internal.options.tooltip.maxHeight = maxHeight;
-        return this;
-    }
-
-    maxWidth(maxWidth: number): this {
-        if (!this.internal.options) {
-            this.internal.options = heatmap.defaultOptions();
-        }
-        if (!this.internal.options.tooltip) {
-            this.internal.options.tooltip = heatmap.defaultHeatmapTooltip();
-        }
-        this.internal.options.tooltip.maxWidth = maxWidth;
-        return this;
-    }
-
-    // Controls if the tooltip shows a histogram of the y-axis values
-    showYHistogram(): this {
-        if (!this.internal.options) {
-            this.internal.options = heatmap.defaultOptions();
-        }
-        if (!this.internal.options.tooltip) {
-            this.internal.options.tooltip = heatmap.defaultHeatmapTooltip();
-        }
-        this.internal.options.tooltip.yHistogram = true;
-        return this;
-    }
-
-    // Controls if the tooltip shows a histogram of the y-axis values
-    hideYHistogram(): this {
-        if (!this.internal.options) {
-            this.internal.options = heatmap.defaultOptions();
-        }
-        if (!this.internal.options.tooltip) {
-            this.internal.options.tooltip = heatmap.defaultHeatmapTooltip();
-        }
-        this.internal.options.tooltip.yHistogram = false;
-        return this;
-    }
-
-    // Controls if the tooltip shows a color scale in header
-    showColorScale(showColorScale: boolean): this {
-        if (!this.internal.options) {
-            this.internal.options = heatmap.defaultOptions();
-        }
-        if (!this.internal.options.tooltip) {
-            this.internal.options.tooltip = heatmap.defaultHeatmapTooltip();
-        }
-        this.internal.options.tooltip.showColorScale = showColorScale;
+        const tooltipResource = tooltip.build();
+        this.internal.options.tooltip = tooltipResource;
         return this;
     }
 

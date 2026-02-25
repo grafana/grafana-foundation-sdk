@@ -221,6 +221,31 @@ class VisualizationBuilder implements \Grafana\Foundation\Cog\Builder
     }
 
     /**
+     * empty/missing will default to grafana blog
+     */
+    public function feedUrl(string $feedUrl): static
+    {    
+        if ($this->internal->spec->options === null) {
+            $this->internal->spec->options = new \Grafana\Foundation\News\Options();
+        }
+        assert($this->internal->spec->options instanceof \Grafana\Foundation\News\Options);
+        $this->internal->spec->options->feedUrl = $feedUrl;
+    
+        return $this;
+    }
+
+    public function showImage(bool $showImage): static
+    {    
+        if ($this->internal->spec->options === null) {
+            $this->internal->spec->options = new \Grafana\Foundation\News\Options();
+        }
+        assert($this->internal->spec->options instanceof \Grafana\Foundation\News\Options);
+        $this->internal->spec->options->showImage = $showImage;
+    
+        return $this;
+    }
+
+    /**
      * Adds override rules for a specific field, referred to by its name.
      * @param array<\Grafana\Foundation\Dashboardv2beta1\DynamicConfigValue> $properties
      */
@@ -283,31 +308,6 @@ class VisualizationBuilder implements \Grafana\Foundation\Cog\Builder
         ),
             properties: $properties,
         );
-    
-        return $this;
-    }
-
-    /**
-     * empty/missing will default to grafana blog
-     */
-    public function feedUrl(string $feedUrl): static
-    {    
-        if ($this->internal->spec->options === null) {
-            $this->internal->spec->options = new \Grafana\Foundation\News\Options();
-        }
-        assert($this->internal->spec->options instanceof \Grafana\Foundation\News\Options);
-        $this->internal->spec->options->feedUrl = $feedUrl;
-    
-        return $this;
-    }
-
-    public function showImage(bool $showImage): static
-    {    
-        if ($this->internal->spec->options === null) {
-            $this->internal->spec->options = new \Grafana\Foundation\News\Options();
-        }
-        assert($this->internal->spec->options instanceof \Grafana\Foundation\News\Options);
-        $this->internal->spec->options->showImage = $showImage;
     
         return $this;
     }

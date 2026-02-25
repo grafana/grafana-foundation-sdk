@@ -18,12 +18,6 @@ Builds the object.
 def build() -> dashboardv2beta1.ConditionalRenderingTimeRangeSizeKind
 ```
 
-### <span class="badge object-method"></span> spec
-
-```python
-def spec(spec: cogbuilder.Builder[dashboardv2beta1.ConditionalRenderingTimeRangeSizeSpec]) -> typing.Self
-```
-
 ### <span class="badge object-method"></span> value
 
 ```python

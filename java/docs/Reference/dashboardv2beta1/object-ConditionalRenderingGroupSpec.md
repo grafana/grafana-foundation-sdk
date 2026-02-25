@@ -12,6 +12,3 @@ public class ConditionalRenderingGroupSpec {
   public List<ConditionalRenderingVariableKindOrConditionalRenderingDataKindOrConditionalRenderingTimeRangeSizeKind> items;
 }
 ```
-## See also
-
- * <span class="badge builder"></span> [ConditionalRenderingGroupSpecBuilder](./builder-ConditionalRenderingGroupSpecBuilder.md)

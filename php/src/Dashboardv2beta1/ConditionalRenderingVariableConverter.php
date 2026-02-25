@@ -10,19 +10,6 @@ final class ConditionalRenderingVariableConverter
         $calls = [
             '(new \Grafana\Foundation\Dashboardv2beta1\ConditionalRenderingVariableBuilder())',
         ];
-            
-    
-        {
-    $buffer = 'spec(';
-        $arg0 = \Grafana\Foundation\Dashboardv2beta1\ConditionalRenderingVariableSpecConverter::convert($input->spec);
-        $buffer .= $arg0;
-        
-    $buffer .= ')';
-
-    $calls[] = $buffer;
-    }
-    
-    
             if ($input->spec->variable !== "") {
     
         

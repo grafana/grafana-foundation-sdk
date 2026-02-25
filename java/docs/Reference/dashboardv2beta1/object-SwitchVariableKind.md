@@ -13,4 +13,4 @@ public class SwitchVariableKind {
 ```
 ## See also
 
- * <span class="badge builder"></span> [SwitchVariableKindBuilder](./builder-SwitchVariableKindBuilder.md)
+ * <span class="badge builder"></span> [SwitchVariableBuilder](./builder-SwitchVariableBuilder.md)

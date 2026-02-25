@@ -68,27 +68,9 @@ export class DashboardBuilder implements cog.Builder<dashboardv2beta1.Dashboard>
         return this;
     }
 
-    gridLayout(gridLayoutKind: cog.Builder<dashboardv2beta1.GridLayoutKind>): this {
-        const gridLayoutKindResource = gridLayoutKind.build();
-        this.internal.layout = gridLayoutKindResource;
-        return this;
-    }
-
-    rowsLayout(rowsLayoutKind: cog.Builder<dashboardv2beta1.RowsLayoutKind>): this {
-        const rowsLayoutKindResource = rowsLayoutKind.build();
-        this.internal.layout = rowsLayoutKindResource;
-        return this;
-    }
-
-    autoGridLayout(autoGridLayoutKind: cog.Builder<dashboardv2beta1.AutoGridLayoutKind>): this {
-        const autoGridLayoutKindResource = autoGridLayoutKind.build();
-        this.internal.layout = autoGridLayoutKindResource;
-        return this;
-    }
-
-    tabsLayout(tabsLayoutKind: cog.Builder<dashboardv2beta1.TabsLayoutKind>): this {
-        const tabsLayoutKindResource = tabsLayoutKind.build();
-        this.internal.layout = tabsLayoutKindResource;
+    layout(layout: cog.Builder<dashboardv2beta1.GridLayoutKind> | cog.Builder<dashboardv2beta1.RowsLayoutKind> | cog.Builder<dashboardv2beta1.AutoGridLayoutKind> | cog.Builder<dashboardv2beta1.TabsLayoutKind>): this {
+        const layoutResource = layout.build();
+        this.internal.layout = layoutResource;
         return this;
     }
 

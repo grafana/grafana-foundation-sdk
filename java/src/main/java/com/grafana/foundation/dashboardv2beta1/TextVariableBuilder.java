@@ -14,11 +14,6 @@ public class TextVariableBuilder implements com.grafana.foundation.cog.Builder<T
 		}
         this.internal.spec.name = name;
     }
-    public TextVariableBuilder spec(TextVariableSpec spec) {
-        this.internal.spec = spec;
-        return this;
-    }
-    
     public TextVariableBuilder name(String name) {
 		if (this.internal.spec == null) {
 			this.internal.spec = new com.grafana.foundation.dashboardv2beta1.TextVariableSpec();

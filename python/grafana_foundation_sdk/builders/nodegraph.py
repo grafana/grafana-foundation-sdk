@@ -1054,6 +1054,45 @@ class Visualization(cogbuilder.Builder[dashboardv2beta1.VizConfigKind]):
     
         return self
     
+    def nodes(self, nodes: cogbuilder.Builder[nodegraph.NodeOptions]) -> typing.Self:    
+        if self._internal.spec is None:
+            self._internal.spec = dashboardv2beta1.VizConfigSpec()
+        assert isinstance(self._internal.spec, dashboardv2beta1.VizConfigSpec)
+        if self._internal.spec.options is None:
+            self._internal.spec.options = nodegraph.Options()
+        assert isinstance(self._internal.spec.options, nodegraph.Options)
+        nodes_resource = nodes.build()
+        self._internal.spec.options.nodes = nodes_resource
+    
+        return self
+    
+    def edges(self, edges: cogbuilder.Builder[nodegraph.EdgeOptions]) -> typing.Self:    
+        if self._internal.spec is None:
+            self._internal.spec = dashboardv2beta1.VizConfigSpec()
+        assert isinstance(self._internal.spec, dashboardv2beta1.VizConfigSpec)
+        if self._internal.spec.options is None:
+            self._internal.spec.options = nodegraph.Options()
+        assert isinstance(self._internal.spec.options, nodegraph.Options)
+        edges_resource = edges.build()
+        self._internal.spec.options.edges = edges_resource
+    
+        return self
+    
+    def zoom_mode(self, zoom_mode: nodegraph.ZoomMode) -> typing.Self:    
+        """
+        How to handle zoom/scroll events in the node graph
+        """
+            
+        if self._internal.spec is None:
+            self._internal.spec = dashboardv2beta1.VizConfigSpec()
+        assert isinstance(self._internal.spec, dashboardv2beta1.VizConfigSpec)
+        if self._internal.spec.options is None:
+            self._internal.spec.options = nodegraph.Options()
+        assert isinstance(self._internal.spec.options, nodegraph.Options)
+        self._internal.spec.options.zoom_mode = zoom_mode
+    
+        return self
+    
     def override_by_name(self, name: str, properties: list[dashboardv2beta1.DynamicConfigValue]) -> typing.Self:    
         """
         Adds override rules for a specific field, referred to by its name.
@@ -1143,45 +1182,6 @@ class Visualization(cogbuilder.Builder[dashboardv2beta1.VizConfigKind]):
         ),
             properties=properties,
         ))
-    
-        return self
-    
-    def nodes(self, nodes: cogbuilder.Builder[nodegraph.NodeOptions]) -> typing.Self:    
-        if self._internal.spec is None:
-            self._internal.spec = dashboardv2beta1.VizConfigSpec()
-        assert isinstance(self._internal.spec, dashboardv2beta1.VizConfigSpec)
-        if self._internal.spec.options is None:
-            self._internal.spec.options = nodegraph.Options()
-        assert isinstance(self._internal.spec.options, nodegraph.Options)
-        nodes_resource = nodes.build()
-        self._internal.spec.options.nodes = nodes_resource
-    
-        return self
-    
-    def edges(self, edges: cogbuilder.Builder[nodegraph.EdgeOptions]) -> typing.Self:    
-        if self._internal.spec is None:
-            self._internal.spec = dashboardv2beta1.VizConfigSpec()
-        assert isinstance(self._internal.spec, dashboardv2beta1.VizConfigSpec)
-        if self._internal.spec.options is None:
-            self._internal.spec.options = nodegraph.Options()
-        assert isinstance(self._internal.spec.options, nodegraph.Options)
-        edges_resource = edges.build()
-        self._internal.spec.options.edges = edges_resource
-    
-        return self
-    
-    def zoom_mode(self, zoom_mode: nodegraph.ZoomMode) -> typing.Self:    
-        """
-        How to handle zoom/scroll events in the node graph
-        """
-            
-        if self._internal.spec is None:
-            self._internal.spec = dashboardv2beta1.VizConfigSpec()
-        assert isinstance(self._internal.spec, dashboardv2beta1.VizConfigSpec)
-        if self._internal.spec.options is None:
-            self._internal.spec.options = nodegraph.Options()
-        assert isinstance(self._internal.spec.options, nodegraph.Options)
-        self._internal.spec.options.zoom_mode = zoom_mode
     
         return self
     

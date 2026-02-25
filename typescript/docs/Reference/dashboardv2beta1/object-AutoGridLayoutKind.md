@@ -14,4 +14,4 @@ export interface AutoGridLayoutKind {
 ```
 ## See also
 
- * <span class="badge builder"></span> [AutoGridLayoutBuilder](./builder-AutoGridLayoutBuilder.md)
+ * <span class="badge builder"></span> [AutoGridBuilder](./builder-AutoGridBuilder.md)

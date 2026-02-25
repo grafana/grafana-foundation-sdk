@@ -15,11 +15,6 @@ public class IntervalVariableBuilder implements com.grafana.foundation.cog.Build
 		}
         this.internal.spec.name = name;
     }
-    public IntervalVariableBuilder spec(IntervalVariableSpec spec) {
-        this.internal.spec = spec;
-        return this;
-    }
-    
     public IntervalVariableBuilder name(String name) {
 		if (this.internal.spec == null) {
 			this.internal.spec = new com.grafana.foundation.dashboardv2beta1.IntervalVariableSpec();

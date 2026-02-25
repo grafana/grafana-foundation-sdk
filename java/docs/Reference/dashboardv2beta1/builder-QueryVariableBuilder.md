@@ -120,12 +120,6 @@ public QueryVariableBuilder skipUrlSync(Boolean skipUrlSync)
 public QueryVariableBuilder sort(VariableSort sort)
 ```
 
-### <span class="badge object-method"></span> spec
-
-```java
-public QueryVariableBuilder spec(QueryVariableSpec spec)
-```
-
 ### <span class="badge object-method"></span> staticOptions
 
 ```java

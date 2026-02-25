@@ -11,15 +11,9 @@ public class AnnotationQueryBuilder implements com.grafana.foundation.cog.Builde
         this.internal = new AnnotationQueryKind();
         this.internal.kind = "AnnotationQuery";
     }
-    public AnnotationQueryBuilder spec(com.grafana.foundation.cog.Builder<AnnotationQuerySpec> spec) {
-    AnnotationQuerySpec specResource = spec.build();
-        this.internal.spec = specResource;
-        return this;
-    }
-    
     public AnnotationQueryBuilder query(com.grafana.foundation.cog.Builder<DataQueryKind> query) {
 		if (this.internal.spec == null) {
-			this.internal.spec = new com.grafana.foundation.dashboardv2beta1.AnnotationQuerySpecBuilder().build();
+			this.internal.spec = new com.grafana.foundation.dashboardv2beta1.AnnotationQuerySpec();
 		}
     DataQueryKind queryResource = query.build();
         this.internal.spec.query = queryResource;
@@ -28,7 +22,7 @@ public class AnnotationQueryBuilder implements com.grafana.foundation.cog.Builde
     
     public AnnotationQueryBuilder enable(Boolean enable) {
 		if (this.internal.spec == null) {
-			this.internal.spec = new com.grafana.foundation.dashboardv2beta1.AnnotationQuerySpecBuilder().build();
+			this.internal.spec = new com.grafana.foundation.dashboardv2beta1.AnnotationQuerySpec();
 		}
         this.internal.spec.enable = enable;
         return this;
@@ -36,7 +30,7 @@ public class AnnotationQueryBuilder implements com.grafana.foundation.cog.Builde
     
     public AnnotationQueryBuilder hide(Boolean hide) {
 		if (this.internal.spec == null) {
-			this.internal.spec = new com.grafana.foundation.dashboardv2beta1.AnnotationQuerySpecBuilder().build();
+			this.internal.spec = new com.grafana.foundation.dashboardv2beta1.AnnotationQuerySpec();
 		}
         this.internal.spec.hide = hide;
         return this;
@@ -44,7 +38,7 @@ public class AnnotationQueryBuilder implements com.grafana.foundation.cog.Builde
     
     public AnnotationQueryBuilder iconColor(String iconColor) {
 		if (this.internal.spec == null) {
-			this.internal.spec = new com.grafana.foundation.dashboardv2beta1.AnnotationQuerySpecBuilder().build();
+			this.internal.spec = new com.grafana.foundation.dashboardv2beta1.AnnotationQuerySpec();
 		}
         this.internal.spec.iconColor = iconColor;
         return this;
@@ -52,7 +46,7 @@ public class AnnotationQueryBuilder implements com.grafana.foundation.cog.Builde
     
     public AnnotationQueryBuilder name(String name) {
 		if (this.internal.spec == null) {
-			this.internal.spec = new com.grafana.foundation.dashboardv2beta1.AnnotationQuerySpecBuilder().build();
+			this.internal.spec = new com.grafana.foundation.dashboardv2beta1.AnnotationQuerySpec();
 		}
         this.internal.spec.name = name;
         return this;
@@ -60,7 +54,7 @@ public class AnnotationQueryBuilder implements com.grafana.foundation.cog.Builde
     
     public AnnotationQueryBuilder builtIn(Boolean builtIn) {
 		if (this.internal.spec == null) {
-			this.internal.spec = new com.grafana.foundation.dashboardv2beta1.AnnotationQuerySpecBuilder().build();
+			this.internal.spec = new com.grafana.foundation.dashboardv2beta1.AnnotationQuerySpec();
 		}
         this.internal.spec.builtIn = builtIn;
         return this;
@@ -68,7 +62,7 @@ public class AnnotationQueryBuilder implements com.grafana.foundation.cog.Builde
     
     public AnnotationQueryBuilder filter(com.grafana.foundation.cog.Builder<AnnotationPanelFilter> filter) {
 		if (this.internal.spec == null) {
-			this.internal.spec = new com.grafana.foundation.dashboardv2beta1.AnnotationQuerySpecBuilder().build();
+			this.internal.spec = new com.grafana.foundation.dashboardv2beta1.AnnotationQuerySpec();
 		}
     AnnotationPanelFilter filterResource = filter.build();
         this.internal.spec.filter = filterResource;
@@ -77,7 +71,7 @@ public class AnnotationQueryBuilder implements com.grafana.foundation.cog.Builde
     
     public AnnotationQueryBuilder placement(String placement) {
 		if (this.internal.spec == null) {
-			this.internal.spec = new com.grafana.foundation.dashboardv2beta1.AnnotationQuerySpecBuilder().build();
+			this.internal.spec = new com.grafana.foundation.dashboardv2beta1.AnnotationQuerySpec();
 		}
         this.internal.spec.placement = placement;
         return this;
@@ -85,7 +79,7 @@ public class AnnotationQueryBuilder implements com.grafana.foundation.cog.Builde
     
     public AnnotationQueryBuilder legacyOptions(Map<String, Object> legacyOptions) {
 		if (this.internal.spec == null) {
-			this.internal.spec = new com.grafana.foundation.dashboardv2beta1.AnnotationQuerySpecBuilder().build();
+			this.internal.spec = new com.grafana.foundation.dashboardv2beta1.AnnotationQuerySpec();
 		}
         this.internal.spec.legacyOptions = legacyOptions;
         return this;

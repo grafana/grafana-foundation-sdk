@@ -24,12 +24,6 @@ build()
 annotations(annotations: cog.Builder<dashboardv2beta1.AnnotationQueryKind>[])
 ```
 
-### <span class="badge object-method"></span> autoGridLayout
-
-```typescript
-autoGridLayout(autoGridLayoutKind: cog.Builder<dashboardv2beta1.AutoGridLayoutKind>)
-```
-
 ### <span class="badge object-method"></span> cursorSync
 
 Configuration of dashboard cursor sync behavior.
@@ -72,10 +66,10 @@ element(key: string, element: cog.Builder<dashboardv2beta1.Element>)
 elements(elements: Record<string, cog.Builder<dashboardv2beta1.Element>>)
 ```
 
-### <span class="badge object-method"></span> gridLayout
+### <span class="badge object-method"></span> layout
 
 ```typescript
-gridLayout(gridLayoutKind: cog.Builder<dashboardv2beta1.GridLayoutKind>)
+layout(layout: cog.Builder<dashboardv2beta1.GridLayoutKind> | cog.Builder<dashboardv2beta1.RowsLayoutKind> | cog.Builder<dashboardv2beta1.AutoGridLayoutKind> | cog.Builder<dashboardv2beta1.TabsLayoutKind>)
 ```
 
 ### <span class="badge object-method"></span> links
@@ -114,18 +108,6 @@ This is used to determine if the dashboard should be updated when the plugin is 
 
 ```typescript
 revision(revision: number)
-```
-
-### <span class="badge object-method"></span> rowsLayout
-
-```typescript
-rowsLayout(rowsLayoutKind: cog.Builder<dashboardv2beta1.RowsLayoutKind>)
-```
-
-### <span class="badge object-method"></span> tabsLayout
-
-```typescript
-tabsLayout(tabsLayoutKind: cog.Builder<dashboardv2beta1.TabsLayoutKind>)
 ```
 
 ### <span class="badge object-method"></span> tags

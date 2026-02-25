@@ -24,12 +24,6 @@ def build() -> dashboardv2beta1.ConditionalRenderingVariableKind
 def operator(operator: typing.Literal["equals", "notEquals", "matches", "notMatches"]) -> typing.Self
 ```
 
-### <span class="badge object-method"></span> spec
-
-```python
-def spec(spec: cogbuilder.Builder[dashboardv2beta1.ConditionalRenderingVariableSpec]) -> typing.Self
-```
-
 ### <span class="badge object-method"></span> value
 
 ```python

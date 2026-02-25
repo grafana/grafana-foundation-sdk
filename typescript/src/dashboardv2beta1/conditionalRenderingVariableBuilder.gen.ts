@@ -18,12 +18,6 @@ export class ConditionalRenderingVariableBuilder implements cog.Builder<dashboar
         return this.internal;
     }
 
-    spec(spec: cog.Builder<dashboardv2beta1.ConditionalRenderingVariableSpec>): this {
-        const specResource = spec.build();
-        this.internal.spec = specResource;
-        return this;
-    }
-
     variable(variable: string): this {
         if (!this.internal.spec) {
             this.internal.spec = dashboardv2beta1.defaultConditionalRenderingVariableSpec();

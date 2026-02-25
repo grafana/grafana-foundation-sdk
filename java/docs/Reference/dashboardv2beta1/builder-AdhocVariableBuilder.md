@@ -84,12 +84,6 @@ public AdhocVariableBuilder name(String name)
 public AdhocVariableBuilder skipUrlSync(Boolean skipUrlSync)
 ```
 
-### <span class="badge object-method"></span> spec
-
-```java
-public AdhocVariableBuilder spec(AdhocVariableSpec spec)
-```
-
 ## See also
 
  * <span class="badge object-type-class"></span> [AdhocVariableKind](./object-AdhocVariableKind.md)

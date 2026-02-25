@@ -40,7 +40,6 @@ def from_json(data: dict[str, typing.Any]) -> typing.Self
  * <span class="badge builder"></span> [azuremonitor.Query](../azuremonitor/builder-Query.md)
  * <span class="badge builder"></span> [bigquery.Query](../bigquery/builder-Query.md)
  * <span class="badge builder"></span> [cloudwatch.Query](../cloudwatch/builder-Query.md)
- * <span class="badge builder"></span> [DataQueryKind](./builder-DataQueryKind.md)
  * <span class="badge builder"></span> [datasource.Query](../datasource/builder-Query.md)
  * <span class="badge builder"></span> [elasticsearch.Query](../elasticsearch/builder-Query.md)
  * <span class="badge builder"></span> [expr.Query](../expr/builder-Query.md)

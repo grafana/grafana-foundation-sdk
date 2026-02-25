@@ -12,6 +12,3 @@ public class AutoGridLayoutItemSpec {
   public ConditionalRenderingGroupKind conditionalRendering;
 }
 ```
-## See also
-
- * <span class="badge builder"></span> [AutoGridLayoutItemSpecBuilder](./builder-AutoGridLayoutItemSpecBuilder.md)

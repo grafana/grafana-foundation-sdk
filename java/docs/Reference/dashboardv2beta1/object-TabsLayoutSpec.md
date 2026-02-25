@@ -10,6 +10,3 @@ public class TabsLayoutSpec {
   public List<TabsLayoutTabKind> tabs;
 }
 ```
-## See also
-
- * <span class="badge builder"></span> [TabsLayoutSpecBuilder](./builder-TabsLayoutSpecBuilder.md)

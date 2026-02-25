@@ -41,4 +41,4 @@ func (gridLayoutItemKind *GridLayoutItemKind) Validate() error
 
 ## See also
 
- * <span class="badge builder"></span> [GridLayoutItemBuilder](./builder-GridLayoutItemBuilder.md)
+ * <span class="badge builder"></span> [GridItemBuilder](./builder-GridItemBuilder.md)

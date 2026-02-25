@@ -18,12 +18,6 @@ Builds the object.
 build()
 ```
 
-### <span class="badge object-method"></span> spec
-
-```typescript
-spec(spec: cog.Builder<dashboardv2beta1.ConditionalRenderingTimeRangeSizeSpec>)
-```
-
 ### <span class="badge object-method"></span> value
 
 ```typescript

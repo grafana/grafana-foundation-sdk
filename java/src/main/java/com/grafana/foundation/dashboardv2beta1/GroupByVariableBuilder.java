@@ -26,11 +26,6 @@ public class GroupByVariableBuilder implements com.grafana.foundation.cog.Builde
         return this;
     }
     
-    public GroupByVariableBuilder spec(GroupByVariableSpec spec) {
-        this.internal.spec = spec;
-        return this;
-    }
-    
     public GroupByVariableBuilder name(String name) {
 		if (this.internal.spec == null) {
 			this.internal.spec = new com.grafana.foundation.dashboardv2beta1.GroupByVariableSpec();

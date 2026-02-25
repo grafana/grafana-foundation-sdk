@@ -41,4 +41,4 @@ func (autoGridLayoutItemKind *AutoGridLayoutItemKind) Validate() error
 
 ## See also
 
- * <span class="badge builder"></span> [AutoGridLayoutItemBuilder](./builder-AutoGridLayoutItemBuilder.md)
+ * <span class="badge builder"></span> [AutoGridItemBuilder](./builder-AutoGridItemBuilder.md)

@@ -13,6 +13,3 @@ public class TabsLayoutTabSpec {
   public TabRepeatOptions repeat;
 }
 ```
-## See also
-
- * <span class="badge builder"></span> [TabsLayoutTabSpecBuilder](./builder-TabsLayoutTabSpecBuilder.md)

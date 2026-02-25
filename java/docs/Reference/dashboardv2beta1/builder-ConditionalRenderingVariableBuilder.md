@@ -24,12 +24,6 @@ public ConditionalRenderingVariable build()
 public ConditionalRenderingVariableBuilder operator(ConditionalRenderingVariableSpecOperator operator)
 ```
 
-### <span class="badge object-method"></span> spec
-
-```java
-public ConditionalRenderingVariableBuilder spec(com.grafana.foundation.cog.Builder<ConditionalRenderingVariableSpec> spec)
-```
-
 ### <span class="badge object-method"></span> value
 
 ```java

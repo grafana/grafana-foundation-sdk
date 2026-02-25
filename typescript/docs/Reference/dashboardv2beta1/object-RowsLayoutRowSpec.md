@@ -17,6 +17,3 @@ export interface RowsLayoutRowSpec {
 }
 
 ```
-## See also
-
- * <span class="badge builder"></span> [RowsLayoutRowSpecBuilder](./builder-RowsLayoutRowSpecBuilder.md)

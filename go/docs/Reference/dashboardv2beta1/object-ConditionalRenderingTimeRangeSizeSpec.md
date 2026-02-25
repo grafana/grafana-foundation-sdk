@@ -38,6 +38,3 @@ Validate checks all the validation constraints that may be defined on `Condition
 func (conditionalRenderingTimeRangeSizeSpec *ConditionalRenderingTimeRangeSizeSpec) Validate() error
 ```
 
-## See also
-
- * <span class="badge builder"></span> [ConditionalRenderingTimeRangeSizeSpecBuilder](./builder-ConditionalRenderingTimeRangeSizeSpecBuilder.md)

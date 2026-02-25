@@ -18,12 +18,6 @@ export class ConditionalRenderingDataBuilder implements cog.Builder<dashboardv2b
         return this.internal;
     }
 
-    spec(spec: cog.Builder<dashboardv2beta1.ConditionalRenderingDataSpec>): this {
-        const specResource = spec.build();
-        this.internal.spec = specResource;
-        return this;
-    }
-
     value(value: boolean): this {
         if (!this.internal.spec) {
             this.internal.spec = dashboardv2beta1.defaultConditionalRenderingDataSpec();

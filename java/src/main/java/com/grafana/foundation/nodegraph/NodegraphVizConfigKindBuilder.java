@@ -257,6 +257,41 @@ public class NodegraphVizConfigKindBuilder implements com.grafana.foundation.cog
         return this;
     }
     
+    public NodegraphVizConfigKindBuilder nodes(com.grafana.foundation.cog.Builder<NodeOptions> nodes) {
+		if (this.internal.spec == null) {
+			this.internal.spec = new com.grafana.foundation.dashboardv2beta1.VizConfigSpec();
+		}
+		if (this.internal.spec.options == null) {
+			this.internal.spec.options = new com.grafana.foundation.nodegraph.Options();
+		}
+    NodeOptions nodesResource = nodes.build();
+        ((Options) this.internal.spec.options).nodes = nodesResource;
+        return this;
+    }
+    
+    public NodegraphVizConfigKindBuilder edges(com.grafana.foundation.cog.Builder<EdgeOptions> edges) {
+		if (this.internal.spec == null) {
+			this.internal.spec = new com.grafana.foundation.dashboardv2beta1.VizConfigSpec();
+		}
+		if (this.internal.spec.options == null) {
+			this.internal.spec.options = new com.grafana.foundation.nodegraph.Options();
+		}
+    EdgeOptions edgesResource = edges.build();
+        ((Options) this.internal.spec.options).edges = edgesResource;
+        return this;
+    }
+    
+    public NodegraphVizConfigKindBuilder zoomMode(ZoomMode zoomMode) {
+		if (this.internal.spec == null) {
+			this.internal.spec = new com.grafana.foundation.dashboardv2beta1.VizConfigSpec();
+		}
+		if (this.internal.spec.options == null) {
+			this.internal.spec.options = new com.grafana.foundation.nodegraph.Options();
+		}
+        ((Options) this.internal.spec.options).zoomMode = zoomMode;
+        return this;
+    }
+    
     public NodegraphVizConfigKindBuilder overrideByName(String name,List<DynamicConfigValue> properties) {
 		if (this.internal.spec == null) {
 			this.internal.spec = new com.grafana.foundation.dashboardv2beta1.VizConfigSpec();
@@ -334,41 +369,6 @@ public class NodegraphVizConfigKindBuilder implements com.grafana.foundation.cog
         dashboardv2beta1FieldConfigSourceOverrides.matcher = matcherConfig;
         dashboardv2beta1FieldConfigSourceOverrides.properties = properties;
         this.internal.spec.fieldConfig.overrides.add(dashboardv2beta1FieldConfigSourceOverrides);
-        return this;
-    }
-    
-    public NodegraphVizConfigKindBuilder nodes(com.grafana.foundation.cog.Builder<NodeOptions> nodes) {
-		if (this.internal.spec == null) {
-			this.internal.spec = new com.grafana.foundation.dashboardv2beta1.VizConfigSpec();
-		}
-		if (this.internal.spec.options == null) {
-			this.internal.spec.options = new com.grafana.foundation.nodegraph.Options();
-		}
-    NodeOptions nodesResource = nodes.build();
-        ((Options) this.internal.spec.options).nodes = nodesResource;
-        return this;
-    }
-    
-    public NodegraphVizConfigKindBuilder edges(com.grafana.foundation.cog.Builder<EdgeOptions> edges) {
-		if (this.internal.spec == null) {
-			this.internal.spec = new com.grafana.foundation.dashboardv2beta1.VizConfigSpec();
-		}
-		if (this.internal.spec.options == null) {
-			this.internal.spec.options = new com.grafana.foundation.nodegraph.Options();
-		}
-    EdgeOptions edgesResource = edges.build();
-        ((Options) this.internal.spec.options).edges = edgesResource;
-        return this;
-    }
-    
-    public NodegraphVizConfigKindBuilder zoomMode(ZoomMode zoomMode) {
-		if (this.internal.spec == null) {
-			this.internal.spec = new com.grafana.foundation.dashboardv2beta1.VizConfigSpec();
-		}
-		if (this.internal.spec.options == null) {
-			this.internal.spec.options = new com.grafana.foundation.nodegraph.Options();
-		}
-        ((Options) this.internal.spec.options).zoomMode = zoomMode;
         return this;
     }
     public VizConfigKind build() {

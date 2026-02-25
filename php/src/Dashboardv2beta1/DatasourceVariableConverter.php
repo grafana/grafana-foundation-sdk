@@ -10,19 +10,6 @@ final class DatasourceVariableConverter
         $calls = [
             '(new \Grafana\Foundation\Dashboardv2beta1\DatasourceVariableBuilder('.\var_export($input->spec->name, true).'))',
         ];
-            
-    
-        {
-    $buffer = 'spec(';
-        $arg0 ='(new \Grafana\Foundation\Dashboardv2beta1\DatasourceVariableSpec(name: '.\var_export($input->spec->name, true).',pluginId: '.\var_export($input->spec->pluginId, true).',refresh: '.'\Grafana\Foundation\Dashboardv2beta1\VariableRefresh::fromValue("'.$input->spec->refresh.'")'.',regex: '.\var_export($input->spec->regex, true).',current: '.'(new \Grafana\Foundation\Dashboardv2beta1\VariableOption('.(($input->spec->current->selected !== null) ? 'selected: '.\var_export($input->spec->current->selected, true).', ' : '').'text: '.\var_export($input->spec->current->text, true).',value: '.\var_export($input->spec->current->value, true).',))'.',options: '.\var_export($input->spec->options, true).',multi: '.\var_export($input->spec->multi, true).',includeAll: '.\var_export($input->spec->includeAll, true).','.(($input->spec->allValue !== null) ? 'allValue: '.\var_export($input->spec->allValue, true).', ' : '').''.(($input->spec->label !== null) ? 'label: '.\var_export($input->spec->label, true).', ' : '').'hide: '.'\Grafana\Foundation\Dashboardv2beta1\VariableHide::fromValue("'.$input->spec->hide.'")'.',skipUrlSync: '.\var_export($input->spec->skipUrlSync, true).','.(($input->spec->description !== null) ? 'description: '.\var_export($input->spec->description, true).', ' : '').'allowCustomValue: '.\var_export($input->spec->allowCustomValue, true).',))';
-        $buffer .= $arg0;
-        
-    $buffer .= ')';
-
-    $calls[] = $buffer;
-    }
-    
-    
             if ($input->spec->name !== "") {
     
         

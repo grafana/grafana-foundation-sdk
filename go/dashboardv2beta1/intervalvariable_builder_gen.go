@@ -43,12 +43,6 @@ func (builder *IntervalVariableBuilder) RecordError(path string, err error) *Int
 	return builder
 }
 
-func (builder *IntervalVariableBuilder) Spec(spec IntervalVariableSpec) *IntervalVariableBuilder {
-	builder.internal.Spec = spec
-
-	return builder
-}
-
 func (builder *IntervalVariableBuilder) Name(name string) *IntervalVariableBuilder {
 	builder.internal.Spec.Name = name
 

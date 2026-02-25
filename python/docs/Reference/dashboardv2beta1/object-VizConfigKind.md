@@ -40,7 +40,6 @@ def from_json(data: dict[str, typing.Any]) -> typing.Self
  * <span class="badge builder"></span> [candlestick.Visualization](../candlestick/builder-Visualization.md)
  * <span class="badge builder"></span> [canvas.Visualization](../canvas/builder-Visualization.md)
  * <span class="badge builder"></span> [dashboardlist.Visualization](../dashboardlist/builder-Visualization.md)
- * <span class="badge builder"></span> [VizConfigKind](./builder-VizConfigKind.md)
  * <span class="badge builder"></span> [datagrid.Visualization](../datagrid/builder-Visualization.md)
  * <span class="badge builder"></span> [debug.Visualization](../debug/builder-Visualization.md)
  * <span class="badge builder"></span> [gauge.Visualization](../gauge/builder-Visualization.md)

@@ -41,17 +41,6 @@ func (builder *ConditionalRenderingGroupBuilder) RecordError(path string, err er
 	return builder
 }
 
-func (builder *ConditionalRenderingGroupBuilder) Spec(spec cog.Builder[ConditionalRenderingGroupSpec]) *ConditionalRenderingGroupBuilder {
-	specResource, err := spec.Build()
-	if err != nil {
-		builder.errors = append(builder.errors, err.(cog.BuildErrors)...)
-		return builder
-	}
-	builder.internal.Spec = specResource
-
-	return builder
-}
-
 func (builder *ConditionalRenderingGroupBuilder) Visibility(visibility ConditionalRenderingGroupSpecVisibility) *ConditionalRenderingGroupBuilder {
 	builder.internal.Spec.Visibility = visibility
 
@@ -66,6 +55,12 @@ func (builder *ConditionalRenderingGroupBuilder) Condition(condition Conditional
 
 func (builder *ConditionalRenderingGroupBuilder) Items(items []ConditionalRenderingVariableKindOrConditionalRenderingDataKindOrConditionalRenderingTimeRangeSizeKind) *ConditionalRenderingGroupBuilder {
 	builder.internal.Spec.Items = items
+
+	return builder
+}
+
+func (builder *ConditionalRenderingGroupBuilder) Item(item ConditionalRenderingVariableKindOrConditionalRenderingDataKindOrConditionalRenderingTimeRangeSizeKind) *ConditionalRenderingGroupBuilder {
+	builder.internal.Spec.Items = append(builder.internal.Spec.Items, item)
 
 	return builder
 }

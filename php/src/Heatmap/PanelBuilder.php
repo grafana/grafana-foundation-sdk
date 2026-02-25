@@ -838,79 +838,17 @@ class PanelBuilder implements \Grafana\Foundation\Cog\Builder
     }
 
     /**
-     * Controls how the tooltip is shown
+     * Controls tooltip options
+     * @param \Grafana\Foundation\Cog\Builder<\Grafana\Foundation\Heatmap\HeatmapTooltip> $tooltip
      */
-    public function mode(\Grafana\Foundation\Common\TooltipDisplayMode $mode): static
+    public function tooltip(\Grafana\Foundation\Cog\Builder $tooltip): static
     {    
         if ($this->internal->options === null) {
             $this->internal->options = new \Grafana\Foundation\Heatmap\Options();
         }
         assert($this->internal->options instanceof \Grafana\Foundation\Heatmap\Options);
-        $this->internal->options->tooltip->mode = $mode;
-    
-        return $this;
-    }
-
-    public function maxHeight(float $maxHeight): static
-    {    
-        if ($this->internal->options === null) {
-            $this->internal->options = new \Grafana\Foundation\Heatmap\Options();
-        }
-        assert($this->internal->options instanceof \Grafana\Foundation\Heatmap\Options);
-        $this->internal->options->tooltip->maxHeight = $maxHeight;
-    
-        return $this;
-    }
-
-    public function maxWidth(float $maxWidth): static
-    {    
-        if ($this->internal->options === null) {
-            $this->internal->options = new \Grafana\Foundation\Heatmap\Options();
-        }
-        assert($this->internal->options instanceof \Grafana\Foundation\Heatmap\Options);
-        $this->internal->options->tooltip->maxWidth = $maxWidth;
-    
-        return $this;
-    }
-
-    /**
-     * Controls if the tooltip shows a histogram of the y-axis values
-     */
-    public function showYHistogram(): static
-    {    
-        if ($this->internal->options === null) {
-            $this->internal->options = new \Grafana\Foundation\Heatmap\Options();
-        }
-        assert($this->internal->options instanceof \Grafana\Foundation\Heatmap\Options);
-        $this->internal->options->tooltip->yHistogram = true;
-    
-        return $this;
-    }
-
-    /**
-     * Controls if the tooltip shows a histogram of the y-axis values
-     */
-    public function hideYHistogram(): static
-    {    
-        if ($this->internal->options === null) {
-            $this->internal->options = new \Grafana\Foundation\Heatmap\Options();
-        }
-        assert($this->internal->options instanceof \Grafana\Foundation\Heatmap\Options);
-        $this->internal->options->tooltip->yHistogram = false;
-    
-        return $this;
-    }
-
-    /**
-     * Controls if the tooltip shows a color scale in header
-     */
-    public function showColorScale(bool $showColorScale): static
-    {    
-        if ($this->internal->options === null) {
-            $this->internal->options = new \Grafana\Foundation\Heatmap\Options();
-        }
-        assert($this->internal->options instanceof \Grafana\Foundation\Heatmap\Options);
-        $this->internal->options->tooltip->showColorScale = $showColorScale;
+        $tooltipResource = $tooltip->build();
+        $this->internal->options->tooltip = $tooltipResource;
     
         return $this;
     }

@@ -90,12 +90,6 @@ query(query: string)
 skipUrlSync(skipUrlSync: boolean)
 ```
 
-### <span class="badge object-method"></span> spec
-
-```typescript
-spec(spec: dashboardv2beta1.CustomVariableSpec)
-```
-
 ## See also
 
  * <span class="badge object-type-interface"></span> [CustomVariableKind](./object-CustomVariableKind.md)

@@ -13,4 +13,4 @@ public class RowsLayoutKind {
 ```
 ## See also
 
- * <span class="badge builder"></span> [RowsLayoutBuilder](./builder-RowsLayoutBuilder.md)
+ * <span class="badge builder"></span> [RowsBuilder](./builder-RowsBuilder.md)

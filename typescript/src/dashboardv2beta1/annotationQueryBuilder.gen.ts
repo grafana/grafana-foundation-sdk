@@ -18,12 +18,6 @@ export class AnnotationQueryBuilder implements cog.Builder<dashboardv2beta1.Anno
         return this.internal;
     }
 
-    spec(spec: cog.Builder<dashboardv2beta1.AnnotationQuerySpec>): this {
-        const specResource = spec.build();
-        this.internal.spec = specResource;
-        return this;
-    }
-
     query(query: cog.Builder<dashboardv2beta1.DataQueryKind>): this {
         if (!this.internal.spec) {
             this.internal.spec = dashboardv2beta1.defaultAnnotationQuerySpec();

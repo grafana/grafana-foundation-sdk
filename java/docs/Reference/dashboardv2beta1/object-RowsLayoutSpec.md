@@ -10,6 +10,3 @@ public class RowsLayoutSpec {
   public List<RowsLayoutRowKind> rows;
 }
 ```
-## See also
-
- * <span class="badge builder"></span> [RowsLayoutSpecBuilder](./builder-RowsLayoutSpecBuilder.md)

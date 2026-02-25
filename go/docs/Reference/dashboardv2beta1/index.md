@@ -155,20 +155,13 @@
  * <span class="badge builder"></span> [AdhocVariableBuilder](./builder-AdhocVariableBuilder.md)
  * <span class="badge builder"></span> [AnnotationPanelFilterBuilder](./builder-AnnotationPanelFilterBuilder.md)
  * <span class="badge builder"></span> [AnnotationQueryBuilder](./builder-AnnotationQueryBuilder.md)
- * <span class="badge builder"></span> [AnnotationQuerySpecBuilder](./builder-AnnotationQuerySpecBuilder.md)
- * <span class="badge builder"></span> [AutoGridLayoutBuilder](./builder-AutoGridLayoutBuilder.md)
- * <span class="badge builder"></span> [AutoGridLayoutItemBuilder](./builder-AutoGridLayoutItemBuilder.md)
- * <span class="badge builder"></span> [AutoGridLayoutItemSpecBuilder](./builder-AutoGridLayoutItemSpecBuilder.md)
- * <span class="badge builder"></span> [AutoGridLayoutSpecBuilder](./builder-AutoGridLayoutSpecBuilder.md)
+ * <span class="badge builder"></span> [AutoGridBuilder](./builder-AutoGridBuilder.md)
+ * <span class="badge builder"></span> [AutoGridItemBuilder](./builder-AutoGridItemBuilder.md)
  * <span class="badge builder"></span> [AutoGridRepeatOptionsBuilder](./builder-AutoGridRepeatOptionsBuilder.md)
  * <span class="badge builder"></span> [ConditionalRenderingDataBuilder](./builder-ConditionalRenderingDataBuilder.md)
- * <span class="badge builder"></span> [ConditionalRenderingDataSpecBuilder](./builder-ConditionalRenderingDataSpecBuilder.md)
  * <span class="badge builder"></span> [ConditionalRenderingGroupBuilder](./builder-ConditionalRenderingGroupBuilder.md)
- * <span class="badge builder"></span> [ConditionalRenderingGroupSpecBuilder](./builder-ConditionalRenderingGroupSpecBuilder.md)
  * <span class="badge builder"></span> [ConditionalRenderingTimeRangeSizeBuilder](./builder-ConditionalRenderingTimeRangeSizeBuilder.md)
- * <span class="badge builder"></span> [ConditionalRenderingTimeRangeSizeSpecBuilder](./builder-ConditionalRenderingTimeRangeSizeSpecBuilder.md)
  * <span class="badge builder"></span> [ConditionalRenderingVariableBuilder](./builder-ConditionalRenderingVariableBuilder.md)
- * <span class="badge builder"></span> [ConditionalRenderingVariableSpecBuilder](./builder-ConditionalRenderingVariableSpecBuilder.md)
  * <span class="badge builder"></span> [ConstantVariableBuilder](./builder-ConstantVariableBuilder.md)
  * <span class="badge builder"></span> [CustomFormatterVariableBuilder](./builder-CustomFormatterVariableBuilder.md)
  * <span class="badge builder"></span> [CustomVariableBuilder](./builder-CustomVariableBuilder.md)
@@ -183,19 +176,16 @@
  * <span class="badge builder"></span> [Dashboardv2beta1RegexMapOptionsBuilder](./builder-Dashboardv2beta1RegexMapOptionsBuilder.md)
  * <span class="badge builder"></span> [Dashboardv2beta1SpecialValueMapOptionsBuilder](./builder-Dashboardv2beta1SpecialValueMapOptionsBuilder.md)
  * <span class="badge builder"></span> [DataLinkBuilder](./builder-DataLinkBuilder.md)
- * <span class="badge builder"></span> [DataQueryKindBuilder](./builder-DataQueryKindBuilder.md)
  * <span class="badge builder"></span> [DatasourceVariableBuilder](./builder-DatasourceVariableBuilder.md)
  * <span class="badge builder"></span> [ElementReferenceBuilder](./builder-ElementReferenceBuilder.md)
  * <span class="badge builder"></span> [FetchOptionsBuilder](./builder-FetchOptionsBuilder.md)
  * <span class="badge builder"></span> [FieldColorBuilder](./builder-FieldColorBuilder.md)
- * <span class="badge builder"></span> [GridLayoutBuilder](./builder-GridLayoutBuilder.md)
- * <span class="badge builder"></span> [GridLayoutItemBuilder](./builder-GridLayoutItemBuilder.md)
+ * <span class="badge builder"></span> [GridBuilder](./builder-GridBuilder.md)
+ * <span class="badge builder"></span> [GridItemBuilder](./builder-GridItemBuilder.md)
  * <span class="badge builder"></span> [GroupByVariableBuilder](./builder-GroupByVariableBuilder.md)
  * <span class="badge builder"></span> [InfinityOptionsBuilder](./builder-InfinityOptionsBuilder.md)
  * <span class="badge builder"></span> [IntervalVariableBuilder](./builder-IntervalVariableBuilder.md)
- * <span class="badge builder"></span> [KindBuilder](./builder-KindBuilder.md)
  * <span class="badge builder"></span> [LibraryPanelBuilder](./builder-LibraryPanelBuilder.md)
- * <span class="badge builder"></span> [LibraryPanelKindSpecBuilder](./builder-LibraryPanelKindSpecBuilder.md)
  * <span class="badge builder"></span> [LibraryPanelRefBuilder](./builder-LibraryPanelRefBuilder.md)
  * <span class="badge builder"></span> [MetricFindValueBuilder](./builder-MetricFindValueBuilder.md)
  * <span class="badge builder"></span> [PanelBuilder](./builder-PanelBuilder.md)
@@ -203,20 +193,15 @@
  * <span class="badge builder"></span> [QueryOptionsSpecBuilder](./builder-QueryOptionsSpecBuilder.md)
  * <span class="badge builder"></span> [QueryVariableBuilder](./builder-QueryVariableBuilder.md)
  * <span class="badge builder"></span> [RepeatOptionsBuilder](./builder-RepeatOptionsBuilder.md)
+ * <span class="badge builder"></span> [RowBuilder](./builder-RowBuilder.md)
  * <span class="badge builder"></span> [RowRepeatOptionsBuilder](./builder-RowRepeatOptionsBuilder.md)
- * <span class="badge builder"></span> [RowsLayoutBuilder](./builder-RowsLayoutBuilder.md)
- * <span class="badge builder"></span> [RowsLayoutRowBuilder](./builder-RowsLayoutRowBuilder.md)
- * <span class="badge builder"></span> [RowsLayoutRowSpecBuilder](./builder-RowsLayoutRowSpecBuilder.md)
- * <span class="badge builder"></span> [RowsLayoutSpecBuilder](./builder-RowsLayoutSpecBuilder.md)
+ * <span class="badge builder"></span> [RowsBuilder](./builder-RowsBuilder.md)
  * <span class="badge builder"></span> [StringOrBoolOrFloat64OrCustomVariableValueBuilder](./builder-StringOrBoolOrFloat64OrCustomVariableValueBuilder.md)
  * <span class="badge builder"></span> [StringOrBoolOrFloat64OrCustomVariableValueOrArrayOfVariableValueSingleBuilder](./builder-StringOrBoolOrFloat64OrCustomVariableValueOrArrayOfVariableValueSingleBuilder.md)
- * <span class="badge builder"></span> [SwitchVariableKindBuilder](./builder-SwitchVariableKindBuilder.md)
- * <span class="badge builder"></span> [SwitchVariableSpecBuilder](./builder-SwitchVariableSpecBuilder.md)
+ * <span class="badge builder"></span> [SwitchVariableBuilder](./builder-SwitchVariableBuilder.md)
+ * <span class="badge builder"></span> [TabBuilder](./builder-TabBuilder.md)
  * <span class="badge builder"></span> [TabRepeatOptionsBuilder](./builder-TabRepeatOptionsBuilder.md)
- * <span class="badge builder"></span> [TabsLayoutBuilder](./builder-TabsLayoutBuilder.md)
- * <span class="badge builder"></span> [TabsLayoutSpecBuilder](./builder-TabsLayoutSpecBuilder.md)
- * <span class="badge builder"></span> [TabsLayoutTabBuilder](./builder-TabsLayoutTabBuilder.md)
- * <span class="badge builder"></span> [TabsLayoutTabSpecBuilder](./builder-TabsLayoutTabSpecBuilder.md)
+ * <span class="badge builder"></span> [TabsBuilder](./builder-TabsBuilder.md)
  * <span class="badge builder"></span> [TargetBuilder](./builder-TargetBuilder.md)
  * <span class="badge builder"></span> [TextVariableBuilder](./builder-TextVariableBuilder.md)
  * <span class="badge builder"></span> [ThresholdsConfigBuilder](./builder-ThresholdsConfigBuilder.md)
@@ -227,7 +212,6 @@
  * <span class="badge builder"></span> [VariableValueBuilder](./builder-VariableValueBuilder.md)
  * <span class="badge builder"></span> [VariableValueOptionBuilder](./builder-VariableValueOptionBuilder.md)
  * <span class="badge builder"></span> [VariableValueSingleBuilder](./builder-VariableValueSingleBuilder.md)
- * <span class="badge builder"></span> [VizConfigKindBuilder](./builder-VizConfigKindBuilder.md)
 ## Functions
 
 ### <span class="badge function"></span> NewDashboard
@@ -1166,20 +1150,52 @@ Creates a resource manifest from a Dashboard.
 func Manifest(name string, dashboard cog.Builder[Dashboard]) *DashboardBuilder
 ```
 
-### <span class="badge function"></span> AnnotationQuerySpecConverter
-
-AnnotationQuerySpecConverter accepts a `AnnotationQuerySpec` object and generates the Go code to build this object using builders.
+### <span class="badge function"></span> Rows
 
 ```go
-func AnnotationQuerySpecConverter(input AnnotationQuerySpec) string
+func Rows() *RowsBuilder
 ```
 
-### <span class="badge function"></span> DataQueryKindConverter
-
-DataQueryKindConverter accepts a `DataQueryKind` object and generates the Go code to build this object using builders.
+### <span class="badge function"></span> Row
 
 ```go
-func DataQueryKindConverter(input DataQueryKind) string
+func Row(title string) *RowBuilder
+```
+
+### <span class="badge function"></span> AutoGrid
+
+```go
+func AutoGrid() *AutoGridBuilder
+```
+
+### <span class="badge function"></span> AutoGridItem
+
+```go
+func AutoGridItem(name string) *AutoGridItemBuilder
+```
+
+### <span class="badge function"></span> Tabs
+
+```go
+func Tabs() *TabsBuilder
+```
+
+### <span class="badge function"></span> Tab
+
+```go
+func Tab(title string) *TabBuilder
+```
+
+### <span class="badge function"></span> Grid
+
+```go
+func Grid() *GridBuilder
+```
+
+### <span class="badge function"></span> GridItem
+
+```go
+func GridItem(name string) *GridItemBuilder
 ```
 
 ### <span class="badge function"></span> AnnotationPanelFilterConverter
@@ -1262,14 +1278,6 @@ ActionVariableConverter accepts a `ActionVariable` object and generates the Go c
 func ActionVariableConverter(input ActionVariable) string
 ```
 
-### <span class="badge function"></span> LibraryPanelKindSpecConverter
-
-LibraryPanelKindSpecConverter accepts a `LibraryPanelKindSpec` object and generates the Go code to build this object using builders.
-
-```go
-func LibraryPanelKindSpecConverter(input LibraryPanelKindSpec) string
-```
-
 ### <span class="badge function"></span> LibraryPanelRefConverter
 
 LibraryPanelRefConverter accepts a `LibraryPanelRef` object and generates the Go code to build this object using builders.
@@ -1294,54 +1302,6 @@ RepeatOptionsConverter accepts a `RepeatOptions` object and generates the Go cod
 func RepeatOptionsConverter(input RepeatOptions) string
 ```
 
-### <span class="badge function"></span> RowsLayoutSpecConverter
-
-RowsLayoutSpecConverter accepts a `RowsLayoutSpec` object and generates the Go code to build this object using builders.
-
-```go
-func RowsLayoutSpecConverter(input RowsLayoutSpec) string
-```
-
-### <span class="badge function"></span> RowsLayoutRowSpecConverter
-
-RowsLayoutRowSpecConverter accepts a `RowsLayoutRowSpec` object and generates the Go code to build this object using builders.
-
-```go
-func RowsLayoutRowSpecConverter(input RowsLayoutRowSpec) string
-```
-
-### <span class="badge function"></span> ConditionalRenderingGroupSpecConverter
-
-ConditionalRenderingGroupSpecConverter accepts a `ConditionalRenderingGroupSpec` object and generates the Go code to build this object using builders.
-
-```go
-func ConditionalRenderingGroupSpecConverter(input ConditionalRenderingGroupSpec) string
-```
-
-### <span class="badge function"></span> ConditionalRenderingVariableSpecConverter
-
-ConditionalRenderingVariableSpecConverter accepts a `ConditionalRenderingVariableSpec` object and generates the Go code to build this object using builders.
-
-```go
-func ConditionalRenderingVariableSpecConverter(input ConditionalRenderingVariableSpec) string
-```
-
-### <span class="badge function"></span> ConditionalRenderingDataSpecConverter
-
-ConditionalRenderingDataSpecConverter accepts a `ConditionalRenderingDataSpec` object and generates the Go code to build this object using builders.
-
-```go
-func ConditionalRenderingDataSpecConverter(input ConditionalRenderingDataSpec) string
-```
-
-### <span class="badge function"></span> ConditionalRenderingTimeRangeSizeSpecConverter
-
-ConditionalRenderingTimeRangeSizeSpecConverter accepts a `ConditionalRenderingTimeRangeSizeSpec` object and generates the Go code to build this object using builders.
-
-```go
-func ConditionalRenderingTimeRangeSizeSpecConverter(input ConditionalRenderingTimeRangeSizeSpec) string
-```
-
 ### <span class="badge function"></span> RowRepeatOptionsConverter
 
 RowRepeatOptionsConverter accepts a `RowRepeatOptions` object and generates the Go code to build this object using builders.
@@ -1350,44 +1310,12 @@ RowRepeatOptionsConverter accepts a `RowRepeatOptions` object and generates the 
 func RowRepeatOptionsConverter(input RowRepeatOptions) string
 ```
 
-### <span class="badge function"></span> AutoGridLayoutSpecConverter
-
-AutoGridLayoutSpecConverter accepts a `AutoGridLayoutSpec` object and generates the Go code to build this object using builders.
-
-```go
-func AutoGridLayoutSpecConverter(input AutoGridLayoutSpec) string
-```
-
-### <span class="badge function"></span> AutoGridLayoutItemSpecConverter
-
-AutoGridLayoutItemSpecConverter accepts a `AutoGridLayoutItemSpec` object and generates the Go code to build this object using builders.
-
-```go
-func AutoGridLayoutItemSpecConverter(input AutoGridLayoutItemSpec) string
-```
-
 ### <span class="badge function"></span> AutoGridRepeatOptionsConverter
 
 AutoGridRepeatOptionsConverter accepts a `AutoGridRepeatOptions` object and generates the Go code to build this object using builders.
 
 ```go
 func AutoGridRepeatOptionsConverter(input AutoGridRepeatOptions) string
-```
-
-### <span class="badge function"></span> TabsLayoutSpecConverter
-
-TabsLayoutSpecConverter accepts a `TabsLayoutSpec` object and generates the Go code to build this object using builders.
-
-```go
-func TabsLayoutSpecConverter(input TabsLayoutSpec) string
-```
-
-### <span class="badge function"></span> TabsLayoutTabSpecConverter
-
-TabsLayoutTabSpecConverter accepts a `TabsLayoutTabSpec` object and generates the Go code to build this object using builders.
-
-```go
-func TabsLayoutTabSpecConverter(input TabsLayoutTabSpec) string
 ```
 
 ### <span class="badge function"></span> TabRepeatOptionsConverter
@@ -1428,30 +1356,6 @@ MetricFindValueConverter accepts a `MetricFindValue` object and generates the Go
 
 ```go
 func MetricFindValueConverter(input MetricFindValue) string
-```
-
-### <span class="badge function"></span> SwitchVariableKindConverter
-
-SwitchVariableKindConverter accepts a `SwitchVariableKind` object and generates the Go code to build this object using builders.
-
-```go
-func SwitchVariableKindConverter(input SwitchVariableKind) string
-```
-
-### <span class="badge function"></span> SwitchVariableSpecConverter
-
-SwitchVariableSpecConverter accepts a `SwitchVariableSpec` object and generates the Go code to build this object using builders.
-
-```go
-func SwitchVariableSpecConverter(input SwitchVariableSpec) string
-```
-
-### <span class="badge function"></span> KindConverter
-
-KindConverter accepts a `Kind` object and generates the Go code to build this object using builders.
-
-```go
-func KindConverter(input Kind) string
 ```
 
 ### <span class="badge function"></span> VariableValueConverter
@@ -1574,108 +1478,12 @@ AnnotationQueryConverter accepts a `AnnotationQuery` object and generates the Go
 func AnnotationQueryConverter(input AnnotationQueryKind) string
 ```
 
-### <span class="badge function"></span> ConditionalRenderingGroupConverter
-
-ConditionalRenderingGroupConverter accepts a `ConditionalRenderingGroup` object and generates the Go code to build this object using builders.
-
-```go
-func ConditionalRenderingGroupConverter(input ConditionalRenderingGroupKind) string
-```
-
-### <span class="badge function"></span> ConditionalRenderingDataConverter
-
-ConditionalRenderingDataConverter accepts a `ConditionalRenderingData` object and generates the Go code to build this object using builders.
-
-```go
-func ConditionalRenderingDataConverter(input ConditionalRenderingDataKind) string
-```
-
-### <span class="badge function"></span> ConditionalRenderingTimeRangeSizeConverter
-
-ConditionalRenderingTimeRangeSizeConverter accepts a `ConditionalRenderingTimeRangeSize` object and generates the Go code to build this object using builders.
-
-```go
-func ConditionalRenderingTimeRangeSizeConverter(input ConditionalRenderingTimeRangeSizeKind) string
-```
-
-### <span class="badge function"></span> ConditionalRenderingVariableConverter
-
-ConditionalRenderingVariableConverter accepts a `ConditionalRenderingVariable` object and generates the Go code to build this object using builders.
-
-```go
-func ConditionalRenderingVariableConverter(input ConditionalRenderingVariableKind) string
-```
-
 ### <span class="badge function"></span> LibraryPanelConverter
 
 LibraryPanelConverter accepts a `LibraryPanel` object and generates the Go code to build this object using builders.
 
 ```go
 func LibraryPanelConverter(input LibraryPanelKind) string
-```
-
-### <span class="badge function"></span> AutoGridLayoutConverter
-
-AutoGridLayoutConverter accepts a `AutoGridLayout` object and generates the Go code to build this object using builders.
-
-```go
-func AutoGridLayoutConverter(input AutoGridLayoutKind) string
-```
-
-### <span class="badge function"></span> AutoGridLayoutItemConverter
-
-AutoGridLayoutItemConverter accepts a `AutoGridLayoutItem` object and generates the Go code to build this object using builders.
-
-```go
-func AutoGridLayoutItemConverter(input AutoGridLayoutItemKind) string
-```
-
-### <span class="badge function"></span> RowsLayoutConverter
-
-RowsLayoutConverter accepts a `RowsLayout` object and generates the Go code to build this object using builders.
-
-```go
-func RowsLayoutConverter(input RowsLayoutKind) string
-```
-
-### <span class="badge function"></span> RowsLayoutRowConverter
-
-RowsLayoutRowConverter accepts a `RowsLayoutRow` object and generates the Go code to build this object using builders.
-
-```go
-func RowsLayoutRowConverter(input RowsLayoutRowKind) string
-```
-
-### <span class="badge function"></span> TabsLayoutConverter
-
-TabsLayoutConverter accepts a `TabsLayout` object and generates the Go code to build this object using builders.
-
-```go
-func TabsLayoutConverter(input TabsLayoutKind) string
-```
-
-### <span class="badge function"></span> TabsLayoutTabConverter
-
-TabsLayoutTabConverter accepts a `TabsLayoutTab` object and generates the Go code to build this object using builders.
-
-```go
-func TabsLayoutTabConverter(input TabsLayoutTabKind) string
-```
-
-### <span class="badge function"></span> GridLayoutConverter
-
-GridLayoutConverter accepts a `GridLayout` object and generates the Go code to build this object using builders.
-
-```go
-func GridLayoutConverter(input GridLayoutKind) string
-```
-
-### <span class="badge function"></span> GridLayoutItemConverter
-
-GridLayoutItemConverter accepts a `GridLayoutItem` object and generates the Go code to build this object using builders.
-
-```go
-func GridLayoutItemConverter(input GridLayoutItemKind) string
 ```
 
 ### <span class="badge function"></span> TargetConverter
@@ -1718,12 +1526,36 @@ PanelConverter accepts a `Panel` object and generates the Go code to build this 
 func PanelConverter(input PanelKind) string
 ```
 
-### <span class="badge function"></span> VizConfigKindConverter
+### <span class="badge function"></span> ConditionalRenderingGroupConverter
 
-VizConfigKindConverter accepts a `VizConfigKind` object and generates the Go code to build this object using builders.
+ConditionalRenderingGroupConverter accepts a `ConditionalRenderingGroup` object and generates the Go code to build this object using builders.
 
 ```go
-func VizConfigKindConverter(input VizConfigKind) string
+func ConditionalRenderingGroupConverter(input ConditionalRenderingGroupKind) string
+```
+
+### <span class="badge function"></span> ConditionalRenderingDataConverter
+
+ConditionalRenderingDataConverter accepts a `ConditionalRenderingData` object and generates the Go code to build this object using builders.
+
+```go
+func ConditionalRenderingDataConverter(input ConditionalRenderingDataKind) string
+```
+
+### <span class="badge function"></span> ConditionalRenderingTimeRangeSizeConverter
+
+ConditionalRenderingTimeRangeSizeConverter accepts a `ConditionalRenderingTimeRangeSize` object and generates the Go code to build this object using builders.
+
+```go
+func ConditionalRenderingTimeRangeSizeConverter(input ConditionalRenderingTimeRangeSizeKind) string
+```
+
+### <span class="badge function"></span> ConditionalRenderingVariableConverter
+
+ConditionalRenderingVariableConverter accepts a `ConditionalRenderingVariable` object and generates the Go code to build this object using builders.
+
+```go
+func ConditionalRenderingVariableConverter(input ConditionalRenderingVariableKind) string
 ```
 
 ### <span class="badge function"></span> DashboardConverter
@@ -1732,6 +1564,70 @@ DashboardConverter accepts a `Dashboard` object and generates the Go code to bui
 
 ```go
 func DashboardConverter(input Dashboard) string
+```
+
+### <span class="badge function"></span> RowsConverter
+
+RowsConverter accepts a `Rows` object and generates the Go code to build this object using builders.
+
+```go
+func RowsConverter(input RowsLayoutKind) string
+```
+
+### <span class="badge function"></span> RowConverter
+
+RowConverter accepts a `Row` object and generates the Go code to build this object using builders.
+
+```go
+func RowConverter(input RowsLayoutRowKind) string
+```
+
+### <span class="badge function"></span> AutoGridConverter
+
+AutoGridConverter accepts a `AutoGrid` object and generates the Go code to build this object using builders.
+
+```go
+func AutoGridConverter(input AutoGridLayoutKind) string
+```
+
+### <span class="badge function"></span> AutoGridItemConverter
+
+AutoGridItemConverter accepts a `AutoGridItem` object and generates the Go code to build this object using builders.
+
+```go
+func AutoGridItemConverter(input AutoGridLayoutItemKind) string
+```
+
+### <span class="badge function"></span> TabsConverter
+
+TabsConverter accepts a `Tabs` object and generates the Go code to build this object using builders.
+
+```go
+func TabsConverter(input TabsLayoutKind) string
+```
+
+### <span class="badge function"></span> TabConverter
+
+TabConverter accepts a `Tab` object and generates the Go code to build this object using builders.
+
+```go
+func TabConverter(input TabsLayoutTabKind) string
+```
+
+### <span class="badge function"></span> GridConverter
+
+GridConverter accepts a `Grid` object and generates the Go code to build this object using builders.
+
+```go
+func GridConverter(input GridLayoutKind) string
+```
+
+### <span class="badge function"></span> GridItemConverter
+
+GridItemConverter accepts a `GridItem` object and generates the Go code to build this object using builders.
+
+```go
+func GridItemConverter(input GridLayoutItemKind) string
 ```
 
 ### <span class="badge function"></span> QueryVariableConverter
@@ -1796,5 +1692,13 @@ AdhocVariableConverter accepts a `AdhocVariable` object and generates the Go cod
 
 ```go
 func AdhocVariableConverter(input AdhocVariableKind) string
+```
+
+### <span class="badge function"></span> SwitchVariableConverter
+
+SwitchVariableConverter accepts a `SwitchVariable` object and generates the Go code to build this object using builders.
+
+```go
+func SwitchVariableConverter(input SwitchVariableKind) string
 ```
 

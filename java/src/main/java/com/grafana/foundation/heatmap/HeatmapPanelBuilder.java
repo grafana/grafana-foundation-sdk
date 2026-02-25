@@ -21,7 +21,6 @@ import com.grafana.foundation.dashboard.DynamicConfigValue;
 import com.grafana.foundation.dashboard.MatcherConfig;
 import com.grafana.foundation.common.HeatmapCalculationOptions;
 import com.grafana.foundation.common.VisibilityMode;
-import com.grafana.foundation.common.TooltipDisplayMode;
 import com.grafana.foundation.common.ScaleDistributionConfig;
 import com.grafana.foundation.common.HideSeriesConfig;
 
@@ -537,69 +536,12 @@ public class HeatmapPanelBuilder implements com.grafana.foundation.cog.Builder<P
         return this;
     }
     
-    public HeatmapPanelBuilder mode(TooltipDisplayMode mode) {
+    public HeatmapPanelBuilder tooltip(com.grafana.foundation.cog.Builder<HeatmapTooltip> tooltip) {
 		if (this.internal.options == null) {
 			this.internal.options = new com.grafana.foundation.heatmap.Options();
 		}
-		if (((Options) this.internal.options).tooltip == null) {
-			((Options) this.internal.options).tooltip = new com.grafana.foundation.heatmap.HeatmapTooltipBuilder().build();
-		}
-        ((Options) this.internal.options).tooltip.mode = mode;
-        return this;
-    }
-    
-    public HeatmapPanelBuilder maxHeight(Double maxHeight) {
-		if (this.internal.options == null) {
-			this.internal.options = new com.grafana.foundation.heatmap.Options();
-		}
-		if (((Options) this.internal.options).tooltip == null) {
-			((Options) this.internal.options).tooltip = new com.grafana.foundation.heatmap.HeatmapTooltipBuilder().build();
-		}
-        ((Options) this.internal.options).tooltip.maxHeight = maxHeight;
-        return this;
-    }
-    
-    public HeatmapPanelBuilder maxWidth(Double maxWidth) {
-		if (this.internal.options == null) {
-			this.internal.options = new com.grafana.foundation.heatmap.Options();
-		}
-		if (((Options) this.internal.options).tooltip == null) {
-			((Options) this.internal.options).tooltip = new com.grafana.foundation.heatmap.HeatmapTooltipBuilder().build();
-		}
-        ((Options) this.internal.options).tooltip.maxWidth = maxWidth;
-        return this;
-    }
-    
-    public HeatmapPanelBuilder showYHistogram() {
-		if (this.internal.options == null) {
-			this.internal.options = new com.grafana.foundation.heatmap.Options();
-		}
-		if (((Options) this.internal.options).tooltip == null) {
-			((Options) this.internal.options).tooltip = new com.grafana.foundation.heatmap.HeatmapTooltipBuilder().build();
-		}
-        ((Options) this.internal.options).tooltip.yHistogram = true;
-        return this;
-    }
-    
-    public HeatmapPanelBuilder hideYHistogram() {
-		if (this.internal.options == null) {
-			this.internal.options = new com.grafana.foundation.heatmap.Options();
-		}
-		if (((Options) this.internal.options).tooltip == null) {
-			((Options) this.internal.options).tooltip = new com.grafana.foundation.heatmap.HeatmapTooltipBuilder().build();
-		}
-        ((Options) this.internal.options).tooltip.yHistogram = false;
-        return this;
-    }
-    
-    public HeatmapPanelBuilder showColorScale(Boolean showColorScale) {
-		if (this.internal.options == null) {
-			this.internal.options = new com.grafana.foundation.heatmap.Options();
-		}
-		if (((Options) this.internal.options).tooltip == null) {
-			((Options) this.internal.options).tooltip = new com.grafana.foundation.heatmap.HeatmapTooltipBuilder().build();
-		}
-        ((Options) this.internal.options).tooltip.showColorScale = showColorScale;
+    HeatmapTooltip tooltipResource = tooltip.build();
+        ((Options) this.internal.options).tooltip = tooltipResource;
         return this;
     }
     

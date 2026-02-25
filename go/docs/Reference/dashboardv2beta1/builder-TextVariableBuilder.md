@@ -60,12 +60,6 @@ func (builder *TextVariableBuilder) Query(query string) *TextVariableBuilder
 func (builder *TextVariableBuilder) SkipUrlSync(skipUrlSync bool) *TextVariableBuilder
 ```
 
-### <span class="badge object-method"></span> Spec
-
-```go
-func (builder *TextVariableBuilder) Spec(spec dashboardv2beta1.TextVariableSpec) *TextVariableBuilder
-```
-
 ## See also
 
  * <span class="badge object-type-struct"></span> [TextVariableKind](./object-TextVariableKind.md)

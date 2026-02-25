@@ -90,12 +90,6 @@ func (builder *IntervalVariableBuilder) Refresh(refresh dashboardv2beta1.Variabl
 func (builder *IntervalVariableBuilder) SkipUrlSync(skipUrlSync bool) *IntervalVariableBuilder
 ```
 
-### <span class="badge object-method"></span> Spec
-
-```go
-func (builder *IntervalVariableBuilder) Spec(spec dashboardv2beta1.IntervalVariableSpec) *IntervalVariableBuilder
-```
-
 ## See also
 
  * <span class="badge object-type-struct"></span> [IntervalVariableKind](./object-IntervalVariableKind.md)

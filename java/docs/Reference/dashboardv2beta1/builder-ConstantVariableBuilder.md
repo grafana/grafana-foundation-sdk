@@ -60,12 +60,6 @@ public ConstantVariableBuilder query(String query)
 public ConstantVariableBuilder skipUrlSync(Boolean skipUrlSync)
 ```
 
-### <span class="badge object-method"></span> spec
-
-```java
-public ConstantVariableBuilder spec(ConstantVariableSpec spec)
-```
-
 ## See also
 
  * <span class="badge object-type-class"></span> [ConstantVariableKind](./object-ConstantVariableKind.md)

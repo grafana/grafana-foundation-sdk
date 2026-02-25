@@ -938,6 +938,32 @@ class Visualization(cogbuilder.Builder[dashboardv2beta1.VizConfigKind]):
     
         return self
     
+    def feed_url(self, feed_url: str) -> typing.Self:    
+        """
+        empty/missing will default to grafana blog
+        """
+            
+        if self._internal.spec is None:
+            self._internal.spec = dashboardv2beta1.VizConfigSpec()
+        assert isinstance(self._internal.spec, dashboardv2beta1.VizConfigSpec)
+        if self._internal.spec.options is None:
+            self._internal.spec.options = news.Options()
+        assert isinstance(self._internal.spec.options, news.Options)
+        self._internal.spec.options.feed_url = feed_url
+    
+        return self
+    
+    def show_image(self, show_image: bool) -> typing.Self:    
+        if self._internal.spec is None:
+            self._internal.spec = dashboardv2beta1.VizConfigSpec()
+        assert isinstance(self._internal.spec, dashboardv2beta1.VizConfigSpec)
+        if self._internal.spec.options is None:
+            self._internal.spec.options = news.Options()
+        assert isinstance(self._internal.spec.options, news.Options)
+        self._internal.spec.options.show_image = show_image
+    
+        return self
+    
     def override_by_name(self, name: str, properties: list[dashboardv2beta1.DynamicConfigValue]) -> typing.Self:    
         """
         Adds override rules for a specific field, referred to by its name.
@@ -1027,32 +1053,6 @@ class Visualization(cogbuilder.Builder[dashboardv2beta1.VizConfigKind]):
         ),
             properties=properties,
         ))
-    
-        return self
-    
-    def feed_url(self, feed_url: str) -> typing.Self:    
-        """
-        empty/missing will default to grafana blog
-        """
-            
-        if self._internal.spec is None:
-            self._internal.spec = dashboardv2beta1.VizConfigSpec()
-        assert isinstance(self._internal.spec, dashboardv2beta1.VizConfigSpec)
-        if self._internal.spec.options is None:
-            self._internal.spec.options = news.Options()
-        assert isinstance(self._internal.spec.options, news.Options)
-        self._internal.spec.options.feed_url = feed_url
-    
-        return self
-    
-    def show_image(self, show_image: bool) -> typing.Self:    
-        if self._internal.spec is None:
-            self._internal.spec = dashboardv2beta1.VizConfigSpec()
-        assert isinstance(self._internal.spec, dashboardv2beta1.VizConfigSpec)
-        if self._internal.spec.options is None:
-            self._internal.spec.options = news.Options()
-        assert isinstance(self._internal.spec.options, news.Options)
-        self._internal.spec.options.show_image = show_image
     
         return self
     

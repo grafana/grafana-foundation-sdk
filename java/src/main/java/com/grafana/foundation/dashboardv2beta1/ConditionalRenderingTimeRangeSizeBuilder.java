@@ -10,15 +10,9 @@ public class ConditionalRenderingTimeRangeSizeBuilder implements com.grafana.fou
         this.internal = new ConditionalRenderingTimeRangeSizeKind();
         this.internal.kind = "ConditionalRenderingTimeRangeSize";
     }
-    public ConditionalRenderingTimeRangeSizeBuilder spec(com.grafana.foundation.cog.Builder<ConditionalRenderingTimeRangeSizeSpec> spec) {
-    ConditionalRenderingTimeRangeSizeSpec specResource = spec.build();
-        this.internal.spec = specResource;
-        return this;
-    }
-    
     public ConditionalRenderingTimeRangeSizeBuilder value(String value) {
 		if (this.internal.spec == null) {
-			this.internal.spec = new com.grafana.foundation.dashboardv2beta1.ConditionalRenderingTimeRangeSizeSpecBuilder().build();
+			this.internal.spec = new com.grafana.foundation.dashboardv2beta1.ConditionalRenderingTimeRangeSizeSpec();
 		}
         this.internal.spec.value = value;
         return this;

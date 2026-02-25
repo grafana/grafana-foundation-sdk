@@ -120,12 +120,6 @@ func (builder *QueryVariableBuilder) SkipUrlSync(skipUrlSync bool) *QueryVariabl
 func (builder *QueryVariableBuilder) Sort(sort dashboardv2beta1.VariableSort) *QueryVariableBuilder
 ```
 
-### <span class="badge object-method"></span> Spec
-
-```go
-func (builder *QueryVariableBuilder) Spec(spec dashboardv2beta1.QueryVariableSpec) *QueryVariableBuilder
-```
-
 ### <span class="badge object-method"></span> StaticOptions
 
 ```go

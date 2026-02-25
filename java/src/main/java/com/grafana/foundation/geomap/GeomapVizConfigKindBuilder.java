@@ -258,6 +258,70 @@ public class GeomapVizConfigKindBuilder implements com.grafana.foundation.cog.Bu
         return this;
     }
     
+    public GeomapVizConfigKindBuilder view(com.grafana.foundation.cog.Builder<MapViewConfig> view) {
+		if (this.internal.spec == null) {
+			this.internal.spec = new com.grafana.foundation.dashboardv2beta1.VizConfigSpec();
+		}
+		if (this.internal.spec.options == null) {
+			this.internal.spec.options = new com.grafana.foundation.geomap.Options();
+		}
+    MapViewConfig viewResource = view.build();
+        ((Options) this.internal.spec.options).view = viewResource;
+        return this;
+    }
+    
+    public GeomapVizConfigKindBuilder controls(com.grafana.foundation.cog.Builder<ControlsOptions> controls) {
+		if (this.internal.spec == null) {
+			this.internal.spec = new com.grafana.foundation.dashboardv2beta1.VizConfigSpec();
+		}
+		if (this.internal.spec.options == null) {
+			this.internal.spec.options = new com.grafana.foundation.geomap.Options();
+		}
+    ControlsOptions controlsResource = controls.build();
+        ((Options) this.internal.spec.options).controls = controlsResource;
+        return this;
+    }
+    
+    public GeomapVizConfigKindBuilder basemap(com.grafana.foundation.cog.Builder<MapLayerOptions> basemap) {
+		if (this.internal.spec == null) {
+			this.internal.spec = new com.grafana.foundation.dashboardv2beta1.VizConfigSpec();
+		}
+		if (this.internal.spec.options == null) {
+			this.internal.spec.options = new com.grafana.foundation.geomap.Options();
+		}
+    MapLayerOptions basemapResource = basemap.build();
+        ((Options) this.internal.spec.options).basemap = basemapResource;
+        return this;
+    }
+    
+    public GeomapVizConfigKindBuilder layers(List<com.grafana.foundation.cog.Builder<MapLayerOptions>> layers) {
+		if (this.internal.spec == null) {
+			this.internal.spec = new com.grafana.foundation.dashboardv2beta1.VizConfigSpec();
+		}
+		if (this.internal.spec.options == null) {
+			this.internal.spec.options = new com.grafana.foundation.geomap.Options();
+		}
+        List<MapLayerOptions> layersResources = new LinkedList<>();
+        for (com.grafana.foundation.cog.Builder<MapLayerOptions> r1 : layers) {
+                MapLayerOptions layersDepth1 = r1.build();
+                layersResources.add(layersDepth1); 
+        }
+        ((Options) this.internal.spec.options).layers = layersResources;
+        return this;
+    }
+    
+    public GeomapVizConfigKindBuilder tooltip(com.grafana.foundation.cog.Builder<TooltipOptions> tooltip) {
+		if (this.internal.spec == null) {
+			this.internal.spec = new com.grafana.foundation.dashboardv2beta1.VizConfigSpec();
+		}
+		if (this.internal.spec.options == null) {
+			this.internal.spec.options = new com.grafana.foundation.geomap.Options();
+		}
+    TooltipOptions tooltipResource = tooltip.build();
+        ((Options) this.internal.spec.options).tooltip = tooltipResource;
+        return this;
+    }
+    
     public GeomapVizConfigKindBuilder overrideByName(String name,List<DynamicConfigValue> properties) {
 		if (this.internal.spec == null) {
 			this.internal.spec = new com.grafana.foundation.dashboardv2beta1.VizConfigSpec();
@@ -335,70 +399,6 @@ public class GeomapVizConfigKindBuilder implements com.grafana.foundation.cog.Bu
         dashboardv2beta1FieldConfigSourceOverrides.matcher = matcherConfig;
         dashboardv2beta1FieldConfigSourceOverrides.properties = properties;
         this.internal.spec.fieldConfig.overrides.add(dashboardv2beta1FieldConfigSourceOverrides);
-        return this;
-    }
-    
-    public GeomapVizConfigKindBuilder view(com.grafana.foundation.cog.Builder<MapViewConfig> view) {
-		if (this.internal.spec == null) {
-			this.internal.spec = new com.grafana.foundation.dashboardv2beta1.VizConfigSpec();
-		}
-		if (this.internal.spec.options == null) {
-			this.internal.spec.options = new com.grafana.foundation.geomap.Options();
-		}
-    MapViewConfig viewResource = view.build();
-        ((Options) this.internal.spec.options).view = viewResource;
-        return this;
-    }
-    
-    public GeomapVizConfigKindBuilder controls(com.grafana.foundation.cog.Builder<ControlsOptions> controls) {
-		if (this.internal.spec == null) {
-			this.internal.spec = new com.grafana.foundation.dashboardv2beta1.VizConfigSpec();
-		}
-		if (this.internal.spec.options == null) {
-			this.internal.spec.options = new com.grafana.foundation.geomap.Options();
-		}
-    ControlsOptions controlsResource = controls.build();
-        ((Options) this.internal.spec.options).controls = controlsResource;
-        return this;
-    }
-    
-    public GeomapVizConfigKindBuilder basemap(com.grafana.foundation.cog.Builder<MapLayerOptions> basemap) {
-		if (this.internal.spec == null) {
-			this.internal.spec = new com.grafana.foundation.dashboardv2beta1.VizConfigSpec();
-		}
-		if (this.internal.spec.options == null) {
-			this.internal.spec.options = new com.grafana.foundation.geomap.Options();
-		}
-    MapLayerOptions basemapResource = basemap.build();
-        ((Options) this.internal.spec.options).basemap = basemapResource;
-        return this;
-    }
-    
-    public GeomapVizConfigKindBuilder layers(List<com.grafana.foundation.cog.Builder<MapLayerOptions>> layers) {
-		if (this.internal.spec == null) {
-			this.internal.spec = new com.grafana.foundation.dashboardv2beta1.VizConfigSpec();
-		}
-		if (this.internal.spec.options == null) {
-			this.internal.spec.options = new com.grafana.foundation.geomap.Options();
-		}
-        List<MapLayerOptions> layersResources = new LinkedList<>();
-        for (com.grafana.foundation.cog.Builder<MapLayerOptions> r1 : layers) {
-                MapLayerOptions layersDepth1 = r1.build();
-                layersResources.add(layersDepth1); 
-        }
-        ((Options) this.internal.spec.options).layers = layersResources;
-        return this;
-    }
-    
-    public GeomapVizConfigKindBuilder tooltip(com.grafana.foundation.cog.Builder<TooltipOptions> tooltip) {
-		if (this.internal.spec == null) {
-			this.internal.spec = new com.grafana.foundation.dashboardv2beta1.VizConfigSpec();
-		}
-		if (this.internal.spec.options == null) {
-			this.internal.spec.options = new com.grafana.foundation.geomap.Options();
-		}
-    TooltipOptions tooltipResource = tooltip.build();
-        ((Options) this.internal.spec.options).tooltip = tooltipResource;
         return this;
     }
     public VizConfigKind build() {

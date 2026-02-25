@@ -48,6 +48,3 @@ Validate checks all the validation constraints that may be defined on `Annotatio
 func (annotationQuerySpec *AnnotationQuerySpec) Validate() error
 ```
 
-## See also
-
- * <span class="badge builder"></span> [AnnotationQuerySpecBuilder](./builder-AnnotationQuerySpecBuilder.md)

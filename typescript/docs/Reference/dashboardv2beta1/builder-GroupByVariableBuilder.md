@@ -86,12 +86,6 @@ options(options: dashboardv2beta1.VariableOption[])
 skipUrlSync(skipUrlSync: boolean)
 ```
 
-### <span class="badge object-method"></span> spec
-
-```typescript
-spec(spec: dashboardv2beta1.GroupByVariableSpec)
-```
-
 ## See also
 
  * <span class="badge object-type-interface"></span> [GroupByVariableKind](./object-GroupByVariableKind.md)

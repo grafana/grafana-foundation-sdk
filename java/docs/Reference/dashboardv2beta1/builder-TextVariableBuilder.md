@@ -60,12 +60,6 @@ public TextVariableBuilder query(String query)
 public TextVariableBuilder skipUrlSync(Boolean skipUrlSync)
 ```
 
-### <span class="badge object-method"></span> spec
-
-```java
-public TextVariableBuilder spec(TextVariableSpec spec)
-```
-
 ## See also
 
  * <span class="badge object-type-class"></span> [TextVariableKind](./object-TextVariableKind.md)

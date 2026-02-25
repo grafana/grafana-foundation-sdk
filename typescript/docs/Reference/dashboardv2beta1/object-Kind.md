@@ -15,6 +15,3 @@ export interface Kind {
 }
 
 ```
-## See also
-
- * <span class="badge builder"></span> [KindBuilder](./builder-KindBuilder.md)

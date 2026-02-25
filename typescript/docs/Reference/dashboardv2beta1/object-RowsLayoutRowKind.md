@@ -14,4 +14,4 @@ export interface RowsLayoutRowKind {
 ```
 ## See also
 
- * <span class="badge builder"></span> [RowsLayoutRowBuilder](./builder-RowsLayoutRowBuilder.md)
+ * <span class="badge builder"></span> [RowBuilder](./builder-RowBuilder.md)

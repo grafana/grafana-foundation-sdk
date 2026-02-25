@@ -284,6 +284,83 @@ export class VisualizationBuilder implements cog.Builder<dashboardv2beta1.VizCon
         return this;
     }
 
+    showTime(showTime: boolean): this {
+        if (!this.internal.spec) {
+            this.internal.spec = dashboardv2beta1.defaultVizConfigSpec();
+        }
+        if (!this.internal.spec.options) {
+            this.internal.spec.options = logsnew.defaultOptions();
+        }
+        this.internal.spec.options.showTime = showTime;
+        return this;
+    }
+
+    wrapLogMessage(wrapLogMessage: boolean): this {
+        if (!this.internal.spec) {
+            this.internal.spec = dashboardv2beta1.defaultVizConfigSpec();
+        }
+        if (!this.internal.spec.options) {
+            this.internal.spec.options = logsnew.defaultOptions();
+        }
+        this.internal.spec.options.wrapLogMessage = wrapLogMessage;
+        return this;
+    }
+
+    enableLogDetails(enableLogDetails: boolean): this {
+        if (!this.internal.spec) {
+            this.internal.spec = dashboardv2beta1.defaultVizConfigSpec();
+        }
+        if (!this.internal.spec.options) {
+            this.internal.spec.options = logsnew.defaultOptions();
+        }
+        this.internal.spec.options.enableLogDetails = enableLogDetails;
+        return this;
+    }
+
+    sortOrder(sortOrder: common.LogsSortOrder): this {
+        if (!this.internal.spec) {
+            this.internal.spec = dashboardv2beta1.defaultVizConfigSpec();
+        }
+        if (!this.internal.spec.options) {
+            this.internal.spec.options = logsnew.defaultOptions();
+        }
+        this.internal.spec.options.sortOrder = sortOrder;
+        return this;
+    }
+
+    dedupStrategy(dedupStrategy: common.LogsDedupStrategy): this {
+        if (!this.internal.spec) {
+            this.internal.spec = dashboardv2beta1.defaultVizConfigSpec();
+        }
+        if (!this.internal.spec.options) {
+            this.internal.spec.options = logsnew.defaultOptions();
+        }
+        this.internal.spec.options.dedupStrategy = dedupStrategy;
+        return this;
+    }
+
+    enableInfiniteScrolling(enableInfiniteScrolling: boolean): this {
+        if (!this.internal.spec) {
+            this.internal.spec = dashboardv2beta1.defaultVizConfigSpec();
+        }
+        if (!this.internal.spec.options) {
+            this.internal.spec.options = logsnew.defaultOptions();
+        }
+        this.internal.spec.options.enableInfiniteScrolling = enableInfiniteScrolling;
+        return this;
+    }
+
+    onNewLogsReceived(onNewLogsReceived: any): this {
+        if (!this.internal.spec) {
+            this.internal.spec = dashboardv2beta1.defaultVizConfigSpec();
+        }
+        if (!this.internal.spec.options) {
+            this.internal.spec.options = logsnew.defaultOptions();
+        }
+        this.internal.spec.options.onNewLogsReceived = onNewLogsReceived;
+        return this;
+    }
+
     // Adds override rules for a specific field, referred to by its name.
     overrideByName(name: string,properties: dashboardv2beta1.DynamicConfigValue[]): this {
         if (!this.internal.spec) {
@@ -364,83 +441,6 @@ export class VisualizationBuilder implements cog.Builder<dashboardv2beta1.VizCon
     },
         properties: properties,
     });
-        return this;
-    }
-
-    showTime(showTime: boolean): this {
-        if (!this.internal.spec) {
-            this.internal.spec = dashboardv2beta1.defaultVizConfigSpec();
-        }
-        if (!this.internal.spec.options) {
-            this.internal.spec.options = logsnew.defaultOptions();
-        }
-        this.internal.spec.options.showTime = showTime;
-        return this;
-    }
-
-    wrapLogMessage(wrapLogMessage: boolean): this {
-        if (!this.internal.spec) {
-            this.internal.spec = dashboardv2beta1.defaultVizConfigSpec();
-        }
-        if (!this.internal.spec.options) {
-            this.internal.spec.options = logsnew.defaultOptions();
-        }
-        this.internal.spec.options.wrapLogMessage = wrapLogMessage;
-        return this;
-    }
-
-    enableLogDetails(enableLogDetails: boolean): this {
-        if (!this.internal.spec) {
-            this.internal.spec = dashboardv2beta1.defaultVizConfigSpec();
-        }
-        if (!this.internal.spec.options) {
-            this.internal.spec.options = logsnew.defaultOptions();
-        }
-        this.internal.spec.options.enableLogDetails = enableLogDetails;
-        return this;
-    }
-
-    sortOrder(sortOrder: common.LogsSortOrder): this {
-        if (!this.internal.spec) {
-            this.internal.spec = dashboardv2beta1.defaultVizConfigSpec();
-        }
-        if (!this.internal.spec.options) {
-            this.internal.spec.options = logsnew.defaultOptions();
-        }
-        this.internal.spec.options.sortOrder = sortOrder;
-        return this;
-    }
-
-    dedupStrategy(dedupStrategy: common.LogsDedupStrategy): this {
-        if (!this.internal.spec) {
-            this.internal.spec = dashboardv2beta1.defaultVizConfigSpec();
-        }
-        if (!this.internal.spec.options) {
-            this.internal.spec.options = logsnew.defaultOptions();
-        }
-        this.internal.spec.options.dedupStrategy = dedupStrategy;
-        return this;
-    }
-
-    enableInfiniteScrolling(enableInfiniteScrolling: boolean): this {
-        if (!this.internal.spec) {
-            this.internal.spec = dashboardv2beta1.defaultVizConfigSpec();
-        }
-        if (!this.internal.spec.options) {
-            this.internal.spec.options = logsnew.defaultOptions();
-        }
-        this.internal.spec.options.enableInfiniteScrolling = enableInfiniteScrolling;
-        return this;
-    }
-
-    onNewLogsReceived(onNewLogsReceived: any): this {
-        if (!this.internal.spec) {
-            this.internal.spec = dashboardv2beta1.defaultVizConfigSpec();
-        }
-        if (!this.internal.spec.options) {
-            this.internal.spec.options = logsnew.defaultOptions();
-        }
-        this.internal.spec.options.onNewLogsReceived = onNewLogsReceived;
         return this;
     }
 }

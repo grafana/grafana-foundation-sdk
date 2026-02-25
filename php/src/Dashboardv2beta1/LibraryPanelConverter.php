@@ -13,19 +13,6 @@ final class LibraryPanelConverter
             
     
         {
-    $buffer = 'spec(';
-        $arg0 = \Grafana\Foundation\Dashboardv2beta1\LibraryPanelKindSpecConverter::convert($input->spec);
-        $buffer .= $arg0;
-        
-    $buffer .= ')';
-
-    $calls[] = $buffer;
-    }
-    
-    
-            
-    
-        {
     $buffer = 'id(';
         $arg0 =\var_export($input->spec->id, true);
         $buffer .= $arg0;

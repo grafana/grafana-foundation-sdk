@@ -13,19 +13,6 @@ final class ConditionalRenderingDataConverter
             
     
         {
-    $buffer = 'spec(';
-        $arg0 = \Grafana\Foundation\Dashboardv2beta1\ConditionalRenderingDataSpecConverter::convert($input->spec);
-        $buffer .= $arg0;
-        
-    $buffer .= ')';
-
-    $calls[] = $buffer;
-    }
-    
-    
-            
-    
-        {
     $buffer = 'value(';
         $arg0 =\var_export($input->spec->value, true);
         $buffer .= $arg0;

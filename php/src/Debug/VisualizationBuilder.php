@@ -220,6 +220,32 @@ class VisualizationBuilder implements \Grafana\Foundation\Cog\Builder
         return $this;
     }
 
+    public function mode(\Grafana\Foundation\Debug\DebugMode $mode): static
+    {    
+        if ($this->internal->spec->options === null) {
+            $this->internal->spec->options = new \Grafana\Foundation\Debug\Options();
+        }
+        assert($this->internal->spec->options instanceof \Grafana\Foundation\Debug\Options);
+        $this->internal->spec->options->mode = $mode;
+    
+        return $this;
+    }
+
+    /**
+     * @param \Grafana\Foundation\Cog\Builder<\Grafana\Foundation\Debug\UpdateConfig> $counters
+     */
+    public function counters(\Grafana\Foundation\Cog\Builder $counters): static
+    {    
+        if ($this->internal->spec->options === null) {
+            $this->internal->spec->options = new \Grafana\Foundation\Debug\Options();
+        }
+        assert($this->internal->spec->options instanceof \Grafana\Foundation\Debug\Options);
+        $countersResource = $counters->build();
+        $this->internal->spec->options->counters = $countersResource;
+    
+        return $this;
+    }
+
     /**
      * Adds override rules for a specific field, referred to by its name.
      * @param array<\Grafana\Foundation\Dashboardv2beta1\DynamicConfigValue> $properties
@@ -283,32 +309,6 @@ class VisualizationBuilder implements \Grafana\Foundation\Cog\Builder
         ),
             properties: $properties,
         );
-    
-        return $this;
-    }
-
-    public function mode(\Grafana\Foundation\Debug\DebugMode $mode): static
-    {    
-        if ($this->internal->spec->options === null) {
-            $this->internal->spec->options = new \Grafana\Foundation\Debug\Options();
-        }
-        assert($this->internal->spec->options instanceof \Grafana\Foundation\Debug\Options);
-        $this->internal->spec->options->mode = $mode;
-    
-        return $this;
-    }
-
-    /**
-     * @param \Grafana\Foundation\Cog\Builder<\Grafana\Foundation\Debug\UpdateConfig> $counters
-     */
-    public function counters(\Grafana\Foundation\Cog\Builder $counters): static
-    {    
-        if ($this->internal->spec->options === null) {
-            $this->internal->spec->options = new \Grafana\Foundation\Debug\Options();
-        }
-        assert($this->internal->spec->options instanceof \Grafana\Foundation\Debug\Options);
-        $countersResource = $counters->build();
-        $this->internal->spec->options->counters = $countersResource;
     
         return $this;
     }

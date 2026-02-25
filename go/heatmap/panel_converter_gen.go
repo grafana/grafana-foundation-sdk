@@ -646,62 +646,8 @@ func PanelConverter(input dashboard.Panel) string {
 	}
 	if input.Options != nil {
 
-		buffer.WriteString(`Mode(`)
-		arg0 := cog.Dump(input.Options.(*Options).Tooltip.Mode)
-		buffer.WriteString(arg0)
-
-		buffer.WriteString(")")
-
-		calls = append(calls, buffer.String())
-		buffer.Reset()
-
-	}
-	if input.Options != nil && input.Options.(*Options).Tooltip.MaxHeight != nil {
-
-		buffer.WriteString(`MaxHeight(`)
-		arg0 := fmt.Sprintf("%#v", *input.Options.(*Options).Tooltip.MaxHeight)
-		buffer.WriteString(arg0)
-
-		buffer.WriteString(")")
-
-		calls = append(calls, buffer.String())
-		buffer.Reset()
-
-	}
-	if input.Options != nil && input.Options.(*Options).Tooltip.MaxWidth != nil {
-
-		buffer.WriteString(`MaxWidth(`)
-		arg0 := fmt.Sprintf("%#v", *input.Options.(*Options).Tooltip.MaxWidth)
-		buffer.WriteString(arg0)
-
-		buffer.WriteString(")")
-
-		calls = append(calls, buffer.String())
-		buffer.Reset()
-
-	}
-	if input.Options != nil && input.Options.(*Options).Tooltip.YHistogram != nil && *input.Options.(*Options).Tooltip.YHistogram == true {
-
-		buffer.WriteString(`ShowYHistogram(`)
-		buffer.WriteString(")")
-
-		calls = append(calls, buffer.String())
-		buffer.Reset()
-
-	}
-	if input.Options != nil && input.Options.(*Options).Tooltip.YHistogram != nil && *input.Options.(*Options).Tooltip.YHistogram == false {
-
-		buffer.WriteString(`HideYHistogram(`)
-		buffer.WriteString(")")
-
-		calls = append(calls, buffer.String())
-		buffer.Reset()
-
-	}
-	if input.Options != nil && input.Options.(*Options).Tooltip.ShowColorScale != nil {
-
-		buffer.WriteString(`ShowColorScale(`)
-		arg0 := fmt.Sprintf("%#v", *input.Options.(*Options).Tooltip.ShowColorScale)
+		buffer.WriteString(`Tooltip(`)
+		arg0 := HeatmapTooltipConverter(input.Options.(*Options).Tooltip)
 		buffer.WriteString(arg0)
 
 		buffer.WriteString(")")

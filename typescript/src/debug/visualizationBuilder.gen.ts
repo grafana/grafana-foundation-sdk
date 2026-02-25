@@ -283,6 +283,29 @@ export class VisualizationBuilder implements cog.Builder<dashboardv2beta1.VizCon
         return this;
     }
 
+    mode(mode: debug.DebugMode): this {
+        if (!this.internal.spec) {
+            this.internal.spec = dashboardv2beta1.defaultVizConfigSpec();
+        }
+        if (!this.internal.spec.options) {
+            this.internal.spec.options = debug.defaultOptions();
+        }
+        this.internal.spec.options.mode = mode;
+        return this;
+    }
+
+    counters(counters: cog.Builder<debug.UpdateConfig>): this {
+        if (!this.internal.spec) {
+            this.internal.spec = dashboardv2beta1.defaultVizConfigSpec();
+        }
+        if (!this.internal.spec.options) {
+            this.internal.spec.options = debug.defaultOptions();
+        }
+        const countersResource = counters.build();
+        this.internal.spec.options.counters = countersResource;
+        return this;
+    }
+
     // Adds override rules for a specific field, referred to by its name.
     overrideByName(name: string,properties: dashboardv2beta1.DynamicConfigValue[]): this {
         if (!this.internal.spec) {
@@ -363,29 +386,6 @@ export class VisualizationBuilder implements cog.Builder<dashboardv2beta1.VizCon
     },
         properties: properties,
     });
-        return this;
-    }
-
-    mode(mode: debug.DebugMode): this {
-        if (!this.internal.spec) {
-            this.internal.spec = dashboardv2beta1.defaultVizConfigSpec();
-        }
-        if (!this.internal.spec.options) {
-            this.internal.spec.options = debug.defaultOptions();
-        }
-        this.internal.spec.options.mode = mode;
-        return this;
-    }
-
-    counters(counters: cog.Builder<debug.UpdateConfig>): this {
-        if (!this.internal.spec) {
-            this.internal.spec = dashboardv2beta1.defaultVizConfigSpec();
-        }
-        if (!this.internal.spec.options) {
-            this.internal.spec.options = debug.defaultOptions();
-        }
-        const countersResource = counters.build();
-        this.internal.spec.options.counters = countersResource;
         return this;
     }
 }

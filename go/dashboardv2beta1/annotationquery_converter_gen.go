@@ -17,17 +17,6 @@ func AnnotationQueryConverter(input AnnotationQueryKind) string {
 	var buffer strings.Builder
 
 	{
-		buffer.WriteString(`Spec(`)
-		arg0 := AnnotationQuerySpecConverter(input.Spec)
-		buffer.WriteString(arg0)
-
-		buffer.WriteString(")")
-
-		calls = append(calls, buffer.String())
-		buffer.Reset()
-	}
-
-	{
 		buffer.WriteString(`Query(`)
 		arg0 := cog.ConvertDataQueryKindToCode(input.Spec.Query, input.Spec.Query.Group)
 		buffer.WriteString(arg0)

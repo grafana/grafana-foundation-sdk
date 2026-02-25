@@ -203,6 +203,29 @@ func (builder *VisualizationBuilder) Override(matcher dashboardv2beta1.MatcherCo
 	return builder
 }
 
+func (builder *VisualizationBuilder) Mode(mode DebugMode) *VisualizationBuilder {
+	if builder.internal.Spec.Options == nil {
+		builder.internal.Spec.Options = NewOptions()
+	}
+	builder.internal.Spec.Options.(*Options).Mode = mode
+
+	return builder
+}
+
+func (builder *VisualizationBuilder) Counters(counters cog.Builder[UpdateConfig]) *VisualizationBuilder {
+	if builder.internal.Spec.Options == nil {
+		builder.internal.Spec.Options = NewOptions()
+	}
+	countersResource, err := counters.Build()
+	if err != nil {
+		builder.errors = append(builder.errors, err.(cog.BuildErrors)...)
+		return builder
+	}
+	builder.internal.Spec.Options.(*Options).Counters = &countersResource
+
+	return builder
+}
+
 // Adds override rules for a specific field, referred to by its name.
 func (builder *VisualizationBuilder) OverrideByName(name string, properties []dashboardv2beta1.DynamicConfigValue) *VisualizationBuilder {
 	builder.internal.Spec.FieldConfig.Overrides = append(builder.internal.Spec.FieldConfig.Overrides, dashboardv2beta1.Dashboardv2beta1FieldConfigSourceOverrides{
@@ -250,29 +273,6 @@ func (builder *VisualizationBuilder) OverrideByQuery(queryRefId string, properti
 		},
 		Properties: properties,
 	})
-
-	return builder
-}
-
-func (builder *VisualizationBuilder) Mode(mode DebugMode) *VisualizationBuilder {
-	if builder.internal.Spec.Options == nil {
-		builder.internal.Spec.Options = NewOptions()
-	}
-	builder.internal.Spec.Options.(*Options).Mode = mode
-
-	return builder
-}
-
-func (builder *VisualizationBuilder) Counters(counters cog.Builder[UpdateConfig]) *VisualizationBuilder {
-	if builder.internal.Spec.Options == nil {
-		builder.internal.Spec.Options = NewOptions()
-	}
-	countersResource, err := counters.Build()
-	if err != nil {
-		builder.errors = append(builder.errors, err.(cog.BuildErrors)...)
-		return builder
-	}
-	builder.internal.Spec.Options.(*Options).Counters = &countersResource
 
 	return builder
 }

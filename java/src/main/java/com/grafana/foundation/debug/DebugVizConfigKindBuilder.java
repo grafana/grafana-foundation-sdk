@@ -257,6 +257,29 @@ public class DebugVizConfigKindBuilder implements com.grafana.foundation.cog.Bui
         return this;
     }
     
+    public DebugVizConfigKindBuilder mode(DebugMode mode) {
+		if (this.internal.spec == null) {
+			this.internal.spec = new com.grafana.foundation.dashboardv2beta1.VizConfigSpec();
+		}
+		if (this.internal.spec.options == null) {
+			this.internal.spec.options = new com.grafana.foundation.debug.Options();
+		}
+        ((Options) this.internal.spec.options).mode = mode;
+        return this;
+    }
+    
+    public DebugVizConfigKindBuilder counters(com.grafana.foundation.cog.Builder<UpdateConfig> counters) {
+		if (this.internal.spec == null) {
+			this.internal.spec = new com.grafana.foundation.dashboardv2beta1.VizConfigSpec();
+		}
+		if (this.internal.spec.options == null) {
+			this.internal.spec.options = new com.grafana.foundation.debug.Options();
+		}
+    UpdateConfig countersResource = counters.build();
+        ((Options) this.internal.spec.options).counters = countersResource;
+        return this;
+    }
+    
     public DebugVizConfigKindBuilder overrideByName(String name,List<DynamicConfigValue> properties) {
 		if (this.internal.spec == null) {
 			this.internal.spec = new com.grafana.foundation.dashboardv2beta1.VizConfigSpec();
@@ -334,29 +357,6 @@ public class DebugVizConfigKindBuilder implements com.grafana.foundation.cog.Bui
         dashboardv2beta1FieldConfigSourceOverrides.matcher = matcherConfig;
         dashboardv2beta1FieldConfigSourceOverrides.properties = properties;
         this.internal.spec.fieldConfig.overrides.add(dashboardv2beta1FieldConfigSourceOverrides);
-        return this;
-    }
-    
-    public DebugVizConfigKindBuilder mode(DebugMode mode) {
-		if (this.internal.spec == null) {
-			this.internal.spec = new com.grafana.foundation.dashboardv2beta1.VizConfigSpec();
-		}
-		if (this.internal.spec.options == null) {
-			this.internal.spec.options = new com.grafana.foundation.debug.Options();
-		}
-        ((Options) this.internal.spec.options).mode = mode;
-        return this;
-    }
-    
-    public DebugVizConfigKindBuilder counters(com.grafana.foundation.cog.Builder<UpdateConfig> counters) {
-		if (this.internal.spec == null) {
-			this.internal.spec = new com.grafana.foundation.dashboardv2beta1.VizConfigSpec();
-		}
-		if (this.internal.spec.options == null) {
-			this.internal.spec.options = new com.grafana.foundation.debug.Options();
-		}
-    UpdateConfig countersResource = counters.build();
-        ((Options) this.internal.spec.options).counters = countersResource;
         return this;
     }
     public VizConfigKind build() {

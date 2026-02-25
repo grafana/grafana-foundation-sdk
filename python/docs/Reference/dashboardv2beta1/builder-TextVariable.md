@@ -60,12 +60,6 @@ def query(query: str) -> typing.Self
 def skip_url_sync(skip_url_sync: bool) -> typing.Self
 ```
 
-### <span class="badge object-method"></span> spec
-
-```python
-def spec(spec: dashboardv2beta1.TextVariableSpec) -> typing.Self
-```
-
 ## See also
 
  * <span class="badge object-type-class"></span> [TextVariableKind](./object-TextVariableKind.md)

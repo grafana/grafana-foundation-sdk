@@ -32,11 +32,6 @@ export class GroupByVariableBuilder implements cog.Builder<dashboardv2beta1.Grou
         return this;
     }
 
-    spec(spec: dashboardv2beta1.GroupByVariableSpec): this {
-        this.internal.spec = spec;
-        return this;
-    }
-
     name(name: string): this {
         if (!this.internal.spec) {
             this.internal.spec = dashboardv2beta1.defaultGroupByVariableSpec();

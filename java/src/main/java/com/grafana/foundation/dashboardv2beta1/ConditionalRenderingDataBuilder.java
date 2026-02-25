@@ -10,15 +10,9 @@ public class ConditionalRenderingDataBuilder implements com.grafana.foundation.c
         this.internal = new ConditionalRenderingDataKind();
         this.internal.kind = "ConditionalRenderingData";
     }
-    public ConditionalRenderingDataBuilder spec(com.grafana.foundation.cog.Builder<ConditionalRenderingDataSpec> spec) {
-    ConditionalRenderingDataSpec specResource = spec.build();
-        this.internal.spec = specResource;
-        return this;
-    }
-    
     public ConditionalRenderingDataBuilder value(Boolean value) {
 		if (this.internal.spec == null) {
-			this.internal.spec = new com.grafana.foundation.dashboardv2beta1.ConditionalRenderingDataSpecBuilder().build();
+			this.internal.spec = new com.grafana.foundation.dashboardv2beta1.ConditionalRenderingDataSpec();
 		}
         this.internal.spec.value = value;
         return this;

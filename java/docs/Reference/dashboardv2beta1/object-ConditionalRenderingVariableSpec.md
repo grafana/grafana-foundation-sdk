@@ -12,6 +12,3 @@ public class ConditionalRenderingVariableSpec {
   public String value;
 }
 ```
-## See also
-
- * <span class="badge builder"></span> [ConditionalRenderingVariableSpecBuilder](./builder-ConditionalRenderingVariableSpecBuilder.md)

@@ -120,12 +120,6 @@ def skip_url_sync(skip_url_sync: bool) -> typing.Self
 def sort(sort: dashboardv2beta1.VariableSort) -> typing.Self
 ```
 
-### <span class="badge object-method"></span> spec
-
-```python
-def spec(spec: dashboardv2beta1.QueryVariableSpec) -> typing.Self
-```
-
 ### <span class="badge object-method"></span> static_options
 
 ```python

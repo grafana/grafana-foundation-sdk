@@ -203,6 +203,25 @@ func (builder *VisualizationBuilder) Override(matcher dashboardv2beta1.MatcherCo
 	return builder
 }
 
+// empty/missing will default to grafana blog
+func (builder *VisualizationBuilder) FeedUrl(feedUrl string) *VisualizationBuilder {
+	if builder.internal.Spec.Options == nil {
+		builder.internal.Spec.Options = NewOptions()
+	}
+	builder.internal.Spec.Options.(*Options).FeedUrl = &feedUrl
+
+	return builder
+}
+
+func (builder *VisualizationBuilder) ShowImage(showImage bool) *VisualizationBuilder {
+	if builder.internal.Spec.Options == nil {
+		builder.internal.Spec.Options = NewOptions()
+	}
+	builder.internal.Spec.Options.(*Options).ShowImage = &showImage
+
+	return builder
+}
+
 // Adds override rules for a specific field, referred to by its name.
 func (builder *VisualizationBuilder) OverrideByName(name string, properties []dashboardv2beta1.DynamicConfigValue) *VisualizationBuilder {
 	builder.internal.Spec.FieldConfig.Overrides = append(builder.internal.Spec.FieldConfig.Overrides, dashboardv2beta1.Dashboardv2beta1FieldConfigSourceOverrides{
@@ -250,25 +269,6 @@ func (builder *VisualizationBuilder) OverrideByQuery(queryRefId string, properti
 		},
 		Properties: properties,
 	})
-
-	return builder
-}
-
-// empty/missing will default to grafana blog
-func (builder *VisualizationBuilder) FeedUrl(feedUrl string) *VisualizationBuilder {
-	if builder.internal.Spec.Options == nil {
-		builder.internal.Spec.Options = NewOptions()
-	}
-	builder.internal.Spec.Options.(*Options).FeedUrl = &feedUrl
-
-	return builder
-}
-
-func (builder *VisualizationBuilder) ShowImage(showImage bool) *VisualizationBuilder {
-	if builder.internal.Spec.Options == nil {
-		builder.internal.Spec.Options = NewOptions()
-	}
-	builder.internal.Spec.Options.(*Options).ShowImage = &showImage
 
 	return builder
 }

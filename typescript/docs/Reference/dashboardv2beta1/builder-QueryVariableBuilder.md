@@ -120,12 +120,6 @@ skipUrlSync(skipUrlSync: boolean)
 sort(sort: dashboardv2beta1.VariableSort)
 ```
 
-### <span class="badge object-method"></span> spec
-
-```typescript
-spec(spec: dashboardv2beta1.QueryVariableSpec)
-```
-
 ### <span class="badge object-method"></span> staticOptions
 
 ```typescript

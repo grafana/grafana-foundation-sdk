@@ -283,6 +283,29 @@ export class VisualizationBuilder implements cog.Builder<dashboardv2beta1.VizCon
         return this;
     }
 
+    // empty/missing will default to grafana blog
+    feedUrl(feedUrl: string): this {
+        if (!this.internal.spec) {
+            this.internal.spec = dashboardv2beta1.defaultVizConfigSpec();
+        }
+        if (!this.internal.spec.options) {
+            this.internal.spec.options = news.defaultOptions();
+        }
+        this.internal.spec.options.feedUrl = feedUrl;
+        return this;
+    }
+
+    showImage(showImage: boolean): this {
+        if (!this.internal.spec) {
+            this.internal.spec = dashboardv2beta1.defaultVizConfigSpec();
+        }
+        if (!this.internal.spec.options) {
+            this.internal.spec.options = news.defaultOptions();
+        }
+        this.internal.spec.options.showImage = showImage;
+        return this;
+    }
+
     // Adds override rules for a specific field, referred to by its name.
     overrideByName(name: string,properties: dashboardv2beta1.DynamicConfigValue[]): this {
         if (!this.internal.spec) {
@@ -363,29 +386,6 @@ export class VisualizationBuilder implements cog.Builder<dashboardv2beta1.VizCon
     },
         properties: properties,
     });
-        return this;
-    }
-
-    // empty/missing will default to grafana blog
-    feedUrl(feedUrl: string): this {
-        if (!this.internal.spec) {
-            this.internal.spec = dashboardv2beta1.defaultVizConfigSpec();
-        }
-        if (!this.internal.spec.options) {
-            this.internal.spec.options = news.defaultOptions();
-        }
-        this.internal.spec.options.feedUrl = feedUrl;
-        return this;
-    }
-
-    showImage(showImage: boolean): this {
-        if (!this.internal.spec) {
-            this.internal.spec = dashboardv2beta1.defaultVizConfigSpec();
-        }
-        if (!this.internal.spec.options) {
-            this.internal.spec.options = news.defaultOptions();
-        }
-        this.internal.spec.options.showImage = showImage;
         return this;
     }
 }

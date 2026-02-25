@@ -12,6 +12,3 @@ public class LibraryPanelKindSpec {
   public LibraryPanelRef libraryPanel;
 }
 ```
-## See also
-
- * <span class="badge builder"></span> [LibraryPanelKindSpecBuilder](./builder-LibraryPanelKindSpecBuilder.md)

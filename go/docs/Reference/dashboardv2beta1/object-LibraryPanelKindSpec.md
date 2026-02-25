@@ -42,6 +42,3 @@ Validate checks all the validation constraints that may be defined on `LibraryPa
 func (libraryPanelKindSpec *LibraryPanelKindSpec) Validate() error
 ```
 
-## See also
-
- * <span class="badge builder"></span> [LibraryPanelKindSpecBuilder](./builder-LibraryPanelKindSpecBuilder.md)
