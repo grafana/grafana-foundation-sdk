@@ -111,7 +111,6 @@ builders:
                                     value:
                                       argument: { name: name, type: *type_string }
 
-
   ##############
   # RowsLayout #
   ##############
