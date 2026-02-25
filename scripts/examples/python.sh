@@ -16,6 +16,7 @@ declare -a examples=(
     "alert-rule"
     "custom-panel"
     "custom-query"
+    "dashboardv2beta1-with-tabs-and-rows"
     "grafana-agent-overview"
     "linux-node-overview"
     "red-method"
