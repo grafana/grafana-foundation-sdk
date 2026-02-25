@@ -32,12 +32,6 @@ def id_val(id_val: float) -> typing.Self
 def library_panel(library_panel: cogbuilder.Builder[dashboardv2beta1.LibraryPanelRef]) -> typing.Self
 ```
 
-### <span class="badge object-method"></span> spec
-
-```python
-def spec(spec: cogbuilder.Builder[dashboardv2beta1.LibraryPanelKindSpec]) -> typing.Self
-```
-
 ### <span class="badge object-method"></span> title
 
 Title for the library panel in the dashboard

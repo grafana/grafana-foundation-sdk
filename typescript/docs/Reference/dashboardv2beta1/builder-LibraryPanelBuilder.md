@@ -32,12 +32,6 @@ id(id: number)
 libraryPanel(libraryPanel: cog.Builder<dashboardv2beta1.LibraryPanelRef>)
 ```
 
-### <span class="badge object-method"></span> spec
-
-```typescript
-spec(spec: cog.Builder<dashboardv2beta1.LibraryPanelKindSpec>)
-```
-
 ### <span class="badge object-method"></span> title
 
 Title for the library panel in the dashboard

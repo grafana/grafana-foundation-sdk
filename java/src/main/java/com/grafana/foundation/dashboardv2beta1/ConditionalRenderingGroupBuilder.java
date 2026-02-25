@@ -3,6 +3,7 @@
 package com.grafana.foundation.dashboardv2beta1;
 
 import java.util.List;
+import java.util.LinkedList;
 
 public class ConditionalRenderingGroupBuilder implements com.grafana.foundation.cog.Builder<ConditionalRenderingGroupKind> {
     protected final ConditionalRenderingGroupKind internal;
@@ -11,15 +12,9 @@ public class ConditionalRenderingGroupBuilder implements com.grafana.foundation.
         this.internal = new ConditionalRenderingGroupKind();
         this.internal.kind = "ConditionalRenderingGroup";
     }
-    public ConditionalRenderingGroupBuilder spec(com.grafana.foundation.cog.Builder<ConditionalRenderingGroupSpec> spec) {
-    ConditionalRenderingGroupSpec specResource = spec.build();
-        this.internal.spec = specResource;
-        return this;
-    }
-    
     public ConditionalRenderingGroupBuilder visibility(ConditionalRenderingGroupSpecVisibility visibility) {
 		if (this.internal.spec == null) {
-			this.internal.spec = new com.grafana.foundation.dashboardv2beta1.ConditionalRenderingGroupSpecBuilder().build();
+			this.internal.spec = new com.grafana.foundation.dashboardv2beta1.ConditionalRenderingGroupSpec();
 		}
         this.internal.spec.visibility = visibility;
         return this;
@@ -27,7 +22,7 @@ public class ConditionalRenderingGroupBuilder implements com.grafana.foundation.
     
     public ConditionalRenderingGroupBuilder condition(ConditionalRenderingGroupSpecCondition condition) {
 		if (this.internal.spec == null) {
-			this.internal.spec = new com.grafana.foundation.dashboardv2beta1.ConditionalRenderingGroupSpecBuilder().build();
+			this.internal.spec = new com.grafana.foundation.dashboardv2beta1.ConditionalRenderingGroupSpec();
 		}
         this.internal.spec.condition = condition;
         return this;
@@ -35,9 +30,20 @@ public class ConditionalRenderingGroupBuilder implements com.grafana.foundation.
     
     public ConditionalRenderingGroupBuilder items(List<ConditionalRenderingVariableKindOrConditionalRenderingDataKindOrConditionalRenderingTimeRangeSizeKind> items) {
 		if (this.internal.spec == null) {
-			this.internal.spec = new com.grafana.foundation.dashboardv2beta1.ConditionalRenderingGroupSpecBuilder().build();
+			this.internal.spec = new com.grafana.foundation.dashboardv2beta1.ConditionalRenderingGroupSpec();
 		}
         this.internal.spec.items = items;
+        return this;
+    }
+    
+    public ConditionalRenderingGroupBuilder item(ConditionalRenderingVariableKindOrConditionalRenderingDataKindOrConditionalRenderingTimeRangeSizeKind item) {
+		if (this.internal.spec == null) {
+			this.internal.spec = new com.grafana.foundation.dashboardv2beta1.ConditionalRenderingGroupSpec();
+		}
+		if (this.internal.spec.items == null) {
+			this.internal.spec.items = new LinkedList<>();
+		}
+        this.internal.spec.items.add(item);
         return this;
     }
     public ConditionalRenderingGroupKind build() {

@@ -41,17 +41,6 @@ func (builder *ConditionalRenderingDataBuilder) RecordError(path string, err err
 	return builder
 }
 
-func (builder *ConditionalRenderingDataBuilder) Spec(spec cog.Builder[ConditionalRenderingDataSpec]) *ConditionalRenderingDataBuilder {
-	specResource, err := spec.Build()
-	if err != nil {
-		builder.errors = append(builder.errors, err.(cog.BuildErrors)...)
-		return builder
-	}
-	builder.internal.Spec = specResource
-
-	return builder
-}
-
 func (builder *ConditionalRenderingDataBuilder) Value(value bool) *ConditionalRenderingDataBuilder {
 	builder.internal.Spec.Value = value
 

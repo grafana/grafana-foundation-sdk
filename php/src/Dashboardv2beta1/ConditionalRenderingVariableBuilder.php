@@ -24,17 +24,6 @@ class ConditionalRenderingVariableBuilder implements \Grafana\Foundation\Cog\Bui
         return $this->internal;
     }
 
-    /**
-     * @param \Grafana\Foundation\Cog\Builder<\Grafana\Foundation\Dashboardv2beta1\ConditionalRenderingVariableSpec> $spec
-     */
-    public function spec(\Grafana\Foundation\Cog\Builder $spec): static
-    {
-        $specResource = $spec->build();
-        $this->internal->spec = $specResource;
-    
-        return $this;
-    }
-
     public function variable(string $variable): static
     {
         $this->internal->spec->variable = $variable;

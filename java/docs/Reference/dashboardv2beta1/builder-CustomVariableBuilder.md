@@ -90,12 +90,6 @@ public CustomVariableBuilder query(String query)
 public CustomVariableBuilder skipUrlSync(Boolean skipUrlSync)
 ```
 
-### <span class="badge object-method"></span> spec
-
-```java
-public CustomVariableBuilder spec(CustomVariableSpec spec)
-```
-
 ## See also
 
  * <span class="badge object-type-class"></span> [CustomVariableKind](./object-CustomVariableKind.md)

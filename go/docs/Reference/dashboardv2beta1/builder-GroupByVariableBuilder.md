@@ -84,12 +84,6 @@ func (builder *GroupByVariableBuilder) Options(options []dashboardv2beta1.Variab
 func (builder *GroupByVariableBuilder) SkipUrlSync(skipUrlSync bool) *GroupByVariableBuilder
 ```
 
-### <span class="badge object-method"></span> Spec
-
-```go
-func (builder *GroupByVariableBuilder) Spec(spec dashboardv2beta1.GroupByVariableSpec) *GroupByVariableBuilder
-```
-
 ## See also
 
  * <span class="badge object-type-struct"></span> [GroupByVariableKind](./object-GroupByVariableKind.md)

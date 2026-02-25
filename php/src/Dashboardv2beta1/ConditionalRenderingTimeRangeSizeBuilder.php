@@ -24,17 +24,6 @@ class ConditionalRenderingTimeRangeSizeBuilder implements \Grafana\Foundation\Co
         return $this->internal;
     }
 
-    /**
-     * @param \Grafana\Foundation\Cog\Builder<\Grafana\Foundation\Dashboardv2beta1\ConditionalRenderingTimeRangeSizeSpec> $spec
-     */
-    public function spec(\Grafana\Foundation\Cog\Builder $spec): static
-    {
-        $specResource = $spec->build();
-        $this->internal->spec = $specResource;
-    
-        return $this;
-    }
-
     public function value(string $value): static
     {
         $this->internal->spec->value = $value;

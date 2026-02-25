@@ -60,12 +60,6 @@ func (builder *ConstantVariableBuilder) Query(query string) *ConstantVariableBui
 func (builder *ConstantVariableBuilder) SkipUrlSync(skipUrlSync bool) *ConstantVariableBuilder
 ```
 
-### <span class="badge object-method"></span> Spec
-
-```go
-func (builder *ConstantVariableBuilder) Spec(spec dashboardv2beta1.ConstantVariableSpec) *ConstantVariableBuilder
-```
-
 ## See also
 
  * <span class="badge object-type-struct"></span> [ConstantVariableKind](./object-ConstantVariableKind.md)

@@ -60,12 +60,6 @@ query(query: string)
 skipUrlSync(skipUrlSync: boolean)
 ```
 
-### <span class="badge object-method"></span> spec
-
-```typescript
-spec(spec: dashboardv2beta1.ConstantVariableSpec)
-```
-
 ## See also
 
  * <span class="badge object-type-interface"></span> [ConstantVariableKind](./object-ConstantVariableKind.md)

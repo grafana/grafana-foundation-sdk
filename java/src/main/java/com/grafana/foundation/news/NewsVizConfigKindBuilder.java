@@ -257,6 +257,28 @@ public class NewsVizConfigKindBuilder implements com.grafana.foundation.cog.Buil
         return this;
     }
     
+    public NewsVizConfigKindBuilder feedUrl(String feedUrl) {
+		if (this.internal.spec == null) {
+			this.internal.spec = new com.grafana.foundation.dashboardv2beta1.VizConfigSpec();
+		}
+		if (this.internal.spec.options == null) {
+			this.internal.spec.options = new com.grafana.foundation.news.Options();
+		}
+        ((Options) this.internal.spec.options).feedUrl = feedUrl;
+        return this;
+    }
+    
+    public NewsVizConfigKindBuilder showImage(Boolean showImage) {
+		if (this.internal.spec == null) {
+			this.internal.spec = new com.grafana.foundation.dashboardv2beta1.VizConfigSpec();
+		}
+		if (this.internal.spec.options == null) {
+			this.internal.spec.options = new com.grafana.foundation.news.Options();
+		}
+        ((Options) this.internal.spec.options).showImage = showImage;
+        return this;
+    }
+    
     public NewsVizConfigKindBuilder overrideByName(String name,List<DynamicConfigValue> properties) {
 		if (this.internal.spec == null) {
 			this.internal.spec = new com.grafana.foundation.dashboardv2beta1.VizConfigSpec();
@@ -334,28 +356,6 @@ public class NewsVizConfigKindBuilder implements com.grafana.foundation.cog.Buil
         dashboardv2beta1FieldConfigSourceOverrides.matcher = matcherConfig;
         dashboardv2beta1FieldConfigSourceOverrides.properties = properties;
         this.internal.spec.fieldConfig.overrides.add(dashboardv2beta1FieldConfigSourceOverrides);
-        return this;
-    }
-    
-    public NewsVizConfigKindBuilder feedUrl(String feedUrl) {
-		if (this.internal.spec == null) {
-			this.internal.spec = new com.grafana.foundation.dashboardv2beta1.VizConfigSpec();
-		}
-		if (this.internal.spec.options == null) {
-			this.internal.spec.options = new com.grafana.foundation.news.Options();
-		}
-        ((Options) this.internal.spec.options).feedUrl = feedUrl;
-        return this;
-    }
-    
-    public NewsVizConfigKindBuilder showImage(Boolean showImage) {
-		if (this.internal.spec == null) {
-			this.internal.spec = new com.grafana.foundation.dashboardv2beta1.VizConfigSpec();
-		}
-		if (this.internal.spec.options == null) {
-			this.internal.spec.options = new com.grafana.foundation.news.Options();
-		}
-        ((Options) this.internal.spec.options).showImage = showImage;
         return this;
     }
     public VizConfigKind build() {

@@ -10,6 +10,3 @@ public class ConditionalRenderingDataSpec {
   public Boolean value;
 }
 ```
-## See also
-
- * <span class="badge builder"></span> [ConditionalRenderingDataSpecBuilder](./builder-ConditionalRenderingDataSpecBuilder.md)

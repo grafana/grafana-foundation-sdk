@@ -203,6 +203,44 @@ func (builder *VisualizationBuilder) Override(matcher dashboardv2beta1.MatcherCo
 	return builder
 }
 
+func (builder *VisualizationBuilder) Nodes(nodes cog.Builder[NodeOptions]) *VisualizationBuilder {
+	if builder.internal.Spec.Options == nil {
+		builder.internal.Spec.Options = NewOptions()
+	}
+	nodesResource, err := nodes.Build()
+	if err != nil {
+		builder.errors = append(builder.errors, err.(cog.BuildErrors)...)
+		return builder
+	}
+	builder.internal.Spec.Options.(*Options).Nodes = &nodesResource
+
+	return builder
+}
+
+func (builder *VisualizationBuilder) Edges(edges cog.Builder[EdgeOptions]) *VisualizationBuilder {
+	if builder.internal.Spec.Options == nil {
+		builder.internal.Spec.Options = NewOptions()
+	}
+	edgesResource, err := edges.Build()
+	if err != nil {
+		builder.errors = append(builder.errors, err.(cog.BuildErrors)...)
+		return builder
+	}
+	builder.internal.Spec.Options.(*Options).Edges = &edgesResource
+
+	return builder
+}
+
+// How to handle zoom/scroll events in the node graph
+func (builder *VisualizationBuilder) ZoomMode(zoomMode ZoomMode) *VisualizationBuilder {
+	if builder.internal.Spec.Options == nil {
+		builder.internal.Spec.Options = NewOptions()
+	}
+	builder.internal.Spec.Options.(*Options).ZoomMode = &zoomMode
+
+	return builder
+}
+
 // Adds override rules for a specific field, referred to by its name.
 func (builder *VisualizationBuilder) OverrideByName(name string, properties []dashboardv2beta1.DynamicConfigValue) *VisualizationBuilder {
 	builder.internal.Spec.FieldConfig.Overrides = append(builder.internal.Spec.FieldConfig.Overrides, dashboardv2beta1.Dashboardv2beta1FieldConfigSourceOverrides{
@@ -250,44 +288,6 @@ func (builder *VisualizationBuilder) OverrideByQuery(queryRefId string, properti
 		},
 		Properties: properties,
 	})
-
-	return builder
-}
-
-func (builder *VisualizationBuilder) Nodes(nodes cog.Builder[NodeOptions]) *VisualizationBuilder {
-	if builder.internal.Spec.Options == nil {
-		builder.internal.Spec.Options = NewOptions()
-	}
-	nodesResource, err := nodes.Build()
-	if err != nil {
-		builder.errors = append(builder.errors, err.(cog.BuildErrors)...)
-		return builder
-	}
-	builder.internal.Spec.Options.(*Options).Nodes = &nodesResource
-
-	return builder
-}
-
-func (builder *VisualizationBuilder) Edges(edges cog.Builder[EdgeOptions]) *VisualizationBuilder {
-	if builder.internal.Spec.Options == nil {
-		builder.internal.Spec.Options = NewOptions()
-	}
-	edgesResource, err := edges.Build()
-	if err != nil {
-		builder.errors = append(builder.errors, err.(cog.BuildErrors)...)
-		return builder
-	}
-	builder.internal.Spec.Options.(*Options).Edges = &edgesResource
-
-	return builder
-}
-
-// How to handle zoom/scroll events in the node graph
-func (builder *VisualizationBuilder) ZoomMode(zoomMode ZoomMode) *VisualizationBuilder {
-	if builder.internal.Spec.Options == nil {
-		builder.internal.Spec.Options = NewOptions()
-	}
-	builder.internal.Spec.Options.(*Options).ZoomMode = &zoomMode
 
 	return builder
 }

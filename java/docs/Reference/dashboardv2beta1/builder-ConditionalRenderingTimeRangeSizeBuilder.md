@@ -18,12 +18,6 @@ Builds the object.
 public ConditionalRenderingTimeRangeSize build()
 ```
 
-### <span class="badge object-method"></span> spec
-
-```java
-public ConditionalRenderingTimeRangeSizeBuilder spec(com.grafana.foundation.cog.Builder<ConditionalRenderingTimeRangeSizeSpec> spec)
-```
-
 ### <span class="badge object-method"></span> value
 
 ```java

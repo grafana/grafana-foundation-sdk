@@ -90,12 +90,6 @@ refresh(refresh: dashboardv2beta1.VariableRefresh)
 skipUrlSync(skipUrlSync: boolean)
 ```
 
-### <span class="badge object-method"></span> spec
-
-```typescript
-spec(spec: dashboardv2beta1.IntervalVariableSpec)
-```
-
 ## See also
 
  * <span class="badge object-type-interface"></span> [IntervalVariableKind](./object-IntervalVariableKind.md)

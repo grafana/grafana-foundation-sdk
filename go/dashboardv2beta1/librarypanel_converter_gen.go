@@ -15,17 +15,6 @@ func LibraryPanelConverter(input LibraryPanelKind) string {
 	var buffer strings.Builder
 
 	{
-		buffer.WriteString(`Spec(`)
-		arg0 := LibraryPanelKindSpecConverter(input.Spec)
-		buffer.WriteString(arg0)
-
-		buffer.WriteString(")")
-
-		calls = append(calls, buffer.String())
-		buffer.Reset()
-	}
-
-	{
 		buffer.WriteString(`Id(`)
 		arg0 := fmt.Sprintf("%#v", input.Spec.Id)
 		buffer.WriteString(arg0)

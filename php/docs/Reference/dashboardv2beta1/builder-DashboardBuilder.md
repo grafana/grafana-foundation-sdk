@@ -26,14 +26,6 @@ build()
 annotations(array $annotations)
 ```
 
-### <span class="badge object-method"></span> autoGridLayout
-
-@param \Grafana\Foundation\Cog\Builder<\Grafana\Foundation\Dashboardv2beta1\AutoGridLayoutKind> $autoGridLayoutKind
-
-```php
-autoGridLayout(\Grafana\Foundation\Cog\Builder $autoGridLayoutKind)
-```
-
 ### <span class="badge object-method"></span> cursorSync
 
 Configuration of dashboard cursor sync behavior.
@@ -64,6 +56,14 @@ Whether a dashboard is editable or not.
 editable(bool $editable)
 ```
 
+### <span class="badge object-method"></span> element
+
+@param \Grafana\Foundation\Cog\Builder<\Grafana\Foundation\Dashboardv2beta1\PanelKind>|\Grafana\Foundation\Cog\Builder<\Grafana\Foundation\Dashboardv2beta1\LibraryPanelKind> $element
+
+```php
+element(string $key, $element)
+```
+
 ### <span class="badge object-method"></span> elements
 
 @param array<string, \Grafana\Foundation\Cog\Builder<\Grafana\Foundation\Dashboardv2beta1\PanelKind>|\Grafana\Foundation\Cog\Builder<\Grafana\Foundation\Dashboardv2beta1\LibraryPanelKind>> $elements
@@ -72,20 +72,12 @@ editable(bool $editable)
 elements(array $elements)
 ```
 
-### <span class="badge object-method"></span> gridLayout
+### <span class="badge object-method"></span> layout
 
-@param \Grafana\Foundation\Cog\Builder<\Grafana\Foundation\Dashboardv2beta1\GridLayoutKind> $gridLayoutKind
-
-```php
-gridLayout(\Grafana\Foundation\Cog\Builder $gridLayoutKind)
-```
-
-### <span class="badge object-method"></span> libraryPanel
-
-@param \Grafana\Foundation\Cog\Builder<\Grafana\Foundation\Dashboardv2beta1\LibraryPanelKind> $libraryPanelKind
+@param \Grafana\Foundation\Cog\Builder<\Grafana\Foundation\Dashboardv2beta1\GridLayoutKind>|\Grafana\Foundation\Cog\Builder<\Grafana\Foundation\Dashboardv2beta1\RowsLayoutKind>|\Grafana\Foundation\Cog\Builder<\Grafana\Foundation\Dashboardv2beta1\AutoGridLayoutKind>|\Grafana\Foundation\Cog\Builder<\Grafana\Foundation\Dashboardv2beta1\TabsLayoutKind> $layout
 
 ```php
-libraryPanel(string $key, \Grafana\Foundation\Cog\Builder $libraryPanelKind)
+layout($layout)
 ```
 
 ### <span class="badge object-method"></span> links
@@ -110,14 +102,6 @@ avoid dashboards presenting stale live data.
 liveNow(bool $liveNow)
 ```
 
-### <span class="badge object-method"></span> panel
-
-@param \Grafana\Foundation\Cog\Builder<\Grafana\Foundation\Dashboardv2beta1\PanelKind> $panelKind
-
-```php
-panel(string $key, \Grafana\Foundation\Cog\Builder $panelKind)
-```
-
 ### <span class="badge object-method"></span> preload
 
 When set to true, the dashboard will load all panels in the dashboard when it's loaded.
@@ -134,22 +118,6 @@ This is used to determine if the dashboard should be updated when the plugin is 
 
 ```php
 revision(int $revision)
-```
-
-### <span class="badge object-method"></span> rowsLayout
-
-@param \Grafana\Foundation\Cog\Builder<\Grafana\Foundation\Dashboardv2beta1\RowsLayoutKind> $rowsLayoutKind
-
-```php
-rowsLayout(\Grafana\Foundation\Cog\Builder $rowsLayoutKind)
-```
-
-### <span class="badge object-method"></span> tabsLayout
-
-@param \Grafana\Foundation\Cog\Builder<\Grafana\Foundation\Dashboardv2beta1\TabsLayoutKind> $tabsLayoutKind
-
-```php
-tabsLayout(\Grafana\Foundation\Cog\Builder $tabsLayoutKind)
 ```
 
 ### <span class="badge object-method"></span> tags

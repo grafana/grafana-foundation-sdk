@@ -36,19 +36,6 @@ final class AdhocVariableConverter
     
     
     }
-            
-    
-        {
-    $buffer = 'spec(';
-        $arg0 ='(new \Grafana\Foundation\Dashboardv2beta1\AdhocVariableSpec(name: '.\var_export($input->spec->name, true).',baseFilters: '.\var_export($input->spec->baseFilters, true).',filters: '.\var_export($input->spec->filters, true).',defaultKeys: '.\var_export($input->spec->defaultKeys, true).','.(($input->spec->label !== null) ? 'label: '.\var_export($input->spec->label, true).', ' : '').'hide: '.'\Grafana\Foundation\Dashboardv2beta1\VariableHide::fromValue("'.$input->spec->hide.'")'.',skipUrlSync: '.\var_export($input->spec->skipUrlSync, true).','.(($input->spec->description !== null) ? 'description: '.\var_export($input->spec->description, true).', ' : '').'allowCustomValue: '.\var_export($input->spec->allowCustomValue, true).',))';
-        $buffer .= $arg0;
-        
-    $buffer .= ')';
-
-    $calls[] = $buffer;
-    }
-    
-    
             if ($input->spec->name !== "") {
     
         

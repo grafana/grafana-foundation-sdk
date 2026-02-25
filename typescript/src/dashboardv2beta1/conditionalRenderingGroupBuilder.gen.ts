@@ -18,12 +18,6 @@ export class ConditionalRenderingGroupBuilder implements cog.Builder<dashboardv2
         return this.internal;
     }
 
-    spec(spec: cog.Builder<dashboardv2beta1.ConditionalRenderingGroupSpec>): this {
-        const specResource = spec.build();
-        this.internal.spec = specResource;
-        return this;
-    }
-
     visibility(visibility: "show" | "hide"): this {
         if (!this.internal.spec) {
             this.internal.spec = dashboardv2beta1.defaultConditionalRenderingGroupSpec();
@@ -46,6 +40,18 @@ export class ConditionalRenderingGroupBuilder implements cog.Builder<dashboardv2
         }
         const itemsResources = items.map(builder1 => builder1.build());
         this.internal.spec.items = itemsResources;
+        return this;
+    }
+
+    item(item: cog.Builder<dashboardv2beta1.ConditionalRenderingVariableKind> | cog.Builder<dashboardv2beta1.ConditionalRenderingDataKind> | cog.Builder<dashboardv2beta1.ConditionalRenderingTimeRangeSizeKind>): this {
+        if (!this.internal.spec) {
+            this.internal.spec = dashboardv2beta1.defaultConditionalRenderingGroupSpec();
+        }
+        if (!this.internal.spec.items) {
+            this.internal.spec.items = [];
+        }
+        const itemResource = item.build();
+        this.internal.spec.items.push(itemResource);
         return this;
     }
 }

@@ -24,14 +24,6 @@ build()
 operator(\Grafana\Foundation\Dashboardv2beta1\ConditionalRenderingVariableSpecOperator $operator)
 ```
 
-### <span class="badge object-method"></span> spec
-
-@param \Grafana\Foundation\Cog\Builder<\Grafana\Foundation\Dashboardv2beta1\ConditionalRenderingVariableSpec> $spec
-
-```php
-spec(\Grafana\Foundation\Cog\Builder $spec)
-```
-
 ### <span class="badge object-method"></span> value
 
 ```php

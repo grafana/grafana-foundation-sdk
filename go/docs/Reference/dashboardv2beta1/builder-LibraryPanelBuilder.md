@@ -32,12 +32,6 @@ func (builder *LibraryPanelBuilder) Id(id float64) *LibraryPanelBuilder
 func (builder *LibraryPanelBuilder) LibraryPanel(libraryPanel cog.Builder[dashboardv2beta1.LibraryPanelRef]) *LibraryPanelBuilder
 ```
 
-### <span class="badge object-method"></span> Spec
-
-```go
-func (builder *LibraryPanelBuilder) Spec(spec cog.Builder[dashboardv2beta1.LibraryPanelKindSpec]) *LibraryPanelBuilder
-```
-
 ### <span class="badge object-method"></span> Title
 
 Title for the library panel in the dashboard

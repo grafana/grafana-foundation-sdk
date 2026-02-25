@@ -11,6 +11,3 @@ export interface ConditionalRenderingDataSpec {
 }
 
 ```
-## See also
-
- * <span class="badge builder"></span> [ConditionalRenderingDataSpecBuilder](./builder-ConditionalRenderingDataSpecBuilder.md)

@@ -284,89 +284,6 @@ export class VisualizationBuilder implements cog.Builder<dashboardv2beta1.VizCon
         return this;
     }
 
-    // Adds override rules for a specific field, referred to by its name.
-    overrideByName(name: string,properties: dashboardv2beta1.DynamicConfigValue[]): this {
-        if (!this.internal.spec) {
-            this.internal.spec = dashboardv2beta1.defaultVizConfigSpec();
-        }
-        if (!this.internal.spec.fieldConfig) {
-            this.internal.spec.fieldConfig = dashboardv2beta1.defaultFieldConfigSource();
-        }
-        if (!this.internal.spec.fieldConfig.overrides) {
-            this.internal.spec.fieldConfig.overrides = [];
-        }
-        this.internal.spec.fieldConfig.overrides.push({
-        matcher: {
-        id: "byName",
-        options: name,
-    },
-        properties: properties,
-    });
-        return this;
-    }
-
-    // Adds override rules for the fields whose name match the given regexp.
-    overrideByRegexp(regexp: string,properties: dashboardv2beta1.DynamicConfigValue[]): this {
-        if (!this.internal.spec) {
-            this.internal.spec = dashboardv2beta1.defaultVizConfigSpec();
-        }
-        if (!this.internal.spec.fieldConfig) {
-            this.internal.spec.fieldConfig = dashboardv2beta1.defaultFieldConfigSource();
-        }
-        if (!this.internal.spec.fieldConfig.overrides) {
-            this.internal.spec.fieldConfig.overrides = [];
-        }
-        this.internal.spec.fieldConfig.overrides.push({
-        matcher: {
-        id: "byRegexp",
-        options: regexp,
-    },
-        properties: properties,
-    });
-        return this;
-    }
-
-    // Adds override rules for all the fields of the given type.
-    overrideByFieldType(fieldType: string,properties: dashboardv2beta1.DynamicConfigValue[]): this {
-        if (!this.internal.spec) {
-            this.internal.spec = dashboardv2beta1.defaultVizConfigSpec();
-        }
-        if (!this.internal.spec.fieldConfig) {
-            this.internal.spec.fieldConfig = dashboardv2beta1.defaultFieldConfigSource();
-        }
-        if (!this.internal.spec.fieldConfig.overrides) {
-            this.internal.spec.fieldConfig.overrides = [];
-        }
-        this.internal.spec.fieldConfig.overrides.push({
-        matcher: {
-        id: "byType",
-        options: fieldType,
-    },
-        properties: properties,
-    });
-        return this;
-    }
-
-    overrideByQuery(queryRefId: string,properties: dashboardv2beta1.DynamicConfigValue[]): this {
-        if (!this.internal.spec) {
-            this.internal.spec = dashboardv2beta1.defaultVizConfigSpec();
-        }
-        if (!this.internal.spec.fieldConfig) {
-            this.internal.spec.fieldConfig = dashboardv2beta1.defaultFieldConfigSource();
-        }
-        if (!this.internal.spec.fieldConfig.overrides) {
-            this.internal.spec.fieldConfig.overrides = [];
-        }
-        this.internal.spec.fieldConfig.overrides.push({
-        matcher: {
-        id: "byFrameRefID",
-        options: queryRefId,
-    },
-        properties: properties,
-    });
-        return this;
-    }
-
     timezone(timezone: common.TimeZone[]): this {
         if (!this.internal.spec) {
             this.internal.spec = dashboardv2beta1.defaultVizConfigSpec();
@@ -962,6 +879,89 @@ export class VisualizationBuilder implements cog.Builder<dashboardv2beta1.VizCon
             this.internal.spec.fieldConfig.defaults.custom = timeseries.defaultFieldConfig();
         }
         this.internal.spec.fieldConfig.defaults.custom.barMaxWidth = barMaxWidth;
+        return this;
+    }
+
+    // Adds override rules for a specific field, referred to by its name.
+    overrideByName(name: string,properties: dashboardv2beta1.DynamicConfigValue[]): this {
+        if (!this.internal.spec) {
+            this.internal.spec = dashboardv2beta1.defaultVizConfigSpec();
+        }
+        if (!this.internal.spec.fieldConfig) {
+            this.internal.spec.fieldConfig = dashboardv2beta1.defaultFieldConfigSource();
+        }
+        if (!this.internal.spec.fieldConfig.overrides) {
+            this.internal.spec.fieldConfig.overrides = [];
+        }
+        this.internal.spec.fieldConfig.overrides.push({
+        matcher: {
+        id: "byName",
+        options: name,
+    },
+        properties: properties,
+    });
+        return this;
+    }
+
+    // Adds override rules for the fields whose name match the given regexp.
+    overrideByRegexp(regexp: string,properties: dashboardv2beta1.DynamicConfigValue[]): this {
+        if (!this.internal.spec) {
+            this.internal.spec = dashboardv2beta1.defaultVizConfigSpec();
+        }
+        if (!this.internal.spec.fieldConfig) {
+            this.internal.spec.fieldConfig = dashboardv2beta1.defaultFieldConfigSource();
+        }
+        if (!this.internal.spec.fieldConfig.overrides) {
+            this.internal.spec.fieldConfig.overrides = [];
+        }
+        this.internal.spec.fieldConfig.overrides.push({
+        matcher: {
+        id: "byRegexp",
+        options: regexp,
+    },
+        properties: properties,
+    });
+        return this;
+    }
+
+    // Adds override rules for all the fields of the given type.
+    overrideByFieldType(fieldType: string,properties: dashboardv2beta1.DynamicConfigValue[]): this {
+        if (!this.internal.spec) {
+            this.internal.spec = dashboardv2beta1.defaultVizConfigSpec();
+        }
+        if (!this.internal.spec.fieldConfig) {
+            this.internal.spec.fieldConfig = dashboardv2beta1.defaultFieldConfigSource();
+        }
+        if (!this.internal.spec.fieldConfig.overrides) {
+            this.internal.spec.fieldConfig.overrides = [];
+        }
+        this.internal.spec.fieldConfig.overrides.push({
+        matcher: {
+        id: "byType",
+        options: fieldType,
+    },
+        properties: properties,
+    });
+        return this;
+    }
+
+    overrideByQuery(queryRefId: string,properties: dashboardv2beta1.DynamicConfigValue[]): this {
+        if (!this.internal.spec) {
+            this.internal.spec = dashboardv2beta1.defaultVizConfigSpec();
+        }
+        if (!this.internal.spec.fieldConfig) {
+            this.internal.spec.fieldConfig = dashboardv2beta1.defaultFieldConfigSource();
+        }
+        if (!this.internal.spec.fieldConfig.overrides) {
+            this.internal.spec.fieldConfig.overrides = [];
+        }
+        this.internal.spec.fieldConfig.overrides.push({
+        matcher: {
+        id: "byFrameRefID",
+        options: queryRefId,
+    },
+        properties: properties,
+    });
         return this;
     }
 }

@@ -24,16 +24,16 @@ func (builder *ConditionalRenderingGroupBuilder) Build() (ConditionalRenderingGr
 func (builder *ConditionalRenderingGroupBuilder) Condition(condition dashboardv2beta1.ConditionalRenderingGroupSpecCondition) *ConditionalRenderingGroupBuilder
 ```
 
+### <span class="badge object-method"></span> Item
+
+```go
+func (builder *ConditionalRenderingGroupBuilder) Item(item dashboardv2beta1.ConditionalRenderingVariableKindOrConditionalRenderingDataKindOrConditionalRenderingTimeRangeSizeKind) *ConditionalRenderingGroupBuilder
+```
+
 ### <span class="badge object-method"></span> Items
 
 ```go
 func (builder *ConditionalRenderingGroupBuilder) Items(items []dashboardv2beta1.ConditionalRenderingVariableKindOrConditionalRenderingDataKindOrConditionalRenderingTimeRangeSizeKind) *ConditionalRenderingGroupBuilder
-```
-
-### <span class="badge object-method"></span> Spec
-
-```go
-func (builder *ConditionalRenderingGroupBuilder) Spec(spec cog.Builder[dashboardv2beta1.ConditionalRenderingGroupSpec]) *ConditionalRenderingGroupBuilder
 ```
 
 ### <span class="badge object-method"></span> Visibility

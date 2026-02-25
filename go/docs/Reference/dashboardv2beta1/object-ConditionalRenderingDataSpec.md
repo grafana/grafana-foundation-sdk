@@ -38,6 +38,3 @@ Validate checks all the validation constraints that may be defined on `Condition
 func (conditionalRenderingDataSpec *ConditionalRenderingDataSpec) Validate() error
 ```
 
-## See also
-
- * <span class="badge builder"></span> [ConditionalRenderingDataSpecBuilder](./builder-ConditionalRenderingDataSpecBuilder.md)

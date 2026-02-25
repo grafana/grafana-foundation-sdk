@@ -84,12 +84,6 @@ func (builder *AdhocVariableBuilder) Name(name string) *AdhocVariableBuilder
 func (builder *AdhocVariableBuilder) SkipUrlSync(skipUrlSync bool) *AdhocVariableBuilder
 ```
 
-### <span class="badge object-method"></span> Spec
-
-```go
-func (builder *AdhocVariableBuilder) Spec(spec dashboardv2beta1.AdhocVariableSpec) *AdhocVariableBuilder
-```
-
 ## See also
 
  * <span class="badge object-type-struct"></span> [AdhocVariableKind](./object-AdhocVariableKind.md)

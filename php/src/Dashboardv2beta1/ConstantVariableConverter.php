@@ -10,19 +10,6 @@ final class ConstantVariableConverter
         $calls = [
             '(new \Grafana\Foundation\Dashboardv2beta1\ConstantVariableBuilder('.\var_export($input->spec->name, true).'))',
         ];
-            
-    
-        {
-    $buffer = 'spec(';
-        $arg0 ='(new \Grafana\Foundation\Dashboardv2beta1\ConstantVariableSpec(name: '.\var_export($input->spec->name, true).',query: '.\var_export($input->spec->query, true).',current: '.'(new \Grafana\Foundation\Dashboardv2beta1\VariableOption('.(($input->spec->current->selected !== null) ? 'selected: '.\var_export($input->spec->current->selected, true).', ' : '').'text: '.\var_export($input->spec->current->text, true).',value: '.\var_export($input->spec->current->value, true).',))'.','.(($input->spec->label !== null) ? 'label: '.\var_export($input->spec->label, true).', ' : '').'hide: '.'\Grafana\Foundation\Dashboardv2beta1\VariableHide::fromValue("'.$input->spec->hide.'")'.',skipUrlSync: '.\var_export($input->spec->skipUrlSync, true).','.(($input->spec->description !== null) ? 'description: '.\var_export($input->spec->description, true).', ' : '').'))';
-        $buffer .= $arg0;
-        
-    $buffer .= ')';
-
-    $calls[] = $buffer;
-    }
-    
-    
             if ($input->spec->name !== "") {
     
         

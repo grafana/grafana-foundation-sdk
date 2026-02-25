@@ -283,6 +283,42 @@ export class VisualizationBuilder implements cog.Builder<dashboardv2beta1.VizCon
         return this;
     }
 
+    nodes(nodes: cog.Builder<nodegraph.NodeOptions>): this {
+        if (!this.internal.spec) {
+            this.internal.spec = dashboardv2beta1.defaultVizConfigSpec();
+        }
+        if (!this.internal.spec.options) {
+            this.internal.spec.options = nodegraph.defaultOptions();
+        }
+        const nodesResource = nodes.build();
+        this.internal.spec.options.nodes = nodesResource;
+        return this;
+    }
+
+    edges(edges: cog.Builder<nodegraph.EdgeOptions>): this {
+        if (!this.internal.spec) {
+            this.internal.spec = dashboardv2beta1.defaultVizConfigSpec();
+        }
+        if (!this.internal.spec.options) {
+            this.internal.spec.options = nodegraph.defaultOptions();
+        }
+        const edgesResource = edges.build();
+        this.internal.spec.options.edges = edgesResource;
+        return this;
+    }
+
+    // How to handle zoom/scroll events in the node graph
+    zoomMode(zoomMode: nodegraph.ZoomMode): this {
+        if (!this.internal.spec) {
+            this.internal.spec = dashboardv2beta1.defaultVizConfigSpec();
+        }
+        if (!this.internal.spec.options) {
+            this.internal.spec.options = nodegraph.defaultOptions();
+        }
+        this.internal.spec.options.zoomMode = zoomMode;
+        return this;
+    }
+
     // Adds override rules for a specific field, referred to by its name.
     overrideByName(name: string,properties: dashboardv2beta1.DynamicConfigValue[]): this {
         if (!this.internal.spec) {
@@ -363,42 +399,6 @@ export class VisualizationBuilder implements cog.Builder<dashboardv2beta1.VizCon
     },
         properties: properties,
     });
-        return this;
-    }
-
-    nodes(nodes: cog.Builder<nodegraph.NodeOptions>): this {
-        if (!this.internal.spec) {
-            this.internal.spec = dashboardv2beta1.defaultVizConfigSpec();
-        }
-        if (!this.internal.spec.options) {
-            this.internal.spec.options = nodegraph.defaultOptions();
-        }
-        const nodesResource = nodes.build();
-        this.internal.spec.options.nodes = nodesResource;
-        return this;
-    }
-
-    edges(edges: cog.Builder<nodegraph.EdgeOptions>): this {
-        if (!this.internal.spec) {
-            this.internal.spec = dashboardv2beta1.defaultVizConfigSpec();
-        }
-        if (!this.internal.spec.options) {
-            this.internal.spec.options = nodegraph.defaultOptions();
-        }
-        const edgesResource = edges.build();
-        this.internal.spec.options.edges = edgesResource;
-        return this;
-    }
-
-    // How to handle zoom/scroll events in the node graph
-    zoomMode(zoomMode: nodegraph.ZoomMode): this {
-        if (!this.internal.spec) {
-            this.internal.spec = dashboardv2beta1.defaultVizConfigSpec();
-        }
-        if (!this.internal.spec.options) {
-            this.internal.spec.options = nodegraph.defaultOptions();
-        }
-        this.internal.spec.options.zoomMode = zoomMode;
         return this;
     }
 }

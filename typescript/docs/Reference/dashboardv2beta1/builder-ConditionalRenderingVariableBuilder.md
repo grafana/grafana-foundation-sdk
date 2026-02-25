@@ -24,12 +24,6 @@ build()
 operator(operator: "equals" | "notEquals" | "matches" | "notMatches")
 ```
 
-### <span class="badge object-method"></span> spec
-
-```typescript
-spec(spec: cog.Builder<dashboardv2beta1.ConditionalRenderingVariableSpec>)
-```
-
 ### <span class="badge object-method"></span> value
 
 ```typescript

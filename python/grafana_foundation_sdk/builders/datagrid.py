@@ -928,6 +928,19 @@ class Visualization(cogbuilder.Builder[dashboardv2beta1.VizConfigKind]):
     
         return self
     
+    def selected_series(self, selected_series: int) -> typing.Self:    
+        if not selected_series >= 0:
+            raise ValueError("selected_series must be >= 0")
+        if self._internal.spec is None:
+            self._internal.spec = dashboardv2beta1.VizConfigSpec()
+        assert isinstance(self._internal.spec, dashboardv2beta1.VizConfigSpec)
+        if self._internal.spec.options is None:
+            self._internal.spec.options = datagrid.Options()
+        assert isinstance(self._internal.spec.options, datagrid.Options)
+        self._internal.spec.options.selected_series = selected_series
+    
+        return self
+    
     def override_by_name(self, name: str, properties: list[dashboardv2beta1.DynamicConfigValue]) -> typing.Self:    
         """
         Adds override rules for a specific field, referred to by its name.
@@ -1017,19 +1030,6 @@ class Visualization(cogbuilder.Builder[dashboardv2beta1.VizConfigKind]):
         ),
             properties=properties,
         ))
-    
-        return self
-    
-    def selected_series(self, selected_series: int) -> typing.Self:    
-        if not selected_series >= 0:
-            raise ValueError("selected_series must be >= 0")
-        if self._internal.spec is None:
-            self._internal.spec = dashboardv2beta1.VizConfigSpec()
-        assert isinstance(self._internal.spec, dashboardv2beta1.VizConfigSpec)
-        if self._internal.spec.options is None:
-            self._internal.spec.options = datagrid.Options()
-        assert isinstance(self._internal.spec.options, datagrid.Options)
-        self._internal.spec.options.selected_series = selected_series
     
         return self
     

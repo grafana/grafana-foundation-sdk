@@ -18,12 +18,6 @@ Builds the object.
 func (builder *ConditionalRenderingTimeRangeSizeBuilder) Build() (ConditionalRenderingTimeRangeSizeKind, error)
 ```
 
-### <span class="badge object-method"></span> Spec
-
-```go
-func (builder *ConditionalRenderingTimeRangeSizeBuilder) Spec(spec cog.Builder[dashboardv2beta1.ConditionalRenderingTimeRangeSizeSpec]) *ConditionalRenderingTimeRangeSizeBuilder
-```
-
 ### <span class="badge object-method"></span> Value
 
 ```go

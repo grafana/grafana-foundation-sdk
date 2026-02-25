@@ -102,12 +102,6 @@ func (builder *DatasourceVariableBuilder) Regex(regex string) *DatasourceVariabl
 func (builder *DatasourceVariableBuilder) SkipUrlSync(skipUrlSync bool) *DatasourceVariableBuilder
 ```
 
-### <span class="badge object-method"></span> Spec
-
-```go
-func (builder *DatasourceVariableBuilder) Spec(spec dashboardv2beta1.DatasourceVariableSpec) *DatasourceVariableBuilder
-```
-
 ## See also
 
  * <span class="badge object-type-struct"></span> [DatasourceVariableKind](./object-DatasourceVariableKind.md)

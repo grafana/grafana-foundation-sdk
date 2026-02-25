@@ -124,12 +124,6 @@ skipUrlSync(bool $skipUrlSync)
 sort(\Grafana\Foundation\Dashboardv2beta1\VariableSort $sort)
 ```
 
-### <span class="badge object-method"></span> spec
-
-```php
-spec(\Grafana\Foundation\Dashboardv2beta1\QueryVariableSpec $spec)
-```
-
 ### <span class="badge object-method"></span> staticOptions
 
 @param array<\Grafana\Foundation\Dashboardv2beta1\VariableOption> $staticOptions

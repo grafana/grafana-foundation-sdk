@@ -90,12 +90,6 @@ func (builder *CustomVariableBuilder) Query(query string) *CustomVariableBuilder
 func (builder *CustomVariableBuilder) SkipUrlSync(skipUrlSync bool) *CustomVariableBuilder
 ```
 
-### <span class="badge object-method"></span> Spec
-
-```go
-func (builder *CustomVariableBuilder) Spec(spec dashboardv2beta1.CustomVariableSpec) *CustomVariableBuilder
-```
-
 ## See also
 
  * <span class="badge object-type-struct"></span> [CustomVariableKind](./object-CustomVariableKind.md)

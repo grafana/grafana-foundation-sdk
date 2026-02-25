@@ -17,6 +17,3 @@ public class SwitchVariableSpec {
   public String description;
 }
 ```
-## See also
-
- * <span class="badge builder"></span> [SwitchVariableSpecBuilder](./builder-SwitchVariableSpecBuilder.md)

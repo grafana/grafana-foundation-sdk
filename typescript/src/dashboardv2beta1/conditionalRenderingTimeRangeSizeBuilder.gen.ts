@@ -18,12 +18,6 @@ export class ConditionalRenderingTimeRangeSizeBuilder implements cog.Builder<das
         return this.internal;
     }
 
-    spec(spec: cog.Builder<dashboardv2beta1.ConditionalRenderingTimeRangeSizeSpec>): this {
-        const specResource = spec.build();
-        this.internal.spec = specResource;
-        return this;
-    }
-
     value(value: string): this {
         if (!this.internal.spec) {
             this.internal.spec = dashboardv2beta1.defaultConditionalRenderingTimeRangeSizeSpec();

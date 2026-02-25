@@ -13,18 +13,6 @@ func ConditionalRenderingTimeRangeSizeConverter(input ConditionalRenderingTimeRa
 		`dashboardv2beta1.NewConditionalRenderingTimeRangeSizeBuilder()`,
 	}
 	var buffer strings.Builder
-
-	{
-		buffer.WriteString(`Spec(`)
-		arg0 := ConditionalRenderingTimeRangeSizeSpecConverter(input.Spec)
-		buffer.WriteString(arg0)
-
-		buffer.WriteString(")")
-
-		calls = append(calls, buffer.String())
-		buffer.Reset()
-	}
-
 	if input.Spec.Value != "" {
 
 		buffer.WriteString(`Value(`)

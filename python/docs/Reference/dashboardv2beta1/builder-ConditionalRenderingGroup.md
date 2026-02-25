@@ -24,16 +24,16 @@ def build() -> dashboardv2beta1.ConditionalRenderingGroupKind
 def condition(condition: typing.Literal["and", "or"]) -> typing.Self
 ```
 
+### <span class="badge object-method"></span> item
+
+```python
+def item(item: typing.Union[cogbuilder.Builder[dashboardv2beta1.ConditionalRenderingVariableKind], cogbuilder.Builder[dashboardv2beta1.ConditionalRenderingDataKind], cogbuilder.Builder[dashboardv2beta1.ConditionalRenderingTimeRangeSizeKind]]) -> typing.Self
+```
+
 ### <span class="badge object-method"></span> items
 
 ```python
 def items(items: list[typing.Union[cogbuilder.Builder[dashboardv2beta1.ConditionalRenderingVariableKind], cogbuilder.Builder[dashboardv2beta1.ConditionalRenderingDataKind], cogbuilder.Builder[dashboardv2beta1.ConditionalRenderingTimeRangeSizeKind]]]) -> typing.Self
-```
-
-### <span class="badge object-method"></span> spec
-
-```python
-def spec(spec: cogbuilder.Builder[dashboardv2beta1.ConditionalRenderingGroupSpec]) -> typing.Self
 ```
 
 ### <span class="badge object-method"></span> visibility

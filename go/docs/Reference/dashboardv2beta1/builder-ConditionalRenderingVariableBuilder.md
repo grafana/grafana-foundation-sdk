@@ -24,12 +24,6 @@ func (builder *ConditionalRenderingVariableBuilder) Build() (ConditionalRenderin
 func (builder *ConditionalRenderingVariableBuilder) Operator(operator dashboardv2beta1.ConditionalRenderingVariableSpecOperator) *ConditionalRenderingVariableBuilder
 ```
 
-### <span class="badge object-method"></span> Spec
-
-```go
-func (builder *ConditionalRenderingVariableBuilder) Spec(spec cog.Builder[dashboardv2beta1.ConditionalRenderingVariableSpec]) *ConditionalRenderingVariableBuilder
-```
-
 ### <span class="badge object-method"></span> Value
 
 ```go

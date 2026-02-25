@@ -20,11 +20,6 @@ export class QueryVariableBuilder implements cog.Builder<dashboardv2beta1.QueryV
         return this.internal;
     }
 
-    spec(spec: dashboardv2beta1.QueryVariableSpec): this {
-        this.internal.spec = spec;
-        return this;
-    }
-
     name(name: string): this {
         if (!this.internal.spec) {
             this.internal.spec = dashboardv2beta1.defaultQueryVariableSpec();

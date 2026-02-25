@@ -44,13 +44,6 @@ class AdhocVariableBuilder implements \Grafana\Foundation\Cog\Builder
         return $this;
     }
 
-    public function spec(\Grafana\Foundation\Dashboardv2beta1\AdhocVariableSpec $spec): static
-    {
-        $this->internal->spec = $spec;
-    
-        return $this;
-    }
-
     public function name(string $name): static
     {
         $this->internal->spec->name = $name;

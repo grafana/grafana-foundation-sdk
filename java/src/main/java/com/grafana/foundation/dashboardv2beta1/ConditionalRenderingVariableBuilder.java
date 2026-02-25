@@ -10,15 +10,9 @@ public class ConditionalRenderingVariableBuilder implements com.grafana.foundati
         this.internal = new ConditionalRenderingVariableKind();
         this.internal.kind = "ConditionalRenderingVariable";
     }
-    public ConditionalRenderingVariableBuilder spec(com.grafana.foundation.cog.Builder<ConditionalRenderingVariableSpec> spec) {
-    ConditionalRenderingVariableSpec specResource = spec.build();
-        this.internal.spec = specResource;
-        return this;
-    }
-    
     public ConditionalRenderingVariableBuilder variable(String variable) {
 		if (this.internal.spec == null) {
-			this.internal.spec = new com.grafana.foundation.dashboardv2beta1.ConditionalRenderingVariableSpecBuilder().build();
+			this.internal.spec = new com.grafana.foundation.dashboardv2beta1.ConditionalRenderingVariableSpec();
 		}
         this.internal.spec.variable = variable;
         return this;
@@ -26,7 +20,7 @@ public class ConditionalRenderingVariableBuilder implements com.grafana.foundati
     
     public ConditionalRenderingVariableBuilder operator(ConditionalRenderingVariableSpecOperator operator) {
 		if (this.internal.spec == null) {
-			this.internal.spec = new com.grafana.foundation.dashboardv2beta1.ConditionalRenderingVariableSpecBuilder().build();
+			this.internal.spec = new com.grafana.foundation.dashboardv2beta1.ConditionalRenderingVariableSpec();
 		}
         this.internal.spec.operator = operator;
         return this;
@@ -34,7 +28,7 @@ public class ConditionalRenderingVariableBuilder implements com.grafana.foundati
     
     public ConditionalRenderingVariableBuilder value(String value) {
 		if (this.internal.spec == null) {
-			this.internal.spec = new com.grafana.foundation.dashboardv2beta1.ConditionalRenderingVariableSpecBuilder().build();
+			this.internal.spec = new com.grafana.foundation.dashboardv2beta1.ConditionalRenderingVariableSpec();
 		}
         this.internal.spec.value = value;
         return this;

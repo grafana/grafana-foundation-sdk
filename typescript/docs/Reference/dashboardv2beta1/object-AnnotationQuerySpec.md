@@ -21,6 +21,3 @@ export interface AnnotationQuerySpec {
 }
 
 ```
-## See also
-
- * <span class="badge builder"></span> [AnnotationQuerySpecBuilder](./builder-AnnotationQuerySpecBuilder.md)

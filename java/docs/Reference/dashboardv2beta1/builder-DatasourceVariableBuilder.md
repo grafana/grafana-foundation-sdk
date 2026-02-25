@@ -102,12 +102,6 @@ public DatasourceVariableBuilder regex(String regex)
 public DatasourceVariableBuilder skipUrlSync(Boolean skipUrlSync)
 ```
 
-### <span class="badge object-method"></span> spec
-
-```java
-public DatasourceVariableBuilder spec(DatasourceVariableSpec spec)
-```
-
 ## See also
 
  * <span class="badge object-type-class"></span> [DatasourceVariableKind](./object-DatasourceVariableKind.md)

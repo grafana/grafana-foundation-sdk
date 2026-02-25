@@ -43,12 +43,6 @@ func (builder *CustomVariableBuilder) RecordError(path string, err error) *Custo
 	return builder
 }
 
-func (builder *CustomVariableBuilder) Spec(spec CustomVariableSpec) *CustomVariableBuilder {
-	builder.internal.Spec = spec
-
-	return builder
-}
-
 func (builder *CustomVariableBuilder) Name(name string) *CustomVariableBuilder {
 	builder.internal.Spec.Name = name
 

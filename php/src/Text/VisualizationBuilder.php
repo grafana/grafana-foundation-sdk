@@ -220,6 +220,43 @@ class VisualizationBuilder implements \Grafana\Foundation\Cog\Builder
         return $this;
     }
 
+    public function mode(\Grafana\Foundation\Text\TextMode $mode): static
+    {    
+        if ($this->internal->spec->options === null) {
+            $this->internal->spec->options = new \Grafana\Foundation\Text\Options();
+        }
+        assert($this->internal->spec->options instanceof \Grafana\Foundation\Text\Options);
+        $this->internal->spec->options->mode = $mode;
+    
+        return $this;
+    }
+
+    /**
+     * @param \Grafana\Foundation\Cog\Builder<\Grafana\Foundation\Text\CodeOptions> $code
+     */
+    public function code(\Grafana\Foundation\Cog\Builder $code): static
+    {    
+        if ($this->internal->spec->options === null) {
+            $this->internal->spec->options = new \Grafana\Foundation\Text\Options();
+        }
+        assert($this->internal->spec->options instanceof \Grafana\Foundation\Text\Options);
+        $codeResource = $code->build();
+        $this->internal->spec->options->code = $codeResource;
+    
+        return $this;
+    }
+
+    public function content(string $content): static
+    {    
+        if ($this->internal->spec->options === null) {
+            $this->internal->spec->options = new \Grafana\Foundation\Text\Options();
+        }
+        assert($this->internal->spec->options instanceof \Grafana\Foundation\Text\Options);
+        $this->internal->spec->options->content = $content;
+    
+        return $this;
+    }
+
     /**
      * Adds override rules for a specific field, referred to by its name.
      * @param array<\Grafana\Foundation\Dashboardv2beta1\DynamicConfigValue> $properties
@@ -283,43 +320,6 @@ class VisualizationBuilder implements \Grafana\Foundation\Cog\Builder
         ),
             properties: $properties,
         );
-    
-        return $this;
-    }
-
-    public function mode(\Grafana\Foundation\Text\TextMode $mode): static
-    {    
-        if ($this->internal->spec->options === null) {
-            $this->internal->spec->options = new \Grafana\Foundation\Text\Options();
-        }
-        assert($this->internal->spec->options instanceof \Grafana\Foundation\Text\Options);
-        $this->internal->spec->options->mode = $mode;
-    
-        return $this;
-    }
-
-    /**
-     * @param \Grafana\Foundation\Cog\Builder<\Grafana\Foundation\Text\CodeOptions> $code
-     */
-    public function code(\Grafana\Foundation\Cog\Builder $code): static
-    {    
-        if ($this->internal->spec->options === null) {
-            $this->internal->spec->options = new \Grafana\Foundation\Text\Options();
-        }
-        assert($this->internal->spec->options instanceof \Grafana\Foundation\Text\Options);
-        $codeResource = $code->build();
-        $this->internal->spec->options->code = $codeResource;
-    
-        return $this;
-    }
-
-    public function content(string $content): static
-    {    
-        if ($this->internal->spec->options === null) {
-            $this->internal->spec->options = new \Grafana\Foundation\Text\Options();
-        }
-        assert($this->internal->spec->options instanceof \Grafana\Foundation\Text\Options);
-        $this->internal->spec->options->content = $content;
     
         return $this;
     }

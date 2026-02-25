@@ -34,14 +34,6 @@ id(float $id)
 libraryPanel(\Grafana\Foundation\Cog\Builder $libraryPanel)
 ```
 
-### <span class="badge object-method"></span> spec
-
-@param \Grafana\Foundation\Cog\Builder<\Grafana\Foundation\Dashboardv2beta1\LibraryPanelKindSpec> $spec
-
-```php
-spec(\Grafana\Foundation\Cog\Builder $spec)
-```
-
 ### <span class="badge object-method"></span> title
 
 Title for the library panel in the dashboard

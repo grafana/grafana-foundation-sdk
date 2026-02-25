@@ -244,6 +244,19 @@ final class VisualizationConverter
     
     
     }
+            if ($input->spec->options !== null && $input->spec->options instanceof \Grafana\Foundation\Datagrid\Options && $input->spec->options->selectedSeries !== 0) {
+    
+        
+    $buffer = 'selectedSeries(';
+        $arg0 =\var_export($input->spec->options->selectedSeries, true);
+        $buffer .= $arg0;
+        
+    $buffer .= ')';
+
+    $calls[] = $buffer;
+    
+    
+    }
             if (count($input->spec->fieldConfig->overrides) >= 1) {
     foreach ($input->spec->fieldConfig->overrides as $item) {
         
@@ -264,19 +277,6 @@ final class VisualizationConverter
     $calls[] = $buffer;
     
     }
-    }
-            if ($input->spec->options !== null && $input->spec->options instanceof \Grafana\Foundation\Datagrid\Options && $input->spec->options->selectedSeries !== 0) {
-    
-        
-    $buffer = 'selectedSeries(';
-        $arg0 =\var_export($input->spec->options->selectedSeries, true);
-        $buffer .= $arg0;
-        
-    $buffer .= ')';
-
-    $calls[] = $buffer;
-    
-    
     }
 
         return \implode("\n\t->", $calls);

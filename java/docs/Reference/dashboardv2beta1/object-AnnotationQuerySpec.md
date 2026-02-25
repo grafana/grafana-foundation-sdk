@@ -18,6 +18,3 @@ public class AnnotationQuerySpec {
   public Map<String, Object> legacyOptions;
 }
 ```
-## See also
-
- * <span class="badge builder"></span> [AnnotationQuerySpecBuilder](./builder-AnnotationQuerySpecBuilder.md)

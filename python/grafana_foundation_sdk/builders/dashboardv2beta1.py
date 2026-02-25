@@ -7,116 +7,6 @@ from ..builders import resource as resource_builder
 from ..models import resource
 
 
-class AnnotationQuerySpec(cogbuilder.Builder[dashboardv2beta1.AnnotationQuerySpec]):
-    _internal: dashboardv2beta1.AnnotationQuerySpec
-
-    def __init__(self) -> None:
-        self._internal = dashboardv2beta1.AnnotationQuerySpec()
-
-    def build(self) -> dashboardv2beta1.AnnotationQuerySpec:
-        """
-        Builds the object.
-        """
-        return self._internal    
-    
-    def query(self, query: cogbuilder.Builder[dashboardv2beta1.DataQueryKind]) -> typing.Self:    
-        query_resource = query.build()
-        self._internal.query = query_resource
-    
-        return self
-    
-    def enable(self, enable: bool) -> typing.Self:    
-        self._internal.enable = enable
-    
-        return self
-    
-    def hide(self, hide: bool) -> typing.Self:    
-        self._internal.hide = hide
-    
-        return self
-    
-    def icon_color(self, icon_color: str) -> typing.Self:    
-        self._internal.icon_color = icon_color
-    
-        return self
-    
-    def name(self, name: str) -> typing.Self:    
-        self._internal.name = name
-    
-        return self
-    
-    def built_in(self, built_in: bool) -> typing.Self:    
-        self._internal.built_in = built_in
-    
-        return self
-    
-    def filter(self, filter_val: cogbuilder.Builder[dashboardv2beta1.AnnotationPanelFilter]) -> typing.Self:    
-        filter_val_resource = filter_val.build()
-        self._internal.filter_val = filter_val_resource
-    
-        return self
-    
-    def placement(self, placement: str) -> typing.Self:    
-        """
-        Placement can be used to display the annotation query somewhere else on the dashboard other than the default location.
-        """
-            
-        self._internal.placement = placement
-    
-        return self
-    
-    def legacy_options(self, legacy_options: dict[str, object]) -> typing.Self:    
-        """
-        Catch-all field for datasource-specific properties. Should not be available in as code tooling.
-        """
-            
-        self._internal.legacy_options = legacy_options
-    
-        return self
-    
-
-
-class DataQueryKind(cogbuilder.Builder[dashboardv2beta1.DataQueryKind]):
-    _internal: dashboardv2beta1.DataQueryKind
-
-    def __init__(self) -> None:
-        self._internal = dashboardv2beta1.DataQueryKind()        
-        self._internal.kind = "DataQuery"
-
-    def build(self) -> dashboardv2beta1.DataQueryKind:
-        """
-        Builds the object.
-        """
-        return self._internal    
-    
-    def group(self, group: str) -> typing.Self:    
-        self._internal.group = group
-    
-        return self
-    
-    def version(self, version: str) -> typing.Self:    
-        self._internal.version = version
-    
-        return self
-    
-    def datasource(self, ref: cogbuilder.Builder[dashboardv2beta1.Dashboardv2beta1DataQueryKindDatasource]) -> typing.Self:    
-        """
-        New type for datasource reference
-        Not creating a new type until we figure out how to handle DS refs for group by, adhoc, and every place that uses DataSourceRef in TS.
-        """
-            
-        ref_resource = ref.build()
-        self._internal.datasource = ref_resource
-    
-        return self
-    
-    def spec(self, spec: object) -> typing.Self:    
-        self._internal.spec = spec
-    
-        return self
-    
-
-
 class AnnotationPanelFilter(cogbuilder.Builder[dashboardv2beta1.AnnotationPanelFilter]):
     _internal: dashboardv2beta1.AnnotationPanelFilter
 
@@ -532,44 +422,6 @@ class ActionVariable(cogbuilder.Builder[dashboardv2beta1.ActionVariable]):
     
 
 
-class LibraryPanelKindSpec(cogbuilder.Builder[dashboardv2beta1.LibraryPanelKindSpec]):
-    _internal: dashboardv2beta1.LibraryPanelKindSpec
-
-    def __init__(self) -> None:
-        self._internal = dashboardv2beta1.LibraryPanelKindSpec()
-
-    def build(self) -> dashboardv2beta1.LibraryPanelKindSpec:
-        """
-        Builds the object.
-        """
-        return self._internal    
-    
-    def id(self, id_val: float) -> typing.Self:    
-        """
-        Panel ID for the library panel in the dashboard
-        """
-            
-        self._internal.id_val = id_val
-    
-        return self
-    
-    def title(self, title: str) -> typing.Self:    
-        """
-        Title for the library panel in the dashboard
-        """
-            
-        self._internal.title = title
-    
-        return self
-    
-    def library_panel(self, library_panel: cogbuilder.Builder[dashboardv2beta1.LibraryPanelRef]) -> typing.Self:    
-        library_panel_resource = library_panel.build()
-        self._internal.library_panel = library_panel_resource
-    
-        return self
-    
-
-
 class LibraryPanelRef(cogbuilder.Builder[dashboardv2beta1.LibraryPanelRef]):    
     """
     A library panel is a reusable panel that you can use in any dashboard.
@@ -657,175 +509,6 @@ class RepeatOptions(cogbuilder.Builder[dashboardv2beta1.RepeatOptions]):
     
 
 
-class RowsLayoutSpec(cogbuilder.Builder[dashboardv2beta1.RowsLayoutSpec]):
-    _internal: dashboardv2beta1.RowsLayoutSpec
-
-    def __init__(self) -> None:
-        self._internal = dashboardv2beta1.RowsLayoutSpec()
-
-    def build(self) -> dashboardv2beta1.RowsLayoutSpec:
-        """
-        Builds the object.
-        """
-        return self._internal    
-    
-    def rows(self, rows: list[cogbuilder.Builder[dashboardv2beta1.RowsLayoutRowKind]]) -> typing.Self:    
-        rows_resources = [r1.build() for r1 in rows]
-        self._internal.rows = rows_resources
-    
-        return self
-    
-
-
-class RowsLayoutRowSpec(cogbuilder.Builder[dashboardv2beta1.RowsLayoutRowSpec]):
-    _internal: dashboardv2beta1.RowsLayoutRowSpec
-
-    def __init__(self) -> None:
-        self._internal = dashboardv2beta1.RowsLayoutRowSpec()
-
-    def build(self) -> dashboardv2beta1.RowsLayoutRowSpec:
-        """
-        Builds the object.
-        """
-        return self._internal    
-    
-    def title(self, title: str) -> typing.Self:    
-        self._internal.title = title
-    
-        return self
-    
-    def collapse(self, collapse: bool) -> typing.Self:    
-        self._internal.collapse = collapse
-    
-        return self
-    
-    def hide_header(self, hide_header: bool) -> typing.Self:    
-        self._internal.hide_header = hide_header
-    
-        return self
-    
-    def fill_screen(self, fill_screen: bool) -> typing.Self:    
-        self._internal.fill_screen = fill_screen
-    
-        return self
-    
-    def conditional_rendering(self, conditional_rendering: cogbuilder.Builder[dashboardv2beta1.ConditionalRenderingGroupKind]) -> typing.Self:    
-        conditional_rendering_resource = conditional_rendering.build()
-        self._internal.conditional_rendering = conditional_rendering_resource
-    
-        return self
-    
-    def repeat(self, repeat: cogbuilder.Builder[dashboardv2beta1.RowRepeatOptions]) -> typing.Self:    
-        repeat_resource = repeat.build()
-        self._internal.repeat = repeat_resource
-    
-        return self
-    
-    def layout(self, layout: typing.Union[cogbuilder.Builder[dashboardv2beta1.GridLayoutKind], cogbuilder.Builder[dashboardv2beta1.AutoGridLayoutKind], cogbuilder.Builder[dashboardv2beta1.TabsLayoutKind], cogbuilder.Builder[dashboardv2beta1.RowsLayoutKind]]) -> typing.Self:    
-        layout_resource = layout.build()
-        self._internal.layout = layout_resource
-    
-        return self
-    
-
-
-class ConditionalRenderingGroupSpec(cogbuilder.Builder[dashboardv2beta1.ConditionalRenderingGroupSpec]):
-    _internal: dashboardv2beta1.ConditionalRenderingGroupSpec
-
-    def __init__(self) -> None:
-        self._internal = dashboardv2beta1.ConditionalRenderingGroupSpec()
-
-    def build(self) -> dashboardv2beta1.ConditionalRenderingGroupSpec:
-        """
-        Builds the object.
-        """
-        return self._internal    
-    
-    def visibility(self, visibility: typing.Literal["show", "hide"]) -> typing.Self:    
-        self._internal.visibility = visibility
-    
-        return self
-    
-    def condition(self, condition: typing.Literal["and", "or"]) -> typing.Self:    
-        self._internal.condition = condition
-    
-        return self
-    
-    def items(self, items: list[typing.Union[cogbuilder.Builder[dashboardv2beta1.ConditionalRenderingVariableKind], cogbuilder.Builder[dashboardv2beta1.ConditionalRenderingDataKind], cogbuilder.Builder[dashboardv2beta1.ConditionalRenderingTimeRangeSizeKind]]]) -> typing.Self:    
-        items_resources = [r1.build() for r1 in items]
-        self._internal.items = items_resources
-    
-        return self
-    
-
-
-class ConditionalRenderingVariableSpec(cogbuilder.Builder[dashboardv2beta1.ConditionalRenderingVariableSpec]):
-    _internal: dashboardv2beta1.ConditionalRenderingVariableSpec
-
-    def __init__(self) -> None:
-        self._internal = dashboardv2beta1.ConditionalRenderingVariableSpec()
-
-    def build(self) -> dashboardv2beta1.ConditionalRenderingVariableSpec:
-        """
-        Builds the object.
-        """
-        return self._internal    
-    
-    def variable(self, variable: str) -> typing.Self:    
-        self._internal.variable = variable
-    
-        return self
-    
-    def operator(self, operator: typing.Literal["equals", "notEquals", "matches", "notMatches"]) -> typing.Self:    
-        self._internal.operator = operator
-    
-        return self
-    
-    def value(self, value: str) -> typing.Self:    
-        self._internal.value = value
-    
-        return self
-    
-
-
-class ConditionalRenderingDataSpec(cogbuilder.Builder[dashboardv2beta1.ConditionalRenderingDataSpec]):
-    _internal: dashboardv2beta1.ConditionalRenderingDataSpec
-
-    def __init__(self) -> None:
-        self._internal = dashboardv2beta1.ConditionalRenderingDataSpec()
-
-    def build(self) -> dashboardv2beta1.ConditionalRenderingDataSpec:
-        """
-        Builds the object.
-        """
-        return self._internal    
-    
-    def value(self, value: bool) -> typing.Self:    
-        self._internal.value = value
-    
-        return self
-    
-
-
-class ConditionalRenderingTimeRangeSizeSpec(cogbuilder.Builder[dashboardv2beta1.ConditionalRenderingTimeRangeSizeSpec]):
-    _internal: dashboardv2beta1.ConditionalRenderingTimeRangeSizeSpec
-
-    def __init__(self) -> None:
-        self._internal = dashboardv2beta1.ConditionalRenderingTimeRangeSizeSpec()
-
-    def build(self) -> dashboardv2beta1.ConditionalRenderingTimeRangeSizeSpec:
-        """
-        Builds the object.
-        """
-        return self._internal    
-    
-    def value(self, value: str) -> typing.Self:    
-        self._internal.value = value
-    
-        return self
-    
-
-
 class RowRepeatOptions(cogbuilder.Builder[dashboardv2beta1.RowRepeatOptions]):
     _internal: dashboardv2beta1.RowRepeatOptions
 
@@ -845,88 +528,6 @@ class RowRepeatOptions(cogbuilder.Builder[dashboardv2beta1.RowRepeatOptions]):
     
 
 
-class AutoGridLayoutSpec(cogbuilder.Builder[dashboardv2beta1.AutoGridLayoutSpec]):
-    _internal: dashboardv2beta1.AutoGridLayoutSpec
-
-    def __init__(self) -> None:
-        self._internal = dashboardv2beta1.AutoGridLayoutSpec()
-
-    def build(self) -> dashboardv2beta1.AutoGridLayoutSpec:
-        """
-        Builds the object.
-        """
-        return self._internal    
-    
-    def max_column_count(self, max_column_count: float) -> typing.Self:    
-        self._internal.max_column_count = max_column_count
-    
-        return self
-    
-    def column_width_mode(self, column_width_mode: typing.Literal["narrow", "standard", "wide", "custom"]) -> typing.Self:    
-        self._internal.column_width_mode = column_width_mode
-    
-        return self
-    
-    def column_width(self, column_width: float) -> typing.Self:    
-        self._internal.column_width = column_width
-    
-        return self
-    
-    def row_height_mode(self, row_height_mode: typing.Literal["short", "standard", "tall", "custom"]) -> typing.Self:    
-        self._internal.row_height_mode = row_height_mode
-    
-        return self
-    
-    def row_height(self, row_height: float) -> typing.Self:    
-        self._internal.row_height = row_height
-    
-        return self
-    
-    def fill_screen(self, fill_screen: bool) -> typing.Self:    
-        self._internal.fill_screen = fill_screen
-    
-        return self
-    
-    def items(self, items: list[cogbuilder.Builder[dashboardv2beta1.AutoGridLayoutItemKind]]) -> typing.Self:    
-        items_resources = [r1.build() for r1 in items]
-        self._internal.items = items_resources
-    
-        return self
-    
-
-
-class AutoGridLayoutItemSpec(cogbuilder.Builder[dashboardv2beta1.AutoGridLayoutItemSpec]):
-    _internal: dashboardv2beta1.AutoGridLayoutItemSpec
-
-    def __init__(self) -> None:
-        self._internal = dashboardv2beta1.AutoGridLayoutItemSpec()
-
-    def build(self) -> dashboardv2beta1.AutoGridLayoutItemSpec:
-        """
-        Builds the object.
-        """
-        return self._internal    
-    
-    def element(self, element: cogbuilder.Builder[dashboardv2beta1.ElementReference]) -> typing.Self:    
-        element_resource = element.build()
-        self._internal.element = element_resource
-    
-        return self
-    
-    def repeat(self, repeat: cogbuilder.Builder[dashboardv2beta1.AutoGridRepeatOptions]) -> typing.Self:    
-        repeat_resource = repeat.build()
-        self._internal.repeat = repeat_resource
-    
-        return self
-    
-    def conditional_rendering(self, conditional_rendering: cogbuilder.Builder[dashboardv2beta1.ConditionalRenderingGroupKind]) -> typing.Self:    
-        conditional_rendering_resource = conditional_rendering.build()
-        self._internal.conditional_rendering = conditional_rendering_resource
-    
-        return self
-    
-
-
 class AutoGridRepeatOptions(cogbuilder.Builder[dashboardv2beta1.AutoGridRepeatOptions]):
     _internal: dashboardv2beta1.AutoGridRepeatOptions
 
@@ -941,63 +542,6 @@ class AutoGridRepeatOptions(cogbuilder.Builder[dashboardv2beta1.AutoGridRepeatOp
     
     def value(self, value: str) -> typing.Self:    
         self._internal.value = value
-    
-        return self
-    
-
-
-class TabsLayoutSpec(cogbuilder.Builder[dashboardv2beta1.TabsLayoutSpec]):
-    _internal: dashboardv2beta1.TabsLayoutSpec
-
-    def __init__(self) -> None:
-        self._internal = dashboardv2beta1.TabsLayoutSpec()
-
-    def build(self) -> dashboardv2beta1.TabsLayoutSpec:
-        """
-        Builds the object.
-        """
-        return self._internal    
-    
-    def tabs(self, tabs: list[cogbuilder.Builder[dashboardv2beta1.TabsLayoutTabKind]]) -> typing.Self:    
-        tabs_resources = [r1.build() for r1 in tabs]
-        self._internal.tabs = tabs_resources
-    
-        return self
-    
-
-
-class TabsLayoutTabSpec(cogbuilder.Builder[dashboardv2beta1.TabsLayoutTabSpec]):
-    _internal: dashboardv2beta1.TabsLayoutTabSpec
-
-    def __init__(self) -> None:
-        self._internal = dashboardv2beta1.TabsLayoutTabSpec()
-
-    def build(self) -> dashboardv2beta1.TabsLayoutTabSpec:
-        """
-        Builds the object.
-        """
-        return self._internal    
-    
-    def title(self, title: str) -> typing.Self:    
-        self._internal.title = title
-    
-        return self
-    
-    def layout(self, layout: typing.Union[cogbuilder.Builder[dashboardv2beta1.GridLayoutKind], cogbuilder.Builder[dashboardv2beta1.RowsLayoutKind], cogbuilder.Builder[dashboardv2beta1.AutoGridLayoutKind], cogbuilder.Builder[dashboardv2beta1.TabsLayoutKind]]) -> typing.Self:    
-        layout_resource = layout.build()
-        self._internal.layout = layout_resource
-    
-        return self
-    
-    def conditional_rendering(self, conditional_rendering: cogbuilder.Builder[dashboardv2beta1.ConditionalRenderingGroupKind]) -> typing.Self:    
-        conditional_rendering_resource = conditional_rendering.build()
-        self._internal.conditional_rendering = conditional_rendering_resource
-    
-        return self
-    
-    def repeat(self, repeat: cogbuilder.Builder[dashboardv2beta1.TabRepeatOptions]) -> typing.Self:    
-        repeat_resource = repeat.build()
-        self._internal.repeat = repeat_resource
     
         return self
     
@@ -1269,114 +813,6 @@ class MetricFindValue(cogbuilder.Builder[dashboardv2beta1.MetricFindValue]):
     
     def expandable(self, expandable: bool) -> typing.Self:    
         self._internal.expandable = expandable
-    
-        return self
-    
-
-
-class SwitchVariableKind(cogbuilder.Builder[dashboardv2beta1.SwitchVariableKind]):
-    _internal: dashboardv2beta1.SwitchVariableKind
-
-    def __init__(self) -> None:
-        self._internal = dashboardv2beta1.SwitchVariableKind()        
-        self._internal.kind = "SwitchVariable"
-
-    def build(self) -> dashboardv2beta1.SwitchVariableKind:
-        """
-        Builds the object.
-        """
-        return self._internal    
-    
-    def spec(self, spec: cogbuilder.Builder[dashboardv2beta1.SwitchVariableSpec]) -> typing.Self:    
-        spec_resource = spec.build()
-        self._internal.spec = spec_resource
-    
-        return self
-    
-
-
-class SwitchVariableSpec(cogbuilder.Builder[dashboardv2beta1.SwitchVariableSpec]):
-    _internal: dashboardv2beta1.SwitchVariableSpec
-
-    def __init__(self) -> None:
-        self._internal = dashboardv2beta1.SwitchVariableSpec()
-
-    def build(self) -> dashboardv2beta1.SwitchVariableSpec:
-        """
-        Builds the object.
-        """
-        return self._internal    
-    
-    def name(self, name: str) -> typing.Self:    
-        self._internal.name = name
-    
-        return self
-    
-    def current(self, current: str) -> typing.Self:    
-        self._internal.current = current
-    
-        return self
-    
-    def enabled_value(self, enabled_value: str) -> typing.Self:    
-        self._internal.enabled_value = enabled_value
-    
-        return self
-    
-    def disabled_value(self, disabled_value: str) -> typing.Self:    
-        self._internal.disabled_value = disabled_value
-    
-        return self
-    
-    def label(self, label: str) -> typing.Self:    
-        self._internal.label = label
-    
-        return self
-    
-    def hide(self, hide: dashboardv2beta1.VariableHide) -> typing.Self:    
-        self._internal.hide = hide
-    
-        return self
-    
-    def skip_url_sync(self, skip_url_sync: bool) -> typing.Self:    
-        self._internal.skip_url_sync = skip_url_sync
-    
-        return self
-    
-    def description(self, description: str) -> typing.Self:    
-        self._internal.description = description
-    
-        return self
-    
-
-
-class Kind(cogbuilder.Builder[dashboardv2beta1.Kind]):    
-    """
-    --- Common types ---
-    """
-    
-    _internal: dashboardv2beta1.Kind
-
-    def __init__(self) -> None:
-        self._internal = dashboardv2beta1.Kind()
-
-    def build(self) -> dashboardv2beta1.Kind:
-        """
-        Builds the object.
-        """
-        return self._internal    
-    
-    def kind(self, kind: str) -> typing.Self:    
-        self._internal.kind = kind
-    
-        return self
-    
-    def spec(self, spec: object) -> typing.Self:    
-        self._internal.spec = spec
-    
-        return self
-    
-    def metadata(self, metadata: object) -> typing.Self:    
-        self._internal.metadata = metadata
     
         return self
     
@@ -1674,12 +1110,6 @@ class AnnotationQuery(cogbuilder.Builder[dashboardv2beta1.AnnotationQueryKind]):
         """
         return self._internal    
     
-    def spec(self, spec: cogbuilder.Builder[dashboardv2beta1.AnnotationQuerySpec]) -> typing.Self:    
-        spec_resource = spec.build()
-        self._internal.spec = spec_resource
-    
-        return self
-    
     def query(self, query: cogbuilder.Builder[dashboardv2beta1.DataQueryKind]) -> typing.Self:    
         if self._internal.spec is None:
             self._internal.spec = dashboardv2beta1.AnnotationQuerySpec()
@@ -1764,155 +1194,6 @@ class AnnotationQuery(cogbuilder.Builder[dashboardv2beta1.AnnotationQueryKind]):
     
 
 
-class ConditionalRenderingGroup(cogbuilder.Builder[dashboardv2beta1.ConditionalRenderingGroupKind]):
-    _internal: dashboardv2beta1.ConditionalRenderingGroupKind
-
-    def __init__(self) -> None:
-        self._internal = dashboardv2beta1.ConditionalRenderingGroupKind()        
-        self._internal.kind = "ConditionalRenderingGroup"
-
-    def build(self) -> dashboardv2beta1.ConditionalRenderingGroupKind:
-        """
-        Builds the object.
-        """
-        return self._internal    
-    
-    def spec(self, spec: cogbuilder.Builder[dashboardv2beta1.ConditionalRenderingGroupSpec]) -> typing.Self:    
-        spec_resource = spec.build()
-        self._internal.spec = spec_resource
-    
-        return self
-    
-    def visibility(self, visibility: typing.Literal["show", "hide"]) -> typing.Self:    
-        if self._internal.spec is None:
-            self._internal.spec = dashboardv2beta1.ConditionalRenderingGroupSpec()
-        assert isinstance(self._internal.spec, dashboardv2beta1.ConditionalRenderingGroupSpec)
-        self._internal.spec.visibility = visibility
-    
-        return self
-    
-    def condition(self, condition: typing.Literal["and", "or"]) -> typing.Self:    
-        if self._internal.spec is None:
-            self._internal.spec = dashboardv2beta1.ConditionalRenderingGroupSpec()
-        assert isinstance(self._internal.spec, dashboardv2beta1.ConditionalRenderingGroupSpec)
-        self._internal.spec.condition = condition
-    
-        return self
-    
-    def items(self, items: list[typing.Union[cogbuilder.Builder[dashboardv2beta1.ConditionalRenderingVariableKind], cogbuilder.Builder[dashboardv2beta1.ConditionalRenderingDataKind], cogbuilder.Builder[dashboardv2beta1.ConditionalRenderingTimeRangeSizeKind]]]) -> typing.Self:    
-        if self._internal.spec is None:
-            self._internal.spec = dashboardv2beta1.ConditionalRenderingGroupSpec()
-        assert isinstance(self._internal.spec, dashboardv2beta1.ConditionalRenderingGroupSpec)
-        items_resources = [r1.build() for r1 in items]
-        self._internal.spec.items = items_resources
-    
-        return self
-    
-
-
-class ConditionalRenderingData(cogbuilder.Builder[dashboardv2beta1.ConditionalRenderingDataKind]):
-    _internal: dashboardv2beta1.ConditionalRenderingDataKind
-
-    def __init__(self) -> None:
-        self._internal = dashboardv2beta1.ConditionalRenderingDataKind()        
-        self._internal.kind = "ConditionalRenderingData"
-
-    def build(self) -> dashboardv2beta1.ConditionalRenderingDataKind:
-        """
-        Builds the object.
-        """
-        return self._internal    
-    
-    def spec(self, spec: cogbuilder.Builder[dashboardv2beta1.ConditionalRenderingDataSpec]) -> typing.Self:    
-        spec_resource = spec.build()
-        self._internal.spec = spec_resource
-    
-        return self
-    
-    def value(self, value: bool) -> typing.Self:    
-        if self._internal.spec is None:
-            self._internal.spec = dashboardv2beta1.ConditionalRenderingDataSpec()
-        assert isinstance(self._internal.spec, dashboardv2beta1.ConditionalRenderingDataSpec)
-        self._internal.spec.value = value
-    
-        return self
-    
-
-
-class ConditionalRenderingTimeRangeSize(cogbuilder.Builder[dashboardv2beta1.ConditionalRenderingTimeRangeSizeKind]):
-    _internal: dashboardv2beta1.ConditionalRenderingTimeRangeSizeKind
-
-    def __init__(self) -> None:
-        self._internal = dashboardv2beta1.ConditionalRenderingTimeRangeSizeKind()        
-        self._internal.kind = "ConditionalRenderingTimeRangeSize"
-
-    def build(self) -> dashboardv2beta1.ConditionalRenderingTimeRangeSizeKind:
-        """
-        Builds the object.
-        """
-        return self._internal    
-    
-    def spec(self, spec: cogbuilder.Builder[dashboardv2beta1.ConditionalRenderingTimeRangeSizeSpec]) -> typing.Self:    
-        spec_resource = spec.build()
-        self._internal.spec = spec_resource
-    
-        return self
-    
-    def value(self, value: str) -> typing.Self:    
-        if self._internal.spec is None:
-            self._internal.spec = dashboardv2beta1.ConditionalRenderingTimeRangeSizeSpec()
-        assert isinstance(self._internal.spec, dashboardv2beta1.ConditionalRenderingTimeRangeSizeSpec)
-        self._internal.spec.value = value
-    
-        return self
-    
-
-
-class ConditionalRenderingVariable(cogbuilder.Builder[dashboardv2beta1.ConditionalRenderingVariableKind]):
-    _internal: dashboardv2beta1.ConditionalRenderingVariableKind
-
-    def __init__(self) -> None:
-        self._internal = dashboardv2beta1.ConditionalRenderingVariableKind()        
-        self._internal.kind = "ConditionalRenderingVariable"
-
-    def build(self) -> dashboardv2beta1.ConditionalRenderingVariableKind:
-        """
-        Builds the object.
-        """
-        return self._internal    
-    
-    def spec(self, spec: cogbuilder.Builder[dashboardv2beta1.ConditionalRenderingVariableSpec]) -> typing.Self:    
-        spec_resource = spec.build()
-        self._internal.spec = spec_resource
-    
-        return self
-    
-    def variable(self, variable: str) -> typing.Self:    
-        if self._internal.spec is None:
-            self._internal.spec = dashboardv2beta1.ConditionalRenderingVariableSpec()
-        assert isinstance(self._internal.spec, dashboardv2beta1.ConditionalRenderingVariableSpec)
-        self._internal.spec.variable = variable
-    
-        return self
-    
-    def operator(self, operator: typing.Literal["equals", "notEquals", "matches", "notMatches"]) -> typing.Self:    
-        if self._internal.spec is None:
-            self._internal.spec = dashboardv2beta1.ConditionalRenderingVariableSpec()
-        assert isinstance(self._internal.spec, dashboardv2beta1.ConditionalRenderingVariableSpec)
-        self._internal.spec.operator = operator
-    
-        return self
-    
-    def value(self, value: str) -> typing.Self:    
-        if self._internal.spec is None:
-            self._internal.spec = dashboardv2beta1.ConditionalRenderingVariableSpec()
-        assert isinstance(self._internal.spec, dashboardv2beta1.ConditionalRenderingVariableSpec)
-        self._internal.spec.value = value
-    
-        return self
-    
-
-
 class LibraryPanel(cogbuilder.Builder[dashboardv2beta1.LibraryPanelKind]):
     _internal: dashboardv2beta1.LibraryPanelKind
 
@@ -1925,12 +1206,6 @@ class LibraryPanel(cogbuilder.Builder[dashboardv2beta1.LibraryPanelKind]):
         Builds the object.
         """
         return self._internal    
-    
-    def spec(self, spec: cogbuilder.Builder[dashboardv2beta1.LibraryPanelKindSpec]) -> typing.Self:    
-        spec_resource = spec.build()
-        self._internal.spec = spec_resource
-    
-        return self
     
     def id(self, id_val: float) -> typing.Self:    
         """
@@ -1962,520 +1237,6 @@ class LibraryPanel(cogbuilder.Builder[dashboardv2beta1.LibraryPanelKind]):
         assert isinstance(self._internal.spec, dashboardv2beta1.LibraryPanelKindSpec)
         library_panel_resource = library_panel.build()
         self._internal.spec.library_panel = library_panel_resource
-    
-        return self
-    
-
-
-class AutoGridLayout(cogbuilder.Builder[dashboardv2beta1.AutoGridLayoutKind]):
-    _internal: dashboardv2beta1.AutoGridLayoutKind
-
-    def __init__(self) -> None:
-        self._internal = dashboardv2beta1.AutoGridLayoutKind()        
-        self._internal.kind = "AutoGridLayout"
-
-    def build(self) -> dashboardv2beta1.AutoGridLayoutKind:
-        """
-        Builds the object.
-        """
-        return self._internal    
-    
-    def max_column_count(self, max_column_count: float) -> typing.Self:    
-        if self._internal.spec is None:
-            self._internal.spec = dashboardv2beta1.AutoGridLayoutSpec()
-        assert isinstance(self._internal.spec, dashboardv2beta1.AutoGridLayoutSpec)
-        self._internal.spec.max_column_count = max_column_count
-    
-        return self
-    
-    def column_width_mode(self, column_width_mode: typing.Literal["narrow", "standard", "wide", "custom"]) -> typing.Self:    
-        if self._internal.spec is None:
-            self._internal.spec = dashboardv2beta1.AutoGridLayoutSpec()
-        assert isinstance(self._internal.spec, dashboardv2beta1.AutoGridLayoutSpec)
-        self._internal.spec.column_width_mode = column_width_mode
-    
-        return self
-    
-    def column_width(self, column_width: float) -> typing.Self:    
-        if self._internal.spec is None:
-            self._internal.spec = dashboardv2beta1.AutoGridLayoutSpec()
-        assert isinstance(self._internal.spec, dashboardv2beta1.AutoGridLayoutSpec)
-        self._internal.spec.column_width = column_width
-    
-        return self
-    
-    def row_height_mode(self, row_height_mode: typing.Literal["short", "standard", "tall", "custom"]) -> typing.Self:    
-        if self._internal.spec is None:
-            self._internal.spec = dashboardv2beta1.AutoGridLayoutSpec()
-        assert isinstance(self._internal.spec, dashboardv2beta1.AutoGridLayoutSpec)
-        self._internal.spec.row_height_mode = row_height_mode
-    
-        return self
-    
-    def row_height(self, row_height: float) -> typing.Self:    
-        if self._internal.spec is None:
-            self._internal.spec = dashboardv2beta1.AutoGridLayoutSpec()
-        assert isinstance(self._internal.spec, dashboardv2beta1.AutoGridLayoutSpec)
-        self._internal.spec.row_height = row_height
-    
-        return self
-    
-    def fill_screen(self, fill_screen: bool) -> typing.Self:    
-        if self._internal.spec is None:
-            self._internal.spec = dashboardv2beta1.AutoGridLayoutSpec()
-        assert isinstance(self._internal.spec, dashboardv2beta1.AutoGridLayoutSpec)
-        self._internal.spec.fill_screen = fill_screen
-    
-        return self
-    
-    def items(self, items: list[cogbuilder.Builder[dashboardv2beta1.AutoGridLayoutItemKind]]) -> typing.Self:    
-        if self._internal.spec is None:
-            self._internal.spec = dashboardv2beta1.AutoGridLayoutSpec()
-        assert isinstance(self._internal.spec, dashboardv2beta1.AutoGridLayoutSpec)
-        items_resources = [r1.build() for r1 in items]
-        self._internal.spec.items = items_resources
-    
-        return self
-    
-    def item(self, item: cogbuilder.Builder[dashboardv2beta1.AutoGridLayoutItemKind]) -> typing.Self:    
-        if self._internal.spec is None:
-            self._internal.spec = dashboardv2beta1.AutoGridLayoutSpec()
-        assert isinstance(self._internal.spec, dashboardv2beta1.AutoGridLayoutSpec)
-        if self._internal.spec.items is None:
-            self._internal.spec.items = []
-        
-        item_resource = item.build()
-        self._internal.spec.items.append(item_resource)
-    
-        return self
-    
-
-
-class AutoGridLayoutItem(cogbuilder.Builder[dashboardv2beta1.AutoGridLayoutItemKind]):
-    _internal: dashboardv2beta1.AutoGridLayoutItemKind
-
-    def __init__(self, name: str) -> None:
-        self._internal = dashboardv2beta1.AutoGridLayoutItemKind()        
-        self._internal.kind = "AutoGridLayoutItem"        
-        if self._internal.spec is None:
-            self._internal.spec = dashboardv2beta1.AutoGridLayoutItemSpec()
-        assert isinstance(self._internal.spec, dashboardv2beta1.AutoGridLayoutItemSpec)
-        if self._internal.spec.element is None:
-            self._internal.spec.element = dashboardv2beta1.ElementReference()
-        assert isinstance(self._internal.spec.element, dashboardv2beta1.ElementReference)
-        self._internal.spec.element.kind = "ElementReference"        
-        self._internal.spec.element.name = name
-
-    def build(self) -> dashboardv2beta1.AutoGridLayoutItemKind:
-        """
-        Builds the object.
-        """
-        return self._internal    
-    
-    def element(self, element: cogbuilder.Builder[dashboardv2beta1.ElementReference]) -> typing.Self:    
-        if self._internal.spec is None:
-            self._internal.spec = dashboardv2beta1.AutoGridLayoutItemSpec()
-        assert isinstance(self._internal.spec, dashboardv2beta1.AutoGridLayoutItemSpec)
-        element_resource = element.build()
-        self._internal.spec.element = element_resource
-    
-        return self
-    
-    def repeat(self, repeat: cogbuilder.Builder[dashboardv2beta1.AutoGridRepeatOptions]) -> typing.Self:    
-        if self._internal.spec is None:
-            self._internal.spec = dashboardv2beta1.AutoGridLayoutItemSpec()
-        assert isinstance(self._internal.spec, dashboardv2beta1.AutoGridLayoutItemSpec)
-        repeat_resource = repeat.build()
-        self._internal.spec.repeat = repeat_resource
-    
-        return self
-    
-    def conditional_rendering(self, conditional_rendering: cogbuilder.Builder[dashboardv2beta1.ConditionalRenderingGroupKind]) -> typing.Self:    
-        if self._internal.spec is None:
-            self._internal.spec = dashboardv2beta1.AutoGridLayoutItemSpec()
-        assert isinstance(self._internal.spec, dashboardv2beta1.AutoGridLayoutItemSpec)
-        conditional_rendering_resource = conditional_rendering.build()
-        self._internal.spec.conditional_rendering = conditional_rendering_resource
-    
-        return self
-    
-    def name(self, name: str) -> typing.Self:    
-        if self._internal.spec is None:
-            self._internal.spec = dashboardv2beta1.AutoGridLayoutItemSpec()
-        assert isinstance(self._internal.spec, dashboardv2beta1.AutoGridLayoutItemSpec)
-        if self._internal.spec.element is None:
-            self._internal.spec.element = dashboardv2beta1.ElementReference()
-        assert isinstance(self._internal.spec.element, dashboardv2beta1.ElementReference)
-        self._internal.spec.element.name = name
-    
-        return self
-    
-
-
-class RowsLayout(cogbuilder.Builder[dashboardv2beta1.RowsLayoutKind]):
-    _internal: dashboardv2beta1.RowsLayoutKind
-
-    def __init__(self) -> None:
-        self._internal = dashboardv2beta1.RowsLayoutKind()        
-        self._internal.kind = "RowsLayout"
-
-    def build(self) -> dashboardv2beta1.RowsLayoutKind:
-        """
-        Builds the object.
-        """
-        return self._internal    
-    
-    def rows(self, rows: list[cogbuilder.Builder[dashboardv2beta1.RowsLayoutRowKind]]) -> typing.Self:    
-        if self._internal.spec is None:
-            self._internal.spec = dashboardv2beta1.RowsLayoutSpec()
-        assert isinstance(self._internal.spec, dashboardv2beta1.RowsLayoutSpec)
-        rows_resources = [r1.build() for r1 in rows]
-        self._internal.spec.rows = rows_resources
-    
-        return self
-    
-    def row(self, row: cogbuilder.Builder[dashboardv2beta1.RowsLayoutRowKind]) -> typing.Self:    
-        if self._internal.spec is None:
-            self._internal.spec = dashboardv2beta1.RowsLayoutSpec()
-        assert isinstance(self._internal.spec, dashboardv2beta1.RowsLayoutSpec)
-        if self._internal.spec.rows is None:
-            self._internal.spec.rows = []
-        
-        row_resource = row.build()
-        self._internal.spec.rows.append(row_resource)
-    
-        return self
-    
-
-
-class RowsLayoutRow(cogbuilder.Builder[dashboardv2beta1.RowsLayoutRowKind]):
-    _internal: dashboardv2beta1.RowsLayoutRowKind
-
-    def __init__(self, title: str) -> None:
-        self._internal = dashboardv2beta1.RowsLayoutRowKind()        
-        self._internal.kind = "RowsLayoutRow"        
-        if self._internal.spec is None:
-            self._internal.spec = dashboardv2beta1.RowsLayoutRowSpec()
-        assert isinstance(self._internal.spec, dashboardv2beta1.RowsLayoutRowSpec)
-        self._internal.spec.title = title
-
-    def build(self) -> dashboardv2beta1.RowsLayoutRowKind:
-        """
-        Builds the object.
-        """
-        return self._internal    
-    
-    def title(self, title: str) -> typing.Self:    
-        if self._internal.spec is None:
-            self._internal.spec = dashboardv2beta1.RowsLayoutRowSpec()
-        assert isinstance(self._internal.spec, dashboardv2beta1.RowsLayoutRowSpec)
-        self._internal.spec.title = title
-    
-        return self
-    
-    def collapse(self, collapse: bool) -> typing.Self:    
-        if self._internal.spec is None:
-            self._internal.spec = dashboardv2beta1.RowsLayoutRowSpec()
-        assert isinstance(self._internal.spec, dashboardv2beta1.RowsLayoutRowSpec)
-        self._internal.spec.collapse = collapse
-    
-        return self
-    
-    def hide_header(self, hide_header: bool) -> typing.Self:    
-        if self._internal.spec is None:
-            self._internal.spec = dashboardv2beta1.RowsLayoutRowSpec()
-        assert isinstance(self._internal.spec, dashboardv2beta1.RowsLayoutRowSpec)
-        self._internal.spec.hide_header = hide_header
-    
-        return self
-    
-    def fill_screen(self, fill_screen: bool) -> typing.Self:    
-        if self._internal.spec is None:
-            self._internal.spec = dashboardv2beta1.RowsLayoutRowSpec()
-        assert isinstance(self._internal.spec, dashboardv2beta1.RowsLayoutRowSpec)
-        self._internal.spec.fill_screen = fill_screen
-    
-        return self
-    
-    def conditional_rendering(self, conditional_rendering: cogbuilder.Builder[dashboardv2beta1.ConditionalRenderingGroupKind]) -> typing.Self:    
-        if self._internal.spec is None:
-            self._internal.spec = dashboardv2beta1.RowsLayoutRowSpec()
-        assert isinstance(self._internal.spec, dashboardv2beta1.RowsLayoutRowSpec)
-        conditional_rendering_resource = conditional_rendering.build()
-        self._internal.spec.conditional_rendering = conditional_rendering_resource
-    
-        return self
-    
-    def repeat(self, repeat: cogbuilder.Builder[dashboardv2beta1.RowRepeatOptions]) -> typing.Self:    
-        if self._internal.spec is None:
-            self._internal.spec = dashboardv2beta1.RowsLayoutRowSpec()
-        assert isinstance(self._internal.spec, dashboardv2beta1.RowsLayoutRowSpec)
-        repeat_resource = repeat.build()
-        self._internal.spec.repeat = repeat_resource
-    
-        return self
-    
-    def grid_layout(self, grid_layout_kind: cogbuilder.Builder[dashboardv2beta1.GridLayoutKind]) -> typing.Self:    
-        if self._internal.spec is None:
-            self._internal.spec = dashboardv2beta1.RowsLayoutRowSpec()
-        assert isinstance(self._internal.spec, dashboardv2beta1.RowsLayoutRowSpec)
-        grid_layout_kind_resource = grid_layout_kind.build()
-        self._internal.spec.layout = grid_layout_kind_resource
-    
-        return self
-    
-    def auto_grid_layout(self, auto_grid_layout_kind: cogbuilder.Builder[dashboardv2beta1.AutoGridLayoutKind]) -> typing.Self:    
-        if self._internal.spec is None:
-            self._internal.spec = dashboardv2beta1.RowsLayoutRowSpec()
-        assert isinstance(self._internal.spec, dashboardv2beta1.RowsLayoutRowSpec)
-        auto_grid_layout_kind_resource = auto_grid_layout_kind.build()
-        self._internal.spec.layout = auto_grid_layout_kind_resource
-    
-        return self
-    
-    def tabs_layout(self, tabs_layout_kind: cogbuilder.Builder[dashboardv2beta1.TabsLayoutKind]) -> typing.Self:    
-        if self._internal.spec is None:
-            self._internal.spec = dashboardv2beta1.RowsLayoutRowSpec()
-        assert isinstance(self._internal.spec, dashboardv2beta1.RowsLayoutRowSpec)
-        tabs_layout_kind_resource = tabs_layout_kind.build()
-        self._internal.spec.layout = tabs_layout_kind_resource
-    
-        return self
-    
-    def rows_layout(self, rows_layout_kind: cogbuilder.Builder[dashboardv2beta1.RowsLayoutKind]) -> typing.Self:    
-        if self._internal.spec is None:
-            self._internal.spec = dashboardv2beta1.RowsLayoutRowSpec()
-        assert isinstance(self._internal.spec, dashboardv2beta1.RowsLayoutRowSpec)
-        rows_layout_kind_resource = rows_layout_kind.build()
-        self._internal.spec.layout = rows_layout_kind_resource
-    
-        return self
-    
-
-
-class TabsLayout(cogbuilder.Builder[dashboardv2beta1.TabsLayoutKind]):
-    _internal: dashboardv2beta1.TabsLayoutKind
-
-    def __init__(self) -> None:
-        self._internal = dashboardv2beta1.TabsLayoutKind()        
-        self._internal.kind = "TabsLayout"
-
-    def build(self) -> dashboardv2beta1.TabsLayoutKind:
-        """
-        Builds the object.
-        """
-        return self._internal    
-    
-    def tabs(self, tabs: list[cogbuilder.Builder[dashboardv2beta1.TabsLayoutTabKind]]) -> typing.Self:    
-        if self._internal.spec is None:
-            self._internal.spec = dashboardv2beta1.TabsLayoutSpec()
-        assert isinstance(self._internal.spec, dashboardv2beta1.TabsLayoutSpec)
-        tabs_resources = [r1.build() for r1 in tabs]
-        self._internal.spec.tabs = tabs_resources
-    
-        return self
-    
-    def tab(self, tab: cogbuilder.Builder[dashboardv2beta1.TabsLayoutTabKind]) -> typing.Self:    
-        if self._internal.spec is None:
-            self._internal.spec = dashboardv2beta1.TabsLayoutSpec()
-        assert isinstance(self._internal.spec, dashboardv2beta1.TabsLayoutSpec)
-        if self._internal.spec.tabs is None:
-            self._internal.spec.tabs = []
-        
-        tab_resource = tab.build()
-        self._internal.spec.tabs.append(tab_resource)
-    
-        return self
-    
-
-
-class TabsLayoutTab(cogbuilder.Builder[dashboardv2beta1.TabsLayoutTabKind]):
-    _internal: dashboardv2beta1.TabsLayoutTabKind
-
-    def __init__(self, title: str) -> None:
-        self._internal = dashboardv2beta1.TabsLayoutTabKind()        
-        self._internal.kind = "TabsLayoutTab"        
-        if self._internal.spec is None:
-            self._internal.spec = dashboardv2beta1.TabsLayoutTabSpec()
-        assert isinstance(self._internal.spec, dashboardv2beta1.TabsLayoutTabSpec)
-        self._internal.spec.title = title
-
-    def build(self) -> dashboardv2beta1.TabsLayoutTabKind:
-        """
-        Builds the object.
-        """
-        return self._internal    
-    
-    def title(self, title: str) -> typing.Self:    
-        if self._internal.spec is None:
-            self._internal.spec = dashboardv2beta1.TabsLayoutTabSpec()
-        assert isinstance(self._internal.spec, dashboardv2beta1.TabsLayoutTabSpec)
-        self._internal.spec.title = title
-    
-        return self
-    
-    def grid_layout(self, grid_layout_kind: cogbuilder.Builder[dashboardv2beta1.GridLayoutKind]) -> typing.Self:    
-        if self._internal.spec is None:
-            self._internal.spec = dashboardv2beta1.TabsLayoutTabSpec()
-        assert isinstance(self._internal.spec, dashboardv2beta1.TabsLayoutTabSpec)
-        grid_layout_kind_resource = grid_layout_kind.build()
-        self._internal.spec.layout = grid_layout_kind_resource
-    
-        return self
-    
-    def rows_layout(self, rows_layout_kind: cogbuilder.Builder[dashboardv2beta1.RowsLayoutKind]) -> typing.Self:    
-        if self._internal.spec is None:
-            self._internal.spec = dashboardv2beta1.TabsLayoutTabSpec()
-        assert isinstance(self._internal.spec, dashboardv2beta1.TabsLayoutTabSpec)
-        rows_layout_kind_resource = rows_layout_kind.build()
-        self._internal.spec.layout = rows_layout_kind_resource
-    
-        return self
-    
-    def auto_grid_layout(self, auto_grid_layout_kind: cogbuilder.Builder[dashboardv2beta1.AutoGridLayoutKind]) -> typing.Self:    
-        if self._internal.spec is None:
-            self._internal.spec = dashboardv2beta1.TabsLayoutTabSpec()
-        assert isinstance(self._internal.spec, dashboardv2beta1.TabsLayoutTabSpec)
-        auto_grid_layout_kind_resource = auto_grid_layout_kind.build()
-        self._internal.spec.layout = auto_grid_layout_kind_resource
-    
-        return self
-    
-    def tabs_layout(self, tabs_layout_kind: cogbuilder.Builder[dashboardv2beta1.TabsLayoutKind]) -> typing.Self:    
-        if self._internal.spec is None:
-            self._internal.spec = dashboardv2beta1.TabsLayoutTabSpec()
-        assert isinstance(self._internal.spec, dashboardv2beta1.TabsLayoutTabSpec)
-        tabs_layout_kind_resource = tabs_layout_kind.build()
-        self._internal.spec.layout = tabs_layout_kind_resource
-    
-        return self
-    
-    def conditional_rendering(self, conditional_rendering: cogbuilder.Builder[dashboardv2beta1.ConditionalRenderingGroupKind]) -> typing.Self:    
-        if self._internal.spec is None:
-            self._internal.spec = dashboardv2beta1.TabsLayoutTabSpec()
-        assert isinstance(self._internal.spec, dashboardv2beta1.TabsLayoutTabSpec)
-        conditional_rendering_resource = conditional_rendering.build()
-        self._internal.spec.conditional_rendering = conditional_rendering_resource
-    
-        return self
-    
-    def repeat(self, repeat: cogbuilder.Builder[dashboardv2beta1.TabRepeatOptions]) -> typing.Self:    
-        if self._internal.spec is None:
-            self._internal.spec = dashboardv2beta1.TabsLayoutTabSpec()
-        assert isinstance(self._internal.spec, dashboardv2beta1.TabsLayoutTabSpec)
-        repeat_resource = repeat.build()
-        self._internal.spec.repeat = repeat_resource
-    
-        return self
-    
-
-
-class GridLayout(cogbuilder.Builder[dashboardv2beta1.GridLayoutKind]):
-    _internal: dashboardv2beta1.GridLayoutKind
-
-    def __init__(self) -> None:
-        self._internal = dashboardv2beta1.GridLayoutKind()        
-        self._internal.kind = "GridLayout"
-
-    def build(self) -> dashboardv2beta1.GridLayoutKind:
-        """
-        Builds the object.
-        """
-        return self._internal    
-    
-    def items(self, items: list[cogbuilder.Builder[dashboardv2beta1.GridLayoutItemKind]]) -> typing.Self:    
-        if self._internal.spec is None:
-            self._internal.spec = dashboardv2beta1.GridLayoutSpec()
-        assert isinstance(self._internal.spec, dashboardv2beta1.GridLayoutSpec)
-        items_resources = [r1.build() for r1 in items]
-        self._internal.spec.items = items_resources
-    
-        return self
-    
-    def item(self, item: cogbuilder.Builder[dashboardv2beta1.GridLayoutItemKind]) -> typing.Self:    
-        if self._internal.spec is None:
-            self._internal.spec = dashboardv2beta1.GridLayoutSpec()
-        assert isinstance(self._internal.spec, dashboardv2beta1.GridLayoutSpec)
-        if self._internal.spec.items is None:
-            self._internal.spec.items = []
-        
-        item_resource = item.build()
-        self._internal.spec.items.append(item_resource)
-    
-        return self
-    
-
-
-class GridLayoutItem(cogbuilder.Builder[dashboardv2beta1.GridLayoutItemKind]):
-    _internal: dashboardv2beta1.GridLayoutItemKind
-
-    def __init__(self, name: str) -> None:
-        self._internal = dashboardv2beta1.GridLayoutItemKind()        
-        self._internal.kind = "GridLayoutItem"        
-        if self._internal.spec is None:
-            self._internal.spec = dashboardv2beta1.GridLayoutItemSpec()
-        assert isinstance(self._internal.spec, dashboardv2beta1.GridLayoutItemSpec)
-        if self._internal.spec.element is None:
-            self._internal.spec.element = dashboardv2beta1.ElementReference()
-        assert isinstance(self._internal.spec.element, dashboardv2beta1.ElementReference)
-        self._internal.spec.element.kind = "ElementReference"        
-        self._internal.spec.element.name = name
-
-    def build(self) -> dashboardv2beta1.GridLayoutItemKind:
-        """
-        Builds the object.
-        """
-        return self._internal    
-    
-    def x(self, x: int) -> typing.Self:    
-        if self._internal.spec is None:
-            self._internal.spec = dashboardv2beta1.GridLayoutItemSpec()
-        assert isinstance(self._internal.spec, dashboardv2beta1.GridLayoutItemSpec)
-        self._internal.spec.x = x
-    
-        return self
-    
-    def y(self, y: int) -> typing.Self:    
-        if self._internal.spec is None:
-            self._internal.spec = dashboardv2beta1.GridLayoutItemSpec()
-        assert isinstance(self._internal.spec, dashboardv2beta1.GridLayoutItemSpec)
-        self._internal.spec.y = y
-    
-        return self
-    
-    def width(self, width: int) -> typing.Self:    
-        if self._internal.spec is None:
-            self._internal.spec = dashboardv2beta1.GridLayoutItemSpec()
-        assert isinstance(self._internal.spec, dashboardv2beta1.GridLayoutItemSpec)
-        self._internal.spec.width = width
-    
-        return self
-    
-    def height(self, height: int) -> typing.Self:    
-        if self._internal.spec is None:
-            self._internal.spec = dashboardv2beta1.GridLayoutItemSpec()
-        assert isinstance(self._internal.spec, dashboardv2beta1.GridLayoutItemSpec)
-        self._internal.spec.height = height
-    
-        return self
-    
-    def repeat(self, repeat: cogbuilder.Builder[dashboardv2beta1.RepeatOptions]) -> typing.Self:    
-        if self._internal.spec is None:
-            self._internal.spec = dashboardv2beta1.GridLayoutItemSpec()
-        assert isinstance(self._internal.spec, dashboardv2beta1.GridLayoutItemSpec)
-        repeat_resource = repeat.build()
-        self._internal.spec.repeat = repeat_resource
-    
-        return self
-    
-    def element(self, name: str) -> typing.Self:    
-        if self._internal.spec is None:
-            self._internal.spec = dashboardv2beta1.GridLayoutItemSpec()
-        assert isinstance(self._internal.spec, dashboardv2beta1.GridLayoutItemSpec)
-        if self._internal.spec.element is None:
-            self._internal.spec.element = dashboardv2beta1.ElementReference()
-        assert isinstance(self._internal.spec.element, dashboardv2beta1.ElementReference)
-        self._internal.spec.element.name = name
     
         return self
     
@@ -2541,9 +1302,9 @@ class QueryGroup(cogbuilder.Builder[dashboardv2beta1.QueryGroupKind]):
         assert isinstance(self._internal.spec, dashboardv2beta1.QueryGroupSpec)
         queries_resources = [r1.build() for r1 in queries]
         for query in queries_resources:
-        	if query.spec.ref_id == "":
-        		query.spec.ref_id = "query-%d" % self.__next_query_id
-        		self.__next_query_id += 1
+            if query.spec.ref_id == "":
+                query.spec.ref_id = "query-%d" % self.__next_query_id
+                self.__next_query_id += 1
         self._internal.spec.queries = queries_resources
     
         return self
@@ -2557,8 +1318,8 @@ class QueryGroup(cogbuilder.Builder[dashboardv2beta1.QueryGroupKind]):
         
         querie_resource = querie.build()
         if querie_resource.spec.ref_id == "":
-        	querie_resource.spec.ref_id = "query-%d" % self.__next_query_id
-        	self.__next_query_id += 1
+            querie_resource.spec.ref_id = "query-%d" % self.__next_query_id
+            self.__next_query_id += 1
         self._internal.spec.queries.append(querie_resource)
     
         return self
@@ -2870,520 +1631,138 @@ class Panel(cogbuilder.Builder[dashboardv2beta1.PanelKind]):
     
 
 
-class VizConfigKind(cogbuilder.Builder[dashboardv2beta1.VizConfigKind]):
-    _internal: dashboardv2beta1.VizConfigKind
+class ConditionalRenderingGroup(cogbuilder.Builder[dashboardv2beta1.ConditionalRenderingGroupKind]):
+    _internal: dashboardv2beta1.ConditionalRenderingGroupKind
 
     def __init__(self) -> None:
-        self._internal = dashboardv2beta1.VizConfigKind()        
-        self._internal.kind = "VizConfig"
+        self._internal = dashboardv2beta1.ConditionalRenderingGroupKind()        
+        self._internal.kind = "ConditionalRenderingGroup"
 
-    def build(self) -> dashboardv2beta1.VizConfigKind:
+    def build(self) -> dashboardv2beta1.ConditionalRenderingGroupKind:
         """
         Builds the object.
         """
         return self._internal    
     
-    def group(self, group: str) -> typing.Self:    
-        """
-        The group is the plugin ID
-        """
-            
-        self._internal.group = group
-    
-        return self
-    
-    def version(self, version: str) -> typing.Self:    
-        self._internal.version = version
-    
-        return self
-    
-    def spec(self, spec: dashboardv2beta1.VizConfigSpec) -> typing.Self:    
-        self._internal.spec = spec
-    
-        return self
-    
-    def options(self, options: object) -> typing.Self:    
+    def visibility(self, visibility: typing.Literal["show", "hide"]) -> typing.Self:    
         if self._internal.spec is None:
-            self._internal.spec = dashboardv2beta1.VizConfigSpec()
-        assert isinstance(self._internal.spec, dashboardv2beta1.VizConfigSpec)
-        self._internal.spec.options = options
+            self._internal.spec = dashboardv2beta1.ConditionalRenderingGroupSpec()
+        assert isinstance(self._internal.spec, dashboardv2beta1.ConditionalRenderingGroupSpec)
+        self._internal.spec.visibility = visibility
     
         return self
     
-    def field_config(self, field_config: dashboardv2beta1.FieldConfigSource) -> typing.Self:    
+    def condition(self, condition: typing.Literal["and", "or"]) -> typing.Self:    
         if self._internal.spec is None:
-            self._internal.spec = dashboardv2beta1.VizConfigSpec()
-        assert isinstance(self._internal.spec, dashboardv2beta1.VizConfigSpec)
-        self._internal.spec.field_config = field_config
+            self._internal.spec = dashboardv2beta1.ConditionalRenderingGroupSpec()
+        assert isinstance(self._internal.spec, dashboardv2beta1.ConditionalRenderingGroupSpec)
+        self._internal.spec.condition = condition
     
         return self
     
-    def display_name(self, display_name: str) -> typing.Self:    
-        """
-        The display value for this field.  This supports template variables blank is auto
-        """
-            
+    def items(self, items: list[typing.Union[cogbuilder.Builder[dashboardv2beta1.ConditionalRenderingVariableKind], cogbuilder.Builder[dashboardv2beta1.ConditionalRenderingDataKind], cogbuilder.Builder[dashboardv2beta1.ConditionalRenderingTimeRangeSizeKind]]]) -> typing.Self:    
         if self._internal.spec is None:
-            self._internal.spec = dashboardv2beta1.VizConfigSpec()
-        assert isinstance(self._internal.spec, dashboardv2beta1.VizConfigSpec)
-        if self._internal.spec.field_config is None:
-            self._internal.spec.field_config = dashboardv2beta1.FieldConfigSource()
-        assert isinstance(self._internal.spec.field_config, dashboardv2beta1.FieldConfigSource)
-        if self._internal.spec.field_config.defaults is None:
-            self._internal.spec.field_config.defaults = dashboardv2beta1.FieldConfig()
-        assert isinstance(self._internal.spec.field_config.defaults, dashboardv2beta1.FieldConfig)
-        self._internal.spec.field_config.defaults.display_name = display_name
+            self._internal.spec = dashboardv2beta1.ConditionalRenderingGroupSpec()
+        assert isinstance(self._internal.spec, dashboardv2beta1.ConditionalRenderingGroupSpec)
+        items_resources = [r1.build() for r1 in items]
+        self._internal.spec.items = items_resources
     
         return self
     
-    def display_name_from_ds(self, display_name_from_ds: str) -> typing.Self:    
-        """
-        This can be used by data sources that return and explicit naming structure for values and labels
-        When this property is configured, this value is used rather than the default naming strategy.
-        """
-            
+    def item(self, item: typing.Union[cogbuilder.Builder[dashboardv2beta1.ConditionalRenderingVariableKind], cogbuilder.Builder[dashboardv2beta1.ConditionalRenderingDataKind], cogbuilder.Builder[dashboardv2beta1.ConditionalRenderingTimeRangeSizeKind]]) -> typing.Self:    
         if self._internal.spec is None:
-            self._internal.spec = dashboardv2beta1.VizConfigSpec()
-        assert isinstance(self._internal.spec, dashboardv2beta1.VizConfigSpec)
-        if self._internal.spec.field_config is None:
-            self._internal.spec.field_config = dashboardv2beta1.FieldConfigSource()
-        assert isinstance(self._internal.spec.field_config, dashboardv2beta1.FieldConfigSource)
-        if self._internal.spec.field_config.defaults is None:
-            self._internal.spec.field_config.defaults = dashboardv2beta1.FieldConfig()
-        assert isinstance(self._internal.spec.field_config.defaults, dashboardv2beta1.FieldConfig)
-        self._internal.spec.field_config.defaults.display_name_from_ds = display_name_from_ds
-    
-        return self
-    
-    def description(self, description: str) -> typing.Self:    
-        """
-        Human readable field metadata
-        """
-            
-        if self._internal.spec is None:
-            self._internal.spec = dashboardv2beta1.VizConfigSpec()
-        assert isinstance(self._internal.spec, dashboardv2beta1.VizConfigSpec)
-        if self._internal.spec.field_config is None:
-            self._internal.spec.field_config = dashboardv2beta1.FieldConfigSource()
-        assert isinstance(self._internal.spec.field_config, dashboardv2beta1.FieldConfigSource)
-        if self._internal.spec.field_config.defaults is None:
-            self._internal.spec.field_config.defaults = dashboardv2beta1.FieldConfig()
-        assert isinstance(self._internal.spec.field_config.defaults, dashboardv2beta1.FieldConfig)
-        self._internal.spec.field_config.defaults.description = description
-    
-        return self
-    
-    def path(self, path: str) -> typing.Self:    
-        """
-        An explicit path to the field in the datasource.  When the frame meta includes a path,
-        This will default to `${frame.meta.path}/${field.name}
+            self._internal.spec = dashboardv2beta1.ConditionalRenderingGroupSpec()
+        assert isinstance(self._internal.spec, dashboardv2beta1.ConditionalRenderingGroupSpec)
+        if self._internal.spec.items is None:
+            self._internal.spec.items = []
         
-        When defined, this value can be used as an identifier within the datasource scope, and
-        may be used to update the results
-        """
-            
-        if self._internal.spec is None:
-            self._internal.spec = dashboardv2beta1.VizConfigSpec()
-        assert isinstance(self._internal.spec, dashboardv2beta1.VizConfigSpec)
-        if self._internal.spec.field_config is None:
-            self._internal.spec.field_config = dashboardv2beta1.FieldConfigSource()
-        assert isinstance(self._internal.spec.field_config, dashboardv2beta1.FieldConfigSource)
-        if self._internal.spec.field_config.defaults is None:
-            self._internal.spec.field_config.defaults = dashboardv2beta1.FieldConfig()
-        assert isinstance(self._internal.spec.field_config.defaults, dashboardv2beta1.FieldConfig)
-        self._internal.spec.field_config.defaults.path = path
+        item_resource = item.build()
+        self._internal.spec.items.append(item_resource)
     
         return self
     
-    def writeable(self, writeable: bool) -> typing.Self:    
+
+
+class ConditionalRenderingData(cogbuilder.Builder[dashboardv2beta1.ConditionalRenderingDataKind]):
+    _internal: dashboardv2beta1.ConditionalRenderingDataKind
+
+    def __init__(self) -> None:
+        self._internal = dashboardv2beta1.ConditionalRenderingDataKind()        
+        self._internal.kind = "ConditionalRenderingData"
+
+    def build(self) -> dashboardv2beta1.ConditionalRenderingDataKind:
         """
-        True if data source can write a value to the path. Auth/authz are supported separately
+        Builds the object.
         """
-            
+        return self._internal    
+    
+    def value(self, value: bool) -> typing.Self:    
         if self._internal.spec is None:
-            self._internal.spec = dashboardv2beta1.VizConfigSpec()
-        assert isinstance(self._internal.spec, dashboardv2beta1.VizConfigSpec)
-        if self._internal.spec.field_config is None:
-            self._internal.spec.field_config = dashboardv2beta1.FieldConfigSource()
-        assert isinstance(self._internal.spec.field_config, dashboardv2beta1.FieldConfigSource)
-        if self._internal.spec.field_config.defaults is None:
-            self._internal.spec.field_config.defaults = dashboardv2beta1.FieldConfig()
-        assert isinstance(self._internal.spec.field_config.defaults, dashboardv2beta1.FieldConfig)
-        self._internal.spec.field_config.defaults.writeable = writeable
+            self._internal.spec = dashboardv2beta1.ConditionalRenderingDataSpec()
+        assert isinstance(self._internal.spec, dashboardv2beta1.ConditionalRenderingDataSpec)
+        self._internal.spec.value = value
     
         return self
     
-    def filterable(self, filterable: bool) -> typing.Self:    
+
+
+class ConditionalRenderingTimeRangeSize(cogbuilder.Builder[dashboardv2beta1.ConditionalRenderingTimeRangeSizeKind]):
+    _internal: dashboardv2beta1.ConditionalRenderingTimeRangeSizeKind
+
+    def __init__(self) -> None:
+        self._internal = dashboardv2beta1.ConditionalRenderingTimeRangeSizeKind()        
+        self._internal.kind = "ConditionalRenderingTimeRangeSize"
+
+    def build(self) -> dashboardv2beta1.ConditionalRenderingTimeRangeSizeKind:
         """
-        True if data source field supports ad-hoc filters
+        Builds the object.
         """
-            
+        return self._internal    
+    
+    def value(self, value: str) -> typing.Self:    
         if self._internal.spec is None:
-            self._internal.spec = dashboardv2beta1.VizConfigSpec()
-        assert isinstance(self._internal.spec, dashboardv2beta1.VizConfigSpec)
-        if self._internal.spec.field_config is None:
-            self._internal.spec.field_config = dashboardv2beta1.FieldConfigSource()
-        assert isinstance(self._internal.spec.field_config, dashboardv2beta1.FieldConfigSource)
-        if self._internal.spec.field_config.defaults is None:
-            self._internal.spec.field_config.defaults = dashboardv2beta1.FieldConfig()
-        assert isinstance(self._internal.spec.field_config.defaults, dashboardv2beta1.FieldConfig)
-        self._internal.spec.field_config.defaults.filterable = filterable
+            self._internal.spec = dashboardv2beta1.ConditionalRenderingTimeRangeSizeSpec()
+        assert isinstance(self._internal.spec, dashboardv2beta1.ConditionalRenderingTimeRangeSizeSpec)
+        self._internal.spec.value = value
     
         return self
     
-    def unit(self, unit: str) -> typing.Self:    
+
+
+class ConditionalRenderingVariable(cogbuilder.Builder[dashboardv2beta1.ConditionalRenderingVariableKind]):
+    _internal: dashboardv2beta1.ConditionalRenderingVariableKind
+
+    def __init__(self) -> None:
+        self._internal = dashboardv2beta1.ConditionalRenderingVariableKind()        
+        self._internal.kind = "ConditionalRenderingVariable"
+
+    def build(self) -> dashboardv2beta1.ConditionalRenderingVariableKind:
         """
-        Unit a field should use. The unit you select is applied to all fields except time.
-        You can use the units ID availables in Grafana or a custom unit.
-        Available units in Grafana: https://github.com/grafana/grafana/blob/main/packages/grafana-data/src/valueFormats/categories.ts
-        As custom unit, you can use the following formats:
-        `suffix:<suffix>` for custom unit that should go after value.
-        `prefix:<prefix>` for custom unit that should go before value.
-        `time:<format>` For custom date time formats type for example `time:YYYY-MM-DD`.
-        `si:<base scale><unit characters>` for custom SI units. For example: `si: mF`. This one is a bit more advanced as you can specify both a unit and the source data scale. So if your source data is represented as milli (thousands of) something prefix the unit with that SI scale character.
-        `count:<unit>` for a custom count unit.
-        `currency:<unit>` for custom a currency unit.
+        Builds the object.
         """
-            
+        return self._internal    
+    
+    def variable(self, variable: str) -> typing.Self:    
         if self._internal.spec is None:
-            self._internal.spec = dashboardv2beta1.VizConfigSpec()
-        assert isinstance(self._internal.spec, dashboardv2beta1.VizConfigSpec)
-        if self._internal.spec.field_config is None:
-            self._internal.spec.field_config = dashboardv2beta1.FieldConfigSource()
-        assert isinstance(self._internal.spec.field_config, dashboardv2beta1.FieldConfigSource)
-        if self._internal.spec.field_config.defaults is None:
-            self._internal.spec.field_config.defaults = dashboardv2beta1.FieldConfig()
-        assert isinstance(self._internal.spec.field_config.defaults, dashboardv2beta1.FieldConfig)
-        self._internal.spec.field_config.defaults.unit = unit
+            self._internal.spec = dashboardv2beta1.ConditionalRenderingVariableSpec()
+        assert isinstance(self._internal.spec, dashboardv2beta1.ConditionalRenderingVariableSpec)
+        self._internal.spec.variable = variable
     
         return self
     
-    def decimals(self, decimals: float) -> typing.Self:    
-        """
-        Specify the number of decimals Grafana includes in the rendered value.
-        If you leave this field blank, Grafana automatically truncates the number of decimals based on the value.
-        For example 1.1234 will display as 1.12 and 100.456 will display as 100.
-        To display all decimals, set the unit to `String`.
-        """
-            
+    def operator(self, operator: typing.Literal["equals", "notEquals", "matches", "notMatches"]) -> typing.Self:    
         if self._internal.spec is None:
-            self._internal.spec = dashboardv2beta1.VizConfigSpec()
-        assert isinstance(self._internal.spec, dashboardv2beta1.VizConfigSpec)
-        if self._internal.spec.field_config is None:
-            self._internal.spec.field_config = dashboardv2beta1.FieldConfigSource()
-        assert isinstance(self._internal.spec.field_config, dashboardv2beta1.FieldConfigSource)
-        if self._internal.spec.field_config.defaults is None:
-            self._internal.spec.field_config.defaults = dashboardv2beta1.FieldConfig()
-        assert isinstance(self._internal.spec.field_config.defaults, dashboardv2beta1.FieldConfig)
-        self._internal.spec.field_config.defaults.decimals = decimals
+            self._internal.spec = dashboardv2beta1.ConditionalRenderingVariableSpec()
+        assert isinstance(self._internal.spec, dashboardv2beta1.ConditionalRenderingVariableSpec)
+        self._internal.spec.operator = operator
     
         return self
     
-    def min(self, min_val: float) -> typing.Self:    
-        """
-        The minimum value used in percentage threshold calculations. Leave blank for auto calculation based on all series and fields.
-        """
-            
+    def value(self, value: str) -> typing.Self:    
         if self._internal.spec is None:
-            self._internal.spec = dashboardv2beta1.VizConfigSpec()
-        assert isinstance(self._internal.spec, dashboardv2beta1.VizConfigSpec)
-        if self._internal.spec.field_config is None:
-            self._internal.spec.field_config = dashboardv2beta1.FieldConfigSource()
-        assert isinstance(self._internal.spec.field_config, dashboardv2beta1.FieldConfigSource)
-        if self._internal.spec.field_config.defaults is None:
-            self._internal.spec.field_config.defaults = dashboardv2beta1.FieldConfig()
-        assert isinstance(self._internal.spec.field_config.defaults, dashboardv2beta1.FieldConfig)
-        self._internal.spec.field_config.defaults.min_val = min_val
-    
-        return self
-    
-    def max(self, max_val: float) -> typing.Self:    
-        """
-        The maximum value used in percentage threshold calculations. Leave blank for auto calculation based on all series and fields.
-        """
-            
-        if self._internal.spec is None:
-            self._internal.spec = dashboardv2beta1.VizConfigSpec()
-        assert isinstance(self._internal.spec, dashboardv2beta1.VizConfigSpec)
-        if self._internal.spec.field_config is None:
-            self._internal.spec.field_config = dashboardv2beta1.FieldConfigSource()
-        assert isinstance(self._internal.spec.field_config, dashboardv2beta1.FieldConfigSource)
-        if self._internal.spec.field_config.defaults is None:
-            self._internal.spec.field_config.defaults = dashboardv2beta1.FieldConfig()
-        assert isinstance(self._internal.spec.field_config.defaults, dashboardv2beta1.FieldConfig)
-        self._internal.spec.field_config.defaults.max_val = max_val
-    
-        return self
-    
-    def mappings(self, mappings: list[dashboardv2beta1.ValueMapping]) -> typing.Self:    
-        """
-        Convert input values into a display string
-        """
-            
-        if self._internal.spec is None:
-            self._internal.spec = dashboardv2beta1.VizConfigSpec()
-        assert isinstance(self._internal.spec, dashboardv2beta1.VizConfigSpec)
-        if self._internal.spec.field_config is None:
-            self._internal.spec.field_config = dashboardv2beta1.FieldConfigSource()
-        assert isinstance(self._internal.spec.field_config, dashboardv2beta1.FieldConfigSource)
-        if self._internal.spec.field_config.defaults is None:
-            self._internal.spec.field_config.defaults = dashboardv2beta1.FieldConfig()
-        assert isinstance(self._internal.spec.field_config.defaults, dashboardv2beta1.FieldConfig)
-        self._internal.spec.field_config.defaults.mappings = mappings
-    
-        return self
-    
-    def thresholds(self, thresholds: cogbuilder.Builder[dashboardv2beta1.ThresholdsConfig]) -> typing.Self:    
-        """
-        Map numeric values to states
-        """
-            
-        if self._internal.spec is None:
-            self._internal.spec = dashboardv2beta1.VizConfigSpec()
-        assert isinstance(self._internal.spec, dashboardv2beta1.VizConfigSpec)
-        if self._internal.spec.field_config is None:
-            self._internal.spec.field_config = dashboardv2beta1.FieldConfigSource()
-        assert isinstance(self._internal.spec.field_config, dashboardv2beta1.FieldConfigSource)
-        if self._internal.spec.field_config.defaults is None:
-            self._internal.spec.field_config.defaults = dashboardv2beta1.FieldConfig()
-        assert isinstance(self._internal.spec.field_config.defaults, dashboardv2beta1.FieldConfig)
-        thresholds_resource = thresholds.build()
-        self._internal.spec.field_config.defaults.thresholds = thresholds_resource
-    
-        return self
-    
-    def color_scheme(self, color: cogbuilder.Builder[dashboardv2beta1.FieldColor]) -> typing.Self:    
-        """
-        Panel color configuration
-        """
-            
-        if self._internal.spec is None:
-            self._internal.spec = dashboardv2beta1.VizConfigSpec()
-        assert isinstance(self._internal.spec, dashboardv2beta1.VizConfigSpec)
-        if self._internal.spec.field_config is None:
-            self._internal.spec.field_config = dashboardv2beta1.FieldConfigSource()
-        assert isinstance(self._internal.spec.field_config, dashboardv2beta1.FieldConfigSource)
-        if self._internal.spec.field_config.defaults is None:
-            self._internal.spec.field_config.defaults = dashboardv2beta1.FieldConfig()
-        assert isinstance(self._internal.spec.field_config.defaults, dashboardv2beta1.FieldConfig)
-        color_resource = color.build()
-        self._internal.spec.field_config.defaults.color = color_resource
-    
-        return self
-    
-    def data_links(self, links: list[object]) -> typing.Self:    
-        """
-        The behavior when clicking on a result
-        """
-            
-        if self._internal.spec is None:
-            self._internal.spec = dashboardv2beta1.VizConfigSpec()
-        assert isinstance(self._internal.spec, dashboardv2beta1.VizConfigSpec)
-        if self._internal.spec.field_config is None:
-            self._internal.spec.field_config = dashboardv2beta1.FieldConfigSource()
-        assert isinstance(self._internal.spec.field_config, dashboardv2beta1.FieldConfigSource)
-        if self._internal.spec.field_config.defaults is None:
-            self._internal.spec.field_config.defaults = dashboardv2beta1.FieldConfig()
-        assert isinstance(self._internal.spec.field_config.defaults, dashboardv2beta1.FieldConfig)
-        self._internal.spec.field_config.defaults.links = links
-    
-        return self
-    
-    def actions(self, actions: list[cogbuilder.Builder[dashboardv2beta1.Action]]) -> typing.Self:    
-        """
-        Define interactive HTTP requests that can be triggered from data visualizations.
-        """
-            
-        if self._internal.spec is None:
-            self._internal.spec = dashboardv2beta1.VizConfigSpec()
-        assert isinstance(self._internal.spec, dashboardv2beta1.VizConfigSpec)
-        if self._internal.spec.field_config is None:
-            self._internal.spec.field_config = dashboardv2beta1.FieldConfigSource()
-        assert isinstance(self._internal.spec.field_config, dashboardv2beta1.FieldConfigSource)
-        if self._internal.spec.field_config.defaults is None:
-            self._internal.spec.field_config.defaults = dashboardv2beta1.FieldConfig()
-        assert isinstance(self._internal.spec.field_config.defaults, dashboardv2beta1.FieldConfig)
-        actions_resources = [r1.build() for r1 in actions]
-        self._internal.spec.field_config.defaults.actions = actions_resources
-    
-        return self
-    
-    def no_value(self, no_value: str) -> typing.Self:    
-        """
-        Alternative to empty string
-        """
-            
-        if self._internal.spec is None:
-            self._internal.spec = dashboardv2beta1.VizConfigSpec()
-        assert isinstance(self._internal.spec, dashboardv2beta1.VizConfigSpec)
-        if self._internal.spec.field_config is None:
-            self._internal.spec.field_config = dashboardv2beta1.FieldConfigSource()
-        assert isinstance(self._internal.spec.field_config, dashboardv2beta1.FieldConfigSource)
-        if self._internal.spec.field_config.defaults is None:
-            self._internal.spec.field_config.defaults = dashboardv2beta1.FieldConfig()
-        assert isinstance(self._internal.spec.field_config.defaults, dashboardv2beta1.FieldConfig)
-        self._internal.spec.field_config.defaults.no_value = no_value
-    
-        return self
-    
-    def custom(self, custom: object) -> typing.Self:    
-        """
-        custom is specified by the FieldConfig field
-        in panel plugin schemas.
-        """
-            
-        if self._internal.spec is None:
-            self._internal.spec = dashboardv2beta1.VizConfigSpec()
-        assert isinstance(self._internal.spec, dashboardv2beta1.VizConfigSpec)
-        if self._internal.spec.field_config is None:
-            self._internal.spec.field_config = dashboardv2beta1.FieldConfigSource()
-        assert isinstance(self._internal.spec.field_config, dashboardv2beta1.FieldConfigSource)
-        if self._internal.spec.field_config.defaults is None:
-            self._internal.spec.field_config.defaults = dashboardv2beta1.FieldConfig()
-        assert isinstance(self._internal.spec.field_config.defaults, dashboardv2beta1.FieldConfig)
-        self._internal.spec.field_config.defaults.custom = custom
-    
-        return self
-    
-    def defaults(self, defaults: dashboardv2beta1.FieldConfig) -> typing.Self:    
-        """
-        Defaults are the options applied to all fields.
-        """
-            
-        if self._internal.spec is None:
-            self._internal.spec = dashboardv2beta1.VizConfigSpec()
-        assert isinstance(self._internal.spec, dashboardv2beta1.VizConfigSpec)
-        if self._internal.spec.field_config is None:
-            self._internal.spec.field_config = dashboardv2beta1.FieldConfigSource()
-        assert isinstance(self._internal.spec.field_config, dashboardv2beta1.FieldConfigSource)
-        self._internal.spec.field_config.defaults = defaults
-    
-        return self
-    
-    def overrides(self, overrides: list[cogbuilder.Builder[dashboardv2beta1.Dashboardv2beta1FieldConfigSourceOverrides]]) -> typing.Self:    
-        """
-        Overrides are the options applied to specific fields overriding the defaults.
-        """
-            
-        if self._internal.spec is None:
-            self._internal.spec = dashboardv2beta1.VizConfigSpec()
-        assert isinstance(self._internal.spec, dashboardv2beta1.VizConfigSpec)
-        if self._internal.spec.field_config is None:
-            self._internal.spec.field_config = dashboardv2beta1.FieldConfigSource()
-        assert isinstance(self._internal.spec.field_config, dashboardv2beta1.FieldConfigSource)
-        overrides_resources = [r1.build() for r1 in overrides]
-        self._internal.spec.field_config.overrides = overrides_resources
-    
-        return self
-    
-    def override(self, override: cogbuilder.Builder[dashboardv2beta1.Dashboardv2beta1FieldConfigSourceOverrides]) -> typing.Self:    
-        """
-        Overrides are the options applied to specific fields overriding the defaults.
-        """
-            
-        if self._internal.spec is None:
-            self._internal.spec = dashboardv2beta1.VizConfigSpec()
-        assert isinstance(self._internal.spec, dashboardv2beta1.VizConfigSpec)
-        if self._internal.spec.field_config is None:
-            self._internal.spec.field_config = dashboardv2beta1.FieldConfigSource()
-        assert isinstance(self._internal.spec.field_config, dashboardv2beta1.FieldConfigSource)
-        if self._internal.spec.field_config.overrides is None:
-            self._internal.spec.field_config.overrides = []
-        
-        override_resource = override.build()
-        self._internal.spec.field_config.overrides.append(override_resource)
-    
-        return self
-    
-    def override_by_name(self, name: str, properties: list[dashboardv2beta1.DynamicConfigValue]) -> typing.Self:    
-        """
-        Adds override rules for a specific field, referred to by its name.
-        """
-            
-        if self._internal.spec is None:
-            self._internal.spec = dashboardv2beta1.VizConfigSpec()
-        assert isinstance(self._internal.spec, dashboardv2beta1.VizConfigSpec)
-        if self._internal.spec.field_config is None:
-            self._internal.spec.field_config = dashboardv2beta1.FieldConfigSource()
-        assert isinstance(self._internal.spec.field_config, dashboardv2beta1.FieldConfigSource)
-        if self._internal.spec.field_config.overrides is None:
-            self._internal.spec.field_config.overrides = []
-        
-        self._internal.spec.field_config.overrides.append(dashboardv2beta1.Dashboardv2beta1FieldConfigSourceOverrides(
-            matcher=dashboardv2beta1.MatcherConfig(
-            id_val="byName",
-            options=name,
-        ),
-            properties=properties,
-        ))
-    
-        return self
-    
-    def override_by_regexp(self, regexp: str, properties: list[dashboardv2beta1.DynamicConfigValue]) -> typing.Self:    
-        """
-        Adds override rules for the fields whose name match the given regexp.
-        """
-            
-        if self._internal.spec is None:
-            self._internal.spec = dashboardv2beta1.VizConfigSpec()
-        assert isinstance(self._internal.spec, dashboardv2beta1.VizConfigSpec)
-        if self._internal.spec.field_config is None:
-            self._internal.spec.field_config = dashboardv2beta1.FieldConfigSource()
-        assert isinstance(self._internal.spec.field_config, dashboardv2beta1.FieldConfigSource)
-        if self._internal.spec.field_config.overrides is None:
-            self._internal.spec.field_config.overrides = []
-        
-        self._internal.spec.field_config.overrides.append(dashboardv2beta1.Dashboardv2beta1FieldConfigSourceOverrides(
-            matcher=dashboardv2beta1.MatcherConfig(
-            id_val="byRegexp",
-            options=regexp,
-        ),
-            properties=properties,
-        ))
-    
-        return self
-    
-    def override_by_field_type(self, field_type: str, properties: list[dashboardv2beta1.DynamicConfigValue]) -> typing.Self:    
-        """
-        Adds override rules for all the fields of the given type.
-        """
-            
-        if self._internal.spec is None:
-            self._internal.spec = dashboardv2beta1.VizConfigSpec()
-        assert isinstance(self._internal.spec, dashboardv2beta1.VizConfigSpec)
-        if self._internal.spec.field_config is None:
-            self._internal.spec.field_config = dashboardv2beta1.FieldConfigSource()
-        assert isinstance(self._internal.spec.field_config, dashboardv2beta1.FieldConfigSource)
-        if self._internal.spec.field_config.overrides is None:
-            self._internal.spec.field_config.overrides = []
-        
-        self._internal.spec.field_config.overrides.append(dashboardv2beta1.Dashboardv2beta1FieldConfigSourceOverrides(
-            matcher=dashboardv2beta1.MatcherConfig(
-            id_val="byType",
-            options=field_type,
-        ),
-            properties=properties,
-        ))
-    
-        return self
-    
-    def override_by_query(self, query_ref_id: str, properties: list[dashboardv2beta1.DynamicConfigValue]) -> typing.Self:    
-        if self._internal.spec is None:
-            self._internal.spec = dashboardv2beta1.VizConfigSpec()
-        assert isinstance(self._internal.spec, dashboardv2beta1.VizConfigSpec)
-        if self._internal.spec.field_config is None:
-            self._internal.spec.field_config = dashboardv2beta1.FieldConfigSource()
-        assert isinstance(self._internal.spec.field_config, dashboardv2beta1.FieldConfigSource)
-        if self._internal.spec.field_config.overrides is None:
-            self._internal.spec.field_config.overrides = []
-        
-        self._internal.spec.field_config.overrides.append(dashboardv2beta1.Dashboardv2beta1FieldConfigSourceOverrides(
-            matcher=dashboardv2beta1.MatcherConfig(
-            id_val="byFrameRefID",
-            options=query_ref_id,
-        ),
-            properties=properties,
-        ))
+            self._internal.spec = dashboardv2beta1.ConditionalRenderingVariableSpec()
+        assert isinstance(self._internal.spec, dashboardv2beta1.ConditionalRenderingVariableSpec)
+        self._internal.spec.value = value
     
         return self
     
@@ -3453,27 +1832,9 @@ class Dashboard(cogbuilder.Builder[dashboardv2beta1.Dashboard]):
     
         return self
     
-    def grid_layout(self, grid_layout_kind: cogbuilder.Builder[dashboardv2beta1.GridLayoutKind]) -> typing.Self:    
-        grid_layout_kind_resource = grid_layout_kind.build()
-        self._internal.layout = grid_layout_kind_resource
-    
-        return self
-    
-    def rows_layout(self, rows_layout_kind: cogbuilder.Builder[dashboardv2beta1.RowsLayoutKind]) -> typing.Self:    
-        rows_layout_kind_resource = rows_layout_kind.build()
-        self._internal.layout = rows_layout_kind_resource
-    
-        return self
-    
-    def auto_grid_layout(self, auto_grid_layout_kind: cogbuilder.Builder[dashboardv2beta1.AutoGridLayoutKind]) -> typing.Self:    
-        auto_grid_layout_kind_resource = auto_grid_layout_kind.build()
-        self._internal.layout = auto_grid_layout_kind_resource
-    
-        return self
-    
-    def tabs_layout(self, tabs_layout_kind: cogbuilder.Builder[dashboardv2beta1.TabsLayoutKind]) -> typing.Self:    
-        tabs_layout_kind_resource = tabs_layout_kind.build()
-        self._internal.layout = tabs_layout_kind_resource
+    def layout(self, layout: typing.Union[cogbuilder.Builder[dashboardv2beta1.GridLayoutKind], cogbuilder.Builder[dashboardv2beta1.RowsLayoutKind], cogbuilder.Builder[dashboardv2beta1.AutoGridLayoutKind], cogbuilder.Builder[dashboardv2beta1.TabsLayoutKind]]) -> typing.Self:    
+        layout_resource = layout.build()
+        self._internal.layout = layout_resource
     
         return self
     
@@ -3578,6 +1939,508 @@ def manifest(name: str, dashboard: cogbuilder.Builder[dashboardv2beta1.Dashboard
     return builder
 
 
+class Rows(cogbuilder.Builder[dashboardv2beta1.RowsLayoutKind]):
+    _internal: dashboardv2beta1.RowsLayoutKind
+
+    def __init__(self) -> None:
+        self._internal = dashboardv2beta1.RowsLayoutKind()        
+        self._internal.kind = "RowsLayout"
+
+    def build(self) -> dashboardv2beta1.RowsLayoutKind:
+        """
+        Builds the object.
+        """
+        return self._internal    
+    
+    def rows(self, rows: list[cogbuilder.Builder[dashboardv2beta1.RowsLayoutRowKind]]) -> typing.Self:    
+        if self._internal.spec is None:
+            self._internal.spec = dashboardv2beta1.RowsLayoutSpec()
+        assert isinstance(self._internal.spec, dashboardv2beta1.RowsLayoutSpec)
+        rows_resources = [r1.build() for r1 in rows]
+        self._internal.spec.rows = rows_resources
+    
+        return self
+    
+    def row(self, row: cogbuilder.Builder[dashboardv2beta1.RowsLayoutRowKind]) -> typing.Self:    
+        if self._internal.spec is None:
+            self._internal.spec = dashboardv2beta1.RowsLayoutSpec()
+        assert isinstance(self._internal.spec, dashboardv2beta1.RowsLayoutSpec)
+        if self._internal.spec.rows is None:
+            self._internal.spec.rows = []
+        
+        row_resource = row.build()
+        self._internal.spec.rows.append(row_resource)
+    
+        return self
+    
+
+def rows() -> Rows:
+    builder = Rows()
+
+    return builder
+
+
+class Row(cogbuilder.Builder[dashboardv2beta1.RowsLayoutRowKind]):
+    _internal: dashboardv2beta1.RowsLayoutRowKind
+
+    def __init__(self) -> None:
+        self._internal = dashboardv2beta1.RowsLayoutRowKind()        
+        self._internal.kind = "RowsLayoutRow"
+
+    def build(self) -> dashboardv2beta1.RowsLayoutRowKind:
+        """
+        Builds the object.
+        """
+        return self._internal    
+    
+    def title(self, title: str) -> typing.Self:    
+        if self._internal.spec is None:
+            self._internal.spec = dashboardv2beta1.RowsLayoutRowSpec()
+        assert isinstance(self._internal.spec, dashboardv2beta1.RowsLayoutRowSpec)
+        self._internal.spec.title = title
+    
+        return self
+    
+    def collapse(self, collapse: bool) -> typing.Self:    
+        if self._internal.spec is None:
+            self._internal.spec = dashboardv2beta1.RowsLayoutRowSpec()
+        assert isinstance(self._internal.spec, dashboardv2beta1.RowsLayoutRowSpec)
+        self._internal.spec.collapse = collapse
+    
+        return self
+    
+    def hide_header(self, hide_header: bool) -> typing.Self:    
+        if self._internal.spec is None:
+            self._internal.spec = dashboardv2beta1.RowsLayoutRowSpec()
+        assert isinstance(self._internal.spec, dashboardv2beta1.RowsLayoutRowSpec)
+        self._internal.spec.hide_header = hide_header
+    
+        return self
+    
+    def fill_screen(self, fill_screen: bool) -> typing.Self:    
+        if self._internal.spec is None:
+            self._internal.spec = dashboardv2beta1.RowsLayoutRowSpec()
+        assert isinstance(self._internal.spec, dashboardv2beta1.RowsLayoutRowSpec)
+        self._internal.spec.fill_screen = fill_screen
+    
+        return self
+    
+    def conditional_rendering(self, conditional_rendering: cogbuilder.Builder[dashboardv2beta1.ConditionalRenderingGroupKind]) -> typing.Self:    
+        if self._internal.spec is None:
+            self._internal.spec = dashboardv2beta1.RowsLayoutRowSpec()
+        assert isinstance(self._internal.spec, dashboardv2beta1.RowsLayoutRowSpec)
+        conditional_rendering_resource = conditional_rendering.build()
+        self._internal.spec.conditional_rendering = conditional_rendering_resource
+    
+        return self
+    
+    def repeat(self, repeat: cogbuilder.Builder[dashboardv2beta1.RowRepeatOptions]) -> typing.Self:    
+        if self._internal.spec is None:
+            self._internal.spec = dashboardv2beta1.RowsLayoutRowSpec()
+        assert isinstance(self._internal.spec, dashboardv2beta1.RowsLayoutRowSpec)
+        repeat_resource = repeat.build()
+        self._internal.spec.repeat = repeat_resource
+    
+        return self
+    
+    def layout(self, layout: typing.Union[cogbuilder.Builder[dashboardv2beta1.GridLayoutKind], cogbuilder.Builder[dashboardv2beta1.AutoGridLayoutKind], cogbuilder.Builder[dashboardv2beta1.TabsLayoutKind], cogbuilder.Builder[dashboardv2beta1.RowsLayoutKind]]) -> typing.Self:    
+        if self._internal.spec is None:
+            self._internal.spec = dashboardv2beta1.RowsLayoutRowSpec()
+        assert isinstance(self._internal.spec, dashboardv2beta1.RowsLayoutRowSpec)
+        layout_resource = layout.build()
+        self._internal.spec.layout = layout_resource
+    
+        return self
+    
+
+def row(title: str) -> Row:
+    builder = Row()
+    builder.title(title)
+
+    return builder
+
+
+class AutoGrid(cogbuilder.Builder[dashboardv2beta1.AutoGridLayoutKind]):
+    _internal: dashboardv2beta1.AutoGridLayoutKind
+
+    def __init__(self) -> None:
+        self._internal = dashboardv2beta1.AutoGridLayoutKind()        
+        self._internal.kind = "AutoGridLayout"
+
+    def build(self) -> dashboardv2beta1.AutoGridLayoutKind:
+        """
+        Builds the object.
+        """
+        return self._internal    
+    
+    def max_column_count(self, max_column_count: float) -> typing.Self:    
+        if self._internal.spec is None:
+            self._internal.spec = dashboardv2beta1.AutoGridLayoutSpec()
+        assert isinstance(self._internal.spec, dashboardv2beta1.AutoGridLayoutSpec)
+        self._internal.spec.max_column_count = max_column_count
+    
+        return self
+    
+    def column_width_mode(self, column_width_mode: typing.Literal["narrow", "standard", "wide", "custom"]) -> typing.Self:    
+        if self._internal.spec is None:
+            self._internal.spec = dashboardv2beta1.AutoGridLayoutSpec()
+        assert isinstance(self._internal.spec, dashboardv2beta1.AutoGridLayoutSpec)
+        self._internal.spec.column_width_mode = column_width_mode
+    
+        return self
+    
+    def column_width(self, column_width: float) -> typing.Self:    
+        if self._internal.spec is None:
+            self._internal.spec = dashboardv2beta1.AutoGridLayoutSpec()
+        assert isinstance(self._internal.spec, dashboardv2beta1.AutoGridLayoutSpec)
+        self._internal.spec.column_width = column_width
+    
+        return self
+    
+    def row_height_mode(self, row_height_mode: typing.Literal["short", "standard", "tall", "custom"]) -> typing.Self:    
+        if self._internal.spec is None:
+            self._internal.spec = dashboardv2beta1.AutoGridLayoutSpec()
+        assert isinstance(self._internal.spec, dashboardv2beta1.AutoGridLayoutSpec)
+        self._internal.spec.row_height_mode = row_height_mode
+    
+        return self
+    
+    def row_height(self, row_height: float) -> typing.Self:    
+        if self._internal.spec is None:
+            self._internal.spec = dashboardv2beta1.AutoGridLayoutSpec()
+        assert isinstance(self._internal.spec, dashboardv2beta1.AutoGridLayoutSpec)
+        self._internal.spec.row_height = row_height
+    
+        return self
+    
+    def fill_screen(self, fill_screen: bool) -> typing.Self:    
+        if self._internal.spec is None:
+            self._internal.spec = dashboardv2beta1.AutoGridLayoutSpec()
+        assert isinstance(self._internal.spec, dashboardv2beta1.AutoGridLayoutSpec)
+        self._internal.spec.fill_screen = fill_screen
+    
+        return self
+    
+    def items(self, items: list[cogbuilder.Builder[dashboardv2beta1.AutoGridLayoutItemKind]]) -> typing.Self:    
+        if self._internal.spec is None:
+            self._internal.spec = dashboardv2beta1.AutoGridLayoutSpec()
+        assert isinstance(self._internal.spec, dashboardv2beta1.AutoGridLayoutSpec)
+        items_resources = [r1.build() for r1 in items]
+        self._internal.spec.items = items_resources
+    
+        return self
+    
+    def item(self, item: cogbuilder.Builder[dashboardv2beta1.AutoGridLayoutItemKind]) -> typing.Self:    
+        if self._internal.spec is None:
+            self._internal.spec = dashboardv2beta1.AutoGridLayoutSpec()
+        assert isinstance(self._internal.spec, dashboardv2beta1.AutoGridLayoutSpec)
+        if self._internal.spec.items is None:
+            self._internal.spec.items = []
+        
+        item_resource = item.build()
+        self._internal.spec.items.append(item_resource)
+    
+        return self
+    
+    def with_item(self, name: str) -> typing.Self:    
+        if self._internal.spec is None:
+            self._internal.spec = dashboardv2beta1.AutoGridLayoutSpec()
+        assert isinstance(self._internal.spec, dashboardv2beta1.AutoGridLayoutSpec)
+        if self._internal.spec.items is None:
+            self._internal.spec.items = []
+        
+        self._internal.spec.items.append(dashboardv2beta1.AutoGridLayoutItemKind(
+            spec=dashboardv2beta1.AutoGridLayoutItemSpec(
+            element=dashboardv2beta1.ElementReference(
+            name=name,
+        ),
+        ),
+        ))
+    
+        return self
+    
+
+def auto_grid() -> AutoGrid:
+    builder = AutoGrid()
+
+    return builder
+
+
+class AutoGridItem(cogbuilder.Builder[dashboardv2beta1.AutoGridLayoutItemKind]):
+    _internal: dashboardv2beta1.AutoGridLayoutItemKind
+
+    def __init__(self) -> None:
+        self._internal = dashboardv2beta1.AutoGridLayoutItemKind()        
+        self._internal.kind = "AutoGridLayoutItem"        
+        if self._internal.spec is None:
+            self._internal.spec = dashboardv2beta1.AutoGridLayoutItemSpec()
+        assert isinstance(self._internal.spec, dashboardv2beta1.AutoGridLayoutItemSpec)
+        if self._internal.spec.element is None:
+            self._internal.spec.element = dashboardv2beta1.ElementReference()
+        assert isinstance(self._internal.spec.element, dashboardv2beta1.ElementReference)
+        self._internal.spec.element.kind = "ElementReference"
+
+    def build(self) -> dashboardv2beta1.AutoGridLayoutItemKind:
+        """
+        Builds the object.
+        """
+        return self._internal    
+    
+    def repeat(self, repeat: cogbuilder.Builder[dashboardv2beta1.AutoGridRepeatOptions]) -> typing.Self:    
+        if self._internal.spec is None:
+            self._internal.spec = dashboardv2beta1.AutoGridLayoutItemSpec()
+        assert isinstance(self._internal.spec, dashboardv2beta1.AutoGridLayoutItemSpec)
+        repeat_resource = repeat.build()
+        self._internal.spec.repeat = repeat_resource
+    
+        return self
+    
+    def conditional_rendering(self, conditional_rendering: cogbuilder.Builder[dashboardv2beta1.ConditionalRenderingGroupKind]) -> typing.Self:    
+        if self._internal.spec is None:
+            self._internal.spec = dashboardv2beta1.AutoGridLayoutItemSpec()
+        assert isinstance(self._internal.spec, dashboardv2beta1.AutoGridLayoutItemSpec)
+        conditional_rendering_resource = conditional_rendering.build()
+        self._internal.spec.conditional_rendering = conditional_rendering_resource
+    
+        return self
+    
+    def name(self, name: str) -> typing.Self:    
+        if self._internal.spec is None:
+            self._internal.spec = dashboardv2beta1.AutoGridLayoutItemSpec()
+        assert isinstance(self._internal.spec, dashboardv2beta1.AutoGridLayoutItemSpec)
+        if self._internal.spec.element is None:
+            self._internal.spec.element = dashboardv2beta1.ElementReference()
+        assert isinstance(self._internal.spec.element, dashboardv2beta1.ElementReference)
+        self._internal.spec.element.name = name
+    
+        return self
+    
+
+def auto_grid_item(name: str) -> AutoGridItem:
+    builder = AutoGridItem()
+    builder.name(name)
+
+    return builder
+
+
+class Tabs(cogbuilder.Builder[dashboardv2beta1.TabsLayoutKind]):
+    _internal: dashboardv2beta1.TabsLayoutKind
+
+    def __init__(self) -> None:
+        self._internal = dashboardv2beta1.TabsLayoutKind()        
+        self._internal.kind = "TabsLayout"
+
+    def build(self) -> dashboardv2beta1.TabsLayoutKind:
+        """
+        Builds the object.
+        """
+        return self._internal    
+    
+    def tabs(self, tabs: list[cogbuilder.Builder[dashboardv2beta1.TabsLayoutTabKind]]) -> typing.Self:    
+        if self._internal.spec is None:
+            self._internal.spec = dashboardv2beta1.TabsLayoutSpec()
+        assert isinstance(self._internal.spec, dashboardv2beta1.TabsLayoutSpec)
+        tabs_resources = [r1.build() for r1 in tabs]
+        self._internal.spec.tabs = tabs_resources
+    
+        return self
+    
+    def tab(self, tab: cogbuilder.Builder[dashboardv2beta1.TabsLayoutTabKind]) -> typing.Self:    
+        if self._internal.spec is None:
+            self._internal.spec = dashboardv2beta1.TabsLayoutSpec()
+        assert isinstance(self._internal.spec, dashboardv2beta1.TabsLayoutSpec)
+        if self._internal.spec.tabs is None:
+            self._internal.spec.tabs = []
+        
+        tab_resource = tab.build()
+        self._internal.spec.tabs.append(tab_resource)
+    
+        return self
+    
+
+def tabs() -> Tabs:
+    builder = Tabs()
+
+    return builder
+
+
+class Tab(cogbuilder.Builder[dashboardv2beta1.TabsLayoutTabKind]):
+    _internal: dashboardv2beta1.TabsLayoutTabKind
+
+    def __init__(self) -> None:
+        self._internal = dashboardv2beta1.TabsLayoutTabKind()        
+        self._internal.kind = "TabsLayoutTab"
+
+    def build(self) -> dashboardv2beta1.TabsLayoutTabKind:
+        """
+        Builds the object.
+        """
+        return self._internal    
+    
+    def title(self, title: str) -> typing.Self:    
+        if self._internal.spec is None:
+            self._internal.spec = dashboardv2beta1.TabsLayoutTabSpec()
+        assert isinstance(self._internal.spec, dashboardv2beta1.TabsLayoutTabSpec)
+        self._internal.spec.title = title
+    
+        return self
+    
+    def layout(self, layout: typing.Union[cogbuilder.Builder[dashboardv2beta1.GridLayoutKind], cogbuilder.Builder[dashboardv2beta1.RowsLayoutKind], cogbuilder.Builder[dashboardv2beta1.AutoGridLayoutKind], cogbuilder.Builder[dashboardv2beta1.TabsLayoutKind]]) -> typing.Self:    
+        if self._internal.spec is None:
+            self._internal.spec = dashboardv2beta1.TabsLayoutTabSpec()
+        assert isinstance(self._internal.spec, dashboardv2beta1.TabsLayoutTabSpec)
+        layout_resource = layout.build()
+        self._internal.spec.layout = layout_resource
+    
+        return self
+    
+    def conditional_rendering(self, conditional_rendering: cogbuilder.Builder[dashboardv2beta1.ConditionalRenderingGroupKind]) -> typing.Self:    
+        if self._internal.spec is None:
+            self._internal.spec = dashboardv2beta1.TabsLayoutTabSpec()
+        assert isinstance(self._internal.spec, dashboardv2beta1.TabsLayoutTabSpec)
+        conditional_rendering_resource = conditional_rendering.build()
+        self._internal.spec.conditional_rendering = conditional_rendering_resource
+    
+        return self
+    
+    def repeat(self, repeat: cogbuilder.Builder[dashboardv2beta1.TabRepeatOptions]) -> typing.Self:    
+        if self._internal.spec is None:
+            self._internal.spec = dashboardv2beta1.TabsLayoutTabSpec()
+        assert isinstance(self._internal.spec, dashboardv2beta1.TabsLayoutTabSpec)
+        repeat_resource = repeat.build()
+        self._internal.spec.repeat = repeat_resource
+    
+        return self
+    
+
+def tab(title: str) -> Tab:
+    builder = Tab()
+    builder.title(title)
+
+    return builder
+
+
+class Grid(cogbuilder.Builder[dashboardv2beta1.GridLayoutKind]):
+    _internal: dashboardv2beta1.GridLayoutKind
+
+    def __init__(self) -> None:
+        self._internal = dashboardv2beta1.GridLayoutKind()        
+        self._internal.kind = "GridLayout"
+
+    def build(self) -> dashboardv2beta1.GridLayoutKind:
+        """
+        Builds the object.
+        """
+        return self._internal    
+    
+    def items(self, items: list[cogbuilder.Builder[dashboardv2beta1.GridLayoutItemKind]]) -> typing.Self:    
+        if self._internal.spec is None:
+            self._internal.spec = dashboardv2beta1.GridLayoutSpec()
+        assert isinstance(self._internal.spec, dashboardv2beta1.GridLayoutSpec)
+        items_resources = [r1.build() for r1 in items]
+        self._internal.spec.items = items_resources
+    
+        return self
+    
+    def item(self, item: cogbuilder.Builder[dashboardv2beta1.GridLayoutItemKind]) -> typing.Self:    
+        if self._internal.spec is None:
+            self._internal.spec = dashboardv2beta1.GridLayoutSpec()
+        assert isinstance(self._internal.spec, dashboardv2beta1.GridLayoutSpec)
+        if self._internal.spec.items is None:
+            self._internal.spec.items = []
+        
+        item_resource = item.build()
+        self._internal.spec.items.append(item_resource)
+    
+        return self
+    
+
+def grid() -> Grid:
+    builder = Grid()
+
+    return builder
+
+
+class GridItem(cogbuilder.Builder[dashboardv2beta1.GridLayoutItemKind]):
+    _internal: dashboardv2beta1.GridLayoutItemKind
+
+    def __init__(self) -> None:
+        self._internal = dashboardv2beta1.GridLayoutItemKind()        
+        self._internal.kind = "GridLayoutItem"        
+        if self._internal.spec is None:
+            self._internal.spec = dashboardv2beta1.GridLayoutItemSpec()
+        assert isinstance(self._internal.spec, dashboardv2beta1.GridLayoutItemSpec)
+        if self._internal.spec.element is None:
+            self._internal.spec.element = dashboardv2beta1.ElementReference()
+        assert isinstance(self._internal.spec.element, dashboardv2beta1.ElementReference)
+        self._internal.spec.element.kind = "ElementReference"
+
+    def build(self) -> dashboardv2beta1.GridLayoutItemKind:
+        """
+        Builds the object.
+        """
+        return self._internal    
+    
+    def x(self, x: int) -> typing.Self:    
+        if self._internal.spec is None:
+            self._internal.spec = dashboardv2beta1.GridLayoutItemSpec()
+        assert isinstance(self._internal.spec, dashboardv2beta1.GridLayoutItemSpec)
+        self._internal.spec.x = x
+    
+        return self
+    
+    def y(self, y: int) -> typing.Self:    
+        if self._internal.spec is None:
+            self._internal.spec = dashboardv2beta1.GridLayoutItemSpec()
+        assert isinstance(self._internal.spec, dashboardv2beta1.GridLayoutItemSpec)
+        self._internal.spec.y = y
+    
+        return self
+    
+    def width(self, width: int) -> typing.Self:    
+        if self._internal.spec is None:
+            self._internal.spec = dashboardv2beta1.GridLayoutItemSpec()
+        assert isinstance(self._internal.spec, dashboardv2beta1.GridLayoutItemSpec)
+        self._internal.spec.width = width
+    
+        return self
+    
+    def height(self, height: int) -> typing.Self:    
+        if self._internal.spec is None:
+            self._internal.spec = dashboardv2beta1.GridLayoutItemSpec()
+        assert isinstance(self._internal.spec, dashboardv2beta1.GridLayoutItemSpec)
+        self._internal.spec.height = height
+    
+        return self
+    
+    def repeat(self, repeat: cogbuilder.Builder[dashboardv2beta1.RepeatOptions]) -> typing.Self:    
+        if self._internal.spec is None:
+            self._internal.spec = dashboardv2beta1.GridLayoutItemSpec()
+        assert isinstance(self._internal.spec, dashboardv2beta1.GridLayoutItemSpec)
+        repeat_resource = repeat.build()
+        self._internal.spec.repeat = repeat_resource
+    
+        return self
+    
+    def name(self, name: str) -> typing.Self:    
+        if self._internal.spec is None:
+            self._internal.spec = dashboardv2beta1.GridLayoutItemSpec()
+        assert isinstance(self._internal.spec, dashboardv2beta1.GridLayoutItemSpec)
+        if self._internal.spec.element is None:
+            self._internal.spec.element = dashboardv2beta1.ElementReference()
+        assert isinstance(self._internal.spec.element, dashboardv2beta1.ElementReference)
+        self._internal.spec.element.name = name
+    
+        return self
+    
+
+def grid_item(name: str) -> GridItem:
+    builder = GridItem()
+    builder.name(name)
+
+    return builder
+
+
 class QueryVariable(cogbuilder.Builder[dashboardv2beta1.QueryVariableKind]):    
     """
     Query variable kind
@@ -3598,11 +2461,6 @@ class QueryVariable(cogbuilder.Builder[dashboardv2beta1.QueryVariableKind]):
         Builds the object.
         """
         return self._internal    
-    
-    def spec(self, spec: dashboardv2beta1.QueryVariableSpec) -> typing.Self:    
-        self._internal.spec = spec
-    
-        return self
     
     def name(self, name: str) -> typing.Self:    
         if self._internal.spec is None:
@@ -3780,11 +2638,6 @@ class TextVariable(cogbuilder.Builder[dashboardv2beta1.TextVariableKind]):
         """
         return self._internal    
     
-    def spec(self, spec: dashboardv2beta1.TextVariableSpec) -> typing.Self:    
-        self._internal.spec = spec
-    
-        return self
-    
     def name(self, name: str) -> typing.Self:    
         if self._internal.spec is None:
             self._internal.spec = dashboardv2beta1.TextVariableSpec()
@@ -3864,11 +2717,6 @@ class ConstantVariable(cogbuilder.Builder[dashboardv2beta1.ConstantVariableKind]
         """
         return self._internal    
     
-    def spec(self, spec: dashboardv2beta1.ConstantVariableSpec) -> typing.Self:    
-        self._internal.spec = spec
-    
-        return self
-    
     def name(self, name: str) -> typing.Self:    
         if self._internal.spec is None:
             self._internal.spec = dashboardv2beta1.ConstantVariableSpec()
@@ -3947,11 +2795,6 @@ class DatasourceVariable(cogbuilder.Builder[dashboardv2beta1.DatasourceVariableK
         Builds the object.
         """
         return self._internal    
-    
-    def spec(self, spec: dashboardv2beta1.DatasourceVariableSpec) -> typing.Self:    
-        self._internal.spec = spec
-    
-        return self
     
     def name(self, name: str) -> typing.Self:    
         if self._internal.spec is None:
@@ -4088,11 +2931,6 @@ class IntervalVariable(cogbuilder.Builder[dashboardv2beta1.IntervalVariableKind]
         """
         return self._internal    
     
-    def spec(self, spec: dashboardv2beta1.IntervalVariableSpec) -> typing.Self:    
-        self._internal.spec = spec
-    
-        return self
-    
     def name(self, name: str) -> typing.Self:    
         if self._internal.spec is None:
             self._internal.spec = dashboardv2beta1.IntervalVariableSpec()
@@ -4211,11 +3049,6 @@ class CustomVariable(cogbuilder.Builder[dashboardv2beta1.CustomVariableKind]):
         Builds the object.
         """
         return self._internal    
-    
-    def spec(self, spec: dashboardv2beta1.CustomVariableSpec) -> typing.Self:    
-        self._internal.spec = spec
-    
-        return self
     
     def name(self, name: str) -> typing.Self:    
         if self._internal.spec is None:
@@ -4347,11 +3180,6 @@ class GroupByVariable(cogbuilder.Builder[dashboardv2beta1.GroupByVariableKind]):
     
         return self
     
-    def spec(self, spec: dashboardv2beta1.GroupByVariableSpec) -> typing.Self:    
-        self._internal.spec = spec
-    
-        return self
-    
     def name(self, name: str) -> typing.Self:    
         if self._internal.spec is None:
             self._internal.spec = dashboardv2beta1.GroupByVariableSpec()
@@ -4458,11 +3286,6 @@ class AdhocVariable(cogbuilder.Builder[dashboardv2beta1.AdhocVariableKind]):
     
         return self
     
-    def spec(self, spec: dashboardv2beta1.AdhocVariableSpec) -> typing.Self:    
-        self._internal.spec = spec
-    
-        return self
-    
     def name(self, name: str) -> typing.Self:    
         if self._internal.spec is None:
             self._internal.spec = dashboardv2beta1.AdhocVariableSpec()
@@ -4535,6 +3358,89 @@ class AdhocVariable(cogbuilder.Builder[dashboardv2beta1.AdhocVariableKind]):
             self._internal.spec = dashboardv2beta1.AdhocVariableSpec()
         assert isinstance(self._internal.spec, dashboardv2beta1.AdhocVariableSpec)
         self._internal.spec.allow_custom_value = allow_custom_value
+    
+        return self
+    
+
+
+class SwitchVariable(cogbuilder.Builder[dashboardv2beta1.SwitchVariableKind]):
+    _internal: dashboardv2beta1.SwitchVariableKind
+
+    def __init__(self, name: str) -> None:
+        self._internal = dashboardv2beta1.SwitchVariableKind()        
+        self._internal.kind = "SwitchVariable"        
+        if self._internal.spec is None:
+            self._internal.spec = dashboardv2beta1.SwitchVariableSpec()
+        assert isinstance(self._internal.spec, dashboardv2beta1.SwitchVariableSpec)
+        self._internal.spec.name = name
+
+    def build(self) -> dashboardv2beta1.SwitchVariableKind:
+        """
+        Builds the object.
+        """
+        return self._internal    
+    
+    def name(self, name: str) -> typing.Self:    
+        if self._internal.spec is None:
+            self._internal.spec = dashboardv2beta1.SwitchVariableSpec()
+        assert isinstance(self._internal.spec, dashboardv2beta1.SwitchVariableSpec)
+        self._internal.spec.name = name
+    
+        return self
+    
+    def current(self, current: str) -> typing.Self:    
+        if self._internal.spec is None:
+            self._internal.spec = dashboardv2beta1.SwitchVariableSpec()
+        assert isinstance(self._internal.spec, dashboardv2beta1.SwitchVariableSpec)
+        self._internal.spec.current = current
+    
+        return self
+    
+    def enabled_value(self, enabled_value: str) -> typing.Self:    
+        if self._internal.spec is None:
+            self._internal.spec = dashboardv2beta1.SwitchVariableSpec()
+        assert isinstance(self._internal.spec, dashboardv2beta1.SwitchVariableSpec)
+        self._internal.spec.enabled_value = enabled_value
+    
+        return self
+    
+    def disabled_value(self, disabled_value: str) -> typing.Self:    
+        if self._internal.spec is None:
+            self._internal.spec = dashboardv2beta1.SwitchVariableSpec()
+        assert isinstance(self._internal.spec, dashboardv2beta1.SwitchVariableSpec)
+        self._internal.spec.disabled_value = disabled_value
+    
+        return self
+    
+    def label(self, label: str) -> typing.Self:    
+        if self._internal.spec is None:
+            self._internal.spec = dashboardv2beta1.SwitchVariableSpec()
+        assert isinstance(self._internal.spec, dashboardv2beta1.SwitchVariableSpec)
+        self._internal.spec.label = label
+    
+        return self
+    
+    def hide(self, hide: dashboardv2beta1.VariableHide) -> typing.Self:    
+        if self._internal.spec is None:
+            self._internal.spec = dashboardv2beta1.SwitchVariableSpec()
+        assert isinstance(self._internal.spec, dashboardv2beta1.SwitchVariableSpec)
+        self._internal.spec.hide = hide
+    
+        return self
+    
+    def skip_url_sync(self, skip_url_sync: bool) -> typing.Self:    
+        if self._internal.spec is None:
+            self._internal.spec = dashboardv2beta1.SwitchVariableSpec()
+        assert isinstance(self._internal.spec, dashboardv2beta1.SwitchVariableSpec)
+        self._internal.spec.skip_url_sync = skip_url_sync
+    
+        return self
+    
+    def description(self, description: str) -> typing.Self:    
+        if self._internal.spec is None:
+            self._internal.spec = dashboardv2beta1.SwitchVariableSpec()
+        assert isinstance(self._internal.spec, dashboardv2beta1.SwitchVariableSpec)
+        self._internal.spec.description = description
     
         return self
     

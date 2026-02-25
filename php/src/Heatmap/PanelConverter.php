@@ -706,67 +706,8 @@ final class PanelConverter
             if ($input->options !== null && $input->options instanceof \Grafana\Foundation\Heatmap\Options) {
     
         
-    $buffer = 'mode(';
-        $arg0 ='\Grafana\Foundation\Common\TooltipDisplayMode::fromValue("'.$input->options->tooltip->mode.'")';
-        $buffer .= $arg0;
-        
-    $buffer .= ')';
-
-    $calls[] = $buffer;
-    
-    
-    }
-            if ($input->options !== null && $input->options instanceof \Grafana\Foundation\Heatmap\Options && $input->options->tooltip->maxHeight !== null) {
-    
-        
-    $buffer = 'maxHeight(';
-        $arg0 =\var_export($input->options->tooltip->maxHeight, true);
-        $buffer .= $arg0;
-        
-    $buffer .= ')';
-
-    $calls[] = $buffer;
-    
-    
-    }
-            if ($input->options !== null && $input->options instanceof \Grafana\Foundation\Heatmap\Options && $input->options->tooltip->maxWidth !== null) {
-    
-        
-    $buffer = 'maxWidth(';
-        $arg0 =\var_export($input->options->tooltip->maxWidth, true);
-        $buffer .= $arg0;
-        
-    $buffer .= ')';
-
-    $calls[] = $buffer;
-    
-    
-    }
-            if ($input->options !== null && $input->options instanceof \Grafana\Foundation\Heatmap\Options && $input->options->tooltip->yHistogram !== null && $input->options->tooltip->yHistogram === true) {
-    
-        
-    $buffer = 'showYHistogram(';
-    $buffer .= ')';
-
-    $calls[] = $buffer;
-    
-    
-    }
-            if ($input->options !== null && $input->options instanceof \Grafana\Foundation\Heatmap\Options && $input->options->tooltip->yHistogram !== null && $input->options->tooltip->yHistogram === false) {
-    
-        
-    $buffer = 'hideYHistogram(';
-    $buffer .= ')';
-
-    $calls[] = $buffer;
-    
-    
-    }
-            if ($input->options !== null && $input->options instanceof \Grafana\Foundation\Heatmap\Options && $input->options->tooltip->showColorScale !== null) {
-    
-        
-    $buffer = 'showColorScale(';
-        $arg0 =\var_export($input->options->tooltip->showColorScale, true);
+    $buffer = 'tooltip(';
+        $arg0 = \Grafana\Foundation\Heatmap\HeatmapTooltipConverter::convert($input->options->tooltip);
         $buffer .= $arg0;
         
     $buffer .= ')';

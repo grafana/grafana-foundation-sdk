@@ -18,6 +18,3 @@ export interface SwitchVariableSpec {
 }
 
 ```
-## See also
-
- * <span class="badge builder"></span> [SwitchVariableSpecBuilder](./builder-SwitchVariableSpecBuilder.md)

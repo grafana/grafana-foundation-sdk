@@ -30,3 +30,6 @@ Each example showcases different aspects of building dashboards as code:
 * [`red-method`](https://github.com/grafana/grafana-foundation-sdk/blob/main/examples/python/red-method):
     * example of a dashboard following
       the [RED method](https://grafana.com/blog/2018/08/02/the-red-method-how-to-instrument-your-services/#the-red-method)
+* [`dashboardv2beta1-with-tabs-and-rows`](https://github.com/grafana/grafana-foundation-sdk/blob/main/dashboardv2beta1-with-tabs-and-rows):
+    * example of a dashboard using the Dashboard.v2beta1 schema
+    * uses tabs and rows in its layout

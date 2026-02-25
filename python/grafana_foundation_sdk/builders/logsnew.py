@@ -974,6 +974,83 @@ class Visualization(cogbuilder.Builder[dashboardv2beta1.VizConfigKind]):
     
         return self
     
+    def show_time(self, show_time: bool) -> typing.Self:    
+        if self._internal.spec is None:
+            self._internal.spec = dashboardv2beta1.VizConfigSpec()
+        assert isinstance(self._internal.spec, dashboardv2beta1.VizConfigSpec)
+        if self._internal.spec.options is None:
+            self._internal.spec.options = logsnew.Options()
+        assert isinstance(self._internal.spec.options, logsnew.Options)
+        self._internal.spec.options.show_time = show_time
+    
+        return self
+    
+    def wrap_log_message(self, wrap_log_message: bool) -> typing.Self:    
+        if self._internal.spec is None:
+            self._internal.spec = dashboardv2beta1.VizConfigSpec()
+        assert isinstance(self._internal.spec, dashboardv2beta1.VizConfigSpec)
+        if self._internal.spec.options is None:
+            self._internal.spec.options = logsnew.Options()
+        assert isinstance(self._internal.spec.options, logsnew.Options)
+        self._internal.spec.options.wrap_log_message = wrap_log_message
+    
+        return self
+    
+    def enable_log_details(self, enable_log_details: bool) -> typing.Self:    
+        if self._internal.spec is None:
+            self._internal.spec = dashboardv2beta1.VizConfigSpec()
+        assert isinstance(self._internal.spec, dashboardv2beta1.VizConfigSpec)
+        if self._internal.spec.options is None:
+            self._internal.spec.options = logsnew.Options()
+        assert isinstance(self._internal.spec.options, logsnew.Options)
+        self._internal.spec.options.enable_log_details = enable_log_details
+    
+        return self
+    
+    def sort_order(self, sort_order: common.LogsSortOrder) -> typing.Self:    
+        if self._internal.spec is None:
+            self._internal.spec = dashboardv2beta1.VizConfigSpec()
+        assert isinstance(self._internal.spec, dashboardv2beta1.VizConfigSpec)
+        if self._internal.spec.options is None:
+            self._internal.spec.options = logsnew.Options()
+        assert isinstance(self._internal.spec.options, logsnew.Options)
+        self._internal.spec.options.sort_order = sort_order
+    
+        return self
+    
+    def dedup_strategy(self, dedup_strategy: common.LogsDedupStrategy) -> typing.Self:    
+        if self._internal.spec is None:
+            self._internal.spec = dashboardv2beta1.VizConfigSpec()
+        assert isinstance(self._internal.spec, dashboardv2beta1.VizConfigSpec)
+        if self._internal.spec.options is None:
+            self._internal.spec.options = logsnew.Options()
+        assert isinstance(self._internal.spec.options, logsnew.Options)
+        self._internal.spec.options.dedup_strategy = dedup_strategy
+    
+        return self
+    
+    def enable_infinite_scrolling(self, enable_infinite_scrolling: bool) -> typing.Self:    
+        if self._internal.spec is None:
+            self._internal.spec = dashboardv2beta1.VizConfigSpec()
+        assert isinstance(self._internal.spec, dashboardv2beta1.VizConfigSpec)
+        if self._internal.spec.options is None:
+            self._internal.spec.options = logsnew.Options()
+        assert isinstance(self._internal.spec.options, logsnew.Options)
+        self._internal.spec.options.enable_infinite_scrolling = enable_infinite_scrolling
+    
+        return self
+    
+    def on_new_logs_received(self, on_new_logs_received: object) -> typing.Self:    
+        if self._internal.spec is None:
+            self._internal.spec = dashboardv2beta1.VizConfigSpec()
+        assert isinstance(self._internal.spec, dashboardv2beta1.VizConfigSpec)
+        if self._internal.spec.options is None:
+            self._internal.spec.options = logsnew.Options()
+        assert isinstance(self._internal.spec.options, logsnew.Options)
+        self._internal.spec.options.on_new_logs_received = on_new_logs_received
+    
+        return self
+    
     def override_by_name(self, name: str, properties: list[dashboardv2beta1.DynamicConfigValue]) -> typing.Self:    
         """
         Adds override rules for a specific field, referred to by its name.
@@ -1063,83 +1140,6 @@ class Visualization(cogbuilder.Builder[dashboardv2beta1.VizConfigKind]):
         ),
             properties=properties,
         ))
-    
-        return self
-    
-    def show_time(self, show_time: bool) -> typing.Self:    
-        if self._internal.spec is None:
-            self._internal.spec = dashboardv2beta1.VizConfigSpec()
-        assert isinstance(self._internal.spec, dashboardv2beta1.VizConfigSpec)
-        if self._internal.spec.options is None:
-            self._internal.spec.options = logsnew.Options()
-        assert isinstance(self._internal.spec.options, logsnew.Options)
-        self._internal.spec.options.show_time = show_time
-    
-        return self
-    
-    def wrap_log_message(self, wrap_log_message: bool) -> typing.Self:    
-        if self._internal.spec is None:
-            self._internal.spec = dashboardv2beta1.VizConfigSpec()
-        assert isinstance(self._internal.spec, dashboardv2beta1.VizConfigSpec)
-        if self._internal.spec.options is None:
-            self._internal.spec.options = logsnew.Options()
-        assert isinstance(self._internal.spec.options, logsnew.Options)
-        self._internal.spec.options.wrap_log_message = wrap_log_message
-    
-        return self
-    
-    def enable_log_details(self, enable_log_details: bool) -> typing.Self:    
-        if self._internal.spec is None:
-            self._internal.spec = dashboardv2beta1.VizConfigSpec()
-        assert isinstance(self._internal.spec, dashboardv2beta1.VizConfigSpec)
-        if self._internal.spec.options is None:
-            self._internal.spec.options = logsnew.Options()
-        assert isinstance(self._internal.spec.options, logsnew.Options)
-        self._internal.spec.options.enable_log_details = enable_log_details
-    
-        return self
-    
-    def sort_order(self, sort_order: common.LogsSortOrder) -> typing.Self:    
-        if self._internal.spec is None:
-            self._internal.spec = dashboardv2beta1.VizConfigSpec()
-        assert isinstance(self._internal.spec, dashboardv2beta1.VizConfigSpec)
-        if self._internal.spec.options is None:
-            self._internal.spec.options = logsnew.Options()
-        assert isinstance(self._internal.spec.options, logsnew.Options)
-        self._internal.spec.options.sort_order = sort_order
-    
-        return self
-    
-    def dedup_strategy(self, dedup_strategy: common.LogsDedupStrategy) -> typing.Self:    
-        if self._internal.spec is None:
-            self._internal.spec = dashboardv2beta1.VizConfigSpec()
-        assert isinstance(self._internal.spec, dashboardv2beta1.VizConfigSpec)
-        if self._internal.spec.options is None:
-            self._internal.spec.options = logsnew.Options()
-        assert isinstance(self._internal.spec.options, logsnew.Options)
-        self._internal.spec.options.dedup_strategy = dedup_strategy
-    
-        return self
-    
-    def enable_infinite_scrolling(self, enable_infinite_scrolling: bool) -> typing.Self:    
-        if self._internal.spec is None:
-            self._internal.spec = dashboardv2beta1.VizConfigSpec()
-        assert isinstance(self._internal.spec, dashboardv2beta1.VizConfigSpec)
-        if self._internal.spec.options is None:
-            self._internal.spec.options = logsnew.Options()
-        assert isinstance(self._internal.spec.options, logsnew.Options)
-        self._internal.spec.options.enable_infinite_scrolling = enable_infinite_scrolling
-    
-        return self
-    
-    def on_new_logs_received(self, on_new_logs_received: object) -> typing.Self:    
-        if self._internal.spec is None:
-            self._internal.spec = dashboardv2beta1.VizConfigSpec()
-        assert isinstance(self._internal.spec, dashboardv2beta1.VizConfigSpec)
-        if self._internal.spec.options is None:
-            self._internal.spec.options = logsnew.Options()
-        assert isinstance(self._internal.spec.options, logsnew.Options)
-        self._internal.spec.options.on_new_logs_received = on_new_logs_received
     
         return self
     

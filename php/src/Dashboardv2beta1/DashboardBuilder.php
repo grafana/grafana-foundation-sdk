@@ -86,67 +86,23 @@ class DashboardBuilder implements \Grafana\Foundation\Cog\Builder
     }
 
     /**
-     * @param \Grafana\Foundation\Cog\Builder<\Grafana\Foundation\Dashboardv2beta1\PanelKind> $panelKind
+     * @param \Grafana\Foundation\Cog\Builder<\Grafana\Foundation\Dashboardv2beta1\PanelKind>|\Grafana\Foundation\Cog\Builder<\Grafana\Foundation\Dashboardv2beta1\LibraryPanelKind> $element
      */
-    public function panel(string $key, \Grafana\Foundation\Cog\Builder $panelKind): static
+    public function element(string $key,  $element): static
     {
-        $panelKindResource = $panelKind->build();
-        $this->internal->elements[$key] = $panelKindResource;
+        $elementResource = $element->build();
+        $this->internal->elements[$key] = $elementResource;
     
         return $this;
     }
 
     /**
-     * @param \Grafana\Foundation\Cog\Builder<\Grafana\Foundation\Dashboardv2beta1\LibraryPanelKind> $libraryPanelKind
+     * @param \Grafana\Foundation\Cog\Builder<\Grafana\Foundation\Dashboardv2beta1\GridLayoutKind>|\Grafana\Foundation\Cog\Builder<\Grafana\Foundation\Dashboardv2beta1\RowsLayoutKind>|\Grafana\Foundation\Cog\Builder<\Grafana\Foundation\Dashboardv2beta1\AutoGridLayoutKind>|\Grafana\Foundation\Cog\Builder<\Grafana\Foundation\Dashboardv2beta1\TabsLayoutKind> $layout
      */
-    public function libraryPanel(string $key, \Grafana\Foundation\Cog\Builder $libraryPanelKind): static
+    public function layout( $layout): static
     {
-        $libraryPanelKindResource = $libraryPanelKind->build();
-        $this->internal->elements[$key] = $libraryPanelKindResource;
-    
-        return $this;
-    }
-
-    /**
-     * @param \Grafana\Foundation\Cog\Builder<\Grafana\Foundation\Dashboardv2beta1\GridLayoutKind> $gridLayoutKind
-     */
-    public function gridLayout(\Grafana\Foundation\Cog\Builder $gridLayoutKind): static
-    {
-        $gridLayoutKindResource = $gridLayoutKind->build();
-        $this->internal->layout = $gridLayoutKindResource;
-    
-        return $this;
-    }
-
-    /**
-     * @param \Grafana\Foundation\Cog\Builder<\Grafana\Foundation\Dashboardv2beta1\RowsLayoutKind> $rowsLayoutKind
-     */
-    public function rowsLayout(\Grafana\Foundation\Cog\Builder $rowsLayoutKind): static
-    {
-        $rowsLayoutKindResource = $rowsLayoutKind->build();
-        $this->internal->layout = $rowsLayoutKindResource;
-    
-        return $this;
-    }
-
-    /**
-     * @param \Grafana\Foundation\Cog\Builder<\Grafana\Foundation\Dashboardv2beta1\AutoGridLayoutKind> $autoGridLayoutKind
-     */
-    public function autoGridLayout(\Grafana\Foundation\Cog\Builder $autoGridLayoutKind): static
-    {
-        $autoGridLayoutKindResource = $autoGridLayoutKind->build();
-        $this->internal->layout = $autoGridLayoutKindResource;
-    
-        return $this;
-    }
-
-    /**
-     * @param \Grafana\Foundation\Cog\Builder<\Grafana\Foundation\Dashboardv2beta1\TabsLayoutKind> $tabsLayoutKind
-     */
-    public function tabsLayout(\Grafana\Foundation\Cog\Builder $tabsLayoutKind): static
-    {
-        $tabsLayoutKindResource = $tabsLayoutKind->build();
-        $this->internal->layout = $tabsLayoutKindResource;
+        $layoutResource = $layout->build();
+        $this->internal->layout = $layoutResource;
     
         return $this;
     }

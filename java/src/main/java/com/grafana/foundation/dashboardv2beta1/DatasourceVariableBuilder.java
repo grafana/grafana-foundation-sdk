@@ -15,11 +15,6 @@ public class DatasourceVariableBuilder implements com.grafana.foundation.cog.Bui
 		}
         this.internal.spec.name = name;
     }
-    public DatasourceVariableBuilder spec(DatasourceVariableSpec spec) {
-        this.internal.spec = spec;
-        return this;
-    }
-    
     public DatasourceVariableBuilder name(String name) {
 		if (this.internal.spec == null) {
 			this.internal.spec = new com.grafana.foundation.dashboardv2beta1.DatasourceVariableSpec();

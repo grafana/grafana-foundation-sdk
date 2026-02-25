@@ -10,19 +10,6 @@ final class QueryVariableConverter
         $calls = [
             '(new \Grafana\Foundation\Dashboardv2beta1\QueryVariableBuilder('.\var_export($input->spec->name, true).'))',
         ];
-            
-    
-        {
-    $buffer = 'spec(';
-        $arg0 ='(new \Grafana\Foundation\Dashboardv2beta1\QueryVariableSpec(name: '.\var_export($input->spec->name, true).',current: '.'(new \Grafana\Foundation\Dashboardv2beta1\VariableOption('.(($input->spec->current->selected !== null) ? 'selected: '.\var_export($input->spec->current->selected, true).', ' : '').'text: '.\var_export($input->spec->current->text, true).',value: '.\var_export($input->spec->current->value, true).',))'.','.(($input->spec->label !== null) ? 'label: '.\var_export($input->spec->label, true).', ' : '').'hide: '.'\Grafana\Foundation\Dashboardv2beta1\VariableHide::fromValue("'.$input->spec->hide.'")'.',refresh: '.'\Grafana\Foundation\Dashboardv2beta1\VariableRefresh::fromValue("'.$input->spec->refresh.'")'.',skipUrlSync: '.\var_export($input->spec->skipUrlSync, true).','.(($input->spec->description !== null) ? 'description: '.\var_export($input->spec->description, true).', ' : '').'query: '.'(new \Grafana\Foundation\Dashboardv2beta1\DataQueryKind(kind: '.\var_export($input->spec->query->kind, true).',group: '.\var_export($input->spec->query->group, true).',version: '.\var_export($input->spec->query->version, true).','.(($input->spec->query->datasource !== null) ? 'datasource: '.'(new \Grafana\Foundation\Dashboardv2beta1\Dashboardv2beta1DataQueryKindDatasource('.(($input->spec->query->datasource->name !== null) ? 'name: '.\var_export($input->spec->query->datasource->name, true).', ' : '').'))'.', ' : '').''.(($input->spec->query->spec !== null) ? 'spec: '.\var_export($input->spec->query->spec, true).', ' : '').'))'.',regex: '.\var_export($input->spec->regex, true).',sort: '.'\Grafana\Foundation\Dashboardv2beta1\VariableSort::fromValue("'.$input->spec->sort.'")'.','.(($input->spec->definition !== null) ? 'definition: '.\var_export($input->spec->definition, true).', ' : '').'options: '.\var_export($input->spec->options, true).',multi: '.\var_export($input->spec->multi, true).',includeAll: '.\var_export($input->spec->includeAll, true).','.(($input->spec->allValue !== null) ? 'allValue: '.\var_export($input->spec->allValue, true).', ' : '').''.(($input->spec->placeholder !== null) ? 'placeholder: '.\var_export($input->spec->placeholder, true).', ' : '').'allowCustomValue: '.\var_export($input->spec->allowCustomValue, true).','.(($input->spec->staticOptions !== null) ? 'staticOptions: '.\var_export($input->spec->staticOptions, true).', ' : '').''.(($input->spec->staticOptionsOrder !== null) ? 'staticOptionsOrder: '.'\Grafana\Foundation\Dashboardv2beta1\QueryVariableSpecStaticOptionsOrder::fromValue("'.$input->spec->staticOptionsOrder.'")'.', ' : '').'))';
-        $buffer .= $arg0;
-        
-    $buffer .= ')';
-
-    $calls[] = $buffer;
-    }
-    
-    
             if ($input->spec->name !== "") {
     
         

@@ -25,7 +25,6 @@ export interface DataQueryKind {
  * <span class="badge builder"></span> [azuremonitor.QueryBuilder](../azuremonitor/builder-QueryBuilder.md)
  * <span class="badge builder"></span> [bigquery.QueryBuilder](../bigquery/builder-QueryBuilder.md)
  * <span class="badge builder"></span> [cloudwatch.QueryBuilder](../cloudwatch/builder-QueryBuilder.md)
- * <span class="badge builder"></span> [DataQueryKindBuilder](./builder-DataQueryKindBuilder.md)
  * <span class="badge builder"></span> [datasource.QueryBuilder](../datasource/builder-QueryBuilder.md)
  * <span class="badge builder"></span> [elasticsearch.QueryBuilder](../elasticsearch/builder-QueryBuilder.md)
  * <span class="badge builder"></span> [expr.QueryBuilder](../expr/builder-QueryBuilder.md)

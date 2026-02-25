@@ -257,6 +257,20 @@ public class DatagridVizConfigKindBuilder implements com.grafana.foundation.cog.
         return this;
     }
     
+    public DatagridVizConfigKindBuilder selectedSeries(Integer selectedSeries) {
+        if (!(selectedSeries >= 0)) {
+            throw new IllegalArgumentException("selectedSeries must be >= 0");
+        }
+		if (this.internal.spec == null) {
+			this.internal.spec = new com.grafana.foundation.dashboardv2beta1.VizConfigSpec();
+		}
+		if (this.internal.spec.options == null) {
+			this.internal.spec.options = new com.grafana.foundation.datagrid.Options();
+		}
+        ((Options) this.internal.spec.options).selectedSeries = selectedSeries;
+        return this;
+    }
+    
     public DatagridVizConfigKindBuilder overrideByName(String name,List<DynamicConfigValue> properties) {
 		if (this.internal.spec == null) {
 			this.internal.spec = new com.grafana.foundation.dashboardv2beta1.VizConfigSpec();
@@ -334,20 +348,6 @@ public class DatagridVizConfigKindBuilder implements com.grafana.foundation.cog.
         dashboardv2beta1FieldConfigSourceOverrides.matcher = matcherConfig;
         dashboardv2beta1FieldConfigSourceOverrides.properties = properties;
         this.internal.spec.fieldConfig.overrides.add(dashboardv2beta1FieldConfigSourceOverrides);
-        return this;
-    }
-    
-    public DatagridVizConfigKindBuilder selectedSeries(Integer selectedSeries) {
-        if (!(selectedSeries >= 0)) {
-            throw new IllegalArgumentException("selectedSeries must be >= 0");
-        }
-		if (this.internal.spec == null) {
-			this.internal.spec = new com.grafana.foundation.dashboardv2beta1.VizConfigSpec();
-		}
-		if (this.internal.spec.options == null) {
-			this.internal.spec.options = new com.grafana.foundation.datagrid.Options();
-		}
-        ((Options) this.internal.spec.options).selectedSeries = selectedSeries;
         return this;
     }
     public VizConfigKind build() {

@@ -685,62 +685,17 @@ func (builder *PanelBuilder) HideLegend() *PanelBuilder {
 	return builder
 }
 
-// Controls how the tooltip is shown
-func (builder *PanelBuilder) Mode(mode common.TooltipDisplayMode) *PanelBuilder {
+// Controls tooltip options
+func (builder *PanelBuilder) Tooltip(tooltip cog.Builder[HeatmapTooltip]) *PanelBuilder {
 	if builder.internal.Options == nil {
 		builder.internal.Options = NewOptions()
 	}
-	builder.internal.Options.(*Options).Tooltip.Mode = mode
-
-	return builder
-}
-
-func (builder *PanelBuilder) MaxHeight(maxHeight float64) *PanelBuilder {
-	if builder.internal.Options == nil {
-		builder.internal.Options = NewOptions()
+	tooltipResource, err := tooltip.Build()
+	if err != nil {
+		builder.errors = append(builder.errors, err.(cog.BuildErrors)...)
+		return builder
 	}
-	builder.internal.Options.(*Options).Tooltip.MaxHeight = &maxHeight
-
-	return builder
-}
-
-func (builder *PanelBuilder) MaxWidth(maxWidth float64) *PanelBuilder {
-	if builder.internal.Options == nil {
-		builder.internal.Options = NewOptions()
-	}
-	builder.internal.Options.(*Options).Tooltip.MaxWidth = &maxWidth
-
-	return builder
-}
-
-// Controls if the tooltip shows a histogram of the y-axis values
-func (builder *PanelBuilder) ShowYHistogram() *PanelBuilder {
-	if builder.internal.Options == nil {
-		builder.internal.Options = NewOptions()
-	}
-	valYHistogram := true
-	builder.internal.Options.(*Options).Tooltip.YHistogram = &valYHistogram
-
-	return builder
-}
-
-// Controls if the tooltip shows a histogram of the y-axis values
-func (builder *PanelBuilder) HideYHistogram() *PanelBuilder {
-	if builder.internal.Options == nil {
-		builder.internal.Options = NewOptions()
-	}
-	valYHistogram := false
-	builder.internal.Options.(*Options).Tooltip.YHistogram = &valYHistogram
-
-	return builder
-}
-
-// Controls if the tooltip shows a color scale in header
-func (builder *PanelBuilder) ShowColorScale(showColorScale bool) *PanelBuilder {
-	if builder.internal.Options == nil {
-		builder.internal.Options = NewOptions()
-	}
-	builder.internal.Options.(*Options).Tooltip.ShowColorScale = &showColorScale
+	builder.internal.Options.(*Options).Tooltip = tooltipResource
 
 	return builder
 }

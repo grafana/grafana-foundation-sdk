@@ -18,12 +18,6 @@ export class LibraryPanelBuilder implements cog.Builder<dashboardv2beta1.Library
         return this.internal;
     }
 
-    spec(spec: cog.Builder<dashboardv2beta1.LibraryPanelKindSpec>): this {
-        const specResource = spec.build();
-        this.internal.spec = specResource;
-        return this;
-    }
-
     // Panel ID for the library panel in the dashboard
     id(id: number): this {
         if (!this.internal.spec) {

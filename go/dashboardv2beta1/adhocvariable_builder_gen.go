@@ -60,12 +60,6 @@ func (builder *AdhocVariableBuilder) Datasource(datasource cog.Builder[Dashboard
 	return builder
 }
 
-func (builder *AdhocVariableBuilder) Spec(spec AdhocVariableSpec) *AdhocVariableBuilder {
-	builder.internal.Spec = spec
-
-	return builder
-}
-
 func (builder *AdhocVariableBuilder) Name(name string) *AdhocVariableBuilder {
 	builder.internal.Spec.Name = name
 

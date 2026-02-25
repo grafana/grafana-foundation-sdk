@@ -20,11 +20,6 @@ export class TextVariableBuilder implements cog.Builder<dashboardv2beta1.TextVar
         return this.internal;
     }
 
-    spec(spec: dashboardv2beta1.TextVariableSpec): this {
-        this.internal.spec = spec;
-        return this;
-    }
-
     name(name: string): this {
         if (!this.internal.spec) {
             this.internal.spec = dashboardv2beta1.defaultTextVariableSpec();

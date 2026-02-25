@@ -58,7 +58,6 @@ func (vizConfigKind *VizConfigKind) Validate() error
  * <span class="badge builder"></span> [candlestick.VisualizationBuilder](../candlestick/builder-VisualizationBuilder.md)
  * <span class="badge builder"></span> [canvas.VisualizationBuilder](../canvas/builder-VisualizationBuilder.md)
  * <span class="badge builder"></span> [dashboardlist.VisualizationBuilder](../dashboardlist/builder-VisualizationBuilder.md)
- * <span class="badge builder"></span> [VizConfigKindBuilder](./builder-VizConfigKindBuilder.md)
  * <span class="badge builder"></span> [datagrid.VisualizationBuilder](../datagrid/builder-VisualizationBuilder.md)
  * <span class="badge builder"></span> [debug.VisualizationBuilder](../debug/builder-VisualizationBuilder.md)
  * <span class="badge builder"></span> [gauge.VisualizationBuilder](../gauge/builder-VisualizationBuilder.md)

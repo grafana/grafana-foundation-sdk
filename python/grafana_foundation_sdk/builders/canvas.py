@@ -1296,6 +1296,83 @@ class Visualization(cogbuilder.Builder[dashboardv2beta1.VizConfigKind]):
     
         return self
     
+    def inline_editing(self, inline_editing: bool) -> typing.Self:    
+        """
+        Enable inline editing
+        """
+            
+        if self._internal.spec is None:
+            self._internal.spec = dashboardv2beta1.VizConfigSpec()
+        assert isinstance(self._internal.spec, dashboardv2beta1.VizConfigSpec)
+        if self._internal.spec.options is None:
+            self._internal.spec.options = canvas.Options()
+        assert isinstance(self._internal.spec.options, canvas.Options)
+        self._internal.spec.options.inline_editing = inline_editing
+    
+        return self
+    
+    def show_advanced_types(self, show_advanced_types: bool) -> typing.Self:    
+        """
+        Show all available element types
+        """
+            
+        if self._internal.spec is None:
+            self._internal.spec = dashboardv2beta1.VizConfigSpec()
+        assert isinstance(self._internal.spec, dashboardv2beta1.VizConfigSpec)
+        if self._internal.spec.options is None:
+            self._internal.spec.options = canvas.Options()
+        assert isinstance(self._internal.spec.options, canvas.Options)
+        self._internal.spec.options.show_advanced_types = show_advanced_types
+    
+        return self
+    
+    def pan_zoom(self, pan_zoom: bool) -> typing.Self:    
+        """
+        Enable pan and zoom
+        """
+            
+        if self._internal.spec is None:
+            self._internal.spec = dashboardv2beta1.VizConfigSpec()
+        assert isinstance(self._internal.spec, dashboardv2beta1.VizConfigSpec)
+        if self._internal.spec.options is None:
+            self._internal.spec.options = canvas.Options()
+        assert isinstance(self._internal.spec.options, canvas.Options)
+        self._internal.spec.options.pan_zoom = pan_zoom
+    
+        return self
+    
+    def infinite_pan(self, infinite_pan: bool) -> typing.Self:    
+        """
+        Enable infinite pan
+        """
+            
+        if self._internal.spec is None:
+            self._internal.spec = dashboardv2beta1.VizConfigSpec()
+        assert isinstance(self._internal.spec, dashboardv2beta1.VizConfigSpec)
+        if self._internal.spec.options is None:
+            self._internal.spec.options = canvas.Options()
+        assert isinstance(self._internal.spec.options, canvas.Options)
+        self._internal.spec.options.infinite_pan = infinite_pan
+    
+        return self
+    
+    def root(self, root: cogbuilder.Builder[canvas.CanvasOptionsRoot]) -> typing.Self:    
+        """
+        The root element of canvas (frame), where all canvas elements are nested
+        TODO: Figure out how to define a default value for this
+        """
+            
+        if self._internal.spec is None:
+            self._internal.spec = dashboardv2beta1.VizConfigSpec()
+        assert isinstance(self._internal.spec, dashboardv2beta1.VizConfigSpec)
+        if self._internal.spec.options is None:
+            self._internal.spec.options = canvas.Options()
+        assert isinstance(self._internal.spec.options, canvas.Options)
+        root_resource = root.build()
+        self._internal.spec.options.root = root_resource
+    
+        return self
+    
     def override_by_name(self, name: str, properties: list[dashboardv2beta1.DynamicConfigValue]) -> typing.Self:    
         """
         Adds override rules for a specific field, referred to by its name.
@@ -1385,83 +1462,6 @@ class Visualization(cogbuilder.Builder[dashboardv2beta1.VizConfigKind]):
         ),
             properties=properties,
         ))
-    
-        return self
-    
-    def inline_editing(self, inline_editing: bool) -> typing.Self:    
-        """
-        Enable inline editing
-        """
-            
-        if self._internal.spec is None:
-            self._internal.spec = dashboardv2beta1.VizConfigSpec()
-        assert isinstance(self._internal.spec, dashboardv2beta1.VizConfigSpec)
-        if self._internal.spec.options is None:
-            self._internal.spec.options = canvas.Options()
-        assert isinstance(self._internal.spec.options, canvas.Options)
-        self._internal.spec.options.inline_editing = inline_editing
-    
-        return self
-    
-    def show_advanced_types(self, show_advanced_types: bool) -> typing.Self:    
-        """
-        Show all available element types
-        """
-            
-        if self._internal.spec is None:
-            self._internal.spec = dashboardv2beta1.VizConfigSpec()
-        assert isinstance(self._internal.spec, dashboardv2beta1.VizConfigSpec)
-        if self._internal.spec.options is None:
-            self._internal.spec.options = canvas.Options()
-        assert isinstance(self._internal.spec.options, canvas.Options)
-        self._internal.spec.options.show_advanced_types = show_advanced_types
-    
-        return self
-    
-    def pan_zoom(self, pan_zoom: bool) -> typing.Self:    
-        """
-        Enable pan and zoom
-        """
-            
-        if self._internal.spec is None:
-            self._internal.spec = dashboardv2beta1.VizConfigSpec()
-        assert isinstance(self._internal.spec, dashboardv2beta1.VizConfigSpec)
-        if self._internal.spec.options is None:
-            self._internal.spec.options = canvas.Options()
-        assert isinstance(self._internal.spec.options, canvas.Options)
-        self._internal.spec.options.pan_zoom = pan_zoom
-    
-        return self
-    
-    def infinite_pan(self, infinite_pan: bool) -> typing.Self:    
-        """
-        Enable infinite pan
-        """
-            
-        if self._internal.spec is None:
-            self._internal.spec = dashboardv2beta1.VizConfigSpec()
-        assert isinstance(self._internal.spec, dashboardv2beta1.VizConfigSpec)
-        if self._internal.spec.options is None:
-            self._internal.spec.options = canvas.Options()
-        assert isinstance(self._internal.spec.options, canvas.Options)
-        self._internal.spec.options.infinite_pan = infinite_pan
-    
-        return self
-    
-    def root(self, root: cogbuilder.Builder[canvas.CanvasOptionsRoot]) -> typing.Self:    
-        """
-        The root element of canvas (frame), where all canvas elements are nested
-        TODO: Figure out how to define a default value for this
-        """
-            
-        if self._internal.spec is None:
-            self._internal.spec = dashboardv2beta1.VizConfigSpec()
-        assert isinstance(self._internal.spec, dashboardv2beta1.VizConfigSpec)
-        if self._internal.spec.options is None:
-            self._internal.spec.options = canvas.Options()
-        assert isinstance(self._internal.spec.options, canvas.Options)
-        root_resource = root.build()
-        self._internal.spec.options.root = root_resource
     
         return self
     

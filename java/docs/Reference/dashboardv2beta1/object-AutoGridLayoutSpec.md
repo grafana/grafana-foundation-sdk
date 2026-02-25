@@ -16,6 +16,3 @@ public class AutoGridLayoutSpec {
   public List<AutoGridLayoutItemKind> items;
 }
 ```
-## See also
-
- * <span class="badge builder"></span> [AutoGridLayoutSpecBuilder](./builder-AutoGridLayoutSpecBuilder.md)

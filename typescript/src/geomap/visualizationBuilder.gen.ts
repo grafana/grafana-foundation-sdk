@@ -284,6 +284,66 @@ export class VisualizationBuilder implements cog.Builder<dashboardv2beta1.VizCon
         return this;
     }
 
+    view(view: cog.Builder<geomap.MapViewConfig>): this {
+        if (!this.internal.spec) {
+            this.internal.spec = dashboardv2beta1.defaultVizConfigSpec();
+        }
+        if (!this.internal.spec.options) {
+            this.internal.spec.options = geomap.defaultOptions();
+        }
+        const viewResource = view.build();
+        this.internal.spec.options.view = viewResource;
+        return this;
+    }
+
+    controls(controls: cog.Builder<geomap.ControlsOptions>): this {
+        if (!this.internal.spec) {
+            this.internal.spec = dashboardv2beta1.defaultVizConfigSpec();
+        }
+        if (!this.internal.spec.options) {
+            this.internal.spec.options = geomap.defaultOptions();
+        }
+        const controlsResource = controls.build();
+        this.internal.spec.options.controls = controlsResource;
+        return this;
+    }
+
+    basemap(basemap: cog.Builder<common.MapLayerOptions>): this {
+        if (!this.internal.spec) {
+            this.internal.spec = dashboardv2beta1.defaultVizConfigSpec();
+        }
+        if (!this.internal.spec.options) {
+            this.internal.spec.options = geomap.defaultOptions();
+        }
+        const basemapResource = basemap.build();
+        this.internal.spec.options.basemap = basemapResource;
+        return this;
+    }
+
+    layers(layers: cog.Builder<common.MapLayerOptions>[]): this {
+        if (!this.internal.spec) {
+            this.internal.spec = dashboardv2beta1.defaultVizConfigSpec();
+        }
+        if (!this.internal.spec.options) {
+            this.internal.spec.options = geomap.defaultOptions();
+        }
+        const layersResources = layers.map(builder1 => builder1.build());
+        this.internal.spec.options.layers = layersResources;
+        return this;
+    }
+
+    tooltip(tooltip: cog.Builder<geomap.TooltipOptions>): this {
+        if (!this.internal.spec) {
+            this.internal.spec = dashboardv2beta1.defaultVizConfigSpec();
+        }
+        if (!this.internal.spec.options) {
+            this.internal.spec.options = geomap.defaultOptions();
+        }
+        const tooltipResource = tooltip.build();
+        this.internal.spec.options.tooltip = tooltipResource;
+        return this;
+    }
+
     // Adds override rules for a specific field, referred to by its name.
     overrideByName(name: string,properties: dashboardv2beta1.DynamicConfigValue[]): this {
         if (!this.internal.spec) {
@@ -364,66 +424,6 @@ export class VisualizationBuilder implements cog.Builder<dashboardv2beta1.VizCon
     },
         properties: properties,
     });
-        return this;
-    }
-
-    view(view: cog.Builder<geomap.MapViewConfig>): this {
-        if (!this.internal.spec) {
-            this.internal.spec = dashboardv2beta1.defaultVizConfigSpec();
-        }
-        if (!this.internal.spec.options) {
-            this.internal.spec.options = geomap.defaultOptions();
-        }
-        const viewResource = view.build();
-        this.internal.spec.options.view = viewResource;
-        return this;
-    }
-
-    controls(controls: cog.Builder<geomap.ControlsOptions>): this {
-        if (!this.internal.spec) {
-            this.internal.spec = dashboardv2beta1.defaultVizConfigSpec();
-        }
-        if (!this.internal.spec.options) {
-            this.internal.spec.options = geomap.defaultOptions();
-        }
-        const controlsResource = controls.build();
-        this.internal.spec.options.controls = controlsResource;
-        return this;
-    }
-
-    basemap(basemap: cog.Builder<common.MapLayerOptions>): this {
-        if (!this.internal.spec) {
-            this.internal.spec = dashboardv2beta1.defaultVizConfigSpec();
-        }
-        if (!this.internal.spec.options) {
-            this.internal.spec.options = geomap.defaultOptions();
-        }
-        const basemapResource = basemap.build();
-        this.internal.spec.options.basemap = basemapResource;
-        return this;
-    }
-
-    layers(layers: cog.Builder<common.MapLayerOptions>[]): this {
-        if (!this.internal.spec) {
-            this.internal.spec = dashboardv2beta1.defaultVizConfigSpec();
-        }
-        if (!this.internal.spec.options) {
-            this.internal.spec.options = geomap.defaultOptions();
-        }
-        const layersResources = layers.map(builder1 => builder1.build());
-        this.internal.spec.options.layers = layersResources;
-        return this;
-    }
-
-    tooltip(tooltip: cog.Builder<geomap.TooltipOptions>): this {
-        if (!this.internal.spec) {
-            this.internal.spec = dashboardv2beta1.defaultVizConfigSpec();
-        }
-        if (!this.internal.spec.options) {
-            this.internal.spec.options = geomap.defaultOptions();
-        }
-        const tooltipResource = tooltip.build();
-        this.internal.spec.options.tooltip = tooltipResource;
         return this;
     }
 }

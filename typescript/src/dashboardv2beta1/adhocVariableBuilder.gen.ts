@@ -32,11 +32,6 @@ export class AdhocVariableBuilder implements cog.Builder<dashboardv2beta1.AdhocV
         return this;
     }
 
-    spec(spec: dashboardv2beta1.AdhocVariableSpec): this {
-        this.internal.spec = spec;
-        return this;
-    }
-
     name(name: string): this {
         if (!this.internal.spec) {
             this.internal.spec = dashboardv2beta1.defaultAdhocVariableSpec();

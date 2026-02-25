@@ -20,11 +20,6 @@ export class IntervalVariableBuilder implements cog.Builder<dashboardv2beta1.Int
         return this.internal;
     }
 
-    spec(spec: dashboardv2beta1.IntervalVariableSpec): this {
-        this.internal.spec = spec;
-        return this;
-    }
-
     name(name: string): this {
         if (!this.internal.spec) {
             this.internal.spec = dashboardv2beta1.defaultIntervalVariableSpec();

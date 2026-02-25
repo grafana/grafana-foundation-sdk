@@ -90,12 +90,6 @@ public IntervalVariableBuilder refresh(VariableRefresh refresh)
 public IntervalVariableBuilder skipUrlSync(Boolean skipUrlSync)
 ```
 
-### <span class="badge object-method"></span> spec
-
-```java
-public IntervalVariableBuilder spec(IntervalVariableSpec spec)
-```
-
 ## See also
 
  * <span class="badge object-type-class"></span> [IntervalVariableKind](./object-IntervalVariableKind.md)

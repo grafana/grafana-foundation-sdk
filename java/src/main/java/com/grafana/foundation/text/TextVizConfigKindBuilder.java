@@ -257,6 +257,40 @@ public class TextVizConfigKindBuilder implements com.grafana.foundation.cog.Buil
         return this;
     }
     
+    public TextVizConfigKindBuilder mode(TextMode mode) {
+		if (this.internal.spec == null) {
+			this.internal.spec = new com.grafana.foundation.dashboardv2beta1.VizConfigSpec();
+		}
+		if (this.internal.spec.options == null) {
+			this.internal.spec.options = new com.grafana.foundation.text.Options();
+		}
+        ((Options) this.internal.spec.options).mode = mode;
+        return this;
+    }
+    
+    public TextVizConfigKindBuilder code(com.grafana.foundation.cog.Builder<CodeOptions> code) {
+		if (this.internal.spec == null) {
+			this.internal.spec = new com.grafana.foundation.dashboardv2beta1.VizConfigSpec();
+		}
+		if (this.internal.spec.options == null) {
+			this.internal.spec.options = new com.grafana.foundation.text.Options();
+		}
+    CodeOptions codeResource = code.build();
+        ((Options) this.internal.spec.options).code = codeResource;
+        return this;
+    }
+    
+    public TextVizConfigKindBuilder content(String content) {
+		if (this.internal.spec == null) {
+			this.internal.spec = new com.grafana.foundation.dashboardv2beta1.VizConfigSpec();
+		}
+		if (this.internal.spec.options == null) {
+			this.internal.spec.options = new com.grafana.foundation.text.Options();
+		}
+        ((Options) this.internal.spec.options).content = content;
+        return this;
+    }
+    
     public TextVizConfigKindBuilder overrideByName(String name,List<DynamicConfigValue> properties) {
 		if (this.internal.spec == null) {
 			this.internal.spec = new com.grafana.foundation.dashboardv2beta1.VizConfigSpec();
@@ -334,40 +368,6 @@ public class TextVizConfigKindBuilder implements com.grafana.foundation.cog.Buil
         dashboardv2beta1FieldConfigSourceOverrides.matcher = matcherConfig;
         dashboardv2beta1FieldConfigSourceOverrides.properties = properties;
         this.internal.spec.fieldConfig.overrides.add(dashboardv2beta1FieldConfigSourceOverrides);
-        return this;
-    }
-    
-    public TextVizConfigKindBuilder mode(TextMode mode) {
-		if (this.internal.spec == null) {
-			this.internal.spec = new com.grafana.foundation.dashboardv2beta1.VizConfigSpec();
-		}
-		if (this.internal.spec.options == null) {
-			this.internal.spec.options = new com.grafana.foundation.text.Options();
-		}
-        ((Options) this.internal.spec.options).mode = mode;
-        return this;
-    }
-    
-    public TextVizConfigKindBuilder code(com.grafana.foundation.cog.Builder<CodeOptions> code) {
-		if (this.internal.spec == null) {
-			this.internal.spec = new com.grafana.foundation.dashboardv2beta1.VizConfigSpec();
-		}
-		if (this.internal.spec.options == null) {
-			this.internal.spec.options = new com.grafana.foundation.text.Options();
-		}
-    CodeOptions codeResource = code.build();
-        ((Options) this.internal.spec.options).code = codeResource;
-        return this;
-    }
-    
-    public TextVizConfigKindBuilder content(String content) {
-		if (this.internal.spec == null) {
-			this.internal.spec = new com.grafana.foundation.dashboardv2beta1.VizConfigSpec();
-		}
-		if (this.internal.spec.options == null) {
-			this.internal.spec.options = new com.grafana.foundation.text.Options();
-		}
-        ((Options) this.internal.spec.options).content = content;
         return this;
     }
     public VizConfigKind build() {

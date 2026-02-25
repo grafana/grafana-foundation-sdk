@@ -24,20 +24,20 @@ build()
 condition(\Grafana\Foundation\Dashboardv2beta1\ConditionalRenderingGroupSpecCondition $condition)
 ```
 
+### <span class="badge object-method"></span> item
+
+@param \Grafana\Foundation\Cog\Builder<\Grafana\Foundation\Dashboardv2beta1\ConditionalRenderingVariableKind>|\Grafana\Foundation\Cog\Builder<\Grafana\Foundation\Dashboardv2beta1\ConditionalRenderingDataKind>|\Grafana\Foundation\Cog\Builder<\Grafana\Foundation\Dashboardv2beta1\ConditionalRenderingTimeRangeSizeKind> $item
+
+```php
+item($item)
+```
+
 ### <span class="badge object-method"></span> items
 
 @param array<\Grafana\Foundation\Cog\Builder<\Grafana\Foundation\Dashboardv2beta1\ConditionalRenderingVariableKind>|\Grafana\Foundation\Cog\Builder<\Grafana\Foundation\Dashboardv2beta1\ConditionalRenderingDataKind>|\Grafana\Foundation\Cog\Builder<\Grafana\Foundation\Dashboardv2beta1\ConditionalRenderingTimeRangeSizeKind>> $items
 
 ```php
 items(array $items)
-```
-
-### <span class="badge object-method"></span> spec
-
-@param \Grafana\Foundation\Cog\Builder<\Grafana\Foundation\Dashboardv2beta1\ConditionalRenderingGroupSpec> $spec
-
-```php
-spec(\Grafana\Foundation\Cog\Builder $spec)
 ```
 
 ### <span class="badge object-method"></span> visibility

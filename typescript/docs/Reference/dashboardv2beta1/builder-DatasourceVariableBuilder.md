@@ -102,12 +102,6 @@ regex(regex: string)
 skipUrlSync(skipUrlSync: boolean)
 ```
 
-### <span class="badge object-method"></span> spec
-
-```typescript
-spec(spec: dashboardv2beta1.DatasourceVariableSpec)
-```
-
 ## See also
 
  * <span class="badge object-type-interface"></span> [DatasourceVariableKind](./object-DatasourceVariableKind.md)

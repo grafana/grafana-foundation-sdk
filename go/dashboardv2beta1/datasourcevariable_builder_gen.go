@@ -43,12 +43,6 @@ func (builder *DatasourceVariableBuilder) RecordError(path string, err error) *D
 	return builder
 }
 
-func (builder *DatasourceVariableBuilder) Spec(spec DatasourceVariableSpec) *DatasourceVariableBuilder {
-	builder.internal.Spec = spec
-
-	return builder
-}
-
 func (builder *DatasourceVariableBuilder) Name(name string) *DatasourceVariableBuilder {
 	builder.internal.Spec.Name = name
 

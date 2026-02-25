@@ -60,12 +60,6 @@ func (builder *GroupByVariableBuilder) Datasource(datasource cog.Builder[Dashboa
 	return builder
 }
 
-func (builder *GroupByVariableBuilder) Spec(spec GroupByVariableSpec) *GroupByVariableBuilder {
-	builder.internal.Spec = spec
-
-	return builder
-}
-
 func (builder *GroupByVariableBuilder) Name(name string) *GroupByVariableBuilder {
 	builder.internal.Spec.Name = name
 

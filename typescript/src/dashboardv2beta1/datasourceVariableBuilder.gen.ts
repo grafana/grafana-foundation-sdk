@@ -20,11 +20,6 @@ export class DatasourceVariableBuilder implements cog.Builder<dashboardv2beta1.D
         return this.internal;
     }
 
-    spec(spec: dashboardv2beta1.DatasourceVariableSpec): this {
-        this.internal.spec = spec;
-        return this;
-    }
-
     name(name: string): this {
         if (!this.internal.spec) {
             this.internal.spec = dashboardv2beta1.defaultDatasourceVariableSpec();

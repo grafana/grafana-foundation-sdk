@@ -41,17 +41,6 @@ func (builder *ConditionalRenderingTimeRangeSizeBuilder) RecordError(path string
 	return builder
 }
 
-func (builder *ConditionalRenderingTimeRangeSizeBuilder) Spec(spec cog.Builder[ConditionalRenderingTimeRangeSizeSpec]) *ConditionalRenderingTimeRangeSizeBuilder {
-	specResource, err := spec.Build()
-	if err != nil {
-		builder.errors = append(builder.errors, err.(cog.BuildErrors)...)
-		return builder
-	}
-	builder.internal.Spec = specResource
-
-	return builder
-}
-
 func (builder *ConditionalRenderingTimeRangeSizeBuilder) Value(value string) *ConditionalRenderingTimeRangeSizeBuilder {
 	builder.internal.Spec.Value = value
 

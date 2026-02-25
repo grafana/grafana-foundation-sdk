@@ -1224,98 +1224,6 @@ class Visualization(cogbuilder.Builder[dashboardv2beta1.VizConfigKind]):
     
         return self
     
-    def override_by_name(self, name: str, properties: list[dashboardv2beta1.DynamicConfigValue]) -> typing.Self:    
-        """
-        Adds override rules for a specific field, referred to by its name.
-        """
-            
-        if self._internal.spec is None:
-            self._internal.spec = dashboardv2beta1.VizConfigSpec()
-        assert isinstance(self._internal.spec, dashboardv2beta1.VizConfigSpec)
-        if self._internal.spec.field_config is None:
-            self._internal.spec.field_config = dashboardv2beta1.FieldConfigSource()
-        assert isinstance(self._internal.spec.field_config, dashboardv2beta1.FieldConfigSource)
-        if self._internal.spec.field_config.overrides is None:
-            self._internal.spec.field_config.overrides = []
-        
-        self._internal.spec.field_config.overrides.append(dashboardv2beta1.Dashboardv2beta1FieldConfigSourceOverrides(
-            matcher=dashboardv2beta1.MatcherConfig(
-            id_val="byName",
-            options=name,
-        ),
-            properties=properties,
-        ))
-    
-        return self
-    
-    def override_by_regexp(self, regexp: str, properties: list[dashboardv2beta1.DynamicConfigValue]) -> typing.Self:    
-        """
-        Adds override rules for the fields whose name match the given regexp.
-        """
-            
-        if self._internal.spec is None:
-            self._internal.spec = dashboardv2beta1.VizConfigSpec()
-        assert isinstance(self._internal.spec, dashboardv2beta1.VizConfigSpec)
-        if self._internal.spec.field_config is None:
-            self._internal.spec.field_config = dashboardv2beta1.FieldConfigSource()
-        assert isinstance(self._internal.spec.field_config, dashboardv2beta1.FieldConfigSource)
-        if self._internal.spec.field_config.overrides is None:
-            self._internal.spec.field_config.overrides = []
-        
-        self._internal.spec.field_config.overrides.append(dashboardv2beta1.Dashboardv2beta1FieldConfigSourceOverrides(
-            matcher=dashboardv2beta1.MatcherConfig(
-            id_val="byRegexp",
-            options=regexp,
-        ),
-            properties=properties,
-        ))
-    
-        return self
-    
-    def override_by_field_type(self, field_type: str, properties: list[dashboardv2beta1.DynamicConfigValue]) -> typing.Self:    
-        """
-        Adds override rules for all the fields of the given type.
-        """
-            
-        if self._internal.spec is None:
-            self._internal.spec = dashboardv2beta1.VizConfigSpec()
-        assert isinstance(self._internal.spec, dashboardv2beta1.VizConfigSpec)
-        if self._internal.spec.field_config is None:
-            self._internal.spec.field_config = dashboardv2beta1.FieldConfigSource()
-        assert isinstance(self._internal.spec.field_config, dashboardv2beta1.FieldConfigSource)
-        if self._internal.spec.field_config.overrides is None:
-            self._internal.spec.field_config.overrides = []
-        
-        self._internal.spec.field_config.overrides.append(dashboardv2beta1.Dashboardv2beta1FieldConfigSourceOverrides(
-            matcher=dashboardv2beta1.MatcherConfig(
-            id_val="byType",
-            options=field_type,
-        ),
-            properties=properties,
-        ))
-    
-        return self
-    
-    def override_by_query(self, query_ref_id: str, properties: list[dashboardv2beta1.DynamicConfigValue]) -> typing.Self:    
-        if self._internal.spec is None:
-            self._internal.spec = dashboardv2beta1.VizConfigSpec()
-        assert isinstance(self._internal.spec, dashboardv2beta1.VizConfigSpec)
-        if self._internal.spec.field_config is None:
-            self._internal.spec.field_config = dashboardv2beta1.FieldConfigSource()
-        assert isinstance(self._internal.spec.field_config, dashboardv2beta1.FieldConfigSource)
-        if self._internal.spec.field_config.overrides is None:
-            self._internal.spec.field_config.overrides = []
-        
-        self._internal.spec.field_config.overrides.append(dashboardv2beta1.Dashboardv2beta1FieldConfigSourceOverrides(
-            matcher=dashboardv2beta1.MatcherConfig(
-            id_val="byFrameRefID",
-            options=query_ref_id,
-        ),
-            properties=properties,
-        ))
-    
-        return self
-    
     def show_value(self, show_value: common.VisibilityMode) -> typing.Self:    
         """
         Show timeline values on chart
@@ -1688,6 +1596,98 @@ class Visualization(cogbuilder.Builder[dashboardv2beta1.VizConfigKind]):
             self._internal.spec.field_config.defaults.custom = statetimeline.FieldConfig()
         assert isinstance(self._internal.spec.field_config.defaults.custom, statetimeline.FieldConfig)
         self._internal.spec.field_config.defaults.custom.insert_nulls = insert_nulls
+    
+        return self
+    
+    def override_by_name(self, name: str, properties: list[dashboardv2beta1.DynamicConfigValue]) -> typing.Self:    
+        """
+        Adds override rules for a specific field, referred to by its name.
+        """
+            
+        if self._internal.spec is None:
+            self._internal.spec = dashboardv2beta1.VizConfigSpec()
+        assert isinstance(self._internal.spec, dashboardv2beta1.VizConfigSpec)
+        if self._internal.spec.field_config is None:
+            self._internal.spec.field_config = dashboardv2beta1.FieldConfigSource()
+        assert isinstance(self._internal.spec.field_config, dashboardv2beta1.FieldConfigSource)
+        if self._internal.spec.field_config.overrides is None:
+            self._internal.spec.field_config.overrides = []
+        
+        self._internal.spec.field_config.overrides.append(dashboardv2beta1.Dashboardv2beta1FieldConfigSourceOverrides(
+            matcher=dashboardv2beta1.MatcherConfig(
+            id_val="byName",
+            options=name,
+        ),
+            properties=properties,
+        ))
+    
+        return self
+    
+    def override_by_regexp(self, regexp: str, properties: list[dashboardv2beta1.DynamicConfigValue]) -> typing.Self:    
+        """
+        Adds override rules for the fields whose name match the given regexp.
+        """
+            
+        if self._internal.spec is None:
+            self._internal.spec = dashboardv2beta1.VizConfigSpec()
+        assert isinstance(self._internal.spec, dashboardv2beta1.VizConfigSpec)
+        if self._internal.spec.field_config is None:
+            self._internal.spec.field_config = dashboardv2beta1.FieldConfigSource()
+        assert isinstance(self._internal.spec.field_config, dashboardv2beta1.FieldConfigSource)
+        if self._internal.spec.field_config.overrides is None:
+            self._internal.spec.field_config.overrides = []
+        
+        self._internal.spec.field_config.overrides.append(dashboardv2beta1.Dashboardv2beta1FieldConfigSourceOverrides(
+            matcher=dashboardv2beta1.MatcherConfig(
+            id_val="byRegexp",
+            options=regexp,
+        ),
+            properties=properties,
+        ))
+    
+        return self
+    
+    def override_by_field_type(self, field_type: str, properties: list[dashboardv2beta1.DynamicConfigValue]) -> typing.Self:    
+        """
+        Adds override rules for all the fields of the given type.
+        """
+            
+        if self._internal.spec is None:
+            self._internal.spec = dashboardv2beta1.VizConfigSpec()
+        assert isinstance(self._internal.spec, dashboardv2beta1.VizConfigSpec)
+        if self._internal.spec.field_config is None:
+            self._internal.spec.field_config = dashboardv2beta1.FieldConfigSource()
+        assert isinstance(self._internal.spec.field_config, dashboardv2beta1.FieldConfigSource)
+        if self._internal.spec.field_config.overrides is None:
+            self._internal.spec.field_config.overrides = []
+        
+        self._internal.spec.field_config.overrides.append(dashboardv2beta1.Dashboardv2beta1FieldConfigSourceOverrides(
+            matcher=dashboardv2beta1.MatcherConfig(
+            id_val="byType",
+            options=field_type,
+        ),
+            properties=properties,
+        ))
+    
+        return self
+    
+    def override_by_query(self, query_ref_id: str, properties: list[dashboardv2beta1.DynamicConfigValue]) -> typing.Self:    
+        if self._internal.spec is None:
+            self._internal.spec = dashboardv2beta1.VizConfigSpec()
+        assert isinstance(self._internal.spec, dashboardv2beta1.VizConfigSpec)
+        if self._internal.spec.field_config is None:
+            self._internal.spec.field_config = dashboardv2beta1.FieldConfigSource()
+        assert isinstance(self._internal.spec.field_config, dashboardv2beta1.FieldConfigSource)
+        if self._internal.spec.field_config.overrides is None:
+            self._internal.spec.field_config.overrides = []
+        
+        self._internal.spec.field_config.overrides.append(dashboardv2beta1.Dashboardv2beta1FieldConfigSourceOverrides(
+            matcher=dashboardv2beta1.MatcherConfig(
+            id_val="byFrameRefID",
+            options=query_ref_id,
+        ),
+            properties=properties,
+        ))
     
         return self
     

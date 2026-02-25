@@ -24,17 +24,6 @@ class ConditionalRenderingGroupBuilder implements \Grafana\Foundation\Cog\Builde
         return $this->internal;
     }
 
-    /**
-     * @param \Grafana\Foundation\Cog\Builder<\Grafana\Foundation\Dashboardv2beta1\ConditionalRenderingGroupSpec> $spec
-     */
-    public function spec(\Grafana\Foundation\Cog\Builder $spec): static
-    {
-        $specResource = $spec->build();
-        $this->internal->spec = $specResource;
-    
-        return $this;
-    }
-
     public function visibility(\Grafana\Foundation\Dashboardv2beta1\ConditionalRenderingGroupSpecVisibility $visibility): static
     {
         $this->internal->spec->visibility = $visibility;
@@ -59,6 +48,17 @@ class ConditionalRenderingGroupBuilder implements \Grafana\Foundation\Cog\Builde
                     $itemsResources[] = $r1->build();
             }
         $this->internal->spec->items = $itemsResources;
+    
+        return $this;
+    }
+
+    /**
+     * @param \Grafana\Foundation\Cog\Builder<\Grafana\Foundation\Dashboardv2beta1\ConditionalRenderingVariableKind>|\Grafana\Foundation\Cog\Builder<\Grafana\Foundation\Dashboardv2beta1\ConditionalRenderingDataKind>|\Grafana\Foundation\Cog\Builder<\Grafana\Foundation\Dashboardv2beta1\ConditionalRenderingTimeRangeSizeKind> $item
+     */
+    public function item( $item): static
+    {
+        $itemResource = $item->build();
+        $this->internal->spec->items[] = $itemResource;
     
         return $this;
     }

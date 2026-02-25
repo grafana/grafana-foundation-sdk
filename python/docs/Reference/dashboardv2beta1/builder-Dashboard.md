@@ -24,12 +24,6 @@ def build() -> dashboardv2beta1.Dashboard
 def annotations(annotations: list[cogbuilder.Builder[dashboardv2beta1.AnnotationQueryKind]]) -> typing.Self
 ```
 
-### <span class="badge object-method"></span> auto_grid_layout
-
-```python
-def auto_grid_layout(auto_grid_layout_kind: cogbuilder.Builder[dashboardv2beta1.AutoGridLayoutKind]) -> typing.Self
-```
-
 ### <span class="badge object-method"></span> cursor_sync
 
 Configuration of dashboard cursor sync behavior.
@@ -72,10 +66,10 @@ def element(key: str, element: cogbuilder.Builder[dashboardv2beta1.Element]) -> 
 def elements(elements: dict[str, cogbuilder.Builder[dashboardv2beta1.Element]]) -> typing.Self
 ```
 
-### <span class="badge object-method"></span> grid_layout
+### <span class="badge object-method"></span> layout
 
 ```python
-def grid_layout(grid_layout_kind: cogbuilder.Builder[dashboardv2beta1.GridLayoutKind]) -> typing.Self
+def layout(layout: typing.Union[cogbuilder.Builder[dashboardv2beta1.GridLayoutKind], cogbuilder.Builder[dashboardv2beta1.RowsLayoutKind], cogbuilder.Builder[dashboardv2beta1.AutoGridLayoutKind], cogbuilder.Builder[dashboardv2beta1.TabsLayoutKind]]) -> typing.Self
 ```
 
 ### <span class="badge object-method"></span> links
@@ -114,18 +108,6 @@ This is used to determine if the dashboard should be updated when the plugin is 
 
 ```python
 def revision(revision: int) -> typing.Self
-```
-
-### <span class="badge object-method"></span> rows_layout
-
-```python
-def rows_layout(rows_layout_kind: cogbuilder.Builder[dashboardv2beta1.RowsLayoutKind]) -> typing.Self
-```
-
-### <span class="badge object-method"></span> tabs_layout
-
-```python
-def tabs_layout(tabs_layout_kind: cogbuilder.Builder[dashboardv2beta1.TabsLayoutKind]) -> typing.Self
 ```
 
 ### <span class="badge object-method"></span> tags

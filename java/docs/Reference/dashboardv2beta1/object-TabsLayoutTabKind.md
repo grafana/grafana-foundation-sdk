@@ -13,4 +13,4 @@ public class TabsLayoutTabKind {
 ```
 ## See also
 
- * <span class="badge builder"></span> [TabsLayoutTabBuilder](./builder-TabsLayoutTabBuilder.md)
+ * <span class="badge builder"></span> [TabBuilder](./builder-TabBuilder.md)

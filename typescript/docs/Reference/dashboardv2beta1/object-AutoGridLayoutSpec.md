@@ -17,6 +17,3 @@ export interface AutoGridLayoutSpec {
 }
 
 ```
-## See also
-
- * <span class="badge builder"></span> [AutoGridLayoutSpecBuilder](./builder-AutoGridLayoutSpecBuilder.md)

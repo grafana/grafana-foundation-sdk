@@ -13,6 +13,3 @@ export interface ConditionalRenderingGroupSpec {
 }
 
 ```
-## See also
-
- * <span class="badge builder"></span> [ConditionalRenderingGroupSpecBuilder](./builder-ConditionalRenderingGroupSpecBuilder.md)

@@ -43,12 +43,6 @@ func (builder *TextVariableBuilder) RecordError(path string, err error) *TextVar
 	return builder
 }
 
-func (builder *TextVariableBuilder) Spec(spec TextVariableSpec) *TextVariableBuilder {
-	builder.internal.Spec = spec
-
-	return builder
-}
-
 func (builder *TextVariableBuilder) Name(name string) *TextVariableBuilder {
 	builder.internal.Spec.Name = name
 

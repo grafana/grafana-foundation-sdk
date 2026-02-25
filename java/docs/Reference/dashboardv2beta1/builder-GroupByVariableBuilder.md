@@ -84,12 +84,6 @@ public GroupByVariableBuilder options(List<VariableOption> options)
 public GroupByVariableBuilder skipUrlSync(Boolean skipUrlSync)
 ```
 
-### <span class="badge object-method"></span> spec
-
-```java
-public GroupByVariableBuilder spec(GroupByVariableSpec spec)
-```
-
 ## See also
 
  * <span class="badge object-type-class"></span> [GroupByVariableKind](./object-GroupByVariableKind.md)

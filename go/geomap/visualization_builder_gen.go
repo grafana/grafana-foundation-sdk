@@ -204,57 +204,6 @@ func (builder *VisualizationBuilder) Override(matcher dashboardv2beta1.MatcherCo
 	return builder
 }
 
-// Adds override rules for a specific field, referred to by its name.
-func (builder *VisualizationBuilder) OverrideByName(name string, properties []dashboardv2beta1.DynamicConfigValue) *VisualizationBuilder {
-	builder.internal.Spec.FieldConfig.Overrides = append(builder.internal.Spec.FieldConfig.Overrides, dashboardv2beta1.Dashboardv2beta1FieldConfigSourceOverrides{
-		Matcher: dashboardv2beta1.MatcherConfig{
-			Id:      "byName",
-			Options: &name,
-		},
-		Properties: properties,
-	})
-
-	return builder
-}
-
-// Adds override rules for the fields whose name match the given regexp.
-func (builder *VisualizationBuilder) OverrideByRegexp(regexp string, properties []dashboardv2beta1.DynamicConfigValue) *VisualizationBuilder {
-	builder.internal.Spec.FieldConfig.Overrides = append(builder.internal.Spec.FieldConfig.Overrides, dashboardv2beta1.Dashboardv2beta1FieldConfigSourceOverrides{
-		Matcher: dashboardv2beta1.MatcherConfig{
-			Id:      "byRegexp",
-			Options: &regexp,
-		},
-		Properties: properties,
-	})
-
-	return builder
-}
-
-// Adds override rules for all the fields of the given type.
-func (builder *VisualizationBuilder) OverrideByFieldType(fieldType string, properties []dashboardv2beta1.DynamicConfigValue) *VisualizationBuilder {
-	builder.internal.Spec.FieldConfig.Overrides = append(builder.internal.Spec.FieldConfig.Overrides, dashboardv2beta1.Dashboardv2beta1FieldConfigSourceOverrides{
-		Matcher: dashboardv2beta1.MatcherConfig{
-			Id:      "byType",
-			Options: &fieldType,
-		},
-		Properties: properties,
-	})
-
-	return builder
-}
-
-func (builder *VisualizationBuilder) OverrideByQuery(queryRefId string, properties []dashboardv2beta1.DynamicConfigValue) *VisualizationBuilder {
-	builder.internal.Spec.FieldConfig.Overrides = append(builder.internal.Spec.FieldConfig.Overrides, dashboardv2beta1.Dashboardv2beta1FieldConfigSourceOverrides{
-		Matcher: dashboardv2beta1.MatcherConfig{
-			Id:      "byFrameRefID",
-			Options: &queryRefId,
-		},
-		Properties: properties,
-	})
-
-	return builder
-}
-
 func (builder *VisualizationBuilder) View(view cog.Builder[MapViewConfig]) *VisualizationBuilder {
 	if builder.internal.Spec.Options == nil {
 		builder.internal.Spec.Options = NewOptions()
@@ -325,6 +274,57 @@ func (builder *VisualizationBuilder) Tooltip(tooltip cog.Builder[TooltipOptions]
 		return builder
 	}
 	builder.internal.Spec.Options.(*Options).Tooltip = tooltipResource
+
+	return builder
+}
+
+// Adds override rules for a specific field, referred to by its name.
+func (builder *VisualizationBuilder) OverrideByName(name string, properties []dashboardv2beta1.DynamicConfigValue) *VisualizationBuilder {
+	builder.internal.Spec.FieldConfig.Overrides = append(builder.internal.Spec.FieldConfig.Overrides, dashboardv2beta1.Dashboardv2beta1FieldConfigSourceOverrides{
+		Matcher: dashboardv2beta1.MatcherConfig{
+			Id:      "byName",
+			Options: &name,
+		},
+		Properties: properties,
+	})
+
+	return builder
+}
+
+// Adds override rules for the fields whose name match the given regexp.
+func (builder *VisualizationBuilder) OverrideByRegexp(regexp string, properties []dashboardv2beta1.DynamicConfigValue) *VisualizationBuilder {
+	builder.internal.Spec.FieldConfig.Overrides = append(builder.internal.Spec.FieldConfig.Overrides, dashboardv2beta1.Dashboardv2beta1FieldConfigSourceOverrides{
+		Matcher: dashboardv2beta1.MatcherConfig{
+			Id:      "byRegexp",
+			Options: &regexp,
+		},
+		Properties: properties,
+	})
+
+	return builder
+}
+
+// Adds override rules for all the fields of the given type.
+func (builder *VisualizationBuilder) OverrideByFieldType(fieldType string, properties []dashboardv2beta1.DynamicConfigValue) *VisualizationBuilder {
+	builder.internal.Spec.FieldConfig.Overrides = append(builder.internal.Spec.FieldConfig.Overrides, dashboardv2beta1.Dashboardv2beta1FieldConfigSourceOverrides{
+		Matcher: dashboardv2beta1.MatcherConfig{
+			Id:      "byType",
+			Options: &fieldType,
+		},
+		Properties: properties,
+	})
+
+	return builder
+}
+
+func (builder *VisualizationBuilder) OverrideByQuery(queryRefId string, properties []dashboardv2beta1.DynamicConfigValue) *VisualizationBuilder {
+	builder.internal.Spec.FieldConfig.Overrides = append(builder.internal.Spec.FieldConfig.Overrides, dashboardv2beta1.Dashboardv2beta1FieldConfigSourceOverrides{
+		Matcher: dashboardv2beta1.MatcherConfig{
+			Id:      "byFrameRefID",
+			Options: &queryRefId,
+		},
+		Properties: properties,
+	})
 
 	return builder
 }

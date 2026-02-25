@@ -84,12 +84,6 @@ def options(options: list[dashboardv2beta1.VariableOption]) -> typing.Self
 def skip_url_sync(skip_url_sync: bool) -> typing.Self
 ```
 
-### <span class="badge object-method"></span> spec
-
-```python
-def spec(spec: dashboardv2beta1.GroupByVariableSpec) -> typing.Self
-```
-
 ## See also
 
  * <span class="badge object-type-class"></span> [GroupByVariableKind](./object-GroupByVariableKind.md)

@@ -14,6 +14,3 @@ public class Kind {
   public Object metadata;
 }
 ```
-## See also
-
- * <span class="badge builder"></span> [KindBuilder](./builder-KindBuilder.md)
