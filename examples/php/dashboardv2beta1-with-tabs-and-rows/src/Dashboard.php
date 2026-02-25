@@ -37,7 +37,7 @@ class Dashboard
                                             ->collapse(false)
                                             ->layout(
                                                 Dash::autoGrid()
-                                                    ->item(Dash::autoGridItem('panel-3'))
+                                                    ->withItem('panel-3')
                                             )
                                     )
                                     ->row(
@@ -49,14 +49,14 @@ class Dashboard
                                                         Dash::tab('First tab')
                                                             ->layout(
                                                                 Dash::autoGrid()
-                                                                    ->item(Dash::autoGridItem('panel-3'))
+                                                                    ->withItem('panel-3')
                                                             )
                                                     )
                                                     ->tab(
                                                         Dash::tab('Second tab')
                                                             ->layout(
                                                                 Dash::autoGrid()
-                                                                    ->item(Dash::autoGridItem('panel-4'))
+                                                                    ->withItem('panel-4')
                                                             )
                                                     )
                                             )

@@ -35,7 +35,7 @@ builder = (
                     .row(dashboard.row("Row without tabs")
                         .collapse(False)
                         .layout(dashboard.auto_grid()
-                            .item(dashboard.auto_grid_item("panel-2"))
+                            .with_item("panel-2")
                         )
                     )
                     .row(dashboard.row("Row with tabs")
@@ -43,11 +43,11 @@ builder = (
                         .layout(dashboard.tabs()
                             .tab(dashboard.tab("First tab").layout(
                                 dashboard.auto_grid()
-                                    .item(dashboard.auto_grid_item("panel-3"))
+                                    .with_item("panel-3")
                             ))
                             .tab(dashboard.tab("Second tab").layout(
                                 dashboard.auto_grid()
-                                    .item(dashboard.auto_grid_item("panel-4"))
+                                    .with_item("panel-4")
                             ))
                         )
                     )
