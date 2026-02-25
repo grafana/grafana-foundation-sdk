@@ -33,9 +33,6 @@ jobs:
         with:
           persist-credentials: false
 
-      - name: Setup cog
-        uses: ./.github/actions/setup-cog
-
       - name: Install devbox
         uses: jetify-com/devbox-install-action@a0d2d53632934ae004f878c840055956d9f741b0 #v0.14.0
         with:
@@ -63,7 +60,7 @@ jobs:
           git config --global user.email 'github-actions[bot]@users.noreply.github.com'
           git config --global url."https://x-access-token:${{ env.GENERATED_GITHUB_TOKEN }}@github.com/".insteadOf "git@github.com:"
 
-          devbox run ./scripts/prepare-release.sh
+          devbox run make prepare-release
         env:
           TERM: 'xterm'
           LOG_LEVEL: '7' # debug
