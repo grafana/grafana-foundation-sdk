@@ -80,6 +80,38 @@ builders:
       destination: AutoGridItem
       under_path: spec.element
 
+  - add_option:
+      by_name: AutoGrid
+      option:
+        name: withItem
+        arguments:
+          - name: name
+            type: &type_string
+              kind: scalar
+              scalar: {scalar_kind: string}
+        assignments:
+          - method: append
+            path: spec.items
+            value:
+              envelope:
+                values:
+                  - field: kind
+                    value: { constant: AutoGridLayoutItem }
+                  - field: spec
+                    value:
+                      envelope:
+                        values:
+                          - field: element
+                            value:
+                              envelope:
+                                values:
+                                  - field: kind
+                                    value: { constant: ElementReference }
+                                  - field: name
+                                    value:
+                                      argument: { name: name, type: *type_string }
+
+
   ##############
   # RowsLayout #
   ##############
