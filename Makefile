@@ -5,9 +5,7 @@ COG_BIN     = $(COG_DIR)/cli
 KIND_REGISTRY_PATH="./kind-registry"
 
 .PHONY: install-cog
-install-cog: echodir $(COG_BIN)
-
-.PHONY: echodir
+install-cog: $(COG_BIN)
 
 $(COG_BIN):
 	@echo "Installing Cog version $(COG_VERSION)"
@@ -28,3 +26,7 @@ generate: install-cog clone-kind-registry
 .PHONY: preview
 preview: install-cog clone-kind-registry
 	COG_CMD=$(COG_BIN) SKIP_VALIDATION='yes' CLEANUP_WORKSPACE='no' ./scripts/prepare-release.sh
+
+.PHONY: prepare-release
+prepare-release: install-cog
+	COG_CMD=$(COG_BIN) ./scripts/prepare-release.sh

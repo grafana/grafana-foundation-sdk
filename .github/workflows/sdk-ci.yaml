@@ -40,9 +40,6 @@ jobs:
           private-key: ${{ env.SCHEMA_READER_PRIVATE_KEY }}
           owner: ${{ github.repository_owner }}
 
-      - name: Setup cog
-        uses: ./.github/actions/setup-cog
-
       - name: Install devbox
         uses: jetify-com/devbox-install-action@a0d2d53632934ae004f878c840055956d9f741b0 #v0.14.0
         with:
@@ -54,7 +51,7 @@ jobs:
           git config --global user.email "cog-ci@grafana.com"
           git config --global user.name "cog - CI"
 
-          devbox run ./scripts/prepare-release.sh
+          devbox run make prepare-release
         env:
           TERM: 'xterm'
           WORKSPACE_PATH: /tmp/foundation-workspace-current
@@ -114,15 +111,12 @@ jobs:
       pull-requests: write
       id-token: write
 
-    if: github.ref != 'refs/heads/release-preview'
+    if: github.head_ref != 'release-preview'
 
     steps:
       - uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
         with:
           persist-credentials: false
-
-      - name: Setup cog
-        uses: ./.github/actions/setup-cog
 
       - name: Install devbox
         uses: jetify-com/devbox-install-action@a0d2d53632934ae004f878c840055956d9f741b0 #v0.14.0
@@ -150,7 +144,7 @@ jobs:
           git config --global user.email "cog-ci@grafana.com"
           git config --global user.name "cog - CI"
 
-          devbox run ./scripts/prepare-release.sh
+          devbox run make prepare-release
         env:
           TERM: 'xterm'
           WORKSPACE_PATH: /tmp/foundation-workspace-current
