@@ -11,7 +11,6 @@ import {
   rows,
   row,
   autoGrid,
-  autoGridItem,
 } from '@grafana/grafana-foundation-sdk/dashboardv2beta1';
 import { QueryBuilder as TestDataQueryBuilder } from '@grafana/grafana-foundation-sdk/testdata';
 import { VisualizationBuilder as TimeSeriesVisualizationBuilder } from '@grafana/grafana-foundation-sdk/timeseries';
@@ -60,7 +59,7 @@ const dashboard = new DashboardBuilder('[Example] Dashboard with tabs and rows')
           row('Row without tabs')
             .collapse(false)
             .layout(autoGrid()
-              .item(autoGridItem('panel-2'))
+              .withItem('panel-2')
             )
         )
         .row(
@@ -71,13 +70,13 @@ const dashboard = new DashboardBuilder('[Example] Dashboard with tabs and rows')
                 .tab(
                   tab("First tab")
                     .layout(autoGrid()
-                      .item(autoGridItem('panel-3'))
+                      .withItem('panel-3')
                     )
                 )
                 .tab(
                   tab("Second tab")
                     .layout(autoGrid()
-                      .item(autoGridItem('panel-4'))
+                      .withItem('panel-4')
                     )
                 )
             )

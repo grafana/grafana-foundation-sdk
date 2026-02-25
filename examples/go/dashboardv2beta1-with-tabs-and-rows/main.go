@@ -46,7 +46,7 @@ func main() {
 							dashboard.Row("Row without tabs").
 								Collapse(false).
 								AutoGridLayout(
-									dashboard.AutoGrid().Item(dashboard.AutoGridItem("panel-2")),
+									dashboard.AutoGrid().WithItem("panel-2"),
 								),
 						).
 						Row(
@@ -57,13 +57,13 @@ func main() {
 										Tab(
 											dashboard.Tab("First tab").
 												AutoGridLayout(
-													dashboard.AutoGrid().Item(dashboard.AutoGridItem("panel-3")),
+													dashboard.AutoGrid().WithItem("panel-3"),
 												),
 										).
 										Tab(
 											dashboard.Tab("Second tab").
 												AutoGridLayout(
-													dashboard.AutoGrid().Item(dashboard.AutoGridItem("panel-4")),
+													dashboard.AutoGrid().WithItem("panel-4"),
 												),
 										),
 								),
