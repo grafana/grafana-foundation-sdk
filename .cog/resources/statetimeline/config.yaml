@@ -1,4 +1,5 @@
 # yaml-language-server: $schema=https://raw.githubusercontent.com/grafana/cog/main/schemas/unit.json
 
 builder_transformations:
+  - '%__config_dir%/common.builder.transforms.yaml'
   - '%__config_dir%/go.builder.transforms.yaml'
