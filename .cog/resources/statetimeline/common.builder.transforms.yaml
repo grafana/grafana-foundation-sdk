@@ -1,0 +1,31 @@
+# yaml-language-server: $schema=https://raw.githubusercontent.com/grafana/cog/main/schemas/veneers.json
+
+languages: [all]
+
+package: statetimeline
+
+builders:
+  # See https://github.com/grafana/grafana-foundation-sdk/issues/687
+  - add_option:
+      by_name: Panel
+      option:
+        name: disablePagination
+        comments:
+          - Disables the pagination.
+        assignments:
+          - method: direct
+            # we have to explicitly build this path since `options` is `any`
+            # and needs to be type hinted.
+            path_obj:
+              - identifier: options
+                type:
+                  kind: scalar
+                  scalar: {scalar_kind: any}
+                typehint:
+                  kind: ref
+                  ref: { referred_pkg: statetimeline, referred_type: Options }
+              - identifier: perPage
+                type:
+                  kind: scalar
+                  scalar: {scalar_kind: float64}
+            value: {constant: null}
