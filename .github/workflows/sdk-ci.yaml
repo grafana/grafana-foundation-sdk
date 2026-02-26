@@ -159,29 +159,14 @@ jobs:
         run: |
           echo "ref=$(./scripts/release-preview-or-main.sh)" >> $GITHUB_OUTPUT
 
-      - name: Checkout main branch
+      - name: Checkout ${{ steps.latest_branch.outputs.ref }} branch
         uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
         with:
           ref: ${{ steps.latest_branch.outputs.ref }}
           persist-credentials: false
 
-      - name: Preview diff
+      - name: Generate diff
         run: |
-          cat <<'EOF' > preview.md
-          <!-- grafana-foundation-sdk-diff-preview-marker -->
-          
-          **Note:** the diff show code changes that would be introduced by this PR. Changes already on `main` are excluded.
-          
-          <details>
-          <summary>
-          
-          ### 🔎 Changes to `main`
-          
-          </summary>
-          
-          ```patch
-          EOF
-          
           diff \
             --new-file \
             --unidirectional-new-file \
@@ -197,7 +182,38 @@ jobs:
             --exclude='package.json' \
             --exclude='yarn.lock' \
             --exclude='*.md' \
-            ./ /tmp/foundation-workspace-current/foundation-sdk/ >> preview.md || true # diff returns 1 if the two targets have differences
+            --exclude='diff.patch' \
+            --exclude='.release' \
+            ./ /tmp/foundation-workspace-current/foundation-sdk/ > diff.patch || true # diff returns 1 if the two targets have differences
+
+      - name: Upload diff as artifact
+        uses: actions/upload-artifact@b7c566a772e6b6bfb58ed0dc250532a479d7789f # v6.0.0
+        id: artifact-upload-step
+        with:
+          name: diff.patch
+          path: diff.patch
+          retention-days: 7
+
+      - name: Preview diff
+        run: |
+          cat <<'EOF' > preview.md
+          <!-- grafana-foundation-sdk-diff-preview-marker -->
+          
+          **Note:** the diff show code changes that would be introduced by this PR. Changes already on `${{ steps.latest_branch.outputs.ref }}` are excluded.
+          
+          [See full diff](${{ steps.artifact-upload-step.outputs.artifact-url }}).
+
+          <details>
+          <summary>
+          
+          ### 🔎 Changes to `${{ steps.latest_branch.outputs.ref }}`
+          
+          </summary>
+          
+          ```patch
+          EOF
+          
+          cat diff.patch >> preview.md
           
           cat <<'EOF' >> preview.md
           ```
