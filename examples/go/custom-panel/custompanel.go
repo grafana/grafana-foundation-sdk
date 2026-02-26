@@ -375,10 +375,7 @@ func (builder *CustomPanelBuilder) WithOverride(matcher dashboard.MatcherConfig,
 	if builder.internal.FieldConfig == nil {
 		builder.internal.FieldConfig = &dashboard.FieldConfigSource{}
 	}
-	builder.internal.FieldConfig.Overrides = append(builder.internal.FieldConfig.Overrides, struct {
-		Matcher    dashboard.MatcherConfig        `json:"matcher"`
-		Properties []dashboard.DynamicConfigValue `json:"properties"`
-	}{
+	builder.internal.FieldConfig.Overrides = append(builder.internal.FieldConfig.Overrides, dashboard.DashboardFieldConfigSourceOverrides{
 		Matcher:    matcher,
 		Properties: properties,
 	})
