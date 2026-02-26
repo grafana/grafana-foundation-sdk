@@ -29,3 +29,30 @@ builders:
                   kind: scalar
                   scalar: {scalar_kind: float64}
             value: {constant: null}
+  - add_option:
+      by_name: Visualization
+      option:
+        name: disablePagination
+        comments:
+          - Disables the pagination.
+        assignments:
+          - method: direct
+            # we have to explicitly build this path since `options` is `any`
+            # and needs to be type hinted.
+            path_obj:
+              - identifier: spec
+                type:
+                  kind: ref
+                  ref: {referred_pkg: dashboardv2beta1, referred_type: VizConfigSpec}
+              - identifier: options
+                type:
+                  kind: scalar
+                  scalar: {scalar_kind: any}
+                typehint:
+                  kind: ref
+                  ref: { referred_pkg: statetimeline, referred_type: Options }
+              - identifier: perPage
+                type:
+                  kind: scalar
+                  scalar: {scalar_kind: float64}
+            value: {constant: null}
