@@ -1,0 +1,76 @@
+# yaml-language-server: $schema=https://raw.githubusercontent.com/grafana/cog/main/schemas/compiler_passes.json
+
+passes:
+  - omit_fields:
+      fields:
+        - logs.Options.onClickFilterLabel
+        - logs.Options.onClickFilterOutLabel
+        - logs.Options.isFilterLabelActive
+        - logs.Options.onClickFilterString
+        - logs.Options.onClickFilterOutString
+        - logs.Options.onClickShowField
+        - logs.Options.onClickHideField
+        - logs.Options.logRowMenuIconsBefore
+        - logs.Options.logRowMenuIconsAfter
+        - logs.Options.onNewLogsReceived
+        - logs.Options.displayedFields
+
+  # Add a few missing fields.
+  # This is meant to be removed once the schema is updated.
+  - add_fields:
+      to: logs.Options
+      fields:
+        - name: showControls
+          comments:
+            - Display controls to jump to the last or first log line, and filters by log level.
+          type: &type_bool
+            kind: scalar
+            scalar: {scalar_kind: bool}
+
+  - add_fields:
+      to: logs.Options
+      fields:
+        - name: showFieldSelector
+          comments:
+            - Show a component to manage the displayed fields from the logs.
+          type: *type_bool
+
+  - add_fields:
+      to: logs.Options
+      fields:
+        - name: syntaxHighlighting
+          comments:
+            - Use a predefined coloring scheme to highlight relevant parts of the log lines.
+          type: *type_bool
+
+  - add_fields:
+      to: logs.Options
+      fields:
+        - name: fontSize
+          type:
+            kind: enum
+            enum:
+              values:
+                - name: default
+                  value: default
+                  type: &type_string
+                    kind: scalar
+                    scalar: {scalar_kind: string}
+                - name: small
+                  value: small
+                  type: *type_string
+
+  - add_fields:
+      to: logs.Options
+      fields:
+        - name: detailsMode
+          type:
+            kind: enum
+            enum:
+              values:
+                - name: inline
+                  value: inline
+                  type: *type_string
+                - name: sidebar
+                  value: sidebar
+                  type: *type_string
