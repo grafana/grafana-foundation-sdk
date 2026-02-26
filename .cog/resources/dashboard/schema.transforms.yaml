@@ -137,6 +137,60 @@ passes:
             kind: scalar
             scalar: { scalar_kind: string }
 
+  #####################
+  # FieldConfigSource #
+  #####################
+
+  # Relates to https://github.com/grafana/grafana-foundation-sdk/issues/664
+  # We have to duplicate the entire definition of dashboard.FieldConfigSource
+  # just to add the `__systemRef` field since overrides are defined as an
+  # anonymous struct.
+  - retype_object:
+      object: dashboard.FieldConfigSource
+      comments:
+        - The data model used in Grafana, namely the data frame, is a columnar-oriented table structure that unifies both time series and table query results.
+        - Each column within this structure is called a field. A field can represent a single time series or table column.
+        - Field options allow you to change how the data is displayed in your visualizations.
+      as:
+        kind: struct
+        struct:
+          fields:
+            - name: defaults
+              required: true
+              comments:
+                - Defaults are the options applied to all fields.
+              type:
+                kind: ref
+                ref: { referred_pkg: dashboard, referred_type: FieldConfig }
+            - name: overrides
+              required: true
+              comments:
+                - Overrides are the options applied to specific fields overriding the defaults.
+              type:
+                kind: array
+                array:
+                  value_type:
+                    kind: struct
+                    struct:
+                      fields:
+                        - name: __systemRef
+                          type:
+                            kind: scalar
+                            scalar: { scalar_kind: string }
+                        - name: matcher
+                          required: true
+                          type:
+                            kind: ref
+                            ref: { referred_pkg: dashboard, referred_type: MatcherConfig }
+                        - name: properties
+                          required: true
+                          type:
+                            kind: array
+                            array:
+                              value_type:
+                                kind: ref
+                                ref: { referred_pkg: dashboard, referred_type: DynamicConfigValue }
+
   #############
   # row panel #
   #############
