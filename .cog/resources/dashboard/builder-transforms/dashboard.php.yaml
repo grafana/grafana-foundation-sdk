@@ -22,3 +22,4 @@ options:
   # WithOverride(matcher, properties) instead of WithOverride(struct{...})
   - struct_fields_as_arguments:
       by_name: Panel.withOverride
+      fields: [matcher, properties]
