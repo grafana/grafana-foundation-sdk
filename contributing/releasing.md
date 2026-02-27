@@ -24,6 +24,21 @@ Releasing a new version of the SDK is an automated process and follows these ste
 > The `./scripts/prepare-release.sh` and `./scripts/release.sh` scripts are
 > also usable locally.
 
+```mermaid
+sequenceDiagram
+    participant PR
+    participant main
+    participant release_preview@{ "type" : "control" }
+    participant release
+
+    PR->>+main: PR 1 merged.
+    main->>+release_preview: Codegen results published
+    PR->>+main: PR 2 merged.
+    main->>+release_preview: Codegen results published
+    release_preview->>+main: Merged
+    main-->>+release: Release created
+```
+
 ## Dashboard Converter
 
 Releases are triggered by pushing a tag with the format `dashboard-converter-vX.Y.Z`. The [Dashboard Converter workflow](https://github.com/grafana/grafana-foundation-sdk/actions/workflows/dashboard-converter.yaml) runs automatically on tag push.
