@@ -1,5 +1,9 @@
 # Adding new resources
 
+> [!NOTE]
+> The `make add-resource` command starts a CLI tool that will guide you through
+> the process of adding a new resource to the SDK.
+
 ## Requirements
 
 As described in [cog's documentation](https://grafana.github.io/cog/pipelines/creating_pipeline/#inputs),

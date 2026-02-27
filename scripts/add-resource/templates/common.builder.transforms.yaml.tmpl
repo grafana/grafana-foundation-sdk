@@ -1,0 +1,53 @@
+# yaml-language-server: $schema=https://raw.githubusercontent.com/grafana/cog/main/schemas/veneers.json
+
+# See https://grafana.github.io/cog/pipelines/builder_transformations/
+
+languages: [all]
+
+package: {{ .Descriptor.PackageName }}
+
+{{- if eq .Descriptor.ResourceType "app_platform_resource" }}
+builders:
+  - add_factory:
+      by_name: {{ default .Descriptor.SchemaEnvelope .Descriptor.AppPlatformKind }}
+      factory:
+        name: manifest
+        builder_ref: {referred_pkg: resource, referred_type: Manifest}
+        comments:
+          - "Creates a resource manifest from a {{ default .Descriptor.SchemaEnvelope .Descriptor.AppPlatformKind }}."
+        arguments:
+          - &name_argument
+            name: name
+            type: &type_string
+              kind: scalar
+              scalar: {scalar_kind: string}
+          - &spec_argument
+            name: spec
+            type:
+              kind: ref
+              ref: {referred_pkg: {{ .Descriptor.PackageName }}, referred_type: {{ default .Descriptor.SchemaEnvelope .Descriptor.AppPlatformKind }}}
+        options:
+          - name: apiVersion
+            parameters:
+              - constant:
+                  value: "{{ .Descriptor.AppPlatformApiVersion }}"
+                  type: *type_string
+          - name: kind
+            parameters:
+              - constant:
+                  value: "{{ .Descriptor.AppPlatformKind }}"
+                  type: *type_string
+          - name: metadata
+            parameters:
+              - factory:
+                  ref: { package: resource, builder: Metadata, factory: named }
+                  parameters:
+                    - { argument: *name_argument }
+          - name: spec
+            parameters:
+              - { argument: *spec_argument, force_build: true }
+{{- else }}
+builders: []
+{{- end }}
+
+options: []

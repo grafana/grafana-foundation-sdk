@@ -1,0 +1,44 @@
+# yaml-language-server: $schema=https://raw.githubusercontent.com/grafana/cog/main/schemas/unit.json
+
+inputs:
+{{- if eq .Descriptor.SchemaType "cue" }}
+  - cue:
+      url: '{{ .Descriptor.SchemaUrl }}'
+{{- else if eq .Descriptor.SchemaType "jsonschema" }}
+  - jsonschema:
+      url: '{{ .Descriptor.SchemaUrl }}'
+{{- else }}
+  - openapi:
+      url: '{{ .Descriptor.SchemaUrl }}'
+{{- end }}
+
+      # Name of the package in which code for this resource will be generated.
+      package: {{ .Descriptor.PackageName }}
+{{- if .Descriptor.SchemaSubpath }}
+      # The actual schema isn't at the root of the file, so we have to tell cog
+      # where to find it.
+      subpath: {{ .Descriptor.SchemaSubpath }}
+{{- end }}
+{{- if .Descriptor.SchemaSubpath }}
+      # The schema is defined under the `spec` field, which cog will use as
+      # resource name unless told otherwise.
+      forced_envelope: {{ .Descriptor.SchemaEnvelope }}
+{{- end }}
+{{- if eq .Descriptor.ResourceType "panel" }}
+      metadata:
+        kind: composable
+        variant: panelcfg
+        identifier: {{ .Descriptor.ResourceIdentifier }}
+{{- end }}
+{{- if eq .Descriptor.ResourceType "dataquery" }}
+      metadata:
+        kind: composable
+        variant: dataquery
+        identifier: {{ .Descriptor.ResourceIdentifier }}
+{{- end }}
+
+      transformations:
+        - '%__config_dir%/schema.transforms.yaml'
+
+builder_transformations:
+  - '%__config_dir%/common.builder.transforms.yaml'
