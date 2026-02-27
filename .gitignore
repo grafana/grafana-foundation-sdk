@@ -8,6 +8,7 @@
 /kind-registry
 /workspace
 /vendor
+/scripts/*/vendor
 /typescript/node_modules
 /typescript/.yarn/
 /typescript/.yarnrc.yml

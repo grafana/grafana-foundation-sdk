@@ -30,3 +30,7 @@ preview: install-cog clone-kind-registry
 .PHONY: prepare-release
 prepare-release: install-cog
 	COG_CMD=$(COG_BIN) ./scripts/prepare-release.sh
+
+.PHONY: add-resource
+add-resource: install-cog
+	@cd ./scripts/add-resource && go run . ../../.cog/resources

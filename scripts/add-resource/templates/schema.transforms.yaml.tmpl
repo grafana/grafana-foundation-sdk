@@ -1,0 +1,21 @@
+# yaml-language-server: $schema=https://raw.githubusercontent.com/grafana/cog/main/schemas/compiler_passes.json
+
+# See https://grafana.github.io/cog/pipelines/schema_transformations/
+
+{{- if eq .Descriptor.ResourceType "app_platform_resource" }}
+passes:
+  # Add a few useful constants
+  - add_object:
+      object: {{ .Descriptor.PackageName }}.{{ .Descriptor.AppPlatformKind }}APIVersion
+      as:
+        kind: scalar
+        scalar: { scalar_kind: string, value: "{{ .Descriptor.AppPlatformApiVersion }}" }
+
+  - add_object:
+      object: {{ .Descriptor.PackageName }}.{{ .Descriptor.AppPlatformKind }}Kind
+      as:
+        kind: scalar
+        scalar: { scalar_kind: string, value: "{{ .Descriptor.AppPlatformKind }}" }
+{{- else }}
+passes: []
+{{- end }}
