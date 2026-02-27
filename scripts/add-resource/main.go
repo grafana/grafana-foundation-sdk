@@ -11,6 +11,7 @@ import (
 	"net/url"
 	"os"
 	"path"
+	"path/filepath"
 	"reflect"
 	"regexp"
 	"strings"
@@ -39,7 +40,17 @@ func main() {
 		os.Exit(1)
 	}
 
-	resourcesDir := os.Args[1]
+	currentDir, err := os.Getwd()
+	if err != nil {
+		panic(err)
+	}
+
+	dir, err := filepath.Abs(filepath.Join(currentDir, os.Args[1]))
+	if err != nil {
+		panic(err)
+	}
+
+	resourcesDir := dir
 	descriptor := schemaDescriptor{}
 
 	form := huh.NewForm(

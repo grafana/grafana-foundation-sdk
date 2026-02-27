@@ -1,5 +1,7 @@
 # yaml-language-server: $schema=https://raw.githubusercontent.com/grafana/cog/main/schemas/unit.json
 
+# See https://grafana.github.io/cog/pipelines/splitting_pipeline/
+
 inputs:
 {{- if eq .Descriptor.SchemaType "cue" }}
   - cue:
