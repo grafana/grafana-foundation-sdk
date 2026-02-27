@@ -716,6 +716,9 @@
               "properties"
             ],
             "properties": {
+              "__systemRef": {
+                "type": "string"
+              },
               "matcher": {
                 "$ref": "#/definitions/MatcherConfig"
               },

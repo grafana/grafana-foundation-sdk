@@ -26,7 +26,6 @@ import (
 	heatmap "github.com/grafana/grafana-foundation-sdk/go/heatmap"
 	histogram "github.com/grafana/grafana-foundation-sdk/go/histogram"
 	logs "github.com/grafana/grafana-foundation-sdk/go/logs"
-	logsnew "github.com/grafana/grafana-foundation-sdk/go/logsnew"
 	loki "github.com/grafana/grafana-foundation-sdk/go/loki"
 	news "github.com/grafana/grafana-foundation-sdk/go/news"
 	nodegraph "github.com/grafana/grafana-foundation-sdk/go/nodegraph"
@@ -62,7 +61,6 @@ func RegisterDefaultPlugins() {
 	runtime.RegisterPanelcfgVariant(heatmap.VariantConfig())
 	runtime.RegisterPanelcfgVariant(histogram.VariantConfig())
 	runtime.RegisterPanelcfgVariant(logs.VariantConfig())
-	runtime.RegisterPanelcfgVariant(logsnew.VariantConfig())
 	runtime.RegisterPanelcfgVariant(news.VariantConfig())
 	runtime.RegisterPanelcfgVariant(nodegraph.VariantConfig())
 	runtime.RegisterPanelcfgVariant(piechart.VariantConfig())

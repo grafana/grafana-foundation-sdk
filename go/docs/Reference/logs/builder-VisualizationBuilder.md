@@ -70,6 +70,12 @@ Human readable field metadata
 func (builder *VisualizationBuilder) Description(description string) *VisualizationBuilder
 ```
 
+### <span class="badge object-method"></span> DetailsMode
+
+```go
+func (builder *VisualizationBuilder) DetailsMode(detailsMode logs.OptionsDetailsMode) *VisualizationBuilder
+```
+
 ### <span class="badge object-method"></span> DisplayName
 
 The display value for this field.  This supports template variables blank is auto
@@ -88,12 +94,6 @@ When this property is configured, this value is used rather than the default nam
 func (builder *VisualizationBuilder) DisplayNameFromDS(displayNameFromDS string) *VisualizationBuilder
 ```
 
-### <span class="badge object-method"></span> DisplayedFields
-
-```go
-func (builder *VisualizationBuilder) DisplayedFields(displayedFields []string) *VisualizationBuilder
-```
-
 ### <span class="badge object-method"></span> EnableInfiniteScrolling
 
 ```go
@@ -106,22 +106,10 @@ func (builder *VisualizationBuilder) EnableInfiniteScrolling(enableInfiniteScrol
 func (builder *VisualizationBuilder) EnableLogDetails(enableLogDetails bool) *VisualizationBuilder
 ```
 
-### <span class="badge object-method"></span> IsFilterLabelActive
+### <span class="badge object-method"></span> FontSize
 
 ```go
-func (builder *VisualizationBuilder) IsFilterLabelActive(isFilterLabelActive any) *VisualizationBuilder
-```
-
-### <span class="badge object-method"></span> LogRowMenuIconsAfter
-
-```go
-func (builder *VisualizationBuilder) LogRowMenuIconsAfter(logRowMenuIconsAfter any) *VisualizationBuilder
-```
-
-### <span class="badge object-method"></span> LogRowMenuIconsBefore
-
-```go
-func (builder *VisualizationBuilder) LogRowMenuIconsBefore(logRowMenuIconsBefore any) *VisualizationBuilder
+func (builder *VisualizationBuilder) FontSize(fontSize logs.OptionsFontSize) *VisualizationBuilder
 ```
 
 ### <span class="badge object-method"></span> Mappings
@@ -154,50 +142,6 @@ Alternative to empty string
 
 ```go
 func (builder *VisualizationBuilder) NoValue(noValue string) *VisualizationBuilder
-```
-
-### <span class="badge object-method"></span> OnClickFilterLabel
-
-TODO: figure out how to define callbacks
-
-```go
-func (builder *VisualizationBuilder) OnClickFilterLabel(onClickFilterLabel any) *VisualizationBuilder
-```
-
-### <span class="badge object-method"></span> OnClickFilterOutLabel
-
-```go
-func (builder *VisualizationBuilder) OnClickFilterOutLabel(onClickFilterOutLabel any) *VisualizationBuilder
-```
-
-### <span class="badge object-method"></span> OnClickFilterOutString
-
-```go
-func (builder *VisualizationBuilder) OnClickFilterOutString(onClickFilterOutString any) *VisualizationBuilder
-```
-
-### <span class="badge object-method"></span> OnClickFilterString
-
-```go
-func (builder *VisualizationBuilder) OnClickFilterString(onClickFilterString any) *VisualizationBuilder
-```
-
-### <span class="badge object-method"></span> OnClickHideField
-
-```go
-func (builder *VisualizationBuilder) OnClickHideField(onClickHideField any) *VisualizationBuilder
-```
-
-### <span class="badge object-method"></span> OnClickShowField
-
-```go
-func (builder *VisualizationBuilder) OnClickShowField(onClickShowField any) *VisualizationBuilder
-```
-
-### <span class="badge object-method"></span> OnNewLogsReceived
-
-```go
-func (builder *VisualizationBuilder) OnNewLogsReceived(onNewLogsReceived any) *VisualizationBuilder
 ```
 
 ### <span class="badge object-method"></span> Override
@@ -274,6 +218,22 @@ func (builder *VisualizationBuilder) PrettifyLogMessage(prettifyLogMessage bool)
 func (builder *VisualizationBuilder) ShowCommonLabels(showCommonLabels bool) *VisualizationBuilder
 ```
 
+### <span class="badge object-method"></span> ShowControls
+
+Display controls to jump to the last or first log line, and filters by log level.
+
+```go
+func (builder *VisualizationBuilder) ShowControls(showControls bool) *VisualizationBuilder
+```
+
+### <span class="badge object-method"></span> ShowFieldSelector
+
+Show a component to manage the displayed fields from the logs.
+
+```go
+func (builder *VisualizationBuilder) ShowFieldSelector(showFieldSelector bool) *VisualizationBuilder
+```
+
 ### <span class="badge object-method"></span> ShowLabels
 
 ```go
@@ -296,6 +256,14 @@ func (builder *VisualizationBuilder) ShowTime(showTime bool) *VisualizationBuild
 
 ```go
 func (builder *VisualizationBuilder) SortOrder(sortOrder common.LogsSortOrder) *VisualizationBuilder
+```
+
+### <span class="badge object-method"></span> SyntaxHighlighting
+
+Use a predefined coloring scheme to highlight relevant parts of the log lines.
+
+```go
+func (builder *VisualizationBuilder) SyntaxHighlighting(syntaxHighlighting bool) *VisualizationBuilder
 ```
 
 ### <span class="badge object-method"></span> Thresholds

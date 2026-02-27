@@ -503,91 +503,43 @@ public class LogsPanelBuilder implements com.grafana.foundation.cog.Builder<Pane
         return this;
     }
     
-    public LogsPanelBuilder onClickFilterLabel(Object onClickFilterLabel) {
+    public LogsPanelBuilder showControls(Boolean showControls) {
 		if (this.internal.options == null) {
 			this.internal.options = new com.grafana.foundation.logs.Options();
 		}
-        ((Options) this.internal.options).onClickFilterLabel = onClickFilterLabel;
+        ((Options) this.internal.options).showControls = showControls;
         return this;
     }
     
-    public LogsPanelBuilder onClickFilterOutLabel(Object onClickFilterOutLabel) {
+    public LogsPanelBuilder showFieldSelector(Boolean showFieldSelector) {
 		if (this.internal.options == null) {
 			this.internal.options = new com.grafana.foundation.logs.Options();
 		}
-        ((Options) this.internal.options).onClickFilterOutLabel = onClickFilterOutLabel;
+        ((Options) this.internal.options).showFieldSelector = showFieldSelector;
         return this;
     }
     
-    public LogsPanelBuilder isFilterLabelActive(Object isFilterLabelActive) {
+    public LogsPanelBuilder syntaxHighlighting(Boolean syntaxHighlighting) {
 		if (this.internal.options == null) {
 			this.internal.options = new com.grafana.foundation.logs.Options();
 		}
-        ((Options) this.internal.options).isFilterLabelActive = isFilterLabelActive;
+        ((Options) this.internal.options).syntaxHighlighting = syntaxHighlighting;
         return this;
     }
     
-    public LogsPanelBuilder onClickFilterString(Object onClickFilterString) {
+    public LogsPanelBuilder fontSize(OptionsFontSize fontSize) {
 		if (this.internal.options == null) {
 			this.internal.options = new com.grafana.foundation.logs.Options();
 		}
-        ((Options) this.internal.options).onClickFilterString = onClickFilterString;
+        ((Options) this.internal.options).fontSize = fontSize;
         return this;
     }
     
-    public LogsPanelBuilder onClickFilterOutString(Object onClickFilterOutString) {
+    public LogsPanelBuilder detailsMode(OptionsDetailsMode detailsMode) {
 		if (this.internal.options == null) {
 			this.internal.options = new com.grafana.foundation.logs.Options();
 		}
-        ((Options) this.internal.options).onClickFilterOutString = onClickFilterOutString;
-        return this;
-    }
-    
-    public LogsPanelBuilder onClickShowField(Object onClickShowField) {
-		if (this.internal.options == null) {
-			this.internal.options = new com.grafana.foundation.logs.Options();
-		}
-        ((Options) this.internal.options).onClickShowField = onClickShowField;
-        return this;
-    }
-    
-    public LogsPanelBuilder onClickHideField(Object onClickHideField) {
-		if (this.internal.options == null) {
-			this.internal.options = new com.grafana.foundation.logs.Options();
-		}
-        ((Options) this.internal.options).onClickHideField = onClickHideField;
-        return this;
-    }
-    
-    public LogsPanelBuilder logRowMenuIconsBefore(Object logRowMenuIconsBefore) {
-		if (this.internal.options == null) {
-			this.internal.options = new com.grafana.foundation.logs.Options();
-		}
-        ((Options) this.internal.options).logRowMenuIconsBefore = logRowMenuIconsBefore;
-        return this;
-    }
-    
-    public LogsPanelBuilder logRowMenuIconsAfter(Object logRowMenuIconsAfter) {
-		if (this.internal.options == null) {
-			this.internal.options = new com.grafana.foundation.logs.Options();
-		}
-        ((Options) this.internal.options).logRowMenuIconsAfter = logRowMenuIconsAfter;
-        return this;
-    }
-    
-    public LogsPanelBuilder onNewLogsReceived(Object onNewLogsReceived) {
-		if (this.internal.options == null) {
-			this.internal.options = new com.grafana.foundation.logs.Options();
-		}
-        ((Options) this.internal.options).onNewLogsReceived = onNewLogsReceived;
-        return this;
-    }
-    
-    public LogsPanelBuilder displayedFields(List<String> displayedFields) {
-		if (this.internal.options == null) {
-			this.internal.options = new com.grafana.foundation.logs.Options();
-		}
-        ((Options) this.internal.options).displayedFields = displayedFields;
+        ((Options) this.internal.options).detailsMode = detailsMode;
         return this;
     }
     public Panel build() {

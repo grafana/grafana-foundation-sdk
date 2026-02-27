@@ -17,18 +17,14 @@ type Options struct {
     SortOrder common.LogsSortOrder `json:"sortOrder"`
     DedupStrategy common.LogsDedupStrategy `json:"dedupStrategy"`
     EnableInfiniteScrolling *bool `json:"enableInfiniteScrolling,omitempty"`
-    // TODO: figure out how to define callbacks
-    OnClickFilterLabel any `json:"onClickFilterLabel,omitempty"`
-    OnClickFilterOutLabel any `json:"onClickFilterOutLabel,omitempty"`
-    IsFilterLabelActive any `json:"isFilterLabelActive,omitempty"`
-    OnClickFilterString any `json:"onClickFilterString,omitempty"`
-    OnClickFilterOutString any `json:"onClickFilterOutString,omitempty"`
-    OnClickShowField any `json:"onClickShowField,omitempty"`
-    OnClickHideField any `json:"onClickHideField,omitempty"`
-    LogRowMenuIconsBefore any `json:"logRowMenuIconsBefore,omitempty"`
-    LogRowMenuIconsAfter any `json:"logRowMenuIconsAfter,omitempty"`
-    OnNewLogsReceived any `json:"onNewLogsReceived,omitempty"`
-    DisplayedFields []string `json:"displayedFields,omitempty"`
+    // Display controls to jump to the last or first log line, and filters by log level.
+    ShowControls *bool `json:"showControls,omitempty"`
+    // Show a component to manage the displayed fields from the logs.
+    ShowFieldSelector *bool `json:"showFieldSelector,omitempty"`
+    // Use a predefined coloring scheme to highlight relevant parts of the log lines.
+    SyntaxHighlighting *bool `json:"syntaxHighlighting,omitempty"`
+    FontSize *logs.OptionsFontSize `json:"fontSize,omitempty"`
+    DetailsMode *logs.OptionsDetailsMode `json:"detailsMode,omitempty"`
 }
 ```
 ## Methods

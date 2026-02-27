@@ -369,124 +369,58 @@ public class LogsVizConfigKindBuilder implements com.grafana.foundation.cog.Buil
         return this;
     }
     
-    public LogsVizConfigKindBuilder onClickFilterLabel(Object onClickFilterLabel) {
+    public LogsVizConfigKindBuilder showControls(Boolean showControls) {
 		if (this.internal.spec == null) {
 			this.internal.spec = new com.grafana.foundation.dashboardv2beta1.VizConfigSpec();
 		}
 		if (this.internal.spec.options == null) {
 			this.internal.spec.options = new com.grafana.foundation.logs.Options();
 		}
-        ((Options) this.internal.spec.options).onClickFilterLabel = onClickFilterLabel;
+        ((Options) this.internal.spec.options).showControls = showControls;
         return this;
     }
     
-    public LogsVizConfigKindBuilder onClickFilterOutLabel(Object onClickFilterOutLabel) {
+    public LogsVizConfigKindBuilder showFieldSelector(Boolean showFieldSelector) {
 		if (this.internal.spec == null) {
 			this.internal.spec = new com.grafana.foundation.dashboardv2beta1.VizConfigSpec();
 		}
 		if (this.internal.spec.options == null) {
 			this.internal.spec.options = new com.grafana.foundation.logs.Options();
 		}
-        ((Options) this.internal.spec.options).onClickFilterOutLabel = onClickFilterOutLabel;
+        ((Options) this.internal.spec.options).showFieldSelector = showFieldSelector;
         return this;
     }
     
-    public LogsVizConfigKindBuilder isFilterLabelActive(Object isFilterLabelActive) {
+    public LogsVizConfigKindBuilder syntaxHighlighting(Boolean syntaxHighlighting) {
 		if (this.internal.spec == null) {
 			this.internal.spec = new com.grafana.foundation.dashboardv2beta1.VizConfigSpec();
 		}
 		if (this.internal.spec.options == null) {
 			this.internal.spec.options = new com.grafana.foundation.logs.Options();
 		}
-        ((Options) this.internal.spec.options).isFilterLabelActive = isFilterLabelActive;
+        ((Options) this.internal.spec.options).syntaxHighlighting = syntaxHighlighting;
         return this;
     }
     
-    public LogsVizConfigKindBuilder onClickFilterString(Object onClickFilterString) {
+    public LogsVizConfigKindBuilder fontSize(OptionsFontSize fontSize) {
 		if (this.internal.spec == null) {
 			this.internal.spec = new com.grafana.foundation.dashboardv2beta1.VizConfigSpec();
 		}
 		if (this.internal.spec.options == null) {
 			this.internal.spec.options = new com.grafana.foundation.logs.Options();
 		}
-        ((Options) this.internal.spec.options).onClickFilterString = onClickFilterString;
+        ((Options) this.internal.spec.options).fontSize = fontSize;
         return this;
     }
     
-    public LogsVizConfigKindBuilder onClickFilterOutString(Object onClickFilterOutString) {
+    public LogsVizConfigKindBuilder detailsMode(OptionsDetailsMode detailsMode) {
 		if (this.internal.spec == null) {
 			this.internal.spec = new com.grafana.foundation.dashboardv2beta1.VizConfigSpec();
 		}
 		if (this.internal.spec.options == null) {
 			this.internal.spec.options = new com.grafana.foundation.logs.Options();
 		}
-        ((Options) this.internal.spec.options).onClickFilterOutString = onClickFilterOutString;
-        return this;
-    }
-    
-    public LogsVizConfigKindBuilder onClickShowField(Object onClickShowField) {
-		if (this.internal.spec == null) {
-			this.internal.spec = new com.grafana.foundation.dashboardv2beta1.VizConfigSpec();
-		}
-		if (this.internal.spec.options == null) {
-			this.internal.spec.options = new com.grafana.foundation.logs.Options();
-		}
-        ((Options) this.internal.spec.options).onClickShowField = onClickShowField;
-        return this;
-    }
-    
-    public LogsVizConfigKindBuilder onClickHideField(Object onClickHideField) {
-		if (this.internal.spec == null) {
-			this.internal.spec = new com.grafana.foundation.dashboardv2beta1.VizConfigSpec();
-		}
-		if (this.internal.spec.options == null) {
-			this.internal.spec.options = new com.grafana.foundation.logs.Options();
-		}
-        ((Options) this.internal.spec.options).onClickHideField = onClickHideField;
-        return this;
-    }
-    
-    public LogsVizConfigKindBuilder logRowMenuIconsBefore(Object logRowMenuIconsBefore) {
-		if (this.internal.spec == null) {
-			this.internal.spec = new com.grafana.foundation.dashboardv2beta1.VizConfigSpec();
-		}
-		if (this.internal.spec.options == null) {
-			this.internal.spec.options = new com.grafana.foundation.logs.Options();
-		}
-        ((Options) this.internal.spec.options).logRowMenuIconsBefore = logRowMenuIconsBefore;
-        return this;
-    }
-    
-    public LogsVizConfigKindBuilder logRowMenuIconsAfter(Object logRowMenuIconsAfter) {
-		if (this.internal.spec == null) {
-			this.internal.spec = new com.grafana.foundation.dashboardv2beta1.VizConfigSpec();
-		}
-		if (this.internal.spec.options == null) {
-			this.internal.spec.options = new com.grafana.foundation.logs.Options();
-		}
-        ((Options) this.internal.spec.options).logRowMenuIconsAfter = logRowMenuIconsAfter;
-        return this;
-    }
-    
-    public LogsVizConfigKindBuilder onNewLogsReceived(Object onNewLogsReceived) {
-		if (this.internal.spec == null) {
-			this.internal.spec = new com.grafana.foundation.dashboardv2beta1.VizConfigSpec();
-		}
-		if (this.internal.spec.options == null) {
-			this.internal.spec.options = new com.grafana.foundation.logs.Options();
-		}
-        ((Options) this.internal.spec.options).onNewLogsReceived = onNewLogsReceived;
-        return this;
-    }
-    
-    public LogsVizConfigKindBuilder displayedFields(List<String> displayedFields) {
-		if (this.internal.spec == null) {
-			this.internal.spec = new com.grafana.foundation.dashboardv2beta1.VizConfigSpec();
-		}
-		if (this.internal.spec.options == null) {
-			this.internal.spec.options = new com.grafana.foundation.logs.Options();
-		}
-        ((Options) this.internal.spec.options).displayedFields = displayedFields;
+        ((Options) this.internal.spec.options).detailsMode = detailsMode;
         return this;
     }
     

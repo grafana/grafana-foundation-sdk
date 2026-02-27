@@ -252,6 +252,7 @@ export class VisualizationBuilder implements cog.Builder<dashboardv2beta1.VizCon
 
     // Overrides are the options applied to specific fields overriding the defaults.
     overrides(overrides: {
+	__systemRef?: string;
 	matcher: dashboardv2beta1.MatcherConfig;
 	properties: dashboardv2beta1.DynamicConfigValue[];
 }[]): this {
@@ -267,6 +268,7 @@ export class VisualizationBuilder implements cog.Builder<dashboardv2beta1.VizCon
 
     // Overrides are the options applied to specific fields overriding the defaults.
     override(override: {
+	__systemRef?: string;
 	matcher: dashboardv2beta1.MatcherConfig;
 	properties: dashboardv2beta1.DynamicConfigValue[];
 }): this {

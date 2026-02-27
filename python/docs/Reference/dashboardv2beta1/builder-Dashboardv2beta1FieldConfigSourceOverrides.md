@@ -18,6 +18,12 @@ Builds the object.
 def build() -> dashboardv2beta1.Dashboardv2beta1FieldConfigSourceOverrides
 ```
 
+### <span class="badge object-method"></span> system_ref
+
+```python
+def system_ref(system_ref: str) -> typing.Self
+```
+
 ### <span class="badge object-method"></span> matcher
 
 ```python

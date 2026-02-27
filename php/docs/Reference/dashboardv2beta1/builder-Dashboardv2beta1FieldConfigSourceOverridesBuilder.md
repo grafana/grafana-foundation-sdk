@@ -18,6 +18,12 @@ Builds the object.
 build()
 ```
 
+### <span class="badge object-method"></span> systemRef
+
+```php
+systemRef(string $systemRef)
+```
+
 ### <span class="badge object-method"></span> matcher
 
 ```php

@@ -154,6 +154,14 @@ Panel description.
 func (builder *PanelBuilder) Description(description string) *PanelBuilder
 ```
 
+### <span class="badge object-method"></span> DisablePagination
+
+Disables the pagination.
+
+```go
+func (builder *PanelBuilder) DisablePagination() *PanelBuilder
+```
+
 ### <span class="badge object-method"></span> DisplayName
 
 The display value for this field.  This supports template variables blank is auto

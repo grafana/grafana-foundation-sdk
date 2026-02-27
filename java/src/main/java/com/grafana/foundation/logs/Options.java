@@ -9,7 +9,6 @@ import com.fasterxml.jackson.databind.ObjectWriter;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.grafana.foundation.common.LogsSortOrder;
 import com.grafana.foundation.common.LogsDedupStrategy;
-import java.util.List;
 
 public class Options {
     @JsonProperty("showLabels")
@@ -35,40 +34,24 @@ public class Options {
     @JsonInclude(JsonInclude.Include.NON_NULL)
     @JsonProperty("enableInfiniteScrolling")
     public Boolean enableInfiniteScrolling;
-    // TODO: figure out how to define callbacks
+    // Display controls to jump to the last or first log line, and filters by log level.
     @JsonInclude(JsonInclude.Include.NON_NULL)
-    @JsonProperty("onClickFilterLabel")
-    public Object onClickFilterLabel;
+    @JsonProperty("showControls")
+    public Boolean showControls;
+    // Show a component to manage the displayed fields from the logs.
     @JsonInclude(JsonInclude.Include.NON_NULL)
-    @JsonProperty("onClickFilterOutLabel")
-    public Object onClickFilterOutLabel;
+    @JsonProperty("showFieldSelector")
+    public Boolean showFieldSelector;
+    // Use a predefined coloring scheme to highlight relevant parts of the log lines.
     @JsonInclude(JsonInclude.Include.NON_NULL)
-    @JsonProperty("isFilterLabelActive")
-    public Object isFilterLabelActive;
+    @JsonProperty("syntaxHighlighting")
+    public Boolean syntaxHighlighting;
     @JsonInclude(JsonInclude.Include.NON_NULL)
-    @JsonProperty("onClickFilterString")
-    public Object onClickFilterString;
+    @JsonProperty("fontSize")
+    public OptionsFontSize fontSize;
     @JsonInclude(JsonInclude.Include.NON_NULL)
-    @JsonProperty("onClickFilterOutString")
-    public Object onClickFilterOutString;
-    @JsonInclude(JsonInclude.Include.NON_NULL)
-    @JsonProperty("onClickShowField")
-    public Object onClickShowField;
-    @JsonInclude(JsonInclude.Include.NON_NULL)
-    @JsonProperty("onClickHideField")
-    public Object onClickHideField;
-    @JsonInclude(JsonInclude.Include.NON_NULL)
-    @JsonProperty("logRowMenuIconsBefore")
-    public Object logRowMenuIconsBefore;
-    @JsonInclude(JsonInclude.Include.NON_NULL)
-    @JsonProperty("logRowMenuIconsAfter")
-    public Object logRowMenuIconsAfter;
-    @JsonInclude(JsonInclude.Include.NON_NULL)
-    @JsonProperty("onNewLogsReceived")
-    public Object onNewLogsReceived;
-    @JsonInclude(JsonInclude.Include.NON_NULL)
-    @JsonProperty("displayedFields")
-    public List<String> displayedFields;
+    @JsonProperty("detailsMode")
+    public OptionsDetailsMode detailsMode;
     public Options() {
         this.showLabels = false;
         this.showCommonLabels = false;
@@ -80,7 +63,7 @@ public class Options {
         this.sortOrder = LogsSortOrder.DESCENDING;
         this.dedupStrategy = LogsDedupStrategy.NONE;
     }
-    public Options(Boolean showLabels,Boolean showCommonLabels,Boolean showTime,Boolean showLogContextToggle,Boolean wrapLogMessage,Boolean prettifyLogMessage,Boolean enableLogDetails,LogsSortOrder sortOrder,LogsDedupStrategy dedupStrategy,Boolean enableInfiniteScrolling,Object onClickFilterLabel,Object onClickFilterOutLabel,Object isFilterLabelActive,Object onClickFilterString,Object onClickFilterOutString,Object onClickShowField,Object onClickHideField,Object logRowMenuIconsBefore,Object logRowMenuIconsAfter,Object onNewLogsReceived,List<String> displayedFields) {
+    public Options(Boolean showLabels,Boolean showCommonLabels,Boolean showTime,Boolean showLogContextToggle,Boolean wrapLogMessage,Boolean prettifyLogMessage,Boolean enableLogDetails,LogsSortOrder sortOrder,LogsDedupStrategy dedupStrategy,Boolean enableInfiniteScrolling,Boolean showControls,Boolean showFieldSelector,Boolean syntaxHighlighting,OptionsFontSize fontSize,OptionsDetailsMode detailsMode) {
         this.showLabels = showLabels;
         this.showCommonLabels = showCommonLabels;
         this.showTime = showTime;
@@ -91,17 +74,11 @@ public class Options {
         this.sortOrder = sortOrder;
         this.dedupStrategy = dedupStrategy;
         this.enableInfiniteScrolling = enableInfiniteScrolling;
-        this.onClickFilterLabel = onClickFilterLabel;
-        this.onClickFilterOutLabel = onClickFilterOutLabel;
-        this.isFilterLabelActive = isFilterLabelActive;
-        this.onClickFilterString = onClickFilterString;
-        this.onClickFilterOutString = onClickFilterOutString;
-        this.onClickShowField = onClickShowField;
-        this.onClickHideField = onClickHideField;
-        this.logRowMenuIconsBefore = logRowMenuIconsBefore;
-        this.logRowMenuIconsAfter = logRowMenuIconsAfter;
-        this.onNewLogsReceived = onNewLogsReceived;
-        this.displayedFields = displayedFields;
+        this.showControls = showControls;
+        this.showFieldSelector = showFieldSelector;
+        this.syntaxHighlighting = syntaxHighlighting;
+        this.fontSize = fontSize;
+        this.detailsMode = detailsMode;
     }
     
     public String toJSON() throws JsonProcessingException {
