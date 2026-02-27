@@ -1,0 +1,48 @@
+# yaml-language-server: $schema=https://raw.githubusercontent.com/grafana/cog/main/schemas/veneers.json
+
+# See https://grafana.github.io/cog/pipelines/builder_transformations/
+
+languages: [all]
+
+package: repositoryv0alpha1
+builders:
+  - add_factory:
+      by_name: Repository
+      factory:
+        name: manifest
+        builder_ref: {referred_pkg: resource, referred_type: Manifest}
+        comments:
+          - "Creates a resource manifest from a Repository."
+        arguments:
+          - &name_argument
+            name: name
+            type: &type_string
+              kind: scalar
+              scalar: {scalar_kind: string}
+          - &spec_argument
+            name: spec
+            type:
+              kind: ref
+              ref: {referred_pkg: repositoryv0alpha1, referred_type: Repository}
+        options:
+          - name: apiVersion
+            parameters:
+              - constant:
+                  value: "provisioning.grafana.app/v0alpha1"
+                  type: *type_string
+          - name: kind
+            parameters:
+              - constant:
+                  value: "Repository"
+                  type: *type_string
+          - name: metadata
+            parameters:
+              - factory:
+                  ref: { package: resource, builder: Metadata, factory: named }
+                  parameters:
+                    - { argument: *name_argument }
+          - name: spec
+            parameters:
+              - { argument: *spec_argument, force_build: true }
+
+options: []

@@ -1,0 +1,16 @@
+# yaml-language-server: $schema=https://raw.githubusercontent.com/grafana/cog/main/schemas/compiler_passes.json
+
+# See https://grafana.github.io/cog/pipelines/schema_transformations/
+passes:
+  # Add a few useful constants
+  - add_object:
+      object: repositoryv0alpha1.RepositoryAPIVersion
+      as:
+        kind: scalar
+        scalar: { scalar_kind: string, value: "provisioning.grafana.app/v0alpha1" }
+
+  - add_object:
+      object: repositoryv0alpha1.RepositoryKind
+      as:
+        kind: scalar
+        scalar: { scalar_kind: string, value: "Repository" }

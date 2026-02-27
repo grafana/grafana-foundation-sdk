@@ -1,0 +1,22 @@
+# yaml-language-server: $schema=https://raw.githubusercontent.com/grafana/cog/main/schemas/unit.json
+
+# See https://grafana.github.io/cog/pipelines/splitting_pipeline/
+
+inputs:
+  - cue:
+      url: 'https://raw.githubusercontent.com/grafana/grafana/refs/tags/v12.4.0/apps/provisioning/kinds/repository.cue'
+
+      # Name of the package in which code for this resource will be generated.
+      package: repositoryv0alpha1
+      # The actual schema isn't at the root of the file, so we have to tell cog
+      # where to find it.
+      subpath: repository.versions.v0alpha1.schema.spec
+      # The schema is defined under the `spec` field, which cog will use as
+      # resource name unless told otherwise.
+      forced_envelope: Repository
+
+      transformations:
+        - '%__config_dir%/schema.transforms.yaml'
+
+builder_transformations:
+  - '%__config_dir%/common.builder.transforms.yaml'
