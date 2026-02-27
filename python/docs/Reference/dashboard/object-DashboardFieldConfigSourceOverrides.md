@@ -7,6 +7,7 @@ title: <span class="badge object-type-class"></span> DashboardFieldConfigSourceO
 
 ```python
 class DashboardFieldConfigSourceOverrides:
+    system_ref: typing.Optional[str]
     matcher: dashboard.MatcherConfig
     properties: list[dashboard.DynamicConfigValue]
 ```

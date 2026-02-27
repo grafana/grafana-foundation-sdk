@@ -126,6 +126,14 @@ Human readable field metadata
 description(description: string)
 ```
 
+### <span class="badge object-method"></span> disablePagination
+
+Disables the pagination.
+
+```typescript
+disablePagination()
+```
+
 ### <span class="badge object-method"></span> displayName
 
 The display value for this field.  This supports template variables blank is auto
@@ -220,6 +228,7 @@ Overrides are the options applied to specific fields overriding the defaults.
 
 ```typescript
 override(override: {
+	__systemRef?: string;
 	matcher: dashboardv2beta1.MatcherConfig;
 	properties: dashboardv2beta1.DynamicConfigValue[];
 })
@@ -261,6 +270,7 @@ Overrides are the options applied to specific fields overriding the defaults.
 
 ```typescript
 overrides(overrides: {
+	__systemRef?: string;
 	matcher: dashboardv2beta1.MatcherConfig;
 	properties: dashboardv2beta1.DynamicConfigValue[];
 }[])

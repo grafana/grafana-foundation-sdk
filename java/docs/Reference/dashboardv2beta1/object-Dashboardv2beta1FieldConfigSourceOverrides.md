@@ -7,6 +7,7 @@ title: <span class="badge object-type-class"></span> Dashboardv2beta1FieldConfig
 
 ```java
 public class Dashboardv2beta1FieldConfigSourceOverrides {
+  public String systemRef;
   public MatcherConfig matcher;
   public List<DynamicConfigValue> properties;
 }

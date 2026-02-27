@@ -703,6 +703,17 @@ public class StatetimelineVizConfigKindBuilder implements com.grafana.foundation
         this.internal.spec.fieldConfig.overrides.add(dashboardv2beta1FieldConfigSourceOverrides);
         return this;
     }
+    
+    public StatetimelineVizConfigKindBuilder disablePagination() {
+		if (this.internal.spec == null) {
+			this.internal.spec = new com.grafana.foundation.dashboardv2beta1.VizConfigSpec();
+		}
+		if (this.internal.spec.options == null) {
+			this.internal.spec.options = new com.grafana.foundation.statetimeline.Options();
+		}
+        ((Options) this.internal.spec.options).perPage = null;
+        return this;
+    }
     public VizConfigKind build() {
         return this.internal;
     }

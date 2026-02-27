@@ -142,6 +142,14 @@ Panel description.
 def description(description: str) -> typing.Self
 ```
 
+### <span class="badge object-method"></span> disable_pagination
+
+Disables the pagination.
+
+```python
+def disable_pagination() -> typing.Self
+```
+
 ### <span class="badge object-method"></span> display_name
 
 The display value for this field.  This supports template variables blank is auto

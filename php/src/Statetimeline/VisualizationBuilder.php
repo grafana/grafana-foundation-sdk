@@ -592,4 +592,18 @@ class VisualizationBuilder implements \Grafana\Foundation\Cog\Builder
         return $this;
     }
 
+    /**
+     * Disables the pagination.
+     */
+    public function disablePagination(): static
+    {    
+        if ($this->internal->spec->options === null) {
+            $this->internal->spec->options = new \Grafana\Foundation\Statetimeline\Options();
+        }
+        assert($this->internal->spec->options instanceof \Grafana\Foundation\Statetimeline\Options);
+        $this->internal->spec->options->perPage = (float) null;
+    
+        return $this;
+    }
+
 }

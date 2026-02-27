@@ -17,6 +17,7 @@ export interface FieldConfigSource {
 	defaults: dashboard.FieldConfig;
 	// Overrides are the options applied to specific fields overriding the defaults.
 	overrides: {
+		__systemRef?: string;
 		matcher: dashboard.MatcherConfig;
 		properties: dashboard.DynamicConfigValue[];
 	}[];

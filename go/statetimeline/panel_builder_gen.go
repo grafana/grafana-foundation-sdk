@@ -869,3 +869,13 @@ func (builder *PanelBuilder) NeverInsertNulls() *PanelBuilder {
 
 	return builder
 }
+
+// Disables the pagination.
+func (builder *PanelBuilder) DisablePagination() *PanelBuilder {
+	if builder.internal.Options == nil {
+		builder.internal.Options = NewOptions()
+	}
+	builder.internal.Options.(*Options).PerPage = nil
+
+	return builder
+}

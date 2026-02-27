@@ -1,6 +1,6 @@
 {
   "name": "@grafana/grafana-foundation-sdk",
-  "version": "v0.0.11",
+  "version": "v0.0.12",
   "description": "A set of tools, types and libraries for building and manipulating Grafana objects.",
   "keywords": [
     "observability",
@@ -146,10 +146,6 @@
     "./logs": {
       "types": "./dist/logs/index.d.ts",
       "default": "./dist/logs/index.js"
-    },
-    "./logsnew": {
-      "types": "./dist/logsnew/index.d.ts",
-      "default": "./dist/logsnew/index.js"
     },
     "./loki": {
       "types": "./dist/loki/index.d.ts",

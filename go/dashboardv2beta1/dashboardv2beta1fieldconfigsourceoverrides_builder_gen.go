@@ -40,6 +40,12 @@ func (builder *Dashboardv2beta1FieldConfigSourceOverridesBuilder) RecordError(pa
 	return builder
 }
 
+func (builder *Dashboardv2beta1FieldConfigSourceOverridesBuilder) SystemRef(systemRef string) *Dashboardv2beta1FieldConfigSourceOverridesBuilder {
+	builder.internal.SystemRef = &systemRef
+
+	return builder
+}
+
 func (builder *Dashboardv2beta1FieldConfigSourceOverridesBuilder) Matcher(matcher MatcherConfig) *Dashboardv2beta1FieldConfigSourceOverridesBuilder {
 	builder.internal.Matcher = matcher
 

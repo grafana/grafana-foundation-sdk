@@ -253,6 +253,7 @@ export class VisualizationBuilder implements cog.Builder<dashboardv2beta1.VizCon
 
     // Overrides are the options applied to specific fields overriding the defaults.
     overrides(overrides: {
+	__systemRef?: string;
 	matcher: dashboardv2beta1.MatcherConfig;
 	properties: dashboardv2beta1.DynamicConfigValue[];
 }[]): this {
@@ -268,6 +269,7 @@ export class VisualizationBuilder implements cog.Builder<dashboardv2beta1.VizCon
 
     // Overrides are the options applied to specific fields overriding the defaults.
     override(override: {
+	__systemRef?: string;
 	matcher: dashboardv2beta1.MatcherConfig;
 	properties: dashboardv2beta1.DynamicConfigValue[];
 }): this {
@@ -394,125 +396,61 @@ export class VisualizationBuilder implements cog.Builder<dashboardv2beta1.VizCon
         return this;
     }
 
-    // TODO: figure out how to define callbacks
-    onClickFilterLabel(onClickFilterLabel: any): this {
+    // Display controls to jump to the last or first log line, and filters by log level.
+    showControls(showControls: boolean): this {
         if (!this.internal.spec) {
             this.internal.spec = dashboardv2beta1.defaultVizConfigSpec();
         }
         if (!this.internal.spec.options) {
             this.internal.spec.options = logs.defaultOptions();
         }
-        this.internal.spec.options.onClickFilterLabel = onClickFilterLabel;
+        this.internal.spec.options.showControls = showControls;
         return this;
     }
 
-    onClickFilterOutLabel(onClickFilterOutLabel: any): this {
+    // Show a component to manage the displayed fields from the logs.
+    showFieldSelector(showFieldSelector: boolean): this {
         if (!this.internal.spec) {
             this.internal.spec = dashboardv2beta1.defaultVizConfigSpec();
         }
         if (!this.internal.spec.options) {
             this.internal.spec.options = logs.defaultOptions();
         }
-        this.internal.spec.options.onClickFilterOutLabel = onClickFilterOutLabel;
+        this.internal.spec.options.showFieldSelector = showFieldSelector;
         return this;
     }
 
-    isFilterLabelActive(isFilterLabelActive: any): this {
+    // Use a predefined coloring scheme to highlight relevant parts of the log lines.
+    syntaxHighlighting(syntaxHighlighting: boolean): this {
         if (!this.internal.spec) {
             this.internal.spec = dashboardv2beta1.defaultVizConfigSpec();
         }
         if (!this.internal.spec.options) {
             this.internal.spec.options = logs.defaultOptions();
         }
-        this.internal.spec.options.isFilterLabelActive = isFilterLabelActive;
+        this.internal.spec.options.syntaxHighlighting = syntaxHighlighting;
         return this;
     }
 
-    onClickFilterString(onClickFilterString: any): this {
+    fontSize(fontSize: "default" | "small"): this {
         if (!this.internal.spec) {
             this.internal.spec = dashboardv2beta1.defaultVizConfigSpec();
         }
         if (!this.internal.spec.options) {
             this.internal.spec.options = logs.defaultOptions();
         }
-        this.internal.spec.options.onClickFilterString = onClickFilterString;
+        this.internal.spec.options.fontSize = fontSize;
         return this;
     }
 
-    onClickFilterOutString(onClickFilterOutString: any): this {
+    detailsMode(detailsMode: "inline" | "sidebar"): this {
         if (!this.internal.spec) {
             this.internal.spec = dashboardv2beta1.defaultVizConfigSpec();
         }
         if (!this.internal.spec.options) {
             this.internal.spec.options = logs.defaultOptions();
         }
-        this.internal.spec.options.onClickFilterOutString = onClickFilterOutString;
-        return this;
-    }
-
-    onClickShowField(onClickShowField: any): this {
-        if (!this.internal.spec) {
-            this.internal.spec = dashboardv2beta1.defaultVizConfigSpec();
-        }
-        if (!this.internal.spec.options) {
-            this.internal.spec.options = logs.defaultOptions();
-        }
-        this.internal.spec.options.onClickShowField = onClickShowField;
-        return this;
-    }
-
-    onClickHideField(onClickHideField: any): this {
-        if (!this.internal.spec) {
-            this.internal.spec = dashboardv2beta1.defaultVizConfigSpec();
-        }
-        if (!this.internal.spec.options) {
-            this.internal.spec.options = logs.defaultOptions();
-        }
-        this.internal.spec.options.onClickHideField = onClickHideField;
-        return this;
-    }
-
-    logRowMenuIconsBefore(logRowMenuIconsBefore: any): this {
-        if (!this.internal.spec) {
-            this.internal.spec = dashboardv2beta1.defaultVizConfigSpec();
-        }
-        if (!this.internal.spec.options) {
-            this.internal.spec.options = logs.defaultOptions();
-        }
-        this.internal.spec.options.logRowMenuIconsBefore = logRowMenuIconsBefore;
-        return this;
-    }
-
-    logRowMenuIconsAfter(logRowMenuIconsAfter: any): this {
-        if (!this.internal.spec) {
-            this.internal.spec = dashboardv2beta1.defaultVizConfigSpec();
-        }
-        if (!this.internal.spec.options) {
-            this.internal.spec.options = logs.defaultOptions();
-        }
-        this.internal.spec.options.logRowMenuIconsAfter = logRowMenuIconsAfter;
-        return this;
-    }
-
-    onNewLogsReceived(onNewLogsReceived: any): this {
-        if (!this.internal.spec) {
-            this.internal.spec = dashboardv2beta1.defaultVizConfigSpec();
-        }
-        if (!this.internal.spec.options) {
-            this.internal.spec.options = logs.defaultOptions();
-        }
-        this.internal.spec.options.onNewLogsReceived = onNewLogsReceived;
-        return this;
-    }
-
-    displayedFields(displayedFields: string[]): this {
-        if (!this.internal.spec) {
-            this.internal.spec = dashboardv2beta1.defaultVizConfigSpec();
-        }
-        if (!this.internal.spec.options) {
-            this.internal.spec.options = logs.defaultOptions();
-        }
-        this.internal.spec.options.displayedFields = displayedFields;
+        this.internal.spec.options.detailsMode = detailsMode;
         return this;
     }
 

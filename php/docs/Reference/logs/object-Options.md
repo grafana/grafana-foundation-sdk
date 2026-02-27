@@ -29,60 +29,23 @@ class Options implements \JsonSerializable
     public ?bool $enableInfiniteScrolling;
 
     /**
-     * TODO: figure out how to define callbacks
-     * @var mixed|null
+     * Display controls to jump to the last or first log line, and filters by log level.
      */
-    public $onClickFilterLabel;
+    public ?bool $showControls;
 
     /**
-     * @var mixed|null
+     * Show a component to manage the displayed fields from the logs.
      */
-    public $onClickFilterOutLabel;
+    public ?bool $showFieldSelector;
 
     /**
-     * @var mixed|null
+     * Use a predefined coloring scheme to highlight relevant parts of the log lines.
      */
-    public $isFilterLabelActive;
+    public ?bool $syntaxHighlighting;
 
-    /**
-     * @var mixed|null
-     */
-    public $onClickFilterString;
+    public ?\Grafana\Foundation\Logs\OptionsFontSize $fontSize;
 
-    /**
-     * @var mixed|null
-     */
-    public $onClickFilterOutString;
-
-    /**
-     * @var mixed|null
-     */
-    public $onClickShowField;
-
-    /**
-     * @var mixed|null
-     */
-    public $onClickHideField;
-
-    /**
-     * @var mixed|null
-     */
-    public $logRowMenuIconsBefore;
-
-    /**
-     * @var mixed|null
-     */
-    public $logRowMenuIconsAfter;
-
-    /**
-     * @var mixed|null
-     */
-    public $onNewLogsReceived;
-
-    /**
-     * @var array<string>|null
-     */
-    public ?array $displayedFields;
+    public ?\Grafana\Foundation\Logs\OptionsDetailsMode $detailsMode;
 
 }
 ```

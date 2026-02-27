@@ -86,18 +86,18 @@ Panel description.
 public PanelBuilder description(String description)
 ```
 
+### <span class="badge object-method"></span> detailsMode
+
+```java
+public PanelBuilder detailsMode(OptionsDetailsMode detailsMode)
+```
+
 ### <span class="badge object-method"></span> displayName
 
 The display value for this field.  This supports template variables blank is auto
 
 ```java
 public PanelBuilder displayName(String displayName)
-```
-
-### <span class="badge object-method"></span> displayedFields
-
-```java
-public PanelBuilder displayedFields(List<String> displayedFields)
 ```
 
 ### <span class="badge object-method"></span> enableInfiniteScrolling
@@ -116,6 +116,12 @@ public PanelBuilder enableLogDetails(Boolean enableLogDetails)
 
 ```java
 public PanelBuilder fieldMinMax(Boolean fieldMinMax)
+```
+
+### <span class="badge object-method"></span> fontSize
+
+```java
+public PanelBuilder fontSize(OptionsFontSize fontSize)
 ```
 
 ### <span class="badge object-method"></span> gridPos
@@ -164,12 +170,6 @@ See: https://grafana.com/docs/grafana/latest/panels-visualizations/query-transfo
 public PanelBuilder interval(String interval)
 ```
 
-### <span class="badge object-method"></span> isFilterLabelActive
-
-```java
-public PanelBuilder isFilterLabelActive(Object isFilterLabelActive)
-```
-
 ### <span class="badge object-method"></span> libraryPanel
 
 Dynamically load the panel
@@ -184,18 +184,6 @@ Panel links.
 
 ```java
 public PanelBuilder links(List<com.grafana.foundation.cog.Builder<DashboardLink>> links)
-```
-
-### <span class="badge object-method"></span> logRowMenuIconsAfter
-
-```java
-public PanelBuilder logRowMenuIconsAfter(Object logRowMenuIconsAfter)
-```
-
-### <span class="badge object-method"></span> logRowMenuIconsBefore
-
-```java
-public PanelBuilder logRowMenuIconsBefore(Object logRowMenuIconsBefore)
 ```
 
 ### <span class="badge object-method"></span> mappings
@@ -246,50 +234,6 @@ Alternative to empty string
 
 ```java
 public PanelBuilder noValue(String noValue)
-```
-
-### <span class="badge object-method"></span> onClickFilterLabel
-
-TODO: figure out how to define callbacks
-
-```java
-public PanelBuilder onClickFilterLabel(Object onClickFilterLabel)
-```
-
-### <span class="badge object-method"></span> onClickFilterOutLabel
-
-```java
-public PanelBuilder onClickFilterOutLabel(Object onClickFilterOutLabel)
-```
-
-### <span class="badge object-method"></span> onClickFilterOutString
-
-```java
-public PanelBuilder onClickFilterOutString(Object onClickFilterOutString)
-```
-
-### <span class="badge object-method"></span> onClickFilterString
-
-```java
-public PanelBuilder onClickFilterString(Object onClickFilterString)
-```
-
-### <span class="badge object-method"></span> onClickHideField
-
-```java
-public PanelBuilder onClickHideField(Object onClickHideField)
-```
-
-### <span class="badge object-method"></span> onClickShowField
-
-```java
-public PanelBuilder onClickShowField(Object onClickShowField)
-```
-
-### <span class="badge object-method"></span> onNewLogsReceived
-
-```java
-public PanelBuilder onNewLogsReceived(Object onNewLogsReceived)
 ```
 
 ### <span class="badge object-method"></span> overrideByFieldType
@@ -368,6 +312,22 @@ public PanelBuilder repeatDirection(PanelRepeatDirection repeatDirection)
 public PanelBuilder showCommonLabels(Boolean showCommonLabels)
 ```
 
+### <span class="badge object-method"></span> showControls
+
+Display controls to jump to the last or first log line, and filters by log level.
+
+```java
+public PanelBuilder showControls(Boolean showControls)
+```
+
+### <span class="badge object-method"></span> showFieldSelector
+
+Show a component to manage the displayed fields from the logs.
+
+```java
+public PanelBuilder showFieldSelector(Boolean showFieldSelector)
+```
+
 ### <span class="badge object-method"></span> showLabels
 
 ```java
@@ -398,6 +358,14 @@ Panel width. The width is the number of columns from the left edge of the panel.
 
 ```java
 public PanelBuilder span(Integer w)
+```
+
+### <span class="badge object-method"></span> syntaxHighlighting
+
+Use a predefined coloring scheme to highlight relevant parts of the log lines.
+
+```java
+public PanelBuilder syntaxHighlighting(Boolean syntaxHighlighting)
 ```
 
 ### <span class="badge object-method"></span> targets

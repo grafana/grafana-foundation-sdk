@@ -86,18 +86,18 @@ Panel description.
 description(description: string)
 ```
 
+### <span class="badge object-method"></span> detailsMode
+
+```typescript
+detailsMode(detailsMode: "inline" | "sidebar")
+```
+
 ### <span class="badge object-method"></span> displayName
 
 The display value for this field.  This supports template variables blank is auto
 
 ```typescript
 displayName(displayName: string)
-```
-
-### <span class="badge object-method"></span> displayedFields
-
-```typescript
-displayedFields(displayedFields: string[])
 ```
 
 ### <span class="badge object-method"></span> enableInfiniteScrolling
@@ -116,6 +116,12 @@ enableLogDetails(enableLogDetails: boolean)
 
 ```typescript
 fieldMinMax(fieldMinMax: boolean)
+```
+
+### <span class="badge object-method"></span> fontSize
+
+```typescript
+fontSize(fontSize: "default" | "small")
 ```
 
 ### <span class="badge object-method"></span> gridPos
@@ -164,12 +170,6 @@ See: https://grafana.com/docs/grafana/latest/panels-visualizations/query-transfo
 interval(interval: string)
 ```
 
-### <span class="badge object-method"></span> isFilterLabelActive
-
-```typescript
-isFilterLabelActive(isFilterLabelActive: any)
-```
-
 ### <span class="badge object-method"></span> libraryPanel
 
 Dynamically load the panel
@@ -184,18 +184,6 @@ Panel links.
 
 ```typescript
 links(links: cog.Builder<dashboard.DashboardLink>[])
-```
-
-### <span class="badge object-method"></span> logRowMenuIconsAfter
-
-```typescript
-logRowMenuIconsAfter(logRowMenuIconsAfter: any)
-```
-
-### <span class="badge object-method"></span> logRowMenuIconsBefore
-
-```typescript
-logRowMenuIconsBefore(logRowMenuIconsBefore: any)
 ```
 
 ### <span class="badge object-method"></span> mappings
@@ -248,50 +236,6 @@ Alternative to empty string
 noValue(noValue: string)
 ```
 
-### <span class="badge object-method"></span> onClickFilterLabel
-
-TODO: figure out how to define callbacks
-
-```typescript
-onClickFilterLabel(onClickFilterLabel: any)
-```
-
-### <span class="badge object-method"></span> onClickFilterOutLabel
-
-```typescript
-onClickFilterOutLabel(onClickFilterOutLabel: any)
-```
-
-### <span class="badge object-method"></span> onClickFilterOutString
-
-```typescript
-onClickFilterOutString(onClickFilterOutString: any)
-```
-
-### <span class="badge object-method"></span> onClickFilterString
-
-```typescript
-onClickFilterString(onClickFilterString: any)
-```
-
-### <span class="badge object-method"></span> onClickHideField
-
-```typescript
-onClickHideField(onClickHideField: any)
-```
-
-### <span class="badge object-method"></span> onClickShowField
-
-```typescript
-onClickShowField(onClickShowField: any)
-```
-
-### <span class="badge object-method"></span> onNewLogsReceived
-
-```typescript
-onNewLogsReceived(onNewLogsReceived: any)
-```
-
 ### <span class="badge object-method"></span> overrideByFieldType
 
 Adds override rules for all the fields of the given type.
@@ -328,6 +272,7 @@ Overrides are the options applied to specific fields overriding the defaults.
 
 ```typescript
 overrides(overrides: {
+	__systemRef?: string;
 	matcher: dashboard.MatcherConfig;
 	properties: dashboard.DynamicConfigValue[];
 }[])
@@ -371,6 +316,22 @@ repeatDirection(repeatDirection: "h" | "v")
 showCommonLabels(showCommonLabels: boolean)
 ```
 
+### <span class="badge object-method"></span> showControls
+
+Display controls to jump to the last or first log line, and filters by log level.
+
+```typescript
+showControls(showControls: boolean)
+```
+
+### <span class="badge object-method"></span> showFieldSelector
+
+Show a component to manage the displayed fields from the logs.
+
+```typescript
+showFieldSelector(showFieldSelector: boolean)
+```
+
 ### <span class="badge object-method"></span> showLabels
 
 ```typescript
@@ -401,6 +362,14 @@ Panel width. The width is the number of columns from the left edge of the panel.
 
 ```typescript
 span(w: number)
+```
+
+### <span class="badge object-method"></span> syntaxHighlighting
+
+Use a predefined coloring scheme to highlight relevant parts of the log lines.
+
+```typescript
+syntaxHighlighting(syntaxHighlighting: boolean)
 ```
 
 ### <span class="badge object-method"></span> targets
@@ -525,6 +494,7 @@ Overrides are the options applied to specific fields overriding the defaults.
 
 ```typescript
 withOverride(override: {
+	__systemRef?: string;
 	matcher: dashboard.MatcherConfig;
 	properties: dashboard.DynamicConfigValue[];
 })

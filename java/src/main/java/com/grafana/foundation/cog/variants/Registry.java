@@ -24,7 +24,6 @@ public class Registry {
         registerPanel("heatmap", com.grafana.foundation.heatmap.Options.class, com.grafana.foundation.heatmap.FieldConfig.class);
         registerPanel("histogram", com.grafana.foundation.histogram.Options.class, com.grafana.foundation.histogram.FieldConfig.class);
         registerPanel("logs", com.grafana.foundation.logs.Options.class, null);
-        registerPanel("logsnew", com.grafana.foundation.logsnew.Options.class, null);
         registerPanel("news", com.grafana.foundation.news.Options.class, null);
         registerPanel("nodeGraph", com.grafana.foundation.nodegraph.Options.class, null);
         registerPanel("piechart", com.grafana.foundation.piechart.Options.class, com.grafana.foundation.piechart.FieldConfig.class);

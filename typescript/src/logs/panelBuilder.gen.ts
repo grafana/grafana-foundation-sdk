@@ -376,6 +376,7 @@ export class PanelBuilder implements cog.Builder<dashboard.Panel> {
 
     // Overrides are the options applied to specific fields overriding the defaults.
     overrides(overrides: {
+	__systemRef?: string;
 	matcher: dashboard.MatcherConfig;
 	properties: dashboard.DynamicConfigValue[];
 }[]): this {
@@ -388,6 +389,7 @@ export class PanelBuilder implements cog.Builder<dashboard.Panel> {
 
     // Overrides are the options applied to specific fields overriding the defaults.
     withOverride(override: {
+	__systemRef?: string;
 	matcher: dashboard.MatcherConfig;
 	properties: dashboard.DynamicConfigValue[];
 }): this {
@@ -552,92 +554,46 @@ export class PanelBuilder implements cog.Builder<dashboard.Panel> {
         return this;
     }
 
-    // TODO: figure out how to define callbacks
-    onClickFilterLabel(onClickFilterLabel: any): this {
+    // Display controls to jump to the last or first log line, and filters by log level.
+    showControls(showControls: boolean): this {
         if (!this.internal.options) {
             this.internal.options = logs.defaultOptions();
         }
-        this.internal.options.onClickFilterLabel = onClickFilterLabel;
+        this.internal.options.showControls = showControls;
         return this;
     }
 
-    onClickFilterOutLabel(onClickFilterOutLabel: any): this {
+    // Show a component to manage the displayed fields from the logs.
+    showFieldSelector(showFieldSelector: boolean): this {
         if (!this.internal.options) {
             this.internal.options = logs.defaultOptions();
         }
-        this.internal.options.onClickFilterOutLabel = onClickFilterOutLabel;
+        this.internal.options.showFieldSelector = showFieldSelector;
         return this;
     }
 
-    isFilterLabelActive(isFilterLabelActive: any): this {
+    // Use a predefined coloring scheme to highlight relevant parts of the log lines.
+    syntaxHighlighting(syntaxHighlighting: boolean): this {
         if (!this.internal.options) {
             this.internal.options = logs.defaultOptions();
         }
-        this.internal.options.isFilterLabelActive = isFilterLabelActive;
+        this.internal.options.syntaxHighlighting = syntaxHighlighting;
         return this;
     }
 
-    onClickFilterString(onClickFilterString: any): this {
+    fontSize(fontSize: "default" | "small"): this {
         if (!this.internal.options) {
             this.internal.options = logs.defaultOptions();
         }
-        this.internal.options.onClickFilterString = onClickFilterString;
+        this.internal.options.fontSize = fontSize;
         return this;
     }
 
-    onClickFilterOutString(onClickFilterOutString: any): this {
+    detailsMode(detailsMode: "inline" | "sidebar"): this {
         if (!this.internal.options) {
             this.internal.options = logs.defaultOptions();
         }
-        this.internal.options.onClickFilterOutString = onClickFilterOutString;
-        return this;
-    }
-
-    onClickShowField(onClickShowField: any): this {
-        if (!this.internal.options) {
-            this.internal.options = logs.defaultOptions();
-        }
-        this.internal.options.onClickShowField = onClickShowField;
-        return this;
-    }
-
-    onClickHideField(onClickHideField: any): this {
-        if (!this.internal.options) {
-            this.internal.options = logs.defaultOptions();
-        }
-        this.internal.options.onClickHideField = onClickHideField;
-        return this;
-    }
-
-    logRowMenuIconsBefore(logRowMenuIconsBefore: any): this {
-        if (!this.internal.options) {
-            this.internal.options = logs.defaultOptions();
-        }
-        this.internal.options.logRowMenuIconsBefore = logRowMenuIconsBefore;
-        return this;
-    }
-
-    logRowMenuIconsAfter(logRowMenuIconsAfter: any): this {
-        if (!this.internal.options) {
-            this.internal.options = logs.defaultOptions();
-        }
-        this.internal.options.logRowMenuIconsAfter = logRowMenuIconsAfter;
-        return this;
-    }
-
-    onNewLogsReceived(onNewLogsReceived: any): this {
-        if (!this.internal.options) {
-            this.internal.options = logs.defaultOptions();
-        }
-        this.internal.options.onNewLogsReceived = onNewLogsReceived;
-        return this;
-    }
-
-    displayedFields(displayedFields: string[]): this {
-        if (!this.internal.options) {
-            this.internal.options = logs.defaultOptions();
-        }
-        this.internal.options.displayedFields = displayedFields;
+        this.internal.options.detailsMode = detailsMode;
         return this;
     }
 }

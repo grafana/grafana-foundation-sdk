@@ -126,6 +126,14 @@ Human readable field metadata
 func (builder *VisualizationBuilder) Description(description string) *VisualizationBuilder
 ```
 
+### <span class="badge object-method"></span> DisablePagination
+
+Disables the pagination.
+
+```go
+func (builder *VisualizationBuilder) DisablePagination() *VisualizationBuilder
+```
+
 ### <span class="badge object-method"></span> DisplayName
 
 The display value for this field.  This supports template variables blank is auto

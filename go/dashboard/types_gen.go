@@ -8223,6 +8223,7 @@ func (resource DashboardDashboardTemplating) Validate() error {
 }
 
 type DashboardFieldConfigSourceOverrides struct {
+	SystemRef  *string              `json:"__systemRef,omitempty"`
 	Matcher    MatcherConfig        `json:"matcher"`
 	Properties []DynamicConfigValue `json:"properties"`
 }
@@ -8246,6 +8247,17 @@ func (resource *DashboardFieldConfigSourceOverrides) UnmarshalJSONStrict(raw []b
 	fields := make(map[string]json.RawMessage)
 	if err := json.Unmarshal(raw, &fields); err != nil {
 		return err
+	}
+	// Field "__systemRef"
+	if fields["__systemRef"] != nil {
+		if string(fields["__systemRef"]) != "null" {
+			if err := json.Unmarshal(fields["__systemRef"], &resource.SystemRef); err != nil {
+				errs = append(errs, cog.MakeBuildErrors("__systemRef", err)...)
+			}
+
+		}
+		delete(fields, "__systemRef")
+
 	}
 	// Field "matcher"
 	if fields["matcher"] != nil {
@@ -8303,6 +8315,15 @@ func (resource *DashboardFieldConfigSourceOverrides) UnmarshalJSONStrict(raw []b
 
 // Equals tests the equality of two `DashboardFieldConfigSourceOverrides` objects.
 func (resource DashboardFieldConfigSourceOverrides) Equals(other DashboardFieldConfigSourceOverrides) bool {
+	if resource.SystemRef == nil && other.SystemRef != nil || resource.SystemRef != nil && other.SystemRef == nil {
+		return false
+	}
+
+	if resource.SystemRef != nil {
+		if *resource.SystemRef != *other.SystemRef {
+			return false
+		}
+	}
 	if !resource.Matcher.Equals(other.Matcher) {
 		return false
 	}

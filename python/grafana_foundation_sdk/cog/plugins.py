@@ -14,7 +14,6 @@ from ..models import geomap
 from ..models import heatmap
 from ..models import histogram
 from ..models import logs
-from ..models import logsnew
 from ..models import news
 from ..models import nodegraph
 from ..models import piechart
@@ -58,7 +57,6 @@ def register_default_plugins() -> None:
     cogruntime.register_panelcfg_variant(heatmap.variant_config())
     cogruntime.register_panelcfg_variant(histogram.variant_config())
     cogruntime.register_panelcfg_variant(logs.variant_config())
-    cogruntime.register_panelcfg_variant(logsnew.variant_config())
     cogruntime.register_panelcfg_variant(news.variant_config())
     cogruntime.register_panelcfg_variant(nodegraph.variant_config())
     cogruntime.register_panelcfg_variant(piechart.variant_config())
