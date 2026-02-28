@@ -40,7 +40,7 @@ jobs:
           devbox-version: ${{ env.DEVBOX_VERSION }}
 
       - name: Get secrets
-        uses: grafana/shared-workflows/actions/get-vault-secrets@c2f1df59dba624b3fd509e5181aa8da5217120c0
+        uses: grafana/shared-workflows/actions/get-vault-secrets@9169dac82ee307312a1c948918184ea02f34aff8
         with:
           repo_secrets: |
             GITHUB_APP_ID=github_app:app-id
