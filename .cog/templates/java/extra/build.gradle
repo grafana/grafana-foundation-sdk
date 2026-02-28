@@ -56,7 +56,7 @@ allprojects {
 }
 
 dependencies {
-    implementation 'com.fasterxml.jackson.core:jackson-databind:2.19.1'
+    implementation 'com.fasterxml.jackson.core:jackson-databind:2.21.1'
 }
 
 tasks.withType(Javadoc).configureEach {
