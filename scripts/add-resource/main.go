@@ -32,6 +32,16 @@ type schemaDescriptor struct {
 	SchemaEnvelope        string
 	AppPlatformApiVersion string
 	AppPlatformKind       string
+	Owner                 string
+}
+
+func notEmpty() func(s string) error {
+	return func(s string) error {
+		if s == "" {
+			return fmt.Errorf("Required.")
+		}
+		return nil
+	}
 }
 
 func main() {
@@ -140,27 +150,25 @@ func main() {
 			huh.NewInput().
 				Title("Resource API Version").
 				Description("Example: folder.grafana.app/v1beta1").
-				Validate(func(s string) error {
-					if s == "" {
-						return fmt.Errorf("Required.")
-					}
-					return nil
-				}).
+				Validate(notEmpty()).
 				Value(&descriptor.AppPlatformApiVersion),
 
 			huh.NewInput().
 				Title("Resource API Kind").
 				Description("Example: Folder").
-				Validate(func(s string) error {
-					if s == "" {
-						return fmt.Errorf("Required.")
-					}
-					return nil
-				}).
+				Validate(notEmpty()).
 				Value(&descriptor.AppPlatformKind),
 		).Title("App Platform resource options").WithHideFunc(func() bool {
 			return descriptor.ResourceType != "app_platform_resource"
 		}),
+
+		huh.NewGroup(
+			huh.NewInput().
+				Title("Owner").
+				Description("GitHub group of the team owning the resource.\nExample: @grafana/grafana-app-platform-squad").
+				Validate(notEmpty()).
+				Value(&descriptor.Owner),
+		).Title("Ownership details"),
 	)
 
 	if err := form.Run(); err != nil {
@@ -175,6 +183,26 @@ func main() {
 	fmt.Printf("✅ Resource configuration written in %s\n", resourceDir)
 	fmt.Println("Run the `make preview` command to preview your changes.")
 	fmt.Println("This command will generate an updated version of the SDK in `./workspace/foundation-sdk`. Explore it to verify the changes or run `git diff main..release-preview` to see the diff with main.")
+
+	codeowners := path.Join(resourcesDir, "..", "..", ".github", "CODEOWNERS")
+	if err := writeCodeOwner(codeowners, descriptor.PackageName, descriptor.Owner); err != nil {
+		panic(fmt.Errorf("could not update CODEOWNERS file: %w", err))
+	}
+}
+
+func writeCodeOwner(codeowners string, newPackageName string, owner string) error {
+	f, err := os.OpenFile(codeowners, os.O_APPEND|os.O_WRONLY|os.O_CREATE, 0644)
+	if err != nil {
+		return err
+	}
+	defer f.Close()
+
+	line := fmt.Sprintf("/.cog/resources/%s/ %s\n", newPackageName, owner)
+	if _, err = f.WriteString(line); err != nil {
+		return err
+	}
+
+	return nil
 }
 
 func writeCodegenConfig(descriptor schemaDescriptor, resourceDir string) error {
