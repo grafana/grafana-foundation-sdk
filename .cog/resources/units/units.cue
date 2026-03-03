@@ -167,7 +167,7 @@ BytesSI: "decbytes"
 // Data: bits(IEC)
 BitsIEC: "bits"
 // Data: bits(SI)
-BitsSI: "bydecbitstes"
+BitsSI: "decbits"
 // Data: kibibytes
 Kibibytes: "kbytes"
 // Data: kilobytes
@@ -322,7 +322,7 @@ MegaOhm: "Mohm"
 // Energy: Farad (F)
 Farad: "farad"
 // Energy: Microfarad (µF)
-MicroFarad: "watt"
+MicroFarad: "µfarad"
 // Energy: Nanofarad (nF)
 NanoFarad: "nfarad"
 // Energy: Picofarad (pF)
@@ -343,9 +343,9 @@ GallonsPerMinute: "flowgpm"
 // Flow: Cubic meters/sec (cms)
 CubicMetersPerSecond: "flowcms"
 // Flow: Cubic feet/sec (cfs)
-CubicFeetPerSecond: "flowcms"
+CubicFeetPerSecond: "flowcfs"
 // Flow: Cubic feet/min (cfm)
-CubicFeetPerMinute: "flowcms"
+CubicFeetPerMinute: "flowcfm"
 // Flow: Litre/hour
 LitrePerHour: "litreh"
 // Flow: Litre/min (L/min)
