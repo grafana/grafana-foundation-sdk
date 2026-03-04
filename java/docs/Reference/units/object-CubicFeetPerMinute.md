@@ -8,5 +8,5 @@ Flow: Cubic feet/min (cfm)
 ## Definition
 
 ```java
-public static final String CubicFeetPerMinute = flowcms
+public static final String CubicFeetPerMinute = flowcfm
 ```

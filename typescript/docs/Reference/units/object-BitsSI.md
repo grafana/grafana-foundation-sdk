@@ -8,6 +8,6 @@ Data: bits(SI)
 ## Definition
 
 ```typescript
-export const BitsSI = "bydecbitstes";
+export const BitsSI = "decbits";
 
 ```

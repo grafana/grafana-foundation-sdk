@@ -239,7 +239,7 @@ const BytesSI = "decbytes"
 const BitsIEC = "bits"
 
 // Data: bits(SI)
-const BitsSI = "bydecbitstes"
+const BitsSI = "decbits"
 
 // Data: kibibytes
 const Kibibytes = "kbytes"
@@ -467,7 +467,7 @@ const MegaOhm = "Mohm"
 const Farad = "farad"
 
 // Energy: Microfarad (µF)
-const MicroFarad = "watt"
+const MicroFarad = "µfarad"
 
 // Energy: Nanofarad (nF)
 const NanoFarad = "nfarad"
@@ -497,10 +497,10 @@ const GallonsPerMinute = "flowgpm"
 const CubicMetersPerSecond = "flowcms"
 
 // Flow: Cubic feet/sec (cfs)
-const CubicFeetPerSecond = "flowcms"
+const CubicFeetPerSecond = "flowcfs"
 
 // Flow: Cubic feet/min (cfm)
-const CubicFeetPerMinute = "flowcms"
+const CubicFeetPerMinute = "flowcfm"
 
 // Flow: Litre/hour
 const LitrePerHour = "litreh"

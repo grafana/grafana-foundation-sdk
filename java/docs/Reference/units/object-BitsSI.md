@@ -8,5 +8,5 @@ Data: bits(SI)
 ## Definition
 
 ```java
-public static final String BitsSI = bydecbitstes
+public static final String BitsSI = decbits
 ```

@@ -901,6 +901,18 @@ class Panel(cogbuilder.Builder[dashboard.Panel]):
     
         return self
     
+    def disable_pagination(self) -> typing.Self:    
+        """
+        Disables the pagination.
+        """
+            
+        if self._internal.options is None:
+            self._internal.options = statetimeline.Options()
+        assert isinstance(self._internal.options, statetimeline.Options)
+        self._internal.options.per_page = None
+    
+        return self
+    
 
 
 class Visualization(cogbuilder.Builder[dashboardv2beta1.VizConfigKind]):
@@ -1688,6 +1700,21 @@ class Visualization(cogbuilder.Builder[dashboardv2beta1.VizConfigKind]):
         ),
             properties=properties,
         ))
+    
+        return self
+    
+    def disable_pagination(self) -> typing.Self:    
+        """
+        Disables the pagination.
+        """
+            
+        if self._internal.spec is None:
+            self._internal.spec = dashboardv2beta1.VizConfigSpec()
+        assert isinstance(self._internal.spec, dashboardv2beta1.VizConfigSpec)
+        if self._internal.spec.options is None:
+            self._internal.spec.options = statetimeline.Options()
+        assert isinstance(self._internal.spec.options, statetimeline.Options)
+        self._internal.spec.options.per_page = None
     
         return self
     

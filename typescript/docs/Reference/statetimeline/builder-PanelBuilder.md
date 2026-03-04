@@ -142,6 +142,14 @@ Panel description.
 description(description: string)
 ```
 
+### <span class="badge object-method"></span> disablePagination
+
+Disables the pagination.
+
+```typescript
+disablePagination()
+```
+
 ### <span class="badge object-method"></span> displayName
 
 The display value for this field.  This supports template variables blank is auto
@@ -342,6 +350,7 @@ Overrides are the options applied to specific fields overriding the defaults.
 
 ```typescript
 overrides(overrides: {
+	__systemRef?: string;
 	matcher: dashboard.MatcherConfig;
 	properties: dashboard.DynamicConfigValue[];
 }[])
@@ -551,6 +560,7 @@ Overrides are the options applied to specific fields overriding the defaults.
 
 ```typescript
 withOverride(override: {
+	__systemRef?: string;
 	matcher: dashboard.MatcherConfig;
 	properties: dashboard.DynamicConfigValue[];
 })

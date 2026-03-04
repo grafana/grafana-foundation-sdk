@@ -47,7 +47,6 @@ def from_json(data: dict[str, typing.Any]) -> typing.Self
  * <span class="badge builder"></span> [heatmap.Visualization](../heatmap/builder-Visualization.md)
  * <span class="badge builder"></span> [histogram.Visualization](../histogram/builder-Visualization.md)
  * <span class="badge builder"></span> [logs.Visualization](../logs/builder-Visualization.md)
- * <span class="badge builder"></span> [logsnew.Visualization](../logsnew/builder-Visualization.md)
  * <span class="badge builder"></span> [news.Visualization](../news/builder-Visualization.md)
  * <span class="badge builder"></span> [nodegraph.Visualization](../nodegraph/builder-Visualization.md)
  * <span class="badge builder"></span> [piechart.Visualization](../piechart/builder-Visualization.md)

@@ -423,6 +423,7 @@ export class PanelBuilder implements cog.Builder<dashboard.Panel> {
 
     // Overrides are the options applied to specific fields overriding the defaults.
     overrides(overrides: {
+	__systemRef?: string;
 	matcher: dashboard.MatcherConfig;
 	properties: dashboard.DynamicConfigValue[];
 }[]): this {
@@ -435,6 +436,7 @@ export class PanelBuilder implements cog.Builder<dashboard.Panel> {
 
     // Overrides are the options applied to specific fields overriding the defaults.
     withOverride(override: {
+	__systemRef?: string;
 	matcher: dashboard.MatcherConfig;
 	properties: dashboard.DynamicConfigValue[];
 }): this {

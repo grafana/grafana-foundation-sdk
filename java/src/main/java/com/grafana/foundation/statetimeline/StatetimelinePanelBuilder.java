@@ -718,6 +718,14 @@ public class StatetimelinePanelBuilder implements com.grafana.foundation.cog.Bui
         ((FieldConfig) this.internal.fieldConfig.defaults.custom).insertNulls = insertNulls;
         return this;
     }
+    
+    public StatetimelinePanelBuilder disablePagination() {
+		if (this.internal.options == null) {
+			this.internal.options = new com.grafana.foundation.statetimeline.Options();
+		}
+        ((Options) this.internal.options).perPage = null;
+        return this;
+    }
     public Panel build() {
         return this.internal;
     }

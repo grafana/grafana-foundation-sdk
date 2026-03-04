@@ -8,5 +8,5 @@ Energy: Microfarad (µF)
 ## Definition
 
 ```java
-public static final String MicroFarad = watt
+public static final String MicroFarad = µfarad
 ```

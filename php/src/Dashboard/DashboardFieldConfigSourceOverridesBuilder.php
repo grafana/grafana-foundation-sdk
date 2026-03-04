@@ -23,6 +23,13 @@ class DashboardFieldConfigSourceOverridesBuilder implements \Grafana\Foundation\
         return $this->internal;
     }
 
+    public function systemRef(string $systemRef): static
+    {
+        $this->internal->systemRef = $systemRef;
+    
+        return $this;
+    }
+
     public function matcher(\Grafana\Foundation\Dashboard\MatcherConfig $matcher): static
     {
         $this->internal->matcher = $matcher;

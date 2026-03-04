@@ -65,7 +65,6 @@ func (vizConfigKind *VizConfigKind) Validate() error
  * <span class="badge builder"></span> [heatmap.VisualizationBuilder](../heatmap/builder-VisualizationBuilder.md)
  * <span class="badge builder"></span> [histogram.VisualizationBuilder](../histogram/builder-VisualizationBuilder.md)
  * <span class="badge builder"></span> [logs.VisualizationBuilder](../logs/builder-VisualizationBuilder.md)
- * <span class="badge builder"></span> [logsnew.VisualizationBuilder](../logsnew/builder-VisualizationBuilder.md)
  * <span class="badge builder"></span> [news.VisualizationBuilder](../news/builder-VisualizationBuilder.md)
  * <span class="badge builder"></span> [nodegraph.VisualizationBuilder](../nodegraph/builder-VisualizationBuilder.md)
  * <span class="badge builder"></span> [piechart.VisualizationBuilder](../piechart/builder-VisualizationBuilder.md)

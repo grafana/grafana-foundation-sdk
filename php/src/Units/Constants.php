@@ -310,7 +310,7 @@ final class Constants
     /**
      * Data: bits(SI)
      */
-    const BITS_SI = "bydecbitstes";
+    const BITS_SI = "decbits";
     /**
      * Data: kibibytes
      */
@@ -614,7 +614,7 @@ final class Constants
     /**
      * Energy: Microfarad (µF)
      */
-    const MICRO_FARAD = "watt";
+    const MICRO_FARAD = "µfarad";
     /**
      * Energy: Nanofarad (nF)
      */
@@ -654,11 +654,11 @@ final class Constants
     /**
      * Flow: Cubic feet/sec (cfs)
      */
-    const CUBIC_FEET_PER_SECOND = "flowcms";
+    const CUBIC_FEET_PER_SECOND = "flowcfs";
     /**
      * Flow: Cubic feet/min (cfm)
      */
-    const CUBIC_FEET_PER_MINUTE = "flowcms";
+    const CUBIC_FEET_PER_MINUTE = "flowcfm";
     /**
      * Flow: Litre/hour
      */

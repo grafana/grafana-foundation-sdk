@@ -756,156 +756,65 @@ class PanelBuilder implements \Grafana\Foundation\Cog\Builder
     }
 
     /**
-     * TODO: figure out how to define callbacks
-     * @param mixed $onClickFilterLabel
+     * Display controls to jump to the last or first log line, and filters by log level.
      */
-    public function onClickFilterLabel( $onClickFilterLabel): static
+    public function showControls(bool $showControls): static
     {    
         if ($this->internal->options === null) {
             $this->internal->options = new \Grafana\Foundation\Logs\Options();
         }
         assert($this->internal->options instanceof \Grafana\Foundation\Logs\Options);
-        $this->internal->options->onClickFilterLabel = $onClickFilterLabel;
+        $this->internal->options->showControls = $showControls;
     
         return $this;
     }
 
     /**
-     * @param mixed $onClickFilterOutLabel
+     * Show a component to manage the displayed fields from the logs.
      */
-    public function onClickFilterOutLabel( $onClickFilterOutLabel): static
+    public function showFieldSelector(bool $showFieldSelector): static
     {    
         if ($this->internal->options === null) {
             $this->internal->options = new \Grafana\Foundation\Logs\Options();
         }
         assert($this->internal->options instanceof \Grafana\Foundation\Logs\Options);
-        $this->internal->options->onClickFilterOutLabel = $onClickFilterOutLabel;
+        $this->internal->options->showFieldSelector = $showFieldSelector;
     
         return $this;
     }
 
     /**
-     * @param mixed $isFilterLabelActive
+     * Use a predefined coloring scheme to highlight relevant parts of the log lines.
      */
-    public function isFilterLabelActive( $isFilterLabelActive): static
+    public function syntaxHighlighting(bool $syntaxHighlighting): static
     {    
         if ($this->internal->options === null) {
             $this->internal->options = new \Grafana\Foundation\Logs\Options();
         }
         assert($this->internal->options instanceof \Grafana\Foundation\Logs\Options);
-        $this->internal->options->isFilterLabelActive = $isFilterLabelActive;
+        $this->internal->options->syntaxHighlighting = $syntaxHighlighting;
     
         return $this;
     }
 
-    /**
-     * @param mixed $onClickFilterString
-     */
-    public function onClickFilterString( $onClickFilterString): static
+    public function fontSize(\Grafana\Foundation\Logs\OptionsFontSize $fontSize): static
     {    
         if ($this->internal->options === null) {
             $this->internal->options = new \Grafana\Foundation\Logs\Options();
         }
         assert($this->internal->options instanceof \Grafana\Foundation\Logs\Options);
-        $this->internal->options->onClickFilterString = $onClickFilterString;
+        $this->internal->options->fontSize = $fontSize;
     
         return $this;
     }
 
-    /**
-     * @param mixed $onClickFilterOutString
-     */
-    public function onClickFilterOutString( $onClickFilterOutString): static
+    public function detailsMode(\Grafana\Foundation\Logs\OptionsDetailsMode $detailsMode): static
     {    
         if ($this->internal->options === null) {
             $this->internal->options = new \Grafana\Foundation\Logs\Options();
         }
         assert($this->internal->options instanceof \Grafana\Foundation\Logs\Options);
-        $this->internal->options->onClickFilterOutString = $onClickFilterOutString;
-    
-        return $this;
-    }
-
-    /**
-     * @param mixed $onClickShowField
-     */
-    public function onClickShowField( $onClickShowField): static
-    {    
-        if ($this->internal->options === null) {
-            $this->internal->options = new \Grafana\Foundation\Logs\Options();
-        }
-        assert($this->internal->options instanceof \Grafana\Foundation\Logs\Options);
-        $this->internal->options->onClickShowField = $onClickShowField;
-    
-        return $this;
-    }
-
-    /**
-     * @param mixed $onClickHideField
-     */
-    public function onClickHideField( $onClickHideField): static
-    {    
-        if ($this->internal->options === null) {
-            $this->internal->options = new \Grafana\Foundation\Logs\Options();
-        }
-        assert($this->internal->options instanceof \Grafana\Foundation\Logs\Options);
-        $this->internal->options->onClickHideField = $onClickHideField;
-    
-        return $this;
-    }
-
-    /**
-     * @param mixed $logRowMenuIconsBefore
-     */
-    public function logRowMenuIconsBefore( $logRowMenuIconsBefore): static
-    {    
-        if ($this->internal->options === null) {
-            $this->internal->options = new \Grafana\Foundation\Logs\Options();
-        }
-        assert($this->internal->options instanceof \Grafana\Foundation\Logs\Options);
-        $this->internal->options->logRowMenuIconsBefore = $logRowMenuIconsBefore;
-    
-        return $this;
-    }
-
-    /**
-     * @param mixed $logRowMenuIconsAfter
-     */
-    public function logRowMenuIconsAfter( $logRowMenuIconsAfter): static
-    {    
-        if ($this->internal->options === null) {
-            $this->internal->options = new \Grafana\Foundation\Logs\Options();
-        }
-        assert($this->internal->options instanceof \Grafana\Foundation\Logs\Options);
-        $this->internal->options->logRowMenuIconsAfter = $logRowMenuIconsAfter;
-    
-        return $this;
-    }
-
-    /**
-     * @param mixed $onNewLogsReceived
-     */
-    public function onNewLogsReceived( $onNewLogsReceived): static
-    {    
-        if ($this->internal->options === null) {
-            $this->internal->options = new \Grafana\Foundation\Logs\Options();
-        }
-        assert($this->internal->options instanceof \Grafana\Foundation\Logs\Options);
-        $this->internal->options->onNewLogsReceived = $onNewLogsReceived;
-    
-        return $this;
-    }
-
-    /**
-     * @param array<string> $displayedFields
-     */
-    public function displayedFields(array $displayedFields): static
-    {    
-        if ($this->internal->options === null) {
-            $this->internal->options = new \Grafana\Foundation\Logs\Options();
-        }
-        assert($this->internal->options instanceof \Grafana\Foundation\Logs\Options);
-        $this->internal->options->displayedFields = $displayedFields;
+        $this->internal->options->detailsMode = $detailsMode;
     
         return $this;
     }

@@ -8,5 +8,5 @@ Data: bits(SI)
 ## Definition
 
 ```go
-const BitsSI = "bydecbitstes"
+const BitsSI = "decbits"
 ```

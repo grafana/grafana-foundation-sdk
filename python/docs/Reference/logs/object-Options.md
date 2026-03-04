@@ -17,18 +17,14 @@ class Options:
     sort_order: common.LogsSortOrder
     dedup_strategy: common.LogsDedupStrategy
     enable_infinite_scrolling: typing.Optional[bool]
-    # TODO: figure out how to define callbacks
-    on_click_filter_label: typing.Optional[object]
-    on_click_filter_out_label: typing.Optional[object]
-    is_filter_label_active: typing.Optional[object]
-    on_click_filter_string: typing.Optional[object]
-    on_click_filter_out_string: typing.Optional[object]
-    on_click_show_field: typing.Optional[object]
-    on_click_hide_field: typing.Optional[object]
-    log_row_menu_icons_before: typing.Optional[object]
-    log_row_menu_icons_after: typing.Optional[object]
-    on_new_logs_received: typing.Optional[object]
-    displayed_fields: typing.Optional[list[str]]
+    # Display controls to jump to the last or first log line, and filters by log level.
+    show_controls: typing.Optional[bool]
+    # Show a component to manage the displayed fields from the logs.
+    show_field_selector: typing.Optional[bool]
+    # Use a predefined coloring scheme to highlight relevant parts of the log lines.
+    syntax_highlighting: typing.Optional[bool]
+    font_size: typing.Optional[typing.Literal["default", "small"]]
+    details_mode: typing.Optional[typing.Literal["inline", "sidebar"]]
 ```
 ## Methods
 

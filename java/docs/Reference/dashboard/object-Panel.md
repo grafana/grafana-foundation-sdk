@@ -52,7 +52,6 @@ public class Panel {
  * <span class="badge builder"></span> [heatmap.PanelBuilder](../heatmap/builder-PanelBuilder.md)
  * <span class="badge builder"></span> [histogram.PanelBuilder](../histogram/builder-PanelBuilder.md)
  * <span class="badge builder"></span> [logs.PanelBuilder](../logs/builder-PanelBuilder.md)
- * <span class="badge builder"></span> [logsnew.PanelBuilder](../logsnew/builder-PanelBuilder.md)
  * <span class="badge builder"></span> [news.PanelBuilder](../news/builder-PanelBuilder.md)
  * <span class="badge builder"></span> [nodegraph.PanelBuilder](../nodegraph/builder-PanelBuilder.md)
  * <span class="badge builder"></span> [piechart.PanelBuilder](../piechart/builder-PanelBuilder.md)

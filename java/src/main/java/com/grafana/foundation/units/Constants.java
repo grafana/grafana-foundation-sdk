@@ -14,7 +14,7 @@ public class Constants {
     public static final String BitsIEC = "bits";
     public static final String BitsPerSecondIEC = "binbps";
     public static final String BitsPerSecondSI = "bps";
-    public static final String BitsSI = "bydecbitstes";
+    public static final String BitsSI = "decbits";
     public static final String Bool = "bool";
     public static final String BoolOnOff = "bool_on_off";
     public static final String BoolYesNo = "bool_yes_no";
@@ -31,8 +31,8 @@ public class Constants {
     public static final String CountsPerMinute = "cpm";
     public static final String CountsPerSecond = "cps";
     public static final String CubicDecimeter = "dm3";
-    public static final String CubicFeetPerMinute = "flowcms";
-    public static final String CubicFeetPerSecond = "flowcms";
+    public static final String CubicFeetPerMinute = "flowcfm";
+    public static final String CubicFeetPerSecond = "flowcfs";
     public static final String CubicMeter = "m3";
     public static final String CubicMetersPerSecond = "flowcms";
     public static final String Curie = "radci";
@@ -159,7 +159,7 @@ public class Constants {
     public static final String MetersSecSquared = "accMS2";
     public static final String MetricTon = "masst";
     public static final String MicroBitcoin = "currencyμBTC";
-    public static final String MicroFarad = "watt";
+    public static final String MicroFarad = "µfarad";
     public static final String MicroHenry = "µhenry";
     public static final String MicrogramPerCubicMeter = "conμgm3";
     public static final String MicrogramPerNormalCubicMeter = "conμgNm3";

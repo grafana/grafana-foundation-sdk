@@ -70,6 +70,12 @@ Human readable field metadata
 description(description: string)
 ```
 
+### <span class="badge object-method"></span> detailsMode
+
+```typescript
+detailsMode(detailsMode: "inline" | "sidebar")
+```
+
 ### <span class="badge object-method"></span> displayName
 
 The display value for this field.  This supports template variables blank is auto
@@ -88,12 +94,6 @@ When this property is configured, this value is used rather than the default nam
 displayNameFromDS(displayNameFromDS: string)
 ```
 
-### <span class="badge object-method"></span> displayedFields
-
-```typescript
-displayedFields(displayedFields: string[])
-```
-
 ### <span class="badge object-method"></span> enableInfiniteScrolling
 
 ```typescript
@@ -106,22 +106,10 @@ enableInfiniteScrolling(enableInfiniteScrolling: boolean)
 enableLogDetails(enableLogDetails: boolean)
 ```
 
-### <span class="badge object-method"></span> isFilterLabelActive
+### <span class="badge object-method"></span> fontSize
 
 ```typescript
-isFilterLabelActive(isFilterLabelActive: any)
-```
-
-### <span class="badge object-method"></span> logRowMenuIconsAfter
-
-```typescript
-logRowMenuIconsAfter(logRowMenuIconsAfter: any)
-```
-
-### <span class="badge object-method"></span> logRowMenuIconsBefore
-
-```typescript
-logRowMenuIconsBefore(logRowMenuIconsBefore: any)
+fontSize(fontSize: "default" | "small")
 ```
 
 ### <span class="badge object-method"></span> mappings
@@ -156,56 +144,13 @@ Alternative to empty string
 noValue(noValue: string)
 ```
 
-### <span class="badge object-method"></span> onClickFilterLabel
-
-TODO: figure out how to define callbacks
-
-```typescript
-onClickFilterLabel(onClickFilterLabel: any)
-```
-
-### <span class="badge object-method"></span> onClickFilterOutLabel
-
-```typescript
-onClickFilterOutLabel(onClickFilterOutLabel: any)
-```
-
-### <span class="badge object-method"></span> onClickFilterOutString
-
-```typescript
-onClickFilterOutString(onClickFilterOutString: any)
-```
-
-### <span class="badge object-method"></span> onClickFilterString
-
-```typescript
-onClickFilterString(onClickFilterString: any)
-```
-
-### <span class="badge object-method"></span> onClickHideField
-
-```typescript
-onClickHideField(onClickHideField: any)
-```
-
-### <span class="badge object-method"></span> onClickShowField
-
-```typescript
-onClickShowField(onClickShowField: any)
-```
-
-### <span class="badge object-method"></span> onNewLogsReceived
-
-```typescript
-onNewLogsReceived(onNewLogsReceived: any)
-```
-
 ### <span class="badge object-method"></span> override
 
 Overrides are the options applied to specific fields overriding the defaults.
 
 ```typescript
 override(override: {
+	__systemRef?: string;
 	matcher: dashboardv2beta1.MatcherConfig;
 	properties: dashboardv2beta1.DynamicConfigValue[];
 })
@@ -247,6 +192,7 @@ Overrides are the options applied to specific fields overriding the defaults.
 
 ```typescript
 overrides(overrides: {
+	__systemRef?: string;
 	matcher: dashboardv2beta1.MatcherConfig;
 	properties: dashboardv2beta1.DynamicConfigValue[];
 }[])
@@ -280,6 +226,22 @@ prettifyLogMessage(prettifyLogMessage: boolean)
 showCommonLabels(showCommonLabels: boolean)
 ```
 
+### <span class="badge object-method"></span> showControls
+
+Display controls to jump to the last or first log line, and filters by log level.
+
+```typescript
+showControls(showControls: boolean)
+```
+
+### <span class="badge object-method"></span> showFieldSelector
+
+Show a component to manage the displayed fields from the logs.
+
+```typescript
+showFieldSelector(showFieldSelector: boolean)
+```
+
 ### <span class="badge object-method"></span> showLabels
 
 ```typescript
@@ -302,6 +264,14 @@ showTime(showTime: boolean)
 
 ```typescript
 sortOrder(sortOrder: common.LogsSortOrder)
+```
+
+### <span class="badge object-method"></span> syntaxHighlighting
+
+Use a predefined coloring scheme to highlight relevant parts of the log lines.
+
+```typescript
+syntaxHighlighting(syntaxHighlighting: boolean)
 ```
 
 ### <span class="badge object-method"></span> thresholds

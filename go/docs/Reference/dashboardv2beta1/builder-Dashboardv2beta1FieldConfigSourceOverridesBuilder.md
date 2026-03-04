@@ -18,6 +18,12 @@ Builds the object.
 func (builder *Dashboardv2beta1FieldConfigSourceOverridesBuilder) Build() (Dashboardv2beta1FieldConfigSourceOverrides, error)
 ```
 
+### <span class="badge object-method"></span> SystemRef
+
+```go
+func (builder *Dashboardv2beta1FieldConfigSourceOverridesBuilder) SystemRef(systemRef string) *Dashboardv2beta1FieldConfigSourceOverridesBuilder
+```
+
 ### <span class="badge object-method"></span> Matcher
 
 ```go

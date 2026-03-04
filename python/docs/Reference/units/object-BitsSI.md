@@ -9,5 +9,5 @@ Data: bits(SI)
 
 ```python
 # Data: bits(SI)
-BitsSI: typing.Literal["bydecbitstes"] = "bydecbitstes"
+BitsSI: typing.Literal["decbits"] = "decbits"
 ```

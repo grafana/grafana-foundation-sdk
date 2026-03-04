@@ -9,5 +9,5 @@ Energy: Microfarad (µF)
 
 ```python
 # Energy: Microfarad (µF)
-MicroFarad: typing.Literal["watt"] = "watt"
+MicroFarad: typing.Literal["µfarad"] = "µfarad"
 ```

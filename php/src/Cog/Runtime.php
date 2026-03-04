@@ -31,7 +31,6 @@ final class Runtime
         $this->registerPanelcfgVariant(\Grafana\Foundation\Heatmap\VariantConfig::get());
         $this->registerPanelcfgVariant(\Grafana\Foundation\Histogram\VariantConfig::get());
         $this->registerPanelcfgVariant(\Grafana\Foundation\Logs\VariantConfig::get());
-        $this->registerPanelcfgVariant(\Grafana\Foundation\Logsnew\VariantConfig::get());
         $this->registerPanelcfgVariant(\Grafana\Foundation\News\VariantConfig::get());
         $this->registerPanelcfgVariant(\Grafana\Foundation\Nodegraph\VariantConfig::get());
         $this->registerPanelcfgVariant(\Grafana\Foundation\Piechart\VariantConfig::get());

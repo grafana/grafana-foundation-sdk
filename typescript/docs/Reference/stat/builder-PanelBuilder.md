@@ -266,6 +266,7 @@ Overrides are the options applied to specific fields overriding the defaults.
 
 ```typescript
 overrides(overrides: {
+	__systemRef?: string;
 	matcher: dashboard.MatcherConfig;
 	properties: dashboard.DynamicConfigValue[];
 }[])
@@ -463,6 +464,7 @@ Overrides are the options applied to specific fields overriding the defaults.
 
 ```typescript
 withOverride(override: {
+	__systemRef?: string;
 	matcher: dashboard.MatcherConfig;
 	properties: dashboard.DynamicConfigValue[];
 })

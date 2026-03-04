@@ -920,6 +920,11 @@ class Dashboardv2beta1FieldConfigSourceOverrides(cogbuilder.Builder[dashboardv2b
         """
         return self._internal    
     
+    def system_ref(self, system_ref: str) -> typing.Self:    
+        self._internal.system_ref = system_ref
+    
+        return self
+    
     def matcher(self, matcher: dashboardv2beta1.MatcherConfig) -> typing.Self:    
         self._internal.matcher = matcher
     

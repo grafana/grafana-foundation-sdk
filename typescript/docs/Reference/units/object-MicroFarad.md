@@ -8,6 +8,6 @@ Energy: Microfarad (µF)
 ## Definition
 
 ```typescript
-export const MicroFarad = "watt";
+export const MicroFarad = "µfarad";
 
 ```

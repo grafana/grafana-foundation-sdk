@@ -321,7 +321,7 @@ BitsIEC: typing.Literal["bits"] = "bits"
 
 
 # Data: bits(SI)
-BitsSI: typing.Literal["bydecbitstes"] = "bydecbitstes"
+BitsSI: typing.Literal["decbits"] = "decbits"
 
 
 # Data: kibibytes
@@ -625,7 +625,7 @@ Farad: typing.Literal["farad"] = "farad"
 
 
 # Energy: Microfarad (µF)
-MicroFarad: typing.Literal["watt"] = "watt"
+MicroFarad: typing.Literal["µfarad"] = "µfarad"
 
 
 # Energy: Nanofarad (nF)
@@ -665,11 +665,11 @@ CubicMetersPerSecond: typing.Literal["flowcms"] = "flowcms"
 
 
 # Flow: Cubic feet/sec (cfs)
-CubicFeetPerSecond: typing.Literal["flowcms"] = "flowcms"
+CubicFeetPerSecond: typing.Literal["flowcfs"] = "flowcfs"
 
 
 # Flow: Cubic feet/min (cfm)
-CubicFeetPerMinute: typing.Literal["flowcms"] = "flowcms"
+CubicFeetPerMinute: typing.Literal["flowcfm"] = "flowcfm"
 
 
 # Flow: Litre/hour
