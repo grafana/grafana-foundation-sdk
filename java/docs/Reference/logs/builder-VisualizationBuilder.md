@@ -70,6 +70,12 @@ Human readable field metadata
 public VisualizationBuilder description(String description)
 ```
 
+### <span class="badge object-method"></span> detailsMode
+
+```java
+public VisualizationBuilder detailsMode(OptionsDetailsMode detailsMode)
+```
+
 ### <span class="badge object-method"></span> displayName
 
 The display value for this field.  This supports template variables blank is auto
@@ -88,12 +94,6 @@ When this property is configured, this value is used rather than the default nam
 public VisualizationBuilder displayNameFromDS(String displayNameFromDS)
 ```
 
-### <span class="badge object-method"></span> displayedFields
-
-```java
-public VisualizationBuilder displayedFields(List<String> displayedFields)
-```
-
 ### <span class="badge object-method"></span> enableInfiniteScrolling
 
 ```java
@@ -106,22 +106,10 @@ public VisualizationBuilder enableInfiniteScrolling(Boolean enableInfiniteScroll
 public VisualizationBuilder enableLogDetails(Boolean enableLogDetails)
 ```
 
-### <span class="badge object-method"></span> isFilterLabelActive
+### <span class="badge object-method"></span> fontSize
 
 ```java
-public VisualizationBuilder isFilterLabelActive(Object isFilterLabelActive)
-```
-
-### <span class="badge object-method"></span> logRowMenuIconsAfter
-
-```java
-public VisualizationBuilder logRowMenuIconsAfter(Object logRowMenuIconsAfter)
-```
-
-### <span class="badge object-method"></span> logRowMenuIconsBefore
-
-```java
-public VisualizationBuilder logRowMenuIconsBefore(Object logRowMenuIconsBefore)
+public VisualizationBuilder fontSize(OptionsFontSize fontSize)
 ```
 
 ### <span class="badge object-method"></span> mappings
@@ -154,50 +142,6 @@ Alternative to empty string
 
 ```java
 public VisualizationBuilder noValue(String noValue)
-```
-
-### <span class="badge object-method"></span> onClickFilterLabel
-
-TODO: figure out how to define callbacks
-
-```java
-public VisualizationBuilder onClickFilterLabel(Object onClickFilterLabel)
-```
-
-### <span class="badge object-method"></span> onClickFilterOutLabel
-
-```java
-public VisualizationBuilder onClickFilterOutLabel(Object onClickFilterOutLabel)
-```
-
-### <span class="badge object-method"></span> onClickFilterOutString
-
-```java
-public VisualizationBuilder onClickFilterOutString(Object onClickFilterOutString)
-```
-
-### <span class="badge object-method"></span> onClickFilterString
-
-```java
-public VisualizationBuilder onClickFilterString(Object onClickFilterString)
-```
-
-### <span class="badge object-method"></span> onClickHideField
-
-```java
-public VisualizationBuilder onClickHideField(Object onClickHideField)
-```
-
-### <span class="badge object-method"></span> onClickShowField
-
-```java
-public VisualizationBuilder onClickShowField(Object onClickShowField)
-```
-
-### <span class="badge object-method"></span> onNewLogsReceived
-
-```java
-public VisualizationBuilder onNewLogsReceived(Object onNewLogsReceived)
 ```
 
 ### <span class="badge object-method"></span> override
@@ -274,6 +218,22 @@ public VisualizationBuilder prettifyLogMessage(Boolean prettifyLogMessage)
 public VisualizationBuilder showCommonLabels(Boolean showCommonLabels)
 ```
 
+### <span class="badge object-method"></span> showControls
+
+Display controls to jump to the last or first log line, and filters by log level.
+
+```java
+public VisualizationBuilder showControls(Boolean showControls)
+```
+
+### <span class="badge object-method"></span> showFieldSelector
+
+Show a component to manage the displayed fields from the logs.
+
+```java
+public VisualizationBuilder showFieldSelector(Boolean showFieldSelector)
+```
+
 ### <span class="badge object-method"></span> showLabels
 
 ```java
@@ -296,6 +256,14 @@ public VisualizationBuilder showTime(Boolean showTime)
 
 ```java
 public VisualizationBuilder sortOrder(LogsSortOrder sortOrder)
+```
+
+### <span class="badge object-method"></span> syntaxHighlighting
+
+Use a predefined coloring scheme to highlight relevant parts of the log lines.
+
+```java
+public VisualizationBuilder syntaxHighlighting(Boolean syntaxHighlighting)
 ```
 
 ### <span class="badge object-method"></span> thresholds

@@ -126,6 +126,14 @@ Human readable field metadata
 public VisualizationBuilder description(String description)
 ```
 
+### <span class="badge object-method"></span> disablePagination
+
+Disables the pagination.
+
+```java
+public VisualizationBuilder disablePagination()
+```
+
 ### <span class="badge object-method"></span> displayName
 
 The display value for this field.  This supports template variables blank is auto

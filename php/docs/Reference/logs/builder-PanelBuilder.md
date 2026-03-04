@@ -92,20 +92,18 @@ Panel description.
 description(string $description)
 ```
 
+### <span class="badge object-method"></span> detailsMode
+
+```php
+detailsMode(\Grafana\Foundation\Logs\OptionsDetailsMode $detailsMode)
+```
+
 ### <span class="badge object-method"></span> displayName
 
 The display value for this field.  This supports template variables blank is auto
 
 ```php
 displayName(string $displayName)
-```
-
-### <span class="badge object-method"></span> displayedFields
-
-@param array<string> $displayedFields
-
-```php
-displayedFields(array $displayedFields)
 ```
 
 ### <span class="badge object-method"></span> enableInfiniteScrolling
@@ -124,6 +122,12 @@ enableLogDetails(bool $enableLogDetails)
 
 ```php
 fieldMinMax(bool $fieldMinMax)
+```
+
+### <span class="badge object-method"></span> fontSize
+
+```php
+fontSize(\Grafana\Foundation\Logs\OptionsFontSize $fontSize)
 ```
 
 ### <span class="badge object-method"></span> gridPos
@@ -172,14 +176,6 @@ See: https://grafana.com/docs/grafana/latest/panels-visualizations/query-transfo
 interval(string $interval)
 ```
 
-### <span class="badge object-method"></span> isFilterLabelActive
-
-@param mixed $isFilterLabelActive
-
-```php
-isFilterLabelActive($isFilterLabelActive)
-```
-
 ### <span class="badge object-method"></span> libraryPanel
 
 Dynamically load the panel
@@ -196,22 +192,6 @@ Panel links.
 
 ```php
 links(array $links)
-```
-
-### <span class="badge object-method"></span> logRowMenuIconsAfter
-
-@param mixed $logRowMenuIconsAfter
-
-```php
-logRowMenuIconsAfter($logRowMenuIconsAfter)
-```
-
-### <span class="badge object-method"></span> logRowMenuIconsBefore
-
-@param mixed $logRowMenuIconsBefore
-
-```php
-logRowMenuIconsBefore($logRowMenuIconsBefore)
 ```
 
 ### <span class="badge object-method"></span> mappings
@@ -264,64 +244,6 @@ Alternative to empty string
 
 ```php
 noValue(string $noValue)
-```
-
-### <span class="badge object-method"></span> onClickFilterLabel
-
-TODO: figure out how to define callbacks
-
-@param mixed $onClickFilterLabel
-
-```php
-onClickFilterLabel($onClickFilterLabel)
-```
-
-### <span class="badge object-method"></span> onClickFilterOutLabel
-
-@param mixed $onClickFilterOutLabel
-
-```php
-onClickFilterOutLabel($onClickFilterOutLabel)
-```
-
-### <span class="badge object-method"></span> onClickFilterOutString
-
-@param mixed $onClickFilterOutString
-
-```php
-onClickFilterOutString($onClickFilterOutString)
-```
-
-### <span class="badge object-method"></span> onClickFilterString
-
-@param mixed $onClickFilterString
-
-```php
-onClickFilterString($onClickFilterString)
-```
-
-### <span class="badge object-method"></span> onClickHideField
-
-@param mixed $onClickHideField
-
-```php
-onClickHideField($onClickHideField)
-```
-
-### <span class="badge object-method"></span> onClickShowField
-
-@param mixed $onClickShowField
-
-```php
-onClickShowField($onClickShowField)
-```
-
-### <span class="badge object-method"></span> onNewLogsReceived
-
-@param mixed $onNewLogsReceived
-
-```php
-onNewLogsReceived($onNewLogsReceived)
 ```
 
 ### <span class="badge object-method"></span> overrideByFieldType
@@ -410,6 +332,22 @@ repeatDirection(\Grafana\Foundation\Dashboard\PanelRepeatDirection $repeatDirect
 showCommonLabels(bool $showCommonLabels)
 ```
 
+### <span class="badge object-method"></span> showControls
+
+Display controls to jump to the last or first log line, and filters by log level.
+
+```php
+showControls(bool $showControls)
+```
+
+### <span class="badge object-method"></span> showFieldSelector
+
+Show a component to manage the displayed fields from the logs.
+
+```php
+showFieldSelector(bool $showFieldSelector)
+```
+
 ### <span class="badge object-method"></span> showLabels
 
 ```php
@@ -440,6 +378,14 @@ Panel width. The width is the number of columns from the left edge of the panel.
 
 ```php
 span(int $w)
+```
+
+### <span class="badge object-method"></span> syntaxHighlighting
+
+Use a predefined coloring scheme to highlight relevant parts of the log lines.
+
+```php
+syntaxHighlighting(bool $syntaxHighlighting)
 ```
 
 ### <span class="badge object-method"></span> targets

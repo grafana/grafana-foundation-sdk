@@ -8,5 +8,5 @@ Energy: Microfarad (µF)
 ## Definition
 
 ```go
-const MicroFarad = "watt"
+const MicroFarad = "µfarad"
 ```

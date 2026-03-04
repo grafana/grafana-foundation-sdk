@@ -17,18 +17,14 @@ export interface Options {
 	sortOrder: common.LogsSortOrder;
 	dedupStrategy: common.LogsDedupStrategy;
 	enableInfiniteScrolling?: boolean;
-	// TODO: figure out how to define callbacks
-	onClickFilterLabel?: any;
-	onClickFilterOutLabel?: any;
-	isFilterLabelActive?: any;
-	onClickFilterString?: any;
-	onClickFilterOutString?: any;
-	onClickShowField?: any;
-	onClickHideField?: any;
-	logRowMenuIconsBefore?: any;
-	logRowMenuIconsAfter?: any;
-	onNewLogsReceived?: any;
-	displayedFields?: string[];
+	// Display controls to jump to the last or first log line, and filters by log level.
+	showControls?: boolean;
+	// Show a component to manage the displayed fields from the logs.
+	showFieldSelector?: boolean;
+	// Use a predefined coloring scheme to highlight relevant parts of the log lines.
+	syntaxHighlighting?: boolean;
+	fontSize?: "default" | "small";
+	detailsMode?: "inline" | "sidebar";
 }
 
 ```

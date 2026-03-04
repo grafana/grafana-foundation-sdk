@@ -44,7 +44,7 @@ class FieldConfigSource implements \JsonSerializable
     	return \Grafana\Foundation\Dashboard\FieldConfig::fromArray($val);
     })($data["defaults"]) : null,
             overrides: array_filter(array_map((function($input) {
-    	/** @var array{matcher?: mixed, properties?: array<mixed>} */
+    	/** @var array{__systemRef?: string, matcher?: mixed, properties?: array<mixed>} */
     $val = $input;
     	return \Grafana\Foundation\Dashboard\DashboardFieldConfigSourceOverrides::fromArray($val);
     }), $data["overrides"] ?? [])),

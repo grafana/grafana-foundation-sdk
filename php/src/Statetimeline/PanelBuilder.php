@@ -1010,4 +1010,18 @@ class PanelBuilder implements \Grafana\Foundation\Cog\Builder
         return $this;
     }
 
+    /**
+     * Disables the pagination.
+     */
+    public function disablePagination(): static
+    {    
+        if ($this->internal->options === null) {
+            $this->internal->options = new \Grafana\Foundation\Statetimeline\Options();
+        }
+        assert($this->internal->options instanceof \Grafana\Foundation\Statetimeline\Options);
+        $this->internal->options->perPage = (float) null;
+    
+        return $this;
+    }
+
 }

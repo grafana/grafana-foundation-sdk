@@ -70,6 +70,12 @@ Human readable field metadata
 def description(description: str) -> typing.Self
 ```
 
+### <span class="badge object-method"></span> details_mode
+
+```python
+def details_mode(details_mode: typing.Literal["inline", "sidebar"]) -> typing.Self
+```
+
 ### <span class="badge object-method"></span> display_name
 
 The display value for this field.  This supports template variables blank is auto
@@ -88,12 +94,6 @@ When this property is configured, this value is used rather than the default nam
 def display_name_from_ds(display_name_from_ds: str) -> typing.Self
 ```
 
-### <span class="badge object-method"></span> displayed_fields
-
-```python
-def displayed_fields(displayed_fields: list[str]) -> typing.Self
-```
-
 ### <span class="badge object-method"></span> enable_infinite_scrolling
 
 ```python
@@ -106,22 +106,10 @@ def enable_infinite_scrolling(enable_infinite_scrolling: bool) -> typing.Self
 def enable_log_details(enable_log_details: bool) -> typing.Self
 ```
 
-### <span class="badge object-method"></span> is_filter_label_active
+### <span class="badge object-method"></span> font_size
 
 ```python
-def is_filter_label_active(is_filter_label_active: object) -> typing.Self
-```
-
-### <span class="badge object-method"></span> log_row_menu_icons_after
-
-```python
-def log_row_menu_icons_after(log_row_menu_icons_after: object) -> typing.Self
-```
-
-### <span class="badge object-method"></span> log_row_menu_icons_before
-
-```python
-def log_row_menu_icons_before(log_row_menu_icons_before: object) -> typing.Self
+def font_size(font_size: typing.Literal["default", "small"]) -> typing.Self
 ```
 
 ### <span class="badge object-method"></span> mappings
@@ -154,50 +142,6 @@ Alternative to empty string
 
 ```python
 def no_value(no_value: str) -> typing.Self
-```
-
-### <span class="badge object-method"></span> on_click_filter_label
-
-TODO: figure out how to define callbacks
-
-```python
-def on_click_filter_label(on_click_filter_label: object) -> typing.Self
-```
-
-### <span class="badge object-method"></span> on_click_filter_out_label
-
-```python
-def on_click_filter_out_label(on_click_filter_out_label: object) -> typing.Self
-```
-
-### <span class="badge object-method"></span> on_click_filter_out_string
-
-```python
-def on_click_filter_out_string(on_click_filter_out_string: object) -> typing.Self
-```
-
-### <span class="badge object-method"></span> on_click_filter_string
-
-```python
-def on_click_filter_string(on_click_filter_string: object) -> typing.Self
-```
-
-### <span class="badge object-method"></span> on_click_hide_field
-
-```python
-def on_click_hide_field(on_click_hide_field: object) -> typing.Self
-```
-
-### <span class="badge object-method"></span> on_click_show_field
-
-```python
-def on_click_show_field(on_click_show_field: object) -> typing.Self
-```
-
-### <span class="badge object-method"></span> on_new_logs_received
-
-```python
-def on_new_logs_received(on_new_logs_received: object) -> typing.Self
 ```
 
 ### <span class="badge object-method"></span> override
@@ -274,6 +218,22 @@ def prettify_log_message(prettify_log_message: bool) -> typing.Self
 def show_common_labels(show_common_labels: bool) -> typing.Self
 ```
 
+### <span class="badge object-method"></span> show_controls
+
+Display controls to jump to the last or first log line, and filters by log level.
+
+```python
+def show_controls(show_controls: bool) -> typing.Self
+```
+
+### <span class="badge object-method"></span> show_field_selector
+
+Show a component to manage the displayed fields from the logs.
+
+```python
+def show_field_selector(show_field_selector: bool) -> typing.Self
+```
+
 ### <span class="badge object-method"></span> show_labels
 
 ```python
@@ -296,6 +256,14 @@ def show_time(show_time: bool) -> typing.Self
 
 ```python
 def sort_order(sort_order: common.LogsSortOrder) -> typing.Self
+```
+
+### <span class="badge object-method"></span> syntax_highlighting
+
+Use a predefined coloring scheme to highlight relevant parts of the log lines.
+
+```python
+def syntax_highlighting(syntax_highlighting: bool) -> typing.Self
 ```
 
 ### <span class="badge object-method"></span> thresholds

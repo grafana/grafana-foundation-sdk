@@ -625,10 +625,10 @@ func PanelConverter(input dashboard.Panel) string {
 		buffer.Reset()
 
 	}
-	if input.Options != nil && input.Options.(*Options).OnClickFilterLabel != nil {
+	if input.Options != nil && input.Options.(*Options).ShowControls != nil {
 
-		buffer.WriteString(`OnClickFilterLabel(`)
-		arg0 := cog.Dump(input.Options.(*Options).OnClickFilterLabel)
+		buffer.WriteString(`ShowControls(`)
+		arg0 := fmt.Sprintf("%#v", *input.Options.(*Options).ShowControls)
 		buffer.WriteString(arg0)
 
 		buffer.WriteString(")")
@@ -637,10 +637,10 @@ func PanelConverter(input dashboard.Panel) string {
 		buffer.Reset()
 
 	}
-	if input.Options != nil && input.Options.(*Options).OnClickFilterOutLabel != nil {
+	if input.Options != nil && input.Options.(*Options).ShowFieldSelector != nil {
 
-		buffer.WriteString(`OnClickFilterOutLabel(`)
-		arg0 := cog.Dump(input.Options.(*Options).OnClickFilterOutLabel)
+		buffer.WriteString(`ShowFieldSelector(`)
+		arg0 := fmt.Sprintf("%#v", *input.Options.(*Options).ShowFieldSelector)
 		buffer.WriteString(arg0)
 
 		buffer.WriteString(")")
@@ -649,10 +649,10 @@ func PanelConverter(input dashboard.Panel) string {
 		buffer.Reset()
 
 	}
-	if input.Options != nil && input.Options.(*Options).IsFilterLabelActive != nil {
+	if input.Options != nil && input.Options.(*Options).SyntaxHighlighting != nil {
 
-		buffer.WriteString(`IsFilterLabelActive(`)
-		arg0 := cog.Dump(input.Options.(*Options).IsFilterLabelActive)
+		buffer.WriteString(`SyntaxHighlighting(`)
+		arg0 := fmt.Sprintf("%#v", *input.Options.(*Options).SyntaxHighlighting)
 		buffer.WriteString(arg0)
 
 		buffer.WriteString(")")
@@ -661,10 +661,10 @@ func PanelConverter(input dashboard.Panel) string {
 		buffer.Reset()
 
 	}
-	if input.Options != nil && input.Options.(*Options).OnClickFilterString != nil {
+	if input.Options != nil && input.Options.(*Options).FontSize != nil {
 
-		buffer.WriteString(`OnClickFilterString(`)
-		arg0 := cog.Dump(input.Options.(*Options).OnClickFilterString)
+		buffer.WriteString(`FontSize(`)
+		arg0 := cog.Dump(*input.Options.(*Options).FontSize)
 		buffer.WriteString(arg0)
 
 		buffer.WriteString(")")
@@ -673,87 +673,10 @@ func PanelConverter(input dashboard.Panel) string {
 		buffer.Reset()
 
 	}
-	if input.Options != nil && input.Options.(*Options).OnClickFilterOutString != nil {
+	if input.Options != nil && input.Options.(*Options).DetailsMode != nil {
 
-		buffer.WriteString(`OnClickFilterOutString(`)
-		arg0 := cog.Dump(input.Options.(*Options).OnClickFilterOutString)
-		buffer.WriteString(arg0)
-
-		buffer.WriteString(")")
-
-		calls = append(calls, buffer.String())
-		buffer.Reset()
-
-	}
-	if input.Options != nil && input.Options.(*Options).OnClickShowField != nil {
-
-		buffer.WriteString(`OnClickShowField(`)
-		arg0 := cog.Dump(input.Options.(*Options).OnClickShowField)
-		buffer.WriteString(arg0)
-
-		buffer.WriteString(")")
-
-		calls = append(calls, buffer.String())
-		buffer.Reset()
-
-	}
-	if input.Options != nil && input.Options.(*Options).OnClickHideField != nil {
-
-		buffer.WriteString(`OnClickHideField(`)
-		arg0 := cog.Dump(input.Options.(*Options).OnClickHideField)
-		buffer.WriteString(arg0)
-
-		buffer.WriteString(")")
-
-		calls = append(calls, buffer.String())
-		buffer.Reset()
-
-	}
-	if input.Options != nil && input.Options.(*Options).LogRowMenuIconsBefore != nil {
-
-		buffer.WriteString(`LogRowMenuIconsBefore(`)
-		arg0 := cog.Dump(input.Options.(*Options).LogRowMenuIconsBefore)
-		buffer.WriteString(arg0)
-
-		buffer.WriteString(")")
-
-		calls = append(calls, buffer.String())
-		buffer.Reset()
-
-	}
-	if input.Options != nil && input.Options.(*Options).LogRowMenuIconsAfter != nil {
-
-		buffer.WriteString(`LogRowMenuIconsAfter(`)
-		arg0 := cog.Dump(input.Options.(*Options).LogRowMenuIconsAfter)
-		buffer.WriteString(arg0)
-
-		buffer.WriteString(")")
-
-		calls = append(calls, buffer.String())
-		buffer.Reset()
-
-	}
-	if input.Options != nil && input.Options.(*Options).OnNewLogsReceived != nil {
-
-		buffer.WriteString(`OnNewLogsReceived(`)
-		arg0 := cog.Dump(input.Options.(*Options).OnNewLogsReceived)
-		buffer.WriteString(arg0)
-
-		buffer.WriteString(")")
-
-		calls = append(calls, buffer.String())
-		buffer.Reset()
-
-	}
-	if input.Options != nil && input.Options.(*Options).DisplayedFields != nil && len(input.Options.(*Options).DisplayedFields) >= 1 {
-
-		buffer.WriteString(`DisplayedFields(`)
-		tmparg0 := []string{}
-		for _, arg1 := range input.Options.(*Options).DisplayedFields {
-			tmpdisplayedFieldsarg1 := fmt.Sprintf("%#v", arg1)
-			tmparg0 = append(tmparg0, tmpdisplayedFieldsarg1)
-		}
-		arg0 := "[]string{" + strings.Join(tmparg0, ",\n") + "}"
+		buffer.WriteString(`DetailsMode(`)
+		arg0 := cog.Dump(*input.Options.(*Options).DetailsMode)
 		buffer.WriteString(arg0)
 
 		buffer.WriteString(")")

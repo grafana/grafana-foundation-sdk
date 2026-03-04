@@ -675,95 +675,55 @@ class Panel(cogbuilder.Builder[dashboard.Panel]):
     
         return self
     
-    def on_click_filter_label(self, on_click_filter_label: object) -> typing.Self:    
+    def show_controls(self, show_controls: bool) -> typing.Self:    
         """
-        TODO: figure out how to define callbacks
+        Display controls to jump to the last or first log line, and filters by log level.
         """
             
         if self._internal.options is None:
             self._internal.options = logs.Options()
         assert isinstance(self._internal.options, logs.Options)
-        self._internal.options.on_click_filter_label = on_click_filter_label
+        self._internal.options.show_controls = show_controls
     
         return self
     
-    def on_click_filter_out_label(self, on_click_filter_out_label: object) -> typing.Self:    
+    def show_field_selector(self, show_field_selector: bool) -> typing.Self:    
+        """
+        Show a component to manage the displayed fields from the logs.
+        """
+            
         if self._internal.options is None:
             self._internal.options = logs.Options()
         assert isinstance(self._internal.options, logs.Options)
-        self._internal.options.on_click_filter_out_label = on_click_filter_out_label
+        self._internal.options.show_field_selector = show_field_selector
     
         return self
     
-    def is_filter_label_active(self, is_filter_label_active: object) -> typing.Self:    
+    def syntax_highlighting(self, syntax_highlighting: bool) -> typing.Self:    
+        """
+        Use a predefined coloring scheme to highlight relevant parts of the log lines.
+        """
+            
         if self._internal.options is None:
             self._internal.options = logs.Options()
         assert isinstance(self._internal.options, logs.Options)
-        self._internal.options.is_filter_label_active = is_filter_label_active
+        self._internal.options.syntax_highlighting = syntax_highlighting
     
         return self
     
-    def on_click_filter_string(self, on_click_filter_string: object) -> typing.Self:    
+    def font_size(self, font_size: typing.Literal["default", "small"]) -> typing.Self:    
         if self._internal.options is None:
             self._internal.options = logs.Options()
         assert isinstance(self._internal.options, logs.Options)
-        self._internal.options.on_click_filter_string = on_click_filter_string
+        self._internal.options.font_size = font_size
     
         return self
     
-    def on_click_filter_out_string(self, on_click_filter_out_string: object) -> typing.Self:    
+    def details_mode(self, details_mode: typing.Literal["inline", "sidebar"]) -> typing.Self:    
         if self._internal.options is None:
             self._internal.options = logs.Options()
         assert isinstance(self._internal.options, logs.Options)
-        self._internal.options.on_click_filter_out_string = on_click_filter_out_string
-    
-        return self
-    
-    def on_click_show_field(self, on_click_show_field: object) -> typing.Self:    
-        if self._internal.options is None:
-            self._internal.options = logs.Options()
-        assert isinstance(self._internal.options, logs.Options)
-        self._internal.options.on_click_show_field = on_click_show_field
-    
-        return self
-    
-    def on_click_hide_field(self, on_click_hide_field: object) -> typing.Self:    
-        if self._internal.options is None:
-            self._internal.options = logs.Options()
-        assert isinstance(self._internal.options, logs.Options)
-        self._internal.options.on_click_hide_field = on_click_hide_field
-    
-        return self
-    
-    def log_row_menu_icons_before(self, log_row_menu_icons_before: object) -> typing.Self:    
-        if self._internal.options is None:
-            self._internal.options = logs.Options()
-        assert isinstance(self._internal.options, logs.Options)
-        self._internal.options.log_row_menu_icons_before = log_row_menu_icons_before
-    
-        return self
-    
-    def log_row_menu_icons_after(self, log_row_menu_icons_after: object) -> typing.Self:    
-        if self._internal.options is None:
-            self._internal.options = logs.Options()
-        assert isinstance(self._internal.options, logs.Options)
-        self._internal.options.log_row_menu_icons_after = log_row_menu_icons_after
-    
-        return self
-    
-    def on_new_logs_received(self, on_new_logs_received: object) -> typing.Self:    
-        if self._internal.options is None:
-            self._internal.options = logs.Options()
-        assert isinstance(self._internal.options, logs.Options)
-        self._internal.options.on_new_logs_received = on_new_logs_received
-    
-        return self
-    
-    def displayed_fields(self, displayed_fields: list[str]) -> typing.Self:    
-        if self._internal.options is None:
-            self._internal.options = logs.Options()
-        assert isinstance(self._internal.options, logs.Options)
-        self._internal.options.displayed_fields = displayed_fields
+        self._internal.options.details_mode = details_mode
     
         return self
     
@@ -1200,9 +1160,9 @@ class Visualization(cogbuilder.Builder[dashboardv2beta1.VizConfigKind]):
     
         return self
     
-    def on_click_filter_label(self, on_click_filter_label: object) -> typing.Self:    
+    def show_controls(self, show_controls: bool) -> typing.Self:    
         """
-        TODO: figure out how to define callbacks
+        Display controls to jump to the last or first log line, and filters by log level.
         """
             
         if self._internal.spec is None:
@@ -1211,117 +1171,59 @@ class Visualization(cogbuilder.Builder[dashboardv2beta1.VizConfigKind]):
         if self._internal.spec.options is None:
             self._internal.spec.options = logs.Options()
         assert isinstance(self._internal.spec.options, logs.Options)
-        self._internal.spec.options.on_click_filter_label = on_click_filter_label
+        self._internal.spec.options.show_controls = show_controls
     
         return self
     
-    def on_click_filter_out_label(self, on_click_filter_out_label: object) -> typing.Self:    
+    def show_field_selector(self, show_field_selector: bool) -> typing.Self:    
+        """
+        Show a component to manage the displayed fields from the logs.
+        """
+            
         if self._internal.spec is None:
             self._internal.spec = dashboardv2beta1.VizConfigSpec()
         assert isinstance(self._internal.spec, dashboardv2beta1.VizConfigSpec)
         if self._internal.spec.options is None:
             self._internal.spec.options = logs.Options()
         assert isinstance(self._internal.spec.options, logs.Options)
-        self._internal.spec.options.on_click_filter_out_label = on_click_filter_out_label
+        self._internal.spec.options.show_field_selector = show_field_selector
     
         return self
     
-    def is_filter_label_active(self, is_filter_label_active: object) -> typing.Self:    
+    def syntax_highlighting(self, syntax_highlighting: bool) -> typing.Self:    
+        """
+        Use a predefined coloring scheme to highlight relevant parts of the log lines.
+        """
+            
         if self._internal.spec is None:
             self._internal.spec = dashboardv2beta1.VizConfigSpec()
         assert isinstance(self._internal.spec, dashboardv2beta1.VizConfigSpec)
         if self._internal.spec.options is None:
             self._internal.spec.options = logs.Options()
         assert isinstance(self._internal.spec.options, logs.Options)
-        self._internal.spec.options.is_filter_label_active = is_filter_label_active
+        self._internal.spec.options.syntax_highlighting = syntax_highlighting
     
         return self
     
-    def on_click_filter_string(self, on_click_filter_string: object) -> typing.Self:    
+    def font_size(self, font_size: typing.Literal["default", "small"]) -> typing.Self:    
         if self._internal.spec is None:
             self._internal.spec = dashboardv2beta1.VizConfigSpec()
         assert isinstance(self._internal.spec, dashboardv2beta1.VizConfigSpec)
         if self._internal.spec.options is None:
             self._internal.spec.options = logs.Options()
         assert isinstance(self._internal.spec.options, logs.Options)
-        self._internal.spec.options.on_click_filter_string = on_click_filter_string
+        self._internal.spec.options.font_size = font_size
     
         return self
     
-    def on_click_filter_out_string(self, on_click_filter_out_string: object) -> typing.Self:    
+    def details_mode(self, details_mode: typing.Literal["inline", "sidebar"]) -> typing.Self:    
         if self._internal.spec is None:
             self._internal.spec = dashboardv2beta1.VizConfigSpec()
         assert isinstance(self._internal.spec, dashboardv2beta1.VizConfigSpec)
         if self._internal.spec.options is None:
             self._internal.spec.options = logs.Options()
         assert isinstance(self._internal.spec.options, logs.Options)
-        self._internal.spec.options.on_click_filter_out_string = on_click_filter_out_string
-    
-        return self
-    
-    def on_click_show_field(self, on_click_show_field: object) -> typing.Self:    
-        if self._internal.spec is None:
-            self._internal.spec = dashboardv2beta1.VizConfigSpec()
-        assert isinstance(self._internal.spec, dashboardv2beta1.VizConfigSpec)
-        if self._internal.spec.options is None:
-            self._internal.spec.options = logs.Options()
-        assert isinstance(self._internal.spec.options, logs.Options)
-        self._internal.spec.options.on_click_show_field = on_click_show_field
-    
-        return self
-    
-    def on_click_hide_field(self, on_click_hide_field: object) -> typing.Self:    
-        if self._internal.spec is None:
-            self._internal.spec = dashboardv2beta1.VizConfigSpec()
-        assert isinstance(self._internal.spec, dashboardv2beta1.VizConfigSpec)
-        if self._internal.spec.options is None:
-            self._internal.spec.options = logs.Options()
-        assert isinstance(self._internal.spec.options, logs.Options)
-        self._internal.spec.options.on_click_hide_field = on_click_hide_field
-    
-        return self
-    
-    def log_row_menu_icons_before(self, log_row_menu_icons_before: object) -> typing.Self:    
-        if self._internal.spec is None:
-            self._internal.spec = dashboardv2beta1.VizConfigSpec()
-        assert isinstance(self._internal.spec, dashboardv2beta1.VizConfigSpec)
-        if self._internal.spec.options is None:
-            self._internal.spec.options = logs.Options()
-        assert isinstance(self._internal.spec.options, logs.Options)
-        self._internal.spec.options.log_row_menu_icons_before = log_row_menu_icons_before
-    
-        return self
-    
-    def log_row_menu_icons_after(self, log_row_menu_icons_after: object) -> typing.Self:    
-        if self._internal.spec is None:
-            self._internal.spec = dashboardv2beta1.VizConfigSpec()
-        assert isinstance(self._internal.spec, dashboardv2beta1.VizConfigSpec)
-        if self._internal.spec.options is None:
-            self._internal.spec.options = logs.Options()
-        assert isinstance(self._internal.spec.options, logs.Options)
-        self._internal.spec.options.log_row_menu_icons_after = log_row_menu_icons_after
-    
-        return self
-    
-    def on_new_logs_received(self, on_new_logs_received: object) -> typing.Self:    
-        if self._internal.spec is None:
-            self._internal.spec = dashboardv2beta1.VizConfigSpec()
-        assert isinstance(self._internal.spec, dashboardv2beta1.VizConfigSpec)
-        if self._internal.spec.options is None:
-            self._internal.spec.options = logs.Options()
-        assert isinstance(self._internal.spec.options, logs.Options)
-        self._internal.spec.options.on_new_logs_received = on_new_logs_received
-    
-        return self
-    
-    def displayed_fields(self, displayed_fields: list[str]) -> typing.Self:    
-        if self._internal.spec is None:
-            self._internal.spec = dashboardv2beta1.VizConfigSpec()
-        assert isinstance(self._internal.spec, dashboardv2beta1.VizConfigSpec)
-        if self._internal.spec.options is None:
-            self._internal.spec.options = logs.Options()
-        assert isinstance(self._internal.spec.options, logs.Options)
-        self._internal.spec.options.displayed_fields = displayed_fields
+        self._internal.spec.options.details_mode = details_mode
     
         return self
     

@@ -17,16 +17,10 @@ public class Options {
   public LogsSortOrder sortOrder;
   public LogsDedupStrategy dedupStrategy;
   public Boolean enableInfiniteScrolling;
-  public Object onClickFilterLabel;
-  public Object onClickFilterOutLabel;
-  public Object isFilterLabelActive;
-  public Object onClickFilterString;
-  public Object onClickFilterOutString;
-  public Object onClickShowField;
-  public Object onClickHideField;
-  public Object logRowMenuIconsBefore;
-  public Object logRowMenuIconsAfter;
-  public Object onNewLogsReceived;
-  public List<String> displayedFields;
+  public Boolean showControls;
+  public Boolean showFieldSelector;
+  public Boolean syntaxHighlighting;
+  public OptionsFontSize fontSize;
+  public OptionsDetailsMode detailsMode;
 }
 ```

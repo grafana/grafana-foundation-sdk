@@ -6,7 +6,6 @@ import (
 	"encoding/json"
 	"errors"
 	"fmt"
-	"reflect"
 
 	cog "github.com/grafana/grafana-foundation-sdk/go/cog"
 	variants "github.com/grafana/grafana-foundation-sdk/go/cog/variants"
@@ -26,18 +25,14 @@ type Options struct {
 	SortOrder               common.LogsSortOrder     `json:"sortOrder"`
 	DedupStrategy           common.LogsDedupStrategy `json:"dedupStrategy"`
 	EnableInfiniteScrolling *bool                    `json:"enableInfiniteScrolling,omitempty"`
-	// TODO: figure out how to define callbacks
-	OnClickFilterLabel     any      `json:"onClickFilterLabel,omitempty"`
-	OnClickFilterOutLabel  any      `json:"onClickFilterOutLabel,omitempty"`
-	IsFilterLabelActive    any      `json:"isFilterLabelActive,omitempty"`
-	OnClickFilterString    any      `json:"onClickFilterString,omitempty"`
-	OnClickFilterOutString any      `json:"onClickFilterOutString,omitempty"`
-	OnClickShowField       any      `json:"onClickShowField,omitempty"`
-	OnClickHideField       any      `json:"onClickHideField,omitempty"`
-	LogRowMenuIconsBefore  any      `json:"logRowMenuIconsBefore,omitempty"`
-	LogRowMenuIconsAfter   any      `json:"logRowMenuIconsAfter,omitempty"`
-	OnNewLogsReceived      any      `json:"onNewLogsReceived,omitempty"`
-	DisplayedFields        []string `json:"displayedFields,omitempty"`
+	// Display controls to jump to the last or first log line, and filters by log level.
+	ShowControls *bool `json:"showControls,omitempty"`
+	// Show a component to manage the displayed fields from the logs.
+	ShowFieldSelector *bool `json:"showFieldSelector,omitempty"`
+	// Use a predefined coloring scheme to highlight relevant parts of the log lines.
+	SyntaxHighlighting *bool               `json:"syntaxHighlighting,omitempty"`
+	FontSize           *OptionsFontSize    `json:"fontSize,omitempty"`
+	DetailsMode        *OptionsDetailsMode `json:"detailsMode,omitempty"`
 }
 
 // NewOptions creates a new Options object.
@@ -194,126 +189,59 @@ func (resource *Options) UnmarshalJSONStrict(raw []byte) error {
 		delete(fields, "enableInfiniteScrolling")
 
 	}
-	// Field "onClickFilterLabel"
-	if fields["onClickFilterLabel"] != nil {
-		if string(fields["onClickFilterLabel"]) != "null" {
-			if err := json.Unmarshal(fields["onClickFilterLabel"], &resource.OnClickFilterLabel); err != nil {
-				errs = append(errs, cog.MakeBuildErrors("onClickFilterLabel", err)...)
+	// Field "showControls"
+	if fields["showControls"] != nil {
+		if string(fields["showControls"]) != "null" {
+			if err := json.Unmarshal(fields["showControls"], &resource.ShowControls); err != nil {
+				errs = append(errs, cog.MakeBuildErrors("showControls", err)...)
 			}
 
 		}
-		delete(fields, "onClickFilterLabel")
+		delete(fields, "showControls")
 
 	}
-	// Field "onClickFilterOutLabel"
-	if fields["onClickFilterOutLabel"] != nil {
-		if string(fields["onClickFilterOutLabel"]) != "null" {
-			if err := json.Unmarshal(fields["onClickFilterOutLabel"], &resource.OnClickFilterOutLabel); err != nil {
-				errs = append(errs, cog.MakeBuildErrors("onClickFilterOutLabel", err)...)
+	// Field "showFieldSelector"
+	if fields["showFieldSelector"] != nil {
+		if string(fields["showFieldSelector"]) != "null" {
+			if err := json.Unmarshal(fields["showFieldSelector"], &resource.ShowFieldSelector); err != nil {
+				errs = append(errs, cog.MakeBuildErrors("showFieldSelector", err)...)
 			}
 
 		}
-		delete(fields, "onClickFilterOutLabel")
+		delete(fields, "showFieldSelector")
 
 	}
-	// Field "isFilterLabelActive"
-	if fields["isFilterLabelActive"] != nil {
-		if string(fields["isFilterLabelActive"]) != "null" {
-			if err := json.Unmarshal(fields["isFilterLabelActive"], &resource.IsFilterLabelActive); err != nil {
-				errs = append(errs, cog.MakeBuildErrors("isFilterLabelActive", err)...)
+	// Field "syntaxHighlighting"
+	if fields["syntaxHighlighting"] != nil {
+		if string(fields["syntaxHighlighting"]) != "null" {
+			if err := json.Unmarshal(fields["syntaxHighlighting"], &resource.SyntaxHighlighting); err != nil {
+				errs = append(errs, cog.MakeBuildErrors("syntaxHighlighting", err)...)
 			}
 
 		}
-		delete(fields, "isFilterLabelActive")
+		delete(fields, "syntaxHighlighting")
 
 	}
-	// Field "onClickFilterString"
-	if fields["onClickFilterString"] != nil {
-		if string(fields["onClickFilterString"]) != "null" {
-			if err := json.Unmarshal(fields["onClickFilterString"], &resource.OnClickFilterString); err != nil {
-				errs = append(errs, cog.MakeBuildErrors("onClickFilterString", err)...)
+	// Field "fontSize"
+	if fields["fontSize"] != nil {
+		if string(fields["fontSize"]) != "null" {
+			if err := json.Unmarshal(fields["fontSize"], &resource.FontSize); err != nil {
+				errs = append(errs, cog.MakeBuildErrors("fontSize", err)...)
 			}
 
 		}
-		delete(fields, "onClickFilterString")
+		delete(fields, "fontSize")
 
 	}
-	// Field "onClickFilterOutString"
-	if fields["onClickFilterOutString"] != nil {
-		if string(fields["onClickFilterOutString"]) != "null" {
-			if err := json.Unmarshal(fields["onClickFilterOutString"], &resource.OnClickFilterOutString); err != nil {
-				errs = append(errs, cog.MakeBuildErrors("onClickFilterOutString", err)...)
+	// Field "detailsMode"
+	if fields["detailsMode"] != nil {
+		if string(fields["detailsMode"]) != "null" {
+			if err := json.Unmarshal(fields["detailsMode"], &resource.DetailsMode); err != nil {
+				errs = append(errs, cog.MakeBuildErrors("detailsMode", err)...)
 			}
 
 		}
-		delete(fields, "onClickFilterOutString")
-
-	}
-	// Field "onClickShowField"
-	if fields["onClickShowField"] != nil {
-		if string(fields["onClickShowField"]) != "null" {
-			if err := json.Unmarshal(fields["onClickShowField"], &resource.OnClickShowField); err != nil {
-				errs = append(errs, cog.MakeBuildErrors("onClickShowField", err)...)
-			}
-
-		}
-		delete(fields, "onClickShowField")
-
-	}
-	// Field "onClickHideField"
-	if fields["onClickHideField"] != nil {
-		if string(fields["onClickHideField"]) != "null" {
-			if err := json.Unmarshal(fields["onClickHideField"], &resource.OnClickHideField); err != nil {
-				errs = append(errs, cog.MakeBuildErrors("onClickHideField", err)...)
-			}
-
-		}
-		delete(fields, "onClickHideField")
-
-	}
-	// Field "logRowMenuIconsBefore"
-	if fields["logRowMenuIconsBefore"] != nil {
-		if string(fields["logRowMenuIconsBefore"]) != "null" {
-			if err := json.Unmarshal(fields["logRowMenuIconsBefore"], &resource.LogRowMenuIconsBefore); err != nil {
-				errs = append(errs, cog.MakeBuildErrors("logRowMenuIconsBefore", err)...)
-			}
-
-		}
-		delete(fields, "logRowMenuIconsBefore")
-
-	}
-	// Field "logRowMenuIconsAfter"
-	if fields["logRowMenuIconsAfter"] != nil {
-		if string(fields["logRowMenuIconsAfter"]) != "null" {
-			if err := json.Unmarshal(fields["logRowMenuIconsAfter"], &resource.LogRowMenuIconsAfter); err != nil {
-				errs = append(errs, cog.MakeBuildErrors("logRowMenuIconsAfter", err)...)
-			}
-
-		}
-		delete(fields, "logRowMenuIconsAfter")
-
-	}
-	// Field "onNewLogsReceived"
-	if fields["onNewLogsReceived"] != nil {
-		if string(fields["onNewLogsReceived"]) != "null" {
-			if err := json.Unmarshal(fields["onNewLogsReceived"], &resource.OnNewLogsReceived); err != nil {
-				errs = append(errs, cog.MakeBuildErrors("onNewLogsReceived", err)...)
-			}
-
-		}
-		delete(fields, "onNewLogsReceived")
-
-	}
-	// Field "displayedFields"
-	if fields["displayedFields"] != nil {
-		if string(fields["displayedFields"]) != "null" {
-
-			if err := json.Unmarshal(fields["displayedFields"], &resource.DisplayedFields); err != nil {
-				errs = append(errs, cog.MakeBuildErrors("displayedFields", err)...)
-			}
-
-		}
-		delete(fields, "displayedFields")
+		delete(fields, "detailsMode")
 
 	}
 
@@ -366,53 +294,48 @@ func (resource Options) Equals(other Options) bool {
 			return false
 		}
 	}
-	// is DeepEqual good enough here?
-	if !reflect.DeepEqual(resource.OnClickFilterLabel, other.OnClickFilterLabel) {
-		return false
-	}
-	// is DeepEqual good enough here?
-	if !reflect.DeepEqual(resource.OnClickFilterOutLabel, other.OnClickFilterOutLabel) {
-		return false
-	}
-	// is DeepEqual good enough here?
-	if !reflect.DeepEqual(resource.IsFilterLabelActive, other.IsFilterLabelActive) {
-		return false
-	}
-	// is DeepEqual good enough here?
-	if !reflect.DeepEqual(resource.OnClickFilterString, other.OnClickFilterString) {
-		return false
-	}
-	// is DeepEqual good enough here?
-	if !reflect.DeepEqual(resource.OnClickFilterOutString, other.OnClickFilterOutString) {
-		return false
-	}
-	// is DeepEqual good enough here?
-	if !reflect.DeepEqual(resource.OnClickShowField, other.OnClickShowField) {
-		return false
-	}
-	// is DeepEqual good enough here?
-	if !reflect.DeepEqual(resource.OnClickHideField, other.OnClickHideField) {
-		return false
-	}
-	// is DeepEqual good enough here?
-	if !reflect.DeepEqual(resource.LogRowMenuIconsBefore, other.LogRowMenuIconsBefore) {
-		return false
-	}
-	// is DeepEqual good enough here?
-	if !reflect.DeepEqual(resource.LogRowMenuIconsAfter, other.LogRowMenuIconsAfter) {
-		return false
-	}
-	// is DeepEqual good enough here?
-	if !reflect.DeepEqual(resource.OnNewLogsReceived, other.OnNewLogsReceived) {
+	if resource.ShowControls == nil && other.ShowControls != nil || resource.ShowControls != nil && other.ShowControls == nil {
 		return false
 	}
 
-	if len(resource.DisplayedFields) != len(other.DisplayedFields) {
+	if resource.ShowControls != nil {
+		if *resource.ShowControls != *other.ShowControls {
+			return false
+		}
+	}
+	if resource.ShowFieldSelector == nil && other.ShowFieldSelector != nil || resource.ShowFieldSelector != nil && other.ShowFieldSelector == nil {
 		return false
 	}
 
-	for i1 := range resource.DisplayedFields {
-		if resource.DisplayedFields[i1] != other.DisplayedFields[i1] {
+	if resource.ShowFieldSelector != nil {
+		if *resource.ShowFieldSelector != *other.ShowFieldSelector {
+			return false
+		}
+	}
+	if resource.SyntaxHighlighting == nil && other.SyntaxHighlighting != nil || resource.SyntaxHighlighting != nil && other.SyntaxHighlighting == nil {
+		return false
+	}
+
+	if resource.SyntaxHighlighting != nil {
+		if *resource.SyntaxHighlighting != *other.SyntaxHighlighting {
+			return false
+		}
+	}
+	if resource.FontSize == nil && other.FontSize != nil || resource.FontSize != nil && other.FontSize == nil {
+		return false
+	}
+
+	if resource.FontSize != nil {
+		if *resource.FontSize != *other.FontSize {
+			return false
+		}
+	}
+	if resource.DetailsMode == nil && other.DetailsMode != nil || resource.DetailsMode != nil && other.DetailsMode == nil {
+		return false
+	}
+
+	if resource.DetailsMode != nil {
+		if *resource.DetailsMode != *other.DetailsMode {
 			return false
 		}
 	}
@@ -424,6 +347,20 @@ func (resource Options) Equals(other Options) bool {
 func (resource Options) Validate() error {
 	return nil
 }
+
+type OptionsFontSize string
+
+const (
+	OptionsFontSizeDefault OptionsFontSize = "default"
+	OptionsFontSizeSmall   OptionsFontSize = "small"
+)
+
+type OptionsDetailsMode string
+
+const (
+	OptionsDetailsModeInline  OptionsDetailsMode = "inline"
+	OptionsDetailsModeSidebar OptionsDetailsMode = "sidebar"
+)
 
 // VariantConfig returns the configuration related to logs panels.
 // This configuration describes how to unmarshal it, convert it to code, …

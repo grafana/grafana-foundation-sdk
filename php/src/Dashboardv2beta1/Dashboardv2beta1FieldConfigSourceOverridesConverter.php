@@ -10,6 +10,19 @@ final class Dashboardv2beta1FieldConfigSourceOverridesConverter
         $calls = [
             '(new \Grafana\Foundation\Dashboardv2beta1\Dashboardv2beta1FieldConfigSourceOverridesBuilder())',
         ];
+            if ($input->systemRef !== null && $input->systemRef !== "") {
+    
+        
+    $buffer = 'systemRef(';
+        $arg0 =\var_export($input->systemRef, true);
+        $buffer .= $arg0;
+        
+    $buffer .= ')';
+
+    $calls[] = $buffer;
+    
+    
+    }
             
     
         {

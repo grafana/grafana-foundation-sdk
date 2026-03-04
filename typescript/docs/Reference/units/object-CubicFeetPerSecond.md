@@ -8,6 +8,6 @@ Flow: Cubic feet/sec (cfs)
 ## Definition
 
 ```typescript
-export const CubicFeetPerSecond = "flowcms";
+export const CubicFeetPerSecond = "flowcfs";
 
 ```

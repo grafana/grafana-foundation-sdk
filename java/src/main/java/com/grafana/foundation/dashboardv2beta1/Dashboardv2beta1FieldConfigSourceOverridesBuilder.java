@@ -10,6 +10,11 @@ public class Dashboardv2beta1FieldConfigSourceOverridesBuilder implements com.gr
     public Dashboardv2beta1FieldConfigSourceOverridesBuilder() {
         this.internal = new Dashboardv2beta1FieldConfigSourceOverrides();
     }
+    public Dashboardv2beta1FieldConfigSourceOverridesBuilder systemRef(String systemRef) {
+        this.internal.systemRef = systemRef;
+        return this;
+    }
+    
     public Dashboardv2beta1FieldConfigSourceOverridesBuilder matcher(MatcherConfig matcher) {
         this.internal.matcher = matcher;
         return this;

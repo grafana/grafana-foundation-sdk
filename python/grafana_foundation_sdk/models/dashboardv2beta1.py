@@ -4166,10 +4166,12 @@ class Dashboardv2beta1DataQueryKindDatasource:
 
 
 class Dashboardv2beta1FieldConfigSourceOverrides:
+    system_ref: typing.Optional[str]
     matcher: 'MatcherConfig'
     properties: list['DynamicConfigValue']
 
-    def __init__(self, matcher: typing.Optional['MatcherConfig'] = None, properties: typing.Optional[list['DynamicConfigValue']] = None) -> None:
+    def __init__(self, system_ref: typing.Optional[str] = None, matcher: typing.Optional['MatcherConfig'] = None, properties: typing.Optional[list['DynamicConfigValue']] = None) -> None:
+        self.system_ref = system_ref
         self.matcher = matcher if matcher is not None else MatcherConfig()
         self.properties = properties if properties is not None else []
 
@@ -4178,12 +4180,16 @@ class Dashboardv2beta1FieldConfigSourceOverrides:
             "matcher": self.matcher,
             "properties": self.properties,
         }
+        if self.system_ref is not None:
+            payload["__systemRef"] = self.system_ref
         return payload
 
     @classmethod
     def from_json(cls, data: dict[str, typing.Any]) -> typing.Self:
         args: dict[str, typing.Any] = {}
         
+        if "__systemRef" in data:
+            args["system_ref"] = data["__systemRef"]
         if "matcher" in data:
             args["matcher"] = MatcherConfig.from_json(data["matcher"])
         if "properties" in data:

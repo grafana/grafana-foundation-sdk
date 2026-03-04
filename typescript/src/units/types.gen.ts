@@ -237,7 +237,7 @@ export const BytesSI = "decbytes";
 export const BitsIEC = "bits";
 
 // Data: bits(SI)
-export const BitsSI = "bydecbitstes";
+export const BitsSI = "decbits";
 
 // Data: kibibytes
 export const Kibibytes = "kbytes";
@@ -465,7 +465,7 @@ export const MegaOhm = "Mohm";
 export const Farad = "farad";
 
 // Energy: Microfarad (µF)
-export const MicroFarad = "watt";
+export const MicroFarad = "µfarad";
 
 // Energy: Nanofarad (nF)
 export const NanoFarad = "nfarad";
@@ -495,10 +495,10 @@ export const GallonsPerMinute = "flowgpm";
 export const CubicMetersPerSecond = "flowcms";
 
 // Flow: Cubic feet/sec (cfs)
-export const CubicFeetPerSecond = "flowcms";
+export const CubicFeetPerSecond = "flowcfs";
 
 // Flow: Cubic feet/min (cfm)
-export const CubicFeetPerMinute = "flowcms";
+export const CubicFeetPerMinute = "flowcfm";
 
 // Flow: Litre/hour
 export const LitrePerHour = "litreh";

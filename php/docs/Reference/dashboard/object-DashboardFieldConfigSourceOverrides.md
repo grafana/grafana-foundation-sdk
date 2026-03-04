@@ -8,6 +8,8 @@ title: <span class="badge object-type-class"></span> DashboardFieldConfigSourceO
 ```php
 class DashboardFieldConfigSourceOverrides implements \JsonSerializable
 {
+    public ?string $systemRef;
+
     public \Grafana\Foundation\Dashboard\MatcherConfig $matcher;
 
     /**

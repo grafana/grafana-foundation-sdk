@@ -86,18 +86,18 @@ Panel description.
 func (builder *PanelBuilder) Description(description string) *PanelBuilder
 ```
 
+### <span class="badge object-method"></span> DetailsMode
+
+```go
+func (builder *PanelBuilder) DetailsMode(detailsMode logs.OptionsDetailsMode) *PanelBuilder
+```
+
 ### <span class="badge object-method"></span> DisplayName
 
 The display value for this field.  This supports template variables blank is auto
 
 ```go
 func (builder *PanelBuilder) DisplayName(displayName string) *PanelBuilder
-```
-
-### <span class="badge object-method"></span> DisplayedFields
-
-```go
-func (builder *PanelBuilder) DisplayedFields(displayedFields []string) *PanelBuilder
 ```
 
 ### <span class="badge object-method"></span> EnableInfiniteScrolling
@@ -116,6 +116,12 @@ func (builder *PanelBuilder) EnableLogDetails(enableLogDetails bool) *PanelBuild
 
 ```go
 func (builder *PanelBuilder) FieldMinMax(fieldMinMax bool) *PanelBuilder
+```
+
+### <span class="badge object-method"></span> FontSize
+
+```go
+func (builder *PanelBuilder) FontSize(fontSize logs.OptionsFontSize) *PanelBuilder
 ```
 
 ### <span class="badge object-method"></span> GridPos
@@ -164,12 +170,6 @@ See: https://grafana.com/docs/grafana/latest/panels-visualizations/query-transfo
 func (builder *PanelBuilder) Interval(interval string) *PanelBuilder
 ```
 
-### <span class="badge object-method"></span> IsFilterLabelActive
-
-```go
-func (builder *PanelBuilder) IsFilterLabelActive(isFilterLabelActive any) *PanelBuilder
-```
-
 ### <span class="badge object-method"></span> LibraryPanel
 
 Dynamically load the panel
@@ -184,18 +184,6 @@ Panel links.
 
 ```go
 func (builder *PanelBuilder) Links(links []cog.Builder[dashboard.DashboardLink]) *PanelBuilder
-```
-
-### <span class="badge object-method"></span> LogRowMenuIconsAfter
-
-```go
-func (builder *PanelBuilder) LogRowMenuIconsAfter(logRowMenuIconsAfter any) *PanelBuilder
-```
-
-### <span class="badge object-method"></span> LogRowMenuIconsBefore
-
-```go
-func (builder *PanelBuilder) LogRowMenuIconsBefore(logRowMenuIconsBefore any) *PanelBuilder
 ```
 
 ### <span class="badge object-method"></span> Mappings
@@ -246,50 +234,6 @@ Alternative to empty string
 
 ```go
 func (builder *PanelBuilder) NoValue(noValue string) *PanelBuilder
-```
-
-### <span class="badge object-method"></span> OnClickFilterLabel
-
-TODO: figure out how to define callbacks
-
-```go
-func (builder *PanelBuilder) OnClickFilterLabel(onClickFilterLabel any) *PanelBuilder
-```
-
-### <span class="badge object-method"></span> OnClickFilterOutLabel
-
-```go
-func (builder *PanelBuilder) OnClickFilterOutLabel(onClickFilterOutLabel any) *PanelBuilder
-```
-
-### <span class="badge object-method"></span> OnClickFilterOutString
-
-```go
-func (builder *PanelBuilder) OnClickFilterOutString(onClickFilterOutString any) *PanelBuilder
-```
-
-### <span class="badge object-method"></span> OnClickFilterString
-
-```go
-func (builder *PanelBuilder) OnClickFilterString(onClickFilterString any) *PanelBuilder
-```
-
-### <span class="badge object-method"></span> OnClickHideField
-
-```go
-func (builder *PanelBuilder) OnClickHideField(onClickHideField any) *PanelBuilder
-```
-
-### <span class="badge object-method"></span> OnClickShowField
-
-```go
-func (builder *PanelBuilder) OnClickShowField(onClickShowField any) *PanelBuilder
-```
-
-### <span class="badge object-method"></span> OnNewLogsReceived
-
-```go
-func (builder *PanelBuilder) OnNewLogsReceived(onNewLogsReceived any) *PanelBuilder
 ```
 
 ### <span class="badge object-method"></span> OverrideByFieldType
@@ -368,6 +312,22 @@ func (builder *PanelBuilder) RepeatDirection(repeatDirection dashboard.PanelRepe
 func (builder *PanelBuilder) ShowCommonLabels(showCommonLabels bool) *PanelBuilder
 ```
 
+### <span class="badge object-method"></span> ShowControls
+
+Display controls to jump to the last or first log line, and filters by log level.
+
+```go
+func (builder *PanelBuilder) ShowControls(showControls bool) *PanelBuilder
+```
+
+### <span class="badge object-method"></span> ShowFieldSelector
+
+Show a component to manage the displayed fields from the logs.
+
+```go
+func (builder *PanelBuilder) ShowFieldSelector(showFieldSelector bool) *PanelBuilder
+```
+
 ### <span class="badge object-method"></span> ShowLabels
 
 ```go
@@ -398,6 +358,14 @@ Panel width. The width is the number of columns from the left edge of the panel.
 
 ```go
 func (builder *PanelBuilder) Span(w uint32) *PanelBuilder
+```
+
+### <span class="badge object-method"></span> SyntaxHighlighting
+
+Use a predefined coloring scheme to highlight relevant parts of the log lines.
+
+```go
+func (builder *PanelBuilder) SyntaxHighlighting(syntaxHighlighting bool) *PanelBuilder
 ```
 
 ### <span class="badge object-method"></span> Targets

@@ -486,3 +486,13 @@ func (builder *VisualizationBuilder) OverrideByQuery(queryRefId string, properti
 
 	return builder
 }
+
+// Disables the pagination.
+func (builder *VisualizationBuilder) DisablePagination() *VisualizationBuilder {
+	if builder.internal.Spec.Options == nil {
+		builder.internal.Spec.Options = NewOptions()
+	}
+	builder.internal.Spec.Options.(*Options).PerPage = nil
+
+	return builder
+}

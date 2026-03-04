@@ -683,11 +683,11 @@ final class PanelConverter
     
     
     }
-            if ($input->options !== null && $input->options instanceof \Grafana\Foundation\Logs\Options && $input->options->onClickFilterLabel !== null) {
+            if ($input->options !== null && $input->options instanceof \Grafana\Foundation\Logs\Options && $input->options->showControls !== null) {
     
         
-    $buffer = 'onClickFilterLabel(';
-        $arg0 =\var_export($input->options->onClickFilterLabel, true);
+    $buffer = 'showControls(';
+        $arg0 =\var_export($input->options->showControls, true);
         $buffer .= $arg0;
         
     $buffer .= ')';
@@ -696,11 +696,11 @@ final class PanelConverter
     
     
     }
-            if ($input->options !== null && $input->options instanceof \Grafana\Foundation\Logs\Options && $input->options->onClickFilterOutLabel !== null) {
+            if ($input->options !== null && $input->options instanceof \Grafana\Foundation\Logs\Options && $input->options->showFieldSelector !== null) {
     
         
-    $buffer = 'onClickFilterOutLabel(';
-        $arg0 =\var_export($input->options->onClickFilterOutLabel, true);
+    $buffer = 'showFieldSelector(';
+        $arg0 =\var_export($input->options->showFieldSelector, true);
         $buffer .= $arg0;
         
     $buffer .= ')';
@@ -709,11 +709,11 @@ final class PanelConverter
     
     
     }
-            if ($input->options !== null && $input->options instanceof \Grafana\Foundation\Logs\Options && $input->options->isFilterLabelActive !== null) {
+            if ($input->options !== null && $input->options instanceof \Grafana\Foundation\Logs\Options && $input->options->syntaxHighlighting !== null) {
     
         
-    $buffer = 'isFilterLabelActive(';
-        $arg0 =\var_export($input->options->isFilterLabelActive, true);
+    $buffer = 'syntaxHighlighting(';
+        $arg0 =\var_export($input->options->syntaxHighlighting, true);
         $buffer .= $arg0;
         
     $buffer .= ')';
@@ -722,11 +722,11 @@ final class PanelConverter
     
     
     }
-            if ($input->options !== null && $input->options instanceof \Grafana\Foundation\Logs\Options && $input->options->onClickFilterString !== null) {
+            if ($input->options !== null && $input->options instanceof \Grafana\Foundation\Logs\Options && $input->options->fontSize !== null) {
     
         
-    $buffer = 'onClickFilterString(';
-        $arg0 =\var_export($input->options->onClickFilterString, true);
+    $buffer = 'fontSize(';
+        $arg0 ='\Grafana\Foundation\Logs\OptionsFontSize::fromValue("'.$input->options->fontSize.'")';
         $buffer .= $arg0;
         
     $buffer .= ')';
@@ -735,94 +735,11 @@ final class PanelConverter
     
     
     }
-            if ($input->options !== null && $input->options instanceof \Grafana\Foundation\Logs\Options && $input->options->onClickFilterOutString !== null) {
+            if ($input->options !== null && $input->options instanceof \Grafana\Foundation\Logs\Options && $input->options->detailsMode !== null) {
     
         
-    $buffer = 'onClickFilterOutString(';
-        $arg0 =\var_export($input->options->onClickFilterOutString, true);
-        $buffer .= $arg0;
-        
-    $buffer .= ')';
-
-    $calls[] = $buffer;
-    
-    
-    }
-            if ($input->options !== null && $input->options instanceof \Grafana\Foundation\Logs\Options && $input->options->onClickShowField !== null) {
-    
-        
-    $buffer = 'onClickShowField(';
-        $arg0 =\var_export($input->options->onClickShowField, true);
-        $buffer .= $arg0;
-        
-    $buffer .= ')';
-
-    $calls[] = $buffer;
-    
-    
-    }
-            if ($input->options !== null && $input->options instanceof \Grafana\Foundation\Logs\Options && $input->options->onClickHideField !== null) {
-    
-        
-    $buffer = 'onClickHideField(';
-        $arg0 =\var_export($input->options->onClickHideField, true);
-        $buffer .= $arg0;
-        
-    $buffer .= ')';
-
-    $calls[] = $buffer;
-    
-    
-    }
-            if ($input->options !== null && $input->options instanceof \Grafana\Foundation\Logs\Options && $input->options->logRowMenuIconsBefore !== null) {
-    
-        
-    $buffer = 'logRowMenuIconsBefore(';
-        $arg0 =\var_export($input->options->logRowMenuIconsBefore, true);
-        $buffer .= $arg0;
-        
-    $buffer .= ')';
-
-    $calls[] = $buffer;
-    
-    
-    }
-            if ($input->options !== null && $input->options instanceof \Grafana\Foundation\Logs\Options && $input->options->logRowMenuIconsAfter !== null) {
-    
-        
-    $buffer = 'logRowMenuIconsAfter(';
-        $arg0 =\var_export($input->options->logRowMenuIconsAfter, true);
-        $buffer .= $arg0;
-        
-    $buffer .= ')';
-
-    $calls[] = $buffer;
-    
-    
-    }
-            if ($input->options !== null && $input->options instanceof \Grafana\Foundation\Logs\Options && $input->options->onNewLogsReceived !== null) {
-    
-        
-    $buffer = 'onNewLogsReceived(';
-        $arg0 =\var_export($input->options->onNewLogsReceived, true);
-        $buffer .= $arg0;
-        
-    $buffer .= ')';
-
-    $calls[] = $buffer;
-    
-    
-    }
-            if ($input->options !== null && $input->options instanceof \Grafana\Foundation\Logs\Options && $input->options->displayedFields !== null && count($input->options->displayedFields) >= 1) {
-    
-        
-    $buffer = 'displayedFields(';
-        $tmparg0 = [];
-        foreach ($input->options->displayedFields as $arg1) {
-        $tmpdisplayedFieldsarg1 =\var_export($arg1, true);
-        $tmparg0[] = $tmpdisplayedFieldsarg1;
-        }
-        $arg0 = "[" . implode(", \n", $tmparg0) . "]";
+    $buffer = 'detailsMode(';
+        $arg0 ='\Grafana\Foundation\Logs\OptionsDetailsMode::fromValue("'.$input->options->detailsMode.'")';
         $buffer .= $arg0;
         
     $buffer .= ')';

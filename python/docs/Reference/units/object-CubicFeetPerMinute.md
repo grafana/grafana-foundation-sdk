@@ -9,5 +9,5 @@ Flow: Cubic feet/min (cfm)
 
 ```python
 # Flow: Cubic feet/min (cfm)
-CubicFeetPerMinute: typing.Literal["flowcms"] = "flowcms"
+CubicFeetPerMinute: typing.Literal["flowcfm"] = "flowcfm"
 ```

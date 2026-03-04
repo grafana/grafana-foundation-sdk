@@ -3,6 +3,7 @@
 package dashboardv2beta1
 
 import (
+	"fmt"
 	"strings"
 
 	cog "github.com/grafana/grafana-foundation-sdk/go/cog"
@@ -14,6 +15,18 @@ func Dashboardv2beta1FieldConfigSourceOverridesConverter(input Dashboardv2beta1F
 		`dashboardv2beta1.NewDashboardv2beta1FieldConfigSourceOverridesBuilder()`,
 	}
 	var buffer strings.Builder
+	if input.SystemRef != nil && *input.SystemRef != "" {
+
+		buffer.WriteString(`SystemRef(`)
+		arg0 := fmt.Sprintf("%#v", *input.SystemRef)
+		buffer.WriteString(arg0)
+
+		buffer.WriteString(")")
+
+		calls = append(calls, buffer.String())
+		buffer.Reset()
+
+	}
 
 	{
 		buffer.WriteString(`Matcher(`)

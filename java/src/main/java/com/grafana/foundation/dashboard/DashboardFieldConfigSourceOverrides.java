@@ -13,6 +13,9 @@ import com.fasterxml.jackson.annotation.Nulls;
 import java.util.List;
 
 public class DashboardFieldConfigSourceOverrides {
+    @JsonInclude(JsonInclude.Include.NON_NULL)
+    @JsonProperty("__systemRef")
+    public String systemRef;
     @JsonInclude(JsonInclude.Include.NON_EMPTY)
     @JsonProperty("matcher")
     public MatcherConfig matcher;
@@ -23,7 +26,8 @@ public class DashboardFieldConfigSourceOverrides {
         this.matcher = new com.grafana.foundation.dashboard.MatcherConfig();
         this.properties = new LinkedList<>();
     }
-    public DashboardFieldConfigSourceOverrides(MatcherConfig matcher,List<DynamicConfigValue> properties) {
+    public DashboardFieldConfigSourceOverrides(String systemRef,MatcherConfig matcher,List<DynamicConfigValue> properties) {
+        this.systemRef = systemRef;
         this.matcher = matcher;
         this.properties = properties;
     }

@@ -7,6 +7,7 @@ title: <span class="badge object-type-struct"></span> DashboardFieldConfigSource
 
 ```go
 type DashboardFieldConfigSourceOverrides struct {
+    SystemRef *string `json:"__systemRef,omitempty"`
     Matcher dashboard.MatcherConfig `json:"matcher"`
     Properties []dashboard.DynamicConfigValue `json:"properties"`
 }

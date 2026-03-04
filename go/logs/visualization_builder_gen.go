@@ -294,102 +294,50 @@ func (builder *VisualizationBuilder) EnableInfiniteScrolling(enableInfiniteScrol
 	return builder
 }
 
-// TODO: figure out how to define callbacks
-func (builder *VisualizationBuilder) OnClickFilterLabel(onClickFilterLabel any) *VisualizationBuilder {
+// Display controls to jump to the last or first log line, and filters by log level.
+func (builder *VisualizationBuilder) ShowControls(showControls bool) *VisualizationBuilder {
 	if builder.internal.Spec.Options == nil {
 		builder.internal.Spec.Options = NewOptions()
 	}
-	builder.internal.Spec.Options.(*Options).OnClickFilterLabel = &onClickFilterLabel
+	builder.internal.Spec.Options.(*Options).ShowControls = &showControls
 
 	return builder
 }
 
-func (builder *VisualizationBuilder) OnClickFilterOutLabel(onClickFilterOutLabel any) *VisualizationBuilder {
+// Show a component to manage the displayed fields from the logs.
+func (builder *VisualizationBuilder) ShowFieldSelector(showFieldSelector bool) *VisualizationBuilder {
 	if builder.internal.Spec.Options == nil {
 		builder.internal.Spec.Options = NewOptions()
 	}
-	builder.internal.Spec.Options.(*Options).OnClickFilterOutLabel = &onClickFilterOutLabel
+	builder.internal.Spec.Options.(*Options).ShowFieldSelector = &showFieldSelector
 
 	return builder
 }
 
-func (builder *VisualizationBuilder) IsFilterLabelActive(isFilterLabelActive any) *VisualizationBuilder {
+// Use a predefined coloring scheme to highlight relevant parts of the log lines.
+func (builder *VisualizationBuilder) SyntaxHighlighting(syntaxHighlighting bool) *VisualizationBuilder {
 	if builder.internal.Spec.Options == nil {
 		builder.internal.Spec.Options = NewOptions()
 	}
-	builder.internal.Spec.Options.(*Options).IsFilterLabelActive = &isFilterLabelActive
+	builder.internal.Spec.Options.(*Options).SyntaxHighlighting = &syntaxHighlighting
 
 	return builder
 }
 
-func (builder *VisualizationBuilder) OnClickFilterString(onClickFilterString any) *VisualizationBuilder {
+func (builder *VisualizationBuilder) FontSize(fontSize OptionsFontSize) *VisualizationBuilder {
 	if builder.internal.Spec.Options == nil {
 		builder.internal.Spec.Options = NewOptions()
 	}
-	builder.internal.Spec.Options.(*Options).OnClickFilterString = &onClickFilterString
+	builder.internal.Spec.Options.(*Options).FontSize = &fontSize
 
 	return builder
 }
 
-func (builder *VisualizationBuilder) OnClickFilterOutString(onClickFilterOutString any) *VisualizationBuilder {
+func (builder *VisualizationBuilder) DetailsMode(detailsMode OptionsDetailsMode) *VisualizationBuilder {
 	if builder.internal.Spec.Options == nil {
 		builder.internal.Spec.Options = NewOptions()
 	}
-	builder.internal.Spec.Options.(*Options).OnClickFilterOutString = &onClickFilterOutString
-
-	return builder
-}
-
-func (builder *VisualizationBuilder) OnClickShowField(onClickShowField any) *VisualizationBuilder {
-	if builder.internal.Spec.Options == nil {
-		builder.internal.Spec.Options = NewOptions()
-	}
-	builder.internal.Spec.Options.(*Options).OnClickShowField = &onClickShowField
-
-	return builder
-}
-
-func (builder *VisualizationBuilder) OnClickHideField(onClickHideField any) *VisualizationBuilder {
-	if builder.internal.Spec.Options == nil {
-		builder.internal.Spec.Options = NewOptions()
-	}
-	builder.internal.Spec.Options.(*Options).OnClickHideField = &onClickHideField
-
-	return builder
-}
-
-func (builder *VisualizationBuilder) LogRowMenuIconsBefore(logRowMenuIconsBefore any) *VisualizationBuilder {
-	if builder.internal.Spec.Options == nil {
-		builder.internal.Spec.Options = NewOptions()
-	}
-	builder.internal.Spec.Options.(*Options).LogRowMenuIconsBefore = &logRowMenuIconsBefore
-
-	return builder
-}
-
-func (builder *VisualizationBuilder) LogRowMenuIconsAfter(logRowMenuIconsAfter any) *VisualizationBuilder {
-	if builder.internal.Spec.Options == nil {
-		builder.internal.Spec.Options = NewOptions()
-	}
-	builder.internal.Spec.Options.(*Options).LogRowMenuIconsAfter = &logRowMenuIconsAfter
-
-	return builder
-}
-
-func (builder *VisualizationBuilder) OnNewLogsReceived(onNewLogsReceived any) *VisualizationBuilder {
-	if builder.internal.Spec.Options == nil {
-		builder.internal.Spec.Options = NewOptions()
-	}
-	builder.internal.Spec.Options.(*Options).OnNewLogsReceived = &onNewLogsReceived
-
-	return builder
-}
-
-func (builder *VisualizationBuilder) DisplayedFields(displayedFields []string) *VisualizationBuilder {
-	if builder.internal.Spec.Options == nil {
-		builder.internal.Spec.Options = NewOptions()
-	}
-	builder.internal.Spec.Options.(*Options).DisplayedFields = displayedFields
+	builder.internal.Spec.Options.(*Options).DetailsMode = &detailsMode
 
 	return builder
 }

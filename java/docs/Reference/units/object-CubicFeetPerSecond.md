@@ -8,5 +8,5 @@ Flow: Cubic feet/sec (cfs)
 ## Definition
 
 ```java
-public static final String CubicFeetPerSecond = flowcms
+public static final String CubicFeetPerSecond = flowcfs
 ```

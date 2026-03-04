@@ -8,5 +8,5 @@ Flow: Cubic feet/sec (cfs)
 ## Definition
 
 ```go
-const CubicFeetPerSecond = "flowcms"
+const CubicFeetPerSecond = "flowcfs"
 ```

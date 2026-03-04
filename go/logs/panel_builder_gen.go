@@ -613,102 +613,50 @@ func (builder *PanelBuilder) EnableInfiniteScrolling(enableInfiniteScrolling boo
 	return builder
 }
 
-// TODO: figure out how to define callbacks
-func (builder *PanelBuilder) OnClickFilterLabel(onClickFilterLabel any) *PanelBuilder {
+// Display controls to jump to the last or first log line, and filters by log level.
+func (builder *PanelBuilder) ShowControls(showControls bool) *PanelBuilder {
 	if builder.internal.Options == nil {
 		builder.internal.Options = NewOptions()
 	}
-	builder.internal.Options.(*Options).OnClickFilterLabel = &onClickFilterLabel
+	builder.internal.Options.(*Options).ShowControls = &showControls
 
 	return builder
 }
 
-func (builder *PanelBuilder) OnClickFilterOutLabel(onClickFilterOutLabel any) *PanelBuilder {
+// Show a component to manage the displayed fields from the logs.
+func (builder *PanelBuilder) ShowFieldSelector(showFieldSelector bool) *PanelBuilder {
 	if builder.internal.Options == nil {
 		builder.internal.Options = NewOptions()
 	}
-	builder.internal.Options.(*Options).OnClickFilterOutLabel = &onClickFilterOutLabel
+	builder.internal.Options.(*Options).ShowFieldSelector = &showFieldSelector
 
 	return builder
 }
 
-func (builder *PanelBuilder) IsFilterLabelActive(isFilterLabelActive any) *PanelBuilder {
+// Use a predefined coloring scheme to highlight relevant parts of the log lines.
+func (builder *PanelBuilder) SyntaxHighlighting(syntaxHighlighting bool) *PanelBuilder {
 	if builder.internal.Options == nil {
 		builder.internal.Options = NewOptions()
 	}
-	builder.internal.Options.(*Options).IsFilterLabelActive = &isFilterLabelActive
+	builder.internal.Options.(*Options).SyntaxHighlighting = &syntaxHighlighting
 
 	return builder
 }
 
-func (builder *PanelBuilder) OnClickFilterString(onClickFilterString any) *PanelBuilder {
+func (builder *PanelBuilder) FontSize(fontSize OptionsFontSize) *PanelBuilder {
 	if builder.internal.Options == nil {
 		builder.internal.Options = NewOptions()
 	}
-	builder.internal.Options.(*Options).OnClickFilterString = &onClickFilterString
+	builder.internal.Options.(*Options).FontSize = &fontSize
 
 	return builder
 }
 
-func (builder *PanelBuilder) OnClickFilterOutString(onClickFilterOutString any) *PanelBuilder {
+func (builder *PanelBuilder) DetailsMode(detailsMode OptionsDetailsMode) *PanelBuilder {
 	if builder.internal.Options == nil {
 		builder.internal.Options = NewOptions()
 	}
-	builder.internal.Options.(*Options).OnClickFilterOutString = &onClickFilterOutString
-
-	return builder
-}
-
-func (builder *PanelBuilder) OnClickShowField(onClickShowField any) *PanelBuilder {
-	if builder.internal.Options == nil {
-		builder.internal.Options = NewOptions()
-	}
-	builder.internal.Options.(*Options).OnClickShowField = &onClickShowField
-
-	return builder
-}
-
-func (builder *PanelBuilder) OnClickHideField(onClickHideField any) *PanelBuilder {
-	if builder.internal.Options == nil {
-		builder.internal.Options = NewOptions()
-	}
-	builder.internal.Options.(*Options).OnClickHideField = &onClickHideField
-
-	return builder
-}
-
-func (builder *PanelBuilder) LogRowMenuIconsBefore(logRowMenuIconsBefore any) *PanelBuilder {
-	if builder.internal.Options == nil {
-		builder.internal.Options = NewOptions()
-	}
-	builder.internal.Options.(*Options).LogRowMenuIconsBefore = &logRowMenuIconsBefore
-
-	return builder
-}
-
-func (builder *PanelBuilder) LogRowMenuIconsAfter(logRowMenuIconsAfter any) *PanelBuilder {
-	if builder.internal.Options == nil {
-		builder.internal.Options = NewOptions()
-	}
-	builder.internal.Options.(*Options).LogRowMenuIconsAfter = &logRowMenuIconsAfter
-
-	return builder
-}
-
-func (builder *PanelBuilder) OnNewLogsReceived(onNewLogsReceived any) *PanelBuilder {
-	if builder.internal.Options == nil {
-		builder.internal.Options = NewOptions()
-	}
-	builder.internal.Options.(*Options).OnNewLogsReceived = &onNewLogsReceived
-
-	return builder
-}
-
-func (builder *PanelBuilder) DisplayedFields(displayedFields []string) *PanelBuilder {
-	if builder.internal.Options == nil {
-		builder.internal.Options = NewOptions()
-	}
-	builder.internal.Options.(*Options).DisplayedFields = displayedFields
+	builder.internal.Options.(*Options).DetailsMode = &detailsMode
 
 	return builder
 }

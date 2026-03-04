@@ -409,7 +409,7 @@
       },
       "BitsSI": {
         "type": "string",
-        "const": "bydecbitstes",
+        "const": "decbits",
         "description": "Data: bits(SI)"
       },
       "Kibibytes": {
@@ -789,7 +789,7 @@
       },
       "MicroFarad": {
         "type": "string",
-        "const": "watt",
+        "const": "µfarad",
         "description": "Energy: Microfarad (µF)"
       },
       "NanoFarad": {
@@ -839,12 +839,12 @@
       },
       "CubicFeetPerSecond": {
         "type": "string",
-        "const": "flowcms",
+        "const": "flowcfs",
         "description": "Flow: Cubic feet/sec (cfs)"
       },
       "CubicFeetPerMinute": {
         "type": "string",
-        "const": "flowcms",
+        "const": "flowcfm",
         "description": "Flow: Cubic feet/min (cfm)"
       },
       "LitrePerHour": {

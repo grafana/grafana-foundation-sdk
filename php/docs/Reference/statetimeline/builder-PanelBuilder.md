@@ -148,6 +148,14 @@ Panel description.
 description(string $description)
 ```
 
+### <span class="badge object-method"></span> disablePagination
+
+Disables the pagination.
+
+```php
+disablePagination()
+```
+
 ### <span class="badge object-method"></span> displayName
 
 The display value for this field.  This supports template variables blank is auto
