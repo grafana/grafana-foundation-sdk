@@ -74,18 +74,15 @@ jobs:
         uses: grafana/shared-workflows/actions/docker-build-push-image@438c8d6321147607b3f6f0e922508e78e746af9b # docker-build-push-image/v0.3.1
         with:
           registries: dockerhub
-          repository: grafana/dashboard-converter
+          dockerhub-repository: grafana/dashboard-converter
           platforms: ${{ matrix.platform }}
           outputs: "type=image,push-by-digest=true,name-canonical=true,push=true"
           push: true
           tags: |
-            type=semver,pattern={{ version }}
+            type=raw,value=${{ needs.version.outputs.version }}
           include-tags-in-push: false
           context: scripts/dashboard-converter
           file: scripts/dashboard-converter/Dockerfile
-        env:
-          version: ${{ needs.version.outputs.version }}
-          GITHUB_REF: refs/tags/${{ needs.version.outputs.version }}
       - name: Export Docker Digest
         id: export
         uses: grafana/shared-workflows/actions/docker-export-digest@1d3e79a89e5fe2e14e27c7d083484f16abc1438b # docker-export-digest/v0.1.1
@@ -106,7 +103,4 @@ jobs:
           images: ${{ needs.build-and-export-digest.outputs.images }}
           push: true
           tags: |
-            type=semver,pattern={{ version }}
-        env:
-          version: ${{ needs.version.outputs.version }}
-          GITHUB_REF: refs/tags/${{ needs.version.outputs.version }}
+            type=raw,value=${{ needs.version.outputs.version }}
