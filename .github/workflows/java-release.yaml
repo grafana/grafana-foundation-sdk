@@ -32,7 +32,7 @@ jobs:
           devbox-version: ${{ env.DEVBOX_VERSION }}
 
       - name: Get secrets
-        uses: grafana/shared-workflows/actions/get-vault-secrets@c2f1df59dba624b3fd509e5181aa8da5217120c0
+        uses: grafana/shared-workflows/actions/get-vault-secrets@d3e134ded5c97bd60d74ec8878eb3d0eb2d66fad
         with:
           repo_secrets: |
             MAVEN_USERNAME=secrets:maven_username
