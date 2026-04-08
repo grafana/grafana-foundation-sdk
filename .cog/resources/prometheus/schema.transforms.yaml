@@ -1,7 +1,21 @@
 # yaml-language-server: $schema=https://raw.githubusercontent.com/grafana/cog/main/schemas/compiler_passes.json
 
 passes:
-  - unspec: {}
+  - anonymous_structs_to_named: {}
+
+  # Omit the outer container object; we only need the individual query type
+  - omit:
+      objects:
+        - 'prometheus.prometheus'
+
+  # Rename the query item to Dataquery to match the convention
+  - rename_object:
+      from: 'prometheus.PrometheusPrometheusQueries'
+      to: 'Dataquery'
+
+  - schema_set_entry_point:
+      package: prometheus
+      entry_point: Dataquery
 
   - retype_field:
       field: prometheus.Dataquery.datasource
@@ -9,10 +23,36 @@ passes:
         kind: ref
         ref: { referred_pkg: common, referred_type: DataSourceRef }
 
+  # Omit the inline datasource type since we replaced it with common.DataSourceRef
+  - omit:
+      objects:
+        - 'prometheus.PrometheusPrometheusQueriesDatasource'
+
+  # Rename sub-objects to clean names
+  - rename_object:
+      from: 'prometheus.PrometheusPrometheusQueriesAdhocFilters'
+      to: 'AdHocFilter'
+
+  - rename_object:
+      from: 'prometheus.PrometheusPrometheusQueriesResultAssertions'
+      to: 'ResultAssertions'
+
+  - rename_object:
+      from: 'prometheus.PrometheusPrometheusQueriesScopesFilters'
+      to: 'ScopeFilter'
+
+  - rename_object:
+      from: 'prometheus.PrometheusPrometheusQueriesScopes'
+      to: 'ScopeNode'
+
+  - rename_object:
+      from: 'prometheus.PrometheusPrometheusQueriesTimeRange'
+      to: 'TimeRange'
+
   # Add a few missing fields.
   # This is meant to be removed once the schema is updated.
   - add_fields:
-      to: prometheus.dataquery
+      to: prometheus.Dataquery
       fields:
         - name: interval
           comments: ['An additional lower limit for the step parameter of the Prometheus query and for the', '`$__interval` and `$__rate_interval` variables.']
