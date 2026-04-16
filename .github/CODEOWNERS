@@ -4,3 +4,4 @@
 /.cog/resources/playlistv0alpha1/ @grafana/grafana-app-platform-squad
 /.cog/resources/preferencesv1alpha1/ @grafana/grafana-app-platform-squad
 /.cog/resources/starsv1alpha1/ @grafana/grafana-app-platform-squad
+/.cog/resources/dashboardv2/ @grafana/dashboards-squad

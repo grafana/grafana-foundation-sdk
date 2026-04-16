@@ -1,0 +1,404 @@
+# yaml-language-server: $schema=https://raw.githubusercontent.com/grafana/cog/main/schemas/veneers.json
+
+languages: [all]
+
+package: dashboardv2
+
+builders:
+  # overrides and transformations related
+  - omit: { by_object: MatcherConfig }
+  - omit: { by_object: DynamicConfigValue }
+  - omit: { by_object: Threshold }
+
+  - omit: { by_object: ValueMap }
+  - omit: { by_object: RangeMap }
+  - omit: { by_object: RegexMap }
+  - omit: { by_object: SpecialValueMap }
+
+  - omit: { by_object: CustomVariableValue }
+  - omit: { by_object: Kind }
+
+  ###################
+  # AnnotationQuery #
+  ###################
+
+  - merge_into:
+      source: AnnotationQuerySpec
+      destination: AnnotationQueryKind
+      under_path: spec
+  - rename:
+      by_object: AnnotationQueryKind
+      as: AnnotationQuery
+
+  - omit: { by_object: AnnotationQuerySpec }
+
+  ####################
+  # LibraryPanelKind #
+  ####################
+
+  - merge_into:
+      source: LibraryPanelKindSpec
+      destination: LibraryPanelKind
+      under_path: spec
+  - rename:
+      by_object: LibraryPanelKind
+      as: LibraryPanel
+
+  - omit: { by_object: LibraryPanelKindSpec }
+
+  # No need for builders for structs generated from a disjunction
+  - omit: { generated_from_disjunction: true }
+
+  ###########
+  # Layouts #
+  ###########
+
+  ##################
+  # AutoGridLayout #
+  ##################
+
+  - merge_into:
+      source: AutoGridLayoutSpec
+      destination: AutoGridLayoutKind
+      under_path: spec
+  - rename:
+      by_object: AutoGridLayoutKind
+      as: AutoGrid
+  - omit: { by_object: AutoGridLayoutSpec }
+
+  - merge_into:
+      source: AutoGridLayoutItemSpec
+      destination: AutoGridLayoutItemKind
+      under_path: spec
+  - rename:
+      by_object: AutoGridLayoutItemKind
+      as: AutoGridItem
+  - omit: { by_object: AutoGridLayoutItemSpec }
+
+  - merge_into:
+      source: ElementReference
+      destination: AutoGridItem
+      under_path: spec.element
+
+  - add_option:
+      by_name: AutoGrid
+      option:
+        name: withItem
+        arguments:
+          - name: name
+            type: &type_string
+              kind: scalar
+              scalar: {scalar_kind: string}
+        assignments:
+          - method: append
+            path: spec.items
+            value:
+              envelope:
+                values:
+                  - field: kind
+                    value: { constant: AutoGridLayoutItem }
+                  - field: spec
+                    value:
+                      envelope:
+                        values:
+                          - field: element
+                            value:
+                              envelope:
+                                values:
+                                  - field: kind
+                                    value: { constant: ElementReference }
+                                  - field: name
+                                    value:
+                                      argument: { name: name, type: *type_string }
+
+  ##############
+  # RowsLayout #
+  ##############
+
+  - merge_into:
+      source: RowsLayoutSpec
+      destination: RowsLayoutKind
+      under_path: spec
+  - rename:
+      by_object: RowsLayoutKind
+      as: Rows
+  - omit: { by_object: RowsLayoutSpec }
+
+  - merge_into:
+      source: RowsLayoutRowSpec
+      destination: RowsLayoutRowKind
+      under_path: spec
+  - rename:
+      by_object: RowsLayoutRowKind
+      as: Row
+  - omit: { by_object: RowsLayoutRowSpec }
+
+  ##############
+  # TabsLayout #
+  ##############
+
+  - merge_into:
+      source: TabsLayoutSpec
+      destination: TabsLayoutKind
+      under_path: spec
+  - rename:
+      by_object: TabsLayoutKind
+      as: Tabs
+  - omit: { by_object: TabsLayoutSpec }
+
+  - merge_into:
+      source: TabsLayoutTabSpec
+      destination: TabsLayoutTabKind
+      under_path: spec
+  - rename:
+      by_object: TabsLayoutTabKind
+      as: Tab
+  - omit: { by_object: TabsLayoutTabSpec }
+
+  ##############
+  # GridLayout #
+  ##############
+
+  - merge_into:
+      source: GridLayoutSpec
+      destination: GridLayoutKind
+      under_path: spec
+  - rename:
+      by_object: GridLayoutKind
+      as: Grid
+  - omit: { by_object: GridLayoutSpec }
+
+  - merge_into:
+      source: GridLayoutItemSpec
+      destination: GridLayoutItemKind
+      under_path: spec
+  - rename:
+      by_object: GridLayoutItemKind
+      as: GridItem
+  - omit: { by_object: GridLayoutItemSpec }
+
+  - merge_into:
+      source: ElementReference
+      destination: GridItem
+      under_path: spec.element
+
+  ###########
+  # Queries #
+  ###########
+
+  - merge_into:
+      source: QueryGroupSpec
+      destination: QueryGroupKind
+      under_path: spec
+  - omit: { by_object: QueryGroupSpec }
+  - rename:
+      by_object: QueryGroupKind
+      as: QueryGroup
+
+  - merge_into:
+      source: PanelQuerySpec
+      destination: PanelQueryKind
+      under_path: spec
+  - omit: { by_object: PanelQuerySpec }
+  - rename:
+      by_object: PanelQueryKind
+      as: Target
+
+  - properties:
+      by_name: QueryGroup
+      set:
+        - name: nextQueryId
+          type:
+            kind: scalar
+            scalar: {scalar_kind: uint32}
+
+  ###################
+  # Transformations #
+  ###################
+
+  - merge_into:
+      source: TransformationSpec
+      destination: TransformationKind
+      under_path: spec
+  - omit: { by_object: TransformationSpec }
+  - rename:
+      by_object: TransformationKind
+      as: Transformation
+
+  ##############
+  # Dashboards #
+  ##############
+
+  - rename:
+      by_object: TimeSettingsSpec
+      as: TimeSettings
+
+  - promote_options_to_constructor:
+      by_name: DashboardSpec
+      options: [title]
+
+  # Rearrange panel-related builders
+  - merge_into:
+      source: PanelSpec
+      destination: PanelKind
+      under_path: spec
+  - omit: { by_object: PanelSpec }
+  - rename:
+      by_object: PanelKind
+      as: Panel
+
+  - merge_into:
+      source: FieldConfig
+      destination: VizConfigSpec
+      under_path: fieldConfig.defaults
+      rename_options:
+        color: colorScheme
+        links: dataLinks
+  - merge_into:
+      source: FieldConfigSource
+      destination: VizConfigSpec
+      under_path: fieldConfig
+  - merge_into:
+      source: VizConfigSpec
+      destination: VizConfigKind
+      under_path: spec
+
+  - omit: { by_object: FieldConfig }
+  - omit: { by_object: FieldConfigSource }
+  - omit: { by_object: VizConfigSpec }
+
+options:
+  - omit: { by_builder: LibraryPanel.spec }
+  - omit: { by_builder: AnnotationQuery.spec }
+
+  ##############
+  # RowsLayout #
+  ##############
+
+  - omit: { by_builder: Rows.spec }
+  - omit: { by_builder: Row.spec }
+
+  # Append a single `row` value instead of a map of everything
+  - duplicate:
+      by_builder: Rows.rows
+      as: row
+  - array_to_append:
+      by_builder: Rows.row
+
+  ##################
+  # AutoGridLayout #
+  ##################
+
+  - omit: { by_builder: AutoGrid.spec }
+  - omit: { by_builder: AutoGridItem.spec }
+
+  # Append a single `item` value instead of a map of everything
+  - duplicate:
+      by_builder: AutoGrid.items
+      as: item
+  - array_to_append:
+      by_builder: AutoGrid.item
+
+  - omit: { by_builder: AutoGridItem.element }
+
+  ##############
+  # TabsLayout #
+  ##############
+
+  - omit: { by_builder: Tabs.spec }
+  - omit: { by_builder: Tab.spec }
+
+  # Append a single `tab` value instead of a list of everything
+  - duplicate:
+      by_builder: Tabs.tabs
+      as: tab
+  - array_to_append:
+      by_builder: Tabs.tab
+
+  ##############
+  # GridLayout #
+  ##############
+
+  # spec options are leftovers from the merge_into veneer
+  - omit: { by_builder: Grid.spec }
+  - omit: { by_builder: GridItem.spec }
+
+  # Append a single `item` value instead of a list of everything
+  - duplicate:
+      by_builder: Grid.items
+      as: item
+  - array_to_append:
+      by_builder: Grid.item
+
+  - omit: { by_builder: GridItem.element }
+
+  ###########
+  # Queries #
+  ###########
+
+  # spec options are leftovers from the merge_into veneer
+  - omit: { by_builder: QueryGroup.spec }
+  - omit: { by_name: PanelQueryKind.spec }
+
+  # queries() -> targets()
+  - rename:
+      by_name: QueryGroupKind.queries
+      as: targets
+
+  # Append a single target instead forcing to define all of them at once
+  - duplicate:
+      by_name: QueryGroupKind.targets
+      as: target
+  - array_to_append:
+      by_name: QueryGroupKind.target
+
+  # Append a single transformation instead forcing to define all of them at once
+  - duplicate:
+      by_name: QueryGroupKind.transformations
+      as: transformation
+  - array_to_append:
+      by_name: QueryGroupKind.transformation
+
+  ###################
+  # Transformations #
+  ###################
+
+  # spec options are leftovers from the merge_into veneer
+  - omit: { by_builder: Transformation.spec }
+
+  ##########
+  # Panels #
+  ##########
+
+  # spec options are leftovers from the merge_into veneer
+  - omit: { by_name: PanelKind.spec }
+
+  # VizConfig() -> Visualization()
+  - rename:
+      by_name: PanelKind.VizConfig
+      as: visualization
+
+  ##############
+  # Dashboards #
+  ##############
+
+  # Append a single `element` value instead of a map of everything
+  - duplicate:
+      by_builder: DashboardSpec.Elements
+      as: element
+  - map_to_index:
+      by_builder: DashboardSpec.element
+
+  # Append a single override instead forcing to define all of them at once
+  - duplicate:
+      by_name: VizConfigKind.overrides
+      as: override
+  - array_to_append:
+      by_name: VizConfigKind.override
+
+  # Append a single variable instead forcing to define all of them at once
+  - duplicate:
+      by_builder: DashboardSpec.variables
+      as: variable
+  - array_to_append:
+      by_builder: DashboardSpec.variable
