@@ -14,3 +14,27 @@ passes:
       as:
         kind: scalar
         scalar: { scalar_kind: string, value: "Dashboard" }
+
+  # Keep ControlSourceRef as a concrete struct for all generators.
+  # Without this, some language backends treat it as an alias/disjunction and
+  # emit invalid (array -> object) conversions in generated unmarshallers.
+  - retype_object:
+      object: dashboardv2.ControlSourceRef
+      comments:
+        - Source information for controls (e.g. variables or links)
+      as:
+        kind: struct
+        struct:
+          fields:
+            - name: type
+              required: true
+              type:
+                kind: scalar
+                scalar: { scalar_kind: string, value: datasource }
+            - name: group
+              required: true
+              comments:
+                - The plugin type-id
+              type:
+                kind: scalar
+                scalar: { scalar_kind: string }
