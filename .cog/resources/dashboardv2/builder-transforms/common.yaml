@@ -88,7 +88,7 @@ builders:
           - name: name
             type: &type_string
               kind: scalar
-              scalar: {scalar_kind: string}
+              scalar: { scalar_kind: string }
         assignments:
           - method: append
             path: spec.items
@@ -109,7 +109,8 @@ builders:
                                     value: { constant: ElementReference }
                                   - field: name
                                     value:
-                                      argument: { name: name, type: *type_string }
+                                      argument:
+                                        { name: name, type: *type_string }
 
   ##############
   # RowsLayout #
@@ -210,7 +211,22 @@ builders:
         - name: nextQueryId
           type:
             kind: scalar
-            scalar: {scalar_kind: uint32}
+            scalar: { scalar_kind: uint32 }
+
+  # Dataquery DataQueryKind composability
+  - compose:
+      by_variant: dataquery
+      source_builder_name: dashboardv2.DataQueryKind
+      composed_builder_name: Query
+      plugin_discriminator_field: group
+      composition_map: # Builder → assignment root path
+        __schema_entrypoint: spec
+      exclude_options: ["spec"]
+      rename_options:
+        # Avoid conflict with the datasource option in the panel schema
+        datasource: old_datasource
+
+  - omit: { by_name: DataQueryKind }
 
   ###################
   # Transformations #
@@ -263,9 +279,33 @@ builders:
       destination: VizConfigKind
       under_path: spec
 
+  # Panels VizConfigSpec composability
+  - compose:
+      by_variant: panelcfg
+      # this should run after the "dashboard" package has done its thing
+      # so these builders aren't needed anymore once the composition is done.
+      preserve_original_builders: false
+      source_builder_name: dashboardv2.VizConfigKind
+      composed_builder_name: Visualization
+      plugin_discriminator_field: group
+      composition_map: # Builder → assignment root path
+        Options: "spec.options"
+        FieldConfig: "spec.fieldConfig.defaults.custom"
+      exclude_options: [
+          "spec", # merged with another builder
+          "defaults", # merged with another builder
+          "fieldConfig", # merged with another builder
+          "options", # comes from a panel plugin
+          "custom", # comes from a panel plugin
+          "version", # TODO: check if it's relevant or not
+          "filterable", # TODO: check if it's relevant or not
+          "writeable", # TODO: check if it's relevant or not
+        ]
+
   - omit: { by_object: FieldConfig }
   - omit: { by_object: FieldConfigSource }
   - omit: { by_object: VizConfigSpec }
+  - omit: { by_name: VizConfigKind }
 
 options:
   - omit: { by_builder: LibraryPanel.spec }
