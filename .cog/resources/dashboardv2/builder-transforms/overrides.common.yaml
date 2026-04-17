@@ -2,7 +2,7 @@
 
 languages: [all]
 
-package: dashboardv2beta1
+package: dashboardv2
 
 builders:
   #######################
@@ -24,7 +24,7 @@ builders:
           - name: properties
             type: &type_DynamicConfigValue_array
               kind: array
-              array: {value_type: {kind: ref, ref: {referred_pkg: dashboardv2beta1, referred_type: DynamicConfigValue}}}
+              array: {value_type: {kind: ref, ref: {referred_pkg: dashboardv2, referred_type: DynamicConfigValue}}}
         assignments:
           - method: append
             path: spec.fieldConfig.overrides

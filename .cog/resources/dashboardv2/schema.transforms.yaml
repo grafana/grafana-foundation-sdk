@@ -1,0 +1,40 @@
+# yaml-language-server: $schema=https://raw.githubusercontent.com/grafana/cog/main/schemas/compiler_passes.json
+
+# See https://grafana.github.io/cog/pipelines/schema_transformations/
+passes:
+  # Add a few useful constants
+  - add_object:
+      object: dashboardv2.DashboardAPIVersion
+      as:
+        kind: scalar
+        scalar: { scalar_kind: string, value: "dashboard.grafana.app/v2" }
+
+  - add_object:
+      object: dashboardv2.DashboardKind
+      as:
+        kind: scalar
+        scalar: { scalar_kind: string, value: "Dashboard" }
+
+  # Keep ControlSourceRef as a concrete struct for all generators.
+  # Without this, some language backends treat it as an alias/disjunction and
+  # emit invalid (array -> object) conversions in generated unmarshallers.
+  - retype_object:
+      object: dashboardv2.ControlSourceRef
+      comments:
+        - Source information for controls (e.g. variables or links)
+      as:
+        kind: struct
+        struct:
+          fields:
+            - name: type
+              required: true
+              type:
+                kind: scalar
+                scalar: { scalar_kind: string, value: datasource }
+            - name: group
+              required: true
+              comments:
+                - The plugin type-id
+              type:
+                kind: scalar
+                scalar: { scalar_kind: string }
