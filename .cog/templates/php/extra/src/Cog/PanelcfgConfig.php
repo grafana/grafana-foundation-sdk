@@ -2,7 +2,7 @@
 
 namespace {{ .Data.NamespaceRoot }}\Cog;
 {{- $convertReturn := "\\Grafana\\Foundation\\Dashboard\\Panel" -}}
-{{- if (objectExists "dashboardv2beta1" "VizConfigKind") -}}
+{{- if or (objectExists "dashboardv2beta1" "VizConfigKind") (objectExists "dashboardv2" "VizConfigKind") -}}
   {{- $convertReturn = "mixed" -}}
 {{- end -}}
 

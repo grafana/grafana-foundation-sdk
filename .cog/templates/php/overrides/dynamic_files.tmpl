@@ -95,19 +95,24 @@ final class VariantConfig
         );
     }
     
-    {{- if objectExists "dashboardv2beta1" "VizConfigKind" }}
     public static function convert(mixed $input): string
     {
         if ($input instanceof {{ fullNamespaceRef "Dashboard\\Panel" }}) {
             return PanelConverter::convert($input);
         }
     
+        {{- if objectExists "dashboardv2beta1" "VizConfigKind" }}
         if ($input instanceof {{ fullNamespaceRef "Dashboardv2beta1\\VizConfigKind" }}) {
             return VisualizationConverter::convert($input);
         }
+        {{- end }}
+        {{- if objectExists "dashboardv2" "VizConfigKind" }}
+        if ($input instanceof {{ fullNamespaceRef "Dashboardv2\\VizConfigKind" }}) {
+            return VisualizationConverter::convert($input);
+        }
+        {{- end }}
     
         return '/* could not convert panel */';
     }
-    {{- end }}
 }
 {{ end }}

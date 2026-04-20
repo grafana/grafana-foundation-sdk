@@ -62,16 +62,32 @@ func VariantConfig() {{ $variants }}.PanelcfgConfig {
 			if panel, ok := inputPanel.(*{{ $dashboard }}.Panel); ok {
 				return PanelConverter(*panel)
 			}
-            {{- if objectExists "dashboardv2beta1" "VizConfigKind" }}
+			
+			{{- $hasBeta := objectExists "dashboardv2beta1" "VizConfigKind" -}}
+            {{- $hasV2 := objectExists "dashboardv2" "VizConfigKind" -}}
+			
+			{{- if $hasBeta }}
             {{- $dashboardv2beta1 := importPkg "dashboardv2beta1" }}
-            if panel, ok := inputPanel.(dashboard.Panel); ok {
-                return PanelConverter(panel)
-            }
             if panel, ok := inputPanel.(*dashboardv2beta1.VizConfigKind); ok {
-                return VisualizationConverter(*panel)
+            	return VisualizationConverter(*panel)
             }
+            if panel, ok := inputPanel.(dashboardv2beta1.VizConfigKind); ok {
+            	return VisualizationConverter(panel)
+            }
+            {{- end }}
             
-            return VisualizationConverter(inputPanel.(dashboardv2beta1.VizConfigKind))
+            {{- if $hasV2 }}
+            {{- $dashboardv2 := importPkg "dashboardv2" }}
+            if panel, ok := inputPanel.(*dashboardv2.VizConfigKind); ok {
+            	return VisualizationV2Converter(*panel)
+            }
+            if panel, ok := inputPanel.(dashboardv2.VizConfigKind); ok {
+            	return VisualizationV2Converter(panel)
+            }
+            {{- end }}
+            
+            {{- if or $hasBeta $hasV2 }}
+            return "/* could not convert VizConfigKind */"
             {{- else }}
             return PanelConverter(inputPanel.(dashboard.Panel))
             {{- end }}
