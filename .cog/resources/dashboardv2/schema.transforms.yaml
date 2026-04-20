@@ -15,26 +15,120 @@ passes:
         kind: scalar
         scalar: { scalar_kind: string, value: "Dashboard" }
 
-  # Keep ControlSourceRef as a concrete struct for all generators.
-  # Without this, some language backends treat it as an alias/disjunction and
-  # emit invalid (array -> object) conversions in generated unmarshallers.
+  ################
+  # Dashboard v2 #
+  ################
+
+  # Some future-proofing
+  - constant_to_enum:
+      objects:
+        - dashboardv2.RepeatMode
+
+  ##############
+  # Composable #
+  ##############
+  
+  # VizConfigSpec.options, FieldConfig.custom and DataqueryKind.spec are retyped to any.
+  # The purpose of this is to make them generic to be able to cast to the proper plugin/dataquery
+  # and be able to set the values defined in these schemas.
+  
+  - retype_field:
+      field: dashboardv2.VizConfigSpec.options
+      as:
+        kind: scalar
+        scalar: { scalar_kind: any }
+        nullable: true
+
+  - retype_field:
+      field: dashboardv2.FieldConfig.custom
+      as:
+        kind: scalar
+        scalar: { scalar_kind: any }
+        nullable: true
+
+  - retype_field:
+      field: dashboardv2.DataQueryKind.spec
+      as:
+        kind: scalar
+        scalar: { scalar_kind: any }
+        nullable: true
+
+
+  # Is this object meant for frontend usage only?
+  - omit:
+      objects: [ dashboardv2.VariableCustomFormatterFn ]
+
+  - retype_field:
+      field: dashboardv2.CustomVariableValue.formatter
+      as:
+        kind: scalar
+        scalar: { scalar_kind: string }
+        nullable: true
+
+  - rename_object:
+      from: dashboardv2.DashboardSpec
+      to: Dashboard
+
+  # To get rid of the default value (each panel query needs a unique refId, and
+  # an empty value as default makes it easier to identify that a unique refId
+  # needs to be computed)
+  - retype_field:
+      field: dashboardv2.PanelQuerySpec.refId
+      as:
+        kind: scalar
+        scalar:
+          scalar_kind: string
+
+  #####################
+  # FieldConfigSource #
+  #####################
+
+  # Relates to https://github.com/grafana/grafana-foundation-sdk/issues/664
+  # We have to duplicate the entire definition of dashboard.FieldConfigSource
+  # just to add the `__systemRef` field since overrides are defined as an
+  # anonymous struct.
   - retype_object:
-      object: dashboardv2.ControlSourceRef
+      object: dashboardv2.FieldConfigSource
       comments:
-        - Source information for controls (e.g. variables or links)
+        - The data model used in Grafana, namely the data frame, is a columnar-oriented table structure that unifies both time series and table query results.
+        - Each column within this structure is called a field. A field can represent a single time series or table column.
+        - Field options allow you to change how the data is displayed in your visualizations.
       as:
         kind: struct
         struct:
           fields:
-            - name: type
-              required: true
-              type:
-                kind: scalar
-                scalar: { scalar_kind: string, value: datasource }
-            - name: group
+            - name: defaults
               required: true
               comments:
-                - The plugin type-id
+                - Defaults are the options applied to all fields.
               type:
-                kind: scalar
-                scalar: { scalar_kind: string }
+                kind: ref
+                ref: { referred_pkg: dashboardv2, referred_type: FieldConfig }
+            - name: overrides
+              required: true
+              comments:
+                - Overrides are the options applied to specific fields overriding the defaults.
+              type:
+                kind: array
+                array:
+                  value_type:
+                    kind: struct
+                    struct:
+                      fields:
+                        - name: __systemRef
+                          type:
+                            kind: scalar
+                            scalar: { scalar_kind: string }
+                        - name: matcher
+                          required: true
+                          type:
+                            kind: ref
+                            ref: { referred_pkg: dashboardv2, referred_type: MatcherConfig }
+                        - name: properties
+                          required: true
+                          type:
+                            kind: array
+                            array:
+                              value_type:
+                                kind: ref
+                                ref: { referred_pkg: dashboardv2, referred_type: DynamicConfigValue }

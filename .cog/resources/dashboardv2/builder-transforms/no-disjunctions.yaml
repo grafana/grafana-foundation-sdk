@@ -13,18 +13,18 @@ options:
 
   # GridLayoutKind + RowsLayoutKind + AutoGridLayoutKind + TabsLayoutKind
   - disjunction_as_options:
-      by_builder: DashboardSpec.Layout
+      by_builder: Dashboard.Layout
   - rename:
-      by_builder: DashboardSpec.GridLayoutKind
+      by_builder: Dashboard.GridLayoutKind
       as: gridLayout
   - rename:
-      by_builder: DashboardSpec.RowsLayoutKind
+      by_builder: Dashboard.RowsLayoutKind
       as: rowsLayout
   - rename:
-      by_builder: DashboardSpec.AutoGridLayoutKind
+      by_builder: Dashboard.AutoGridLayoutKind
       as: autoGridLayout
   - rename:
-      by_builder: DashboardSpec.TabsLayoutKind
+      by_builder: Dashboard.TabsLayoutKind
       as: tabsLayout
 
   ##############
@@ -73,13 +73,13 @@ options:
 
   # panel + library panel
   - disjunction_as_options:
-      by_builder: DashboardSpec.element
+      by_builder: Dashboard.element
       argument_index: 1
   - rename:
-      by_builder: DashboardSpec.PanelKind
+      by_builder: Dashboard.PanelKind
       as: panel
   - rename:
-      by_builder: DashboardSpec.LibraryPanelKind
+      by_builder: Dashboard.LibraryPanelKind
       as: libraryPanel
 
   #############
@@ -87,30 +87,30 @@ options:
   #############
 
   - disjunction_as_options:
-      by_builder: DashboardSpec.variable
+      by_builder: Dashboard.variable
   - rename:
-      by_builder: DashboardSpec.QueryVariableKind
+      by_builder: Dashboard.QueryVariableKind
       as: queryVariable
   - rename:
-      by_builder: DashboardSpec.TextVariableKind
+      by_builder: Dashboard.TextVariableKind
       as: textVariable
   - rename:
-      by_builder: DashboardSpec.ConstantVariableKind
+      by_builder: Dashboard.ConstantVariableKind
       as: constantVariable
   - rename:
-      by_builder: DashboardSpec.DatasourceVariableKind
+      by_builder: Dashboard.DatasourceVariableKind
       as: datasourceVariable
   - rename:
-      by_builder: DashboardSpec.IntervalVariableKind
+      by_builder: Dashboard.IntervalVariableKind
       as: intervalVariable
   - rename:
-      by_builder: DashboardSpec.CustomVariableKind
+      by_builder: Dashboard.CustomVariableKind
       as: customVariable
   - rename:
-      by_builder: DashboardSpec.GroupByVariableKind
+      by_builder: Dashboard.GroupByVariableKind
       as: groupByVariable
   - rename:
-      by_builder: DashboardSpec.AdhocVariableKind
+      by_builder: Dashboard.AdhocVariableKind
       as: adhocVariable
 
   ##########

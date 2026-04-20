@@ -284,7 +284,6 @@ builders:
       by_variant: panelcfg
       # this should run after the "dashboard" package has done its thing
       # so these builders aren't needed anymore once the composition is done.
-      preserve_original_builders: false
       source_builder_name: dashboardv2beta1.VizConfigKind
       composed_builder_name: Visualization
       plugin_discriminator_field: group

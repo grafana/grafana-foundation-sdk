@@ -10,7 +10,7 @@ builders:
   ############
 
   - add_factory:
-      by_name: DashboardSpec
+      by_name: Dashboard
       factory:
         name: manifest
         builder_ref: {referred_pkg: resource, referred_type: Manifest}
@@ -26,7 +26,7 @@ builders:
             name: spec
             type:
               kind: ref
-              ref: {referred_pkg: dashboardv2, referred_type: DashboardSpec}
+              ref: {referred_pkg: dashboardv2, referred_type: Dashboard}
         options:
           - name: apiVersion
             parameters:
