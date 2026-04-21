@@ -1,0 +1,10 @@
+# yaml-language-server: $schema=https://raw.githubusercontent.com/grafana/cog/main/schemas/compiler_passes.json
+
+# Java conflicts TempoQuery composable name...
+passes:
+  - rename_object:
+      from: tempo.TempoQuery
+      to: Dataquery
+  - schema_set_entry_point:
+      package: tempo
+      entry_point: Dataquery
