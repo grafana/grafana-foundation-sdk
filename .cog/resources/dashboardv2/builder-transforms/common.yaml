@@ -214,6 +214,7 @@ builders:
       rename_options:
         # Avoid conflict with the datasource option in the panel schema
         datasource: old_datasource
+        labels: dataquery_labels
 
   - omit: { by_name: DataQueryKind }
 
