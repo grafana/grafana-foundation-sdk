@@ -108,7 +108,7 @@ final class VariantConfig
         {{- end }}
         {{- if objectExists "dashboardv2" "VizConfigKind" }}
         if ($input instanceof {{ fullNamespaceRef "Dashboardv2\\VizConfigKind" }}) {
-            return VisualizationConverter::convert($input);
+            return VisualizationV2Converter::convert($input);
         }
         {{- end }}
     
