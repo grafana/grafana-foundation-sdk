@@ -63,6 +63,10 @@ func VariantConfig() {{ $variants }}.PanelcfgConfig {
 				return PanelConverter(*panel)
 			}
 			
+			if panel, ok := inputPanel.({{ $dashboard }}.Panel); ok {
+                return PanelConverter(panel)
+            }
+			
 			{{- $hasBeta := objectExists "dashboardv2beta1" "VizConfigKind" -}}
             {{- $hasV2 := objectExists "dashboardv2" "VizConfigKind" -}}
 			
