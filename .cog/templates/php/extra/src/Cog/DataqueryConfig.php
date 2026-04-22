@@ -20,16 +20,7 @@ final class DataqueryConfig
     {{- $hasV2 := objectExists "dashboardv2" "DataQueryKind" -}}
     {{- if or $hasBeta $hasV2 }}
     /**
-     * @var (callable(
-     {{- if and $hasBeta $hasV2 }}
-        \Grafana\Foundation\Dashboardv2beta1\DataQueryKind|
-        \Grafana\Foundation\Dashboardv2\DataQueryKind
-     {{- else if $hasBeta }}
-        \Grafana\Foundation\Dashboardv2beta1\DataQueryKind
-     {{- else }}
-        \Grafana\Foundation\Dashboardv2\DataQueryKind
-     {{- end }}
-     ): string)|null
+     * @var (callable({{ if and $hasBeta $hasV2 }}\Grafana\Foundation\Dashboardv2beta1\DataQueryKind|\Grafana\Foundation\Dashboardv2\DataQueryKind{{ else if $hasBeta }}\Grafana\Foundation\Dashboardv2beta1\DataQueryKind{{ else }}\Grafana\Foundation\Dashboardv2\DataQueryKind{{ end }}): string)|null
      */
     public $convertv2;
     {{- end }}
@@ -38,16 +29,7 @@ final class DataqueryConfig
      * @param callable(array<string, mixed>): Dataquery $fromArray
      * @param (callable(Dataquery): string)|null $convert
     {{- if or $hasBeta $hasV2 }}
-     * @param (callable(
-    {{- if and $hasBeta $hasV2 }}
-        \Grafana\Foundation\Dashboardv2beta1\DataQueryKind|
-        \Grafana\Foundation\Dashboardv2\DataQueryKind
-    {{- else if $hasBeta }}
-        \Grafana\Foundation\Dashboardv2beta1\DataQueryKind
-    {{- else }}
-        \Grafana\Foundation\Dashboardv2\DataQueryKind
-    {{- end }}
-    ): string)|null $convertv2
+     * @param (callable({{ if and $hasBeta $hasV2 }}\Grafana\Foundation\Dashboardv2beta1\DataQueryKind|\Grafana\Foundation\Dashboardv2\DataQueryKind{{ else if $hasBeta }}\Grafana\Foundation\Dashboardv2beta1\DataQueryKind{{ else }}\Grafana\Foundation\Dashboardv2\DataQueryKind{{ end }}): string)|null $convertv2
     {{- end }}
      */
     public function __construct(string $identifier, callable $fromArray, ?callable $convert = null{{ if or (objectExists "dashboardv2beta1" "DataQueryKind") (objectExists "dashboardv2" "DataQueryKind") }}, ?callable $convertv2 = null{{ end }})
