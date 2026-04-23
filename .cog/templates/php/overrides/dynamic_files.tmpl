@@ -19,6 +19,8 @@
 {{- $convertv2 := "null" -}}
 {{- $fromArray := "null" -}}
 {{- $entryPointNotFound := not (schemaHasObject .Schema .Schema.EntryPoint) -}}
+{{- $hasBeta := objectExists "dashboardv2beta1" "DataQueryKind" -}}
+{{- $hasV2 := objectExists "dashboardv2" "DataQueryKind" -}}
 
 {{- if and ($entryPointNotFound) (resolvesToDisjunction .Schema.EntryPointType)  -}}
 {{- $fromArray = unmarshalDisjunctionFunc .Schema.EntryPointType -}}
@@ -31,11 +33,15 @@
     {{- if .Schema.EntryPointType|resolvesToDisjunction -}}
     {{- $convert = convertDisjunctionFunc .Schema.EntryPointType -}}
     {{- end -}}
-    
-    {{- if objectExists "dashboardv2beta1" "DataQueryKind" }}
-    {{- $convertv2 = print "[QueryConverter::class, 'convert']" -}}
-    {{- end }}
-    
+
+    {{- if and $hasBeta $hasV2 -}}
+    {{- $convertv2 = "[self::class, 'convertV2']" -}}
+    {{- else if $hasBeta -}}
+    {{- $convertv2 = "[QueryConverter::class, 'convert']" -}}
+    {{- else if $hasV2 -}}
+    {{- $convertv2 = "[QueryV2Converter::class, 'convert']" -}}
+    {{- end -}}
+
 {{- end -}}
 <?php
 
@@ -49,11 +55,22 @@ final class VariantConfig
             identifier: '{{ .Schema.Metadata.Identifier }}',
             fromArray: {{ $fromArray }},
             convert: {{ $convert }},
-            {{- if objectExists "dashboardv2beta1" "DataQueryKind" }}
+            {{- if or $hasBeta $hasV2 }}
             convertv2: {{ $convertv2 }},
             {{- end }}
         );
     }
+
+    {{- if and $hasBeta $hasV2 }}
+
+    public static function convertV2({{ fullNamespaceRef "Dashboardv2\\DataQueryKind" }}|{{ fullNamespaceRef "Dashboardv2beta1\\DataQueryKind" }} $input): string
+    {
+        if ($input instanceof {{ fullNamespaceRef "Dashboardv2\\DataQueryKind" }}) {
+            return QueryV2Converter::convert($input);
+        }
+        return QueryConverter::convert($input);
+    }
+    {{- end }}
 
 }
 {{ end }}
