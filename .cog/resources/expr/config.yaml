@@ -2,7 +2,7 @@
 
 inputs:
   - jsonschema:
-      url: 'https://raw.githubusercontent.com/grafana/grafana/main/pkg/expr/query.request.schema.json'
+      url: 'https://raw.githubusercontent.com/grafana/grafana/refs/heads/release-13.0.2/pkg/expr/query.request.schema.json'
       package: expr
       metadata:
         kind: composable
