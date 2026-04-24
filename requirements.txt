@@ -2,7 +2,7 @@ Babel==2.18.0
 brotlicffi==1.2.0.1
 certifi==2026.1.4
 cffi==2.0.0
-charset-normalizer==3.4.4
+charset-normalizer==3.4.7
 click==8.3.1
 colorama==0.4.6
 ghp-import==2.1.0

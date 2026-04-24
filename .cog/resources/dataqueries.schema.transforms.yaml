@@ -55,5 +55,5 @@ passes:
       field: parca.Dataquery.datasource
       as: *common_datasourceRef
   - retype_field:
-      field: tempo.TempoQuery.datasource
+      field: tempo.Dataquery.datasource
       as: *common_datasourceRef
