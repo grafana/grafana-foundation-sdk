@@ -1,6 +1,6 @@
 Babel==2.18.0
 brotlicffi==1.2.0.1
-certifi==2026.1.4
+certifi==2026.4.22
 cffi==2.0.0
 charset-normalizer==3.4.7
 click==8.3.2
