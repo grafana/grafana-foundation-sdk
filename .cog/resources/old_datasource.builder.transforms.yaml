@@ -6,3 +6,4 @@ package: "*"
 
 options:
   - omit: { by_builder: Query.old_datasource }
+  - omit: { by_builder: QueryV2.old_datasource }

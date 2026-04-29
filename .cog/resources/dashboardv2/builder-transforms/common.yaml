@@ -2,7 +2,7 @@
 
 languages: [all]
 
-package: dashboardv2beta1
+package: dashboardv2
 
 builders:
   # overrides and transformations related
@@ -46,9 +46,6 @@ builders:
 
   - omit: { by_object: LibraryPanelKindSpec }
 
-  # No need for builders for structs generated from a disjunction
-  - omit: { generated_from_disjunction: true }
-
   ###########
   # Layouts #
   ###########
@@ -88,7 +85,7 @@ builders:
           - name: name
             type: &type_string
               kind: scalar
-              scalar: {scalar_kind: string}
+              scalar: { scalar_kind: string }
         assignments:
           - method: append
             path: spec.items
@@ -109,7 +106,8 @@ builders:
                                     value: { constant: ElementReference }
                                   - field: name
                                     value:
-                                      argument: { name: name, type: *type_string }
+                                      argument:
+                                        { name: name, type: *type_string }
 
   ##############
   # RowsLayout #
@@ -203,20 +201,20 @@ builders:
   - rename:
       by_object: PanelQueryKind
       as: Target
-
+      
   # Dataquery DataQueryKind composability
   - compose:
       by_variant: dataquery
-      source_builder_name: dashboardv2beta1.DataQueryKind
-      composed_builder_name: Query
+      source_builder_name: dashboardv2.DataQueryKind
+      composed_builder_name: QueryV2
       plugin_discriminator_field: group
       composition_map: # Builder → assignment root path
         __schema_entrypoint: spec
-      exclude_options: [
-        "spec",
-      ]
+      exclude_options: ["spec"]
       rename_options:
-        datasource: old_datasource 
+        # Avoid conflict with the datasource option in the panel schema
+        datasource: old_datasource
+        labels: dataquery_labels
 
   - omit: { by_name: DataQueryKind }
 
@@ -226,17 +224,17 @@ builders:
         - name: nextQueryId
           type:
             kind: scalar
-            scalar: {scalar_kind: uint32}
+            scalar: { scalar_kind: uint32 }
 
   ###################
   # Transformations #
   ###################
 
   - merge_into:
-      source: DataTransformerConfig
+      source: TransformationSpec
       destination: TransformationKind
       under_path: spec
-  - omit: { by_object: DataTransformerConfig }
+  - omit: { by_object: TransformationSpec }
   - rename:
       by_object: TransformationKind
       as: Transformation
@@ -278,33 +276,34 @@ builders:
       source: VizConfigSpec
       destination: VizConfigKind
       under_path: spec
-
+      
   # Panels VizConfigSpec composability
   - compose:
       by_variant: panelcfg
-      # this should run after the "dashboard" package has done its thing
+      # this should run after the "dashboard" package has done its thing, 
       # so these builders aren't needed anymore once the composition is done.
-      source_builder_name: dashboardv2beta1.VizConfigKind
-      composed_builder_name: Visualization
+      source_builder_name: dashboardv2.VizConfigKind
+      composed_builder_name: VisualizationV2
       plugin_discriminator_field: group
+      # Dashboardv2 is generated before dashboardv2beta1, so we need to preserve the original builders
+      preserve_original_builders: true
       composition_map: # Builder → assignment root path
         Options: "spec.options"
         FieldConfig: "spec.fieldConfig.defaults.custom"
       exclude_options: [
-        "spec",          # merged with another builder
-        "defaults",      # merged with another builder
-        "fieldConfig",   # merged with another builder
-        "options",       # comes from a panel plugin
-        "custom",        # comes from a panel plugin
-        "version",       # TODO: check if it's relevant or not
-        "filterable",    # TODO: check if it's relevant or not
-        "writeable",     # TODO: check if it's relevant or not
+        "spec", # merged with another builder
+        "defaults", # merged with another builder
+        "fieldConfig", # merged with another builder
+        "options", # comes from a panel plugin
+        "custom", # comes from a panel plugin
+        "version", # TODO: check if it's relevant or not
+        "filterable", # TODO: check if it's relevant or not
+        "writeable", # TODO: check if it's relevant or not
       ]
 
   - omit: { by_object: FieldConfig }
   - omit: { by_object: FieldConfigSource }
   - omit: { by_object: VizConfigSpec }
-  - omit: { by_name: VizConfigKind }
 
 options:
   - omit: { by_builder: LibraryPanel.spec }
@@ -379,7 +378,7 @@ options:
   - omit: { by_builder: QueryGroup.spec }
   - omit: { by_name: PanelQueryKind.spec }
 
-  # queries() → targets()
+  # queries() -> targets()
   - rename:
       by_name: QueryGroupKind.queries
       as: targets
@@ -412,7 +411,7 @@ options:
   # spec options are leftovers from the merge_into veneer
   - omit: { by_name: PanelKind.spec }
 
-  # VizConfig() → Visualization()
+  # VizConfig() -> Visualization()
   - rename:
       by_name: PanelKind.VizConfig
       as: visualization
@@ -428,14 +427,14 @@ options:
   - map_to_index:
       by_builder: Dashboard.element
 
-  # Append a single override instead forcing to define all of them at once
+  # Append a single override instead of forcing to define all of them at once
   - duplicate:
       by_name: VizConfigKind.overrides
       as: override
   - array_to_append:
       by_name: VizConfigKind.override
 
-  # Append a single variable instead forcing to define all of them at once
+  # Append a single variable instead of forcing to define all of them at once
   - duplicate:
       by_builder: Dashboard.variables
       as: variable

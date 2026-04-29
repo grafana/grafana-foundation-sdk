@@ -1,0 +1,123 @@
+# yaml-language-server: $schema=https://raw.githubusercontent.com/grafana/cog/main/schemas/veneers.json
+
+languages: [go, java]
+
+package: dashboardv2
+
+# Some special treatment for languages without proper union types
+
+options:
+  ###########
+  # Layouts #
+  ###########
+
+  # GridLayoutKind + RowsLayoutKind + AutoGridLayoutKind + TabsLayoutKind
+  - disjunction_as_options:
+      by_builder: Dashboard.Layout
+  - rename:
+      by_builder: Dashboard.GridLayoutKind
+      as: gridLayout
+  - rename:
+      by_builder: Dashboard.RowsLayoutKind
+      as: rowsLayout
+  - rename:
+      by_builder: Dashboard.AutoGridLayoutKind
+      as: autoGridLayout
+  - rename:
+      by_builder: Dashboard.TabsLayoutKind
+      as: tabsLayout
+
+  ##############
+  # RowsLayout #
+  ##############
+
+  # GridLayoutKind + AutoGridLayoutKind + TabsLayoutKind + RowsLayoutKind
+  - disjunction_as_options:
+      by_builder: row.Layout
+  - rename:
+      by_builder: row.GridLayoutKind
+      as: gridLayout
+  - rename:
+      by_builder: row.AutoGridLayoutKind
+      as: autoGridLayout
+  - rename:
+      by_builder: row.TabsLayoutKind
+      as: tabsLayout
+  - rename:
+      by_builder: row.RowsLayoutKind
+      as: rowsLayout
+
+  ##############
+  # TabsLayout #
+  ##############
+
+  # GridLayoutKind + AutoGridLayoutKind + TabsLayoutKind + RowsLayoutKind
+  - disjunction_as_options:
+      by_builder: Tab.Layout
+  - rename:
+      by_builder: Tab.GridLayoutKind
+      as: gridLayout
+  - rename:
+      by_builder: Tab.AutoGridLayoutKind
+      as: autoGridLayout
+  - rename:
+      by_builder: Tab.TabsLayoutKind
+      as: tabsLayout
+  - rename:
+      by_builder: Tab.RowsLayoutKind
+      as: rowsLayout
+
+  ##############
+  # Dashboards #
+  ##############
+
+  # panel + library panel
+  - disjunction_as_options:
+      by_builder: Dashboard.element
+      argument_index: 1
+  - rename:
+      by_builder: Dashboard.PanelKind
+      as: panel
+  - rename:
+      by_builder: Dashboard.LibraryPanelKind
+      as: libraryPanel
+
+  #############
+  # Variables #
+  #############
+
+  - disjunction_as_options:
+      by_builder: Dashboard.variable
+  - rename:
+      by_builder: Dashboard.QueryVariableKind
+      as: queryVariable
+  - rename:
+      by_builder: Dashboard.TextVariableKind
+      as: textVariable
+  - rename:
+      by_builder: Dashboard.ConstantVariableKind
+      as: constantVariable
+  - rename:
+      by_builder: Dashboard.DatasourceVariableKind
+      as: datasourceVariable
+  - rename:
+      by_builder: Dashboard.IntervalVariableKind
+      as: intervalVariable
+  - rename:
+      by_builder: Dashboard.CustomVariableKind
+      as: customVariable
+  - rename:
+      by_builder: Dashboard.GroupByVariableKind
+      as: groupByVariable
+  - rename:
+      by_builder: Dashboard.AdhocVariableKind
+      as: adhocVariable
+
+  ##########
+  # Panels #
+  ##########
+
+  # WithOverride(matcher, properties) instead of WithOverride(struct{...})
+  - struct_fields_as_arguments:
+      by_name: VizConfigKind.override
+      fields: [matcher, properties]
