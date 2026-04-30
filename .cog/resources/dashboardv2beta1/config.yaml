@@ -2,7 +2,7 @@
 
 inputs:
   - cue:
-      url: 'https://raw.githubusercontent.com/grafana/grafana/v12.3.2/apps/dashboard/kinds/v2beta1/dashboard_spec.cue'
+      url: 'https://raw.githubusercontent.com/grafana/grafana/release-13.0.2/apps/dashboard/kinds/v2beta1/dashboard_spec.cue'
       package: dashboardv2beta1
       metadata:
         kind: core
