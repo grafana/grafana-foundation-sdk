@@ -216,7 +216,8 @@ builders:
         "spec",
       ]
       rename_options:
-        datasource: old_datasource 
+        datasource: old_datasource
+        labels: dataquery_labels
 
   - omit: { by_name: DataQueryKind }
 
