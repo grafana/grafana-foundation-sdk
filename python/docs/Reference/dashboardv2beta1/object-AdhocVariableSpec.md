@@ -22,6 +22,9 @@ class AdhocVariableSpec:
     skip_url_sync: bool
     description: typing.Optional[str]
     allow_custom_value: bool
+    # Whether the group-by operator is enabled in the ad hoc filter combobox.
+    enable_group_by: typing.Optional[bool]
+    origin: typing.Optional[dashboardv2beta1.ControlSourceRef]
 ```
 ## Methods
 

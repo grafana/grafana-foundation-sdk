@@ -1,0 +1,126 @@
+<?php
+
+namespace Grafana\Foundation\Parca;
+
+final class QueryV2Converter
+{
+    public static function convert(\Grafana\Foundation\Dashboardv2\DataQueryKind $input): string
+    {
+        
+        $calls = [
+            '(new \Grafana\Foundation\Parca\QueryV2Builder())',
+        ];
+            if ($input->version !== "" && $input->version !== "v0") {
+    
+        
+    $buffer = 'version(';
+        $arg0 =\var_export($input->version, true);
+        $buffer .= $arg0;
+        
+    $buffer .= ')';
+
+    $calls[] = $buffer;
+    
+    
+    }
+            if ($input->labels !== null) {
+    
+        
+    $buffer = 'labels(';
+        $arg0 = "[";
+        foreach ($input->labels as $key => $arg1) {
+            $tmplabelsarg1 =\var_export($arg1, true);
+            $arg0 .= "\t".var_export($key, true)." => $tmplabelsarg1,";
+        }
+        $arg0 .= "]";
+        $buffer .= $arg0;
+        
+    $buffer .= ')';
+
+    $calls[] = $buffer;
+    
+    
+    }
+            if ($input->datasource !== null) {
+    
+        
+    $buffer = 'datasource(';
+        $arg0 = \Grafana\Foundation\Dashboardv2\Dashboardv2DataQueryKindDatasourceConverter::convert($input->datasource);
+        $buffer .= $arg0;
+        
+    $buffer .= ')';
+
+    $calls[] = $buffer;
+    
+    
+    }
+            if ($input->spec !== null && $input->spec instanceof \Grafana\Foundation\Parca\Dataquery && $input->spec->labelSelector !== "" && $input->spec->labelSelector !== "{}") {
+    
+        
+    $buffer = 'labelSelector(';
+        $arg0 =\var_export($input->spec->labelSelector, true);
+        $buffer .= $arg0;
+        
+    $buffer .= ')';
+
+    $calls[] = $buffer;
+    
+    
+    }
+            if ($input->spec !== null && $input->spec instanceof \Grafana\Foundation\Parca\Dataquery && $input->spec->profileTypeId !== "") {
+    
+        
+    $buffer = 'profileTypeId(';
+        $arg0 =\var_export($input->spec->profileTypeId, true);
+        $buffer .= $arg0;
+        
+    $buffer .= ')';
+
+    $calls[] = $buffer;
+    
+    
+    }
+            if ($input->spec !== null && $input->spec instanceof \Grafana\Foundation\Parca\Dataquery && $input->spec->refId !== null && $input->spec->refId !== "") {
+    
+        
+    $buffer = 'refId(';
+        $arg0 =\var_export($input->spec->refId, true);
+        $buffer .= $arg0;
+        
+    $buffer .= ')';
+
+    $calls[] = $buffer;
+    
+    
+    }
+            if ($input->spec !== null && $input->spec instanceof \Grafana\Foundation\Parca\Dataquery && $input->spec->hide !== null) {
+    
+        
+    $buffer = 'hide(';
+        $arg0 =\var_export($input->spec->hide, true);
+        $buffer .= $arg0;
+        
+    $buffer .= ')';
+
+    $calls[] = $buffer;
+    
+    
+    }
+            if ($input->spec !== null && $input->spec instanceof \Grafana\Foundation\Parca\Dataquery && $input->spec->queryType !== null && $input->spec->queryType !== "") {
+    
+        
+    $buffer = 'queryType(';
+        $arg0 =\var_export($input->spec->queryType, true);
+        $buffer .= $arg0;
+        
+    $buffer .= ')';
+
+    $calls[] = $buffer;
+    
+    
+    }
+
+        return \implode("\n\t->", $calls);
+    }
+}
+

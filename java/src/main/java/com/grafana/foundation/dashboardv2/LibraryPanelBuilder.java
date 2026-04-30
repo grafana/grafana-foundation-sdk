@@ -1,0 +1,43 @@
+// Code generated - EDITING IS FUTILE. DO NOT EDIT.
+
+package com.grafana.foundation.dashboardv2;
+
+
+public class LibraryPanelBuilder implements com.grafana.foundation.cog.Builder<LibraryPanelKind> {
+    protected final LibraryPanelKind internal;
+    
+    public LibraryPanelBuilder() {
+        this.internal = new LibraryPanelKind();
+        this.internal.kind = "LibraryPanel";
+    }
+    public LibraryPanelBuilder id(Integer id) {
+        if (!(id >= 0)) {
+            throw new IllegalArgumentException("id must be >= 0");
+        }
+		if (this.internal.spec == null) {
+			this.internal.spec = new com.grafana.foundation.dashboardv2.LibraryPanelKindSpec();
+		}
+        this.internal.spec.id = id;
+        return this;
+    }
+    
+    public LibraryPanelBuilder title(String title) {
+		if (this.internal.spec == null) {
+			this.internal.spec = new com.grafana.foundation.dashboardv2.LibraryPanelKindSpec();
+		}
+        this.internal.spec.title = title;
+        return this;
+    }
+    
+    public LibraryPanelBuilder libraryPanel(com.grafana.foundation.cog.Builder<LibraryPanelRef> libraryPanel) {
+		if (this.internal.spec == null) {
+			this.internal.spec = new com.grafana.foundation.dashboardv2.LibraryPanelKindSpec();
+		}
+    LibraryPanelRef libraryPanelResource = libraryPanel.build();
+        this.internal.spec.libraryPanel = libraryPanelResource;
+        return this;
+    }
+    public LibraryPanelKind build() {
+        return this.internal;
+    }
+}

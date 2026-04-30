@@ -93,6 +93,13 @@ class QueryVariableBuilder implements \Grafana\Foundation\Cog\Builder
         return $this;
     }
 
+    public function regexApplyTo(\Grafana\Foundation\Dashboardv2beta1\VariableRegexApplyTo $regexApplyTo): static
+    {
+        $this->internal->spec->regexApplyTo = $regexApplyTo;
+    
+        return $this;
+    }
+
     public function sort(\Grafana\Foundation\Dashboardv2beta1\VariableSort $sort): static
     {
         $this->internal->spec->sort = $sort;
@@ -165,6 +172,17 @@ class QueryVariableBuilder implements \Grafana\Foundation\Cog\Builder
     public function staticOptionsOrder(\Grafana\Foundation\Dashboardv2beta1\QueryVariableSpecStaticOptionsOrder $staticOptionsOrder): static
     {
         $this->internal->spec->staticOptionsOrder = $staticOptionsOrder;
+    
+        return $this;
+    }
+
+    /**
+     * @param \Grafana\Foundation\Cog\Builder<\Grafana\Foundation\Dashboardv2beta1\ControlSourceRef> $origin
+     */
+    public function origin(\Grafana\Foundation\Cog\Builder $origin): static
+    {
+        $originResource = $origin->build();
+        $this->internal->spec->origin = $originResource;
     
         return $this;
     }

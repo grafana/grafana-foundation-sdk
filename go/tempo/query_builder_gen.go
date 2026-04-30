@@ -49,6 +49,12 @@ func (builder *QueryBuilder) Version(version string) *QueryBuilder {
 	return builder
 }
 
+func (builder *QueryBuilder) Labels(labels map[string]string) *QueryBuilder {
+	builder.internal.Labels = labels
+
+	return builder
+}
+
 // New type for datasource reference
 // Not creating a new type until we figure out how to handle DS refs for group by, adhoc, and every place that uses DataSourceRef in TS.
 func (builder *QueryBuilder) Datasource(datasource cog.Builder[dashboardv2beta1.Dashboardv2beta1DataQueryKindDatasource]) *QueryBuilder {
@@ -67,9 +73,9 @@ func (builder *QueryBuilder) Datasource(datasource cog.Builder[dashboardv2beta1.
 // By default, the UI will assign A->Z; however setting meaningful names may be useful.
 func (builder *QueryBuilder) RefId(refId string) *QueryBuilder {
 	if builder.internal.Spec == nil {
-		builder.internal.Spec = NewTempoQuery()
+		builder.internal.Spec = NewDataquery()
 	}
-	builder.internal.Spec.(*TempoQuery).RefId = &refId
+	builder.internal.Spec.(*Dataquery).RefId = refId
 
 	return builder
 }
@@ -77,9 +83,9 @@ func (builder *QueryBuilder) RefId(refId string) *QueryBuilder {
 // If hide is set to true, Grafana will filter out the response(s) associated with this query before returning it to the panel.
 func (builder *QueryBuilder) Hide(hide bool) *QueryBuilder {
 	if builder.internal.Spec == nil {
-		builder.internal.Spec = NewTempoQuery()
+		builder.internal.Spec = NewDataquery()
 	}
-	builder.internal.Spec.(*TempoQuery).Hide = &hide
+	builder.internal.Spec.(*Dataquery).Hide = &hide
 
 	return builder
 }
@@ -88,9 +94,9 @@ func (builder *QueryBuilder) Hide(hide bool) *QueryBuilder {
 // TODO make this required and give it a default
 func (builder *QueryBuilder) QueryType(queryType string) *QueryBuilder {
 	if builder.internal.Spec == nil {
-		builder.internal.Spec = NewTempoQuery()
+		builder.internal.Spec = NewDataquery()
 	}
-	builder.internal.Spec.(*TempoQuery).QueryType = &queryType
+	builder.internal.Spec.(*Dataquery).QueryType = &queryType
 
 	return builder
 }
@@ -98,9 +104,9 @@ func (builder *QueryBuilder) QueryType(queryType string) *QueryBuilder {
 // TraceQL query or trace ID
 func (builder *QueryBuilder) Query(query string) *QueryBuilder {
 	if builder.internal.Spec == nil {
-		builder.internal.Spec = NewTempoQuery()
+		builder.internal.Spec = NewDataquery()
 	}
-	builder.internal.Spec.(*TempoQuery).Query = &query
+	builder.internal.Spec.(*Dataquery).Query = &query
 
 	return builder
 }
@@ -108,9 +114,9 @@ func (builder *QueryBuilder) Query(query string) *QueryBuilder {
 // @deprecated Logfmt query to filter traces by their tags. Example: http.status_code=200 error=true
 func (builder *QueryBuilder) Search(search string) *QueryBuilder {
 	if builder.internal.Spec == nil {
-		builder.internal.Spec = NewTempoQuery()
+		builder.internal.Spec = NewDataquery()
 	}
-	builder.internal.Spec.(*TempoQuery).Search = &search
+	builder.internal.Spec.(*Dataquery).Search = &search
 
 	return builder
 }
@@ -118,9 +124,9 @@ func (builder *QueryBuilder) Search(search string) *QueryBuilder {
 // @deprecated Query traces by service name
 func (builder *QueryBuilder) ServiceName(serviceName string) *QueryBuilder {
 	if builder.internal.Spec == nil {
-		builder.internal.Spec = NewTempoQuery()
+		builder.internal.Spec = NewDataquery()
 	}
-	builder.internal.Spec.(*TempoQuery).ServiceName = &serviceName
+	builder.internal.Spec.(*Dataquery).ServiceName = &serviceName
 
 	return builder
 }
@@ -128,9 +134,9 @@ func (builder *QueryBuilder) ServiceName(serviceName string) *QueryBuilder {
 // @deprecated Query traces by span name
 func (builder *QueryBuilder) SpanName(spanName string) *QueryBuilder {
 	if builder.internal.Spec == nil {
-		builder.internal.Spec = NewTempoQuery()
+		builder.internal.Spec = NewDataquery()
 	}
-	builder.internal.Spec.(*TempoQuery).SpanName = &spanName
+	builder.internal.Spec.(*Dataquery).SpanName = &spanName
 
 	return builder
 }
@@ -138,9 +144,9 @@ func (builder *QueryBuilder) SpanName(spanName string) *QueryBuilder {
 // @deprecated Define the minimum duration to select traces. Use duration format, for example: 1.2s, 100ms
 func (builder *QueryBuilder) MinDuration(minDuration string) *QueryBuilder {
 	if builder.internal.Spec == nil {
-		builder.internal.Spec = NewTempoQuery()
+		builder.internal.Spec = NewDataquery()
 	}
-	builder.internal.Spec.(*TempoQuery).MinDuration = &minDuration
+	builder.internal.Spec.(*Dataquery).MinDuration = &minDuration
 
 	return builder
 }
@@ -148,9 +154,9 @@ func (builder *QueryBuilder) MinDuration(minDuration string) *QueryBuilder {
 // @deprecated Define the maximum duration to select traces. Use duration format, for example: 1.2s, 100ms
 func (builder *QueryBuilder) MaxDuration(maxDuration string) *QueryBuilder {
 	if builder.internal.Spec == nil {
-		builder.internal.Spec = NewTempoQuery()
+		builder.internal.Spec = NewDataquery()
 	}
-	builder.internal.Spec.(*TempoQuery).MaxDuration = &maxDuration
+	builder.internal.Spec.(*Dataquery).MaxDuration = &maxDuration
 
 	return builder
 }
@@ -158,9 +164,9 @@ func (builder *QueryBuilder) MaxDuration(maxDuration string) *QueryBuilder {
 // Filters to be included in a PromQL query to select data for the service graph. Example: {client="app",service="app"}. Providing multiple values will produce union of results for each filter, using PromQL OR operator internally.
 func (builder *QueryBuilder) ServiceMapQuery(serviceMapQuery StringOrArrayOfString) *QueryBuilder {
 	if builder.internal.Spec == nil {
-		builder.internal.Spec = NewTempoQuery()
+		builder.internal.Spec = NewDataquery()
 	}
-	builder.internal.Spec.(*TempoQuery).ServiceMapQuery = &serviceMapQuery
+	builder.internal.Spec.(*Dataquery).ServiceMapQuery = &serviceMapQuery
 
 	return builder
 }
@@ -168,9 +174,9 @@ func (builder *QueryBuilder) ServiceMapQuery(serviceMapQuery StringOrArrayOfStri
 // Use service.namespace in addition to service.name to uniquely identify a service.
 func (builder *QueryBuilder) ServiceMapIncludeNamespace(serviceMapIncludeNamespace bool) *QueryBuilder {
 	if builder.internal.Spec == nil {
-		builder.internal.Spec = NewTempoQuery()
+		builder.internal.Spec = NewDataquery()
 	}
-	builder.internal.Spec.(*TempoQuery).ServiceMapIncludeNamespace = &serviceMapIncludeNamespace
+	builder.internal.Spec.(*Dataquery).ServiceMapIncludeNamespace = &serviceMapIncludeNamespace
 
 	return builder
 }
@@ -178,9 +184,9 @@ func (builder *QueryBuilder) ServiceMapIncludeNamespace(serviceMapIncludeNamespa
 // Defines the maximum number of traces that are returned from Tempo
 func (builder *QueryBuilder) Limit(limit int64) *QueryBuilder {
 	if builder.internal.Spec == nil {
-		builder.internal.Spec = NewTempoQuery()
+		builder.internal.Spec = NewDataquery()
 	}
-	builder.internal.Spec.(*TempoQuery).Limit = &limit
+	builder.internal.Spec.(*Dataquery).Limit = &limit
 
 	return builder
 }
@@ -188,16 +194,16 @@ func (builder *QueryBuilder) Limit(limit int64) *QueryBuilder {
 // Defines the maximum number of spans per spanset that are returned from Tempo
 func (builder *QueryBuilder) Spss(spss int64) *QueryBuilder {
 	if builder.internal.Spec == nil {
-		builder.internal.Spec = NewTempoQuery()
+		builder.internal.Spec = NewDataquery()
 	}
-	builder.internal.Spec.(*TempoQuery).Spss = &spss
+	builder.internal.Spec.(*Dataquery).Spss = &spss
 
 	return builder
 }
 
 func (builder *QueryBuilder) Filters(filters []cog.Builder[TraceqlFilter]) *QueryBuilder {
 	if builder.internal.Spec == nil {
-		builder.internal.Spec = NewTempoQuery()
+		builder.internal.Spec = NewDataquery()
 	}
 	filtersResources := make([]TraceqlFilter, 0, len(filters))
 	for _, r1 := range filters {
@@ -208,7 +214,7 @@ func (builder *QueryBuilder) Filters(filters []cog.Builder[TraceqlFilter]) *Quer
 		}
 		filtersResources = append(filtersResources, filtersDepth1)
 	}
-	builder.internal.Spec.(*TempoQuery).Filters = filtersResources
+	builder.internal.Spec.(*Dataquery).Filters = filtersResources
 
 	return builder
 }
@@ -216,7 +222,7 @@ func (builder *QueryBuilder) Filters(filters []cog.Builder[TraceqlFilter]) *Quer
 // Filters that are used to query the metrics summary
 func (builder *QueryBuilder) GroupBy(groupBy []cog.Builder[TraceqlFilter]) *QueryBuilder {
 	if builder.internal.Spec == nil {
-		builder.internal.Spec = NewTempoQuery()
+		builder.internal.Spec = NewDataquery()
 	}
 	groupByResources := make([]TraceqlFilter, 0, len(groupBy))
 	for _, r1 := range groupBy {
@@ -227,7 +233,7 @@ func (builder *QueryBuilder) GroupBy(groupBy []cog.Builder[TraceqlFilter]) *Quer
 		}
 		groupByResources = append(groupByResources, groupByDepth1)
 	}
-	builder.internal.Spec.(*TempoQuery).GroupBy = groupByResources
+	builder.internal.Spec.(*Dataquery).GroupBy = groupByResources
 
 	return builder
 }
@@ -235,9 +241,9 @@ func (builder *QueryBuilder) GroupBy(groupBy []cog.Builder[TraceqlFilter]) *Quer
 // The type of the table that is used to display the search results
 func (builder *QueryBuilder) TableType(tableType SearchTableType) *QueryBuilder {
 	if builder.internal.Spec == nil {
-		builder.internal.Spec = NewTempoQuery()
+		builder.internal.Spec = NewDataquery()
 	}
-	builder.internal.Spec.(*TempoQuery).TableType = &tableType
+	builder.internal.Spec.(*Dataquery).TableType = &tableType
 
 	return builder
 }
@@ -245,9 +251,9 @@ func (builder *QueryBuilder) TableType(tableType SearchTableType) *QueryBuilder 
 // For metric queries, the step size to use
 func (builder *QueryBuilder) Step(step string) *QueryBuilder {
 	if builder.internal.Spec == nil {
-		builder.internal.Spec = NewTempoQuery()
+		builder.internal.Spec = NewDataquery()
 	}
-	builder.internal.Spec.(*TempoQuery).Step = &step
+	builder.internal.Spec.(*Dataquery).Step = &step
 
 	return builder
 }
@@ -255,9 +261,9 @@ func (builder *QueryBuilder) Step(step string) *QueryBuilder {
 // For metric queries, how many exemplars to request, 0 means no exemplars
 func (builder *QueryBuilder) Exemplars(exemplars int64) *QueryBuilder {
 	if builder.internal.Spec == nil {
-		builder.internal.Spec = NewTempoQuery()
+		builder.internal.Spec = NewDataquery()
 	}
-	builder.internal.Spec.(*TempoQuery).Exemplars = &exemplars
+	builder.internal.Spec.(*Dataquery).Exemplars = &exemplars
 
 	return builder
 }
@@ -265,9 +271,9 @@ func (builder *QueryBuilder) Exemplars(exemplars int64) *QueryBuilder {
 // For metric queries, whether to run instant or range queries
 func (builder *QueryBuilder) MetricsQueryType(metricsQueryType MetricsQueryType) *QueryBuilder {
 	if builder.internal.Spec == nil {
-		builder.internal.Spec = NewTempoQuery()
+		builder.internal.Spec = NewDataquery()
 	}
-	builder.internal.Spec.(*TempoQuery).MetricsQueryType = &metricsQueryType
+	builder.internal.Spec.(*Dataquery).MetricsQueryType = &metricsQueryType
 
 	return builder
 }

@@ -49,6 +49,12 @@ func (builder *GroupByVariableBuilder) Group(group string) *GroupByVariableBuild
 	return builder
 }
 
+func (builder *GroupByVariableBuilder) Labels(labels map[string]string) *GroupByVariableBuilder {
+	builder.internal.Labels = labels
+
+	return builder
+}
+
 func (builder *GroupByVariableBuilder) Datasource(datasource cog.Builder[Dashboardv2beta1GroupByVariableKindDatasource]) *GroupByVariableBuilder {
 	datasourceResource, err := datasource.Build()
 	if err != nil {
@@ -110,6 +116,17 @@ func (builder *GroupByVariableBuilder) SkipUrlSync(skipUrlSync bool) *GroupByVar
 
 func (builder *GroupByVariableBuilder) Description(description string) *GroupByVariableBuilder {
 	builder.internal.Spec.Description = &description
+
+	return builder
+}
+
+func (builder *GroupByVariableBuilder) Origin(origin cog.Builder[ControlSourceRef]) *GroupByVariableBuilder {
+	originResource, err := origin.Build()
+	if err != nil {
+		builder.errors = append(builder.errors, err.(cog.BuildErrors)...)
+		return builder
+	}
+	builder.internal.Spec.Origin = &originResource
 
 	return builder
 }

@@ -31,6 +31,10 @@ public class AnnotationQuerySpec {
     @JsonInclude(JsonInclude.Include.NON_NULL)
     @JsonProperty("placement")
     public String placement;
+    // Mappings define how to convert data frame fields to annotation event fields.
+    @JsonInclude(JsonInclude.Include.NON_NULL)
+    @JsonProperty("mappings")
+    public Map<String, AnnotationEventFieldMapping> mappings;
     // Catch-all field for datasource-specific properties. Should not be available in as code tooling.
     @JsonInclude(JsonInclude.Include.NON_NULL)
     @JsonProperty("legacyOptions")
@@ -44,7 +48,7 @@ public class AnnotationQuerySpec {
         this.builtIn = false;
         this.placement = Constants.AnnotationQueryPlacement;
     }
-    public AnnotationQuerySpec(DataQueryKind query,Boolean enable,Boolean hide,String iconColor,String name,Boolean builtIn,AnnotationPanelFilter filter,Map<String, Object> legacyOptions) {
+    public AnnotationQuerySpec(DataQueryKind query,Boolean enable,Boolean hide,String iconColor,String name,Boolean builtIn,AnnotationPanelFilter filter,Map<String, AnnotationEventFieldMapping> mappings,Map<String, Object> legacyOptions) {
         this.query = query;
         this.enable = enable;
         this.hide = hide;
@@ -53,6 +57,7 @@ public class AnnotationQuerySpec {
         this.builtIn = builtIn;
         this.filter = filter;
         this.placement = Constants.AnnotationQueryPlacement;
+        this.mappings = mappings;
         this.legacyOptions = legacyOptions;
     }
     

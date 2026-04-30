@@ -63,7 +63,7 @@ class DataTransformerConfig implements \JsonSerializable
             id: $data["id"] ?? null,
             disabled: $data["disabled"] ?? null,
             filter: isset($data["filter"]) ? (function($input) {
-    	/** @var array{id?: string, options?: mixed} */
+    	/** @var array{id?: string, scope?: string, options?: mixed} */
     $val = $input;
     	return \Grafana\Foundation\Dashboardv2beta1\MatcherConfig::fromArray($val);
     })($data["filter"]) : null,

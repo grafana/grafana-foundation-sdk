@@ -72,16 +72,16 @@ name(name: string)
 options(options: dashboardv2beta1.VariableOption[])
 ```
 
+### <span class="badge object-method"></span> origin
+
+```typescript
+origin(origin: cog.Builder<dashboardv2beta1.ControlSourceRef>)
+```
+
 ### <span class="badge object-method"></span> query
 
 ```typescript
 query(query: string)
-```
-
-### <span class="badge object-method"></span> refresh
-
-```typescript
-refresh(refresh: dashboardv2beta1.VariableRefresh)
 ```
 
 ### <span class="badge object-method"></span> skipUrlSync

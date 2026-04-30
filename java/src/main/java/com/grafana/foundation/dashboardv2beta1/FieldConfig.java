@@ -43,7 +43,7 @@ public class FieldConfig {
     @JsonProperty("filterable")
     public Boolean filterable;
     // Unit a field should use. The unit you select is applied to all fields except time.
-    // You can use the units ID availables in Grafana or a custom unit.
+    // You can use the units ID available in Grafana or a custom unit.
     // Available units in Grafana: https://github.com/grafana/grafana/blob/main/packages/grafana-data/src/valueFormats/categories.ts
     // As custom unit, you can use the following formats:
     // `suffix:<suffix>` for custom unit that should go after value.
@@ -99,9 +99,18 @@ public class FieldConfig {
     @JsonInclude(JsonInclude.Include.NON_NULL)
     @JsonProperty("custom")
     public Object custom;
+    // Calculate min max per field
+    @JsonInclude(JsonInclude.Include.NON_NULL)
+    @JsonProperty("fieldMinMax")
+    public Boolean fieldMinMax;
+    // How null values should be handled when calculating field stats
+    // "null" - Include null values, "connected" - Ignore nulls, "null as zero" - Treat nulls as zero
+    @JsonInclude(JsonInclude.Include.NON_NULL)
+    @JsonProperty("nullValueMode")
+    public NullValueMode nullValueMode;
     public FieldConfig() {
     }
-    public FieldConfig(String displayName,String displayNameFromDS,String description,String path,Boolean writeable,Boolean filterable,String unit,Double decimals,Double min,Double max,List<ValueMapping> mappings,ThresholdsConfig thresholds,FieldColor color,List<Object> links,List<Action> actions,String noValue,Object custom) {
+    public FieldConfig(String displayName,String displayNameFromDS,String description,String path,Boolean writeable,Boolean filterable,String unit,Double decimals,Double min,Double max,List<ValueMapping> mappings,ThresholdsConfig thresholds,FieldColor color,List<Object> links,List<Action> actions,String noValue,Object custom,Boolean fieldMinMax,NullValueMode nullValueMode) {
         this.displayName = displayName;
         this.displayNameFromDS = displayNameFromDS;
         this.description = description;
@@ -119,6 +128,8 @@ public class FieldConfig {
         this.actions = actions;
         this.noValue = noValue;
         this.custom = custom;
+        this.fieldMinMax = fieldMinMax;
+        this.nullValueMode = nullValueMode;
     }
     
     public String toJSON() throws JsonProcessingException {

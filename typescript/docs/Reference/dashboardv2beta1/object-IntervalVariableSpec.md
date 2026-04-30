@@ -16,11 +16,12 @@ export interface IntervalVariableSpec {
 	auto: boolean;
 	auto_min: string;
 	auto_count: number;
-	refresh: dashboardv2beta1.VariableRefresh;
+	refresh: "onTimeRangeChanged";
 	label?: string;
 	hide: dashboardv2beta1.VariableHide;
 	skipUrlSync: boolean;
 	description?: string;
+	origin?: dashboardv2beta1.ControlSourceRef;
 }
 
 ```

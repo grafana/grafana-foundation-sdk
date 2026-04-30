@@ -48,6 +48,14 @@ def default_keys(default_keys: list[cogbuilder.Builder[dashboardv2beta1.MetricFi
 def description(description: str) -> typing.Self
 ```
 
+### <span class="badge object-method"></span> enable_group_by
+
+Whether the group-by operator is enabled in the ad hoc filter combobox.
+
+```python
+def enable_group_by(enable_group_by: bool) -> typing.Self
+```
+
 ### <span class="badge object-method"></span> filters
 
 ```python
@@ -72,10 +80,22 @@ def hide(hide: dashboardv2beta1.VariableHide) -> typing.Self
 def label(label: str) -> typing.Self
 ```
 
+### <span class="badge object-method"></span> labels
+
+```python
+def labels(labels: dict[str, str]) -> typing.Self
+```
+
 ### <span class="badge object-method"></span> name
 
 ```python
 def name(name: str) -> typing.Self
+```
+
+### <span class="badge object-method"></span> origin
+
+```python
+def origin(origin: cogbuilder.Builder[dashboardv2beta1.ControlSourceRef]) -> typing.Self
 ```
 
 ### <span class="badge object-method"></span> skip_url_sync

@@ -96,6 +96,12 @@ See https://github.com/grafana/grafana/issues/48081
 def interval_factor(interval_factor: float) -> typing.Self
 ```
 
+### <span class="badge object-method"></span> labels
+
+```python
+def labels(labels: dict[str, str]) -> typing.Self
+```
+
 ### <span class="badge object-method"></span> legend_format
 
 Series name override or template. Ex. {{hostname}} will be replaced with label value for hostname

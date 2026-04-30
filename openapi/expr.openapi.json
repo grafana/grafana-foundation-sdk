@@ -67,6 +67,7 @@
           },
           "refId": {
             "type": "string",
+            "nullable": true,
             "description": "RefID is the unique identifier of the query, set by the frontend call."
           },
           "resultAssertions": {
@@ -183,6 +184,7 @@
           },
           "refId": {
             "type": "string",
+            "nullable": true,
             "description": "RefID is the unique identifier of the query, set by the frontend call."
           },
           "resultAssertions": {
@@ -323,6 +325,7 @@
           },
           "refId": {
             "type": "string",
+            "nullable": true,
             "description": "RefID is the unique identifier of the query, set by the frontend call."
           },
           "resultAssertions": {
@@ -513,6 +516,7 @@
           },
           "refId": {
             "type": "string",
+            "nullable": true,
             "description": "RefID is the unique identifier of the query, set by the frontend call."
           },
           "resultAssertions": {
@@ -697,6 +701,7 @@
           },
           "refId": {
             "type": "string",
+            "nullable": true,
             "description": "RefID is the unique identifier of the query, set by the frontend call."
           },
           "resultAssertions": {
@@ -802,6 +807,7 @@
           },
           "refId": {
             "type": "string",
+            "nullable": true,
             "description": "RefID is the unique identifier of the query, set by the frontend call."
           },
           "resultAssertions": {
@@ -874,22 +880,52 @@
         "additionalProperties": false,
         "properties": {
           "TypeMath": {
-            "$ref": "#/components/schemas/TypeMath"
+            "nullable": true,
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/TypeMath"
+              }
+            ]
           },
           "TypeReduce": {
-            "$ref": "#/components/schemas/TypeReduce"
+            "nullable": true,
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/TypeReduce"
+              }
+            ]
           },
           "TypeResample": {
-            "$ref": "#/components/schemas/TypeResample"
+            "nullable": true,
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/TypeResample"
+              }
+            ]
           },
           "TypeClassicConditions": {
-            "$ref": "#/components/schemas/TypeClassicConditions"
+            "nullable": true,
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/TypeClassicConditions"
+              }
+            ]
           },
           "TypeThreshold": {
-            "$ref": "#/components/schemas/TypeThreshold"
+            "nullable": true,
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/TypeThreshold"
+              }
+            ]
           },
           "TypeSql": {
-            "$ref": "#/components/schemas/TypeSql"
+            "nullable": true,
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/TypeSql"
+              }
+            ]
           }
         }
       },

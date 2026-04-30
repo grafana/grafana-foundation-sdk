@@ -16,11 +16,12 @@ type IntervalVariableSpec struct {
     Auto bool `json:"auto"`
     AutoMin string `json:"auto_min"`
     AutoCount int64 `json:"auto_count"`
-    Refresh dashboardv2beta1.VariableRefresh `json:"refresh"`
+    Refresh string `json:"refresh"`
     Label *string `json:"label,omitempty"`
     Hide dashboardv2beta1.VariableHide `json:"hide"`
     SkipUrlSync bool `json:"skipUrlSync"`
     Description *string `json:"description,omitempty"`
+    Origin *dashboardv2beta1.ControlSourceRef `json:"origin,omitempty"`
 }
 ```
 ## Methods

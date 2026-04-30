@@ -21,6 +21,8 @@ export interface CustomVariableSpec {
 	skipUrlSync: boolean;
 	description?: string;
 	allowCustomValue: boolean;
+	valuesFormat?: "csv" | "json";
+	origin?: dashboardv2beta1.ControlSourceRef;
 }
 
 ```

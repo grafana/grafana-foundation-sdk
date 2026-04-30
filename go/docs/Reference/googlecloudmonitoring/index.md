@@ -24,6 +24,7 @@
  * <span class="badge builder"></span> [MetricQueryBuilder](./builder-MetricQueryBuilder.md)
  * <span class="badge builder"></span> [PromQLQueryBuilder](./builder-PromQLQueryBuilder.md)
  * <span class="badge builder"></span> [QueryBuilder](./builder-QueryBuilder.md)
+ * <span class="badge builder"></span> [QueryV2Builder](./builder-QueryV2Builder.md)
  * <span class="badge builder"></span> [SLOQueryBuilder](./builder-SLOQueryBuilder.md)
  * <span class="badge builder"></span> [TimeSeriesListBuilder](./builder-TimeSeriesListBuilder.md)
  * <span class="badge builder"></span> [TimeSeriesQueryBuilder](./builder-TimeSeriesQueryBuilder.md)
@@ -101,6 +102,14 @@ This configuration describes how to unmarshal it, convert it to code, …
 
 ```go
 func VariantConfig() variants.DataqueryConfig
+```
+
+### <span class="badge function"></span> QueryV2Converter
+
+QueryV2Converter accepts a `QueryV2` object and generates the Go code to build this object using builders.
+
+```go
+func QueryV2Converter(input dashboardv2.DataQueryKind) string
 ```
 
 ### <span class="badge function"></span> CloudMonitoringQueryConverter

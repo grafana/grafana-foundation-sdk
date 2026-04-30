@@ -60,6 +60,12 @@ public GroupByVariableBuilder hide(VariableHide hide)
 public GroupByVariableBuilder label(String label)
 ```
 
+### <span class="badge object-method"></span> labels
+
+```java
+public GroupByVariableBuilder labels(Map<String, String> labels)
+```
+
 ### <span class="badge object-method"></span> multi
 
 ```java
@@ -76,6 +82,12 @@ public GroupByVariableBuilder name(String name)
 
 ```java
 public GroupByVariableBuilder options(List<VariableOption> options)
+```
+
+### <span class="badge object-method"></span> origin
+
+```java
+public GroupByVariableBuilder origin(com.grafana.foundation.cog.Builder<ControlSourceRef> origin)
 ```
 
 ### <span class="badge object-method"></span> skipUrlSync

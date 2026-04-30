@@ -56,6 +56,14 @@ Catch-all field for datasource-specific properties. Should not be available in a
 def legacy_options(legacy_options: dict[str, object]) -> typing.Self
 ```
 
+### <span class="badge object-method"></span> mappings
+
+Mappings define how to convert data frame fields to annotation event fields.
+
+```python
+def mappings(mappings: dict[str, cogbuilder.Builder[dashboardv2beta1.AnnotationEventFieldMapping]]) -> typing.Self
+```
+
 ### <span class="badge object-method"></span> name
 
 ```python

@@ -94,6 +94,14 @@ When this property is configured, this value is used rather than the default nam
 public VisualizationBuilder displayNameFromDS(String displayNameFromDS)
 ```
 
+### <span class="badge object-method"></span> fieldMinMax
+
+Calculate min max per field
+
+```java
+public VisualizationBuilder fieldMinMax(Boolean fieldMinMax)
+```
+
 ### <span class="badge object-method"></span> layers
 
 ```java
@@ -130,6 +138,16 @@ Alternative to empty string
 
 ```java
 public VisualizationBuilder noValue(String noValue)
+```
+
+### <span class="badge object-method"></span> nullValueMode
+
+How null values should be handled when calculating field stats
+
+"null" - Include null values, "connected" - Ignore nulls, "null as zero" - Treat nulls as zero
+
+```java
+public VisualizationBuilder nullValueMode(NullValueMode nullValueMode)
 ```
 
 ### <span class="badge object-method"></span> override
@@ -212,7 +230,7 @@ public VisualizationBuilder tooltip(com.grafana.foundation.cog.Builder<TooltipOp
 
 Unit a field should use. The unit you select is applied to all fields except time.
 
-You can use the units ID availables in Grafana or a custom unit.
+You can use the units ID available in Grafana or a custom unit.
 
 Available units in Grafana: https://github.com/grafana/grafana/blob/main/packages/grafana-data/src/valueFormats/categories.ts
 

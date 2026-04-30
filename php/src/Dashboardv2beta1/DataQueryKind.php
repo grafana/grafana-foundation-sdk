@@ -11,6 +11,11 @@ class DataQueryKind implements \JsonSerializable
     public string $version;
 
     /**
+     * @var array<string, string>|null
+     */
+    public ?array $labels;
+
+    /**
      * New type for datasource reference
      * Not creating a new type until we figure out how to handle DS refs for group by, adhoc, and every place that uses DataSourceRef in TS.
      */
@@ -24,15 +29,17 @@ class DataQueryKind implements \JsonSerializable
     /**
      * @param string|null $group
      * @param string|null $version
+     * @param array<string, string>|null $labels
      * @param \Grafana\Foundation\Dashboardv2beta1\Dashboardv2beta1DataQueryKindDatasource|null $datasource
      * @param mixed|null $spec
      */
-    public function __construct(?string $group = null, ?string $version = null, ?\Grafana\Foundation\Dashboardv2beta1\Dashboardv2beta1DataQueryKindDatasource $datasource = null,  $spec = null)
+    public function __construct(?string $group = null, ?string $version = null, ?array $labels = null, ?\Grafana\Foundation\Dashboardv2beta1\Dashboardv2beta1DataQueryKindDatasource $datasource = null,  $spec = null)
     {
         $this->kind = "DataQuery";
     
         $this->group = $group ?: "";
         $this->version = $version ?: "v0";
+        $this->labels = $labels;
         $this->datasource = $datasource;
         $this->spec = $spec;
     }
@@ -43,13 +50,14 @@ class DataQueryKind implements \JsonSerializable
      */
     public static function fromArray(array $inputData): self
     {
-        /** @var array{kind?: string, group?: string, version?: string, datasource?: mixed, spec?: mixed} $inputData */
+        /** @var array{kind?: string, group?: string, version?: string, labels?: array<string, string>, datasource?: mixed, spec?: mixed} $inputData */
         $data = $inputData;
         return new self( 
             
              
             group: $data["group"] ?? null, 
             version: $data["version"] ?? null, 
+            labels: $data["labels"] ?? null, 
             datasource: isset($data["datasource"]) ? (function($input) {
     	/** @var array{name?: string} */
     $val = $input;
@@ -72,6 +80,9 @@ class DataQueryKind implements \JsonSerializable
         $data->kind = $this->kind;
         $data->group = $this->group;
         $data->version = $this->version;
+        if (isset($this->labels)) {
+            $data->labels = $this->labels;
+        }
         if (isset($this->datasource)) {
             $data->datasource = $this->datasource;
         }

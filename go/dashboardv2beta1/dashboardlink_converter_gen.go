@@ -152,6 +152,18 @@ func DashboardLinkConverter(input DashboardLink) string {
 		buffer.Reset()
 
 	}
+	if input.Origin != nil {
+
+		buffer.WriteString(`Origin(`)
+		arg0 := ControlSourceRefConverter(*input.Origin)
+		buffer.WriteString(arg0)
+
+		buffer.WriteString(")")
+
+		calls = append(calls, buffer.String())
+		buffer.Reset()
+
+	}
 
 	return strings.Join(calls, ".\t\n")
 }

@@ -50,6 +50,14 @@ If true, includes current time range in the link as query params
 def keep_time(keep_time: bool) -> typing.Self
 ```
 
+### <span class="badge object-method"></span> origin
+
+The source that registered the link (if any)
+
+```python
+def origin(origin: cogbuilder.Builder[dashboardv2beta1.ControlSourceRef]) -> typing.Self
+```
+
 ### <span class="badge object-method"></span> placement
 
 Placement can be used to display the link somewhere else on the dashboard other than above the visualisations.

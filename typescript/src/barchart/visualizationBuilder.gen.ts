@@ -87,7 +87,7 @@ export class VisualizationBuilder implements cog.Builder<dashboardv2beta1.VizCon
     }
 
     // Unit a field should use. The unit you select is applied to all fields except time.
-    // You can use the units ID availables in Grafana or a custom unit.
+    // You can use the units ID available in Grafana or a custom unit.
     // Available units in Grafana: https://github.com/grafana/grafana/blob/main/packages/grafana-data/src/valueFormats/categories.ts
     // As custom unit, you can use the following formats:
     // `suffix:<suffix>` for custom unit that should go after value.
@@ -248,6 +248,37 @@ export class VisualizationBuilder implements cog.Builder<dashboardv2beta1.VizCon
             this.internal.spec.fieldConfig.defaults = dashboardv2beta1.defaultFieldConfig();
         }
         this.internal.spec.fieldConfig.defaults.noValue = noValue;
+        return this;
+    }
+
+    // Calculate min max per field
+    fieldMinMax(fieldMinMax: boolean): this {
+        if (!this.internal.spec) {
+            this.internal.spec = dashboardv2beta1.defaultVizConfigSpec();
+        }
+        if (!this.internal.spec.fieldConfig) {
+            this.internal.spec.fieldConfig = dashboardv2beta1.defaultFieldConfigSource();
+        }
+        if (!this.internal.spec.fieldConfig.defaults) {
+            this.internal.spec.fieldConfig.defaults = dashboardv2beta1.defaultFieldConfig();
+        }
+        this.internal.spec.fieldConfig.defaults.fieldMinMax = fieldMinMax;
+        return this;
+    }
+
+    // How null values should be handled when calculating field stats
+    // "null" - Include null values, "connected" - Ignore nulls, "null as zero" - Treat nulls as zero
+    nullValueMode(nullValueMode: dashboardv2beta1.NullValueMode): this {
+        if (!this.internal.spec) {
+            this.internal.spec = dashboardv2beta1.defaultVizConfigSpec();
+        }
+        if (!this.internal.spec.fieldConfig) {
+            this.internal.spec.fieldConfig = dashboardv2beta1.defaultFieldConfigSource();
+        }
+        if (!this.internal.spec.fieldConfig.defaults) {
+            this.internal.spec.fieldConfig.defaults = dashboardv2beta1.defaultFieldConfig();
+        }
+        this.internal.spec.fieldConfig.defaults.nullValueMode = nullValueMode;
         return this;
     }
 
@@ -509,6 +540,9 @@ export class VisualizationBuilder implements cog.Builder<dashboardv2beta1.VizCon
         if (!this.internal.spec.fieldConfig.defaults.custom) {
             this.internal.spec.fieldConfig.defaults.custom = barchart.defaultFieldConfig();
         }
+        if (!(lineWidth >= 0)) {
+            throw new Error("lineWidth must be >= 0");
+        }
         if (!(lineWidth <= 10)) {
             throw new Error("lineWidth must be <= 10");
         }
@@ -529,6 +563,9 @@ export class VisualizationBuilder implements cog.Builder<dashboardv2beta1.VizCon
         }
         if (!this.internal.spec.fieldConfig.defaults.custom) {
             this.internal.spec.fieldConfig.defaults.custom = barchart.defaultFieldConfig();
+        }
+        if (!(fillOpacity >= 0)) {
+            throw new Error("fillOpacity must be >= 0");
         }
         if (!(fillOpacity <= 100)) {
             throw new Error("fillOpacity must be <= 100");

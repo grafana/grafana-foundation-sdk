@@ -15,6 +15,7 @@ class GroupByVariableKind:
 
     kind: typing.Literal["GroupByVariable"]
     group: str
+    labels: typing.Optional[dict[str, str]]
     datasource: typing.Optional[dashboardv2beta1.Dashboardv2beta1GroupByVariableKindDatasource]
     spec: dashboardv2beta1.GroupByVariableSpec
 ```

@@ -11,6 +11,7 @@ Adhoc variable kind
 export interface AdhocVariableKind {
 	kind: "AdhocVariable";
 	group: string;
+	labels?: Record<string, string>;
 	datasource?: {
 		name?: string;
 	};

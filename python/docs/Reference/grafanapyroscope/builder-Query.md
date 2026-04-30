@@ -52,6 +52,12 @@ Specifies the query label selectors.
 def label_selector(label_selector: str) -> typing.Self
 ```
 
+### <span class="badge object-method"></span> labels
+
+```python
+def labels(labels: dict[str, str]) -> typing.Self
+```
+
 ### <span class="badge object-method"></span> limit
 
 Sets the maximum number of time series.

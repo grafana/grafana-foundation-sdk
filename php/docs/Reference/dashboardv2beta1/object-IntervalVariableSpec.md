@@ -27,7 +27,7 @@ class IntervalVariableSpec implements \JsonSerializable
 
     public int $autoCount;
 
-    public \Grafana\Foundation\Dashboardv2beta1\VariableRefresh $refresh;
+    public string $refresh;
 
     public ?string $label;
 
@@ -36,6 +36,8 @@ class IntervalVariableSpec implements \JsonSerializable
     public bool $skipUrlSync;
 
     public ?string $description;
+
+    public ?\Grafana\Foundation\Dashboardv2beta1\ControlSourceRef $origin;
 
 }
 ```

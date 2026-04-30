@@ -78,6 +78,14 @@ Not creating a new type until we figure out how to handle DS refs for group by, 
 datasource(\Grafana\Foundation\Cog\Builder $datasource)
 ```
 
+### <span class="badge object-method"></span> labels
+
+@param array<string, string> $labels
+
+```php
+labels(array $labels)
+```
+
 ### <span class="badge object-method"></span> version
 
 ```php

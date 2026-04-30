@@ -62,6 +62,12 @@ hide(hide: dashboardv2beta1.VariableHide)
 label(label: string)
 ```
 
+### <span class="badge object-method"></span> labels
+
+```typescript
+labels(labels: Record<string, string>)
+```
+
 ### <span class="badge object-method"></span> multi
 
 ```typescript
@@ -78,6 +84,12 @@ name(name: string)
 
 ```typescript
 options(options: dashboardv2beta1.VariableOption[])
+```
+
+### <span class="badge object-method"></span> origin
+
+```typescript
+origin(origin: cog.Builder<dashboardv2beta1.ControlSourceRef>)
 ```
 
 ### <span class="badge object-method"></span> skipUrlSync

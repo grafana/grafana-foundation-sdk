@@ -16,14 +16,14 @@ final class DataqueryConfig
      */
     public $convert;
     /**
-     * @var (callable(\Grafana\Foundation\Dashboardv2beta1\DataQueryKind): string)|null
+     * @var (callable(\Grafana\Foundation\Dashboardv2beta1\DataQueryKind|\Grafana\Foundation\Dashboardv2\DataQueryKind): string)|null
      */
     public $convertv2;
 
     /**
      * @param callable(array<string, mixed>): Dataquery $fromArray
-     * @param (callable(Dataquery): string)|null $convert 
-     * @param (callable(\Grafana\Foundation\Dashboardv2beta1\DataQueryKind): string)|null $convertv2
+     * @param (callable(Dataquery): string)|null $convert
+     * @param (callable(\Grafana\Foundation\Dashboardv2beta1\DataQueryKind|\Grafana\Foundation\Dashboardv2\DataQueryKind): string)|null $convertv2
      */
     public function __construct(string $identifier, callable $fromArray, ?callable $convert = null, ?callable $convertv2 = null)
     {

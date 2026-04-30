@@ -118,3 +118,15 @@ func (builder *DashboardLinkBuilder) Placement(placement string) *DashboardLinkB
 
 	return builder
 }
+
+// The source that registered the link (if any)
+func (builder *DashboardLinkBuilder) Origin(origin cog.Builder[ControlSourceRef]) *DashboardLinkBuilder {
+	originResource, err := origin.Build()
+	if err != nil {
+		builder.errors = append(builder.errors, err.(cog.BuildErrors)...)
+		return builder
+	}
+	builder.internal.Origin = &originResource
+
+	return builder
+}

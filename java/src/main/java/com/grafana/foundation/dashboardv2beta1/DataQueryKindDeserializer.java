@@ -35,6 +35,9 @@ public class DataQueryKindDeserializer extends JsonDeserializer<DataQueryKind> {
         else if (root.has("version")) {
             dataQueryKind.version = mapper.convertValue(root.get("version"), new TypeReference<>() {});
         }
+        else if (root.has("labels")) {
+            dataQueryKind.labels = mapper.convertValue(root.get("labels"), new TypeReference<>() {});
+        }
         else if (root.has("datasource")) {
             dataQueryKind.datasource = mapper.convertValue(root.get("datasource"), new TypeReference<>() {});
         }

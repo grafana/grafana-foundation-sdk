@@ -43,6 +43,7 @@
  * <span class="badge builder"></span> [MetricNamesQueryBuilder](./builder-MetricNamesQueryBuilder.md)
  * <span class="badge builder"></span> [MetricNamespaceQueryBuilder](./builder-MetricNamespaceQueryBuilder.md)
  * <span class="badge builder"></span> [QueryBuilder](./builder-QueryBuilder.md)
+ * <span class="badge builder"></span> [QueryV2Builder](./builder-QueryV2Builder.md)
  * <span class="badge builder"></span> [ResourceGroupsQueryBuilder](./builder-ResourceGroupsQueryBuilder.md)
  * <span class="badge builder"></span> [ResourceNamesQueryBuilder](./builder-ResourceNamesQueryBuilder.md)
  * <span class="badge builder"></span> [SubscriptionsQueryBuilder](./builder-SubscriptionsQueryBuilder.md)
@@ -226,6 +227,14 @@ This configuration describes how to unmarshal it, convert it to code, …
 
 ```go
 func VariantConfig() variants.DataqueryConfig
+```
+
+### <span class="badge function"></span> QueryV2Converter
+
+QueryV2Converter accepts a `QueryV2` object and generates the Go code to build this object using builders.
+
+```go
+func QueryV2Converter(input dashboardv2.DataQueryKind) string
 ```
 
 ### <span class="badge function"></span> AzureMonitorQueryConverter

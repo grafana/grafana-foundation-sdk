@@ -44,6 +44,12 @@ Specifies the query label selectors.
 func (builder *QueryBuilder) LabelSelector(labelSelector string) *QueryBuilder
 ```
 
+### <span class="badge object-method"></span> Labels
+
+```go
+func (builder *QueryBuilder) Labels(labels map[string]string) *QueryBuilder
+```
+
 ### <span class="badge object-method"></span> ProfileTypeId
 
 Specifies the type of profile to query.

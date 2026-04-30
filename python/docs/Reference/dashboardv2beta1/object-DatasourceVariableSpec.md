@@ -27,6 +27,7 @@ class DatasourceVariableSpec:
     skip_url_sync: bool
     description: typing.Optional[str]
     allow_custom_value: bool
+    origin: typing.Optional[dashboardv2beta1.ControlSourceRef]
 ```
 ## Methods
 

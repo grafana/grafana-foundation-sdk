@@ -7,6 +7,7 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.ObjectWriter;
 import com.fasterxml.jackson.annotation.JsonInclude;
+import java.util.Map;
 
 // Adhoc variable kind
 public class AdhocVariableKind {
@@ -14,6 +15,9 @@ public class AdhocVariableKind {
     public String kind;
     @JsonProperty("group")
     public String group;
+    @JsonInclude(JsonInclude.Include.NON_NULL)
+    @JsonProperty("labels")
+    public Map<String, String> labels;
     @JsonInclude(JsonInclude.Include.NON_NULL)
     @JsonProperty("datasource")
     public Dashboardv2beta1AdhocVariableKindDatasource datasource;
@@ -25,9 +29,10 @@ public class AdhocVariableKind {
         this.group = "";
         this.spec = new com.grafana.foundation.dashboardv2beta1.AdhocVariableSpec();
     }
-    public AdhocVariableKind(String kind,String group,Dashboardv2beta1AdhocVariableKindDatasource datasource,AdhocVariableSpec spec) {
+    public AdhocVariableKind(String kind,String group,Map<String, String> labels,Dashboardv2beta1AdhocVariableKindDatasource datasource,AdhocVariableSpec spec) {
         this.kind = kind;
         this.group = group;
+        this.labels = labels;
         this.datasource = datasource;
         this.spec = spec;
     }

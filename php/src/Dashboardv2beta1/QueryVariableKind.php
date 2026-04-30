@@ -30,7 +30,7 @@ class QueryVariableKind implements \JsonSerializable
         $data = $inputData;
         return new self(
             spec: isset($data["spec"]) ? (function($input) {
-    	/** @var array{name?: string, current?: mixed, label?: string, hide?: string, refresh?: string, skipUrlSync?: bool, description?: string, query?: mixed, regex?: string, sort?: string, definition?: string, options?: array<mixed>, multi?: bool, includeAll?: bool, allValue?: string, placeholder?: string, allowCustomValue?: bool, staticOptions?: array<mixed>, staticOptionsOrder?: string} */
+    	/** @var array{name?: string, current?: mixed, label?: string, hide?: string, refresh?: string, skipUrlSync?: bool, description?: string, query?: mixed, regex?: string, regexApplyTo?: string, sort?: string, definition?: string, options?: array<mixed>, multi?: bool, includeAll?: bool, allValue?: string, placeholder?: string, allowCustomValue?: bool, staticOptions?: array<mixed>, staticOptionsOrder?: string, origin?: mixed} */
     $val = $input;
     	return \Grafana\Foundation\Dashboardv2beta1\QueryVariableSpec::fromArray($val);
     })($data["spec"]) : null,

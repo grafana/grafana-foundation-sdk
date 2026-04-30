@@ -21,6 +21,8 @@ class ConstantVariableSpec implements \JsonSerializable
 
     public ?string $description;
 
+    public ?\Grafana\Foundation\Dashboardv2beta1\ControlSourceRef $origin;
+
     /**
      * @param string|null $name
      * @param string|null $query
@@ -29,8 +31,9 @@ class ConstantVariableSpec implements \JsonSerializable
      * @param \Grafana\Foundation\Dashboardv2beta1\VariableHide|null $hide
      * @param bool|null $skipUrlSync
      * @param string|null $description
+     * @param \Grafana\Foundation\Dashboardv2beta1\ControlSourceRef|null $origin
      */
-    public function __construct(?string $name = null, ?string $query = null, ?\Grafana\Foundation\Dashboardv2beta1\VariableOption $current = null, ?string $label = null, ?\Grafana\Foundation\Dashboardv2beta1\VariableHide $hide = null, ?bool $skipUrlSync = null, ?string $description = null)
+    public function __construct(?string $name = null, ?string $query = null, ?\Grafana\Foundation\Dashboardv2beta1\VariableOption $current = null, ?string $label = null, ?\Grafana\Foundation\Dashboardv2beta1\VariableHide $hide = null, ?bool $skipUrlSync = null, ?string $description = null, ?\Grafana\Foundation\Dashboardv2beta1\ControlSourceRef $origin = null)
     {
         $this->name = $name ?: "";
         $this->query = $query ?: "";
@@ -39,6 +42,7 @@ class ConstantVariableSpec implements \JsonSerializable
         $this->hide = $hide ?: \Grafana\Foundation\Dashboardv2beta1\VariableHide::dontHide();
         $this->skipUrlSync = $skipUrlSync ?: false;
         $this->description = $description;
+        $this->origin = $origin;
     }
 
     /**
@@ -46,13 +50,13 @@ class ConstantVariableSpec implements \JsonSerializable
      */
     public static function fromArray(array $inputData): self
     {
-        /** @var array{name?: string, query?: string, current?: mixed, label?: string, hide?: string, skipUrlSync?: bool, description?: string} $inputData */
+        /** @var array{name?: string, query?: string, current?: mixed, label?: string, hide?: string, skipUrlSync?: bool, description?: string, origin?: mixed} $inputData */
         $data = $inputData;
         return new self(
             name: $data["name"] ?? null,
             query: $data["query"] ?? null,
             current: isset($data["current"]) ? (function($input) {
-    	/** @var array{selected?: bool, text?: string|array<string>, value?: string|array<string>} */
+    	/** @var array{selected?: bool, text?: string|array<string>, value?: string|array<string>, properties?: array<string, string>} */
     $val = $input;
     	return \Grafana\Foundation\Dashboardv2beta1\VariableOption::fromArray($val);
     })($data["current"]) : null,
@@ -60,6 +64,11 @@ class ConstantVariableSpec implements \JsonSerializable
             hide: isset($data["hide"]) ? (function($input) { return \Grafana\Foundation\Dashboardv2beta1\VariableHide::fromValue($input); })($data["hide"]) : null,
             skipUrlSync: $data["skipUrlSync"] ?? null,
             description: $data["description"] ?? null,
+            origin: isset($data["origin"]) ? (function($input) {
+    	/** @var array{type?: string, group?: string} */
+    $val = $input;
+    	return \Grafana\Foundation\Dashboardv2beta1\ControlSourceRef::fromArray($val);
+    })($data["origin"]) : null,
         );
     }
 
@@ -79,6 +88,9 @@ class ConstantVariableSpec implements \JsonSerializable
         }
         if (isset($this->description)) {
             $data->description = $this->description;
+        }
+        if (isset($this->origin)) {
+            $data->origin = $this->origin;
         }
         return $data;
     }

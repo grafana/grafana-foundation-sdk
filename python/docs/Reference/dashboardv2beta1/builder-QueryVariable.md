@@ -84,6 +84,12 @@ def name(name: str) -> typing.Self
 def options(options: list[dashboardv2beta1.VariableOption]) -> typing.Self
 ```
 
+### <span class="badge object-method"></span> origin
+
+```python
+def origin(origin: cogbuilder.Builder[dashboardv2beta1.ControlSourceRef]) -> typing.Self
+```
+
 ### <span class="badge object-method"></span> placeholder
 
 ```python
@@ -106,6 +112,12 @@ def refresh(refresh: dashboardv2beta1.VariableRefresh) -> typing.Self
 
 ```python
 def regex(regex: str) -> typing.Self
+```
+
+### <span class="badge object-method"></span> regex_apply_to
+
+```python
+def regex_apply_to(regex_apply_to: dashboardv2beta1.VariableRegexApplyTo) -> typing.Self
 ```
 
 ### <span class="badge object-method"></span> skip_url_sync

@@ -38,6 +38,13 @@ public class AdhocVariableSpec {
     public String description;
     @JsonProperty("allowCustomValue")
     public Boolean allowCustomValue;
+    // Whether the group-by operator is enabled in the ad hoc filter combobox.
+    @JsonInclude(JsonInclude.Include.NON_NULL)
+    @JsonProperty("enableGroupBy")
+    public Boolean enableGroupBy;
+    @JsonInclude(JsonInclude.Include.NON_NULL)
+    @JsonProperty("origin")
+    public ControlSourceRef origin;
     public AdhocVariableSpec() {
         this.name = "";
         this.baseFilters = new LinkedList<>();
@@ -46,8 +53,9 @@ public class AdhocVariableSpec {
         this.hide = VariableHide.DONT_HIDE;
         this.skipUrlSync = false;
         this.allowCustomValue = true;
+        this.enableGroupBy = false;
     }
-    public AdhocVariableSpec(String name,List<AdHocFilterWithLabels> baseFilters,List<AdHocFilterWithLabels> filters,List<MetricFindValue> defaultKeys,String label,VariableHide hide,Boolean skipUrlSync,String description,Boolean allowCustomValue) {
+    public AdhocVariableSpec(String name,List<AdHocFilterWithLabels> baseFilters,List<AdHocFilterWithLabels> filters,List<MetricFindValue> defaultKeys,String label,VariableHide hide,Boolean skipUrlSync,String description,Boolean allowCustomValue,Boolean enableGroupBy,ControlSourceRef origin) {
         this.name = name;
         this.baseFilters = baseFilters;
         this.filters = filters;
@@ -57,6 +65,8 @@ public class AdhocVariableSpec {
         this.skipUrlSync = skipUrlSync;
         this.description = description;
         this.allowCustomValue = allowCustomValue;
+        this.enableGroupBy = enableGroupBy;
+        this.origin = origin;
     }
     
     public String toJSON() throws JsonProcessingException {

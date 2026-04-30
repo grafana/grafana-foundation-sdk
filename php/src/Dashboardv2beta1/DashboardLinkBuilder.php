@@ -136,4 +136,16 @@ class DashboardLinkBuilder implements \Grafana\Foundation\Cog\Builder
         return $this;
     }
 
+    /**
+     * The source that registered the link (if any)
+     * @param \Grafana\Foundation\Cog\Builder<\Grafana\Foundation\Dashboardv2beta1\ControlSourceRef> $origin
+     */
+    public function origin(\Grafana\Foundation\Cog\Builder $origin): static
+    {
+        $originResource = $origin->build();
+        $this->internal->origin = $originResource;
+    
+        return $this;
+    }
+
 }

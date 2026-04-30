@@ -11,6 +11,7 @@ Adhoc variable kind
 public class AdhocVariableKind {
   public String kind;
   public String group;
+  public Map<String, String> labels;
   public Dashboardv2beta1AdhocVariableKindDatasource datasource;
   public AdhocVariableSpec spec;
 }

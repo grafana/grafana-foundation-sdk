@@ -23,6 +23,7 @@ type DatasourceVariableSpec struct {
     SkipUrlSync bool `json:"skipUrlSync"`
     Description *string `json:"description,omitempty"`
     AllowCustomValue bool `json:"allowCustomValue"`
+    Origin *dashboardv2beta1.ControlSourceRef `json:"origin,omitempty"`
 }
 ```
 ## Methods

@@ -188,6 +188,18 @@ func DatasourceVariableConverter(input DatasourceVariableKind) string {
 		buffer.Reset()
 
 	}
+	if input.Spec.Origin != nil {
+
+		buffer.WriteString(`Origin(`)
+		arg0 := ControlSourceRefConverter(*input.Spec.Origin)
+		buffer.WriteString(arg0)
+
+		buffer.WriteString(")")
+
+		calls = append(calls, buffer.String())
+		buffer.Reset()
+
+	}
 
 	return strings.Join(calls, ".\t\n")
 }

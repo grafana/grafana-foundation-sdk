@@ -13,6 +13,8 @@ It comes with in id ( to resolve implementation from registry) and a configurati
 type MatcherConfig struct {
     // The matcher id. This is used to find the matcher implementation from registry.
     Id string `json:"id"`
+    // If set, limits this matcher to fields of that type. If not set, "series" mode is used.
+    Scope *dashboardv2beta1.MatcherScope `json:"scope,omitempty"`
     // The matcher options. This is specific to the matcher implementation.
     Options any `json:"options,omitempty"`
 }

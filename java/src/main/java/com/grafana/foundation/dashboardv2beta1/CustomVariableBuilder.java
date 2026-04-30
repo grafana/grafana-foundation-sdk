@@ -110,6 +110,23 @@ public class CustomVariableBuilder implements com.grafana.foundation.cog.Builder
         this.internal.spec.allowCustomValue = allowCustomValue;
         return this;
     }
+    
+    public CustomVariableBuilder valuesFormat(CustomVariableSpecValuesFormat valuesFormat) {
+		if (this.internal.spec == null) {
+			this.internal.spec = new com.grafana.foundation.dashboardv2beta1.CustomVariableSpec();
+		}
+        this.internal.spec.valuesFormat = valuesFormat;
+        return this;
+    }
+    
+    public CustomVariableBuilder origin(com.grafana.foundation.cog.Builder<ControlSourceRef> origin) {
+		if (this.internal.spec == null) {
+			this.internal.spec = new com.grafana.foundation.dashboardv2beta1.CustomVariableSpec();
+		}
+    ControlSourceRef originResource = origin.build();
+        this.internal.spec.origin = originResource;
+        return this;
+    }
     public CustomVariableKind build() {
         return this.internal;
     }

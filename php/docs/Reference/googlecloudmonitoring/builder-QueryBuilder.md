@@ -54,6 +54,14 @@ Time interval in milliseconds.
 intervalMs(float $intervalMs)
 ```
 
+### <span class="badge object-method"></span> labels
+
+@param array<string, string> $labels
+
+```php
+labels(array $labels)
+```
+
 ### <span class="badge object-method"></span> promQLQuery
 
 PromQL sub-query properties.
