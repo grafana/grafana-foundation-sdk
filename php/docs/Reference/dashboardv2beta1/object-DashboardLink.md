@@ -67,6 +67,11 @@ class DashboardLink implements \JsonSerializable
      */
     public ?string $placement;
 
+    /**
+     * The source that registered the link (if any)
+     */
+    public ?\Grafana\Foundation\Dashboardv2beta1\ControlSourceRef $origin;
+
 }
 ```
 ## Methods

@@ -93,6 +93,14 @@ export class QueryVariableBuilder implements cog.Builder<dashboardv2beta1.QueryV
         return this;
     }
 
+    regexApplyTo(regexApplyTo: dashboardv2beta1.VariableRegexApplyTo): this {
+        if (!this.internal.spec) {
+            this.internal.spec = dashboardv2beta1.defaultQueryVariableSpec();
+        }
+        this.internal.spec.regexApplyTo = regexApplyTo;
+        return this;
+    }
+
     sort(sort: dashboardv2beta1.VariableSort): this {
         if (!this.internal.spec) {
             this.internal.spec = dashboardv2beta1.defaultQueryVariableSpec();
@@ -170,6 +178,15 @@ export class QueryVariableBuilder implements cog.Builder<dashboardv2beta1.QueryV
             this.internal.spec = dashboardv2beta1.defaultQueryVariableSpec();
         }
         this.internal.spec.staticOptionsOrder = staticOptionsOrder;
+        return this;
+    }
+
+    origin(origin: cog.Builder<dashboardv2beta1.ControlSourceRef>): this {
+        if (!this.internal.spec) {
+            this.internal.spec = dashboardv2beta1.defaultQueryVariableSpec();
+        }
+        const originResource = origin.build();
+        this.internal.spec.origin = originResource;
         return this;
     }
 }

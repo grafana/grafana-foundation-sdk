@@ -49,6 +49,12 @@ func (builder *QueryBuilder) Version(version string) *QueryBuilder {
 	return builder
 }
 
+func (builder *QueryBuilder) Labels(labels map[string]string) *QueryBuilder {
+	builder.internal.Labels = labels
+
+	return builder
+}
+
 // New type for datasource reference
 // Not creating a new type until we figure out how to handle DS refs for group by, adhoc, and every place that uses DataSourceRef in TS.
 func (builder *QueryBuilder) Datasource(datasource cog.Builder[dashboardv2beta1.Dashboardv2beta1DataQueryKindDatasource]) *QueryBuilder {

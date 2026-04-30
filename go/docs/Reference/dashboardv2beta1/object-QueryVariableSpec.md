@@ -18,6 +18,7 @@ type QueryVariableSpec struct {
     Description *string `json:"description,omitempty"`
     Query dashboardv2beta1.DataQueryKind `json:"query"`
     Regex string `json:"regex"`
+    RegexApplyTo *dashboardv2beta1.VariableRegexApplyTo `json:"regexApplyTo,omitempty"`
     Sort dashboardv2beta1.VariableSort `json:"sort"`
     Definition *string `json:"definition,omitempty"`
     Options []dashboardv2beta1.VariableOption `json:"options"`
@@ -28,6 +29,7 @@ type QueryVariableSpec struct {
     AllowCustomValue bool `json:"allowCustomValue"`
     StaticOptions []dashboardv2beta1.VariableOption `json:"staticOptions,omitempty"`
     StaticOptionsOrder *dashboardv2beta1.QueryVariableSpecStaticOptionsOrder `json:"staticOptionsOrder,omitempty"`
+    Origin *dashboardv2beta1.ControlSourceRef `json:"origin,omitempty"`
 }
 ```
 ## Methods

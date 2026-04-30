@@ -60,6 +60,12 @@ If hide is set to true, Grafana will filter out the response(s) associated with 
 func (builder *QueryBuilder) Hide(hide bool) *QueryBuilder
 ```
 
+### <span class="badge object-method"></span> Labels
+
+```go
+func (builder *QueryBuilder) Labels(labels map[string]string) *QueryBuilder
+```
+
 ### <span class="badge object-method"></span> Location
 
 ```go

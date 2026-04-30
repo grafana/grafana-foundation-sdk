@@ -55,10 +55,13 @@ public class QueryDeserializer extends JsonDeserializer<Query> {
           query.model = mapper.treeToValue(root.get("model"), clazz);
       } else {
           UnknownDataquery unknownDataquery = new UnknownDataquery();
-          Iterator<Map.Entry<String, JsonNode>> fieldsIterator = root.get("model").fields();
-          while (fieldsIterator.hasNext()) {
-              Map.Entry<String, JsonNode> field = fieldsIterator.next();
-              unknownDataquery.genericFields.put(field.getKey(), mapper.treeToValue(field.getValue(), Object.class));
+          JsonNode targetNode = root.get("model");
+          if (targetNode != null && !targetNode.isNull()) {
+              Iterator<Map.Entry<String, JsonNode>> fieldsIterator = targetNode.fields();
+              while (fieldsIterator.hasNext()) {
+                  Map.Entry<String, JsonNode> field = fieldsIterator.next();
+                  unknownDataquery.genericFields.put(field.getKey(), mapper.treeToValue(field.getValue(), Object.class));
+              }
           }
           query.model = unknownDataquery;
       }

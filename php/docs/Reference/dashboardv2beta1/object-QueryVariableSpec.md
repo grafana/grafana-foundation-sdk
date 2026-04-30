@@ -28,6 +28,8 @@ class QueryVariableSpec implements \JsonSerializable
 
     public string $regex;
 
+    public ?\Grafana\Foundation\Dashboardv2beta1\VariableRegexApplyTo $regexApplyTo;
+
     public \Grafana\Foundation\Dashboardv2beta1\VariableSort $sort;
 
     public ?string $definition;
@@ -53,6 +55,8 @@ class QueryVariableSpec implements \JsonSerializable
     public ?array $staticOptions;
 
     public ?\Grafana\Foundation\Dashboardv2beta1\QueryVariableSpecStaticOptionsOrder $staticOptionsOrder;
+
+    public ?\Grafana\Foundation\Dashboardv2beta1\ControlSourceRef $origin;
 
 }
 ```

@@ -150,10 +150,12 @@ class AnnotationQuerySpec:
     filter_val: typing.Optional['AnnotationPanelFilter']
     # Placement can be used to display the annotation query somewhere else on the dashboard other than the default location.
     placement: str
+    # Mappings define how to convert data frame fields to annotation event fields.
+    mappings: typing.Optional[dict[str, 'AnnotationEventFieldMapping']]
     # Catch-all field for datasource-specific properties. Should not be available in as code tooling.
     legacy_options: typing.Optional[dict[str, object]]
 
-    def __init__(self, query: typing.Optional['DataQueryKind'] = None, enable: bool = False, hide: bool = False, icon_color: str = "", name: str = "", built_in: typing.Optional[bool] = False, filter_val: typing.Optional['AnnotationPanelFilter'] = None, legacy_options: typing.Optional[dict[str, object]] = None) -> None:
+    def __init__(self, query: typing.Optional['DataQueryKind'] = None, enable: bool = False, hide: bool = False, icon_color: str = "", name: str = "", built_in: typing.Optional[bool] = False, filter_val: typing.Optional['AnnotationPanelFilter'] = None, mappings: typing.Optional[dict[str, 'AnnotationEventFieldMapping']] = None, legacy_options: typing.Optional[dict[str, object]] = None) -> None:
         self.query = query if query is not None else DataQueryKind()
         self.enable = enable
         self.hide = hide
@@ -162,6 +164,7 @@ class AnnotationQuerySpec:
         self.built_in = built_in
         self.filter_val = filter_val
         self.placement = AnnotationQueryPlacement
+        self.mappings = mappings
         self.legacy_options = legacy_options
 
     def to_json(self) -> dict[str, object]:
@@ -178,6 +181,8 @@ class AnnotationQuerySpec:
             payload["filter"] = self.filter_val
         if self.placement is not None:
             payload["placement"] = self.placement
+        if self.mappings is not None:
+            payload["mappings"] = self.mappings
         if self.legacy_options is not None:
             payload["legacyOptions"] = self.legacy_options
         return payload
@@ -200,6 +205,8 @@ class AnnotationQuerySpec:
             args["built_in"] = data["builtIn"]
         if "filter" in data:
             args["filter_val"] = AnnotationPanelFilter.from_json(data["filter"])
+        if "mappings" in data:
+            args["mappings"] = {key: AnnotationEventFieldMapping.from_json(data["mappings"][key]) for key in data["mappings"].keys()}
         if "legacyOptions" in data:
             args["legacy_options"] = data["legacyOptions"]        
 
@@ -210,15 +217,17 @@ class DataQueryKind:
     kind: typing.Literal["DataQuery"]
     group: str
     version: str
+    labels: typing.Optional[dict[str, str]]
     # New type for datasource reference
     # Not creating a new type until we figure out how to handle DS refs for group by, adhoc, and every place that uses DataSourceRef in TS.
     datasource: typing.Optional['Dashboardv2beta1DataQueryKindDatasource']
     spec: typing.Optional[object]
 
-    def __init__(self, group: str = "", version: str = "v0", datasource: typing.Optional['Dashboardv2beta1DataQueryKindDatasource'] = None, spec: typing.Optional[object] = None) -> None:
+    def __init__(self, group: str = "", version: str = "v0", labels: typing.Optional[dict[str, str]] = None, datasource: typing.Optional['Dashboardv2beta1DataQueryKindDatasource'] = None, spec: typing.Optional[object] = None) -> None:
         self.kind = "DataQuery"
         self.group = group
         self.version = version
+        self.labels = labels
         self.datasource = datasource
         self.spec = spec
 
@@ -229,6 +238,8 @@ class DataQueryKind:
             "version": self.version,
             "spec": self.spec,
         }
+        if self.labels is not None:
+            payload["labels"] = self.labels
         if self.datasource is not None:
             payload["datasource"] = self.datasource
         return payload
@@ -244,6 +255,9 @@ class DataQueryKind:
     
         if "version" in data:
             args["version"] = data["version"]
+    
+        if "labels" in data:
+            args["labels"] = data["labels"]
     
         if "datasource" in data:
             args["datasource"] = data["datasource"]
@@ -286,6 +300,48 @@ class AnnotationPanelFilter:
 # Annotation Query placement. Defines where the annotation query should be displayed.
 # - "inControlsMenu" renders the annotation query in the dashboard controls dropdown menu
 AnnotationQueryPlacement: typing.Literal["inControlsMenu"] = "inControlsMenu"
+
+
+class AnnotationEventFieldMapping:
+    """
+    Annotation event field mapping. Defines how to map a data frame field to an annotation event field.
+    """
+
+    # Source type for the field value
+    source: typing.Optional[str]
+    # Constant value to use when source is "text"
+    value: typing.Optional[str]
+    # Regular expression to apply to the field value
+    regex: typing.Optional[str]
+
+    def __init__(self, source: typing.Optional[str] = "field", value: typing.Optional[str] = None, regex: typing.Optional[str] = None) -> None:
+        self.source = source
+        self.value = value
+        self.regex = regex
+
+    def to_json(self) -> dict[str, object]:
+        payload: dict[str, object] = {
+        }
+        if self.source is not None:
+            payload["source"] = self.source
+        if self.value is not None:
+            payload["value"] = self.value
+        if self.regex is not None:
+            payload["regex"] = self.regex
+        return payload
+
+    @classmethod
+    def from_json(cls, data: dict[str, typing.Any]) -> typing.Self:
+        args: dict[str, typing.Any] = {}
+        
+        if "source" in data:
+            args["source"] = data["source"]
+        if "value" in data:
+            args["value"] = data["value"]
+        if "regex" in data:
+            args["regex"] = data["regex"]        
+
+        return cls(**args)
 
 
 class DashboardCursorSync(enum.StrEnum):
@@ -623,17 +679,22 @@ class MatcherConfig:
 
     # The matcher id. This is used to find the matcher implementation from registry.
     id_val: str
+    # If set, limits this matcher to fields of that type. If not set, "series" mode is used.
+    scope: typing.Optional['MatcherScope']
     # The matcher options. This is specific to the matcher implementation.
     options: typing.Optional[object]
 
-    def __init__(self, id_val: str = "", options: typing.Optional[object] = None) -> None:
+    def __init__(self, id_val: str = "", scope: typing.Optional['MatcherScope'] = None, options: typing.Optional[object] = None) -> None:
         self.id_val = id_val
+        self.scope = scope
         self.options = options
 
     def to_json(self) -> dict[str, object]:
         payload: dict[str, object] = {
             "id": self.id_val,
         }
+        if self.scope is not None:
+            payload["scope"] = self.scope
         if self.options is not None:
             payload["options"] = self.options
         return payload
@@ -644,10 +705,19 @@ class MatcherConfig:
         
         if "id" in data:
             args["id_val"] = data["id"]
+        if "scope" in data:
+            args["scope"] = data["scope"]
         if "options" in data:
             args["options"] = data["options"]        
 
         return cls(**args)
+
+
+class MatcherScope(enum.StrEnum):
+    SERIES = "series"
+    NESTED = "nested"
+    ANNOTATION = "annotation"
+    EXEMPLAR = "exemplar"
 
 
 class DataTopic(enum.StrEnum):
@@ -864,7 +934,7 @@ class FieldConfig:
     # True if data source field supports ad-hoc filters
     filterable: typing.Optional[bool]
     # Unit a field should use. The unit you select is applied to all fields except time.
-    # You can use the units ID availables in Grafana or a custom unit.
+    # You can use the units ID available in Grafana or a custom unit.
     # Available units in Grafana: https://github.com/grafana/grafana/blob/main/packages/grafana-data/src/valueFormats/categories.ts
     # As custom unit, you can use the following formats:
     # `suffix:<suffix>` for custom unit that should go after value.
@@ -898,8 +968,13 @@ class FieldConfig:
     # custom is specified by the FieldConfig field
     # in panel plugin schemas.
     custom: typing.Optional[object]
+    # Calculate min max per field
+    field_min_max: typing.Optional[bool]
+    # How null values should be handled when calculating field stats
+    # "null" - Include null values, "connected" - Ignore nulls, "null as zero" - Treat nulls as zero
+    null_value_mode: typing.Optional['NullValueMode']
 
-    def __init__(self, display_name: typing.Optional[str] = None, display_name_from_ds: typing.Optional[str] = None, description: typing.Optional[str] = None, path: typing.Optional[str] = None, writeable: typing.Optional[bool] = None, filterable: typing.Optional[bool] = None, unit: typing.Optional[str] = None, decimals: typing.Optional[float] = None, min_val: typing.Optional[float] = None, max_val: typing.Optional[float] = None, mappings: typing.Optional[list['ValueMapping']] = None, thresholds: typing.Optional['ThresholdsConfig'] = None, color: typing.Optional['FieldColor'] = None, links: typing.Optional[list[object]] = None, actions: typing.Optional[list['Action']] = None, no_value: typing.Optional[str] = None, custom: typing.Optional[object] = None) -> None:
+    def __init__(self, display_name: typing.Optional[str] = None, display_name_from_ds: typing.Optional[str] = None, description: typing.Optional[str] = None, path: typing.Optional[str] = None, writeable: typing.Optional[bool] = None, filterable: typing.Optional[bool] = None, unit: typing.Optional[str] = None, decimals: typing.Optional[float] = None, min_val: typing.Optional[float] = None, max_val: typing.Optional[float] = None, mappings: typing.Optional[list['ValueMapping']] = None, thresholds: typing.Optional['ThresholdsConfig'] = None, color: typing.Optional['FieldColor'] = None, links: typing.Optional[list[object]] = None, actions: typing.Optional[list['Action']] = None, no_value: typing.Optional[str] = None, custom: typing.Optional[object] = None, field_min_max: typing.Optional[bool] = None, null_value_mode: typing.Optional['NullValueMode'] = None) -> None:
         self.display_name = display_name
         self.display_name_from_ds = display_name_from_ds
         self.description = description
@@ -917,6 +992,8 @@ class FieldConfig:
         self.actions = actions
         self.no_value = no_value
         self.custom = custom
+        self.field_min_max = field_min_max
+        self.null_value_mode = null_value_mode
 
     def to_json(self) -> dict[str, object]:
         payload: dict[str, object] = {
@@ -955,6 +1032,10 @@ class FieldConfig:
             payload["noValue"] = self.no_value
         if self.custom is not None:
             payload["custom"] = self.custom
+        if self.field_min_max is not None:
+            payload["fieldMinMax"] = self.field_min_max
+        if self.null_value_mode is not None:
+            payload["nullValueMode"] = self.null_value_mode
         return payload
 
     @classmethod
@@ -995,7 +1076,11 @@ class FieldConfig:
         if "noValue" in data:
             args["no_value"] = data["noValue"]
         if "custom" in data:
-            args["custom"] = data["custom"]        
+            args["custom"] = data["custom"]
+        if "fieldMinMax" in data:
+            args["field_min_max"] = data["fieldMinMax"]
+        if "nullValueMode" in data:
+            args["null_value_mode"] = data["nullValueMode"]        
 
         return cls(**args)
 
@@ -1237,10 +1322,11 @@ class ThresholdsMode(enum.StrEnum):
 
 
 class Threshold:
-    value: float
+    # Value null means -Infinity
+    value: typing.Optional[float]
     color: str
 
-    def __init__(self, value: float = 0, color: str = "") -> None:
+    def __init__(self, value: typing.Optional[float] = None, color: str = "") -> None:
         self.value = value
         self.color = color
 
@@ -1312,7 +1398,12 @@ class FieldColorModeId(enum.StrEnum):
     `thresholds`: From thresholds. Informs Grafana to take the color from the matching threshold
     `palette-classic`: Classic palette. Grafana will assign color by looking up a color in a palette by series index. Useful for Graphs and pie charts and other categorical data visualizations
     `palette-classic-by-name`: Classic palette (by name). Grafana will assign color by looking up a color in a palette by series name. Useful for Graphs and pie charts and other categorical data visualizations
-    `continuous-GrYlRd`: ontinuous Green-Yellow-Red palette mode
+    `continuous-viridis`: Continuous Viridis palette mode
+    `continuous-magma`: Continuous Magma palette mode
+    `continuous-plasma`: Continuous Plasma palette mode
+    `continuous-inferno`: Continuous Inferno palette mode
+    `continuous-cividis`: Continuous Cividis palette mode
+    `continuous-GrYlRd`: Continuous Green-Yellow-Red palette mode
     `continuous-RdYlGr`: Continuous Red-Yellow-Green palette mode
     `continuous-BlYlRd`: Continuous Blue-Yellow-Red palette mode
     `continuous-YlRd`: Continuous Yellow-Red palette mode
@@ -1329,6 +1420,11 @@ class FieldColorModeId(enum.StrEnum):
     THRESHOLDS = "thresholds"
     PALETTE_CLASSIC = "palette-classic"
     PALETTE_CLASSIC_BY_NAME = "palette-classic-by-name"
+    CONTINUOUS_VIRIDIS = "continuous-viridis"
+    CONTINUOUS_MAGMA = "continuous-magma"
+    CONTINUOUS_PLASMA = "continuous-plasma"
+    CONTINUOUS_INFERNO = "continuous-inferno"
+    CONTINUOUS_CIVIDIS = "continuous-cividis"
     CONTINUOUS_GR_YL_RD = "continuous-GrYlRd"
     CONTINUOUS_RD_YL_GR = "continuous-RdYlGr"
     CONTINUOUS_BL_YL_RD = "continuous-BlYlRd"
@@ -1562,6 +1658,16 @@ class ActionVariable:
 
 # Action variable type
 ActionVariableType: typing.Literal["string"] = "string"
+
+
+class NullValueMode(enum.StrEnum):
+    """
+    How null values should be handled
+    """
+
+    NULL = "null"
+    CONNECTED = "connected"
+    NULL_AS_ZERO = "null as zero"
 
 
 class DynamicConfigValue:
@@ -1957,8 +2063,9 @@ class RowsLayoutRowSpec:
     conditional_rendering: typing.Optional['ConditionalRenderingGroupKind']
     repeat: typing.Optional['RowRepeatOptions']
     layout: typing.Union['GridLayoutKind', 'AutoGridLayoutKind', 'TabsLayoutKind', 'RowsLayoutKind']
+    variables: typing.Optional[list['VariableKind']]
 
-    def __init__(self, title: typing.Optional[str] = None, collapse: typing.Optional[bool] = None, hide_header: typing.Optional[bool] = None, fill_screen: typing.Optional[bool] = None, conditional_rendering: typing.Optional['ConditionalRenderingGroupKind'] = None, repeat: typing.Optional['RowRepeatOptions'] = None, layout: typing.Optional[typing.Union['GridLayoutKind', 'AutoGridLayoutKind', 'TabsLayoutKind', 'RowsLayoutKind']] = None) -> None:
+    def __init__(self, title: typing.Optional[str] = None, collapse: typing.Optional[bool] = None, hide_header: typing.Optional[bool] = None, fill_screen: typing.Optional[bool] = None, conditional_rendering: typing.Optional['ConditionalRenderingGroupKind'] = None, repeat: typing.Optional['RowRepeatOptions'] = None, layout: typing.Optional[typing.Union['GridLayoutKind', 'AutoGridLayoutKind', 'TabsLayoutKind', 'RowsLayoutKind']] = None, variables: typing.Optional[list['VariableKind']] = None) -> None:
         self.title = title
         self.collapse = collapse
         self.hide_header = hide_header
@@ -1966,6 +2073,7 @@ class RowsLayoutRowSpec:
         self.conditional_rendering = conditional_rendering
         self.repeat = repeat
         self.layout = layout if layout is not None else GridLayoutKind()
+        self.variables = variables
 
     def to_json(self) -> dict[str, object]:
         payload: dict[str, object] = {
@@ -1983,6 +2091,8 @@ class RowsLayoutRowSpec:
             payload["conditionalRendering"] = self.conditional_rendering
         if self.repeat is not None:
             payload["repeat"] = self.repeat
+        if self.variables is not None:
+            payload["variables"] = self.variables
         return payload
 
     @classmethod
@@ -2003,7 +2113,10 @@ class RowsLayoutRowSpec:
             args["repeat"] = RowRepeatOptions.from_json(data["repeat"])
         if "layout" in data:
             decoding_map_layout_union: dict[str, typing.Union[typing.Type[AutoGridLayoutKind], typing.Type[GridLayoutKind], typing.Type[RowsLayoutKind], typing.Type[TabsLayoutKind]]] = {"AutoGridLayout": AutoGridLayoutKind, "GridLayout": GridLayoutKind, "RowsLayout": RowsLayoutKind, "TabsLayout": TabsLayoutKind}
-            args["layout"] = decoding_map_layout_union[data["layout"]["kind"]].from_json(data["layout"])        
+            args["layout"] = decoding_map_layout_union[data["layout"]["kind"]].from_json(data["layout"])
+        if "variables" in data:
+            decoding_map_variables_array_ref_union: dict[str, typing.Union[typing.Type[AdhocVariableKind], typing.Type[ConstantVariableKind], typing.Type[CustomVariableKind], typing.Type[DatasourceVariableKind], typing.Type[GroupByVariableKind], typing.Type[IntervalVariableKind], typing.Type[QueryVariableKind], typing.Type[SwitchVariableKind], typing.Type[TextVariableKind]]] = {"AdhocVariable": AdhocVariableKind, "ConstantVariable": ConstantVariableKind, "CustomVariable": CustomVariableKind, "DatasourceVariable": DatasourceVariableKind, "GroupByVariable": GroupByVariableKind, "IntervalVariable": IntervalVariableKind, "QueryVariable": QueryVariableKind, "SwitchVariable": SwitchVariableKind, "TextVariable": TextVariableKind}
+            args["variables"] = [decoding_map_variables_array_ref_union[item["kind"]].from_json(item) for item in data["variables"]]        
 
         return cls(**args)
 
@@ -2484,12 +2597,14 @@ class TabsLayoutTabSpec:
     layout: typing.Union['GridLayoutKind', 'RowsLayoutKind', 'AutoGridLayoutKind', 'TabsLayoutKind']
     conditional_rendering: typing.Optional['ConditionalRenderingGroupKind']
     repeat: typing.Optional['TabRepeatOptions']
+    variables: typing.Optional[list['VariableKind']]
 
-    def __init__(self, title: typing.Optional[str] = None, layout: typing.Optional[typing.Union['GridLayoutKind', 'RowsLayoutKind', 'AutoGridLayoutKind', 'TabsLayoutKind']] = None, conditional_rendering: typing.Optional['ConditionalRenderingGroupKind'] = None, repeat: typing.Optional['TabRepeatOptions'] = None) -> None:
+    def __init__(self, title: typing.Optional[str] = None, layout: typing.Optional[typing.Union['GridLayoutKind', 'RowsLayoutKind', 'AutoGridLayoutKind', 'TabsLayoutKind']] = None, conditional_rendering: typing.Optional['ConditionalRenderingGroupKind'] = None, repeat: typing.Optional['TabRepeatOptions'] = None, variables: typing.Optional[list['VariableKind']] = None) -> None:
         self.title = title
         self.layout = layout if layout is not None else GridLayoutKind()
         self.conditional_rendering = conditional_rendering
         self.repeat = repeat
+        self.variables = variables
 
     def to_json(self) -> dict[str, object]:
         payload: dict[str, object] = {
@@ -2501,6 +2616,8 @@ class TabsLayoutTabSpec:
             payload["conditionalRendering"] = self.conditional_rendering
         if self.repeat is not None:
             payload["repeat"] = self.repeat
+        if self.variables is not None:
+            payload["variables"] = self.variables
         return payload
 
     @classmethod
@@ -2515,7 +2632,10 @@ class TabsLayoutTabSpec:
         if "conditionalRendering" in data:
             args["conditional_rendering"] = ConditionalRenderingGroupKind.from_json(data["conditionalRendering"])
         if "repeat" in data:
-            args["repeat"] = TabRepeatOptions.from_json(data["repeat"])        
+            args["repeat"] = TabRepeatOptions.from_json(data["repeat"])
+        if "variables" in data:
+            decoding_map_variables_array_ref_union: dict[str, typing.Union[typing.Type[AdhocVariableKind], typing.Type[ConstantVariableKind], typing.Type[CustomVariableKind], typing.Type[DatasourceVariableKind], typing.Type[GroupByVariableKind], typing.Type[IntervalVariableKind], typing.Type[QueryVariableKind], typing.Type[SwitchVariableKind], typing.Type[TextVariableKind]]] = {"AdhocVariable": AdhocVariableKind, "ConstantVariable": ConstantVariableKind, "CustomVariable": CustomVariableKind, "DatasourceVariable": DatasourceVariableKind, "GroupByVariable": GroupByVariableKind, "IntervalVariable": IntervalVariableKind, "QueryVariable": QueryVariableKind, "SwitchVariable": SwitchVariableKind, "TextVariable": TextVariableKind}
+            args["variables"] = [decoding_map_variables_array_ref_union[item["kind"]].from_json(item) for item in data["variables"]]        
 
         return cls(**args)
 
@@ -2541,233 +2661,6 @@ class TabRepeatOptions:
         
         if "value" in data:
             args["value"] = data["value"]        
-
-        return cls(**args)
-
-
-class DashboardLink:
-    """
-    Links with references to other dashboards or external resources
-    """
-
-    # Title to display with the link
-    title: str
-    # Link type. Accepted values are dashboards (to refer to another dashboard) and link (to refer to an external resource)
-    # FIXME: The type is generated as `type: DashboardLinkType | dashboardLinkType.Link;` but it should be `type: DashboardLinkType`
-    type_val: 'DashboardLinkType'
-    # Icon name to be displayed with the link
-    icon: str
-    # Tooltip to display when the user hovers their mouse over it
-    tooltip: str
-    # Link URL. Only required/valid if the type is link
-    url: typing.Optional[str]
-    # List of tags to limit the linked dashboards. If empty, all dashboards will be displayed. Only valid if the type is dashboards
-    tags: list[str]
-    # If true, all dashboards links will be displayed in a dropdown. If false, all dashboards links will be displayed side by side. Only valid if the type is dashboards
-    as_dropdown: bool
-    # If true, the link will be opened in a new tab
-    target_blank: bool
-    # If true, includes current template variables values in the link as query params
-    include_vars: bool
-    # If true, includes current time range in the link as query params
-    keep_time: bool
-    # Placement can be used to display the link somewhere else on the dashboard other than above the visualisations.
-    placement: str
-
-    def __init__(self, title: str = "", type_val: typing.Optional['DashboardLinkType'] = None, icon: str = "", tooltip: str = "", url: typing.Optional[str] = None, tags: typing.Optional[list[str]] = None, as_dropdown: bool = False, target_blank: bool = False, include_vars: bool = False, keep_time: bool = False) -> None:
-        self.title = title
-        self.type_val = type_val if type_val is not None else DashboardLinkType.LINK
-        self.icon = icon
-        self.tooltip = tooltip
-        self.url = url
-        self.tags = tags if tags is not None else []
-        self.as_dropdown = as_dropdown
-        self.target_blank = target_blank
-        self.include_vars = include_vars
-        self.keep_time = keep_time
-        self.placement = DashboardLinkPlacement
-
-    def to_json(self) -> dict[str, object]:
-        payload: dict[str, object] = {
-            "title": self.title,
-            "type": self.type_val,
-            "icon": self.icon,
-            "tooltip": self.tooltip,
-            "tags": self.tags,
-            "asDropdown": self.as_dropdown,
-            "targetBlank": self.target_blank,
-            "includeVars": self.include_vars,
-            "keepTime": self.keep_time,
-        }
-        if self.url is not None:
-            payload["url"] = self.url
-        if self.placement is not None:
-            payload["placement"] = self.placement
-        return payload
-
-    @classmethod
-    def from_json(cls, data: dict[str, typing.Any]) -> typing.Self:
-        args: dict[str, typing.Any] = {}
-        
-        if "title" in data:
-            args["title"] = data["title"]
-        if "type" in data:
-            args["type_val"] = data["type"]
-        if "icon" in data:
-            args["icon"] = data["icon"]
-        if "tooltip" in data:
-            args["tooltip"] = data["tooltip"]
-        if "url" in data:
-            args["url"] = data["url"]
-        if "tags" in data:
-            args["tags"] = data["tags"]
-        if "asDropdown" in data:
-            args["as_dropdown"] = data["asDropdown"]
-        if "targetBlank" in data:
-            args["target_blank"] = data["targetBlank"]
-        if "includeVars" in data:
-            args["include_vars"] = data["includeVars"]
-        if "keepTime" in data:
-            args["keep_time"] = data["keepTime"]        
-
-        return cls(**args)
-
-
-class DashboardLinkType(enum.StrEnum):
-    """
-    Dashboard Link type. Accepted values are dashboards (to refer to another dashboard) and link (to refer to an external resource)
-    """
-
-    LINK = "link"
-    DASHBOARDS = "dashboards"
-
-
-# Dashboard Link placement. Defines where the link should be displayed.
-# - "inControlsMenu" renders the link in bottom part of the dashboard controls dropdown menu
-DashboardLinkPlacement: typing.Literal["inControlsMenu"] = "inControlsMenu"
-
-
-class TimeSettingsSpec:
-    """
-    Time configuration
-    It defines the default time config for the time picker, the refresh picker for the specific dashboard.
-    """
-
-    # Timezone of dashboard. Accepted values are IANA TZDB zone ID or "browser" or "utc".
-    timezone: typing.Optional[str]
-    # Start time range for dashboard.
-    # Accepted values are relative time strings like "now-6h" or absolute time strings like "2020-07-10T08:00:00.000Z".
-    from_val: str
-    # End time range for dashboard.
-    # Accepted values are relative time strings like "now-6h" or absolute time strings like "2020-07-10T08:00:00.000Z".
-    to: str
-    # Refresh rate of dashboard. Represented via interval string, e.g. "5s", "1m", "1h", "1d".
-    # v1: refresh
-    auto_refresh: str
-    # Interval options available in the refresh picker dropdown.
-    # v1: timepicker.refresh_intervals
-    auto_refresh_intervals: list[str]
-    # Selectable options available in the time picker dropdown. Has no effect on provisioned dashboard.
-    # v1: timepicker.quick_ranges , not exposed in the UI
-    quick_ranges: typing.Optional[list['TimeRangeOption']]
-    # Whether timepicker is visible or not.
-    # v1: timepicker.hidden
-    hide_timepicker: bool
-    # Day when the week starts. Expressed by the name of the day in lowercase, e.g. "monday".
-    week_start: typing.Optional[typing.Literal["saturday", "monday", "sunday"]]
-    # The month that the fiscal year starts on. 0 = January, 11 = December
-    fiscal_year_start_month: int
-    # Override the now time by entering a time delay. Use this option to accommodate known delays in data aggregation to avoid null values.
-    # v1: timepicker.nowDelay
-    now_delay: typing.Optional[str]
-
-    def __init__(self, timezone: typing.Optional[str] = "browser", from_val: str = "now-6h", to: str = "now", auto_refresh: str = "", auto_refresh_intervals: typing.Optional[list[str]] = None, quick_ranges: typing.Optional[list['TimeRangeOption']] = None, hide_timepicker: bool = False, week_start: typing.Optional[typing.Literal["saturday", "monday", "sunday"]] = None, fiscal_year_start_month: int = 0, now_delay: typing.Optional[str] = None) -> None:
-        self.timezone = timezone
-        self.from_val = from_val
-        self.to = to
-        self.auto_refresh = auto_refresh
-        self.auto_refresh_intervals = auto_refresh_intervals if auto_refresh_intervals is not None else ["5s", "10s", "30s", "1m", "5m", "15m", "30m", "1h", "2h", "1d"]
-        self.quick_ranges = quick_ranges
-        self.hide_timepicker = hide_timepicker
-        self.week_start = week_start
-        self.fiscal_year_start_month = fiscal_year_start_month
-        self.now_delay = now_delay
-
-    def to_json(self) -> dict[str, object]:
-        payload: dict[str, object] = {
-            "from": self.from_val,
-            "to": self.to,
-            "autoRefresh": self.auto_refresh,
-            "autoRefreshIntervals": self.auto_refresh_intervals,
-            "hideTimepicker": self.hide_timepicker,
-            "fiscalYearStartMonth": self.fiscal_year_start_month,
-        }
-        if self.timezone is not None:
-            payload["timezone"] = self.timezone
-        if self.quick_ranges is not None:
-            payload["quickRanges"] = self.quick_ranges
-        if self.week_start is not None:
-            payload["weekStart"] = self.week_start
-        if self.now_delay is not None:
-            payload["nowDelay"] = self.now_delay
-        return payload
-
-    @classmethod
-    def from_json(cls, data: dict[str, typing.Any]) -> typing.Self:
-        args: dict[str, typing.Any] = {}
-        
-        if "timezone" in data:
-            args["timezone"] = data["timezone"]
-        if "from" in data:
-            args["from_val"] = data["from"]
-        if "to" in data:
-            args["to"] = data["to"]
-        if "autoRefresh" in data:
-            args["auto_refresh"] = data["autoRefresh"]
-        if "autoRefreshIntervals" in data:
-            args["auto_refresh_intervals"] = data["autoRefreshIntervals"]
-        if "quickRanges" in data:
-            args["quick_ranges"] = [TimeRangeOption.from_json(item) for item in data["quickRanges"]]
-        if "hideTimepicker" in data:
-            args["hide_timepicker"] = data["hideTimepicker"]
-        if "weekStart" in data:
-            args["week_start"] = data["weekStart"]
-        if "fiscalYearStartMonth" in data:
-            args["fiscal_year_start_month"] = data["fiscalYearStartMonth"]
-        if "nowDelay" in data:
-            args["now_delay"] = data["nowDelay"]        
-
-        return cls(**args)
-
-
-class TimeRangeOption:
-    display: str
-    from_val: str
-    to: str
-
-    def __init__(self, display: str = "Last 6 hours", from_val: str = "now-6h", to: str = "now") -> None:
-        self.display = display
-        self.from_val = from_val
-        self.to = to
-
-    def to_json(self) -> dict[str, object]:
-        payload: dict[str, object] = {
-            "display": self.display,
-            "from": self.from_val,
-            "to": self.to,
-        }
-        return payload
-
-    @classmethod
-    def from_json(cls, data: dict[str, typing.Any]) -> typing.Self:
-        args: dict[str, typing.Any] = {}
-        
-        if "display" in data:
-            args["display"] = data["display"]
-        if "from" in data:
-            args["from_val"] = data["from"]
-        if "to" in data:
-            args["to"] = data["to"]        
 
         return cls(**args)
 
@@ -2818,6 +2711,7 @@ class QueryVariableSpec:
     description: typing.Optional[str]
     query: 'DataQueryKind'
     regex: str
+    regex_apply_to: typing.Optional['VariableRegexApplyTo']
     sort: 'VariableSort'
     definition: typing.Optional[str]
     options: list['VariableOption']
@@ -2828,8 +2722,9 @@ class QueryVariableSpec:
     allow_custom_value: bool
     static_options: typing.Optional[list['VariableOption']]
     static_options_order: typing.Optional[typing.Literal["before", "after", "sorted"]]
+    origin: typing.Optional['ControlSourceRef']
 
-    def __init__(self, name: str = "", current: typing.Optional['VariableOption'] = None, label: typing.Optional[str] = None, hide: typing.Optional['VariableHide'] = None, refresh: typing.Optional['VariableRefresh'] = None, skip_url_sync: bool = False, description: typing.Optional[str] = None, query: typing.Optional['DataQueryKind'] = None, regex: str = "", sort: typing.Optional['VariableSort'] = None, definition: typing.Optional[str] = None, options: typing.Optional[list['VariableOption']] = None, multi: bool = False, include_all: bool = False, all_value: typing.Optional[str] = None, placeholder: typing.Optional[str] = None, allow_custom_value: bool = True, static_options: typing.Optional[list['VariableOption']] = None, static_options_order: typing.Optional[typing.Literal["before", "after", "sorted"]] = None) -> None:
+    def __init__(self, name: str = "", current: typing.Optional['VariableOption'] = None, label: typing.Optional[str] = None, hide: typing.Optional['VariableHide'] = None, refresh: typing.Optional['VariableRefresh'] = None, skip_url_sync: bool = False, description: typing.Optional[str] = None, query: typing.Optional['DataQueryKind'] = None, regex: str = "", regex_apply_to: typing.Optional['VariableRegexApplyTo'] = None, sort: typing.Optional['VariableSort'] = None, definition: typing.Optional[str] = None, options: typing.Optional[list['VariableOption']] = None, multi: bool = False, include_all: bool = False, all_value: typing.Optional[str] = None, placeholder: typing.Optional[str] = None, allow_custom_value: bool = True, static_options: typing.Optional[list['VariableOption']] = None, static_options_order: typing.Optional[typing.Literal["before", "after", "sorted"]] = None, origin: typing.Optional['ControlSourceRef'] = None) -> None:
         self.name = name
         self.current = current if current is not None else VariableOption(text="", value="")
         self.label = label
@@ -2839,6 +2734,7 @@ class QueryVariableSpec:
         self.description = description
         self.query = query if query is not None else DataQueryKind()
         self.regex = regex
+        self.regex_apply_to = regex_apply_to if regex_apply_to is not None else VariableRegexApplyTo.VALUE
         self.sort = sort if sort is not None else VariableSort.DISABLED
         self.definition = definition
         self.options = options if options is not None else []
@@ -2849,6 +2745,7 @@ class QueryVariableSpec:
         self.allow_custom_value = allow_custom_value
         self.static_options = static_options
         self.static_options_order = static_options_order
+        self.origin = origin
 
     def to_json(self) -> dict[str, object]:
         payload: dict[str, object] = {
@@ -2869,6 +2766,8 @@ class QueryVariableSpec:
             payload["label"] = self.label
         if self.description is not None:
             payload["description"] = self.description
+        if self.regex_apply_to is not None:
+            payload["regexApplyTo"] = self.regex_apply_to
         if self.definition is not None:
             payload["definition"] = self.definition
         if self.all_value is not None:
@@ -2879,6 +2778,8 @@ class QueryVariableSpec:
             payload["staticOptions"] = self.static_options
         if self.static_options_order is not None:
             payload["staticOptionsOrder"] = self.static_options_order
+        if self.origin is not None:
+            payload["origin"] = self.origin
         return payload
 
     @classmethod
@@ -2903,6 +2804,8 @@ class QueryVariableSpec:
             args["query"] = DataQueryKind.from_json(data["query"])
         if "regex" in data:
             args["regex"] = data["regex"]
+        if "regexApplyTo" in data:
+            args["regex_apply_to"] = data["regexApplyTo"]
         if "sort" in data:
             args["sort"] = data["sort"]
         if "definition" in data:
@@ -2922,7 +2825,9 @@ class QueryVariableSpec:
         if "staticOptions" in data:
             args["static_options"] = [VariableOption.from_json(item) for item in data["staticOptions"]]
         if "staticOptionsOrder" in data:
-            args["static_options_order"] = data["staticOptionsOrder"]        
+            args["static_options_order"] = data["staticOptionsOrder"]
+        if "origin" in data:
+            args["origin"] = ControlSourceRef.from_json(data["origin"])        
 
         return cls(**args)
 
@@ -2938,11 +2843,14 @@ class VariableOption:
     text: typing.Union[str, list[str]]
     # Value of the option
     value: typing.Union[str, list[str]]
+    # Additional properties for multi-props variables
+    properties: typing.Optional[dict[str, str]]
 
-    def __init__(self, selected: typing.Optional[bool] = None, text: typing.Optional[typing.Union[str, list[str]]] = None, value: typing.Optional[typing.Union[str, list[str]]] = None) -> None:
+    def __init__(self, selected: typing.Optional[bool] = None, text: typing.Optional[typing.Union[str, list[str]]] = None, value: typing.Optional[typing.Union[str, list[str]]] = None, properties: typing.Optional[dict[str, str]] = None) -> None:
         self.selected = selected
         self.text = text if text is not None else ""
         self.value = value if value is not None else ""
+        self.properties = properties
 
     def to_json(self) -> dict[str, object]:
         payload: dict[str, object] = {
@@ -2951,6 +2859,8 @@ class VariableOption:
         }
         if self.selected is not None:
             payload["selected"] = self.selected
+        if self.properties is not None:
+            payload["properties"] = self.properties
         return payload
 
     @classmethod
@@ -2962,7 +2872,9 @@ class VariableOption:
         if "text" in data:
             args["text"] = data["text"]
         if "value" in data:
-            args["value"] = data["value"]        
+            args["value"] = data["value"]
+        if "properties" in data:
+            args["properties"] = data["properties"]        
 
         return cls(**args)
 
@@ -2992,6 +2904,16 @@ class VariableRefresh(enum.StrEnum):
     ON_TIME_RANGE_CHANGED = "onTimeRangeChanged"
 
 
+class VariableRegexApplyTo(enum.StrEnum):
+    """
+    Determine whether regex applies to variable value or display text
+    Accepted values are `value` (apply to value used in queries) or `text` (apply to display text shown to users)
+    """
+
+    VALUE = "value"
+    TEXT = "text"
+
+
 class VariableSort(enum.StrEnum):
     """
     Sort variable options
@@ -3017,6 +2939,39 @@ class VariableSort(enum.StrEnum):
     ALPHABETICAL_CASE_INSENSITIVE_DESC = "alphabeticalCaseInsensitiveDesc"
     NATURAL_ASC = "naturalAsc"
     NATURAL_DESC = "naturalDesc"
+
+
+ControlSourceRef: typing.TypeAlias = 'DatasourceControlSourceRef'
+
+
+class DatasourceControlSourceRef:
+    """
+    Source information for controls (e.g. variables or links)
+    """
+
+    type_val: typing.Literal["datasource"]
+    # The plugin type-id
+    group: str
+
+    def __init__(self, group: str = "") -> None:
+        self.type_val = "datasource"
+        self.group = group
+
+    def to_json(self) -> dict[str, object]:
+        payload: dict[str, object] = {
+            "type": self.type_val,
+            "group": self.group,
+        }
+        return payload
+
+    @classmethod
+    def from_json(cls, data: dict[str, typing.Any]) -> typing.Self:
+        args: dict[str, typing.Any] = {}
+        
+        if "group" in data:
+            args["group"] = data["group"]        
+
+        return cls(**args)
 
 
 class TextVariableKind:
@@ -3060,8 +3015,9 @@ class TextVariableSpec:
     hide: 'VariableHide'
     skip_url_sync: bool
     description: typing.Optional[str]
+    origin: typing.Optional['ControlSourceRef']
 
-    def __init__(self, name: str = "", current: typing.Optional['VariableOption'] = None, query: str = "", label: typing.Optional[str] = None, hide: typing.Optional['VariableHide'] = None, skip_url_sync: bool = False, description: typing.Optional[str] = None) -> None:
+    def __init__(self, name: str = "", current: typing.Optional['VariableOption'] = None, query: str = "", label: typing.Optional[str] = None, hide: typing.Optional['VariableHide'] = None, skip_url_sync: bool = False, description: typing.Optional[str] = None, origin: typing.Optional['ControlSourceRef'] = None) -> None:
         self.name = name
         self.current = current if current is not None else VariableOption(text="", value="")
         self.query = query
@@ -3069,6 +3025,7 @@ class TextVariableSpec:
         self.hide = hide if hide is not None else VariableHide.DONT_HIDE
         self.skip_url_sync = skip_url_sync
         self.description = description
+        self.origin = origin
 
     def to_json(self) -> dict[str, object]:
         payload: dict[str, object] = {
@@ -3082,6 +3039,8 @@ class TextVariableSpec:
             payload["label"] = self.label
         if self.description is not None:
             payload["description"] = self.description
+        if self.origin is not None:
+            payload["origin"] = self.origin
         return payload
 
     @classmethod
@@ -3101,7 +3060,9 @@ class TextVariableSpec:
         if "skipUrlSync" in data:
             args["skip_url_sync"] = data["skipUrlSync"]
         if "description" in data:
-            args["description"] = data["description"]        
+            args["description"] = data["description"]
+        if "origin" in data:
+            args["origin"] = ControlSourceRef.from_json(data["origin"])        
 
         return cls(**args)
 
@@ -3147,8 +3108,9 @@ class ConstantVariableSpec:
     hide: 'VariableHide'
     skip_url_sync: bool
     description: typing.Optional[str]
+    origin: typing.Optional['ControlSourceRef']
 
-    def __init__(self, name: str = "", query: str = "", current: typing.Optional['VariableOption'] = None, label: typing.Optional[str] = None, hide: typing.Optional['VariableHide'] = None, skip_url_sync: bool = False, description: typing.Optional[str] = None) -> None:
+    def __init__(self, name: str = "", query: str = "", current: typing.Optional['VariableOption'] = None, label: typing.Optional[str] = None, hide: typing.Optional['VariableHide'] = None, skip_url_sync: bool = False, description: typing.Optional[str] = None, origin: typing.Optional['ControlSourceRef'] = None) -> None:
         self.name = name
         self.query = query
         self.current = current if current is not None else VariableOption(text="", value="")
@@ -3156,6 +3118,7 @@ class ConstantVariableSpec:
         self.hide = hide if hide is not None else VariableHide.DONT_HIDE
         self.skip_url_sync = skip_url_sync
         self.description = description
+        self.origin = origin
 
     def to_json(self) -> dict[str, object]:
         payload: dict[str, object] = {
@@ -3169,6 +3132,8 @@ class ConstantVariableSpec:
             payload["label"] = self.label
         if self.description is not None:
             payload["description"] = self.description
+        if self.origin is not None:
+            payload["origin"] = self.origin
         return payload
 
     @classmethod
@@ -3188,7 +3153,9 @@ class ConstantVariableSpec:
         if "skipUrlSync" in data:
             args["skip_url_sync"] = data["skipUrlSync"]
         if "description" in data:
-            args["description"] = data["description"]        
+            args["description"] = data["description"]
+        if "origin" in data:
+            args["origin"] = ControlSourceRef.from_json(data["origin"])        
 
         return cls(**args)
 
@@ -3241,8 +3208,9 @@ class DatasourceVariableSpec:
     skip_url_sync: bool
     description: typing.Optional[str]
     allow_custom_value: bool
+    origin: typing.Optional['ControlSourceRef']
 
-    def __init__(self, name: str = "", plugin_id: str = "", refresh: typing.Optional['VariableRefresh'] = None, regex: str = "", current: typing.Optional['VariableOption'] = None, options: typing.Optional[list['VariableOption']] = None, multi: bool = False, include_all: bool = False, all_value: typing.Optional[str] = None, label: typing.Optional[str] = None, hide: typing.Optional['VariableHide'] = None, skip_url_sync: bool = False, description: typing.Optional[str] = None, allow_custom_value: bool = True) -> None:
+    def __init__(self, name: str = "", plugin_id: str = "", refresh: typing.Optional['VariableRefresh'] = None, regex: str = "", current: typing.Optional['VariableOption'] = None, options: typing.Optional[list['VariableOption']] = None, multi: bool = False, include_all: bool = False, all_value: typing.Optional[str] = None, label: typing.Optional[str] = None, hide: typing.Optional['VariableHide'] = None, skip_url_sync: bool = False, description: typing.Optional[str] = None, allow_custom_value: bool = True, origin: typing.Optional['ControlSourceRef'] = None) -> None:
         self.name = name
         self.plugin_id = plugin_id
         self.refresh = refresh if refresh is not None else VariableRefresh.NEVER
@@ -3257,6 +3225,7 @@ class DatasourceVariableSpec:
         self.skip_url_sync = skip_url_sync
         self.description = description
         self.allow_custom_value = allow_custom_value
+        self.origin = origin
 
     def to_json(self) -> dict[str, object]:
         payload: dict[str, object] = {
@@ -3278,6 +3247,8 @@ class DatasourceVariableSpec:
             payload["label"] = self.label
         if self.description is not None:
             payload["description"] = self.description
+        if self.origin is not None:
+            payload["origin"] = self.origin
         return payload
 
     @classmethod
@@ -3311,7 +3282,9 @@ class DatasourceVariableSpec:
         if "description" in data:
             args["description"] = data["description"]
         if "allowCustomValue" in data:
-            args["allow_custom_value"] = data["allowCustomValue"]        
+            args["allow_custom_value"] = data["allowCustomValue"]
+        if "origin" in data:
+            args["origin"] = ControlSourceRef.from_json(data["origin"])        
 
         return cls(**args)
 
@@ -3357,13 +3330,14 @@ class IntervalVariableSpec:
     auto: bool
     auto_min: str
     auto_count: int
-    refresh: 'VariableRefresh'
+    refresh: typing.Literal["onTimeRangeChanged"]
     label: typing.Optional[str]
     hide: 'VariableHide'
     skip_url_sync: bool
     description: typing.Optional[str]
+    origin: typing.Optional['ControlSourceRef']
 
-    def __init__(self, name: str = "", query: str = "", current: typing.Optional['VariableOption'] = None, options: typing.Optional[list['VariableOption']] = None, auto: bool = False, auto_min: str = "", auto_count: int = 0, refresh: typing.Optional['VariableRefresh'] = None, label: typing.Optional[str] = None, hide: typing.Optional['VariableHide'] = None, skip_url_sync: bool = False, description: typing.Optional[str] = None) -> None:
+    def __init__(self, name: str = "", query: str = "", current: typing.Optional['VariableOption'] = None, options: typing.Optional[list['VariableOption']] = None, auto: bool = False, auto_min: str = "", auto_count: int = 0, label: typing.Optional[str] = None, hide: typing.Optional['VariableHide'] = None, skip_url_sync: bool = False, description: typing.Optional[str] = None, origin: typing.Optional['ControlSourceRef'] = None) -> None:
         self.name = name
         self.query = query
         self.current = current if current is not None else VariableOption(text="", value="")
@@ -3371,11 +3345,12 @@ class IntervalVariableSpec:
         self.auto = auto
         self.auto_min = auto_min
         self.auto_count = auto_count
-        self.refresh = refresh if refresh is not None else VariableRefresh.NEVER
+        self.refresh = "onTimeRangeChanged"
         self.label = label
         self.hide = hide if hide is not None else VariableHide.DONT_HIDE
         self.skip_url_sync = skip_url_sync
         self.description = description
+        self.origin = origin
 
     def to_json(self) -> dict[str, object]:
         payload: dict[str, object] = {
@@ -3394,6 +3369,8 @@ class IntervalVariableSpec:
             payload["label"] = self.label
         if self.description is not None:
             payload["description"] = self.description
+        if self.origin is not None:
+            payload["origin"] = self.origin
         return payload
 
     @classmethod
@@ -3414,8 +3391,6 @@ class IntervalVariableSpec:
             args["auto_min"] = data["auto_min"]
         if "auto_count" in data:
             args["auto_count"] = data["auto_count"]
-        if "refresh" in data:
-            args["refresh"] = data["refresh"]
         if "label" in data:
             args["label"] = data["label"]
         if "hide" in data:
@@ -3423,7 +3398,9 @@ class IntervalVariableSpec:
         if "skipUrlSync" in data:
             args["skip_url_sync"] = data["skipUrlSync"]
         if "description" in data:
-            args["description"] = data["description"]        
+            args["description"] = data["description"]
+        if "origin" in data:
+            args["origin"] = ControlSourceRef.from_json(data["origin"])        
 
         return cls(**args)
 
@@ -3474,8 +3451,10 @@ class CustomVariableSpec:
     skip_url_sync: bool
     description: typing.Optional[str]
     allow_custom_value: bool
+    values_format: typing.Optional[typing.Literal["csv", "json"]]
+    origin: typing.Optional['ControlSourceRef']
 
-    def __init__(self, name: str = "", query: str = "", current: typing.Optional['VariableOption'] = None, options: typing.Optional[list['VariableOption']] = None, multi: bool = False, include_all: bool = False, all_value: typing.Optional[str] = None, label: typing.Optional[str] = None, hide: typing.Optional['VariableHide'] = None, skip_url_sync: bool = False, description: typing.Optional[str] = None, allow_custom_value: bool = True) -> None:
+    def __init__(self, name: str = "", query: str = "", current: typing.Optional['VariableOption'] = None, options: typing.Optional[list['VariableOption']] = None, multi: bool = False, include_all: bool = False, all_value: typing.Optional[str] = None, label: typing.Optional[str] = None, hide: typing.Optional['VariableHide'] = None, skip_url_sync: bool = False, description: typing.Optional[str] = None, allow_custom_value: bool = True, values_format: typing.Optional[typing.Literal["csv", "json"]] = None, origin: typing.Optional['ControlSourceRef'] = None) -> None:
         self.name = name
         self.query = query
         self.current = current if current is not None else VariableOption()
@@ -3488,6 +3467,8 @@ class CustomVariableSpec:
         self.skip_url_sync = skip_url_sync
         self.description = description
         self.allow_custom_value = allow_custom_value
+        self.values_format = values_format
+        self.origin = origin
 
     def to_json(self) -> dict[str, object]:
         payload: dict[str, object] = {
@@ -3507,6 +3488,10 @@ class CustomVariableSpec:
             payload["label"] = self.label
         if self.description is not None:
             payload["description"] = self.description
+        if self.values_format is not None:
+            payload["valuesFormat"] = self.values_format
+        if self.origin is not None:
+            payload["origin"] = self.origin
         return payload
 
     @classmethod
@@ -3536,7 +3521,11 @@ class CustomVariableSpec:
         if "description" in data:
             args["description"] = data["description"]
         if "allowCustomValue" in data:
-            args["allow_custom_value"] = data["allowCustomValue"]        
+            args["allow_custom_value"] = data["allowCustomValue"]
+        if "valuesFormat" in data:
+            args["values_format"] = data["valuesFormat"]
+        if "origin" in data:
+            args["origin"] = ControlSourceRef.from_json(data["origin"])        
 
         return cls(**args)
 
@@ -3548,12 +3537,14 @@ class GroupByVariableKind:
 
     kind: typing.Literal["GroupByVariable"]
     group: str
+    labels: typing.Optional[dict[str, str]]
     datasource: typing.Optional['Dashboardv2beta1GroupByVariableKindDatasource']
     spec: 'GroupByVariableSpec'
 
-    def __init__(self, group: str = "", datasource: typing.Optional['Dashboardv2beta1GroupByVariableKindDatasource'] = None, spec: typing.Optional['GroupByVariableSpec'] = None) -> None:
+    def __init__(self, group: str = "", labels: typing.Optional[dict[str, str]] = None, datasource: typing.Optional['Dashboardv2beta1GroupByVariableKindDatasource'] = None, spec: typing.Optional['GroupByVariableSpec'] = None) -> None:
         self.kind = "GroupByVariable"
         self.group = group
+        self.labels = labels
         self.datasource = datasource
         self.spec = spec if spec is not None else GroupByVariableSpec()
 
@@ -3563,6 +3554,8 @@ class GroupByVariableKind:
             "group": self.group,
             "spec": self.spec,
         }
+        if self.labels is not None:
+            payload["labels"] = self.labels
         if self.datasource is not None:
             payload["datasource"] = self.datasource
         return payload
@@ -3573,6 +3566,8 @@ class GroupByVariableKind:
         
         if "group" in data:
             args["group"] = data["group"]
+        if "labels" in data:
+            args["labels"] = data["labels"]
         if "datasource" in data:
             args["datasource"] = Dashboardv2beta1GroupByVariableKindDatasource.from_json(data["datasource"])
         if "spec" in data:
@@ -3595,8 +3590,9 @@ class GroupByVariableSpec:
     hide: 'VariableHide'
     skip_url_sync: bool
     description: typing.Optional[str]
+    origin: typing.Optional['ControlSourceRef']
 
-    def __init__(self, name: str = "", default_value: typing.Optional['VariableOption'] = None, current: typing.Optional['VariableOption'] = None, options: typing.Optional[list['VariableOption']] = None, multi: bool = False, label: typing.Optional[str] = None, hide: typing.Optional['VariableHide'] = None, skip_url_sync: bool = False, description: typing.Optional[str] = None) -> None:
+    def __init__(self, name: str = "", default_value: typing.Optional['VariableOption'] = None, current: typing.Optional['VariableOption'] = None, options: typing.Optional[list['VariableOption']] = None, multi: bool = False, label: typing.Optional[str] = None, hide: typing.Optional['VariableHide'] = None, skip_url_sync: bool = False, description: typing.Optional[str] = None, origin: typing.Optional['ControlSourceRef'] = None) -> None:
         self.name = name
         self.default_value = default_value
         self.current = current if current is not None else VariableOption(text="", value="")
@@ -3606,6 +3602,7 @@ class GroupByVariableSpec:
         self.hide = hide if hide is not None else VariableHide.DONT_HIDE
         self.skip_url_sync = skip_url_sync
         self.description = description
+        self.origin = origin
 
     def to_json(self) -> dict[str, object]:
         payload: dict[str, object] = {
@@ -3622,6 +3619,8 @@ class GroupByVariableSpec:
             payload["label"] = self.label
         if self.description is not None:
             payload["description"] = self.description
+        if self.origin is not None:
+            payload["origin"] = self.origin
         return payload
 
     @classmethod
@@ -3645,7 +3644,9 @@ class GroupByVariableSpec:
         if "skipUrlSync" in data:
             args["skip_url_sync"] = data["skipUrlSync"]
         if "description" in data:
-            args["description"] = data["description"]        
+            args["description"] = data["description"]
+        if "origin" in data:
+            args["origin"] = ControlSourceRef.from_json(data["origin"])        
 
         return cls(**args)
 
@@ -3657,12 +3658,14 @@ class AdhocVariableKind:
 
     kind: typing.Literal["AdhocVariable"]
     group: str
+    labels: typing.Optional[dict[str, str]]
     datasource: typing.Optional['Dashboardv2beta1AdhocVariableKindDatasource']
     spec: 'AdhocVariableSpec'
 
-    def __init__(self, group: str = "", datasource: typing.Optional['Dashboardv2beta1AdhocVariableKindDatasource'] = None, spec: typing.Optional['AdhocVariableSpec'] = None) -> None:
+    def __init__(self, group: str = "", labels: typing.Optional[dict[str, str]] = None, datasource: typing.Optional['Dashboardv2beta1AdhocVariableKindDatasource'] = None, spec: typing.Optional['AdhocVariableSpec'] = None) -> None:
         self.kind = "AdhocVariable"
         self.group = group
+        self.labels = labels
         self.datasource = datasource
         self.spec = spec if spec is not None else AdhocVariableSpec()
 
@@ -3672,6 +3675,8 @@ class AdhocVariableKind:
             "group": self.group,
             "spec": self.spec,
         }
+        if self.labels is not None:
+            payload["labels"] = self.labels
         if self.datasource is not None:
             payload["datasource"] = self.datasource
         return payload
@@ -3682,6 +3687,8 @@ class AdhocVariableKind:
         
         if "group" in data:
             args["group"] = data["group"]
+        if "labels" in data:
+            args["labels"] = data["labels"]
         if "datasource" in data:
             args["datasource"] = Dashboardv2beta1AdhocVariableKindDatasource.from_json(data["datasource"])
         if "spec" in data:
@@ -3704,8 +3711,11 @@ class AdhocVariableSpec:
     skip_url_sync: bool
     description: typing.Optional[str]
     allow_custom_value: bool
+    # Whether the group-by operator is enabled in the ad hoc filter combobox.
+    enable_group_by: typing.Optional[bool]
+    origin: typing.Optional['ControlSourceRef']
 
-    def __init__(self, name: str = "", base_filters: typing.Optional[list['AdHocFilterWithLabels']] = None, filters: typing.Optional[list['AdHocFilterWithLabels']] = None, default_keys: typing.Optional[list['MetricFindValue']] = None, label: typing.Optional[str] = None, hide: typing.Optional['VariableHide'] = None, skip_url_sync: bool = False, description: typing.Optional[str] = None, allow_custom_value: bool = True) -> None:
+    def __init__(self, name: str = "", base_filters: typing.Optional[list['AdHocFilterWithLabels']] = None, filters: typing.Optional[list['AdHocFilterWithLabels']] = None, default_keys: typing.Optional[list['MetricFindValue']] = None, label: typing.Optional[str] = None, hide: typing.Optional['VariableHide'] = None, skip_url_sync: bool = False, description: typing.Optional[str] = None, allow_custom_value: bool = True, enable_group_by: typing.Optional[bool] = False, origin: typing.Optional['ControlSourceRef'] = None) -> None:
         self.name = name
         self.base_filters = base_filters if base_filters is not None else []
         self.filters = filters if filters is not None else []
@@ -3715,6 +3725,8 @@ class AdhocVariableSpec:
         self.skip_url_sync = skip_url_sync
         self.description = description
         self.allow_custom_value = allow_custom_value
+        self.enable_group_by = enable_group_by
+        self.origin = origin
 
     def to_json(self) -> dict[str, object]:
         payload: dict[str, object] = {
@@ -3730,6 +3742,10 @@ class AdhocVariableSpec:
             payload["label"] = self.label
         if self.description is not None:
             payload["description"] = self.description
+        if self.enable_group_by is not None:
+            payload["enableGroupBy"] = self.enable_group_by
+        if self.origin is not None:
+            payload["origin"] = self.origin
         return payload
 
     @classmethod
@@ -3753,7 +3769,11 @@ class AdhocVariableSpec:
         if "description" in data:
             args["description"] = data["description"]
         if "allowCustomValue" in data:
-            args["allow_custom_value"] = data["allowCustomValue"]        
+            args["allow_custom_value"] = data["allowCustomValue"]
+        if "enableGroupBy" in data:
+            args["enable_group_by"] = data["enableGroupBy"]
+        if "origin" in data:
+            args["origin"] = ControlSourceRef.from_json(data["origin"])        
 
         return cls(**args)
 
@@ -3911,8 +3931,9 @@ class SwitchVariableSpec:
     hide: 'VariableHide'
     skip_url_sync: bool
     description: typing.Optional[str]
+    origin: typing.Optional['ControlSourceRef']
 
-    def __init__(self, name: str = "", current: str = "false", enabled_value: str = "true", disabled_value: str = "false", label: typing.Optional[str] = None, hide: typing.Optional['VariableHide'] = None, skip_url_sync: bool = False, description: typing.Optional[str] = None) -> None:
+    def __init__(self, name: str = "", current: str = "false", enabled_value: str = "true", disabled_value: str = "false", label: typing.Optional[str] = None, hide: typing.Optional['VariableHide'] = None, skip_url_sync: bool = False, description: typing.Optional[str] = None, origin: typing.Optional['ControlSourceRef'] = None) -> None:
         self.name = name
         self.current = current
         self.enabled_value = enabled_value
@@ -3921,6 +3942,7 @@ class SwitchVariableSpec:
         self.hide = hide if hide is not None else VariableHide.DONT_HIDE
         self.skip_url_sync = skip_url_sync
         self.description = description
+        self.origin = origin
 
     def to_json(self) -> dict[str, object]:
         payload: dict[str, object] = {
@@ -3935,6 +3957,8 @@ class SwitchVariableSpec:
             payload["label"] = self.label
         if self.description is not None:
             payload["description"] = self.description
+        if self.origin is not None:
+            payload["origin"] = self.origin
         return payload
 
     @classmethod
@@ -3956,9 +3980,258 @@ class SwitchVariableSpec:
         if "skipUrlSync" in data:
             args["skip_url_sync"] = data["skipUrlSync"]
         if "description" in data:
-            args["description"] = data["description"]        
+            args["description"] = data["description"]
+        if "origin" in data:
+            args["origin"] = ControlSourceRef.from_json(data["origin"])        
 
         return cls(**args)
+
+
+class DashboardLink:
+    """
+    Links with references to other dashboards or external resources
+    """
+
+    # Title to display with the link
+    title: str
+    # Link type. Accepted values are dashboards (to refer to another dashboard) and link (to refer to an external resource)
+    # FIXME: The type is generated as `type: DashboardLinkType | dashboardLinkType.Link;` but it should be `type: DashboardLinkType`
+    type_val: 'DashboardLinkType'
+    # Icon name to be displayed with the link
+    icon: str
+    # Tooltip to display when the user hovers their mouse over it
+    tooltip: str
+    # Link URL. Only required/valid if the type is link
+    url: typing.Optional[str]
+    # List of tags to limit the linked dashboards. If empty, all dashboards will be displayed. Only valid if the type is dashboards
+    tags: list[str]
+    # If true, all dashboards links will be displayed in a dropdown. If false, all dashboards links will be displayed side by side. Only valid if the type is dashboards
+    as_dropdown: bool
+    # If true, the link will be opened in a new tab
+    target_blank: bool
+    # If true, includes current template variables values in the link as query params
+    include_vars: bool
+    # If true, includes current time range in the link as query params
+    keep_time: bool
+    # Placement can be used to display the link somewhere else on the dashboard other than above the visualisations.
+    placement: str
+    # The source that registered the link (if any)
+    origin: typing.Optional['ControlSourceRef']
+
+    def __init__(self, title: str = "", type_val: typing.Optional['DashboardLinkType'] = None, icon: str = "", tooltip: str = "", url: typing.Optional[str] = None, tags: typing.Optional[list[str]] = None, as_dropdown: bool = False, target_blank: bool = False, include_vars: bool = False, keep_time: bool = False, origin: typing.Optional['ControlSourceRef'] = None) -> None:
+        self.title = title
+        self.type_val = type_val if type_val is not None else DashboardLinkType.LINK
+        self.icon = icon
+        self.tooltip = tooltip
+        self.url = url
+        self.tags = tags if tags is not None else []
+        self.as_dropdown = as_dropdown
+        self.target_blank = target_blank
+        self.include_vars = include_vars
+        self.keep_time = keep_time
+        self.placement = DashboardLinkPlacement
+        self.origin = origin
+
+    def to_json(self) -> dict[str, object]:
+        payload: dict[str, object] = {
+            "title": self.title,
+            "type": self.type_val,
+            "icon": self.icon,
+            "tooltip": self.tooltip,
+            "tags": self.tags,
+            "asDropdown": self.as_dropdown,
+            "targetBlank": self.target_blank,
+            "includeVars": self.include_vars,
+            "keepTime": self.keep_time,
+        }
+        if self.url is not None:
+            payload["url"] = self.url
+        if self.placement is not None:
+            payload["placement"] = self.placement
+        if self.origin is not None:
+            payload["origin"] = self.origin
+        return payload
+
+    @classmethod
+    def from_json(cls, data: dict[str, typing.Any]) -> typing.Self:
+        args: dict[str, typing.Any] = {}
+        
+        if "title" in data:
+            args["title"] = data["title"]
+        if "type" in data:
+            args["type_val"] = data["type"]
+        if "icon" in data:
+            args["icon"] = data["icon"]
+        if "tooltip" in data:
+            args["tooltip"] = data["tooltip"]
+        if "url" in data:
+            args["url"] = data["url"]
+        if "tags" in data:
+            args["tags"] = data["tags"]
+        if "asDropdown" in data:
+            args["as_dropdown"] = data["asDropdown"]
+        if "targetBlank" in data:
+            args["target_blank"] = data["targetBlank"]
+        if "includeVars" in data:
+            args["include_vars"] = data["includeVars"]
+        if "keepTime" in data:
+            args["keep_time"] = data["keepTime"]
+        if "origin" in data:
+            args["origin"] = ControlSourceRef.from_json(data["origin"])        
+
+        return cls(**args)
+
+
+class DashboardLinkType(enum.StrEnum):
+    """
+    Dashboard Link type. Accepted values are dashboards (to refer to another dashboard) and link (to refer to an external resource)
+    """
+
+    LINK = "link"
+    DASHBOARDS = "dashboards"
+
+
+# Dashboard Link placement. Defines where the link should be displayed.
+# - "inControlsMenu" renders the link in bottom part of the dashboard controls dropdown menu
+DashboardLinkPlacement: typing.Literal["inControlsMenu"] = "inControlsMenu"
+
+
+class TimeSettingsSpec:
+    """
+    Time configuration
+    It defines the default time config for the time picker, the refresh picker for the specific dashboard.
+    """
+
+    # Timezone of dashboard. Accepted values are IANA TZDB zone ID or "browser" or "utc".
+    timezone: typing.Optional[str]
+    # Start time range for dashboard.
+    # Accepted values are relative time strings like "now-6h" or absolute time strings like "2020-07-10T08:00:00.000Z".
+    from_val: str
+    # End time range for dashboard.
+    # Accepted values are relative time strings like "now-6h" or absolute time strings like "2020-07-10T08:00:00.000Z".
+    to: str
+    # Refresh rate of dashboard. Represented via interval string, e.g. "5s", "1m", "1h", "1d".
+    # v1: refresh
+    auto_refresh: str
+    # Interval options available in the refresh picker dropdown.
+    # v1: timepicker.refresh_intervals
+    auto_refresh_intervals: list[str]
+    # Selectable options available in the time picker dropdown. Has no effect on provisioned dashboard.
+    # v1: timepicker.quick_ranges , not exposed in the UI
+    quick_ranges: typing.Optional[list['TimeRangeOption']]
+    # Whether timepicker is visible or not.
+    # v1: timepicker.hidden
+    hide_timepicker: bool
+    # Day when the week starts. Expressed by the name of the day in lowercase, e.g. "monday".
+    week_start: typing.Optional[typing.Literal["saturday", "monday", "sunday"]]
+    # The month that the fiscal year starts on. 0 = January, 11 = December
+    fiscal_year_start_month: int
+    # Override the now time by entering a time delay. Use this option to accommodate known delays in data aggregation to avoid null values.
+    # v1: timepicker.nowDelay
+    now_delay: typing.Optional[str]
+
+    def __init__(self, timezone: typing.Optional[str] = "browser", from_val: str = "now-6h", to: str = "now", auto_refresh: str = "", auto_refresh_intervals: typing.Optional[list[str]] = None, quick_ranges: typing.Optional[list['TimeRangeOption']] = None, hide_timepicker: bool = False, week_start: typing.Optional[typing.Literal["saturday", "monday", "sunday"]] = None, fiscal_year_start_month: int = 0, now_delay: typing.Optional[str] = None) -> None:
+        self.timezone = timezone
+        self.from_val = from_val
+        self.to = to
+        self.auto_refresh = auto_refresh
+        self.auto_refresh_intervals = auto_refresh_intervals if auto_refresh_intervals is not None else ["5s", "10s", "30s", "1m", "5m", "15m", "30m", "1h", "2h", "1d"]
+        self.quick_ranges = quick_ranges
+        self.hide_timepicker = hide_timepicker
+        self.week_start = week_start
+        self.fiscal_year_start_month = fiscal_year_start_month
+        self.now_delay = now_delay
+
+    def to_json(self) -> dict[str, object]:
+        payload: dict[str, object] = {
+            "from": self.from_val,
+            "to": self.to,
+            "autoRefresh": self.auto_refresh,
+            "autoRefreshIntervals": self.auto_refresh_intervals,
+            "hideTimepicker": self.hide_timepicker,
+            "fiscalYearStartMonth": self.fiscal_year_start_month,
+        }
+        if self.timezone is not None:
+            payload["timezone"] = self.timezone
+        if self.quick_ranges is not None:
+            payload["quickRanges"] = self.quick_ranges
+        if self.week_start is not None:
+            payload["weekStart"] = self.week_start
+        if self.now_delay is not None:
+            payload["nowDelay"] = self.now_delay
+        return payload
+
+    @classmethod
+    def from_json(cls, data: dict[str, typing.Any]) -> typing.Self:
+        args: dict[str, typing.Any] = {}
+        
+        if "timezone" in data:
+            args["timezone"] = data["timezone"]
+        if "from" in data:
+            args["from_val"] = data["from"]
+        if "to" in data:
+            args["to"] = data["to"]
+        if "autoRefresh" in data:
+            args["auto_refresh"] = data["autoRefresh"]
+        if "autoRefreshIntervals" in data:
+            args["auto_refresh_intervals"] = data["autoRefreshIntervals"]
+        if "quickRanges" in data:
+            args["quick_ranges"] = [TimeRangeOption.from_json(item) for item in data["quickRanges"]]
+        if "hideTimepicker" in data:
+            args["hide_timepicker"] = data["hideTimepicker"]
+        if "weekStart" in data:
+            args["week_start"] = data["weekStart"]
+        if "fiscalYearStartMonth" in data:
+            args["fiscal_year_start_month"] = data["fiscalYearStartMonth"]
+        if "nowDelay" in data:
+            args["now_delay"] = data["nowDelay"]        
+
+        return cls(**args)
+
+
+class TimeRangeOption:
+    display: str
+    from_val: str
+    to: str
+
+    def __init__(self, display: str = "Last 6 hours", from_val: str = "now-6h", to: str = "now") -> None:
+        self.display = display
+        self.from_val = from_val
+        self.to = to
+
+    def to_json(self) -> dict[str, object]:
+        payload: dict[str, object] = {
+            "display": self.display,
+            "from": self.from_val,
+            "to": self.to,
+        }
+        return payload
+
+    @classmethod
+    def from_json(cls, data: dict[str, typing.Any]) -> typing.Self:
+        args: dict[str, typing.Any] = {}
+        
+        if "display" in data:
+            args["display"] = data["display"]
+        if "from" in data:
+            args["from_val"] = data["from"]
+        if "to" in data:
+            args["to"] = data["to"]        
+
+        return cls(**args)
+
+
+class AnnotationEventFieldSource(enum.StrEnum):
+    """
+    Annotation event field source. Defines how to obtain the value for an annotation event field.
+    - "field": Find the value with a matching key (default)
+    - "text": Write a constant string into the value
+    - "skip": Do not include the field
+    """
+
+    FIELD = "field"
+    TEXT = "text"
+    SKIP = "skip"
 
 
 class Kind:

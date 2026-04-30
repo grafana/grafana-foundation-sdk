@@ -14,6 +14,7 @@ class IntervalVariableBuilder implements \Grafana\Foundation\Cog\Builder
     {
     	$this->internal = new \Grafana\Foundation\Dashboardv2beta1\IntervalVariableKind();
     $this->internal->kind = "IntervalVariable";
+    $this->internal->spec->refresh = "onTimeRangeChanged";
     $this->internal->spec->name = $name;
     }
 
@@ -78,13 +79,6 @@ class IntervalVariableBuilder implements \Grafana\Foundation\Cog\Builder
         return $this;
     }
 
-    public function refresh(\Grafana\Foundation\Dashboardv2beta1\VariableRefresh $refresh): static
-    {
-        $this->internal->spec->refresh = $refresh;
-    
-        return $this;
-    }
-
     public function label(string $label): static
     {
         $this->internal->spec->label = $label;
@@ -109,6 +103,17 @@ class IntervalVariableBuilder implements \Grafana\Foundation\Cog\Builder
     public function description(string $description): static
     {
         $this->internal->spec->description = $description;
+    
+        return $this;
+    }
+
+    /**
+     * @param \Grafana\Foundation\Cog\Builder<\Grafana\Foundation\Dashboardv2beta1\ControlSourceRef> $origin
+     */
+    public function origin(\Grafana\Foundation\Cog\Builder $origin): static
+    {
+        $originResource = $origin->build();
+        $this->internal->spec->origin = $originResource;
     
         return $this;
     }

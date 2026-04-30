@@ -6,3 +6,5 @@ export * from './panelBuilder.gen';
 export type * from './panelBuilder.gen';
 export * from './visualizationBuilder.gen';
 export type * from './visualizationBuilder.gen';
+export * from './visualizationV2Builder.gen';
+export type * from './visualizationV2Builder.gen';

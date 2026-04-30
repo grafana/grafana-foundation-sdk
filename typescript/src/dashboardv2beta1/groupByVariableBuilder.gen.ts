@@ -25,6 +25,11 @@ export class GroupByVariableBuilder implements cog.Builder<dashboardv2beta1.Grou
         return this;
     }
 
+    labels(labels: Record<string, string>): this {
+        this.internal.labels = labels;
+        return this;
+    }
+
     datasource(datasource: {
 	name?: string;
 }): this {
@@ -101,6 +106,15 @@ export class GroupByVariableBuilder implements cog.Builder<dashboardv2beta1.Grou
             this.internal.spec = dashboardv2beta1.defaultGroupByVariableSpec();
         }
         this.internal.spec.description = description;
+        return this;
+    }
+
+    origin(origin: cog.Builder<dashboardv2beta1.ControlSourceRef>): this {
+        if (!this.internal.spec) {
+            this.internal.spec = dashboardv2beta1.defaultGroupByVariableSpec();
+        }
+        const originResource = origin.build();
+        this.internal.spec.origin = originResource;
         return this;
     }
 }

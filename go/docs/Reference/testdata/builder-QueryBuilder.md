@@ -50,6 +50,12 @@ func (builder *QueryBuilder) CsvFileName(csvFileName string) *QueryBuilder
 func (builder *QueryBuilder) CsvWave(csvWave []cog.Builder[testdata.CSVWave]) *QueryBuilder
 ```
 
+### <span class="badge object-method"></span> DataqueryLabels
+
+```go
+func (builder *QueryBuilder) DataqueryLabels(labels string) *QueryBuilder
+```
+
 ### <span class="badge object-method"></span> Datasource
 
 New type for datasource reference
@@ -127,7 +133,7 @@ func (builder *QueryBuilder) IntervalMs(intervalMs float64) *QueryBuilder
 ### <span class="badge object-method"></span> Labels
 
 ```go
-func (builder *QueryBuilder) Labels(labels string) *QueryBuilder
+func (builder *QueryBuilder) Labels(labels map[string]string) *QueryBuilder
 ```
 
 ### <span class="badge object-method"></span> LevelColumn

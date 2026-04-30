@@ -10,6 +10,7 @@ class DataQueryKind:
     kind: typing.Literal["DataQuery"]
     group: str
     version: str
+    labels: typing.Optional[dict[str, str]]
     # New type for datasource reference
     # Not creating a new type until we figure out how to handle DS refs for group by, adhoc, and every place that uses DataSourceRef in TS.
     datasource: typing.Optional[dashboardv2beta1.Dashboardv2beta1DataQueryKindDatasource]

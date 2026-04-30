@@ -9,6 +9,8 @@
  * <span class="badge object-type-struct"></span> [AdHocFilterWithLabels](./object-AdHocFilterWithLabels.md)
  * <span class="badge object-type-struct"></span> [AdhocVariableKind](./object-AdhocVariableKind.md)
  * <span class="badge object-type-struct"></span> [AdhocVariableSpec](./object-AdhocVariableSpec.md)
+ * <span class="badge object-type-struct"></span> [AnnotationEventFieldMapping](./object-AnnotationEventFieldMapping.md)
+ * <span class="badge object-type-enum"></span> [AnnotationEventFieldSource](./object-AnnotationEventFieldSource.md)
  * <span class="badge object-type-struct"></span> [AnnotationPanelFilter](./object-AnnotationPanelFilter.md)
  * <span class="badge object-type-struct"></span> [AnnotationQueryKind](./object-AnnotationQueryKind.md)
  * <span class="badge object-type-scalar"></span> [AnnotationQueryPlacement](./object-AnnotationQueryPlacement.md)
@@ -34,9 +36,11 @@
  * <span class="badge object-type-enum"></span> [ConditionalRenderingVariableSpecOperator](./object-ConditionalRenderingVariableSpecOperator.md)
  * <span class="badge object-type-struct"></span> [ConstantVariableKind](./object-ConstantVariableKind.md)
  * <span class="badge object-type-struct"></span> [ConstantVariableSpec](./object-ConstantVariableSpec.md)
+ * <span class="badge object-type-ref"></span> [ControlSourceRef](./object-ControlSourceRef.md)
  * <span class="badge object-type-struct"></span> [CustomFormatterVariable](./object-CustomFormatterVariable.md)
  * <span class="badge object-type-struct"></span> [CustomVariableKind](./object-CustomVariableKind.md)
  * <span class="badge object-type-struct"></span> [CustomVariableSpec](./object-CustomVariableSpec.md)
+ * <span class="badge object-type-enum"></span> [CustomVariableSpecValuesFormat](./object-CustomVariableSpecValuesFormat.md)
  * <span class="badge object-type-struct"></span> [CustomVariableValue](./object-CustomVariableValue.md)
  * <span class="badge object-type-struct"></span> [Dashboard](./object-Dashboard.md)
  * <span class="badge object-type-enum"></span> [DashboardCursorSync](./object-DashboardCursorSync.md)
@@ -57,6 +61,7 @@
  * <span class="badge object-type-struct"></span> [DataQueryKind](./object-DataQueryKind.md)
  * <span class="badge object-type-enum"></span> [DataTopic](./object-DataTopic.md)
  * <span class="badge object-type-struct"></span> [DataTransformerConfig](./object-DataTransformerConfig.md)
+ * <span class="badge object-type-struct"></span> [DatasourceControlSourceRef](./object-DatasourceControlSourceRef.md)
  * <span class="badge object-type-struct"></span> [DatasourceVariableKind](./object-DatasourceVariableKind.md)
  * <span class="badge object-type-struct"></span> [DatasourceVariableSpec](./object-DatasourceVariableSpec.md)
  * <span class="badge object-type-struct"></span> [DynamicConfigValue](./object-DynamicConfigValue.md)
@@ -87,7 +92,9 @@
  * <span class="badge object-type-struct"></span> [LibraryPanelRef](./object-LibraryPanelRef.md)
  * <span class="badge object-type-enum"></span> [MappingType](./object-MappingType.md)
  * <span class="badge object-type-struct"></span> [MatcherConfig](./object-MatcherConfig.md)
+ * <span class="badge object-type-enum"></span> [MatcherScope](./object-MatcherScope.md)
  * <span class="badge object-type-struct"></span> [MetricFindValue](./object-MetricFindValue.md)
+ * <span class="badge object-type-enum"></span> [NullValueMode](./object-NullValueMode.md)
  * <span class="badge object-type-struct"></span> [PanelKind](./object-PanelKind.md)
  * <span class="badge object-type-struct"></span> [PanelKindOrLibraryPanelKind](./object-PanelKindOrLibraryPanelKind.md)
  * <span class="badge object-type-struct"></span> [PanelQueryKind](./object-PanelQueryKind.md)
@@ -140,6 +147,7 @@
  * <span class="badge object-type-ref"></span> [VariableKind](./object-VariableKind.md)
  * <span class="badge object-type-struct"></span> [VariableOption](./object-VariableOption.md)
  * <span class="badge object-type-enum"></span> [VariableRefresh](./object-VariableRefresh.md)
+ * <span class="badge object-type-enum"></span> [VariableRegexApplyTo](./object-VariableRegexApplyTo.md)
  * <span class="badge object-type-enum"></span> [VariableSort](./object-VariableSort.md)
  * <span class="badge object-type-enum"></span> [VariableType](./object-VariableType.md)
  * <span class="badge object-type-ref"></span> [VariableValue](./object-VariableValue.md)
@@ -153,6 +161,7 @@
  * <span class="badge builder"></span> [ActionVariableBuilder](./builder-ActionVariableBuilder.md)
  * <span class="badge builder"></span> [AdHocFilterWithLabelsBuilder](./builder-AdHocFilterWithLabelsBuilder.md)
  * <span class="badge builder"></span> [AdhocVariableBuilder](./builder-AdhocVariableBuilder.md)
+ * <span class="badge builder"></span> [AnnotationEventFieldMappingBuilder](./builder-AnnotationEventFieldMappingBuilder.md)
  * <span class="badge builder"></span> [AnnotationPanelFilterBuilder](./builder-AnnotationPanelFilterBuilder.md)
  * <span class="badge builder"></span> [AnnotationQueryBuilder](./builder-AnnotationQueryBuilder.md)
  * <span class="badge builder"></span> [AutoGridBuilder](./builder-AutoGridBuilder.md)
@@ -163,6 +172,7 @@
  * <span class="badge builder"></span> [ConditionalRenderingTimeRangeSizeBuilder](./builder-ConditionalRenderingTimeRangeSizeBuilder.md)
  * <span class="badge builder"></span> [ConditionalRenderingVariableBuilder](./builder-ConditionalRenderingVariableBuilder.md)
  * <span class="badge builder"></span> [ConstantVariableBuilder](./builder-ConstantVariableBuilder.md)
+ * <span class="badge builder"></span> [ControlSourceRefBuilder](./builder-ControlSourceRefBuilder.md)
  * <span class="badge builder"></span> [CustomFormatterVariableBuilder](./builder-CustomFormatterVariableBuilder.md)
  * <span class="badge builder"></span> [CustomVariableBuilder](./builder-CustomVariableBuilder.md)
  * <span class="badge builder"></span> [DashboardBuilder](./builder-DashboardBuilder.md)
@@ -176,6 +186,7 @@
  * <span class="badge builder"></span> [Dashboardv2beta1RegexMapOptionsBuilder](./builder-Dashboardv2beta1RegexMapOptionsBuilder.md)
  * <span class="badge builder"></span> [Dashboardv2beta1SpecialValueMapOptionsBuilder](./builder-Dashboardv2beta1SpecialValueMapOptionsBuilder.md)
  * <span class="badge builder"></span> [DataLinkBuilder](./builder-DataLinkBuilder.md)
+ * <span class="badge builder"></span> [DatasourceControlSourceRefBuilder](./builder-DatasourceControlSourceRefBuilder.md)
  * <span class="badge builder"></span> [DatasourceVariableBuilder](./builder-DatasourceVariableBuilder.md)
  * <span class="badge builder"></span> [ElementReferenceBuilder](./builder-ElementReferenceBuilder.md)
  * <span class="badge builder"></span> [FetchOptionsBuilder](./builder-FetchOptionsBuilder.md)
@@ -252,6 +263,14 @@ NewAnnotationPanelFilter creates a new AnnotationPanelFilter object.
 
 ```go
 func NewAnnotationPanelFilter() *AnnotationPanelFilter
+```
+
+### <span class="badge function"></span> NewAnnotationEventFieldMapping
+
+NewAnnotationEventFieldMapping creates a new AnnotationEventFieldMapping object.
+
+```go
+func NewAnnotationEventFieldMapping() *AnnotationEventFieldMapping
 ```
 
 ### <span class="badge function"></span> NewElement
@@ -750,30 +769,6 @@ NewTabRepeatOptions creates a new TabRepeatOptions object.
 func NewTabRepeatOptions() *TabRepeatOptions
 ```
 
-### <span class="badge function"></span> NewDashboardLink
-
-NewDashboardLink creates a new DashboardLink object.
-
-```go
-func NewDashboardLink() *DashboardLink
-```
-
-### <span class="badge function"></span> NewTimeSettingsSpec
-
-NewTimeSettingsSpec creates a new TimeSettingsSpec object.
-
-```go
-func NewTimeSettingsSpec() *TimeSettingsSpec
-```
-
-### <span class="badge function"></span> NewTimeRangeOption
-
-NewTimeRangeOption creates a new TimeRangeOption object.
-
-```go
-func NewTimeRangeOption() *TimeRangeOption
-```
-
 ### <span class="badge function"></span> NewVariableKind
 
 NewVariableKind creates a new VariableKind object.
@@ -804,6 +799,22 @@ NewVariableOption creates a new VariableOption object.
 
 ```go
 func NewVariableOption() *VariableOption
+```
+
+### <span class="badge function"></span> NewControlSourceRef
+
+NewControlSourceRef creates a new ControlSourceRef object.
+
+```go
+func NewControlSourceRef() *ControlSourceRef
+```
+
+### <span class="badge function"></span> NewDatasourceControlSourceRef
+
+NewDatasourceControlSourceRef creates a new DatasourceControlSourceRef object.
+
+```go
+func NewDatasourceControlSourceRef() *DatasourceControlSourceRef
 ```
 
 ### <span class="badge function"></span> NewTextVariableKind
@@ -948,6 +959,30 @@ NewSwitchVariableSpec creates a new SwitchVariableSpec object.
 
 ```go
 func NewSwitchVariableSpec() *SwitchVariableSpec
+```
+
+### <span class="badge function"></span> NewDashboardLink
+
+NewDashboardLink creates a new DashboardLink object.
+
+```go
+func NewDashboardLink() *DashboardLink
+```
+
+### <span class="badge function"></span> NewTimeSettingsSpec
+
+NewTimeSettingsSpec creates a new TimeSettingsSpec object.
+
+```go
+func NewTimeSettingsSpec() *TimeSettingsSpec
+```
+
+### <span class="badge function"></span> NewTimeRangeOption
+
+NewTimeRangeOption creates a new TimeRangeOption object.
+
+```go
+func NewTimeRangeOption() *TimeRangeOption
 ```
 
 ### <span class="badge function"></span> NewKind
@@ -1206,6 +1241,14 @@ AnnotationPanelFilterConverter accepts a `AnnotationPanelFilter` object and gene
 func AnnotationPanelFilterConverter(input AnnotationPanelFilter) string
 ```
 
+### <span class="badge function"></span> AnnotationEventFieldMappingConverter
+
+AnnotationEventFieldMappingConverter accepts a `AnnotationEventFieldMapping` object and generates the Go code to build this object using builders.
+
+```go
+func AnnotationEventFieldMappingConverter(input AnnotationEventFieldMapping) string
+```
+
 ### <span class="badge function"></span> DataLinkConverter
 
 DataLinkConverter accepts a `DataLink` object and generates the Go code to build this object using builders.
@@ -1326,20 +1369,20 @@ TabRepeatOptionsConverter accepts a `TabRepeatOptions` object and generates the 
 func TabRepeatOptionsConverter(input TabRepeatOptions) string
 ```
 
-### <span class="badge function"></span> DashboardLinkConverter
+### <span class="badge function"></span> ControlSourceRefConverter
 
-DashboardLinkConverter accepts a `DashboardLink` object and generates the Go code to build this object using builders.
+ControlSourceRefConverter accepts a `ControlSourceRef` object and generates the Go code to build this object using builders.
 
 ```go
-func DashboardLinkConverter(input DashboardLink) string
+func ControlSourceRefConverter(input ControlSourceRef) string
 ```
 
-### <span class="badge function"></span> TimeRangeOptionConverter
+### <span class="badge function"></span> DatasourceControlSourceRefConverter
 
-TimeRangeOptionConverter accepts a `TimeRangeOption` object and generates the Go code to build this object using builders.
+DatasourceControlSourceRefConverter accepts a `DatasourceControlSourceRef` object and generates the Go code to build this object using builders.
 
 ```go
-func TimeRangeOptionConverter(input TimeRangeOption) string
+func DatasourceControlSourceRefConverter(input DatasourceControlSourceRef) string
 ```
 
 ### <span class="badge function"></span> AdHocFilterWithLabelsConverter
@@ -1356,6 +1399,22 @@ MetricFindValueConverter accepts a `MetricFindValue` object and generates the Go
 
 ```go
 func MetricFindValueConverter(input MetricFindValue) string
+```
+
+### <span class="badge function"></span> DashboardLinkConverter
+
+DashboardLinkConverter accepts a `DashboardLink` object and generates the Go code to build this object using builders.
+
+```go
+func DashboardLinkConverter(input DashboardLink) string
+```
+
+### <span class="badge function"></span> TimeRangeOptionConverter
+
+TimeRangeOptionConverter accepts a `TimeRangeOption` object and generates the Go code to build this object using builders.
+
+```go
+func TimeRangeOptionConverter(input TimeRangeOption) string
 ```
 
 ### <span class="badge function"></span> VariableValueConverter

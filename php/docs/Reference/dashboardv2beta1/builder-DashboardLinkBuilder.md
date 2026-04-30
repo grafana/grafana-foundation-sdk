@@ -50,6 +50,16 @@ If true, includes current time range in the link as query params
 keepTime(bool $keepTime)
 ```
 
+### <span class="badge object-method"></span> origin
+
+The source that registered the link (if any)
+
+@param \Grafana\Foundation\Cog\Builder<\Grafana\Foundation\Dashboardv2beta1\ControlSourceRef> $origin
+
+```php
+origin(\Grafana\Foundation\Cog\Builder $origin)
+```
+
 ### <span class="badge object-method"></span> placement
 
 Placement can be used to display the link somewhere else on the dashboard other than above the visualisations.

@@ -50,6 +50,14 @@ If true, includes current time range in the link as query params
 func (builder *DashboardLinkBuilder) KeepTime(keepTime bool) *DashboardLinkBuilder
 ```
 
+### <span class="badge object-method"></span> Origin
+
+The source that registered the link (if any)
+
+```go
+func (builder *DashboardLinkBuilder) Origin(origin cog.Builder[dashboardv2beta1.ControlSourceRef]) *DashboardLinkBuilder
+```
+
 ### <span class="badge object-method"></span> Placement
 
 Placement can be used to display the link somewhere else on the dashboard other than above the visualisations.

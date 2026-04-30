@@ -89,3 +89,14 @@ func (builder *SwitchVariableBuilder) Description(description string) *SwitchVar
 
 	return builder
 }
+
+func (builder *SwitchVariableBuilder) Origin(origin cog.Builder[ControlSourceRef]) *SwitchVariableBuilder {
+	originResource, err := origin.Build()
+	if err != nil {
+		builder.errors = append(builder.errors, err.(cog.BuildErrors)...)
+		return builder
+	}
+	builder.internal.Spec.Origin = &originResource
+
+	return builder
+}

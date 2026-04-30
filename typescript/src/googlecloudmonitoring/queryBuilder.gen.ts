@@ -25,6 +25,11 @@ export class QueryBuilder implements cog.Builder<dashboardv2beta1.DataQueryKind>
         return this;
     }
 
+    labels(labels: Record<string, string>): this {
+        this.internal.labels = labels;
+        return this;
+    }
+
     // New type for datasource reference
     // Not creating a new type until we figure out how to handle DS refs for group by, adhoc, and every place that uses DataSourceRef in TS.
     datasource(ref: {

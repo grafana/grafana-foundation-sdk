@@ -67,6 +67,8 @@ export interface AnnotationQuerySpec {
 	filter?: AnnotationPanelFilter;
 	// Placement can be used to display the annotation query somewhere else on the dashboard other than the default location.
 	placement?: "inControlsMenu";
+	// Mappings define how to convert data frame fields to annotation event fields.
+	mappings?: Record<string, AnnotationEventFieldMapping>;
 	// Catch-all field for datasource-specific properties. Should not be available in as code tooling.
 	legacyOptions?: Record<string, any>;
 }
@@ -85,6 +87,7 @@ export interface DataQueryKind {
 	kind: "DataQuery";
 	group: string;
 	version: string;
+	labels?: Record<string, string>;
 	// New type for datasource reference
 	// Not creating a new type until we figure out how to handle DS refs for group by, adhoc, and every place that uses DataSourceRef in TS.
 	datasource?: {
@@ -115,6 +118,20 @@ export const defaultAnnotationPanelFilter = (): AnnotationPanelFilter => ({
 // Annotation Query placement. Defines where the annotation query should be displayed.
 // - "inControlsMenu" renders the annotation query in the dashboard controls dropdown menu
 export const AnnotationQueryPlacement = "inControlsMenu";
+
+// Annotation event field mapping. Defines how to map a data frame field to an annotation event field.
+export interface AnnotationEventFieldMapping {
+	// Source type for the field value
+	source?: string;
+	// Constant value to use when source is "text"
+	value?: string;
+	// Regular expression to apply to the field value
+	regex?: string;
+}
+
+export const defaultAnnotationEventFieldMapping = (): AnnotationEventFieldMapping => ({
+	source: "field",
+});
 
 // "Off" for no shared crosshair or tooltip (default).
 // "Crosshair" for shared crosshair.
@@ -255,6 +272,8 @@ export const defaultDataTransformerConfig = (): DataTransformerConfig => ({
 export interface MatcherConfig {
 	// The matcher id. This is used to find the matcher implementation from registry.
 	id: string;
+	// If set, limits this matcher to fields of that type. If not set, "series" mode is used.
+	scope?: MatcherScope;
 	// The matcher options. This is specific to the matcher implementation.
 	options?: any;
 }
@@ -262,6 +281,15 @@ export interface MatcherConfig {
 export const defaultMatcherConfig = (): MatcherConfig => ({
 	id: "",
 });
+
+export enum MatcherScope {
+	Series = "series",
+	Nested = "nested",
+	Annotation = "annotation",
+	Exemplar = "exemplar",
+}
+
+export const defaultMatcherScope = (): MatcherScope => (MatcherScope.Series);
 
 // A topic is attached to DataFrame metadata in query results.
 // This specifies where the data should be used.
@@ -354,7 +382,7 @@ export interface FieldConfig {
 	// True if data source field supports ad-hoc filters
 	filterable?: boolean;
 	// Unit a field should use. The unit you select is applied to all fields except time.
-	// You can use the units ID availables in Grafana or a custom unit.
+	// You can use the units ID available in Grafana or a custom unit.
 	// Available units in Grafana: https://github.com/grafana/grafana/blob/main/packages/grafana-data/src/valueFormats/categories.ts
 	// As custom unit, you can use the following formats:
 	// `suffix:<suffix>` for custom unit that should go after value.
@@ -388,6 +416,11 @@ export interface FieldConfig {
 	// custom is specified by the FieldConfig field
 	// in panel plugin schemas.
 	custom?: any;
+	// Calculate min max per field
+	fieldMinMax?: boolean;
+	// How null values should be handled when calculating field stats
+	// "null" - Include null values, "connected" - Ignore nulls, "null as zero" - Treat nulls as zero
+	nullValueMode?: NullValueMode;
 }
 
 export const defaultFieldConfig = (): FieldConfig => ({
@@ -535,7 +568,8 @@ export enum ThresholdsMode {
 export const defaultThresholdsMode = (): ThresholdsMode => (ThresholdsMode.Absolute);
 
 export interface Threshold {
-	value: number;
+	// Value null means -Infinity
+	value: number | null;
 	color: string;
 }
 
@@ -564,7 +598,12 @@ export const defaultFieldColor = (): FieldColor => ({
 // `thresholds`: From thresholds. Informs Grafana to take the color from the matching threshold
 // `palette-classic`: Classic palette. Grafana will assign color by looking up a color in a palette by series index. Useful for Graphs and pie charts and other categorical data visualizations
 // `palette-classic-by-name`: Classic palette (by name). Grafana will assign color by looking up a color in a palette by series name. Useful for Graphs and pie charts and other categorical data visualizations
-// `continuous-GrYlRd`: ontinuous Green-Yellow-Red palette mode
+// `continuous-viridis`: Continuous Viridis palette mode
+// `continuous-magma`: Continuous Magma palette mode
+// `continuous-plasma`: Continuous Plasma palette mode
+// `continuous-inferno`: Continuous Inferno palette mode
+// `continuous-cividis`: Continuous Cividis palette mode
+// `continuous-GrYlRd`: Continuous Green-Yellow-Red palette mode
 // `continuous-RdYlGr`: Continuous Red-Yellow-Green palette mode
 // `continuous-BlYlRd`: Continuous Blue-Yellow-Red palette mode
 // `continuous-YlRd`: Continuous Yellow-Red palette mode
@@ -580,6 +619,11 @@ export enum FieldColorModeId {
 	Thresholds = "thresholds",
 	PaletteClassic = "palette-classic",
 	PaletteClassicByName = "palette-classic-by-name",
+	ContinuousViridis = "continuous-viridis",
+	ContinuousMagma = "continuous-magma",
+	ContinuousPlasma = "continuous-plasma",
+	ContinuousInferno = "continuous-inferno",
+	ContinuousCividis = "continuous-cividis",
 	ContinuousGrYlRd = "continuous-GrYlRd",
 	ContinuousRdYlGr = "continuous-RdYlGr",
 	ContinuousBlYlRd = "continuous-BlYlRd",
@@ -688,6 +732,15 @@ export const defaultActionVariable = (): ActionVariable => ({
 
 // Action variable type
 export const ActionVariableType = "string";
+
+// How null values should be handled
+export enum NullValueMode {
+	Null = "null",
+	Connected = "connected",
+	NullAsZero = "null as zero",
+}
+
+export const defaultNullValueMode = (): NullValueMode => (NullValueMode.Null);
 
 export interface DynamicConfigValue {
 	id: string;
@@ -848,6 +901,7 @@ export interface RowsLayoutRowSpec {
 	conditionalRendering?: ConditionalRenderingGroupKind;
 	repeat?: RowRepeatOptions;
 	layout: GridLayoutKind | AutoGridLayoutKind | TabsLayoutKind | RowsLayoutKind;
+	variables?: VariableKind[];
 }
 
 export const defaultRowsLayoutRowSpec = (): RowsLayoutRowSpec => ({
@@ -1035,6 +1089,7 @@ export interface TabsLayoutTabSpec {
 	layout: GridLayoutKind | RowsLayoutKind | AutoGridLayoutKind | TabsLayoutKind;
 	conditionalRendering?: ConditionalRenderingGroupKind;
 	repeat?: TabRepeatOptions;
+	variables?: VariableKind[];
 }
 
 export const defaultTabsLayoutTabSpec = (): TabsLayoutTabSpec => ({
@@ -1049,6 +1104,492 @@ export interface TabRepeatOptions {
 export const defaultTabRepeatOptions = (): TabRepeatOptions => ({
 	mode: RepeatMode.Variable,
 	value: "",
+});
+
+export type VariableKind = QueryVariableKind | TextVariableKind | ConstantVariableKind | DatasourceVariableKind | IntervalVariableKind | CustomVariableKind | GroupByVariableKind | AdhocVariableKind | SwitchVariableKind;
+
+export const defaultVariableKind = (): VariableKind => (defaultQueryVariableKind());
+
+// Query variable kind
+export interface QueryVariableKind {
+	kind: "QueryVariable";
+	spec: QueryVariableSpec;
+}
+
+export const defaultQueryVariableKind = (): QueryVariableKind => ({
+	kind: "QueryVariable",
+	spec: defaultQueryVariableSpec(),
+});
+
+// Query variable specification
+export interface QueryVariableSpec {
+	name: string;
+	current: VariableOption;
+	label?: string;
+	hide: VariableHide;
+	refresh: VariableRefresh;
+	skipUrlSync: boolean;
+	description?: string;
+	query: DataQueryKind;
+	regex: string;
+	regexApplyTo?: VariableRegexApplyTo;
+	sort: VariableSort;
+	definition?: string;
+	options: VariableOption[];
+	multi: boolean;
+	includeAll: boolean;
+	allValue?: string;
+	placeholder?: string;
+	allowCustomValue: boolean;
+	staticOptions?: VariableOption[];
+	staticOptionsOrder?: "before" | "after" | "sorted";
+	origin?: ControlSourceRef;
+}
+
+export const defaultQueryVariableSpec = (): QueryVariableSpec => ({
+	name: "",
+	current: { text: "", value: "", },
+	hide: VariableHide.DontHide,
+	refresh: VariableRefresh.Never,
+	skipUrlSync: false,
+	query: defaultDataQueryKind(),
+	regex: "",
+	regexApplyTo: VariableRegexApplyTo.Value,
+	sort: VariableSort.Disabled,
+	options: [],
+	multi: false,
+	includeAll: false,
+	allowCustomValue: true,
+});
+
+// Variable option specification
+export interface VariableOption {
+	// Whether the option is selected or not
+	selected?: boolean;
+	// Text to be displayed for the option
+	text: string | string[];
+	// Value of the option
+	value: string | string[];
+	// Additional properties for multi-props variables
+	properties?: Record<string, string>;
+}
+
+export const defaultVariableOption = (): VariableOption => ({
+	text: "",
+	value: "",
+});
+
+// Determine if the variable shows on dashboard
+// Accepted values are `dontHide` (show label and value), `hideLabel` (show value only), `hideVariable` (show nothing), `inControlsMenu` (show in a drop-down menu).
+export enum VariableHide {
+	DontHide = "dontHide",
+	HideLabel = "hideLabel",
+	HideVariable = "hideVariable",
+	InControlsMenu = "inControlsMenu",
+}
+
+export const defaultVariableHide = (): VariableHide => (VariableHide.DontHide);
+
+// Options to config when to refresh a variable
+// `never`: Never refresh the variable
+// `onDashboardLoad`: Queries the data source every time the dashboard loads.
+// `onTimeRangeChanged`: Queries the data source when the dashboard time range changes.
+export enum VariableRefresh {
+	Never = "never",
+	OnDashboardLoad = "onDashboardLoad",
+	OnTimeRangeChanged = "onTimeRangeChanged",
+}
+
+export const defaultVariableRefresh = (): VariableRefresh => (VariableRefresh.Never);
+
+// Determine whether regex applies to variable value or display text
+// Accepted values are `value` (apply to value used in queries) or `text` (apply to display text shown to users)
+export enum VariableRegexApplyTo {
+	Value = "value",
+	Text = "text",
+}
+
+export const defaultVariableRegexApplyTo = (): VariableRegexApplyTo => (VariableRegexApplyTo.Value);
+
+// Sort variable options
+// Accepted values are:
+// `disabled`: No sorting
+// `alphabeticalAsc`: Alphabetical ASC
+// `alphabeticalDesc`: Alphabetical DESC
+// `numericalAsc`: Numerical ASC
+// `numericalDesc`: Numerical DESC
+// `alphabeticalCaseInsensitiveAsc`: Alphabetical Case Insensitive ASC
+// `alphabeticalCaseInsensitiveDesc`: Alphabetical Case Insensitive DESC
+// `naturalAsc`: Natural ASC
+// `naturalDesc`: Natural DESC
+// VariableSort enum with default value
+export enum VariableSort {
+	Disabled = "disabled",
+	AlphabeticalAsc = "alphabeticalAsc",
+	AlphabeticalDesc = "alphabeticalDesc",
+	NumericalAsc = "numericalAsc",
+	NumericalDesc = "numericalDesc",
+	AlphabeticalCaseInsensitiveAsc = "alphabeticalCaseInsensitiveAsc",
+	AlphabeticalCaseInsensitiveDesc = "alphabeticalCaseInsensitiveDesc",
+	NaturalAsc = "naturalAsc",
+	NaturalDesc = "naturalDesc",
+}
+
+export const defaultVariableSort = (): VariableSort => (VariableSort.Disabled);
+
+export type ControlSourceRef = DatasourceControlSourceRef;
+
+export const defaultControlSourceRef = (): ControlSourceRef => (defaultDatasourceControlSourceRef());
+
+// Source information for controls (e.g. variables or links)
+export interface DatasourceControlSourceRef {
+	type: "datasource";
+	// The plugin type-id
+	group: string;
+}
+
+export const defaultDatasourceControlSourceRef = (): DatasourceControlSourceRef => ({
+	type: "datasource",
+	group: "",
+});
+
+// Text variable kind
+export interface TextVariableKind {
+	kind: "TextVariable";
+	spec: TextVariableSpec;
+}
+
+export const defaultTextVariableKind = (): TextVariableKind => ({
+	kind: "TextVariable",
+	spec: defaultTextVariableSpec(),
+});
+
+// Text variable specification
+export interface TextVariableSpec {
+	name: string;
+	current: VariableOption;
+	query: string;
+	label?: string;
+	hide: VariableHide;
+	skipUrlSync: boolean;
+	description?: string;
+	origin?: ControlSourceRef;
+}
+
+export const defaultTextVariableSpec = (): TextVariableSpec => ({
+	name: "",
+	current: { text: "", value: "", },
+	query: "",
+	hide: VariableHide.DontHide,
+	skipUrlSync: false,
+});
+
+// Constant variable kind
+export interface ConstantVariableKind {
+	kind: "ConstantVariable";
+	spec: ConstantVariableSpec;
+}
+
+export const defaultConstantVariableKind = (): ConstantVariableKind => ({
+	kind: "ConstantVariable",
+	spec: defaultConstantVariableSpec(),
+});
+
+// Constant variable specification
+export interface ConstantVariableSpec {
+	name: string;
+	query: string;
+	current: VariableOption;
+	label?: string;
+	hide: VariableHide;
+	skipUrlSync: boolean;
+	description?: string;
+	origin?: ControlSourceRef;
+}
+
+export const defaultConstantVariableSpec = (): ConstantVariableSpec => ({
+	name: "",
+	query: "",
+	current: { text: "", value: "", },
+	hide: VariableHide.DontHide,
+	skipUrlSync: false,
+});
+
+// Datasource variable kind
+export interface DatasourceVariableKind {
+	kind: "DatasourceVariable";
+	spec: DatasourceVariableSpec;
+}
+
+export const defaultDatasourceVariableKind = (): DatasourceVariableKind => ({
+	kind: "DatasourceVariable",
+	spec: defaultDatasourceVariableSpec(),
+});
+
+// Datasource variable specification
+export interface DatasourceVariableSpec {
+	name: string;
+	pluginId: string;
+	refresh: VariableRefresh;
+	regex: string;
+	current: VariableOption;
+	options: VariableOption[];
+	multi: boolean;
+	includeAll: boolean;
+	allValue?: string;
+	label?: string;
+	hide: VariableHide;
+	skipUrlSync: boolean;
+	description?: string;
+	allowCustomValue: boolean;
+	origin?: ControlSourceRef;
+}
+
+export const defaultDatasourceVariableSpec = (): DatasourceVariableSpec => ({
+	name: "",
+	pluginId: "",
+	refresh: VariableRefresh.Never,
+	regex: "",
+	current: { text: "", value: "", },
+	options: [],
+	multi: false,
+	includeAll: false,
+	hide: VariableHide.DontHide,
+	skipUrlSync: false,
+	allowCustomValue: true,
+});
+
+// Interval variable kind
+export interface IntervalVariableKind {
+	kind: "IntervalVariable";
+	spec: IntervalVariableSpec;
+}
+
+export const defaultIntervalVariableKind = (): IntervalVariableKind => ({
+	kind: "IntervalVariable",
+	spec: defaultIntervalVariableSpec(),
+});
+
+// Interval variable specification
+export interface IntervalVariableSpec {
+	name: string;
+	query: string;
+	current: VariableOption;
+	options: VariableOption[];
+	auto: boolean;
+	auto_min: string;
+	auto_count: number;
+	refresh: "onTimeRangeChanged";
+	label?: string;
+	hide: VariableHide;
+	skipUrlSync: boolean;
+	description?: string;
+	origin?: ControlSourceRef;
+}
+
+export const defaultIntervalVariableSpec = (): IntervalVariableSpec => ({
+	name: "",
+	query: "",
+	current: { text: "", value: "", },
+	options: [],
+	auto: false,
+	auto_min: "",
+	auto_count: 0,
+	refresh: "onTimeRangeChanged",
+	hide: VariableHide.DontHide,
+	skipUrlSync: false,
+});
+
+// Custom variable kind
+export interface CustomVariableKind {
+	kind: "CustomVariable";
+	spec: CustomVariableSpec;
+}
+
+export const defaultCustomVariableKind = (): CustomVariableKind => ({
+	kind: "CustomVariable",
+	spec: defaultCustomVariableSpec(),
+});
+
+// Custom variable specification
+export interface CustomVariableSpec {
+	name: string;
+	query: string;
+	current: VariableOption;
+	options: VariableOption[];
+	multi: boolean;
+	includeAll: boolean;
+	allValue?: string;
+	label?: string;
+	hide: VariableHide;
+	skipUrlSync: boolean;
+	description?: string;
+	allowCustomValue: boolean;
+	valuesFormat?: "csv" | "json";
+	origin?: ControlSourceRef;
+}
+
+export const defaultCustomVariableSpec = (): CustomVariableSpec => ({
+	name: "",
+	query: "",
+	current: defaultVariableOption(),
+	options: [],
+	multi: false,
+	includeAll: false,
+	hide: VariableHide.DontHide,
+	skipUrlSync: false,
+	allowCustomValue: true,
+});
+
+// Group variable kind
+export interface GroupByVariableKind {
+	kind: "GroupByVariable";
+	group: string;
+	labels?: Record<string, string>;
+	datasource?: {
+		name?: string;
+	};
+	spec: GroupByVariableSpec;
+}
+
+export const defaultGroupByVariableKind = (): GroupByVariableKind => ({
+	kind: "GroupByVariable",
+	group: "",
+	spec: defaultGroupByVariableSpec(),
+});
+
+// GroupBy variable specification
+export interface GroupByVariableSpec {
+	name: string;
+	defaultValue?: VariableOption;
+	current: VariableOption;
+	options: VariableOption[];
+	multi: boolean;
+	label?: string;
+	hide: VariableHide;
+	skipUrlSync: boolean;
+	description?: string;
+	origin?: ControlSourceRef;
+}
+
+export const defaultGroupByVariableSpec = (): GroupByVariableSpec => ({
+	name: "",
+	current: { text: "", value: "", },
+	options: [],
+	multi: false,
+	hide: VariableHide.DontHide,
+	skipUrlSync: false,
+});
+
+// Adhoc variable kind
+export interface AdhocVariableKind {
+	kind: "AdhocVariable";
+	group: string;
+	labels?: Record<string, string>;
+	datasource?: {
+		name?: string;
+	};
+	spec: AdhocVariableSpec;
+}
+
+export const defaultAdhocVariableKind = (): AdhocVariableKind => ({
+	kind: "AdhocVariable",
+	group: "",
+	spec: defaultAdhocVariableSpec(),
+});
+
+// Adhoc variable specification
+export interface AdhocVariableSpec {
+	name: string;
+	baseFilters: AdHocFilterWithLabels[];
+	filters: AdHocFilterWithLabels[];
+	defaultKeys: MetricFindValue[];
+	label?: string;
+	hide: VariableHide;
+	skipUrlSync: boolean;
+	description?: string;
+	allowCustomValue: boolean;
+	// Whether the group-by operator is enabled in the ad hoc filter combobox.
+	enableGroupBy?: boolean;
+	origin?: ControlSourceRef;
+}
+
+export const defaultAdhocVariableSpec = (): AdhocVariableSpec => ({
+	name: "",
+	baseFilters: [],
+	filters: [],
+	defaultKeys: [],
+	hide: VariableHide.DontHide,
+	skipUrlSync: false,
+	allowCustomValue: true,
+	enableGroupBy: false,
+});
+
+// Define the AdHocFilterWithLabels type
+export interface AdHocFilterWithLabels {
+	key: string;
+	operator: string;
+	value: string;
+	values?: string[];
+	keyLabel?: string;
+	valueLabels?: string[];
+	forceEdit?: boolean;
+	origin?: "dashboard";
+	// @deprecated
+	condition?: string;
+}
+
+export const defaultAdHocFilterWithLabels = (): AdHocFilterWithLabels => ({
+	key: "",
+	operator: "",
+	value: "",
+	origin: FilterOrigin,
+});
+
+// Determine the origin of the adhoc variable filter
+export const FilterOrigin = "dashboard";
+
+// Define the MetricFindValue type
+export interface MetricFindValue {
+	text: string;
+	value?: string | number;
+	group?: string;
+	expandable?: boolean;
+}
+
+export const defaultMetricFindValue = (): MetricFindValue => ({
+	text: "",
+});
+
+export interface SwitchVariableKind {
+	kind: "SwitchVariable";
+	spec: SwitchVariableSpec;
+}
+
+export const defaultSwitchVariableKind = (): SwitchVariableKind => ({
+	kind: "SwitchVariable",
+	spec: defaultSwitchVariableSpec(),
+});
+
+export interface SwitchVariableSpec {
+	name: string;
+	current: string;
+	enabledValue: string;
+	disabledValue: string;
+	label?: string;
+	hide: VariableHide;
+	skipUrlSync: boolean;
+	description?: string;
+	origin?: ControlSourceRef;
+}
+
+export const defaultSwitchVariableSpec = (): SwitchVariableSpec => ({
+	name: "",
+	current: "false",
+	enabledValue: "true",
+	disabledValue: "false",
+	hide: VariableHide.DontHide,
+	skipUrlSync: false,
 });
 
 // Links with references to other dashboards or external resources
@@ -1076,6 +1617,8 @@ export interface DashboardLink {
 	keepTime: boolean;
 	// Placement can be used to display the link somewhere else on the dashboard other than above the visualisations.
 	placement?: "inControlsMenu";
+	// The source that registered the link (if any)
+	origin?: ControlSourceRef;
 }
 
 export const defaultDashboardLink = (): DashboardLink => ({
@@ -1168,447 +1711,17 @@ export const defaultTimeRangeOption = (): TimeRangeOption => ({
 	to: "now",
 });
 
-export type VariableKind = QueryVariableKind | TextVariableKind | ConstantVariableKind | DatasourceVariableKind | IntervalVariableKind | CustomVariableKind | GroupByVariableKind | AdhocVariableKind | SwitchVariableKind;
-
-export const defaultVariableKind = (): VariableKind => (defaultQueryVariableKind());
-
-// Query variable kind
-export interface QueryVariableKind {
-	kind: "QueryVariable";
-	spec: QueryVariableSpec;
+// Annotation event field source. Defines how to obtain the value for an annotation event field.
+// - "field": Find the value with a matching key (default)
+// - "text": Write a constant string into the value
+// - "skip": Do not include the field
+export enum AnnotationEventFieldSource {
+	Field = "field",
+	Text = "text",
+	Skip = "skip",
 }
 
-export const defaultQueryVariableKind = (): QueryVariableKind => ({
-	kind: "QueryVariable",
-	spec: defaultQueryVariableSpec(),
-});
-
-// Query variable specification
-export interface QueryVariableSpec {
-	name: string;
-	current: VariableOption;
-	label?: string;
-	hide: VariableHide;
-	refresh: VariableRefresh;
-	skipUrlSync: boolean;
-	description?: string;
-	query: DataQueryKind;
-	regex: string;
-	sort: VariableSort;
-	definition?: string;
-	options: VariableOption[];
-	multi: boolean;
-	includeAll: boolean;
-	allValue?: string;
-	placeholder?: string;
-	allowCustomValue: boolean;
-	staticOptions?: VariableOption[];
-	staticOptionsOrder?: "before" | "after" | "sorted";
-}
-
-export const defaultQueryVariableSpec = (): QueryVariableSpec => ({
-	name: "",
-	current: { text: "", value: "", },
-	hide: VariableHide.DontHide,
-	refresh: VariableRefresh.Never,
-	skipUrlSync: false,
-	query: defaultDataQueryKind(),
-	regex: "",
-	sort: VariableSort.Disabled,
-	options: [],
-	multi: false,
-	includeAll: false,
-	allowCustomValue: true,
-});
-
-// Variable option specification
-export interface VariableOption {
-	// Whether the option is selected or not
-	selected?: boolean;
-	// Text to be displayed for the option
-	text: string | string[];
-	// Value of the option
-	value: string | string[];
-}
-
-export const defaultVariableOption = (): VariableOption => ({
-	text: "",
-	value: "",
-});
-
-// Determine if the variable shows on dashboard
-// Accepted values are `dontHide` (show label and value), `hideLabel` (show value only), `hideVariable` (show nothing), `inControlsMenu` (show in a drop-down menu).
-export enum VariableHide {
-	DontHide = "dontHide",
-	HideLabel = "hideLabel",
-	HideVariable = "hideVariable",
-	InControlsMenu = "inControlsMenu",
-}
-
-export const defaultVariableHide = (): VariableHide => (VariableHide.DontHide);
-
-// Options to config when to refresh a variable
-// `never`: Never refresh the variable
-// `onDashboardLoad`: Queries the data source every time the dashboard loads.
-// `onTimeRangeChanged`: Queries the data source when the dashboard time range changes.
-export enum VariableRefresh {
-	Never = "never",
-	OnDashboardLoad = "onDashboardLoad",
-	OnTimeRangeChanged = "onTimeRangeChanged",
-}
-
-export const defaultVariableRefresh = (): VariableRefresh => (VariableRefresh.Never);
-
-// Sort variable options
-// Accepted values are:
-// `disabled`: No sorting
-// `alphabeticalAsc`: Alphabetical ASC
-// `alphabeticalDesc`: Alphabetical DESC
-// `numericalAsc`: Numerical ASC
-// `numericalDesc`: Numerical DESC
-// `alphabeticalCaseInsensitiveAsc`: Alphabetical Case Insensitive ASC
-// `alphabeticalCaseInsensitiveDesc`: Alphabetical Case Insensitive DESC
-// `naturalAsc`: Natural ASC
-// `naturalDesc`: Natural DESC
-// VariableSort enum with default value
-export enum VariableSort {
-	Disabled = "disabled",
-	AlphabeticalAsc = "alphabeticalAsc",
-	AlphabeticalDesc = "alphabeticalDesc",
-	NumericalAsc = "numericalAsc",
-	NumericalDesc = "numericalDesc",
-	AlphabeticalCaseInsensitiveAsc = "alphabeticalCaseInsensitiveAsc",
-	AlphabeticalCaseInsensitiveDesc = "alphabeticalCaseInsensitiveDesc",
-	NaturalAsc = "naturalAsc",
-	NaturalDesc = "naturalDesc",
-}
-
-export const defaultVariableSort = (): VariableSort => (VariableSort.Disabled);
-
-// Text variable kind
-export interface TextVariableKind {
-	kind: "TextVariable";
-	spec: TextVariableSpec;
-}
-
-export const defaultTextVariableKind = (): TextVariableKind => ({
-	kind: "TextVariable",
-	spec: defaultTextVariableSpec(),
-});
-
-// Text variable specification
-export interface TextVariableSpec {
-	name: string;
-	current: VariableOption;
-	query: string;
-	label?: string;
-	hide: VariableHide;
-	skipUrlSync: boolean;
-	description?: string;
-}
-
-export const defaultTextVariableSpec = (): TextVariableSpec => ({
-	name: "",
-	current: { text: "", value: "", },
-	query: "",
-	hide: VariableHide.DontHide,
-	skipUrlSync: false,
-});
-
-// Constant variable kind
-export interface ConstantVariableKind {
-	kind: "ConstantVariable";
-	spec: ConstantVariableSpec;
-}
-
-export const defaultConstantVariableKind = (): ConstantVariableKind => ({
-	kind: "ConstantVariable",
-	spec: defaultConstantVariableSpec(),
-});
-
-// Constant variable specification
-export interface ConstantVariableSpec {
-	name: string;
-	query: string;
-	current: VariableOption;
-	label?: string;
-	hide: VariableHide;
-	skipUrlSync: boolean;
-	description?: string;
-}
-
-export const defaultConstantVariableSpec = (): ConstantVariableSpec => ({
-	name: "",
-	query: "",
-	current: { text: "", value: "", },
-	hide: VariableHide.DontHide,
-	skipUrlSync: false,
-});
-
-// Datasource variable kind
-export interface DatasourceVariableKind {
-	kind: "DatasourceVariable";
-	spec: DatasourceVariableSpec;
-}
-
-export const defaultDatasourceVariableKind = (): DatasourceVariableKind => ({
-	kind: "DatasourceVariable",
-	spec: defaultDatasourceVariableSpec(),
-});
-
-// Datasource variable specification
-export interface DatasourceVariableSpec {
-	name: string;
-	pluginId: string;
-	refresh: VariableRefresh;
-	regex: string;
-	current: VariableOption;
-	options: VariableOption[];
-	multi: boolean;
-	includeAll: boolean;
-	allValue?: string;
-	label?: string;
-	hide: VariableHide;
-	skipUrlSync: boolean;
-	description?: string;
-	allowCustomValue: boolean;
-}
-
-export const defaultDatasourceVariableSpec = (): DatasourceVariableSpec => ({
-	name: "",
-	pluginId: "",
-	refresh: VariableRefresh.Never,
-	regex: "",
-	current: { text: "", value: "", },
-	options: [],
-	multi: false,
-	includeAll: false,
-	hide: VariableHide.DontHide,
-	skipUrlSync: false,
-	allowCustomValue: true,
-});
-
-// Interval variable kind
-export interface IntervalVariableKind {
-	kind: "IntervalVariable";
-	spec: IntervalVariableSpec;
-}
-
-export const defaultIntervalVariableKind = (): IntervalVariableKind => ({
-	kind: "IntervalVariable",
-	spec: defaultIntervalVariableSpec(),
-});
-
-// Interval variable specification
-export interface IntervalVariableSpec {
-	name: string;
-	query: string;
-	current: VariableOption;
-	options: VariableOption[];
-	auto: boolean;
-	auto_min: string;
-	auto_count: number;
-	refresh: VariableRefresh;
-	label?: string;
-	hide: VariableHide;
-	skipUrlSync: boolean;
-	description?: string;
-}
-
-export const defaultIntervalVariableSpec = (): IntervalVariableSpec => ({
-	name: "",
-	query: "",
-	current: { text: "", value: "", },
-	options: [],
-	auto: false,
-	auto_min: "",
-	auto_count: 0,
-	refresh: VariableRefresh.Never,
-	hide: VariableHide.DontHide,
-	skipUrlSync: false,
-});
-
-// Custom variable kind
-export interface CustomVariableKind {
-	kind: "CustomVariable";
-	spec: CustomVariableSpec;
-}
-
-export const defaultCustomVariableKind = (): CustomVariableKind => ({
-	kind: "CustomVariable",
-	spec: defaultCustomVariableSpec(),
-});
-
-// Custom variable specification
-export interface CustomVariableSpec {
-	name: string;
-	query: string;
-	current: VariableOption;
-	options: VariableOption[];
-	multi: boolean;
-	includeAll: boolean;
-	allValue?: string;
-	label?: string;
-	hide: VariableHide;
-	skipUrlSync: boolean;
-	description?: string;
-	allowCustomValue: boolean;
-}
-
-export const defaultCustomVariableSpec = (): CustomVariableSpec => ({
-	name: "",
-	query: "",
-	current: defaultVariableOption(),
-	options: [],
-	multi: false,
-	includeAll: false,
-	hide: VariableHide.DontHide,
-	skipUrlSync: false,
-	allowCustomValue: true,
-});
-
-// Group variable kind
-export interface GroupByVariableKind {
-	kind: "GroupByVariable";
-	group: string;
-	datasource?: {
-		name?: string;
-	};
-	spec: GroupByVariableSpec;
-}
-
-export const defaultGroupByVariableKind = (): GroupByVariableKind => ({
-	kind: "GroupByVariable",
-	group: "",
-	spec: defaultGroupByVariableSpec(),
-});
-
-// GroupBy variable specification
-export interface GroupByVariableSpec {
-	name: string;
-	defaultValue?: VariableOption;
-	current: VariableOption;
-	options: VariableOption[];
-	multi: boolean;
-	label?: string;
-	hide: VariableHide;
-	skipUrlSync: boolean;
-	description?: string;
-}
-
-export const defaultGroupByVariableSpec = (): GroupByVariableSpec => ({
-	name: "",
-	current: { text: "", value: "", },
-	options: [],
-	multi: false,
-	hide: VariableHide.DontHide,
-	skipUrlSync: false,
-});
-
-// Adhoc variable kind
-export interface AdhocVariableKind {
-	kind: "AdhocVariable";
-	group: string;
-	datasource?: {
-		name?: string;
-	};
-	spec: AdhocVariableSpec;
-}
-
-export const defaultAdhocVariableKind = (): AdhocVariableKind => ({
-	kind: "AdhocVariable",
-	group: "",
-	spec: defaultAdhocVariableSpec(),
-});
-
-// Adhoc variable specification
-export interface AdhocVariableSpec {
-	name: string;
-	baseFilters: AdHocFilterWithLabels[];
-	filters: AdHocFilterWithLabels[];
-	defaultKeys: MetricFindValue[];
-	label?: string;
-	hide: VariableHide;
-	skipUrlSync: boolean;
-	description?: string;
-	allowCustomValue: boolean;
-}
-
-export const defaultAdhocVariableSpec = (): AdhocVariableSpec => ({
-	name: "",
-	baseFilters: [],
-	filters: [],
-	defaultKeys: [],
-	hide: VariableHide.DontHide,
-	skipUrlSync: false,
-	allowCustomValue: true,
-});
-
-// Define the AdHocFilterWithLabels type
-export interface AdHocFilterWithLabels {
-	key: string;
-	operator: string;
-	value: string;
-	values?: string[];
-	keyLabel?: string;
-	valueLabels?: string[];
-	forceEdit?: boolean;
-	origin?: "dashboard";
-	// @deprecated
-	condition?: string;
-}
-
-export const defaultAdHocFilterWithLabels = (): AdHocFilterWithLabels => ({
-	key: "",
-	operator: "",
-	value: "",
-	origin: FilterOrigin,
-});
-
-// Determine the origin of the adhoc variable filter
-export const FilterOrigin = "dashboard";
-
-// Define the MetricFindValue type
-export interface MetricFindValue {
-	text: string;
-	value?: string | number;
-	group?: string;
-	expandable?: boolean;
-}
-
-export const defaultMetricFindValue = (): MetricFindValue => ({
-	text: "",
-});
-
-export interface SwitchVariableKind {
-	kind: "SwitchVariable";
-	spec: SwitchVariableSpec;
-}
-
-export const defaultSwitchVariableKind = (): SwitchVariableKind => ({
-	kind: "SwitchVariable",
-	spec: defaultSwitchVariableSpec(),
-});
-
-export interface SwitchVariableSpec {
-	name: string;
-	current: string;
-	enabledValue: string;
-	disabledValue: string;
-	label?: string;
-	hide: VariableHide;
-	skipUrlSync: boolean;
-	description?: string;
-}
-
-export const defaultSwitchVariableSpec = (): SwitchVariableSpec => ({
-	name: "",
-	current: "false",
-	enabledValue: "true",
-	disabledValue: "false",
-	hide: VariableHide.DontHide,
-	skipUrlSync: false,
-});
+export const defaultAnnotationEventFieldSource = (): AnnotationEventFieldSource => (AnnotationEventFieldSource.Field);
 
 // --- Common types ---
 export interface Kind {

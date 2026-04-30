@@ -33,6 +33,16 @@ class QueryBuilder implements \Grafana\Foundation\Cog\Builder
     }
 
     /**
+     * @param array<string, string> $labels
+     */
+    public function labels(array $labels): static
+    {
+        $this->internal->labels = $labels;
+    
+        return $this;
+    }
+
+    /**
      * New type for datasource reference
      * Not creating a new type until we figure out how to handle DS refs for group by, adhoc, and every place that uses DataSourceRef in TS.
      * @param \Grafana\Foundation\Cog\Builder<\Grafana\Foundation\Dashboardv2beta1\Dashboardv2beta1DataQueryKindDatasource> $datasource
@@ -53,9 +63,9 @@ class QueryBuilder implements \Grafana\Foundation\Cog\Builder
     public function refId(string $refId): static
     {    
         if ($this->internal->spec === null) {
-            $this->internal->spec = new \Grafana\Foundation\Tempo\TempoQuery();
+            $this->internal->spec = new \Grafana\Foundation\Tempo\Dataquery();
         }
-        assert($this->internal->spec instanceof \Grafana\Foundation\Tempo\TempoQuery);
+        assert($this->internal->spec instanceof \Grafana\Foundation\Tempo\Dataquery);
         $this->internal->spec->refId = $refId;
     
         return $this;
@@ -67,9 +77,9 @@ class QueryBuilder implements \Grafana\Foundation\Cog\Builder
     public function hide(bool $hide): static
     {    
         if ($this->internal->spec === null) {
-            $this->internal->spec = new \Grafana\Foundation\Tempo\TempoQuery();
+            $this->internal->spec = new \Grafana\Foundation\Tempo\Dataquery();
         }
-        assert($this->internal->spec instanceof \Grafana\Foundation\Tempo\TempoQuery);
+        assert($this->internal->spec instanceof \Grafana\Foundation\Tempo\Dataquery);
         $this->internal->spec->hide = $hide;
     
         return $this;
@@ -82,9 +92,9 @@ class QueryBuilder implements \Grafana\Foundation\Cog\Builder
     public function queryType(string $queryType): static
     {    
         if ($this->internal->spec === null) {
-            $this->internal->spec = new \Grafana\Foundation\Tempo\TempoQuery();
+            $this->internal->spec = new \Grafana\Foundation\Tempo\Dataquery();
         }
-        assert($this->internal->spec instanceof \Grafana\Foundation\Tempo\TempoQuery);
+        assert($this->internal->spec instanceof \Grafana\Foundation\Tempo\Dataquery);
         $this->internal->spec->queryType = $queryType;
     
         return $this;
@@ -96,9 +106,9 @@ class QueryBuilder implements \Grafana\Foundation\Cog\Builder
     public function query(string $query): static
     {    
         if ($this->internal->spec === null) {
-            $this->internal->spec = new \Grafana\Foundation\Tempo\TempoQuery();
+            $this->internal->spec = new \Grafana\Foundation\Tempo\Dataquery();
         }
-        assert($this->internal->spec instanceof \Grafana\Foundation\Tempo\TempoQuery);
+        assert($this->internal->spec instanceof \Grafana\Foundation\Tempo\Dataquery);
         $this->internal->spec->query = $query;
     
         return $this;
@@ -110,9 +120,9 @@ class QueryBuilder implements \Grafana\Foundation\Cog\Builder
     public function search(string $search): static
     {    
         if ($this->internal->spec === null) {
-            $this->internal->spec = new \Grafana\Foundation\Tempo\TempoQuery();
+            $this->internal->spec = new \Grafana\Foundation\Tempo\Dataquery();
         }
-        assert($this->internal->spec instanceof \Grafana\Foundation\Tempo\TempoQuery);
+        assert($this->internal->spec instanceof \Grafana\Foundation\Tempo\Dataquery);
         $this->internal->spec->search = $search;
     
         return $this;
@@ -124,9 +134,9 @@ class QueryBuilder implements \Grafana\Foundation\Cog\Builder
     public function serviceName(string $serviceName): static
     {    
         if ($this->internal->spec === null) {
-            $this->internal->spec = new \Grafana\Foundation\Tempo\TempoQuery();
+            $this->internal->spec = new \Grafana\Foundation\Tempo\Dataquery();
         }
-        assert($this->internal->spec instanceof \Grafana\Foundation\Tempo\TempoQuery);
+        assert($this->internal->spec instanceof \Grafana\Foundation\Tempo\Dataquery);
         $this->internal->spec->serviceName = $serviceName;
     
         return $this;
@@ -138,9 +148,9 @@ class QueryBuilder implements \Grafana\Foundation\Cog\Builder
     public function spanName(string $spanName): static
     {    
         if ($this->internal->spec === null) {
-            $this->internal->spec = new \Grafana\Foundation\Tempo\TempoQuery();
+            $this->internal->spec = new \Grafana\Foundation\Tempo\Dataquery();
         }
-        assert($this->internal->spec instanceof \Grafana\Foundation\Tempo\TempoQuery);
+        assert($this->internal->spec instanceof \Grafana\Foundation\Tempo\Dataquery);
         $this->internal->spec->spanName = $spanName;
     
         return $this;
@@ -152,9 +162,9 @@ class QueryBuilder implements \Grafana\Foundation\Cog\Builder
     public function minDuration(string $minDuration): static
     {    
         if ($this->internal->spec === null) {
-            $this->internal->spec = new \Grafana\Foundation\Tempo\TempoQuery();
+            $this->internal->spec = new \Grafana\Foundation\Tempo\Dataquery();
         }
-        assert($this->internal->spec instanceof \Grafana\Foundation\Tempo\TempoQuery);
+        assert($this->internal->spec instanceof \Grafana\Foundation\Tempo\Dataquery);
         $this->internal->spec->minDuration = $minDuration;
     
         return $this;
@@ -166,9 +176,9 @@ class QueryBuilder implements \Grafana\Foundation\Cog\Builder
     public function maxDuration(string $maxDuration): static
     {    
         if ($this->internal->spec === null) {
-            $this->internal->spec = new \Grafana\Foundation\Tempo\TempoQuery();
+            $this->internal->spec = new \Grafana\Foundation\Tempo\Dataquery();
         }
-        assert($this->internal->spec instanceof \Grafana\Foundation\Tempo\TempoQuery);
+        assert($this->internal->spec instanceof \Grafana\Foundation\Tempo\Dataquery);
         $this->internal->spec->maxDuration = $maxDuration;
     
         return $this;
@@ -181,9 +191,9 @@ class QueryBuilder implements \Grafana\Foundation\Cog\Builder
     public function serviceMapQuery( $serviceMapQuery): static
     {    
         if ($this->internal->spec === null) {
-            $this->internal->spec = new \Grafana\Foundation\Tempo\TempoQuery();
+            $this->internal->spec = new \Grafana\Foundation\Tempo\Dataquery();
         }
-        assert($this->internal->spec instanceof \Grafana\Foundation\Tempo\TempoQuery);
+        assert($this->internal->spec instanceof \Grafana\Foundation\Tempo\Dataquery);
         $this->internal->spec->serviceMapQuery = $serviceMapQuery;
     
         return $this;
@@ -195,9 +205,9 @@ class QueryBuilder implements \Grafana\Foundation\Cog\Builder
     public function serviceMapIncludeNamespace(bool $serviceMapIncludeNamespace): static
     {    
         if ($this->internal->spec === null) {
-            $this->internal->spec = new \Grafana\Foundation\Tempo\TempoQuery();
+            $this->internal->spec = new \Grafana\Foundation\Tempo\Dataquery();
         }
-        assert($this->internal->spec instanceof \Grafana\Foundation\Tempo\TempoQuery);
+        assert($this->internal->spec instanceof \Grafana\Foundation\Tempo\Dataquery);
         $this->internal->spec->serviceMapIncludeNamespace = $serviceMapIncludeNamespace;
     
         return $this;
@@ -209,9 +219,9 @@ class QueryBuilder implements \Grafana\Foundation\Cog\Builder
     public function limit(int $limit): static
     {    
         if ($this->internal->spec === null) {
-            $this->internal->spec = new \Grafana\Foundation\Tempo\TempoQuery();
+            $this->internal->spec = new \Grafana\Foundation\Tempo\Dataquery();
         }
-        assert($this->internal->spec instanceof \Grafana\Foundation\Tempo\TempoQuery);
+        assert($this->internal->spec instanceof \Grafana\Foundation\Tempo\Dataquery);
         $this->internal->spec->limit = $limit;
     
         return $this;
@@ -223,9 +233,9 @@ class QueryBuilder implements \Grafana\Foundation\Cog\Builder
     public function spss(int $spss): static
     {    
         if ($this->internal->spec === null) {
-            $this->internal->spec = new \Grafana\Foundation\Tempo\TempoQuery();
+            $this->internal->spec = new \Grafana\Foundation\Tempo\Dataquery();
         }
-        assert($this->internal->spec instanceof \Grafana\Foundation\Tempo\TempoQuery);
+        assert($this->internal->spec instanceof \Grafana\Foundation\Tempo\Dataquery);
         $this->internal->spec->spss = $spss;
     
         return $this;
@@ -237,9 +247,9 @@ class QueryBuilder implements \Grafana\Foundation\Cog\Builder
     public function filters(array $filters): static
     {    
         if ($this->internal->spec === null) {
-            $this->internal->spec = new \Grafana\Foundation\Tempo\TempoQuery();
+            $this->internal->spec = new \Grafana\Foundation\Tempo\Dataquery();
         }
-        assert($this->internal->spec instanceof \Grafana\Foundation\Tempo\TempoQuery);
+        assert($this->internal->spec instanceof \Grafana\Foundation\Tempo\Dataquery);
             $filtersResources = [];
             foreach ($filters as $r1) {
                     $filtersResources[] = $r1->build();
@@ -256,9 +266,9 @@ class QueryBuilder implements \Grafana\Foundation\Cog\Builder
     public function groupBy(array $groupBy): static
     {    
         if ($this->internal->spec === null) {
-            $this->internal->spec = new \Grafana\Foundation\Tempo\TempoQuery();
+            $this->internal->spec = new \Grafana\Foundation\Tempo\Dataquery();
         }
-        assert($this->internal->spec instanceof \Grafana\Foundation\Tempo\TempoQuery);
+        assert($this->internal->spec instanceof \Grafana\Foundation\Tempo\Dataquery);
             $groupByResources = [];
             foreach ($groupBy as $r1) {
                     $groupByResources[] = $r1->build();
@@ -274,9 +284,9 @@ class QueryBuilder implements \Grafana\Foundation\Cog\Builder
     public function tableType(\Grafana\Foundation\Tempo\SearchTableType $tableType): static
     {    
         if ($this->internal->spec === null) {
-            $this->internal->spec = new \Grafana\Foundation\Tempo\TempoQuery();
+            $this->internal->spec = new \Grafana\Foundation\Tempo\Dataquery();
         }
-        assert($this->internal->spec instanceof \Grafana\Foundation\Tempo\TempoQuery);
+        assert($this->internal->spec instanceof \Grafana\Foundation\Tempo\Dataquery);
         $this->internal->spec->tableType = $tableType;
     
         return $this;
@@ -288,9 +298,9 @@ class QueryBuilder implements \Grafana\Foundation\Cog\Builder
     public function step(string $step): static
     {    
         if ($this->internal->spec === null) {
-            $this->internal->spec = new \Grafana\Foundation\Tempo\TempoQuery();
+            $this->internal->spec = new \Grafana\Foundation\Tempo\Dataquery();
         }
-        assert($this->internal->spec instanceof \Grafana\Foundation\Tempo\TempoQuery);
+        assert($this->internal->spec instanceof \Grafana\Foundation\Tempo\Dataquery);
         $this->internal->spec->step = $step;
     
         return $this;
@@ -302,9 +312,9 @@ class QueryBuilder implements \Grafana\Foundation\Cog\Builder
     public function exemplars(int $exemplars): static
     {    
         if ($this->internal->spec === null) {
-            $this->internal->spec = new \Grafana\Foundation\Tempo\TempoQuery();
+            $this->internal->spec = new \Grafana\Foundation\Tempo\Dataquery();
         }
-        assert($this->internal->spec instanceof \Grafana\Foundation\Tempo\TempoQuery);
+        assert($this->internal->spec instanceof \Grafana\Foundation\Tempo\Dataquery);
         $this->internal->spec->exemplars = $exemplars;
     
         return $this;
@@ -316,9 +326,9 @@ class QueryBuilder implements \Grafana\Foundation\Cog\Builder
     public function metricsQueryType(\Grafana\Foundation\Tempo\MetricsQueryType $metricsQueryType): static
     {    
         if ($this->internal->spec === null) {
-            $this->internal->spec = new \Grafana\Foundation\Tempo\TempoQuery();
+            $this->internal->spec = new \Grafana\Foundation\Tempo\Dataquery();
         }
-        assert($this->internal->spec instanceof \Grafana\Foundation\Tempo\TempoQuery);
+        assert($this->internal->spec instanceof \Grafana\Foundation\Tempo\Dataquery);
         $this->internal->spec->metricsQueryType = $metricsQueryType;
     
         return $this;

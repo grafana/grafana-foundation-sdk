@@ -10,6 +10,7 @@ export class IntervalVariableBuilder implements cog.Builder<dashboardv2beta1.Int
     constructor(name: string) {
         this.internal = dashboardv2beta1.defaultIntervalVariableKind();
         this.internal.kind = "IntervalVariable";
+        this.internal.spec.refresh = "onTimeRangeChanged";
         this.internal.spec.name = name;
     }
 
@@ -76,14 +77,6 @@ export class IntervalVariableBuilder implements cog.Builder<dashboardv2beta1.Int
         return this;
     }
 
-    refresh(refresh: dashboardv2beta1.VariableRefresh): this {
-        if (!this.internal.spec) {
-            this.internal.spec = dashboardv2beta1.defaultIntervalVariableSpec();
-        }
-        this.internal.spec.refresh = refresh;
-        return this;
-    }
-
     label(label: string): this {
         if (!this.internal.spec) {
             this.internal.spec = dashboardv2beta1.defaultIntervalVariableSpec();
@@ -113,6 +106,15 @@ export class IntervalVariableBuilder implements cog.Builder<dashboardv2beta1.Int
             this.internal.spec = dashboardv2beta1.defaultIntervalVariableSpec();
         }
         this.internal.spec.description = description;
+        return this;
+    }
+
+    origin(origin: cog.Builder<dashboardv2beta1.ControlSourceRef>): this {
+        if (!this.internal.spec) {
+            this.internal.spec = dashboardv2beta1.defaultIntervalVariableSpec();
+        }
+        const originResource = origin.build();
+        this.internal.spec.origin = originResource;
         return this;
     }
 }

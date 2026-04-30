@@ -27,7 +27,7 @@ final class Dashboardv2beta1FieldConfigSourceOverridesConverter
     
         {
     $buffer = 'matcher(';
-        $arg0 ='(new \Grafana\Foundation\Dashboardv2beta1\MatcherConfig(id: '.\var_export($input->matcher->id, true).','.(($input->matcher->options !== null) ? 'options: '.\var_export($input->matcher->options, true).', ' : '').'))';
+        $arg0 ='(new \Grafana\Foundation\Dashboardv2beta1\MatcherConfig(id: '.\var_export($input->matcher->id, true).','.(($input->matcher->scope !== null) ? 'scope: '.'\Grafana\Foundation\Dashboardv2beta1\MatcherScope::fromValue("'.$input->matcher->scope.'")'.', ' : '').''.(($input->matcher->options !== null) ? 'options: '.\var_export($input->matcher->options, true).', ' : '').'))';
         $buffer .= $arg0;
         
     $buffer .= ')';

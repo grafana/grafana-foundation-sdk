@@ -9,6 +9,7 @@
 
  * <span class="badge builder"></span> [PanelBuilder](./builder-PanelBuilder.md)
  * <span class="badge builder"></span> [VisualizationBuilder](./builder-VisualizationBuilder.md)
+ * <span class="badge builder"></span> [VisualizationV2Builder](./builder-VisualizationV2Builder.md)
 ## Functions
 
 ### <span class="badge function"></span> NewOptions
@@ -35,6 +36,14 @@ PanelConverter accepts a `Panel` object and generates the Go code to build this 
 
 ```go
 func PanelConverter(input dashboard.Panel) string
+```
+
+### <span class="badge function"></span> VisualizationV2Converter
+
+VisualizationV2Converter accepts a `VisualizationV2` object and generates the Go code to build this object using builders.
+
+```go
+func VisualizationV2Converter(input dashboardv2.VizConfigKind) string
 ```
 
 ### <span class="badge function"></span> VisualizationConverter

@@ -54,6 +54,12 @@ Time interval in milliseconds.
 intervalMs(intervalMs: number)
 ```
 
+### <span class="badge object-method"></span> labels
+
+```typescript
+labels(labels: Record<string, string>)
+```
+
 ### <span class="badge object-method"></span> promQLQuery
 
 PromQL sub-query properties.

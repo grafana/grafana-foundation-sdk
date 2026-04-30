@@ -21,6 +21,7 @@
  * <span class="badge builder"></span> [MatcherConfig](./builder-MatcherConfig.md)
  * <span class="badge builder"></span> [Panel](./builder-Panel.md)
  * <span class="badge builder"></span> [Visualization](./builder-Visualization.md)
+ * <span class="badge builder"></span> [VisualizationV2](./builder-VisualizationV2.md)
  * <span class="badge builder"></span> [XYSeriesConfig](./builder-XYSeriesConfig.md)
  * <span class="badge builder"></span> [XychartFieldConfigPointSize](./builder-XychartFieldConfigPointSize.md)
  * <span class="badge builder"></span> [XychartXYSeriesConfigColor](./builder-XychartXYSeriesConfigColor.md)

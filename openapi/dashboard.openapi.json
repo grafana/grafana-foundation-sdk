@@ -138,6 +138,7 @@
         "properties": {
           "id": {
             "type": "integer",
+            "nullable": true,
             "description": "Unique numeric identifier for the dashboard.\n`id` is internal to a specific Grafana instance. `uid` should be used to identify a dashboard across Grafana instances.\nTODO eliminate this null option"
           },
           "uid": {
@@ -523,6 +524,7 @@
           },
           "x": {
             "type": "integer",
+            "minimum": 0,
             "maximum": 24,
             "exclusiveMaximum": true,
             "description": "Panel x. The x coordinate is the number of columns from the left edge of the grid",
@@ -530,6 +532,7 @@
           },
           "y": {
             "type": "integer",
+            "minimum": 0,
             "description": "Panel y. The y coordinate is the number of rows from the top edge of the grid",
             "default": 0
           },
@@ -937,10 +940,12 @@
             "properties": {
               "from": {
                 "type": "number",
+                "nullable": true,
                 "description": "Min value of the range. It can be null which means -Infinity"
               },
               "to": {
                 "type": "number",
+                "nullable": true,
                 "description": "Max value of the range. It can be null which means +Infinity"
               },
               "result": {
@@ -1080,6 +1085,7 @@
         "properties": {
           "value": {
             "type": "number",
+            "nullable": true,
             "description": "Value represents a specified metric for the threshold, which triggers a visual change in the dashboard when this value is met or exceeded.\nNulls currently appear here when serializing -Infinity to JSON."
           },
           "color": {

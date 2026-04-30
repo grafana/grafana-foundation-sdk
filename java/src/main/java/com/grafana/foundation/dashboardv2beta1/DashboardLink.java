@@ -52,6 +52,10 @@ public class DashboardLink {
     @JsonInclude(JsonInclude.Include.NON_NULL)
     @JsonProperty("placement")
     public String placement;
+    // The source that registered the link (if any)
+    @JsonInclude(JsonInclude.Include.NON_NULL)
+    @JsonProperty("origin")
+    public ControlSourceRef origin;
     public DashboardLink() {
         this.title = "";
         this.type = DashboardLinkType.LINK;
@@ -64,7 +68,7 @@ public class DashboardLink {
         this.keepTime = false;
         this.placement = Constants.DashboardLinkPlacement;
     }
-    public DashboardLink(String title,DashboardLinkType type,String icon,String tooltip,String url,List<String> tags,Boolean asDropdown,Boolean targetBlank,Boolean includeVars,Boolean keepTime) {
+    public DashboardLink(String title,DashboardLinkType type,String icon,String tooltip,String url,List<String> tags,Boolean asDropdown,Boolean targetBlank,Boolean includeVars,Boolean keepTime,ControlSourceRef origin) {
         this.title = title;
         this.type = type;
         this.icon = icon;
@@ -76,6 +80,7 @@ public class DashboardLink {
         this.includeVars = includeVars;
         this.keepTime = keepTime;
         this.placement = Constants.DashboardLinkPlacement;
+        this.origin = origin;
     }
     
     public String toJSON() throws JsonProcessingException {

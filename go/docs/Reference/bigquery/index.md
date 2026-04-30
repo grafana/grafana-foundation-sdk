@@ -24,6 +24,7 @@
  * <span class="badge builder"></span> [QueryEditorGroupByExpressionBuilder](./builder-QueryEditorGroupByExpressionBuilder.md)
  * <span class="badge builder"></span> [QueryEditorPropertyBuilder](./builder-QueryEditorPropertyBuilder.md)
  * <span class="badge builder"></span> [QueryEditorPropertyExpressionBuilder](./builder-QueryEditorPropertyExpressionBuilder.md)
+ * <span class="badge builder"></span> [QueryV2Builder](./builder-QueryV2Builder.md)
  * <span class="badge builder"></span> [SQLExpressionBuilder](./builder-SQLExpressionBuilder.md)
 ## Functions
 
@@ -91,6 +92,14 @@ This configuration describes how to unmarshal it, convert it to code, …
 
 ```go
 func VariantConfig() variants.DataqueryConfig
+```
+
+### <span class="badge function"></span> QueryV2Converter
+
+QueryV2Converter accepts a `QueryV2` object and generates the Go code to build this object using builders.
+
+```go
+func QueryV2Converter(input dashboardv2.DataQueryKind) string
 ```
 
 ### <span class="badge function"></span> DataqueryConverter

@@ -50,6 +50,12 @@ csvFileName(csvFileName: string)
 csvWave(csvWave: cog.Builder<testdata.CSVWave>[])
 ```
 
+### <span class="badge object-method"></span> dataqueryLabels
+
+```typescript
+dataqueryLabels(labels: string)
+```
+
 ### <span class="badge object-method"></span> datasource
 
 New type for datasource reference
@@ -129,7 +135,7 @@ intervalMs(intervalMs: number)
 ### <span class="badge object-method"></span> labels
 
 ```typescript
-labels(labels: string)
+labels(labels: Record<string, string>)
 ```
 
 ### <span class="badge object-method"></span> levelColumn

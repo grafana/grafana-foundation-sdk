@@ -1,0 +1,181 @@
+---
+title: <span class="badge builder"></span> QueryV2
+---
+# <span class="badge builder"></span> QueryV2
+
+## Constructor
+
+```python
+QueryV2()
+```
+## Methods
+
+### <span class="badge object-method"></span> build
+
+Builds the object.
+
+```python
+def build() -> dashboardv2.DataQueryKind
+```
+
+### <span class="badge object-method"></span> azure_log_analytics
+
+Azure Monitor Logs sub-query properties.
+
+```python
+def azure_log_analytics(azure_log_analytics: cogbuilder.Builder[azuremonitor.AzureLogsQuery]) -> typing.Self
+```
+
+### <span class="badge object-method"></span> azure_monitor
+
+Azure Monitor Metrics sub-query properties.
+
+```python
+def azure_monitor(azure_monitor: cogbuilder.Builder[azuremonitor.AzureMetricQuery]) -> typing.Self
+```
+
+### <span class="badge object-method"></span> azure_resource_graph
+
+Azure Resource Graph sub-query properties.
+
+```python
+def azure_resource_graph(azure_resource_graph: cogbuilder.Builder[azuremonitor.AzureResourceGraphQuery]) -> typing.Self
+```
+
+### <span class="badge object-method"></span> azure_traces
+
+Application Insights Traces sub-query properties.
+
+```python
+def azure_traces(azure_traces: cogbuilder.Builder[azuremonitor.AzureTracesQuery]) -> typing.Self
+```
+
+### <span class="badge object-method"></span> custom_namespace
+
+Custom namespace used in template variable queries
+
+```python
+def custom_namespace(custom_namespace: str) -> typing.Self
+```
+
+### <span class="badge object-method"></span> datasource
+
+New type for datasource reference
+
+Not creating a new type until we figure out how to handle DS refs for group by, adhoc, and every place that uses DataSourceRef in TS.
+
+```python
+def datasource(ref: cogbuilder.Builder[dashboardv2.Dashboardv2DataQueryKindDatasource]) -> typing.Self
+```
+
+### <span class="badge object-method"></span> grafana_template_variable_fn
+
+@deprecated Legacy template variable support.
+
+```python
+def grafana_template_variable_fn(grafana_template_variable_fn: cogbuilder.Builder[azuremonitor.GrafanaTemplateVariableQuery]) -> typing.Self
+```
+
+### <span class="badge object-method"></span> hide
+
+If hide is set to true, Grafana will filter out the response(s) associated with this query before returning it to the panel.
+
+```python
+def hide(hide: bool) -> typing.Self
+```
+
+### <span class="badge object-method"></span> labels
+
+```python
+def labels(labels: dict[str, str]) -> typing.Self
+```
+
+### <span class="badge object-method"></span> namespace
+
+Namespace used in template variable queries
+
+```python
+def namespace(namespace: str) -> typing.Self
+```
+
+### <span class="badge object-method"></span> query
+
+Used only for exemplar queries from Prometheus
+
+```python
+def query(query: str) -> typing.Self
+```
+
+### <span class="badge object-method"></span> query_type
+
+Specify the query flavor
+
+TODO make this required and give it a default
+
+```python
+def query_type(query_type: str) -> typing.Self
+```
+
+### <span class="badge object-method"></span> ref_id
+
+A unique identifier for the query within the list of targets.
+
+In server side expressions, the refId is used as a variable name to identify results.
+
+By default, the UI will assign A->Z; however setting meaningful names may be useful.
+
+```python
+def ref_id(ref_id: str) -> typing.Self
+```
+
+### <span class="badge object-method"></span> region
+
+Region used in template variable queries
+
+```python
+def region(region: str) -> typing.Self
+```
+
+### <span class="badge object-method"></span> resource
+
+Resource used in template variable queries
+
+```python
+def resource(resource: str) -> typing.Self
+```
+
+### <span class="badge object-method"></span> resource_group
+
+Resource group used in template variable queries
+
+```python
+def resource_group(resource_group: str) -> typing.Self
+```
+
+### <span class="badge object-method"></span> subscription
+
+Azure subscription containing the resource(s) to be queried.
+
+Also used for template variable queries
+
+```python
+def subscription(subscription: str) -> typing.Self
+```
+
+### <span class="badge object-method"></span> subscriptions
+
+Subscriptions to be queried via Azure Resource Graph.
+
+```python
+def subscriptions(subscriptions: list[str]) -> typing.Self
+```
+
+### <span class="badge object-method"></span> version
+
+```python
+def version(version: str) -> typing.Self
+```
+
+## See also
+
+ * <span class="badge object-type-class"></span> [dashboardv2.DataQueryKind](../dashboardv2/object-DataQueryKind.md)

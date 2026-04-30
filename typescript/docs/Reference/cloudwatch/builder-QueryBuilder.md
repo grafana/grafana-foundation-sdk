@@ -48,6 +48,12 @@ datasource(ref: {
 })
 ```
 
+### <span class="badge object-method"></span> labels
+
+```typescript
+labels(labels: Record<string, string>)
+```
+
 ### <span class="badge object-method"></span> version
 
 ```typescript

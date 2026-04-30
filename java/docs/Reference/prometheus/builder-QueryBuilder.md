@@ -96,6 +96,12 @@ See https://github.com/grafana/grafana/issues/48081
 public QueryBuilder intervalFactor(Double intervalFactor)
 ```
 
+### <span class="badge object-method"></span> labels
+
+```java
+public QueryBuilder labels(Map<String, String> labels)
+```
+
 ### <span class="badge object-method"></span> legendFormat
 
 Series name override or template. Ex. {{hostname}} will be replaced with label value for hostname

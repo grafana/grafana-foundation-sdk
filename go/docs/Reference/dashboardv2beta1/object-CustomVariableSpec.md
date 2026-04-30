@@ -21,6 +21,8 @@ type CustomVariableSpec struct {
     SkipUrlSync bool `json:"skipUrlSync"`
     Description *string `json:"description,omitempty"`
     AllowCustomValue bool `json:"allowCustomValue"`
+    ValuesFormat *dashboardv2beta1.CustomVariableSpecValuesFormat `json:"valuesFormat,omitempty"`
+    Origin *dashboardv2beta1.ControlSourceRef `json:"origin,omitempty"`
 }
 ```
 ## Methods

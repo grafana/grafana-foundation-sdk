@@ -6,6 +6,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.ObjectWriter;
+import java.util.HashMap;
 import com.fasterxml.jackson.annotation.JsonInclude;
 
 // Text variable specification
@@ -28,14 +29,17 @@ public class TextVariableSpec {
     @JsonInclude(JsonInclude.Include.NON_NULL)
     @JsonProperty("description")
     public String description;
+    @JsonInclude(JsonInclude.Include.NON_NULL)
+    @JsonProperty("origin")
+    public ControlSourceRef origin;
     public TextVariableSpec() {
         this.name = "";
-        this.current = new VariableOption(false, StringOrArrayOfString.createString(""), StringOrArrayOfString.createString(""));
+        this.current = new VariableOption(false, StringOrArrayOfString.createString(""), StringOrArrayOfString.createString(""), new HashMap<>());
         this.query = "";
         this.hide = VariableHide.DONT_HIDE;
         this.skipUrlSync = false;
     }
-    public TextVariableSpec(String name,VariableOption current,String query,String label,VariableHide hide,Boolean skipUrlSync,String description) {
+    public TextVariableSpec(String name,VariableOption current,String query,String label,VariableHide hide,Boolean skipUrlSync,String description,ControlSourceRef origin) {
         this.name = name;
         this.current = current;
         this.query = query;
@@ -43,6 +47,7 @@ public class TextVariableSpec {
         this.hide = hide;
         this.skipUrlSync = skipUrlSync;
         this.description = description;
+        this.origin = origin;
     }
     
     public String toJSON() throws JsonProcessingException {

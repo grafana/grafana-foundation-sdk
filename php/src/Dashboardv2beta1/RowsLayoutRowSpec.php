@@ -22,6 +22,11 @@ class RowsLayoutRowSpec implements \JsonSerializable
     public $layout;
 
     /**
+     * @var array<\Grafana\Foundation\Dashboardv2beta1\QueryVariableKind|\Grafana\Foundation\Dashboardv2beta1\TextVariableKind|\Grafana\Foundation\Dashboardv2beta1\ConstantVariableKind|\Grafana\Foundation\Dashboardv2beta1\DatasourceVariableKind|\Grafana\Foundation\Dashboardv2beta1\IntervalVariableKind|\Grafana\Foundation\Dashboardv2beta1\CustomVariableKind|\Grafana\Foundation\Dashboardv2beta1\GroupByVariableKind|\Grafana\Foundation\Dashboardv2beta1\AdhocVariableKind|\Grafana\Foundation\Dashboardv2beta1\SwitchVariableKind>|null
+     */
+    public ?array $variables;
+
+    /**
      * @param string|null $title
      * @param bool|null $collapse
      * @param bool|null $hideHeader
@@ -29,8 +34,9 @@ class RowsLayoutRowSpec implements \JsonSerializable
      * @param \Grafana\Foundation\Dashboardv2beta1\ConditionalRenderingGroupKind|null $conditionalRendering
      * @param \Grafana\Foundation\Dashboardv2beta1\RowRepeatOptions|null $repeat
      * @param \Grafana\Foundation\Dashboardv2beta1\GridLayoutKind|\Grafana\Foundation\Dashboardv2beta1\AutoGridLayoutKind|\Grafana\Foundation\Dashboardv2beta1\TabsLayoutKind|\Grafana\Foundation\Dashboardv2beta1\RowsLayoutKind|null $layout
+     * @param array<\Grafana\Foundation\Dashboardv2beta1\QueryVariableKind|\Grafana\Foundation\Dashboardv2beta1\TextVariableKind|\Grafana\Foundation\Dashboardv2beta1\ConstantVariableKind|\Grafana\Foundation\Dashboardv2beta1\DatasourceVariableKind|\Grafana\Foundation\Dashboardv2beta1\IntervalVariableKind|\Grafana\Foundation\Dashboardv2beta1\CustomVariableKind|\Grafana\Foundation\Dashboardv2beta1\GroupByVariableKind|\Grafana\Foundation\Dashboardv2beta1\AdhocVariableKind|\Grafana\Foundation\Dashboardv2beta1\SwitchVariableKind>|null $variables
      */
-    public function __construct(?string $title = null, ?bool $collapse = null, ?bool $hideHeader = null, ?bool $fillScreen = null, ?\Grafana\Foundation\Dashboardv2beta1\ConditionalRenderingGroupKind $conditionalRendering = null, ?\Grafana\Foundation\Dashboardv2beta1\RowRepeatOptions $repeat = null,  $layout = null)
+    public function __construct(?string $title = null, ?bool $collapse = null, ?bool $hideHeader = null, ?bool $fillScreen = null, ?\Grafana\Foundation\Dashboardv2beta1\ConditionalRenderingGroupKind $conditionalRendering = null, ?\Grafana\Foundation\Dashboardv2beta1\RowRepeatOptions $repeat = null,  $layout = null, ?array $variables = null)
     {
         $this->title = $title;
         $this->collapse = $collapse;
@@ -39,6 +45,7 @@ class RowsLayoutRowSpec implements \JsonSerializable
         $this->conditionalRendering = $conditionalRendering;
         $this->repeat = $repeat;
         $this->layout = $layout ?: new \Grafana\Foundation\Dashboardv2beta1\GridLayoutKind();
+        $this->variables = $variables;
     }
 
     /**
@@ -46,7 +53,7 @@ class RowsLayoutRowSpec implements \JsonSerializable
      */
     public static function fromArray(array $inputData): self
     {
-        /** @var array{title?: string, collapse?: bool, hideHeader?: bool, fillScreen?: bool, conditionalRendering?: mixed, repeat?: mixed, layout?: mixed|mixed|mixed|mixed} $inputData */
+        /** @var array{title?: string, collapse?: bool, hideHeader?: bool, fillScreen?: bool, conditionalRendering?: mixed, repeat?: mixed, layout?: mixed|mixed|mixed|mixed, variables?: array<mixed|mixed|mixed|mixed|mixed|mixed|mixed|mixed|mixed>} $inputData */
         $data = $inputData;
         return new self(
             title: $data["title"] ?? null,
@@ -79,6 +86,32 @@ class RowsLayoutRowSpec implements \JsonSerializable
             throw new \ValueError('can not parse disjunction from array');
     }
     })($data["layout"]) : null,
+            variables: !empty($data["variables"]) ? array_map((function($input) {
+        \assert(is_array($input), 'expected disjunction value to be an array');
+        /** @var array<string, mixed> $input */
+        switch ($input["kind"]) {
+        case "AdhocVariable":
+            return AdhocVariableKind::fromArray($input);
+        case "ConstantVariable":
+            return ConstantVariableKind::fromArray($input);
+        case "CustomVariable":
+            return CustomVariableKind::fromArray($input);
+        case "DatasourceVariable":
+            return DatasourceVariableKind::fromArray($input);
+        case "GroupByVariable":
+            return GroupByVariableKind::fromArray($input);
+        case "IntervalVariable":
+            return IntervalVariableKind::fromArray($input);
+        case "QueryVariable":
+            return QueryVariableKind::fromArray($input);
+        case "SwitchVariable":
+            return SwitchVariableKind::fromArray($input);
+        case "TextVariable":
+            return TextVariableKind::fromArray($input);
+        default:
+            throw new \ValueError('can not parse disjunction from array');
+    }
+    }), $data["variables"]) : null,
         );
     }
 
@@ -106,6 +139,9 @@ class RowsLayoutRowSpec implements \JsonSerializable
         }
         if (isset($this->repeat)) {
             $data->repeat = $this->repeat;
+        }
+        if (isset($this->variables)) {
+            $data->variables = $this->variables;
         }
         return $data;
     }
