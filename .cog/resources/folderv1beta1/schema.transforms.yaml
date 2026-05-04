@@ -3,7 +3,7 @@
 passes:
   # Add a few useful constants
   - add_object:
-      object: folderv1beta1.FolderV1Beta1
+      object: folderv1beta1.FolderApiVersion
       as:
         kind: scalar
         scalar: { scalar_kind: string, value: "folder.grafana.app/v1beta1" }
