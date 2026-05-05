@@ -31,6 +31,10 @@ passes:
         scalar: { scalar_kind: any }
         nullable: true
 
+  - fields_set_default:
+      defaults:
+        dashboardv2beta1.VizConfigSpec.options: {}
+
   - retype_field:
       field: dashboardv2beta1.FieldConfig.custom
       as:
@@ -60,7 +64,7 @@ passes:
       from: dashboardv2beta1.DashboardSpec
       to: Dashboard
 
-  # To get rid of the default value (each panel query needs a unique refId, and
+  # To get rid of the default value (each panel query needs a unique refId, and
   # an empty value as default makes it easier to identify that a unique refId
   # needs to be computed)
   - retype_field:

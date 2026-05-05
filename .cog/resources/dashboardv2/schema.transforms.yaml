@@ -39,6 +39,10 @@ passes:
         scalar: { scalar_kind: any }
         nullable: true
 
+  - fields_set_default:
+      defaults:
+        dashboardv2.VizConfigSpec.options: {}
+
   - retype_field:
       field: dashboardv2.FieldConfig.custom
       as:
