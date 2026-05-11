@@ -34,6 +34,6 @@ requests==2.33.0
 six==1.17.0
 toml==0.10.2
 typing_extensions==4.15.0
-urllib3==2.6.3
+urllib3==2.7.0
 watchdog==6.0.0
 zipp==3.23.0
