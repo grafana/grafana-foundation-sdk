@@ -11,14 +11,15 @@ import (
 	cog "github.com/grafana/grafana-foundation-sdk/go/cog"
 	variants "github.com/grafana/grafana-foundation-sdk/go/cog/variants"
 	common "github.com/grafana/grafana-foundation-sdk/go/common"
+	dashboardv2 "github.com/grafana/grafana-foundation-sdk/go/dashboardv2"
 	dashboardv2beta1 "github.com/grafana/grafana-foundation-sdk/go/dashboardv2beta1"
 )
 
-type TempoQuery struct {
+type Dataquery struct {
 	// A unique identifier for the query within the list of targets.
 	// In server side expressions, the refId is used as a variable name to identify results.
 	// By default, the UI will assign A->Z; however setting meaningful names may be useful.
-	RefId *string `json:"refId,omitempty"`
+	RefId string `json:"refId"`
 	// If hide is set to true, Grafana will filter out the response(s) associated with this query before returning it to the panel.
 	Hide *bool `json:"hide,omitempty"`
 	// Specify the query flavor
@@ -62,22 +63,22 @@ type TempoQuery struct {
 	MetricsQueryType *MetricsQueryType `json:"metricsQueryType,omitempty"`
 }
 
-func (resource TempoQuery) ImplementsDataqueryVariant() {}
+func (resource Dataquery) ImplementsDataqueryVariant() {}
 
-func (resource TempoQuery) DataqueryType() string {
+func (resource Dataquery) DataqueryType() string {
 	return "tempo"
 }
 
-// NewTempoQuery creates a new TempoQuery object.
-func NewTempoQuery() *TempoQuery {
-	return &TempoQuery{
+// NewDataquery creates a new Dataquery object.
+func NewDataquery() *Dataquery {
+	return &Dataquery{
 		Filters: []TraceqlFilter{},
 	}
 }
 
-// UnmarshalJSONStrict implements a custom JSON unmarshalling logic to decode `TempoQuery` from JSON.
+// UnmarshalJSONStrict implements a custom JSON unmarshalling logic to decode `Dataquery` from JSON.
 // Note: the unmarshalling done by this function is strict. It will fail over required fields being absent from the input, fields having an incorrect type, unexpected fields being present, …
-func (resource *TempoQuery) UnmarshalJSONStrict(raw []byte) error {
+func (resource *Dataquery) UnmarshalJSONStrict(raw []byte) error {
 	if raw == nil {
 		return nil
 	}
@@ -93,10 +94,13 @@ func (resource *TempoQuery) UnmarshalJSONStrict(raw []byte) error {
 			if err := json.Unmarshal(fields["refId"], &resource.RefId); err != nil {
 				errs = append(errs, cog.MakeBuildErrors("refId", err)...)
 			}
+		} else {
+			errs = append(errs, cog.MakeBuildErrors("refId", errors.New("required field is null"))...)
 
 		}
 		delete(fields, "refId")
-
+	} else {
+		errs = append(errs, cog.MakeBuildErrors("refId", errors.New("required field is missing from input"))...)
 	}
 	// Field "hide"
 	if fields["hide"] != nil {
@@ -340,7 +344,7 @@ func (resource *TempoQuery) UnmarshalJSONStrict(raw []byte) error {
 	}
 
 	for field := range fields {
-		errs = append(errs, cog.MakeBuildErrors("TempoQuery", fmt.Errorf("unexpected field '%s'", field))...)
+		errs = append(errs, cog.MakeBuildErrors("Dataquery", fmt.Errorf("unexpected field '%s'", field))...)
 	}
 
 	if len(errs) == 0 {
@@ -351,23 +355,17 @@ func (resource *TempoQuery) UnmarshalJSONStrict(raw []byte) error {
 }
 
 // Equals tests the equality of two dataqueries.
-func (resource TempoQuery) Equals(otherCandidate variants.Dataquery) bool {
+func (resource Dataquery) Equals(otherCandidate variants.Dataquery) bool {
 	if otherCandidate == nil {
 		return false
 	}
 
-	other, ok := otherCandidate.(TempoQuery)
+	other, ok := otherCandidate.(Dataquery)
 	if !ok {
 		return false
 	}
-	if resource.RefId == nil && other.RefId != nil || resource.RefId != nil && other.RefId == nil {
+	if resource.RefId != other.RefId {
 		return false
-	}
-
-	if resource.RefId != nil {
-		if *resource.RefId != *other.RefId {
-			return false
-		}
 	}
 	if resource.Hide == nil && other.Hide != nil || resource.Hide != nil && other.Hide == nil {
 		return false
@@ -546,8 +544,8 @@ func (resource TempoQuery) Equals(otherCandidate variants.Dataquery) bool {
 	return true
 }
 
-// Validate checks all the validation constraints that may be defined on `TempoQuery` fields for violations and returns them.
-func (resource TempoQuery) Validate() error {
+// Validate checks all the validation constraints that may be defined on `Dataquery` fields for violations and returns them.
+func (resource Dataquery) Validate() error {
 	var errs cog.BuildErrors
 	if resource.ServiceMapQuery != nil {
 		if err := resource.ServiceMapQuery.Validate(); err != nil {
@@ -945,7 +943,7 @@ func VariantConfig() variants.DataqueryConfig {
 	return variants.DataqueryConfig{
 		Identifier: "tempo",
 		DataqueryUnmarshaler: func(raw []byte) (variants.Dataquery, error) {
-			dataquery := &TempoQuery{}
+			dataquery := &Dataquery{}
 
 			if err := json.Unmarshal(raw, dataquery); err != nil {
 				return nil, err
@@ -954,7 +952,7 @@ func VariantConfig() variants.DataqueryConfig {
 			return dataquery, nil
 		},
 		StrictDataqueryUnmarshaler: func(raw []byte) (variants.Dataquery, error) {
-			dataquery := &TempoQuery{}
+			dataquery := &Dataquery{}
 
 			if err := dataquery.UnmarshalJSONStrict(raw); err != nil {
 				return nil, err
@@ -963,20 +961,27 @@ func VariantConfig() variants.DataqueryConfig {
 			return dataquery, nil
 		},
 		GoConverter: func(input any) string {
-			var dataquery TempoQuery
-			if cast, ok := input.(*TempoQuery); ok {
+			var dataquery Dataquery
+			if cast, ok := input.(*Dataquery); ok {
 				dataquery = *cast
 			} else {
-				dataquery = input.(TempoQuery)
+				dataquery = input.(Dataquery)
 			}
-			return TempoQueryConverter(dataquery)
+			return DataqueryConverter(dataquery)
 		},
 		GoV2Converter: func(input any) string {
 			if cast, ok := input.(*dashboardv2beta1.DataQueryKind); ok {
 				return QueryConverter(*cast)
+			} else if cast, ok := input.(dashboardv2beta1.DataQueryKind); ok {
+				return QueryConverter(cast)
+			}
+			if cast, ok := input.(*dashboardv2.DataQueryKind); ok {
+				return QueryV2Converter(*cast)
+			} else if cast, ok := input.(dashboardv2.DataQueryKind); ok {
+				return QueryV2Converter(cast)
 			}
 
-			return QueryConverter(input.(dashboardv2beta1.DataQueryKind))
+			return "/* could not convert DataQueryKind */"
 		},
 	}
 }

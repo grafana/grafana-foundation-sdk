@@ -2,27 +2,28 @@
 
 ## Objects
 
+ * <span class="badge object-type-struct"></span> [Dataquery](./object-Dataquery.md)
  * <span class="badge object-type-enum"></span> [MetricsQueryType](./object-MetricsQueryType.md)
  * <span class="badge object-type-enum"></span> [SearchStreamingState](./object-SearchStreamingState.md)
  * <span class="badge object-type-enum"></span> [SearchTableType](./object-SearchTableType.md)
  * <span class="badge object-type-struct"></span> [StringOrArrayOfString](./object-StringOrArrayOfString.md)
- * <span class="badge object-type-struct"></span> [TempoQuery](./object-TempoQuery.md)
  * <span class="badge object-type-enum"></span> [TempoQueryType](./object-TempoQueryType.md)
  * <span class="badge object-type-struct"></span> [TraceqlFilter](./object-TraceqlFilter.md)
  * <span class="badge object-type-enum"></span> [TraceqlSearchScope](./object-TraceqlSearchScope.md)
 ## Builders
 
+ * <span class="badge builder"></span> [DataqueryBuilder](./builder-DataqueryBuilder.md)
  * <span class="badge builder"></span> [QueryBuilder](./builder-QueryBuilder.md)
- * <span class="badge builder"></span> [TempoQueryBuilder](./builder-TempoQueryBuilder.md)
+ * <span class="badge builder"></span> [QueryV2Builder](./builder-QueryV2Builder.md)
  * <span class="badge builder"></span> [TraceqlFilterBuilder](./builder-TraceqlFilterBuilder.md)
 ## Functions
 
-### <span class="badge function"></span> NewTempoQuery
+### <span class="badge function"></span> NewDataquery
 
-NewTempoQuery creates a new TempoQuery object.
+NewDataquery creates a new Dataquery object.
 
 ```go
-func NewTempoQuery() *TempoQuery
+func NewDataquery() *Dataquery
 ```
 
 ### <span class="badge function"></span> NewTraceqlFilter
@@ -51,12 +52,20 @@ This configuration describes how to unmarshal it, convert it to code, …
 func VariantConfig() variants.DataqueryConfig
 ```
 
-### <span class="badge function"></span> TempoQueryConverter
+### <span class="badge function"></span> QueryV2Converter
 
-TempoQueryConverter accepts a `TempoQuery` object and generates the Go code to build this object using builders.
+QueryV2Converter accepts a `QueryV2` object and generates the Go code to build this object using builders.
 
 ```go
-func TempoQueryConverter(input TempoQuery) string
+func QueryV2Converter(input dashboardv2.DataQueryKind) string
+```
+
+### <span class="badge function"></span> DataqueryConverter
+
+DataqueryConverter accepts a `Dataquery` object and generates the Go code to build this object using builders.
+
+```go
+func DataqueryConverter(input Dataquery) string
 ```
 
 ### <span class="badge function"></span> TraceqlFilterConverter

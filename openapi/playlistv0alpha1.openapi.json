@@ -55,7 +55,7 @@
           }
         }
       },
-      "PlaylistV0Alpha1": {
+      "PlaylistApiVersion": {
         "type": "string",
         "const": "playlist.grafana.app/playlistv0alpha1"
       },

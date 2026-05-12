@@ -122,6 +122,18 @@ func QueryVariableConverter(input QueryVariableKind) string {
 		buffer.Reset()
 
 	}
+	if input.Spec.RegexApplyTo != nil {
+
+		buffer.WriteString(`RegexApplyTo(`)
+		arg0 := cog.Dump(*input.Spec.RegexApplyTo)
+		buffer.WriteString(arg0)
+
+		buffer.WriteString(")")
+
+		calls = append(calls, buffer.String())
+		buffer.Reset()
+
+	}
 
 	{
 		buffer.WriteString(`Sort(`)
@@ -244,6 +256,18 @@ func QueryVariableConverter(input QueryVariableKind) string {
 
 		buffer.WriteString(`StaticOptionsOrder(`)
 		arg0 := cog.Dump(*input.Spec.StaticOptionsOrder)
+		buffer.WriteString(arg0)
+
+		buffer.WriteString(")")
+
+		calls = append(calls, buffer.String())
+		buffer.Reset()
+
+	}
+	if input.Spec.Origin != nil {
+
+		buffer.WriteString(`Origin(`)
+		arg0 := ControlSourceRefConverter(*input.Spec.Origin)
 		buffer.WriteString(arg0)
 
 		buffer.WriteString(")")

@@ -42,6 +42,12 @@ def repeat(repeat: cogbuilder.Builder[dashboardv2beta1.TabRepeatOptions]) -> typ
 def title(title: str) -> typing.Self
 ```
 
+### <span class="badge object-method"></span> variables
+
+```python
+def variables(variables: list[cogbuilder.Builder[dashboardv2beta1.VariableKind]]) -> typing.Self
+```
+
 ## See also
 
  * <span class="badge object-type-class"></span> [TabsLayoutTabKind](./object-TabsLayoutTabKind.md)

@@ -23,6 +23,24 @@ final class QueryConverter
     
     
     }
+            if ($input->labels !== null) {
+    
+        
+    $buffer = 'labels(';
+        $arg0 = "[";
+        foreach ($input->labels as $key => $arg1) {
+            $tmplabelsarg1 =\var_export($arg1, true);
+            $arg0 .= "\t".var_export($key, true)." => $tmplabelsarg1,";
+        }
+        $arg0 .= "]";
+        $buffer .= $arg0;
+        
+    $buffer .= ')';
+
+    $calls[] = $buffer;
+    
+    
+    }
             if ($input->datasource !== null) {
     
         
@@ -36,7 +54,7 @@ final class QueryConverter
     
     
     }
-            if ($input->spec !== null && $input->spec instanceof \Grafana\Foundation\Tempo\TempoQuery && $input->spec->refId !== null && $input->spec->refId !== "") {
+            if ($input->spec !== null && $input->spec instanceof \Grafana\Foundation\Tempo\Dataquery && $input->spec->refId !== "") {
     
         
     $buffer = 'refId(';
@@ -49,7 +67,7 @@ final class QueryConverter
     
     
     }
-            if ($input->spec !== null && $input->spec instanceof \Grafana\Foundation\Tempo\TempoQuery && $input->spec->hide !== null) {
+            if ($input->spec !== null && $input->spec instanceof \Grafana\Foundation\Tempo\Dataquery && $input->spec->hide !== null) {
     
         
     $buffer = 'hide(';
@@ -62,7 +80,7 @@ final class QueryConverter
     
     
     }
-            if ($input->spec !== null && $input->spec instanceof \Grafana\Foundation\Tempo\TempoQuery && $input->spec->queryType !== null && $input->spec->queryType !== "") {
+            if ($input->spec !== null && $input->spec instanceof \Grafana\Foundation\Tempo\Dataquery && $input->spec->queryType !== null && $input->spec->queryType !== "") {
     
         
     $buffer = 'queryType(';
@@ -75,7 +93,7 @@ final class QueryConverter
     
     
     }
-            if ($input->spec !== null && $input->spec instanceof \Grafana\Foundation\Tempo\TempoQuery && $input->spec->query !== null && $input->spec->query !== "") {
+            if ($input->spec !== null && $input->spec instanceof \Grafana\Foundation\Tempo\Dataquery && $input->spec->query !== null && $input->spec->query !== "") {
     
         
     $buffer = 'query(';
@@ -88,7 +106,7 @@ final class QueryConverter
     
     
     }
-            if ($input->spec !== null && $input->spec instanceof \Grafana\Foundation\Tempo\TempoQuery && $input->spec->search !== null && $input->spec->search !== "") {
+            if ($input->spec !== null && $input->spec instanceof \Grafana\Foundation\Tempo\Dataquery && $input->spec->search !== null && $input->spec->search !== "") {
     
         
     $buffer = 'search(';
@@ -101,7 +119,7 @@ final class QueryConverter
     
     
     }
-            if ($input->spec !== null && $input->spec instanceof \Grafana\Foundation\Tempo\TempoQuery && $input->spec->serviceName !== null && $input->spec->serviceName !== "") {
+            if ($input->spec !== null && $input->spec instanceof \Grafana\Foundation\Tempo\Dataquery && $input->spec->serviceName !== null && $input->spec->serviceName !== "") {
     
         
     $buffer = 'serviceName(';
@@ -114,7 +132,7 @@ final class QueryConverter
     
     
     }
-            if ($input->spec !== null && $input->spec instanceof \Grafana\Foundation\Tempo\TempoQuery && $input->spec->spanName !== null && $input->spec->spanName !== "") {
+            if ($input->spec !== null && $input->spec instanceof \Grafana\Foundation\Tempo\Dataquery && $input->spec->spanName !== null && $input->spec->spanName !== "") {
     
         
     $buffer = 'spanName(';
@@ -127,7 +145,7 @@ final class QueryConverter
     
     
     }
-            if ($input->spec !== null && $input->spec instanceof \Grafana\Foundation\Tempo\TempoQuery && $input->spec->minDuration !== null && $input->spec->minDuration !== "") {
+            if ($input->spec !== null && $input->spec instanceof \Grafana\Foundation\Tempo\Dataquery && $input->spec->minDuration !== null && $input->spec->minDuration !== "") {
     
         
     $buffer = 'minDuration(';
@@ -140,7 +158,7 @@ final class QueryConverter
     
     
     }
-            if ($input->spec !== null && $input->spec instanceof \Grafana\Foundation\Tempo\TempoQuery && $input->spec->maxDuration !== null && $input->spec->maxDuration !== "") {
+            if ($input->spec !== null && $input->spec instanceof \Grafana\Foundation\Tempo\Dataquery && $input->spec->maxDuration !== null && $input->spec->maxDuration !== "") {
     
         
     $buffer = 'maxDuration(';
@@ -153,7 +171,7 @@ final class QueryConverter
     
     
     }
-            if ($input->spec !== null && $input->spec instanceof \Grafana\Foundation\Tempo\TempoQuery && $input->spec->serviceMapQuery !== null) {
+            if ($input->spec !== null && $input->spec instanceof \Grafana\Foundation\Tempo\Dataquery && $input->spec->serviceMapQuery !== null) {
     
         
     $buffer = 'serviceMapQuery(';
@@ -182,7 +200,7 @@ final class QueryConverter
     
     
     }
-            if ($input->spec !== null && $input->spec instanceof \Grafana\Foundation\Tempo\TempoQuery && $input->spec->serviceMapIncludeNamespace !== null) {
+            if ($input->spec !== null && $input->spec instanceof \Grafana\Foundation\Tempo\Dataquery && $input->spec->serviceMapIncludeNamespace !== null) {
     
         
     $buffer = 'serviceMapIncludeNamespace(';
@@ -195,7 +213,7 @@ final class QueryConverter
     
     
     }
-            if ($input->spec !== null && $input->spec instanceof \Grafana\Foundation\Tempo\TempoQuery && $input->spec->limit !== null) {
+            if ($input->spec !== null && $input->spec instanceof \Grafana\Foundation\Tempo\Dataquery && $input->spec->limit !== null) {
     
         
     $buffer = 'limit(';
@@ -208,7 +226,7 @@ final class QueryConverter
     
     
     }
-            if ($input->spec !== null && $input->spec instanceof \Grafana\Foundation\Tempo\TempoQuery && $input->spec->spss !== null) {
+            if ($input->spec !== null && $input->spec instanceof \Grafana\Foundation\Tempo\Dataquery && $input->spec->spss !== null) {
     
         
     $buffer = 'spss(';
@@ -221,7 +239,7 @@ final class QueryConverter
     
     
     }
-            if ($input->spec !== null && $input->spec instanceof \Grafana\Foundation\Tempo\TempoQuery && count($input->spec->filters) >= 1) {
+            if ($input->spec !== null && $input->spec instanceof \Grafana\Foundation\Tempo\Dataquery && count($input->spec->filters) >= 1) {
     
         
     $buffer = 'filters(';
@@ -239,7 +257,7 @@ final class QueryConverter
     
     
     }
-            if ($input->spec !== null && $input->spec instanceof \Grafana\Foundation\Tempo\TempoQuery && $input->spec->groupBy !== null && count($input->spec->groupBy) >= 1) {
+            if ($input->spec !== null && $input->spec instanceof \Grafana\Foundation\Tempo\Dataquery && $input->spec->groupBy !== null && count($input->spec->groupBy) >= 1) {
     
         
     $buffer = 'groupBy(';
@@ -257,7 +275,7 @@ final class QueryConverter
     
     
     }
-            if ($input->spec !== null && $input->spec instanceof \Grafana\Foundation\Tempo\TempoQuery && $input->spec->tableType !== null) {
+            if ($input->spec !== null && $input->spec instanceof \Grafana\Foundation\Tempo\Dataquery && $input->spec->tableType !== null) {
     
         
     $buffer = 'tableType(';
@@ -270,7 +288,7 @@ final class QueryConverter
     
     
     }
-            if ($input->spec !== null && $input->spec instanceof \Grafana\Foundation\Tempo\TempoQuery && $input->spec->step !== null && $input->spec->step !== "") {
+            if ($input->spec !== null && $input->spec instanceof \Grafana\Foundation\Tempo\Dataquery && $input->spec->step !== null && $input->spec->step !== "") {
     
         
     $buffer = 'step(';
@@ -283,7 +301,7 @@ final class QueryConverter
     
     
     }
-            if ($input->spec !== null && $input->spec instanceof \Grafana\Foundation\Tempo\TempoQuery && $input->spec->exemplars !== null) {
+            if ($input->spec !== null && $input->spec instanceof \Grafana\Foundation\Tempo\Dataquery && $input->spec->exemplars !== null) {
     
         
     $buffer = 'exemplars(';
@@ -296,7 +314,7 @@ final class QueryConverter
     
     
     }
-            if ($input->spec !== null && $input->spec instanceof \Grafana\Foundation\Tempo\TempoQuery && $input->spec->metricsQueryType !== null) {
+            if ($input->spec !== null && $input->spec instanceof \Grafana\Foundation\Tempo\Dataquery && $input->spec->metricsQueryType !== null) {
     
         
     $buffer = 'metricsQueryType(';

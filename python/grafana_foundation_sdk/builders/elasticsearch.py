@@ -2,9 +2,148 @@
 
 import typing
 from ..cog import builder as cogbuilder
+from ..models import dashboardv2
 from ..models import elasticsearch
 from ..models import common
 from ..models import dashboardv2beta1
+
+
+class QueryV2(cogbuilder.Builder[dashboardv2.DataQueryKind]):
+    _internal: dashboardv2.DataQueryKind
+
+    def __init__(self) -> None:
+        self._internal = dashboardv2.DataQueryKind()        
+        self._internal.kind = "DataQuery"        
+        self._internal.group = "elasticsearch"
+
+    def build(self) -> dashboardv2.DataQueryKind:
+        """
+        Builds the object.
+        """
+        return self._internal    
+    
+    def version(self, version: str) -> typing.Self:    
+        self._internal.version = version
+    
+        return self
+    
+    def labels(self, labels: dict[str, str]) -> typing.Self:    
+        self._internal.labels = labels
+    
+        return self
+    
+    def datasource(self, ref: cogbuilder.Builder[dashboardv2.Dashboardv2DataQueryKindDatasource]) -> typing.Self:    
+        """
+        New type for datasource reference
+        Not creating a new type until we figure out how to handle DS refs for group by, adhoc, and every place that uses DataSourceRef in TS.
+        """
+            
+        ref_resource = ref.build()
+        self._internal.datasource = ref_resource
+    
+        return self
+    
+    def alias(self, alias: str) -> typing.Self:    
+        """
+        Alias pattern
+        """
+            
+        if self._internal.spec is None:
+            self._internal.spec = elasticsearch.Dataquery()
+        assert isinstance(self._internal.spec, elasticsearch.Dataquery)
+        self._internal.spec.alias = alias
+    
+        return self
+    
+    def query(self, query: str) -> typing.Self:    
+        """
+        Lucene query
+        """
+            
+        if self._internal.spec is None:
+            self._internal.spec = elasticsearch.Dataquery()
+        assert isinstance(self._internal.spec, elasticsearch.Dataquery)
+        self._internal.spec.query = query
+    
+        return self
+    
+    def time_field(self, time_field: str) -> typing.Self:    
+        """
+        Name of time field
+        """
+            
+        if self._internal.spec is None:
+            self._internal.spec = elasticsearch.Dataquery()
+        assert isinstance(self._internal.spec, elasticsearch.Dataquery)
+        self._internal.spec.time_field = time_field
+    
+        return self
+    
+    def bucket_aggs(self, bucket_aggs: list[cogbuilder.Builder[elasticsearch.BucketAggregation]]) -> typing.Self:    
+        """
+        List of bucket aggregations
+        """
+            
+        if self._internal.spec is None:
+            self._internal.spec = elasticsearch.Dataquery()
+        assert isinstance(self._internal.spec, elasticsearch.Dataquery)
+        bucket_aggs_resources = [r1.build() for r1 in bucket_aggs]
+        self._internal.spec.bucket_aggs = bucket_aggs_resources
+    
+        return self
+    
+    def metrics(self, metrics: list[cogbuilder.Builder[elasticsearch.MetricAggregation]]) -> typing.Self:    
+        """
+        List of metric aggregations
+        """
+            
+        if self._internal.spec is None:
+            self._internal.spec = elasticsearch.Dataquery()
+        assert isinstance(self._internal.spec, elasticsearch.Dataquery)
+        metrics_resources = [r1.build() for r1 in metrics]
+        self._internal.spec.metrics = metrics_resources
+    
+        return self
+    
+    def ref_id(self, ref_id: str) -> typing.Self:    
+        """
+        A unique identifier for the query within the list of targets.
+        In server side expressions, the refId is used as a variable name to identify results.
+        By default, the UI will assign A->Z; however setting meaningful names may be useful.
+        """
+            
+        if self._internal.spec is None:
+            self._internal.spec = elasticsearch.Dataquery()
+        assert isinstance(self._internal.spec, elasticsearch.Dataquery)
+        self._internal.spec.ref_id = ref_id
+    
+        return self
+    
+    def hide(self, hide: bool) -> typing.Self:    
+        """
+        If hide is set to true, Grafana will filter out the response(s) associated with this query before returning it to the panel.
+        """
+            
+        if self._internal.spec is None:
+            self._internal.spec = elasticsearch.Dataquery()
+        assert isinstance(self._internal.spec, elasticsearch.Dataquery)
+        self._internal.spec.hide = hide
+    
+        return self
+    
+    def query_type(self, query_type: str) -> typing.Self:    
+        """
+        Specify the query flavor
+        TODO make this required and give it a default
+        """
+            
+        if self._internal.spec is None:
+            self._internal.spec = elasticsearch.Dataquery()
+        assert isinstance(self._internal.spec, elasticsearch.Dataquery)
+        self._internal.spec.query_type = query_type
+    
+        return self
+    
 
 
 class DateHistogram(cogbuilder.Builder[elasticsearch.DateHistogram]):
@@ -2339,6 +2478,11 @@ class Query(cogbuilder.Builder[dashboardv2beta1.DataQueryKind]):
     
     def version(self, version: str) -> typing.Self:    
         self._internal.version = version
+    
+        return self
+    
+    def labels(self, labels: dict[str, str]) -> typing.Self:    
+        self._internal.labels = labels
     
         return self
     

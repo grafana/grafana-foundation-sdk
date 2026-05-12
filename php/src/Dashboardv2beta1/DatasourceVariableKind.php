@@ -30,7 +30,7 @@ class DatasourceVariableKind implements \JsonSerializable
         $data = $inputData;
         return new self(
             spec: isset($data["spec"]) ? (function($input) {
-    	/** @var array{name?: string, pluginId?: string, refresh?: string, regex?: string, current?: mixed, options?: array<mixed>, multi?: bool, includeAll?: bool, allValue?: string, label?: string, hide?: string, skipUrlSync?: bool, description?: string, allowCustomValue?: bool} */
+    	/** @var array{name?: string, pluginId?: string, refresh?: string, regex?: string, current?: mixed, options?: array<mixed>, multi?: bool, includeAll?: bool, allValue?: string, label?: string, hide?: string, skipUrlSync?: bool, description?: string, allowCustomValue?: bool, origin?: mixed} */
     $val = $input;
     	return \Grafana\Foundation\Dashboardv2beta1\DatasourceVariableSpec::fromArray($val);
     })($data["spec"]) : null,

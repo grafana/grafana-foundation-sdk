@@ -60,6 +60,12 @@ func (builder *SwitchVariableBuilder) Label(label string) *SwitchVariableBuilder
 func (builder *SwitchVariableBuilder) Name(name string) *SwitchVariableBuilder
 ```
 
+### <span class="badge object-method"></span> Origin
+
+```go
+func (builder *SwitchVariableBuilder) Origin(origin cog.Builder[dashboardv2beta1.ControlSourceRef]) *SwitchVariableBuilder
+```
+
 ### <span class="badge object-method"></span> SkipUrlSync
 
 ```go

@@ -38,6 +38,8 @@ class DatasourceVariableSpec implements \JsonSerializable
 
     public bool $allowCustomValue;
 
+    public ?\Grafana\Foundation\Dashboardv2beta1\ControlSourceRef $origin;
+
     /**
      * @param string|null $name
      * @param string|null $pluginId
@@ -53,8 +55,9 @@ class DatasourceVariableSpec implements \JsonSerializable
      * @param bool|null $skipUrlSync
      * @param string|null $description
      * @param bool|null $allowCustomValue
+     * @param \Grafana\Foundation\Dashboardv2beta1\ControlSourceRef|null $origin
      */
-    public function __construct(?string $name = null, ?string $pluginId = null, ?\Grafana\Foundation\Dashboardv2beta1\VariableRefresh $refresh = null, ?string $regex = null, ?\Grafana\Foundation\Dashboardv2beta1\VariableOption $current = null, ?array $options = null, ?bool $multi = null, ?bool $includeAll = null, ?string $allValue = null, ?string $label = null, ?\Grafana\Foundation\Dashboardv2beta1\VariableHide $hide = null, ?bool $skipUrlSync = null, ?string $description = null, ?bool $allowCustomValue = null)
+    public function __construct(?string $name = null, ?string $pluginId = null, ?\Grafana\Foundation\Dashboardv2beta1\VariableRefresh $refresh = null, ?string $regex = null, ?\Grafana\Foundation\Dashboardv2beta1\VariableOption $current = null, ?array $options = null, ?bool $multi = null, ?bool $includeAll = null, ?string $allValue = null, ?string $label = null, ?\Grafana\Foundation\Dashboardv2beta1\VariableHide $hide = null, ?bool $skipUrlSync = null, ?string $description = null, ?bool $allowCustomValue = null, ?\Grafana\Foundation\Dashboardv2beta1\ControlSourceRef $origin = null)
     {
         $this->name = $name ?: "";
         $this->pluginId = $pluginId ?: "";
@@ -70,6 +73,7 @@ class DatasourceVariableSpec implements \JsonSerializable
         $this->skipUrlSync = $skipUrlSync ?: false;
         $this->description = $description;
         $this->allowCustomValue = $allowCustomValue ?: true;
+        $this->origin = $origin;
     }
 
     /**
@@ -77,7 +81,7 @@ class DatasourceVariableSpec implements \JsonSerializable
      */
     public static function fromArray(array $inputData): self
     {
-        /** @var array{name?: string, pluginId?: string, refresh?: string, regex?: string, current?: mixed, options?: array<mixed>, multi?: bool, includeAll?: bool, allValue?: string, label?: string, hide?: string, skipUrlSync?: bool, description?: string, allowCustomValue?: bool} $inputData */
+        /** @var array{name?: string, pluginId?: string, refresh?: string, regex?: string, current?: mixed, options?: array<mixed>, multi?: bool, includeAll?: bool, allValue?: string, label?: string, hide?: string, skipUrlSync?: bool, description?: string, allowCustomValue?: bool, origin?: mixed} $inputData */
         $data = $inputData;
         return new self(
             name: $data["name"] ?? null,
@@ -85,12 +89,12 @@ class DatasourceVariableSpec implements \JsonSerializable
             refresh: isset($data["refresh"]) ? (function($input) { return \Grafana\Foundation\Dashboardv2beta1\VariableRefresh::fromValue($input); })($data["refresh"]) : null,
             regex: $data["regex"] ?? null,
             current: isset($data["current"]) ? (function($input) {
-    	/** @var array{selected?: bool, text?: string|array<string>, value?: string|array<string>} */
+    	/** @var array{selected?: bool, text?: string|array<string>, value?: string|array<string>, properties?: array<string, string>} */
     $val = $input;
     	return \Grafana\Foundation\Dashboardv2beta1\VariableOption::fromArray($val);
     })($data["current"]) : null,
             options: array_filter(array_map((function($input) {
-    	/** @var array{selected?: bool, text?: string|array<string>, value?: string|array<string>} */
+    	/** @var array{selected?: bool, text?: string|array<string>, value?: string|array<string>, properties?: array<string, string>} */
     $val = $input;
     	return \Grafana\Foundation\Dashboardv2beta1\VariableOption::fromArray($val);
     }), $data["options"] ?? [])),
@@ -102,6 +106,11 @@ class DatasourceVariableSpec implements \JsonSerializable
             skipUrlSync: $data["skipUrlSync"] ?? null,
             description: $data["description"] ?? null,
             allowCustomValue: $data["allowCustomValue"] ?? null,
+            origin: isset($data["origin"]) ? (function($input) {
+    	/** @var array{type?: string, group?: string} */
+    $val = $input;
+    	return \Grafana\Foundation\Dashboardv2beta1\ControlSourceRef::fromArray($val);
+    })($data["origin"]) : null,
         );
     }
 
@@ -130,6 +139,9 @@ class DatasourceVariableSpec implements \JsonSerializable
         }
         if (isset($this->description)) {
             $data->description = $this->description;
+        }
+        if (isset($this->origin)) {
+            $data->origin = $this->origin;
         }
         return $data;
     }

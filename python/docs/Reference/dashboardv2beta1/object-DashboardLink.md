@@ -36,6 +36,8 @@ class DashboardLink:
     keep_time: bool
     # Placement can be used to display the link somewhere else on the dashboard other than above the visualisations.
     placement: str
+    # The source that registered the link (if any)
+    origin: typing.Optional[dashboardv2beta1.ControlSourceRef]
 ```
 ## Methods
 

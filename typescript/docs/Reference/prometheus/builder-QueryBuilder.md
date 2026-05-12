@@ -98,6 +98,12 @@ See https://github.com/grafana/grafana/issues/48081
 intervalFactor(intervalFactor: number)
 ```
 
+### <span class="badge object-method"></span> labels
+
+```typescript
+labels(labels: Record<string, string>)
+```
+
 ### <span class="badge object-method"></span> legendFormat
 
 Series name override or template. Ex. {{hostname}} will be replaced with label value for hostname

@@ -35,7 +35,7 @@ class Dashboardv2beta1FieldConfigSourceOverrides implements \JsonSerializable
         return new self(
             systemRef: $data["__systemRef"] ?? null,
             matcher: isset($data["matcher"]) ? (function($input) {
-    	/** @var array{id?: string, options?: mixed} */
+    	/** @var array{id?: string, scope?: string, options?: mixed} */
     $val = $input;
     	return \Grafana\Foundation\Dashboardv2beta1\MatcherConfig::fromArray($val);
     })($data["matcher"]) : null,

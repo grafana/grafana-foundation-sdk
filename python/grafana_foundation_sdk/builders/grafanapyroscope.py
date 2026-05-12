@@ -2,9 +2,158 @@
 
 import typing
 from ..cog import builder as cogbuilder
+from ..models import dashboardv2
 from ..models import grafanapyroscope
 from ..models import common
 from ..models import dashboardv2beta1
+
+
+class QueryV2(cogbuilder.Builder[dashboardv2.DataQueryKind]):
+    _internal: dashboardv2.DataQueryKind
+
+    def __init__(self) -> None:
+        self._internal = dashboardv2.DataQueryKind()        
+        self._internal.kind = "DataQuery"        
+        self._internal.group = "grafanapyroscope"
+
+    def build(self) -> dashboardv2.DataQueryKind:
+        """
+        Builds the object.
+        """
+        return self._internal    
+    
+    def version(self, version: str) -> typing.Self:    
+        self._internal.version = version
+    
+        return self
+    
+    def labels(self, labels: dict[str, str]) -> typing.Self:    
+        self._internal.labels = labels
+    
+        return self
+    
+    def datasource(self, ref: cogbuilder.Builder[dashboardv2.Dashboardv2DataQueryKindDatasource]) -> typing.Self:    
+        """
+        New type for datasource reference
+        Not creating a new type until we figure out how to handle DS refs for group by, adhoc, and every place that uses DataSourceRef in TS.
+        """
+            
+        ref_resource = ref.build()
+        self._internal.datasource = ref_resource
+    
+        return self
+    
+    def label_selector(self, label_selector: str) -> typing.Self:    
+        """
+        Specifies the query label selectors.
+        """
+            
+        if self._internal.spec is None:
+            self._internal.spec = grafanapyroscope.Dataquery()
+        assert isinstance(self._internal.spec, grafanapyroscope.Dataquery)
+        self._internal.spec.label_selector = label_selector
+    
+        return self
+    
+    def span_selector(self, span_selector: list[str]) -> typing.Self:    
+        """
+        Specifies the query span selectors.
+        """
+            
+        if self._internal.spec is None:
+            self._internal.spec = grafanapyroscope.Dataquery()
+        assert isinstance(self._internal.spec, grafanapyroscope.Dataquery)
+        self._internal.spec.span_selector = span_selector
+    
+        return self
+    
+    def profile_type_id(self, profile_type_id: str) -> typing.Self:    
+        """
+        Specifies the type of profile to query.
+        """
+            
+        if self._internal.spec is None:
+            self._internal.spec = grafanapyroscope.Dataquery()
+        assert isinstance(self._internal.spec, grafanapyroscope.Dataquery)
+        self._internal.spec.profile_type_id = profile_type_id
+    
+        return self
+    
+    def group_by(self, group_by: list[str]) -> typing.Self:    
+        """
+        Allows to group the results.
+        """
+            
+        if self._internal.spec is None:
+            self._internal.spec = grafanapyroscope.Dataquery()
+        assert isinstance(self._internal.spec, grafanapyroscope.Dataquery)
+        self._internal.spec.group_by = group_by
+    
+        return self
+    
+    def limit(self, limit: int) -> typing.Self:    
+        """
+        Sets the maximum number of time series.
+        """
+            
+        if self._internal.spec is None:
+            self._internal.spec = grafanapyroscope.Dataquery()
+        assert isinstance(self._internal.spec, grafanapyroscope.Dataquery)
+        self._internal.spec.limit = limit
+    
+        return self
+    
+    def max_nodes(self, max_nodes: int) -> typing.Self:    
+        """
+        Sets the maximum number of nodes in the flamegraph.
+        """
+            
+        if self._internal.spec is None:
+            self._internal.spec = grafanapyroscope.Dataquery()
+        assert isinstance(self._internal.spec, grafanapyroscope.Dataquery)
+        self._internal.spec.max_nodes = max_nodes
+    
+        return self
+    
+    def ref_id(self, ref_id: str) -> typing.Self:    
+        """
+        A unique identifier for the query within the list of targets.
+        In server side expressions, the refId is used as a variable name to identify results.
+        By default, the UI will assign A->Z; however setting meaningful names may be useful.
+        """
+            
+        if self._internal.spec is None:
+            self._internal.spec = grafanapyroscope.Dataquery()
+        assert isinstance(self._internal.spec, grafanapyroscope.Dataquery)
+        self._internal.spec.ref_id = ref_id
+    
+        return self
+    
+    def hide(self, hide: bool) -> typing.Self:    
+        """
+        If hide is set to true, Grafana will filter out the response(s) associated with this query before returning it to the panel.
+        """
+            
+        if self._internal.spec is None:
+            self._internal.spec = grafanapyroscope.Dataquery()
+        assert isinstance(self._internal.spec, grafanapyroscope.Dataquery)
+        self._internal.spec.hide = hide
+    
+        return self
+    
+    def query_type(self, query_type: str) -> typing.Self:    
+        """
+        Specify the query flavor
+        TODO make this required and give it a default
+        """
+            
+        if self._internal.spec is None:
+            self._internal.spec = grafanapyroscope.Dataquery()
+        assert isinstance(self._internal.spec, grafanapyroscope.Dataquery)
+        self._internal.spec.query_type = query_type
+    
+        return self
+    
 
 
 class Dataquery(cogbuilder.Builder[grafanapyroscope.Dataquery]):
@@ -133,6 +282,11 @@ class Query(cogbuilder.Builder[dashboardv2beta1.DataQueryKind]):
     
     def version(self, version: str) -> typing.Self:    
         self._internal.version = version
+    
+        return self
+    
+    def labels(self, labels: dict[str, str]) -> typing.Self:    
+        self._internal.labels = labels
     
         return self
     

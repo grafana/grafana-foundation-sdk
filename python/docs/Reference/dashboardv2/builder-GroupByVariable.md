@@ -1,0 +1,101 @@
+---
+title: <span class="badge builder"></span> GroupByVariable
+---
+# <span class="badge builder"></span> GroupByVariable
+
+## Constructor
+
+```python
+GroupByVariable(name: str)
+```
+## Methods
+
+### <span class="badge object-method"></span> build
+
+Builds the object.
+
+```python
+def build() -> dashboardv2.GroupByVariableKind
+```
+
+### <span class="badge object-method"></span> current
+
+```python
+def current(current: dashboardv2.VariableOption) -> typing.Self
+```
+
+### <span class="badge object-method"></span> datasource
+
+```python
+def datasource(datasource: cogbuilder.Builder[dashboardv2.Dashboardv2GroupByVariableKindDatasource]) -> typing.Self
+```
+
+### <span class="badge object-method"></span> default_value
+
+```python
+def default_value(default_value: dashboardv2.VariableOption) -> typing.Self
+```
+
+### <span class="badge object-method"></span> description
+
+```python
+def description(description: str) -> typing.Self
+```
+
+### <span class="badge object-method"></span> group
+
+```python
+def group(group: str) -> typing.Self
+```
+
+### <span class="badge object-method"></span> hide
+
+```python
+def hide(hide: dashboardv2.VariableHide) -> typing.Self
+```
+
+### <span class="badge object-method"></span> label
+
+```python
+def label(label: str) -> typing.Self
+```
+
+### <span class="badge object-method"></span> labels
+
+```python
+def labels(labels: dict[str, str]) -> typing.Self
+```
+
+### <span class="badge object-method"></span> multi
+
+```python
+def multi(multi: bool) -> typing.Self
+```
+
+### <span class="badge object-method"></span> name
+
+```python
+def name(name: str) -> typing.Self
+```
+
+### <span class="badge object-method"></span> options
+
+```python
+def options(options: list[dashboardv2.VariableOption]) -> typing.Self
+```
+
+### <span class="badge object-method"></span> origin
+
+```python
+def origin(origin: cogbuilder.Builder[dashboardv2.ControlSourceRef]) -> typing.Self
+```
+
+### <span class="badge object-method"></span> skip_url_sync
+
+```python
+def skip_url_sync(skip_url_sync: bool) -> typing.Self
+```
+
+## See also
+
+ * <span class="badge object-type-class"></span> [GroupByVariableKind](./object-GroupByVariableKind.md)

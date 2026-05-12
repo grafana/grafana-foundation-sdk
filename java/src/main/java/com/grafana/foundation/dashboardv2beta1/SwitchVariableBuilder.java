@@ -77,6 +77,15 @@ public class SwitchVariableBuilder implements com.grafana.foundation.cog.Builder
         this.internal.spec.description = description;
         return this;
     }
+    
+    public SwitchVariableBuilder origin(com.grafana.foundation.cog.Builder<ControlSourceRef> origin) {
+		if (this.internal.spec == null) {
+			this.internal.spec = new com.grafana.foundation.dashboardv2beta1.SwitchVariableSpec();
+		}
+    ControlSourceRef originResource = origin.build();
+        this.internal.spec.origin = originResource;
+        return this;
+    }
     public SwitchVariableKind build() {
         return this.internal;
     }

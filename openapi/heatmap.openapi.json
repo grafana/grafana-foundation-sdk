@@ -295,6 +295,7 @@
           },
           "cellGap": {
             "type": "integer",
+            "minimum": 0,
             "maximum": 25,
             "description": "Controls gap between cells",
             "default": 1

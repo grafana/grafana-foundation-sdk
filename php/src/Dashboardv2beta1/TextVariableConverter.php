@@ -27,7 +27,7 @@ final class TextVariableConverter
     
         {
     $buffer = 'current(';
-        $arg0 ='(new \Grafana\Foundation\Dashboardv2beta1\VariableOption('.(($input->spec->current->selected !== null) ? 'selected: '.\var_export($input->spec->current->selected, true).', ' : '').'text: '.\var_export($input->spec->current->text, true).',value: '.\var_export($input->spec->current->value, true).',))';
+        $arg0 ='(new \Grafana\Foundation\Dashboardv2beta1\VariableOption('.(($input->spec->current->selected !== null) ? 'selected: '.\var_export($input->spec->current->selected, true).', ' : '').'text: '.\var_export($input->spec->current->text, true).',value: '.\var_export($input->spec->current->value, true).','.(($input->spec->current->properties !== null) ? 'properties: '.\var_export($input->spec->current->properties, true).', ' : '').'))';
         $buffer .= $arg0;
         
     $buffer .= ')';
@@ -93,6 +93,19 @@ final class TextVariableConverter
         
     $buffer = 'description(';
         $arg0 =\var_export($input->spec->description, true);
+        $buffer .= $arg0;
+        
+    $buffer .= ')';
+
+    $calls[] = $buffer;
+    
+    
+    }
+            if ($input->spec->origin !== null) {
+    
+        
+    $buffer = 'origin(';
+        $arg0 = \Grafana\Foundation\Dashboardv2beta1\ControlSourceRefConverter::convert($input->spec->origin);
         $buffer .= $arg0;
         
     $buffer .= ')';

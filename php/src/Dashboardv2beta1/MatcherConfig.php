@@ -14,6 +14,11 @@ class MatcherConfig implements \JsonSerializable
     public string $id;
 
     /**
+     * If set, limits this matcher to fields of that type. If not set, "series" mode is used.
+     */
+    public ?\Grafana\Foundation\Dashboardv2beta1\MatcherScope $scope;
+
+    /**
      * The matcher options. This is specific to the matcher implementation.
      * @var mixed|null
      */
@@ -21,11 +26,13 @@ class MatcherConfig implements \JsonSerializable
 
     /**
      * @param string|null $id
+     * @param \Grafana\Foundation\Dashboardv2beta1\MatcherScope|null $scope
      * @param mixed|null $options
      */
-    public function __construct(?string $id = null,  $options = null)
+    public function __construct(?string $id = null, ?\Grafana\Foundation\Dashboardv2beta1\MatcherScope $scope = null,  $options = null)
     {
         $this->id = $id ?: "";
+        $this->scope = $scope;
         $this->options = $options;
     }
 
@@ -34,10 +41,11 @@ class MatcherConfig implements \JsonSerializable
      */
     public static function fromArray(array $inputData): self
     {
-        /** @var array{id?: string, options?: mixed} $inputData */
+        /** @var array{id?: string, scope?: string, options?: mixed} $inputData */
         $data = $inputData;
         return new self(
             id: $data["id"] ?? null,
+            scope: isset($data["scope"]) ? (function($input) { return \Grafana\Foundation\Dashboardv2beta1\MatcherScope::fromValue($input); })($data["scope"]) : null,
             options: $data["options"] ?? null,
         );
     }
@@ -49,6 +57,9 @@ class MatcherConfig implements \JsonSerializable
     {
         $data = new \stdClass;
         $data->id = $this->id;
+        if (isset($this->scope)) {
+            $data->scope = $this->scope;
+        }
         if (isset($this->options)) {
             $data->options = $this->options;
         }

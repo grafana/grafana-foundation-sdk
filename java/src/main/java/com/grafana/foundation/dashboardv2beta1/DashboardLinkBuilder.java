@@ -64,6 +64,12 @@ public class DashboardLinkBuilder implements com.grafana.foundation.cog.Builder<
         this.internal.placement = placement;
         return this;
     }
+    
+    public DashboardLinkBuilder origin(com.grafana.foundation.cog.Builder<ControlSourceRef> origin) {
+    ControlSourceRef originResource = origin.build();
+        this.internal.origin = originResource;
+        return this;
+    }
     public DashboardLink build() {
         return this.internal;
     }

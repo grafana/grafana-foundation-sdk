@@ -52,6 +52,12 @@ Time interval in milliseconds.
 func (builder *QueryBuilder) IntervalMs(intervalMs float64) *QueryBuilder
 ```
 
+### <span class="badge object-method"></span> Labels
+
+```go
+func (builder *QueryBuilder) Labels(labels map[string]string) *QueryBuilder
+```
+
 ### <span class="badge object-method"></span> PromQLQuery
 
 PromQL sub-query properties.

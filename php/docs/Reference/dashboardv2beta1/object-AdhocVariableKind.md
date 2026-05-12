@@ -14,6 +14,11 @@ class AdhocVariableKind implements \JsonSerializable
 
     public string $group;
 
+    /**
+     * @var array<string, string>|null
+     */
+    public ?array $labels;
+
     public ?\Grafana\Foundation\Dashboardv2beta1\Dashboardv2beta1AdhocVariableKindDatasource $datasource;
 
     public \Grafana\Foundation\Dashboardv2beta1\AdhocVariableSpec $spec;

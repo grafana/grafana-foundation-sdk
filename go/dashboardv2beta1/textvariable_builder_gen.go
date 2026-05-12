@@ -84,3 +84,14 @@ func (builder *TextVariableBuilder) Description(description string) *TextVariabl
 
 	return builder
 }
+
+func (builder *TextVariableBuilder) Origin(origin cog.Builder[ControlSourceRef]) *TextVariableBuilder {
+	originResource, err := origin.Build()
+	if err != nil {
+		builder.errors = append(builder.errors, err.(cog.BuildErrors)...)
+		return builder
+	}
+	builder.internal.Spec.Origin = &originResource
+
+	return builder
+}

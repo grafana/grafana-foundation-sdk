@@ -1,0 +1,103 @@
+---
+title: <span class="badge builder"></span> GroupByVariableBuilder
+---
+# <span class="badge builder"></span> GroupByVariableBuilder
+
+## Constructor
+
+```typescript
+new GroupByVariableBuilder(name: string)
+```
+## Methods
+
+### <span class="badge object-method"></span> build
+
+Builds the object.
+
+```typescript
+build()
+```
+
+### <span class="badge object-method"></span> current
+
+```typescript
+current(current: dashboardv2.VariableOption)
+```
+
+### <span class="badge object-method"></span> datasource
+
+```typescript
+datasource(datasource: {
+	name?: string;
+})
+```
+
+### <span class="badge object-method"></span> defaultValue
+
+```typescript
+defaultValue(defaultValue: dashboardv2.VariableOption)
+```
+
+### <span class="badge object-method"></span> description
+
+```typescript
+description(description: string)
+```
+
+### <span class="badge object-method"></span> group
+
+```typescript
+group(group: string)
+```
+
+### <span class="badge object-method"></span> hide
+
+```typescript
+hide(hide: dashboardv2.VariableHide)
+```
+
+### <span class="badge object-method"></span> label
+
+```typescript
+label(label: string)
+```
+
+### <span class="badge object-method"></span> labels
+
+```typescript
+labels(labels: Record<string, string>)
+```
+
+### <span class="badge object-method"></span> multi
+
+```typescript
+multi(multi: boolean)
+```
+
+### <span class="badge object-method"></span> name
+
+```typescript
+name(name: string)
+```
+
+### <span class="badge object-method"></span> options
+
+```typescript
+options(options: dashboardv2.VariableOption[])
+```
+
+### <span class="badge object-method"></span> origin
+
+```typescript
+origin(origin: cog.Builder<dashboardv2.ControlSourceRef>)
+```
+
+### <span class="badge object-method"></span> skipUrlSync
+
+```typescript
+skipUrlSync(skipUrlSync: boolean)
+```
+
+## See also
+
+ * <span class="badge object-type-interface"></span> [GroupByVariableKind](./object-GroupByVariableKind.md)

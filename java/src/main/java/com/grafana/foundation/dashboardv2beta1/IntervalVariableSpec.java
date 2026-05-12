@@ -6,6 +6,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.ObjectWriter;
+import java.util.HashMap;
 import java.util.LinkedList;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonSetter;
@@ -30,9 +31,8 @@ public class IntervalVariableSpec {
     public String autoMin;
     @JsonProperty("auto_count")
     public Long autoCount;
-    @JsonInclude(JsonInclude.Include.NON_EMPTY)
     @JsonProperty("refresh")
-    public VariableRefresh refresh;
+    public String refresh;
     @JsonInclude(JsonInclude.Include.NON_NULL)
     @JsonProperty("label")
     public String label;
@@ -44,19 +44,22 @@ public class IntervalVariableSpec {
     @JsonInclude(JsonInclude.Include.NON_NULL)
     @JsonProperty("description")
     public String description;
+    @JsonInclude(JsonInclude.Include.NON_NULL)
+    @JsonProperty("origin")
+    public ControlSourceRef origin;
     public IntervalVariableSpec() {
         this.name = "";
         this.query = "";
-        this.current = new VariableOption(false, StringOrArrayOfString.createString(""), StringOrArrayOfString.createString(""));
+        this.current = new VariableOption(false, StringOrArrayOfString.createString(""), StringOrArrayOfString.createString(""), new HashMap<>());
         this.options = new LinkedList<>();
         this.auto = false;
         this.autoMin = "";
         this.autoCount = 0L;
-        this.refresh = VariableRefresh.NEVER;
+        this.refresh = "";
         this.hide = VariableHide.DONT_HIDE;
         this.skipUrlSync = false;
     }
-    public IntervalVariableSpec(String name,String query,VariableOption current,List<VariableOption> options,Boolean auto,String autoMin,Long autoCount,VariableRefresh refresh,String label,VariableHide hide,Boolean skipUrlSync,String description) {
+    public IntervalVariableSpec(String name,String query,VariableOption current,List<VariableOption> options,Boolean auto,String autoMin,Long autoCount,String refresh,String label,VariableHide hide,Boolean skipUrlSync,String description,ControlSourceRef origin) {
         this.name = name;
         this.query = query;
         this.current = current;
@@ -69,6 +72,7 @@ public class IntervalVariableSpec {
         this.hide = hide;
         this.skipUrlSync = skipUrlSync;
         this.description = description;
+        this.origin = origin;
     }
     
     public String toJSON() throws JsonProcessingException {

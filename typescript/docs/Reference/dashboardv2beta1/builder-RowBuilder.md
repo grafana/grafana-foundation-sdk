@@ -60,6 +60,12 @@ repeat(repeat: cog.Builder<dashboardv2beta1.RowRepeatOptions>)
 title(title: string)
 ```
 
+### <span class="badge object-method"></span> variables
+
+```typescript
+variables(variables: cog.Builder<dashboardv2beta1.VariableKind>[])
+```
+
 ## See also
 
  * <span class="badge object-type-interface"></span> [RowsLayoutRowKind](./object-RowsLayoutRowKind.md)

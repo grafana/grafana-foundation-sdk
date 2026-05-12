@@ -11,6 +11,7 @@ Adhoc variable kind
 type AdhocVariableKind struct {
     Kind string `json:"kind"`
     Group string `json:"group"`
+    Labels map[string]string `json:"labels,omitempty"`
     Datasource *dashboardv2beta1.Dashboardv2beta1AdhocVariableKindDatasource `json:"datasource,omitempty"`
     Spec dashboardv2beta1.AdhocVariableSpec `json:"spec"`
 }

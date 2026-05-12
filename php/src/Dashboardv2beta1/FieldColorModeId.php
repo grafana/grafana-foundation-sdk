@@ -9,7 +9,12 @@ namespace Grafana\Foundation\Dashboardv2beta1;
  * `thresholds`: From thresholds. Informs Grafana to take the color from the matching threshold
  * `palette-classic`: Classic palette. Grafana will assign color by looking up a color in a palette by series index. Useful for Graphs and pie charts and other categorical data visualizations
  * `palette-classic-by-name`: Classic palette (by name). Grafana will assign color by looking up a color in a palette by series name. Useful for Graphs and pie charts and other categorical data visualizations
- * `continuous-GrYlRd`: ontinuous Green-Yellow-Red palette mode
+ * `continuous-viridis`: Continuous Viridis palette mode
+ * `continuous-magma`: Continuous Magma palette mode
+ * `continuous-plasma`: Continuous Plasma palette mode
+ * `continuous-inferno`: Continuous Inferno palette mode
+ * `continuous-cividis`: Continuous Cividis palette mode
+ * `continuous-GrYlRd`: Continuous Green-Yellow-Red palette mode
  * `continuous-RdYlGr`: Continuous Red-Yellow-Green palette mode
  * `continuous-BlYlRd`: Continuous Blue-Yellow-Red palette mode
  * `continuous-YlRd`: Continuous Yellow-Red palette mode
@@ -63,6 +68,51 @@ final class FieldColorModeId implements \JsonSerializable, \Stringable {
         }
 
         return self::$instances["palette-classic-by-name"];
+    }
+
+    public static function continuousViridis(): self
+    {
+        if (!isset(self::$instances["continuous-viridis"])) {
+            self::$instances["continuous-viridis"] = new self("continuous-viridis");
+        }
+
+        return self::$instances["continuous-viridis"];
+    }
+
+    public static function continuousMagma(): self
+    {
+        if (!isset(self::$instances["continuous-magma"])) {
+            self::$instances["continuous-magma"] = new self("continuous-magma");
+        }
+
+        return self::$instances["continuous-magma"];
+    }
+
+    public static function continuousPlasma(): self
+    {
+        if (!isset(self::$instances["continuous-plasma"])) {
+            self::$instances["continuous-plasma"] = new self("continuous-plasma");
+        }
+
+        return self::$instances["continuous-plasma"];
+    }
+
+    public static function continuousInferno(): self
+    {
+        if (!isset(self::$instances["continuous-inferno"])) {
+            self::$instances["continuous-inferno"] = new self("continuous-inferno");
+        }
+
+        return self::$instances["continuous-inferno"];
+    }
+
+    public static function continuousCividis(): self
+    {
+        if (!isset(self::$instances["continuous-cividis"])) {
+            self::$instances["continuous-cividis"] = new self("continuous-cividis");
+        }
+
+        return self::$instances["continuous-cividis"];
     }
 
     public static function continuousGrYlRd(): self
@@ -185,6 +235,26 @@ final class FieldColorModeId implements \JsonSerializable, \Stringable {
 
         if ($value === "palette-classic-by-name") {
             return self::paletteClassicByName();
+        }
+
+        if ($value === "continuous-viridis") {
+            return self::continuousViridis();
+        }
+
+        if ($value === "continuous-magma") {
+            return self::continuousMagma();
+        }
+
+        if ($value === "continuous-plasma") {
+            return self::continuousPlasma();
+        }
+
+        if ($value === "continuous-inferno") {
+            return self::continuousInferno();
+        }
+
+        if ($value === "continuous-cividis") {
+            return self::continuousCividis();
         }
 
         if ($value === "continuous-GrYlRd") {

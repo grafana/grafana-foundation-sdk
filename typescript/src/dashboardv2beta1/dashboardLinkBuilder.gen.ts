@@ -84,5 +84,12 @@ export class DashboardLinkBuilder implements cog.Builder<dashboardv2beta1.Dashbo
         this.internal.placement = placement;
         return this;
     }
+
+    // The source that registered the link (if any)
+    origin(origin: cog.Builder<dashboardv2beta1.ControlSourceRef>): this {
+        const originResource = origin.build();
+        this.internal.origin = originResource;
+        return this;
+    }
 }
 

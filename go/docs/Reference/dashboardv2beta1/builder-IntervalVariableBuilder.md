@@ -72,16 +72,16 @@ func (builder *IntervalVariableBuilder) Name(name string) *IntervalVariableBuild
 func (builder *IntervalVariableBuilder) Options(options []dashboardv2beta1.VariableOption) *IntervalVariableBuilder
 ```
 
+### <span class="badge object-method"></span> Origin
+
+```go
+func (builder *IntervalVariableBuilder) Origin(origin cog.Builder[dashboardv2beta1.ControlSourceRef]) *IntervalVariableBuilder
+```
+
 ### <span class="badge object-method"></span> Query
 
 ```go
 func (builder *IntervalVariableBuilder) Query(query string) *IntervalVariableBuilder
-```
-
-### <span class="badge object-method"></span> Refresh
-
-```go
-func (builder *IntervalVariableBuilder) Refresh(refresh dashboardv2beta1.VariableRefresh) *IntervalVariableBuilder
 ```
 
 ### <span class="badge object-method"></span> SkipUrlSync

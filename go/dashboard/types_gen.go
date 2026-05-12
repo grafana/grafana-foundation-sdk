@@ -2871,10 +2871,22 @@ func (resource GridPos) Validate() error {
 			errors.New("must be <= 24"),
 		)...)
 	}
+	if !(resource.X >= 0) {
+		errs = append(errs, cog.MakeBuildErrors(
+			"x",
+			errors.New("must be >= 0"),
+		)...)
+	}
 	if !(resource.X < 24) {
 		errs = append(errs, cog.MakeBuildErrors(
 			"x",
 			errors.New("must be < 24"),
+		)...)
+	}
+	if !(resource.Y >= 0) {
+		errs = append(errs, cog.MakeBuildErrors(
+			"y",
+			errors.New("must be >= 0"),
 		)...)
 	}
 

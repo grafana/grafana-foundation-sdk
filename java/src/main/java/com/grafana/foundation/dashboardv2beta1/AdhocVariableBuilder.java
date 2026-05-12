@@ -2,6 +2,7 @@
 
 package com.grafana.foundation.dashboardv2beta1;
 
+import java.util.Map;
 import java.util.List;
 import java.util.LinkedList;
 
@@ -18,6 +19,11 @@ public class AdhocVariableBuilder implements com.grafana.foundation.cog.Builder<
     }
     public AdhocVariableBuilder group(String group) {
         this.internal.group = group;
+        return this;
+    }
+    
+    public AdhocVariableBuilder labels(Map<String, String> labels) {
+        this.internal.labels = labels;
         return this;
     }
     
@@ -111,6 +117,23 @@ public class AdhocVariableBuilder implements com.grafana.foundation.cog.Builder<
 			this.internal.spec = new com.grafana.foundation.dashboardv2beta1.AdhocVariableSpec();
 		}
         this.internal.spec.allowCustomValue = allowCustomValue;
+        return this;
+    }
+    
+    public AdhocVariableBuilder enableGroupBy(Boolean enableGroupBy) {
+		if (this.internal.spec == null) {
+			this.internal.spec = new com.grafana.foundation.dashboardv2beta1.AdhocVariableSpec();
+		}
+        this.internal.spec.enableGroupBy = enableGroupBy;
+        return this;
+    }
+    
+    public AdhocVariableBuilder origin(com.grafana.foundation.cog.Builder<ControlSourceRef> origin) {
+		if (this.internal.spec == null) {
+			this.internal.spec = new com.grafana.foundation.dashboardv2beta1.AdhocVariableSpec();
+		}
+    ControlSourceRef originResource = origin.build();
+        this.internal.spec.origin = originResource;
         return this;
     }
     public AdhocVariableKind build() {

@@ -33,6 +33,16 @@ class QueryBuilder implements \Grafana\Foundation\Cog\Builder
     }
 
     /**
+     * @param array<string, string> $labels
+     */
+    public function labels(array $labels): static
+    {
+        $this->internal->labels = $labels;
+    
+        return $this;
+    }
+
+    /**
      * New type for datasource reference
      * Not creating a new type until we figure out how to handle DS refs for group by, adhoc, and every place that uses DataSourceRef in TS.
      * @param \Grafana\Foundation\Cog\Builder<\Grafana\Foundation\Dashboardv2beta1\Dashboardv2beta1DataQueryKindDatasource> $datasource
@@ -200,7 +210,7 @@ class QueryBuilder implements \Grafana\Foundation\Cog\Builder
         return $this;
     }
 
-    public function labels(string $labels): static
+    public function dataqueryLabels(string $labels): static
     {    
         if ($this->internal->spec === null) {
             $this->internal->spec = new \Grafana\Foundation\Testdata\Dataquery();

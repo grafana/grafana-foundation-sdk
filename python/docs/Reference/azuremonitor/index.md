@@ -42,6 +42,7 @@
  * <span class="badge builder"></span> [MetricNamesQuery](./builder-MetricNamesQuery.md)
  * <span class="badge builder"></span> [MetricNamespaceQuery](./builder-MetricNamespaceQuery.md)
  * <span class="badge builder"></span> [Query](./builder-Query.md)
+ * <span class="badge builder"></span> [QueryV2](./builder-QueryV2.md)
  * <span class="badge builder"></span> [ResourceGroupsQuery](./builder-ResourceGroupsQuery.md)
  * <span class="badge builder"></span> [ResourceNamesQuery](./builder-ResourceNamesQuery.md)
  * <span class="badge builder"></span> [SubscriptionsQuery](./builder-SubscriptionsQuery.md)

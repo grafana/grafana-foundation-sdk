@@ -64,6 +64,12 @@ Not creating a new type until we figure out how to handle DS refs for group by, 
 def datasource(ref: cogbuilder.Builder[dashboardv2beta1.Dashboardv2beta1DataQueryKindDatasource]) -> typing.Self
 ```
 
+### <span class="badge object-method"></span> labels
+
+```python
+def labels(labels: dict[str, str]) -> typing.Self
+```
+
 ### <span class="badge object-method"></span> version
 
 ```python

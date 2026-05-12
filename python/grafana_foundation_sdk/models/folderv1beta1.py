@@ -31,7 +31,7 @@ class Folder:
         return cls(**args)
 
 
-FolderV1Beta1: typing.Literal["folder.grafana.app/v1beta1"] = "folder.grafana.app/v1beta1"
+FolderApiVersion: typing.Literal["folder.grafana.app/v1beta1"] = "folder.grafana.app/v1beta1"
 
 
 FolderKind: typing.Literal["Folder"] = "Folder"

@@ -16,17 +16,24 @@ class TabsLayoutTabSpec implements \JsonSerializable
     public ?\Grafana\Foundation\Dashboardv2beta1\TabRepeatOptions $repeat;
 
     /**
+     * @var array<\Grafana\Foundation\Dashboardv2beta1\QueryVariableKind|\Grafana\Foundation\Dashboardv2beta1\TextVariableKind|\Grafana\Foundation\Dashboardv2beta1\ConstantVariableKind|\Grafana\Foundation\Dashboardv2beta1\DatasourceVariableKind|\Grafana\Foundation\Dashboardv2beta1\IntervalVariableKind|\Grafana\Foundation\Dashboardv2beta1\CustomVariableKind|\Grafana\Foundation\Dashboardv2beta1\GroupByVariableKind|\Grafana\Foundation\Dashboardv2beta1\AdhocVariableKind|\Grafana\Foundation\Dashboardv2beta1\SwitchVariableKind>|null
+     */
+    public ?array $variables;
+
+    /**
      * @param string|null $title
      * @param \Grafana\Foundation\Dashboardv2beta1\GridLayoutKind|\Grafana\Foundation\Dashboardv2beta1\RowsLayoutKind|\Grafana\Foundation\Dashboardv2beta1\AutoGridLayoutKind|\Grafana\Foundation\Dashboardv2beta1\TabsLayoutKind|null $layout
      * @param \Grafana\Foundation\Dashboardv2beta1\ConditionalRenderingGroupKind|null $conditionalRendering
      * @param \Grafana\Foundation\Dashboardv2beta1\TabRepeatOptions|null $repeat
+     * @param array<\Grafana\Foundation\Dashboardv2beta1\QueryVariableKind|\Grafana\Foundation\Dashboardv2beta1\TextVariableKind|\Grafana\Foundation\Dashboardv2beta1\ConstantVariableKind|\Grafana\Foundation\Dashboardv2beta1\DatasourceVariableKind|\Grafana\Foundation\Dashboardv2beta1\IntervalVariableKind|\Grafana\Foundation\Dashboardv2beta1\CustomVariableKind|\Grafana\Foundation\Dashboardv2beta1\GroupByVariableKind|\Grafana\Foundation\Dashboardv2beta1\AdhocVariableKind|\Grafana\Foundation\Dashboardv2beta1\SwitchVariableKind>|null $variables
      */
-    public function __construct(?string $title = null,  $layout = null, ?\Grafana\Foundation\Dashboardv2beta1\ConditionalRenderingGroupKind $conditionalRendering = null, ?\Grafana\Foundation\Dashboardv2beta1\TabRepeatOptions $repeat = null)
+    public function __construct(?string $title = null,  $layout = null, ?\Grafana\Foundation\Dashboardv2beta1\ConditionalRenderingGroupKind $conditionalRendering = null, ?\Grafana\Foundation\Dashboardv2beta1\TabRepeatOptions $repeat = null, ?array $variables = null)
     {
         $this->title = $title;
         $this->layout = $layout ?: new \Grafana\Foundation\Dashboardv2beta1\GridLayoutKind();
         $this->conditionalRendering = $conditionalRendering;
         $this->repeat = $repeat;
+        $this->variables = $variables;
     }
 
     /**
@@ -34,7 +41,7 @@ class TabsLayoutTabSpec implements \JsonSerializable
      */
     public static function fromArray(array $inputData): self
     {
-        /** @var array{title?: string, layout?: mixed|mixed|mixed|mixed, conditionalRendering?: mixed, repeat?: mixed} $inputData */
+        /** @var array{title?: string, layout?: mixed|mixed|mixed|mixed, conditionalRendering?: mixed, repeat?: mixed, variables?: array<mixed|mixed|mixed|mixed|mixed|mixed|mixed|mixed|mixed>} $inputData */
         $data = $inputData;
         return new self(
             title: $data["title"] ?? null,
@@ -64,6 +71,32 @@ class TabsLayoutTabSpec implements \JsonSerializable
     $val = $input;
     	return \Grafana\Foundation\Dashboardv2beta1\TabRepeatOptions::fromArray($val);
     })($data["repeat"]) : null,
+            variables: !empty($data["variables"]) ? array_map((function($input) {
+        \assert(is_array($input), 'expected disjunction value to be an array');
+        /** @var array<string, mixed> $input */
+        switch ($input["kind"]) {
+        case "AdhocVariable":
+            return AdhocVariableKind::fromArray($input);
+        case "ConstantVariable":
+            return ConstantVariableKind::fromArray($input);
+        case "CustomVariable":
+            return CustomVariableKind::fromArray($input);
+        case "DatasourceVariable":
+            return DatasourceVariableKind::fromArray($input);
+        case "GroupByVariable":
+            return GroupByVariableKind::fromArray($input);
+        case "IntervalVariable":
+            return IntervalVariableKind::fromArray($input);
+        case "QueryVariable":
+            return QueryVariableKind::fromArray($input);
+        case "SwitchVariable":
+            return SwitchVariableKind::fromArray($input);
+        case "TextVariable":
+            return TextVariableKind::fromArray($input);
+        default:
+            throw new \ValueError('can not parse disjunction from array');
+    }
+    }), $data["variables"]) : null,
         );
     }
 
@@ -82,6 +115,9 @@ class TabsLayoutTabSpec implements \JsonSerializable
         }
         if (isset($this->repeat)) {
             $data->repeat = $this->repeat;
+        }
+        if (isset($this->variables)) {
+            $data->variables = $this->variables;
         }
         return $data;
     }

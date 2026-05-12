@@ -52,6 +52,12 @@ Specifies the query label selectors.
 func (builder *QueryBuilder) LabelSelector(labelSelector string) *QueryBuilder
 ```
 
+### <span class="badge object-method"></span> Labels
+
+```go
+func (builder *QueryBuilder) Labels(labels map[string]string) *QueryBuilder
+```
+
 ### <span class="badge object-method"></span> Limit
 
 Sets the maximum number of time series.

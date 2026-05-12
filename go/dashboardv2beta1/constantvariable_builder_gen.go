@@ -84,3 +84,14 @@ func (builder *ConstantVariableBuilder) Description(description string) *Constan
 
 	return builder
 }
+
+func (builder *ConstantVariableBuilder) Origin(origin cog.Builder[ControlSourceRef]) *ConstantVariableBuilder {
+	originResource, err := origin.Build()
+	if err != nil {
+		builder.errors = append(builder.errors, err.(cog.BuildErrors)...)
+		return builder
+	}
+	builder.internal.Spec.Origin = &originResource
+
+	return builder
+}

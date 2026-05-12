@@ -8,6 +8,7 @@
 ## Builders
 
  * <span class="badge builder"></span> [Query](./builder-Query.md)
+ * <span class="badge builder"></span> [QueryV2](./builder-QueryV2.md)
  * <span class="badge builder"></span> [Dataquery](./builder-Dataquery.md)
 ## Functions
 

@@ -165,7 +165,7 @@ class Preferences:
         return cls(**args)
 
 
-PreferencesV1Alpha1: typing.Literal["preferences.grafana.app/v1alpha1"] = "preferences.grafana.app/v1alpha1"
+PreferencesApiVersion: typing.Literal["preferences.grafana.app/v1alpha1"] = "preferences.grafana.app/v1alpha1"
 
 
 PreferencesKind: typing.Literal["Preferences"] = "Preferences"

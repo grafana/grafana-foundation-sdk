@@ -50,6 +50,14 @@ defaultKeys(defaultKeys: cog.Builder<dashboardv2beta1.MetricFindValue>[])
 description(description: string)
 ```
 
+### <span class="badge object-method"></span> enableGroupBy
+
+Whether the group-by operator is enabled in the ad hoc filter combobox.
+
+```typescript
+enableGroupBy(enableGroupBy: boolean)
+```
+
 ### <span class="badge object-method"></span> filters
 
 ```typescript
@@ -74,10 +82,22 @@ hide(hide: dashboardv2beta1.VariableHide)
 label(label: string)
 ```
 
+### <span class="badge object-method"></span> labels
+
+```typescript
+labels(labels: Record<string, string>)
+```
+
 ### <span class="badge object-method"></span> name
 
 ```typescript
 name(name: string)
+```
+
+### <span class="badge object-method"></span> origin
+
+```typescript
+origin(origin: cog.Builder<dashboardv2beta1.ControlSourceRef>)
 ```
 
 ### <span class="badge object-method"></span> skipUrlSync

@@ -82,5 +82,14 @@ export class SwitchVariableBuilder implements cog.Builder<dashboardv2beta1.Switc
         this.internal.spec.description = description;
         return this;
     }
+
+    origin(origin: cog.Builder<dashboardv2beta1.ControlSourceRef>): this {
+        if (!this.internal.spec) {
+            this.internal.spec = dashboardv2beta1.defaultSwitchVariableSpec();
+        }
+        const originResource = origin.build();
+        this.internal.spec.origin = originResource;
+        return this;
+    }
 }
 

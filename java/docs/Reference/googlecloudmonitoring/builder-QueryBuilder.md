@@ -52,6 +52,12 @@ Time interval in milliseconds.
 public QueryBuilder intervalMs(Double intervalMs)
 ```
 
+### <span class="badge object-method"></span> labels
+
+```java
+public QueryBuilder labels(Map<String, String> labels)
+```
+
 ### <span class="badge object-method"></span> promQLQuery
 
 PromQL sub-query properties.

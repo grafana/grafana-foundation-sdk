@@ -18,6 +18,11 @@ class MatcherConfig implements \JsonSerializable
     public string $id;
 
     /**
+     * If set, limits this matcher to fields of that type. If not set, "series" mode is used.
+     */
+    public ?\Grafana\Foundation\Dashboardv2beta1\MatcherScope $scope;
+
+    /**
      * The matcher options. This is specific to the matcher implementation.
      * @var mixed|null
      */
