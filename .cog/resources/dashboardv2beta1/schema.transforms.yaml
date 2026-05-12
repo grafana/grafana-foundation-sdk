@@ -3,7 +3,7 @@
 passes:
   # Add a few useful constants
   - add_object:
-      object: dashboardv2beta1.DashboardV2Beta1
+      object: dashboardv2beta1.DashboardApiVersion
       as:
         kind: scalar
         scalar: { scalar_kind: string, value: "dashboard.grafana.app/v2beta1" }

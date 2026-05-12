@@ -3,7 +3,7 @@
 passes:
   # Add a few useful constants
   - add_object:
-      object: preferencesv1alpha1.PreferencesV1Alpha1
+      object: preferencesv1alpha1.PreferencesApiVersion
       as:
         kind: scalar
         scalar: { scalar_kind: string, value: "preferences.grafana.app/v1alpha1" }

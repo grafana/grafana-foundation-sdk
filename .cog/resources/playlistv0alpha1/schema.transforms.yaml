@@ -3,7 +3,7 @@
 passes:
   # Add a few useful constants
   - add_object:
-      object: playlistv0alpha1.PlaylistV0Alpha1
+      object: playlistv0alpha1.PlaylistApiVersion
       as:
         kind: scalar
         scalar: { scalar_kind: string, value: "playlist.grafana.app/playlistv0alpha1" }
