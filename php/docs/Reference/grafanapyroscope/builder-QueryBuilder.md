@@ -56,6 +56,14 @@ Specifies the query label selectors.
 labelSelector(string $labelSelector)
 ```
 
+### <span class="badge object-method"></span> labels
+
+@param array<string, string> $labels
+
+```php
+labels(array $labels)
+```
+
 ### <span class="badge object-method"></span> limit
 
 Sets the maximum number of time series.

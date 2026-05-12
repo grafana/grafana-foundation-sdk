@@ -30,7 +30,7 @@ class TextVariableKind implements \JsonSerializable
         $data = $inputData;
         return new self(
             spec: isset($data["spec"]) ? (function($input) {
-    	/** @var array{name?: string, current?: mixed, query?: string, label?: string, hide?: string, skipUrlSync?: bool, description?: string} */
+    	/** @var array{name?: string, current?: mixed, query?: string, label?: string, hide?: string, skipUrlSync?: bool, description?: string, origin?: mixed} */
     $val = $input;
     	return \Grafana\Foundation\Dashboardv2beta1\TextVariableSpec::fromArray($val);
     })($data["spec"]) : null,

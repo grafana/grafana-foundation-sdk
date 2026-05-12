@@ -53,7 +53,7 @@ final class TransformationConverter
     
         
     $buffer = 'filter(';
-        $arg0 ='(new \Grafana\Foundation\Dashboardv2beta1\MatcherConfig(id: '.\var_export($input->spec->filter->id, true).','.(($input->spec->filter->options !== null) ? 'options: '.\var_export($input->spec->filter->options, true).', ' : '').'))';
+        $arg0 ='(new \Grafana\Foundation\Dashboardv2beta1\MatcherConfig(id: '.\var_export($input->spec->filter->id, true).','.(($input->spec->filter->scope !== null) ? 'scope: '.'\Grafana\Foundation\Dashboardv2beta1\MatcherScope::fromValue("'.$input->spec->filter->scope.'")'.', ' : '').''.(($input->spec->filter->options !== null) ? 'options: '.\var_export($input->spec->filter->options, true).', ' : '').'))';
         $buffer .= $arg0;
         
     $buffer .= ')';

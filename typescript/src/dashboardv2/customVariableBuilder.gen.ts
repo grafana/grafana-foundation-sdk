@@ -1,0 +1,136 @@
+// Code generated - EDITING IS FUTILE. DO NOT EDIT.
+
+import * as cog from '../cog';
+import * as dashboardv2 from '../dashboardv2';
+
+// Custom variable kind
+export class CustomVariableBuilder implements cog.Builder<dashboardv2.CustomVariableKind> {
+    protected readonly internal: dashboardv2.CustomVariableKind;
+
+    constructor(name: string) {
+        this.internal = dashboardv2.defaultCustomVariableKind();
+        this.internal.kind = "CustomVariable";
+        this.internal.spec.name = name;
+    }
+
+    /**
+     * Builds the object.
+     */
+    build(): dashboardv2.CustomVariableKind {
+        return this.internal;
+    }
+
+    name(name: string): this {
+        if (!this.internal.spec) {
+            this.internal.spec = dashboardv2.defaultCustomVariableSpec();
+        }
+        this.internal.spec.name = name;
+        return this;
+    }
+
+    query(query: string): this {
+        if (!this.internal.spec) {
+            this.internal.spec = dashboardv2.defaultCustomVariableSpec();
+        }
+        this.internal.spec.query = query;
+        return this;
+    }
+
+    current(current: dashboardv2.VariableOption): this {
+        if (!this.internal.spec) {
+            this.internal.spec = dashboardv2.defaultCustomVariableSpec();
+        }
+        this.internal.spec.current = current;
+        return this;
+    }
+
+    options(options: dashboardv2.VariableOption[]): this {
+        if (!this.internal.spec) {
+            this.internal.spec = dashboardv2.defaultCustomVariableSpec();
+        }
+        this.internal.spec.options = options;
+        return this;
+    }
+
+    multi(multi: boolean): this {
+        if (!this.internal.spec) {
+            this.internal.spec = dashboardv2.defaultCustomVariableSpec();
+        }
+        this.internal.spec.multi = multi;
+        return this;
+    }
+
+    includeAll(includeAll: boolean): this {
+        if (!this.internal.spec) {
+            this.internal.spec = dashboardv2.defaultCustomVariableSpec();
+        }
+        this.internal.spec.includeAll = includeAll;
+        return this;
+    }
+
+    allValue(allValue: string): this {
+        if (!this.internal.spec) {
+            this.internal.spec = dashboardv2.defaultCustomVariableSpec();
+        }
+        this.internal.spec.allValue = allValue;
+        return this;
+    }
+
+    label(label: string): this {
+        if (!this.internal.spec) {
+            this.internal.spec = dashboardv2.defaultCustomVariableSpec();
+        }
+        this.internal.spec.label = label;
+        return this;
+    }
+
+    hide(hide: dashboardv2.VariableHide): this {
+        if (!this.internal.spec) {
+            this.internal.spec = dashboardv2.defaultCustomVariableSpec();
+        }
+        this.internal.spec.hide = hide;
+        return this;
+    }
+
+    skipUrlSync(skipUrlSync: boolean): this {
+        if (!this.internal.spec) {
+            this.internal.spec = dashboardv2.defaultCustomVariableSpec();
+        }
+        this.internal.spec.skipUrlSync = skipUrlSync;
+        return this;
+    }
+
+    description(description: string): this {
+        if (!this.internal.spec) {
+            this.internal.spec = dashboardv2.defaultCustomVariableSpec();
+        }
+        this.internal.spec.description = description;
+        return this;
+    }
+
+    allowCustomValue(allowCustomValue: boolean): this {
+        if (!this.internal.spec) {
+            this.internal.spec = dashboardv2.defaultCustomVariableSpec();
+        }
+        this.internal.spec.allowCustomValue = allowCustomValue;
+        return this;
+    }
+
+    valuesFormat(valuesFormat: "csv" | "json"): this {
+        if (!this.internal.spec) {
+            this.internal.spec = dashboardv2.defaultCustomVariableSpec();
+        }
+        this.internal.spec.valuesFormat = valuesFormat;
+        return this;
+    }
+
+    origin(origin: cog.Builder<dashboardv2.ControlSourceRef>): this {
+        if (!this.internal.spec) {
+            this.internal.spec = dashboardv2.defaultCustomVariableSpec();
+        }
+        const originResource = origin.build();
+        this.internal.spec.origin = originResource;
+        return this;
+    }
+}
+

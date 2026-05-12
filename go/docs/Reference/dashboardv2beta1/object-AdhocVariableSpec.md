@@ -18,6 +18,9 @@ type AdhocVariableSpec struct {
     SkipUrlSync bool `json:"skipUrlSync"`
     Description *string `json:"description,omitempty"`
     AllowCustomValue bool `json:"allowCustomValue"`
+    // Whether the group-by operator is enabled in the ad hoc filter combobox.
+    EnableGroupBy *bool `json:"enableGroupBy,omitempty"`
+    Origin *dashboardv2beta1.ControlSourceRef `json:"origin,omitempty"`
 }
 ```
 ## Methods

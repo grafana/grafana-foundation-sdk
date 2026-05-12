@@ -43,6 +43,7 @@
  * <span class="badge builder"></span> [QueryEditorOperatorExpression](./builder-QueryEditorOperatorExpression.md)
  * <span class="badge builder"></span> [QueryEditorProperty](./builder-QueryEditorProperty.md)
  * <span class="badge builder"></span> [QueryEditorPropertyExpression](./builder-QueryEditorPropertyExpression.md)
+ * <span class="badge builder"></span> [QueryV2](./builder-QueryV2.md)
  * <span class="badge builder"></span> [SQLExpression](./builder-SQLExpression.md)
 ## Functions
 

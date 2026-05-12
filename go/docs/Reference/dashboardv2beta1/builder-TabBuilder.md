@@ -60,6 +60,12 @@ func (builder *TabBuilder) TabsLayout(tabsLayoutKind cog.Builder[dashboardv2beta
 func (builder *TabBuilder) Title(title string) *TabBuilder
 ```
 
+### <span class="badge object-method"></span> Variables
+
+```go
+func (builder *TabBuilder) Variables(variables []dashboardv2beta1.VariableKind) *TabBuilder
+```
+
 ## See also
 
  * <span class="badge object-type-struct"></span> [TabsLayoutTabKind](./object-TabsLayoutTabKind.md)

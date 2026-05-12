@@ -8,6 +8,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.ObjectWriter;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.fasterxml.jackson.annotation.JsonInclude;
+import java.util.Map;
 
 @JsonDeserialize(using = DataQueryKindDeserializer.class)
 public class DataQueryKind {
@@ -17,6 +18,9 @@ public class DataQueryKind {
     public String group;
     @JsonProperty("version")
     public String version;
+    @JsonInclude(JsonInclude.Include.NON_NULL)
+    @JsonProperty("labels")
+    public Map<String, String> labels;
     // New type for datasource reference
     // Not creating a new type until we figure out how to handle DS refs for group by, adhoc, and every place that uses DataSourceRef in TS.
     @JsonInclude(JsonInclude.Include.NON_NULL)
@@ -30,10 +34,11 @@ public class DataQueryKind {
         this.group = "";
         this.version = "v0";
     }
-    public DataQueryKind(String kind,String group,String version,Dashboardv2beta1DataQueryKindDatasource datasource,Object spec) {
+    public DataQueryKind(String kind,String group,String version,Map<String, String> labels,Dashboardv2beta1DataQueryKindDatasource datasource,Object spec) {
         this.kind = kind;
         this.group = group;
         this.version = version;
+        this.labels = labels;
         this.datasource = datasource;
         this.spec = spec;
     }

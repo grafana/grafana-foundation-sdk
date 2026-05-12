@@ -4,7 +4,10 @@ namespace Grafana\Foundation\Dashboardv2beta1;
 
 class Threshold implements \JsonSerializable
 {
-    public float $value;
+    /**
+     * Value null means -Infinity
+     */
+    public ?float $value;
 
     public string $color;
 
@@ -14,7 +17,7 @@ class Threshold implements \JsonSerializable
      */
     public function __construct(?float $value = null, ?string $color = null)
     {
-        $this->value = $value ?: 0;
+        $this->value = $value;
         $this->color = $color ?: "";
     }
 
@@ -37,8 +40,10 @@ class Threshold implements \JsonSerializable
     public function jsonSerialize(): mixed
     {
         $data = new \stdClass;
-        $data->value = $this->value;
         $data->color = $this->color;
+        if (isset($this->value)) {
+            $data->value = $this->value;
+        }
         return $data;
     }
 }

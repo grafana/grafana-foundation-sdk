@@ -76,6 +76,15 @@ export class RowBuilder implements cog.Builder<dashboardv2beta1.RowsLayoutRowKin
         this.internal.spec.layout = layoutResource;
         return this;
     }
+
+    variables(variables: cog.Builder<dashboardv2beta1.VariableKind>[]): this {
+        if (!this.internal.spec) {
+            this.internal.spec = dashboardv2beta1.defaultRowsLayoutRowSpec();
+        }
+        const variablesResources = variables.map(builder1 => builder1.build());
+        this.internal.spec.variables = variablesResources;
+        return this;
+    }
 }
 
 export function row(title: string): RowBuilder {

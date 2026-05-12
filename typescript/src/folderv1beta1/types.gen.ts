@@ -9,7 +9,7 @@ export const defaultFolder = (): Folder => ({
 	title: "",
 });
 
-export const FolderV1Beta1 = "folder.grafana.app/v1beta1";
+export const FolderApiVersion = "folder.grafana.app/v1beta1";
 
 export const FolderKind = "Folder";
 

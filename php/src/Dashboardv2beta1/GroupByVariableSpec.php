@@ -28,6 +28,8 @@ class GroupByVariableSpec implements \JsonSerializable
 
     public ?string $description;
 
+    public ?\Grafana\Foundation\Dashboardv2beta1\ControlSourceRef $origin;
+
     /**
      * @param string|null $name
      * @param \Grafana\Foundation\Dashboardv2beta1\VariableOption|null $defaultValue
@@ -38,8 +40,9 @@ class GroupByVariableSpec implements \JsonSerializable
      * @param \Grafana\Foundation\Dashboardv2beta1\VariableHide|null $hide
      * @param bool|null $skipUrlSync
      * @param string|null $description
+     * @param \Grafana\Foundation\Dashboardv2beta1\ControlSourceRef|null $origin
      */
-    public function __construct(?string $name = null, ?\Grafana\Foundation\Dashboardv2beta1\VariableOption $defaultValue = null, ?\Grafana\Foundation\Dashboardv2beta1\VariableOption $current = null, ?array $options = null, ?bool $multi = null, ?string $label = null, ?\Grafana\Foundation\Dashboardv2beta1\VariableHide $hide = null, ?bool $skipUrlSync = null, ?string $description = null)
+    public function __construct(?string $name = null, ?\Grafana\Foundation\Dashboardv2beta1\VariableOption $defaultValue = null, ?\Grafana\Foundation\Dashboardv2beta1\VariableOption $current = null, ?array $options = null, ?bool $multi = null, ?string $label = null, ?\Grafana\Foundation\Dashboardv2beta1\VariableHide $hide = null, ?bool $skipUrlSync = null, ?string $description = null, ?\Grafana\Foundation\Dashboardv2beta1\ControlSourceRef $origin = null)
     {
         $this->name = $name ?: "";
         $this->defaultValue = $defaultValue;
@@ -50,6 +53,7 @@ class GroupByVariableSpec implements \JsonSerializable
         $this->hide = $hide ?: \Grafana\Foundation\Dashboardv2beta1\VariableHide::dontHide();
         $this->skipUrlSync = $skipUrlSync ?: false;
         $this->description = $description;
+        $this->origin = $origin;
     }
 
     /**
@@ -57,22 +61,22 @@ class GroupByVariableSpec implements \JsonSerializable
      */
     public static function fromArray(array $inputData): self
     {
-        /** @var array{name?: string, defaultValue?: mixed, current?: mixed, options?: array<mixed>, multi?: bool, label?: string, hide?: string, skipUrlSync?: bool, description?: string} $inputData */
+        /** @var array{name?: string, defaultValue?: mixed, current?: mixed, options?: array<mixed>, multi?: bool, label?: string, hide?: string, skipUrlSync?: bool, description?: string, origin?: mixed} $inputData */
         $data = $inputData;
         return new self(
             name: $data["name"] ?? null,
             defaultValue: isset($data["defaultValue"]) ? (function($input) {
-    	/** @var array{selected?: bool, text?: string|array<string>, value?: string|array<string>} */
+    	/** @var array{selected?: bool, text?: string|array<string>, value?: string|array<string>, properties?: array<string, string>} */
     $val = $input;
     	return \Grafana\Foundation\Dashboardv2beta1\VariableOption::fromArray($val);
     })($data["defaultValue"]) : null,
             current: isset($data["current"]) ? (function($input) {
-    	/** @var array{selected?: bool, text?: string|array<string>, value?: string|array<string>} */
+    	/** @var array{selected?: bool, text?: string|array<string>, value?: string|array<string>, properties?: array<string, string>} */
     $val = $input;
     	return \Grafana\Foundation\Dashboardv2beta1\VariableOption::fromArray($val);
     })($data["current"]) : null,
             options: array_filter(array_map((function($input) {
-    	/** @var array{selected?: bool, text?: string|array<string>, value?: string|array<string>} */
+    	/** @var array{selected?: bool, text?: string|array<string>, value?: string|array<string>, properties?: array<string, string>} */
     $val = $input;
     	return \Grafana\Foundation\Dashboardv2beta1\VariableOption::fromArray($val);
     }), $data["options"] ?? [])),
@@ -81,6 +85,11 @@ class GroupByVariableSpec implements \JsonSerializable
             hide: isset($data["hide"]) ? (function($input) { return \Grafana\Foundation\Dashboardv2beta1\VariableHide::fromValue($input); })($data["hide"]) : null,
             skipUrlSync: $data["skipUrlSync"] ?? null,
             description: $data["description"] ?? null,
+            origin: isset($data["origin"]) ? (function($input) {
+    	/** @var array{type?: string, group?: string} */
+    $val = $input;
+    	return \Grafana\Foundation\Dashboardv2beta1\ControlSourceRef::fromArray($val);
+    })($data["origin"]) : null,
         );
     }
 
@@ -104,6 +113,9 @@ class GroupByVariableSpec implements \JsonSerializable
         }
         if (isset($this->description)) {
             $data->description = $this->description;
+        }
+        if (isset($this->origin)) {
+            $data->origin = $this->origin;
         }
         return $data;
     }

@@ -35,6 +35,13 @@ class AdhocVariableSpec implements \JsonSerializable
     public bool $allowCustomValue;
 
     /**
+     * Whether the group-by operator is enabled in the ad hoc filter combobox.
+     */
+    public ?bool $enableGroupBy;
+
+    public ?\Grafana\Foundation\Dashboardv2beta1\ControlSourceRef $origin;
+
+    /**
      * @param string|null $name
      * @param array<\Grafana\Foundation\Dashboardv2beta1\AdHocFilterWithLabels>|null $baseFilters
      * @param array<\Grafana\Foundation\Dashboardv2beta1\AdHocFilterWithLabels>|null $filters
@@ -44,8 +51,10 @@ class AdhocVariableSpec implements \JsonSerializable
      * @param bool|null $skipUrlSync
      * @param string|null $description
      * @param bool|null $allowCustomValue
+     * @param bool|null $enableGroupBy
+     * @param \Grafana\Foundation\Dashboardv2beta1\ControlSourceRef|null $origin
      */
-    public function __construct(?string $name = null, ?array $baseFilters = null, ?array $filters = null, ?array $defaultKeys = null, ?string $label = null, ?\Grafana\Foundation\Dashboardv2beta1\VariableHide $hide = null, ?bool $skipUrlSync = null, ?string $description = null, ?bool $allowCustomValue = null)
+    public function __construct(?string $name = null, ?array $baseFilters = null, ?array $filters = null, ?array $defaultKeys = null, ?string $label = null, ?\Grafana\Foundation\Dashboardv2beta1\VariableHide $hide = null, ?bool $skipUrlSync = null, ?string $description = null, ?bool $allowCustomValue = null, ?bool $enableGroupBy = null, ?\Grafana\Foundation\Dashboardv2beta1\ControlSourceRef $origin = null)
     {
         $this->name = $name ?: "";
         $this->baseFilters = $baseFilters ?: [];
@@ -56,6 +65,8 @@ class AdhocVariableSpec implements \JsonSerializable
         $this->skipUrlSync = $skipUrlSync ?: false;
         $this->description = $description;
         $this->allowCustomValue = $allowCustomValue ?: true;
+        $this->enableGroupBy = $enableGroupBy;
+        $this->origin = $origin;
     }
 
     /**
@@ -63,7 +74,7 @@ class AdhocVariableSpec implements \JsonSerializable
      */
     public static function fromArray(array $inputData): self
     {
-        /** @var array{name?: string, baseFilters?: array<mixed>, filters?: array<mixed>, defaultKeys?: array<mixed>, label?: string, hide?: string, skipUrlSync?: bool, description?: string, allowCustomValue?: bool} $inputData */
+        /** @var array{name?: string, baseFilters?: array<mixed>, filters?: array<mixed>, defaultKeys?: array<mixed>, label?: string, hide?: string, skipUrlSync?: bool, description?: string, allowCustomValue?: bool, enableGroupBy?: bool, origin?: mixed} $inputData */
         $data = $inputData;
         return new self(
             name: $data["name"] ?? null,
@@ -87,6 +98,12 @@ class AdhocVariableSpec implements \JsonSerializable
             skipUrlSync: $data["skipUrlSync"] ?? null,
             description: $data["description"] ?? null,
             allowCustomValue: $data["allowCustomValue"] ?? null,
+            enableGroupBy: $data["enableGroupBy"] ?? null,
+            origin: isset($data["origin"]) ? (function($input) {
+    	/** @var array{type?: string, group?: string} */
+    $val = $input;
+    	return \Grafana\Foundation\Dashboardv2beta1\ControlSourceRef::fromArray($val);
+    })($data["origin"]) : null,
         );
     }
 
@@ -108,6 +125,12 @@ class AdhocVariableSpec implements \JsonSerializable
         }
         if (isset($this->description)) {
             $data->description = $this->description;
+        }
+        if (isset($this->enableGroupBy)) {
+            $data->enableGroupBy = $this->enableGroupBy;
+        }
+        if (isset($this->origin)) {
+            $data->origin = $this->origin;
         }
         return $data;
     }

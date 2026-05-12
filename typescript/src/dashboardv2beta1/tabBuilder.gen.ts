@@ -52,6 +52,15 @@ export class TabBuilder implements cog.Builder<dashboardv2beta1.TabsLayoutTabKin
         this.internal.spec.repeat = repeatResource;
         return this;
     }
+
+    variables(variables: cog.Builder<dashboardv2beta1.VariableKind>[]): this {
+        if (!this.internal.spec) {
+            this.internal.spec = dashboardv2beta1.defaultTabsLayoutTabSpec();
+        }
+        const variablesResources = variables.map(builder1 => builder1.build());
+        this.internal.spec.variables = variablesResources;
+        return this;
+    }
 }
 
 export function tab(title: string): TabBuilder {

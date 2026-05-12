@@ -2,6 +2,8 @@
 
 export * from './types.gen';
 export type * from './types.gen';
+export * from './queryV2Builder.gen';
+export type * from './queryV2Builder.gen';
 export * from './metricStatBuilder.gen';
 export type * from './metricStatBuilder.gen';
 export * from './cloudWatchMetricsQueryBuilder.gen';

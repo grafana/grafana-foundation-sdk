@@ -6,14 +6,16 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.ObjectWriter;
+import com.fasterxml.jackson.annotation.JsonInclude;
 
 public class Threshold {
+    // Value null means -Infinity
+    @JsonInclude(JsonInclude.Include.NON_NULL)
     @JsonProperty("value")
     public Double value;
     @JsonProperty("color")
     public String color;
     public Threshold() {
-        this.value = 0.0;
         this.color = "";
     }
     public Threshold(Double value,String color) {

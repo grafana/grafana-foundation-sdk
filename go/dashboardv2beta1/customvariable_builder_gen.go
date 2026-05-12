@@ -114,3 +114,20 @@ func (builder *CustomVariableBuilder) AllowCustomValue(allowCustomValue bool) *C
 
 	return builder
 }
+
+func (builder *CustomVariableBuilder) ValuesFormat(valuesFormat CustomVariableSpecValuesFormat) *CustomVariableBuilder {
+	builder.internal.Spec.ValuesFormat = &valuesFormat
+
+	return builder
+}
+
+func (builder *CustomVariableBuilder) Origin(origin cog.Builder[ControlSourceRef]) *CustomVariableBuilder {
+	originResource, err := origin.Build()
+	if err != nil {
+		builder.errors = append(builder.errors, err.(cog.BuildErrors)...)
+		return builder
+	}
+	builder.internal.Spec.Origin = &originResource
+
+	return builder
+}

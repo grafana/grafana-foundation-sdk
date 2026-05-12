@@ -1,0 +1,263 @@
+# dashboardv2
+
+## Objects
+
+ * <span class="badge object-type-class"></span> [Action](./object-Action.md)
+ * <span class="badge object-type-enum"></span> [ActionType](./object-ActionType.md)
+ * <span class="badge object-type-class"></span> [ActionVariable](./object-ActionVariable.md)
+ * <span class="badge object-type-scalar"></span> [ActionVariableType](./object-ActionVariableType.md)
+ * <span class="badge object-type-class"></span> [AdHocFilterWithLabels](./object-AdHocFilterWithLabels.md)
+ * <span class="badge object-type-class"></span> [AdhocVariableKind](./object-AdhocVariableKind.md)
+ * <span class="badge object-type-class"></span> [AdhocVariableSpec](./object-AdhocVariableSpec.md)
+ * <span class="badge object-type-class"></span> [AnnotationEventFieldMapping](./object-AnnotationEventFieldMapping.md)
+ * <span class="badge object-type-enum"></span> [AnnotationEventFieldSource](./object-AnnotationEventFieldSource.md)
+ * <span class="badge object-type-class"></span> [AnnotationPanelFilter](./object-AnnotationPanelFilter.md)
+ * <span class="badge object-type-class"></span> [AnnotationQueryKind](./object-AnnotationQueryKind.md)
+ * <span class="badge object-type-scalar"></span> [AnnotationQueryPlacement](./object-AnnotationQueryPlacement.md)
+ * <span class="badge object-type-class"></span> [AnnotationQuerySpec](./object-AnnotationQuerySpec.md)
+ * <span class="badge object-type-class"></span> [AutoGridLayoutItemKind](./object-AutoGridLayoutItemKind.md)
+ * <span class="badge object-type-class"></span> [AutoGridLayoutItemSpec](./object-AutoGridLayoutItemSpec.md)
+ * <span class="badge object-type-class"></span> [AutoGridLayoutKind](./object-AutoGridLayoutKind.md)
+ * <span class="badge object-type-class"></span> [AutoGridLayoutSpec](./object-AutoGridLayoutSpec.md)
+ * <span class="badge object-type-class"></span> [AutoGridRepeatOptions](./object-AutoGridRepeatOptions.md)
+ * <span class="badge object-type-class"></span> [ConditionalRenderingDataKind](./object-ConditionalRenderingDataKind.md)
+ * <span class="badge object-type-class"></span> [ConditionalRenderingDataSpec](./object-ConditionalRenderingDataSpec.md)
+ * <span class="badge object-type-class"></span> [ConditionalRenderingGroupKind](./object-ConditionalRenderingGroupKind.md)
+ * <span class="badge object-type-class"></span> [ConditionalRenderingGroupSpec](./object-ConditionalRenderingGroupSpec.md)
+ * <span class="badge object-type-class"></span> [ConditionalRenderingTimeRangeSizeKind](./object-ConditionalRenderingTimeRangeSizeKind.md)
+ * <span class="badge object-type-class"></span> [ConditionalRenderingTimeRangeSizeSpec](./object-ConditionalRenderingTimeRangeSizeSpec.md)
+ * <span class="badge object-type-class"></span> [ConditionalRenderingVariableKind](./object-ConditionalRenderingVariableKind.md)
+ * <span class="badge object-type-class"></span> [ConditionalRenderingVariableSpec](./object-ConditionalRenderingVariableSpec.md)
+ * <span class="badge object-type-class"></span> [ConstantVariableKind](./object-ConstantVariableKind.md)
+ * <span class="badge object-type-class"></span> [ConstantVariableSpec](./object-ConstantVariableSpec.md)
+ * <span class="badge object-type-ref"></span> [ControlSourceRef](./object-ControlSourceRef.md)
+ * <span class="badge object-type-class"></span> [CustomFormatterVariable](./object-CustomFormatterVariable.md)
+ * <span class="badge object-type-class"></span> [CustomVariableKind](./object-CustomVariableKind.md)
+ * <span class="badge object-type-class"></span> [CustomVariableSpec](./object-CustomVariableSpec.md)
+ * <span class="badge object-type-class"></span> [CustomVariableValue](./object-CustomVariableValue.md)
+ * <span class="badge object-type-class"></span> [Dashboard](./object-Dashboard.md)
+ * <span class="badge object-type-scalar"></span> [DashboardAPIVersion](./object-DashboardAPIVersion.md)
+ * <span class="badge object-type-enum"></span> [DashboardCursorSync](./object-DashboardCursorSync.md)
+ * <span class="badge object-type-scalar"></span> [DashboardKind](./object-DashboardKind.md)
+ * <span class="badge object-type-class"></span> [DashboardLink](./object-DashboardLink.md)
+ * <span class="badge object-type-scalar"></span> [DashboardLinkPlacement](./object-DashboardLinkPlacement.md)
+ * <span class="badge object-type-enum"></span> [DashboardLinkType](./object-DashboardLinkType.md)
+ * <span class="badge object-type-class"></span> [Dashboardv2ActionStyle](./object-Dashboardv2ActionStyle.md)
+ * <span class="badge object-type-class"></span> [Dashboardv2AdhocVariableKindDatasource](./object-Dashboardv2AdhocVariableKindDatasource.md)
+ * <span class="badge object-type-class"></span> [Dashboardv2DataQueryKindDatasource](./object-Dashboardv2DataQueryKindDatasource.md)
+ * <span class="badge object-type-class"></span> [Dashboardv2FieldConfigSourceOverrides](./object-Dashboardv2FieldConfigSourceOverrides.md)
+ * <span class="badge object-type-class"></span> [Dashboardv2GroupByVariableKindDatasource](./object-Dashboardv2GroupByVariableKindDatasource.md)
+ * <span class="badge object-type-class"></span> [Dashboardv2RangeMapOptions](./object-Dashboardv2RangeMapOptions.md)
+ * <span class="badge object-type-class"></span> [Dashboardv2RegexMapOptions](./object-Dashboardv2RegexMapOptions.md)
+ * <span class="badge object-type-class"></span> [Dashboardv2SpecialValueMapOptions](./object-Dashboardv2SpecialValueMapOptions.md)
+ * <span class="badge object-type-class"></span> [DataLink](./object-DataLink.md)
+ * <span class="badge object-type-class"></span> [DataQueryKind](./object-DataQueryKind.md)
+ * <span class="badge object-type-enum"></span> [DataTopic](./object-DataTopic.md)
+ * <span class="badge object-type-class"></span> [DatasourceControlSourceRef](./object-DatasourceControlSourceRef.md)
+ * <span class="badge object-type-class"></span> [DatasourceVariableKind](./object-DatasourceVariableKind.md)
+ * <span class="badge object-type-class"></span> [DatasourceVariableSpec](./object-DatasourceVariableSpec.md)
+ * <span class="badge object-type-class"></span> [DynamicConfigValue](./object-DynamicConfigValue.md)
+ * <span class="badge object-type-disjunction"></span> [Element](./object-Element.md)
+ * <span class="badge object-type-class"></span> [ElementReference](./object-ElementReference.md)
+ * <span class="badge object-type-class"></span> [FetchOptions](./object-FetchOptions.md)
+ * <span class="badge object-type-class"></span> [FieldColor](./object-FieldColor.md)
+ * <span class="badge object-type-enum"></span> [FieldColorModeId](./object-FieldColorModeId.md)
+ * <span class="badge object-type-enum"></span> [FieldColorSeriesByMode](./object-FieldColorSeriesByMode.md)
+ * <span class="badge object-type-class"></span> [FieldConfig](./object-FieldConfig.md)
+ * <span class="badge object-type-class"></span> [FieldConfigSource](./object-FieldConfigSource.md)
+ * <span class="badge object-type-scalar"></span> [FilterOrigin](./object-FilterOrigin.md)
+ * <span class="badge object-type-class"></span> [GridLayoutItemKind](./object-GridLayoutItemKind.md)
+ * <span class="badge object-type-class"></span> [GridLayoutItemSpec](./object-GridLayoutItemSpec.md)
+ * <span class="badge object-type-class"></span> [GridLayoutKind](./object-GridLayoutKind.md)
+ * <span class="badge object-type-class"></span> [GridLayoutSpec](./object-GridLayoutSpec.md)
+ * <span class="badge object-type-class"></span> [GroupByVariableKind](./object-GroupByVariableKind.md)
+ * <span class="badge object-type-class"></span> [GroupByVariableSpec](./object-GroupByVariableSpec.md)
+ * <span class="badge object-type-enum"></span> [HttpRequestMethod](./object-HttpRequestMethod.md)
+ * <span class="badge object-type-class"></span> [InfinityOptions](./object-InfinityOptions.md)
+ * <span class="badge object-type-class"></span> [IntervalVariableKind](./object-IntervalVariableKind.md)
+ * <span class="badge object-type-class"></span> [IntervalVariableSpec](./object-IntervalVariableSpec.md)
+ * <span class="badge object-type-class"></span> [Kind](./object-Kind.md)
+ * <span class="badge object-type-class"></span> [LibraryPanelKind](./object-LibraryPanelKind.md)
+ * <span class="badge object-type-class"></span> [LibraryPanelKindSpec](./object-LibraryPanelKindSpec.md)
+ * <span class="badge object-type-class"></span> [LibraryPanelRef](./object-LibraryPanelRef.md)
+ * <span class="badge object-type-enum"></span> [MappingType](./object-MappingType.md)
+ * <span class="badge object-type-class"></span> [MatcherConfig](./object-MatcherConfig.md)
+ * <span class="badge object-type-enum"></span> [MatcherScope](./object-MatcherScope.md)
+ * <span class="badge object-type-class"></span> [MetricFindValue](./object-MetricFindValue.md)
+ * <span class="badge object-type-enum"></span> [NullValueMode](./object-NullValueMode.md)
+ * <span class="badge object-type-class"></span> [PanelKind](./object-PanelKind.md)
+ * <span class="badge object-type-class"></span> [PanelQueryKind](./object-PanelQueryKind.md)
+ * <span class="badge object-type-class"></span> [PanelQuerySpec](./object-PanelQuerySpec.md)
+ * <span class="badge object-type-class"></span> [PanelSpec](./object-PanelSpec.md)
+ * <span class="badge object-type-class"></span> [Preferences](./object-Preferences.md)
+ * <span class="badge object-type-class"></span> [QueryGroupKind](./object-QueryGroupKind.md)
+ * <span class="badge object-type-class"></span> [QueryGroupSpec](./object-QueryGroupSpec.md)
+ * <span class="badge object-type-class"></span> [QueryOptionsSpec](./object-QueryOptionsSpec.md)
+ * <span class="badge object-type-class"></span> [QueryVariableKind](./object-QueryVariableKind.md)
+ * <span class="badge object-type-class"></span> [QueryVariableSpec](./object-QueryVariableSpec.md)
+ * <span class="badge object-type-class"></span> [RangeMap](./object-RangeMap.md)
+ * <span class="badge object-type-class"></span> [RegexMap](./object-RegexMap.md)
+ * <span class="badge object-type-enum"></span> [RepeatMode](./object-RepeatMode.md)
+ * <span class="badge object-type-class"></span> [RepeatOptions](./object-RepeatOptions.md)
+ * <span class="badge object-type-class"></span> [RowRepeatOptions](./object-RowRepeatOptions.md)
+ * <span class="badge object-type-class"></span> [RowsLayoutKind](./object-RowsLayoutKind.md)
+ * <span class="badge object-type-class"></span> [RowsLayoutRowKind](./object-RowsLayoutRowKind.md)
+ * <span class="badge object-type-class"></span> [RowsLayoutRowSpec](./object-RowsLayoutRowSpec.md)
+ * <span class="badge object-type-class"></span> [RowsLayoutSpec](./object-RowsLayoutSpec.md)
+ * <span class="badge object-type-class"></span> [SpecialValueMap](./object-SpecialValueMap.md)
+ * <span class="badge object-type-enum"></span> [SpecialValueMatch](./object-SpecialValueMatch.md)
+ * <span class="badge object-type-class"></span> [SwitchVariableKind](./object-SwitchVariableKind.md)
+ * <span class="badge object-type-class"></span> [SwitchVariableSpec](./object-SwitchVariableSpec.md)
+ * <span class="badge object-type-class"></span> [TabRepeatOptions](./object-TabRepeatOptions.md)
+ * <span class="badge object-type-class"></span> [TabsLayoutKind](./object-TabsLayoutKind.md)
+ * <span class="badge object-type-class"></span> [TabsLayoutSpec](./object-TabsLayoutSpec.md)
+ * <span class="badge object-type-class"></span> [TabsLayoutTabKind](./object-TabsLayoutTabKind.md)
+ * <span class="badge object-type-class"></span> [TabsLayoutTabSpec](./object-TabsLayoutTabSpec.md)
+ * <span class="badge object-type-class"></span> [TextVariableKind](./object-TextVariableKind.md)
+ * <span class="badge object-type-class"></span> [TextVariableSpec](./object-TextVariableSpec.md)
+ * <span class="badge object-type-class"></span> [Threshold](./object-Threshold.md)
+ * <span class="badge object-type-class"></span> [ThresholdsConfig](./object-ThresholdsConfig.md)
+ * <span class="badge object-type-enum"></span> [ThresholdsMode](./object-ThresholdsMode.md)
+ * <span class="badge object-type-class"></span> [TimeRangeOption](./object-TimeRangeOption.md)
+ * <span class="badge object-type-class"></span> [TimeSettingsSpec](./object-TimeSettingsSpec.md)
+ * <span class="badge object-type-class"></span> [TransformationKind](./object-TransformationKind.md)
+ * <span class="badge object-type-class"></span> [TransformationSpec](./object-TransformationSpec.md)
+ * <span class="badge object-type-class"></span> [ValueMap](./object-ValueMap.md)
+ * <span class="badge object-type-disjunction"></span> [ValueMapping](./object-ValueMapping.md)
+ * <span class="badge object-type-class"></span> [ValueMappingResult](./object-ValueMappingResult.md)
+ * <span class="badge object-type-enum"></span> [VariableHide](./object-VariableHide.md)
+ * <span class="badge object-type-disjunction"></span> [VariableKind](./object-VariableKind.md)
+ * <span class="badge object-type-class"></span> [VariableOption](./object-VariableOption.md)
+ * <span class="badge object-type-enum"></span> [VariableRefresh](./object-VariableRefresh.md)
+ * <span class="badge object-type-enum"></span> [VariableRegexApplyTo](./object-VariableRegexApplyTo.md)
+ * <span class="badge object-type-enum"></span> [VariableSort](./object-VariableSort.md)
+ * <span class="badge object-type-enum"></span> [VariableType](./object-VariableType.md)
+ * <span class="badge object-type-disjunction"></span> [VariableValue](./object-VariableValue.md)
+ * <span class="badge object-type-class"></span> [VariableValueOption](./object-VariableValueOption.md)
+ * <span class="badge object-type-disjunction"></span> [VariableValueSingle](./object-VariableValueSingle.md)
+ * <span class="badge object-type-class"></span> [VizConfigKind](./object-VizConfigKind.md)
+ * <span class="badge object-type-class"></span> [VizConfigSpec](./object-VizConfigSpec.md)
+## Builders
+
+ * <span class="badge builder"></span> [Action](./builder-Action.md)
+ * <span class="badge builder"></span> [ActionVariable](./builder-ActionVariable.md)
+ * <span class="badge builder"></span> [AdHocFilterWithLabels](./builder-AdHocFilterWithLabels.md)
+ * <span class="badge builder"></span> [AdhocVariable](./builder-AdhocVariable.md)
+ * <span class="badge builder"></span> [AnnotationEventFieldMapping](./builder-AnnotationEventFieldMapping.md)
+ * <span class="badge builder"></span> [AnnotationPanelFilter](./builder-AnnotationPanelFilter.md)
+ * <span class="badge builder"></span> [AnnotationQuery](./builder-AnnotationQuery.md)
+ * <span class="badge builder"></span> [AutoGrid](./builder-AutoGrid.md)
+ * <span class="badge builder"></span> [AutoGridItem](./builder-AutoGridItem.md)
+ * <span class="badge builder"></span> [AutoGridRepeatOptions](./builder-AutoGridRepeatOptions.md)
+ * <span class="badge builder"></span> [ConditionalRenderingData](./builder-ConditionalRenderingData.md)
+ * <span class="badge builder"></span> [ConditionalRenderingGroup](./builder-ConditionalRenderingGroup.md)
+ * <span class="badge builder"></span> [ConditionalRenderingTimeRangeSize](./builder-ConditionalRenderingTimeRangeSize.md)
+ * <span class="badge builder"></span> [ConditionalRenderingVariable](./builder-ConditionalRenderingVariable.md)
+ * <span class="badge builder"></span> [ConstantVariable](./builder-ConstantVariable.md)
+ * <span class="badge builder"></span> [ControlSourceRef](./builder-ControlSourceRef.md)
+ * <span class="badge builder"></span> [CustomFormatterVariable](./builder-CustomFormatterVariable.md)
+ * <span class="badge builder"></span> [CustomVariable](./builder-CustomVariable.md)
+ * <span class="badge builder"></span> [Dashboard](./builder-Dashboard.md)
+ * <span class="badge builder"></span> [DashboardLink](./builder-DashboardLink.md)
+ * <span class="badge builder"></span> [Dashboardv2ActionStyle](./builder-Dashboardv2ActionStyle.md)
+ * <span class="badge builder"></span> [Dashboardv2AdhocVariableKindDatasource](./builder-Dashboardv2AdhocVariableKindDatasource.md)
+ * <span class="badge builder"></span> [Dashboardv2DataQueryKindDatasource](./builder-Dashboardv2DataQueryKindDatasource.md)
+ * <span class="badge builder"></span> [Dashboardv2FieldConfigSourceOverrides](./builder-Dashboardv2FieldConfigSourceOverrides.md)
+ * <span class="badge builder"></span> [Dashboardv2GroupByVariableKindDatasource](./builder-Dashboardv2GroupByVariableKindDatasource.md)
+ * <span class="badge builder"></span> [Dashboardv2RangeMapOptions](./builder-Dashboardv2RangeMapOptions.md)
+ * <span class="badge builder"></span> [Dashboardv2RegexMapOptions](./builder-Dashboardv2RegexMapOptions.md)
+ * <span class="badge builder"></span> [Dashboardv2SpecialValueMapOptions](./builder-Dashboardv2SpecialValueMapOptions.md)
+ * <span class="badge builder"></span> [DataLink](./builder-DataLink.md)
+ * <span class="badge builder"></span> [DatasourceControlSourceRef](./builder-DatasourceControlSourceRef.md)
+ * <span class="badge builder"></span> [DatasourceVariable](./builder-DatasourceVariable.md)
+ * <span class="badge builder"></span> [ElementReference](./builder-ElementReference.md)
+ * <span class="badge builder"></span> [FetchOptions](./builder-FetchOptions.md)
+ * <span class="badge builder"></span> [FieldColor](./builder-FieldColor.md)
+ * <span class="badge builder"></span> [Grid](./builder-Grid.md)
+ * <span class="badge builder"></span> [GridItem](./builder-GridItem.md)
+ * <span class="badge builder"></span> [GroupByVariable](./builder-GroupByVariable.md)
+ * <span class="badge builder"></span> [InfinityOptions](./builder-InfinityOptions.md)
+ * <span class="badge builder"></span> [IntervalVariable](./builder-IntervalVariable.md)
+ * <span class="badge builder"></span> [LibraryPanel](./builder-LibraryPanel.md)
+ * <span class="badge builder"></span> [LibraryPanelRef](./builder-LibraryPanelRef.md)
+ * <span class="badge builder"></span> [MetricFindValue](./builder-MetricFindValue.md)
+ * <span class="badge builder"></span> [Panel](./builder-Panel.md)
+ * <span class="badge builder"></span> [Preferences](./builder-Preferences.md)
+ * <span class="badge builder"></span> [QueryGroup](./builder-QueryGroup.md)
+ * <span class="badge builder"></span> [QueryOptionsSpec](./builder-QueryOptionsSpec.md)
+ * <span class="badge builder"></span> [QueryVariable](./builder-QueryVariable.md)
+ * <span class="badge builder"></span> [RepeatOptions](./builder-RepeatOptions.md)
+ * <span class="badge builder"></span> [Row](./builder-Row.md)
+ * <span class="badge builder"></span> [RowRepeatOptions](./builder-RowRepeatOptions.md)
+ * <span class="badge builder"></span> [Rows](./builder-Rows.md)
+ * <span class="badge builder"></span> [SwitchVariable](./builder-SwitchVariable.md)
+ * <span class="badge builder"></span> [Tab](./builder-Tab.md)
+ * <span class="badge builder"></span> [TabRepeatOptions](./builder-TabRepeatOptions.md)
+ * <span class="badge builder"></span> [Tabs](./builder-Tabs.md)
+ * <span class="badge builder"></span> [Target](./builder-Target.md)
+ * <span class="badge builder"></span> [TextVariable](./builder-TextVariable.md)
+ * <span class="badge builder"></span> [ThresholdsConfig](./builder-ThresholdsConfig.md)
+ * <span class="badge builder"></span> [TimeRangeOption](./builder-TimeRangeOption.md)
+ * <span class="badge builder"></span> [TimeSettings](./builder-TimeSettings.md)
+ * <span class="badge builder"></span> [Transformation](./builder-Transformation.md)
+ * <span class="badge builder"></span> [ValueMappingResult](./builder-ValueMappingResult.md)
+ * <span class="badge builder"></span> [VariableValueOption](./builder-VariableValueOption.md)
+ * <span class="badge builder"></span> [VizConfigKind](./builder-VizConfigKind.md)
+## Functions
+
+### <span class="badge function"></span> manifest
+
+Creates a resource manifest from a Dashboard.
+
+```python
+def manifest(name: str, spec: cogbuilder.Builder[dashboardv2.Dashboard]) -> Dashboard
+```
+
+### <span class="badge function"></span> rows
+
+```python
+def rows() -> Rows
+```
+
+### <span class="badge function"></span> row
+
+```python
+def row(title: str) -> Row
+```
+
+### <span class="badge function"></span> auto_grid
+
+```python
+def auto_grid() -> AutoGrid
+```
+
+### <span class="badge function"></span> auto_grid_item
+
+```python
+def auto_grid_item(name: str) -> AutoGridItem
+```
+
+### <span class="badge function"></span> tabs
+
+```python
+def tabs() -> Tabs
+```
+
+### <span class="badge function"></span> tab
+
+```python
+def tab(title: str) -> Tab
+```
+
+### <span class="badge function"></span> grid
+
+```python
+def grid() -> Grid
+```
+
+### <span class="badge function"></span> grid_item
+
+```python
+def grid_item(name: str) -> GridItem
+```
+

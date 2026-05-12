@@ -14,6 +14,7 @@ type RowsLayoutRowSpec struct {
     ConditionalRendering *dashboardv2beta1.ConditionalRenderingGroupKind `json:"conditionalRendering,omitempty"`
     Repeat *dashboardv2beta1.RowRepeatOptions `json:"repeat,omitempty"`
     Layout dashboardv2beta1.GridLayoutKindOrAutoGridLayoutKindOrTabsLayoutKindOrRowsLayoutKind `json:"layout"`
+    Variables []dashboardv2beta1.VariableKind `json:"variables,omitempty"`
 }
 ```
 ## Methods

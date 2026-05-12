@@ -64,6 +64,12 @@ public QueryBuilder hide(Boolean hide)
 public QueryBuilder instant(Boolean instant)
 ```
 
+### <span class="badge object-method"></span> labels
+
+```java
+public QueryBuilder labels(Map<String, String> labels)
+```
+
 ### <span class="badge object-method"></span> legendFormat
 
 Used to override the name of the series.

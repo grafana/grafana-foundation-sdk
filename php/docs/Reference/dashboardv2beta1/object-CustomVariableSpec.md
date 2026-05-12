@@ -37,6 +37,10 @@ class CustomVariableSpec implements \JsonSerializable
 
     public bool $allowCustomValue;
 
+    public ?\Grafana\Foundation\Dashboardv2beta1\CustomVariableSpecValuesFormat $valuesFormat;
+
+    public ?\Grafana\Foundation\Dashboardv2beta1\ControlSourceRef $origin;
+
 }
 ```
 ## Methods

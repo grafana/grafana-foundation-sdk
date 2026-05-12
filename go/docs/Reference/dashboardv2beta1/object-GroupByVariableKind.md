@@ -11,6 +11,7 @@ Group variable kind
 type GroupByVariableKind struct {
     Kind string `json:"kind"`
     Group string `json:"group"`
+    Labels map[string]string `json:"labels,omitempty"`
     Datasource *dashboardv2beta1.Dashboardv2beta1GroupByVariableKindDatasource `json:"datasource,omitempty"`
     Spec dashboardv2beta1.GroupByVariableSpec `json:"spec"`
 }

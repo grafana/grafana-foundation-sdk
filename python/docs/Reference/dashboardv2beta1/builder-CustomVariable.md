@@ -78,6 +78,12 @@ def name(name: str) -> typing.Self
 def options(options: list[dashboardv2beta1.VariableOption]) -> typing.Self
 ```
 
+### <span class="badge object-method"></span> origin
+
+```python
+def origin(origin: cogbuilder.Builder[dashboardv2beta1.ControlSourceRef]) -> typing.Self
+```
+
 ### <span class="badge object-method"></span> query
 
 ```python
@@ -88,6 +94,12 @@ def query(query: str) -> typing.Self
 
 ```python
 def skip_url_sync(skip_url_sync: bool) -> typing.Self
+```
+
+### <span class="badge object-method"></span> values_format
+
+```python
+def values_format(values_format: typing.Literal["csv", "json"]) -> typing.Self
 ```
 
 ## See also

@@ -27,7 +27,7 @@ class SwitchVariableKind implements \JsonSerializable
         $data = $inputData;
         return new self(
             spec: isset($data["spec"]) ? (function($input) {
-    	/** @var array{name?: string, current?: string, enabledValue?: string, disabledValue?: string, label?: string, hide?: string, skipUrlSync?: bool, description?: string} */
+    	/** @var array{name?: string, current?: string, enabledValue?: string, disabledValue?: string, label?: string, hide?: string, skipUrlSync?: bool, description?: string, origin?: mixed} */
     $val = $input;
     	return \Grafana\Foundation\Dashboardv2beta1\SwitchVariableSpec::fromArray($val);
     })($data["spec"]) : null,

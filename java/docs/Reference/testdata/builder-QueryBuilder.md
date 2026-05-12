@@ -50,6 +50,12 @@ public QueryBuilder csvFileName(String csvFileName)
 public QueryBuilder csvWave(List<com.grafana.foundation.cog.Builder<CSVWave>> csvWave)
 ```
 
+### <span class="badge object-method"></span> dataqueryLabels
+
+```java
+public QueryBuilder dataqueryLabels(String labels)
+```
+
 ### <span class="badge object-method"></span> datasource
 
 New type for datasource reference
@@ -127,7 +133,7 @@ public QueryBuilder intervalMs(Double intervalMs)
 ### <span class="badge object-method"></span> labels
 
 ```java
-public QueryBuilder labels(String labels)
+public QueryBuilder labels(Map<String, String> labels)
 ```
 
 ### <span class="badge object-method"></span> levelColumn

@@ -226,6 +226,32 @@ final class VisualizationConverter
     
     
     }
+            if ($input->spec->fieldConfig->defaults->fieldMinMax !== null) {
+    
+        
+    $buffer = 'fieldMinMax(';
+        $arg0 =\var_export($input->spec->fieldConfig->defaults->fieldMinMax, true);
+        $buffer .= $arg0;
+        
+    $buffer .= ')';
+
+    $calls[] = $buffer;
+    
+    
+    }
+            if ($input->spec->fieldConfig->defaults->nullValueMode !== null) {
+    
+        
+    $buffer = 'nullValueMode(';
+        $arg0 ='\Grafana\Foundation\Dashboardv2beta1\NullValueMode::fromValue("'.$input->spec->fieldConfig->defaults->nullValueMode.'")';
+        $buffer .= $arg0;
+        
+    $buffer .= ')';
+
+    $calls[] = $buffer;
+    
+    
+    }
             if (count($input->spec->fieldConfig->overrides) >= 1) {
     
         
@@ -443,7 +469,7 @@ final class VisualizationConverter
     foreach ($input->spec->fieldConfig->overrides as $item) {
         
     $buffer = 'overrideByName(';
-        $arg0 ='(new \Grafana\Foundation\Dashboardv2beta1\MatcherConfig(id: '.\var_export($item->matcher->id, true).','.(($item->matcher->options !== null) ? 'options: '.\var_export($item->matcher->options, true).', ' : '').'))';
+        $arg0 ='(new \Grafana\Foundation\Dashboardv2beta1\MatcherConfig(id: '.\var_export($item->matcher->id, true).','.(($item->matcher->scope !== null) ? 'scope: '.'\Grafana\Foundation\Dashboardv2beta1\MatcherScope::fromValue("'.$item->matcher->scope.'")'.', ' : '').''.(($item->matcher->options !== null) ? 'options: '.\var_export($item->matcher->options, true).', ' : '').'))';
         $buffer .= $arg0;
         $buffer .= ', ';
         $tmparg1 = [];

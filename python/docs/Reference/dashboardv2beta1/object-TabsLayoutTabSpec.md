@@ -11,6 +11,7 @@ class TabsLayoutTabSpec:
     layout: typing.Union[dashboardv2beta1.GridLayoutKind, dashboardv2beta1.RowsLayoutKind, dashboardv2beta1.AutoGridLayoutKind, dashboardv2beta1.TabsLayoutKind]
     conditional_rendering: typing.Optional[dashboardv2beta1.ConditionalRenderingGroupKind]
     repeat: typing.Optional[dashboardv2beta1.TabRepeatOptions]
+    variables: typing.Optional[list[dashboardv2beta1.VariableKind]]
 ```
 ## Methods
 

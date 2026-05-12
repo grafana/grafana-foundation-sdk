@@ -11,6 +11,7 @@ export interface TabsLayoutTabSpec {
 	layout: dashboardv2beta1.GridLayoutKind | dashboardv2beta1.RowsLayoutKind | dashboardv2beta1.AutoGridLayoutKind | dashboardv2beta1.TabsLayoutKind;
 	conditionalRendering?: dashboardv2beta1.ConditionalRenderingGroupKind;
 	repeat?: dashboardv2beta1.TabRepeatOptions;
+	variables?: dashboardv2beta1.VariableKind[];
 }
 
 ```

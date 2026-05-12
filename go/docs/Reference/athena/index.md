@@ -11,6 +11,7 @@
  * <span class="badge builder"></span> [ConnectionArgsBuilder](./builder-ConnectionArgsBuilder.md)
  * <span class="badge builder"></span> [DataqueryBuilder](./builder-DataqueryBuilder.md)
  * <span class="badge builder"></span> [QueryBuilder](./builder-QueryBuilder.md)
+ * <span class="badge builder"></span> [QueryV2Builder](./builder-QueryV2Builder.md)
 ## Functions
 
 ### <span class="badge function"></span> NewDataquery
@@ -37,6 +38,14 @@ This configuration describes how to unmarshal it, convert it to code, …
 
 ```go
 func VariantConfig() variants.DataqueryConfig
+```
+
+### <span class="badge function"></span> QueryV2Converter
+
+QueryV2Converter accepts a `QueryV2` object and generates the Go code to build this object using builders.
+
+```go
+func QueryV2Converter(input dashboardv2.DataQueryKind) string
 ```
 
 ### <span class="badge function"></span> DataqueryConverter

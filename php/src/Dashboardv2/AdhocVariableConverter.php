@@ -1,0 +1,219 @@
+<?php
+
+namespace Grafana\Foundation\Dashboardv2;
+
+final class AdhocVariableConverter
+{
+    public static function convert(\Grafana\Foundation\Dashboardv2\AdhocVariableKind $input): string
+    {
+        
+        $calls = [
+            '(new \Grafana\Foundation\Dashboardv2\AdhocVariableBuilder('.\var_export($input->spec->name, true).'))',
+        ];
+            if ($input->group !== "") {
+    
+        
+    $buffer = 'group(';
+        $arg0 =\var_export($input->group, true);
+        $buffer .= $arg0;
+        
+    $buffer .= ')';
+
+    $calls[] = $buffer;
+    
+    
+    }
+            if ($input->labels !== null) {
+    
+        
+    $buffer = 'labels(';
+        $arg0 = "[";
+        foreach ($input->labels as $key => $arg1) {
+            $tmplabelsarg1 =\var_export($arg1, true);
+            $arg0 .= "\t".var_export($key, true)." => $tmplabelsarg1,";
+        }
+        $arg0 .= "]";
+        $buffer .= $arg0;
+        
+    $buffer .= ')';
+
+    $calls[] = $buffer;
+    
+    
+    }
+            if ($input->datasource !== null) {
+    
+        
+    $buffer = 'datasource(';
+        $arg0 = \Grafana\Foundation\Dashboardv2\Dashboardv2AdhocVariableKindDatasourceConverter::convert($input->datasource);
+        $buffer .= $arg0;
+        
+    $buffer .= ')';
+
+    $calls[] = $buffer;
+    
+    
+    }
+            if ($input->spec->name !== "") {
+    
+        
+    $buffer = 'name(';
+        $arg0 =\var_export($input->spec->name, true);
+        $buffer .= $arg0;
+        
+    $buffer .= ')';
+
+    $calls[] = $buffer;
+    
+    
+    }
+            if (count($input->spec->baseFilters) >= 1) {
+    
+        
+    $buffer = 'baseFilters(';
+        $tmparg0 = [];
+        foreach ($input->spec->baseFilters as $arg1) {
+        $tmpbaseFiltersarg1 = \Grafana\Foundation\Dashboardv2\AdHocFilterWithLabelsConverter::convert($arg1);
+        $tmparg0[] = $tmpbaseFiltersarg1;
+        }
+        $arg0 = "[" . implode(", \n", $tmparg0) . "]";
+        $buffer .= $arg0;
+        
+    $buffer .= ')';
+
+    $calls[] = $buffer;
+    
+    
+    }
+            if (count($input->spec->filters) >= 1) {
+    
+        
+    $buffer = 'filters(';
+        $tmparg0 = [];
+        foreach ($input->spec->filters as $arg1) {
+        $tmpfiltersarg1 = \Grafana\Foundation\Dashboardv2\AdHocFilterWithLabelsConverter::convert($arg1);
+        $tmparg0[] = $tmpfiltersarg1;
+        }
+        $arg0 = "[" . implode(", \n", $tmparg0) . "]";
+        $buffer .= $arg0;
+        
+    $buffer .= ')';
+
+    $calls[] = $buffer;
+    
+    
+    }
+            if (count($input->spec->defaultKeys) >= 1) {
+    
+        
+    $buffer = 'defaultKeys(';
+        $tmparg0 = [];
+        foreach ($input->spec->defaultKeys as $arg1) {
+        $tmpdefaultKeysarg1 = \Grafana\Foundation\Dashboardv2\MetricFindValueConverter::convert($arg1);
+        $tmparg0[] = $tmpdefaultKeysarg1;
+        }
+        $arg0 = "[" . implode(", \n", $tmparg0) . "]";
+        $buffer .= $arg0;
+        
+    $buffer .= ')';
+
+    $calls[] = $buffer;
+    
+    
+    }
+            if ($input->spec->label !== null && $input->spec->label !== "") {
+    
+        
+    $buffer = 'label(';
+        $arg0 =\var_export($input->spec->label, true);
+        $buffer .= $arg0;
+        
+    $buffer .= ')';
+
+    $calls[] = $buffer;
+    
+    
+    }
+            
+    
+        {
+    $buffer = 'hide(';
+        $arg0 ='\Grafana\Foundation\Dashboardv2\VariableHide::fromValue("'.$input->spec->hide.'")';
+        $buffer .= $arg0;
+        
+    $buffer .= ')';
+
+    $calls[] = $buffer;
+    }
+    
+    
+            if ($input->spec->skipUrlSync !== false) {
+    
+        
+    $buffer = 'skipUrlSync(';
+        $arg0 =\var_export($input->spec->skipUrlSync, true);
+        $buffer .= $arg0;
+        
+    $buffer .= ')';
+
+    $calls[] = $buffer;
+    
+    
+    }
+            if ($input->spec->description !== null && $input->spec->description !== "") {
+    
+        
+    $buffer = 'description(';
+        $arg0 =\var_export($input->spec->description, true);
+        $buffer .= $arg0;
+        
+    $buffer .= ')';
+
+    $calls[] = $buffer;
+    
+    
+    }
+            if ($input->spec->allowCustomValue !== true) {
+    
+        
+    $buffer = 'allowCustomValue(';
+        $arg0 =\var_export($input->spec->allowCustomValue, true);
+        $buffer .= $arg0;
+        
+    $buffer .= ')';
+
+    $calls[] = $buffer;
+    
+    
+    }
+            if ($input->spec->enableGroupBy !== null && $input->spec->enableGroupBy !== false) {
+    
+        
+    $buffer = 'enableGroupBy(';
+        $arg0 =\var_export($input->spec->enableGroupBy, true);
+        $buffer .= $arg0;
+        
+    $buffer .= ')';
+
+    $calls[] = $buffer;
+    
+    
+    }
+            if ($input->spec->origin !== null) {
+    
+        
+    $buffer = 'origin(';
+        $arg0 = \Grafana\Foundation\Dashboardv2\ControlSourceRefConverter::convert($input->spec->origin);
+        $buffer .= $arg0;
+        
+    $buffer .= ')';
+
+    $calls[] = $buffer;
+    
+    
+    }
+
+        return \implode("\n\t->", $calls);
+    }
+}
+

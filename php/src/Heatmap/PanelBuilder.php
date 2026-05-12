@@ -745,6 +745,9 @@ class PanelBuilder implements \Grafana\Foundation\Cog\Builder
      */
     public function cellGap(int $cellGap): static
     {
+        if (!($cellGap >= 0)) {
+            throw new \ValueError('$cellGap must be >= 0');
+        }
         if (!($cellGap <= 25)) {
             throw new \ValueError('$cellGap must be <= 25');
         }    

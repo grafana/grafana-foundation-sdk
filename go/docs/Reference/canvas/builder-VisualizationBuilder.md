@@ -82,6 +82,14 @@ When this property is configured, this value is used rather than the default nam
 func (builder *VisualizationBuilder) DisplayNameFromDS(displayNameFromDS string) *VisualizationBuilder
 ```
 
+### <span class="badge object-method"></span> FieldMinMax
+
+Calculate min max per field
+
+```go
+func (builder *VisualizationBuilder) FieldMinMax(fieldMinMax bool) *VisualizationBuilder
+```
+
 ### <span class="badge object-method"></span> InfinitePan
 
 Enable infinite pan
@@ -128,6 +136,16 @@ Alternative to empty string
 
 ```go
 func (builder *VisualizationBuilder) NoValue(noValue string) *VisualizationBuilder
+```
+
+### <span class="badge object-method"></span> NullValueMode
+
+How null values should be handled when calculating field stats
+
+"null" - Include null values, "connected" - Ignore nulls, "null as zero" - Treat nulls as zero
+
+```go
+func (builder *VisualizationBuilder) NullValueMode(nullValueMode dashboardv2beta1.NullValueMode) *VisualizationBuilder
 ```
 
 ### <span class="badge object-method"></span> Override
@@ -230,7 +248,7 @@ func (builder *VisualizationBuilder) Thresholds(thresholds cog.Builder[dashboard
 
 Unit a field should use. The unit you select is applied to all fields except time.
 
-You can use the units ID availables in Grafana or a custom unit.
+You can use the units ID available in Grafana or a custom unit.
 
 Available units in Grafana: https://github.com/grafana/grafana/blob/main/packages/grafana-data/src/valueFormats/categories.ts
 

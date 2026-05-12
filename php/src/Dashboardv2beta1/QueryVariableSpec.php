@@ -25,6 +25,8 @@ class QueryVariableSpec implements \JsonSerializable
 
     public string $regex;
 
+    public ?\Grafana\Foundation\Dashboardv2beta1\VariableRegexApplyTo $regexApplyTo;
+
     public \Grafana\Foundation\Dashboardv2beta1\VariableSort $sort;
 
     public ?string $definition;
@@ -51,6 +53,8 @@ class QueryVariableSpec implements \JsonSerializable
 
     public ?\Grafana\Foundation\Dashboardv2beta1\QueryVariableSpecStaticOptionsOrder $staticOptionsOrder;
 
+    public ?\Grafana\Foundation\Dashboardv2beta1\ControlSourceRef $origin;
+
     /**
      * @param string|null $name
      * @param \Grafana\Foundation\Dashboardv2beta1\VariableOption|null $current
@@ -61,6 +65,7 @@ class QueryVariableSpec implements \JsonSerializable
      * @param string|null $description
      * @param \Grafana\Foundation\Dashboardv2beta1\DataQueryKind|null $query
      * @param string|null $regex
+     * @param \Grafana\Foundation\Dashboardv2beta1\VariableRegexApplyTo|null $regexApplyTo
      * @param \Grafana\Foundation\Dashboardv2beta1\VariableSort|null $sort
      * @param string|null $definition
      * @param array<\Grafana\Foundation\Dashboardv2beta1\VariableOption>|null $options
@@ -71,8 +76,9 @@ class QueryVariableSpec implements \JsonSerializable
      * @param bool|null $allowCustomValue
      * @param array<\Grafana\Foundation\Dashboardv2beta1\VariableOption>|null $staticOptions
      * @param \Grafana\Foundation\Dashboardv2beta1\QueryVariableSpecStaticOptionsOrder|null $staticOptionsOrder
+     * @param \Grafana\Foundation\Dashboardv2beta1\ControlSourceRef|null $origin
      */
-    public function __construct(?string $name = null, ?\Grafana\Foundation\Dashboardv2beta1\VariableOption $current = null, ?string $label = null, ?\Grafana\Foundation\Dashboardv2beta1\VariableHide $hide = null, ?\Grafana\Foundation\Dashboardv2beta1\VariableRefresh $refresh = null, ?bool $skipUrlSync = null, ?string $description = null, ?\Grafana\Foundation\Dashboardv2beta1\DataQueryKind $query = null, ?string $regex = null, ?\Grafana\Foundation\Dashboardv2beta1\VariableSort $sort = null, ?string $definition = null, ?array $options = null, ?bool $multi = null, ?bool $includeAll = null, ?string $allValue = null, ?string $placeholder = null, ?bool $allowCustomValue = null, ?array $staticOptions = null, ?\Grafana\Foundation\Dashboardv2beta1\QueryVariableSpecStaticOptionsOrder $staticOptionsOrder = null)
+    public function __construct(?string $name = null, ?\Grafana\Foundation\Dashboardv2beta1\VariableOption $current = null, ?string $label = null, ?\Grafana\Foundation\Dashboardv2beta1\VariableHide $hide = null, ?\Grafana\Foundation\Dashboardv2beta1\VariableRefresh $refresh = null, ?bool $skipUrlSync = null, ?string $description = null, ?\Grafana\Foundation\Dashboardv2beta1\DataQueryKind $query = null, ?string $regex = null, ?\Grafana\Foundation\Dashboardv2beta1\VariableRegexApplyTo $regexApplyTo = null, ?\Grafana\Foundation\Dashboardv2beta1\VariableSort $sort = null, ?string $definition = null, ?array $options = null, ?bool $multi = null, ?bool $includeAll = null, ?string $allValue = null, ?string $placeholder = null, ?bool $allowCustomValue = null, ?array $staticOptions = null, ?\Grafana\Foundation\Dashboardv2beta1\QueryVariableSpecStaticOptionsOrder $staticOptionsOrder = null, ?\Grafana\Foundation\Dashboardv2beta1\ControlSourceRef $origin = null)
     {
         $this->name = $name ?: "";
         $this->current = $current ?: new \Grafana\Foundation\Dashboardv2beta1\VariableOption(text: "", value: "");
@@ -83,6 +89,7 @@ class QueryVariableSpec implements \JsonSerializable
         $this->description = $description;
         $this->query = $query ?: new \Grafana\Foundation\Dashboardv2beta1\DataQueryKind();
         $this->regex = $regex ?: "";
+        $this->regexApplyTo = $regexApplyTo;
         $this->sort = $sort ?: \Grafana\Foundation\Dashboardv2beta1\VariableSort::Disabled();
         $this->definition = $definition;
         $this->options = $options ?: [];
@@ -93,6 +100,7 @@ class QueryVariableSpec implements \JsonSerializable
         $this->allowCustomValue = $allowCustomValue ?: true;
         $this->staticOptions = $staticOptions;
         $this->staticOptionsOrder = $staticOptionsOrder;
+        $this->origin = $origin;
     }
 
     /**
@@ -100,12 +108,12 @@ class QueryVariableSpec implements \JsonSerializable
      */
     public static function fromArray(array $inputData): self
     {
-        /** @var array{name?: string, current?: mixed, label?: string, hide?: string, refresh?: string, skipUrlSync?: bool, description?: string, query?: mixed, regex?: string, sort?: string, definition?: string, options?: array<mixed>, multi?: bool, includeAll?: bool, allValue?: string, placeholder?: string, allowCustomValue?: bool, staticOptions?: array<mixed>, staticOptionsOrder?: string} $inputData */
+        /** @var array{name?: string, current?: mixed, label?: string, hide?: string, refresh?: string, skipUrlSync?: bool, description?: string, query?: mixed, regex?: string, regexApplyTo?: string, sort?: string, definition?: string, options?: array<mixed>, multi?: bool, includeAll?: bool, allValue?: string, placeholder?: string, allowCustomValue?: bool, staticOptions?: array<mixed>, staticOptionsOrder?: string, origin?: mixed} $inputData */
         $data = $inputData;
         return new self(
             name: $data["name"] ?? null,
             current: isset($data["current"]) ? (function($input) {
-    	/** @var array{selected?: bool, text?: string|array<string>, value?: string|array<string>} */
+    	/** @var array{selected?: bool, text?: string|array<string>, value?: string|array<string>, properties?: array<string, string>} */
     $val = $input;
     	return \Grafana\Foundation\Dashboardv2beta1\VariableOption::fromArray($val);
     })($data["current"]) : null,
@@ -115,15 +123,16 @@ class QueryVariableSpec implements \JsonSerializable
             skipUrlSync: $data["skipUrlSync"] ?? null,
             description: $data["description"] ?? null,
             query: isset($data["query"]) ? (function($input) {
-    	/** @var array{kind?: string, group?: string, version?: string, datasource?: mixed, spec?: mixed} */
+    	/** @var array{kind?: string, group?: string, version?: string, labels?: array<string, string>, datasource?: mixed, spec?: mixed} */
     $val = $input;
     	return \Grafana\Foundation\Dashboardv2beta1\DataQueryKind::fromArray($val);
     })($data["query"]) : null,
             regex: $data["regex"] ?? null,
+            regexApplyTo: isset($data["regexApplyTo"]) ? (function($input) { return \Grafana\Foundation\Dashboardv2beta1\VariableRegexApplyTo::fromValue($input); })($data["regexApplyTo"]) : null,
             sort: isset($data["sort"]) ? (function($input) { return \Grafana\Foundation\Dashboardv2beta1\VariableSort::fromValue($input); })($data["sort"]) : null,
             definition: $data["definition"] ?? null,
             options: array_filter(array_map((function($input) {
-    	/** @var array{selected?: bool, text?: string|array<string>, value?: string|array<string>} */
+    	/** @var array{selected?: bool, text?: string|array<string>, value?: string|array<string>, properties?: array<string, string>} */
     $val = $input;
     	return \Grafana\Foundation\Dashboardv2beta1\VariableOption::fromArray($val);
     }), $data["options"] ?? [])),
@@ -133,11 +142,16 @@ class QueryVariableSpec implements \JsonSerializable
             placeholder: $data["placeholder"] ?? null,
             allowCustomValue: $data["allowCustomValue"] ?? null,
             staticOptions: array_filter(array_map((function($input) {
-    	/** @var array{selected?: bool, text?: string|array<string>, value?: string|array<string>} */
+    	/** @var array{selected?: bool, text?: string|array<string>, value?: string|array<string>, properties?: array<string, string>} */
     $val = $input;
     	return \Grafana\Foundation\Dashboardv2beta1\VariableOption::fromArray($val);
     }), $data["staticOptions"] ?? [])),
             staticOptionsOrder: isset($data["staticOptionsOrder"]) ? (function($input) { return \Grafana\Foundation\Dashboardv2beta1\QueryVariableSpecStaticOptionsOrder::fromValue($input); })($data["staticOptionsOrder"]) : null,
+            origin: isset($data["origin"]) ? (function($input) {
+    	/** @var array{type?: string, group?: string} */
+    $val = $input;
+    	return \Grafana\Foundation\Dashboardv2beta1\ControlSourceRef::fromArray($val);
+    })($data["origin"]) : null,
         );
     }
 
@@ -165,6 +179,9 @@ class QueryVariableSpec implements \JsonSerializable
         if (isset($this->description)) {
             $data->description = $this->description;
         }
+        if (isset($this->regexApplyTo)) {
+            $data->regexApplyTo = $this->regexApplyTo;
+        }
         if (isset($this->definition)) {
             $data->definition = $this->definition;
         }
@@ -179,6 +196,9 @@ class QueryVariableSpec implements \JsonSerializable
         }
         if (isset($this->staticOptionsOrder)) {
             $data->staticOptionsOrder = $this->staticOptionsOrder;
+        }
+        if (isset($this->origin)) {
+            $data->origin = $this->origin;
         }
         return $data;
     }

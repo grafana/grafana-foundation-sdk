@@ -13,6 +13,7 @@ public class IntervalVariableBuilder implements com.grafana.foundation.cog.Build
 		if (this.internal.spec == null) {
 			this.internal.spec = new com.grafana.foundation.dashboardv2beta1.IntervalVariableSpec();
 		}
+        this.internal.spec.refresh = "onTimeRangeChanged";
         this.internal.spec.name = name;
     }
     public IntervalVariableBuilder name(String name) {
@@ -71,14 +72,6 @@ public class IntervalVariableBuilder implements com.grafana.foundation.cog.Build
         return this;
     }
     
-    public IntervalVariableBuilder refresh(VariableRefresh refresh) {
-		if (this.internal.spec == null) {
-			this.internal.spec = new com.grafana.foundation.dashboardv2beta1.IntervalVariableSpec();
-		}
-        this.internal.spec.refresh = refresh;
-        return this;
-    }
-    
     public IntervalVariableBuilder label(String label) {
 		if (this.internal.spec == null) {
 			this.internal.spec = new com.grafana.foundation.dashboardv2beta1.IntervalVariableSpec();
@@ -108,6 +101,15 @@ public class IntervalVariableBuilder implements com.grafana.foundation.cog.Build
 			this.internal.spec = new com.grafana.foundation.dashboardv2beta1.IntervalVariableSpec();
 		}
         this.internal.spec.description = description;
+        return this;
+    }
+    
+    public IntervalVariableBuilder origin(com.grafana.foundation.cog.Builder<ControlSourceRef> origin) {
+		if (this.internal.spec == null) {
+			this.internal.spec = new com.grafana.foundation.dashboardv2beta1.IntervalVariableSpec();
+		}
+    ControlSourceRef originResource = origin.build();
+        this.internal.spec.origin = originResource;
         return this;
     }
     public IntervalVariableKind build() {

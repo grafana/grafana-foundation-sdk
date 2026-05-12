@@ -109,6 +109,23 @@ func AnnotationQueryConverter(input AnnotationQueryKind) string {
 		buffer.Reset()
 
 	}
+	if input.Spec.Mappings != nil {
+
+		buffer.WriteString(`Mappings(`)
+		arg0 := "map[string]cog.Builder[dashboardv2beta1.AnnotationEventFieldMapping]{"
+		for key, arg1 := range input.Spec.Mappings {
+			tmpmappingsarg1 := AnnotationEventFieldMappingConverter(arg1)
+			arg0 += "\t" + fmt.Sprintf("%#v", key) + ": " + tmpmappingsarg1 + ","
+		}
+		arg0 += "}"
+		buffer.WriteString(arg0)
+
+		buffer.WriteString(")")
+
+		calls = append(calls, buffer.String())
+		buffer.Reset()
+
+	}
 	if input.Spec.LegacyOptions != nil {
 
 		buffer.WriteString(`LegacyOptions(`)

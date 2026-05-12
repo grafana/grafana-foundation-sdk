@@ -90,6 +90,14 @@ empty/missing will default to grafana blog
 def feed_url(feed_url: str) -> typing.Self
 ```
 
+### <span class="badge object-method"></span> field_min_max
+
+Calculate min max per field
+
+```python
+def field_min_max(field_min_max: bool) -> typing.Self
+```
+
 ### <span class="badge object-method"></span> mappings
 
 Convert input values into a display string
@@ -120,6 +128,16 @@ Alternative to empty string
 
 ```python
 def no_value(no_value: str) -> typing.Self
+```
+
+### <span class="badge object-method"></span> null_value_mode
+
+How null values should be handled when calculating field stats
+
+"null" - Include null values, "connected" - Ignore nulls, "null as zero" - Treat nulls as zero
+
+```python
+def null_value_mode(null_value_mode: dashboardv2beta1.NullValueMode) -> typing.Self
 ```
 
 ### <span class="badge object-method"></span> override
@@ -202,7 +220,7 @@ def thresholds(thresholds: cogbuilder.Builder[dashboardv2beta1.ThresholdsConfig]
 
 Unit a field should use. The unit you select is applied to all fields except time.
 
-You can use the units ID availables in Grafana or a custom unit.
+You can use the units ID available in Grafana or a custom unit.
 
 Available units in Grafana: https://github.com/grafana/grafana/blob/main/packages/grafana-data/src/valueFormats/categories.ts
 

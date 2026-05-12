@@ -14,6 +14,10 @@ public class MatcherConfig {
     // The matcher id. This is used to find the matcher implementation from registry.
     @JsonProperty("id")
     public String id;
+    // If set, limits this matcher to fields of that type. If not set, "series" mode is used.
+    @JsonInclude(JsonInclude.Include.NON_NULL)
+    @JsonProperty("scope")
+    public MatcherScope scope;
     // The matcher options. This is specific to the matcher implementation.
     @JsonInclude(JsonInclude.Include.NON_NULL)
     @JsonProperty("options")
@@ -21,8 +25,9 @@ public class MatcherConfig {
     public MatcherConfig() {
         this.id = "";
     }
-    public MatcherConfig(String id,Object options) {
+    public MatcherConfig(String id,MatcherScope scope,Object options) {
         this.id = id;
+        this.scope = scope;
         this.options = options;
     }
     

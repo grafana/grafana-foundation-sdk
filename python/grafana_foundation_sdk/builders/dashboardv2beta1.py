@@ -39,6 +39,51 @@ class AnnotationPanelFilter(cogbuilder.Builder[dashboardv2beta1.AnnotationPanelF
     
 
 
+class AnnotationEventFieldMapping(cogbuilder.Builder[dashboardv2beta1.AnnotationEventFieldMapping]):    
+    """
+    Annotation event field mapping. Defines how to map a data frame field to an annotation event field.
+    """
+    
+    _internal: dashboardv2beta1.AnnotationEventFieldMapping
+
+    def __init__(self) -> None:
+        self._internal = dashboardv2beta1.AnnotationEventFieldMapping()
+
+    def build(self) -> dashboardv2beta1.AnnotationEventFieldMapping:
+        """
+        Builds the object.
+        """
+        return self._internal    
+    
+    def source(self, source: str) -> typing.Self:    
+        """
+        Source type for the field value
+        """
+            
+        self._internal.source = source
+    
+        return self
+    
+    def value(self, value: str) -> typing.Self:    
+        """
+        Constant value to use when source is "text"
+        """
+            
+        self._internal.value = value
+    
+        return self
+    
+    def regex(self, regex: str) -> typing.Self:    
+        """
+        Regular expression to apply to the field value
+        """
+            
+        self._internal.regex = regex
+    
+        return self
+    
+
+
 class DataLink(cogbuilder.Builder[dashboardv2beta1.DataLink]):
     _internal: dashboardv2beta1.DataLink
 
@@ -566,6 +611,163 @@ class TabRepeatOptions(cogbuilder.Builder[dashboardv2beta1.TabRepeatOptions]):
     
 
 
+class ControlSourceRef(cogbuilder.Builder[dashboardv2beta1.ControlSourceRef]):
+    _internal: dashboardv2beta1.ControlSourceRef
+
+    def __init__(self) -> None:
+        self._internal = dashboardv2beta1.ControlSourceRef()        
+        self._internal.type_val = "datasource"
+
+    def build(self) -> dashboardv2beta1.ControlSourceRef:
+        """
+        Builds the object.
+        """
+        return self._internal    
+    
+    def group(self, group: str) -> typing.Self:    
+        """
+        The plugin type-id
+        """
+            
+        self._internal.group = group
+    
+        return self
+    
+
+
+class DatasourceControlSourceRef(cogbuilder.Builder[dashboardv2beta1.DatasourceControlSourceRef]):    
+    """
+    Source information for controls (e.g. variables or links)
+    """
+    
+    _internal: dashboardv2beta1.DatasourceControlSourceRef
+
+    def __init__(self) -> None:
+        self._internal = dashboardv2beta1.DatasourceControlSourceRef()        
+        self._internal.type_val = "datasource"
+
+    def build(self) -> dashboardv2beta1.DatasourceControlSourceRef:
+        """
+        Builds the object.
+        """
+        return self._internal    
+    
+    def group(self, group: str) -> typing.Self:    
+        """
+        The plugin type-id
+        """
+            
+        self._internal.group = group
+    
+        return self
+    
+
+
+class AdHocFilterWithLabels(cogbuilder.Builder[dashboardv2beta1.AdHocFilterWithLabels]):    
+    """
+    Define the AdHocFilterWithLabels type
+    """
+    
+    _internal: dashboardv2beta1.AdHocFilterWithLabels
+
+    def __init__(self) -> None:
+        self._internal = dashboardv2beta1.AdHocFilterWithLabels()
+
+    def build(self) -> dashboardv2beta1.AdHocFilterWithLabels:
+        """
+        Builds the object.
+        """
+        return self._internal    
+    
+    def key(self, key: str) -> typing.Self:    
+        self._internal.key = key
+    
+        return self
+    
+    def operator(self, operator: str) -> typing.Self:    
+        self._internal.operator = operator
+    
+        return self
+    
+    def value(self, value: str) -> typing.Self:    
+        self._internal.value = value
+    
+        return self
+    
+    def values(self, values: list[str]) -> typing.Self:    
+        self._internal.values = values
+    
+        return self
+    
+    def key_label(self, key_label: str) -> typing.Self:    
+        self._internal.key_label = key_label
+    
+        return self
+    
+    def value_labels(self, value_labels: list[str]) -> typing.Self:    
+        self._internal.value_labels = value_labels
+    
+        return self
+    
+    def force_edit(self, force_edit: bool) -> typing.Self:    
+        self._internal.force_edit = force_edit
+    
+        return self
+    
+    def origin(self, origin: str) -> typing.Self:    
+        self._internal.origin = origin
+    
+        return self
+    
+    def condition(self, condition: str) -> typing.Self:    
+        """
+        @deprecated
+        """
+            
+        self._internal.condition = condition
+    
+        return self
+    
+
+
+class MetricFindValue(cogbuilder.Builder[dashboardv2beta1.MetricFindValue]):    
+    """
+    Define the MetricFindValue type
+    """
+    
+    _internal: dashboardv2beta1.MetricFindValue
+
+    def __init__(self) -> None:
+        self._internal = dashboardv2beta1.MetricFindValue()
+
+    def build(self) -> dashboardv2beta1.MetricFindValue:
+        """
+        Builds the object.
+        """
+        return self._internal    
+    
+    def text(self, text: str) -> typing.Self:    
+        self._internal.text = text
+    
+        return self
+    
+    def value(self, value: typing.Union[str, float]) -> typing.Self:    
+        self._internal.value = value
+    
+        return self
+    
+    def group(self, group: str) -> typing.Self:    
+        self._internal.group = group
+    
+        return self
+    
+    def expandable(self, expandable: bool) -> typing.Self:    
+        self._internal.expandable = expandable
+    
+        return self
+    
+
+
 class DashboardLink(cogbuilder.Builder[dashboardv2beta1.DashboardLink]):    
     """
     Links with references to other dashboards or external resources
@@ -682,6 +884,16 @@ class DashboardLink(cogbuilder.Builder[dashboardv2beta1.DashboardLink]):
     
         return self
     
+    def origin(self, origin: cogbuilder.Builder[dashboardv2beta1.ControlSourceRef]) -> typing.Self:    
+        """
+        The source that registered the link (if any)
+        """
+            
+        origin_resource = origin.build()
+        self._internal.origin = origin_resource
+    
+        return self
+    
 
 
 class TimeRangeOption(cogbuilder.Builder[dashboardv2beta1.TimeRangeOption]):
@@ -708,111 +920,6 @@ class TimeRangeOption(cogbuilder.Builder[dashboardv2beta1.TimeRangeOption]):
     
     def to(self, to: str) -> typing.Self:    
         self._internal.to = to
-    
-        return self
-    
-
-
-class AdHocFilterWithLabels(cogbuilder.Builder[dashboardv2beta1.AdHocFilterWithLabels]):    
-    """
-    Define the AdHocFilterWithLabels type
-    """
-    
-    _internal: dashboardv2beta1.AdHocFilterWithLabels
-
-    def __init__(self) -> None:
-        self._internal = dashboardv2beta1.AdHocFilterWithLabels()
-
-    def build(self) -> dashboardv2beta1.AdHocFilterWithLabels:
-        """
-        Builds the object.
-        """
-        return self._internal    
-    
-    def key(self, key: str) -> typing.Self:    
-        self._internal.key = key
-    
-        return self
-    
-    def operator(self, operator: str) -> typing.Self:    
-        self._internal.operator = operator
-    
-        return self
-    
-    def value(self, value: str) -> typing.Self:    
-        self._internal.value = value
-    
-        return self
-    
-    def values(self, values: list[str]) -> typing.Self:    
-        self._internal.values = values
-    
-        return self
-    
-    def key_label(self, key_label: str) -> typing.Self:    
-        self._internal.key_label = key_label
-    
-        return self
-    
-    def value_labels(self, value_labels: list[str]) -> typing.Self:    
-        self._internal.value_labels = value_labels
-    
-        return self
-    
-    def force_edit(self, force_edit: bool) -> typing.Self:    
-        self._internal.force_edit = force_edit
-    
-        return self
-    
-    def origin(self, origin: str) -> typing.Self:    
-        self._internal.origin = origin
-    
-        return self
-    
-    def condition(self, condition: str) -> typing.Self:    
-        """
-        @deprecated
-        """
-            
-        self._internal.condition = condition
-    
-        return self
-    
-
-
-class MetricFindValue(cogbuilder.Builder[dashboardv2beta1.MetricFindValue]):    
-    """
-    Define the MetricFindValue type
-    """
-    
-    _internal: dashboardv2beta1.MetricFindValue
-
-    def __init__(self) -> None:
-        self._internal = dashboardv2beta1.MetricFindValue()
-
-    def build(self) -> dashboardv2beta1.MetricFindValue:
-        """
-        Builds the object.
-        """
-        return self._internal    
-    
-    def text(self, text: str) -> typing.Self:    
-        self._internal.text = text
-    
-        return self
-    
-    def value(self, value: typing.Union[str, float]) -> typing.Self:    
-        self._internal.value = value
-    
-        return self
-    
-    def group(self, group: str) -> typing.Self:    
-        self._internal.group = group
-    
-        return self
-    
-    def expandable(self, expandable: bool) -> typing.Self:    
-        self._internal.expandable = expandable
     
         return self
     
@@ -1182,6 +1289,19 @@ class AnnotationQuery(cogbuilder.Builder[dashboardv2beta1.AnnotationQueryKind]):
             self._internal.spec = dashboardv2beta1.AnnotationQuerySpec()
         assert isinstance(self._internal.spec, dashboardv2beta1.AnnotationQuerySpec)
         self._internal.spec.placement = placement
+    
+        return self
+    
+    def mappings(self, mappings: dict[str, cogbuilder.Builder[dashboardv2beta1.AnnotationEventFieldMapping]]) -> typing.Self:    
+        """
+        Mappings define how to convert data frame fields to annotation event fields.
+        """
+            
+        if self._internal.spec is None:
+            self._internal.spec = dashboardv2beta1.AnnotationQuerySpec()
+        assert isinstance(self._internal.spec, dashboardv2beta1.AnnotationQuerySpec)
+        mappings_resources = { key1: val1.build() for (key1, val1) in mappings.items() }
+        self._internal.spec.mappings = mappings_resources
     
         return self
     
@@ -2057,6 +2177,15 @@ class Row(cogbuilder.Builder[dashboardv2beta1.RowsLayoutRowKind]):
     
         return self
     
+    def variables(self, variables: list[cogbuilder.Builder[dashboardv2beta1.VariableKind]]) -> typing.Self:    
+        if self._internal.spec is None:
+            self._internal.spec = dashboardv2beta1.RowsLayoutRowSpec()
+        assert isinstance(self._internal.spec, dashboardv2beta1.RowsLayoutRowSpec)
+        variables_resources = [r1.build() for r1 in variables]
+        self._internal.spec.variables = variables_resources
+    
+        return self
+    
 
 def row(title: str) -> Row:
     builder = Row()
@@ -2317,6 +2446,15 @@ class Tab(cogbuilder.Builder[dashboardv2beta1.TabsLayoutTabKind]):
     
         return self
     
+    def variables(self, variables: list[cogbuilder.Builder[dashboardv2beta1.VariableKind]]) -> typing.Self:    
+        if self._internal.spec is None:
+            self._internal.spec = dashboardv2beta1.TabsLayoutTabSpec()
+        assert isinstance(self._internal.spec, dashboardv2beta1.TabsLayoutTabSpec)
+        variables_resources = [r1.build() for r1 in variables]
+        self._internal.spec.variables = variables_resources
+    
+        return self
+    
 
 def tab(title: str) -> Tab:
     builder = Tab()
@@ -2540,6 +2678,14 @@ class QueryVariable(cogbuilder.Builder[dashboardv2beta1.QueryVariableKind]):
     
         return self
     
+    def regex_apply_to(self, regex_apply_to: dashboardv2beta1.VariableRegexApplyTo) -> typing.Self:    
+        if self._internal.spec is None:
+            self._internal.spec = dashboardv2beta1.QueryVariableSpec()
+        assert isinstance(self._internal.spec, dashboardv2beta1.QueryVariableSpec)
+        self._internal.spec.regex_apply_to = regex_apply_to
+    
+        return self
+    
     def sort(self, sort: dashboardv2beta1.VariableSort) -> typing.Self:    
         if self._internal.spec is None:
             self._internal.spec = dashboardv2beta1.QueryVariableSpec()
@@ -2617,6 +2763,15 @@ class QueryVariable(cogbuilder.Builder[dashboardv2beta1.QueryVariableKind]):
             self._internal.spec = dashboardv2beta1.QueryVariableSpec()
         assert isinstance(self._internal.spec, dashboardv2beta1.QueryVariableSpec)
         self._internal.spec.static_options_order = static_options_order
+    
+        return self
+    
+    def origin(self, origin: cogbuilder.Builder[dashboardv2beta1.ControlSourceRef]) -> typing.Self:    
+        if self._internal.spec is None:
+            self._internal.spec = dashboardv2beta1.QueryVariableSpec()
+        assert isinstance(self._internal.spec, dashboardv2beta1.QueryVariableSpec)
+        origin_resource = origin.build()
+        self._internal.spec.origin = origin_resource
     
         return self
     
@@ -2699,6 +2854,15 @@ class TextVariable(cogbuilder.Builder[dashboardv2beta1.TextVariableKind]):
     
         return self
     
+    def origin(self, origin: cogbuilder.Builder[dashboardv2beta1.ControlSourceRef]) -> typing.Self:    
+        if self._internal.spec is None:
+            self._internal.spec = dashboardv2beta1.TextVariableSpec()
+        assert isinstance(self._internal.spec, dashboardv2beta1.TextVariableSpec)
+        origin_resource = origin.build()
+        self._internal.spec.origin = origin_resource
+    
+        return self
+    
 
 
 class ConstantVariable(cogbuilder.Builder[dashboardv2beta1.ConstantVariableKind]):    
@@ -2775,6 +2939,15 @@ class ConstantVariable(cogbuilder.Builder[dashboardv2beta1.ConstantVariableKind]
             self._internal.spec = dashboardv2beta1.ConstantVariableSpec()
         assert isinstance(self._internal.spec, dashboardv2beta1.ConstantVariableSpec)
         self._internal.spec.description = description
+    
+        return self
+    
+    def origin(self, origin: cogbuilder.Builder[dashboardv2beta1.ControlSourceRef]) -> typing.Self:    
+        if self._internal.spec is None:
+            self._internal.spec = dashboardv2beta1.ConstantVariableSpec()
+        assert isinstance(self._internal.spec, dashboardv2beta1.ConstantVariableSpec)
+        origin_resource = origin.build()
+        self._internal.spec.origin = origin_resource
     
         return self
     
@@ -2913,6 +3086,15 @@ class DatasourceVariable(cogbuilder.Builder[dashboardv2beta1.DatasourceVariableK
     
         return self
     
+    def origin(self, origin: cogbuilder.Builder[dashboardv2beta1.ControlSourceRef]) -> typing.Self:    
+        if self._internal.spec is None:
+            self._internal.spec = dashboardv2beta1.DatasourceVariableSpec()
+        assert isinstance(self._internal.spec, dashboardv2beta1.DatasourceVariableSpec)
+        origin_resource = origin.build()
+        self._internal.spec.origin = origin_resource
+    
+        return self
+    
 
 
 class IntervalVariable(cogbuilder.Builder[dashboardv2beta1.IntervalVariableKind]):    
@@ -2928,6 +3110,7 @@ class IntervalVariable(cogbuilder.Builder[dashboardv2beta1.IntervalVariableKind]
         if self._internal.spec is None:
             self._internal.spec = dashboardv2beta1.IntervalVariableSpec()
         assert isinstance(self._internal.spec, dashboardv2beta1.IntervalVariableSpec)
+        self._internal.spec.refresh = "onTimeRangeChanged"        
         self._internal.spec.name = name
 
     def build(self) -> dashboardv2beta1.IntervalVariableKind:
@@ -2992,14 +3175,6 @@ class IntervalVariable(cogbuilder.Builder[dashboardv2beta1.IntervalVariableKind]
     
         return self
     
-    def refresh(self, refresh: dashboardv2beta1.VariableRefresh) -> typing.Self:    
-        if self._internal.spec is None:
-            self._internal.spec = dashboardv2beta1.IntervalVariableSpec()
-        assert isinstance(self._internal.spec, dashboardv2beta1.IntervalVariableSpec)
-        self._internal.spec.refresh = refresh
-    
-        return self
-    
     def label(self, label: str) -> typing.Self:    
         if self._internal.spec is None:
             self._internal.spec = dashboardv2beta1.IntervalVariableSpec()
@@ -3029,6 +3204,15 @@ class IntervalVariable(cogbuilder.Builder[dashboardv2beta1.IntervalVariableKind]
             self._internal.spec = dashboardv2beta1.IntervalVariableSpec()
         assert isinstance(self._internal.spec, dashboardv2beta1.IntervalVariableSpec)
         self._internal.spec.description = description
+    
+        return self
+    
+    def origin(self, origin: cogbuilder.Builder[dashboardv2beta1.ControlSourceRef]) -> typing.Self:    
+        if self._internal.spec is None:
+            self._internal.spec = dashboardv2beta1.IntervalVariableSpec()
+        assert isinstance(self._internal.spec, dashboardv2beta1.IntervalVariableSpec)
+        origin_resource = origin.build()
+        self._internal.spec.origin = origin_resource
     
         return self
     
@@ -3151,6 +3335,23 @@ class CustomVariable(cogbuilder.Builder[dashboardv2beta1.CustomVariableKind]):
     
         return self
     
+    def values_format(self, values_format: typing.Literal["csv", "json"]) -> typing.Self:    
+        if self._internal.spec is None:
+            self._internal.spec = dashboardv2beta1.CustomVariableSpec()
+        assert isinstance(self._internal.spec, dashboardv2beta1.CustomVariableSpec)
+        self._internal.spec.values_format = values_format
+    
+        return self
+    
+    def origin(self, origin: cogbuilder.Builder[dashboardv2beta1.ControlSourceRef]) -> typing.Self:    
+        if self._internal.spec is None:
+            self._internal.spec = dashboardv2beta1.CustomVariableSpec()
+        assert isinstance(self._internal.spec, dashboardv2beta1.CustomVariableSpec)
+        origin_resource = origin.build()
+        self._internal.spec.origin = origin_resource
+    
+        return self
+    
 
 
 class GroupByVariable(cogbuilder.Builder[dashboardv2beta1.GroupByVariableKind]):    
@@ -3176,6 +3377,11 @@ class GroupByVariable(cogbuilder.Builder[dashboardv2beta1.GroupByVariableKind]):
     
     def group(self, group: str) -> typing.Self:    
         self._internal.group = group
+    
+        return self
+    
+    def labels(self, labels: dict[str, str]) -> typing.Self:    
+        self._internal.labels = labels
     
         return self
     
@@ -3257,6 +3463,15 @@ class GroupByVariable(cogbuilder.Builder[dashboardv2beta1.GroupByVariableKind]):
     
         return self
     
+    def origin(self, origin: cogbuilder.Builder[dashboardv2beta1.ControlSourceRef]) -> typing.Self:    
+        if self._internal.spec is None:
+            self._internal.spec = dashboardv2beta1.GroupByVariableSpec()
+        assert isinstance(self._internal.spec, dashboardv2beta1.GroupByVariableSpec)
+        origin_resource = origin.build()
+        self._internal.spec.origin = origin_resource
+    
+        return self
+    
 
 
 class AdhocVariable(cogbuilder.Builder[dashboardv2beta1.AdhocVariableKind]):    
@@ -3282,6 +3497,11 @@ class AdhocVariable(cogbuilder.Builder[dashboardv2beta1.AdhocVariableKind]):
     
     def group(self, group: str) -> typing.Self:    
         self._internal.group = group
+    
+        return self
+    
+    def labels(self, labels: dict[str, str]) -> typing.Self:    
+        self._internal.labels = labels
     
         return self
     
@@ -3366,6 +3586,27 @@ class AdhocVariable(cogbuilder.Builder[dashboardv2beta1.AdhocVariableKind]):
     
         return self
     
+    def enable_group_by(self, enable_group_by: bool) -> typing.Self:    
+        """
+        Whether the group-by operator is enabled in the ad hoc filter combobox.
+        """
+            
+        if self._internal.spec is None:
+            self._internal.spec = dashboardv2beta1.AdhocVariableSpec()
+        assert isinstance(self._internal.spec, dashboardv2beta1.AdhocVariableSpec)
+        self._internal.spec.enable_group_by = enable_group_by
+    
+        return self
+    
+    def origin(self, origin: cogbuilder.Builder[dashboardv2beta1.ControlSourceRef]) -> typing.Self:    
+        if self._internal.spec is None:
+            self._internal.spec = dashboardv2beta1.AdhocVariableSpec()
+        assert isinstance(self._internal.spec, dashboardv2beta1.AdhocVariableSpec)
+        origin_resource = origin.build()
+        self._internal.spec.origin = origin_resource
+    
+        return self
+    
 
 
 class SwitchVariable(cogbuilder.Builder[dashboardv2beta1.SwitchVariableKind]):
@@ -3446,6 +3687,15 @@ class SwitchVariable(cogbuilder.Builder[dashboardv2beta1.SwitchVariableKind]):
             self._internal.spec = dashboardv2beta1.SwitchVariableSpec()
         assert isinstance(self._internal.spec, dashboardv2beta1.SwitchVariableSpec)
         self._internal.spec.description = description
+    
+        return self
+    
+    def origin(self, origin: cogbuilder.Builder[dashboardv2beta1.ControlSourceRef]) -> typing.Self:    
+        if self._internal.spec is None:
+            self._internal.spec = dashboardv2beta1.SwitchVariableSpec()
+        assert isinstance(self._internal.spec, dashboardv2beta1.SwitchVariableSpec)
+        origin_resource = origin.build()
+        self._internal.spec.origin = origin_resource
     
         return self
     
