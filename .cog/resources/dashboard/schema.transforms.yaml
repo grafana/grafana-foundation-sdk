@@ -132,6 +132,24 @@ passes:
           type:
             kind: scalar
             scalar: { scalar_kind: string }
+        - name: titleFormat
+          comments:
+            - Format for Prometheus and Loki annotation titles. Label values can be interpolated with templates like {{instance}}.
+          type:
+            kind: scalar
+            scalar: { scalar_kind: string }
+        - name: tagKeys
+          comments:
+            - Comma-separated label keys used as annotation tags.
+          type:
+            kind: scalar
+            scalar: { scalar_kind: string }
+        - name: step
+          comments:
+            - Legacy Prometheus annotation query step interval.
+          type:
+            kind: scalar
+            scalar: { scalar_kind: string }
         - name: useValueForTime
           comments:
             - Use the Prometheus series value as the annotation timestamp.
