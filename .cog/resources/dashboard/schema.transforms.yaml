@@ -80,6 +80,45 @@ passes:
 
   # Add a few missing fields.
   # This is meant to be removed once the schema is updated.
+  - add_object:
+      object: dashboard.AnnotationEventFieldSource
+      comments:
+        - Annotation event field source. Defines how to obtain the value for an annotation event field.
+        - '- "field": Find the value with a matching key (default)'
+        - '- "text": Write a constant string into the value'
+        - '- "skip": Do not include the field'
+      as:
+        kind: enum
+        enum:
+          values:
+            - { type: { kind: scalar, scalar: { scalar_kind: string } }, name: field, value: field }
+            - { type: { kind: scalar, scalar: { scalar_kind: string } }, name: text, value: text }
+            - { type: { kind: scalar, scalar: { scalar_kind: string } }, name: skip, value: skip }
+
+  - add_object:
+      object: dashboard.AnnotationEventFieldMapping
+      comments:
+        - Annotation event field mapping. Defines how to map a data frame field to an annotation event field.
+      as:
+        kind: struct
+        struct:
+          fields:
+            - name: source
+              comments: [ 'Source type for the field value.' ]
+              type:
+                kind: ref
+                ref: { referred_pkg: dashboard, referred_type: AnnotationEventFieldSource }
+            - name: value
+              comments: [ 'Constant value to use when source is "text".' ]
+              type:
+                kind: scalar
+                scalar: { scalar_kind: string }
+            - name: regex
+              comments: [ 'Regular expression to apply to the field value.' ]
+              type:
+                kind: scalar
+                scalar: { scalar_kind: string }
+
   - add_fields:
       to: dashboard.AnnotationQuery
       fields:
@@ -87,7 +126,31 @@ passes:
           type:
             kind: scalar
             scalar: { scalar_kind: string }
-            
+        - name: textFormat
+          comments:
+            - Format for Prometheus annotation text. Label values can be interpolated with templates like {{instance}}.
+          type:
+            kind: scalar
+            scalar: { scalar_kind: string }
+        - name: useValueForTime
+          comments:
+            - Use the Prometheus series value as the annotation timestamp.
+          type:
+            kind: scalar
+            scalar: { scalar_kind: bool }
+        - name: mappings
+          comments:
+            - Mappings define how to convert data frame fields to annotation event fields.
+          type:
+            kind: map
+            map:
+              indextype:
+                kind: scalar
+                scalar: { scalar_kind: string }
+              valuetype:
+                kind: ref
+                ref: { referred_pkg: dashboard, referred_type: AnnotationEventFieldMapping }
+             
   - add_fields:
       to: dashboard.FieldConfig
       fields:
