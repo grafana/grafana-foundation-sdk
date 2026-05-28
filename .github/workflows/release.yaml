@@ -39,26 +39,11 @@ jobs:
           enable-cache: 'true'
           devbox-version: ${{ env.DEVBOX_VERSION }}
 
-      - name: Get secrets
-        uses: grafana/shared-workflows/actions/get-vault-secrets@c2f1df59dba624b3fd509e5181aa8da5217120c0
-        with:
-          repo_secrets: |
-            GITHUB_APP_ID=github_app:app-id
-            GITHUB_APP_PRIVATE_KEY=github_app:private-key
-
-      - name: Generate github private token
-        id: generate_github_token
-        uses: actions/create-github-app-token@fee1f7d63c2ff003460e3d139729b119787bc349 # v2.2.2
-        with:
-          app-id: ${{ env.GITHUB_APP_ID }}
-          private-key: ${{ env.GITHUB_APP_PRIVATE_KEY }}
-          owner: ${{ github.repository_owner }}
-
       - name: Prepare a release
         run: |
           git config --global user.name 'github-actions[bot]'
           git config --global user.email 'github-actions[bot]@users.noreply.github.com'
-          git config --global url."https://x-access-token:${{ env.GENERATED_GITHUB_TOKEN }}@github.com/".insteadOf "git@github.com:"
+          git config --global url."https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/".insteadOf "git@github.com:"
 
           devbox run make prepare-release
         env:
@@ -68,13 +53,12 @@ jobs:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }} # to be used by `gh`
           DRY_RUN: 'no'
           SKIP_VALIDATION: 'no'
-          GENERATED_GITHUB_TOKEN: ${{ steps.generate_github_token.outputs.token }}
 
       - name: Release
         run: |
           git config --global user.name 'github-actions[bot]'
           git config --global user.email 'github-actions[bot]@users.noreply.github.com'
-          git config --global url."https://x-access-token:${{ env.GENERATED_GITHUB_TOKEN }}@github.com/".insteadOf "git@github.com:"
+          git config --global url."https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/".insteadOf "git@github.com:"
 
           devbox run ./scripts/release.sh
         env:
@@ -82,4 +66,3 @@ jobs:
           LOG_LEVEL: '7' # debug
           GOGC: 'off'
           DRY_RUN: 'no'
-          GENERATED_GITHUB_TOKEN: ${{ steps.generate_github_token.outputs.token }}
