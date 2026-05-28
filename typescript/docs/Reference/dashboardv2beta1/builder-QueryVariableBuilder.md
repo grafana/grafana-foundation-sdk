@@ -84,6 +84,12 @@ name(name: string)
 options(options: dashboardv2beta1.VariableOption[])
 ```
 
+### <span class="badge object-method"></span> origin
+
+```typescript
+origin(origin: cog.Builder<dashboardv2beta1.ControlSourceRef>)
+```
+
 ### <span class="badge object-method"></span> placeholder
 
 ```typescript
@@ -106,6 +112,12 @@ refresh(refresh: dashboardv2beta1.VariableRefresh)
 
 ```typescript
 regex(regex: string)
+```
+
+### <span class="badge object-method"></span> regexApplyTo
+
+```typescript
+regexApplyTo(regexApplyTo: dashboardv2beta1.VariableRegexApplyTo)
 ```
 
 ### <span class="badge object-method"></span> skipUrlSync

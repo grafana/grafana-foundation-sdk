@@ -10,4 +10,5 @@
 ## Builders
 
  * <span class="badge builder"></span> [QueryBuilder](./builder-QueryBuilder.md)
+ * <span class="badge builder"></span> [QueryV2Builder](./builder-QueryV2Builder.md)
  * <span class="badge builder"></span> [DataqueryBuilder](./builder-DataqueryBuilder.md)

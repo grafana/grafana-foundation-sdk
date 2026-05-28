@@ -46,6 +46,12 @@ Specifies the query label selectors.
 labelSelector(labelSelector: string)
 ```
 
+### <span class="badge object-method"></span> labels
+
+```typescript
+labels(labels: Record<string, string>)
+```
+
 ### <span class="badge object-method"></span> profileTypeId
 
 Specifies the type of profile to query.

@@ -1,0 +1,109 @@
+---
+title: <span class="badge builder"></span> GroupByVariableBuilder
+---
+# <span class="badge builder"></span> GroupByVariableBuilder
+
+## Constructor
+
+```php
+new GroupByVariableBuilder(string $name)
+```
+## Methods
+
+### <span class="badge object-method"></span> build
+
+Builds the object.
+
+```php
+build()
+```
+
+### <span class="badge object-method"></span> current
+
+```php
+current(\Grafana\Foundation\Dashboardv2\VariableOption $current)
+```
+
+### <span class="badge object-method"></span> datasource
+
+@param \Grafana\Foundation\Cog\Builder<\Grafana\Foundation\Dashboardv2\Dashboardv2GroupByVariableKindDatasource> $datasource
+
+```php
+datasource(\Grafana\Foundation\Cog\Builder $datasource)
+```
+
+### <span class="badge object-method"></span> defaultValue
+
+```php
+defaultValue(\Grafana\Foundation\Dashboardv2\VariableOption $defaultValue)
+```
+
+### <span class="badge object-method"></span> description
+
+```php
+description(string $description)
+```
+
+### <span class="badge object-method"></span> group
+
+```php
+group(string $group)
+```
+
+### <span class="badge object-method"></span> hide
+
+```php
+hide(\Grafana\Foundation\Dashboardv2\VariableHide $hide)
+```
+
+### <span class="badge object-method"></span> label
+
+```php
+label(string $label)
+```
+
+### <span class="badge object-method"></span> labels
+
+@param array<string, string> $labels
+
+```php
+labels(array $labels)
+```
+
+### <span class="badge object-method"></span> multi
+
+```php
+multi(bool $multi)
+```
+
+### <span class="badge object-method"></span> name
+
+```php
+name(string $name)
+```
+
+### <span class="badge object-method"></span> options
+
+@param array<\Grafana\Foundation\Dashboardv2\VariableOption> $options
+
+```php
+options(array $options)
+```
+
+### <span class="badge object-method"></span> origin
+
+@param \Grafana\Foundation\Cog\Builder<\Grafana\Foundation\Dashboardv2\ControlSourceRef> $origin
+
+```php
+origin(\Grafana\Foundation\Cog\Builder $origin)
+```
+
+### <span class="badge object-method"></span> skipUrlSync
+
+```php
+skipUrlSync(bool $skipUrlSync)
+```
+
+## See also
+
+ * <span class="badge object-type-class"></span> [GroupByVariableKind](./object-GroupByVariableKind.md)

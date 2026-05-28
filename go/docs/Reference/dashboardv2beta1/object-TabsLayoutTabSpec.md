@@ -11,6 +11,7 @@ type TabsLayoutTabSpec struct {
     Layout dashboardv2beta1.GridLayoutKindOrRowsLayoutKindOrAutoGridLayoutKindOrTabsLayoutKind `json:"layout"`
     ConditionalRendering *dashboardv2beta1.ConditionalRenderingGroupKind `json:"conditionalRendering,omitempty"`
     Repeat *dashboardv2beta1.TabRepeatOptions `json:"repeat,omitempty"`
+    Variables []dashboardv2beta1.VariableKind `json:"variables,omitempty"`
 }
 ```
 ## Methods

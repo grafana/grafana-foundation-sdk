@@ -27,7 +27,7 @@ class TabsLayoutTabKind implements \JsonSerializable
         $data = $inputData;
         return new self(
             spec: isset($data["spec"]) ? (function($input) {
-    	/** @var array{title?: string, layout?: mixed|mixed|mixed|mixed, conditionalRendering?: mixed, repeat?: mixed} */
+    	/** @var array{title?: string, layout?: mixed|mixed|mixed|mixed, conditionalRendering?: mixed, repeat?: mixed, variables?: array<mixed|mixed|mixed|mixed|mixed|mixed|mixed|mixed|mixed>} */
     $val = $input;
     	return \Grafana\Foundation\Dashboardv2beta1\TabsLayoutTabSpec::fromArray($val);
     })($data["spec"]) : null,

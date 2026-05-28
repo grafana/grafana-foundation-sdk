@@ -478,6 +478,9 @@ public class HeatmapPanelBuilder implements com.grafana.foundation.cog.Builder<P
     }
     
     public HeatmapPanelBuilder cellGap(Integer cellGap) {
+        if (!(cellGap >= 0)) {
+            throw new IllegalArgumentException("cellGap must be >= 0");
+        }
         if (!(cellGap <= 25)) {
             throw new IllegalArgumentException("cellGap must be <= 25");
         }

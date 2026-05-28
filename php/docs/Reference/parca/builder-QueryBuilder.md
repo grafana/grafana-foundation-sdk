@@ -46,6 +46,14 @@ Specifies the query label selectors.
 labelSelector(string $labelSelector)
 ```
 
+### <span class="badge object-method"></span> labels
+
+@param array<string, string> $labels
+
+```php
+labels(array $labels)
+```
+
 ### <span class="badge object-method"></span> profileTypeId
 
 Specifies the type of profile to query.

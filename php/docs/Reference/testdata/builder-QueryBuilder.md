@@ -52,6 +52,12 @@ csvFileName(string $csvFileName)
 csvWave(array $csvWave)
 ```
 
+### <span class="badge object-method"></span> dataqueryLabels
+
+```php
+dataqueryLabels(string $labels)
+```
+
 ### <span class="badge object-method"></span> datasource
 
 New type for datasource reference
@@ -130,8 +136,10 @@ intervalMs(float $intervalMs)
 
 ### <span class="badge object-method"></span> labels
 
+@param array<string, string> $labels
+
 ```php
-labels(string $labels)
+labels(array $labels)
 ```
 
 ### <span class="badge object-method"></span> levelColumn

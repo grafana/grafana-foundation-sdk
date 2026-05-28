@@ -114,6 +114,19 @@ final class SwitchVariableConverter
     
     
     }
+            if ($input->spec->origin !== null) {
+    
+        
+    $buffer = 'origin(';
+        $arg0 = \Grafana\Foundation\Dashboardv2beta1\ControlSourceRefConverter::convert($input->spec->origin);
+        $buffer .= $arg0;
+        
+    $buffer .= ')';
+
+    $calls[] = $buffer;
+    
+    
+    }
 
         return \implode("\n\t->", $calls);
     }

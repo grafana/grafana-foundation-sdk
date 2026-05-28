@@ -25,15 +25,23 @@ class VariableOption implements \JsonSerializable
     public $value;
 
     /**
+     * Additional properties for multi-props variables
+     * @var array<string, string>|null
+     */
+    public ?array $properties;
+
+    /**
      * @param bool|null $selected
      * @param string|array<string>|null $text
      * @param string|array<string>|null $value
+     * @param array<string, string>|null $properties
      */
-    public function __construct(?bool $selected = null,  $text = null,  $value = null)
+    public function __construct(?bool $selected = null,  $text = null,  $value = null, ?array $properties = null)
     {
         $this->selected = $selected;
         $this->text = $text ?: "";
         $this->value = $value ?: "";
+        $this->properties = $properties;
     }
 
     /**
@@ -41,7 +49,7 @@ class VariableOption implements \JsonSerializable
      */
     public static function fromArray(array $inputData): self
     {
-        /** @var array{selected?: bool, text?: string|array<string>, value?: string|array<string>} $inputData */
+        /** @var array{selected?: bool, text?: string|array<string>, value?: string|array<string>, properties?: array<string, string>} $inputData */
         $data = $inputData;
         return new self(
             selected: $data["selected"] ?? null,
@@ -61,6 +69,7 @@ class VariableOption implements \JsonSerializable
             return $input;
     }
     })($data["value"]) : null,
+            properties: $data["properties"] ?? null,
         );
     }
 
@@ -74,6 +83,9 @@ class VariableOption implements \JsonSerializable
         $data->value = $this->value;
         if (isset($this->selected)) {
             $data->selected = $this->selected;
+        }
+        if (isset($this->properties)) {
+            $data->properties = $this->properties;
         }
         return $data;
     }

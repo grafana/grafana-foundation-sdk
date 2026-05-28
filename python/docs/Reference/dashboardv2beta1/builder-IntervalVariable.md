@@ -72,16 +72,16 @@ def name(name: str) -> typing.Self
 def options(options: list[dashboardv2beta1.VariableOption]) -> typing.Self
 ```
 
+### <span class="badge object-method"></span> origin
+
+```python
+def origin(origin: cogbuilder.Builder[dashboardv2beta1.ControlSourceRef]) -> typing.Self
+```
+
 ### <span class="badge object-method"></span> query
 
 ```python
 def query(query: str) -> typing.Self
-```
-
-### <span class="badge object-method"></span> refresh
-
-```python
-def refresh(refresh: dashboardv2beta1.VariableRefresh) -> typing.Self
 ```
 
 ### <span class="badge object-method"></span> skip_url_sync

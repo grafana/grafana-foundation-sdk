@@ -131,5 +131,14 @@ export class DatasourceVariableBuilder implements cog.Builder<dashboardv2beta1.D
         this.internal.spec.allowCustomValue = allowCustomValue;
         return this;
     }
+
+    origin(origin: cog.Builder<dashboardv2beta1.ControlSourceRef>): this {
+        if (!this.internal.spec) {
+            this.internal.spec = dashboardv2beta1.defaultDatasourceVariableSpec();
+        }
+        const originResource = origin.build();
+        this.internal.spec.origin = originResource;
+        return this;
+    }
 }
 

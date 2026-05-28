@@ -7,11 +7,11 @@ import enum
 from ..cog import runtime as cogruntime
 
 
-class TempoQuery(cogvariants.Dataquery):
+class Dataquery(cogvariants.Dataquery):
     # A unique identifier for the query within the list of targets.
     # In server side expressions, the refId is used as a variable name to identify results.
     # By default, the UI will assign A->Z; however setting meaningful names may be useful.
-    ref_id: typing.Optional[str]
+    ref_id: str
     # If hide is set to true, Grafana will filter out the response(s) associated with this query before returning it to the panel.
     hide: typing.Optional[bool]
     # Specify the query flavor
@@ -54,7 +54,7 @@ class TempoQuery(cogvariants.Dataquery):
     # For metric queries, whether to run instant or range queries
     metrics_query_type: typing.Optional['MetricsQueryType']
 
-    def __init__(self, ref_id: typing.Optional[str] = None, hide: typing.Optional[bool] = None, query_type: typing.Optional[str] = None, query: typing.Optional[str] = None, search: typing.Optional[str] = None, service_name: typing.Optional[str] = None, span_name: typing.Optional[str] = None, min_duration: typing.Optional[str] = None, max_duration: typing.Optional[str] = None, service_map_query: typing.Optional[typing.Union[str, list[str]]] = None, service_map_include_namespace: typing.Optional[bool] = None, limit: typing.Optional[int] = None, spss: typing.Optional[int] = None, filters: typing.Optional[list['TraceqlFilter']] = None, group_by: typing.Optional[list['TraceqlFilter']] = None, table_type: typing.Optional['SearchTableType'] = None, step: typing.Optional[str] = None, exemplars: typing.Optional[int] = None, datasource: typing.Optional[common.DataSourceRef] = None, metrics_query_type: typing.Optional['MetricsQueryType'] = None) -> None:
+    def __init__(self, ref_id: str = "", hide: typing.Optional[bool] = None, query_type: typing.Optional[str] = None, query: typing.Optional[str] = None, search: typing.Optional[str] = None, service_name: typing.Optional[str] = None, span_name: typing.Optional[str] = None, min_duration: typing.Optional[str] = None, max_duration: typing.Optional[str] = None, service_map_query: typing.Optional[typing.Union[str, list[str]]] = None, service_map_include_namespace: typing.Optional[bool] = None, limit: typing.Optional[int] = None, spss: typing.Optional[int] = None, filters: typing.Optional[list['TraceqlFilter']] = None, group_by: typing.Optional[list['TraceqlFilter']] = None, table_type: typing.Optional['SearchTableType'] = None, step: typing.Optional[str] = None, exemplars: typing.Optional[int] = None, datasource: typing.Optional[common.DataSourceRef] = None, metrics_query_type: typing.Optional['MetricsQueryType'] = None) -> None:
         self.ref_id = ref_id
         self.hide = hide
         self.query_type = query_type
@@ -78,10 +78,9 @@ class TempoQuery(cogvariants.Dataquery):
 
     def to_json(self) -> dict[str, object]:
         payload: dict[str, object] = {
+            "refId": self.ref_id,
             "filters": self.filters,
         }
-        if self.ref_id is not None:
-            payload["refId"] = self.ref_id
         if self.hide is not None:
             payload["hide"] = self.hide
         if self.query_type is not None:
@@ -282,6 +281,6 @@ class SearchStreamingState(enum.StrEnum):
 def variant_config() -> cogruntime.DataqueryConfig:
     return cogruntime.DataqueryConfig(
         identifier="tempo",
-        from_json_hook=TempoQuery.from_json,
+        from_json_hook=Dataquery.from_json,
     )
 

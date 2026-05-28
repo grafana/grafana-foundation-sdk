@@ -184,6 +184,14 @@ displayNameFromDS(displayNameFromDS: string)
 drawStyle(drawStyle: common.GraphDrawStyle)
 ```
 
+### <span class="badge object-method"></span> fieldMinMax
+
+Calculate min max per field
+
+```typescript
+fieldMinMax(fieldMinMax: boolean)
+```
+
 ### <span class="badge object-method"></span> fields
 
 Map fields to appropriate dimension
@@ -304,6 +312,16 @@ Alternative to empty string
 
 ```typescript
 noValue(noValue: string)
+```
+
+### <span class="badge object-method"></span> nullValueMode
+
+How null values should be handled when calculating field stats
+
+"null" - Include null values, "connected" - Ignore nulls, "null as zero" - Treat nulls as zero
+
+```typescript
+nullValueMode(nullValueMode: dashboardv2beta1.NullValueMode)
 ```
 
 ### <span class="badge object-method"></span> override
@@ -454,7 +472,7 @@ transform(transform: common.GraphTransform)
 
 Unit a field should use. The unit you select is applied to all fields except time.
 
-You can use the units ID availables in Grafana or a custom unit.
+You can use the units ID available in Grafana or a custom unit.
 
 Available units in Grafana: https://github.com/grafana/grafana/blob/main/packages/grafana-data/src/valueFormats/categories.ts
 

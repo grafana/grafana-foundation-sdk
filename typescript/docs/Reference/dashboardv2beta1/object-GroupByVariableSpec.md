@@ -18,6 +18,7 @@ export interface GroupByVariableSpec {
 	hide: dashboardv2beta1.VariableHide;
 	skipUrlSync: boolean;
 	description?: string;
+	origin?: dashboardv2beta1.ControlSourceRef;
 }
 
 ```

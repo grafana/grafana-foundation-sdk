@@ -28,6 +28,9 @@ public class SwitchVariableSpec {
     @JsonInclude(JsonInclude.Include.NON_NULL)
     @JsonProperty("description")
     public String description;
+    @JsonInclude(JsonInclude.Include.NON_NULL)
+    @JsonProperty("origin")
+    public ControlSourceRef origin;
     public SwitchVariableSpec() {
         this.name = "";
         this.current = "false";
@@ -36,7 +39,7 @@ public class SwitchVariableSpec {
         this.hide = VariableHide.DONT_HIDE;
         this.skipUrlSync = false;
     }
-    public SwitchVariableSpec(String name,String current,String enabledValue,String disabledValue,String label,VariableHide hide,Boolean skipUrlSync,String description) {
+    public SwitchVariableSpec(String name,String current,String enabledValue,String disabledValue,String label,VariableHide hide,Boolean skipUrlSync,String description,ControlSourceRef origin) {
         this.name = name;
         this.current = current;
         this.enabledValue = enabledValue;
@@ -45,6 +48,7 @@ public class SwitchVariableSpec {
         this.hide = hide;
         this.skipUrlSync = skipUrlSync;
         this.description = description;
+        this.origin = origin;
     }
     
     public String toJSON() throws JsonProcessingException {

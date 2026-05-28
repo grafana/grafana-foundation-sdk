@@ -30,7 +30,7 @@ export const defaultPlaylist = (): Playlist => ({
 	items: [],
 });
 
-export const PlaylistV0Alpha1 = "playlist.grafana.app/playlistv0alpha1";
+export const PlaylistApiVersion = "playlist.grafana.app/playlistv0alpha1";
 
 export const PlaylistKind = "Playlist";
 

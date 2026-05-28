@@ -104,18 +104,6 @@ func IntervalVariableConverter(input IntervalVariableKind) string {
 		buffer.Reset()
 
 	}
-
-	{
-		buffer.WriteString(`Refresh(`)
-		arg0 := cog.Dump(input.Spec.Refresh)
-		buffer.WriteString(arg0)
-
-		buffer.WriteString(")")
-
-		calls = append(calls, buffer.String())
-		buffer.Reset()
-	}
-
 	if input.Spec.Label != nil && *input.Spec.Label != "" {
 
 		buffer.WriteString(`Label(`)
@@ -156,6 +144,18 @@ func IntervalVariableConverter(input IntervalVariableKind) string {
 
 		buffer.WriteString(`Description(`)
 		arg0 := fmt.Sprintf("%#v", *input.Spec.Description)
+		buffer.WriteString(arg0)
+
+		buffer.WriteString(")")
+
+		calls = append(calls, buffer.String())
+		buffer.Reset()
+
+	}
+	if input.Spec.Origin != nil {
+
+		buffer.WriteString(`Origin(`)
+		arg0 := ControlSourceRefConverter(*input.Spec.Origin)
 		buffer.WriteString(arg0)
 
 		buffer.WriteString(")")

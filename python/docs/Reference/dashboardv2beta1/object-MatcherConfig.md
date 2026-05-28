@@ -18,6 +18,8 @@ class MatcherConfig:
 
     # The matcher id. This is used to find the matcher implementation from registry.
     id_val: str
+    # If set, limits this matcher to fields of that type. If not set, "series" mode is used.
+    scope: typing.Optional[dashboardv2beta1.MatcherScope]
     # The matcher options. This is specific to the matcher implementation.
     options: typing.Optional[object]
 ```

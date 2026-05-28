@@ -64,6 +64,12 @@ def hide(hide: bool) -> typing.Self
 def instant(instant: bool) -> typing.Self
 ```
 
+### <span class="badge object-method"></span> labels
+
+```python
+def labels(labels: dict[str, str]) -> typing.Self
+```
+
 ### <span class="badge object-method"></span> legend_format
 
 Used to override the name of the series.

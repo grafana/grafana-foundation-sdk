@@ -52,6 +52,12 @@ Specifies the query label selectors.
 public QueryBuilder labelSelector(String labelSelector)
 ```
 
+### <span class="badge object-method"></span> labels
+
+```java
+public QueryBuilder labels(Map<String, String> labels)
+```
+
 ### <span class="badge object-method"></span> limit
 
 Sets the maximum number of time series.

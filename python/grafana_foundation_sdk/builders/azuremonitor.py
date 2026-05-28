@@ -2,9 +2,248 @@
 
 import typing
 from ..cog import builder as cogbuilder
+from ..models import dashboardv2
 from ..models import azuremonitor
 from ..models import common
 from ..models import dashboardv2beta1
+
+
+class QueryV2(cogbuilder.Builder[dashboardv2.DataQueryKind]):
+    _internal: dashboardv2.DataQueryKind
+
+    def __init__(self) -> None:
+        self._internal = dashboardv2.DataQueryKind()        
+        self._internal.kind = "DataQuery"        
+        self._internal.group = "grafana-azure-monitor-datasource"
+
+    def build(self) -> dashboardv2.DataQueryKind:
+        """
+        Builds the object.
+        """
+        return self._internal    
+    
+    def version(self, version: str) -> typing.Self:    
+        self._internal.version = version
+    
+        return self
+    
+    def labels(self, labels: dict[str, str]) -> typing.Self:    
+        self._internal.labels = labels
+    
+        return self
+    
+    def datasource(self, ref: cogbuilder.Builder[dashboardv2.Dashboardv2DataQueryKindDatasource]) -> typing.Self:    
+        """
+        New type for datasource reference
+        Not creating a new type until we figure out how to handle DS refs for group by, adhoc, and every place that uses DataSourceRef in TS.
+        """
+            
+        ref_resource = ref.build()
+        self._internal.datasource = ref_resource
+    
+        return self
+    
+    def ref_id(self, ref_id: str) -> typing.Self:    
+        """
+        A unique identifier for the query within the list of targets.
+        In server side expressions, the refId is used as a variable name to identify results.
+        By default, the UI will assign A->Z; however setting meaningful names may be useful.
+        """
+            
+        if self._internal.spec is None:
+            self._internal.spec = azuremonitor.AzureMonitorQuery()
+        assert isinstance(self._internal.spec, azuremonitor.AzureMonitorQuery)
+        self._internal.spec.ref_id = ref_id
+    
+        return self
+    
+    def hide(self, hide: bool) -> typing.Self:    
+        """
+        If hide is set to true, Grafana will filter out the response(s) associated with this query before returning it to the panel.
+        """
+            
+        if self._internal.spec is None:
+            self._internal.spec = azuremonitor.AzureMonitorQuery()
+        assert isinstance(self._internal.spec, azuremonitor.AzureMonitorQuery)
+        self._internal.spec.hide = hide
+    
+        return self
+    
+    def query_type(self, query_type: str) -> typing.Self:    
+        """
+        Specify the query flavor
+        TODO make this required and give it a default
+        """
+            
+        if self._internal.spec is None:
+            self._internal.spec = azuremonitor.AzureMonitorQuery()
+        assert isinstance(self._internal.spec, azuremonitor.AzureMonitorQuery)
+        self._internal.spec.query_type = query_type
+    
+        return self
+    
+    def subscription(self, subscription: str) -> typing.Self:    
+        """
+        Azure subscription containing the resource(s) to be queried.
+        Also used for template variable queries
+        """
+            
+        if self._internal.spec is None:
+            self._internal.spec = azuremonitor.AzureMonitorQuery()
+        assert isinstance(self._internal.spec, azuremonitor.AzureMonitorQuery)
+        self._internal.spec.subscription = subscription
+    
+        return self
+    
+    def subscriptions(self, subscriptions: list[str]) -> typing.Self:    
+        """
+        Subscriptions to be queried via Azure Resource Graph.
+        """
+            
+        if self._internal.spec is None:
+            self._internal.spec = azuremonitor.AzureMonitorQuery()
+        assert isinstance(self._internal.spec, azuremonitor.AzureMonitorQuery)
+        self._internal.spec.subscriptions = subscriptions
+    
+        return self
+    
+    def azure_monitor(self, azure_monitor: cogbuilder.Builder[azuremonitor.AzureMetricQuery]) -> typing.Self:    
+        """
+        Azure Monitor Metrics sub-query properties.
+        """
+            
+        if self._internal.spec is None:
+            self._internal.spec = azuremonitor.AzureMonitorQuery()
+        assert isinstance(self._internal.spec, azuremonitor.AzureMonitorQuery)
+        azure_monitor_resource = azure_monitor.build()
+        self._internal.spec.azure_monitor = azure_monitor_resource
+    
+        return self
+    
+    def azure_log_analytics(self, azure_log_analytics: cogbuilder.Builder[azuremonitor.AzureLogsQuery]) -> typing.Self:    
+        """
+        Azure Monitor Logs sub-query properties.
+        """
+            
+        if self._internal.spec is None:
+            self._internal.spec = azuremonitor.AzureMonitorQuery()
+        assert isinstance(self._internal.spec, azuremonitor.AzureMonitorQuery)
+        azure_log_analytics_resource = azure_log_analytics.build()
+        self._internal.spec.azure_log_analytics = azure_log_analytics_resource
+    
+        return self
+    
+    def azure_resource_graph(self, azure_resource_graph: cogbuilder.Builder[azuremonitor.AzureResourceGraphQuery]) -> typing.Self:    
+        """
+        Azure Resource Graph sub-query properties.
+        """
+            
+        if self._internal.spec is None:
+            self._internal.spec = azuremonitor.AzureMonitorQuery()
+        assert isinstance(self._internal.spec, azuremonitor.AzureMonitorQuery)
+        azure_resource_graph_resource = azure_resource_graph.build()
+        self._internal.spec.azure_resource_graph = azure_resource_graph_resource
+    
+        return self
+    
+    def azure_traces(self, azure_traces: cogbuilder.Builder[azuremonitor.AzureTracesQuery]) -> typing.Self:    
+        """
+        Application Insights Traces sub-query properties.
+        """
+            
+        if self._internal.spec is None:
+            self._internal.spec = azuremonitor.AzureMonitorQuery()
+        assert isinstance(self._internal.spec, azuremonitor.AzureMonitorQuery)
+        azure_traces_resource = azure_traces.build()
+        self._internal.spec.azure_traces = azure_traces_resource
+    
+        return self
+    
+    def grafana_template_variable_fn(self, grafana_template_variable_fn: cogbuilder.Builder[azuremonitor.GrafanaTemplateVariableQuery]) -> typing.Self:    
+        """
+        @deprecated Legacy template variable support.
+        """
+            
+        if self._internal.spec is None:
+            self._internal.spec = azuremonitor.AzureMonitorQuery()
+        assert isinstance(self._internal.spec, azuremonitor.AzureMonitorQuery)
+        grafana_template_variable_fn_resource = grafana_template_variable_fn.build()
+        self._internal.spec.grafana_template_variable_fn = grafana_template_variable_fn_resource
+    
+        return self
+    
+    def resource_group(self, resource_group: str) -> typing.Self:    
+        """
+        Resource group used in template variable queries
+        """
+            
+        if self._internal.spec is None:
+            self._internal.spec = azuremonitor.AzureMonitorQuery()
+        assert isinstance(self._internal.spec, azuremonitor.AzureMonitorQuery)
+        self._internal.spec.resource_group = resource_group
+    
+        return self
+    
+    def namespace(self, namespace: str) -> typing.Self:    
+        """
+        Namespace used in template variable queries
+        """
+            
+        if self._internal.spec is None:
+            self._internal.spec = azuremonitor.AzureMonitorQuery()
+        assert isinstance(self._internal.spec, azuremonitor.AzureMonitorQuery)
+        self._internal.spec.namespace = namespace
+    
+        return self
+    
+    def resource(self, resource: str) -> typing.Self:    
+        """
+        Resource used in template variable queries
+        """
+            
+        if self._internal.spec is None:
+            self._internal.spec = azuremonitor.AzureMonitorQuery()
+        assert isinstance(self._internal.spec, azuremonitor.AzureMonitorQuery)
+        self._internal.spec.resource = resource
+    
+        return self
+    
+    def region(self, region: str) -> typing.Self:    
+        """
+        Region used in template variable queries
+        """
+            
+        if self._internal.spec is None:
+            self._internal.spec = azuremonitor.AzureMonitorQuery()
+        assert isinstance(self._internal.spec, azuremonitor.AzureMonitorQuery)
+        self._internal.spec.region = region
+    
+        return self
+    
+    def custom_namespace(self, custom_namespace: str) -> typing.Self:    
+        """
+        Custom namespace used in template variable queries
+        """
+            
+        if self._internal.spec is None:
+            self._internal.spec = azuremonitor.AzureMonitorQuery()
+        assert isinstance(self._internal.spec, azuremonitor.AzureMonitorQuery)
+        self._internal.spec.custom_namespace = custom_namespace
+    
+        return self
+    
+    def query(self, query: str) -> typing.Self:    
+        """
+        Used only for exemplar queries from Prometheus
+        """
+            
+        if self._internal.spec is None:
+            self._internal.spec = azuremonitor.AzureMonitorQuery()
+        assert isinstance(self._internal.spec, azuremonitor.AzureMonitorQuery)
+        self._internal.spec.query = query
+    
+        return self
+    
 
 
 class AzureMonitorQuery(cogbuilder.Builder[azuremonitor.AzureMonitorQuery]):
@@ -1029,6 +1268,11 @@ class Query(cogbuilder.Builder[dashboardv2beta1.DataQueryKind]):
     
     def version(self, version: str) -> typing.Self:    
         self._internal.version = version
+    
+        return self
+    
+    def labels(self, labels: dict[str, str]) -> typing.Self:    
+        self._internal.labels = labels
     
         return self
     

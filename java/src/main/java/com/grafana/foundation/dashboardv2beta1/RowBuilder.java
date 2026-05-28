@@ -2,6 +2,7 @@
 
 package com.grafana.foundation.dashboardv2beta1;
 
+import java.util.List;
 
 public class RowBuilder implements com.grafana.foundation.cog.Builder<RowsLayoutRowKind> {
     protected final RowsLayoutRowKind internal;
@@ -101,6 +102,14 @@ public class RowBuilder implements com.grafana.foundation.cog.Builder<RowsLayout
     GridLayoutKindOrAutoGridLayoutKindOrTabsLayoutKindOrRowsLayoutKind gridLayoutKindOrAutoGridLayoutKindOrTabsLayoutKindOrRowsLayoutKind = new GridLayoutKindOrAutoGridLayoutKindOrTabsLayoutKindOrRowsLayoutKind();
         gridLayoutKindOrAutoGridLayoutKindOrTabsLayoutKindOrRowsLayoutKind.rowsLayoutKind = rowsLayoutKindResource;
         this.internal.spec.layout = gridLayoutKindOrAutoGridLayoutKindOrTabsLayoutKindOrRowsLayoutKind;
+        return this;
+    }
+    
+    public RowBuilder variables(List<VariableKind> variables) {
+		if (this.internal.spec == null) {
+			this.internal.spec = new com.grafana.foundation.dashboardv2beta1.RowsLayoutRowSpec();
+		}
+        this.internal.spec.variables = variables;
         return this;
     }
     public RowsLayoutRowKind build() {

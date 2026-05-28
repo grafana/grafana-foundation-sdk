@@ -584,6 +584,9 @@ public class BarchartPanelBuilder implements com.grafana.foundation.cog.Builder<
     }
     
     public BarchartPanelBuilder lineWidth(Integer lineWidth) {
+        if (!(lineWidth >= 0)) {
+            throw new IllegalArgumentException("lineWidth must be >= 0");
+        }
         if (!(lineWidth <= 10)) {
             throw new IllegalArgumentException("lineWidth must be <= 10");
         }
@@ -601,6 +604,9 @@ public class BarchartPanelBuilder implements com.grafana.foundation.cog.Builder<
     }
     
     public BarchartPanelBuilder fillOpacity(Integer fillOpacity) {
+        if (!(fillOpacity >= 0)) {
+            throw new IllegalArgumentException("fillOpacity must be >= 0");
+        }
         if (!(fillOpacity <= 100)) {
             throw new IllegalArgumentException("fillOpacity must be <= 100");
         }

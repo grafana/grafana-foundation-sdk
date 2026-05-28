@@ -110,6 +110,14 @@ When this property is configured, this value is used rather than the default nam
 displayNameFromDS(displayNameFromDS: string)
 ```
 
+### <span class="badge object-method"></span> fieldMinMax
+
+Calculate min max per field
+
+```typescript
+fieldMinMax(fieldMinMax: boolean)
+```
+
 ### <span class="badge object-method"></span> filterable
 
 ```typescript
@@ -190,6 +198,16 @@ Alternative to empty string
 
 ```typescript
 noValue(noValue: string)
+```
+
+### <span class="badge object-method"></span> nullValueMode
+
+How null values should be handled when calculating field stats
+
+"null" - Include null values, "connected" - Ignore nulls, "null as zero" - Treat nulls as zero
+
+```typescript
+nullValueMode(nullValueMode: dashboardv2beta1.NullValueMode)
 ```
 
 ### <span class="badge object-method"></span> override
@@ -298,7 +316,7 @@ thresholds(thresholds: cog.Builder<dashboardv2beta1.ThresholdsConfig>)
 
 Unit a field should use. The unit you select is applied to all fields except time.
 
-You can use the units ID availables in Grafana or a custom unit.
+You can use the units ID available in Grafana or a custom unit.
 
 Available units in Grafana: https://github.com/grafana/grafana/blob/main/packages/grafana-data/src/valueFormats/categories.ts
 

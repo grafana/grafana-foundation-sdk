@@ -160,6 +160,7 @@
  * <span class="badge builder"></span> [PipelineMetricAggregationWithMultipleBucketPaths](./builder-PipelineMetricAggregationWithMultipleBucketPaths.md)
  * <span class="badge builder"></span> [PipelineVariable](./builder-PipelineVariable.md)
  * <span class="badge builder"></span> [Query](./builder-Query.md)
+ * <span class="badge builder"></span> [QueryV2](./builder-QueryV2.md)
  * <span class="badge builder"></span> [Rate](./builder-Rate.md)
  * <span class="badge builder"></span> [RawData](./builder-RawData.md)
  * <span class="badge builder"></span> [RawDocument](./builder-RawDocument.md)

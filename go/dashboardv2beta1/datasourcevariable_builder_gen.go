@@ -126,3 +126,14 @@ func (builder *DatasourceVariableBuilder) AllowCustomValue(allowCustomValue bool
 
 	return builder
 }
+
+func (builder *DatasourceVariableBuilder) Origin(origin cog.Builder[ControlSourceRef]) *DatasourceVariableBuilder {
+	originResource, err := origin.Build()
+	if err != nil {
+		builder.errors = append(builder.errors, err.(cog.BuildErrors)...)
+		return builder
+	}
+	builder.internal.Spec.Origin = &originResource
+
+	return builder
+}

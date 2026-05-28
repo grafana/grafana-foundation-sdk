@@ -27,7 +27,7 @@ final class QueryVariableConverter
     
         {
     $buffer = 'current(';
-        $arg0 ='(new \Grafana\Foundation\Dashboardv2beta1\VariableOption('.(($input->spec->current->selected !== null) ? 'selected: '.\var_export($input->spec->current->selected, true).', ' : '').'text: '.\var_export($input->spec->current->text, true).',value: '.\var_export($input->spec->current->value, true).',))';
+        $arg0 ='(new \Grafana\Foundation\Dashboardv2beta1\VariableOption('.(($input->spec->current->selected !== null) ? 'selected: '.\var_export($input->spec->current->selected, true).', ' : '').'text: '.\var_export($input->spec->current->text, true).',value: '.\var_export($input->spec->current->value, true).','.(($input->spec->current->properties !== null) ? 'properties: '.\var_export($input->spec->current->properties, true).', ' : '').'))';
         $buffer .= $arg0;
         
     $buffer .= ')';
@@ -127,6 +127,19 @@ final class QueryVariableConverter
     
     
     }
+            if ($input->spec->regexApplyTo !== null) {
+    
+        
+    $buffer = 'regexApplyTo(';
+        $arg0 ='\Grafana\Foundation\Dashboardv2beta1\VariableRegexApplyTo::fromValue("'.$input->spec->regexApplyTo.'")';
+        $buffer .= $arg0;
+        
+    $buffer .= ')';
+
+    $calls[] = $buffer;
+    
+    
+    }
             
     
         {
@@ -159,7 +172,7 @@ final class QueryVariableConverter
     $buffer = 'options(';
         $tmparg0 = [];
         foreach ($input->spec->options as $arg1) {
-        $tmpoptionsarg1 ='(new \Grafana\Foundation\Dashboardv2beta1\VariableOption('.(($arg1->selected !== null) ? 'selected: '.\var_export($arg1->selected, true).', ' : '').'text: '.\var_export($arg1->text, true).',value: '.\var_export($arg1->value, true).',))';
+        $tmpoptionsarg1 ='(new \Grafana\Foundation\Dashboardv2beta1\VariableOption('.(($arg1->selected !== null) ? 'selected: '.\var_export($arg1->selected, true).', ' : '').'text: '.\var_export($arg1->text, true).',value: '.\var_export($arg1->value, true).','.(($arg1->properties !== null) ? 'properties: '.\var_export($arg1->properties, true).', ' : '').'))';
         $tmparg0[] = $tmpoptionsarg1;
         }
         $arg0 = "[" . implode(", \n", $tmparg0) . "]";
@@ -242,7 +255,7 @@ final class QueryVariableConverter
     $buffer = 'staticOptions(';
         $tmparg0 = [];
         foreach ($input->spec->staticOptions as $arg1) {
-        $tmpstaticOptionsarg1 ='(new \Grafana\Foundation\Dashboardv2beta1\VariableOption('.(($arg1->selected !== null) ? 'selected: '.\var_export($arg1->selected, true).', ' : '').'text: '.\var_export($arg1->text, true).',value: '.\var_export($arg1->value, true).',))';
+        $tmpstaticOptionsarg1 ='(new \Grafana\Foundation\Dashboardv2beta1\VariableOption('.(($arg1->selected !== null) ? 'selected: '.\var_export($arg1->selected, true).', ' : '').'text: '.\var_export($arg1->text, true).',value: '.\var_export($arg1->value, true).','.(($arg1->properties !== null) ? 'properties: '.\var_export($arg1->properties, true).', ' : '').'))';
         $tmparg0[] = $tmpstaticOptionsarg1;
         }
         $arg0 = "[" . implode(", \n", $tmparg0) . "]";
@@ -259,6 +272,19 @@ final class QueryVariableConverter
         
     $buffer = 'staticOptionsOrder(';
         $arg0 ='\Grafana\Foundation\Dashboardv2beta1\QueryVariableSpecStaticOptionsOrder::fromValue("'.$input->spec->staticOptionsOrder.'")';
+        $buffer .= $arg0;
+        
+    $buffer .= ')';
+
+    $calls[] = $buffer;
+    
+    
+    }
+            if ($input->spec->origin !== null) {
+    
+        
+    $buffer = 'origin(';
+        $arg0 = \Grafana\Foundation\Dashboardv2beta1\ControlSourceRefConverter::convert($input->spec->origin);
         $buffer .= $arg0;
         
     $buffer .= ')';

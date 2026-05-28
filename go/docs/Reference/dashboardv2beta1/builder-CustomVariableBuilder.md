@@ -78,6 +78,12 @@ func (builder *CustomVariableBuilder) Name(name string) *CustomVariableBuilder
 func (builder *CustomVariableBuilder) Options(options []dashboardv2beta1.VariableOption) *CustomVariableBuilder
 ```
 
+### <span class="badge object-method"></span> Origin
+
+```go
+func (builder *CustomVariableBuilder) Origin(origin cog.Builder[dashboardv2beta1.ControlSourceRef]) *CustomVariableBuilder
+```
+
 ### <span class="badge object-method"></span> Query
 
 ```go
@@ -88,6 +94,12 @@ func (builder *CustomVariableBuilder) Query(query string) *CustomVariableBuilder
 
 ```go
 func (builder *CustomVariableBuilder) SkipUrlSync(skipUrlSync bool) *CustomVariableBuilder
+```
+
+### <span class="badge object-method"></span> ValuesFormat
+
+```go
+func (builder *CustomVariableBuilder) ValuesFormat(valuesFormat dashboardv2beta1.CustomVariableSpecValuesFormat) *CustomVariableBuilder
 ```
 
 ## See also

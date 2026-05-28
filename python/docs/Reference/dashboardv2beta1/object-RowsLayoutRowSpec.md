@@ -14,6 +14,7 @@ class RowsLayoutRowSpec:
     conditional_rendering: typing.Optional[dashboardv2beta1.ConditionalRenderingGroupKind]
     repeat: typing.Optional[dashboardv2beta1.RowRepeatOptions]
     layout: typing.Union[dashboardv2beta1.GridLayoutKind, dashboardv2beta1.AutoGridLayoutKind, dashboardv2beta1.TabsLayoutKind, dashboardv2beta1.RowsLayoutKind]
+    variables: typing.Optional[list[dashboardv2beta1.VariableKind]]
 ```
 ## Methods
 

@@ -54,6 +54,12 @@ Specifies the query label selectors.
 labelSelector(labelSelector: string)
 ```
 
+### <span class="badge object-method"></span> labels
+
+```typescript
+labels(labels: Record<string, string>)
+```
+
 ### <span class="badge object-method"></span> limit
 
 Sets the maximum number of time series.

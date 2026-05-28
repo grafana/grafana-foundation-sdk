@@ -50,6 +50,12 @@ def csv_file_name(csv_file_name: str) -> typing.Self
 def csv_wave(csv_wave: list[cogbuilder.Builder[testdata.CSVWave]]) -> typing.Self
 ```
 
+### <span class="badge object-method"></span> dataquery_labels
+
+```python
+def dataquery_labels(labels: str) -> typing.Self
+```
+
 ### <span class="badge object-method"></span> datasource
 
 New type for datasource reference
@@ -127,7 +133,7 @@ def interval_ms(interval_ms: float) -> typing.Self
 ### <span class="badge object-method"></span> labels
 
 ```python
-def labels(labels: str) -> typing.Self
+def labels(labels: dict[str, str]) -> typing.Self
 ```
 
 ### <span class="badge object-method"></span> level_column

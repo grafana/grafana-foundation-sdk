@@ -30,7 +30,7 @@ class IntervalVariableKind implements \JsonSerializable
         $data = $inputData;
         return new self(
             spec: isset($data["spec"]) ? (function($input) {
-    	/** @var array{name?: string, query?: string, current?: mixed, options?: array<mixed>, auto?: bool, auto_min?: string, auto_count?: int, refresh?: string, label?: string, hide?: string, skipUrlSync?: bool, description?: string} */
+    	/** @var array{name?: string, query?: string, current?: mixed, options?: array<mixed>, auto?: bool, auto_min?: string, auto_count?: int, refresh?: string, label?: string, hide?: string, skipUrlSync?: bool, description?: string, origin?: mixed} */
     $val = $input;
     	return \Grafana\Foundation\Dashboardv2beta1\IntervalVariableSpec::fromArray($val);
     })($data["spec"]) : null,

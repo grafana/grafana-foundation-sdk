@@ -540,6 +540,9 @@ export class PanelBuilder implements cog.Builder<dashboard.Panel> {
         if (!this.internal.options) {
             this.internal.options = heatmap.defaultOptions();
         }
+        if (!(cellGap >= 0)) {
+            throw new Error("cellGap must be >= 0");
+        }
         if (!(cellGap <= 25)) {
             throw new Error("cellGap must be <= 25");
         }

@@ -58,7 +58,14 @@
           "description": "QueryType is an optional identifier for the type of query.\nIt can be used to distinguish different types of queries."
         },
         "refId": {
-          "type": "string",
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
           "description": "RefID is the unique identifier of the query, set by the frontend call."
         },
         "resultAssertions": {
@@ -174,7 +181,14 @@
           "description": "The reducer\nPossible enum values:\n - `\"sum\"` \n - `\"mean\"` \n - `\"min\"` \n - `\"max\"` \n - `\"count\"` \n - `\"last\"` \n - `\"median\"` "
         },
         "refId": {
-          "type": "string",
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
           "description": "RefID is the unique identifier of the query, set by the frontend call."
         },
         "resultAssertions": {
@@ -314,7 +328,14 @@
           "description": "QueryType is an optional identifier for the type of query.\nIt can be used to distinguish different types of queries."
         },
         "refId": {
-          "type": "string",
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
           "description": "RefID is the unique identifier of the query, set by the frontend call."
         },
         "resultAssertions": {
@@ -504,7 +525,14 @@
           "description": "QueryType is an optional identifier for the type of query.\nIt can be used to distinguish different types of queries."
         },
         "refId": {
-          "type": "string",
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
           "description": "RefID is the unique identifier of the query, set by the frontend call."
         },
         "resultAssertions": {
@@ -688,7 +716,14 @@
           "description": "QueryType is an optional identifier for the type of query.\nIt can be used to distinguish different types of queries."
         },
         "refId": {
-          "type": "string",
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
           "description": "RefID is the unique identifier of the query, set by the frontend call."
         },
         "resultAssertions": {
@@ -793,7 +828,14 @@
           "description": "QueryType is an optional identifier for the type of query.\nIt can be used to distinguish different types of queries."
         },
         "refId": {
-          "type": "string",
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
           "description": "RefID is the unique identifier of the query, set by the frontend call."
         },
         "resultAssertions": {
@@ -866,22 +908,64 @@
       "additionalProperties": false,
       "properties": {
         "TypeMath": {
-          "$ref": "#/definitions/TypeMath"
+          "anyOf": [
+            {
+              "$ref": "#/definitions/TypeMath"
+            },
+            {
+              "type": "null"
+            }
+          ]
         },
         "TypeReduce": {
-          "$ref": "#/definitions/TypeReduce"
+          "anyOf": [
+            {
+              "$ref": "#/definitions/TypeReduce"
+            },
+            {
+              "type": "null"
+            }
+          ]
         },
         "TypeResample": {
-          "$ref": "#/definitions/TypeResample"
+          "anyOf": [
+            {
+              "$ref": "#/definitions/TypeResample"
+            },
+            {
+              "type": "null"
+            }
+          ]
         },
         "TypeClassicConditions": {
-          "$ref": "#/definitions/TypeClassicConditions"
+          "anyOf": [
+            {
+              "$ref": "#/definitions/TypeClassicConditions"
+            },
+            {
+              "type": "null"
+            }
+          ]
         },
         "TypeThreshold": {
-          "$ref": "#/definitions/TypeThreshold"
+          "anyOf": [
+            {
+              "$ref": "#/definitions/TypeThreshold"
+            },
+            {
+              "type": "null"
+            }
+          ]
         },
         "TypeSql": {
-          "$ref": "#/definitions/TypeSql"
+          "anyOf": [
+            {
+              "$ref": "#/definitions/TypeSql"
+            },
+            {
+              "type": "null"
+            }
+          ]
         }
       }
     },

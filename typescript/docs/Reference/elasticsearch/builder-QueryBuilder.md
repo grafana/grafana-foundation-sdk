@@ -54,6 +54,12 @@ If hide is set to true, Grafana will filter out the response(s) associated with 
 hide(hide: boolean)
 ```
 
+### <span class="badge object-method"></span> labels
+
+```typescript
+labels(labels: Record<string, string>)
+```
+
 ### <span class="badge object-method"></span> metrics
 
 List of metric aggregations

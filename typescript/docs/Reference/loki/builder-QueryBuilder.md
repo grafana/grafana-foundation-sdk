@@ -66,6 +66,12 @@ hide(hide: boolean)
 instant(instant: boolean)
 ```
 
+### <span class="badge object-method"></span> labels
+
+```typescript
+labels(labels: Record<string, string>)
+```
+
 ### <span class="badge object-method"></span> legendFormat
 
 Used to override the name of the series.

@@ -24,6 +24,8 @@ class TextVariableSpec implements \JsonSerializable
 
     public ?string $description;
 
+    public ?\Grafana\Foundation\Dashboardv2beta1\ControlSourceRef $origin;
+
 }
 ```
 ## Methods

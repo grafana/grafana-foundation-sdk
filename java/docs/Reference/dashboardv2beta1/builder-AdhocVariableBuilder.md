@@ -48,6 +48,14 @@ public AdhocVariableBuilder defaultKeys(List<com.grafana.foundation.cog.Builder<
 public AdhocVariableBuilder description(String description)
 ```
 
+### <span class="badge object-method"></span> enableGroupBy
+
+Whether the group-by operator is enabled in the ad hoc filter combobox.
+
+```java
+public AdhocVariableBuilder enableGroupBy(Boolean enableGroupBy)
+```
+
 ### <span class="badge object-method"></span> filters
 
 ```java
@@ -72,10 +80,22 @@ public AdhocVariableBuilder hide(VariableHide hide)
 public AdhocVariableBuilder label(String label)
 ```
 
+### <span class="badge object-method"></span> labels
+
+```java
+public AdhocVariableBuilder labels(Map<String, String> labels)
+```
+
 ### <span class="badge object-method"></span> name
 
 ```java
 public AdhocVariableBuilder name(String name)
+```
+
+### <span class="badge object-method"></span> origin
+
+```java
+public AdhocVariableBuilder origin(com.grafana.foundation.cog.Builder<ControlSourceRef> origin)
 ```
 
 ### <span class="badge object-method"></span> skipUrlSync

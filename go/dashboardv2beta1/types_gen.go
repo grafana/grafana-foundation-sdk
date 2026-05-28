@@ -573,6 +573,8 @@ type AnnotationQuerySpec struct {
 	Filter    *AnnotationPanelFilter `json:"filter,omitempty"`
 	// Placement can be used to display the annotation query somewhere else on the dashboard other than the default location.
 	Placement *string `json:"placement,omitempty"`
+	// Mappings define how to convert data frame fields to annotation event fields.
+	Mappings map[string]AnnotationEventFieldMapping `json:"mappings,omitempty"`
 	// Catch-all field for datasource-specific properties. Should not be available in as code tooling.
 	LegacyOptions map[string]any `json:"legacyOptions,omitempty"`
 }
@@ -705,6 +707,30 @@ func (resource *AnnotationQuerySpec) UnmarshalJSONStrict(raw []byte) error {
 		delete(fields, "placement")
 
 	}
+	// Field "mappings"
+	if fields["mappings"] != nil {
+		if string(fields["mappings"]) != "null" {
+
+			partialMap := make(map[string]json.RawMessage)
+			if err := json.Unmarshal(fields["mappings"], &partialMap); err != nil {
+				return err
+			}
+			parsedMap1 := make(map[string]AnnotationEventFieldMapping, len(partialMap))
+			for key1 := range partialMap {
+				var result1 AnnotationEventFieldMapping
+
+				result1 = AnnotationEventFieldMapping{}
+				if err := result1.UnmarshalJSONStrict(partialMap[key1]); err != nil {
+					errs = append(errs, cog.MakeBuildErrors("mappings["+key1+"]", err)...)
+				}
+				parsedMap1[key1] = result1
+			}
+			resource.Mappings = parsedMap1
+
+		}
+		delete(fields, "mappings")
+
+	}
 	// Field "legacyOptions"
 	if fields["legacyOptions"] != nil {
 		if string(fields["legacyOptions"]) != "null" {
@@ -774,6 +800,16 @@ func (resource AnnotationQuerySpec) Equals(other AnnotationQuerySpec) bool {
 		}
 	}
 
+	if len(resource.Mappings) != len(other.Mappings) {
+		return false
+	}
+
+	for key1 := range resource.Mappings {
+		if !resource.Mappings[key1].Equals(other.Mappings[key1]) {
+			return false
+		}
+	}
+
 	if len(resource.LegacyOptions) != len(other.LegacyOptions) {
 		return false
 	}
@@ -800,6 +836,12 @@ func (resource AnnotationQuerySpec) Validate() error {
 		}
 	}
 
+	for key1 := range resource.Mappings {
+		if err := resource.Mappings[key1].Validate(); err != nil {
+			errs = append(errs, cog.MakeBuildErrors("mappings["+key1+"]", err)...)
+		}
+	}
+
 	if len(errs) == 0 {
 		return nil
 	}
@@ -808,9 +850,10 @@ func (resource AnnotationQuerySpec) Validate() error {
 }
 
 type DataQueryKind struct {
-	Kind    string `json:"kind"`
-	Group   string `json:"group"`
-	Version string `json:"version"`
+	Kind    string            `json:"kind"`
+	Group   string            `json:"group"`
+	Version string            `json:"version"`
+	Labels  map[string]string `json:"labels,omitempty"`
 	// New type for datasource reference
 	// Not creating a new type until we figure out how to handle DS refs for group by, adhoc, and every place that uses DataSourceRef in TS.
 	Datasource *Dashboardv2beta1DataQueryKindDatasource `json:"datasource,omitempty"`
@@ -846,6 +889,11 @@ func (resource *DataQueryKind) UnmarshalJSON(raw []byte) error {
 	if fields["version"] != nil {
 		if err := json.Unmarshal(fields["version"], &resource.Version); err != nil {
 			return fmt.Errorf("error decoding field 'version': %w", err)
+		}
+	}
+	if fields["labels"] != nil {
+		if err := json.Unmarshal(fields["labels"], &resource.Labels); err != nil {
+			return fmt.Errorf("error decoding field 'labels': %w", err)
 		}
 	}
 	if fields["datasource"] != nil {
@@ -918,6 +966,18 @@ func (resource *DataQueryKind) UnmarshalJSONStrict(raw []byte) error {
 		delete(fields, "version")
 
 	}
+	// Field "labels"
+	if fields["labels"] != nil {
+		if string(fields["labels"]) != "null" {
+
+			if err := json.Unmarshal(fields["labels"], &resource.Labels); err != nil {
+				errs = append(errs, cog.MakeBuildErrors("labels", err)...)
+			}
+
+		}
+		delete(fields, "labels")
+
+	}
 	// Field "datasource"
 	if fields["datasource"] != nil {
 		if string(fields["datasource"]) != "null" {
@@ -968,6 +1028,16 @@ func (resource DataQueryKind) Equals(other DataQueryKind) bool {
 	}
 	if resource.Version != other.Version {
 		return false
+	}
+
+	if len(resource.Labels) != len(other.Labels) {
+		return false
+	}
+
+	for key1 := range resource.Labels {
+		if resource.Labels[key1] != other.Labels[key1] {
+			return false
+		}
 	}
 	if resource.Datasource == nil && other.Datasource != nil || resource.Datasource != nil && other.Datasource == nil {
 		return false
@@ -1100,6 +1170,118 @@ func (resource AnnotationPanelFilter) Validate() error {
 // Annotation Query placement. Defines where the annotation query should be displayed.
 // - "inControlsMenu" renders the annotation query in the dashboard controls dropdown menu
 const AnnotationQueryPlacement = "inControlsMenu"
+
+// Annotation event field mapping. Defines how to map a data frame field to an annotation event field.
+type AnnotationEventFieldMapping struct {
+	// Source type for the field value
+	Source *string `json:"source,omitempty"`
+	// Constant value to use when source is "text"
+	Value *string `json:"value,omitempty"`
+	// Regular expression to apply to the field value
+	Regex *string `json:"regex,omitempty"`
+}
+
+// NewAnnotationEventFieldMapping creates a new AnnotationEventFieldMapping object.
+func NewAnnotationEventFieldMapping() *AnnotationEventFieldMapping {
+	return &AnnotationEventFieldMapping{
+		Source: (func(input string) *string { return &input })("field"),
+	}
+}
+
+// UnmarshalJSONStrict implements a custom JSON unmarshalling logic to decode `AnnotationEventFieldMapping` from JSON.
+// Note: the unmarshalling done by this function is strict. It will fail over required fields being absent from the input, fields having an incorrect type, unexpected fields being present, …
+func (resource *AnnotationEventFieldMapping) UnmarshalJSONStrict(raw []byte) error {
+	if raw == nil {
+		return nil
+	}
+	var errs cog.BuildErrors
+
+	fields := make(map[string]json.RawMessage)
+	if err := json.Unmarshal(raw, &fields); err != nil {
+		return err
+	}
+	// Field "source"
+	if fields["source"] != nil {
+		if string(fields["source"]) != "null" {
+			if err := json.Unmarshal(fields["source"], &resource.Source); err != nil {
+				errs = append(errs, cog.MakeBuildErrors("source", err)...)
+			}
+
+		}
+		delete(fields, "source")
+
+	}
+	// Field "value"
+	if fields["value"] != nil {
+		if string(fields["value"]) != "null" {
+			if err := json.Unmarshal(fields["value"], &resource.Value); err != nil {
+				errs = append(errs, cog.MakeBuildErrors("value", err)...)
+			}
+
+		}
+		delete(fields, "value")
+
+	}
+	// Field "regex"
+	if fields["regex"] != nil {
+		if string(fields["regex"]) != "null" {
+			if err := json.Unmarshal(fields["regex"], &resource.Regex); err != nil {
+				errs = append(errs, cog.MakeBuildErrors("regex", err)...)
+			}
+
+		}
+		delete(fields, "regex")
+
+	}
+
+	for field := range fields {
+		errs = append(errs, cog.MakeBuildErrors("AnnotationEventFieldMapping", fmt.Errorf("unexpected field '%s'", field))...)
+	}
+
+	if len(errs) == 0 {
+		return nil
+	}
+
+	return errs
+}
+
+// Equals tests the equality of two `AnnotationEventFieldMapping` objects.
+func (resource AnnotationEventFieldMapping) Equals(other AnnotationEventFieldMapping) bool {
+	if resource.Source == nil && other.Source != nil || resource.Source != nil && other.Source == nil {
+		return false
+	}
+
+	if resource.Source != nil {
+		if *resource.Source != *other.Source {
+			return false
+		}
+	}
+	if resource.Value == nil && other.Value != nil || resource.Value != nil && other.Value == nil {
+		return false
+	}
+
+	if resource.Value != nil {
+		if *resource.Value != *other.Value {
+			return false
+		}
+	}
+	if resource.Regex == nil && other.Regex != nil || resource.Regex != nil && other.Regex == nil {
+		return false
+	}
+
+	if resource.Regex != nil {
+		if *resource.Regex != *other.Regex {
+			return false
+		}
+	}
+
+	return true
+}
+
+// Validate checks all the validation constraints that may be defined on `AnnotationEventFieldMapping` fields for violations and returns them.
+func (resource AnnotationEventFieldMapping) Validate() error {
+	return nil
+}
 
 // "Off" for no shared crosshair or tooltip (default).
 // "Crosshair" for shared crosshair.
@@ -2252,6 +2434,8 @@ func (resource DataTransformerConfig) Validate() error {
 type MatcherConfig struct {
 	// The matcher id. This is used to find the matcher implementation from registry.
 	Id string `json:"id"`
+	// If set, limits this matcher to fields of that type. If not set, "series" mode is used.
+	Scope *MatcherScope `json:"scope,omitempty"`
 	// The matcher options. This is specific to the matcher implementation.
 	Options any `json:"options,omitempty"`
 }
@@ -2288,6 +2472,17 @@ func (resource *MatcherConfig) UnmarshalJSONStrict(raw []byte) error {
 		delete(fields, "id")
 
 	}
+	// Field "scope"
+	if fields["scope"] != nil {
+		if string(fields["scope"]) != "null" {
+			if err := json.Unmarshal(fields["scope"], &resource.Scope); err != nil {
+				errs = append(errs, cog.MakeBuildErrors("scope", err)...)
+			}
+
+		}
+		delete(fields, "scope")
+
+	}
 	// Field "options"
 	if fields["options"] != nil {
 		if string(fields["options"]) != "null" {
@@ -2316,6 +2511,15 @@ func (resource MatcherConfig) Equals(other MatcherConfig) bool {
 	if resource.Id != other.Id {
 		return false
 	}
+	if resource.Scope == nil && other.Scope != nil || resource.Scope != nil && other.Scope == nil {
+		return false
+	}
+
+	if resource.Scope != nil {
+		if *resource.Scope != *other.Scope {
+			return false
+		}
+	}
 	// is DeepEqual good enough here?
 	if !reflect.DeepEqual(resource.Options, other.Options) {
 		return false
@@ -2328,6 +2532,15 @@ func (resource MatcherConfig) Equals(other MatcherConfig) bool {
 func (resource MatcherConfig) Validate() error {
 	return nil
 }
+
+type MatcherScope string
+
+const (
+	MatcherScopeSeries     MatcherScope = "series"
+	MatcherScopeNested     MatcherScope = "nested"
+	MatcherScopeAnnotation MatcherScope = "annotation"
+	MatcherScopeExemplar   MatcherScope = "exemplar"
+)
 
 // A topic is attached to DataFrame metadata in query results.
 // This specifies where the data should be used.
@@ -3042,7 +3255,7 @@ type FieldConfig struct {
 	// True if data source field supports ad-hoc filters
 	Filterable *bool `json:"filterable,omitempty"`
 	// Unit a field should use. The unit you select is applied to all fields except time.
-	// You can use the units ID availables in Grafana or a custom unit.
+	// You can use the units ID available in Grafana or a custom unit.
 	// Available units in Grafana: https://github.com/grafana/grafana/blob/main/packages/grafana-data/src/valueFormats/categories.ts
 	// As custom unit, you can use the following formats:
 	// `suffix:<suffix>` for custom unit that should go after value.
@@ -3076,6 +3289,11 @@ type FieldConfig struct {
 	// custom is specified by the FieldConfig field
 	// in panel plugin schemas.
 	Custom any `json:"custom,omitempty"`
+	// Calculate min max per field
+	FieldMinMax *bool `json:"fieldMinMax,omitempty"`
+	// How null values should be handled when calculating field stats
+	// "null" - Include null values, "connected" - Ignore nulls, "null as zero" - Treat nulls as zero
+	NullValueMode *NullValueMode `json:"nullValueMode,omitempty"`
 }
 
 // NewFieldConfig creates a new FieldConfig object.
@@ -3311,6 +3529,28 @@ func (resource *FieldConfig) UnmarshalJSONStrict(raw []byte) error {
 		delete(fields, "custom")
 
 	}
+	// Field "fieldMinMax"
+	if fields["fieldMinMax"] != nil {
+		if string(fields["fieldMinMax"]) != "null" {
+			if err := json.Unmarshal(fields["fieldMinMax"], &resource.FieldMinMax); err != nil {
+				errs = append(errs, cog.MakeBuildErrors("fieldMinMax", err)...)
+			}
+
+		}
+		delete(fields, "fieldMinMax")
+
+	}
+	// Field "nullValueMode"
+	if fields["nullValueMode"] != nil {
+		if string(fields["nullValueMode"]) != "null" {
+			if err := json.Unmarshal(fields["nullValueMode"], &resource.NullValueMode); err != nil {
+				errs = append(errs, cog.MakeBuildErrors("nullValueMode", err)...)
+			}
+
+		}
+		delete(fields, "nullValueMode")
+
+	}
 
 	for field := range fields {
 		errs = append(errs, cog.MakeBuildErrors("FieldConfig", fmt.Errorf("unexpected field '%s'", field))...)
@@ -3476,6 +3716,24 @@ func (resource FieldConfig) Equals(other FieldConfig) bool {
 	// is DeepEqual good enough here?
 	if !reflect.DeepEqual(resource.Custom, other.Custom) {
 		return false
+	}
+	if resource.FieldMinMax == nil && other.FieldMinMax != nil || resource.FieldMinMax != nil && other.FieldMinMax == nil {
+		return false
+	}
+
+	if resource.FieldMinMax != nil {
+		if *resource.FieldMinMax != *other.FieldMinMax {
+			return false
+		}
+	}
+	if resource.NullValueMode == nil && other.NullValueMode != nil || resource.NullValueMode != nil && other.NullValueMode == nil {
+		return false
+	}
+
+	if resource.NullValueMode != nil {
+		if *resource.NullValueMode != *other.NullValueMode {
+			return false
+		}
 	}
 
 	return true
@@ -4216,8 +4474,9 @@ const (
 )
 
 type Threshold struct {
-	Value float64 `json:"value"`
-	Color string  `json:"color"`
+	// Value null means -Infinity
+	Value *float64 `json:"value"`
+	Color string   `json:"color"`
 }
 
 // NewThreshold creates a new Threshold object.
@@ -4243,8 +4502,6 @@ func (resource *Threshold) UnmarshalJSONStrict(raw []byte) error {
 			if err := json.Unmarshal(fields["value"], &resource.Value); err != nil {
 				errs = append(errs, cog.MakeBuildErrors("value", err)...)
 			}
-		} else {
-			errs = append(errs, cog.MakeBuildErrors("value", errors.New("required field is null"))...)
 
 		}
 		delete(fields, "value")
@@ -4279,8 +4536,14 @@ func (resource *Threshold) UnmarshalJSONStrict(raw []byte) error {
 
 // Equals tests the equality of two `Threshold` objects.
 func (resource Threshold) Equals(other Threshold) bool {
-	if resource.Value != other.Value {
+	if resource.Value == nil && other.Value != nil || resource.Value != nil && other.Value == nil {
 		return false
+	}
+
+	if resource.Value != nil {
+		if *resource.Value != *other.Value {
+			return false
+		}
 	}
 	if resource.Color != other.Color {
 		return false
@@ -4407,7 +4670,12 @@ func (resource FieldColor) Validate() error {
 // `thresholds`: From thresholds. Informs Grafana to take the color from the matching threshold
 // `palette-classic`: Classic palette. Grafana will assign color by looking up a color in a palette by series index. Useful for Graphs and pie charts and other categorical data visualizations
 // `palette-classic-by-name`: Classic palette (by name). Grafana will assign color by looking up a color in a palette by series name. Useful for Graphs and pie charts and other categorical data visualizations
-// `continuous-GrYlRd`: ontinuous Green-Yellow-Red palette mode
+// `continuous-viridis`: Continuous Viridis palette mode
+// `continuous-magma`: Continuous Magma palette mode
+// `continuous-plasma`: Continuous Plasma palette mode
+// `continuous-inferno`: Continuous Inferno palette mode
+// `continuous-cividis`: Continuous Cividis palette mode
+// `continuous-GrYlRd`: Continuous Green-Yellow-Red palette mode
 // `continuous-RdYlGr`: Continuous Red-Yellow-Green palette mode
 // `continuous-BlYlRd`: Continuous Blue-Yellow-Red palette mode
 // `continuous-YlRd`: Continuous Yellow-Red palette mode
@@ -4425,6 +4693,11 @@ const (
 	FieldColorModeIdThresholds           FieldColorModeId = "thresholds"
 	FieldColorModeIdPaletteClassic       FieldColorModeId = "palette-classic"
 	FieldColorModeIdPaletteClassicByName FieldColorModeId = "palette-classic-by-name"
+	FieldColorModeIdContinuousViridis    FieldColorModeId = "continuous-viridis"
+	FieldColorModeIdContinuousMagma      FieldColorModeId = "continuous-magma"
+	FieldColorModeIdContinuousPlasma     FieldColorModeId = "continuous-plasma"
+	FieldColorModeIdContinuousInferno    FieldColorModeId = "continuous-inferno"
+	FieldColorModeIdContinuousCividis    FieldColorModeId = "continuous-cividis"
 	FieldColorModeIdContinuousGrYlRd     FieldColorModeId = "continuous-GrYlRd"
 	FieldColorModeIdContinuousRdYlGr     FieldColorModeId = "continuous-RdYlGr"
 	FieldColorModeIdContinuousBlYlRd     FieldColorModeId = "continuous-BlYlRd"
@@ -5161,6 +5434,15 @@ func (resource ActionVariable) Validate() error {
 
 // Action variable type
 const ActionVariableType = "string"
+
+// How null values should be handled
+type NullValueMode string
+
+const (
+	NullValueModeNull       NullValueMode = "null"
+	NullValueModeConnected  NullValueMode = "connected"
+	NullValueModeNullAsZero NullValueMode = "null as zero"
+)
 
 type DynamicConfigValue struct {
 	Id    string `json:"id"`
@@ -6492,6 +6774,7 @@ type RowsLayoutRowSpec struct {
 	ConditionalRendering *ConditionalRenderingGroupKind                                     `json:"conditionalRendering,omitempty"`
 	Repeat               *RowRepeatOptions                                                  `json:"repeat,omitempty"`
 	Layout               GridLayoutKindOrAutoGridLayoutKindOrTabsLayoutKindOrRowsLayoutKind `json:"layout"`
+	Variables            []VariableKind                                                     `json:"variables,omitempty"`
 }
 
 // NewRowsLayoutRowSpec creates a new RowsLayoutRowSpec object.
@@ -6599,6 +6882,29 @@ func (resource *RowsLayoutRowSpec) UnmarshalJSONStrict(raw []byte) error {
 	} else {
 		errs = append(errs, cog.MakeBuildErrors("layout", errors.New("required field is missing from input"))...)
 	}
+	// Field "variables"
+	if fields["variables"] != nil {
+		if string(fields["variables"]) != "null" {
+
+			partialArray := []json.RawMessage{}
+			if err := json.Unmarshal(fields["variables"], &partialArray); err != nil {
+				return err
+			}
+
+			for i1 := range partialArray {
+				var result1 VariableKind
+
+				result1 = VariableKind{}
+				if err := result1.UnmarshalJSONStrict(partialArray[i1]); err != nil {
+					errs = append(errs, cog.MakeBuildErrors("variables["+strconv.Itoa(i1)+"]", err)...)
+				}
+				resource.Variables = append(resource.Variables, result1)
+			}
+
+		}
+		delete(fields, "variables")
+
+	}
 
 	for field := range fields {
 		errs = append(errs, cog.MakeBuildErrors("RowsLayoutRowSpec", fmt.Errorf("unexpected field '%s'", field))...)
@@ -6671,6 +6977,16 @@ func (resource RowsLayoutRowSpec) Equals(other RowsLayoutRowSpec) bool {
 		return false
 	}
 
+	if len(resource.Variables) != len(other.Variables) {
+		return false
+	}
+
+	for i1 := range resource.Variables {
+		if !resource.Variables[i1].Equals(other.Variables[i1]) {
+			return false
+		}
+	}
+
 	return true
 }
 
@@ -6689,6 +7005,12 @@ func (resource RowsLayoutRowSpec) Validate() error {
 	}
 	if err := resource.Layout.Validate(); err != nil {
 		errs = append(errs, cog.MakeBuildErrors("layout", err)...)
+	}
+
+	for i1 := range resource.Variables {
+		if err := resource.Variables[i1].Validate(); err != nil {
+			errs = append(errs, cog.MakeBuildErrors("variables["+strconv.Itoa(i1)+"]", err)...)
+		}
 	}
 
 	if len(errs) == 0 {
@@ -8416,6 +8738,7 @@ type TabsLayoutTabSpec struct {
 	Layout               GridLayoutKindOrRowsLayoutKindOrAutoGridLayoutKindOrTabsLayoutKind `json:"layout"`
 	ConditionalRendering *ConditionalRenderingGroupKind                                     `json:"conditionalRendering,omitempty"`
 	Repeat               *TabRepeatOptions                                                  `json:"repeat,omitempty"`
+	Variables            []VariableKind                                                     `json:"variables,omitempty"`
 }
 
 // NewTabsLayoutTabSpec creates a new TabsLayoutTabSpec object.
@@ -8490,6 +8813,29 @@ func (resource *TabsLayoutTabSpec) UnmarshalJSONStrict(raw []byte) error {
 		delete(fields, "repeat")
 
 	}
+	// Field "variables"
+	if fields["variables"] != nil {
+		if string(fields["variables"]) != "null" {
+
+			partialArray := []json.RawMessage{}
+			if err := json.Unmarshal(fields["variables"], &partialArray); err != nil {
+				return err
+			}
+
+			for i1 := range partialArray {
+				var result1 VariableKind
+
+				result1 = VariableKind{}
+				if err := result1.UnmarshalJSONStrict(partialArray[i1]); err != nil {
+					errs = append(errs, cog.MakeBuildErrors("variables["+strconv.Itoa(i1)+"]", err)...)
+				}
+				resource.Variables = append(resource.Variables, result1)
+			}
+
+		}
+		delete(fields, "variables")
+
+	}
 
 	for field := range fields {
 		errs = append(errs, cog.MakeBuildErrors("TabsLayoutTabSpec", fmt.Errorf("unexpected field '%s'", field))...)
@@ -8535,6 +8881,16 @@ func (resource TabsLayoutTabSpec) Equals(other TabsLayoutTabSpec) bool {
 		}
 	}
 
+	if len(resource.Variables) != len(other.Variables) {
+		return false
+	}
+
+	for i1 := range resource.Variables {
+		if !resource.Variables[i1].Equals(other.Variables[i1]) {
+			return false
+		}
+	}
+
 	return true
 }
 
@@ -8552,6 +8908,12 @@ func (resource TabsLayoutTabSpec) Validate() error {
 	if resource.Repeat != nil {
 		if err := resource.Repeat.Validate(); err != nil {
 			errs = append(errs, cog.MakeBuildErrors("repeat", err)...)
+		}
+	}
+
+	for i1 := range resource.Variables {
+		if err := resource.Variables[i1].Validate(); err != nil {
+			errs = append(errs, cog.MakeBuildErrors("variables["+strconv.Itoa(i1)+"]", err)...)
 		}
 	}
 
@@ -8650,676 +9012,6 @@ func (resource TabRepeatOptions) Validate() error {
 	}
 
 	return errs
-}
-
-// Links with references to other dashboards or external resources
-type DashboardLink struct {
-	// Title to display with the link
-	Title string `json:"title"`
-	// Link type. Accepted values are dashboards (to refer to another dashboard) and link (to refer to an external resource)
-	// FIXME: The type is generated as `type: DashboardLinkType | dashboardLinkType.Link;` but it should be `type: DashboardLinkType`
-	Type DashboardLinkType `json:"type"`
-	// Icon name to be displayed with the link
-	Icon string `json:"icon"`
-	// Tooltip to display when the user hovers their mouse over it
-	Tooltip string `json:"tooltip"`
-	// Link URL. Only required/valid if the type is link
-	Url *string `json:"url,omitempty"`
-	// List of tags to limit the linked dashboards. If empty, all dashboards will be displayed. Only valid if the type is dashboards
-	Tags []string `json:"tags"`
-	// If true, all dashboards links will be displayed in a dropdown. If false, all dashboards links will be displayed side by side. Only valid if the type is dashboards
-	AsDropdown bool `json:"asDropdown"`
-	// If true, the link will be opened in a new tab
-	TargetBlank bool `json:"targetBlank"`
-	// If true, includes current template variables values in the link as query params
-	IncludeVars bool `json:"includeVars"`
-	// If true, includes current time range in the link as query params
-	KeepTime bool `json:"keepTime"`
-	// Placement can be used to display the link somewhere else on the dashboard other than above the visualisations.
-	Placement *string `json:"placement,omitempty"`
-}
-
-// NewDashboardLink creates a new DashboardLink object.
-func NewDashboardLink() *DashboardLink {
-	return &DashboardLink{
-		Tags:        []string{},
-		AsDropdown:  false,
-		TargetBlank: false,
-		IncludeVars: false,
-		KeepTime:    false,
-		Placement:   (func(input string) *string { return &input })(DashboardLinkPlacement),
-	}
-}
-
-// UnmarshalJSONStrict implements a custom JSON unmarshalling logic to decode `DashboardLink` from JSON.
-// Note: the unmarshalling done by this function is strict. It will fail over required fields being absent from the input, fields having an incorrect type, unexpected fields being present, …
-func (resource *DashboardLink) UnmarshalJSONStrict(raw []byte) error {
-	if raw == nil {
-		return nil
-	}
-	var errs cog.BuildErrors
-
-	fields := make(map[string]json.RawMessage)
-	if err := json.Unmarshal(raw, &fields); err != nil {
-		return err
-	}
-	// Field "title"
-	if fields["title"] != nil {
-		if string(fields["title"]) != "null" {
-			if err := json.Unmarshal(fields["title"], &resource.Title); err != nil {
-				errs = append(errs, cog.MakeBuildErrors("title", err)...)
-			}
-		} else {
-			errs = append(errs, cog.MakeBuildErrors("title", errors.New("required field is null"))...)
-
-		}
-		delete(fields, "title")
-	} else {
-		errs = append(errs, cog.MakeBuildErrors("title", errors.New("required field is missing from input"))...)
-	}
-	// Field "type"
-	if fields["type"] != nil {
-		if string(fields["type"]) != "null" {
-			if err := json.Unmarshal(fields["type"], &resource.Type); err != nil {
-				errs = append(errs, cog.MakeBuildErrors("type", err)...)
-			}
-		} else {
-			errs = append(errs, cog.MakeBuildErrors("type", errors.New("required field is null"))...)
-
-		}
-		delete(fields, "type")
-	} else {
-		errs = append(errs, cog.MakeBuildErrors("type", errors.New("required field is missing from input"))...)
-	}
-	// Field "icon"
-	if fields["icon"] != nil {
-		if string(fields["icon"]) != "null" {
-			if err := json.Unmarshal(fields["icon"], &resource.Icon); err != nil {
-				errs = append(errs, cog.MakeBuildErrors("icon", err)...)
-			}
-		} else {
-			errs = append(errs, cog.MakeBuildErrors("icon", errors.New("required field is null"))...)
-
-		}
-		delete(fields, "icon")
-	} else {
-		errs = append(errs, cog.MakeBuildErrors("icon", errors.New("required field is missing from input"))...)
-	}
-	// Field "tooltip"
-	if fields["tooltip"] != nil {
-		if string(fields["tooltip"]) != "null" {
-			if err := json.Unmarshal(fields["tooltip"], &resource.Tooltip); err != nil {
-				errs = append(errs, cog.MakeBuildErrors("tooltip", err)...)
-			}
-		} else {
-			errs = append(errs, cog.MakeBuildErrors("tooltip", errors.New("required field is null"))...)
-
-		}
-		delete(fields, "tooltip")
-	} else {
-		errs = append(errs, cog.MakeBuildErrors("tooltip", errors.New("required field is missing from input"))...)
-	}
-	// Field "url"
-	if fields["url"] != nil {
-		if string(fields["url"]) != "null" {
-			if err := json.Unmarshal(fields["url"], &resource.Url); err != nil {
-				errs = append(errs, cog.MakeBuildErrors("url", err)...)
-			}
-
-		}
-		delete(fields, "url")
-
-	}
-	// Field "tags"
-	if fields["tags"] != nil {
-		if string(fields["tags"]) != "null" {
-
-			if err := json.Unmarshal(fields["tags"], &resource.Tags); err != nil {
-				errs = append(errs, cog.MakeBuildErrors("tags", err)...)
-			}
-		} else {
-			errs = append(errs, cog.MakeBuildErrors("tags", errors.New("required field is null"))...)
-
-		}
-		delete(fields, "tags")
-	} else {
-		errs = append(errs, cog.MakeBuildErrors("tags", errors.New("required field is missing from input"))...)
-	}
-	// Field "asDropdown"
-	if fields["asDropdown"] != nil {
-		if string(fields["asDropdown"]) != "null" {
-			if err := json.Unmarshal(fields["asDropdown"], &resource.AsDropdown); err != nil {
-				errs = append(errs, cog.MakeBuildErrors("asDropdown", err)...)
-			}
-		} else {
-			errs = append(errs, cog.MakeBuildErrors("asDropdown", errors.New("required field is null"))...)
-
-		}
-		delete(fields, "asDropdown")
-
-	}
-	// Field "targetBlank"
-	if fields["targetBlank"] != nil {
-		if string(fields["targetBlank"]) != "null" {
-			if err := json.Unmarshal(fields["targetBlank"], &resource.TargetBlank); err != nil {
-				errs = append(errs, cog.MakeBuildErrors("targetBlank", err)...)
-			}
-		} else {
-			errs = append(errs, cog.MakeBuildErrors("targetBlank", errors.New("required field is null"))...)
-
-		}
-		delete(fields, "targetBlank")
-
-	}
-	// Field "includeVars"
-	if fields["includeVars"] != nil {
-		if string(fields["includeVars"]) != "null" {
-			if err := json.Unmarshal(fields["includeVars"], &resource.IncludeVars); err != nil {
-				errs = append(errs, cog.MakeBuildErrors("includeVars", err)...)
-			}
-		} else {
-			errs = append(errs, cog.MakeBuildErrors("includeVars", errors.New("required field is null"))...)
-
-		}
-		delete(fields, "includeVars")
-
-	}
-	// Field "keepTime"
-	if fields["keepTime"] != nil {
-		if string(fields["keepTime"]) != "null" {
-			if err := json.Unmarshal(fields["keepTime"], &resource.KeepTime); err != nil {
-				errs = append(errs, cog.MakeBuildErrors("keepTime", err)...)
-			}
-		} else {
-			errs = append(errs, cog.MakeBuildErrors("keepTime", errors.New("required field is null"))...)
-
-		}
-		delete(fields, "keepTime")
-
-	}
-	// Field "placement"
-	if fields["placement"] != nil {
-		if string(fields["placement"]) != "null" {
-			if err := json.Unmarshal(fields["placement"], &resource.Placement); err != nil {
-				errs = append(errs, cog.MakeBuildErrors("placement", err)...)
-			}
-
-		}
-		delete(fields, "placement")
-
-	}
-
-	for field := range fields {
-		errs = append(errs, cog.MakeBuildErrors("DashboardLink", fmt.Errorf("unexpected field '%s'", field))...)
-	}
-
-	if len(errs) == 0 {
-		return nil
-	}
-
-	return errs
-}
-
-// Equals tests the equality of two `DashboardLink` objects.
-func (resource DashboardLink) Equals(other DashboardLink) bool {
-	if resource.Title != other.Title {
-		return false
-	}
-	if resource.Type != other.Type {
-		return false
-	}
-	if resource.Icon != other.Icon {
-		return false
-	}
-	if resource.Tooltip != other.Tooltip {
-		return false
-	}
-	if resource.Url == nil && other.Url != nil || resource.Url != nil && other.Url == nil {
-		return false
-	}
-
-	if resource.Url != nil {
-		if *resource.Url != *other.Url {
-			return false
-		}
-	}
-
-	if len(resource.Tags) != len(other.Tags) {
-		return false
-	}
-
-	for i1 := range resource.Tags {
-		if resource.Tags[i1] != other.Tags[i1] {
-			return false
-		}
-	}
-	if resource.AsDropdown != other.AsDropdown {
-		return false
-	}
-	if resource.TargetBlank != other.TargetBlank {
-		return false
-	}
-	if resource.IncludeVars != other.IncludeVars {
-		return false
-	}
-	if resource.KeepTime != other.KeepTime {
-		return false
-	}
-	if resource.Placement == nil && other.Placement != nil || resource.Placement != nil && other.Placement == nil {
-		return false
-	}
-
-	if resource.Placement != nil {
-		if *resource.Placement != *other.Placement {
-			return false
-		}
-	}
-
-	return true
-}
-
-// Validate checks all the validation constraints that may be defined on `DashboardLink` fields for violations and returns them.
-func (resource DashboardLink) Validate() error {
-	return nil
-}
-
-// Dashboard Link type. Accepted values are dashboards (to refer to another dashboard) and link (to refer to an external resource)
-type DashboardLinkType string
-
-const (
-	DashboardLinkTypeLink       DashboardLinkType = "link"
-	DashboardLinkTypeDashboards DashboardLinkType = "dashboards"
-)
-
-// Dashboard Link placement. Defines where the link should be displayed.
-// - "inControlsMenu" renders the link in bottom part of the dashboard controls dropdown menu
-const DashboardLinkPlacement = "inControlsMenu"
-
-// Time configuration
-// It defines the default time config for the time picker, the refresh picker for the specific dashboard.
-type TimeSettingsSpec struct {
-	// Timezone of dashboard. Accepted values are IANA TZDB zone ID or "browser" or "utc".
-	Timezone *string `json:"timezone,omitempty"`
-	// Start time range for dashboard.
-	// Accepted values are relative time strings like "now-6h" or absolute time strings like "2020-07-10T08:00:00.000Z".
-	From string `json:"from"`
-	// End time range for dashboard.
-	// Accepted values are relative time strings like "now-6h" or absolute time strings like "2020-07-10T08:00:00.000Z".
-	To string `json:"to"`
-	// Refresh rate of dashboard. Represented via interval string, e.g. "5s", "1m", "1h", "1d".
-	// v1: refresh
-	AutoRefresh string `json:"autoRefresh"`
-	// Interval options available in the refresh picker dropdown.
-	// v1: timepicker.refresh_intervals
-	AutoRefreshIntervals []string `json:"autoRefreshIntervals"`
-	// Selectable options available in the time picker dropdown. Has no effect on provisioned dashboard.
-	// v1: timepicker.quick_ranges , not exposed in the UI
-	QuickRanges []TimeRangeOption `json:"quickRanges,omitempty"`
-	// Whether timepicker is visible or not.
-	// v1: timepicker.hidden
-	HideTimepicker bool `json:"hideTimepicker"`
-	// Day when the week starts. Expressed by the name of the day in lowercase, e.g. "monday".
-	WeekStart *TimeSettingsSpecWeekStart `json:"weekStart,omitempty"`
-	// The month that the fiscal year starts on. 0 = January, 11 = December
-	FiscalYearStartMonth int64 `json:"fiscalYearStartMonth"`
-	// Override the now time by entering a time delay. Use this option to accommodate known delays in data aggregation to avoid null values.
-	// v1: timepicker.nowDelay
-	NowDelay *string `json:"nowDelay,omitempty"`
-}
-
-// NewTimeSettingsSpec creates a new TimeSettingsSpec object.
-func NewTimeSettingsSpec() *TimeSettingsSpec {
-	return &TimeSettingsSpec{
-		Timezone:             (func(input string) *string { return &input })("browser"),
-		From:                 "now-6h",
-		To:                   "now",
-		AutoRefresh:          "",
-		AutoRefreshIntervals: []string{"5s", "10s", "30s", "1m", "5m", "15m", "30m", "1h", "2h", "1d"},
-		HideTimepicker:       false,
-		FiscalYearStartMonth: 0,
-	}
-}
-
-// UnmarshalJSONStrict implements a custom JSON unmarshalling logic to decode `TimeSettingsSpec` from JSON.
-// Note: the unmarshalling done by this function is strict. It will fail over required fields being absent from the input, fields having an incorrect type, unexpected fields being present, …
-func (resource *TimeSettingsSpec) UnmarshalJSONStrict(raw []byte) error {
-	if raw == nil {
-		return nil
-	}
-	var errs cog.BuildErrors
-
-	fields := make(map[string]json.RawMessage)
-	if err := json.Unmarshal(raw, &fields); err != nil {
-		return err
-	}
-	// Field "timezone"
-	if fields["timezone"] != nil {
-		if string(fields["timezone"]) != "null" {
-			if err := json.Unmarshal(fields["timezone"], &resource.Timezone); err != nil {
-				errs = append(errs, cog.MakeBuildErrors("timezone", err)...)
-			}
-
-		}
-		delete(fields, "timezone")
-
-	}
-	// Field "from"
-	if fields["from"] != nil {
-		if string(fields["from"]) != "null" {
-			if err := json.Unmarshal(fields["from"], &resource.From); err != nil {
-				errs = append(errs, cog.MakeBuildErrors("from", err)...)
-			}
-		} else {
-			errs = append(errs, cog.MakeBuildErrors("from", errors.New("required field is null"))...)
-
-		}
-		delete(fields, "from")
-
-	}
-	// Field "to"
-	if fields["to"] != nil {
-		if string(fields["to"]) != "null" {
-			if err := json.Unmarshal(fields["to"], &resource.To); err != nil {
-				errs = append(errs, cog.MakeBuildErrors("to", err)...)
-			}
-		} else {
-			errs = append(errs, cog.MakeBuildErrors("to", errors.New("required field is null"))...)
-
-		}
-		delete(fields, "to")
-
-	}
-	// Field "autoRefresh"
-	if fields["autoRefresh"] != nil {
-		if string(fields["autoRefresh"]) != "null" {
-			if err := json.Unmarshal(fields["autoRefresh"], &resource.AutoRefresh); err != nil {
-				errs = append(errs, cog.MakeBuildErrors("autoRefresh", err)...)
-			}
-		} else {
-			errs = append(errs, cog.MakeBuildErrors("autoRefresh", errors.New("required field is null"))...)
-
-		}
-		delete(fields, "autoRefresh")
-
-	}
-	// Field "autoRefreshIntervals"
-	if fields["autoRefreshIntervals"] != nil {
-		if string(fields["autoRefreshIntervals"]) != "null" {
-
-			if err := json.Unmarshal(fields["autoRefreshIntervals"], &resource.AutoRefreshIntervals); err != nil {
-				errs = append(errs, cog.MakeBuildErrors("autoRefreshIntervals", err)...)
-			}
-		} else {
-			errs = append(errs, cog.MakeBuildErrors("autoRefreshIntervals", errors.New("required field is null"))...)
-
-		}
-		delete(fields, "autoRefreshIntervals")
-
-	}
-	// Field "quickRanges"
-	if fields["quickRanges"] != nil {
-		if string(fields["quickRanges"]) != "null" {
-
-			partialArray := []json.RawMessage{}
-			if err := json.Unmarshal(fields["quickRanges"], &partialArray); err != nil {
-				return err
-			}
-
-			for i1 := range partialArray {
-				var result1 TimeRangeOption
-
-				result1 = TimeRangeOption{}
-				if err := result1.UnmarshalJSONStrict(partialArray[i1]); err != nil {
-					errs = append(errs, cog.MakeBuildErrors("quickRanges["+strconv.Itoa(i1)+"]", err)...)
-				}
-				resource.QuickRanges = append(resource.QuickRanges, result1)
-			}
-
-		}
-		delete(fields, "quickRanges")
-
-	}
-	// Field "hideTimepicker"
-	if fields["hideTimepicker"] != nil {
-		if string(fields["hideTimepicker"]) != "null" {
-			if err := json.Unmarshal(fields["hideTimepicker"], &resource.HideTimepicker); err != nil {
-				errs = append(errs, cog.MakeBuildErrors("hideTimepicker", err)...)
-			}
-		} else {
-			errs = append(errs, cog.MakeBuildErrors("hideTimepicker", errors.New("required field is null"))...)
-
-		}
-		delete(fields, "hideTimepicker")
-
-	}
-	// Field "weekStart"
-	if fields["weekStart"] != nil {
-		if string(fields["weekStart"]) != "null" {
-			if err := json.Unmarshal(fields["weekStart"], &resource.WeekStart); err != nil {
-				errs = append(errs, cog.MakeBuildErrors("weekStart", err)...)
-			}
-
-		}
-		delete(fields, "weekStart")
-
-	}
-	// Field "fiscalYearStartMonth"
-	if fields["fiscalYearStartMonth"] != nil {
-		if string(fields["fiscalYearStartMonth"]) != "null" {
-			if err := json.Unmarshal(fields["fiscalYearStartMonth"], &resource.FiscalYearStartMonth); err != nil {
-				errs = append(errs, cog.MakeBuildErrors("fiscalYearStartMonth", err)...)
-			}
-		} else {
-			errs = append(errs, cog.MakeBuildErrors("fiscalYearStartMonth", errors.New("required field is null"))...)
-
-		}
-		delete(fields, "fiscalYearStartMonth")
-
-	}
-	// Field "nowDelay"
-	if fields["nowDelay"] != nil {
-		if string(fields["nowDelay"]) != "null" {
-			if err := json.Unmarshal(fields["nowDelay"], &resource.NowDelay); err != nil {
-				errs = append(errs, cog.MakeBuildErrors("nowDelay", err)...)
-			}
-
-		}
-		delete(fields, "nowDelay")
-
-	}
-
-	for field := range fields {
-		errs = append(errs, cog.MakeBuildErrors("TimeSettingsSpec", fmt.Errorf("unexpected field '%s'", field))...)
-	}
-
-	if len(errs) == 0 {
-		return nil
-	}
-
-	return errs
-}
-
-// Equals tests the equality of two `TimeSettingsSpec` objects.
-func (resource TimeSettingsSpec) Equals(other TimeSettingsSpec) bool {
-	if resource.Timezone == nil && other.Timezone != nil || resource.Timezone != nil && other.Timezone == nil {
-		return false
-	}
-
-	if resource.Timezone != nil {
-		if *resource.Timezone != *other.Timezone {
-			return false
-		}
-	}
-	if resource.From != other.From {
-		return false
-	}
-	if resource.To != other.To {
-		return false
-	}
-	if resource.AutoRefresh != other.AutoRefresh {
-		return false
-	}
-
-	if len(resource.AutoRefreshIntervals) != len(other.AutoRefreshIntervals) {
-		return false
-	}
-
-	for i1 := range resource.AutoRefreshIntervals {
-		if resource.AutoRefreshIntervals[i1] != other.AutoRefreshIntervals[i1] {
-			return false
-		}
-	}
-
-	if len(resource.QuickRanges) != len(other.QuickRanges) {
-		return false
-	}
-
-	for i1 := range resource.QuickRanges {
-		if !resource.QuickRanges[i1].Equals(other.QuickRanges[i1]) {
-			return false
-		}
-	}
-	if resource.HideTimepicker != other.HideTimepicker {
-		return false
-	}
-	if resource.WeekStart == nil && other.WeekStart != nil || resource.WeekStart != nil && other.WeekStart == nil {
-		return false
-	}
-
-	if resource.WeekStart != nil {
-		if *resource.WeekStart != *other.WeekStart {
-			return false
-		}
-	}
-	if resource.FiscalYearStartMonth != other.FiscalYearStartMonth {
-		return false
-	}
-	if resource.NowDelay == nil && other.NowDelay != nil || resource.NowDelay != nil && other.NowDelay == nil {
-		return false
-	}
-
-	if resource.NowDelay != nil {
-		if *resource.NowDelay != *other.NowDelay {
-			return false
-		}
-	}
-
-	return true
-}
-
-// Validate checks all the validation constraints that may be defined on `TimeSettingsSpec` fields for violations and returns them.
-func (resource TimeSettingsSpec) Validate() error {
-	var errs cog.BuildErrors
-
-	for i1 := range resource.QuickRanges {
-		if err := resource.QuickRanges[i1].Validate(); err != nil {
-			errs = append(errs, cog.MakeBuildErrors("quickRanges["+strconv.Itoa(i1)+"]", err)...)
-		}
-	}
-
-	if len(errs) == 0 {
-		return nil
-	}
-
-	return errs
-}
-
-type TimeRangeOption struct {
-	Display string `json:"display"`
-	From    string `json:"from"`
-	To      string `json:"to"`
-}
-
-// NewTimeRangeOption creates a new TimeRangeOption object.
-func NewTimeRangeOption() *TimeRangeOption {
-	return &TimeRangeOption{
-		Display: "Last 6 hours",
-		From:    "now-6h",
-		To:      "now",
-	}
-}
-
-// UnmarshalJSONStrict implements a custom JSON unmarshalling logic to decode `TimeRangeOption` from JSON.
-// Note: the unmarshalling done by this function is strict. It will fail over required fields being absent from the input, fields having an incorrect type, unexpected fields being present, …
-func (resource *TimeRangeOption) UnmarshalJSONStrict(raw []byte) error {
-	if raw == nil {
-		return nil
-	}
-	var errs cog.BuildErrors
-
-	fields := make(map[string]json.RawMessage)
-	if err := json.Unmarshal(raw, &fields); err != nil {
-		return err
-	}
-	// Field "display"
-	if fields["display"] != nil {
-		if string(fields["display"]) != "null" {
-			if err := json.Unmarshal(fields["display"], &resource.Display); err != nil {
-				errs = append(errs, cog.MakeBuildErrors("display", err)...)
-			}
-		} else {
-			errs = append(errs, cog.MakeBuildErrors("display", errors.New("required field is null"))...)
-
-		}
-		delete(fields, "display")
-
-	}
-	// Field "from"
-	if fields["from"] != nil {
-		if string(fields["from"]) != "null" {
-			if err := json.Unmarshal(fields["from"], &resource.From); err != nil {
-				errs = append(errs, cog.MakeBuildErrors("from", err)...)
-			}
-		} else {
-			errs = append(errs, cog.MakeBuildErrors("from", errors.New("required field is null"))...)
-
-		}
-		delete(fields, "from")
-
-	}
-	// Field "to"
-	if fields["to"] != nil {
-		if string(fields["to"]) != "null" {
-			if err := json.Unmarshal(fields["to"], &resource.To); err != nil {
-				errs = append(errs, cog.MakeBuildErrors("to", err)...)
-			}
-		} else {
-			errs = append(errs, cog.MakeBuildErrors("to", errors.New("required field is null"))...)
-
-		}
-		delete(fields, "to")
-
-	}
-
-	for field := range fields {
-		errs = append(errs, cog.MakeBuildErrors("TimeRangeOption", fmt.Errorf("unexpected field '%s'", field))...)
-	}
-
-	if len(errs) == 0 {
-		return nil
-	}
-
-	return errs
-}
-
-// Equals tests the equality of two `TimeRangeOption` objects.
-func (resource TimeRangeOption) Equals(other TimeRangeOption) bool {
-	if resource.Display != other.Display {
-		return false
-	}
-	if resource.From != other.From {
-		return false
-	}
-	if resource.To != other.To {
-		return false
-	}
-
-	return true
-}
-
-// Validate checks all the validation constraints that may be defined on `TimeRangeOption` fields for violations and returns them.
-func (resource TimeRangeOption) Validate() error {
-	return nil
 }
 
 type VariableKind = QueryVariableKindOrTextVariableKindOrConstantVariableKindOrDatasourceVariableKindOrIntervalVariableKindOrCustomVariableKindOrGroupByVariableKindOrAdhocVariableKindOrSwitchVariableKind
@@ -9434,6 +9126,7 @@ type QueryVariableSpec struct {
 	Description        *string                              `json:"description,omitempty"`
 	Query              DataQueryKind                        `json:"query"`
 	Regex              string                               `json:"regex"`
+	RegexApplyTo       *VariableRegexApplyTo                `json:"regexApplyTo,omitempty"`
 	Sort               VariableSort                         `json:"sort"`
 	Definition         *string                              `json:"definition,omitempty"`
 	Options            []VariableOption                     `json:"options"`
@@ -9444,6 +9137,7 @@ type QueryVariableSpec struct {
 	AllowCustomValue   bool                                 `json:"allowCustomValue"`
 	StaticOptions      []VariableOption                     `json:"staticOptions,omitempty"`
 	StaticOptionsOrder *QueryVariableSpecStaticOptionsOrder `json:"staticOptionsOrder,omitempty"`
+	Origin             *ControlSourceRef                    `json:"origin,omitempty"`
 }
 
 // NewQueryVariableSpec creates a new QueryVariableSpec object.
@@ -9463,6 +9157,7 @@ func NewQueryVariableSpec() *QueryVariableSpec {
 		SkipUrlSync:      false,
 		Query:            *NewDataQueryKind(),
 		Regex:            "",
+		RegexApplyTo:     (func(input VariableRegexApplyTo) *VariableRegexApplyTo { return &input })(VariableRegexApplyToValue),
 		Options:          []VariableOption{},
 		Multi:            false,
 		IncludeAll:       false,
@@ -9598,6 +9293,17 @@ func (resource *QueryVariableSpec) UnmarshalJSONStrict(raw []byte) error {
 
 		}
 		delete(fields, "regex")
+
+	}
+	// Field "regexApplyTo"
+	if fields["regexApplyTo"] != nil {
+		if string(fields["regexApplyTo"]) != "null" {
+			if err := json.Unmarshal(fields["regexApplyTo"], &resource.RegexApplyTo); err != nil {
+				errs = append(errs, cog.MakeBuildErrors("regexApplyTo", err)...)
+			}
+
+		}
+		delete(fields, "regexApplyTo")
 
 	}
 	// Field "sort"
@@ -9746,6 +9452,19 @@ func (resource *QueryVariableSpec) UnmarshalJSONStrict(raw []byte) error {
 		delete(fields, "staticOptionsOrder")
 
 	}
+	// Field "origin"
+	if fields["origin"] != nil {
+		if string(fields["origin"]) != "null" {
+
+			resource.Origin = &ControlSourceRef{}
+			if err := resource.Origin.UnmarshalJSONStrict(fields["origin"]); err != nil {
+				errs = append(errs, cog.MakeBuildErrors("origin", err)...)
+			}
+
+		}
+		delete(fields, "origin")
+
+	}
 
 	for field := range fields {
 		errs = append(errs, cog.MakeBuildErrors("QueryVariableSpec", fmt.Errorf("unexpected field '%s'", field))...)
@@ -9798,6 +9517,15 @@ func (resource QueryVariableSpec) Equals(other QueryVariableSpec) bool {
 	}
 	if resource.Regex != other.Regex {
 		return false
+	}
+	if resource.RegexApplyTo == nil && other.RegexApplyTo != nil || resource.RegexApplyTo != nil && other.RegexApplyTo == nil {
+		return false
+	}
+
+	if resource.RegexApplyTo != nil {
+		if *resource.RegexApplyTo != *other.RegexApplyTo {
+			return false
+		}
 	}
 	if resource.Sort != other.Sort {
 		return false
@@ -9867,6 +9595,15 @@ func (resource QueryVariableSpec) Equals(other QueryVariableSpec) bool {
 			return false
 		}
 	}
+	if resource.Origin == nil && other.Origin != nil || resource.Origin != nil && other.Origin == nil {
+		return false
+	}
+
+	if resource.Origin != nil {
+		if !resource.Origin.Equals(*other.Origin) {
+			return false
+		}
+	}
 
 	return true
 }
@@ -9892,6 +9629,11 @@ func (resource QueryVariableSpec) Validate() error {
 			errs = append(errs, cog.MakeBuildErrors("staticOptions["+strconv.Itoa(i1)+"]", err)...)
 		}
 	}
+	if resource.Origin != nil {
+		if err := resource.Origin.Validate(); err != nil {
+			errs = append(errs, cog.MakeBuildErrors("origin", err)...)
+		}
+	}
 
 	if len(errs) == 0 {
 		return nil
@@ -9908,6 +9650,8 @@ type VariableOption struct {
 	Text StringOrArrayOfString `json:"text"`
 	// Value of the option
 	Value StringOrArrayOfString `json:"value"`
+	// Additional properties for multi-props variables
+	Properties map[string]string `json:"properties,omitempty"`
 }
 
 // NewVariableOption creates a new VariableOption object.
@@ -9973,6 +9717,18 @@ func (resource *VariableOption) UnmarshalJSONStrict(raw []byte) error {
 	} else {
 		errs = append(errs, cog.MakeBuildErrors("value", errors.New("required field is missing from input"))...)
 	}
+	// Field "properties"
+	if fields["properties"] != nil {
+		if string(fields["properties"]) != "null" {
+
+			if err := json.Unmarshal(fields["properties"], &resource.Properties); err != nil {
+				errs = append(errs, cog.MakeBuildErrors("properties", err)...)
+			}
+
+		}
+		delete(fields, "properties")
+
+	}
 
 	for field := range fields {
 		errs = append(errs, cog.MakeBuildErrors("VariableOption", fmt.Errorf("unexpected field '%s'", field))...)
@@ -10001,6 +9757,16 @@ func (resource VariableOption) Equals(other VariableOption) bool {
 	}
 	if !resource.Value.Equals(other.Value) {
 		return false
+	}
+
+	if len(resource.Properties) != len(other.Properties) {
+		return false
+	}
+
+	for key1 := range resource.Properties {
+		if resource.Properties[key1] != other.Properties[key1] {
+			return false
+		}
 	}
 
 	return true
@@ -10046,6 +9812,15 @@ const (
 	VariableRefreshOnTimeRangeChanged VariableRefresh = "onTimeRangeChanged"
 )
 
+// Determine whether regex applies to variable value or display text
+// Accepted values are `value` (apply to value used in queries) or `text` (apply to display text shown to users)
+type VariableRegexApplyTo string
+
+const (
+	VariableRegexApplyToValue VariableRegexApplyTo = "value"
+	VariableRegexApplyToText  VariableRegexApplyTo = "text"
+)
+
 // Sort variable options
 // Accepted values are:
 // `disabled`: No sorting
@@ -10071,6 +9846,96 @@ const (
 	VariableSortNaturalAsc                      VariableSort = "naturalAsc"
 	VariableSortNaturalDesc                     VariableSort = "naturalDesc"
 )
+
+type ControlSourceRef = DatasourceControlSourceRef
+
+// NewControlSourceRef creates a new ControlSourceRef object.
+func NewControlSourceRef() *ControlSourceRef {
+	return NewDatasourceControlSourceRef()
+}
+
+// Source information for controls (e.g. variables or links)
+type DatasourceControlSourceRef struct {
+	Type string `json:"type"`
+	// The plugin type-id
+	Group string `json:"group"`
+}
+
+// NewDatasourceControlSourceRef creates a new DatasourceControlSourceRef object.
+func NewDatasourceControlSourceRef() *DatasourceControlSourceRef {
+	return &DatasourceControlSourceRef{
+		Type: "datasource",
+	}
+}
+
+// UnmarshalJSONStrict implements a custom JSON unmarshalling logic to decode `DatasourceControlSourceRef` from JSON.
+// Note: the unmarshalling done by this function is strict. It will fail over required fields being absent from the input, fields having an incorrect type, unexpected fields being present, …
+func (resource *DatasourceControlSourceRef) UnmarshalJSONStrict(raw []byte) error {
+	if raw == nil {
+		return nil
+	}
+	var errs cog.BuildErrors
+
+	fields := make(map[string]json.RawMessage)
+	if err := json.Unmarshal(raw, &fields); err != nil {
+		return err
+	}
+	// Field "type"
+	if fields["type"] != nil {
+		if string(fields["type"]) != "null" {
+			if err := json.Unmarshal(fields["type"], &resource.Type); err != nil {
+				errs = append(errs, cog.MakeBuildErrors("type", err)...)
+			}
+		} else {
+			errs = append(errs, cog.MakeBuildErrors("type", errors.New("required field is null"))...)
+
+		}
+		delete(fields, "type")
+	} else {
+		errs = append(errs, cog.MakeBuildErrors("type", errors.New("required field is missing from input"))...)
+	}
+	// Field "group"
+	if fields["group"] != nil {
+		if string(fields["group"]) != "null" {
+			if err := json.Unmarshal(fields["group"], &resource.Group); err != nil {
+				errs = append(errs, cog.MakeBuildErrors("group", err)...)
+			}
+		} else {
+			errs = append(errs, cog.MakeBuildErrors("group", errors.New("required field is null"))...)
+
+		}
+		delete(fields, "group")
+	} else {
+		errs = append(errs, cog.MakeBuildErrors("group", errors.New("required field is missing from input"))...)
+	}
+
+	for field := range fields {
+		errs = append(errs, cog.MakeBuildErrors("DatasourceControlSourceRef", fmt.Errorf("unexpected field '%s'", field))...)
+	}
+
+	if len(errs) == 0 {
+		return nil
+	}
+
+	return errs
+}
+
+// Equals tests the equality of two `DatasourceControlSourceRef` objects.
+func (resource DatasourceControlSourceRef) Equals(other DatasourceControlSourceRef) bool {
+	if resource.Type != other.Type {
+		return false
+	}
+	if resource.Group != other.Group {
+		return false
+	}
+
+	return true
+}
+
+// Validate checks all the validation constraints that may be defined on `DatasourceControlSourceRef` fields for violations and returns them.
+func (resource DatasourceControlSourceRef) Validate() error {
+	return nil
+}
 
 // Text variable kind
 type TextVariableKind struct {
@@ -10168,13 +10033,14 @@ func (resource TextVariableKind) Validate() error {
 
 // Text variable specification
 type TextVariableSpec struct {
-	Name        string         `json:"name"`
-	Current     VariableOption `json:"current"`
-	Query       string         `json:"query"`
-	Label       *string        `json:"label,omitempty"`
-	Hide        VariableHide   `json:"hide"`
-	SkipUrlSync bool           `json:"skipUrlSync"`
-	Description *string        `json:"description,omitempty"`
+	Name        string            `json:"name"`
+	Current     VariableOption    `json:"current"`
+	Query       string            `json:"query"`
+	Label       *string           `json:"label,omitempty"`
+	Hide        VariableHide      `json:"hide"`
+	SkipUrlSync bool              `json:"skipUrlSync"`
+	Description *string           `json:"description,omitempty"`
+	Origin      *ControlSourceRef `json:"origin,omitempty"`
 }
 
 // NewTextVariableSpec creates a new TextVariableSpec object.
@@ -10296,6 +10162,19 @@ func (resource *TextVariableSpec) UnmarshalJSONStrict(raw []byte) error {
 		delete(fields, "description")
 
 	}
+	// Field "origin"
+	if fields["origin"] != nil {
+		if string(fields["origin"]) != "null" {
+
+			resource.Origin = &ControlSourceRef{}
+			if err := resource.Origin.UnmarshalJSONStrict(fields["origin"]); err != nil {
+				errs = append(errs, cog.MakeBuildErrors("origin", err)...)
+			}
+
+		}
+		delete(fields, "origin")
+
+	}
 
 	for field := range fields {
 		errs = append(errs, cog.MakeBuildErrors("TextVariableSpec", fmt.Errorf("unexpected field '%s'", field))...)
@@ -10343,6 +10222,15 @@ func (resource TextVariableSpec) Equals(other TextVariableSpec) bool {
 			return false
 		}
 	}
+	if resource.Origin == nil && other.Origin != nil || resource.Origin != nil && other.Origin == nil {
+		return false
+	}
+
+	if resource.Origin != nil {
+		if !resource.Origin.Equals(*other.Origin) {
+			return false
+		}
+	}
 
 	return true
 }
@@ -10352,6 +10240,11 @@ func (resource TextVariableSpec) Validate() error {
 	var errs cog.BuildErrors
 	if err := resource.Current.Validate(); err != nil {
 		errs = append(errs, cog.MakeBuildErrors("current", err)...)
+	}
+	if resource.Origin != nil {
+		if err := resource.Origin.Validate(); err != nil {
+			errs = append(errs, cog.MakeBuildErrors("origin", err)...)
+		}
 	}
 
 	if len(errs) == 0 {
@@ -10457,13 +10350,14 @@ func (resource ConstantVariableKind) Validate() error {
 
 // Constant variable specification
 type ConstantVariableSpec struct {
-	Name        string         `json:"name"`
-	Query       string         `json:"query"`
-	Current     VariableOption `json:"current"`
-	Label       *string        `json:"label,omitempty"`
-	Hide        VariableHide   `json:"hide"`
-	SkipUrlSync bool           `json:"skipUrlSync"`
-	Description *string        `json:"description,omitempty"`
+	Name        string            `json:"name"`
+	Query       string            `json:"query"`
+	Current     VariableOption    `json:"current"`
+	Label       *string           `json:"label,omitempty"`
+	Hide        VariableHide      `json:"hide"`
+	SkipUrlSync bool              `json:"skipUrlSync"`
+	Description *string           `json:"description,omitempty"`
+	Origin      *ControlSourceRef `json:"origin,omitempty"`
 }
 
 // NewConstantVariableSpec creates a new ConstantVariableSpec object.
@@ -10585,6 +10479,19 @@ func (resource *ConstantVariableSpec) UnmarshalJSONStrict(raw []byte) error {
 		delete(fields, "description")
 
 	}
+	// Field "origin"
+	if fields["origin"] != nil {
+		if string(fields["origin"]) != "null" {
+
+			resource.Origin = &ControlSourceRef{}
+			if err := resource.Origin.UnmarshalJSONStrict(fields["origin"]); err != nil {
+				errs = append(errs, cog.MakeBuildErrors("origin", err)...)
+			}
+
+		}
+		delete(fields, "origin")
+
+	}
 
 	for field := range fields {
 		errs = append(errs, cog.MakeBuildErrors("ConstantVariableSpec", fmt.Errorf("unexpected field '%s'", field))...)
@@ -10632,6 +10539,15 @@ func (resource ConstantVariableSpec) Equals(other ConstantVariableSpec) bool {
 			return false
 		}
 	}
+	if resource.Origin == nil && other.Origin != nil || resource.Origin != nil && other.Origin == nil {
+		return false
+	}
+
+	if resource.Origin != nil {
+		if !resource.Origin.Equals(*other.Origin) {
+			return false
+		}
+	}
 
 	return true
 }
@@ -10641,6 +10557,11 @@ func (resource ConstantVariableSpec) Validate() error {
 	var errs cog.BuildErrors
 	if err := resource.Current.Validate(); err != nil {
 		errs = append(errs, cog.MakeBuildErrors("current", err)...)
+	}
+	if resource.Origin != nil {
+		if err := resource.Origin.Validate(); err != nil {
+			errs = append(errs, cog.MakeBuildErrors("origin", err)...)
+		}
 	}
 
 	if len(errs) == 0 {
@@ -10746,20 +10667,21 @@ func (resource DatasourceVariableKind) Validate() error {
 
 // Datasource variable specification
 type DatasourceVariableSpec struct {
-	Name             string           `json:"name"`
-	PluginId         string           `json:"pluginId"`
-	Refresh          VariableRefresh  `json:"refresh"`
-	Regex            string           `json:"regex"`
-	Current          VariableOption   `json:"current"`
-	Options          []VariableOption `json:"options"`
-	Multi            bool             `json:"multi"`
-	IncludeAll       bool             `json:"includeAll"`
-	AllValue         *string          `json:"allValue,omitempty"`
-	Label            *string          `json:"label,omitempty"`
-	Hide             VariableHide     `json:"hide"`
-	SkipUrlSync      bool             `json:"skipUrlSync"`
-	Description      *string          `json:"description,omitempty"`
-	AllowCustomValue bool             `json:"allowCustomValue"`
+	Name             string            `json:"name"`
+	PluginId         string            `json:"pluginId"`
+	Refresh          VariableRefresh   `json:"refresh"`
+	Regex            string            `json:"regex"`
+	Current          VariableOption    `json:"current"`
+	Options          []VariableOption  `json:"options"`
+	Multi            bool              `json:"multi"`
+	IncludeAll       bool              `json:"includeAll"`
+	AllValue         *string           `json:"allValue,omitempty"`
+	Label            *string           `json:"label,omitempty"`
+	Hide             VariableHide      `json:"hide"`
+	SkipUrlSync      bool              `json:"skipUrlSync"`
+	Description      *string           `json:"description,omitempty"`
+	AllowCustomValue bool              `json:"allowCustomValue"`
+	Origin           *ControlSourceRef `json:"origin,omitempty"`
 }
 
 // NewDatasourceVariableSpec creates a new DatasourceVariableSpec object.
@@ -10989,6 +10911,19 @@ func (resource *DatasourceVariableSpec) UnmarshalJSONStrict(raw []byte) error {
 		delete(fields, "allowCustomValue")
 
 	}
+	// Field "origin"
+	if fields["origin"] != nil {
+		if string(fields["origin"]) != "null" {
+
+			resource.Origin = &ControlSourceRef{}
+			if err := resource.Origin.UnmarshalJSONStrict(fields["origin"]); err != nil {
+				errs = append(errs, cog.MakeBuildErrors("origin", err)...)
+			}
+
+		}
+		delete(fields, "origin")
+
+	}
 
 	for field := range fields {
 		errs = append(errs, cog.MakeBuildErrors("DatasourceVariableSpec", fmt.Errorf("unexpected field '%s'", field))...)
@@ -11070,6 +11005,15 @@ func (resource DatasourceVariableSpec) Equals(other DatasourceVariableSpec) bool
 	if resource.AllowCustomValue != other.AllowCustomValue {
 		return false
 	}
+	if resource.Origin == nil && other.Origin != nil || resource.Origin != nil && other.Origin == nil {
+		return false
+	}
+
+	if resource.Origin != nil {
+		if !resource.Origin.Equals(*other.Origin) {
+			return false
+		}
+	}
 
 	return true
 }
@@ -11084,6 +11028,11 @@ func (resource DatasourceVariableSpec) Validate() error {
 	for i1 := range resource.Options {
 		if err := resource.Options[i1].Validate(); err != nil {
 			errs = append(errs, cog.MakeBuildErrors("options["+strconv.Itoa(i1)+"]", err)...)
+		}
+	}
+	if resource.Origin != nil {
+		if err := resource.Origin.Validate(); err != nil {
+			errs = append(errs, cog.MakeBuildErrors("origin", err)...)
 		}
 	}
 
@@ -11190,18 +11139,19 @@ func (resource IntervalVariableKind) Validate() error {
 
 // Interval variable specification
 type IntervalVariableSpec struct {
-	Name        string           `json:"name"`
-	Query       string           `json:"query"`
-	Current     VariableOption   `json:"current"`
-	Options     []VariableOption `json:"options"`
-	Auto        bool             `json:"auto"`
-	AutoMin     string           `json:"auto_min"`
-	AutoCount   int64            `json:"auto_count"`
-	Refresh     VariableRefresh  `json:"refresh"`
-	Label       *string          `json:"label,omitempty"`
-	Hide        VariableHide     `json:"hide"`
-	SkipUrlSync bool             `json:"skipUrlSync"`
-	Description *string          `json:"description,omitempty"`
+	Name        string            `json:"name"`
+	Query       string            `json:"query"`
+	Current     VariableOption    `json:"current"`
+	Options     []VariableOption  `json:"options"`
+	Auto        bool              `json:"auto"`
+	AutoMin     string            `json:"auto_min"`
+	AutoCount   int64             `json:"auto_count"`
+	Refresh     string            `json:"refresh"`
+	Label       *string           `json:"label,omitempty"`
+	Hide        VariableHide      `json:"hide"`
+	SkipUrlSync bool              `json:"skipUrlSync"`
+	Description *string           `json:"description,omitempty"`
+	Origin      *ControlSourceRef `json:"origin,omitempty"`
 }
 
 // NewIntervalVariableSpec creates a new IntervalVariableSpec object.
@@ -11221,7 +11171,7 @@ func NewIntervalVariableSpec() *IntervalVariableSpec {
 		Auto:        false,
 		AutoMin:     "",
 		AutoCount:   0,
-		Refresh:     VariableRefreshNever,
+		Refresh:     "onTimeRangeChanged",
 		Hide:        VariableHideDontHide,
 		SkipUrlSync: false,
 	}
@@ -11356,7 +11306,8 @@ func (resource *IntervalVariableSpec) UnmarshalJSONStrict(raw []byte) error {
 
 		}
 		delete(fields, "refresh")
-
+	} else {
+		errs = append(errs, cog.MakeBuildErrors("refresh", errors.New("required field is missing from input"))...)
 	}
 	// Field "label"
 	if fields["label"] != nil {
@@ -11404,6 +11355,19 @@ func (resource *IntervalVariableSpec) UnmarshalJSONStrict(raw []byte) error {
 
 		}
 		delete(fields, "description")
+
+	}
+	// Field "origin"
+	if fields["origin"] != nil {
+		if string(fields["origin"]) != "null" {
+
+			resource.Origin = &ControlSourceRef{}
+			if err := resource.Origin.UnmarshalJSONStrict(fields["origin"]); err != nil {
+				errs = append(errs, cog.MakeBuildErrors("origin", err)...)
+			}
+
+		}
+		delete(fields, "origin")
 
 	}
 
@@ -11475,6 +11439,15 @@ func (resource IntervalVariableSpec) Equals(other IntervalVariableSpec) bool {
 			return false
 		}
 	}
+	if resource.Origin == nil && other.Origin != nil || resource.Origin != nil && other.Origin == nil {
+		return false
+	}
+
+	if resource.Origin != nil {
+		if !resource.Origin.Equals(*other.Origin) {
+			return false
+		}
+	}
 
 	return true
 }
@@ -11489,6 +11462,11 @@ func (resource IntervalVariableSpec) Validate() error {
 	for i1 := range resource.Options {
 		if err := resource.Options[i1].Validate(); err != nil {
 			errs = append(errs, cog.MakeBuildErrors("options["+strconv.Itoa(i1)+"]", err)...)
+		}
+	}
+	if resource.Origin != nil {
+		if err := resource.Origin.Validate(); err != nil {
+			errs = append(errs, cog.MakeBuildErrors("origin", err)...)
 		}
 	}
 
@@ -11595,18 +11573,20 @@ func (resource CustomVariableKind) Validate() error {
 
 // Custom variable specification
 type CustomVariableSpec struct {
-	Name             string           `json:"name"`
-	Query            string           `json:"query"`
-	Current          VariableOption   `json:"current"`
-	Options          []VariableOption `json:"options"`
-	Multi            bool             `json:"multi"`
-	IncludeAll       bool             `json:"includeAll"`
-	AllValue         *string          `json:"allValue,omitempty"`
-	Label            *string          `json:"label,omitempty"`
-	Hide             VariableHide     `json:"hide"`
-	SkipUrlSync      bool             `json:"skipUrlSync"`
-	Description      *string          `json:"description,omitempty"`
-	AllowCustomValue bool             `json:"allowCustomValue"`
+	Name             string                          `json:"name"`
+	Query            string                          `json:"query"`
+	Current          VariableOption                  `json:"current"`
+	Options          []VariableOption                `json:"options"`
+	Multi            bool                            `json:"multi"`
+	IncludeAll       bool                            `json:"includeAll"`
+	AllValue         *string                         `json:"allValue,omitempty"`
+	Label            *string                         `json:"label,omitempty"`
+	Hide             VariableHide                    `json:"hide"`
+	SkipUrlSync      bool                            `json:"skipUrlSync"`
+	Description      *string                         `json:"description,omitempty"`
+	AllowCustomValue bool                            `json:"allowCustomValue"`
+	ValuesFormat     *CustomVariableSpecValuesFormat `json:"valuesFormat,omitempty"`
+	Origin           *ControlSourceRef               `json:"origin,omitempty"`
 }
 
 // NewCustomVariableSpec creates a new CustomVariableSpec object.
@@ -11802,6 +11782,30 @@ func (resource *CustomVariableSpec) UnmarshalJSONStrict(raw []byte) error {
 		delete(fields, "allowCustomValue")
 
 	}
+	// Field "valuesFormat"
+	if fields["valuesFormat"] != nil {
+		if string(fields["valuesFormat"]) != "null" {
+			if err := json.Unmarshal(fields["valuesFormat"], &resource.ValuesFormat); err != nil {
+				errs = append(errs, cog.MakeBuildErrors("valuesFormat", err)...)
+			}
+
+		}
+		delete(fields, "valuesFormat")
+
+	}
+	// Field "origin"
+	if fields["origin"] != nil {
+		if string(fields["origin"]) != "null" {
+
+			resource.Origin = &ControlSourceRef{}
+			if err := resource.Origin.UnmarshalJSONStrict(fields["origin"]); err != nil {
+				errs = append(errs, cog.MakeBuildErrors("origin", err)...)
+			}
+
+		}
+		delete(fields, "origin")
+
+	}
 
 	for field := range fields {
 		errs = append(errs, cog.MakeBuildErrors("CustomVariableSpec", fmt.Errorf("unexpected field '%s'", field))...)
@@ -11877,6 +11881,24 @@ func (resource CustomVariableSpec) Equals(other CustomVariableSpec) bool {
 	if resource.AllowCustomValue != other.AllowCustomValue {
 		return false
 	}
+	if resource.ValuesFormat == nil && other.ValuesFormat != nil || resource.ValuesFormat != nil && other.ValuesFormat == nil {
+		return false
+	}
+
+	if resource.ValuesFormat != nil {
+		if *resource.ValuesFormat != *other.ValuesFormat {
+			return false
+		}
+	}
+	if resource.Origin == nil && other.Origin != nil || resource.Origin != nil && other.Origin == nil {
+		return false
+	}
+
+	if resource.Origin != nil {
+		if !resource.Origin.Equals(*other.Origin) {
+			return false
+		}
+	}
 
 	return true
 }
@@ -11893,6 +11915,11 @@ func (resource CustomVariableSpec) Validate() error {
 			errs = append(errs, cog.MakeBuildErrors("options["+strconv.Itoa(i1)+"]", err)...)
 		}
 	}
+	if resource.Origin != nil {
+		if err := resource.Origin.Validate(); err != nil {
+			errs = append(errs, cog.MakeBuildErrors("origin", err)...)
+		}
+	}
 
 	if len(errs) == 0 {
 		return nil
@@ -11905,6 +11932,7 @@ func (resource CustomVariableSpec) Validate() error {
 type GroupByVariableKind struct {
 	Kind       string                                         `json:"kind"`
 	Group      string                                         `json:"group"`
+	Labels     map[string]string                              `json:"labels,omitempty"`
 	Datasource *Dashboardv2beta1GroupByVariableKindDatasource `json:"datasource,omitempty"`
 	Spec       GroupByVariableSpec                            `json:"spec"`
 }
@@ -11957,6 +11985,18 @@ func (resource *GroupByVariableKind) UnmarshalJSONStrict(raw []byte) error {
 	} else {
 		errs = append(errs, cog.MakeBuildErrors("group", errors.New("required field is missing from input"))...)
 	}
+	// Field "labels"
+	if fields["labels"] != nil {
+		if string(fields["labels"]) != "null" {
+
+			if err := json.Unmarshal(fields["labels"], &resource.Labels); err != nil {
+				errs = append(errs, cog.MakeBuildErrors("labels", err)...)
+			}
+
+		}
+		delete(fields, "labels")
+
+	}
 	// Field "datasource"
 	if fields["datasource"] != nil {
 		if string(fields["datasource"]) != "null" {
@@ -12006,6 +12046,16 @@ func (resource GroupByVariableKind) Equals(other GroupByVariableKind) bool {
 	if resource.Group != other.Group {
 		return false
 	}
+
+	if len(resource.Labels) != len(other.Labels) {
+		return false
+	}
+
+	for key1 := range resource.Labels {
+		if resource.Labels[key1] != other.Labels[key1] {
+			return false
+		}
+	}
 	if resource.Datasource == nil && other.Datasource != nil || resource.Datasource != nil && other.Datasource == nil {
 		return false
 	}
@@ -12043,15 +12093,16 @@ func (resource GroupByVariableKind) Validate() error {
 
 // GroupBy variable specification
 type GroupByVariableSpec struct {
-	Name         string           `json:"name"`
-	DefaultValue *VariableOption  `json:"defaultValue,omitempty"`
-	Current      VariableOption   `json:"current"`
-	Options      []VariableOption `json:"options"`
-	Multi        bool             `json:"multi"`
-	Label        *string          `json:"label,omitempty"`
-	Hide         VariableHide     `json:"hide"`
-	SkipUrlSync  bool             `json:"skipUrlSync"`
-	Description  *string          `json:"description,omitempty"`
+	Name         string            `json:"name"`
+	DefaultValue *VariableOption   `json:"defaultValue,omitempty"`
+	Current      VariableOption    `json:"current"`
+	Options      []VariableOption  `json:"options"`
+	Multi        bool              `json:"multi"`
+	Label        *string           `json:"label,omitempty"`
+	Hide         VariableHide      `json:"hide"`
+	SkipUrlSync  bool              `json:"skipUrlSync"`
+	Description  *string           `json:"description,omitempty"`
+	Origin       *ControlSourceRef `json:"origin,omitempty"`
 }
 
 // NewGroupByVariableSpec creates a new GroupByVariableSpec object.
@@ -12213,6 +12264,19 @@ func (resource *GroupByVariableSpec) UnmarshalJSONStrict(raw []byte) error {
 		delete(fields, "description")
 
 	}
+	// Field "origin"
+	if fields["origin"] != nil {
+		if string(fields["origin"]) != "null" {
+
+			resource.Origin = &ControlSourceRef{}
+			if err := resource.Origin.UnmarshalJSONStrict(fields["origin"]); err != nil {
+				errs = append(errs, cog.MakeBuildErrors("origin", err)...)
+			}
+
+		}
+		delete(fields, "origin")
+
+	}
 
 	for field := range fields {
 		errs = append(errs, cog.MakeBuildErrors("GroupByVariableSpec", fmt.Errorf("unexpected field '%s'", field))...)
@@ -12279,6 +12343,15 @@ func (resource GroupByVariableSpec) Equals(other GroupByVariableSpec) bool {
 			return false
 		}
 	}
+	if resource.Origin == nil && other.Origin != nil || resource.Origin != nil && other.Origin == nil {
+		return false
+	}
+
+	if resource.Origin != nil {
+		if !resource.Origin.Equals(*other.Origin) {
+			return false
+		}
+	}
 
 	return true
 }
@@ -12300,6 +12373,11 @@ func (resource GroupByVariableSpec) Validate() error {
 			errs = append(errs, cog.MakeBuildErrors("options["+strconv.Itoa(i1)+"]", err)...)
 		}
 	}
+	if resource.Origin != nil {
+		if err := resource.Origin.Validate(); err != nil {
+			errs = append(errs, cog.MakeBuildErrors("origin", err)...)
+		}
+	}
 
 	if len(errs) == 0 {
 		return nil
@@ -12312,6 +12390,7 @@ func (resource GroupByVariableSpec) Validate() error {
 type AdhocVariableKind struct {
 	Kind       string                                       `json:"kind"`
 	Group      string                                       `json:"group"`
+	Labels     map[string]string                            `json:"labels,omitempty"`
 	Datasource *Dashboardv2beta1AdhocVariableKindDatasource `json:"datasource,omitempty"`
 	Spec       AdhocVariableSpec                            `json:"spec"`
 }
@@ -12364,6 +12443,18 @@ func (resource *AdhocVariableKind) UnmarshalJSONStrict(raw []byte) error {
 	} else {
 		errs = append(errs, cog.MakeBuildErrors("group", errors.New("required field is missing from input"))...)
 	}
+	// Field "labels"
+	if fields["labels"] != nil {
+		if string(fields["labels"]) != "null" {
+
+			if err := json.Unmarshal(fields["labels"], &resource.Labels); err != nil {
+				errs = append(errs, cog.MakeBuildErrors("labels", err)...)
+			}
+
+		}
+		delete(fields, "labels")
+
+	}
 	// Field "datasource"
 	if fields["datasource"] != nil {
 		if string(fields["datasource"]) != "null" {
@@ -12413,6 +12504,16 @@ func (resource AdhocVariableKind) Equals(other AdhocVariableKind) bool {
 	if resource.Group != other.Group {
 		return false
 	}
+
+	if len(resource.Labels) != len(other.Labels) {
+		return false
+	}
+
+	for key1 := range resource.Labels {
+		if resource.Labels[key1] != other.Labels[key1] {
+			return false
+		}
+	}
 	if resource.Datasource == nil && other.Datasource != nil || resource.Datasource != nil && other.Datasource == nil {
 		return false
 	}
@@ -12459,6 +12560,9 @@ type AdhocVariableSpec struct {
 	SkipUrlSync      bool                    `json:"skipUrlSync"`
 	Description      *string                 `json:"description,omitempty"`
 	AllowCustomValue bool                    `json:"allowCustomValue"`
+	// Whether the group-by operator is enabled in the ad hoc filter combobox.
+	EnableGroupBy *bool             `json:"enableGroupBy,omitempty"`
+	Origin        *ControlSourceRef `json:"origin,omitempty"`
 }
 
 // NewAdhocVariableSpec creates a new AdhocVariableSpec object.
@@ -12471,6 +12575,7 @@ func NewAdhocVariableSpec() *AdhocVariableSpec {
 		Hide:             VariableHideDontHide,
 		SkipUrlSync:      false,
 		AllowCustomValue: true,
+		EnableGroupBy:    (func(input bool) *bool { return &input })(false),
 	}
 }
 
@@ -12638,6 +12743,30 @@ func (resource *AdhocVariableSpec) UnmarshalJSONStrict(raw []byte) error {
 		delete(fields, "allowCustomValue")
 
 	}
+	// Field "enableGroupBy"
+	if fields["enableGroupBy"] != nil {
+		if string(fields["enableGroupBy"]) != "null" {
+			if err := json.Unmarshal(fields["enableGroupBy"], &resource.EnableGroupBy); err != nil {
+				errs = append(errs, cog.MakeBuildErrors("enableGroupBy", err)...)
+			}
+
+		}
+		delete(fields, "enableGroupBy")
+
+	}
+	// Field "origin"
+	if fields["origin"] != nil {
+		if string(fields["origin"]) != "null" {
+
+			resource.Origin = &ControlSourceRef{}
+			if err := resource.Origin.UnmarshalJSONStrict(fields["origin"]); err != nil {
+				errs = append(errs, cog.MakeBuildErrors("origin", err)...)
+			}
+
+		}
+		delete(fields, "origin")
+
+	}
 
 	for field := range fields {
 		errs = append(errs, cog.MakeBuildErrors("AdhocVariableSpec", fmt.Errorf("unexpected field '%s'", field))...)
@@ -12712,6 +12841,24 @@ func (resource AdhocVariableSpec) Equals(other AdhocVariableSpec) bool {
 	if resource.AllowCustomValue != other.AllowCustomValue {
 		return false
 	}
+	if resource.EnableGroupBy == nil && other.EnableGroupBy != nil || resource.EnableGroupBy != nil && other.EnableGroupBy == nil {
+		return false
+	}
+
+	if resource.EnableGroupBy != nil {
+		if *resource.EnableGroupBy != *other.EnableGroupBy {
+			return false
+		}
+	}
+	if resource.Origin == nil && other.Origin != nil || resource.Origin != nil && other.Origin == nil {
+		return false
+	}
+
+	if resource.Origin != nil {
+		if !resource.Origin.Equals(*other.Origin) {
+			return false
+		}
+	}
 
 	return true
 }
@@ -12735,6 +12882,11 @@ func (resource AdhocVariableSpec) Validate() error {
 	for i1 := range resource.DefaultKeys {
 		if err := resource.DefaultKeys[i1].Validate(); err != nil {
 			errs = append(errs, cog.MakeBuildErrors("defaultKeys["+strconv.Itoa(i1)+"]", err)...)
+		}
+	}
+	if resource.Origin != nil {
+		if err := resource.Origin.Validate(); err != nil {
+			errs = append(errs, cog.MakeBuildErrors("origin", err)...)
 		}
 	}
 
@@ -13211,14 +13363,15 @@ func (resource SwitchVariableKind) Validate() error {
 }
 
 type SwitchVariableSpec struct {
-	Name          string       `json:"name"`
-	Current       string       `json:"current"`
-	EnabledValue  string       `json:"enabledValue"`
-	DisabledValue string       `json:"disabledValue"`
-	Label         *string      `json:"label,omitempty"`
-	Hide          VariableHide `json:"hide"`
-	SkipUrlSync   bool         `json:"skipUrlSync"`
-	Description   *string      `json:"description,omitempty"`
+	Name          string            `json:"name"`
+	Current       string            `json:"current"`
+	EnabledValue  string            `json:"enabledValue"`
+	DisabledValue string            `json:"disabledValue"`
+	Label         *string           `json:"label,omitempty"`
+	Hide          VariableHide      `json:"hide"`
+	SkipUrlSync   bool              `json:"skipUrlSync"`
+	Description   *string           `json:"description,omitempty"`
+	Origin        *ControlSourceRef `json:"origin,omitempty"`
 }
 
 // NewSwitchVariableSpec creates a new SwitchVariableSpec object.
@@ -13345,6 +13498,19 @@ func (resource *SwitchVariableSpec) UnmarshalJSONStrict(raw []byte) error {
 		delete(fields, "description")
 
 	}
+	// Field "origin"
+	if fields["origin"] != nil {
+		if string(fields["origin"]) != "null" {
+
+			resource.Origin = &ControlSourceRef{}
+			if err := resource.Origin.UnmarshalJSONStrict(fields["origin"]); err != nil {
+				errs = append(errs, cog.MakeBuildErrors("origin", err)...)
+			}
+
+		}
+		delete(fields, "origin")
+
+	}
 
 	for field := range fields {
 		errs = append(errs, cog.MakeBuildErrors("SwitchVariableSpec", fmt.Errorf("unexpected field '%s'", field))...)
@@ -13395,14 +13561,751 @@ func (resource SwitchVariableSpec) Equals(other SwitchVariableSpec) bool {
 			return false
 		}
 	}
+	if resource.Origin == nil && other.Origin != nil || resource.Origin != nil && other.Origin == nil {
+		return false
+	}
+
+	if resource.Origin != nil {
+		if !resource.Origin.Equals(*other.Origin) {
+			return false
+		}
+	}
 
 	return true
 }
 
 // Validate checks all the validation constraints that may be defined on `SwitchVariableSpec` fields for violations and returns them.
 func (resource SwitchVariableSpec) Validate() error {
+	var errs cog.BuildErrors
+	if resource.Origin != nil {
+		if err := resource.Origin.Validate(); err != nil {
+			errs = append(errs, cog.MakeBuildErrors("origin", err)...)
+		}
+	}
+
+	if len(errs) == 0 {
+		return nil
+	}
+
+	return errs
+}
+
+// Links with references to other dashboards or external resources
+type DashboardLink struct {
+	// Title to display with the link
+	Title string `json:"title"`
+	// Link type. Accepted values are dashboards (to refer to another dashboard) and link (to refer to an external resource)
+	// FIXME: The type is generated as `type: DashboardLinkType | dashboardLinkType.Link;` but it should be `type: DashboardLinkType`
+	Type DashboardLinkType `json:"type"`
+	// Icon name to be displayed with the link
+	Icon string `json:"icon"`
+	// Tooltip to display when the user hovers their mouse over it
+	Tooltip string `json:"tooltip"`
+	// Link URL. Only required/valid if the type is link
+	Url *string `json:"url,omitempty"`
+	// List of tags to limit the linked dashboards. If empty, all dashboards will be displayed. Only valid if the type is dashboards
+	Tags []string `json:"tags"`
+	// If true, all dashboards links will be displayed in a dropdown. If false, all dashboards links will be displayed side by side. Only valid if the type is dashboards
+	AsDropdown bool `json:"asDropdown"`
+	// If true, the link will be opened in a new tab
+	TargetBlank bool `json:"targetBlank"`
+	// If true, includes current template variables values in the link as query params
+	IncludeVars bool `json:"includeVars"`
+	// If true, includes current time range in the link as query params
+	KeepTime bool `json:"keepTime"`
+	// Placement can be used to display the link somewhere else on the dashboard other than above the visualisations.
+	Placement *string `json:"placement,omitempty"`
+	// The source that registered the link (if any)
+	Origin *ControlSourceRef `json:"origin,omitempty"`
+}
+
+// NewDashboardLink creates a new DashboardLink object.
+func NewDashboardLink() *DashboardLink {
+	return &DashboardLink{
+		Tags:        []string{},
+		AsDropdown:  false,
+		TargetBlank: false,
+		IncludeVars: false,
+		KeepTime:    false,
+		Placement:   (func(input string) *string { return &input })(DashboardLinkPlacement),
+	}
+}
+
+// UnmarshalJSONStrict implements a custom JSON unmarshalling logic to decode `DashboardLink` from JSON.
+// Note: the unmarshalling done by this function is strict. It will fail over required fields being absent from the input, fields having an incorrect type, unexpected fields being present, …
+func (resource *DashboardLink) UnmarshalJSONStrict(raw []byte) error {
+	if raw == nil {
+		return nil
+	}
+	var errs cog.BuildErrors
+
+	fields := make(map[string]json.RawMessage)
+	if err := json.Unmarshal(raw, &fields); err != nil {
+		return err
+	}
+	// Field "title"
+	if fields["title"] != nil {
+		if string(fields["title"]) != "null" {
+			if err := json.Unmarshal(fields["title"], &resource.Title); err != nil {
+				errs = append(errs, cog.MakeBuildErrors("title", err)...)
+			}
+		} else {
+			errs = append(errs, cog.MakeBuildErrors("title", errors.New("required field is null"))...)
+
+		}
+		delete(fields, "title")
+	} else {
+		errs = append(errs, cog.MakeBuildErrors("title", errors.New("required field is missing from input"))...)
+	}
+	// Field "type"
+	if fields["type"] != nil {
+		if string(fields["type"]) != "null" {
+			if err := json.Unmarshal(fields["type"], &resource.Type); err != nil {
+				errs = append(errs, cog.MakeBuildErrors("type", err)...)
+			}
+		} else {
+			errs = append(errs, cog.MakeBuildErrors("type", errors.New("required field is null"))...)
+
+		}
+		delete(fields, "type")
+	} else {
+		errs = append(errs, cog.MakeBuildErrors("type", errors.New("required field is missing from input"))...)
+	}
+	// Field "icon"
+	if fields["icon"] != nil {
+		if string(fields["icon"]) != "null" {
+			if err := json.Unmarshal(fields["icon"], &resource.Icon); err != nil {
+				errs = append(errs, cog.MakeBuildErrors("icon", err)...)
+			}
+		} else {
+			errs = append(errs, cog.MakeBuildErrors("icon", errors.New("required field is null"))...)
+
+		}
+		delete(fields, "icon")
+	} else {
+		errs = append(errs, cog.MakeBuildErrors("icon", errors.New("required field is missing from input"))...)
+	}
+	// Field "tooltip"
+	if fields["tooltip"] != nil {
+		if string(fields["tooltip"]) != "null" {
+			if err := json.Unmarshal(fields["tooltip"], &resource.Tooltip); err != nil {
+				errs = append(errs, cog.MakeBuildErrors("tooltip", err)...)
+			}
+		} else {
+			errs = append(errs, cog.MakeBuildErrors("tooltip", errors.New("required field is null"))...)
+
+		}
+		delete(fields, "tooltip")
+	} else {
+		errs = append(errs, cog.MakeBuildErrors("tooltip", errors.New("required field is missing from input"))...)
+	}
+	// Field "url"
+	if fields["url"] != nil {
+		if string(fields["url"]) != "null" {
+			if err := json.Unmarshal(fields["url"], &resource.Url); err != nil {
+				errs = append(errs, cog.MakeBuildErrors("url", err)...)
+			}
+
+		}
+		delete(fields, "url")
+
+	}
+	// Field "tags"
+	if fields["tags"] != nil {
+		if string(fields["tags"]) != "null" {
+
+			if err := json.Unmarshal(fields["tags"], &resource.Tags); err != nil {
+				errs = append(errs, cog.MakeBuildErrors("tags", err)...)
+			}
+		} else {
+			errs = append(errs, cog.MakeBuildErrors("tags", errors.New("required field is null"))...)
+
+		}
+		delete(fields, "tags")
+	} else {
+		errs = append(errs, cog.MakeBuildErrors("tags", errors.New("required field is missing from input"))...)
+	}
+	// Field "asDropdown"
+	if fields["asDropdown"] != nil {
+		if string(fields["asDropdown"]) != "null" {
+			if err := json.Unmarshal(fields["asDropdown"], &resource.AsDropdown); err != nil {
+				errs = append(errs, cog.MakeBuildErrors("asDropdown", err)...)
+			}
+		} else {
+			errs = append(errs, cog.MakeBuildErrors("asDropdown", errors.New("required field is null"))...)
+
+		}
+		delete(fields, "asDropdown")
+
+	}
+	// Field "targetBlank"
+	if fields["targetBlank"] != nil {
+		if string(fields["targetBlank"]) != "null" {
+			if err := json.Unmarshal(fields["targetBlank"], &resource.TargetBlank); err != nil {
+				errs = append(errs, cog.MakeBuildErrors("targetBlank", err)...)
+			}
+		} else {
+			errs = append(errs, cog.MakeBuildErrors("targetBlank", errors.New("required field is null"))...)
+
+		}
+		delete(fields, "targetBlank")
+
+	}
+	// Field "includeVars"
+	if fields["includeVars"] != nil {
+		if string(fields["includeVars"]) != "null" {
+			if err := json.Unmarshal(fields["includeVars"], &resource.IncludeVars); err != nil {
+				errs = append(errs, cog.MakeBuildErrors("includeVars", err)...)
+			}
+		} else {
+			errs = append(errs, cog.MakeBuildErrors("includeVars", errors.New("required field is null"))...)
+
+		}
+		delete(fields, "includeVars")
+
+	}
+	// Field "keepTime"
+	if fields["keepTime"] != nil {
+		if string(fields["keepTime"]) != "null" {
+			if err := json.Unmarshal(fields["keepTime"], &resource.KeepTime); err != nil {
+				errs = append(errs, cog.MakeBuildErrors("keepTime", err)...)
+			}
+		} else {
+			errs = append(errs, cog.MakeBuildErrors("keepTime", errors.New("required field is null"))...)
+
+		}
+		delete(fields, "keepTime")
+
+	}
+	// Field "placement"
+	if fields["placement"] != nil {
+		if string(fields["placement"]) != "null" {
+			if err := json.Unmarshal(fields["placement"], &resource.Placement); err != nil {
+				errs = append(errs, cog.MakeBuildErrors("placement", err)...)
+			}
+
+		}
+		delete(fields, "placement")
+
+	}
+	// Field "origin"
+	if fields["origin"] != nil {
+		if string(fields["origin"]) != "null" {
+
+			resource.Origin = &ControlSourceRef{}
+			if err := resource.Origin.UnmarshalJSONStrict(fields["origin"]); err != nil {
+				errs = append(errs, cog.MakeBuildErrors("origin", err)...)
+			}
+
+		}
+		delete(fields, "origin")
+
+	}
+
+	for field := range fields {
+		errs = append(errs, cog.MakeBuildErrors("DashboardLink", fmt.Errorf("unexpected field '%s'", field))...)
+	}
+
+	if len(errs) == 0 {
+		return nil
+	}
+
+	return errs
+}
+
+// Equals tests the equality of two `DashboardLink` objects.
+func (resource DashboardLink) Equals(other DashboardLink) bool {
+	if resource.Title != other.Title {
+		return false
+	}
+	if resource.Type != other.Type {
+		return false
+	}
+	if resource.Icon != other.Icon {
+		return false
+	}
+	if resource.Tooltip != other.Tooltip {
+		return false
+	}
+	if resource.Url == nil && other.Url != nil || resource.Url != nil && other.Url == nil {
+		return false
+	}
+
+	if resource.Url != nil {
+		if *resource.Url != *other.Url {
+			return false
+		}
+	}
+
+	if len(resource.Tags) != len(other.Tags) {
+		return false
+	}
+
+	for i1 := range resource.Tags {
+		if resource.Tags[i1] != other.Tags[i1] {
+			return false
+		}
+	}
+	if resource.AsDropdown != other.AsDropdown {
+		return false
+	}
+	if resource.TargetBlank != other.TargetBlank {
+		return false
+	}
+	if resource.IncludeVars != other.IncludeVars {
+		return false
+	}
+	if resource.KeepTime != other.KeepTime {
+		return false
+	}
+	if resource.Placement == nil && other.Placement != nil || resource.Placement != nil && other.Placement == nil {
+		return false
+	}
+
+	if resource.Placement != nil {
+		if *resource.Placement != *other.Placement {
+			return false
+		}
+	}
+	if resource.Origin == nil && other.Origin != nil || resource.Origin != nil && other.Origin == nil {
+		return false
+	}
+
+	if resource.Origin != nil {
+		if !resource.Origin.Equals(*other.Origin) {
+			return false
+		}
+	}
+
+	return true
+}
+
+// Validate checks all the validation constraints that may be defined on `DashboardLink` fields for violations and returns them.
+func (resource DashboardLink) Validate() error {
+	var errs cog.BuildErrors
+	if resource.Origin != nil {
+		if err := resource.Origin.Validate(); err != nil {
+			errs = append(errs, cog.MakeBuildErrors("origin", err)...)
+		}
+	}
+
+	if len(errs) == 0 {
+		return nil
+	}
+
+	return errs
+}
+
+// Dashboard Link type. Accepted values are dashboards (to refer to another dashboard) and link (to refer to an external resource)
+type DashboardLinkType string
+
+const (
+	DashboardLinkTypeLink       DashboardLinkType = "link"
+	DashboardLinkTypeDashboards DashboardLinkType = "dashboards"
+)
+
+// Dashboard Link placement. Defines where the link should be displayed.
+// - "inControlsMenu" renders the link in bottom part of the dashboard controls dropdown menu
+const DashboardLinkPlacement = "inControlsMenu"
+
+// Time configuration
+// It defines the default time config for the time picker, the refresh picker for the specific dashboard.
+type TimeSettingsSpec struct {
+	// Timezone of dashboard. Accepted values are IANA TZDB zone ID or "browser" or "utc".
+	Timezone *string `json:"timezone,omitempty"`
+	// Start time range for dashboard.
+	// Accepted values are relative time strings like "now-6h" or absolute time strings like "2020-07-10T08:00:00.000Z".
+	From string `json:"from"`
+	// End time range for dashboard.
+	// Accepted values are relative time strings like "now-6h" or absolute time strings like "2020-07-10T08:00:00.000Z".
+	To string `json:"to"`
+	// Refresh rate of dashboard. Represented via interval string, e.g. "5s", "1m", "1h", "1d".
+	// v1: refresh
+	AutoRefresh string `json:"autoRefresh"`
+	// Interval options available in the refresh picker dropdown.
+	// v1: timepicker.refresh_intervals
+	AutoRefreshIntervals []string `json:"autoRefreshIntervals"`
+	// Selectable options available in the time picker dropdown. Has no effect on provisioned dashboard.
+	// v1: timepicker.quick_ranges , not exposed in the UI
+	QuickRanges []TimeRangeOption `json:"quickRanges,omitempty"`
+	// Whether timepicker is visible or not.
+	// v1: timepicker.hidden
+	HideTimepicker bool `json:"hideTimepicker"`
+	// Day when the week starts. Expressed by the name of the day in lowercase, e.g. "monday".
+	WeekStart *TimeSettingsSpecWeekStart `json:"weekStart,omitempty"`
+	// The month that the fiscal year starts on. 0 = January, 11 = December
+	FiscalYearStartMonth int64 `json:"fiscalYearStartMonth"`
+	// Override the now time by entering a time delay. Use this option to accommodate known delays in data aggregation to avoid null values.
+	// v1: timepicker.nowDelay
+	NowDelay *string `json:"nowDelay,omitempty"`
+}
+
+// NewTimeSettingsSpec creates a new TimeSettingsSpec object.
+func NewTimeSettingsSpec() *TimeSettingsSpec {
+	return &TimeSettingsSpec{
+		Timezone:             (func(input string) *string { return &input })("browser"),
+		From:                 "now-6h",
+		To:                   "now",
+		AutoRefresh:          "",
+		AutoRefreshIntervals: []string{"5s", "10s", "30s", "1m", "5m", "15m", "30m", "1h", "2h", "1d"},
+		HideTimepicker:       false,
+		FiscalYearStartMonth: 0,
+	}
+}
+
+// UnmarshalJSONStrict implements a custom JSON unmarshalling logic to decode `TimeSettingsSpec` from JSON.
+// Note: the unmarshalling done by this function is strict. It will fail over required fields being absent from the input, fields having an incorrect type, unexpected fields being present, …
+func (resource *TimeSettingsSpec) UnmarshalJSONStrict(raw []byte) error {
+	if raw == nil {
+		return nil
+	}
+	var errs cog.BuildErrors
+
+	fields := make(map[string]json.RawMessage)
+	if err := json.Unmarshal(raw, &fields); err != nil {
+		return err
+	}
+	// Field "timezone"
+	if fields["timezone"] != nil {
+		if string(fields["timezone"]) != "null" {
+			if err := json.Unmarshal(fields["timezone"], &resource.Timezone); err != nil {
+				errs = append(errs, cog.MakeBuildErrors("timezone", err)...)
+			}
+
+		}
+		delete(fields, "timezone")
+
+	}
+	// Field "from"
+	if fields["from"] != nil {
+		if string(fields["from"]) != "null" {
+			if err := json.Unmarshal(fields["from"], &resource.From); err != nil {
+				errs = append(errs, cog.MakeBuildErrors("from", err)...)
+			}
+		} else {
+			errs = append(errs, cog.MakeBuildErrors("from", errors.New("required field is null"))...)
+
+		}
+		delete(fields, "from")
+
+	}
+	// Field "to"
+	if fields["to"] != nil {
+		if string(fields["to"]) != "null" {
+			if err := json.Unmarshal(fields["to"], &resource.To); err != nil {
+				errs = append(errs, cog.MakeBuildErrors("to", err)...)
+			}
+		} else {
+			errs = append(errs, cog.MakeBuildErrors("to", errors.New("required field is null"))...)
+
+		}
+		delete(fields, "to")
+
+	}
+	// Field "autoRefresh"
+	if fields["autoRefresh"] != nil {
+		if string(fields["autoRefresh"]) != "null" {
+			if err := json.Unmarshal(fields["autoRefresh"], &resource.AutoRefresh); err != nil {
+				errs = append(errs, cog.MakeBuildErrors("autoRefresh", err)...)
+			}
+		} else {
+			errs = append(errs, cog.MakeBuildErrors("autoRefresh", errors.New("required field is null"))...)
+
+		}
+		delete(fields, "autoRefresh")
+
+	}
+	// Field "autoRefreshIntervals"
+	if fields["autoRefreshIntervals"] != nil {
+		if string(fields["autoRefreshIntervals"]) != "null" {
+
+			if err := json.Unmarshal(fields["autoRefreshIntervals"], &resource.AutoRefreshIntervals); err != nil {
+				errs = append(errs, cog.MakeBuildErrors("autoRefreshIntervals", err)...)
+			}
+		} else {
+			errs = append(errs, cog.MakeBuildErrors("autoRefreshIntervals", errors.New("required field is null"))...)
+
+		}
+		delete(fields, "autoRefreshIntervals")
+
+	}
+	// Field "quickRanges"
+	if fields["quickRanges"] != nil {
+		if string(fields["quickRanges"]) != "null" {
+
+			partialArray := []json.RawMessage{}
+			if err := json.Unmarshal(fields["quickRanges"], &partialArray); err != nil {
+				return err
+			}
+
+			for i1 := range partialArray {
+				var result1 TimeRangeOption
+
+				result1 = TimeRangeOption{}
+				if err := result1.UnmarshalJSONStrict(partialArray[i1]); err != nil {
+					errs = append(errs, cog.MakeBuildErrors("quickRanges["+strconv.Itoa(i1)+"]", err)...)
+				}
+				resource.QuickRanges = append(resource.QuickRanges, result1)
+			}
+
+		}
+		delete(fields, "quickRanges")
+
+	}
+	// Field "hideTimepicker"
+	if fields["hideTimepicker"] != nil {
+		if string(fields["hideTimepicker"]) != "null" {
+			if err := json.Unmarshal(fields["hideTimepicker"], &resource.HideTimepicker); err != nil {
+				errs = append(errs, cog.MakeBuildErrors("hideTimepicker", err)...)
+			}
+		} else {
+			errs = append(errs, cog.MakeBuildErrors("hideTimepicker", errors.New("required field is null"))...)
+
+		}
+		delete(fields, "hideTimepicker")
+
+	}
+	// Field "weekStart"
+	if fields["weekStart"] != nil {
+		if string(fields["weekStart"]) != "null" {
+			if err := json.Unmarshal(fields["weekStart"], &resource.WeekStart); err != nil {
+				errs = append(errs, cog.MakeBuildErrors("weekStart", err)...)
+			}
+
+		}
+		delete(fields, "weekStart")
+
+	}
+	// Field "fiscalYearStartMonth"
+	if fields["fiscalYearStartMonth"] != nil {
+		if string(fields["fiscalYearStartMonth"]) != "null" {
+			if err := json.Unmarshal(fields["fiscalYearStartMonth"], &resource.FiscalYearStartMonth); err != nil {
+				errs = append(errs, cog.MakeBuildErrors("fiscalYearStartMonth", err)...)
+			}
+		} else {
+			errs = append(errs, cog.MakeBuildErrors("fiscalYearStartMonth", errors.New("required field is null"))...)
+
+		}
+		delete(fields, "fiscalYearStartMonth")
+
+	}
+	// Field "nowDelay"
+	if fields["nowDelay"] != nil {
+		if string(fields["nowDelay"]) != "null" {
+			if err := json.Unmarshal(fields["nowDelay"], &resource.NowDelay); err != nil {
+				errs = append(errs, cog.MakeBuildErrors("nowDelay", err)...)
+			}
+
+		}
+		delete(fields, "nowDelay")
+
+	}
+
+	for field := range fields {
+		errs = append(errs, cog.MakeBuildErrors("TimeSettingsSpec", fmt.Errorf("unexpected field '%s'", field))...)
+	}
+
+	if len(errs) == 0 {
+		return nil
+	}
+
+	return errs
+}
+
+// Equals tests the equality of two `TimeSettingsSpec` objects.
+func (resource TimeSettingsSpec) Equals(other TimeSettingsSpec) bool {
+	if resource.Timezone == nil && other.Timezone != nil || resource.Timezone != nil && other.Timezone == nil {
+		return false
+	}
+
+	if resource.Timezone != nil {
+		if *resource.Timezone != *other.Timezone {
+			return false
+		}
+	}
+	if resource.From != other.From {
+		return false
+	}
+	if resource.To != other.To {
+		return false
+	}
+	if resource.AutoRefresh != other.AutoRefresh {
+		return false
+	}
+
+	if len(resource.AutoRefreshIntervals) != len(other.AutoRefreshIntervals) {
+		return false
+	}
+
+	for i1 := range resource.AutoRefreshIntervals {
+		if resource.AutoRefreshIntervals[i1] != other.AutoRefreshIntervals[i1] {
+			return false
+		}
+	}
+
+	if len(resource.QuickRanges) != len(other.QuickRanges) {
+		return false
+	}
+
+	for i1 := range resource.QuickRanges {
+		if !resource.QuickRanges[i1].Equals(other.QuickRanges[i1]) {
+			return false
+		}
+	}
+	if resource.HideTimepicker != other.HideTimepicker {
+		return false
+	}
+	if resource.WeekStart == nil && other.WeekStart != nil || resource.WeekStart != nil && other.WeekStart == nil {
+		return false
+	}
+
+	if resource.WeekStart != nil {
+		if *resource.WeekStart != *other.WeekStart {
+			return false
+		}
+	}
+	if resource.FiscalYearStartMonth != other.FiscalYearStartMonth {
+		return false
+	}
+	if resource.NowDelay == nil && other.NowDelay != nil || resource.NowDelay != nil && other.NowDelay == nil {
+		return false
+	}
+
+	if resource.NowDelay != nil {
+		if *resource.NowDelay != *other.NowDelay {
+			return false
+		}
+	}
+
+	return true
+}
+
+// Validate checks all the validation constraints that may be defined on `TimeSettingsSpec` fields for violations and returns them.
+func (resource TimeSettingsSpec) Validate() error {
+	var errs cog.BuildErrors
+
+	for i1 := range resource.QuickRanges {
+		if err := resource.QuickRanges[i1].Validate(); err != nil {
+			errs = append(errs, cog.MakeBuildErrors("quickRanges["+strconv.Itoa(i1)+"]", err)...)
+		}
+	}
+
+	if len(errs) == 0 {
+		return nil
+	}
+
+	return errs
+}
+
+type TimeRangeOption struct {
+	Display string `json:"display"`
+	From    string `json:"from"`
+	To      string `json:"to"`
+}
+
+// NewTimeRangeOption creates a new TimeRangeOption object.
+func NewTimeRangeOption() *TimeRangeOption {
+	return &TimeRangeOption{
+		Display: "Last 6 hours",
+		From:    "now-6h",
+		To:      "now",
+	}
+}
+
+// UnmarshalJSONStrict implements a custom JSON unmarshalling logic to decode `TimeRangeOption` from JSON.
+// Note: the unmarshalling done by this function is strict. It will fail over required fields being absent from the input, fields having an incorrect type, unexpected fields being present, …
+func (resource *TimeRangeOption) UnmarshalJSONStrict(raw []byte) error {
+	if raw == nil {
+		return nil
+	}
+	var errs cog.BuildErrors
+
+	fields := make(map[string]json.RawMessage)
+	if err := json.Unmarshal(raw, &fields); err != nil {
+		return err
+	}
+	// Field "display"
+	if fields["display"] != nil {
+		if string(fields["display"]) != "null" {
+			if err := json.Unmarshal(fields["display"], &resource.Display); err != nil {
+				errs = append(errs, cog.MakeBuildErrors("display", err)...)
+			}
+		} else {
+			errs = append(errs, cog.MakeBuildErrors("display", errors.New("required field is null"))...)
+
+		}
+		delete(fields, "display")
+
+	}
+	// Field "from"
+	if fields["from"] != nil {
+		if string(fields["from"]) != "null" {
+			if err := json.Unmarshal(fields["from"], &resource.From); err != nil {
+				errs = append(errs, cog.MakeBuildErrors("from", err)...)
+			}
+		} else {
+			errs = append(errs, cog.MakeBuildErrors("from", errors.New("required field is null"))...)
+
+		}
+		delete(fields, "from")
+
+	}
+	// Field "to"
+	if fields["to"] != nil {
+		if string(fields["to"]) != "null" {
+			if err := json.Unmarshal(fields["to"], &resource.To); err != nil {
+				errs = append(errs, cog.MakeBuildErrors("to", err)...)
+			}
+		} else {
+			errs = append(errs, cog.MakeBuildErrors("to", errors.New("required field is null"))...)
+
+		}
+		delete(fields, "to")
+
+	}
+
+	for field := range fields {
+		errs = append(errs, cog.MakeBuildErrors("TimeRangeOption", fmt.Errorf("unexpected field '%s'", field))...)
+	}
+
+	if len(errs) == 0 {
+		return nil
+	}
+
+	return errs
+}
+
+// Equals tests the equality of two `TimeRangeOption` objects.
+func (resource TimeRangeOption) Equals(other TimeRangeOption) bool {
+	if resource.Display != other.Display {
+		return false
+	}
+	if resource.From != other.From {
+		return false
+	}
+	if resource.To != other.To {
+		return false
+	}
+
+	return true
+}
+
+// Validate checks all the validation constraints that may be defined on `TimeRangeOption` fields for violations and returns them.
+func (resource TimeRangeOption) Validate() error {
 	return nil
 }
+
+// Annotation event field source. Defines how to obtain the value for an annotation event field.
+// - "field": Find the value with a matching key (default)
+// - "text": Write a constant string into the value
+// - "skip": Do not include the field
+type AnnotationEventFieldSource string
+
+const (
+	AnnotationEventFieldSourceField AnnotationEventFieldSource = "field"
+	AnnotationEventFieldSourceText  AnnotationEventFieldSource = "text"
+	AnnotationEventFieldSourceSkip  AnnotationEventFieldSource = "skip"
+)
 
 // --- Common types ---
 type Kind struct {
@@ -13838,7 +14741,7 @@ func (resource VariableValueOption) Validate() error {
 	return errs
 }
 
-const DashboardV2Beta1 = "dashboard.grafana.app/v2beta1"
+const DashboardApiVersion = "dashboard.grafana.app/v2beta1"
 
 const DashboardKind = "Dashboard"
 
@@ -14594,20 +15497,27 @@ const (
 	AutoGridLayoutSpecRowHeightModeCustom   AutoGridLayoutSpecRowHeightMode = "custom"
 )
 
-type TimeSettingsSpecWeekStart string
-
-const (
-	TimeSettingsSpecWeekStartSaturday TimeSettingsSpecWeekStart = "saturday"
-	TimeSettingsSpecWeekStartMonday   TimeSettingsSpecWeekStart = "monday"
-	TimeSettingsSpecWeekStartSunday   TimeSettingsSpecWeekStart = "sunday"
-)
-
 type QueryVariableSpecStaticOptionsOrder string
 
 const (
 	QueryVariableSpecStaticOptionsOrderBefore QueryVariableSpecStaticOptionsOrder = "before"
 	QueryVariableSpecStaticOptionsOrderAfter  QueryVariableSpecStaticOptionsOrder = "after"
 	QueryVariableSpecStaticOptionsOrderSorted QueryVariableSpecStaticOptionsOrder = "sorted"
+)
+
+type CustomVariableSpecValuesFormat string
+
+const (
+	CustomVariableSpecValuesFormatCsv  CustomVariableSpecValuesFormat = "csv"
+	CustomVariableSpecValuesFormatJson CustomVariableSpecValuesFormat = "json"
+)
+
+type TimeSettingsSpecWeekStart string
+
+const (
+	TimeSettingsSpecWeekStartSaturday TimeSettingsSpecWeekStart = "saturday"
+	TimeSettingsSpecWeekStartMonday   TimeSettingsSpecWeekStart = "monday"
+	TimeSettingsSpecWeekStartSunday   TimeSettingsSpecWeekStart = "sunday"
 )
 
 type GridLayoutKindOrRowsLayoutKindOrAutoGridLayoutKindOrTabsLayoutKind struct {

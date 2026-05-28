@@ -143,7 +143,12 @@
             "description": "This field is deprecated in favor of using cellOptions"
           },
           "cellOptions": {
-            "$ref": "#/components/schemas/TableCellOptions"
+            "nullable": true,
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/TableCellOptions"
+              }
+            ]
           },
           "hidden": {
             "type": "boolean",

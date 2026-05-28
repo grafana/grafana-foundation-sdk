@@ -48,6 +48,14 @@ func (builder *AdhocVariableBuilder) DefaultKeys(defaultKeys []cog.Builder[dashb
 func (builder *AdhocVariableBuilder) Description(description string) *AdhocVariableBuilder
 ```
 
+### <span class="badge object-method"></span> EnableGroupBy
+
+Whether the group-by operator is enabled in the ad hoc filter combobox.
+
+```go
+func (builder *AdhocVariableBuilder) EnableGroupBy(enableGroupBy bool) *AdhocVariableBuilder
+```
+
 ### <span class="badge object-method"></span> Filters
 
 ```go
@@ -72,10 +80,22 @@ func (builder *AdhocVariableBuilder) Hide(hide dashboardv2beta1.VariableHide) *A
 func (builder *AdhocVariableBuilder) Label(label string) *AdhocVariableBuilder
 ```
 
+### <span class="badge object-method"></span> Labels
+
+```go
+func (builder *AdhocVariableBuilder) Labels(labels map[string]string) *AdhocVariableBuilder
+```
+
 ### <span class="badge object-method"></span> Name
 
 ```go
 func (builder *AdhocVariableBuilder) Name(name string) *AdhocVariableBuilder
+```
+
+### <span class="badge object-method"></span> Origin
+
+```go
+func (builder *AdhocVariableBuilder) Origin(origin cog.Builder[dashboardv2beta1.ControlSourceRef]) *AdhocVariableBuilder
 ```
 
 ### <span class="badge object-method"></span> SkipUrlSync

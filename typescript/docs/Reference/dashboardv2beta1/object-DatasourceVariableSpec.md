@@ -23,6 +23,7 @@ export interface DatasourceVariableSpec {
 	skipUrlSync: boolean;
 	description?: string;
 	allowCustomValue: boolean;
+	origin?: dashboardv2beta1.ControlSourceRef;
 }
 
 ```

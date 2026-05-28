@@ -78,10 +78,13 @@ public class AnnotationQueryDeserializer extends JsonDeserializer<AnnotationQuer
           annotationQuery.target = mapper.treeToValue(root.get("target"), clazz);
       } else {
           UnknownDataquery unknownDataquery = new UnknownDataquery();
-          Iterator<Map.Entry<String, JsonNode>> fieldsIterator = root.get("target").fields();
-          while (fieldsIterator.hasNext()) {
-              Map.Entry<String, JsonNode> field = fieldsIterator.next();
-              unknownDataquery.genericFields.put(field.getKey(), mapper.treeToValue(field.getValue(), Object.class));
+          JsonNode targetNode = root.get("target");
+          if (targetNode != null && !targetNode.isNull()) {
+              Iterator<Map.Entry<String, JsonNode>> fieldsIterator = targetNode.fields();
+              while (fieldsIterator.hasNext()) {
+                  Map.Entry<String, JsonNode> field = fieldsIterator.next();
+                  unknownDataquery.genericFields.put(field.getKey(), mapper.treeToValue(field.getValue(), Object.class));
+              }
           }
           annotationQuery.target = unknownDataquery;
       }

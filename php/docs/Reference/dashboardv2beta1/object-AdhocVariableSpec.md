@@ -37,6 +37,13 @@ class AdhocVariableSpec implements \JsonSerializable
 
     public bool $allowCustomValue;
 
+    /**
+     * Whether the group-by operator is enabled in the ad hoc filter combobox.
+     */
+    public ?bool $enableGroupBy;
+
+    public ?\Grafana\Foundation\Dashboardv2beta1\ControlSourceRef $origin;
+
 }
 ```
 ## Methods

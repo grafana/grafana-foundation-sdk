@@ -1,0 +1,17 @@
+---
+title: <span class="badge object-type-interface"></span> TabsLayoutKind
+---
+# <span class="badge object-type-interface"></span> TabsLayoutKind
+
+## Definition
+
+```typescript
+export interface TabsLayoutKind {
+	kind: "TabsLayout";
+	spec: dashboardv2.TabsLayoutSpec;
+}
+
+```
+## See also
+
+ * <span class="badge builder"></span> [TabsBuilder](./builder-TabsBuilder.md)

@@ -1,0 +1,190 @@
+// Code generated - EDITING IS FUTILE. DO NOT EDIT.
+
+package loki
+
+import (
+	cog "github.com/grafana/grafana-foundation-sdk/go/cog"
+	dashboardv2 "github.com/grafana/grafana-foundation-sdk/go/dashboardv2"
+)
+
+var _ cog.Builder[dashboardv2.DataQueryKind] = (*QueryV2Builder)(nil)
+
+type QueryV2Builder struct {
+	internal *dashboardv2.DataQueryKind
+	errors   cog.BuildErrors
+}
+
+func NewQueryV2Builder() *QueryV2Builder {
+	resource := dashboardv2.NewDataQueryKind()
+	builder := &QueryV2Builder{
+		internal: resource,
+		errors:   make(cog.BuildErrors, 0),
+	}
+	builder.internal.Kind = "DataQuery"
+	builder.internal.Group = "loki"
+
+	return builder
+}
+
+func (builder *QueryV2Builder) Build() (dashboardv2.DataQueryKind, error) {
+	if err := builder.internal.Validate(); err != nil {
+		return dashboardv2.DataQueryKind{}, err
+	}
+
+	if len(builder.errors) > 0 {
+		return dashboardv2.DataQueryKind{}, cog.MakeBuildErrors("loki.queryV2", builder.errors)
+	}
+
+	return *builder.internal, nil
+}
+
+func (builder *QueryV2Builder) RecordError(path string, err error) *QueryV2Builder {
+	builder.errors = append(builder.errors, cog.MakeBuildErrors(path, err)...)
+	return builder
+}
+
+func (builder *QueryV2Builder) Version(version string) *QueryV2Builder {
+	builder.internal.Version = version
+
+	return builder
+}
+
+func (builder *QueryV2Builder) Labels(labels map[string]string) *QueryV2Builder {
+	builder.internal.Labels = labels
+
+	return builder
+}
+
+// New type for datasource reference
+// Not creating a new type until we figure out how to handle DS refs for group by, adhoc, and every place that uses DataSourceRef in TS.
+func (builder *QueryV2Builder) Datasource(datasource cog.Builder[dashboardv2.Dashboardv2DataQueryKindDatasource]) *QueryV2Builder {
+	datasourceResource, err := datasource.Build()
+	if err != nil {
+		builder.errors = append(builder.errors, err.(cog.BuildErrors)...)
+		return builder
+	}
+	builder.internal.Datasource = &datasourceResource
+
+	return builder
+}
+
+// The LogQL query.
+func (builder *QueryV2Builder) Expr(expr string) *QueryV2Builder {
+	if builder.internal.Spec == nil {
+		builder.internal.Spec = NewDataquery()
+	}
+	builder.internal.Spec.(*Dataquery).Expr = expr
+
+	return builder
+}
+
+// Used to override the name of the series.
+func (builder *QueryV2Builder) LegendFormat(legendFormat string) *QueryV2Builder {
+	if builder.internal.Spec == nil {
+		builder.internal.Spec = NewDataquery()
+	}
+	builder.internal.Spec.(*Dataquery).LegendFormat = &legendFormat
+
+	return builder
+}
+
+// Used to limit the number of log rows returned.
+func (builder *QueryV2Builder) MaxLines(maxLines int64) *QueryV2Builder {
+	if builder.internal.Spec == nil {
+		builder.internal.Spec = NewDataquery()
+	}
+	builder.internal.Spec.(*Dataquery).MaxLines = &maxLines
+
+	return builder
+}
+
+// @deprecated, now use step.
+func (builder *QueryV2Builder) Resolution(resolution int64) *QueryV2Builder {
+	if builder.internal.Spec == nil {
+		builder.internal.Spec = NewDataquery()
+	}
+	builder.internal.Spec.(*Dataquery).Resolution = &resolution
+
+	return builder
+}
+
+func (builder *QueryV2Builder) EditorMode(editorMode QueryEditorMode) *QueryV2Builder {
+	if builder.internal.Spec == nil {
+		builder.internal.Spec = NewDataquery()
+	}
+	builder.internal.Spec.(*Dataquery).EditorMode = &editorMode
+
+	return builder
+}
+
+// @deprecated, now use queryType.
+func (builder *QueryV2Builder) Range(rangeArg bool) *QueryV2Builder {
+	if builder.internal.Spec == nil {
+		builder.internal.Spec = NewDataquery()
+	}
+	builder.internal.Spec.(*Dataquery).Range = &rangeArg
+
+	return builder
+}
+
+// @deprecated, now use queryType.
+func (builder *QueryV2Builder) Instant(instant bool) *QueryV2Builder {
+	if builder.internal.Spec == nil {
+		builder.internal.Spec = NewDataquery()
+	}
+	builder.internal.Spec.(*Dataquery).Instant = &instant
+
+	return builder
+}
+
+// Used to set step value for range queries.
+func (builder *QueryV2Builder) Step(step string) *QueryV2Builder {
+	if builder.internal.Spec == nil {
+		builder.internal.Spec = NewDataquery()
+	}
+	builder.internal.Spec.(*Dataquery).Step = &step
+
+	return builder
+}
+
+// A unique identifier for the query within the list of targets.
+// In server side expressions, the refId is used as a variable name to identify results.
+// By default, the UI will assign A->Z; however setting meaningful names may be useful.
+func (builder *QueryV2Builder) RefId(refId string) *QueryV2Builder {
+	if builder.internal.Spec == nil {
+		builder.internal.Spec = NewDataquery()
+	}
+	builder.internal.Spec.(*Dataquery).RefId = &refId
+
+	return builder
+}
+
+// If hide is set to true, Grafana will filter out the response(s) associated with this query before returning it to the panel.
+func (builder *QueryV2Builder) Hide(hide bool) *QueryV2Builder {
+	if builder.internal.Spec == nil {
+		builder.internal.Spec = NewDataquery()
+	}
+	builder.internal.Spec.(*Dataquery).Hide = &hide
+
+	return builder
+}
+
+// Specify the query flavor
+// TODO make this required and give it a default
+func (builder *QueryV2Builder) QueryType(queryType string) *QueryV2Builder {
+	if builder.internal.Spec == nil {
+		builder.internal.Spec = NewDataquery()
+	}
+	builder.internal.Spec.(*Dataquery).QueryType = &queryType
+
+	return builder
+}
+
+func (builder *QueryV2Builder) Direction(direction LokiQueryDirection) *QueryV2Builder {
+	if builder.internal.Spec == nil {
+		builder.internal.Spec = NewDataquery()
+	}
+	builder.internal.Spec.(*Dataquery).Direction = &direction
+
+	return builder
+}

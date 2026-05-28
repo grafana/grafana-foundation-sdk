@@ -10,6 +10,7 @@ public class DataQueryKind {
   public String kind;
   public String group;
   public String version;
+  public Map<String, String> labels;
   public Dashboardv2beta1DataQueryKindDatasource datasource;
   public Object spec;
 }

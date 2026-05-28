@@ -7,6 +7,7 @@
 
  * <span class="badge builder"></span> [Dataquery](./builder-Dataquery.md)
  * <span class="badge builder"></span> [Query](./builder-Query.md)
+ * <span class="badge builder"></span> [QueryV2](./builder-QueryV2.md)
 ## Functions
 
 ### <span class="badge function"></span> variant_config

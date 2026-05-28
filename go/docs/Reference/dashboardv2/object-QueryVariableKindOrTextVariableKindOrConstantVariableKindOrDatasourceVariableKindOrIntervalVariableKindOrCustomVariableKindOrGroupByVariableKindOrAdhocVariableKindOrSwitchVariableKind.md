@@ -1,0 +1,64 @@
+---
+title: <span class="badge object-type-struct"></span> QueryVariableKindOrTextVariableKindOrConstantVariableKindOrDatasourceVariableKindOrIntervalVariableKindOrCustomVariableKindOrGroupByVariableKindOrAdhocVariableKindOrSwitchVariableKind
+---
+# <span class="badge object-type-struct"></span> QueryVariableKindOrTextVariableKindOrConstantVariableKindOrDatasourceVariableKindOrIntervalVariableKindOrCustomVariableKindOrGroupByVariableKindOrAdhocVariableKindOrSwitchVariableKind
+
+## Definition
+
+```go
+type QueryVariableKindOrTextVariableKindOrConstantVariableKindOrDatasourceVariableKindOrIntervalVariableKindOrCustomVariableKindOrGroupByVariableKindOrAdhocVariableKindOrSwitchVariableKind struct {
+    QueryVariableKind *dashboardv2.QueryVariableKind `json:"QueryVariableKind,omitempty"`
+    TextVariableKind *dashboardv2.TextVariableKind `json:"TextVariableKind,omitempty"`
+    ConstantVariableKind *dashboardv2.ConstantVariableKind `json:"ConstantVariableKind,omitempty"`
+    DatasourceVariableKind *dashboardv2.DatasourceVariableKind `json:"DatasourceVariableKind,omitempty"`
+    IntervalVariableKind *dashboardv2.IntervalVariableKind `json:"IntervalVariableKind,omitempty"`
+    CustomVariableKind *dashboardv2.CustomVariableKind `json:"CustomVariableKind,omitempty"`
+    GroupByVariableKind *dashboardv2.GroupByVariableKind `json:"GroupByVariableKind,omitempty"`
+    AdhocVariableKind *dashboardv2.AdhocVariableKind `json:"AdhocVariableKind,omitempty"`
+    SwitchVariableKind *dashboardv2.SwitchVariableKind `json:"SwitchVariableKind,omitempty"`
+}
+```
+## Methods
+
+### <span class="badge object-method"></span> MarshalJSON
+
+MarshalJSON implements a custom JSON marshalling logic to encode `QueryVariableKindOrTextVariableKindOrConstantVariableKindOrDatasourceVariableKindOrIntervalVariableKindOrCustomVariableKindOrGroupByVariableKindOrAdhocVariableKindOrSwitchVariableKind` as JSON.
+
+```go
+func (queryVariableKindOrTextVariableKindOrConstantVariableKindOrDatasourceVariableKindOrIntervalVariableKindOrCustomVariableKindOrGroupByVariableKindOrAdhocVariableKindOrSwitchVariableKind *QueryVariableKindOrTextVariableKindOrConstantVariableKindOrDatasourceVariableKindOrIntervalVariableKindOrCustomVariableKindOrGroupByVariableKindOrAdhocVariableKindOrSwitchVariableKind) MarshalJSON() ([]byte, error)
+```
+
+### <span class="badge object-method"></span> UnmarshalJSON
+
+UnmarshalJSON implements a custom JSON unmarshalling logic to decode `QueryVariableKindOrTextVariableKindOrConstantVariableKindOrDatasourceVariableKindOrIntervalVariableKindOrCustomVariableKindOrGroupByVariableKindOrAdhocVariableKindOrSwitchVariableKind` from JSON.
+
+```go
+func (queryVariableKindOrTextVariableKindOrConstantVariableKindOrDatasourceVariableKindOrIntervalVariableKindOrCustomVariableKindOrGroupByVariableKindOrAdhocVariableKindOrSwitchVariableKind *QueryVariableKindOrTextVariableKindOrConstantVariableKindOrDatasourceVariableKindOrIntervalVariableKindOrCustomVariableKindOrGroupByVariableKindOrAdhocVariableKindOrSwitchVariableKind) UnmarshalJSON(raw []byte) error
+```
+
+### <span class="badge object-method"></span> UnmarshalJSONStrict
+
+UnmarshalJSONStrict implements a custom JSON unmarshalling logic to decode `QueryVariableKindOrTextVariableKindOrConstantVariableKindOrDatasourceVariableKindOrIntervalVariableKindOrCustomVariableKindOrGroupByVariableKindOrAdhocVariableKindOrSwitchVariableKind` from JSON.
+
+Note: the unmarshalling done by this function is strict. It will fail over required fields being absent from the input, fields having an incorrect type, unexpected fields being present, …
+
+```go
+func (queryVariableKindOrTextVariableKindOrConstantVariableKindOrDatasourceVariableKindOrIntervalVariableKindOrCustomVariableKindOrGroupByVariableKindOrAdhocVariableKindOrSwitchVariableKind *QueryVariableKindOrTextVariableKindOrConstantVariableKindOrDatasourceVariableKindOrIntervalVariableKindOrCustomVariableKindOrGroupByVariableKindOrAdhocVariableKindOrSwitchVariableKind) UnmarshalJSONStrict(raw []byte) error
+```
+
+### <span class="badge object-method"></span> Equals
+
+Equals tests the equality of two `QueryVariableKindOrTextVariableKindOrConstantVariableKindOrDatasourceVariableKindOrIntervalVariableKindOrCustomVariableKindOrGroupByVariableKindOrAdhocVariableKindOrSwitchVariableKind` objects.
+
+```go
+func (queryVariableKindOrTextVariableKindOrConstantVariableKindOrDatasourceVariableKindOrIntervalVariableKindOrCustomVariableKindOrGroupByVariableKindOrAdhocVariableKindOrSwitchVariableKind *QueryVariableKindOrTextVariableKindOrConstantVariableKindOrDatasourceVariableKindOrIntervalVariableKindOrCustomVariableKindOrGroupByVariableKindOrAdhocVariableKindOrSwitchVariableKind) Equals(other QueryVariableKindOrTextVariableKindOrConstantVariableKindOrDatasourceVariableKindOrIntervalVariableKindOrCustomVariableKindOrGroupByVariableKindOrAdhocVariableKindOrSwitchVariableKind) bool
+```
+
+### <span class="badge object-method"></span> Validate
+
+Validate checks all the validation constraints that may be defined on `QueryVariableKindOrTextVariableKindOrConstantVariableKindOrDatasourceVariableKindOrIntervalVariableKindOrCustomVariableKindOrGroupByVariableKindOrAdhocVariableKindOrSwitchVariableKind` fields for violations and returns them.
+
+```go
+func (queryVariableKindOrTextVariableKindOrConstantVariableKindOrDatasourceVariableKindOrIntervalVariableKindOrCustomVariableKindOrGroupByVariableKindOrAdhocVariableKindOrSwitchVariableKind *QueryVariableKindOrTextVariableKindOrConstantVariableKindOrDatasourceVariableKindOrIntervalVariableKindOrCustomVariableKindOrGroupByVariableKindOrAdhocVariableKindOrSwitchVariableKind) Validate() error
+```
+

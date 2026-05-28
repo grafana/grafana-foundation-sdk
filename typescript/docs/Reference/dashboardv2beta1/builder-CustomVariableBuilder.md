@@ -78,6 +78,12 @@ name(name: string)
 options(options: dashboardv2beta1.VariableOption[])
 ```
 
+### <span class="badge object-method"></span> origin
+
+```typescript
+origin(origin: cog.Builder<dashboardv2beta1.ControlSourceRef>)
+```
+
 ### <span class="badge object-method"></span> query
 
 ```typescript
@@ -88,6 +94,12 @@ query(query: string)
 
 ```typescript
 skipUrlSync(skipUrlSync: boolean)
+```
+
+### <span class="badge object-method"></span> valuesFormat
+
+```typescript
+valuesFormat(valuesFormat: "csv" | "json")
 ```
 
 ## See also

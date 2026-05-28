@@ -27,7 +27,7 @@ class RowsLayoutRowKind implements \JsonSerializable
         $data = $inputData;
         return new self(
             spec: isset($data["spec"]) ? (function($input) {
-    	/** @var array{title?: string, collapse?: bool, hideHeader?: bool, fillScreen?: bool, conditionalRendering?: mixed, repeat?: mixed, layout?: mixed|mixed|mixed|mixed} */
+    	/** @var array{title?: string, collapse?: bool, hideHeader?: bool, fillScreen?: bool, conditionalRendering?: mixed, repeat?: mixed, layout?: mixed|mixed|mixed|mixed, variables?: array<mixed|mixed|mixed|mixed|mixed|mixed|mixed|mixed|mixed>} */
     $val = $input;
     	return \Grafana\Foundation\Dashboardv2beta1\RowsLayoutRowSpec::fromArray($val);
     })($data["spec"]) : null,

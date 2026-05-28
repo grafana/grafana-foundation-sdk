@@ -84,6 +84,12 @@ If hide is set to true, Grafana will filter out the response(s) associated with 
 def hide(hide: bool) -> typing.Self
 ```
 
+### <span class="badge object-method"></span> labels
+
+```python
+def labels(labels: dict[str, str]) -> typing.Self
+```
+
 ### <span class="badge object-method"></span> namespace
 
 Namespace used in template variable queries

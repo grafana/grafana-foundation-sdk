@@ -158,6 +158,19 @@ final class DashboardLinkConverter
     
     
     }
+            if ($input->origin !== null) {
+    
+        
+    $buffer = 'origin(';
+        $arg0 = \Grafana\Foundation\Dashboardv2beta1\ControlSourceRefConverter::convert($input->origin);
+        $buffer .= $arg0;
+        
+    $buffer .= ')';
+
+    $calls[] = $buffer;
+    
+    
+    }
 
         return \implode("\n\t->", $calls);
     }

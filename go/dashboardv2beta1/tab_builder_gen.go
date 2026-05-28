@@ -128,3 +128,9 @@ func (builder *TabBuilder) Repeat(repeat cog.Builder[TabRepeatOptions]) *TabBuil
 
 	return builder
 }
+
+func (builder *TabBuilder) Variables(variables []VariableKind) *TabBuilder {
+	builder.internal.Spec.Variables = variables
+
+	return builder
+}

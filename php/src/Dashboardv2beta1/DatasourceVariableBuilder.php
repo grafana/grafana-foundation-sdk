@@ -127,4 +127,15 @@ class DatasourceVariableBuilder implements \Grafana\Foundation\Cog\Builder
         return $this;
     }
 
+    /**
+     * @param \Grafana\Foundation\Cog\Builder<\Grafana\Foundation\Dashboardv2beta1\ControlSourceRef> $origin
+     */
+    public function origin(\Grafana\Foundation\Cog\Builder $origin): static
+    {
+        $originResource = $origin->build();
+        $this->internal->spec->origin = $originResource;
+    
+        return $this;
+    }
+
 }

@@ -29,7 +29,7 @@ final class ThresholdsConfigConverter
     $buffer = 'steps(';
         $tmparg0 = [];
         foreach ($input->steps as $arg1) {
-        $tmpstepsarg1 ='(new \Grafana\Foundation\Dashboardv2beta1\Threshold(value: '.\var_export($arg1->value, true).',color: '.\var_export($arg1->color, true).',))';
+        $tmpstepsarg1 ='(new \Grafana\Foundation\Dashboardv2beta1\Threshold('.(($arg1->value !== null) ? 'value: '.\var_export($arg1->value, true).', ' : '').'color: '.\var_export($arg1->color, true).',))';
         $tmparg0[] = $tmpstepsarg1;
         }
         $arg0 = "[" . implode(", \n", $tmparg0) . "]";

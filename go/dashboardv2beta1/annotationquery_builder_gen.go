@@ -100,6 +100,22 @@ func (builder *AnnotationQueryBuilder) Placement(placement string) *AnnotationQu
 	return builder
 }
 
+// Mappings define how to convert data frame fields to annotation event fields.
+func (builder *AnnotationQueryBuilder) Mappings(mappings map[string]cog.Builder[AnnotationEventFieldMapping]) *AnnotationQueryBuilder {
+	mappingsResource := make(map[string]AnnotationEventFieldMapping)
+	for key1, val1 := range mappings {
+		mappingsDepth1, err := val1.Build()
+		if err != nil {
+			builder.errors = append(builder.errors, err.(cog.BuildErrors)...)
+			return builder
+		}
+		mappingsResource[key1] = mappingsDepth1
+	}
+	builder.internal.Spec.Mappings = mappingsResource
+
+	return builder
+}
+
 // Catch-all field for datasource-specific properties. Should not be available in as code tooling.
 func (builder *AnnotationQueryBuilder) LegacyOptions(legacyOptions map[string]any) *AnnotationQueryBuilder {
 	builder.internal.Spec.LegacyOptions = legacyOptions

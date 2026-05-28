@@ -27,7 +27,7 @@ class AnnotationQueryKind implements \JsonSerializable
         $data = $inputData;
         return new self(
             spec: isset($data["spec"]) ? (function($input) {
-    	/** @var array{query?: mixed, enable?: bool, hide?: bool, iconColor?: string, name?: string, builtIn?: bool, filter?: mixed, placement?: "inControlsMenu", legacyOptions?: array<string, mixed>} */
+    	/** @var array{query?: mixed, enable?: bool, hide?: bool, iconColor?: string, name?: string, builtIn?: bool, filter?: mixed, placement?: "inControlsMenu", mappings?: array<string, mixed>, legacyOptions?: array<string, mixed>} */
     $val = $input;
     	return \Grafana\Foundation\Dashboardv2beta1\AnnotationQuerySpec::fromArray($val);
     })($data["spec"]) : null,

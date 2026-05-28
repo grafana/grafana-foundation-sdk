@@ -25,6 +25,11 @@ export class AdhocVariableBuilder implements cog.Builder<dashboardv2beta1.AdhocV
         return this;
     }
 
+    labels(labels: Record<string, string>): this {
+        this.internal.labels = labels;
+        return this;
+    }
+
     datasource(datasource: {
 	name?: string;
 }): this {
@@ -104,6 +109,24 @@ export class AdhocVariableBuilder implements cog.Builder<dashboardv2beta1.AdhocV
             this.internal.spec = dashboardv2beta1.defaultAdhocVariableSpec();
         }
         this.internal.spec.allowCustomValue = allowCustomValue;
+        return this;
+    }
+
+    // Whether the group-by operator is enabled in the ad hoc filter combobox.
+    enableGroupBy(enableGroupBy: boolean): this {
+        if (!this.internal.spec) {
+            this.internal.spec = dashboardv2beta1.defaultAdhocVariableSpec();
+        }
+        this.internal.spec.enableGroupBy = enableGroupBy;
+        return this;
+    }
+
+    origin(origin: cog.Builder<dashboardv2beta1.ControlSourceRef>): this {
+        if (!this.internal.spec) {
+            this.internal.spec = dashboardv2beta1.defaultAdhocVariableSpec();
+        }
+        const originResource = origin.build();
+        this.internal.spec.origin = originResource;
         return this;
     }
 }

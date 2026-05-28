@@ -11,6 +11,7 @@ Group variable kind
 export interface GroupByVariableKind {
 	kind: "GroupByVariable";
 	group: string;
+	labels?: Record<string, string>;
 	datasource?: {
 		name?: string;
 	};

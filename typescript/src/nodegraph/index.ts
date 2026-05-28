@@ -4,6 +4,8 @@ export * from './types.gen';
 export type * from './types.gen';
 export * from './panelBuilder.gen';
 export type * from './panelBuilder.gen';
+export * from './visualizationV2Builder.gen';
+export type * from './visualizationV2Builder.gen';
 export * from './arcOptionBuilder.gen';
 export type * from './arcOptionBuilder.gen';
 export * from './nodeOptionsBuilder.gen';

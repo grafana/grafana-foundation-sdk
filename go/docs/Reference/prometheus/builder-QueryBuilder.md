@@ -96,6 +96,12 @@ See https://github.com/grafana/grafana/issues/48081
 func (builder *QueryBuilder) IntervalFactor(intervalFactor float64) *QueryBuilder
 ```
 
+### <span class="badge object-method"></span> Labels
+
+```go
+func (builder *QueryBuilder) Labels(labels map[string]string) *QueryBuilder
+```
+
 ### <span class="badge object-method"></span> LegendFormat
 
 Series name override or template. Ex. {{hostname}} will be replaced with label value for hostname

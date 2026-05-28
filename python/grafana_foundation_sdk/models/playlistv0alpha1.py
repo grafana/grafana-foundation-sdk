@@ -70,7 +70,7 @@ class Playlist:
         return cls(**args)
 
 
-PlaylistV0Alpha1: typing.Literal["playlist.grafana.app/playlistv0alpha1"] = "playlist.grafana.app/playlistv0alpha1"
+PlaylistApiVersion: typing.Literal["playlist.grafana.app/playlistv0alpha1"] = "playlist.grafana.app/playlistv0alpha1"
 
 
 PlaylistKind: typing.Literal["Playlist"] = "Playlist"

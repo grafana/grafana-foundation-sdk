@@ -114,6 +114,24 @@ final class AnnotationQueryConverter
     
     
     }
+            if ($input->spec->mappings !== null) {
+    
+        
+    $buffer = 'mappings(';
+        $arg0 = "[";
+        foreach ($input->spec->mappings as $key => $arg1) {
+            $tmpmappingsarg1 = \Grafana\Foundation\Dashboardv2beta1\AnnotationEventFieldMappingConverter::convert($arg1);
+            $arg0 .= "\t".var_export($key, true)." => $tmpmappingsarg1,";
+        }
+        $arg0 .= "]";
+        $buffer .= $arg0;
+        
+    $buffer .= ')';
+
+    $calls[] = $buffer;
+    
+    
+    }
             if ($input->spec->legacyOptions !== null) {
     
         

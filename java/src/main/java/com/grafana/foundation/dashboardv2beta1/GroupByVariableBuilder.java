@@ -2,6 +2,7 @@
 
 package com.grafana.foundation.dashboardv2beta1;
 
+import java.util.Map;
 import java.util.List;
 
 public class GroupByVariableBuilder implements com.grafana.foundation.cog.Builder<GroupByVariableKind> {
@@ -17,6 +18,11 @@ public class GroupByVariableBuilder implements com.grafana.foundation.cog.Builde
     }
     public GroupByVariableBuilder group(String group) {
         this.internal.group = group;
+        return this;
+    }
+    
+    public GroupByVariableBuilder labels(Map<String, String> labels) {
+        this.internal.labels = labels;
         return this;
     }
     
@@ -95,6 +101,15 @@ public class GroupByVariableBuilder implements com.grafana.foundation.cog.Builde
 			this.internal.spec = new com.grafana.foundation.dashboardv2beta1.GroupByVariableSpec();
 		}
         this.internal.spec.description = description;
+        return this;
+    }
+    
+    public GroupByVariableBuilder origin(com.grafana.foundation.cog.Builder<ControlSourceRef> origin) {
+		if (this.internal.spec == null) {
+			this.internal.spec = new com.grafana.foundation.dashboardv2beta1.GroupByVariableSpec();
+		}
+    ControlSourceRef originResource = origin.build();
+        this.internal.spec.origin = originResource;
         return this;
     }
     public GroupByVariableKind build() {

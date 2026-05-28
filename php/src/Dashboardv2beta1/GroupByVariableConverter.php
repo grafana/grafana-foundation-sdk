@@ -23,6 +23,24 @@ final class GroupByVariableConverter
     
     
     }
+            if ($input->labels !== null) {
+    
+        
+    $buffer = 'labels(';
+        $arg0 = "[";
+        foreach ($input->labels as $key => $arg1) {
+            $tmplabelsarg1 =\var_export($arg1, true);
+            $arg0 .= "\t".var_export($key, true)." => $tmplabelsarg1,";
+        }
+        $arg0 .= "]";
+        $buffer .= $arg0;
+        
+    $buffer .= ')';
+
+    $calls[] = $buffer;
+    
+    
+    }
             if ($input->datasource !== null) {
     
         
@@ -53,7 +71,7 @@ final class GroupByVariableConverter
     
         
     $buffer = 'defaultValue(';
-        $arg0 ='(new \Grafana\Foundation\Dashboardv2beta1\VariableOption('.(($input->spec->defaultValue->selected !== null) ? 'selected: '.\var_export($input->spec->defaultValue->selected, true).', ' : '').'text: '.\var_export($input->spec->defaultValue->text, true).',value: '.\var_export($input->spec->defaultValue->value, true).',))';
+        $arg0 ='(new \Grafana\Foundation\Dashboardv2beta1\VariableOption('.(($input->spec->defaultValue->selected !== null) ? 'selected: '.\var_export($input->spec->defaultValue->selected, true).', ' : '').'text: '.\var_export($input->spec->defaultValue->text, true).',value: '.\var_export($input->spec->defaultValue->value, true).','.(($input->spec->defaultValue->properties !== null) ? 'properties: '.\var_export($input->spec->defaultValue->properties, true).', ' : '').'))';
         $buffer .= $arg0;
         
     $buffer .= ')';
@@ -66,7 +84,7 @@ final class GroupByVariableConverter
     
         {
     $buffer = 'current(';
-        $arg0 ='(new \Grafana\Foundation\Dashboardv2beta1\VariableOption('.(($input->spec->current->selected !== null) ? 'selected: '.\var_export($input->spec->current->selected, true).', ' : '').'text: '.\var_export($input->spec->current->text, true).',value: '.\var_export($input->spec->current->value, true).',))';
+        $arg0 ='(new \Grafana\Foundation\Dashboardv2beta1\VariableOption('.(($input->spec->current->selected !== null) ? 'selected: '.\var_export($input->spec->current->selected, true).', ' : '').'text: '.\var_export($input->spec->current->text, true).',value: '.\var_export($input->spec->current->value, true).','.(($input->spec->current->properties !== null) ? 'properties: '.\var_export($input->spec->current->properties, true).', ' : '').'))';
         $buffer .= $arg0;
         
     $buffer .= ')';
@@ -81,7 +99,7 @@ final class GroupByVariableConverter
     $buffer = 'options(';
         $tmparg0 = [];
         foreach ($input->spec->options as $arg1) {
-        $tmpoptionsarg1 ='(new \Grafana\Foundation\Dashboardv2beta1\VariableOption('.(($arg1->selected !== null) ? 'selected: '.\var_export($arg1->selected, true).', ' : '').'text: '.\var_export($arg1->text, true).',value: '.\var_export($arg1->value, true).',))';
+        $tmpoptionsarg1 ='(new \Grafana\Foundation\Dashboardv2beta1\VariableOption('.(($arg1->selected !== null) ? 'selected: '.\var_export($arg1->selected, true).', ' : '').'text: '.\var_export($arg1->text, true).',value: '.\var_export($arg1->value, true).','.(($arg1->properties !== null) ? 'properties: '.\var_export($arg1->properties, true).', ' : '').'))';
         $tmparg0[] = $tmpoptionsarg1;
         }
         $arg0 = "[" . implode(", \n", $tmparg0) . "]";
@@ -150,6 +168,19 @@ final class GroupByVariableConverter
         
     $buffer = 'description(';
         $arg0 =\var_export($input->spec->description, true);
+        $buffer .= $arg0;
+        
+    $buffer .= ')';
+
+    $calls[] = $buffer;
+    
+    
+    }
+            if ($input->spec->origin !== null) {
+    
+        
+    $buffer = 'origin(';
+        $arg0 = \Grafana\Foundation\Dashboardv2beta1\ControlSourceRefConverter::convert($input->spec->origin);
         $buffer .= $arg0;
         
     $buffer .= ')';

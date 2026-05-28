@@ -21,6 +21,7 @@ func NewIntervalVariableBuilder(name string) *IntervalVariableBuilder {
 		errors:   make(cog.BuildErrors, 0),
 	}
 	builder.internal.Kind = "IntervalVariable"
+	builder.internal.Spec.Refresh = "onTimeRangeChanged"
 	builder.internal.Spec.Name = name
 
 	return builder
@@ -85,12 +86,6 @@ func (builder *IntervalVariableBuilder) AutoCount(autoCount int64) *IntervalVari
 	return builder
 }
 
-func (builder *IntervalVariableBuilder) Refresh(refresh VariableRefresh) *IntervalVariableBuilder {
-	builder.internal.Spec.Refresh = refresh
-
-	return builder
-}
-
 func (builder *IntervalVariableBuilder) Label(label string) *IntervalVariableBuilder {
 	builder.internal.Spec.Label = &label
 
@@ -111,6 +106,17 @@ func (builder *IntervalVariableBuilder) SkipUrlSync(skipUrlSync bool) *IntervalV
 
 func (builder *IntervalVariableBuilder) Description(description string) *IntervalVariableBuilder {
 	builder.internal.Spec.Description = &description
+
+	return builder
+}
+
+func (builder *IntervalVariableBuilder) Origin(origin cog.Builder[ControlSourceRef]) *IntervalVariableBuilder {
+	originResource, err := origin.Build()
+	if err != nil {
+		builder.errors = append(builder.errors, err.(cog.BuildErrors)...)
+		return builder
+	}
+	builder.internal.Spec.Origin = &originResource
 
 	return builder
 }

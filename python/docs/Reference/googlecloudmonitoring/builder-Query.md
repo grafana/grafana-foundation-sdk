@@ -52,6 +52,12 @@ Time interval in milliseconds.
 def interval_ms(interval_ms: float) -> typing.Self
 ```
 
+### <span class="badge object-method"></span> labels
+
+```python
+def labels(labels: dict[str, str]) -> typing.Self
+```
+
 ### <span class="badge object-method"></span> prom_ql_query
 
 PromQL sub-query properties.

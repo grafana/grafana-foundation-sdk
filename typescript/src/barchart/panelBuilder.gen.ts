@@ -649,6 +649,9 @@ export class PanelBuilder implements cog.Builder<dashboard.Panel> {
         if (!this.internal.fieldConfig.defaults.custom) {
             this.internal.fieldConfig.defaults.custom = barchart.defaultFieldConfig();
         }
+        if (!(lineWidth >= 0)) {
+            throw new Error("lineWidth must be >= 0");
+        }
         if (!(lineWidth <= 10)) {
             throw new Error("lineWidth must be <= 10");
         }
@@ -666,6 +669,9 @@ export class PanelBuilder implements cog.Builder<dashboard.Panel> {
         }
         if (!this.internal.fieldConfig.defaults.custom) {
             this.internal.fieldConfig.defaults.custom = barchart.defaultFieldConfig();
+        }
+        if (!(fillOpacity >= 0)) {
+            throw new Error("fillOpacity must be >= 0");
         }
         if (!(fillOpacity <= 100)) {
             throw new Error("fillOpacity must be <= 100");

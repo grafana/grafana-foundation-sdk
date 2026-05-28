@@ -97,7 +97,7 @@ final class Runtime
     public function dataqueryFromArray(array $data, string $dataqueryTypeHint): Dataquery
     {
         // Dataqueries might reference the datasource to use, and its type. Let's use that.
-        if (empty($dataqueryTypeHint) && !empty($data['datasource']) && !empty($data['datasource']['type'])) {
+        if (empty($dataqueryTypeHint) && !empty($data['datasource']) && is_string($data['datasource']['type']) && $data['datasource']['type'] !== '') {
             $dataqueryTypeHint = $data['datasource']['type'];
         }
 
@@ -158,7 +158,7 @@ final class Runtime
 
         return $convert($dataquery);
     }
-    public function convertDataQueryKindToCode(\Grafana\Foundation\Dashboardv2beta1\DataQueryKind $dataquery, string $group): string 
+    public function convertDataQueryKindToCode(\Grafana\Foundation\Dashboardv2beta1\DataQueryKind|\Grafana\Foundation\Dashboardv2\DataQueryKind $dataquery, string $group): string
     {
     	if (!isset($this->dataqueryVariants[$group])) {
             return '/* could not convert DataQueryKind to PHP */';

@@ -15,6 +15,7 @@ type SwitchVariableSpec struct {
     Hide dashboardv2beta1.VariableHide `json:"hide"`
     SkipUrlSync bool `json:"skipUrlSync"`
     Description *string `json:"description,omitempty"`
+    Origin *dashboardv2beta1.ControlSourceRef `json:"origin,omitempty"`
 }
 ```
 ## Methods

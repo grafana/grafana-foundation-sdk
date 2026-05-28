@@ -23,6 +23,24 @@ final class AdhocVariableConverter
     
     
     }
+            if ($input->labels !== null) {
+    
+        
+    $buffer = 'labels(';
+        $arg0 = "[";
+        foreach ($input->labels as $key => $arg1) {
+            $tmplabelsarg1 =\var_export($arg1, true);
+            $arg0 .= "\t".var_export($key, true)." => $tmplabelsarg1,";
+        }
+        $arg0 .= "]";
+        $buffer .= $arg0;
+        
+    $buffer .= ')';
+
+    $calls[] = $buffer;
+    
+    
+    }
             if ($input->datasource !== null) {
     
         
@@ -160,6 +178,32 @@ final class AdhocVariableConverter
         
     $buffer = 'allowCustomValue(';
         $arg0 =\var_export($input->spec->allowCustomValue, true);
+        $buffer .= $arg0;
+        
+    $buffer .= ')';
+
+    $calls[] = $buffer;
+    
+    
+    }
+            if ($input->spec->enableGroupBy !== null && $input->spec->enableGroupBy !== false) {
+    
+        
+    $buffer = 'enableGroupBy(';
+        $arg0 =\var_export($input->spec->enableGroupBy, true);
+        $buffer .= $arg0;
+        
+    $buffer .= ')';
+
+    $calls[] = $buffer;
+    
+    
+    }
+            if ($input->spec->origin !== null) {
+    
+        
+    $buffer = 'origin(';
+        $arg0 = \Grafana\Foundation\Dashboardv2beta1\ControlSourceRefConverter::convert($input->spec->origin);
         $buffer .= $arg0;
         
     $buffer .= ')';

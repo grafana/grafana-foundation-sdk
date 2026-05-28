@@ -10,6 +10,7 @@ type DataQueryKind struct {
     Kind string `json:"kind"`
     Group string `json:"group"`
     Version string `json:"version"`
+    Labels map[string]string `json:"labels,omitempty"`
     // New type for datasource reference
     // Not creating a new type until we figure out how to handle DS refs for group by, adhoc, and every place that uses DataSourceRef in TS.
     Datasource *dashboardv2beta1.Dashboardv2beta1DataQueryKindDatasource `json:"datasource,omitempty"`

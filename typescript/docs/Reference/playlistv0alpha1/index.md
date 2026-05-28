@@ -4,8 +4,8 @@
 
  * <span class="badge object-type-interface"></span> [Item](./object-Item.md)
  * <span class="badge object-type-interface"></span> [Playlist](./object-Playlist.md)
+ * <span class="badge object-type-scalar"></span> [PlaylistApiVersion](./object-PlaylistApiVersion.md)
  * <span class="badge object-type-scalar"></span> [PlaylistKind](./object-PlaylistKind.md)
- * <span class="badge object-type-scalar"></span> [PlaylistV0Alpha1](./object-PlaylistV0Alpha1.md)
 ## Builders
 
  * <span class="badge builder"></span> [ItemBuilder](./builder-ItemBuilder.md)

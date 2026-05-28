@@ -60,6 +60,12 @@ func (builder *GroupByVariableBuilder) Hide(hide dashboardv2beta1.VariableHide) 
 func (builder *GroupByVariableBuilder) Label(label string) *GroupByVariableBuilder
 ```
 
+### <span class="badge object-method"></span> Labels
+
+```go
+func (builder *GroupByVariableBuilder) Labels(labels map[string]string) *GroupByVariableBuilder
+```
+
 ### <span class="badge object-method"></span> Multi
 
 ```go
@@ -76,6 +82,12 @@ func (builder *GroupByVariableBuilder) Name(name string) *GroupByVariableBuilder
 
 ```go
 func (builder *GroupByVariableBuilder) Options(options []dashboardv2beta1.VariableOption) *GroupByVariableBuilder
+```
+
+### <span class="badge object-method"></span> Origin
+
+```go
+func (builder *GroupByVariableBuilder) Origin(origin cog.Builder[dashboardv2beta1.ControlSourceRef]) *GroupByVariableBuilder
 ```
 
 ### <span class="badge object-method"></span> SkipUrlSync

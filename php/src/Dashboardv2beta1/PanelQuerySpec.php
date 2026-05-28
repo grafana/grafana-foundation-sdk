@@ -31,7 +31,7 @@ class PanelQuerySpec implements \JsonSerializable
         $data = $inputData;
         return new self(
             query: isset($data["query"]) ? (function($input) {
-    	/** @var array{kind?: string, group?: string, version?: string, datasource?: mixed, spec?: mixed} */
+    	/** @var array{kind?: string, group?: string, version?: string, labels?: array<string, string>, datasource?: mixed, spec?: mixed} */
     $val = $input;
     	return \Grafana\Foundation\Dashboardv2beta1\DataQueryKind::fromArray($val);
     })($data["query"]) : null,

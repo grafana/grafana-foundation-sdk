@@ -13,6 +13,8 @@ It comes with in id ( to resolve implementation from registry) and a configurati
 export interface MatcherConfig {
 	// The matcher id. This is used to find the matcher implementation from registry.
 	id: string;
+	// If set, limits this matcher to fields of that type. If not set, "series" mode is used.
+	scope?: dashboardv2beta1.MatcherScope;
 	// The matcher options. This is specific to the matcher implementation.
 	options?: any;
 }

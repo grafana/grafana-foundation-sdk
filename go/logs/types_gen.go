@@ -11,6 +11,7 @@ import (
 	variants "github.com/grafana/grafana-foundation-sdk/go/cog/variants"
 	common "github.com/grafana/grafana-foundation-sdk/go/common"
 	dashboard "github.com/grafana/grafana-foundation-sdk/go/dashboard"
+	dashboardv2 "github.com/grafana/grafana-foundation-sdk/go/dashboardv2"
 	dashboardv2beta1 "github.com/grafana/grafana-foundation-sdk/go/dashboardv2beta1"
 )
 
@@ -389,14 +390,23 @@ func VariantConfig() variants.PanelcfgConfig {
 			if panel, ok := inputPanel.(*dashboard.Panel); ok {
 				return PanelConverter(*panel)
 			}
+
 			if panel, ok := inputPanel.(dashboard.Panel); ok {
 				return PanelConverter(panel)
 			}
 			if panel, ok := inputPanel.(*dashboardv2beta1.VizConfigKind); ok {
 				return VisualizationConverter(*panel)
 			}
-
-			return VisualizationConverter(inputPanel.(dashboardv2beta1.VizConfigKind))
+			if panel, ok := inputPanel.(dashboardv2beta1.VizConfigKind); ok {
+				return VisualizationConverter(panel)
+			}
+			if panel, ok := inputPanel.(*dashboardv2.VizConfigKind); ok {
+				return VisualizationV2Converter(*panel)
+			}
+			if panel, ok := inputPanel.(dashboardv2.VizConfigKind); ok {
+				return VisualizationV2Converter(panel)
+			}
+			return "/* could not convert VizConfigKind */"
 		},
 	}
 }

@@ -6,6 +6,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.ObjectWriter;
+import java.util.HashMap;
 import java.util.LinkedList;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonSetter;
@@ -49,12 +50,15 @@ public class DatasourceVariableSpec {
     public String description;
     @JsonProperty("allowCustomValue")
     public Boolean allowCustomValue;
+    @JsonInclude(JsonInclude.Include.NON_NULL)
+    @JsonProperty("origin")
+    public ControlSourceRef origin;
     public DatasourceVariableSpec() {
         this.name = "";
         this.pluginId = "";
         this.refresh = VariableRefresh.NEVER;
         this.regex = "";
-        this.current = new VariableOption(false, StringOrArrayOfString.createString(""), StringOrArrayOfString.createString(""));
+        this.current = new VariableOption(false, StringOrArrayOfString.createString(""), StringOrArrayOfString.createString(""), new HashMap<>());
         this.options = new LinkedList<>();
         this.multi = false;
         this.includeAll = false;
@@ -62,7 +66,7 @@ public class DatasourceVariableSpec {
         this.skipUrlSync = false;
         this.allowCustomValue = true;
     }
-    public DatasourceVariableSpec(String name,String pluginId,VariableRefresh refresh,String regex,VariableOption current,List<VariableOption> options,Boolean multi,Boolean includeAll,String allValue,String label,VariableHide hide,Boolean skipUrlSync,String description,Boolean allowCustomValue) {
+    public DatasourceVariableSpec(String name,String pluginId,VariableRefresh refresh,String regex,VariableOption current,List<VariableOption> options,Boolean multi,Boolean includeAll,String allValue,String label,VariableHide hide,Boolean skipUrlSync,String description,Boolean allowCustomValue,ControlSourceRef origin) {
         this.name = name;
         this.pluginId = pluginId;
         this.refresh = refresh;
@@ -77,6 +81,7 @@ public class DatasourceVariableSpec {
         this.skipUrlSync = skipUrlSync;
         this.description = description;
         this.allowCustomValue = allowCustomValue;
+        this.origin = origin;
     }
     
     public String toJSON() throws JsonProcessingException {
