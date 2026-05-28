@@ -92,6 +92,21 @@ class AnnotationQueryBuilder implements \Grafana\Foundation\Cog\Builder
     }
 
     /**
+     * Mappings define how to convert data frame fields to annotation event fields.
+     * @param array<string, \Grafana\Foundation\Cog\Builder<\Grafana\Foundation\Dashboardv2beta1\AnnotationEventFieldMapping>> $mappings
+     */
+    public function mappings(array $mappings): static
+    {
+            $mappingsResources = [];
+            foreach ($mappings as $key1 => $val1) {
+                    $mappingsResources[$key1] = $val1->build();
+            }
+        $this->internal->spec->mappings = $mappingsResources;
+    
+        return $this;
+    }
+
+    /**
      * Catch-all field for datasource-specific properties. Should not be available in as code tooling.
      * @param array<string, mixed> $legacyOptions
      */

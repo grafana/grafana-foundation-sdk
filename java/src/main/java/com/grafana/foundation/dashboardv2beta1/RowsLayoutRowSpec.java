@@ -7,6 +7,7 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.ObjectWriter;
 import com.fasterxml.jackson.annotation.JsonInclude;
+import java.util.List;
 
 public class RowsLayoutRowSpec {
     @JsonInclude(JsonInclude.Include.NON_NULL)
@@ -30,10 +31,13 @@ public class RowsLayoutRowSpec {
     @JsonInclude(JsonInclude.Include.NON_EMPTY)
     @JsonProperty("layout")
     public GridLayoutKindOrAutoGridLayoutKindOrTabsLayoutKindOrRowsLayoutKind layout;
+    @JsonInclude(JsonInclude.Include.NON_NULL)
+    @JsonProperty("variables")
+    public List<VariableKind> variables;
     public RowsLayoutRowSpec() {
         this.layout = new com.grafana.foundation.dashboardv2beta1.GridLayoutKindOrAutoGridLayoutKindOrTabsLayoutKindOrRowsLayoutKind();
     }
-    public RowsLayoutRowSpec(String title,Boolean collapse,Boolean hideHeader,Boolean fillScreen,ConditionalRenderingGroupKind conditionalRendering,RowRepeatOptions repeat,GridLayoutKindOrAutoGridLayoutKindOrTabsLayoutKindOrRowsLayoutKind layout) {
+    public RowsLayoutRowSpec(String title,Boolean collapse,Boolean hideHeader,Boolean fillScreen,ConditionalRenderingGroupKind conditionalRendering,RowRepeatOptions repeat,GridLayoutKindOrAutoGridLayoutKindOrTabsLayoutKindOrRowsLayoutKind layout,List<VariableKind> variables) {
         this.title = title;
         this.collapse = collapse;
         this.hideHeader = hideHeader;
@@ -41,6 +45,7 @@ public class RowsLayoutRowSpec {
         this.conditionalRendering = conditionalRendering;
         this.repeat = repeat;
         this.layout = layout;
+        this.variables = variables;
     }
     
     public String toJSON() throws JsonProcessingException {

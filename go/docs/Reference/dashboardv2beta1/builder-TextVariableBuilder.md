@@ -48,6 +48,12 @@ func (builder *TextVariableBuilder) Label(label string) *TextVariableBuilder
 func (builder *TextVariableBuilder) Name(name string) *TextVariableBuilder
 ```
 
+### <span class="badge object-method"></span> Origin
+
+```go
+func (builder *TextVariableBuilder) Origin(origin cog.Builder[dashboardv2beta1.ControlSourceRef]) *TextVariableBuilder
+```
+
 ### <span class="badge object-method"></span> Query
 
 ```go

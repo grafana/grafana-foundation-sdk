@@ -1,0 +1,109 @@
+---
+title: <span class="badge builder"></span> AdhocVariable
+---
+# <span class="badge builder"></span> AdhocVariable
+
+## Constructor
+
+```python
+AdhocVariable(name: str)
+```
+## Methods
+
+### <span class="badge object-method"></span> build
+
+Builds the object.
+
+```python
+def build() -> dashboardv2.AdhocVariableKind
+```
+
+### <span class="badge object-method"></span> allow_custom_value
+
+```python
+def allow_custom_value(allow_custom_value: bool) -> typing.Self
+```
+
+### <span class="badge object-method"></span> base_filters
+
+```python
+def base_filters(base_filters: list[cogbuilder.Builder[dashboardv2.AdHocFilterWithLabels]]) -> typing.Self
+```
+
+### <span class="badge object-method"></span> datasource
+
+```python
+def datasource(datasource: cogbuilder.Builder[dashboardv2.Dashboardv2AdhocVariableKindDatasource]) -> typing.Self
+```
+
+### <span class="badge object-method"></span> default_keys
+
+```python
+def default_keys(default_keys: list[cogbuilder.Builder[dashboardv2.MetricFindValue]]) -> typing.Self
+```
+
+### <span class="badge object-method"></span> description
+
+```python
+def description(description: str) -> typing.Self
+```
+
+### <span class="badge object-method"></span> enable_group_by
+
+Whether the group-by operator is enabled in the ad hoc filter combobox.
+
+```python
+def enable_group_by(enable_group_by: bool) -> typing.Self
+```
+
+### <span class="badge object-method"></span> filters
+
+```python
+def filters(filters: list[cogbuilder.Builder[dashboardv2.AdHocFilterWithLabels]]) -> typing.Self
+```
+
+### <span class="badge object-method"></span> group
+
+```python
+def group(group: str) -> typing.Self
+```
+
+### <span class="badge object-method"></span> hide
+
+```python
+def hide(hide: dashboardv2.VariableHide) -> typing.Self
+```
+
+### <span class="badge object-method"></span> label
+
+```python
+def label(label: str) -> typing.Self
+```
+
+### <span class="badge object-method"></span> labels
+
+```python
+def labels(labels: dict[str, str]) -> typing.Self
+```
+
+### <span class="badge object-method"></span> name
+
+```python
+def name(name: str) -> typing.Self
+```
+
+### <span class="badge object-method"></span> origin
+
+```python
+def origin(origin: cogbuilder.Builder[dashboardv2.ControlSourceRef]) -> typing.Self
+```
+
+### <span class="badge object-method"></span> skip_url_sync
+
+```python
+def skip_url_sync(skip_url_sync: bool) -> typing.Self
+```
+
+## See also
+
+ * <span class="badge object-type-class"></span> [AdhocVariableKind](./object-AdhocVariableKind.md)

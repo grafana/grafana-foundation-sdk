@@ -64,6 +64,12 @@ func (builder *QueryBuilder) Hide(hide bool) *QueryBuilder
 func (builder *QueryBuilder) Instant(instant bool) *QueryBuilder
 ```
 
+### <span class="badge object-method"></span> Labels
+
+```go
+func (builder *QueryBuilder) Labels(labels map[string]string) *QueryBuilder
+```
+
 ### <span class="badge object-method"></span> LegendFormat
 
 Used to override the name of the series.

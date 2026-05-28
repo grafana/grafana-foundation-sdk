@@ -6,6 +6,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.ObjectWriter;
+import java.util.HashMap;
 import java.util.LinkedList;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonSetter;
@@ -38,6 +39,9 @@ public class QueryVariableSpec {
     public DataQueryKind query;
     @JsonProperty("regex")
     public String regex;
+    @JsonInclude(JsonInclude.Include.NON_NULL)
+    @JsonProperty("regexApplyTo")
+    public VariableRegexApplyTo regexApplyTo;
     @JsonInclude(JsonInclude.Include.NON_EMPTY)
     @JsonProperty("sort")
     public VariableSort sort;
@@ -65,21 +69,25 @@ public class QueryVariableSpec {
     @JsonInclude(JsonInclude.Include.NON_NULL)
     @JsonProperty("staticOptionsOrder")
     public QueryVariableSpecStaticOptionsOrder staticOptionsOrder;
+    @JsonInclude(JsonInclude.Include.NON_NULL)
+    @JsonProperty("origin")
+    public ControlSourceRef origin;
     public QueryVariableSpec() {
         this.name = "";
-        this.current = new VariableOption(false, StringOrArrayOfString.createString(""), StringOrArrayOfString.createString(""));
+        this.current = new VariableOption(false, StringOrArrayOfString.createString(""), StringOrArrayOfString.createString(""), new HashMap<>());
         this.hide = VariableHide.DONT_HIDE;
         this.refresh = VariableRefresh.NEVER;
         this.skipUrlSync = false;
         this.query = new com.grafana.foundation.dashboardv2beta1.DataQueryKind();
         this.regex = "";
+        this.regexApplyTo = VariableRegexApplyTo.VALUE;
         this.sort = VariableSort.DISABLED;
         this.options = new LinkedList<>();
         this.multi = false;
         this.includeAll = false;
         this.allowCustomValue = true;
     }
-    public QueryVariableSpec(String name,VariableOption current,String label,VariableHide hide,VariableRefresh refresh,Boolean skipUrlSync,String description,DataQueryKind query,String regex,VariableSort sort,String definition,List<VariableOption> options,Boolean multi,Boolean includeAll,String allValue,String placeholder,Boolean allowCustomValue,List<VariableOption> staticOptions,QueryVariableSpecStaticOptionsOrder staticOptionsOrder) {
+    public QueryVariableSpec(String name,VariableOption current,String label,VariableHide hide,VariableRefresh refresh,Boolean skipUrlSync,String description,DataQueryKind query,String regex,VariableRegexApplyTo regexApplyTo,VariableSort sort,String definition,List<VariableOption> options,Boolean multi,Boolean includeAll,String allValue,String placeholder,Boolean allowCustomValue,List<VariableOption> staticOptions,QueryVariableSpecStaticOptionsOrder staticOptionsOrder,ControlSourceRef origin) {
         this.name = name;
         this.current = current;
         this.label = label;
@@ -89,6 +97,7 @@ public class QueryVariableSpec {
         this.description = description;
         this.query = query;
         this.regex = regex;
+        this.regexApplyTo = regexApplyTo;
         this.sort = sort;
         this.definition = definition;
         this.options = options;
@@ -99,6 +108,7 @@ public class QueryVariableSpec {
         this.allowCustomValue = allowCustomValue;
         this.staticOptions = staticOptions;
         this.staticOptionsOrder = staticOptionsOrder;
+        this.origin = origin;
     }
     
     public String toJSON() throws JsonProcessingException {

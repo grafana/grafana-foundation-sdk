@@ -126,6 +126,15 @@ public class DatasourceVariableBuilder implements com.grafana.foundation.cog.Bui
         this.internal.spec.allowCustomValue = allowCustomValue;
         return this;
     }
+    
+    public DatasourceVariableBuilder origin(com.grafana.foundation.cog.Builder<ControlSourceRef> origin) {
+		if (this.internal.spec == null) {
+			this.internal.spec = new com.grafana.foundation.dashboardv2beta1.DatasourceVariableSpec();
+		}
+    ControlSourceRef originResource = origin.build();
+        this.internal.spec.origin = originResource;
+        return this;
+    }
     public DatasourceVariableKind build() {
         return this.internal;
     }

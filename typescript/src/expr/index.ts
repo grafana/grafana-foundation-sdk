@@ -2,6 +2,8 @@
 
 export * from './types.gen';
 export type * from './types.gen';
+export * from './queryV2Builder.gen';
+export type * from './queryV2Builder.gen';
 export * from './typeMathBuilder.gen';
 export type * from './typeMathBuilder.gen';
 export * from './typeReduceBuilder.gen';

@@ -2,9 +2,164 @@
 
 import typing
 from ..cog import builder as cogbuilder
+from ..models import dashboardv2
 from ..models import googlecloudmonitoring
 from ..models import common
 from ..models import dashboardv2beta1
+
+
+class QueryV2(cogbuilder.Builder[dashboardv2.DataQueryKind]):
+    _internal: dashboardv2.DataQueryKind
+
+    def __init__(self) -> None:
+        self._internal = dashboardv2.DataQueryKind()        
+        self._internal.kind = "DataQuery"        
+        self._internal.group = "cloud-monitoring"
+
+    def build(self) -> dashboardv2.DataQueryKind:
+        """
+        Builds the object.
+        """
+        return self._internal    
+    
+    def version(self, version: str) -> typing.Self:    
+        self._internal.version = version
+    
+        return self
+    
+    def labels(self, labels: dict[str, str]) -> typing.Self:    
+        self._internal.labels = labels
+    
+        return self
+    
+    def datasource(self, ref: cogbuilder.Builder[dashboardv2.Dashboardv2DataQueryKindDatasource]) -> typing.Self:    
+        """
+        New type for datasource reference
+        Not creating a new type until we figure out how to handle DS refs for group by, adhoc, and every place that uses DataSourceRef in TS.
+        """
+            
+        ref_resource = ref.build()
+        self._internal.datasource = ref_resource
+    
+        return self
+    
+    def ref_id(self, ref_id: str) -> typing.Self:    
+        """
+        A unique identifier for the query within the list of targets.
+        In server side expressions, the refId is used as a variable name to identify results.
+        By default, the UI will assign A->Z; however setting meaningful names may be useful.
+        """
+            
+        if self._internal.spec is None:
+            self._internal.spec = googlecloudmonitoring.CloudMonitoringQuery()
+        assert isinstance(self._internal.spec, googlecloudmonitoring.CloudMonitoringQuery)
+        self._internal.spec.ref_id = ref_id
+    
+        return self
+    
+    def hide(self, hide: bool) -> typing.Self:    
+        """
+        If hide is set to true, Grafana will filter out the response(s) associated with this query before returning it to the panel.
+        """
+            
+        if self._internal.spec is None:
+            self._internal.spec = googlecloudmonitoring.CloudMonitoringQuery()
+        assert isinstance(self._internal.spec, googlecloudmonitoring.CloudMonitoringQuery)
+        self._internal.spec.hide = hide
+    
+        return self
+    
+    def query_type(self, query_type: str) -> typing.Self:    
+        """
+        Specify the query flavor
+        TODO make this required and give it a default
+        """
+            
+        if self._internal.spec is None:
+            self._internal.spec = googlecloudmonitoring.CloudMonitoringQuery()
+        assert isinstance(self._internal.spec, googlecloudmonitoring.CloudMonitoringQuery)
+        self._internal.spec.query_type = query_type
+    
+        return self
+    
+    def alias_by(self, alias_by: str) -> typing.Self:    
+        """
+        Aliases can be set to modify the legend labels. e.g. {{metric.label.xxx}}. See docs for more detail.
+        """
+            
+        if self._internal.spec is None:
+            self._internal.spec = googlecloudmonitoring.CloudMonitoringQuery()
+        assert isinstance(self._internal.spec, googlecloudmonitoring.CloudMonitoringQuery)
+        self._internal.spec.alias_by = alias_by
+    
+        return self
+    
+    def time_series_list(self, time_series_list: cogbuilder.Builder[googlecloudmonitoring.TimeSeriesList]) -> typing.Self:    
+        """
+        GCM query type.
+        queryType: #QueryType
+        Time Series List sub-query properties.
+        """
+            
+        if self._internal.spec is None:
+            self._internal.spec = googlecloudmonitoring.CloudMonitoringQuery()
+        assert isinstance(self._internal.spec, googlecloudmonitoring.CloudMonitoringQuery)
+        time_series_list_resource = time_series_list.build()
+        self._internal.spec.time_series_list = time_series_list_resource
+    
+        return self
+    
+    def time_series_query(self, time_series_query: cogbuilder.Builder[googlecloudmonitoring.TimeSeriesQuery]) -> typing.Self:    
+        """
+        Time Series sub-query properties.
+        """
+            
+        if self._internal.spec is None:
+            self._internal.spec = googlecloudmonitoring.CloudMonitoringQuery()
+        assert isinstance(self._internal.spec, googlecloudmonitoring.CloudMonitoringQuery)
+        time_series_query_resource = time_series_query.build()
+        self._internal.spec.time_series_query = time_series_query_resource
+    
+        return self
+    
+    def slo_query(self, slo_query: cogbuilder.Builder[googlecloudmonitoring.SLOQuery]) -> typing.Self:    
+        """
+        SLO sub-query properties.
+        """
+            
+        if self._internal.spec is None:
+            self._internal.spec = googlecloudmonitoring.CloudMonitoringQuery()
+        assert isinstance(self._internal.spec, googlecloudmonitoring.CloudMonitoringQuery)
+        slo_query_resource = slo_query.build()
+        self._internal.spec.slo_query = slo_query_resource
+    
+        return self
+    
+    def prom_ql_query(self, prom_ql_query: cogbuilder.Builder[googlecloudmonitoring.PromQLQuery]) -> typing.Self:    
+        """
+        PromQL sub-query properties.
+        """
+            
+        if self._internal.spec is None:
+            self._internal.spec = googlecloudmonitoring.CloudMonitoringQuery()
+        assert isinstance(self._internal.spec, googlecloudmonitoring.CloudMonitoringQuery)
+        prom_ql_query_resource = prom_ql_query.build()
+        self._internal.spec.prom_ql_query = prom_ql_query_resource
+    
+        return self
+    
+    def interval_ms(self, interval_ms: float) -> typing.Self:    
+        """
+        Time interval in milliseconds.
+        """
+            
+        if self._internal.spec is None:
+            self._internal.spec = googlecloudmonitoring.CloudMonitoringQuery()
+        assert isinstance(self._internal.spec, googlecloudmonitoring.CloudMonitoringQuery)
+        self._internal.spec.interval_ms = interval_ms
+    
+        return self
+    
 
 
 class CloudMonitoringQuery(cogbuilder.Builder[googlecloudmonitoring.CloudMonitoringQuery]):
@@ -746,6 +901,11 @@ class Query(cogbuilder.Builder[dashboardv2beta1.DataQueryKind]):
     
     def version(self, version: str) -> typing.Self:    
         self._internal.version = version
+    
+        return self
+    
+    def labels(self, labels: dict[str, str]) -> typing.Self:    
+        self._internal.labels = labels
     
         return self
     

@@ -56,6 +56,14 @@ Catch-all field for datasource-specific properties. Should not be available in a
 legacyOptions(legacyOptions: Record<string, any>)
 ```
 
+### <span class="badge object-method"></span> mappings
+
+Mappings define how to convert data frame fields to annotation event fields.
+
+```typescript
+mappings(mappings: Record<string, cog.Builder<dashboardv2beta1.AnnotationEventFieldMapping>>)
+```
+
 ### <span class="badge object-method"></span> name
 
 ```typescript

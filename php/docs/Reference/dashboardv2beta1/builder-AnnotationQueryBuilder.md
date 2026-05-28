@@ -60,6 +60,16 @@ Catch-all field for datasource-specific properties. Should not be available in a
 legacyOptions(array $legacyOptions)
 ```
 
+### <span class="badge object-method"></span> mappings
+
+Mappings define how to convert data frame fields to annotation event fields.
+
+@param array<string, \Grafana\Foundation\Cog\Builder<\Grafana\Foundation\Dashboardv2beta1\AnnotationEventFieldMapping>> $mappings
+
+```php
+mappings(array $mappings)
+```
+
 ### <span class="badge object-method"></span> name
 
 ```php

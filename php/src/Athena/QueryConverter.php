@@ -23,6 +23,24 @@ final class QueryConverter
     
     
     }
+            if ($input->labels !== null) {
+    
+        
+    $buffer = 'labels(';
+        $arg0 = "[";
+        foreach ($input->labels as $key => $arg1) {
+            $tmplabelsarg1 =\var_export($arg1, true);
+            $arg0 .= "\t".var_export($key, true)." => $tmplabelsarg1,";
+        }
+        $arg0 .= "]";
+        $buffer .= $arg0;
+        
+    $buffer .= ')';
+
+    $calls[] = $buffer;
+    
+    
+    }
             if ($input->datasource !== null) {
     
         

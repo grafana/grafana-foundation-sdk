@@ -84,6 +84,12 @@ func (builder *QueryVariableBuilder) Name(name string) *QueryVariableBuilder
 func (builder *QueryVariableBuilder) Options(options []dashboardv2beta1.VariableOption) *QueryVariableBuilder
 ```
 
+### <span class="badge object-method"></span> Origin
+
+```go
+func (builder *QueryVariableBuilder) Origin(origin cog.Builder[dashboardv2beta1.ControlSourceRef]) *QueryVariableBuilder
+```
+
 ### <span class="badge object-method"></span> Placeholder
 
 ```go
@@ -106,6 +112,12 @@ func (builder *QueryVariableBuilder) Refresh(refresh dashboardv2beta1.VariableRe
 
 ```go
 func (builder *QueryVariableBuilder) Regex(regex string) *QueryVariableBuilder
+```
+
+### <span class="badge object-method"></span> RegexApplyTo
+
+```go
+func (builder *QueryVariableBuilder) RegexApplyTo(regexApplyTo dashboardv2beta1.VariableRegexApplyTo) *QueryVariableBuilder
 ```
 
 ### <span class="badge object-method"></span> SkipUrlSync

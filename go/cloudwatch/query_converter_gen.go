@@ -27,6 +27,23 @@ func QueryConverter(input dashboardv2beta1.DataQueryKind) string {
 		buffer.Reset()
 
 	}
+	if input.Labels != nil {
+
+		buffer.WriteString(`Labels(`)
+		arg0 := "map[string]string{"
+		for key, arg1 := range input.Labels {
+			tmplabelsarg1 := fmt.Sprintf("%#v", arg1)
+			arg0 += "\t" + fmt.Sprintf("%#v", key) + ": " + tmplabelsarg1 + ","
+		}
+		arg0 += "}"
+		buffer.WriteString(arg0)
+
+		buffer.WriteString(")")
+
+		calls = append(calls, buffer.String())
+		buffer.Reset()
+
+	}
 	if input.Datasource != nil {
 
 		buffer.WriteString(`Datasource(`)

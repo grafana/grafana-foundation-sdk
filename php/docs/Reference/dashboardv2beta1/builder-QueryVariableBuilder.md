@@ -86,6 +86,14 @@ name(string $name)
 options(array $options)
 ```
 
+### <span class="badge object-method"></span> origin
+
+@param \Grafana\Foundation\Cog\Builder<\Grafana\Foundation\Dashboardv2beta1\ControlSourceRef> $origin
+
+```php
+origin(\Grafana\Foundation\Cog\Builder $origin)
+```
+
 ### <span class="badge object-method"></span> placeholder
 
 ```php
@@ -110,6 +118,12 @@ refresh(\Grafana\Foundation\Dashboardv2beta1\VariableRefresh $refresh)
 
 ```php
 regex(string $regex)
+```
+
+### <span class="badge object-method"></span> regexApplyTo
+
+```php
+regexApplyTo(\Grafana\Foundation\Dashboardv2beta1\VariableRegexApplyTo $regexApplyTo)
 ```
 
 ### <span class="badge object-method"></span> skipUrlSync

@@ -10,6 +10,7 @@ export interface DataQueryKind {
 	kind: "DataQuery";
 	group: string;
 	version: string;
+	labels?: Record<string, string>;
 	// New type for datasource reference
 	// Not creating a new type until we figure out how to handle DS refs for group by, adhoc, and every place that uses DataSourceRef in TS.
 	datasource?: {

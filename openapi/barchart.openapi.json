@@ -109,12 +109,14 @@
         "properties": {
           "lineWidth": {
             "type": "integer",
+            "minimum": 0,
             "maximum": 10,
             "description": "Controls line width of the bars.",
             "default": 1
           },
           "fillOpacity": {
             "type": "integer",
+            "minimum": 0,
             "maximum": 100,
             "description": "Controls the fill opacity of the bars.",
             "default": 80

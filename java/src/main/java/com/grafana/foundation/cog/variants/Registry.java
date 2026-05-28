@@ -47,7 +47,7 @@ public class Registry {
         registerDataquery("loki", com.grafana.foundation.loki.Dataquery.class);
         registerDataquery("parca", com.grafana.foundation.parca.Dataquery.class);
         registerDataquery("prometheus", com.grafana.foundation.prometheus.Dataquery.class);
-        registerDataquery("tempo", com.grafana.foundation.tempo.TempoQuery.class);
+        registerDataquery("tempo", com.grafana.foundation.tempo.Dataquery.class);
         registerDataquery("testdata", com.grafana.foundation.testdata.Dataquery.class);
     }
 

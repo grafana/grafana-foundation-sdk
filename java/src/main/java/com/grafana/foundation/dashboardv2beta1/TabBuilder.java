@@ -2,6 +2,7 @@
 
 package com.grafana.foundation.dashboardv2beta1;
 
+import java.util.List;
 
 public class TabBuilder implements com.grafana.foundation.cog.Builder<TabsLayoutTabKind> {
     protected final TabsLayoutTabKind internal;
@@ -77,6 +78,14 @@ public class TabBuilder implements com.grafana.foundation.cog.Builder<TabsLayout
 		}
     TabRepeatOptions repeatResource = repeat.build();
         this.internal.spec.repeat = repeatResource;
+        return this;
+    }
+    
+    public TabBuilder variables(List<VariableKind> variables) {
+		if (this.internal.spec == null) {
+			this.internal.spec = new com.grafana.foundation.dashboardv2beta1.TabsLayoutTabSpec();
+		}
+        this.internal.spec.variables = variables;
         return this;
     }
     public TabsLayoutTabKind build() {

@@ -1,0 +1,47 @@
+---
+title: <span class="badge builder"></span> ConditionalRenderingGroupBuilder
+---
+# <span class="badge builder"></span> ConditionalRenderingGroupBuilder
+
+## Constructor
+
+```go
+func NewConditionalRenderingGroupBuilder() *ConditionalRenderingGroupBuilder
+```
+## Methods
+
+### <span class="badge object-method"></span> Build
+
+Builds the object.
+
+```go
+func (builder *ConditionalRenderingGroupBuilder) Build() (ConditionalRenderingGroupKind, error)
+```
+
+### <span class="badge object-method"></span> Condition
+
+```go
+func (builder *ConditionalRenderingGroupBuilder) Condition(condition dashboardv2.ConditionalRenderingGroupSpecCondition) *ConditionalRenderingGroupBuilder
+```
+
+### <span class="badge object-method"></span> Item
+
+```go
+func (builder *ConditionalRenderingGroupBuilder) Item(item dashboardv2.ConditionalRenderingVariableKindOrConditionalRenderingDataKindOrConditionalRenderingTimeRangeSizeKind) *ConditionalRenderingGroupBuilder
+```
+
+### <span class="badge object-method"></span> Items
+
+```go
+func (builder *ConditionalRenderingGroupBuilder) Items(items []dashboardv2.ConditionalRenderingVariableKindOrConditionalRenderingDataKindOrConditionalRenderingTimeRangeSizeKind) *ConditionalRenderingGroupBuilder
+```
+
+### <span class="badge object-method"></span> Visibility
+
+```go
+func (builder *ConditionalRenderingGroupBuilder) Visibility(visibility dashboardv2.ConditionalRenderingGroupSpecVisibility) *ConditionalRenderingGroupBuilder
+```
+
+## See also
+
+ * <span class="badge object-type-struct"></span> [ConditionalRenderingGroupKind](./object-ConditionalRenderingGroupKind.md)

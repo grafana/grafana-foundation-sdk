@@ -96,6 +96,14 @@ If hide is set to true, Grafana will filter out the response(s) associated with 
 hide(bool $hide)
 ```
 
+### <span class="badge object-method"></span> labels
+
+@param array<string, string> $labels
+
+```php
+labels(array $labels)
+```
+
 ### <span class="badge object-method"></span> namespace
 
 Namespace used in template variable queries

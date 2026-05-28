@@ -102,6 +102,12 @@ func (builder *QueryVariableBuilder) Regex(regex string) *QueryVariableBuilder {
 	return builder
 }
 
+func (builder *QueryVariableBuilder) RegexApplyTo(regexApplyTo VariableRegexApplyTo) *QueryVariableBuilder {
+	builder.internal.Spec.RegexApplyTo = &regexApplyTo
+
+	return builder
+}
+
 func (builder *QueryVariableBuilder) Sort(sort VariableSort) *QueryVariableBuilder {
 	builder.internal.Spec.Sort = sort
 
@@ -158,6 +164,17 @@ func (builder *QueryVariableBuilder) StaticOptions(staticOptions []VariableOptio
 
 func (builder *QueryVariableBuilder) StaticOptionsOrder(staticOptionsOrder QueryVariableSpecStaticOptionsOrder) *QueryVariableBuilder {
 	builder.internal.Spec.StaticOptionsOrder = &staticOptionsOrder
+
+	return builder
+}
+
+func (builder *QueryVariableBuilder) Origin(origin cog.Builder[ControlSourceRef]) *QueryVariableBuilder {
+	originResource, err := origin.Build()
+	if err != nil {
+		builder.errors = append(builder.errors, err.(cog.BuildErrors)...)
+		return builder
+	}
+	builder.internal.Spec.Origin = &originResource
 
 	return builder
 }

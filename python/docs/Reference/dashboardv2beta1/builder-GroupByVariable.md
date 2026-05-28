@@ -60,6 +60,12 @@ def hide(hide: dashboardv2beta1.VariableHide) -> typing.Self
 def label(label: str) -> typing.Self
 ```
 
+### <span class="badge object-method"></span> labels
+
+```python
+def labels(labels: dict[str, str]) -> typing.Self
+```
+
 ### <span class="badge object-method"></span> multi
 
 ```python
@@ -76,6 +82,12 @@ def name(name: str) -> typing.Self
 
 ```python
 def options(options: list[dashboardv2beta1.VariableOption]) -> typing.Self
+```
+
+### <span class="badge object-method"></span> origin
+
+```python
+def origin(origin: cogbuilder.Builder[dashboardv2beta1.ControlSourceRef]) -> typing.Self
 ```
 
 ### <span class="badge object-method"></span> skip_url_sync

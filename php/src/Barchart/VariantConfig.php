@@ -13,14 +13,17 @@ final class VariantConfig
             convert: [self::class, 'convert'],
         );
     }
+    
     public static function convert(mixed $input): string
     {
         if ($input instanceof \Grafana\Foundation\Dashboard\Panel) {
             return PanelConverter::convert($input);
         }
-    
         if ($input instanceof \Grafana\Foundation\Dashboardv2beta1\VizConfigKind) {
             return VisualizationConverter::convert($input);
+        }
+        if ($input instanceof \Grafana\Foundation\Dashboardv2\VizConfigKind) {
+            return VisualizationV2Converter::convert($input);
         }
     
         return '/* could not convert panel */';

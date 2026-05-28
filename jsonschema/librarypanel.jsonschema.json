@@ -690,11 +690,25 @@
           ],
           "properties": {
             "from": {
-              "type": "number",
+              "anyOf": [
+                {
+                  "type": "number"
+                },
+                {
+                  "type": "null"
+                }
+              ],
               "description": "Min value of the range. It can be null which means -Infinity"
             },
             "to": {
-              "type": "number",
+              "anyOf": [
+                {
+                  "type": "number"
+                },
+                {
+                  "type": "null"
+                }
+              ],
               "description": "Max value of the range. It can be null which means +Infinity"
             },
             "result": {
@@ -799,7 +813,14 @@
       ],
       "properties": {
         "value": {
-          "type": "number",
+          "anyOf": [
+            {
+              "type": "number"
+            },
+            {
+              "type": "null"
+            }
+          ],
           "description": "Value represents a specified metric for the threshold, which triggers a visual change in the dashboard when this value is met or exceeded.\nNulls currently appear here when serializing -Infinity to JSON."
         },
         "color": {

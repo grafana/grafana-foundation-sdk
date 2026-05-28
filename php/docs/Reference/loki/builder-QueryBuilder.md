@@ -66,6 +66,14 @@ hide(bool $hide)
 instant(bool $instant)
 ```
 
+### <span class="badge object-method"></span> labels
+
+@param array<string, string> $labels
+
+```php
+labels(array $labels)
+```
+
 ### <span class="badge object-method"></span> legendFormat
 
 Used to override the name of the series.

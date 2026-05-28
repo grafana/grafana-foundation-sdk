@@ -22,6 +22,7 @@ class QueryVariableSpec:
     description: typing.Optional[str]
     query: dashboardv2beta1.DataQueryKind
     regex: str
+    regex_apply_to: typing.Optional[dashboardv2beta1.VariableRegexApplyTo]
     sort: dashboardv2beta1.VariableSort
     definition: typing.Optional[str]
     options: list[dashboardv2beta1.VariableOption]
@@ -32,6 +33,7 @@ class QueryVariableSpec:
     allow_custom_value: bool
     static_options: typing.Optional[list[dashboardv2beta1.VariableOption]]
     static_options_order: typing.Optional[typing.Literal["before", "after", "sorted"]]
+    origin: typing.Optional[dashboardv2beta1.ControlSourceRef]
 ```
 ## Methods
 

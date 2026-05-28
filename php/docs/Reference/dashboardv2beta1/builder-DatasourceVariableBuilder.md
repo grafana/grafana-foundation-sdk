@@ -80,6 +80,14 @@ name(string $name)
 options(array $options)
 ```
 
+### <span class="badge object-method"></span> origin
+
+@param \Grafana\Foundation\Cog\Builder<\Grafana\Foundation\Dashboardv2beta1\ControlSourceRef> $origin
+
+```php
+origin(\Grafana\Foundation\Cog\Builder $origin)
+```
+
 ### <span class="badge object-method"></span> pluginId
 
 ```php

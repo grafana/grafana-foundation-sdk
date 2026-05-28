@@ -75,5 +75,14 @@ export class ConstantVariableBuilder implements cog.Builder<dashboardv2beta1.Con
         this.internal.spec.description = description;
         return this;
     }
+
+    origin(origin: cog.Builder<dashboardv2beta1.ControlSourceRef>): this {
+        if (!this.internal.spec) {
+            this.internal.spec = dashboardv2beta1.defaultConstantVariableSpec();
+        }
+        const originResource = origin.build();
+        this.internal.spec.origin = originResource;
+        return this;
+    }
 }
 

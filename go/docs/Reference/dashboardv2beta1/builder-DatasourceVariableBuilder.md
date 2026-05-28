@@ -78,6 +78,12 @@ func (builder *DatasourceVariableBuilder) Name(name string) *DatasourceVariableB
 func (builder *DatasourceVariableBuilder) Options(options []dashboardv2beta1.VariableOption) *DatasourceVariableBuilder
 ```
 
+### <span class="badge object-method"></span> Origin
+
+```go
+func (builder *DatasourceVariableBuilder) Origin(origin cog.Builder[dashboardv2beta1.ControlSourceRef]) *DatasourceVariableBuilder
+```
+
 ### <span class="badge object-method"></span> PluginId
 
 ```go

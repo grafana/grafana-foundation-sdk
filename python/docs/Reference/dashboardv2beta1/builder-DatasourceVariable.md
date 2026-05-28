@@ -78,6 +78,12 @@ def name(name: str) -> typing.Self
 def options(options: list[dashboardv2beta1.VariableOption]) -> typing.Self
 ```
 
+### <span class="badge object-method"></span> origin
+
+```python
+def origin(origin: cogbuilder.Builder[dashboardv2beta1.ControlSourceRef]) -> typing.Self
+```
+
 ### <span class="badge object-method"></span> plugin_id
 
 ```python

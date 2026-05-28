@@ -78,6 +78,12 @@ func (builder *RowBuilder) TabsLayout(tabsLayoutKind cog.Builder[dashboardv2beta
 func (builder *RowBuilder) Title(title string) *RowBuilder
 ```
 
+### <span class="badge object-method"></span> Variables
+
+```go
+func (builder *RowBuilder) Variables(variables []dashboardv2beta1.VariableKind) *RowBuilder
+```
+
 ## See also
 
  * <span class="badge object-type-struct"></span> [RowsLayoutRowKind](./object-RowsLayoutRowKind.md)

@@ -1669,7 +1669,14 @@
           "description": "This field is deprecated in favor of using cellOptions"
         },
         "cellOptions": {
-          "$ref": "#/definitions/TableCellOptions"
+          "anyOf": [
+            {
+              "$ref": "#/definitions/TableCellOptions"
+            },
+            {
+              "type": "null"
+            }
+          ]
         },
         "hidden": {
           "type": "boolean",

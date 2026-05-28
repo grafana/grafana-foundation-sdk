@@ -92,6 +92,6 @@ func (resource Folder) Validate() error {
 	return nil
 }
 
-const FolderV1Beta1 = "folder.grafana.app/v1beta1"
+const FolderApiVersion = "folder.grafana.app/v1beta1"
 
 const FolderKind = "Folder"

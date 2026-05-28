@@ -2,126 +2,198 @@
 
 package com.grafana.foundation.tempo;
 
+import com.grafana.foundation.dashboardv2beta1.DataQueryKind;
+import java.util.Map;
+import com.grafana.foundation.dashboardv2beta1.Dashboardv2beta1DataQueryKindDatasource;
 import java.util.List;
 import java.util.LinkedList;
-import com.grafana.foundation.common.DataSourceRef;
 
-public class TempoQueryBuilder implements com.grafana.foundation.cog.Builder<com.grafana.foundation.cog.variants.Dataquery> {
-    protected final TempoQuery internal;
+public class TempoQueryBuilder implements com.grafana.foundation.cog.Builder<DataQueryKind> {
+    protected final DataQueryKind internal;
     
     public TempoQueryBuilder() {
-        this.internal = new TempoQuery();
+        this.internal = new DataQueryKind();
+        this.internal.kind = "DataQuery";
+        this.internal.group = "tempo";
     }
+    public TempoQueryBuilder version(String version) {
+        this.internal.version = version;
+        return this;
+    }
+    
+    public TempoQueryBuilder labels(Map<String, String> labels) {
+        this.internal.labels = labels;
+        return this;
+    }
+    
+    public TempoQueryBuilder datasource(com.grafana.foundation.cog.Builder<Dashboardv2beta1DataQueryKindDatasource> datasource) {
+    Dashboardv2beta1DataQueryKindDatasource datasourceResource = datasource.build();
+        this.internal.datasource = datasourceResource;
+        return this;
+    }
+    
     public TempoQueryBuilder refId(String refId) {
-        this.internal.refId = refId;
+		if (this.internal.spec == null) {
+			this.internal.spec = new com.grafana.foundation.tempo.DataqueryBuilder().build();
+		}
+        ((Dataquery) this.internal.spec).refId = refId;
         return this;
     }
     
     public TempoQueryBuilder hide(Boolean hide) {
-        this.internal.hide = hide;
+		if (this.internal.spec == null) {
+			this.internal.spec = new com.grafana.foundation.tempo.DataqueryBuilder().build();
+		}
+        ((Dataquery) this.internal.spec).hide = hide;
         return this;
     }
     
     public TempoQueryBuilder queryType(String queryType) {
-        this.internal.queryType = queryType;
+		if (this.internal.spec == null) {
+			this.internal.spec = new com.grafana.foundation.tempo.DataqueryBuilder().build();
+		}
+        ((Dataquery) this.internal.spec).queryType = queryType;
         return this;
     }
     
     public TempoQueryBuilder query(String query) {
-        this.internal.query = query;
+		if (this.internal.spec == null) {
+			this.internal.spec = new com.grafana.foundation.tempo.DataqueryBuilder().build();
+		}
+        ((Dataquery) this.internal.spec).query = query;
         return this;
     }
     
     public TempoQueryBuilder search(String search) {
-        this.internal.search = search;
+		if (this.internal.spec == null) {
+			this.internal.spec = new com.grafana.foundation.tempo.DataqueryBuilder().build();
+		}
+        ((Dataquery) this.internal.spec).search = search;
         return this;
     }
     
     public TempoQueryBuilder serviceName(String serviceName) {
-        this.internal.serviceName = serviceName;
+		if (this.internal.spec == null) {
+			this.internal.spec = new com.grafana.foundation.tempo.DataqueryBuilder().build();
+		}
+        ((Dataquery) this.internal.spec).serviceName = serviceName;
         return this;
     }
     
     public TempoQueryBuilder spanName(String spanName) {
-        this.internal.spanName = spanName;
+		if (this.internal.spec == null) {
+			this.internal.spec = new com.grafana.foundation.tempo.DataqueryBuilder().build();
+		}
+        ((Dataquery) this.internal.spec).spanName = spanName;
         return this;
     }
     
     public TempoQueryBuilder minDuration(String minDuration) {
-        this.internal.minDuration = minDuration;
+		if (this.internal.spec == null) {
+			this.internal.spec = new com.grafana.foundation.tempo.DataqueryBuilder().build();
+		}
+        ((Dataquery) this.internal.spec).minDuration = minDuration;
         return this;
     }
     
     public TempoQueryBuilder maxDuration(String maxDuration) {
-        this.internal.maxDuration = maxDuration;
+		if (this.internal.spec == null) {
+			this.internal.spec = new com.grafana.foundation.tempo.DataqueryBuilder().build();
+		}
+        ((Dataquery) this.internal.spec).maxDuration = maxDuration;
         return this;
     }
     
     public TempoQueryBuilder serviceMapQuery(StringOrArrayOfString serviceMapQuery) {
-        this.internal.serviceMapQuery = serviceMapQuery;
+		if (this.internal.spec == null) {
+			this.internal.spec = new com.grafana.foundation.tempo.DataqueryBuilder().build();
+		}
+        ((Dataquery) this.internal.spec).serviceMapQuery = serviceMapQuery;
         return this;
     }
     
     public TempoQueryBuilder serviceMapIncludeNamespace(Boolean serviceMapIncludeNamespace) {
-        this.internal.serviceMapIncludeNamespace = serviceMapIncludeNamespace;
+		if (this.internal.spec == null) {
+			this.internal.spec = new com.grafana.foundation.tempo.DataqueryBuilder().build();
+		}
+        ((Dataquery) this.internal.spec).serviceMapIncludeNamespace = serviceMapIncludeNamespace;
         return this;
     }
     
     public TempoQueryBuilder limit(Long limit) {
-        this.internal.limit = limit;
+		if (this.internal.spec == null) {
+			this.internal.spec = new com.grafana.foundation.tempo.DataqueryBuilder().build();
+		}
+        ((Dataquery) this.internal.spec).limit = limit;
         return this;
     }
     
     public TempoQueryBuilder spss(Long spss) {
-        this.internal.spss = spss;
+		if (this.internal.spec == null) {
+			this.internal.spec = new com.grafana.foundation.tempo.DataqueryBuilder().build();
+		}
+        ((Dataquery) this.internal.spec).spss = spss;
         return this;
     }
     
     public TempoQueryBuilder filters(List<com.grafana.foundation.cog.Builder<TraceqlFilter>> filters) {
+		if (this.internal.spec == null) {
+			this.internal.spec = new com.grafana.foundation.tempo.DataqueryBuilder().build();
+		}
         List<TraceqlFilter> filtersResources = new LinkedList<>();
         for (com.grafana.foundation.cog.Builder<TraceqlFilter> r1 : filters) {
                 TraceqlFilter filtersDepth1 = r1.build();
                 filtersResources.add(filtersDepth1); 
         }
-        this.internal.filters = filtersResources;
+        ((Dataquery) this.internal.spec).filters = filtersResources;
         return this;
     }
     
     public TempoQueryBuilder groupBy(List<com.grafana.foundation.cog.Builder<TraceqlFilter>> groupBy) {
+		if (this.internal.spec == null) {
+			this.internal.spec = new com.grafana.foundation.tempo.DataqueryBuilder().build();
+		}
         List<TraceqlFilter> groupByResources = new LinkedList<>();
         for (com.grafana.foundation.cog.Builder<TraceqlFilter> r1 : groupBy) {
                 TraceqlFilter groupByDepth1 = r1.build();
                 groupByResources.add(groupByDepth1); 
         }
-        this.internal.groupBy = groupByResources;
+        ((Dataquery) this.internal.spec).groupBy = groupByResources;
         return this;
     }
     
     public TempoQueryBuilder tableType(SearchTableType tableType) {
-        this.internal.tableType = tableType;
+		if (this.internal.spec == null) {
+			this.internal.spec = new com.grafana.foundation.tempo.DataqueryBuilder().build();
+		}
+        ((Dataquery) this.internal.spec).tableType = tableType;
         return this;
     }
     
     public TempoQueryBuilder step(String step) {
-        this.internal.step = step;
+		if (this.internal.spec == null) {
+			this.internal.spec = new com.grafana.foundation.tempo.DataqueryBuilder().build();
+		}
+        ((Dataquery) this.internal.spec).step = step;
         return this;
     }
     
     public TempoQueryBuilder exemplars(Long exemplars) {
-        this.internal.exemplars = exemplars;
-        return this;
-    }
-    
-    public TempoQueryBuilder datasource(DataSourceRef datasource) {
-        this.internal.datasource = datasource;
+		if (this.internal.spec == null) {
+			this.internal.spec = new com.grafana.foundation.tempo.DataqueryBuilder().build();
+		}
+        ((Dataquery) this.internal.spec).exemplars = exemplars;
         return this;
     }
     
     public TempoQueryBuilder metricsQueryType(MetricsQueryType metricsQueryType) {
-        this.internal.metricsQueryType = metricsQueryType;
+		if (this.internal.spec == null) {
+			this.internal.spec = new com.grafana.foundation.tempo.DataqueryBuilder().build();
+		}
+        ((Dataquery) this.internal.spec).metricsQueryType = metricsQueryType;
         return this;
     }
-    public TempoQuery build() {
+    public DataQueryKind build() {
         return this.internal;
     }
 }

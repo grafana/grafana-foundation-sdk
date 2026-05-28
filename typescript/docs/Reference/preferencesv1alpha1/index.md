@@ -5,8 +5,8 @@
  * <span class="badge object-type-interface"></span> [CookiePreferences](./object-CookiePreferences.md)
  * <span class="badge object-type-interface"></span> [NavbarPreference](./object-NavbarPreference.md)
  * <span class="badge object-type-interface"></span> [Preferences](./object-Preferences.md)
+ * <span class="badge object-type-scalar"></span> [PreferencesApiVersion](./object-PreferencesApiVersion.md)
  * <span class="badge object-type-scalar"></span> [PreferencesKind](./object-PreferencesKind.md)
- * <span class="badge object-type-scalar"></span> [PreferencesV1Alpha1](./object-PreferencesV1Alpha1.md)
  * <span class="badge object-type-interface"></span> [QueryHistoryPreference](./object-QueryHistoryPreference.md)
 ## Builders
 

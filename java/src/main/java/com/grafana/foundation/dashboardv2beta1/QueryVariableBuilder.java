@@ -88,6 +88,14 @@ public class QueryVariableBuilder implements com.grafana.foundation.cog.Builder<
         return this;
     }
     
+    public QueryVariableBuilder regexApplyTo(VariableRegexApplyTo regexApplyTo) {
+		if (this.internal.spec == null) {
+			this.internal.spec = new com.grafana.foundation.dashboardv2beta1.QueryVariableSpec();
+		}
+        this.internal.spec.regexApplyTo = regexApplyTo;
+        return this;
+    }
+    
     public QueryVariableBuilder sort(VariableSort sort) {
 		if (this.internal.spec == null) {
 			this.internal.spec = new com.grafana.foundation.dashboardv2beta1.QueryVariableSpec();
@@ -165,6 +173,15 @@ public class QueryVariableBuilder implements com.grafana.foundation.cog.Builder<
 			this.internal.spec = new com.grafana.foundation.dashboardv2beta1.QueryVariableSpec();
 		}
         this.internal.spec.staticOptionsOrder = staticOptionsOrder;
+        return this;
+    }
+    
+    public QueryVariableBuilder origin(com.grafana.foundation.cog.Builder<ControlSourceRef> origin) {
+		if (this.internal.spec == null) {
+			this.internal.spec = new com.grafana.foundation.dashboardv2beta1.QueryVariableSpec();
+		}
+    ControlSourceRef originResource = origin.build();
+        this.internal.spec.origin = originResource;
         return this;
     }
     public QueryVariableKind build() {

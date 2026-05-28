@@ -15,6 +15,8 @@ type VariableOption struct {
     Text dashboardv2beta1.StringOrArrayOfString `json:"text"`
     // Value of the option
     Value dashboardv2beta1.StringOrArrayOfString `json:"value"`
+    // Additional properties for multi-props variables
+    Properties map[string]string `json:"properties,omitempty"`
 }
 ```
 ## Methods

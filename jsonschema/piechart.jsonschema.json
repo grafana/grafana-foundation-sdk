@@ -90,10 +90,17 @@
           "$ref": "#/definitions/PieChartType"
         },
         "displayLabels": {
-          "type": "array",
-          "items": {
-            "$ref": "#/definitions/PieChartLabels"
-          }
+          "anyOf": [
+            {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/PieChartLabels"
+              }
+            },
+            {
+              "type": "null"
+            }
+          ]
         },
         "tooltip": {
           "$ref": "#/definitions/VizTooltipOptions"

@@ -25,6 +25,11 @@ class RowsLayoutRowSpec implements \JsonSerializable
      */
     public $layout;
 
+    /**
+     * @var array<\Grafana\Foundation\Dashboardv2beta1\QueryVariableKind|\Grafana\Foundation\Dashboardv2beta1\TextVariableKind|\Grafana\Foundation\Dashboardv2beta1\ConstantVariableKind|\Grafana\Foundation\Dashboardv2beta1\DatasourceVariableKind|\Grafana\Foundation\Dashboardv2beta1\IntervalVariableKind|\Grafana\Foundation\Dashboardv2beta1\CustomVariableKind|\Grafana\Foundation\Dashboardv2beta1\GroupByVariableKind|\Grafana\Foundation\Dashboardv2beta1\AdhocVariableKind|\Grafana\Foundation\Dashboardv2beta1\SwitchVariableKind>|null
+     */
+    public ?array $variables;
+
 }
 ```
 ## Methods

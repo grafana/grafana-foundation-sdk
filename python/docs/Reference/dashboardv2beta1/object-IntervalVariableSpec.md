@@ -20,11 +20,12 @@ class IntervalVariableSpec:
     auto: bool
     auto_min: str
     auto_count: int
-    refresh: dashboardv2beta1.VariableRefresh
+    refresh: typing.Literal["onTimeRangeChanged"]
     label: typing.Optional[str]
     hide: dashboardv2beta1.VariableHide
     skip_url_sync: bool
     description: typing.Optional[str]
+    origin: typing.Optional[dashboardv2beta1.ControlSourceRef]
 ```
 ## Methods
 

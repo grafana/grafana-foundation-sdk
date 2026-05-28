@@ -3,6 +3,7 @@
 package com.grafana.foundation.dashboardv2beta1;
 
 import java.util.Map;
+import java.util.HashMap;
 
 public class AnnotationQueryBuilder implements com.grafana.foundation.cog.Builder<AnnotationQueryKind> {
     protected final AnnotationQueryKind internal;
@@ -74,6 +75,19 @@ public class AnnotationQueryBuilder implements com.grafana.foundation.cog.Builde
 			this.internal.spec = new com.grafana.foundation.dashboardv2beta1.AnnotationQuerySpec();
 		}
         this.internal.spec.placement = placement;
+        return this;
+    }
+    
+    public AnnotationQueryBuilder mappings(Map<String, com.grafana.foundation.cog.Builder<AnnotationEventFieldMapping>> mappings) {
+		if (this.internal.spec == null) {
+			this.internal.spec = new com.grafana.foundation.dashboardv2beta1.AnnotationQuerySpec();
+		}
+        Map<String, AnnotationEventFieldMapping> mappingsResources = new HashMap<>();
+        for (var entry1 : mappings.entrySet()) {
+                AnnotationEventFieldMapping mappingsDepth1 = entry1.getValue().build();
+                mappingsResources.put(entry1.getKey(), mappingsDepth1);           
+        }
+        this.internal.spec.mappings = mappingsResources;
         return this;
     }
     

@@ -10,10 +10,11 @@
   "paths": {},
   "components": {
     "schemas": {
-      "TempoQuery": {
+      "Dataquery": {
         "type": "object",
         "additionalProperties": false,
         "required": [
+          "refId",
           "filters"
         ],
         "properties": {

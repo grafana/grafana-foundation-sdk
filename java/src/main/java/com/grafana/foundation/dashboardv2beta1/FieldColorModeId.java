@@ -12,7 +12,12 @@ import com.fasterxml.jackson.annotation.JsonValue;
 // `thresholds`: From thresholds. Informs Grafana to take the color from the matching threshold
 // `palette-classic`: Classic palette. Grafana will assign color by looking up a color in a palette by series index. Useful for Graphs and pie charts and other categorical data visualizations
 // `palette-classic-by-name`: Classic palette (by name). Grafana will assign color by looking up a color in a palette by series name. Useful for Graphs and pie charts and other categorical data visualizations
-// `continuous-GrYlRd`: ontinuous Green-Yellow-Red palette mode
+// `continuous-viridis`: Continuous Viridis palette mode
+// `continuous-magma`: Continuous Magma palette mode
+// `continuous-plasma`: Continuous Plasma palette mode
+// `continuous-inferno`: Continuous Inferno palette mode
+// `continuous-cividis`: Continuous Cividis palette mode
+// `continuous-GrYlRd`: Continuous Green-Yellow-Red palette mode
 // `continuous-RdYlGr`: Continuous Red-Yellow-Green palette mode
 // `continuous-BlYlRd`: Continuous Blue-Yellow-Red palette mode
 // `continuous-YlRd`: Continuous Yellow-Red palette mode
@@ -29,6 +34,11 @@ public enum FieldColorModeId {
     THRESHOLDS("thresholds"),
     PALETTE_CLASSIC("palette-classic"),
     PALETTE_CLASSIC_BY_NAME("palette-classic-by-name"),
+    CONTINUOUS_VIRIDIS("continuous-viridis"),
+    CONTINUOUS_MAGMA("continuous-magma"),
+    CONTINUOUS_PLASMA("continuous-plasma"),
+    CONTINUOUS_INFERNO("continuous-inferno"),
+    CONTINUOUS_CIVIDIS("continuous-cividis"),
     CONTINUOUS_GR_YL_RD("continuous-GrYlRd"),
     CONTINUOUS_RD_YL_GR("continuous-RdYlGr"),
     CONTINUOUS_BL_YL_RD("continuous-BlYlRd"),

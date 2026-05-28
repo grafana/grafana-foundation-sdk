@@ -11,6 +11,7 @@ import (
 	variants "github.com/grafana/grafana-foundation-sdk/go/cog/variants"
 	common "github.com/grafana/grafana-foundation-sdk/go/common"
 	dashboard "github.com/grafana/grafana-foundation-sdk/go/dashboard"
+	dashboardv2 "github.com/grafana/grafana-foundation-sdk/go/dashboardv2"
 	dashboardv2beta1 "github.com/grafana/grafana-foundation-sdk/go/dashboardv2beta1"
 )
 
@@ -812,6 +813,12 @@ func (resource FieldConfig) Equals(other FieldConfig) bool {
 func (resource FieldConfig) Validate() error {
 	var errs cog.BuildErrors
 	if resource.LineWidth != nil {
+		if !(*resource.LineWidth >= 0) {
+			errs = append(errs, cog.MakeBuildErrors(
+				"lineWidth",
+				errors.New("must be >= 0"),
+			)...)
+		}
 		if !(*resource.LineWidth <= 10) {
 			errs = append(errs, cog.MakeBuildErrors(
 				"lineWidth",
@@ -820,6 +827,12 @@ func (resource FieldConfig) Validate() error {
 		}
 	}
 	if resource.FillOpacity != nil {
+		if !(*resource.FillOpacity >= 0) {
+			errs = append(errs, cog.MakeBuildErrors(
+				"fillOpacity",
+				errors.New("must be >= 0"),
+			)...)
+		}
 		if !(*resource.FillOpacity <= 100) {
 			errs = append(errs, cog.MakeBuildErrors(
 				"fillOpacity",
@@ -895,14 +908,23 @@ func VariantConfig() variants.PanelcfgConfig {
 			if panel, ok := inputPanel.(*dashboard.Panel); ok {
 				return PanelConverter(*panel)
 			}
+
 			if panel, ok := inputPanel.(dashboard.Panel); ok {
 				return PanelConverter(panel)
 			}
 			if panel, ok := inputPanel.(*dashboardv2beta1.VizConfigKind); ok {
 				return VisualizationConverter(*panel)
 			}
-
-			return VisualizationConverter(inputPanel.(dashboardv2beta1.VizConfigKind))
+			if panel, ok := inputPanel.(dashboardv2beta1.VizConfigKind); ok {
+				return VisualizationConverter(panel)
+			}
+			if panel, ok := inputPanel.(*dashboardv2.VizConfigKind); ok {
+				return VisualizationV2Converter(*panel)
+			}
+			if panel, ok := inputPanel.(dashboardv2.VizConfigKind); ok {
+				return VisualizationV2Converter(panel)
+			}
+			return "/* could not convert VizConfigKind */"
 		},
 	}
 }

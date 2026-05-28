@@ -17,7 +17,7 @@
         }
       }
     },
-    "FolderV1Beta1": {
+    "FolderApiVersion": {
       "type": "string",
       "const": "folder.grafana.app/v1beta1"
     },

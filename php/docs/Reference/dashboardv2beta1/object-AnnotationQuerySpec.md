@@ -28,6 +28,12 @@ class AnnotationQuerySpec implements \JsonSerializable
     public ?string $placement;
 
     /**
+     * Mappings define how to convert data frame fields to annotation event fields.
+     * @var array<string, \Grafana\Foundation\Dashboardv2beta1\AnnotationEventFieldMapping>|null
+     */
+    public ?array $mappings;
+
+    /**
      * Catch-all field for datasource-specific properties. Should not be available in as code tooling.
      * @var array<string, mixed>|null
      */

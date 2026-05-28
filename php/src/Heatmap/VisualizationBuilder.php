@@ -72,7 +72,7 @@ class VisualizationBuilder implements \Grafana\Foundation\Cog\Builder
 
     /**
      * Unit a field should use. The unit you select is applied to all fields except time.
-     * You can use the units ID availables in Grafana or a custom unit.
+     * You can use the units ID available in Grafana or a custom unit.
      * Available units in Grafana: https://github.com/grafana/grafana/blob/main/packages/grafana-data/src/valueFormats/categories.ts
      * As custom unit, you can use the following formats:
      * `suffix:<suffix>` for custom unit that should go after value.
@@ -189,6 +189,27 @@ class VisualizationBuilder implements \Grafana\Foundation\Cog\Builder
     public function noValue(string $noValue): static
     {
         $this->internal->spec->fieldConfig->defaults->noValue = $noValue;
+    
+        return $this;
+    }
+
+    /**
+     * Calculate min max per field
+     */
+    public function fieldMinMax(bool $fieldMinMax): static
+    {
+        $this->internal->spec->fieldConfig->defaults->fieldMinMax = $fieldMinMax;
+    
+        return $this;
+    }
+
+    /**
+     * How null values should be handled when calculating field stats
+     * "null" - Include null values, "connected" - Ignore nulls, "null as zero" - Treat nulls as zero
+     */
+    public function nullValueMode(\Grafana\Foundation\Dashboardv2beta1\NullValueMode $nullValueMode): static
+    {
+        $this->internal->spec->fieldConfig->defaults->nullValueMode = $nullValueMode;
     
         return $this;
     }
@@ -320,6 +341,9 @@ class VisualizationBuilder implements \Grafana\Foundation\Cog\Builder
      */
     public function cellGap(int $cellGap): static
     {
+        if (!($cellGap >= 0)) {
+            throw new \ValueError('$cellGap must be >= 0');
+        }
         if (!($cellGap <= 25)) {
             throw new \ValueError('$cellGap must be <= 25');
         }    

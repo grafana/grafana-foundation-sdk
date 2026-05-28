@@ -146,3 +146,9 @@ func (builder *RowBuilder) RowsLayout(rowsLayoutKind cog.Builder[RowsLayoutKind]
 
 	return builder
 }
+
+func (builder *RowBuilder) Variables(variables []VariableKind) *RowBuilder {
+	builder.internal.Spec.Variables = variables
+
+	return builder
+}

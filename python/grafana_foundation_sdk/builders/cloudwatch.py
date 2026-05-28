@@ -2,9 +2,65 @@
 
 import typing
 from ..cog import builder as cogbuilder
+from ..models import dashboardv2
 from ..models import cloudwatch
 from ..models import common
 from ..models import dashboardv2beta1
+
+
+class QueryV2(cogbuilder.Builder[dashboardv2.DataQueryKind]):
+    _internal: dashboardv2.DataQueryKind
+
+    def __init__(self) -> None:
+        self._internal = dashboardv2.DataQueryKind()        
+        self._internal.kind = "DataQuery"        
+        self._internal.group = "cloudwatch"
+
+    def build(self) -> dashboardv2.DataQueryKind:
+        """
+        Builds the object.
+        """
+        return self._internal    
+    
+    def version(self, version: str) -> typing.Self:    
+        self._internal.version = version
+    
+        return self
+    
+    def labels(self, labels: dict[str, str]) -> typing.Self:    
+        self._internal.labels = labels
+    
+        return self
+    
+    def datasource(self, ref: cogbuilder.Builder[dashboardv2.Dashboardv2DataQueryKindDatasource]) -> typing.Self:    
+        """
+        New type for datasource reference
+        Not creating a new type until we figure out how to handle DS refs for group by, adhoc, and every place that uses DataSourceRef in TS.
+        """
+            
+        ref_resource = ref.build()
+        self._internal.datasource = ref_resource
+    
+        return self
+    
+    def cloud_watch_metrics_query(self, cloud_watch_metrics_query: cogbuilder.Builder[cloudwatch.CloudWatchMetricsQuery]) -> typing.Self:    
+        cloud_watch_metrics_query_resource = cloud_watch_metrics_query.build()
+        self._internal.spec = cloud_watch_metrics_query_resource
+    
+        return self
+    
+    def cloud_watch_logs_query(self, cloud_watch_logs_query: cogbuilder.Builder[cloudwatch.CloudWatchLogsQuery]) -> typing.Self:    
+        cloud_watch_logs_query_resource = cloud_watch_logs_query.build()
+        self._internal.spec = cloud_watch_logs_query_resource
+    
+        return self
+    
+    def cloud_watch_annotation_query(self, cloud_watch_annotation_query: cogbuilder.Builder[cloudwatch.CloudWatchAnnotationQuery]) -> typing.Self:    
+        cloud_watch_annotation_query_resource = cloud_watch_annotation_query.build()
+        self._internal.spec = cloud_watch_annotation_query_resource
+    
+        return self
+    
 
 
 class MetricStat(cogbuilder.Builder[cloudwatch.MetricStat]):
@@ -974,6 +1030,11 @@ class Query(cogbuilder.Builder[dashboardv2beta1.DataQueryKind]):
     
     def version(self, version: str) -> typing.Self:    
         self._internal.version = version
+    
+        return self
+    
+    def labels(self, labels: dict[str, str]) -> typing.Self:    
+        self._internal.labels = labels
     
         return self
     

@@ -2,9 +2,83 @@
 
 import typing
 from ..cog import builder as cogbuilder
+from ..models import dashboardv2
 from ..models import expr
 from ..models import common
 from ..models import dashboardv2beta1
+
+
+class QueryV2(cogbuilder.Builder[dashboardv2.DataQueryKind]):
+    _internal: dashboardv2.DataQueryKind
+
+    def __init__(self) -> None:
+        self._internal = dashboardv2.DataQueryKind()        
+        self._internal.kind = "DataQuery"        
+        self._internal.group = "__expr__"
+
+    def build(self) -> dashboardv2.DataQueryKind:
+        """
+        Builds the object.
+        """
+        return self._internal    
+    
+    def version(self, version: str) -> typing.Self:    
+        self._internal.version = version
+    
+        return self
+    
+    def labels(self, labels: dict[str, str]) -> typing.Self:    
+        self._internal.labels = labels
+    
+        return self
+    
+    def datasource(self, ref: cogbuilder.Builder[dashboardv2.Dashboardv2DataQueryKindDatasource]) -> typing.Self:    
+        """
+        New type for datasource reference
+        Not creating a new type until we figure out how to handle DS refs for group by, adhoc, and every place that uses DataSourceRef in TS.
+        """
+            
+        ref_resource = ref.build()
+        self._internal.datasource = ref_resource
+    
+        return self
+    
+    def type_math(self, type_math: cogbuilder.Builder[expr.TypeMath]) -> typing.Self:    
+        type_math_resource = type_math.build()
+        self._internal.spec = type_math_resource
+    
+        return self
+    
+    def type_reduce(self, type_reduce: cogbuilder.Builder[expr.TypeReduce]) -> typing.Self:    
+        type_reduce_resource = type_reduce.build()
+        self._internal.spec = type_reduce_resource
+    
+        return self
+    
+    def type_resample(self, type_resample: cogbuilder.Builder[expr.TypeResample]) -> typing.Self:    
+        type_resample_resource = type_resample.build()
+        self._internal.spec = type_resample_resource
+    
+        return self
+    
+    def type_classic_conditions(self, type_classic_conditions: cogbuilder.Builder[expr.TypeClassicConditions]) -> typing.Self:    
+        type_classic_conditions_resource = type_classic_conditions.build()
+        self._internal.spec = type_classic_conditions_resource
+    
+        return self
+    
+    def type_threshold(self, type_threshold: cogbuilder.Builder[expr.TypeThreshold]) -> typing.Self:    
+        type_threshold_resource = type_threshold.build()
+        self._internal.spec = type_threshold_resource
+    
+        return self
+    
+    def type_sql(self, type_sql: cogbuilder.Builder[expr.TypeSql]) -> typing.Self:    
+        type_sql_resource = type_sql.build()
+        self._internal.spec = type_sql_resource
+    
+        return self
+    
 
 
 class TypeMath(cogbuilder.Builder[expr.TypeMath]):
@@ -1512,6 +1586,11 @@ class Query(cogbuilder.Builder[dashboardv2beta1.DataQueryKind]):
     
     def version(self, version: str) -> typing.Self:    
         self._internal.version = version
+    
+        return self
+    
+    def labels(self, labels: dict[str, str]) -> typing.Self:    
+        self._internal.labels = labels
     
         return self
     

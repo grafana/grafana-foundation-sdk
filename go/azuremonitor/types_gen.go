@@ -11,6 +11,7 @@ import (
 	cog "github.com/grafana/grafana-foundation-sdk/go/cog"
 	variants "github.com/grafana/grafana-foundation-sdk/go/cog/variants"
 	common "github.com/grafana/grafana-foundation-sdk/go/common"
+	dashboardv2 "github.com/grafana/grafana-foundation-sdk/go/dashboardv2"
 	dashboardv2beta1 "github.com/grafana/grafana-foundation-sdk/go/dashboardv2beta1"
 )
 
@@ -3780,9 +3781,16 @@ func VariantConfig() variants.DataqueryConfig {
 		GoV2Converter: func(input any) string {
 			if cast, ok := input.(*dashboardv2beta1.DataQueryKind); ok {
 				return QueryConverter(*cast)
+			} else if cast, ok := input.(dashboardv2beta1.DataQueryKind); ok {
+				return QueryConverter(cast)
+			}
+			if cast, ok := input.(*dashboardv2.DataQueryKind); ok {
+				return QueryV2Converter(*cast)
+			} else if cast, ok := input.(dashboardv2.DataQueryKind); ok {
+				return QueryV2Converter(cast)
 			}
 
-			return QueryConverter(input.(dashboardv2beta1.DataQueryKind))
+			return "/* could not convert DataQueryKind */"
 		},
 	}
 }

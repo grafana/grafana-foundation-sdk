@@ -199,6 +199,30 @@ func VisualizationConverter(input dashboardv2beta1.VizConfigKind) string {
 		buffer.Reset()
 
 	}
+	if input.Spec.FieldConfig.Defaults.FieldMinMax != nil {
+
+		buffer.WriteString(`FieldMinMax(`)
+		arg0 := fmt.Sprintf("%#v", *input.Spec.FieldConfig.Defaults.FieldMinMax)
+		buffer.WriteString(arg0)
+
+		buffer.WriteString(")")
+
+		calls = append(calls, buffer.String())
+		buffer.Reset()
+
+	}
+	if input.Spec.FieldConfig.Defaults.NullValueMode != nil {
+
+		buffer.WriteString(`NullValueMode(`)
+		arg0 := cog.Dump(*input.Spec.FieldConfig.Defaults.NullValueMode)
+		buffer.WriteString(arg0)
+
+		buffer.WriteString(")")
+
+		calls = append(calls, buffer.String())
+		buffer.Reset()
+
+	}
 	if input.Spec.FieldConfig.Overrides != nil && len(input.Spec.FieldConfig.Overrides) >= 1 {
 
 		buffer.WriteString(`Overrides(`)

@@ -65,6 +65,11 @@ class DashboardLink implements \JsonSerializable
     public ?string $placement;
 
     /**
+     * The source that registered the link (if any)
+     */
+    public ?\Grafana\Foundation\Dashboardv2beta1\ControlSourceRef $origin;
+
+    /**
      * @param string|null $title
      * @param \Grafana\Foundation\Dashboardv2beta1\DashboardLinkType|null $type
      * @param string|null $icon
@@ -75,8 +80,9 @@ class DashboardLink implements \JsonSerializable
      * @param bool|null $targetBlank
      * @param bool|null $includeVars
      * @param bool|null $keepTime
+     * @param \Grafana\Foundation\Dashboardv2beta1\ControlSourceRef|null $origin
      */
-    public function __construct(?string $title = null, ?\Grafana\Foundation\Dashboardv2beta1\DashboardLinkType $type = null, ?string $icon = null, ?string $tooltip = null, ?string $url = null, ?array $tags = null, ?bool $asDropdown = null, ?bool $targetBlank = null, ?bool $includeVars = null, ?bool $keepTime = null)
+    public function __construct(?string $title = null, ?\Grafana\Foundation\Dashboardv2beta1\DashboardLinkType $type = null, ?string $icon = null, ?string $tooltip = null, ?string $url = null, ?array $tags = null, ?bool $asDropdown = null, ?bool $targetBlank = null, ?bool $includeVars = null, ?bool $keepTime = null, ?\Grafana\Foundation\Dashboardv2beta1\ControlSourceRef $origin = null)
     {
         $this->title = $title ?: "";
         $this->type = $type ?: \Grafana\Foundation\Dashboardv2beta1\DashboardLinkType::Link();
@@ -89,6 +95,7 @@ class DashboardLink implements \JsonSerializable
         $this->includeVars = $includeVars ?: false;
         $this->keepTime = $keepTime ?: false;
         $this->placement = \Grafana\Foundation\Dashboardv2beta1\Constants::DASHBOARD_LINK_PLACEMENT;
+        $this->origin = $origin;
     }
 
     /**
@@ -96,7 +103,7 @@ class DashboardLink implements \JsonSerializable
      */
     public static function fromArray(array $inputData): self
     {
-        /** @var array{title?: string, type?: string, icon?: string, tooltip?: string, url?: string, tags?: array<string>, asDropdown?: bool, targetBlank?: bool, includeVars?: bool, keepTime?: bool, placement?: "inControlsMenu"} $inputData */
+        /** @var array{title?: string, type?: string, icon?: string, tooltip?: string, url?: string, tags?: array<string>, asDropdown?: bool, targetBlank?: bool, includeVars?: bool, keepTime?: bool, placement?: "inControlsMenu", origin?: mixed} $inputData */
         $data = $inputData;
         return new self(
             title: $data["title"] ?? null,
@@ -109,6 +116,11 @@ class DashboardLink implements \JsonSerializable
             targetBlank: $data["targetBlank"] ?? null,
             includeVars: $data["includeVars"] ?? null,
             keepTime: $data["keepTime"] ?? null,
+            origin: isset($data["origin"]) ? (function($input) {
+    	/** @var array{type?: string, group?: string} */
+    $val = $input;
+    	return \Grafana\Foundation\Dashboardv2beta1\ControlSourceRef::fromArray($val);
+    })($data["origin"]) : null,
         );
     }
 
@@ -132,6 +144,9 @@ class DashboardLink implements \JsonSerializable
         }
         if (isset($this->placement)) {
             $data->placement = $this->placement;
+        }
+        if (isset($this->origin)) {
+            $data->origin = $this->origin;
         }
         return $data;
     }

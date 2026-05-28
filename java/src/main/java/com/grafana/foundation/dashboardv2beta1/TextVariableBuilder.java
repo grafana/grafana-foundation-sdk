@@ -69,6 +69,15 @@ public class TextVariableBuilder implements com.grafana.foundation.cog.Builder<T
         this.internal.spec.description = description;
         return this;
     }
+    
+    public TextVariableBuilder origin(com.grafana.foundation.cog.Builder<ControlSourceRef> origin) {
+		if (this.internal.spec == null) {
+			this.internal.spec = new com.grafana.foundation.dashboardv2beta1.TextVariableSpec();
+		}
+    ControlSourceRef originResource = origin.build();
+        this.internal.spec.origin = originResource;
+        return this;
+    }
     public TextVariableKind build() {
         return this.internal;
     }

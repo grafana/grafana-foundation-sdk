@@ -892,6 +892,9 @@ class PanelBuilder implements \Grafana\Foundation\Cog\Builder
      */
     public function lineWidth(int $lineWidth): static
     {
+        if (!($lineWidth >= 0)) {
+            throw new \ValueError('$lineWidth must be >= 0');
+        }
         if (!($lineWidth <= 10)) {
             throw new \ValueError('$lineWidth must be <= 10');
         }    
@@ -913,6 +916,9 @@ class PanelBuilder implements \Grafana\Foundation\Cog\Builder
      */
     public function fillOpacity(int $fillOpacity): static
     {
+        if (!($fillOpacity >= 0)) {
+            throw new \ValueError('$fillOpacity must be >= 0');
+        }
         if (!($fillOpacity <= 100)) {
             throw new \ValueError('$fillOpacity must be <= 100');
         }    

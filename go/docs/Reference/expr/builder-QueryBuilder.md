@@ -64,6 +64,12 @@ Not creating a new type until we figure out how to handle DS refs for group by, 
 func (builder *QueryBuilder) Datasource(datasource cog.Builder[dashboardv2beta1.Dashboardv2beta1DataQueryKindDatasource]) *QueryBuilder
 ```
 
+### <span class="badge object-method"></span> Labels
+
+```go
+func (builder *QueryBuilder) Labels(labels map[string]string) *QueryBuilder
+```
+
 ### <span class="badge object-method"></span> Version
 
 ```go

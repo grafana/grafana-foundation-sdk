@@ -15,6 +15,7 @@ class AdhocVariableKind:
 
     kind: typing.Literal["AdhocVariable"]
     group: str
+    labels: typing.Optional[dict[str, str]]
     datasource: typing.Optional[dashboardv2beta1.Dashboardv2beta1AdhocVariableKindDatasource]
     spec: dashboardv2beta1.AdhocVariableSpec
 ```

@@ -11,6 +11,7 @@ Group variable kind
 public class GroupByVariableKind {
   public String kind;
   public String group;
+  public Map<String, String> labels;
   public Dashboardv2beta1GroupByVariableKindDatasource datasource;
   public GroupByVariableSpec spec;
 }

@@ -7,6 +7,7 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.ObjectWriter;
 import com.fasterxml.jackson.annotation.JsonInclude;
+import java.util.List;
 
 public class TabsLayoutTabSpec {
     @JsonInclude(JsonInclude.Include.NON_NULL)
@@ -21,14 +22,18 @@ public class TabsLayoutTabSpec {
     @JsonInclude(JsonInclude.Include.NON_NULL)
     @JsonProperty("repeat")
     public TabRepeatOptions repeat;
+    @JsonInclude(JsonInclude.Include.NON_NULL)
+    @JsonProperty("variables")
+    public List<VariableKind> variables;
     public TabsLayoutTabSpec() {
         this.layout = new com.grafana.foundation.dashboardv2beta1.GridLayoutKindOrRowsLayoutKindOrAutoGridLayoutKindOrTabsLayoutKind();
     }
-    public TabsLayoutTabSpec(String title,GridLayoutKindOrRowsLayoutKindOrAutoGridLayoutKindOrTabsLayoutKind layout,ConditionalRenderingGroupKind conditionalRendering,TabRepeatOptions repeat) {
+    public TabsLayoutTabSpec(String title,GridLayoutKindOrRowsLayoutKindOrAutoGridLayoutKindOrTabsLayoutKind layout,ConditionalRenderingGroupKind conditionalRendering,TabRepeatOptions repeat,List<VariableKind> variables) {
         this.title = title;
         this.layout = layout;
         this.conditionalRendering = conditionalRendering;
         this.repeat = repeat;
+        this.variables = variables;
     }
     
     public String toJSON() throws JsonProcessingException {

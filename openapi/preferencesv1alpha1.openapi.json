@@ -94,7 +94,7 @@
           }
         }
       },
-      "PreferencesV1Alpha1": {
+      "PreferencesApiVersion": {
         "type": "string",
         "const": "preferences.grafana.app/v1alpha1"
       },

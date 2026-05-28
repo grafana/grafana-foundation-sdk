@@ -22,6 +22,7 @@ class GroupByVariableSpec:
     hide: dashboardv2beta1.VariableHide
     skip_url_sync: bool
     description: typing.Optional[str]
+    origin: typing.Optional[dashboardv2beta1.ControlSourceRef]
 ```
 ## Methods
 

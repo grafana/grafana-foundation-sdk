@@ -34,6 +34,16 @@ class GroupByVariableBuilder implements \Grafana\Foundation\Cog\Builder
     }
 
     /**
+     * @param array<string, string> $labels
+     */
+    public function labels(array $labels): static
+    {
+        $this->internal->labels = $labels;
+    
+        return $this;
+    }
+
+    /**
      * @param \Grafana\Foundation\Cog\Builder<\Grafana\Foundation\Dashboardv2beta1\Dashboardv2beta1GroupByVariableKindDatasource> $datasource
      */
     public function datasource(\Grafana\Foundation\Cog\Builder $datasource): static
@@ -106,6 +116,17 @@ class GroupByVariableBuilder implements \Grafana\Foundation\Cog\Builder
     public function description(string $description): static
     {
         $this->internal->spec->description = $description;
+    
+        return $this;
+    }
+
+    /**
+     * @param \Grafana\Foundation\Cog\Builder<\Grafana\Foundation\Dashboardv2beta1\ControlSourceRef> $origin
+     */
+    public function origin(\Grafana\Foundation\Cog\Builder $origin): static
+    {
+        $originResource = $origin->build();
+        $this->internal->spec->origin = $originResource;
     
         return $this;
     }

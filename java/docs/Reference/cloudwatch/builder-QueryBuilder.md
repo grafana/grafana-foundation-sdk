@@ -46,6 +46,12 @@ Not creating a new type until we figure out how to handle DS refs for group by, 
 public QueryBuilder datasource(com.grafana.foundation.cog.Builder<Dashboardv2beta1DataQueryKindDatasource> datasource)
 ```
 
+### <span class="badge object-method"></span> labels
+
+```java
+public QueryBuilder labels(Map<String, String> labels)
+```
+
 ### <span class="badge object-method"></span> version
 
 ```java

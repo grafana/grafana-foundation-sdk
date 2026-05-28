@@ -98,6 +98,14 @@ See https://github.com/grafana/grafana/issues/48081
 intervalFactor(float $intervalFactor)
 ```
 
+### <span class="badge object-method"></span> labels
+
+@param array<string, string> $labels
+
+```php
+labels(array $labels)
+```
+
 ### <span class="badge object-method"></span> legendFormat
 
 Series name override or template. Ex. {{hostname}} will be replaced with label value for hostname

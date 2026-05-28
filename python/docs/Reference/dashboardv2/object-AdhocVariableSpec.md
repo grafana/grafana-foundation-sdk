@@ -1,0 +1,47 @@
+---
+title: <span class="badge object-type-class"></span> AdhocVariableSpec
+---
+# <span class="badge object-type-class"></span> AdhocVariableSpec
+
+Adhoc variable specification
+
+## Definition
+
+```python
+class AdhocVariableSpec:
+    """
+    Adhoc variable specification
+    """
+
+    name: str
+    base_filters: list[dashboardv2.AdHocFilterWithLabels]
+    filters: list[dashboardv2.AdHocFilterWithLabels]
+    default_keys: list[dashboardv2.MetricFindValue]
+    label: typing.Optional[str]
+    hide: dashboardv2.VariableHide
+    skip_url_sync: bool
+    description: typing.Optional[str]
+    allow_custom_value: bool
+    # Whether the group-by operator is enabled in the ad hoc filter combobox.
+    enable_group_by: typing.Optional[bool]
+    origin: typing.Optional[dashboardv2.ControlSourceRef]
+```
+## Methods
+
+### <span class="badge object-method"></span> to_json
+
+Converts this object into a representation that can easily be encoded to JSON.
+
+```python
+def to_json() -> dict[str, object]
+```
+
+### <span class="badge object-method"></span> from_json
+
+Builds this object from a JSON-decoded dict.
+
+```python
+@classmethod
+def from_json(data: dict[str, typing.Any]) -> typing.Self
+```
+

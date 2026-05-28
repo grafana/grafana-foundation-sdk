@@ -49,6 +49,12 @@ func (builder *AdhocVariableBuilder) Group(group string) *AdhocVariableBuilder {
 	return builder
 }
 
+func (builder *AdhocVariableBuilder) Labels(labels map[string]string) *AdhocVariableBuilder {
+	builder.internal.Labels = labels
+
+	return builder
+}
+
 func (builder *AdhocVariableBuilder) Datasource(datasource cog.Builder[Dashboardv2beta1AdhocVariableKindDatasource]) *AdhocVariableBuilder {
 	datasourceResource, err := datasource.Build()
 	if err != nil {
@@ -137,6 +143,24 @@ func (builder *AdhocVariableBuilder) Description(description string) *AdhocVaria
 
 func (builder *AdhocVariableBuilder) AllowCustomValue(allowCustomValue bool) *AdhocVariableBuilder {
 	builder.internal.Spec.AllowCustomValue = allowCustomValue
+
+	return builder
+}
+
+// Whether the group-by operator is enabled in the ad hoc filter combobox.
+func (builder *AdhocVariableBuilder) EnableGroupBy(enableGroupBy bool) *AdhocVariableBuilder {
+	builder.internal.Spec.EnableGroupBy = &enableGroupBy
+
+	return builder
+}
+
+func (builder *AdhocVariableBuilder) Origin(origin cog.Builder[ControlSourceRef]) *AdhocVariableBuilder {
+	originResource, err := origin.Build()
+	if err != nil {
+		builder.errors = append(builder.errors, err.(cog.BuildErrors)...)
+		return builder
+	}
+	builder.internal.Spec.Origin = &originResource
 
 	return builder
 }

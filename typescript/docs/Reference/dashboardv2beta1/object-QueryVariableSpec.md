@@ -18,6 +18,7 @@ export interface QueryVariableSpec {
 	description?: string;
 	query: dashboardv2beta1.DataQueryKind;
 	regex: string;
+	regexApplyTo?: dashboardv2beta1.VariableRegexApplyTo;
 	sort: dashboardv2beta1.VariableSort;
 	definition?: string;
 	options: dashboardv2beta1.VariableOption[];
@@ -28,6 +29,7 @@ export interface QueryVariableSpec {
 	allowCustomValue: boolean;
 	staticOptions?: dashboardv2beta1.VariableOption[];
 	staticOptionsOrder?: "before" | "after" | "sorted";
+	origin?: dashboardv2beta1.ControlSourceRef;
 }
 
 ```

@@ -25,6 +25,7 @@
  * <span class="badge builder"></span> [NodesQueryBuilder](./builder-NodesQueryBuilder.md)
  * <span class="badge builder"></span> [PulseWaveQueryBuilder](./builder-PulseWaveQueryBuilder.md)
  * <span class="badge builder"></span> [QueryBuilder](./builder-QueryBuilder.md)
+ * <span class="badge builder"></span> [QueryV2Builder](./builder-QueryV2Builder.md)
  * <span class="badge builder"></span> [ResultAssertionsBuilder](./builder-ResultAssertionsBuilder.md)
  * <span class="badge builder"></span> [SimulationQueryBuilder](./builder-SimulationQueryBuilder.md)
  * <span class="badge builder"></span> [StreamingQueryBuilder](./builder-StreamingQueryBuilder.md)
@@ -121,6 +122,14 @@ This configuration describes how to unmarshal it, convert it to code, …
 
 ```go
 func VariantConfig() variants.DataqueryConfig
+```
+
+### <span class="badge function"></span> QueryV2Converter
+
+QueryV2Converter accepts a `QueryV2` object and generates the Go code to build this object using builders.
+
+```go
+func QueryV2Converter(input dashboardv2.DataQueryKind) string
 ```
 
 ### <span class="badge function"></span> CSVWaveConverter

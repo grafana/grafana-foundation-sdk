@@ -58,6 +58,12 @@ If hide is set to true, Grafana will filter out the response(s) associated with 
 public QueryBuilder hide(Boolean hide)
 ```
 
+### <span class="badge object-method"></span> labels
+
+```java
+public QueryBuilder labels(Map<String, String> labels)
+```
+
 ### <span class="badge object-method"></span> limit
 
 Defines the maximum number of traces that are returned from Tempo

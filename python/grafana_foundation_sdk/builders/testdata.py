@@ -2,9 +2,439 @@
 
 import typing
 from ..cog import builder as cogbuilder
+from ..models import dashboardv2
 from ..models import testdata
 from ..models import common
 from ..models import dashboardv2beta1
+
+
+class QueryV2(cogbuilder.Builder[dashboardv2.DataQueryKind]):
+    _internal: dashboardv2.DataQueryKind
+
+    def __init__(self) -> None:
+        self._internal = dashboardv2.DataQueryKind()        
+        self._internal.kind = "DataQuery"        
+        self._internal.group = "testdata"
+
+    def build(self) -> dashboardv2.DataQueryKind:
+        """
+        Builds the object.
+        """
+        return self._internal    
+    
+    def version(self, version: str) -> typing.Self:    
+        self._internal.version = version
+    
+        return self
+    
+    def labels(self, labels: dict[str, str]) -> typing.Self:    
+        self._internal.labels = labels
+    
+        return self
+    
+    def datasource(self, ref: cogbuilder.Builder[dashboardv2.Dashboardv2DataQueryKindDatasource]) -> typing.Self:    
+        """
+        New type for datasource reference
+        Not creating a new type until we figure out how to handle DS refs for group by, adhoc, and every place that uses DataSourceRef in TS.
+        """
+            
+        ref_resource = ref.build()
+        self._internal.datasource = ref_resource
+    
+        return self
+    
+    def alias(self, alias: str) -> typing.Self:    
+        if self._internal.spec is None:
+            self._internal.spec = testdata.Dataquery()
+        assert isinstance(self._internal.spec, testdata.Dataquery)
+        self._internal.spec.alias = alias
+    
+        return self
+    
+    def channel(self, channel: str) -> typing.Self:    
+        """
+        Used for live query
+        """
+            
+        if self._internal.spec is None:
+            self._internal.spec = testdata.Dataquery()
+        assert isinstance(self._internal.spec, testdata.Dataquery)
+        self._internal.spec.channel = channel
+    
+        return self
+    
+    def csv_content(self, csv_content: str) -> typing.Self:    
+        if self._internal.spec is None:
+            self._internal.spec = testdata.Dataquery()
+        assert isinstance(self._internal.spec, testdata.Dataquery)
+        self._internal.spec.csv_content = csv_content
+    
+        return self
+    
+    def csv_file_name(self, csv_file_name: str) -> typing.Self:    
+        if self._internal.spec is None:
+            self._internal.spec = testdata.Dataquery()
+        assert isinstance(self._internal.spec, testdata.Dataquery)
+        self._internal.spec.csv_file_name = csv_file_name
+    
+        return self
+    
+    def csv_wave(self, csv_wave: list[cogbuilder.Builder[testdata.CSVWave]]) -> typing.Self:    
+        if self._internal.spec is None:
+            self._internal.spec = testdata.Dataquery()
+        assert isinstance(self._internal.spec, testdata.Dataquery)
+        csv_wave_resources = [r1.build() for r1 in csv_wave]
+        self._internal.spec.csv_wave = csv_wave_resources
+    
+        return self
+    
+    def drop_percent(self, drop_percent: float) -> typing.Self:    
+        """
+        Drop percentage (the chance we will lose a point 0-100)
+        """
+            
+        if self._internal.spec is None:
+            self._internal.spec = testdata.Dataquery()
+        assert isinstance(self._internal.spec, testdata.Dataquery)
+        self._internal.spec.drop_percent = drop_percent
+    
+        return self
+    
+    def error_source(self, error_source: typing.Literal["plugin", "downstream"]) -> typing.Self:    
+        """
+        Possible enum values:
+         - `"plugin"` 
+         - `"downstream"` 
+        """
+            
+        if self._internal.spec is None:
+            self._internal.spec = testdata.Dataquery()
+        assert isinstance(self._internal.spec, testdata.Dataquery)
+        self._internal.spec.error_source = error_source
+    
+        return self
+    
+    def error_type(self, error_type: typing.Literal["frontend_exception", "frontend_observable", "server_panic"]) -> typing.Self:    
+        """
+        Possible enum values:
+         - `"frontend_exception"` 
+         - `"frontend_observable"` 
+         - `"server_panic"` 
+        """
+            
+        if self._internal.spec is None:
+            self._internal.spec = testdata.Dataquery()
+        assert isinstance(self._internal.spec, testdata.Dataquery)
+        self._internal.spec.error_type = error_type
+    
+        return self
+    
+    def flamegraph_diff(self, flamegraph_diff: bool) -> typing.Self:    
+        if self._internal.spec is None:
+            self._internal.spec = testdata.Dataquery()
+        assert isinstance(self._internal.spec, testdata.Dataquery)
+        self._internal.spec.flamegraph_diff = flamegraph_diff
+    
+        return self
+    
+    def hide(self, hide: bool) -> typing.Self:    
+        """
+        true if query is disabled (ie should not be returned to the dashboard)
+        NOTE: this does not always imply that the query should not be executed since
+        the results from a hidden query may be used as the input to other queries (SSE etc)
+        """
+            
+        if self._internal.spec is None:
+            self._internal.spec = testdata.Dataquery()
+        assert isinstance(self._internal.spec, testdata.Dataquery)
+        self._internal.spec.hide = hide
+    
+        return self
+    
+    def interval_ms(self, interval_ms: float) -> typing.Self:    
+        """
+        Interval is the suggested duration between time points in a time series query.
+        NOTE: the values for intervalMs is not saved in the query model.  It is typically calculated
+        from the interval required to fill a pixels in the visualization
+        """
+            
+        if self._internal.spec is None:
+            self._internal.spec = testdata.Dataquery()
+        assert isinstance(self._internal.spec, testdata.Dataquery)
+        self._internal.spec.interval_ms = interval_ms
+    
+        return self
+    
+    def dataquery_labels(self, labels: str) -> typing.Self:    
+        if self._internal.spec is None:
+            self._internal.spec = testdata.Dataquery()
+        assert isinstance(self._internal.spec, testdata.Dataquery)
+        self._internal.spec.labels = labels
+    
+        return self
+    
+    def level_column(self, level_column: bool) -> typing.Self:    
+        if self._internal.spec is None:
+            self._internal.spec = testdata.Dataquery()
+        assert isinstance(self._internal.spec, testdata.Dataquery)
+        self._internal.spec.level_column = level_column
+    
+        return self
+    
+    def lines(self, lines: int) -> typing.Self:    
+        if self._internal.spec is None:
+            self._internal.spec = testdata.Dataquery()
+        assert isinstance(self._internal.spec, testdata.Dataquery)
+        self._internal.spec.lines = lines
+    
+        return self
+    
+    def max(self, max_val: float) -> typing.Self:    
+        if self._internal.spec is None:
+            self._internal.spec = testdata.Dataquery()
+        assert isinstance(self._internal.spec, testdata.Dataquery)
+        self._internal.spec.max_val = max_val
+    
+        return self
+    
+    def max_data_points(self, max_data_points: int) -> typing.Self:    
+        """
+        MaxDataPoints is the maximum number of data points that should be returned from a time series query.
+        NOTE: the values for maxDataPoints is not saved in the query model.  It is typically calculated
+        from the number of pixels visible in a visualization
+        """
+            
+        if self._internal.spec is None:
+            self._internal.spec = testdata.Dataquery()
+        assert isinstance(self._internal.spec, testdata.Dataquery)
+        self._internal.spec.max_data_points = max_data_points
+    
+        return self
+    
+    def min(self, min_val: float) -> typing.Self:    
+        if self._internal.spec is None:
+            self._internal.spec = testdata.Dataquery()
+        assert isinstance(self._internal.spec, testdata.Dataquery)
+        self._internal.spec.min_val = min_val
+    
+        return self
+    
+    def nodes(self, nodes: cogbuilder.Builder[testdata.NodesQuery]) -> typing.Self:    
+        if self._internal.spec is None:
+            self._internal.spec = testdata.Dataquery()
+        assert isinstance(self._internal.spec, testdata.Dataquery)
+        nodes_resource = nodes.build()
+        self._internal.spec.nodes = nodes_resource
+    
+        return self
+    
+    def noise(self, noise: float) -> typing.Self:    
+        if self._internal.spec is None:
+            self._internal.spec = testdata.Dataquery()
+        assert isinstance(self._internal.spec, testdata.Dataquery)
+        self._internal.spec.noise = noise
+    
+        return self
+    
+    def points(self, points: list[list[object]]) -> typing.Self:    
+        if self._internal.spec is None:
+            self._internal.spec = testdata.Dataquery()
+        assert isinstance(self._internal.spec, testdata.Dataquery)
+        self._internal.spec.points = points
+    
+        return self
+    
+    def pulse_wave(self, pulse_wave: cogbuilder.Builder[testdata.PulseWaveQuery]) -> typing.Self:    
+        if self._internal.spec is None:
+            self._internal.spec = testdata.Dataquery()
+        assert isinstance(self._internal.spec, testdata.Dataquery)
+        pulse_wave_resource = pulse_wave.build()
+        self._internal.spec.pulse_wave = pulse_wave_resource
+    
+        return self
+    
+    def query_type(self, query_type: str) -> typing.Self:    
+        """
+        QueryType is an optional identifier for the type of query.
+        It can be used to distinguish different types of queries.
+        """
+            
+        if self._internal.spec is None:
+            self._internal.spec = testdata.Dataquery()
+        assert isinstance(self._internal.spec, testdata.Dataquery)
+        self._internal.spec.query_type = query_type
+    
+        return self
+    
+    def raw_frame_content(self, raw_frame_content: str) -> typing.Self:    
+        if self._internal.spec is None:
+            self._internal.spec = testdata.Dataquery()
+        assert isinstance(self._internal.spec, testdata.Dataquery)
+        self._internal.spec.raw_frame_content = raw_frame_content
+    
+        return self
+    
+    def ref_id(self, ref_id: str) -> typing.Self:    
+        """
+        RefID is the unique identifier of the query, set by the frontend call.
+        """
+            
+        if self._internal.spec is None:
+            self._internal.spec = testdata.Dataquery()
+        assert isinstance(self._internal.spec, testdata.Dataquery)
+        self._internal.spec.ref_id = ref_id
+    
+        return self
+    
+    def result_assertions(self, result_assertions: cogbuilder.Builder[testdata.ResultAssertions]) -> typing.Self:    
+        """
+        Optionally define expected query result behavior
+        """
+            
+        if self._internal.spec is None:
+            self._internal.spec = testdata.Dataquery()
+        assert isinstance(self._internal.spec, testdata.Dataquery)
+        result_assertions_resource = result_assertions.build()
+        self._internal.spec.result_assertions = result_assertions_resource
+    
+        return self
+    
+    def scenario_id(self, scenario_id: typing.Literal["annotations", "arrow", "csv_content", "csv_file", "csv_metric_values", "datapoints_outside_range", "error_with_source", "exponential_heatmap_bucket_data", "flame_graph", "grafana_api", "linear_heatmap_bucket_data", "live", "logs", "manual_entry", "no_data_points", "node_graph", "predictable_csv_wave", "predictable_pulse", "random_walk", "random_walk_table", "random_walk_with_error", "raw_frame", "server_error_500", "simulation", "slow_query", "streaming_client", "table_static", "trace", "usa", "variables-query"]) -> typing.Self:    
+        """
+        Possible enum values:
+         - `"annotations"` 
+         - `"arrow"` 
+         - `"csv_content"` 
+         - `"csv_file"` 
+         - `"csv_metric_values"` 
+         - `"datapoints_outside_range"` 
+         - `"error_with_source"` 
+         - `"exponential_heatmap_bucket_data"` 
+         - `"flame_graph"` 
+         - `"grafana_api"` 
+         - `"linear_heatmap_bucket_data"` 
+         - `"live"` 
+         - `"logs"` 
+         - `"manual_entry"` 
+         - `"no_data_points"` 
+         - `"node_graph"` 
+         - `"predictable_csv_wave"` 
+         - `"predictable_pulse"` 
+         - `"random_walk"` 
+         - `"random_walk_table"` 
+         - `"random_walk_with_error"` 
+         - `"raw_frame"` 
+         - `"server_error_500"` 
+         - `"simulation"` 
+         - `"slow_query"` 
+         - `"streaming_client"` 
+         - `"table_static"` 
+         - `"trace"` 
+         - `"usa"` 
+         - `"variables-query"` 
+        """
+            
+        if self._internal.spec is None:
+            self._internal.spec = testdata.Dataquery()
+        assert isinstance(self._internal.spec, testdata.Dataquery)
+        self._internal.spec.scenario_id = scenario_id
+    
+        return self
+    
+    def series_count(self, series_count: int) -> typing.Self:    
+        if self._internal.spec is None:
+            self._internal.spec = testdata.Dataquery()
+        assert isinstance(self._internal.spec, testdata.Dataquery)
+        self._internal.spec.series_count = series_count
+    
+        return self
+    
+    def sim(self, sim: cogbuilder.Builder[testdata.SimulationQuery]) -> typing.Self:    
+        if self._internal.spec is None:
+            self._internal.spec = testdata.Dataquery()
+        assert isinstance(self._internal.spec, testdata.Dataquery)
+        sim_resource = sim.build()
+        self._internal.spec.sim = sim_resource
+    
+        return self
+    
+    def span_count(self, span_count: int) -> typing.Self:    
+        if self._internal.spec is None:
+            self._internal.spec = testdata.Dataquery()
+        assert isinstance(self._internal.spec, testdata.Dataquery)
+        self._internal.spec.span_count = span_count
+    
+        return self
+    
+    def spread(self, spread: float) -> typing.Self:    
+        if self._internal.spec is None:
+            self._internal.spec = testdata.Dataquery()
+        assert isinstance(self._internal.spec, testdata.Dataquery)
+        self._internal.spec.spread = spread
+    
+        return self
+    
+    def start_value(self, start_value: float) -> typing.Self:    
+        if self._internal.spec is None:
+            self._internal.spec = testdata.Dataquery()
+        assert isinstance(self._internal.spec, testdata.Dataquery)
+        self._internal.spec.start_value = start_value
+    
+        return self
+    
+    def stream(self, stream: cogbuilder.Builder[testdata.StreamingQuery]) -> typing.Self:    
+        if self._internal.spec is None:
+            self._internal.spec = testdata.Dataquery()
+        assert isinstance(self._internal.spec, testdata.Dataquery)
+        stream_resource = stream.build()
+        self._internal.spec.stream = stream_resource
+    
+        return self
+    
+    def string_input(self, string_input: str) -> typing.Self:    
+        """
+        common parameter used by many query types
+        """
+            
+        if self._internal.spec is None:
+            self._internal.spec = testdata.Dataquery()
+        assert isinstance(self._internal.spec, testdata.Dataquery)
+        self._internal.spec.string_input = string_input
+    
+        return self
+    
+    def time_range(self, time_range: cogbuilder.Builder[testdata.TimeRange]) -> typing.Self:    
+        """
+        TimeRange represents the query range
+        NOTE: unlike generic /ds/query, we can now send explicit time values in each query
+        NOTE: the values for timeRange are not saved in a dashboard, they are constructed on the fly
+        """
+            
+        if self._internal.spec is None:
+            self._internal.spec = testdata.Dataquery()
+        assert isinstance(self._internal.spec, testdata.Dataquery)
+        time_range_resource = time_range.build()
+        self._internal.spec.time_range = time_range_resource
+    
+        return self
+    
+    def usa(self, usa: cogbuilder.Builder[testdata.USAQuery]) -> typing.Self:    
+        if self._internal.spec is None:
+            self._internal.spec = testdata.Dataquery()
+        assert isinstance(self._internal.spec, testdata.Dataquery)
+        usa_resource = usa.build()
+        self._internal.spec.usa = usa_resource
+    
+        return self
+    
+    def with_nil(self, with_nil: bool) -> typing.Self:    
+        if self._internal.spec is None:
+            self._internal.spec = testdata.Dataquery()
+        assert isinstance(self._internal.spec, testdata.Dataquery)
+        self._internal.spec.with_nil = with_nil
+    
+        return self
+    
 
 
 class CSVWave(cogbuilder.Builder[testdata.CSVWave]):
@@ -680,6 +1110,11 @@ class Query(cogbuilder.Builder[dashboardv2beta1.DataQueryKind]):
     
         return self
     
+    def labels(self, labels: dict[str, str]) -> typing.Self:    
+        self._internal.labels = labels
+    
+        return self
+    
     def datasource(self, ref: cogbuilder.Builder[dashboardv2beta1.Dashboardv2beta1DataQueryKindDatasource]) -> typing.Self:    
         """
         New type for datasource reference
@@ -813,7 +1248,7 @@ class Query(cogbuilder.Builder[dashboardv2beta1.DataQueryKind]):
     
         return self
     
-    def labels(self, labels: str) -> typing.Self:    
+    def dataquery_labels(self, labels: str) -> typing.Self:    
         if self._internal.spec is None:
             self._internal.spec = testdata.Dataquery()
         assert isinstance(self._internal.spec, testdata.Dataquery)

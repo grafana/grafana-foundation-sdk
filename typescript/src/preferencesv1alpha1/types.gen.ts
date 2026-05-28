@@ -50,7 +50,7 @@ export interface Preferences {
 export const defaultPreferences = (): Preferences => ({
 });
 
-export const PreferencesV1Alpha1 = "preferences.grafana.app/v1alpha1";
+export const PreferencesApiVersion = "preferences.grafana.app/v1alpha1";
 
 export const PreferencesKind = "Preferences";
 

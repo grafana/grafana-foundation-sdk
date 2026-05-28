@@ -69,6 +69,15 @@ public class ConstantVariableBuilder implements com.grafana.foundation.cog.Build
         this.internal.spec.description = description;
         return this;
     }
+    
+    public ConstantVariableBuilder origin(com.grafana.foundation.cog.Builder<ControlSourceRef> origin) {
+		if (this.internal.spec == null) {
+			this.internal.spec = new com.grafana.foundation.dashboardv2beta1.ConstantVariableSpec();
+		}
+    ControlSourceRef originResource = origin.build();
+        this.internal.spec.origin = originResource;
+        return this;
+    }
     public ConstantVariableKind build() {
         return this.internal;
     }

@@ -115,5 +115,22 @@ export class CustomVariableBuilder implements cog.Builder<dashboardv2beta1.Custo
         this.internal.spec.allowCustomValue = allowCustomValue;
         return this;
     }
+
+    valuesFormat(valuesFormat: "csv" | "json"): this {
+        if (!this.internal.spec) {
+            this.internal.spec = dashboardv2beta1.defaultCustomVariableSpec();
+        }
+        this.internal.spec.valuesFormat = valuesFormat;
+        return this;
+    }
+
+    origin(origin: cog.Builder<dashboardv2beta1.ControlSourceRef>): this {
+        if (!this.internal.spec) {
+            this.internal.spec = dashboardv2beta1.defaultCustomVariableSpec();
+        }
+        const originResource = origin.build();
+        this.internal.spec.origin = originResource;
+        return this;
+    }
 }
 

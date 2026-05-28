@@ -56,6 +56,14 @@ Catch-all field for datasource-specific properties. Should not be available in a
 func (builder *AnnotationQueryBuilder) LegacyOptions(legacyOptions map[string]any) *AnnotationQueryBuilder
 ```
 
+### <span class="badge object-method"></span> Mappings
+
+Mappings define how to convert data frame fields to annotation event fields.
+
+```go
+func (builder *AnnotationQueryBuilder) Mappings(mappings map[string]cog.Builder[dashboardv2beta1.AnnotationEventFieldMapping]) *AnnotationQueryBuilder
+```
+
 ### <span class="badge object-method"></span> Name
 
 ```go

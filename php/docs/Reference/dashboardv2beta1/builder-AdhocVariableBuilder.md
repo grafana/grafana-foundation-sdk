@@ -54,6 +54,14 @@ defaultKeys(array $defaultKeys)
 description(string $description)
 ```
 
+### <span class="badge object-method"></span> enableGroupBy
+
+Whether the group-by operator is enabled in the ad hoc filter combobox.
+
+```php
+enableGroupBy(bool $enableGroupBy)
+```
+
 ### <span class="badge object-method"></span> filters
 
 @param array<\Grafana\Foundation\Cog\Builder<\Grafana\Foundation\Dashboardv2beta1\AdHocFilterWithLabels>> $filters
@@ -80,10 +88,26 @@ hide(\Grafana\Foundation\Dashboardv2beta1\VariableHide $hide)
 label(string $label)
 ```
 
+### <span class="badge object-method"></span> labels
+
+@param array<string, string> $labels
+
+```php
+labels(array $labels)
+```
+
 ### <span class="badge object-method"></span> name
 
 ```php
 name(string $name)
+```
+
+### <span class="badge object-method"></span> origin
+
+@param \Grafana\Foundation\Cog\Builder<\Grafana\Foundation\Dashboardv2beta1\ControlSourceRef> $origin
+
+```php
+origin(\Grafana\Foundation\Cog\Builder $origin)
 ```
 
 ### <span class="badge object-method"></span> skipUrlSync

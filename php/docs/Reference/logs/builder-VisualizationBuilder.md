@@ -112,6 +112,14 @@ enableInfiniteScrolling(bool $enableInfiniteScrolling)
 enableLogDetails(bool $enableLogDetails)
 ```
 
+### <span class="badge object-method"></span> fieldMinMax
+
+Calculate min max per field
+
+```php
+fieldMinMax(bool $fieldMinMax)
+```
+
 ### <span class="badge object-method"></span> fontSize
 
 ```php
@@ -150,6 +158,16 @@ Alternative to empty string
 
 ```php
 noValue(string $noValue)
+```
+
+### <span class="badge object-method"></span> nullValueMode
+
+How null values should be handled when calculating field stats
+
+"null" - Include null values, "connected" - Ignore nulls, "null as zero" - Treat nulls as zero
+
+```php
+nullValueMode(\Grafana\Foundation\Dashboardv2beta1\NullValueMode $nullValueMode)
 ```
 
 ### <span class="badge object-method"></span> override
@@ -300,7 +318,7 @@ thresholds(\Grafana\Foundation\Cog\Builder $thresholds)
 
 Unit a field should use. The unit you select is applied to all fields except time.
 
-You can use the units ID availables in Grafana or a custom unit.
+You can use the units ID available in Grafana or a custom unit.
 
 Available units in Grafana: https://github.com/grafana/grafana/blob/main/packages/grafana-data/src/valueFormats/categories.ts
 

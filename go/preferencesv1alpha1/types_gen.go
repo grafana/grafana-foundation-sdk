@@ -507,6 +507,6 @@ func (resource Preferences) Validate() error {
 	return errs
 }
 
-const PreferencesV1Alpha1 = "preferences.grafana.app/v1alpha1"
+const PreferencesApiVersion = "preferences.grafana.app/v1alpha1"
 
 const PreferencesKind = "Preferences"

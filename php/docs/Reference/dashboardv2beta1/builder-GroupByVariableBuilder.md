@@ -62,6 +62,14 @@ hide(\Grafana\Foundation\Dashboardv2beta1\VariableHide $hide)
 label(string $label)
 ```
 
+### <span class="badge object-method"></span> labels
+
+@param array<string, string> $labels
+
+```php
+labels(array $labels)
+```
+
 ### <span class="badge object-method"></span> multi
 
 ```php
@@ -80,6 +88,14 @@ name(string $name)
 
 ```php
 options(array $options)
+```
+
+### <span class="badge object-method"></span> origin
+
+@param \Grafana\Foundation\Cog\Builder<\Grafana\Foundation\Dashboardv2beta1\ControlSourceRef> $origin
+
+```php
+origin(\Grafana\Foundation\Cog\Builder $origin)
 ```
 
 ### <span class="badge object-method"></span> skipUrlSync

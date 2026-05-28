@@ -27,6 +27,23 @@ func AdhocVariableConverter(input AdhocVariableKind) string {
 		buffer.Reset()
 
 	}
+	if input.Labels != nil {
+
+		buffer.WriteString(`Labels(`)
+		arg0 := "map[string]string{"
+		for key, arg1 := range input.Labels {
+			tmplabelsarg1 := fmt.Sprintf("%#v", arg1)
+			arg0 += "\t" + fmt.Sprintf("%#v", key) + ": " + tmplabelsarg1 + ","
+		}
+		arg0 += "}"
+		buffer.WriteString(arg0)
+
+		buffer.WriteString(")")
+
+		calls = append(calls, buffer.String())
+		buffer.Reset()
+
+	}
 	if input.Datasource != nil {
 
 		buffer.WriteString(`Datasource(`)
@@ -154,6 +171,30 @@ func AdhocVariableConverter(input AdhocVariableKind) string {
 
 		buffer.WriteString(`AllowCustomValue(`)
 		arg0 := fmt.Sprintf("%#v", input.Spec.AllowCustomValue)
+		buffer.WriteString(arg0)
+
+		buffer.WriteString(")")
+
+		calls = append(calls, buffer.String())
+		buffer.Reset()
+
+	}
+	if input.Spec.EnableGroupBy != nil && *input.Spec.EnableGroupBy != false {
+
+		buffer.WriteString(`EnableGroupBy(`)
+		arg0 := fmt.Sprintf("%#v", *input.Spec.EnableGroupBy)
+		buffer.WriteString(arg0)
+
+		buffer.WriteString(")")
+
+		calls = append(calls, buffer.String())
+		buffer.Reset()
+
+	}
+	if input.Spec.Origin != nil {
+
+		buffer.WriteString(`Origin(`)
+		arg0 := ControlSourceRefConverter(*input.Spec.Origin)
 		buffer.WriteString(arg0)
 
 		buffer.WriteString(")")

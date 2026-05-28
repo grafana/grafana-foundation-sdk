@@ -48,6 +48,12 @@ def label(label: str) -> typing.Self
 def name(name: str) -> typing.Self
 ```
 
+### <span class="badge object-method"></span> origin
+
+```python
+def origin(origin: cogbuilder.Builder[dashboardv2beta1.ControlSourceRef]) -> typing.Self
+```
+
 ### <span class="badge object-method"></span> query
 
 ```python

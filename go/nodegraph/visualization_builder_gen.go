@@ -77,7 +77,7 @@ func (builder *VisualizationBuilder) Path(path string) *VisualizationBuilder {
 }
 
 // Unit a field should use. The unit you select is applied to all fields except time.
-// You can use the units ID availables in Grafana or a custom unit.
+// You can use the units ID available in Grafana or a custom unit.
 // Available units in Grafana: https://github.com/grafana/grafana/blob/main/packages/grafana-data/src/valueFormats/categories.ts
 // As custom unit, you can use the following formats:
 // `suffix:<suffix>` for custom unit that should go after value.
@@ -173,6 +173,21 @@ func (builder *VisualizationBuilder) Actions(actions []cog.Builder[dashboardv2be
 // Alternative to empty string
 func (builder *VisualizationBuilder) NoValue(noValue string) *VisualizationBuilder {
 	builder.internal.Spec.FieldConfig.Defaults.NoValue = &noValue
+
+	return builder
+}
+
+// Calculate min max per field
+func (builder *VisualizationBuilder) FieldMinMax(fieldMinMax bool) *VisualizationBuilder {
+	builder.internal.Spec.FieldConfig.Defaults.FieldMinMax = &fieldMinMax
+
+	return builder
+}
+
+// How null values should be handled when calculating field stats
+// "null" - Include null values, "connected" - Ignore nulls, "null as zero" - Treat nulls as zero
+func (builder *VisualizationBuilder) NullValueMode(nullValueMode dashboardv2beta1.NullValueMode) *VisualizationBuilder {
+	builder.internal.Spec.FieldConfig.Defaults.NullValueMode = &nullValueMode
 
 	return builder
 }
