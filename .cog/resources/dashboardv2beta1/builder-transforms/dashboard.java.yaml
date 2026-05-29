@@ -1,0 +1,9 @@
+# yaml-language-server: $schema=https://raw.githubusercontent.com/grafana/cog/main/schemas/veneers.json
+
+languages: [java]
+
+package: dashboardv2beta1
+
+builders:
+  - set_as_generic:
+      by_object: VizConfigKind

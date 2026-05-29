@@ -1,0 +1,9 @@
+# yaml-language-server: $schema=https://raw.githubusercontent.com/grafana/cog/main/schemas/veneers.json
+
+languages: [java]
+
+package: dashboard
+
+builders:
+  - set_as_generic:
+      by_object: Panel
