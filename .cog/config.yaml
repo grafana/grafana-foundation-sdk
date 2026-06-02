@@ -24,6 +24,7 @@ inputs:
         - dashboard
       transformations:
         - '%__config_dir%/resources/kind_registry.schema.transforms.yaml'
+        - '%__config_dir%/resources/azuremonitor/schema.transforms.yaml'
         - '%__config_dir%/resources/candlestick/schema.transforms.yaml'
         - '%__config_dir%/resources/cloudwatch/schema.transforms.yaml'
         - '%__config_dir%/resources/common/schema.transforms.yaml'
