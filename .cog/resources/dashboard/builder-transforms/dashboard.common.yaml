@@ -215,6 +215,7 @@ builders:
       composition_map:
         Options: options
         FieldConfig: fieldConfig.defaults.custom
+      initialize_composition_map: true
       exclude_options: [
         # merged with another builder
         "defaults",

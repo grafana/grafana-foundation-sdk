@@ -291,6 +291,7 @@ builders:
       composition_map: # Builder → assignment root path
         Options: "spec.options"
         FieldConfig: "spec.fieldConfig.defaults.custom"
+      initialize_composition_map: true
       exclude_options: [
         "spec",          # merged with another builder
         "defaults",      # merged with another builder
