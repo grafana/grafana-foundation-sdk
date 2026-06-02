@@ -24,38 +24,38 @@ final class HeatmapCellLayout implements \JsonSerializable, \Stringable {
 
     public static function le(): self
     {
-        if (!isset(self::$instances["le"])) {
-            self::$instances["le"] = new self("le");
+        if (!isset(self::$instances["Le"])) {
+            self::$instances["Le"] = new self("le");
         }
 
-        return self::$instances["le"];
+        return self::$instances["Le"];
     }
 
     public static function ge(): self
     {
-        if (!isset(self::$instances["ge"])) {
-            self::$instances["ge"] = new self("ge");
+        if (!isset(self::$instances["Ge"])) {
+            self::$instances["Ge"] = new self("ge");
         }
 
-        return self::$instances["ge"];
+        return self::$instances["Ge"];
     }
 
     public static function unknown(): self
     {
-        if (!isset(self::$instances["unknown"])) {
-            self::$instances["unknown"] = new self("unknown");
+        if (!isset(self::$instances["Unknown"])) {
+            self::$instances["Unknown"] = new self("unknown");
         }
 
-        return self::$instances["unknown"];
+        return self::$instances["Unknown"];
     }
 
     public static function auto(): self
     {
-        if (!isset(self::$instances["auto"])) {
-            self::$instances["auto"] = new self("auto");
+        if (!isset(self::$instances["Auto"])) {
+            self::$instances["Auto"] = new self("auto");
         }
 
-        return self::$instances["auto"];
+        return self::$instances["Auto"];
     }
 
     public static function fromValue(string $value): self

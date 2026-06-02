@@ -75,7 +75,8 @@ func (resource *CodeOptions) UnmarshalJSONStrict(raw []byte) error {
 
 		}
 		delete(fields, "language")
-
+	} else {
+		errs = append(errs, cog.MakeBuildErrors("language", errors.New("required field is missing from input"))...)
 	}
 	// Field "showLineNumbers"
 	if fields["showLineNumbers"] != nil {
@@ -88,7 +89,8 @@ func (resource *CodeOptions) UnmarshalJSONStrict(raw []byte) error {
 
 		}
 		delete(fields, "showLineNumbers")
-
+	} else {
+		errs = append(errs, cog.MakeBuildErrors("showLineNumbers", errors.New("required field is missing from input"))...)
 	}
 	// Field "showMiniMap"
 	if fields["showMiniMap"] != nil {
@@ -101,15 +103,12 @@ func (resource *CodeOptions) UnmarshalJSONStrict(raw []byte) error {
 
 		}
 		delete(fields, "showMiniMap")
-
+	} else {
+		errs = append(errs, cog.MakeBuildErrors("showMiniMap", errors.New("required field is missing from input"))...)
 	}
 
 	for field := range fields {
 		errs = append(errs, cog.MakeBuildErrors("CodeOptions", fmt.Errorf("unexpected field '%s'", field))...)
-	}
-
-	if len(errs) == 0 {
-		return nil
 	}
 
 	return errs
@@ -172,7 +171,8 @@ func (resource *Options) UnmarshalJSONStrict(raw []byte) error {
 
 		}
 		delete(fields, "mode")
-
+	} else {
+		errs = append(errs, cog.MakeBuildErrors("mode", errors.New("required field is missing from input"))...)
 	}
 	// Field "code"
 	if fields["code"] != nil {
@@ -198,15 +198,12 @@ func (resource *Options) UnmarshalJSONStrict(raw []byte) error {
 
 		}
 		delete(fields, "content")
-
+	} else {
+		errs = append(errs, cog.MakeBuildErrors("content", errors.New("required field is missing from input"))...)
 	}
 
 	for field := range fields {
 		errs = append(errs, cog.MakeBuildErrors("Options", fmt.Errorf("unexpected field '%s'", field))...)
-	}
-
-	if len(errs) == 0 {
-		return nil
 	}
 
 	return errs

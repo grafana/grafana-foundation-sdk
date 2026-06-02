@@ -7,7 +7,7 @@ title: <span class="badge object-type-enum"></span> ValueTypes
 
 ```python
 class ValueTypes(enum.StrEnum):
-    VALUE_TYPE_UNSPECIFIED = "VALUE_TYPE_UNSPECIFIED"
+    VALUETYPEUNSPECIFIED = "VALUE_TYPE_UNSPECIFIED"
     BOOL = "BOOL"
     INT64 = "INT64"
     DOUBLE = "DOUBLE"

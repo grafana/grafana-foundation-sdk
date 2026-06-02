@@ -74,6 +74,14 @@ Color to use for the annotation event markers
 iconColor(iconColor: string)
 ```
 
+### <span class="badge object-method"></span> mappings
+
+Mappings define how to convert data frame fields to annotation event fields.
+
+```typescript
+mappings(mappings: Record<string, cog.Builder<dashboard.AnnotationEventFieldMapping>>)
+```
+
 ### <span class="badge object-method"></span> name
 
 Name of annotation.
@@ -90,6 +98,22 @@ Placement can be used to display the annotation query somewhere else on the dash
 placement(placement: dashboard.AnnotationQueryPlacement.InControlsMenu)
 ```
 
+### <span class="badge object-method"></span> step
+
+Legacy Prometheus annotation query step interval.
+
+```typescript
+step(step: string)
+```
+
+### <span class="badge object-method"></span> tagKeys
+
+Comma-separated label keys used as annotation tags.
+
+```typescript
+tagKeys(tagKeys: string)
+```
+
 ### <span class="badge object-method"></span> target
 
 TODO.. this should just be a normal query target
@@ -98,12 +122,36 @@ TODO.. this should just be a normal query target
 target(target: cog.Builder<cog.Dataquery>)
 ```
 
+### <span class="badge object-method"></span> textFormat
+
+Format for Prometheus annotation text. Label values can be interpolated with templates like {{instance}}.
+
+```typescript
+textFormat(textFormat: string)
+```
+
+### <span class="badge object-method"></span> titleFormat
+
+Format for Prometheus and Loki annotation titles. Label values can be interpolated with templates like {{instance}}.
+
+```typescript
+titleFormat(titleFormat: string)
+```
+
 ### <span class="badge object-method"></span> type
 
 TODO -- this should not exist here, it is based on the --grafana-- datasource
 
 ```typescript
 type(type: string)
+```
+
+### <span class="badge object-method"></span> useValueForTime
+
+Use the Prometheus series value as the annotation timestamp.
+
+```typescript
+useValueForTime(useValueForTime: boolean)
 ```
 
 ## See also

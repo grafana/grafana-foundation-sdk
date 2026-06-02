@@ -1017,6 +1017,18 @@ export interface AnnotationQuery {
 	// Placement can be used to display the annotation query somewhere else on the dashboard other than the default location.
 	placement?: AnnotationQueryPlacement.InControlsMenu;
 	expr?: string;
+	// Format for Prometheus annotation text. Label values can be interpolated with templates like {{instance}}.
+	textFormat?: string;
+	// Format for Prometheus and Loki annotation titles. Label values can be interpolated with templates like {{instance}}.
+	titleFormat?: string;
+	// Comma-separated label keys used as annotation tags.
+	tagKeys?: string;
+	// Legacy Prometheus annotation query step interval.
+	step?: string;
+	// Use the Prometheus series value as the annotation timestamp.
+	useValueForTime?: boolean;
+	// Mappings define how to convert data frame fields to annotation event fields.
+	mappings?: Record<string, AnnotationEventFieldMapping>;
 }
 
 export const defaultAnnotationQuery = (): AnnotationQuery => ({
@@ -1117,5 +1129,30 @@ export const defaultSnapshot = (): Snapshot => ({
 	orgId: 0,
 	updated: "",
 	userId: 0,
+});
+
+// Annotation event field source. Defines how to obtain the value for an annotation event field.
+// - "field": Find the value with a matching key (default)
+// - "text": Write a constant string into the value
+// - "skip": Do not include the field
+export enum AnnotationEventFieldSource {
+	Field = "field",
+	Text = "text",
+	Skip = "skip",
+}
+
+export const defaultAnnotationEventFieldSource = (): AnnotationEventFieldSource => (AnnotationEventFieldSource.Field);
+
+// Annotation event field mapping. Defines how to map a data frame field to an annotation event field.
+export interface AnnotationEventFieldMapping {
+	// Source type for the field value.
+	source?: AnnotationEventFieldSource;
+	// Constant value to use when source is "text".
+	value?: string;
+	// Regular expression to apply to the field value.
+	regex?: string;
+}
+
+export const defaultAnnotationEventFieldMapping = (): AnnotationEventFieldMapping => ({
 });
 

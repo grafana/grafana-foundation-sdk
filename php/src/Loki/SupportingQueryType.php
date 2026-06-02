@@ -20,38 +20,38 @@ final class SupportingQueryType implements \JsonSerializable, \Stringable {
 
     public static function logsVolume(): self
     {
-        if (!isset(self::$instances["logsVolume"])) {
-            self::$instances["logsVolume"] = new self("logsVolume");
+        if (!isset(self::$instances["LogsVolume"])) {
+            self::$instances["LogsVolume"] = new self("logsVolume");
         }
 
-        return self::$instances["logsVolume"];
+        return self::$instances["LogsVolume"];
     }
 
     public static function logsSample(): self
     {
-        if (!isset(self::$instances["logsSample"])) {
-            self::$instances["logsSample"] = new self("logsSample");
+        if (!isset(self::$instances["LogsSample"])) {
+            self::$instances["LogsSample"] = new self("logsSample");
         }
 
-        return self::$instances["logsSample"];
+        return self::$instances["LogsSample"];
     }
 
     public static function dataSample(): self
     {
-        if (!isset(self::$instances["dataSample"])) {
-            self::$instances["dataSample"] = new self("dataSample");
+        if (!isset(self::$instances["DataSample"])) {
+            self::$instances["DataSample"] = new self("dataSample");
         }
 
-        return self::$instances["dataSample"];
+        return self::$instances["DataSample"];
     }
 
     public static function infiniteScroll(): self
     {
-        if (!isset(self::$instances["infiniteScroll"])) {
-            self::$instances["infiniteScroll"] = new self("infiniteScroll");
+        if (!isset(self::$instances["InfiniteScroll"])) {
+            self::$instances["InfiniteScroll"] = new self("infiniteScroll");
         }
 
-        return self::$instances["infiniteScroll"];
+        return self::$instances["InfiniteScroll"];
     }
 
     public static function fromValue(string $value): self

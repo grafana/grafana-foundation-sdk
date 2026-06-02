@@ -6,20 +6,20 @@ import (
 	"encoding/json"
 	"errors"
 	"fmt"
+	"reflect"
 	"strconv"
 
 	cog "github.com/grafana/grafana-foundation-sdk/go/cog"
 	variants "github.com/grafana/grafana-foundation-sdk/go/cog/variants"
-	common "github.com/grafana/grafana-foundation-sdk/go/common"
 	dashboardv2 "github.com/grafana/grafana-foundation-sdk/go/dashboardv2"
 	dashboardv2beta1 "github.com/grafana/grafana-foundation-sdk/go/dashboardv2beta1"
 )
 
-type AzureMonitorQuery struct {
+type MonitorQuery struct {
 	// A unique identifier for the query within the list of targets.
 	// In server side expressions, the refId is used as a variable name to identify results.
 	// By default, the UI will assign A->Z; however setting meaningful names may be useful.
-	RefId *string `json:"refId,omitempty"`
+	RefId string `json:"refId"`
 	// If hide is set to true, Grafana will filter out the response(s) associated with this query before returning it to the panel.
 	Hide *bool `json:"hide,omitempty"`
 	// Specify the query flavor
@@ -31,13 +31,13 @@ type AzureMonitorQuery struct {
 	// Subscriptions to be queried via Azure Resource Graph.
 	Subscriptions []string `json:"subscriptions,omitempty"`
 	// Azure Monitor Metrics sub-query properties.
-	AzureMonitor *AzureMetricQuery `json:"azureMonitor,omitempty"`
+	AzureMonitor *MetricQuery `json:"azureMonitor,omitempty"`
 	// Azure Monitor Logs sub-query properties.
-	AzureLogAnalytics *AzureLogsQuery `json:"azureLogAnalytics,omitempty"`
+	AzureLogAnalytics *LogsQuery `json:"azureLogAnalytics,omitempty"`
 	// Azure Resource Graph sub-query properties.
-	AzureResourceGraph *AzureResourceGraphQuery `json:"azureResourceGraph,omitempty"`
+	AzureResourceGraph *ResourceGraphQuery `json:"azureResourceGraph,omitempty"`
 	// Application Insights Traces sub-query properties.
-	AzureTraces *AzureTracesQuery `json:"azureTraces,omitempty"`
+	AzureTraces *TracesQuery `json:"azureTraces,omitempty"`
 	// @deprecated Legacy template variable support.
 	GrafanaTemplateVariableFn *GrafanaTemplateVariableQuery `json:"grafanaTemplateVariableFn,omitempty"`
 	// Resource group used in template variable queries
@@ -54,25 +54,25 @@ type AzureMonitorQuery struct {
 	// For non mixed scenarios this is undefined.
 	// TODO find a better way to do this ^ that's friendly to schema
 	// TODO this shouldn't be unknown but DataSourceRef | null
-	Datasource *common.DataSourceRef `json:"datasource,omitempty"`
+	Datasource any `json:"datasource,omitempty"`
 	// Used only for exemplar queries from Prometheus
 	Query *string `json:"query,omitempty"`
 }
 
-func (resource AzureMonitorQuery) ImplementsDataqueryVariant() {}
+func (resource MonitorQuery) ImplementsDataqueryVariant() {}
 
-func (resource AzureMonitorQuery) DataqueryType() string {
+func (resource MonitorQuery) DataqueryType() string {
 	return "grafana-azure-monitor-datasource"
 }
 
-// NewAzureMonitorQuery creates a new AzureMonitorQuery object.
-func NewAzureMonitorQuery() *AzureMonitorQuery {
-	return &AzureMonitorQuery{}
+// NewMonitorQuery creates a new MonitorQuery object.
+func NewMonitorQuery() *MonitorQuery {
+	return &MonitorQuery{}
 }
 
-// UnmarshalJSONStrict implements a custom JSON unmarshalling logic to decode `AzureMonitorQuery` from JSON.
+// UnmarshalJSONStrict implements a custom JSON unmarshalling logic to decode `MonitorQuery` from JSON.
 // Note: the unmarshalling done by this function is strict. It will fail over required fields being absent from the input, fields having an incorrect type, unexpected fields being present, …
-func (resource *AzureMonitorQuery) UnmarshalJSONStrict(raw []byte) error {
+func (resource *MonitorQuery) UnmarshalJSONStrict(raw []byte) error {
 	if raw == nil {
 		return nil
 	}
@@ -88,10 +88,13 @@ func (resource *AzureMonitorQuery) UnmarshalJSONStrict(raw []byte) error {
 			if err := json.Unmarshal(fields["refId"], &resource.RefId); err != nil {
 				errs = append(errs, cog.MakeBuildErrors("refId", err)...)
 			}
+		} else {
+			errs = append(errs, cog.MakeBuildErrors("refId", errors.New("required field is null"))...)
 
 		}
 		delete(fields, "refId")
-
+	} else {
+		errs = append(errs, cog.MakeBuildErrors("refId", errors.New("required field is missing from input"))...)
 	}
 	// Field "hide"
 	if fields["hide"] != nil {
@@ -142,7 +145,7 @@ func (resource *AzureMonitorQuery) UnmarshalJSONStrict(raw []byte) error {
 	if fields["azureMonitor"] != nil {
 		if string(fields["azureMonitor"]) != "null" {
 
-			resource.AzureMonitor = &AzureMetricQuery{}
+			resource.AzureMonitor = &MetricQuery{}
 			if err := resource.AzureMonitor.UnmarshalJSONStrict(fields["azureMonitor"]); err != nil {
 				errs = append(errs, cog.MakeBuildErrors("azureMonitor", err)...)
 			}
@@ -155,7 +158,7 @@ func (resource *AzureMonitorQuery) UnmarshalJSONStrict(raw []byte) error {
 	if fields["azureLogAnalytics"] != nil {
 		if string(fields["azureLogAnalytics"]) != "null" {
 
-			resource.AzureLogAnalytics = &AzureLogsQuery{}
+			resource.AzureLogAnalytics = &LogsQuery{}
 			if err := resource.AzureLogAnalytics.UnmarshalJSONStrict(fields["azureLogAnalytics"]); err != nil {
 				errs = append(errs, cog.MakeBuildErrors("azureLogAnalytics", err)...)
 			}
@@ -168,7 +171,7 @@ func (resource *AzureMonitorQuery) UnmarshalJSONStrict(raw []byte) error {
 	if fields["azureResourceGraph"] != nil {
 		if string(fields["azureResourceGraph"]) != "null" {
 
-			resource.AzureResourceGraph = &AzureResourceGraphQuery{}
+			resource.AzureResourceGraph = &ResourceGraphQuery{}
 			if err := resource.AzureResourceGraph.UnmarshalJSONStrict(fields["azureResourceGraph"]); err != nil {
 				errs = append(errs, cog.MakeBuildErrors("azureResourceGraph", err)...)
 			}
@@ -181,7 +184,7 @@ func (resource *AzureMonitorQuery) UnmarshalJSONStrict(raw []byte) error {
 	if fields["azureTraces"] != nil {
 		if string(fields["azureTraces"]) != "null" {
 
-			resource.AzureTraces = &AzureTracesQuery{}
+			resource.AzureTraces = &TracesQuery{}
 			if err := resource.AzureTraces.UnmarshalJSONStrict(fields["azureTraces"]); err != nil {
 				errs = append(errs, cog.MakeBuildErrors("azureTraces", err)...)
 			}
@@ -261,9 +264,7 @@ func (resource *AzureMonitorQuery) UnmarshalJSONStrict(raw []byte) error {
 	// Field "datasource"
 	if fields["datasource"] != nil {
 		if string(fields["datasource"]) != "null" {
-
-			resource.Datasource = &common.DataSourceRef{}
-			if err := resource.Datasource.UnmarshalJSONStrict(fields["datasource"]); err != nil {
+			if err := json.Unmarshal(fields["datasource"], &resource.Datasource); err != nil {
 				errs = append(errs, cog.MakeBuildErrors("datasource", err)...)
 			}
 
@@ -284,34 +285,24 @@ func (resource *AzureMonitorQuery) UnmarshalJSONStrict(raw []byte) error {
 	}
 
 	for field := range fields {
-		errs = append(errs, cog.MakeBuildErrors("AzureMonitorQuery", fmt.Errorf("unexpected field '%s'", field))...)
-	}
-
-	if len(errs) == 0 {
-		return nil
+		errs = append(errs, cog.MakeBuildErrors("MonitorQuery", fmt.Errorf("unexpected field '%s'", field))...)
 	}
 
 	return errs
 }
 
 // Equals tests the equality of two dataqueries.
-func (resource AzureMonitorQuery) Equals(otherCandidate variants.Dataquery) bool {
+func (resource MonitorQuery) Equals(otherCandidate variants.Dataquery) bool {
 	if otherCandidate == nil {
 		return false
 	}
 
-	other, ok := otherCandidate.(AzureMonitorQuery)
+	other, ok := otherCandidate.(MonitorQuery)
 	if !ok {
 		return false
 	}
-	if resource.RefId == nil && other.RefId != nil || resource.RefId != nil && other.RefId == nil {
+	if resource.RefId != other.RefId {
 		return false
-	}
-
-	if resource.RefId != nil {
-		if *resource.RefId != *other.RefId {
-			return false
-		}
 	}
 	if resource.Hide == nil && other.Hide != nil || resource.Hide != nil && other.Hide == nil {
 		return false
@@ -440,14 +431,9 @@ func (resource AzureMonitorQuery) Equals(otherCandidate variants.Dataquery) bool
 			return false
 		}
 	}
-	if resource.Datasource == nil && other.Datasource != nil || resource.Datasource != nil && other.Datasource == nil {
+	// is DeepEqual good enough here?
+	if !reflect.DeepEqual(resource.Datasource, other.Datasource) {
 		return false
-	}
-
-	if resource.Datasource != nil {
-		if !resource.Datasource.Equals(*other.Datasource) {
-			return false
-		}
 	}
 	if resource.Query == nil && other.Query != nil || resource.Query != nil && other.Query == nil {
 		return false
@@ -462,8 +448,8 @@ func (resource AzureMonitorQuery) Equals(otherCandidate variants.Dataquery) bool
 	return true
 }
 
-// Validate checks all the validation constraints that may be defined on `AzureMonitorQuery` fields for violations and returns them.
-func (resource AzureMonitorQuery) Validate() error {
+// Validate checks all the validation constraints that may be defined on `MonitorQuery` fields for violations and returns them.
+func (resource MonitorQuery) Validate() error {
 	var errs cog.BuildErrors
 	if resource.AzureMonitor != nil {
 		if err := resource.AzureMonitor.Validate(); err != nil {
@@ -490,11 +476,6 @@ func (resource AzureMonitorQuery) Validate() error {
 			errs = append(errs, cog.MakeBuildErrors("grafanaTemplateVariableFn", err)...)
 		}
 	}
-	if resource.Datasource != nil {
-		if err := resource.Datasource.Validate(); err != nil {
-			errs = append(errs, cog.MakeBuildErrors("datasource", err)...)
-		}
-	}
 
 	if len(errs) == 0 {
 		return nil
@@ -503,9 +484,9 @@ func (resource AzureMonitorQuery) Validate() error {
 	return errs
 }
 
-type AzureMetricQuery struct {
+type MetricQuery struct {
 	// Array of resource URIs to be queried.
-	Resources []AzureMonitorResource `json:"resources,omitempty"`
+	Resources []MonitorResource `json:"resources,omitempty"`
 	// metricNamespace is used as the resource type (or resource namespace).
 	// It's usually equal to the target metric namespace. e.g. microsoft.storage/storageaccounts
 	// Kept the name of the variable as metricNamespace to avoid backward incompatibility issues.
@@ -521,7 +502,7 @@ type AzureMetricQuery struct {
 	// The aggregation to be used within the query. Defaults to the primaryAggregationType defined by the metric.
 	Aggregation *string `json:"aggregation,omitempty"`
 	// Filters to reduce the set of data returned. Dimensions that can be filtered on are defined by the metric.
-	DimensionFilters []AzureMetricDimension `json:"dimensionFilters,omitempty"`
+	DimensionFilters []MetricDimension `json:"dimensionFilters,omitempty"`
 	// Maximum number of records to return. Defaults to 10.
 	Top *string `json:"top,omitempty"`
 	// Time grains that are supported by the metric.
@@ -544,14 +525,14 @@ type AzureMetricQuery struct {
 	ResourceName *string `json:"resourceName,omitempty"`
 }
 
-// NewAzureMetricQuery creates a new AzureMetricQuery object.
-func NewAzureMetricQuery() *AzureMetricQuery {
-	return &AzureMetricQuery{}
+// NewMetricQuery creates a new MetricQuery object.
+func NewMetricQuery() *MetricQuery {
+	return &MetricQuery{}
 }
 
-// UnmarshalJSONStrict implements a custom JSON unmarshalling logic to decode `AzureMetricQuery` from JSON.
+// UnmarshalJSONStrict implements a custom JSON unmarshalling logic to decode `MetricQuery` from JSON.
 // Note: the unmarshalling done by this function is strict. It will fail over required fields being absent from the input, fields having an incorrect type, unexpected fields being present, …
-func (resource *AzureMetricQuery) UnmarshalJSONStrict(raw []byte) error {
+func (resource *MetricQuery) UnmarshalJSONStrict(raw []byte) error {
 	if raw == nil {
 		return nil
 	}
@@ -571,9 +552,9 @@ func (resource *AzureMetricQuery) UnmarshalJSONStrict(raw []byte) error {
 			}
 
 			for i1 := range partialArray {
-				var result1 AzureMonitorResource
+				var result1 MonitorResource
 
-				result1 = AzureMonitorResource{}
+				result1 = MonitorResource{}
 				if err := result1.UnmarshalJSONStrict(partialArray[i1]); err != nil {
 					errs = append(errs, cog.MakeBuildErrors("resources["+strconv.Itoa(i1)+"]", err)...)
 				}
@@ -660,9 +641,9 @@ func (resource *AzureMetricQuery) UnmarshalJSONStrict(raw []byte) error {
 			}
 
 			for i1 := range partialArray {
-				var result1 AzureMetricDimension
+				var result1 MetricDimension
 
-				result1 = AzureMetricDimension{}
+				result1 = MetricDimension{}
 				if err := result1.UnmarshalJSONStrict(partialArray[i1]); err != nil {
 					errs = append(errs, cog.MakeBuildErrors("dimensionFilters["+strconv.Itoa(i1)+"]", err)...)
 				}
@@ -786,18 +767,14 @@ func (resource *AzureMetricQuery) UnmarshalJSONStrict(raw []byte) error {
 	}
 
 	for field := range fields {
-		errs = append(errs, cog.MakeBuildErrors("AzureMetricQuery", fmt.Errorf("unexpected field '%s'", field))...)
-	}
-
-	if len(errs) == 0 {
-		return nil
+		errs = append(errs, cog.MakeBuildErrors("MetricQuery", fmt.Errorf("unexpected field '%s'", field))...)
 	}
 
 	return errs
 }
 
-// Equals tests the equality of two `AzureMetricQuery` objects.
-func (resource AzureMetricQuery) Equals(other AzureMetricQuery) bool {
+// Equals tests the equality of two `MetricQuery` objects.
+func (resource MetricQuery) Equals(other MetricQuery) bool {
 
 	if len(resource.Resources) != len(other.Resources) {
 		return false
@@ -967,8 +944,8 @@ func (resource AzureMetricQuery) Equals(other AzureMetricQuery) bool {
 	return true
 }
 
-// Validate checks all the validation constraints that may be defined on `AzureMetricQuery` fields for violations and returns them.
-func (resource AzureMetricQuery) Validate() error {
+// Validate checks all the validation constraints that may be defined on `MetricQuery` fields for violations and returns them.
+func (resource MetricQuery) Validate() error {
 	var errs cog.BuildErrors
 
 	for i1 := range resource.Resources {
@@ -990,7 +967,7 @@ func (resource AzureMetricQuery) Validate() error {
 	return errs
 }
 
-type AzureMonitorResource struct {
+type MonitorResource struct {
 	Subscription    *string `json:"subscription,omitempty"`
 	ResourceGroup   *string `json:"resourceGroup,omitempty"`
 	ResourceName    *string `json:"resourceName,omitempty"`
@@ -998,14 +975,14 @@ type AzureMonitorResource struct {
 	Region          *string `json:"region,omitempty"`
 }
 
-// NewAzureMonitorResource creates a new AzureMonitorResource object.
-func NewAzureMonitorResource() *AzureMonitorResource {
-	return &AzureMonitorResource{}
+// NewMonitorResource creates a new MonitorResource object.
+func NewMonitorResource() *MonitorResource {
+	return &MonitorResource{}
 }
 
-// UnmarshalJSONStrict implements a custom JSON unmarshalling logic to decode `AzureMonitorResource` from JSON.
+// UnmarshalJSONStrict implements a custom JSON unmarshalling logic to decode `MonitorResource` from JSON.
 // Note: the unmarshalling done by this function is strict. It will fail over required fields being absent from the input, fields having an incorrect type, unexpected fields being present, …
-func (resource *AzureMonitorResource) UnmarshalJSONStrict(raw []byte) error {
+func (resource *MonitorResource) UnmarshalJSONStrict(raw []byte) error {
 	if raw == nil {
 		return nil
 	}
@@ -1072,18 +1049,14 @@ func (resource *AzureMonitorResource) UnmarshalJSONStrict(raw []byte) error {
 	}
 
 	for field := range fields {
-		errs = append(errs, cog.MakeBuildErrors("AzureMonitorResource", fmt.Errorf("unexpected field '%s'", field))...)
-	}
-
-	if len(errs) == 0 {
-		return nil
+		errs = append(errs, cog.MakeBuildErrors("MonitorResource", fmt.Errorf("unexpected field '%s'", field))...)
 	}
 
 	return errs
 }
 
-// Equals tests the equality of two `AzureMonitorResource` objects.
-func (resource AzureMonitorResource) Equals(other AzureMonitorResource) bool {
+// Equals tests the equality of two `MonitorResource` objects.
+func (resource MonitorResource) Equals(other MonitorResource) bool {
 	if resource.Subscription == nil && other.Subscription != nil || resource.Subscription != nil && other.Subscription == nil {
 		return false
 	}
@@ -1133,12 +1106,12 @@ func (resource AzureMonitorResource) Equals(other AzureMonitorResource) bool {
 	return true
 }
 
-// Validate checks all the validation constraints that may be defined on `AzureMonitorResource` fields for violations and returns them.
-func (resource AzureMonitorResource) Validate() error {
+// Validate checks all the validation constraints that may be defined on `MonitorResource` fields for violations and returns them.
+func (resource MonitorResource) Validate() error {
 	return nil
 }
 
-type AzureMetricDimension struct {
+type MetricDimension struct {
 	// Name of Dimension to be filtered on.
 	Dimension *string `json:"dimension,omitempty"`
 	// String denoting the filter operation. Supports 'eq' - equals,'ne' - not equals, 'sw' - starts with. Note that some dimensions may not support all operators.
@@ -1149,14 +1122,14 @@ type AzureMetricDimension struct {
 	Filter *string `json:"filter,omitempty"`
 }
 
-// NewAzureMetricDimension creates a new AzureMetricDimension object.
-func NewAzureMetricDimension() *AzureMetricDimension {
-	return &AzureMetricDimension{}
+// NewMetricDimension creates a new MetricDimension object.
+func NewMetricDimension() *MetricDimension {
+	return &MetricDimension{}
 }
 
-// UnmarshalJSONStrict implements a custom JSON unmarshalling logic to decode `AzureMetricDimension` from JSON.
+// UnmarshalJSONStrict implements a custom JSON unmarshalling logic to decode `MetricDimension` from JSON.
 // Note: the unmarshalling done by this function is strict. It will fail over required fields being absent from the input, fields having an incorrect type, unexpected fields being present, …
-func (resource *AzureMetricDimension) UnmarshalJSONStrict(raw []byte) error {
+func (resource *MetricDimension) UnmarshalJSONStrict(raw []byte) error {
 	if raw == nil {
 		return nil
 	}
@@ -1213,18 +1186,14 @@ func (resource *AzureMetricDimension) UnmarshalJSONStrict(raw []byte) error {
 	}
 
 	for field := range fields {
-		errs = append(errs, cog.MakeBuildErrors("AzureMetricDimension", fmt.Errorf("unexpected field '%s'", field))...)
-	}
-
-	if len(errs) == 0 {
-		return nil
+		errs = append(errs, cog.MakeBuildErrors("MetricDimension", fmt.Errorf("unexpected field '%s'", field))...)
 	}
 
 	return errs
 }
 
-// Equals tests the equality of two `AzureMetricDimension` objects.
-func (resource AzureMetricDimension) Equals(other AzureMetricDimension) bool {
+// Equals tests the equality of two `MetricDimension` objects.
+func (resource MetricDimension) Equals(other MetricDimension) bool {
 	if resource.Dimension == nil && other.Dimension != nil || resource.Dimension != nil && other.Dimension == nil {
 		return false
 	}
@@ -1266,13 +1235,13 @@ func (resource AzureMetricDimension) Equals(other AzureMetricDimension) bool {
 	return true
 }
 
-// Validate checks all the validation constraints that may be defined on `AzureMetricDimension` fields for violations and returns them.
-func (resource AzureMetricDimension) Validate() error {
+// Validate checks all the validation constraints that may be defined on `MetricDimension` fields for violations and returns them.
+func (resource MetricDimension) Validate() error {
 	return nil
 }
 
 // Azure Monitor Logs sub-query properties
-type AzureLogsQuery struct {
+type LogsQuery struct {
 	// KQL query to be executed.
 	Query *string `json:"query,omitempty"`
 	// Specifies the format results should be returned as.
@@ -1293,14 +1262,14 @@ type AzureLogsQuery struct {
 	IntersectTime *bool `json:"intersectTime,omitempty"`
 }
 
-// NewAzureLogsQuery creates a new AzureLogsQuery object.
-func NewAzureLogsQuery() *AzureLogsQuery {
-	return &AzureLogsQuery{}
+// NewLogsQuery creates a new LogsQuery object.
+func NewLogsQuery() *LogsQuery {
+	return &LogsQuery{}
 }
 
-// UnmarshalJSONStrict implements a custom JSON unmarshalling logic to decode `AzureLogsQuery` from JSON.
+// UnmarshalJSONStrict implements a custom JSON unmarshalling logic to decode `LogsQuery` from JSON.
 // Note: the unmarshalling done by this function is strict. It will fail over required fields being absent from the input, fields having an incorrect type, unexpected fields being present, …
-func (resource *AzureLogsQuery) UnmarshalJSONStrict(raw []byte) error {
+func (resource *LogsQuery) UnmarshalJSONStrict(raw []byte) error {
 	if raw == nil {
 		return nil
 	}
@@ -1412,18 +1381,14 @@ func (resource *AzureLogsQuery) UnmarshalJSONStrict(raw []byte) error {
 	}
 
 	for field := range fields {
-		errs = append(errs, cog.MakeBuildErrors("AzureLogsQuery", fmt.Errorf("unexpected field '%s'", field))...)
-	}
-
-	if len(errs) == 0 {
-		return nil
+		errs = append(errs, cog.MakeBuildErrors("LogsQuery", fmt.Errorf("unexpected field '%s'", field))...)
 	}
 
 	return errs
 }
 
-// Equals tests the equality of two `AzureLogsQuery` objects.
-func (resource AzureLogsQuery) Equals(other AzureLogsQuery) bool {
+// Equals tests the equality of two `LogsQuery` objects.
+func (resource LogsQuery) Equals(other LogsQuery) bool {
 	if resource.Query == nil && other.Query != nil || resource.Query != nil && other.Query == nil {
 		return false
 	}
@@ -1510,8 +1475,8 @@ func (resource AzureLogsQuery) Equals(other AzureLogsQuery) bool {
 	return true
 }
 
-// Validate checks all the validation constraints that may be defined on `AzureLogsQuery` fields for violations and returns them.
-func (resource AzureLogsQuery) Validate() error {
+// Validate checks all the validation constraints that may be defined on `LogsQuery` fields for violations and returns them.
+func (resource LogsQuery) Validate() error {
 	return nil
 }
 
@@ -1524,21 +1489,21 @@ const (
 	ResultFormatLogs       ResultFormat = "logs"
 )
 
-type AzureResourceGraphQuery struct {
+type ResourceGraphQuery struct {
 	// Azure Resource Graph KQL query to be executed.
 	Query *string `json:"query,omitempty"`
 	// Specifies the format results should be returned as. Defaults to table.
 	ResultFormat *string `json:"resultFormat,omitempty"`
 }
 
-// NewAzureResourceGraphQuery creates a new AzureResourceGraphQuery object.
-func NewAzureResourceGraphQuery() *AzureResourceGraphQuery {
-	return &AzureResourceGraphQuery{}
+// NewResourceGraphQuery creates a new ResourceGraphQuery object.
+func NewResourceGraphQuery() *ResourceGraphQuery {
+	return &ResourceGraphQuery{}
 }
 
-// UnmarshalJSONStrict implements a custom JSON unmarshalling logic to decode `AzureResourceGraphQuery` from JSON.
+// UnmarshalJSONStrict implements a custom JSON unmarshalling logic to decode `ResourceGraphQuery` from JSON.
 // Note: the unmarshalling done by this function is strict. It will fail over required fields being absent from the input, fields having an incorrect type, unexpected fields being present, …
-func (resource *AzureResourceGraphQuery) UnmarshalJSONStrict(raw []byte) error {
+func (resource *ResourceGraphQuery) UnmarshalJSONStrict(raw []byte) error {
 	if raw == nil {
 		return nil
 	}
@@ -1572,18 +1537,14 @@ func (resource *AzureResourceGraphQuery) UnmarshalJSONStrict(raw []byte) error {
 	}
 
 	for field := range fields {
-		errs = append(errs, cog.MakeBuildErrors("AzureResourceGraphQuery", fmt.Errorf("unexpected field '%s'", field))...)
-	}
-
-	if len(errs) == 0 {
-		return nil
+		errs = append(errs, cog.MakeBuildErrors("ResourceGraphQuery", fmt.Errorf("unexpected field '%s'", field))...)
 	}
 
 	return errs
 }
 
-// Equals tests the equality of two `AzureResourceGraphQuery` objects.
-func (resource AzureResourceGraphQuery) Equals(other AzureResourceGraphQuery) bool {
+// Equals tests the equality of two `ResourceGraphQuery` objects.
+func (resource ResourceGraphQuery) Equals(other ResourceGraphQuery) bool {
 	if resource.Query == nil && other.Query != nil || resource.Query != nil && other.Query == nil {
 		return false
 	}
@@ -1606,13 +1567,13 @@ func (resource AzureResourceGraphQuery) Equals(other AzureResourceGraphQuery) bo
 	return true
 }
 
-// Validate checks all the validation constraints that may be defined on `AzureResourceGraphQuery` fields for violations and returns them.
-func (resource AzureResourceGraphQuery) Validate() error {
+// Validate checks all the validation constraints that may be defined on `ResourceGraphQuery` fields for violations and returns them.
+func (resource ResourceGraphQuery) Validate() error {
 	return nil
 }
 
 // Application Insights Traces sub-query properties
-type AzureTracesQuery struct {
+type TracesQuery struct {
 	// Specifies the format results should be returned as.
 	ResultFormat *ResultFormat `json:"resultFormat,omitempty"`
 	// Array of resource URIs to be queried.
@@ -1622,19 +1583,19 @@ type AzureTracesQuery struct {
 	// Types of events to filter by.
 	TraceTypes []string `json:"traceTypes,omitempty"`
 	// Filters for property values.
-	Filters []AzureTracesFilter `json:"filters,omitempty"`
+	Filters []TracesFilter `json:"filters,omitempty"`
 	// KQL query to be executed.
 	Query *string `json:"query,omitempty"`
 }
 
-// NewAzureTracesQuery creates a new AzureTracesQuery object.
-func NewAzureTracesQuery() *AzureTracesQuery {
-	return &AzureTracesQuery{}
+// NewTracesQuery creates a new TracesQuery object.
+func NewTracesQuery() *TracesQuery {
+	return &TracesQuery{}
 }
 
-// UnmarshalJSONStrict implements a custom JSON unmarshalling logic to decode `AzureTracesQuery` from JSON.
+// UnmarshalJSONStrict implements a custom JSON unmarshalling logic to decode `TracesQuery` from JSON.
 // Note: the unmarshalling done by this function is strict. It will fail over required fields being absent from the input, fields having an incorrect type, unexpected fields being present, …
-func (resource *AzureTracesQuery) UnmarshalJSONStrict(raw []byte) error {
+func (resource *TracesQuery) UnmarshalJSONStrict(raw []byte) error {
 	if raw == nil {
 		return nil
 	}
@@ -1700,9 +1661,9 @@ func (resource *AzureTracesQuery) UnmarshalJSONStrict(raw []byte) error {
 			}
 
 			for i1 := range partialArray {
-				var result1 AzureTracesFilter
+				var result1 TracesFilter
 
-				result1 = AzureTracesFilter{}
+				result1 = TracesFilter{}
 				if err := result1.UnmarshalJSONStrict(partialArray[i1]); err != nil {
 					errs = append(errs, cog.MakeBuildErrors("filters["+strconv.Itoa(i1)+"]", err)...)
 				}
@@ -1726,18 +1687,14 @@ func (resource *AzureTracesQuery) UnmarshalJSONStrict(raw []byte) error {
 	}
 
 	for field := range fields {
-		errs = append(errs, cog.MakeBuildErrors("AzureTracesQuery", fmt.Errorf("unexpected field '%s'", field))...)
-	}
-
-	if len(errs) == 0 {
-		return nil
+		errs = append(errs, cog.MakeBuildErrors("TracesQuery", fmt.Errorf("unexpected field '%s'", field))...)
 	}
 
 	return errs
 }
 
-// Equals tests the equality of two `AzureTracesQuery` objects.
-func (resource AzureTracesQuery) Equals(other AzureTracesQuery) bool {
+// Equals tests the equality of two `TracesQuery` objects.
+func (resource TracesQuery) Equals(other TracesQuery) bool {
 	if resource.ResultFormat == nil && other.ResultFormat != nil || resource.ResultFormat != nil && other.ResultFormat == nil {
 		return false
 	}
@@ -1799,8 +1756,8 @@ func (resource AzureTracesQuery) Equals(other AzureTracesQuery) bool {
 	return true
 }
 
-// Validate checks all the validation constraints that may be defined on `AzureTracesQuery` fields for violations and returns them.
-func (resource AzureTracesQuery) Validate() error {
+// Validate checks all the validation constraints that may be defined on `TracesQuery` fields for violations and returns them.
+func (resource TracesQuery) Validate() error {
 	var errs cog.BuildErrors
 
 	for i1 := range resource.Filters {
@@ -1816,7 +1773,7 @@ func (resource AzureTracesQuery) Validate() error {
 	return errs
 }
 
-type AzureTracesFilter struct {
+type TracesFilter struct {
 	// Property name, auto-populated based on available traces.
 	Property string `json:"property"`
 	// Comparison operator to use. Either equals or not equals.
@@ -1825,16 +1782,16 @@ type AzureTracesFilter struct {
 	Filters []string `json:"filters"`
 }
 
-// NewAzureTracesFilter creates a new AzureTracesFilter object.
-func NewAzureTracesFilter() *AzureTracesFilter {
-	return &AzureTracesFilter{
+// NewTracesFilter creates a new TracesFilter object.
+func NewTracesFilter() *TracesFilter {
+	return &TracesFilter{
 		Filters: []string{},
 	}
 }
 
-// UnmarshalJSONStrict implements a custom JSON unmarshalling logic to decode `AzureTracesFilter` from JSON.
+// UnmarshalJSONStrict implements a custom JSON unmarshalling logic to decode `TracesFilter` from JSON.
 // Note: the unmarshalling done by this function is strict. It will fail over required fields being absent from the input, fields having an incorrect type, unexpected fields being present, …
-func (resource *AzureTracesFilter) UnmarshalJSONStrict(raw []byte) error {
+func (resource *TracesFilter) UnmarshalJSONStrict(raw []byte) error {
 	if raw == nil {
 		return nil
 	}
@@ -1889,18 +1846,14 @@ func (resource *AzureTracesFilter) UnmarshalJSONStrict(raw []byte) error {
 	}
 
 	for field := range fields {
-		errs = append(errs, cog.MakeBuildErrors("AzureTracesFilter", fmt.Errorf("unexpected field '%s'", field))...)
-	}
-
-	if len(errs) == 0 {
-		return nil
+		errs = append(errs, cog.MakeBuildErrors("TracesFilter", fmt.Errorf("unexpected field '%s'", field))...)
 	}
 
 	return errs
 }
 
-// Equals tests the equality of two `AzureTracesFilter` objects.
-func (resource AzureTracesFilter) Equals(other AzureTracesFilter) bool {
+// Equals tests the equality of two `TracesFilter` objects.
+func (resource TracesFilter) Equals(other TracesFilter) bool {
 	if resource.Property != other.Property {
 		return false
 	}
@@ -1921,8 +1874,8 @@ func (resource AzureTracesFilter) Equals(other AzureTracesFilter) bool {
 	return true
 }
 
-// Validate checks all the validation constraints that may be defined on `AzureTracesFilter` fields for violations and returns them.
-func (resource AzureTracesFilter) Validate() error {
+// Validate checks all the validation constraints that may be defined on `TracesFilter` fields for violations and returns them.
+func (resource TracesFilter) Validate() error {
 	return nil
 }
 
@@ -1985,10 +1938,6 @@ func (resource *AppInsightsMetricNameQuery) UnmarshalJSONStrict(raw []byte) erro
 
 	for field := range fields {
 		errs = append(errs, cog.MakeBuildErrors("AppInsightsMetricNameQuery", fmt.Errorf("unexpected field '%s'", field))...)
-	}
-
-	if len(errs) == 0 {
-		return nil
 	}
 
 	return errs
@@ -2098,10 +2047,6 @@ func (resource *AppInsightsGroupByQuery) UnmarshalJSONStrict(raw []byte) error {
 		errs = append(errs, cog.MakeBuildErrors("AppInsightsGroupByQuery", fmt.Errorf("unexpected field '%s'", field))...)
 	}
 
-	if len(errs) == 0 {
-		return nil
-	}
-
 	return errs
 }
 
@@ -2195,10 +2140,6 @@ func (resource *SubscriptionsQuery) UnmarshalJSONStrict(raw []byte) error {
 
 	for field := range fields {
 		errs = append(errs, cog.MakeBuildErrors("SubscriptionsQuery", fmt.Errorf("unexpected field '%s'", field))...)
-	}
-
-	if len(errs) == 0 {
-		return nil
 	}
 
 	return errs
@@ -2306,10 +2247,6 @@ func (resource *ResourceGroupsQuery) UnmarshalJSONStrict(raw []byte) error {
 
 	for field := range fields {
 		errs = append(errs, cog.MakeBuildErrors("ResourceGroupsQuery", fmt.Errorf("unexpected field '%s'", field))...)
-	}
-
-	if len(errs) == 0 {
-		return nil
 	}
 
 	return errs
@@ -2450,10 +2387,6 @@ func (resource *ResourceNamesQuery) UnmarshalJSONStrict(raw []byte) error {
 
 	for field := range fields {
 		errs = append(errs, cog.MakeBuildErrors("ResourceNamesQuery", fmt.Errorf("unexpected field '%s'", field))...)
-	}
-
-	if len(errs) == 0 {
-		return nil
 	}
 
 	return errs
@@ -2609,10 +2542,6 @@ func (resource *MetricNamespaceQuery) UnmarshalJSONStrict(raw []byte) error {
 
 	for field := range fields {
 		errs = append(errs, cog.MakeBuildErrors("MetricNamespaceQuery", fmt.Errorf("unexpected field '%s'", field))...)
-	}
-
-	if len(errs) == 0 {
-		return nil
 	}
 
 	return errs
@@ -2784,10 +2713,6 @@ func (resource *MetricDefinitionsQuery) UnmarshalJSONStrict(raw []byte) error {
 
 	for field := range fields {
 		errs = append(errs, cog.MakeBuildErrors("MetricDefinitionsQuery", fmt.Errorf("unexpected field '%s'", field))...)
-	}
-
-	if len(errs) == 0 {
-		return nil
 	}
 
 	return errs
@@ -2966,10 +2891,6 @@ func (resource *MetricNamesQuery) UnmarshalJSONStrict(raw []byte) error {
 		errs = append(errs, cog.MakeBuildErrors("MetricNamesQuery", fmt.Errorf("unexpected field '%s'", field))...)
 	}
 
-	if len(errs) == 0 {
-		return nil
-	}
-
 	return errs
 }
 
@@ -3089,10 +3010,6 @@ func (resource *WorkspacesQuery) UnmarshalJSONStrict(raw []byte) error {
 		errs = append(errs, cog.MakeBuildErrors("WorkspacesQuery", fmt.Errorf("unexpected field '%s'", field))...)
 	}
 
-	if len(errs) == 0 {
-		return nil
-	}
-
 	return errs
 }
 
@@ -3188,10 +3105,6 @@ func (resource *UnknownQuery) UnmarshalJSONStrict(raw []byte) error {
 		errs = append(errs, cog.MakeBuildErrors("UnknownQuery", fmt.Errorf("unexpected field '%s'", field))...)
 	}
 
-	if len(errs) == 0 {
-		return nil
-	}
-
 	return errs
 }
 
@@ -3231,24 +3144,24 @@ func (resource UnknownQuery) Validate() error {
 }
 
 // Defines the supported queryTypes. GrafanaTemplateVariableFn is deprecated
-type AzureQueryType string
+type QueryType string
 
 const (
-	AzureQueryTypeAzureMonitor              AzureQueryType = "Azure Monitor"
-	AzureQueryTypeLogAnalytics              AzureQueryType = "Azure Log Analytics"
-	AzureQueryTypeAzureResourceGraph        AzureQueryType = "Azure Resource Graph"
-	AzureQueryTypeAzureTraces               AzureQueryType = "Azure Traces"
-	AzureQueryTypeSubscriptionsQuery        AzureQueryType = "Azure Subscriptions"
-	AzureQueryTypeResourceGroupsQuery       AzureQueryType = "Azure Resource Groups"
-	AzureQueryTypeNamespacesQuery           AzureQueryType = "Azure Namespaces"
-	AzureQueryTypeResourceNamesQuery        AzureQueryType = "Azure Resource Names"
-	AzureQueryTypeMetricNamesQuery          AzureQueryType = "Azure Metric Names"
-	AzureQueryTypeWorkspacesQuery           AzureQueryType = "Azure Workspaces"
-	AzureQueryTypeLocationsQuery            AzureQueryType = "Azure Regions"
-	AzureQueryTypeGrafanaTemplateVariableFn AzureQueryType = "Grafana Template Variable Function"
-	AzureQueryTypeTraceExemplar             AzureQueryType = "traceql"
-	AzureQueryTypeCustomNamespacesQuery     AzureQueryType = "Azure Custom Namespaces"
-	AzureQueryTypeCustomMetricNamesQuery    AzureQueryType = "Azure Custom Metric Names"
+	QueryTypeMonitor                   QueryType = "Azure Monitor"
+	QueryTypeLogAnalytics              QueryType = "Azure Log Analytics"
+	QueryTypeResourceGraph             QueryType = "Azure Resource Graph"
+	QueryTypeTraces                    QueryType = "Azure Traces"
+	QueryTypeSubscriptionsQuery        QueryType = "Azure Subscriptions"
+	QueryTypeResourceGroupsQuery       QueryType = "Azure Resource Groups"
+	QueryTypeNamespacesQuery           QueryType = "Azure Namespaces"
+	QueryTypeResourceNamesQuery        QueryType = "Azure Resource Names"
+	QueryTypeMetricNamesQuery          QueryType = "Azure Metric Names"
+	QueryTypeWorkspacesQuery           QueryType = "Azure Workspaces"
+	QueryTypeLocationsQuery            QueryType = "Azure Regions"
+	QueryTypeGrafanaTemplateVariableFn QueryType = "Grafana Template Variable Function"
+	QueryTypeTraceExemplar             QueryType = "traceql"
+	QueryTypeCustomNamespacesQuery     QueryType = "Azure Custom Namespaces"
+	QueryTypeCustomMetricNamesQuery    QueryType = "Azure Custom Metric Names"
 )
 
 type GrafanaTemplateVariableQueryType string
@@ -3300,10 +3213,6 @@ func (resource *BaseGrafanaTemplateVariableQuery) UnmarshalJSONStrict(raw []byte
 
 	for field := range fields {
 		errs = append(errs, cog.MakeBuildErrors("BaseGrafanaTemplateVariableQuery", fmt.Errorf("unexpected field '%s'", field))...)
-	}
-
-	if len(errs) == 0 {
-		return nil
 	}
 
 	return errs
@@ -3752,7 +3661,7 @@ func VariantConfig() variants.DataqueryConfig {
 	return variants.DataqueryConfig{
 		Identifier: "grafana-azure-monitor-datasource",
 		DataqueryUnmarshaler: func(raw []byte) (variants.Dataquery, error) {
-			dataquery := &AzureMonitorQuery{}
+			dataquery := &MonitorQuery{}
 
 			if err := json.Unmarshal(raw, dataquery); err != nil {
 				return nil, err
@@ -3761,7 +3670,7 @@ func VariantConfig() variants.DataqueryConfig {
 			return dataquery, nil
 		},
 		StrictDataqueryUnmarshaler: func(raw []byte) (variants.Dataquery, error) {
-			dataquery := &AzureMonitorQuery{}
+			dataquery := &MonitorQuery{}
 
 			if err := dataquery.UnmarshalJSONStrict(raw); err != nil {
 				return nil, err
@@ -3770,13 +3679,13 @@ func VariantConfig() variants.DataqueryConfig {
 			return dataquery, nil
 		},
 		GoConverter: func(input any) string {
-			var dataquery AzureMonitorQuery
-			if cast, ok := input.(*AzureMonitorQuery); ok {
+			var dataquery MonitorQuery
+			if cast, ok := input.(*MonitorQuery); ok {
 				dataquery = *cast
 			} else {
-				dataquery = input.(AzureMonitorQuery)
+				dataquery = input.(MonitorQuery)
 			}
-			return AzureMonitorQueryConverter(dataquery)
+			return MonitorQueryConverter(dataquery)
 		},
 		GoV2Converter: func(input any) string {
 			if cast, ok := input.(*dashboardv2beta1.DataQueryKind); ok {

@@ -5,114 +5,114 @@
  * <span class="badge object-type-struct"></span> [AppInsightsGroupByQuery](./object-AppInsightsGroupByQuery.md)
  * <span class="badge object-type-struct"></span> [AppInsightsMetricNameQuery](./object-AppInsightsMetricNameQuery.md)
  * <span class="badge object-type-struct"></span> [AppInsightsMetricNameQueryOrAppInsightsGroupByQueryOrSubscriptionsQueryOrResourceGroupsQueryOrResourceNamesQueryOrMetricNamespaceQueryOrMetricDefinitionsQueryOrMetricNamesQueryOrWorkspacesQueryOrUnknownQuery](./object-AppInsightsMetricNameQueryOrAppInsightsGroupByQueryOrSubscriptionsQueryOrResourceGroupsQueryOrResourceNamesQueryOrMetricNamespaceQueryOrMetricDefinitionsQueryOrMetricNamesQueryOrWorkspacesQueryOrUnknownQuery.md)
- * <span class="badge object-type-struct"></span> [AzureLogsQuery](./object-AzureLogsQuery.md)
- * <span class="badge object-type-struct"></span> [AzureMetricDimension](./object-AzureMetricDimension.md)
- * <span class="badge object-type-struct"></span> [AzureMetricQuery](./object-AzureMetricQuery.md)
- * <span class="badge object-type-struct"></span> [AzureMonitorQuery](./object-AzureMonitorQuery.md)
- * <span class="badge object-type-struct"></span> [AzureMonitorResource](./object-AzureMonitorResource.md)
- * <span class="badge object-type-enum"></span> [AzureQueryType](./object-AzureQueryType.md)
- * <span class="badge object-type-struct"></span> [AzureResourceGraphQuery](./object-AzureResourceGraphQuery.md)
- * <span class="badge object-type-struct"></span> [AzureTracesFilter](./object-AzureTracesFilter.md)
- * <span class="badge object-type-struct"></span> [AzureTracesQuery](./object-AzureTracesQuery.md)
  * <span class="badge object-type-struct"></span> [BaseGrafanaTemplateVariableQuery](./object-BaseGrafanaTemplateVariableQuery.md)
  * <span class="badge object-type-ref"></span> [GrafanaTemplateVariableQuery](./object-GrafanaTemplateVariableQuery.md)
  * <span class="badge object-type-enum"></span> [GrafanaTemplateVariableQueryType](./object-GrafanaTemplateVariableQueryType.md)
+ * <span class="badge object-type-struct"></span> [LogsQuery](./object-LogsQuery.md)
  * <span class="badge object-type-struct"></span> [MetricDefinitionsQuery](./object-MetricDefinitionsQuery.md)
+ * <span class="badge object-type-struct"></span> [MetricDimension](./object-MetricDimension.md)
  * <span class="badge object-type-struct"></span> [MetricNamesQuery](./object-MetricNamesQuery.md)
  * <span class="badge object-type-struct"></span> [MetricNamespaceQuery](./object-MetricNamespaceQuery.md)
+ * <span class="badge object-type-struct"></span> [MetricQuery](./object-MetricQuery.md)
+ * <span class="badge object-type-struct"></span> [MonitorQuery](./object-MonitorQuery.md)
+ * <span class="badge object-type-struct"></span> [MonitorResource](./object-MonitorResource.md)
+ * <span class="badge object-type-enum"></span> [QueryType](./object-QueryType.md)
+ * <span class="badge object-type-struct"></span> [ResourceGraphQuery](./object-ResourceGraphQuery.md)
  * <span class="badge object-type-struct"></span> [ResourceGroupsQuery](./object-ResourceGroupsQuery.md)
  * <span class="badge object-type-struct"></span> [ResourceNamesQuery](./object-ResourceNamesQuery.md)
  * <span class="badge object-type-enum"></span> [ResultFormat](./object-ResultFormat.md)
  * <span class="badge object-type-struct"></span> [SubscriptionsQuery](./object-SubscriptionsQuery.md)
+ * <span class="badge object-type-struct"></span> [TracesFilter](./object-TracesFilter.md)
+ * <span class="badge object-type-struct"></span> [TracesQuery](./object-TracesQuery.md)
  * <span class="badge object-type-struct"></span> [UnknownQuery](./object-UnknownQuery.md)
  * <span class="badge object-type-struct"></span> [WorkspacesQuery](./object-WorkspacesQuery.md)
 ## Builders
 
  * <span class="badge builder"></span> [AppInsightsGroupByQueryBuilder](./builder-AppInsightsGroupByQueryBuilder.md)
  * <span class="badge builder"></span> [AppInsightsMetricNameQueryBuilder](./builder-AppInsightsMetricNameQueryBuilder.md)
- * <span class="badge builder"></span> [AzureLogsQueryBuilder](./builder-AzureLogsQueryBuilder.md)
- * <span class="badge builder"></span> [AzureMetricDimensionBuilder](./builder-AzureMetricDimensionBuilder.md)
- * <span class="badge builder"></span> [AzureMetricQueryBuilder](./builder-AzureMetricQueryBuilder.md)
- * <span class="badge builder"></span> [AzureMonitorQueryBuilder](./builder-AzureMonitorQueryBuilder.md)
- * <span class="badge builder"></span> [AzureMonitorResourceBuilder](./builder-AzureMonitorResourceBuilder.md)
- * <span class="badge builder"></span> [AzureResourceGraphQueryBuilder](./builder-AzureResourceGraphQueryBuilder.md)
- * <span class="badge builder"></span> [AzureTracesFilterBuilder](./builder-AzureTracesFilterBuilder.md)
- * <span class="badge builder"></span> [AzureTracesQueryBuilder](./builder-AzureTracesQueryBuilder.md)
  * <span class="badge builder"></span> [BaseGrafanaTemplateVariableQueryBuilder](./builder-BaseGrafanaTemplateVariableQueryBuilder.md)
+ * <span class="badge builder"></span> [LogsQueryBuilder](./builder-LogsQueryBuilder.md)
  * <span class="badge builder"></span> [MetricDefinitionsQueryBuilder](./builder-MetricDefinitionsQueryBuilder.md)
+ * <span class="badge builder"></span> [MetricDimensionBuilder](./builder-MetricDimensionBuilder.md)
  * <span class="badge builder"></span> [MetricNamesQueryBuilder](./builder-MetricNamesQueryBuilder.md)
  * <span class="badge builder"></span> [MetricNamespaceQueryBuilder](./builder-MetricNamespaceQueryBuilder.md)
+ * <span class="badge builder"></span> [MetricQueryBuilder](./builder-MetricQueryBuilder.md)
+ * <span class="badge builder"></span> [MonitorQueryBuilder](./builder-MonitorQueryBuilder.md)
+ * <span class="badge builder"></span> [MonitorResourceBuilder](./builder-MonitorResourceBuilder.md)
  * <span class="badge builder"></span> [QueryBuilder](./builder-QueryBuilder.md)
  * <span class="badge builder"></span> [QueryV2Builder](./builder-QueryV2Builder.md)
+ * <span class="badge builder"></span> [ResourceGraphQueryBuilder](./builder-ResourceGraphQueryBuilder.md)
  * <span class="badge builder"></span> [ResourceGroupsQueryBuilder](./builder-ResourceGroupsQueryBuilder.md)
  * <span class="badge builder"></span> [ResourceNamesQueryBuilder](./builder-ResourceNamesQueryBuilder.md)
  * <span class="badge builder"></span> [SubscriptionsQueryBuilder](./builder-SubscriptionsQueryBuilder.md)
+ * <span class="badge builder"></span> [TracesFilterBuilder](./builder-TracesFilterBuilder.md)
+ * <span class="badge builder"></span> [TracesQueryBuilder](./builder-TracesQueryBuilder.md)
  * <span class="badge builder"></span> [UnknownQueryBuilder](./builder-UnknownQueryBuilder.md)
  * <span class="badge builder"></span> [WorkspacesQueryBuilder](./builder-WorkspacesQueryBuilder.md)
 ## Functions
 
-### <span class="badge function"></span> NewAzureMonitorQuery
+### <span class="badge function"></span> NewMonitorQuery
 
-NewAzureMonitorQuery creates a new AzureMonitorQuery object.
+NewMonitorQuery creates a new MonitorQuery object.
 
 ```go
-func NewAzureMonitorQuery() *AzureMonitorQuery
+func NewMonitorQuery() *MonitorQuery
 ```
 
-### <span class="badge function"></span> NewAzureMetricQuery
+### <span class="badge function"></span> NewMetricQuery
 
-NewAzureMetricQuery creates a new AzureMetricQuery object.
+NewMetricQuery creates a new MetricQuery object.
 
 ```go
-func NewAzureMetricQuery() *AzureMetricQuery
+func NewMetricQuery() *MetricQuery
 ```
 
-### <span class="badge function"></span> NewAzureMonitorResource
+### <span class="badge function"></span> NewMonitorResource
 
-NewAzureMonitorResource creates a new AzureMonitorResource object.
+NewMonitorResource creates a new MonitorResource object.
 
 ```go
-func NewAzureMonitorResource() *AzureMonitorResource
+func NewMonitorResource() *MonitorResource
 ```
 
-### <span class="badge function"></span> NewAzureMetricDimension
+### <span class="badge function"></span> NewMetricDimension
 
-NewAzureMetricDimension creates a new AzureMetricDimension object.
+NewMetricDimension creates a new MetricDimension object.
 
 ```go
-func NewAzureMetricDimension() *AzureMetricDimension
+func NewMetricDimension() *MetricDimension
 ```
 
-### <span class="badge function"></span> NewAzureLogsQuery
+### <span class="badge function"></span> NewLogsQuery
 
-NewAzureLogsQuery creates a new AzureLogsQuery object.
+NewLogsQuery creates a new LogsQuery object.
 
 ```go
-func NewAzureLogsQuery() *AzureLogsQuery
+func NewLogsQuery() *LogsQuery
 ```
 
-### <span class="badge function"></span> NewAzureResourceGraphQuery
+### <span class="badge function"></span> NewResourceGraphQuery
 
-NewAzureResourceGraphQuery creates a new AzureResourceGraphQuery object.
+NewResourceGraphQuery creates a new ResourceGraphQuery object.
 
 ```go
-func NewAzureResourceGraphQuery() *AzureResourceGraphQuery
+func NewResourceGraphQuery() *ResourceGraphQuery
 ```
 
-### <span class="badge function"></span> NewAzureTracesQuery
+### <span class="badge function"></span> NewTracesQuery
 
-NewAzureTracesQuery creates a new AzureTracesQuery object.
+NewTracesQuery creates a new TracesQuery object.
 
 ```go
-func NewAzureTracesQuery() *AzureTracesQuery
+func NewTracesQuery() *TracesQuery
 ```
 
-### <span class="badge function"></span> NewAzureTracesFilter
+### <span class="badge function"></span> NewTracesFilter
 
-NewAzureTracesFilter creates a new AzureTracesFilter object.
+NewTracesFilter creates a new TracesFilter object.
 
 ```go
-func NewAzureTracesFilter() *AzureTracesFilter
+func NewTracesFilter() *TracesFilter
 ```
 
 ### <span class="badge function"></span> NewGrafanaTemplateVariableQuery
@@ -237,68 +237,68 @@ QueryV2Converter accepts a `QueryV2` object and generates the Go code to build t
 func QueryV2Converter(input dashboardv2.DataQueryKind) string
 ```
 
-### <span class="badge function"></span> AzureMonitorQueryConverter
+### <span class="badge function"></span> MonitorQueryConverter
 
-AzureMonitorQueryConverter accepts a `AzureMonitorQuery` object and generates the Go code to build this object using builders.
+MonitorQueryConverter accepts a `MonitorQuery` object and generates the Go code to build this object using builders.
 
 ```go
-func AzureMonitorQueryConverter(input AzureMonitorQuery) string
+func MonitorQueryConverter(input MonitorQuery) string
 ```
 
-### <span class="badge function"></span> AzureMetricQueryConverter
+### <span class="badge function"></span> MetricQueryConverter
 
-AzureMetricQueryConverter accepts a `AzureMetricQuery` object and generates the Go code to build this object using builders.
+MetricQueryConverter accepts a `MetricQuery` object and generates the Go code to build this object using builders.
 
 ```go
-func AzureMetricQueryConverter(input AzureMetricQuery) string
+func MetricQueryConverter(input MetricQuery) string
 ```
 
-### <span class="badge function"></span> AzureMonitorResourceConverter
+### <span class="badge function"></span> MonitorResourceConverter
 
-AzureMonitorResourceConverter accepts a `AzureMonitorResource` object and generates the Go code to build this object using builders.
+MonitorResourceConverter accepts a `MonitorResource` object and generates the Go code to build this object using builders.
 
 ```go
-func AzureMonitorResourceConverter(input AzureMonitorResource) string
+func MonitorResourceConverter(input MonitorResource) string
 ```
 
-### <span class="badge function"></span> AzureMetricDimensionConverter
+### <span class="badge function"></span> MetricDimensionConverter
 
-AzureMetricDimensionConverter accepts a `AzureMetricDimension` object and generates the Go code to build this object using builders.
+MetricDimensionConverter accepts a `MetricDimension` object and generates the Go code to build this object using builders.
 
 ```go
-func AzureMetricDimensionConverter(input AzureMetricDimension) string
+func MetricDimensionConverter(input MetricDimension) string
 ```
 
-### <span class="badge function"></span> AzureLogsQueryConverter
+### <span class="badge function"></span> LogsQueryConverter
 
-AzureLogsQueryConverter accepts a `AzureLogsQuery` object and generates the Go code to build this object using builders.
+LogsQueryConverter accepts a `LogsQuery` object and generates the Go code to build this object using builders.
 
 ```go
-func AzureLogsQueryConverter(input AzureLogsQuery) string
+func LogsQueryConverter(input LogsQuery) string
 ```
 
-### <span class="badge function"></span> AzureResourceGraphQueryConverter
+### <span class="badge function"></span> ResourceGraphQueryConverter
 
-AzureResourceGraphQueryConverter accepts a `AzureResourceGraphQuery` object and generates the Go code to build this object using builders.
+ResourceGraphQueryConverter accepts a `ResourceGraphQuery` object and generates the Go code to build this object using builders.
 
 ```go
-func AzureResourceGraphQueryConverter(input AzureResourceGraphQuery) string
+func ResourceGraphQueryConverter(input ResourceGraphQuery) string
 ```
 
-### <span class="badge function"></span> AzureTracesQueryConverter
+### <span class="badge function"></span> TracesQueryConverter
 
-AzureTracesQueryConverter accepts a `AzureTracesQuery` object and generates the Go code to build this object using builders.
+TracesQueryConverter accepts a `TracesQuery` object and generates the Go code to build this object using builders.
 
 ```go
-func AzureTracesQueryConverter(input AzureTracesQuery) string
+func TracesQueryConverter(input TracesQuery) string
 ```
 
-### <span class="badge function"></span> AzureTracesFilterConverter
+### <span class="badge function"></span> TracesFilterConverter
 
-AzureTracesFilterConverter accepts a `AzureTracesFilter` object and generates the Go code to build this object using builders.
+TracesFilterConverter accepts a `TracesFilter` object and generates the Go code to build this object using builders.
 
 ```go
-func AzureTracesFilterConverter(input AzureTracesFilter) string
+func TracesFilterConverter(input TracesFilter) string
 ```
 
 ### <span class="badge function"></span> AppInsightsMetricNameQueryConverter

@@ -2320,8 +2320,20 @@ class AnnotationQuery:
     # Placement can be used to display the annotation query somewhere else on the dashboard other than the default location.
     placement: str
     expr: typing.Optional[str]
+    # Format for Prometheus annotation text. Label values can be interpolated with templates like {{instance}}.
+    text_format: typing.Optional[str]
+    # Format for Prometheus and Loki annotation titles. Label values can be interpolated with templates like {{instance}}.
+    title_format: typing.Optional[str]
+    # Comma-separated label keys used as annotation tags.
+    tag_keys: typing.Optional[str]
+    # Legacy Prometheus annotation query step interval.
+    step: typing.Optional[str]
+    # Use the Prometheus series value as the annotation timestamp.
+    use_value_for_time: typing.Optional[bool]
+    # Mappings define how to convert data frame fields to annotation event fields.
+    mappings: typing.Optional[dict[str, 'AnnotationEventFieldMapping']]
 
-    def __init__(self, name: str = "", datasource: typing.Optional[common.DataSourceRef] = None, enable: bool = True, hide: typing.Optional[bool] = False, icon_color: str = "", filter_val: typing.Optional['AnnotationPanelFilter'] = None, target: typing.Optional[cogvariants.Dataquery] = None, type_val: typing.Optional[str] = None, built_in: typing.Optional[float] = 0, expr: typing.Optional[str] = None) -> None:
+    def __init__(self, name: str = "", datasource: typing.Optional[common.DataSourceRef] = None, enable: bool = True, hide: typing.Optional[bool] = False, icon_color: str = "", filter_val: typing.Optional['AnnotationPanelFilter'] = None, target: typing.Optional[cogvariants.Dataquery] = None, type_val: typing.Optional[str] = None, built_in: typing.Optional[float] = 0, expr: typing.Optional[str] = None, text_format: typing.Optional[str] = None, title_format: typing.Optional[str] = None, tag_keys: typing.Optional[str] = None, step: typing.Optional[str] = None, use_value_for_time: typing.Optional[bool] = None, mappings: typing.Optional[dict[str, 'AnnotationEventFieldMapping']] = None) -> None:
         self.name = name
         self.datasource = datasource
         self.enable = enable
@@ -2333,6 +2345,12 @@ class AnnotationQuery:
         self.built_in = built_in
         self.placement = AnnotationQueryPlacement.IN_CONTROLS_MENU
         self.expr = expr
+        self.text_format = text_format
+        self.title_format = title_format
+        self.tag_keys = tag_keys
+        self.step = step
+        self.use_value_for_time = use_value_for_time
+        self.mappings = mappings
 
     def to_json(self) -> dict[str, object]:
         payload: dict[str, object] = {
@@ -2356,6 +2374,18 @@ class AnnotationQuery:
             payload["placement"] = self.placement
         if self.expr is not None:
             payload["expr"] = self.expr
+        if self.text_format is not None:
+            payload["textFormat"] = self.text_format
+        if self.title_format is not None:
+            payload["titleFormat"] = self.title_format
+        if self.tag_keys is not None:
+            payload["tagKeys"] = self.tag_keys
+        if self.step is not None:
+            payload["step"] = self.step
+        if self.use_value_for_time is not None:
+            payload["useValueForTime"] = self.use_value_for_time
+        if self.mappings is not None:
+            payload["mappings"] = self.mappings
         return payload
 
     @classmethod
@@ -2381,7 +2411,19 @@ class AnnotationQuery:
         if "builtIn" in data:
             args["built_in"] = data["builtIn"]
         if "expr" in data:
-            args["expr"] = data["expr"]        
+            args["expr"] = data["expr"]
+        if "textFormat" in data:
+            args["text_format"] = data["textFormat"]
+        if "titleFormat" in data:
+            args["title_format"] = data["titleFormat"]
+        if "tagKeys" in data:
+            args["tag_keys"] = data["tagKeys"]
+        if "step" in data:
+            args["step"] = data["step"]
+        if "useValueForTime" in data:
+            args["use_value_for_time"] = data["useValueForTime"]
+        if "mappings" in data:
+            args["mappings"] = {key: AnnotationEventFieldMapping.from_json(data["mappings"][key]) for key in data["mappings"].keys()}        
 
         return cls(**args)
 
@@ -2575,6 +2617,61 @@ class Snapshot:
             args["user_id"] = data["userId"]
         if "dashboard" in data:
             args["dashboard"] = Dashboard.from_json(data["dashboard"])        
+
+        return cls(**args)
+
+
+class AnnotationEventFieldSource(enum.StrEnum):
+    """
+    Annotation event field source. Defines how to obtain the value for an annotation event field.
+    - "field": Find the value with a matching key (default)
+    - "text": Write a constant string into the value
+    - "skip": Do not include the field
+    """
+
+    FIELD = "field"
+    TEXT = "text"
+    SKIP = "skip"
+
+
+class AnnotationEventFieldMapping:
+    """
+    Annotation event field mapping. Defines how to map a data frame field to an annotation event field.
+    """
+
+    # Source type for the field value.
+    source: typing.Optional['AnnotationEventFieldSource']
+    # Constant value to use when source is "text".
+    value: typing.Optional[str]
+    # Regular expression to apply to the field value.
+    regex: typing.Optional[str]
+
+    def __init__(self, source: typing.Optional['AnnotationEventFieldSource'] = None, value: typing.Optional[str] = None, regex: typing.Optional[str] = None) -> None:
+        self.source = source
+        self.value = value
+        self.regex = regex
+
+    def to_json(self) -> dict[str, object]:
+        payload: dict[str, object] = {
+        }
+        if self.source is not None:
+            payload["source"] = self.source
+        if self.value is not None:
+            payload["value"] = self.value
+        if self.regex is not None:
+            payload["regex"] = self.regex
+        return payload
+
+    @classmethod
+    def from_json(cls, data: dict[str, typing.Any]) -> typing.Self:
+        args: dict[str, typing.Any] = {}
+        
+        if "source" in data:
+            args["source"] = data["source"]
+        if "value" in data:
+            args["value"] = data["value"]
+        if "regex" in data:
+            args["regex"] = data["regex"]        
 
         return cls(**args)
 

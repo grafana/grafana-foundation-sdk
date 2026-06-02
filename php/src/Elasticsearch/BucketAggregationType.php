@@ -20,56 +20,56 @@ final class BucketAggregationType implements \JsonSerializable, \Stringable {
 
     public static function terms(): self
     {
-        if (!isset(self::$instances["terms"])) {
-            self::$instances["terms"] = new self("terms");
+        if (!isset(self::$instances["Terms"])) {
+            self::$instances["Terms"] = new self("terms");
         }
 
-        return self::$instances["terms"];
+        return self::$instances["Terms"];
     }
 
     public static function filters(): self
     {
-        if (!isset(self::$instances["filters"])) {
-            self::$instances["filters"] = new self("filters");
+        if (!isset(self::$instances["Filters"])) {
+            self::$instances["Filters"] = new self("filters");
         }
 
-        return self::$instances["filters"];
+        return self::$instances["Filters"];
     }
 
     public static function geohashGrid(): self
     {
-        if (!isset(self::$instances["geohash_grid"])) {
-            self::$instances["geohash_grid"] = new self("geohash_grid");
+        if (!isset(self::$instances["GeohashGrid"])) {
+            self::$instances["GeohashGrid"] = new self("geohash_grid");
         }
 
-        return self::$instances["geohash_grid"];
+        return self::$instances["GeohashGrid"];
     }
 
     public static function dateHistogram(): self
     {
-        if (!isset(self::$instances["date_histogram"])) {
-            self::$instances["date_histogram"] = new self("date_histogram");
+        if (!isset(self::$instances["DateHistogram"])) {
+            self::$instances["DateHistogram"] = new self("date_histogram");
         }
 
-        return self::$instances["date_histogram"];
+        return self::$instances["DateHistogram"];
     }
 
     public static function histogram(): self
     {
-        if (!isset(self::$instances["histogram"])) {
-            self::$instances["histogram"] = new self("histogram");
+        if (!isset(self::$instances["Histogram"])) {
+            self::$instances["Histogram"] = new self("histogram");
         }
 
-        return self::$instances["histogram"];
+        return self::$instances["Histogram"];
     }
 
     public static function nested(): self
     {
-        if (!isset(self::$instances["nested"])) {
-            self::$instances["nested"] = new self("nested");
+        if (!isset(self::$instances["Nested"])) {
+            self::$instances["Nested"] = new self("nested");
         }
 
-        return self::$instances["nested"];
+        return self::$instances["Nested"];
     }
 
     public static function fromValue(string $value): self

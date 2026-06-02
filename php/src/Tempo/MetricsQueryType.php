@@ -20,20 +20,20 @@ final class MetricsQueryType implements \JsonSerializable, \Stringable {
 
     public static function range(): self
     {
-        if (!isset(self::$instances["range"])) {
-            self::$instances["range"] = new self("range");
+        if (!isset(self::$instances["Range"])) {
+            self::$instances["Range"] = new self("range");
         }
 
-        return self::$instances["range"];
+        return self::$instances["Range"];
     }
 
     public static function instant(): self
     {
-        if (!isset(self::$instances["instant"])) {
-            self::$instances["instant"] = new self("instant");
+        if (!isset(self::$instances["Instant"])) {
+            self::$instances["Instant"] = new self("instant");
         }
 
-        return self::$instances["instant"];
+        return self::$instances["Instant"];
     }
 
     public static function fromValue(string $value): self

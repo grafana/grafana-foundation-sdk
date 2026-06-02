@@ -23,7 +23,7 @@ public QueryV2 build()
 Azure Monitor Logs sub-query properties.
 
 ```java
-public QueryV2Builder azureLogAnalytics(com.grafana.foundation.cog.Builder<AzureLogsQuery> azureLogAnalytics)
+public QueryV2Builder azureLogAnalytics(com.grafana.foundation.cog.Builder<LogsQuery> azureLogAnalytics)
 ```
 
 ### <span class="badge object-method"></span> azureMonitor
@@ -31,7 +31,7 @@ public QueryV2Builder azureLogAnalytics(com.grafana.foundation.cog.Builder<Azure
 Azure Monitor Metrics sub-query properties.
 
 ```java
-public QueryV2Builder azureMonitor(com.grafana.foundation.cog.Builder<AzureMetricQuery> azureMonitor)
+public QueryV2Builder azureMonitor(com.grafana.foundation.cog.Builder<MetricQuery> azureMonitor)
 ```
 
 ### <span class="badge object-method"></span> azureResourceGraph
@@ -39,7 +39,7 @@ public QueryV2Builder azureMonitor(com.grafana.foundation.cog.Builder<AzureMetri
 Azure Resource Graph sub-query properties.
 
 ```java
-public QueryV2Builder azureResourceGraph(com.grafana.foundation.cog.Builder<AzureResourceGraphQuery> azureResourceGraph)
+public QueryV2Builder azureResourceGraph(com.grafana.foundation.cog.Builder<ResourceGraphQuery> azureResourceGraph)
 ```
 
 ### <span class="badge object-method"></span> azureTraces
@@ -47,7 +47,7 @@ public QueryV2Builder azureResourceGraph(com.grafana.foundation.cog.Builder<Azur
 Application Insights Traces sub-query properties.
 
 ```java
-public QueryV2Builder azureTraces(com.grafana.foundation.cog.Builder<AzureTracesQuery> azureTraces)
+public QueryV2Builder azureTraces(com.grafana.foundation.cog.Builder<TracesQuery> azureTraces)
 ```
 
 ### <span class="badge object-method"></span> customNamespace

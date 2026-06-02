@@ -74,6 +74,14 @@ Color to use for the annotation event markers
 func (builder *AnnotationQueryBuilder) IconColor(iconColor string) *AnnotationQueryBuilder
 ```
 
+### <span class="badge object-method"></span> Mappings
+
+Mappings define how to convert data frame fields to annotation event fields.
+
+```go
+func (builder *AnnotationQueryBuilder) Mappings(mappings map[string]cog.Builder[dashboard.AnnotationEventFieldMapping]) *AnnotationQueryBuilder
+```
+
 ### <span class="badge object-method"></span> Name
 
 Name of annotation.
@@ -90,6 +98,22 @@ Placement can be used to display the annotation query somewhere else on the dash
 func (builder *AnnotationQueryBuilder) Placement(placement dashboard.AnnotationQueryPlacement) *AnnotationQueryBuilder
 ```
 
+### <span class="badge object-method"></span> Step
+
+Legacy Prometheus annotation query step interval.
+
+```go
+func (builder *AnnotationQueryBuilder) Step(step string) *AnnotationQueryBuilder
+```
+
+### <span class="badge object-method"></span> TagKeys
+
+Comma-separated label keys used as annotation tags.
+
+```go
+func (builder *AnnotationQueryBuilder) TagKeys(tagKeys string) *AnnotationQueryBuilder
+```
+
 ### <span class="badge object-method"></span> Target
 
 TODO.. this should just be a normal query target
@@ -98,12 +122,36 @@ TODO.. this should just be a normal query target
 func (builder *AnnotationQueryBuilder) Target(target cog.Builder[cog/variants.Dataquery]) *AnnotationQueryBuilder
 ```
 
+### <span class="badge object-method"></span> TextFormat
+
+Format for Prometheus annotation text. Label values can be interpolated with templates like {{instance}}.
+
+```go
+func (builder *AnnotationQueryBuilder) TextFormat(textFormat string) *AnnotationQueryBuilder
+```
+
+### <span class="badge object-method"></span> TitleFormat
+
+Format for Prometheus and Loki annotation titles. Label values can be interpolated with templates like {{instance}}.
+
+```go
+func (builder *AnnotationQueryBuilder) TitleFormat(titleFormat string) *AnnotationQueryBuilder
+```
+
 ### <span class="badge object-method"></span> Type
 
 TODO -- this should not exist here, it is based on the --grafana-- datasource
 
 ```go
 func (builder *AnnotationQueryBuilder) Type(typeArg string) *AnnotationQueryBuilder
+```
+
+### <span class="badge object-method"></span> UseValueForTime
+
+Use the Prometheus series value as the annotation timestamp.
+
+```go
+func (builder *AnnotationQueryBuilder) UseValueForTime(useValueForTime bool) *AnnotationQueryBuilder
 ```
 
 ## See also

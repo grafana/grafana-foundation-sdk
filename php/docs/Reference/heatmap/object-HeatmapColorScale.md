@@ -26,20 +26,20 @@ final class HeatmapColorScale implements \JsonSerializable, \Stringable {
 
     public static function linear(): self
     {
-        if (!isset(self::$instances["linear"])) {
-            self::$instances["linear"] = new self("linear");
+        if (!isset(self::$instances["Linear"])) {
+            self::$instances["Linear"] = new self("linear");
         }
 
-        return self::$instances["linear"];
+        return self::$instances["Linear"];
     }
 
     public static function exponential(): self
     {
-        if (!isset(self::$instances["exponential"])) {
-            self::$instances["exponential"] = new self("exponential");
+        if (!isset(self::$instances["Exponential"])) {
+            self::$instances["Exponential"] = new self("exponential");
         }
 
-        return self::$instances["exponential"];
+        return self::$instances["Exponential"];
     }
 
     public static function fromValue(string $value): self

@@ -79,7 +79,8 @@ func (resource *Dataquery) UnmarshalJSONStrict(raw []byte) error {
 
 		}
 		delete(fields, "labelSelector")
-
+	} else {
+		errs = append(errs, cog.MakeBuildErrors("labelSelector", errors.New("required field is missing from input"))...)
 	}
 	// Field "profileTypeId"
 	if fields["profileTypeId"] != nil {
@@ -144,10 +145,6 @@ func (resource *Dataquery) UnmarshalJSONStrict(raw []byte) error {
 
 	for field := range fields {
 		errs = append(errs, cog.MakeBuildErrors("Dataquery", fmt.Errorf("unexpected field '%s'", field))...)
-	}
-
-	if len(errs) == 0 {
-		return nil
 	}
 
 	return errs

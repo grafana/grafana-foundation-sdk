@@ -10,13 +10,15 @@
   "paths": {},
   "components": {
     "schemas": {
-      "AzureMonitorQuery": {
+      "MonitorQuery": {
         "type": "object",
         "additionalProperties": false,
+        "required": [
+          "refId"
+        ],
         "properties": {
           "refId": {
             "type": "string",
-            "nullable": true,
             "description": "A unique identifier for the query within the list of targets.\nIn server side expressions, the refId is used as a variable name to identify results.\nBy default, the UI will assign A-\u003eZ; however setting meaningful names may be useful."
           },
           "hide": {
@@ -39,19 +41,19 @@
             "description": "Subscriptions to be queried via Azure Resource Graph."
           },
           "azureMonitor": {
-            "$ref": "#/components/schemas/AzureMetricQuery",
+            "$ref": "#/components/schemas/MetricQuery",
             "description": "Azure Monitor Metrics sub-query properties."
           },
           "azureLogAnalytics": {
-            "$ref": "#/components/schemas/AzureLogsQuery",
+            "$ref": "#/components/schemas/LogsQuery",
             "description": "Azure Monitor Logs sub-query properties."
           },
           "azureResourceGraph": {
-            "$ref": "#/components/schemas/AzureResourceGraphQuery",
+            "$ref": "#/components/schemas/ResourceGraphQuery",
             "description": "Azure Resource Graph sub-query properties."
           },
           "azureTraces": {
-            "$ref": "#/components/schemas/AzureTracesQuery",
+            "$ref": "#/components/schemas/TracesQuery",
             "description": "Application Insights Traces sub-query properties."
           },
           "grafanaTemplateVariableFn": {
@@ -79,7 +81,8 @@
             "description": "Custom namespace used in template variable queries"
           },
           "datasource": {
-            "$ref": "#/components/schemas/DataSourceRef",
+            "type": "object",
+            "additionalProperties": {},
             "description": "For mixed data sources the selected datasource is on the query level.\nFor non mixed scenarios this is undefined.\nTODO find a better way to do this ^ that's friendly to schema\nTODO this shouldn't be unknown but DataSourceRef | null"
           },
           "query": {
@@ -88,14 +91,14 @@
           }
         }
       },
-      "AzureMetricQuery": {
+      "MetricQuery": {
         "type": "object",
         "additionalProperties": false,
         "properties": {
           "resources": {
             "type": "array",
             "items": {
-              "$ref": "#/components/schemas/AzureMonitorResource"
+              "$ref": "#/components/schemas/MonitorResource"
             },
             "description": "Array of resource URIs to be queried."
           },
@@ -126,7 +129,7 @@
           "dimensionFilters": {
             "type": "array",
             "items": {
-              "$ref": "#/components/schemas/AzureMetricDimension"
+              "$ref": "#/components/schemas/MetricDimension"
             },
             "description": "Filters to reduce the set of data returned. Dimensions that can be filtered on are defined by the metric."
           },
@@ -175,7 +178,7 @@
           }
         }
       },
-      "AzureMonitorResource": {
+      "MonitorResource": {
         "type": "object",
         "additionalProperties": false,
         "properties": {
@@ -196,7 +199,7 @@
           }
         }
       },
-      "AzureMetricDimension": {
+      "MetricDimension": {
         "type": "object",
         "additionalProperties": false,
         "properties": {
@@ -221,7 +224,7 @@
           }
         }
       },
-      "AzureLogsQuery": {
+      "LogsQuery": {
         "type": "object",
         "additionalProperties": false,
         "properties": {
@@ -276,7 +279,7 @@
         ],
         "type": "string"
       },
-      "AzureResourceGraphQuery": {
+      "ResourceGraphQuery": {
         "type": "object",
         "additionalProperties": false,
         "properties": {
@@ -290,7 +293,7 @@
           }
         }
       },
-      "AzureTracesQuery": {
+      "TracesQuery": {
         "type": "object",
         "additionalProperties": false,
         "properties": {
@@ -319,7 +322,7 @@
           "filters": {
             "type": "array",
             "items": {
-              "$ref": "#/components/schemas/AzureTracesFilter"
+              "$ref": "#/components/schemas/TracesFilter"
             },
             "description": "Filters for property values."
           },
@@ -330,7 +333,7 @@
         },
         "description": "Application Insights Traces sub-query properties"
       },
-      "AzureTracesFilter": {
+      "TracesFilter": {
         "type": "object",
         "additionalProperties": false,
         "required": [
@@ -619,7 +622,7 @@
           }
         }
       },
-      "AzureQueryType": {
+      "QueryType": {
         "enum": [
           "Azure Monitor",
           "Azure Log Analytics",
@@ -660,20 +663,6 @@
         "properties": {
           "rawQuery": {
             "type": "string"
-          }
-        }
-      },
-      "DataSourceRef": {
-        "type": "object",
-        "additionalProperties": false,
-        "properties": {
-          "type": {
-            "type": "string",
-            "description": "The plugin type-id"
-          },
-          "uid": {
-            "type": "string",
-            "description": "Specific datasource instance"
           }
         }
       }

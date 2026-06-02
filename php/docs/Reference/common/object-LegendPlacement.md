@@ -26,20 +26,20 @@ final class LegendPlacement implements \JsonSerializable, \Stringable {
 
     public static function bottom(): self
     {
-        if (!isset(self::$instances["bottom"])) {
-            self::$instances["bottom"] = new self("bottom");
+        if (!isset(self::$instances["Bottom"])) {
+            self::$instances["Bottom"] = new self("bottom");
         }
 
-        return self::$instances["bottom"];
+        return self::$instances["Bottom"];
     }
 
     public static function right(): self
     {
-        if (!isset(self::$instances["right"])) {
-            self::$instances["right"] = new self("right");
+        if (!isset(self::$instances["Right"])) {
+            self::$instances["Right"] = new self("right");
         }
 
-        return self::$instances["right"];
+        return self::$instances["Right"];
     }
 
     public static function fromValue(string $value): self

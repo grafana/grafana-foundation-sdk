@@ -295,10 +295,6 @@ func (resource *Dataquery) UnmarshalJSONStrict(raw []byte) error {
 		errs = append(errs, cog.MakeBuildErrors("Dataquery", fmt.Errorf("unexpected field '%s'", field))...)
 	}
 
-	if len(errs) == 0 {
-		return nil
-	}
-
 	return errs
 }
 
@@ -665,10 +661,6 @@ func (resource *SQLExpression) UnmarshalJSONStrict(raw []byte) error {
 		errs = append(errs, cog.MakeBuildErrors("SQLExpression", fmt.Errorf("unexpected field '%s'", field))...)
 	}
 
-	if len(errs) == 0 {
-		return nil
-	}
-
 	return errs
 }
 
@@ -858,10 +850,6 @@ func (resource *QueryEditorFunctionExpression) UnmarshalJSONStrict(raw []byte) e
 		errs = append(errs, cog.MakeBuildErrors("QueryEditorFunctionExpression", fmt.Errorf("unexpected field '%s'", field))...)
 	}
 
-	if len(errs) == 0 {
-		return nil
-	}
-
 	return errs
 }
 
@@ -979,10 +967,6 @@ func (resource *QueryEditorFunctionParameterExpression) UnmarshalJSONStrict(raw 
 		errs = append(errs, cog.MakeBuildErrors("QueryEditorFunctionParameterExpression", fmt.Errorf("unexpected field '%s'", field))...)
 	}
 
-	if len(errs) == 0 {
-		return nil
-	}
-
 	return errs
 }
 
@@ -1078,10 +1062,6 @@ func (resource *QueryEditorGroupByExpression) UnmarshalJSONStrict(raw []byte) er
 		errs = append(errs, cog.MakeBuildErrors("QueryEditorGroupByExpression", fmt.Errorf("unexpected field '%s'", field))...)
 	}
 
-	if len(errs) == 0 {
-		return nil
-	}
-
 	return errs
 }
 
@@ -1166,10 +1146,6 @@ func (resource *QueryEditorProperty) UnmarshalJSONStrict(raw []byte) error {
 
 	for field := range fields {
 		errs = append(errs, cog.MakeBuildErrors("QueryEditorProperty", fmt.Errorf("unexpected field '%s'", field))...)
-	}
-
-	if len(errs) == 0 {
-		return nil
 	}
 
 	return errs
@@ -1271,10 +1247,6 @@ func (resource *QueryEditorPropertyExpression) UnmarshalJSONStrict(raw []byte) e
 
 	for field := range fields {
 		errs = append(errs, cog.MakeBuildErrors("QueryEditorPropertyExpression", fmt.Errorf("unexpected field '%s'", field))...)
-	}
-
-	if len(errs) == 0 {
-		return nil
 	}
 
 	return errs

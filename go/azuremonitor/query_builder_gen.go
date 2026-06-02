@@ -73,9 +73,9 @@ func (builder *QueryBuilder) Datasource(datasource cog.Builder[dashboardv2beta1.
 // By default, the UI will assign A->Z; however setting meaningful names may be useful.
 func (builder *QueryBuilder) RefId(refId string) *QueryBuilder {
 	if builder.internal.Spec == nil {
-		builder.internal.Spec = NewAzureMonitorQuery()
+		builder.internal.Spec = NewMonitorQuery()
 	}
-	builder.internal.Spec.(*AzureMonitorQuery).RefId = &refId
+	builder.internal.Spec.(*MonitorQuery).RefId = refId
 
 	return builder
 }
@@ -83,9 +83,9 @@ func (builder *QueryBuilder) RefId(refId string) *QueryBuilder {
 // If hide is set to true, Grafana will filter out the response(s) associated with this query before returning it to the panel.
 func (builder *QueryBuilder) Hide(hide bool) *QueryBuilder {
 	if builder.internal.Spec == nil {
-		builder.internal.Spec = NewAzureMonitorQuery()
+		builder.internal.Spec = NewMonitorQuery()
 	}
-	builder.internal.Spec.(*AzureMonitorQuery).Hide = &hide
+	builder.internal.Spec.(*MonitorQuery).Hide = &hide
 
 	return builder
 }
@@ -94,9 +94,9 @@ func (builder *QueryBuilder) Hide(hide bool) *QueryBuilder {
 // TODO make this required and give it a default
 func (builder *QueryBuilder) QueryType(queryType string) *QueryBuilder {
 	if builder.internal.Spec == nil {
-		builder.internal.Spec = NewAzureMonitorQuery()
+		builder.internal.Spec = NewMonitorQuery()
 	}
-	builder.internal.Spec.(*AzureMonitorQuery).QueryType = &queryType
+	builder.internal.Spec.(*MonitorQuery).QueryType = &queryType
 
 	return builder
 }
@@ -105,9 +105,9 @@ func (builder *QueryBuilder) QueryType(queryType string) *QueryBuilder {
 // Also used for template variable queries
 func (builder *QueryBuilder) Subscription(subscription string) *QueryBuilder {
 	if builder.internal.Spec == nil {
-		builder.internal.Spec = NewAzureMonitorQuery()
+		builder.internal.Spec = NewMonitorQuery()
 	}
-	builder.internal.Spec.(*AzureMonitorQuery).Subscription = &subscription
+	builder.internal.Spec.(*MonitorQuery).Subscription = &subscription
 
 	return builder
 }
@@ -115,69 +115,69 @@ func (builder *QueryBuilder) Subscription(subscription string) *QueryBuilder {
 // Subscriptions to be queried via Azure Resource Graph.
 func (builder *QueryBuilder) Subscriptions(subscriptions []string) *QueryBuilder {
 	if builder.internal.Spec == nil {
-		builder.internal.Spec = NewAzureMonitorQuery()
+		builder.internal.Spec = NewMonitorQuery()
 	}
-	builder.internal.Spec.(*AzureMonitorQuery).Subscriptions = subscriptions
+	builder.internal.Spec.(*MonitorQuery).Subscriptions = subscriptions
 
 	return builder
 }
 
 // Azure Monitor Metrics sub-query properties.
-func (builder *QueryBuilder) AzureMonitor(azureMonitor cog.Builder[AzureMetricQuery]) *QueryBuilder {
+func (builder *QueryBuilder) AzureMonitor(azureMonitor cog.Builder[MetricQuery]) *QueryBuilder {
 	if builder.internal.Spec == nil {
-		builder.internal.Spec = NewAzureMonitorQuery()
+		builder.internal.Spec = NewMonitorQuery()
 	}
 	azureMonitorResource, err := azureMonitor.Build()
 	if err != nil {
 		builder.errors = append(builder.errors, err.(cog.BuildErrors)...)
 		return builder
 	}
-	builder.internal.Spec.(*AzureMonitorQuery).AzureMonitor = &azureMonitorResource
+	builder.internal.Spec.(*MonitorQuery).AzureMonitor = &azureMonitorResource
 
 	return builder
 }
 
 // Azure Monitor Logs sub-query properties.
-func (builder *QueryBuilder) AzureLogAnalytics(azureLogAnalytics cog.Builder[AzureLogsQuery]) *QueryBuilder {
+func (builder *QueryBuilder) AzureLogAnalytics(azureLogAnalytics cog.Builder[LogsQuery]) *QueryBuilder {
 	if builder.internal.Spec == nil {
-		builder.internal.Spec = NewAzureMonitorQuery()
+		builder.internal.Spec = NewMonitorQuery()
 	}
 	azureLogAnalyticsResource, err := azureLogAnalytics.Build()
 	if err != nil {
 		builder.errors = append(builder.errors, err.(cog.BuildErrors)...)
 		return builder
 	}
-	builder.internal.Spec.(*AzureMonitorQuery).AzureLogAnalytics = &azureLogAnalyticsResource
+	builder.internal.Spec.(*MonitorQuery).AzureLogAnalytics = &azureLogAnalyticsResource
 
 	return builder
 }
 
 // Azure Resource Graph sub-query properties.
-func (builder *QueryBuilder) AzureResourceGraph(azureResourceGraph cog.Builder[AzureResourceGraphQuery]) *QueryBuilder {
+func (builder *QueryBuilder) AzureResourceGraph(azureResourceGraph cog.Builder[ResourceGraphQuery]) *QueryBuilder {
 	if builder.internal.Spec == nil {
-		builder.internal.Spec = NewAzureMonitorQuery()
+		builder.internal.Spec = NewMonitorQuery()
 	}
 	azureResourceGraphResource, err := azureResourceGraph.Build()
 	if err != nil {
 		builder.errors = append(builder.errors, err.(cog.BuildErrors)...)
 		return builder
 	}
-	builder.internal.Spec.(*AzureMonitorQuery).AzureResourceGraph = &azureResourceGraphResource
+	builder.internal.Spec.(*MonitorQuery).AzureResourceGraph = &azureResourceGraphResource
 
 	return builder
 }
 
 // Application Insights Traces sub-query properties.
-func (builder *QueryBuilder) AzureTraces(azureTraces cog.Builder[AzureTracesQuery]) *QueryBuilder {
+func (builder *QueryBuilder) AzureTraces(azureTraces cog.Builder[TracesQuery]) *QueryBuilder {
 	if builder.internal.Spec == nil {
-		builder.internal.Spec = NewAzureMonitorQuery()
+		builder.internal.Spec = NewMonitorQuery()
 	}
 	azureTracesResource, err := azureTraces.Build()
 	if err != nil {
 		builder.errors = append(builder.errors, err.(cog.BuildErrors)...)
 		return builder
 	}
-	builder.internal.Spec.(*AzureMonitorQuery).AzureTraces = &azureTracesResource
+	builder.internal.Spec.(*MonitorQuery).AzureTraces = &azureTracesResource
 
 	return builder
 }
@@ -185,9 +185,9 @@ func (builder *QueryBuilder) AzureTraces(azureTraces cog.Builder[AzureTracesQuer
 // @deprecated Legacy template variable support.
 func (builder *QueryBuilder) GrafanaTemplateVariableFn(grafanaTemplateVariableFn GrafanaTemplateVariableQuery) *QueryBuilder {
 	if builder.internal.Spec == nil {
-		builder.internal.Spec = NewAzureMonitorQuery()
+		builder.internal.Spec = NewMonitorQuery()
 	}
-	builder.internal.Spec.(*AzureMonitorQuery).GrafanaTemplateVariableFn = &grafanaTemplateVariableFn
+	builder.internal.Spec.(*MonitorQuery).GrafanaTemplateVariableFn = &grafanaTemplateVariableFn
 
 	return builder
 }
@@ -195,9 +195,9 @@ func (builder *QueryBuilder) GrafanaTemplateVariableFn(grafanaTemplateVariableFn
 // Resource group used in template variable queries
 func (builder *QueryBuilder) ResourceGroup(resourceGroup string) *QueryBuilder {
 	if builder.internal.Spec == nil {
-		builder.internal.Spec = NewAzureMonitorQuery()
+		builder.internal.Spec = NewMonitorQuery()
 	}
-	builder.internal.Spec.(*AzureMonitorQuery).ResourceGroup = &resourceGroup
+	builder.internal.Spec.(*MonitorQuery).ResourceGroup = &resourceGroup
 
 	return builder
 }
@@ -205,9 +205,9 @@ func (builder *QueryBuilder) ResourceGroup(resourceGroup string) *QueryBuilder {
 // Namespace used in template variable queries
 func (builder *QueryBuilder) Namespace(namespace string) *QueryBuilder {
 	if builder.internal.Spec == nil {
-		builder.internal.Spec = NewAzureMonitorQuery()
+		builder.internal.Spec = NewMonitorQuery()
 	}
-	builder.internal.Spec.(*AzureMonitorQuery).Namespace = &namespace
+	builder.internal.Spec.(*MonitorQuery).Namespace = &namespace
 
 	return builder
 }
@@ -215,9 +215,9 @@ func (builder *QueryBuilder) Namespace(namespace string) *QueryBuilder {
 // Resource used in template variable queries
 func (builder *QueryBuilder) Resource(resource string) *QueryBuilder {
 	if builder.internal.Spec == nil {
-		builder.internal.Spec = NewAzureMonitorQuery()
+		builder.internal.Spec = NewMonitorQuery()
 	}
-	builder.internal.Spec.(*AzureMonitorQuery).Resource = &resource
+	builder.internal.Spec.(*MonitorQuery).Resource = &resource
 
 	return builder
 }
@@ -225,9 +225,9 @@ func (builder *QueryBuilder) Resource(resource string) *QueryBuilder {
 // Region used in template variable queries
 func (builder *QueryBuilder) Region(region string) *QueryBuilder {
 	if builder.internal.Spec == nil {
-		builder.internal.Spec = NewAzureMonitorQuery()
+		builder.internal.Spec = NewMonitorQuery()
 	}
-	builder.internal.Spec.(*AzureMonitorQuery).Region = &region
+	builder.internal.Spec.(*MonitorQuery).Region = &region
 
 	return builder
 }
@@ -235,9 +235,9 @@ func (builder *QueryBuilder) Region(region string) *QueryBuilder {
 // Custom namespace used in template variable queries
 func (builder *QueryBuilder) CustomNamespace(customNamespace string) *QueryBuilder {
 	if builder.internal.Spec == nil {
-		builder.internal.Spec = NewAzureMonitorQuery()
+		builder.internal.Spec = NewMonitorQuery()
 	}
-	builder.internal.Spec.(*AzureMonitorQuery).CustomNamespace = &customNamespace
+	builder.internal.Spec.(*MonitorQuery).CustomNamespace = &customNamespace
 
 	return builder
 }
@@ -245,9 +245,9 @@ func (builder *QueryBuilder) CustomNamespace(customNamespace string) *QueryBuild
 // Used only for exemplar queries from Prometheus
 func (builder *QueryBuilder) Query(query string) *QueryBuilder {
 	if builder.internal.Spec == nil {
-		builder.internal.Spec = NewAzureMonitorQuery()
+		builder.internal.Spec = NewMonitorQuery()
 	}
-	builder.internal.Spec.(*AzureMonitorQuery).Query = &query
+	builder.internal.Spec.(*MonitorQuery).Query = &query
 
 	return builder
 }

@@ -23,29 +23,29 @@ final class GraphDrawStyle implements \JsonSerializable, \Stringable {
 
     public static function line(): self
     {
-        if (!isset(self::$instances["line"])) {
-            self::$instances["line"] = new self("line");
+        if (!isset(self::$instances["Line"])) {
+            self::$instances["Line"] = new self("line");
         }
 
-        return self::$instances["line"];
+        return self::$instances["Line"];
     }
 
     public static function bars(): self
     {
-        if (!isset(self::$instances["bars"])) {
-            self::$instances["bars"] = new self("bars");
+        if (!isset(self::$instances["Bars"])) {
+            self::$instances["Bars"] = new self("bars");
         }
 
-        return self::$instances["bars"];
+        return self::$instances["Bars"];
     }
 
     public static function points(): self
     {
-        if (!isset(self::$instances["points"])) {
-            self::$instances["points"] = new self("points");
+        if (!isset(self::$instances["Points"])) {
+            self::$instances["Points"] = new self("points");
         }
 
-        return self::$instances["points"];
+        return self::$instances["Points"];
     }
 
     public static function fromValue(string $value): self

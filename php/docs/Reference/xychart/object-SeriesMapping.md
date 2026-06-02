@@ -24,20 +24,20 @@ final class SeriesMapping implements \JsonSerializable, \Stringable {
 
     public static function auto(): self
     {
-        if (!isset(self::$instances["auto"])) {
-            self::$instances["auto"] = new self("auto");
+        if (!isset(self::$instances["Auto"])) {
+            self::$instances["Auto"] = new self("auto");
         }
 
-        return self::$instances["auto"];
+        return self::$instances["Auto"];
     }
 
     public static function manual(): self
     {
-        if (!isset(self::$instances["manual"])) {
-            self::$instances["manual"] = new self("manual");
+        if (!isset(self::$instances["Manual"])) {
+            self::$instances["Manual"] = new self("manual");
         }
 
-        return self::$instances["manual"];
+        return self::$instances["Manual"];
     }
 
     public static function fromValue(string $value): self

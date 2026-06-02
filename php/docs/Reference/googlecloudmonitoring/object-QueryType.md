@@ -26,20 +26,20 @@ final class QueryType implements \JsonSerializable, \Stringable {
 
     public static function tIMESERIESLIST(): self
     {
-        if (!isset(self::$instances["TIME_SERIES_LIST"])) {
-            self::$instances["TIME_SERIES_LIST"] = new self("timeSeriesList");
+        if (!isset(self::$instances["TIMESERIESLIST"])) {
+            self::$instances["TIMESERIESLIST"] = new self("timeSeriesList");
         }
 
-        return self::$instances["TIME_SERIES_LIST"];
+        return self::$instances["TIMESERIESLIST"];
     }
 
     public static function tIMESERIESQUERY(): self
     {
-        if (!isset(self::$instances["TIME_SERIES_QUERY"])) {
-            self::$instances["TIME_SERIES_QUERY"] = new self("timeSeriesQuery");
+        if (!isset(self::$instances["TIMESERIESQUERY"])) {
+            self::$instances["TIMESERIESQUERY"] = new self("timeSeriesQuery");
         }
 
-        return self::$instances["TIME_SERIES_QUERY"];
+        return self::$instances["TIMESERIESQUERY"];
     }
 
     public static function sLO(): self

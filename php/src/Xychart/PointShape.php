@@ -20,20 +20,20 @@ final class PointShape implements \JsonSerializable, \Stringable {
 
     public static function circle(): self
     {
-        if (!isset(self::$instances["circle"])) {
-            self::$instances["circle"] = new self("circle");
+        if (!isset(self::$instances["Circle"])) {
+            self::$instances["Circle"] = new self("circle");
         }
 
-        return self::$instances["circle"];
+        return self::$instances["Circle"];
     }
 
     public static function square(): self
     {
-        if (!isset(self::$instances["square"])) {
-            self::$instances["square"] = new self("square");
+        if (!isset(self::$instances["Square"])) {
+            self::$instances["Square"] = new self("square");
         }
 
-        return self::$instances["square"];
+        return self::$instances["Square"];
     }
 
     public static function fromValue(string $value): self

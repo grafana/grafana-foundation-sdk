@@ -66,6 +66,37 @@ class AnnotationQuery implements \JsonSerializable
 
     public ?string $expr;
 
+    /**
+     * Format for Prometheus annotation text. Label values can be interpolated with templates like {{instance}}.
+     */
+    public ?string $textFormat;
+
+    /**
+     * Format for Prometheus and Loki annotation titles. Label values can be interpolated with templates like {{instance}}.
+     */
+    public ?string $titleFormat;
+
+    /**
+     * Comma-separated label keys used as annotation tags.
+     */
+    public ?string $tagKeys;
+
+    /**
+     * Legacy Prometheus annotation query step interval.
+     */
+    public ?string $step;
+
+    /**
+     * Use the Prometheus series value as the annotation timestamp.
+     */
+    public ?bool $useValueForTime;
+
+    /**
+     * Mappings define how to convert data frame fields to annotation event fields.
+     * @var array<string, \Grafana\Foundation\Dashboard\AnnotationEventFieldMapping>|null
+     */
+    public ?array $mappings;
+
 }
 ```
 ## Methods

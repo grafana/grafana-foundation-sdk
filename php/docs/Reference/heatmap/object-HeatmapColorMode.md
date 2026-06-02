@@ -26,20 +26,20 @@ final class HeatmapColorMode implements \JsonSerializable, \Stringable {
 
     public static function opacity(): self
     {
-        if (!isset(self::$instances["opacity"])) {
-            self::$instances["opacity"] = new self("opacity");
+        if (!isset(self::$instances["Opacity"])) {
+            self::$instances["Opacity"] = new self("opacity");
         }
 
-        return self::$instances["opacity"];
+        return self::$instances["Opacity"];
     }
 
     public static function scheme(): self
     {
-        if (!isset(self::$instances["scheme"])) {
-            self::$instances["scheme"] = new self("scheme");
+        if (!isset(self::$instances["Scheme"])) {
+            self::$instances["Scheme"] = new self("scheme");
         }
 
-        return self::$instances["scheme"];
+        return self::$instances["Scheme"];
     }
 
     public static function fromValue(string $value): self

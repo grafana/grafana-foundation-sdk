@@ -87,5 +87,49 @@ export class AnnotationQueryBuilder implements cog.Builder<dashboard.AnnotationQ
         this.internal.expr = expr;
         return this;
     }
+
+    // Format for Prometheus annotation text. Label values can be interpolated with templates like {{instance}}.
+    textFormat(textFormat: string): this {
+        this.internal.textFormat = textFormat;
+        return this;
+    }
+
+    // Format for Prometheus and Loki annotation titles. Label values can be interpolated with templates like {{instance}}.
+    titleFormat(titleFormat: string): this {
+        this.internal.titleFormat = titleFormat;
+        return this;
+    }
+
+    // Comma-separated label keys used as annotation tags.
+    tagKeys(tagKeys: string): this {
+        this.internal.tagKeys = tagKeys;
+        return this;
+    }
+
+    // Legacy Prometheus annotation query step interval.
+    step(step: string): this {
+        this.internal.step = step;
+        return this;
+    }
+
+    // Use the Prometheus series value as the annotation timestamp.
+    useValueForTime(useValueForTime: boolean): this {
+        this.internal.useValueForTime = useValueForTime;
+        return this;
+    }
+
+    // Mappings define how to convert data frame fields to annotation event fields.
+    mappings(mappings: Record<string, cog.Builder<dashboard.AnnotationEventFieldMapping>>): this {
+        const mappingsResource = (function() {
+            let results1: Record<string, dashboard.AnnotationEventFieldMapping> = {};
+            for (const key1 in mappings) {
+                const val1 = mappings[key1];
+                results1[key1] = val1.build();
+            }
+            return results1;
+        }());
+        this.internal.mappings = mappingsResource;
+        return this;
+    }
 }
 

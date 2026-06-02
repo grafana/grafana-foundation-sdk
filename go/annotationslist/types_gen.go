@@ -66,7 +66,8 @@ func (resource *Options) UnmarshalJSONStrict(raw []byte) error {
 
 		}
 		delete(fields, "onlyFromThisDashboard")
-
+	} else {
+		errs = append(errs, cog.MakeBuildErrors("onlyFromThisDashboard", errors.New("required field is missing from input"))...)
 	}
 	// Field "onlyInTimeRange"
 	if fields["onlyInTimeRange"] != nil {
@@ -79,7 +80,8 @@ func (resource *Options) UnmarshalJSONStrict(raw []byte) error {
 
 		}
 		delete(fields, "onlyInTimeRange")
-
+	} else {
+		errs = append(errs, cog.MakeBuildErrors("onlyInTimeRange", errors.New("required field is missing from input"))...)
 	}
 	// Field "tags"
 	if fields["tags"] != nil {
@@ -107,7 +109,8 @@ func (resource *Options) UnmarshalJSONStrict(raw []byte) error {
 
 		}
 		delete(fields, "limit")
-
+	} else {
+		errs = append(errs, cog.MakeBuildErrors("limit", errors.New("required field is missing from input"))...)
 	}
 	// Field "showUser"
 	if fields["showUser"] != nil {
@@ -120,7 +123,8 @@ func (resource *Options) UnmarshalJSONStrict(raw []byte) error {
 
 		}
 		delete(fields, "showUser")
-
+	} else {
+		errs = append(errs, cog.MakeBuildErrors("showUser", errors.New("required field is missing from input"))...)
 	}
 	// Field "showTime"
 	if fields["showTime"] != nil {
@@ -133,7 +137,8 @@ func (resource *Options) UnmarshalJSONStrict(raw []byte) error {
 
 		}
 		delete(fields, "showTime")
-
+	} else {
+		errs = append(errs, cog.MakeBuildErrors("showTime", errors.New("required field is missing from input"))...)
 	}
 	// Field "showTags"
 	if fields["showTags"] != nil {
@@ -146,7 +151,8 @@ func (resource *Options) UnmarshalJSONStrict(raw []byte) error {
 
 		}
 		delete(fields, "showTags")
-
+	} else {
+		errs = append(errs, cog.MakeBuildErrors("showTags", errors.New("required field is missing from input"))...)
 	}
 	// Field "navigateToPanel"
 	if fields["navigateToPanel"] != nil {
@@ -159,7 +165,8 @@ func (resource *Options) UnmarshalJSONStrict(raw []byte) error {
 
 		}
 		delete(fields, "navigateToPanel")
-
+	} else {
+		errs = append(errs, cog.MakeBuildErrors("navigateToPanel", errors.New("required field is missing from input"))...)
 	}
 	// Field "navigateBefore"
 	if fields["navigateBefore"] != nil {
@@ -172,7 +179,8 @@ func (resource *Options) UnmarshalJSONStrict(raw []byte) error {
 
 		}
 		delete(fields, "navigateBefore")
-
+	} else {
+		errs = append(errs, cog.MakeBuildErrors("navigateBefore", errors.New("required field is missing from input"))...)
 	}
 	// Field "navigateAfter"
 	if fields["navigateAfter"] != nil {
@@ -185,15 +193,12 @@ func (resource *Options) UnmarshalJSONStrict(raw []byte) error {
 
 		}
 		delete(fields, "navigateAfter")
-
+	} else {
+		errs = append(errs, cog.MakeBuildErrors("navigateAfter", errors.New("required field is missing from input"))...)
 	}
 
 	for field := range fields {
 		errs = append(errs, cog.MakeBuildErrors("Options", fmt.Errorf("unexpected field '%s'", field))...)
-	}
-
-	if len(errs) == 0 {
-		return nil
 	}
 
 	return errs

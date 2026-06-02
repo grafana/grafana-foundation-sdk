@@ -1688,6 +1688,33 @@
           },
           "expr": {
             "type": "string"
+          },
+          "textFormat": {
+            "type": "string",
+            "description": "Format for Prometheus annotation text. Label values can be interpolated with templates like {{instance}}."
+          },
+          "titleFormat": {
+            "type": "string",
+            "description": "Format for Prometheus and Loki annotation titles. Label values can be interpolated with templates like {{instance}}."
+          },
+          "tagKeys": {
+            "type": "string",
+            "description": "Comma-separated label keys used as annotation tags."
+          },
+          "step": {
+            "type": "string",
+            "description": "Legacy Prometheus annotation query step interval."
+          },
+          "useValueForTime": {
+            "type": "boolean",
+            "description": "Use the Prometheus series value as the annotation timestamp."
+          },
+          "mappings": {
+            "type": "object",
+            "additionalProperties": {
+              "$ref": "#/components/schemas/AnnotationEventFieldMapping"
+            },
+            "description": "Mappings define how to convert data frame fields to annotation event fields."
           }
         },
         "description": "TODO docs\nFROM: AnnotationQuery in grafana-data/src/types/annotations.ts"
@@ -1824,6 +1851,34 @@
           }
         },
         "description": "A dashboard snapshot shares an interactive dashboard publicly.\nIt is a read-only version of a dashboard, and is not editable.\nIt is possible to create a snapshot of a snapshot.\nGrafana strips away all sensitive information from the dashboard.\nSensitive information stripped: queries (metric, template,annotation) and panel links."
+      },
+      "AnnotationEventFieldSource": {
+        "enum": [
+          "field",
+          "text",
+          "skip"
+        ],
+        "type": "string",
+        "description": "Annotation event field source. Defines how to obtain the value for an annotation event field.\n- \"field\": Find the value with a matching key (default)\n- \"text\": Write a constant string into the value\n- \"skip\": Do not include the field"
+      },
+      "AnnotationEventFieldMapping": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "source": {
+            "$ref": "#/components/schemas/AnnotationEventFieldSource",
+            "description": "Source type for the field value."
+          },
+          "value": {
+            "type": "string",
+            "description": "Constant value to use when source is \"text\"."
+          },
+          "regex": {
+            "type": "string",
+            "description": "Regular expression to apply to the field value."
+          }
+        },
+        "description": "Annotation event field mapping. Defines how to map a data frame field to an annotation event field."
       }
     }
   }

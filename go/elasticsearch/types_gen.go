@@ -107,10 +107,6 @@ func (resource *DateHistogram) UnmarshalJSONStrict(raw []byte) error {
 		errs = append(errs, cog.MakeBuildErrors("DateHistogram", fmt.Errorf("unexpected field '%s'", field))...)
 	}
 
-	if len(errs) == 0 {
-		return nil
-	}
-
 	return errs
 }
 
@@ -257,10 +253,6 @@ func (resource *Histogram) UnmarshalJSONStrict(raw []byte) error {
 		errs = append(errs, cog.MakeBuildErrors("Histogram", fmt.Errorf("unexpected field '%s'", field))...)
 	}
 
-	if len(errs) == 0 {
-		return nil
-	}
-
 	return errs
 }
 
@@ -396,10 +388,6 @@ func (resource *Terms) UnmarshalJSONStrict(raw []byte) error {
 		errs = append(errs, cog.MakeBuildErrors("Terms", fmt.Errorf("unexpected field '%s'", field))...)
 	}
 
-	if len(errs) == 0 {
-		return nil
-	}
-
 	return errs
 }
 
@@ -530,10 +518,6 @@ func (resource *Filters) UnmarshalJSONStrict(raw []byte) error {
 		errs = append(errs, cog.MakeBuildErrors("Filters", fmt.Errorf("unexpected field '%s'", field))...)
 	}
 
-	if len(errs) == 0 {
-		return nil
-	}
-
 	return errs
 }
 
@@ -630,10 +614,6 @@ func (resource *Filter) UnmarshalJSONStrict(raw []byte) error {
 
 	for field := range fields {
 		errs = append(errs, cog.MakeBuildErrors("Filter", fmt.Errorf("unexpected field '%s'", field))...)
-	}
-
-	if len(errs) == 0 {
-		return nil
 	}
 
 	return errs
@@ -737,10 +717,6 @@ func (resource *GeoHashGrid) UnmarshalJSONStrict(raw []byte) error {
 
 	for field := range fields {
 		errs = append(errs, cog.MakeBuildErrors("GeoHashGrid", fmt.Errorf("unexpected field '%s'", field))...)
-	}
-
-	if len(errs) == 0 {
-		return nil
 	}
 
 	return errs
@@ -876,10 +852,6 @@ func (resource *Nested) UnmarshalJSONStrict(raw []byte) error {
 		errs = append(errs, cog.MakeBuildErrors("Nested", fmt.Errorf("unexpected field '%s'", field))...)
 	}
 
-	if len(errs) == 0 {
-		return nil
-	}
-
 	return errs
 }
 
@@ -996,10 +968,6 @@ func (resource *Count) UnmarshalJSONStrict(raw []byte) error {
 
 	for field := range fields {
 		errs = append(errs, cog.MakeBuildErrors("Count", fmt.Errorf("unexpected field '%s'", field))...)
-	}
-
-	if len(errs) == 0 {
-		return nil
 	}
 
 	return errs
@@ -1189,10 +1157,6 @@ func (resource *MovingAverage) UnmarshalJSONStrict(raw []byte) error {
 		errs = append(errs, cog.MakeBuildErrors("MovingAverage", fmt.Errorf("unexpected field '%s'", field))...)
 	}
 
-	if len(errs) == 0 {
-		return nil
-	}
-
 	return errs
 }
 
@@ -1365,10 +1329,6 @@ func (resource *Derivative) UnmarshalJSONStrict(raw []byte) error {
 
 	for field := range fields {
 		errs = append(errs, cog.MakeBuildErrors("Derivative", fmt.Errorf("unexpected field '%s'", field))...)
-	}
-
-	if len(errs) == 0 {
-		return nil
 	}
 
 	return errs
@@ -1548,10 +1508,6 @@ func (resource *CumulativeSum) UnmarshalJSONStrict(raw []byte) error {
 		errs = append(errs, cog.MakeBuildErrors("CumulativeSum", fmt.Errorf("unexpected field '%s'", field))...)
 	}
 
-	if len(errs) == 0 {
-		return nil
-	}
-
 	return errs
 }
 
@@ -1729,10 +1685,6 @@ func (resource *BucketScript) UnmarshalJSONStrict(raw []byte) error {
 		errs = append(errs, cog.MakeBuildErrors("BucketScript", fmt.Errorf("unexpected field '%s'", field))...)
 	}
 
-	if len(errs) == 0 {
-		return nil
-	}
-
 	return errs
 }
 
@@ -1854,10 +1806,6 @@ func (resource *PipelineVariable) UnmarshalJSONStrict(raw []byte) error {
 
 	for field := range fields {
 		errs = append(errs, cog.MakeBuildErrors("PipelineVariable", fmt.Errorf("unexpected field '%s'", field))...)
-	}
-
-	if len(errs) == 0 {
-		return nil
 	}
 
 	return errs
@@ -1999,10 +1947,6 @@ func (resource *SerialDiff) UnmarshalJSONStrict(raw []byte) error {
 
 	for field := range fields {
 		errs = append(errs, cog.MakeBuildErrors("SerialDiff", fmt.Errorf("unexpected field '%s'", field))...)
-	}
-
-	if len(errs) == 0 {
-		return nil
 	}
 
 	return errs
@@ -2158,10 +2102,6 @@ func (resource *RawData) UnmarshalJSONStrict(raw []byte) error {
 		errs = append(errs, cog.MakeBuildErrors("RawData", fmt.Errorf("unexpected field '%s'", field))...)
 	}
 
-	if len(errs) == 0 {
-		return nil
-	}
-
 	return errs
 }
 
@@ -2295,10 +2235,6 @@ func (resource *RawDocument) UnmarshalJSONStrict(raw []byte) error {
 
 	for field := range fields {
 		errs = append(errs, cog.MakeBuildErrors("RawDocument", fmt.Errorf("unexpected field '%s'", field))...)
-	}
-
-	if len(errs) == 0 {
-		return nil
 	}
 
 	return errs
@@ -2446,10 +2382,6 @@ func (resource *UniqueCount) UnmarshalJSONStrict(raw []byte) error {
 
 	for field := range fields {
 		errs = append(errs, cog.MakeBuildErrors("UniqueCount", fmt.Errorf("unexpected field '%s'", field))...)
-	}
-
-	if len(errs) == 0 {
-		return nil
 	}
 
 	return errs
@@ -2606,10 +2538,6 @@ func (resource *Percentiles) UnmarshalJSONStrict(raw []byte) error {
 
 	for field := range fields {
 		errs = append(errs, cog.MakeBuildErrors("Percentiles", fmt.Errorf("unexpected field '%s'", field))...)
-	}
-
-	if len(errs) == 0 {
-		return nil
 	}
 
 	return errs
@@ -2780,10 +2708,6 @@ func (resource *ExtendedStats) UnmarshalJSONStrict(raw []byte) error {
 		errs = append(errs, cog.MakeBuildErrors("ExtendedStats", fmt.Errorf("unexpected field '%s'", field))...)
 	}
 
-	if len(errs) == 0 {
-		return nil
-	}
-
 	return errs
 }
 
@@ -2944,10 +2868,6 @@ func (resource *Min) UnmarshalJSONStrict(raw []byte) error {
 		errs = append(errs, cog.MakeBuildErrors("Min", fmt.Errorf("unexpected field '%s'", field))...)
 	}
 
-	if len(errs) == 0 {
-		return nil
-	}
-
 	return errs
 }
 
@@ -3102,10 +3022,6 @@ func (resource *Max) UnmarshalJSONStrict(raw []byte) error {
 
 	for field := range fields {
 		errs = append(errs, cog.MakeBuildErrors("Max", fmt.Errorf("unexpected field '%s'", field))...)
-	}
-
-	if len(errs) == 0 {
-		return nil
 	}
 
 	return errs
@@ -3264,10 +3180,6 @@ func (resource *Sum) UnmarshalJSONStrict(raw []byte) error {
 		errs = append(errs, cog.MakeBuildErrors("Sum", fmt.Errorf("unexpected field '%s'", field))...)
 	}
 
-	if len(errs) == 0 {
-		return nil
-	}
-
 	return errs
 }
 
@@ -3422,10 +3334,6 @@ func (resource *Average) UnmarshalJSONStrict(raw []byte) error {
 
 	for field := range fields {
 		errs = append(errs, cog.MakeBuildErrors("Average", fmt.Errorf("unexpected field '%s'", field))...)
-	}
-
-	if len(errs) == 0 {
-		return nil
 	}
 
 	return errs
@@ -3596,10 +3504,6 @@ func (resource *MovingFunction) UnmarshalJSONStrict(raw []byte) error {
 		errs = append(errs, cog.MakeBuildErrors("MovingFunction", fmt.Errorf("unexpected field '%s'", field))...)
 	}
 
-	if len(errs) == 0 {
-		return nil
-	}
-
 	return errs
 }
 
@@ -3753,10 +3657,6 @@ func (resource *Logs) UnmarshalJSONStrict(raw []byte) error {
 		errs = append(errs, cog.MakeBuildErrors("Logs", fmt.Errorf("unexpected field '%s'", field))...)
 	}
 
-	if len(errs) == 0 {
-		return nil
-	}
-
 	return errs
 }
 
@@ -3904,10 +3804,6 @@ func (resource *Rate) UnmarshalJSONStrict(raw []byte) error {
 		errs = append(errs, cog.MakeBuildErrors("Rate", fmt.Errorf("unexpected field '%s'", field))...)
 	}
 
-	if len(errs) == 0 {
-		return nil
-	}
-
 	return errs
 }
 
@@ -4052,10 +3948,6 @@ func (resource *TopMetrics) UnmarshalJSONStrict(raw []byte) error {
 		errs = append(errs, cog.MakeBuildErrors("TopMetrics", fmt.Errorf("unexpected field '%s'", field))...)
 	}
 
-	if len(errs) == 0 {
-		return nil
-	}
-
 	return errs
 }
 
@@ -4175,10 +4067,6 @@ func (resource *BaseBucketAggregation) UnmarshalJSONStrict(raw []byte) error {
 		errs = append(errs, cog.MakeBuildErrors("BaseBucketAggregation", fmt.Errorf("unexpected field '%s'", field))...)
 	}
 
-	if len(errs) == 0 {
-		return nil
-	}
-
 	return errs
 }
 
@@ -4280,10 +4168,6 @@ func (resource *BucketAggregationWithField) UnmarshalJSONStrict(raw []byte) erro
 
 	for field := range fields {
 		errs = append(errs, cog.MakeBuildErrors("BucketAggregationWithField", fmt.Errorf("unexpected field '%s'", field))...)
-	}
-
-	if len(errs) == 0 {
-		return nil
 	}
 
 	return errs
@@ -4404,10 +4288,6 @@ func (resource *DateHistogramSettings) UnmarshalJSONStrict(raw []byte) error {
 		errs = append(errs, cog.MakeBuildErrors("DateHistogramSettings", fmt.Errorf("unexpected field '%s'", field))...)
 	}
 
-	if len(errs) == 0 {
-		return nil
-	}
-
 	return errs
 }
 
@@ -4514,10 +4394,6 @@ func (resource *HistogramSettings) UnmarshalJSONStrict(raw []byte) error {
 
 	for field := range fields {
 		errs = append(errs, cog.MakeBuildErrors("HistogramSettings", fmt.Errorf("unexpected field '%s'", field))...)
-	}
-
-	if len(errs) == 0 {
-		return nil
 	}
 
 	return errs
@@ -4637,10 +4513,6 @@ func (resource *TermsSettings) UnmarshalJSONStrict(raw []byte) error {
 		errs = append(errs, cog.MakeBuildErrors("TermsSettings", fmt.Errorf("unexpected field '%s'", field))...)
 	}
 
-	if len(errs) == 0 {
-		return nil
-	}
-
 	return errs
 }
 
@@ -4749,10 +4621,6 @@ func (resource *FiltersSettings) UnmarshalJSONStrict(raw []byte) error {
 		errs = append(errs, cog.MakeBuildErrors("FiltersSettings", fmt.Errorf("unexpected field '%s'", field))...)
 	}
 
-	if len(errs) == 0 {
-		return nil
-	}
-
 	return errs
 }
 
@@ -4824,10 +4692,6 @@ func (resource *GeoHashGridSettings) UnmarshalJSONStrict(raw []byte) error {
 
 	for field := range fields {
 		errs = append(errs, cog.MakeBuildErrors("GeoHashGridSettings", fmt.Errorf("unexpected field '%s'", field))...)
-	}
-
-	if len(errs) == 0 {
-		return nil
 	}
 
 	return errs
@@ -4918,10 +4782,6 @@ func (resource *BaseMetricAggregation) UnmarshalJSONStrict(raw []byte) error {
 
 	for field := range fields {
 		errs = append(errs, cog.MakeBuildErrors("BaseMetricAggregation", fmt.Errorf("unexpected field '%s'", field))...)
-	}
-
-	if len(errs) == 0 {
-		return nil
 	}
 
 	return errs
@@ -5030,10 +4890,6 @@ func (resource *MetricAggregationWithField) UnmarshalJSONStrict(raw []byte) erro
 
 	for field := range fields {
 		errs = append(errs, cog.MakeBuildErrors("MetricAggregationWithField", fmt.Errorf("unexpected field '%s'", field))...)
-	}
-
-	if len(errs) == 0 {
-		return nil
 	}
 
 	return errs
@@ -5153,10 +5009,6 @@ func (resource *MetricAggregationWithMissingSupport) UnmarshalJSONStrict(raw []b
 
 	for field := range fields {
 		errs = append(errs, cog.MakeBuildErrors("MetricAggregationWithMissingSupport", fmt.Errorf("unexpected field '%s'", field))...)
-	}
-
-	if len(errs) == 0 {
-		return nil
 	}
 
 	return errs
@@ -5289,10 +5141,6 @@ func (resource *MetricAggregationWithInlineScript) UnmarshalJSONStrict(raw []byt
 		errs = append(errs, cog.MakeBuildErrors("MetricAggregationWithInlineScript", fmt.Errorf("unexpected field '%s'", field))...)
 	}
 
-	if len(errs) == 0 {
-		return nil
-	}
-
 	return errs
 }
 
@@ -5410,10 +5258,6 @@ func (resource *ExtendedStat) UnmarshalJSONStrict(raw []byte) error {
 		errs = append(errs, cog.MakeBuildErrors("ExtendedStat", fmt.Errorf("unexpected field '%s'", field))...)
 	}
 
-	if len(errs) == 0 {
-		return nil
-	}
-
 	return errs
 }
 
@@ -5523,10 +5367,6 @@ func (resource *BasePipelineMetricAggregation) UnmarshalJSONStrict(raw []byte) e
 
 	for field := range fields {
 		errs = append(errs, cog.MakeBuildErrors("BasePipelineMetricAggregation", fmt.Errorf("unexpected field '%s'", field))...)
-	}
-
-	if len(errs) == 0 {
-		return nil
 	}
 
 	return errs
@@ -5667,10 +5507,6 @@ func (resource *PipelineMetricAggregationWithMultipleBucketPaths) UnmarshalJSONS
 		errs = append(errs, cog.MakeBuildErrors("PipelineMetricAggregationWithMultipleBucketPaths", fmt.Errorf("unexpected field '%s'", field))...)
 	}
 
-	if len(errs) == 0 {
-		return nil
-	}
-
 	return errs
 }
 
@@ -5787,10 +5623,6 @@ func (resource *MovingAverageModelOption) UnmarshalJSONStrict(raw []byte) error 
 		errs = append(errs, cog.MakeBuildErrors("MovingAverageModelOption", fmt.Errorf("unexpected field '%s'", field))...)
 	}
 
-	if len(errs) == 0 {
-		return nil
-	}
-
 	return errs
 }
 
@@ -5879,10 +5711,6 @@ func (resource *BaseMovingAverageModelSettings) UnmarshalJSONStrict(raw []byte) 
 
 	for field := range fields {
 		errs = append(errs, cog.MakeBuildErrors("BaseMovingAverageModelSettings", fmt.Errorf("unexpected field '%s'", field))...)
-	}
-
-	if len(errs) == 0 {
-		return nil
 	}
 
 	return errs
@@ -5978,10 +5806,6 @@ func (resource *MovingAverageSimpleModelSettings) UnmarshalJSONStrict(raw []byte
 
 	for field := range fields {
 		errs = append(errs, cog.MakeBuildErrors("MovingAverageSimpleModelSettings", fmt.Errorf("unexpected field '%s'", field))...)
-	}
-
-	if len(errs) == 0 {
-		return nil
 	}
 
 	return errs
@@ -6086,10 +5910,6 @@ func (resource *MovingAverageLinearModelSettings) UnmarshalJSONStrict(raw []byte
 
 	for field := range fields {
 		errs = append(errs, cog.MakeBuildErrors("MovingAverageLinearModelSettings", fmt.Errorf("unexpected field '%s'", field))...)
-	}
-
-	if len(errs) == 0 {
-		return nil
 	}
 
 	return errs
@@ -6223,10 +6043,6 @@ func (resource *MovingAverageEWMAModelSettings) UnmarshalJSONStrict(raw []byte) 
 
 	for field := range fields {
 		errs = append(errs, cog.MakeBuildErrors("MovingAverageEWMAModelSettings", fmt.Errorf("unexpected field '%s'", field))...)
-	}
-
-	if len(errs) == 0 {
-		return nil
 	}
 
 	return errs
@@ -6383,10 +6199,6 @@ func (resource *MovingAverageHoltModelSettings) UnmarshalJSONStrict(raw []byte) 
 		errs = append(errs, cog.MakeBuildErrors("MovingAverageHoltModelSettings", fmt.Errorf("unexpected field '%s'", field))...)
 	}
 
-	if len(errs) == 0 {
-		return nil
-	}
-
 	return errs
 }
 
@@ -6531,10 +6343,6 @@ func (resource *MovingAverageHoltWintersModelSettings) UnmarshalJSONStrict(raw [
 
 	for field := range fields {
 		errs = append(errs, cog.MakeBuildErrors("MovingAverageHoltWintersModelSettings", fmt.Errorf("unexpected field '%s'", field))...)
-	}
-
-	if len(errs) == 0 {
-		return nil
 	}
 
 	return errs
@@ -6758,10 +6566,6 @@ func (resource *Dataquery) UnmarshalJSONStrict(raw []byte) error {
 		errs = append(errs, cog.MakeBuildErrors("Dataquery", fmt.Errorf("unexpected field '%s'", field))...)
 	}
 
-	if len(errs) == 0 {
-		return nil
-	}
-
 	return errs
 }
 
@@ -6975,10 +6779,6 @@ func (resource *ElasticsearchDateHistogramSettings) UnmarshalJSONStrict(raw []by
 		errs = append(errs, cog.MakeBuildErrors("ElasticsearchDateHistogramSettings", fmt.Errorf("unexpected field '%s'", field))...)
 	}
 
-	if len(errs) == 0 {
-		return nil
-	}
-
 	return errs
 }
 
@@ -7085,10 +6885,6 @@ func (resource *ElasticsearchHistogramSettings) UnmarshalJSONStrict(raw []byte) 
 
 	for field := range fields {
 		errs = append(errs, cog.MakeBuildErrors("ElasticsearchHistogramSettings", fmt.Errorf("unexpected field '%s'", field))...)
-	}
-
-	if len(errs) == 0 {
-		return nil
 	}
 
 	return errs
@@ -7208,10 +7004,6 @@ func (resource *ElasticsearchTermsSettings) UnmarshalJSONStrict(raw []byte) erro
 		errs = append(errs, cog.MakeBuildErrors("ElasticsearchTermsSettings", fmt.Errorf("unexpected field '%s'", field))...)
 	}
 
-	if len(errs) == 0 {
-		return nil
-	}
-
 	return errs
 }
 
@@ -7320,10 +7112,6 @@ func (resource *ElasticsearchFiltersSettings) UnmarshalJSONStrict(raw []byte) er
 		errs = append(errs, cog.MakeBuildErrors("ElasticsearchFiltersSettings", fmt.Errorf("unexpected field '%s'", field))...)
 	}
 
-	if len(errs) == 0 {
-		return nil
-	}
-
 	return errs
 }
 
@@ -7397,10 +7185,6 @@ func (resource *ElasticsearchGeoHashGridSettings) UnmarshalJSONStrict(raw []byte
 		errs = append(errs, cog.MakeBuildErrors("ElasticsearchGeoHashGridSettings", fmt.Errorf("unexpected field '%s'", field))...)
 	}
 
-	if len(errs) == 0 {
-		return nil
-	}
-
 	return errs
 }
 
@@ -7459,10 +7243,6 @@ func (resource *ElasticsearchDerivativeSettings) UnmarshalJSONStrict(raw []byte)
 
 	for field := range fields {
 		errs = append(errs, cog.MakeBuildErrors("ElasticsearchDerivativeSettings", fmt.Errorf("unexpected field '%s'", field))...)
-	}
-
-	if len(errs) == 0 {
-		return nil
 	}
 
 	return errs
@@ -7525,10 +7305,6 @@ func (resource *ElasticsearchCumulativeSumSettings) UnmarshalJSONStrict(raw []by
 		errs = append(errs, cog.MakeBuildErrors("ElasticsearchCumulativeSumSettings", fmt.Errorf("unexpected field '%s'", field))...)
 	}
 
-	if len(errs) == 0 {
-		return nil
-	}
-
 	return errs
 }
 
@@ -7589,10 +7365,6 @@ func (resource *ElasticsearchBucketScriptSettings) UnmarshalJSONStrict(raw []byt
 
 	for field := range fields {
 		errs = append(errs, cog.MakeBuildErrors("ElasticsearchBucketScriptSettings", fmt.Errorf("unexpected field '%s'", field))...)
-	}
-
-	if len(errs) == 0 {
-		return nil
 	}
 
 	return errs
@@ -7666,10 +7438,6 @@ func (resource *ElasticsearchInlineScript) UnmarshalJSONStrict(raw []byte) error
 		errs = append(errs, cog.MakeBuildErrors("ElasticsearchInlineScript", fmt.Errorf("unexpected field '%s'", field))...)
 	}
 
-	if len(errs) == 0 {
-		return nil
-	}
-
 	return errs
 }
 
@@ -7728,10 +7496,6 @@ func (resource *ElasticsearchSerialDiffSettings) UnmarshalJSONStrict(raw []byte)
 
 	for field := range fields {
 		errs = append(errs, cog.MakeBuildErrors("ElasticsearchSerialDiffSettings", fmt.Errorf("unexpected field '%s'", field))...)
-	}
-
-	if len(errs) == 0 {
-		return nil
 	}
 
 	return errs
@@ -7794,10 +7558,6 @@ func (resource *ElasticsearchRawDataSettings) UnmarshalJSONStrict(raw []byte) er
 		errs = append(errs, cog.MakeBuildErrors("ElasticsearchRawDataSettings", fmt.Errorf("unexpected field '%s'", field))...)
 	}
 
-	if len(errs) == 0 {
-		return nil
-	}
-
 	return errs
 }
 
@@ -7856,10 +7616,6 @@ func (resource *ElasticsearchRawDocumentSettings) UnmarshalJSONStrict(raw []byte
 
 	for field := range fields {
 		errs = append(errs, cog.MakeBuildErrors("ElasticsearchRawDocumentSettings", fmt.Errorf("unexpected field '%s'", field))...)
-	}
-
-	if len(errs) == 0 {
-		return nil
 	}
 
 	return errs
@@ -7932,10 +7688,6 @@ func (resource *ElasticsearchUniqueCountSettings) UnmarshalJSONStrict(raw []byte
 
 	for field := range fields {
 		errs = append(errs, cog.MakeBuildErrors("ElasticsearchUniqueCountSettings", fmt.Errorf("unexpected field '%s'", field))...)
-	}
-
-	if len(errs) == 0 {
-		return nil
 	}
 
 	return errs
@@ -8032,10 +7784,6 @@ func (resource *ElasticsearchPercentilesSettings) UnmarshalJSONStrict(raw []byte
 
 	for field := range fields {
 		errs = append(errs, cog.MakeBuildErrors("ElasticsearchPercentilesSettings", fmt.Errorf("unexpected field '%s'", field))...)
-	}
-
-	if len(errs) == 0 {
-		return nil
 	}
 
 	return errs
@@ -8154,10 +7902,6 @@ func (resource *ElasticsearchExtendedStatsSettings) UnmarshalJSONStrict(raw []by
 		errs = append(errs, cog.MakeBuildErrors("ElasticsearchExtendedStatsSettings", fmt.Errorf("unexpected field '%s'", field))...)
 	}
 
-	if len(errs) == 0 {
-		return nil
-	}
-
 	return errs
 }
 
@@ -8261,10 +8005,6 @@ func (resource *ElasticsearchMinSettings) UnmarshalJSONStrict(raw []byte) error 
 		errs = append(errs, cog.MakeBuildErrors("ElasticsearchMinSettings", fmt.Errorf("unexpected field '%s'", field))...)
 	}
 
-	if len(errs) == 0 {
-		return nil
-	}
-
 	return errs
 }
 
@@ -8357,10 +8097,6 @@ func (resource *ElasticsearchMaxSettings) UnmarshalJSONStrict(raw []byte) error 
 
 	for field := range fields {
 		errs = append(errs, cog.MakeBuildErrors("ElasticsearchMaxSettings", fmt.Errorf("unexpected field '%s'", field))...)
-	}
-
-	if len(errs) == 0 {
-		return nil
 	}
 
 	return errs
@@ -8457,10 +8193,6 @@ func (resource *ElasticsearchSumSettings) UnmarshalJSONStrict(raw []byte) error 
 		errs = append(errs, cog.MakeBuildErrors("ElasticsearchSumSettings", fmt.Errorf("unexpected field '%s'", field))...)
 	}
 
-	if len(errs) == 0 {
-		return nil
-	}
-
 	return errs
 }
 
@@ -8553,10 +8285,6 @@ func (resource *ElasticsearchAverageSettings) UnmarshalJSONStrict(raw []byte) er
 
 	for field := range fields {
 		errs = append(errs, cog.MakeBuildErrors("ElasticsearchAverageSettings", fmt.Errorf("unexpected field '%s'", field))...)
-	}
-
-	if len(errs) == 0 {
-		return nil
 	}
 
 	return errs
@@ -8665,10 +8393,6 @@ func (resource *ElasticsearchMovingFunctionSettings) UnmarshalJSONStrict(raw []b
 		errs = append(errs, cog.MakeBuildErrors("ElasticsearchMovingFunctionSettings", fmt.Errorf("unexpected field '%s'", field))...)
 	}
 
-	if len(errs) == 0 {
-		return nil
-	}
-
 	return errs
 }
 
@@ -8758,10 +8482,6 @@ func (resource *ElasticsearchLogsSettings) UnmarshalJSONStrict(raw []byte) error
 		errs = append(errs, cog.MakeBuildErrors("ElasticsearchLogsSettings", fmt.Errorf("unexpected field '%s'", field))...)
 	}
 
-	if len(errs) == 0 {
-		return nil
-	}
-
 	return errs
 }
 
@@ -8832,10 +8552,6 @@ func (resource *ElasticsearchRateSettings) UnmarshalJSONStrict(raw []byte) error
 
 	for field := range fields {
 		errs = append(errs, cog.MakeBuildErrors("ElasticsearchRateSettings", fmt.Errorf("unexpected field '%s'", field))...)
-	}
-
-	if len(errs) == 0 {
-		return nil
 	}
 
 	return errs
@@ -8932,10 +8648,6 @@ func (resource *ElasticsearchTopMetricsSettings) UnmarshalJSONStrict(raw []byte)
 		errs = append(errs, cog.MakeBuildErrors("ElasticsearchTopMetricsSettings", fmt.Errorf("unexpected field '%s'", field))...)
 	}
 
-	if len(errs) == 0 {
-		return nil
-	}
-
 	return errs
 }
 
@@ -9015,10 +8727,6 @@ func (resource *ElasticsearchMetricAggregationWithMissingSupportSettings) Unmars
 		errs = append(errs, cog.MakeBuildErrors("ElasticsearchMetricAggregationWithMissingSupportSettings", fmt.Errorf("unexpected field '%s'", field))...)
 	}
 
-	if len(errs) == 0 {
-		return nil
-	}
-
 	return errs
 }
 
@@ -9079,10 +8787,6 @@ func (resource *ElasticsearchMetricAggregationWithInlineScriptSettings) Unmarsha
 
 	for field := range fields {
 		errs = append(errs, cog.MakeBuildErrors("ElasticsearchMetricAggregationWithInlineScriptSettings", fmt.Errorf("unexpected field '%s'", field))...)
-	}
-
-	if len(errs) == 0 {
-		return nil
 	}
 
 	return errs
@@ -9156,10 +8860,6 @@ func (resource *ElasticsearchMovingAverageEWMAModelSettingsSettings) UnmarshalJS
 		errs = append(errs, cog.MakeBuildErrors("ElasticsearchMovingAverageEWMAModelSettingsSettings", fmt.Errorf("unexpected field '%s'", field))...)
 	}
 
-	if len(errs) == 0 {
-		return nil
-	}
-
 	return errs
 }
 
@@ -9230,10 +8930,6 @@ func (resource *ElasticsearchMovingAverageHoltModelSettingsSettings) UnmarshalJS
 
 	for field := range fields {
 		errs = append(errs, cog.MakeBuildErrors("ElasticsearchMovingAverageHoltModelSettingsSettings", fmt.Errorf("unexpected field '%s'", field))...)
-	}
-
-	if len(errs) == 0 {
-		return nil
 	}
 
 	return errs
@@ -9351,10 +9047,6 @@ func (resource *ElasticsearchMovingAverageHoltWintersModelSettingsSettings) Unma
 
 	for field := range fields {
 		errs = append(errs, cog.MakeBuildErrors("ElasticsearchMovingAverageHoltWintersModelSettingsSettings", fmt.Errorf("unexpected field '%s'", field))...)
-	}
-
-	if len(errs) == 0 {
-		return nil
 	}
 
 	return errs

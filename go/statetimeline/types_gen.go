@@ -67,7 +67,8 @@ func (resource *Options) UnmarshalJSONStrict(raw []byte) error {
 
 		}
 		delete(fields, "showValue")
-
+	} else {
+		errs = append(errs, cog.MakeBuildErrors("showValue", errors.New("required field is missing from input"))...)
 	}
 	// Field "rowHeight"
 	if fields["rowHeight"] != nil {
@@ -80,7 +81,8 @@ func (resource *Options) UnmarshalJSONStrict(raw []byte) error {
 
 		}
 		delete(fields, "rowHeight")
-
+	} else {
+		errs = append(errs, cog.MakeBuildErrors("rowHeight", errors.New("required field is missing from input"))...)
 	}
 	// Field "mergeValues"
 	if fields["mergeValues"] != nil {
@@ -162,10 +164,6 @@ func (resource *Options) UnmarshalJSONStrict(raw []byte) error {
 
 	for field := range fields {
 		errs = append(errs, cog.MakeBuildErrors("Options", fmt.Errorf("unexpected field '%s'", field))...)
-	}
-
-	if len(errs) == 0 {
-		return nil
 	}
 
 	return errs
@@ -471,10 +469,6 @@ func (resource *FieldConfig) UnmarshalJSONStrict(raw []byte) error {
 
 	for field := range fields {
 		errs = append(errs, cog.MakeBuildErrors("FieldConfig", fmt.Errorf("unexpected field '%s'", field))...)
-	}
-
-	if len(errs) == 0 {
-		return nil
 	}
 
 	return errs

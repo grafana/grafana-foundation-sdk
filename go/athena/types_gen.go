@@ -171,7 +171,8 @@ func (resource *Dataquery) UnmarshalJSONStrict(raw []byte) error {
 
 		}
 		delete(fields, "rawSQL")
-
+	} else {
+		errs = append(errs, cog.MakeBuildErrors("rawSQL", errors.New("required field is missing from input"))...)
 	}
 	// Field "datasource"
 	if fields["datasource"] != nil {
@@ -189,10 +190,6 @@ func (resource *Dataquery) UnmarshalJSONStrict(raw []byte) error {
 
 	for field := range fields {
 		errs = append(errs, cog.MakeBuildErrors("Dataquery", fmt.Errorf("unexpected field '%s'", field))...)
-	}
-
-	if len(errs) == 0 {
-		return nil
 	}
 
 	return errs
@@ -400,10 +397,6 @@ func (resource *ConnectionArgs) UnmarshalJSONStrict(raw []byte) error {
 
 	for field := range fields {
 		errs = append(errs, cog.MakeBuildErrors("ConnectionArgs", fmt.Errorf("unexpected field '%s'", field))...)
-	}
-
-	if len(errs) == 0 {
-		return nil
 	}
 
 	return errs

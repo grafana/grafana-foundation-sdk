@@ -20,29 +20,29 @@ final class LokiQueryDirection implements \JsonSerializable, \Stringable {
 
     public static function forward(): self
     {
-        if (!isset(self::$instances["forward"])) {
-            self::$instances["forward"] = new self("forward");
+        if (!isset(self::$instances["Forward"])) {
+            self::$instances["Forward"] = new self("forward");
         }
 
-        return self::$instances["forward"];
+        return self::$instances["Forward"];
     }
 
     public static function backward(): self
     {
-        if (!isset(self::$instances["backward"])) {
-            self::$instances["backward"] = new self("backward");
+        if (!isset(self::$instances["Backward"])) {
+            self::$instances["Backward"] = new self("backward");
         }
 
-        return self::$instances["backward"];
+        return self::$instances["Backward"];
     }
 
     public static function scan(): self
     {
-        if (!isset(self::$instances["scan"])) {
-            self::$instances["scan"] = new self("scan");
+        if (!isset(self::$instances["Scan"])) {
+            self::$instances["Scan"] = new self("scan");
         }
 
-        return self::$instances["scan"];
+        return self::$instances["Scan"];
     }
 
     public static function fromValue(string $value): self

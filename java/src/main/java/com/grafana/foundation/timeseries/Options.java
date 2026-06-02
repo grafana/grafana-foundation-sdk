@@ -8,9 +8,9 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.ObjectWriter;
 import com.grafana.foundation.common.LegendDisplayMode;
 import com.grafana.foundation.common.LegendPlacement;
+import java.util.List;
 import com.grafana.foundation.common.VizLegendOptions;
 import com.fasterxml.jackson.annotation.JsonInclude;
-import java.util.List;
 import com.grafana.foundation.common.VizTooltipOptions;
 import com.grafana.foundation.common.VizOrientation;
 

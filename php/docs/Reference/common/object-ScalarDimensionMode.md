@@ -24,20 +24,20 @@ final class ScalarDimensionMode implements \JsonSerializable, \Stringable {
 
     public static function mod(): self
     {
-        if (!isset(self::$instances["mod"])) {
-            self::$instances["mod"] = new self("mod");
+        if (!isset(self::$instances["Mod"])) {
+            self::$instances["Mod"] = new self("mod");
         }
 
-        return self::$instances["mod"];
+        return self::$instances["Mod"];
     }
 
     public static function clamped(): self
     {
-        if (!isset(self::$instances["clamped"])) {
-            self::$instances["clamped"] = new self("clamped");
+        if (!isset(self::$instances["Clamped"])) {
+            self::$instances["Clamped"] = new self("clamped");
         }
 
-        return self::$instances["clamped"];
+        return self::$instances["Clamped"];
     }
 
     public static function fromValue(string $value): self

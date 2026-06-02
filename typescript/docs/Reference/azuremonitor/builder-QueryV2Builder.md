@@ -23,7 +23,7 @@ build()
 Azure Monitor Logs sub-query properties.
 
 ```typescript
-azureLogAnalytics(azureLogAnalytics: cog.Builder<azuremonitor.AzureLogsQuery>)
+azureLogAnalytics(azureLogAnalytics: cog.Builder<azuremonitor.LogsQuery>)
 ```
 
 ### <span class="badge object-method"></span> azureMonitor
@@ -31,7 +31,7 @@ azureLogAnalytics(azureLogAnalytics: cog.Builder<azuremonitor.AzureLogsQuery>)
 Azure Monitor Metrics sub-query properties.
 
 ```typescript
-azureMonitor(azureMonitor: cog.Builder<azuremonitor.AzureMetricQuery>)
+azureMonitor(azureMonitor: cog.Builder<azuremonitor.MetricQuery>)
 ```
 
 ### <span class="badge object-method"></span> azureResourceGraph
@@ -39,7 +39,7 @@ azureMonitor(azureMonitor: cog.Builder<azuremonitor.AzureMetricQuery>)
 Azure Resource Graph sub-query properties.
 
 ```typescript
-azureResourceGraph(azureResourceGraph: cog.Builder<azuremonitor.AzureResourceGraphQuery>)
+azureResourceGraph(azureResourceGraph: cog.Builder<azuremonitor.ResourceGraphQuery>)
 ```
 
 ### <span class="badge object-method"></span> azureTraces
@@ -47,7 +47,7 @@ azureResourceGraph(azureResourceGraph: cog.Builder<azuremonitor.AzureResourceGra
 Application Insights Traces sub-query properties.
 
 ```typescript
-azureTraces(azureTraces: cog.Builder<azuremonitor.AzureTracesQuery>)
+azureTraces(azureTraces: cog.Builder<azuremonitor.TracesQuery>)
 ```
 
 ### <span class="badge object-method"></span> customNamespace

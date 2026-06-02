@@ -137,4 +137,69 @@ class AnnotationQueryBuilder implements \Grafana\Foundation\Cog\Builder
         return $this;
     }
 
+    /**
+     * Format for Prometheus annotation text. Label values can be interpolated with templates like {{instance}}.
+     */
+    public function textFormat(string $textFormat): static
+    {
+        $this->internal->textFormat = $textFormat;
+    
+        return $this;
+    }
+
+    /**
+     * Format for Prometheus and Loki annotation titles. Label values can be interpolated with templates like {{instance}}.
+     */
+    public function titleFormat(string $titleFormat): static
+    {
+        $this->internal->titleFormat = $titleFormat;
+    
+        return $this;
+    }
+
+    /**
+     * Comma-separated label keys used as annotation tags.
+     */
+    public function tagKeys(string $tagKeys): static
+    {
+        $this->internal->tagKeys = $tagKeys;
+    
+        return $this;
+    }
+
+    /**
+     * Legacy Prometheus annotation query step interval.
+     */
+    public function step(string $step): static
+    {
+        $this->internal->step = $step;
+    
+        return $this;
+    }
+
+    /**
+     * Use the Prometheus series value as the annotation timestamp.
+     */
+    public function useValueForTime(bool $useValueForTime): static
+    {
+        $this->internal->useValueForTime = $useValueForTime;
+    
+        return $this;
+    }
+
+    /**
+     * Mappings define how to convert data frame fields to annotation event fields.
+     * @param array<string, \Grafana\Foundation\Cog\Builder<\Grafana\Foundation\Dashboard\AnnotationEventFieldMapping>> $mappings
+     */
+    public function mappings(array $mappings): static
+    {
+            $mappingsResources = [];
+            foreach ($mappings as $key1 => $val1) {
+                    $mappingsResources[$key1] = $val1->build();
+            }
+        $this->internal->mappings = $mappingsResources;
+    
+        return $this;
+    }
+
 }

@@ -20,29 +20,29 @@ final class DebugMode implements \JsonSerializable, \Stringable {
 
     public static function render(): self
     {
-        if (!isset(self::$instances["render"])) {
-            self::$instances["render"] = new self("render");
+        if (!isset(self::$instances["Render"])) {
+            self::$instances["Render"] = new self("render");
         }
 
-        return self::$instances["render"];
+        return self::$instances["Render"];
     }
 
     public static function events(): self
     {
-        if (!isset(self::$instances["events"])) {
-            self::$instances["events"] = new self("events");
+        if (!isset(self::$instances["Events"])) {
+            self::$instances["Events"] = new self("events");
         }
 
-        return self::$instances["events"];
+        return self::$instances["Events"];
     }
 
     public static function cursor(): self
     {
-        if (!isset(self::$instances["cursor"])) {
-            self::$instances["cursor"] = new self("cursor");
+        if (!isset(self::$instances["Cursor"])) {
+            self::$instances["Cursor"] = new self("cursor");
         }
 
-        return self::$instances["cursor"];
+        return self::$instances["Cursor"];
     }
 
     public static function state(): self

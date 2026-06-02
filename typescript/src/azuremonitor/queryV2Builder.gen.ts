@@ -44,7 +44,7 @@ export class QueryV2Builder implements cog.Builder<dashboardv2.DataQueryKind> {
     // By default, the UI will assign A->Z; however setting meaningful names may be useful.
     refId(refId: string): this {
         if (!this.internal.spec) {
-            this.internal.spec = azuremonitor.defaultAzureMonitorQuery();
+            this.internal.spec = azuremonitor.defaultMonitorQuery();
         }
         this.internal.spec.refId = refId;
         return this;
@@ -53,7 +53,7 @@ export class QueryV2Builder implements cog.Builder<dashboardv2.DataQueryKind> {
     // If hide is set to true, Grafana will filter out the response(s) associated with this query before returning it to the panel.
     hide(hide: boolean): this {
         if (!this.internal.spec) {
-            this.internal.spec = azuremonitor.defaultAzureMonitorQuery();
+            this.internal.spec = azuremonitor.defaultMonitorQuery();
         }
         this.internal.spec.hide = hide;
         return this;
@@ -63,7 +63,7 @@ export class QueryV2Builder implements cog.Builder<dashboardv2.DataQueryKind> {
     // TODO make this required and give it a default
     queryType(queryType: string): this {
         if (!this.internal.spec) {
-            this.internal.spec = azuremonitor.defaultAzureMonitorQuery();
+            this.internal.spec = azuremonitor.defaultMonitorQuery();
         }
         this.internal.spec.queryType = queryType;
         return this;
@@ -73,7 +73,7 @@ export class QueryV2Builder implements cog.Builder<dashboardv2.DataQueryKind> {
     // Also used for template variable queries
     subscription(subscription: string): this {
         if (!this.internal.spec) {
-            this.internal.spec = azuremonitor.defaultAzureMonitorQuery();
+            this.internal.spec = azuremonitor.defaultMonitorQuery();
         }
         this.internal.spec.subscription = subscription;
         return this;
@@ -82,16 +82,16 @@ export class QueryV2Builder implements cog.Builder<dashboardv2.DataQueryKind> {
     // Subscriptions to be queried via Azure Resource Graph.
     subscriptions(subscriptions: string[]): this {
         if (!this.internal.spec) {
-            this.internal.spec = azuremonitor.defaultAzureMonitorQuery();
+            this.internal.spec = azuremonitor.defaultMonitorQuery();
         }
         this.internal.spec.subscriptions = subscriptions;
         return this;
     }
 
     // Azure Monitor Metrics sub-query properties.
-    azureMonitor(azureMonitor: cog.Builder<azuremonitor.AzureMetricQuery>): this {
+    azureMonitor(azureMonitor: cog.Builder<azuremonitor.MetricQuery>): this {
         if (!this.internal.spec) {
-            this.internal.spec = azuremonitor.defaultAzureMonitorQuery();
+            this.internal.spec = azuremonitor.defaultMonitorQuery();
         }
         const azureMonitorResource = azureMonitor.build();
         this.internal.spec.azureMonitor = azureMonitorResource;
@@ -99,9 +99,9 @@ export class QueryV2Builder implements cog.Builder<dashboardv2.DataQueryKind> {
     }
 
     // Azure Monitor Logs sub-query properties.
-    azureLogAnalytics(azureLogAnalytics: cog.Builder<azuremonitor.AzureLogsQuery>): this {
+    azureLogAnalytics(azureLogAnalytics: cog.Builder<azuremonitor.LogsQuery>): this {
         if (!this.internal.spec) {
-            this.internal.spec = azuremonitor.defaultAzureMonitorQuery();
+            this.internal.spec = azuremonitor.defaultMonitorQuery();
         }
         const azureLogAnalyticsResource = azureLogAnalytics.build();
         this.internal.spec.azureLogAnalytics = azureLogAnalyticsResource;
@@ -109,9 +109,9 @@ export class QueryV2Builder implements cog.Builder<dashboardv2.DataQueryKind> {
     }
 
     // Azure Resource Graph sub-query properties.
-    azureResourceGraph(azureResourceGraph: cog.Builder<azuremonitor.AzureResourceGraphQuery>): this {
+    azureResourceGraph(azureResourceGraph: cog.Builder<azuremonitor.ResourceGraphQuery>): this {
         if (!this.internal.spec) {
-            this.internal.spec = azuremonitor.defaultAzureMonitorQuery();
+            this.internal.spec = azuremonitor.defaultMonitorQuery();
         }
         const azureResourceGraphResource = azureResourceGraph.build();
         this.internal.spec.azureResourceGraph = azureResourceGraphResource;
@@ -119,9 +119,9 @@ export class QueryV2Builder implements cog.Builder<dashboardv2.DataQueryKind> {
     }
 
     // Application Insights Traces sub-query properties.
-    azureTraces(azureTraces: cog.Builder<azuremonitor.AzureTracesQuery>): this {
+    azureTraces(azureTraces: cog.Builder<azuremonitor.TracesQuery>): this {
         if (!this.internal.spec) {
-            this.internal.spec = azuremonitor.defaultAzureMonitorQuery();
+            this.internal.spec = azuremonitor.defaultMonitorQuery();
         }
         const azureTracesResource = azureTraces.build();
         this.internal.spec.azureTraces = azureTracesResource;
@@ -131,7 +131,7 @@ export class QueryV2Builder implements cog.Builder<dashboardv2.DataQueryKind> {
     // @deprecated Legacy template variable support.
     grafanaTemplateVariableFn(grafanaTemplateVariableFn: cog.Builder<azuremonitor.GrafanaTemplateVariableQuery>): this {
         if (!this.internal.spec) {
-            this.internal.spec = azuremonitor.defaultAzureMonitorQuery();
+            this.internal.spec = azuremonitor.defaultMonitorQuery();
         }
         const grafanaTemplateVariableFnResource = grafanaTemplateVariableFn.build();
         this.internal.spec.grafanaTemplateVariableFn = grafanaTemplateVariableFnResource;
@@ -141,7 +141,7 @@ export class QueryV2Builder implements cog.Builder<dashboardv2.DataQueryKind> {
     // Resource group used in template variable queries
     resourceGroup(resourceGroup: string): this {
         if (!this.internal.spec) {
-            this.internal.spec = azuremonitor.defaultAzureMonitorQuery();
+            this.internal.spec = azuremonitor.defaultMonitorQuery();
         }
         this.internal.spec.resourceGroup = resourceGroup;
         return this;
@@ -150,7 +150,7 @@ export class QueryV2Builder implements cog.Builder<dashboardv2.DataQueryKind> {
     // Namespace used in template variable queries
     namespace(namespace: string): this {
         if (!this.internal.spec) {
-            this.internal.spec = azuremonitor.defaultAzureMonitorQuery();
+            this.internal.spec = azuremonitor.defaultMonitorQuery();
         }
         this.internal.spec.namespace = namespace;
         return this;
@@ -159,7 +159,7 @@ export class QueryV2Builder implements cog.Builder<dashboardv2.DataQueryKind> {
     // Resource used in template variable queries
     resource(resource: string): this {
         if (!this.internal.spec) {
-            this.internal.spec = azuremonitor.defaultAzureMonitorQuery();
+            this.internal.spec = azuremonitor.defaultMonitorQuery();
         }
         this.internal.spec.resource = resource;
         return this;
@@ -168,7 +168,7 @@ export class QueryV2Builder implements cog.Builder<dashboardv2.DataQueryKind> {
     // Region used in template variable queries
     region(region: string): this {
         if (!this.internal.spec) {
-            this.internal.spec = azuremonitor.defaultAzureMonitorQuery();
+            this.internal.spec = azuremonitor.defaultMonitorQuery();
         }
         this.internal.spec.region = region;
         return this;
@@ -177,7 +177,7 @@ export class QueryV2Builder implements cog.Builder<dashboardv2.DataQueryKind> {
     // Custom namespace used in template variable queries
     customNamespace(customNamespace: string): this {
         if (!this.internal.spec) {
-            this.internal.spec = azuremonitor.defaultAzureMonitorQuery();
+            this.internal.spec = azuremonitor.defaultMonitorQuery();
         }
         this.internal.spec.customNamespace = customNamespace;
         return this;
@@ -186,7 +186,7 @@ export class QueryV2Builder implements cog.Builder<dashboardv2.DataQueryKind> {
     // Used only for exemplar queries from Prometheus
     query(query: string): this {
         if (!this.internal.spec) {
-            this.internal.spec = azuremonitor.defaultAzureMonitorQuery();
+            this.internal.spec = azuremonitor.defaultMonitorQuery();
         }
         this.internal.spec.query = query;
         return this;

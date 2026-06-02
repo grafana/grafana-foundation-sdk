@@ -22,7 +22,7 @@ build()
 
 Azure Monitor Logs sub-query properties.
 
-@param \Grafana\Foundation\Cog\Builder<\Grafana\Foundation\Azuremonitor\AzureLogsQuery> $azureLogAnalytics
+@param \Grafana\Foundation\Cog\Builder<\Grafana\Foundation\Azuremonitor\LogsQuery> $azureLogAnalytics
 
 ```php
 azureLogAnalytics(\Grafana\Foundation\Cog\Builder $azureLogAnalytics)
@@ -32,7 +32,7 @@ azureLogAnalytics(\Grafana\Foundation\Cog\Builder $azureLogAnalytics)
 
 Azure Monitor Metrics sub-query properties.
 
-@param \Grafana\Foundation\Cog\Builder<\Grafana\Foundation\Azuremonitor\AzureMetricQuery> $azureMonitor
+@param \Grafana\Foundation\Cog\Builder<\Grafana\Foundation\Azuremonitor\MetricQuery> $azureMonitor
 
 ```php
 azureMonitor(\Grafana\Foundation\Cog\Builder $azureMonitor)
@@ -42,7 +42,7 @@ azureMonitor(\Grafana\Foundation\Cog\Builder $azureMonitor)
 
 Azure Resource Graph sub-query properties.
 
-@param \Grafana\Foundation\Cog\Builder<\Grafana\Foundation\Azuremonitor\AzureResourceGraphQuery> $azureResourceGraph
+@param \Grafana\Foundation\Cog\Builder<\Grafana\Foundation\Azuremonitor\ResourceGraphQuery> $azureResourceGraph
 
 ```php
 azureResourceGraph(\Grafana\Foundation\Cog\Builder $azureResourceGraph)
@@ -52,7 +52,7 @@ azureResourceGraph(\Grafana\Foundation\Cog\Builder $azureResourceGraph)
 
 Application Insights Traces sub-query properties.
 
-@param \Grafana\Foundation\Cog\Builder<\Grafana\Foundation\Azuremonitor\AzureTracesQuery> $azureTraces
+@param \Grafana\Foundation\Cog\Builder<\Grafana\Foundation\Azuremonitor\TracesQuery> $azureTraces
 
 ```php
 azureTraces(\Grafana\Foundation\Cog\Builder $azureTraces)

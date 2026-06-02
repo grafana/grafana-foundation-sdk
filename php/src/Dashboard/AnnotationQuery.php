@@ -63,6 +63,37 @@ class AnnotationQuery implements \JsonSerializable
     public ?string $expr;
 
     /**
+     * Format for Prometheus annotation text. Label values can be interpolated with templates like {{instance}}.
+     */
+    public ?string $textFormat;
+
+    /**
+     * Format for Prometheus and Loki annotation titles. Label values can be interpolated with templates like {{instance}}.
+     */
+    public ?string $titleFormat;
+
+    /**
+     * Comma-separated label keys used as annotation tags.
+     */
+    public ?string $tagKeys;
+
+    /**
+     * Legacy Prometheus annotation query step interval.
+     */
+    public ?string $step;
+
+    /**
+     * Use the Prometheus series value as the annotation timestamp.
+     */
+    public ?bool $useValueForTime;
+
+    /**
+     * Mappings define how to convert data frame fields to annotation event fields.
+     * @var array<string, \Grafana\Foundation\Dashboard\AnnotationEventFieldMapping>|null
+     */
+    public ?array $mappings;
+
+    /**
      * @param string|null $name
      * @param \Grafana\Foundation\Common\DataSourceRef|null $datasource
      * @param bool|null $enable
@@ -73,8 +104,14 @@ class AnnotationQuery implements \JsonSerializable
      * @param string|null $type
      * @param float|null $builtIn
      * @param string|null $expr
+     * @param string|null $textFormat
+     * @param string|null $titleFormat
+     * @param string|null $tagKeys
+     * @param string|null $step
+     * @param bool|null $useValueForTime
+     * @param array<string, \Grafana\Foundation\Dashboard\AnnotationEventFieldMapping>|null $mappings
      */
-    public function __construct(?string $name = null, ?\Grafana\Foundation\Common\DataSourceRef $datasource = null, ?bool $enable = null, ?bool $hide = null, ?string $iconColor = null, ?\Grafana\Foundation\Dashboard\AnnotationPanelFilter $filter = null, ?\Grafana\Foundation\Cog\Dataquery $target = null, ?string $type = null, ?float $builtIn = null, ?string $expr = null)
+    public function __construct(?string $name = null, ?\Grafana\Foundation\Common\DataSourceRef $datasource = null, ?bool $enable = null, ?bool $hide = null, ?string $iconColor = null, ?\Grafana\Foundation\Dashboard\AnnotationPanelFilter $filter = null, ?\Grafana\Foundation\Cog\Dataquery $target = null, ?string $type = null, ?float $builtIn = null, ?string $expr = null, ?string $textFormat = null, ?string $titleFormat = null, ?string $tagKeys = null, ?string $step = null, ?bool $useValueForTime = null, ?array $mappings = null)
     {
         $this->name = $name ?: "";
         $this->datasource = $datasource;
@@ -87,6 +124,12 @@ class AnnotationQuery implements \JsonSerializable
         $this->builtIn = $builtIn;
         $this->placement = \Grafana\Foundation\Dashboard\AnnotationQueryPlacement::inControlsMenu();
         $this->expr = $expr;
+        $this->textFormat = $textFormat;
+        $this->titleFormat = $titleFormat;
+        $this->tagKeys = $tagKeys;
+        $this->step = $step;
+        $this->useValueForTime = $useValueForTime;
+        $this->mappings = $mappings;
     }
 
     /**
@@ -94,7 +137,7 @@ class AnnotationQuery implements \JsonSerializable
      */
     public static function fromArray(array $inputData): self
     {
-        /** @var array{name?: string, datasource?: mixed, enable?: bool, hide?: bool, iconColor?: string, filter?: mixed, target?: mixed, type?: string, builtIn?: float, placement?: "inControlsMenu", expr?: string} $inputData */
+        /** @var array{name?: string, datasource?: mixed, enable?: bool, hide?: bool, iconColor?: string, filter?: mixed, target?: mixed, type?: string, builtIn?: float, placement?: "inControlsMenu", expr?: string, textFormat?: string, titleFormat?: string, tagKeys?: string, step?: string, useValueForTime?: bool, mappings?: array<string, mixed>} $inputData */
         $data = $inputData;
         return new self(
             name: $data["name"] ?? null,
@@ -121,6 +164,23 @@ class AnnotationQuery implements \JsonSerializable
             type: $data["type"] ?? null,
             builtIn: $data["builtIn"] ?? null,
             expr: $data["expr"] ?? null,
+            textFormat: $data["textFormat"] ?? null,
+            titleFormat: $data["titleFormat"] ?? null,
+            tagKeys: $data["tagKeys"] ?? null,
+            step: $data["step"] ?? null,
+            useValueForTime: $data["useValueForTime"] ?? null,
+            mappings: isset($data["mappings"]) ? (function($input) {
+        /** @var array<string, \Grafana\Foundation\Dashboard\AnnotationEventFieldMapping> $results */
+        $results = [];
+        foreach ($input as $key => $val) {
+            $results[$key] = isset($val) ? (function($input) {
+    	/** @var array{source?: string, value?: string, regex?: string} */
+    $val = $input;
+    	return \Grafana\Foundation\Dashboard\AnnotationEventFieldMapping::fromArray($val);
+    })($val) : null;
+        }
+        return array_filter($results);
+    })($data["mappings"]) : null,
         );
     }
 
@@ -156,6 +216,24 @@ class AnnotationQuery implements \JsonSerializable
         }
         if (isset($this->expr)) {
             $data->expr = $this->expr;
+        }
+        if (isset($this->textFormat)) {
+            $data->textFormat = $this->textFormat;
+        }
+        if (isset($this->titleFormat)) {
+            $data->titleFormat = $this->titleFormat;
+        }
+        if (isset($this->tagKeys)) {
+            $data->tagKeys = $this->tagKeys;
+        }
+        if (isset($this->step)) {
+            $data->step = $this->step;
+        }
+        if (isset($this->useValueForTime)) {
+            $data->useValueForTime = $this->useValueForTime;
+        }
+        if (isset($this->mappings)) {
+            $data->mappings = $this->mappings;
         }
         return $data;
     }

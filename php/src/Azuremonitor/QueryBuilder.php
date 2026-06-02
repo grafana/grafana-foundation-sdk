@@ -63,9 +63,9 @@ class QueryBuilder implements \Grafana\Foundation\Cog\Builder
     public function refId(string $refId): static
     {    
         if ($this->internal->spec === null) {
-            $this->internal->spec = new \Grafana\Foundation\Azuremonitor\AzureMonitorQuery();
+            $this->internal->spec = new \Grafana\Foundation\Azuremonitor\MonitorQuery();
         }
-        assert($this->internal->spec instanceof \Grafana\Foundation\Azuremonitor\AzureMonitorQuery);
+        assert($this->internal->spec instanceof \Grafana\Foundation\Azuremonitor\MonitorQuery);
         $this->internal->spec->refId = $refId;
     
         return $this;
@@ -77,9 +77,9 @@ class QueryBuilder implements \Grafana\Foundation\Cog\Builder
     public function hide(bool $hide): static
     {    
         if ($this->internal->spec === null) {
-            $this->internal->spec = new \Grafana\Foundation\Azuremonitor\AzureMonitorQuery();
+            $this->internal->spec = new \Grafana\Foundation\Azuremonitor\MonitorQuery();
         }
-        assert($this->internal->spec instanceof \Grafana\Foundation\Azuremonitor\AzureMonitorQuery);
+        assert($this->internal->spec instanceof \Grafana\Foundation\Azuremonitor\MonitorQuery);
         $this->internal->spec->hide = $hide;
     
         return $this;
@@ -92,9 +92,9 @@ class QueryBuilder implements \Grafana\Foundation\Cog\Builder
     public function queryType(string $queryType): static
     {    
         if ($this->internal->spec === null) {
-            $this->internal->spec = new \Grafana\Foundation\Azuremonitor\AzureMonitorQuery();
+            $this->internal->spec = new \Grafana\Foundation\Azuremonitor\MonitorQuery();
         }
-        assert($this->internal->spec instanceof \Grafana\Foundation\Azuremonitor\AzureMonitorQuery);
+        assert($this->internal->spec instanceof \Grafana\Foundation\Azuremonitor\MonitorQuery);
         $this->internal->spec->queryType = $queryType;
     
         return $this;
@@ -107,9 +107,9 @@ class QueryBuilder implements \Grafana\Foundation\Cog\Builder
     public function subscription(string $subscription): static
     {    
         if ($this->internal->spec === null) {
-            $this->internal->spec = new \Grafana\Foundation\Azuremonitor\AzureMonitorQuery();
+            $this->internal->spec = new \Grafana\Foundation\Azuremonitor\MonitorQuery();
         }
-        assert($this->internal->spec instanceof \Grafana\Foundation\Azuremonitor\AzureMonitorQuery);
+        assert($this->internal->spec instanceof \Grafana\Foundation\Azuremonitor\MonitorQuery);
         $this->internal->spec->subscription = $subscription;
     
         return $this;
@@ -122,9 +122,9 @@ class QueryBuilder implements \Grafana\Foundation\Cog\Builder
     public function subscriptions(array $subscriptions): static
     {    
         if ($this->internal->spec === null) {
-            $this->internal->spec = new \Grafana\Foundation\Azuremonitor\AzureMonitorQuery();
+            $this->internal->spec = new \Grafana\Foundation\Azuremonitor\MonitorQuery();
         }
-        assert($this->internal->spec instanceof \Grafana\Foundation\Azuremonitor\AzureMonitorQuery);
+        assert($this->internal->spec instanceof \Grafana\Foundation\Azuremonitor\MonitorQuery);
         $this->internal->spec->subscriptions = $subscriptions;
     
         return $this;
@@ -132,14 +132,14 @@ class QueryBuilder implements \Grafana\Foundation\Cog\Builder
 
     /**
      * Azure Monitor Metrics sub-query properties.
-     * @param \Grafana\Foundation\Cog\Builder<\Grafana\Foundation\Azuremonitor\AzureMetricQuery> $azureMonitor
+     * @param \Grafana\Foundation\Cog\Builder<\Grafana\Foundation\Azuremonitor\MetricQuery> $azureMonitor
      */
     public function azureMonitor(\Grafana\Foundation\Cog\Builder $azureMonitor): static
     {    
         if ($this->internal->spec === null) {
-            $this->internal->spec = new \Grafana\Foundation\Azuremonitor\AzureMonitorQuery();
+            $this->internal->spec = new \Grafana\Foundation\Azuremonitor\MonitorQuery();
         }
-        assert($this->internal->spec instanceof \Grafana\Foundation\Azuremonitor\AzureMonitorQuery);
+        assert($this->internal->spec instanceof \Grafana\Foundation\Azuremonitor\MonitorQuery);
         $azureMonitorResource = $azureMonitor->build();
         $this->internal->spec->azureMonitor = $azureMonitorResource;
     
@@ -148,14 +148,14 @@ class QueryBuilder implements \Grafana\Foundation\Cog\Builder
 
     /**
      * Azure Monitor Logs sub-query properties.
-     * @param \Grafana\Foundation\Cog\Builder<\Grafana\Foundation\Azuremonitor\AzureLogsQuery> $azureLogAnalytics
+     * @param \Grafana\Foundation\Cog\Builder<\Grafana\Foundation\Azuremonitor\LogsQuery> $azureLogAnalytics
      */
     public function azureLogAnalytics(\Grafana\Foundation\Cog\Builder $azureLogAnalytics): static
     {    
         if ($this->internal->spec === null) {
-            $this->internal->spec = new \Grafana\Foundation\Azuremonitor\AzureMonitorQuery();
+            $this->internal->spec = new \Grafana\Foundation\Azuremonitor\MonitorQuery();
         }
-        assert($this->internal->spec instanceof \Grafana\Foundation\Azuremonitor\AzureMonitorQuery);
+        assert($this->internal->spec instanceof \Grafana\Foundation\Azuremonitor\MonitorQuery);
         $azureLogAnalyticsResource = $azureLogAnalytics->build();
         $this->internal->spec->azureLogAnalytics = $azureLogAnalyticsResource;
     
@@ -164,14 +164,14 @@ class QueryBuilder implements \Grafana\Foundation\Cog\Builder
 
     /**
      * Azure Resource Graph sub-query properties.
-     * @param \Grafana\Foundation\Cog\Builder<\Grafana\Foundation\Azuremonitor\AzureResourceGraphQuery> $azureResourceGraph
+     * @param \Grafana\Foundation\Cog\Builder<\Grafana\Foundation\Azuremonitor\ResourceGraphQuery> $azureResourceGraph
      */
     public function azureResourceGraph(\Grafana\Foundation\Cog\Builder $azureResourceGraph): static
     {    
         if ($this->internal->spec === null) {
-            $this->internal->spec = new \Grafana\Foundation\Azuremonitor\AzureMonitorQuery();
+            $this->internal->spec = new \Grafana\Foundation\Azuremonitor\MonitorQuery();
         }
-        assert($this->internal->spec instanceof \Grafana\Foundation\Azuremonitor\AzureMonitorQuery);
+        assert($this->internal->spec instanceof \Grafana\Foundation\Azuremonitor\MonitorQuery);
         $azureResourceGraphResource = $azureResourceGraph->build();
         $this->internal->spec->azureResourceGraph = $azureResourceGraphResource;
     
@@ -180,14 +180,14 @@ class QueryBuilder implements \Grafana\Foundation\Cog\Builder
 
     /**
      * Application Insights Traces sub-query properties.
-     * @param \Grafana\Foundation\Cog\Builder<\Grafana\Foundation\Azuremonitor\AzureTracesQuery> $azureTraces
+     * @param \Grafana\Foundation\Cog\Builder<\Grafana\Foundation\Azuremonitor\TracesQuery> $azureTraces
      */
     public function azureTraces(\Grafana\Foundation\Cog\Builder $azureTraces): static
     {    
         if ($this->internal->spec === null) {
-            $this->internal->spec = new \Grafana\Foundation\Azuremonitor\AzureMonitorQuery();
+            $this->internal->spec = new \Grafana\Foundation\Azuremonitor\MonitorQuery();
         }
-        assert($this->internal->spec instanceof \Grafana\Foundation\Azuremonitor\AzureMonitorQuery);
+        assert($this->internal->spec instanceof \Grafana\Foundation\Azuremonitor\MonitorQuery);
         $azureTracesResource = $azureTraces->build();
         $this->internal->spec->azureTraces = $azureTracesResource;
     
@@ -201,9 +201,9 @@ class QueryBuilder implements \Grafana\Foundation\Cog\Builder
     public function grafanaTemplateVariableFn( $grafanaTemplateVariableFn): static
     {    
         if ($this->internal->spec === null) {
-            $this->internal->spec = new \Grafana\Foundation\Azuremonitor\AzureMonitorQuery();
+            $this->internal->spec = new \Grafana\Foundation\Azuremonitor\MonitorQuery();
         }
-        assert($this->internal->spec instanceof \Grafana\Foundation\Azuremonitor\AzureMonitorQuery);
+        assert($this->internal->spec instanceof \Grafana\Foundation\Azuremonitor\MonitorQuery);
         $grafanaTemplateVariableFnResource = $grafanaTemplateVariableFn->build();
         $this->internal->spec->grafanaTemplateVariableFn = $grafanaTemplateVariableFnResource;
     
@@ -216,9 +216,9 @@ class QueryBuilder implements \Grafana\Foundation\Cog\Builder
     public function resourceGroup(string $resourceGroup): static
     {    
         if ($this->internal->spec === null) {
-            $this->internal->spec = new \Grafana\Foundation\Azuremonitor\AzureMonitorQuery();
+            $this->internal->spec = new \Grafana\Foundation\Azuremonitor\MonitorQuery();
         }
-        assert($this->internal->spec instanceof \Grafana\Foundation\Azuremonitor\AzureMonitorQuery);
+        assert($this->internal->spec instanceof \Grafana\Foundation\Azuremonitor\MonitorQuery);
         $this->internal->spec->resourceGroup = $resourceGroup;
     
         return $this;
@@ -230,9 +230,9 @@ class QueryBuilder implements \Grafana\Foundation\Cog\Builder
     public function namespace(string $namespace): static
     {    
         if ($this->internal->spec === null) {
-            $this->internal->spec = new \Grafana\Foundation\Azuremonitor\AzureMonitorQuery();
+            $this->internal->spec = new \Grafana\Foundation\Azuremonitor\MonitorQuery();
         }
-        assert($this->internal->spec instanceof \Grafana\Foundation\Azuremonitor\AzureMonitorQuery);
+        assert($this->internal->spec instanceof \Grafana\Foundation\Azuremonitor\MonitorQuery);
         $this->internal->spec->namespace = $namespace;
     
         return $this;
@@ -244,9 +244,9 @@ class QueryBuilder implements \Grafana\Foundation\Cog\Builder
     public function resource(string $resource): static
     {    
         if ($this->internal->spec === null) {
-            $this->internal->spec = new \Grafana\Foundation\Azuremonitor\AzureMonitorQuery();
+            $this->internal->spec = new \Grafana\Foundation\Azuremonitor\MonitorQuery();
         }
-        assert($this->internal->spec instanceof \Grafana\Foundation\Azuremonitor\AzureMonitorQuery);
+        assert($this->internal->spec instanceof \Grafana\Foundation\Azuremonitor\MonitorQuery);
         $this->internal->spec->resource = $resource;
     
         return $this;
@@ -258,9 +258,9 @@ class QueryBuilder implements \Grafana\Foundation\Cog\Builder
     public function region(string $region): static
     {    
         if ($this->internal->spec === null) {
-            $this->internal->spec = new \Grafana\Foundation\Azuremonitor\AzureMonitorQuery();
+            $this->internal->spec = new \Grafana\Foundation\Azuremonitor\MonitorQuery();
         }
-        assert($this->internal->spec instanceof \Grafana\Foundation\Azuremonitor\AzureMonitorQuery);
+        assert($this->internal->spec instanceof \Grafana\Foundation\Azuremonitor\MonitorQuery);
         $this->internal->spec->region = $region;
     
         return $this;
@@ -272,9 +272,9 @@ class QueryBuilder implements \Grafana\Foundation\Cog\Builder
     public function customNamespace(string $customNamespace): static
     {    
         if ($this->internal->spec === null) {
-            $this->internal->spec = new \Grafana\Foundation\Azuremonitor\AzureMonitorQuery();
+            $this->internal->spec = new \Grafana\Foundation\Azuremonitor\MonitorQuery();
         }
-        assert($this->internal->spec instanceof \Grafana\Foundation\Azuremonitor\AzureMonitorQuery);
+        assert($this->internal->spec instanceof \Grafana\Foundation\Azuremonitor\MonitorQuery);
         $this->internal->spec->customNamespace = $customNamespace;
     
         return $this;
@@ -286,9 +286,9 @@ class QueryBuilder implements \Grafana\Foundation\Cog\Builder
     public function query(string $query): static
     {    
         if ($this->internal->spec === null) {
-            $this->internal->spec = new \Grafana\Foundation\Azuremonitor\AzureMonitorQuery();
+            $this->internal->spec = new \Grafana\Foundation\Azuremonitor\MonitorQuery();
         }
-        assert($this->internal->spec instanceof \Grafana\Foundation\Azuremonitor\AzureMonitorQuery);
+        assert($this->internal->spec instanceof \Grafana\Foundation\Azuremonitor\MonitorQuery);
         $this->internal->spec->query = $query;
     
         return $this;

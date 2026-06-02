@@ -20,11 +20,11 @@ final class QueryEditorPropertyType implements \JsonSerializable, \Stringable {
 
     public static function string(): self
     {
-        if (!isset(self::$instances["string"])) {
-            self::$instances["string"] = new self("string");
+        if (!isset(self::$instances["String"])) {
+            self::$instances["String"] = new self("string");
         }
 
-        return self::$instances["string"];
+        return self::$instances["String"];
     }
 
     public static function fromValue(string $value): self

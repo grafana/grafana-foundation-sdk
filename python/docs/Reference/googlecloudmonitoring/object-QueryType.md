@@ -13,8 +13,8 @@ class QueryType(enum.StrEnum):
     Defines the supported queryTypes.
     """
 
-    TIME_SERIES_LIST = "timeSeriesList"
-    TIME_SERIES_QUERY = "timeSeriesQuery"
+    TIMESERIESLIST = "timeSeriesList"
+    TIMESERIESQUERY = "timeSeriesQuery"
     SLO = "slo"
     ANNOTATION = "annotation"
     PROMQL = "promQL"

@@ -26,29 +26,29 @@ final class TooltipDisplayMode implements \JsonSerializable, \Stringable {
 
     public static function single(): self
     {
-        if (!isset(self::$instances["single"])) {
-            self::$instances["single"] = new self("single");
+        if (!isset(self::$instances["Single"])) {
+            self::$instances["Single"] = new self("single");
         }
 
-        return self::$instances["single"];
+        return self::$instances["Single"];
     }
 
     public static function multi(): self
     {
-        if (!isset(self::$instances["multi"])) {
-            self::$instances["multi"] = new self("multi");
+        if (!isset(self::$instances["Multi"])) {
+            self::$instances["Multi"] = new self("multi");
         }
 
-        return self::$instances["multi"];
+        return self::$instances["Multi"];
     }
 
     public static function none(): self
     {
-        if (!isset(self::$instances["none"])) {
-            self::$instances["none"] = new self("none");
+        if (!isset(self::$instances["None"])) {
+            self::$instances["None"] = new self("none");
         }
 
-        return self::$instances["none"];
+        return self::$instances["None"];
     }
 
     public static function fromValue(string $value): self

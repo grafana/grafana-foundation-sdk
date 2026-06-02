@@ -9,8 +9,8 @@ import com.fasterxml.jackson.annotation.JsonValue;
 // Defines the supported queryTypes.
 @JsonFormat(shape = JsonFormat.Shape.OBJECT)
 public enum QueryType {
-    TIME_SERIES_LIST("timeSeriesList"),
-    TIME_SERIES_QUERY("timeSeriesQuery"),
+    TIMESERIESLIST("timeSeriesList"),
+    TIMESERIESQUERY("timeSeriesQuery"),
     SLO("slo"),
     ANNOTATION("annotation"),
     PROMQL("promQL"),

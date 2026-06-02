@@ -57,10 +57,10 @@ func QueryV2Converter(input dashboardv2.DataQueryKind) string {
 		buffer.Reset()
 
 	}
-	if input.Spec != nil && input.Spec.(*AzureMonitorQuery).RefId != nil && *input.Spec.(*AzureMonitorQuery).RefId != "" {
+	if input.Spec != nil && input.Spec.(*MonitorQuery).RefId != "" {
 
 		buffer.WriteString(`RefId(`)
-		arg0 := fmt.Sprintf("%#v", *input.Spec.(*AzureMonitorQuery).RefId)
+		arg0 := fmt.Sprintf("%#v", input.Spec.(*MonitorQuery).RefId)
 		buffer.WriteString(arg0)
 
 		buffer.WriteString(")")
@@ -69,10 +69,10 @@ func QueryV2Converter(input dashboardv2.DataQueryKind) string {
 		buffer.Reset()
 
 	}
-	if input.Spec != nil && input.Spec.(*AzureMonitorQuery).Hide != nil {
+	if input.Spec != nil && input.Spec.(*MonitorQuery).Hide != nil {
 
 		buffer.WriteString(`Hide(`)
-		arg0 := fmt.Sprintf("%#v", *input.Spec.(*AzureMonitorQuery).Hide)
+		arg0 := fmt.Sprintf("%#v", *input.Spec.(*MonitorQuery).Hide)
 		buffer.WriteString(arg0)
 
 		buffer.WriteString(")")
@@ -81,10 +81,10 @@ func QueryV2Converter(input dashboardv2.DataQueryKind) string {
 		buffer.Reset()
 
 	}
-	if input.Spec != nil && input.Spec.(*AzureMonitorQuery).QueryType != nil && *input.Spec.(*AzureMonitorQuery).QueryType != "" {
+	if input.Spec != nil && input.Spec.(*MonitorQuery).QueryType != nil && *input.Spec.(*MonitorQuery).QueryType != "" {
 
 		buffer.WriteString(`QueryType(`)
-		arg0 := fmt.Sprintf("%#v", *input.Spec.(*AzureMonitorQuery).QueryType)
+		arg0 := fmt.Sprintf("%#v", *input.Spec.(*MonitorQuery).QueryType)
 		buffer.WriteString(arg0)
 
 		buffer.WriteString(")")
@@ -93,10 +93,10 @@ func QueryV2Converter(input dashboardv2.DataQueryKind) string {
 		buffer.Reset()
 
 	}
-	if input.Spec != nil && input.Spec.(*AzureMonitorQuery).Subscription != nil && *input.Spec.(*AzureMonitorQuery).Subscription != "" {
+	if input.Spec != nil && input.Spec.(*MonitorQuery).Subscription != nil && *input.Spec.(*MonitorQuery).Subscription != "" {
 
 		buffer.WriteString(`Subscription(`)
-		arg0 := fmt.Sprintf("%#v", *input.Spec.(*AzureMonitorQuery).Subscription)
+		arg0 := fmt.Sprintf("%#v", *input.Spec.(*MonitorQuery).Subscription)
 		buffer.WriteString(arg0)
 
 		buffer.WriteString(")")
@@ -105,11 +105,11 @@ func QueryV2Converter(input dashboardv2.DataQueryKind) string {
 		buffer.Reset()
 
 	}
-	if input.Spec != nil && input.Spec.(*AzureMonitorQuery).Subscriptions != nil && len(input.Spec.(*AzureMonitorQuery).Subscriptions) >= 1 {
+	if input.Spec != nil && input.Spec.(*MonitorQuery).Subscriptions != nil && len(input.Spec.(*MonitorQuery).Subscriptions) >= 1 {
 
 		buffer.WriteString(`Subscriptions(`)
 		tmparg0 := []string{}
-		for _, arg1 := range input.Spec.(*AzureMonitorQuery).Subscriptions {
+		for _, arg1 := range input.Spec.(*MonitorQuery).Subscriptions {
 			tmpsubscriptionsarg1 := fmt.Sprintf("%#v", arg1)
 			tmparg0 = append(tmparg0, tmpsubscriptionsarg1)
 		}
@@ -122,10 +122,10 @@ func QueryV2Converter(input dashboardv2.DataQueryKind) string {
 		buffer.Reset()
 
 	}
-	if input.Spec != nil && input.Spec.(*AzureMonitorQuery).AzureMonitor != nil {
+	if input.Spec != nil && input.Spec.(*MonitorQuery).AzureMonitor != nil {
 
 		buffer.WriteString(`AzureMonitor(`)
-		arg0 := AzureMetricQueryConverter(*input.Spec.(*AzureMonitorQuery).AzureMonitor)
+		arg0 := MetricQueryConverter(*input.Spec.(*MonitorQuery).AzureMonitor)
 		buffer.WriteString(arg0)
 
 		buffer.WriteString(")")
@@ -134,10 +134,10 @@ func QueryV2Converter(input dashboardv2.DataQueryKind) string {
 		buffer.Reset()
 
 	}
-	if input.Spec != nil && input.Spec.(*AzureMonitorQuery).AzureLogAnalytics != nil {
+	if input.Spec != nil && input.Spec.(*MonitorQuery).AzureLogAnalytics != nil {
 
 		buffer.WriteString(`AzureLogAnalytics(`)
-		arg0 := AzureLogsQueryConverter(*input.Spec.(*AzureMonitorQuery).AzureLogAnalytics)
+		arg0 := LogsQueryConverter(*input.Spec.(*MonitorQuery).AzureLogAnalytics)
 		buffer.WriteString(arg0)
 
 		buffer.WriteString(")")
@@ -146,10 +146,10 @@ func QueryV2Converter(input dashboardv2.DataQueryKind) string {
 		buffer.Reset()
 
 	}
-	if input.Spec != nil && input.Spec.(*AzureMonitorQuery).AzureResourceGraph != nil {
+	if input.Spec != nil && input.Spec.(*MonitorQuery).AzureResourceGraph != nil {
 
 		buffer.WriteString(`AzureResourceGraph(`)
-		arg0 := AzureResourceGraphQueryConverter(*input.Spec.(*AzureMonitorQuery).AzureResourceGraph)
+		arg0 := ResourceGraphQueryConverter(*input.Spec.(*MonitorQuery).AzureResourceGraph)
 		buffer.WriteString(arg0)
 
 		buffer.WriteString(")")
@@ -158,10 +158,10 @@ func QueryV2Converter(input dashboardv2.DataQueryKind) string {
 		buffer.Reset()
 
 	}
-	if input.Spec != nil && input.Spec.(*AzureMonitorQuery).AzureTraces != nil {
+	if input.Spec != nil && input.Spec.(*MonitorQuery).AzureTraces != nil {
 
 		buffer.WriteString(`AzureTraces(`)
-		arg0 := AzureTracesQueryConverter(*input.Spec.(*AzureMonitorQuery).AzureTraces)
+		arg0 := TracesQueryConverter(*input.Spec.(*MonitorQuery).AzureTraces)
 		buffer.WriteString(arg0)
 
 		buffer.WriteString(")")
@@ -170,10 +170,10 @@ func QueryV2Converter(input dashboardv2.DataQueryKind) string {
 		buffer.Reset()
 
 	}
-	if input.Spec != nil && input.Spec.(*AzureMonitorQuery).GrafanaTemplateVariableFn != nil {
+	if input.Spec != nil && input.Spec.(*MonitorQuery).GrafanaTemplateVariableFn != nil {
 
 		buffer.WriteString(`GrafanaTemplateVariableFn(`)
-		arg0 := cog.Dump(*input.Spec.(*AzureMonitorQuery).GrafanaTemplateVariableFn)
+		arg0 := cog.Dump(*input.Spec.(*MonitorQuery).GrafanaTemplateVariableFn)
 		buffer.WriteString(arg0)
 
 		buffer.WriteString(")")
@@ -182,10 +182,10 @@ func QueryV2Converter(input dashboardv2.DataQueryKind) string {
 		buffer.Reset()
 
 	}
-	if input.Spec != nil && input.Spec.(*AzureMonitorQuery).ResourceGroup != nil && *input.Spec.(*AzureMonitorQuery).ResourceGroup != "" {
+	if input.Spec != nil && input.Spec.(*MonitorQuery).ResourceGroup != nil && *input.Spec.(*MonitorQuery).ResourceGroup != "" {
 
 		buffer.WriteString(`ResourceGroup(`)
-		arg0 := fmt.Sprintf("%#v", *input.Spec.(*AzureMonitorQuery).ResourceGroup)
+		arg0 := fmt.Sprintf("%#v", *input.Spec.(*MonitorQuery).ResourceGroup)
 		buffer.WriteString(arg0)
 
 		buffer.WriteString(")")
@@ -194,10 +194,10 @@ func QueryV2Converter(input dashboardv2.DataQueryKind) string {
 		buffer.Reset()
 
 	}
-	if input.Spec != nil && input.Spec.(*AzureMonitorQuery).Namespace != nil && *input.Spec.(*AzureMonitorQuery).Namespace != "" {
+	if input.Spec != nil && input.Spec.(*MonitorQuery).Namespace != nil && *input.Spec.(*MonitorQuery).Namespace != "" {
 
 		buffer.WriteString(`Namespace(`)
-		arg0 := fmt.Sprintf("%#v", *input.Spec.(*AzureMonitorQuery).Namespace)
+		arg0 := fmt.Sprintf("%#v", *input.Spec.(*MonitorQuery).Namespace)
 		buffer.WriteString(arg0)
 
 		buffer.WriteString(")")
@@ -206,10 +206,10 @@ func QueryV2Converter(input dashboardv2.DataQueryKind) string {
 		buffer.Reset()
 
 	}
-	if input.Spec != nil && input.Spec.(*AzureMonitorQuery).Resource != nil && *input.Spec.(*AzureMonitorQuery).Resource != "" {
+	if input.Spec != nil && input.Spec.(*MonitorQuery).Resource != nil && *input.Spec.(*MonitorQuery).Resource != "" {
 
 		buffer.WriteString(`Resource(`)
-		arg0 := fmt.Sprintf("%#v", *input.Spec.(*AzureMonitorQuery).Resource)
+		arg0 := fmt.Sprintf("%#v", *input.Spec.(*MonitorQuery).Resource)
 		buffer.WriteString(arg0)
 
 		buffer.WriteString(")")
@@ -218,10 +218,10 @@ func QueryV2Converter(input dashboardv2.DataQueryKind) string {
 		buffer.Reset()
 
 	}
-	if input.Spec != nil && input.Spec.(*AzureMonitorQuery).Region != nil && *input.Spec.(*AzureMonitorQuery).Region != "" {
+	if input.Spec != nil && input.Spec.(*MonitorQuery).Region != nil && *input.Spec.(*MonitorQuery).Region != "" {
 
 		buffer.WriteString(`Region(`)
-		arg0 := fmt.Sprintf("%#v", *input.Spec.(*AzureMonitorQuery).Region)
+		arg0 := fmt.Sprintf("%#v", *input.Spec.(*MonitorQuery).Region)
 		buffer.WriteString(arg0)
 
 		buffer.WriteString(")")
@@ -230,10 +230,10 @@ func QueryV2Converter(input dashboardv2.DataQueryKind) string {
 		buffer.Reset()
 
 	}
-	if input.Spec != nil && input.Spec.(*AzureMonitorQuery).CustomNamespace != nil && *input.Spec.(*AzureMonitorQuery).CustomNamespace != "" {
+	if input.Spec != nil && input.Spec.(*MonitorQuery).CustomNamespace != nil && *input.Spec.(*MonitorQuery).CustomNamespace != "" {
 
 		buffer.WriteString(`CustomNamespace(`)
-		arg0 := fmt.Sprintf("%#v", *input.Spec.(*AzureMonitorQuery).CustomNamespace)
+		arg0 := fmt.Sprintf("%#v", *input.Spec.(*MonitorQuery).CustomNamespace)
 		buffer.WriteString(arg0)
 
 		buffer.WriteString(")")
@@ -242,10 +242,10 @@ func QueryV2Converter(input dashboardv2.DataQueryKind) string {
 		buffer.Reset()
 
 	}
-	if input.Spec != nil && input.Spec.(*AzureMonitorQuery).Query != nil && *input.Spec.(*AzureMonitorQuery).Query != "" {
+	if input.Spec != nil && input.Spec.(*MonitorQuery).Query != nil && *input.Spec.(*MonitorQuery).Query != "" {
 
 		buffer.WriteString(`Query(`)
-		arg0 := fmt.Sprintf("%#v", *input.Spec.(*AzureMonitorQuery).Query)
+		arg0 := fmt.Sprintf("%#v", *input.Spec.(*MonitorQuery).Query)
 		buffer.WriteString(arg0)
 
 		buffer.WriteString(")")

@@ -8,8 +8,8 @@ final class VariantConfig
     {
         return new \Grafana\Foundation\Cog\DataqueryConfig(
             identifier: 'grafana-azure-monitor-datasource',
-            fromArray: [AzureMonitorQuery::class, 'fromArray'],
-            convert: [AzureMonitorQueryConverter::class, 'convert'],
+            fromArray: [MonitorQuery::class, 'fromArray'],
+            convert: [MonitorQueryConverter::class, 'convert'],
             convertv2: [self::class, 'convertV2'],
         );
     }

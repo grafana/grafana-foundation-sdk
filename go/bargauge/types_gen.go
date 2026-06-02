@@ -69,7 +69,8 @@ func (resource *Options) UnmarshalJSONStrict(raw []byte) error {
 
 		}
 		delete(fields, "displayMode")
-
+	} else {
+		errs = append(errs, cog.MakeBuildErrors("displayMode", errors.New("required field is missing from input"))...)
 	}
 	// Field "valueMode"
 	if fields["valueMode"] != nil {
@@ -82,7 +83,8 @@ func (resource *Options) UnmarshalJSONStrict(raw []byte) error {
 
 		}
 		delete(fields, "valueMode")
-
+	} else {
+		errs = append(errs, cog.MakeBuildErrors("valueMode", errors.New("required field is missing from input"))...)
 	}
 	// Field "namePlacement"
 	if fields["namePlacement"] != nil {
@@ -95,7 +97,8 @@ func (resource *Options) UnmarshalJSONStrict(raw []byte) error {
 
 		}
 		delete(fields, "namePlacement")
-
+	} else {
+		errs = append(errs, cog.MakeBuildErrors("namePlacement", errors.New("required field is missing from input"))...)
 	}
 	// Field "showUnfilled"
 	if fields["showUnfilled"] != nil {
@@ -108,7 +111,8 @@ func (resource *Options) UnmarshalJSONStrict(raw []byte) error {
 
 		}
 		delete(fields, "showUnfilled")
-
+	} else {
+		errs = append(errs, cog.MakeBuildErrors("showUnfilled", errors.New("required field is missing from input"))...)
 	}
 	// Field "sizing"
 	if fields["sizing"] != nil {
@@ -121,7 +125,8 @@ func (resource *Options) UnmarshalJSONStrict(raw []byte) error {
 
 		}
 		delete(fields, "sizing")
-
+	} else {
+		errs = append(errs, cog.MakeBuildErrors("sizing", errors.New("required field is missing from input"))...)
 	}
 	// Field "minVizWidth"
 	if fields["minVizWidth"] != nil {
@@ -134,7 +139,8 @@ func (resource *Options) UnmarshalJSONStrict(raw []byte) error {
 
 		}
 		delete(fields, "minVizWidth")
-
+	} else {
+		errs = append(errs, cog.MakeBuildErrors("minVizWidth", errors.New("required field is missing from input"))...)
 	}
 	// Field "minVizHeight"
 	if fields["minVizHeight"] != nil {
@@ -147,7 +153,8 @@ func (resource *Options) UnmarshalJSONStrict(raw []byte) error {
 
 		}
 		delete(fields, "minVizHeight")
-
+	} else {
+		errs = append(errs, cog.MakeBuildErrors("minVizHeight", errors.New("required field is missing from input"))...)
 	}
 	// Field "legend"
 	if fields["legend"] != nil {
@@ -205,7 +212,8 @@ func (resource *Options) UnmarshalJSONStrict(raw []byte) error {
 
 		}
 		delete(fields, "maxVizHeight")
-
+	} else {
+		errs = append(errs, cog.MakeBuildErrors("maxVizHeight", errors.New("required field is missing from input"))...)
 	}
 	// Field "orientation"
 	if fields["orientation"] != nil {
@@ -224,10 +232,6 @@ func (resource *Options) UnmarshalJSONStrict(raw []byte) error {
 
 	for field := range fields {
 		errs = append(errs, cog.MakeBuildErrors("Options", fmt.Errorf("unexpected field '%s'", field))...)
-	}
-
-	if len(errs) == 0 {
-		return nil
 	}
 
 	return errs

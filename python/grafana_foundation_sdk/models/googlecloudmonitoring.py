@@ -398,8 +398,8 @@ class QueryType(enum.StrEnum):
     Defines the supported queryTypes.
     """
 
-    TIME_SERIES_LIST = "timeSeriesList"
-    TIME_SERIES_QUERY = "timeSeriesQuery"
+    TIMESERIESLIST = "timeSeriesList"
+    TIMESERIESQUERY = "timeSeriesQuery"
     SLO = "slo"
     ANNOTATION = "annotation"
     PROMQL = "promQL"
@@ -522,14 +522,14 @@ class MetricQuery:
 
 
 class MetricKind(enum.StrEnum):
-    METRIC_KIND_UNSPECIFIED = "METRIC_KIND_UNSPECIFIED"
+    METRICKINDUNSPECIFIED = "METRIC_KIND_UNSPECIFIED"
     GAUGE = "GAUGE"
     DELTA = "DELTA"
     CUMULATIVE = "CUMULATIVE"
 
 
 class ValueTypes(enum.StrEnum):
-    VALUE_TYPE_UNSPECIFIED = "VALUE_TYPE_UNSPECIFIED"
+    VALUETYPEUNSPECIFIED = "VALUE_TYPE_UNSPECIFIED"
     BOOL = "BOOL"
     INT64 = "INT64"
     DOUBLE = "DOUBLE"
@@ -539,25 +539,25 @@ class ValueTypes(enum.StrEnum):
 
 
 class AlignmentTypes(enum.StrEnum):
-    ALIGN_DELTA = "ALIGN_DELTA"
-    ALIGN_RATE = "ALIGN_RATE"
-    ALIGN_INTERPOLATE = "ALIGN_INTERPOLATE"
-    ALIGN_NEXT_OLDER = "ALIGN_NEXT_OLDER"
-    ALIGN_MIN = "ALIGN_MIN"
-    ALIGN_MAX = "ALIGN_MAX"
-    ALIGN_MEAN = "ALIGN_MEAN"
-    ALIGN_COUNT = "ALIGN_COUNT"
-    ALIGN_SUM = "ALIGN_SUM"
-    ALIGN_STDDEV = "ALIGN_STDDEV"
-    ALIGN_COUNT_TRUE = "ALIGN_COUNT_TRUE"
-    ALIGN_COUNT_FALSE = "ALIGN_COUNT_FALSE"
-    ALIGN_FRACTION_TRUE = "ALIGN_FRACTION_TRUE"
-    ALIGN_PERCENTILE_99 = "ALIGN_PERCENTILE_99"
-    ALIGN_PERCENTILE_95 = "ALIGN_PERCENTILE_95"
-    ALIGN_PERCENTILE_50 = "ALIGN_PERCENTILE_50"
-    ALIGN_PERCENTILE_05 = "ALIGN_PERCENTILE_05"
-    ALIGN_PERCENT_CHANGE = "ALIGN_PERCENT_CHANGE"
-    ALIGN_NONE = "ALIGN_NONE"
+    ALIGNDELTA = "ALIGN_DELTA"
+    ALIGNRATE = "ALIGN_RATE"
+    ALIGNINTERPOLATE = "ALIGN_INTERPOLATE"
+    ALIGNNEXTOLDER = "ALIGN_NEXT_OLDER"
+    ALIGNMIN = "ALIGN_MIN"
+    ALIGNMAX = "ALIGN_MAX"
+    ALIGNMEAN = "ALIGN_MEAN"
+    ALIGNCOUNT = "ALIGN_COUNT"
+    ALIGNSUM = "ALIGN_SUM"
+    ALIGNSTDDEV = "ALIGN_STDDEV"
+    ALIGNCOUNTTRUE = "ALIGN_COUNT_TRUE"
+    ALIGNCOUNTFALSE = "ALIGN_COUNT_FALSE"
+    ALIGNFRACTIONTRUE = "ALIGN_FRACTION_TRUE"
+    ALIGNPERCENTILE99 = "ALIGN_PERCENTILE_99"
+    ALIGNPERCENTILE95 = "ALIGN_PERCENTILE_95"
+    ALIGNPERCENTILE50 = "ALIGN_PERCENTILE_50"
+    ALIGNPERCENTILE05 = "ALIGN_PERCENTILE_05"
+    ALIGNPERCENTCHANGE = "ALIGN_PERCENT_CHANGE"
+    ALIGNNONE = "ALIGN_NONE"
 
 
 class LegacyCloudMonitoringAnnotationQuery:
@@ -584,7 +584,7 @@ class LegacyCloudMonitoringAnnotationQuery:
         self.metric_type = metric_type
         self.ref_id = ref_id
         self.filters = filters if filters is not None else []
-        self.metric_kind = metric_kind if metric_kind is not None else MetricKind.METRIC_KIND_UNSPECIFIED
+        self.metric_kind = metric_kind if metric_kind is not None else MetricKind.METRICKINDUNSPECIFIED
         self.value_type = value_type
         self.title = title
         self.text = text

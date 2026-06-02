@@ -30,20 +30,20 @@ final class PieChartLegendValues implements \JsonSerializable, \Stringable {
 
     public static function value(): self
     {
-        if (!isset(self::$instances["value"])) {
-            self::$instances["value"] = new self("value");
+        if (!isset(self::$instances["Value"])) {
+            self::$instances["Value"] = new self("value");
         }
 
-        return self::$instances["value"];
+        return self::$instances["Value"];
     }
 
     public static function percent(): self
     {
-        if (!isset(self::$instances["percent"])) {
-            self::$instances["percent"] = new self("percent");
+        if (!isset(self::$instances["Percent"])) {
+            self::$instances["Percent"] = new self("percent");
         }
 
-        return self::$instances["percent"];
+        return self::$instances["Percent"];
     }
 
     public static function fromValue(string $value): self

@@ -23,29 +23,29 @@ final class TimelineValueAlignment implements \JsonSerializable, \Stringable {
 
     public static function center(): self
     {
-        if (!isset(self::$instances["center"])) {
-            self::$instances["center"] = new self("center");
+        if (!isset(self::$instances["Center"])) {
+            self::$instances["Center"] = new self("center");
         }
 
-        return self::$instances["center"];
+        return self::$instances["Center"];
     }
 
     public static function left(): self
     {
-        if (!isset(self::$instances["left"])) {
-            self::$instances["left"] = new self("left");
+        if (!isset(self::$instances["Left"])) {
+            self::$instances["Left"] = new self("left");
         }
 
-        return self::$instances["left"];
+        return self::$instances["Left"];
     }
 
     public static function right(): self
     {
-        if (!isset(self::$instances["right"])) {
-            self::$instances["right"] = new self("right");
+        if (!isset(self::$instances["Right"])) {
+            self::$instances["Right"] = new self("right");
         }
 
-        return self::$instances["right"];
+        return self::$instances["Right"];
     }
 
     public static function fromValue(string $value): self

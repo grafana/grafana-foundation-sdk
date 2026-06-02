@@ -76,6 +76,16 @@ Color to use for the annotation event markers
 iconColor(string $iconColor)
 ```
 
+### <span class="badge object-method"></span> mappings
+
+Mappings define how to convert data frame fields to annotation event fields.
+
+@param array<string, \Grafana\Foundation\Cog\Builder<\Grafana\Foundation\Dashboard\AnnotationEventFieldMapping>> $mappings
+
+```php
+mappings(array $mappings)
+```
+
 ### <span class="badge object-method"></span> name
 
 Name of annotation.
@@ -92,6 +102,22 @@ Placement can be used to display the annotation query somewhere else on the dash
 placement(\Grafana\Foundation\Dashboard\AnnotationQueryPlacement $placement)
 ```
 
+### <span class="badge object-method"></span> step
+
+Legacy Prometheus annotation query step interval.
+
+```php
+step(string $step)
+```
+
+### <span class="badge object-method"></span> tagKeys
+
+Comma-separated label keys used as annotation tags.
+
+```php
+tagKeys(string $tagKeys)
+```
+
 ### <span class="badge object-method"></span> target
 
 TODO.. this should just be a normal query target
@@ -102,12 +128,36 @@ TODO.. this should just be a normal query target
 target(\Grafana\Foundation\Cog\Builder $target)
 ```
 
+### <span class="badge object-method"></span> textFormat
+
+Format for Prometheus annotation text. Label values can be interpolated with templates like {{instance}}.
+
+```php
+textFormat(string $textFormat)
+```
+
+### <span class="badge object-method"></span> titleFormat
+
+Format for Prometheus and Loki annotation titles. Label values can be interpolated with templates like {{instance}}.
+
+```php
+titleFormat(string $titleFormat)
+```
+
 ### <span class="badge object-method"></span> type
 
 TODO -- this should not exist here, it is based on the --grafana-- datasource
 
 ```php
 type(string $type)
+```
+
+### <span class="badge object-method"></span> useValueForTime
+
+Use the Prometheus series value as the annotation timestamp.
+
+```php
+useValueForTime(bool $useValueForTime)
 ```
 
 ## See also

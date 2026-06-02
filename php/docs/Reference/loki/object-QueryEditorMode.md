@@ -24,20 +24,20 @@ final class QueryEditorMode implements \JsonSerializable, \Stringable {
 
     public static function code(): self
     {
-        if (!isset(self::$instances["code"])) {
-            self::$instances["code"] = new self("code");
+        if (!isset(self::$instances["Code"])) {
+            self::$instances["Code"] = new self("code");
         }
 
-        return self::$instances["code"];
+        return self::$instances["Code"];
     }
 
     public static function builder(): self
     {
-        if (!isset(self::$instances["builder"])) {
-            self::$instances["builder"] = new self("builder");
+        if (!isset(self::$instances["Builder"])) {
+            self::$instances["Builder"] = new self("builder");
         }
 
-        return self::$instances["builder"];
+        return self::$instances["Builder"];
     }
 
     public static function fromValue(string $value): self

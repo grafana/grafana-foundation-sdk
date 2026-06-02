@@ -137,56 +137,56 @@ final class MetricAggregationType implements \JsonSerializable, \Stringable {
 
     public static function movingAvg(): self
     {
-        if (!isset(self::$instances["moving_avg"])) {
-            self::$instances["moving_avg"] = new self("moving_avg");
+        if (!isset(self::$instances["MovingAvg"])) {
+            self::$instances["MovingAvg"] = new self("moving_avg");
         }
 
-        return self::$instances["moving_avg"];
+        return self::$instances["MovingAvg"];
     }
 
     public static function movingFn(): self
     {
-        if (!isset(self::$instances["moving_fn"])) {
-            self::$instances["moving_fn"] = new self("moving_fn");
+        if (!isset(self::$instances["MovingFn"])) {
+            self::$instances["MovingFn"] = new self("moving_fn");
         }
 
-        return self::$instances["moving_fn"];
+        return self::$instances["MovingFn"];
     }
 
     public static function derivative(): self
     {
-        if (!isset(self::$instances["derivative"])) {
-            self::$instances["derivative"] = new self("derivative");
+        if (!isset(self::$instances["Derivative"])) {
+            self::$instances["Derivative"] = new self("derivative");
         }
 
-        return self::$instances["derivative"];
+        return self::$instances["Derivative"];
     }
 
     public static function serialDiff(): self
     {
-        if (!isset(self::$instances["serial_diff"])) {
-            self::$instances["serial_diff"] = new self("serial_diff");
+        if (!isset(self::$instances["SerialDiff"])) {
+            self::$instances["SerialDiff"] = new self("serial_diff");
         }
 
-        return self::$instances["serial_diff"];
+        return self::$instances["SerialDiff"];
     }
 
     public static function cumulativeSum(): self
     {
-        if (!isset(self::$instances["cumulative_sum"])) {
-            self::$instances["cumulative_sum"] = new self("cumulative_sum");
+        if (!isset(self::$instances["CumulativeSum"])) {
+            self::$instances["CumulativeSum"] = new self("cumulative_sum");
         }
 
-        return self::$instances["cumulative_sum"];
+        return self::$instances["CumulativeSum"];
     }
 
     public static function bucketScript(): self
     {
-        if (!isset(self::$instances["bucket_script"])) {
-            self::$instances["bucket_script"] = new self("bucket_script");
+        if (!isset(self::$instances["BucketScript"])) {
+            self::$instances["BucketScript"] = new self("bucket_script");
         }
 
-        return self::$instances["bucket_script"];
+        return self::$instances["BucketScript"];
     }
 
     public static function fromValue(string $value): self

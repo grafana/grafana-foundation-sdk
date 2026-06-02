@@ -8,7 +8,7 @@ import com.fasterxml.jackson.annotation.JsonValue;
 
 @JsonFormat(shape = JsonFormat.Shape.OBJECT)
 public enum MetricKind {
-    METRIC_KIND_UNSPECIFIED("METRIC_KIND_UNSPECIFIED"),
+    METRICKINDUNSPECIFIED("METRIC_KIND_UNSPECIFIED"),
     GAUGE("GAUGE"),
     DELTA("DELTA"),
     CUMULATIVE("CUMULATIVE"),

@@ -147,6 +147,83 @@ func AnnotationQueryConverter(input AnnotationQuery) string {
 		buffer.Reset()
 
 	}
+	if input.TextFormat != nil && *input.TextFormat != "" {
+
+		buffer.WriteString(`TextFormat(`)
+		arg0 := fmt.Sprintf("%#v", *input.TextFormat)
+		buffer.WriteString(arg0)
+
+		buffer.WriteString(")")
+
+		calls = append(calls, buffer.String())
+		buffer.Reset()
+
+	}
+	if input.TitleFormat != nil && *input.TitleFormat != "" {
+
+		buffer.WriteString(`TitleFormat(`)
+		arg0 := fmt.Sprintf("%#v", *input.TitleFormat)
+		buffer.WriteString(arg0)
+
+		buffer.WriteString(")")
+
+		calls = append(calls, buffer.String())
+		buffer.Reset()
+
+	}
+	if input.TagKeys != nil && *input.TagKeys != "" {
+
+		buffer.WriteString(`TagKeys(`)
+		arg0 := fmt.Sprintf("%#v", *input.TagKeys)
+		buffer.WriteString(arg0)
+
+		buffer.WriteString(")")
+
+		calls = append(calls, buffer.String())
+		buffer.Reset()
+
+	}
+	if input.Step != nil && *input.Step != "" {
+
+		buffer.WriteString(`Step(`)
+		arg0 := fmt.Sprintf("%#v", *input.Step)
+		buffer.WriteString(arg0)
+
+		buffer.WriteString(")")
+
+		calls = append(calls, buffer.String())
+		buffer.Reset()
+
+	}
+	if input.UseValueForTime != nil {
+
+		buffer.WriteString(`UseValueForTime(`)
+		arg0 := fmt.Sprintf("%#v", *input.UseValueForTime)
+		buffer.WriteString(arg0)
+
+		buffer.WriteString(")")
+
+		calls = append(calls, buffer.String())
+		buffer.Reset()
+
+	}
+	if input.Mappings != nil {
+
+		buffer.WriteString(`Mappings(`)
+		arg0 := "map[string]cog.Builder[dashboard.AnnotationEventFieldMapping]{"
+		for key, arg1 := range input.Mappings {
+			tmpmappingsarg1 := AnnotationEventFieldMappingConverter(arg1)
+			arg0 += "\t" + fmt.Sprintf("%#v", key) + ": " + tmpmappingsarg1 + ","
+		}
+		arg0 += "}"
+		buffer.WriteString(arg0)
+
+		buffer.WriteString(")")
+
+		calls = append(calls, buffer.String())
+		buffer.Reset()
+
+	}
 
 	return strings.Join(calls, ".\t\n")
 }
