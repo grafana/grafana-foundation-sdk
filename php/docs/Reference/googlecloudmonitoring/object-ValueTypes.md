@@ -24,11 +24,11 @@ final class ValueTypes implements \JsonSerializable, \Stringable {
 
     public static function vALUETYPEUNSPECIFIED(): self
     {
-        if (!isset(self::$instances["VALUE_TYPE_UNSPECIFIED"])) {
-            self::$instances["VALUE_TYPE_UNSPECIFIED"] = new self("VALUE_TYPE_UNSPECIFIED");
+        if (!isset(self::$instances["VALUETYPEUNSPECIFIED"])) {
+            self::$instances["VALUETYPEUNSPECIFIED"] = new self("VALUE_TYPE_UNSPECIFIED");
         }
 
-        return self::$instances["VALUE_TYPE_UNSPECIFIED"];
+        return self::$instances["VALUETYPEUNSPECIFIED"];
     }
 
     public static function bOOL(): self

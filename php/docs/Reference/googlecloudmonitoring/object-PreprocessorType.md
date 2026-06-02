@@ -26,29 +26,29 @@ final class PreprocessorType implements \JsonSerializable, \Stringable {
 
     public static function none(): self
     {
-        if (!isset(self::$instances["none"])) {
-            self::$instances["none"] = new self("none");
+        if (!isset(self::$instances["None"])) {
+            self::$instances["None"] = new self("none");
         }
 
-        return self::$instances["none"];
+        return self::$instances["None"];
     }
 
     public static function rate(): self
     {
-        if (!isset(self::$instances["rate"])) {
-            self::$instances["rate"] = new self("rate");
+        if (!isset(self::$instances["Rate"])) {
+            self::$instances["Rate"] = new self("rate");
         }
 
-        return self::$instances["rate"];
+        return self::$instances["Rate"];
     }
 
     public static function delta(): self
     {
-        if (!isset(self::$instances["delta"])) {
-            self::$instances["delta"] = new self("delta");
+        if (!isset(self::$instances["Delta"])) {
+            self::$instances["Delta"] = new self("delta");
         }
 
-        return self::$instances["delta"];
+        return self::$instances["Delta"];
     }
 
     public static function fromValue(string $value): self

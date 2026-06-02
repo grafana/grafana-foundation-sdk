@@ -22,6 +22,12 @@ public class AnnotationQuery {
   public Double builtIn;
   public AnnotationQueryPlacement placement;
   public String expr;
+  public String textFormat;
+  public String titleFormat;
+  public String tagKeys;
+  public String step;
+  public Boolean useValueForTime;
+  public Map<String, AnnotationEventFieldMapping> mappings;
 }
 ```
 ## See also

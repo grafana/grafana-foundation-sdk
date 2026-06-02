@@ -20,29 +20,29 @@ final class PyroscopeQueryType implements \JsonSerializable, \Stringable {
 
     public static function metrics(): self
     {
-        if (!isset(self::$instances["metrics"])) {
-            self::$instances["metrics"] = new self("metrics");
+        if (!isset(self::$instances["Metrics"])) {
+            self::$instances["Metrics"] = new self("metrics");
         }
 
-        return self::$instances["metrics"];
+        return self::$instances["Metrics"];
     }
 
     public static function profile(): self
     {
-        if (!isset(self::$instances["profile"])) {
-            self::$instances["profile"] = new self("profile");
+        if (!isset(self::$instances["Profile"])) {
+            self::$instances["Profile"] = new self("profile");
         }
 
-        return self::$instances["profile"];
+        return self::$instances["Profile"];
     }
 
     public static function both(): self
     {
-        if (!isset(self::$instances["both"])) {
-            self::$instances["both"] = new self("both");
+        if (!isset(self::$instances["Both"])) {
+            self::$instances["Both"] = new self("both");
         }
 
-        return self::$instances["both"];
+        return self::$instances["Both"];
     }
 
     public static function fromValue(string $value): self

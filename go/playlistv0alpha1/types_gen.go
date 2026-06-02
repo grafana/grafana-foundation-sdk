@@ -74,10 +74,6 @@ func (resource *Item) UnmarshalJSONStrict(raw []byte) error {
 		errs = append(errs, cog.MakeBuildErrors("Item", fmt.Errorf("unexpected field '%s'", field))...)
 	}
 
-	if len(errs) == 0 {
-		return nil
-	}
-
 	return errs
 }
 
@@ -180,10 +176,6 @@ func (resource *Playlist) UnmarshalJSONStrict(raw []byte) error {
 
 	for field := range fields {
 		errs = append(errs, cog.MakeBuildErrors("Playlist", fmt.Errorf("unexpected field '%s'", field))...)
-	}
-
-	if len(errs) == 0 {
-		return nil
 	}
 
 	return errs

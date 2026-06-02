@@ -26,20 +26,20 @@ final class AxisColorMode implements \JsonSerializable, \Stringable {
 
     public static function text(): self
     {
-        if (!isset(self::$instances["text"])) {
-            self::$instances["text"] = new self("text");
+        if (!isset(self::$instances["Text"])) {
+            self::$instances["Text"] = new self("text");
         }
 
-        return self::$instances["text"];
+        return self::$instances["Text"];
     }
 
     public static function series(): self
     {
-        if (!isset(self::$instances["series"])) {
-            self::$instances["series"] = new self("series");
+        if (!isset(self::$instances["Series"])) {
+            self::$instances["Series"] = new self("series");
         }
 
-        return self::$instances["series"];
+        return self::$instances["Series"];
     }
 
     public static function fromValue(string $value): self

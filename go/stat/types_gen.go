@@ -65,7 +65,8 @@ func (resource *Options) UnmarshalJSONStrict(raw []byte) error {
 
 		}
 		delete(fields, "graphMode")
-
+	} else {
+		errs = append(errs, cog.MakeBuildErrors("graphMode", errors.New("required field is missing from input"))...)
 	}
 	// Field "colorMode"
 	if fields["colorMode"] != nil {
@@ -78,7 +79,8 @@ func (resource *Options) UnmarshalJSONStrict(raw []byte) error {
 
 		}
 		delete(fields, "colorMode")
-
+	} else {
+		errs = append(errs, cog.MakeBuildErrors("colorMode", errors.New("required field is missing from input"))...)
 	}
 	// Field "justifyMode"
 	if fields["justifyMode"] != nil {
@@ -91,7 +93,8 @@ func (resource *Options) UnmarshalJSONStrict(raw []byte) error {
 
 		}
 		delete(fields, "justifyMode")
-
+	} else {
+		errs = append(errs, cog.MakeBuildErrors("justifyMode", errors.New("required field is missing from input"))...)
 	}
 	// Field "textMode"
 	if fields["textMode"] != nil {
@@ -104,7 +107,8 @@ func (resource *Options) UnmarshalJSONStrict(raw []byte) error {
 
 		}
 		delete(fields, "textMode")
-
+	} else {
+		errs = append(errs, cog.MakeBuildErrors("textMode", errors.New("required field is missing from input"))...)
 	}
 	// Field "wideLayout"
 	if fields["wideLayout"] != nil {
@@ -117,7 +121,8 @@ func (resource *Options) UnmarshalJSONStrict(raw []byte) error {
 
 		}
 		delete(fields, "wideLayout")
-
+	} else {
+		errs = append(errs, cog.MakeBuildErrors("wideLayout", errors.New("required field is missing from input"))...)
 	}
 	// Field "showPercentChange"
 	if fields["showPercentChange"] != nil {
@@ -130,7 +135,8 @@ func (resource *Options) UnmarshalJSONStrict(raw []byte) error {
 
 		}
 		delete(fields, "showPercentChange")
-
+	} else {
+		errs = append(errs, cog.MakeBuildErrors("showPercentChange", errors.New("required field is missing from input"))...)
 	}
 	// Field "reduceOptions"
 	if fields["reduceOptions"] != nil {
@@ -172,7 +178,8 @@ func (resource *Options) UnmarshalJSONStrict(raw []byte) error {
 
 		}
 		delete(fields, "percentChangeColorMode")
-
+	} else {
+		errs = append(errs, cog.MakeBuildErrors("percentChangeColorMode", errors.New("required field is missing from input"))...)
 	}
 	// Field "orientation"
 	if fields["orientation"] != nil {
@@ -191,10 +198,6 @@ func (resource *Options) UnmarshalJSONStrict(raw []byte) error {
 
 	for field := range fields {
 		errs = append(errs, cog.MakeBuildErrors("Options", fmt.Errorf("unexpected field '%s'", field))...)
-	}
-
-	if len(errs) == 0 {
-		return nil
 	}
 
 	return errs

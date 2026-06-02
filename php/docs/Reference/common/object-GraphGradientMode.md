@@ -26,38 +26,38 @@ final class GraphGradientMode implements \JsonSerializable, \Stringable {
 
     public static function none(): self
     {
-        if (!isset(self::$instances["none"])) {
-            self::$instances["none"] = new self("none");
+        if (!isset(self::$instances["None"])) {
+            self::$instances["None"] = new self("none");
         }
 
-        return self::$instances["none"];
+        return self::$instances["None"];
     }
 
     public static function opacity(): self
     {
-        if (!isset(self::$instances["opacity"])) {
-            self::$instances["opacity"] = new self("opacity");
+        if (!isset(self::$instances["Opacity"])) {
+            self::$instances["Opacity"] = new self("opacity");
         }
 
-        return self::$instances["opacity"];
+        return self::$instances["Opacity"];
     }
 
     public static function hue(): self
     {
-        if (!isset(self::$instances["hue"])) {
-            self::$instances["hue"] = new self("hue");
+        if (!isset(self::$instances["Hue"])) {
+            self::$instances["Hue"] = new self("hue");
         }
 
-        return self::$instances["hue"];
+        return self::$instances["Hue"];
     }
 
     public static function scheme(): self
     {
-        if (!isset(self::$instances["scheme"])) {
-            self::$instances["scheme"] = new self("scheme");
+        if (!isset(self::$instances["Scheme"])) {
+            self::$instances["Scheme"] = new self("scheme");
         }
 
-        return self::$instances["scheme"];
+        return self::$instances["Scheme"];
     }
 
     public static function fromValue(string $value): self

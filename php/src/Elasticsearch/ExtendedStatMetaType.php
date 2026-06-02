@@ -20,74 +20,74 @@ final class ExtendedStatMetaType implements \JsonSerializable, \Stringable {
 
     public static function avg(): self
     {
-        if (!isset(self::$instances["avg"])) {
-            self::$instances["avg"] = new self("avg");
+        if (!isset(self::$instances["Avg"])) {
+            self::$instances["Avg"] = new self("avg");
         }
 
-        return self::$instances["avg"];
+        return self::$instances["Avg"];
     }
 
     public static function min(): self
     {
-        if (!isset(self::$instances["min"])) {
-            self::$instances["min"] = new self("min");
+        if (!isset(self::$instances["Min"])) {
+            self::$instances["Min"] = new self("min");
         }
 
-        return self::$instances["min"];
+        return self::$instances["Min"];
     }
 
     public static function max(): self
     {
-        if (!isset(self::$instances["max"])) {
-            self::$instances["max"] = new self("max");
+        if (!isset(self::$instances["Max"])) {
+            self::$instances["Max"] = new self("max");
         }
 
-        return self::$instances["max"];
+        return self::$instances["Max"];
     }
 
     public static function sum(): self
     {
-        if (!isset(self::$instances["sum"])) {
-            self::$instances["sum"] = new self("sum");
+        if (!isset(self::$instances["Sum"])) {
+            self::$instances["Sum"] = new self("sum");
         }
 
-        return self::$instances["sum"];
+        return self::$instances["Sum"];
     }
 
     public static function count(): self
     {
-        if (!isset(self::$instances["count"])) {
-            self::$instances["count"] = new self("count");
+        if (!isset(self::$instances["Count"])) {
+            self::$instances["Count"] = new self("count");
         }
 
-        return self::$instances["count"];
+        return self::$instances["Count"];
     }
 
     public static function stdDeviation(): self
     {
-        if (!isset(self::$instances["std_deviation"])) {
-            self::$instances["std_deviation"] = new self("std_deviation");
+        if (!isset(self::$instances["StdDeviation"])) {
+            self::$instances["StdDeviation"] = new self("std_deviation");
         }
 
-        return self::$instances["std_deviation"];
+        return self::$instances["StdDeviation"];
     }
 
     public static function stdDeviationBoundsUpper(): self
     {
-        if (!isset(self::$instances["std_deviation_bounds_upper"])) {
-            self::$instances["std_deviation_bounds_upper"] = new self("std_deviation_bounds_upper");
+        if (!isset(self::$instances["StdDeviationBoundsUpper"])) {
+            self::$instances["StdDeviationBoundsUpper"] = new self("std_deviation_bounds_upper");
         }
 
-        return self::$instances["std_deviation_bounds_upper"];
+        return self::$instances["StdDeviationBoundsUpper"];
     }
 
     public static function stdDeviationBoundsLower(): self
     {
-        if (!isset(self::$instances["std_deviation_bounds_lower"])) {
-            self::$instances["std_deviation_bounds_lower"] = new self("std_deviation_bounds_lower");
+        if (!isset(self::$instances["StdDeviationBoundsLower"])) {
+            self::$instances["StdDeviationBoundsLower"] = new self("std_deviation_bounds_lower");
         }
 
-        return self::$instances["std_deviation_bounds_lower"];
+        return self::$instances["StdDeviationBoundsLower"];
     }
 
     public static function fromValue(string $value): self

@@ -23,38 +23,38 @@ final class ScaleDistribution implements \JsonSerializable, \Stringable {
 
     public static function linear(): self
     {
-        if (!isset(self::$instances["linear"])) {
-            self::$instances["linear"] = new self("linear");
+        if (!isset(self::$instances["Linear"])) {
+            self::$instances["Linear"] = new self("linear");
         }
 
-        return self::$instances["linear"];
+        return self::$instances["Linear"];
     }
 
     public static function log(): self
     {
-        if (!isset(self::$instances["log"])) {
-            self::$instances["log"] = new self("log");
+        if (!isset(self::$instances["Log"])) {
+            self::$instances["Log"] = new self("log");
         }
 
-        return self::$instances["log"];
+        return self::$instances["Log"];
     }
 
     public static function ordinal(): self
     {
-        if (!isset(self::$instances["ordinal"])) {
-            self::$instances["ordinal"] = new self("ordinal");
+        if (!isset(self::$instances["Ordinal"])) {
+            self::$instances["Ordinal"] = new self("ordinal");
         }
 
-        return self::$instances["ordinal"];
+        return self::$instances["Ordinal"];
     }
 
     public static function symlog(): self
     {
-        if (!isset(self::$instances["symlog"])) {
-            self::$instances["symlog"] = new self("symlog");
+        if (!isset(self::$instances["Symlog"])) {
+            self::$instances["Symlog"] = new self("symlog");
         }
 
-        return self::$instances["symlog"];
+        return self::$instances["Symlog"];
     }
 
     public static function fromValue(string $value): self

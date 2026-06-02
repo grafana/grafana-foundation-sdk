@@ -26,38 +26,38 @@ final class TableCellHeight implements \JsonSerializable, \Stringable {
 
     public static function sm(): self
     {
-        if (!isset(self::$instances["sm"])) {
-            self::$instances["sm"] = new self("sm");
+        if (!isset(self::$instances["Sm"])) {
+            self::$instances["Sm"] = new self("sm");
         }
 
-        return self::$instances["sm"];
+        return self::$instances["Sm"];
     }
 
     public static function md(): self
     {
-        if (!isset(self::$instances["md"])) {
-            self::$instances["md"] = new self("md");
+        if (!isset(self::$instances["Md"])) {
+            self::$instances["Md"] = new self("md");
         }
 
-        return self::$instances["md"];
+        return self::$instances["Md"];
     }
 
     public static function lg(): self
     {
-        if (!isset(self::$instances["lg"])) {
-            self::$instances["lg"] = new self("lg");
+        if (!isset(self::$instances["Lg"])) {
+            self::$instances["Lg"] = new self("lg");
         }
 
-        return self::$instances["lg"];
+        return self::$instances["Lg"];
     }
 
     public static function auto(): self
     {
-        if (!isset(self::$instances["auto"])) {
-            self::$instances["auto"] = new self("auto");
+        if (!isset(self::$instances["Auto"])) {
+            self::$instances["Auto"] = new self("auto");
         }
 
-        return self::$instances["auto"];
+        return self::$instances["Auto"];
     }
 
     public static function fromValue(string $value): self

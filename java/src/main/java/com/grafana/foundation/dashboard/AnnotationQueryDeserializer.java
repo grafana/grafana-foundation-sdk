@@ -65,6 +65,24 @@ public class AnnotationQueryDeserializer extends JsonDeserializer<AnnotationQuer
         if (root.has("expr")) {
             annotationQuery.expr = mapper.convertValue(root.get("expr"), new TypeReference<>() {});
         }
+        if (root.has("textFormat")) {
+            annotationQuery.textFormat = mapper.convertValue(root.get("textFormat"), new TypeReference<>() {});
+        }
+        if (root.has("titleFormat")) {
+            annotationQuery.titleFormat = mapper.convertValue(root.get("titleFormat"), new TypeReference<>() {});
+        }
+        if (root.has("tagKeys")) {
+            annotationQuery.tagKeys = mapper.convertValue(root.get("tagKeys"), new TypeReference<>() {});
+        }
+        if (root.has("step")) {
+            annotationQuery.step = mapper.convertValue(root.get("step"), new TypeReference<>() {});
+        }
+        if (root.has("useValueForTime")) {
+            annotationQuery.useValueForTime = mapper.convertValue(root.get("useValueForTime"), new TypeReference<>() {});
+        }
+        if (root.has("mappings")) {
+            annotationQuery.mappings = mapper.convertValue(root.get("mappings"), new TypeReference<>() {});
+        }
        
        
        // Dataquery stuff

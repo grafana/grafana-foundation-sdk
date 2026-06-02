@@ -28,29 +28,29 @@ final class LegendDisplayMode implements \JsonSerializable, \Stringable {
 
     public static function list(): self
     {
-        if (!isset(self::$instances["list"])) {
-            self::$instances["list"] = new self("list");
+        if (!isset(self::$instances["List"])) {
+            self::$instances["List"] = new self("list");
         }
 
-        return self::$instances["list"];
+        return self::$instances["List"];
     }
 
     public static function table(): self
     {
-        if (!isset(self::$instances["table"])) {
-            self::$instances["table"] = new self("table");
+        if (!isset(self::$instances["Table"])) {
+            self::$instances["Table"] = new self("table");
         }
 
-        return self::$instances["table"];
+        return self::$instances["Table"];
     }
 
     public static function hidden(): self
     {
-        if (!isset(self::$instances["hidden"])) {
-            self::$instances["hidden"] = new self("hidden");
+        if (!isset(self::$instances["Hidden"])) {
+            self::$instances["Hidden"] = new self("hidden");
         }
 
-        return self::$instances["hidden"];
+        return self::$instances["Hidden"];
     }
 
     public static function fromValue(string $value): self

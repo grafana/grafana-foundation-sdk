@@ -180,10 +180,6 @@ func (resource *LibraryPanel) UnmarshalJSONStrict(raw []byte) error {
 		errs = append(errs, cog.MakeBuildErrors("LibraryPanel", fmt.Errorf("unexpected field '%s'", field))...)
 	}
 
-	if len(errs) == 0 {
-		return nil
-	}
-
 	return errs
 }
 
@@ -412,10 +408,6 @@ func (resource *LibraryElementDTOMeta) UnmarshalJSONStrict(raw []byte) error {
 		errs = append(errs, cog.MakeBuildErrors("LibraryElementDTOMeta", fmt.Errorf("unexpected field '%s'", field))...)
 	}
 
-	if len(errs) == 0 {
-		return nil
-	}
-
 	return errs
 }
 
@@ -531,10 +523,6 @@ func (resource *LibraryElementDTOMetaUser) UnmarshalJSONStrict(raw []byte) error
 
 	for field := range fields {
 		errs = append(errs, cog.MakeBuildErrors("LibraryElementDTOMetaUser", fmt.Errorf("unexpected field '%s'", field))...)
-	}
-
-	if len(errs) == 0 {
-		return nil
 	}
 
 	return errs
@@ -1089,10 +1077,6 @@ func (resource *PanelModel) UnmarshalJSONStrict(raw []byte) error {
 
 	for field := range fields {
 		errs = append(errs, cog.MakeBuildErrors("PanelModel", fmt.Errorf("unexpected field '%s'", field))...)
-	}
-
-	if len(errs) == 0 {
-		return nil
 	}
 
 	return errs

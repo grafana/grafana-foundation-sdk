@@ -24,20 +24,20 @@ final class ZoomMode implements \JsonSerializable, \Stringable {
 
     public static function cooperative(): self
     {
-        if (!isset(self::$instances["cooperative"])) {
-            self::$instances["cooperative"] = new self("cooperative");
+        if (!isset(self::$instances["Cooperative"])) {
+            self::$instances["Cooperative"] = new self("cooperative");
         }
 
-        return self::$instances["cooperative"];
+        return self::$instances["Cooperative"];
     }
 
     public static function greedy(): self
     {
-        if (!isset(self::$instances["greedy"])) {
-            self::$instances["greedy"] = new self("greedy");
+        if (!isset(self::$instances["Greedy"])) {
+            self::$instances["Greedy"] = new self("greedy");
         }
 
-        return self::$instances["greedy"];
+        return self::$instances["Greedy"];
     }
 
     public static function fromValue(string $value): self

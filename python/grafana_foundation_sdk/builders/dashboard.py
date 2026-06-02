@@ -634,6 +634,61 @@ class AnnotationQuery(cogbuilder.Builder[dashboard.AnnotationQuery]):
     
         return self
     
+    def text_format(self, text_format: str) -> typing.Self:    
+        """
+        Format for Prometheus annotation text. Label values can be interpolated with templates like {{instance}}.
+        """
+            
+        self._internal.text_format = text_format
+    
+        return self
+    
+    def title_format(self, title_format: str) -> typing.Self:    
+        """
+        Format for Prometheus and Loki annotation titles. Label values can be interpolated with templates like {{instance}}.
+        """
+            
+        self._internal.title_format = title_format
+    
+        return self
+    
+    def tag_keys(self, tag_keys: str) -> typing.Self:    
+        """
+        Comma-separated label keys used as annotation tags.
+        """
+            
+        self._internal.tag_keys = tag_keys
+    
+        return self
+    
+    def step(self, step: str) -> typing.Self:    
+        """
+        Legacy Prometheus annotation query step interval.
+        """
+            
+        self._internal.step = step
+    
+        return self
+    
+    def use_value_for_time(self, use_value_for_time: bool) -> typing.Self:    
+        """
+        Use the Prometheus series value as the annotation timestamp.
+        """
+            
+        self._internal.use_value_for_time = use_value_for_time
+    
+        return self
+    
+    def mappings(self, mappings: dict[str, cogbuilder.Builder[dashboard.AnnotationEventFieldMapping]]) -> typing.Self:    
+        """
+        Mappings define how to convert data frame fields to annotation event fields.
+        """
+            
+        mappings_resources = { key1: val1.build() for (key1, val1) in mappings.items() }
+        self._internal.mappings = mappings_resources
+    
+        return self
+    
 
 
 class AnnotationPanelFilter(cogbuilder.Builder[dashboard.AnnotationPanelFilter]):
@@ -831,6 +886,51 @@ class Snapshot(cogbuilder.Builder[dashboard.Snapshot]):
     def dashboard(self, dashboard: cogbuilder.Builder[dashboard.Dashboard]) -> typing.Self:    
         dashboard_resource = dashboard.build()
         self._internal.dashboard = dashboard_resource
+    
+        return self
+    
+
+
+class AnnotationEventFieldMapping(cogbuilder.Builder[dashboard.AnnotationEventFieldMapping]):    
+    """
+    Annotation event field mapping. Defines how to map a data frame field to an annotation event field.
+    """
+    
+    _internal: dashboard.AnnotationEventFieldMapping
+
+    def __init__(self) -> None:
+        self._internal = dashboard.AnnotationEventFieldMapping()
+
+    def build(self) -> dashboard.AnnotationEventFieldMapping:
+        """
+        Builds the object.
+        """
+        return self._internal    
+    
+    def source(self, source: dashboard.AnnotationEventFieldSource) -> typing.Self:    
+        """
+        Source type for the field value.
+        """
+            
+        self._internal.source = source
+    
+        return self
+    
+    def value(self, value: str) -> typing.Self:    
+        """
+        Constant value to use when source is "text".
+        """
+            
+        self._internal.value = value
+    
+        return self
+    
+    def regex(self, regex: str) -> typing.Self:    
+        """
+        Regular expression to apply to the field value.
+        """
+            
+        self._internal.regex = regex
     
         return self
     

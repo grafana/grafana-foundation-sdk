@@ -10,6 +10,7 @@ import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.grafana.foundation.common.DataSourceRef;
 import com.grafana.foundation.cog.variants.Dataquery;
+import java.util.Map;
 
 // TODO docs
 // FROM: AnnotationQuery in grafana-data/src/types/annotations.ts
@@ -56,6 +57,30 @@ public class AnnotationQuery {
     @JsonInclude(JsonInclude.Include.NON_NULL)
     @JsonProperty("expr")
     public String expr;
+    // Format for Prometheus annotation text. Label values can be interpolated with templates like {{instance}}.
+    @JsonInclude(JsonInclude.Include.NON_NULL)
+    @JsonProperty("textFormat")
+    public String textFormat;
+    // Format for Prometheus and Loki annotation titles. Label values can be interpolated with templates like {{instance}}.
+    @JsonInclude(JsonInclude.Include.NON_NULL)
+    @JsonProperty("titleFormat")
+    public String titleFormat;
+    // Comma-separated label keys used as annotation tags.
+    @JsonInclude(JsonInclude.Include.NON_NULL)
+    @JsonProperty("tagKeys")
+    public String tagKeys;
+    // Legacy Prometheus annotation query step interval.
+    @JsonInclude(JsonInclude.Include.NON_NULL)
+    @JsonProperty("step")
+    public String step;
+    // Use the Prometheus series value as the annotation timestamp.
+    @JsonInclude(JsonInclude.Include.NON_NULL)
+    @JsonProperty("useValueForTime")
+    public Boolean useValueForTime;
+    // Mappings define how to convert data frame fields to annotation event fields.
+    @JsonInclude(JsonInclude.Include.NON_NULL)
+    @JsonProperty("mappings")
+    public Map<String, AnnotationEventFieldMapping> mappings;
     public AnnotationQuery() {
         this.name = "";
         this.enable = true;
@@ -64,7 +89,7 @@ public class AnnotationQuery {
         this.builtIn = 0.0;
         this.placement = AnnotationQueryPlacement.IN_CONTROLS_MENU;
     }
-    public AnnotationQuery(String name,DataSourceRef datasource,Boolean enable,Boolean hide,String iconColor,AnnotationPanelFilter filter,Dataquery target,String type,Double builtIn,String expr) {
+    public AnnotationQuery(String name,DataSourceRef datasource,Boolean enable,Boolean hide,String iconColor,AnnotationPanelFilter filter,Dataquery target,String type,Double builtIn,String expr,String textFormat,String titleFormat,String tagKeys,String step,Boolean useValueForTime,Map<String, AnnotationEventFieldMapping> mappings) {
         this.name = name;
         this.datasource = datasource;
         this.enable = enable;
@@ -76,6 +101,12 @@ public class AnnotationQuery {
         this.builtIn = builtIn;
         this.placement = AnnotationQueryPlacement.IN_CONTROLS_MENU;
         this.expr = expr;
+        this.textFormat = textFormat;
+        this.titleFormat = titleFormat;
+        this.tagKeys = tagKeys;
+        this.step = step;
+        this.useValueForTime = useValueForTime;
+        this.mappings = mappings;
     }
     
     public String toJSON() throws JsonProcessingException {

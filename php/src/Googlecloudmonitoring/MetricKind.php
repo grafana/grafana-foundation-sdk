@@ -20,11 +20,11 @@ final class MetricKind implements \JsonSerializable, \Stringable {
 
     public static function mETRICKINDUNSPECIFIED(): self
     {
-        if (!isset(self::$instances["METRIC_KIND_UNSPECIFIED"])) {
-            self::$instances["METRIC_KIND_UNSPECIFIED"] = new self("METRIC_KIND_UNSPECIFIED");
+        if (!isset(self::$instances["METRICKINDUNSPECIFIED"])) {
+            self::$instances["METRICKINDUNSPECIFIED"] = new self("METRIC_KIND_UNSPECIFIED");
         }
 
-        return self::$instances["METRIC_KIND_UNSPECIFIED"];
+        return self::$instances["METRICKINDUNSPECIFIED"];
     }
 
     public static function gAUGE(): self

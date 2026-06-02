@@ -26,29 +26,29 @@ final class VisibilityMode implements \JsonSerializable, \Stringable {
 
     public static function auto(): self
     {
-        if (!isset(self::$instances["auto"])) {
-            self::$instances["auto"] = new self("auto");
+        if (!isset(self::$instances["Auto"])) {
+            self::$instances["Auto"] = new self("auto");
         }
 
-        return self::$instances["auto"];
+        return self::$instances["Auto"];
     }
 
     public static function never(): self
     {
-        if (!isset(self::$instances["never"])) {
-            self::$instances["never"] = new self("never");
+        if (!isset(self::$instances["Never"])) {
+            self::$instances["Never"] = new self("never");
         }
 
-        return self::$instances["never"];
+        return self::$instances["Never"];
     }
 
     public static function always(): self
     {
-        if (!isset(self::$instances["always"])) {
-            self::$instances["always"] = new self("always");
+        if (!isset(self::$instances["Always"])) {
+            self::$instances["Always"] = new self("always");
         }
 
-        return self::$instances["always"];
+        return self::$instances["Always"];
     }
 
     public static function fromValue(string $value): self

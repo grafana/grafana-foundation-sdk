@@ -23,7 +23,7 @@ func (builder *QueryBuilder) Build() (dashboardv2beta1.DataQueryKind, error)
 Azure Monitor Logs sub-query properties.
 
 ```go
-func (builder *QueryBuilder) AzureLogAnalytics(azureLogAnalytics cog.Builder[azuremonitor.AzureLogsQuery]) *QueryBuilder
+func (builder *QueryBuilder) AzureLogAnalytics(azureLogAnalytics cog.Builder[azuremonitor.LogsQuery]) *QueryBuilder
 ```
 
 ### <span class="badge object-method"></span> AzureMonitor
@@ -31,7 +31,7 @@ func (builder *QueryBuilder) AzureLogAnalytics(azureLogAnalytics cog.Builder[azu
 Azure Monitor Metrics sub-query properties.
 
 ```go
-func (builder *QueryBuilder) AzureMonitor(azureMonitor cog.Builder[azuremonitor.AzureMetricQuery]) *QueryBuilder
+func (builder *QueryBuilder) AzureMonitor(azureMonitor cog.Builder[azuremonitor.MetricQuery]) *QueryBuilder
 ```
 
 ### <span class="badge object-method"></span> AzureResourceGraph
@@ -39,7 +39,7 @@ func (builder *QueryBuilder) AzureMonitor(azureMonitor cog.Builder[azuremonitor.
 Azure Resource Graph sub-query properties.
 
 ```go
-func (builder *QueryBuilder) AzureResourceGraph(azureResourceGraph cog.Builder[azuremonitor.AzureResourceGraphQuery]) *QueryBuilder
+func (builder *QueryBuilder) AzureResourceGraph(azureResourceGraph cog.Builder[azuremonitor.ResourceGraphQuery]) *QueryBuilder
 ```
 
 ### <span class="badge object-method"></span> AzureTraces
@@ -47,7 +47,7 @@ func (builder *QueryBuilder) AzureResourceGraph(azureResourceGraph cog.Builder[a
 Application Insights Traces sub-query properties.
 
 ```go
-func (builder *QueryBuilder) AzureTraces(azureTraces cog.Builder[azuremonitor.AzureTracesQuery]) *QueryBuilder
+func (builder *QueryBuilder) AzureTraces(azureTraces cog.Builder[azuremonitor.TracesQuery]) *QueryBuilder
 ```
 
 ### <span class="badge object-method"></span> CustomNamespace

@@ -26,29 +26,29 @@ final class VizOrientation implements \JsonSerializable, \Stringable {
 
     public static function auto(): self
     {
-        if (!isset(self::$instances["auto"])) {
-            self::$instances["auto"] = new self("auto");
+        if (!isset(self::$instances["Auto"])) {
+            self::$instances["Auto"] = new self("auto");
         }
 
-        return self::$instances["auto"];
+        return self::$instances["Auto"];
     }
 
     public static function vertical(): self
     {
-        if (!isset(self::$instances["vertical"])) {
-            self::$instances["vertical"] = new self("vertical");
+        if (!isset(self::$instances["Vertical"])) {
+            self::$instances["Vertical"] = new self("vertical");
         }
 
-        return self::$instances["vertical"];
+        return self::$instances["Vertical"];
     }
 
     public static function horizontal(): self
     {
-        if (!isset(self::$instances["horizontal"])) {
-            self::$instances["horizontal"] = new self("horizontal");
+        if (!isset(self::$instances["Horizontal"])) {
+            self::$instances["Horizontal"] = new self("horizontal");
         }
 
-        return self::$instances["horizontal"];
+        return self::$instances["Horizontal"];
     }
 
     public static function fromValue(string $value): self

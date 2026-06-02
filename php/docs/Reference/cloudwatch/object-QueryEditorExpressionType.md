@@ -24,65 +24,65 @@ final class QueryEditorExpressionType implements \JsonSerializable, \Stringable 
 
     public static function property(): self
     {
-        if (!isset(self::$instances["property"])) {
-            self::$instances["property"] = new self("property");
+        if (!isset(self::$instances["Property"])) {
+            self::$instances["Property"] = new self("property");
         }
 
-        return self::$instances["property"];
+        return self::$instances["Property"];
     }
 
     public static function operator(): self
     {
-        if (!isset(self::$instances["operator"])) {
-            self::$instances["operator"] = new self("operator");
+        if (!isset(self::$instances["Operator"])) {
+            self::$instances["Operator"] = new self("operator");
         }
 
-        return self::$instances["operator"];
+        return self::$instances["Operator"];
     }
 
     public static function or(): self
     {
-        if (!isset(self::$instances["or"])) {
-            self::$instances["or"] = new self("or");
+        if (!isset(self::$instances["Or"])) {
+            self::$instances["Or"] = new self("or");
         }
 
-        return self::$instances["or"];
+        return self::$instances["Or"];
     }
 
     public static function and(): self
     {
-        if (!isset(self::$instances["and"])) {
-            self::$instances["and"] = new self("and");
+        if (!isset(self::$instances["And"])) {
+            self::$instances["And"] = new self("and");
         }
 
-        return self::$instances["and"];
+        return self::$instances["And"];
     }
 
     public static function groupBy(): self
     {
-        if (!isset(self::$instances["groupBy"])) {
-            self::$instances["groupBy"] = new self("groupBy");
+        if (!isset(self::$instances["GroupBy"])) {
+            self::$instances["GroupBy"] = new self("groupBy");
         }
 
-        return self::$instances["groupBy"];
+        return self::$instances["GroupBy"];
     }
 
     public static function function(): self
     {
-        if (!isset(self::$instances["function"])) {
-            self::$instances["function"] = new self("function");
+        if (!isset(self::$instances["Function"])) {
+            self::$instances["Function"] = new self("function");
         }
 
-        return self::$instances["function"];
+        return self::$instances["Function"];
     }
 
     public static function functionParameter(): self
     {
-        if (!isset(self::$instances["functionParameter"])) {
-            self::$instances["functionParameter"] = new self("functionParameter");
+        if (!isset(self::$instances["FunctionParameter"])) {
+            self::$instances["FunctionParameter"] = new self("functionParameter");
         }
 
-        return self::$instances["functionParameter"];
+        return self::$instances["FunctionParameter"];
     }
 
     public static function fromValue(string $value): self

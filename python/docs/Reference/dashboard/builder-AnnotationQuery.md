@@ -74,6 +74,14 @@ Color to use for the annotation event markers
 def icon_color(icon_color: str) -> typing.Self
 ```
 
+### <span class="badge object-method"></span> mappings
+
+Mappings define how to convert data frame fields to annotation event fields.
+
+```python
+def mappings(mappings: dict[str, cogbuilder.Builder[dashboard.AnnotationEventFieldMapping]]) -> typing.Self
+```
+
 ### <span class="badge object-method"></span> name
 
 Name of annotation.
@@ -90,6 +98,22 @@ Placement can be used to display the annotation query somewhere else on the dash
 def placement(placement: str) -> typing.Self
 ```
 
+### <span class="badge object-method"></span> step
+
+Legacy Prometheus annotation query step interval.
+
+```python
+def step(step: str) -> typing.Self
+```
+
+### <span class="badge object-method"></span> tag_keys
+
+Comma-separated label keys used as annotation tags.
+
+```python
+def tag_keys(tag_keys: str) -> typing.Self
+```
+
 ### <span class="badge object-method"></span> target
 
 TODO.. this should just be a normal query target
@@ -98,12 +122,36 @@ TODO.. this should just be a normal query target
 def target(target: cogbuilder.Builder[cogvariants.Dataquery]) -> typing.Self
 ```
 
+### <span class="badge object-method"></span> text_format
+
+Format for Prometheus annotation text. Label values can be interpolated with templates like {{instance}}.
+
+```python
+def text_format(text_format: str) -> typing.Self
+```
+
+### <span class="badge object-method"></span> title_format
+
+Format for Prometheus and Loki annotation titles. Label values can be interpolated with templates like {{instance}}.
+
+```python
+def title_format(title_format: str) -> typing.Self
+```
+
 ### <span class="badge object-method"></span> type_val
 
 TODO -- this should not exist here, it is based on the --grafana-- datasource
 
 ```python
 def type_val(type_val: str) -> typing.Self
+```
+
+### <span class="badge object-method"></span> use_value_for_time
+
+Use the Prometheus series value as the annotation timestamp.
+
+```python
+def use_value_for_time(use_value_for_time: bool) -> typing.Self
 ```
 
 ## See also

@@ -4,7 +4,6 @@ import typing
 from ..cog import builder as cogbuilder
 from ..models import dashboardv2
 from ..models import azuremonitor
-from ..models import common
 from ..models import dashboardv2beta1
 
 
@@ -51,8 +50,8 @@ class QueryV2(cogbuilder.Builder[dashboardv2.DataQueryKind]):
         """
             
         if self._internal.spec is None:
-            self._internal.spec = azuremonitor.AzureMonitorQuery()
-        assert isinstance(self._internal.spec, azuremonitor.AzureMonitorQuery)
+            self._internal.spec = azuremonitor.MonitorQuery()
+        assert isinstance(self._internal.spec, azuremonitor.MonitorQuery)
         self._internal.spec.ref_id = ref_id
     
         return self
@@ -63,8 +62,8 @@ class QueryV2(cogbuilder.Builder[dashboardv2.DataQueryKind]):
         """
             
         if self._internal.spec is None:
-            self._internal.spec = azuremonitor.AzureMonitorQuery()
-        assert isinstance(self._internal.spec, azuremonitor.AzureMonitorQuery)
+            self._internal.spec = azuremonitor.MonitorQuery()
+        assert isinstance(self._internal.spec, azuremonitor.MonitorQuery)
         self._internal.spec.hide = hide
     
         return self
@@ -76,8 +75,8 @@ class QueryV2(cogbuilder.Builder[dashboardv2.DataQueryKind]):
         """
             
         if self._internal.spec is None:
-            self._internal.spec = azuremonitor.AzureMonitorQuery()
-        assert isinstance(self._internal.spec, azuremonitor.AzureMonitorQuery)
+            self._internal.spec = azuremonitor.MonitorQuery()
+        assert isinstance(self._internal.spec, azuremonitor.MonitorQuery)
         self._internal.spec.query_type = query_type
     
         return self
@@ -89,8 +88,8 @@ class QueryV2(cogbuilder.Builder[dashboardv2.DataQueryKind]):
         """
             
         if self._internal.spec is None:
-            self._internal.spec = azuremonitor.AzureMonitorQuery()
-        assert isinstance(self._internal.spec, azuremonitor.AzureMonitorQuery)
+            self._internal.spec = azuremonitor.MonitorQuery()
+        assert isinstance(self._internal.spec, azuremonitor.MonitorQuery)
         self._internal.spec.subscription = subscription
     
         return self
@@ -101,59 +100,59 @@ class QueryV2(cogbuilder.Builder[dashboardv2.DataQueryKind]):
         """
             
         if self._internal.spec is None:
-            self._internal.spec = azuremonitor.AzureMonitorQuery()
-        assert isinstance(self._internal.spec, azuremonitor.AzureMonitorQuery)
+            self._internal.spec = azuremonitor.MonitorQuery()
+        assert isinstance(self._internal.spec, azuremonitor.MonitorQuery)
         self._internal.spec.subscriptions = subscriptions
     
         return self
     
-    def azure_monitor(self, azure_monitor: cogbuilder.Builder[azuremonitor.AzureMetricQuery]) -> typing.Self:    
+    def azure_monitor(self, azure_monitor: cogbuilder.Builder[azuremonitor.MetricQuery]) -> typing.Self:    
         """
         Azure Monitor Metrics sub-query properties.
         """
             
         if self._internal.spec is None:
-            self._internal.spec = azuremonitor.AzureMonitorQuery()
-        assert isinstance(self._internal.spec, azuremonitor.AzureMonitorQuery)
+            self._internal.spec = azuremonitor.MonitorQuery()
+        assert isinstance(self._internal.spec, azuremonitor.MonitorQuery)
         azure_monitor_resource = azure_monitor.build()
         self._internal.spec.azure_monitor = azure_monitor_resource
     
         return self
     
-    def azure_log_analytics(self, azure_log_analytics: cogbuilder.Builder[azuremonitor.AzureLogsQuery]) -> typing.Self:    
+    def azure_log_analytics(self, azure_log_analytics: cogbuilder.Builder[azuremonitor.LogsQuery]) -> typing.Self:    
         """
         Azure Monitor Logs sub-query properties.
         """
             
         if self._internal.spec is None:
-            self._internal.spec = azuremonitor.AzureMonitorQuery()
-        assert isinstance(self._internal.spec, azuremonitor.AzureMonitorQuery)
+            self._internal.spec = azuremonitor.MonitorQuery()
+        assert isinstance(self._internal.spec, azuremonitor.MonitorQuery)
         azure_log_analytics_resource = azure_log_analytics.build()
         self._internal.spec.azure_log_analytics = azure_log_analytics_resource
     
         return self
     
-    def azure_resource_graph(self, azure_resource_graph: cogbuilder.Builder[azuremonitor.AzureResourceGraphQuery]) -> typing.Self:    
+    def azure_resource_graph(self, azure_resource_graph: cogbuilder.Builder[azuremonitor.ResourceGraphQuery]) -> typing.Self:    
         """
         Azure Resource Graph sub-query properties.
         """
             
         if self._internal.spec is None:
-            self._internal.spec = azuremonitor.AzureMonitorQuery()
-        assert isinstance(self._internal.spec, azuremonitor.AzureMonitorQuery)
+            self._internal.spec = azuremonitor.MonitorQuery()
+        assert isinstance(self._internal.spec, azuremonitor.MonitorQuery)
         azure_resource_graph_resource = azure_resource_graph.build()
         self._internal.spec.azure_resource_graph = azure_resource_graph_resource
     
         return self
     
-    def azure_traces(self, azure_traces: cogbuilder.Builder[azuremonitor.AzureTracesQuery]) -> typing.Self:    
+    def azure_traces(self, azure_traces: cogbuilder.Builder[azuremonitor.TracesQuery]) -> typing.Self:    
         """
         Application Insights Traces sub-query properties.
         """
             
         if self._internal.spec is None:
-            self._internal.spec = azuremonitor.AzureMonitorQuery()
-        assert isinstance(self._internal.spec, azuremonitor.AzureMonitorQuery)
+            self._internal.spec = azuremonitor.MonitorQuery()
+        assert isinstance(self._internal.spec, azuremonitor.MonitorQuery)
         azure_traces_resource = azure_traces.build()
         self._internal.spec.azure_traces = azure_traces_resource
     
@@ -165,8 +164,8 @@ class QueryV2(cogbuilder.Builder[dashboardv2.DataQueryKind]):
         """
             
         if self._internal.spec is None:
-            self._internal.spec = azuremonitor.AzureMonitorQuery()
-        assert isinstance(self._internal.spec, azuremonitor.AzureMonitorQuery)
+            self._internal.spec = azuremonitor.MonitorQuery()
+        assert isinstance(self._internal.spec, azuremonitor.MonitorQuery)
         grafana_template_variable_fn_resource = grafana_template_variable_fn.build()
         self._internal.spec.grafana_template_variable_fn = grafana_template_variable_fn_resource
     
@@ -178,8 +177,8 @@ class QueryV2(cogbuilder.Builder[dashboardv2.DataQueryKind]):
         """
             
         if self._internal.spec is None:
-            self._internal.spec = azuremonitor.AzureMonitorQuery()
-        assert isinstance(self._internal.spec, azuremonitor.AzureMonitorQuery)
+            self._internal.spec = azuremonitor.MonitorQuery()
+        assert isinstance(self._internal.spec, azuremonitor.MonitorQuery)
         self._internal.spec.resource_group = resource_group
     
         return self
@@ -190,8 +189,8 @@ class QueryV2(cogbuilder.Builder[dashboardv2.DataQueryKind]):
         """
             
         if self._internal.spec is None:
-            self._internal.spec = azuremonitor.AzureMonitorQuery()
-        assert isinstance(self._internal.spec, azuremonitor.AzureMonitorQuery)
+            self._internal.spec = azuremonitor.MonitorQuery()
+        assert isinstance(self._internal.spec, azuremonitor.MonitorQuery)
         self._internal.spec.namespace = namespace
     
         return self
@@ -202,8 +201,8 @@ class QueryV2(cogbuilder.Builder[dashboardv2.DataQueryKind]):
         """
             
         if self._internal.spec is None:
-            self._internal.spec = azuremonitor.AzureMonitorQuery()
-        assert isinstance(self._internal.spec, azuremonitor.AzureMonitorQuery)
+            self._internal.spec = azuremonitor.MonitorQuery()
+        assert isinstance(self._internal.spec, azuremonitor.MonitorQuery)
         self._internal.spec.resource = resource
     
         return self
@@ -214,8 +213,8 @@ class QueryV2(cogbuilder.Builder[dashboardv2.DataQueryKind]):
         """
             
         if self._internal.spec is None:
-            self._internal.spec = azuremonitor.AzureMonitorQuery()
-        assert isinstance(self._internal.spec, azuremonitor.AzureMonitorQuery)
+            self._internal.spec = azuremonitor.MonitorQuery()
+        assert isinstance(self._internal.spec, azuremonitor.MonitorQuery)
         self._internal.spec.region = region
     
         return self
@@ -226,8 +225,8 @@ class QueryV2(cogbuilder.Builder[dashboardv2.DataQueryKind]):
         """
             
         if self._internal.spec is None:
-            self._internal.spec = azuremonitor.AzureMonitorQuery()
-        assert isinstance(self._internal.spec, azuremonitor.AzureMonitorQuery)
+            self._internal.spec = azuremonitor.MonitorQuery()
+        assert isinstance(self._internal.spec, azuremonitor.MonitorQuery)
         self._internal.spec.custom_namespace = custom_namespace
     
         return self
@@ -238,21 +237,21 @@ class QueryV2(cogbuilder.Builder[dashboardv2.DataQueryKind]):
         """
             
         if self._internal.spec is None:
-            self._internal.spec = azuremonitor.AzureMonitorQuery()
-        assert isinstance(self._internal.spec, azuremonitor.AzureMonitorQuery)
+            self._internal.spec = azuremonitor.MonitorQuery()
+        assert isinstance(self._internal.spec, azuremonitor.MonitorQuery)
         self._internal.spec.query = query
     
         return self
     
 
 
-class AzureMonitorQuery(cogbuilder.Builder[azuremonitor.AzureMonitorQuery]):
-    _internal: azuremonitor.AzureMonitorQuery
+class MonitorQuery(cogbuilder.Builder[azuremonitor.MonitorQuery]):
+    _internal: azuremonitor.MonitorQuery
 
     def __init__(self) -> None:
-        self._internal = azuremonitor.AzureMonitorQuery()
+        self._internal = azuremonitor.MonitorQuery()
 
-    def build(self) -> azuremonitor.AzureMonitorQuery:
+    def build(self) -> azuremonitor.MonitorQuery:
         """
         Builds the object.
         """
@@ -307,7 +306,7 @@ class AzureMonitorQuery(cogbuilder.Builder[azuremonitor.AzureMonitorQuery]):
     
         return self
     
-    def azure_monitor(self, azure_monitor: cogbuilder.Builder[azuremonitor.AzureMetricQuery]) -> typing.Self:    
+    def azure_monitor(self, azure_monitor: cogbuilder.Builder[azuremonitor.MetricQuery]) -> typing.Self:    
         """
         Azure Monitor Metrics sub-query properties.
         """
@@ -317,7 +316,7 @@ class AzureMonitorQuery(cogbuilder.Builder[azuremonitor.AzureMonitorQuery]):
     
         return self
     
-    def azure_log_analytics(self, azure_log_analytics: cogbuilder.Builder[azuremonitor.AzureLogsQuery]) -> typing.Self:    
+    def azure_log_analytics(self, azure_log_analytics: cogbuilder.Builder[azuremonitor.LogsQuery]) -> typing.Self:    
         """
         Azure Monitor Logs sub-query properties.
         """
@@ -327,7 +326,7 @@ class AzureMonitorQuery(cogbuilder.Builder[azuremonitor.AzureMonitorQuery]):
     
         return self
     
-    def azure_resource_graph(self, azure_resource_graph: cogbuilder.Builder[azuremonitor.AzureResourceGraphQuery]) -> typing.Self:    
+    def azure_resource_graph(self, azure_resource_graph: cogbuilder.Builder[azuremonitor.ResourceGraphQuery]) -> typing.Self:    
         """
         Azure Resource Graph sub-query properties.
         """
@@ -337,7 +336,7 @@ class AzureMonitorQuery(cogbuilder.Builder[azuremonitor.AzureMonitorQuery]):
     
         return self
     
-    def azure_traces(self, azure_traces: cogbuilder.Builder[azuremonitor.AzureTracesQuery]) -> typing.Self:    
+    def azure_traces(self, azure_traces: cogbuilder.Builder[azuremonitor.TracesQuery]) -> typing.Self:    
         """
         Application Insights Traces sub-query properties.
         """
@@ -402,7 +401,7 @@ class AzureMonitorQuery(cogbuilder.Builder[azuremonitor.AzureMonitorQuery]):
     
         return self
     
-    def datasource(self, datasource: common.DataSourceRef) -> typing.Self:    
+    def datasource(self, datasource: object) -> typing.Self:    
         """
         For mixed data sources the selected datasource is on the query level.
         For non mixed scenarios this is undefined.
@@ -425,19 +424,19 @@ class AzureMonitorQuery(cogbuilder.Builder[azuremonitor.AzureMonitorQuery]):
     
 
 
-class AzureMetricQuery(cogbuilder.Builder[azuremonitor.AzureMetricQuery]):
-    _internal: azuremonitor.AzureMetricQuery
+class MetricQuery(cogbuilder.Builder[azuremonitor.MetricQuery]):
+    _internal: azuremonitor.MetricQuery
 
     def __init__(self) -> None:
-        self._internal = azuremonitor.AzureMetricQuery()
+        self._internal = azuremonitor.MetricQuery()
 
-    def build(self) -> azuremonitor.AzureMetricQuery:
+    def build(self) -> azuremonitor.MetricQuery:
         """
         Builds the object.
         """
         return self._internal    
     
-    def resources(self, resources: list[cogbuilder.Builder[azuremonitor.AzureMonitorResource]]) -> typing.Self:    
+    def resources(self, resources: list[cogbuilder.Builder[azuremonitor.MonitorResource]]) -> typing.Self:    
         """
         Array of resource URIs to be queried.
         """
@@ -503,7 +502,7 @@ class AzureMetricQuery(cogbuilder.Builder[azuremonitor.AzureMetricQuery]):
     
         return self
     
-    def dimension_filters(self, dimension_filters: list[cogbuilder.Builder[azuremonitor.AzureMetricDimension]]) -> typing.Self:    
+    def dimension_filters(self, dimension_filters: list[cogbuilder.Builder[azuremonitor.MetricDimension]]) -> typing.Self:    
         """
         Filters to reduce the set of data returned. Dimensions that can be filtered on are defined by the metric.
         """
@@ -605,13 +604,13 @@ class AzureMetricQuery(cogbuilder.Builder[azuremonitor.AzureMetricQuery]):
     
 
 
-class AzureMonitorResource(cogbuilder.Builder[azuremonitor.AzureMonitorResource]):
-    _internal: azuremonitor.AzureMonitorResource
+class MonitorResource(cogbuilder.Builder[azuremonitor.MonitorResource]):
+    _internal: azuremonitor.MonitorResource
 
     def __init__(self) -> None:
-        self._internal = azuremonitor.AzureMonitorResource()
+        self._internal = azuremonitor.MonitorResource()
 
-    def build(self) -> azuremonitor.AzureMonitorResource:
+    def build(self) -> azuremonitor.MonitorResource:
         """
         Builds the object.
         """
@@ -644,13 +643,13 @@ class AzureMonitorResource(cogbuilder.Builder[azuremonitor.AzureMonitorResource]
     
 
 
-class AzureMetricDimension(cogbuilder.Builder[azuremonitor.AzureMetricDimension]):
-    _internal: azuremonitor.AzureMetricDimension
+class MetricDimension(cogbuilder.Builder[azuremonitor.MetricDimension]):
+    _internal: azuremonitor.MetricDimension
 
     def __init__(self) -> None:
-        self._internal = azuremonitor.AzureMetricDimension()
+        self._internal = azuremonitor.MetricDimension()
 
-    def build(self) -> azuremonitor.AzureMetricDimension:
+    def build(self) -> azuremonitor.MetricDimension:
         """
         Builds the object.
         """
@@ -694,17 +693,17 @@ class AzureMetricDimension(cogbuilder.Builder[azuremonitor.AzureMetricDimension]
     
 
 
-class AzureLogsQuery(cogbuilder.Builder[azuremonitor.AzureLogsQuery]):    
+class LogsQuery(cogbuilder.Builder[azuremonitor.LogsQuery]):    
     """
     Azure Monitor Logs sub-query properties
     """
     
-    _internal: azuremonitor.AzureLogsQuery
+    _internal: azuremonitor.LogsQuery
 
     def __init__(self) -> None:
-        self._internal = azuremonitor.AzureLogsQuery()
+        self._internal = azuremonitor.LogsQuery()
 
-    def build(self) -> azuremonitor.AzureLogsQuery:
+    def build(self) -> azuremonitor.LogsQuery:
         """
         Builds the object.
         """
@@ -793,13 +792,13 @@ class AzureLogsQuery(cogbuilder.Builder[azuremonitor.AzureLogsQuery]):
     
 
 
-class AzureResourceGraphQuery(cogbuilder.Builder[azuremonitor.AzureResourceGraphQuery]):
-    _internal: azuremonitor.AzureResourceGraphQuery
+class ResourceGraphQuery(cogbuilder.Builder[azuremonitor.ResourceGraphQuery]):
+    _internal: azuremonitor.ResourceGraphQuery
 
     def __init__(self) -> None:
-        self._internal = azuremonitor.AzureResourceGraphQuery()
+        self._internal = azuremonitor.ResourceGraphQuery()
 
-    def build(self) -> azuremonitor.AzureResourceGraphQuery:
+    def build(self) -> azuremonitor.ResourceGraphQuery:
         """
         Builds the object.
         """
@@ -825,17 +824,17 @@ class AzureResourceGraphQuery(cogbuilder.Builder[azuremonitor.AzureResourceGraph
     
 
 
-class AzureTracesQuery(cogbuilder.Builder[azuremonitor.AzureTracesQuery]):    
+class TracesQuery(cogbuilder.Builder[azuremonitor.TracesQuery]):    
     """
     Application Insights Traces sub-query properties
     """
     
-    _internal: azuremonitor.AzureTracesQuery
+    _internal: azuremonitor.TracesQuery
 
     def __init__(self) -> None:
-        self._internal = azuremonitor.AzureTracesQuery()
+        self._internal = azuremonitor.TracesQuery()
 
-    def build(self) -> azuremonitor.AzureTracesQuery:
+    def build(self) -> azuremonitor.TracesQuery:
         """
         Builds the object.
         """
@@ -877,7 +876,7 @@ class AzureTracesQuery(cogbuilder.Builder[azuremonitor.AzureTracesQuery]):
     
         return self
     
-    def filters(self, filters: list[cogbuilder.Builder[azuremonitor.AzureTracesFilter]]) -> typing.Self:    
+    def filters(self, filters: list[cogbuilder.Builder[azuremonitor.TracesFilter]]) -> typing.Self:    
         """
         Filters for property values.
         """
@@ -898,13 +897,13 @@ class AzureTracesQuery(cogbuilder.Builder[azuremonitor.AzureTracesQuery]):
     
 
 
-class AzureTracesFilter(cogbuilder.Builder[azuremonitor.AzureTracesFilter]):
-    _internal: azuremonitor.AzureTracesFilter
+class TracesFilter(cogbuilder.Builder[azuremonitor.TracesFilter]):
+    _internal: azuremonitor.TracesFilter
 
     def __init__(self) -> None:
-        self._internal = azuremonitor.AzureTracesFilter()
+        self._internal = azuremonitor.TracesFilter()
 
-    def build(self) -> azuremonitor.AzureTracesFilter:
+    def build(self) -> azuremonitor.TracesFilter:
         """
         Builds the object.
         """
@@ -1295,8 +1294,8 @@ class Query(cogbuilder.Builder[dashboardv2beta1.DataQueryKind]):
         """
             
         if self._internal.spec is None:
-            self._internal.spec = azuremonitor.AzureMonitorQuery()
-        assert isinstance(self._internal.spec, azuremonitor.AzureMonitorQuery)
+            self._internal.spec = azuremonitor.MonitorQuery()
+        assert isinstance(self._internal.spec, azuremonitor.MonitorQuery)
         self._internal.spec.ref_id = ref_id
     
         return self
@@ -1307,8 +1306,8 @@ class Query(cogbuilder.Builder[dashboardv2beta1.DataQueryKind]):
         """
             
         if self._internal.spec is None:
-            self._internal.spec = azuremonitor.AzureMonitorQuery()
-        assert isinstance(self._internal.spec, azuremonitor.AzureMonitorQuery)
+            self._internal.spec = azuremonitor.MonitorQuery()
+        assert isinstance(self._internal.spec, azuremonitor.MonitorQuery)
         self._internal.spec.hide = hide
     
         return self
@@ -1320,8 +1319,8 @@ class Query(cogbuilder.Builder[dashboardv2beta1.DataQueryKind]):
         """
             
         if self._internal.spec is None:
-            self._internal.spec = azuremonitor.AzureMonitorQuery()
-        assert isinstance(self._internal.spec, azuremonitor.AzureMonitorQuery)
+            self._internal.spec = azuremonitor.MonitorQuery()
+        assert isinstance(self._internal.spec, azuremonitor.MonitorQuery)
         self._internal.spec.query_type = query_type
     
         return self
@@ -1333,8 +1332,8 @@ class Query(cogbuilder.Builder[dashboardv2beta1.DataQueryKind]):
         """
             
         if self._internal.spec is None:
-            self._internal.spec = azuremonitor.AzureMonitorQuery()
-        assert isinstance(self._internal.spec, azuremonitor.AzureMonitorQuery)
+            self._internal.spec = azuremonitor.MonitorQuery()
+        assert isinstance(self._internal.spec, azuremonitor.MonitorQuery)
         self._internal.spec.subscription = subscription
     
         return self
@@ -1345,59 +1344,59 @@ class Query(cogbuilder.Builder[dashboardv2beta1.DataQueryKind]):
         """
             
         if self._internal.spec is None:
-            self._internal.spec = azuremonitor.AzureMonitorQuery()
-        assert isinstance(self._internal.spec, azuremonitor.AzureMonitorQuery)
+            self._internal.spec = azuremonitor.MonitorQuery()
+        assert isinstance(self._internal.spec, azuremonitor.MonitorQuery)
         self._internal.spec.subscriptions = subscriptions
     
         return self
     
-    def azure_monitor(self, azure_monitor: cogbuilder.Builder[azuremonitor.AzureMetricQuery]) -> typing.Self:    
+    def azure_monitor(self, azure_monitor: cogbuilder.Builder[azuremonitor.MetricQuery]) -> typing.Self:    
         """
         Azure Monitor Metrics sub-query properties.
         """
             
         if self._internal.spec is None:
-            self._internal.spec = azuremonitor.AzureMonitorQuery()
-        assert isinstance(self._internal.spec, azuremonitor.AzureMonitorQuery)
+            self._internal.spec = azuremonitor.MonitorQuery()
+        assert isinstance(self._internal.spec, azuremonitor.MonitorQuery)
         azure_monitor_resource = azure_monitor.build()
         self._internal.spec.azure_monitor = azure_monitor_resource
     
         return self
     
-    def azure_log_analytics(self, azure_log_analytics: cogbuilder.Builder[azuremonitor.AzureLogsQuery]) -> typing.Self:    
+    def azure_log_analytics(self, azure_log_analytics: cogbuilder.Builder[azuremonitor.LogsQuery]) -> typing.Self:    
         """
         Azure Monitor Logs sub-query properties.
         """
             
         if self._internal.spec is None:
-            self._internal.spec = azuremonitor.AzureMonitorQuery()
-        assert isinstance(self._internal.spec, azuremonitor.AzureMonitorQuery)
+            self._internal.spec = azuremonitor.MonitorQuery()
+        assert isinstance(self._internal.spec, azuremonitor.MonitorQuery)
         azure_log_analytics_resource = azure_log_analytics.build()
         self._internal.spec.azure_log_analytics = azure_log_analytics_resource
     
         return self
     
-    def azure_resource_graph(self, azure_resource_graph: cogbuilder.Builder[azuremonitor.AzureResourceGraphQuery]) -> typing.Self:    
+    def azure_resource_graph(self, azure_resource_graph: cogbuilder.Builder[azuremonitor.ResourceGraphQuery]) -> typing.Self:    
         """
         Azure Resource Graph sub-query properties.
         """
             
         if self._internal.spec is None:
-            self._internal.spec = azuremonitor.AzureMonitorQuery()
-        assert isinstance(self._internal.spec, azuremonitor.AzureMonitorQuery)
+            self._internal.spec = azuremonitor.MonitorQuery()
+        assert isinstance(self._internal.spec, azuremonitor.MonitorQuery)
         azure_resource_graph_resource = azure_resource_graph.build()
         self._internal.spec.azure_resource_graph = azure_resource_graph_resource
     
         return self
     
-    def azure_traces(self, azure_traces: cogbuilder.Builder[azuremonitor.AzureTracesQuery]) -> typing.Self:    
+    def azure_traces(self, azure_traces: cogbuilder.Builder[azuremonitor.TracesQuery]) -> typing.Self:    
         """
         Application Insights Traces sub-query properties.
         """
             
         if self._internal.spec is None:
-            self._internal.spec = azuremonitor.AzureMonitorQuery()
-        assert isinstance(self._internal.spec, azuremonitor.AzureMonitorQuery)
+            self._internal.spec = azuremonitor.MonitorQuery()
+        assert isinstance(self._internal.spec, azuremonitor.MonitorQuery)
         azure_traces_resource = azure_traces.build()
         self._internal.spec.azure_traces = azure_traces_resource
     
@@ -1409,8 +1408,8 @@ class Query(cogbuilder.Builder[dashboardv2beta1.DataQueryKind]):
         """
             
         if self._internal.spec is None:
-            self._internal.spec = azuremonitor.AzureMonitorQuery()
-        assert isinstance(self._internal.spec, azuremonitor.AzureMonitorQuery)
+            self._internal.spec = azuremonitor.MonitorQuery()
+        assert isinstance(self._internal.spec, azuremonitor.MonitorQuery)
         grafana_template_variable_fn_resource = grafana_template_variable_fn.build()
         self._internal.spec.grafana_template_variable_fn = grafana_template_variable_fn_resource
     
@@ -1422,8 +1421,8 @@ class Query(cogbuilder.Builder[dashboardv2beta1.DataQueryKind]):
         """
             
         if self._internal.spec is None:
-            self._internal.spec = azuremonitor.AzureMonitorQuery()
-        assert isinstance(self._internal.spec, azuremonitor.AzureMonitorQuery)
+            self._internal.spec = azuremonitor.MonitorQuery()
+        assert isinstance(self._internal.spec, azuremonitor.MonitorQuery)
         self._internal.spec.resource_group = resource_group
     
         return self
@@ -1434,8 +1433,8 @@ class Query(cogbuilder.Builder[dashboardv2beta1.DataQueryKind]):
         """
             
         if self._internal.spec is None:
-            self._internal.spec = azuremonitor.AzureMonitorQuery()
-        assert isinstance(self._internal.spec, azuremonitor.AzureMonitorQuery)
+            self._internal.spec = azuremonitor.MonitorQuery()
+        assert isinstance(self._internal.spec, azuremonitor.MonitorQuery)
         self._internal.spec.namespace = namespace
     
         return self
@@ -1446,8 +1445,8 @@ class Query(cogbuilder.Builder[dashboardv2beta1.DataQueryKind]):
         """
             
         if self._internal.spec is None:
-            self._internal.spec = azuremonitor.AzureMonitorQuery()
-        assert isinstance(self._internal.spec, azuremonitor.AzureMonitorQuery)
+            self._internal.spec = azuremonitor.MonitorQuery()
+        assert isinstance(self._internal.spec, azuremonitor.MonitorQuery)
         self._internal.spec.resource = resource
     
         return self
@@ -1458,8 +1457,8 @@ class Query(cogbuilder.Builder[dashboardv2beta1.DataQueryKind]):
         """
             
         if self._internal.spec is None:
-            self._internal.spec = azuremonitor.AzureMonitorQuery()
-        assert isinstance(self._internal.spec, azuremonitor.AzureMonitorQuery)
+            self._internal.spec = azuremonitor.MonitorQuery()
+        assert isinstance(self._internal.spec, azuremonitor.MonitorQuery)
         self._internal.spec.region = region
     
         return self
@@ -1470,8 +1469,8 @@ class Query(cogbuilder.Builder[dashboardv2beta1.DataQueryKind]):
         """
             
         if self._internal.spec is None:
-            self._internal.spec = azuremonitor.AzureMonitorQuery()
-        assert isinstance(self._internal.spec, azuremonitor.AzureMonitorQuery)
+            self._internal.spec = azuremonitor.MonitorQuery()
+        assert isinstance(self._internal.spec, azuremonitor.MonitorQuery)
         self._internal.spec.custom_namespace = custom_namespace
     
         return self
@@ -1482,8 +1481,8 @@ class Query(cogbuilder.Builder[dashboardv2beta1.DataQueryKind]):
         """
             
         if self._internal.spec is None:
-            self._internal.spec = azuremonitor.AzureMonitorQuery()
-        assert isinstance(self._internal.spec, azuremonitor.AzureMonitorQuery)
+            self._internal.spec = azuremonitor.MonitorQuery()
+        assert isinstance(self._internal.spec, azuremonitor.MonitorQuery)
         self._internal.spec.query = query
     
         return self

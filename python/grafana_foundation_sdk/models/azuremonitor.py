@@ -2,16 +2,15 @@
 
 from ..cog import variants as cogvariants
 import typing
-from ..models import common
 import enum
 from ..cog import runtime as cogruntime
 
 
-class AzureMonitorQuery(cogvariants.Dataquery):
+class MonitorQuery(cogvariants.Dataquery):
     # A unique identifier for the query within the list of targets.
     # In server side expressions, the refId is used as a variable name to identify results.
     # By default, the UI will assign A->Z; however setting meaningful names may be useful.
-    ref_id: typing.Optional[str]
+    ref_id: str
     # If hide is set to true, Grafana will filter out the response(s) associated with this query before returning it to the panel.
     hide: typing.Optional[bool]
     # Specify the query flavor
@@ -23,13 +22,13 @@ class AzureMonitorQuery(cogvariants.Dataquery):
     # Subscriptions to be queried via Azure Resource Graph.
     subscriptions: typing.Optional[list[str]]
     # Azure Monitor Metrics sub-query properties.
-    azure_monitor: typing.Optional['AzureMetricQuery']
+    azure_monitor: typing.Optional['MetricQuery']
     # Azure Monitor Logs sub-query properties.
-    azure_log_analytics: typing.Optional['AzureLogsQuery']
+    azure_log_analytics: typing.Optional['LogsQuery']
     # Azure Resource Graph sub-query properties.
-    azure_resource_graph: typing.Optional['AzureResourceGraphQuery']
+    azure_resource_graph: typing.Optional['ResourceGraphQuery']
     # Application Insights Traces sub-query properties.
-    azure_traces: typing.Optional['AzureTracesQuery']
+    azure_traces: typing.Optional['TracesQuery']
     # @deprecated Legacy template variable support.
     grafana_template_variable_fn: typing.Optional['GrafanaTemplateVariableQuery']
     # Resource group used in template variable queries
@@ -46,11 +45,11 @@ class AzureMonitorQuery(cogvariants.Dataquery):
     # For non mixed scenarios this is undefined.
     # TODO find a better way to do this ^ that's friendly to schema
     # TODO this shouldn't be unknown but DataSourceRef | null
-    datasource: typing.Optional[common.DataSourceRef]
+    datasource: typing.Optional[object]
     # Used only for exemplar queries from Prometheus
     query: typing.Optional[str]
 
-    def __init__(self, ref_id: typing.Optional[str] = None, hide: typing.Optional[bool] = None, query_type: typing.Optional[str] = None, subscription: typing.Optional[str] = None, subscriptions: typing.Optional[list[str]] = None, azure_monitor: typing.Optional['AzureMetricQuery'] = None, azure_log_analytics: typing.Optional['AzureLogsQuery'] = None, azure_resource_graph: typing.Optional['AzureResourceGraphQuery'] = None, azure_traces: typing.Optional['AzureTracesQuery'] = None, grafana_template_variable_fn: typing.Optional['GrafanaTemplateVariableQuery'] = None, resource_group: typing.Optional[str] = None, namespace: typing.Optional[str] = None, resource: typing.Optional[str] = None, region: typing.Optional[str] = None, custom_namespace: typing.Optional[str] = None, datasource: typing.Optional[common.DataSourceRef] = None, query: typing.Optional[str] = None) -> None:
+    def __init__(self, ref_id: str = "", hide: typing.Optional[bool] = None, query_type: typing.Optional[str] = None, subscription: typing.Optional[str] = None, subscriptions: typing.Optional[list[str]] = None, azure_monitor: typing.Optional['MetricQuery'] = None, azure_log_analytics: typing.Optional['LogsQuery'] = None, azure_resource_graph: typing.Optional['ResourceGraphQuery'] = None, azure_traces: typing.Optional['TracesQuery'] = None, grafana_template_variable_fn: typing.Optional['GrafanaTemplateVariableQuery'] = None, resource_group: typing.Optional[str] = None, namespace: typing.Optional[str] = None, resource: typing.Optional[str] = None, region: typing.Optional[str] = None, custom_namespace: typing.Optional[str] = None, datasource: typing.Optional[object] = None, query: typing.Optional[str] = None) -> None:
         self.ref_id = ref_id
         self.hide = hide
         self.query_type = query_type
@@ -71,9 +70,8 @@ class AzureMonitorQuery(cogvariants.Dataquery):
 
     def to_json(self) -> dict[str, object]:
         payload: dict[str, object] = {
+            "refId": self.ref_id,
         }
-        if self.ref_id is not None:
-            payload["refId"] = self.ref_id
         if self.hide is not None:
             payload["hide"] = self.hide
         if self.query_type is not None:
@@ -123,13 +121,13 @@ class AzureMonitorQuery(cogvariants.Dataquery):
         if "subscriptions" in data:
             args["subscriptions"] = data["subscriptions"]
         if "azureMonitor" in data:
-            args["azure_monitor"] = AzureMetricQuery.from_json(data["azureMonitor"])
+            args["azure_monitor"] = MetricQuery.from_json(data["azureMonitor"])
         if "azureLogAnalytics" in data:
-            args["azure_log_analytics"] = AzureLogsQuery.from_json(data["azureLogAnalytics"])
+            args["azure_log_analytics"] = LogsQuery.from_json(data["azureLogAnalytics"])
         if "azureResourceGraph" in data:
-            args["azure_resource_graph"] = AzureResourceGraphQuery.from_json(data["azureResourceGraph"])
+            args["azure_resource_graph"] = ResourceGraphQuery.from_json(data["azureResourceGraph"])
         if "azureTraces" in data:
-            args["azure_traces"] = AzureTracesQuery.from_json(data["azureTraces"])
+            args["azure_traces"] = TracesQuery.from_json(data["azureTraces"])
         if "grafanaTemplateVariableFn" in data:
             decoding_map_grafanaTemplateVariableFn_ref_union: dict[str, typing.Union[typing.Type[AppInsightsGroupByQuery], typing.Type[AppInsightsMetricNameQuery], typing.Type[MetricDefinitionsQuery], typing.Type[MetricNamesQuery], typing.Type[MetricNamespaceQuery], typing.Type[ResourceGroupsQuery], typing.Type[ResourceNamesQuery], typing.Type[SubscriptionsQuery], typing.Type[UnknownQuery], typing.Type[WorkspacesQuery]]] = {"AppInsightsGroupByQuery": AppInsightsGroupByQuery, "AppInsightsMetricNameQuery": AppInsightsMetricNameQuery, "MetricDefinitionsQuery": MetricDefinitionsQuery, "MetricNamesQuery": MetricNamesQuery, "MetricNamespaceQuery": MetricNamespaceQuery, "ResourceGroupsQuery": ResourceGroupsQuery, "ResourceNamesQuery": ResourceNamesQuery, "SubscriptionsQuery": SubscriptionsQuery, "UnknownQuery": UnknownQuery, "WorkspacesQuery": WorkspacesQuery}
             args["grafana_template_variable_fn"] = decoding_map_grafanaTemplateVariableFn_ref_union[data["grafanaTemplateVariableFn"]["kind"]].from_json(data["grafanaTemplateVariableFn"])
@@ -144,16 +142,16 @@ class AzureMonitorQuery(cogvariants.Dataquery):
         if "customNamespace" in data:
             args["custom_namespace"] = data["customNamespace"]
         if "datasource" in data:
-            args["datasource"] = common.DataSourceRef.from_json(data["datasource"])
+            args["datasource"] = data["datasource"]
         if "query" in data:
             args["query"] = data["query"]        
 
         return cls(**args)
 
 
-class AzureMetricQuery:
+class MetricQuery:
     # Array of resource URIs to be queried.
-    resources: typing.Optional[list['AzureMonitorResource']]
+    resources: typing.Optional[list['MonitorResource']]
     # metricNamespace is used as the resource type (or resource namespace).
     # It's usually equal to the target metric namespace. e.g. microsoft.storage/storageaccounts
     # Kept the name of the variable as metricNamespace to avoid backward incompatibility issues.
@@ -169,7 +167,7 @@ class AzureMetricQuery:
     # The aggregation to be used within the query. Defaults to the primaryAggregationType defined by the metric.
     aggregation: typing.Optional[str]
     # Filters to reduce the set of data returned. Dimensions that can be filtered on are defined by the metric.
-    dimension_filters: typing.Optional[list['AzureMetricDimension']]
+    dimension_filters: typing.Optional[list['MetricDimension']]
     # Maximum number of records to return. Defaults to 10.
     top: typing.Optional[str]
     # Time grains that are supported by the metric.
@@ -191,7 +189,7 @@ class AzureMetricQuery:
     # @deprecated Use resources instead
     resource_name: typing.Optional[str]
 
-    def __init__(self, resources: typing.Optional[list['AzureMonitorResource']] = None, metric_namespace: typing.Optional[str] = None, custom_namespace: typing.Optional[str] = None, metric_name: typing.Optional[str] = None, region: typing.Optional[str] = None, time_grain: typing.Optional[str] = None, aggregation: typing.Optional[str] = None, dimension_filters: typing.Optional[list['AzureMetricDimension']] = None, top: typing.Optional[str] = None, allowed_time_grains_ms: typing.Optional[list[int]] = None, alias: typing.Optional[str] = None, time_grain_unit: typing.Optional[str] = None, dimension: typing.Optional[str] = None, dimension_filter: typing.Optional[str] = None, metric_definition: typing.Optional[str] = None, resource_uri: typing.Optional[str] = None, resource_group: typing.Optional[str] = None, resource_name: typing.Optional[str] = None) -> None:
+    def __init__(self, resources: typing.Optional[list['MonitorResource']] = None, metric_namespace: typing.Optional[str] = None, custom_namespace: typing.Optional[str] = None, metric_name: typing.Optional[str] = None, region: typing.Optional[str] = None, time_grain: typing.Optional[str] = None, aggregation: typing.Optional[str] = None, dimension_filters: typing.Optional[list['MetricDimension']] = None, top: typing.Optional[str] = None, allowed_time_grains_ms: typing.Optional[list[int]] = None, alias: typing.Optional[str] = None, time_grain_unit: typing.Optional[str] = None, dimension: typing.Optional[str] = None, dimension_filter: typing.Optional[str] = None, metric_definition: typing.Optional[str] = None, resource_uri: typing.Optional[str] = None, resource_group: typing.Optional[str] = None, resource_name: typing.Optional[str] = None) -> None:
         self.resources = resources
         self.metric_namespace = metric_namespace
         self.custom_namespace = custom_namespace
@@ -257,7 +255,7 @@ class AzureMetricQuery:
         args: dict[str, typing.Any] = {}
         
         if "resources" in data:
-            args["resources"] = [AzureMonitorResource.from_json(item) for item in data["resources"]]
+            args["resources"] = [MonitorResource.from_json(item) for item in data["resources"]]
         if "metricNamespace" in data:
             args["metric_namespace"] = data["metricNamespace"]
         if "customNamespace" in data:
@@ -271,7 +269,7 @@ class AzureMetricQuery:
         if "aggregation" in data:
             args["aggregation"] = data["aggregation"]
         if "dimensionFilters" in data:
-            args["dimension_filters"] = [AzureMetricDimension.from_json(item) for item in data["dimensionFilters"]]
+            args["dimension_filters"] = [MetricDimension.from_json(item) for item in data["dimensionFilters"]]
         if "top" in data:
             args["top"] = data["top"]
         if "allowedTimeGrainsMs" in data:
@@ -296,7 +294,7 @@ class AzureMetricQuery:
         return cls(**args)
 
 
-class AzureMonitorResource:
+class MonitorResource:
     subscription: typing.Optional[str]
     resource_group: typing.Optional[str]
     resource_name: typing.Optional[str]
@@ -343,7 +341,7 @@ class AzureMonitorResource:
         return cls(**args)
 
 
-class AzureMetricDimension:
+class MetricDimension:
     # Name of Dimension to be filtered on.
     dimension: typing.Optional[str]
     # String denoting the filter operation. Supports 'eq' - equals,'ne' - not equals, 'sw' - starts with. Note that some dimensions may not support all operators.
@@ -388,7 +386,7 @@ class AzureMetricDimension:
         return cls(**args)
 
 
-class AzureLogsQuery:
+class LogsQuery:
     """
     Azure Monitor Logs sub-query properties
     """
@@ -479,7 +477,7 @@ class ResultFormat(enum.StrEnum):
     LOGS = "logs"
 
 
-class AzureResourceGraphQuery:
+class ResourceGraphQuery:
     # Azure Resource Graph KQL query to be executed.
     query: typing.Optional[str]
     # Specifies the format results should be returned as. Defaults to table.
@@ -510,7 +508,7 @@ class AzureResourceGraphQuery:
         return cls(**args)
 
 
-class AzureTracesQuery:
+class TracesQuery:
     """
     Application Insights Traces sub-query properties
     """
@@ -524,11 +522,11 @@ class AzureTracesQuery:
     # Types of events to filter by.
     trace_types: typing.Optional[list[str]]
     # Filters for property values.
-    filters: typing.Optional[list['AzureTracesFilter']]
+    filters: typing.Optional[list['TracesFilter']]
     # KQL query to be executed.
     query: typing.Optional[str]
 
-    def __init__(self, result_format: typing.Optional['ResultFormat'] = None, resources: typing.Optional[list[str]] = None, operation_id: typing.Optional[str] = None, trace_types: typing.Optional[list[str]] = None, filters: typing.Optional[list['AzureTracesFilter']] = None, query: typing.Optional[str] = None) -> None:
+    def __init__(self, result_format: typing.Optional['ResultFormat'] = None, resources: typing.Optional[list[str]] = None, operation_id: typing.Optional[str] = None, trace_types: typing.Optional[list[str]] = None, filters: typing.Optional[list['TracesFilter']] = None, query: typing.Optional[str] = None) -> None:
         self.result_format = result_format
         self.resources = resources
         self.operation_id = operation_id
@@ -566,14 +564,14 @@ class AzureTracesQuery:
         if "traceTypes" in data:
             args["trace_types"] = data["traceTypes"]
         if "filters" in data:
-            args["filters"] = [AzureTracesFilter.from_json(item) for item in data["filters"]]
+            args["filters"] = [TracesFilter.from_json(item) for item in data["filters"]]
         if "query" in data:
             args["query"] = data["query"]        
 
         return cls(**args)
 
 
-class AzureTracesFilter:
+class TracesFilter:
     # Property name, auto-populated based on available traces.
     property_val: str
     # Comparison operator to use. Either equals or not equals.
@@ -969,15 +967,15 @@ class UnknownQuery:
         return cls(**args)
 
 
-class AzureQueryType(enum.StrEnum):
+class QueryType(enum.StrEnum):
     """
     Defines the supported queryTypes. GrafanaTemplateVariableFn is deprecated
     """
 
-    AZURE_MONITOR = "Azure Monitor"
+    MONITOR = "Azure Monitor"
     LOG_ANALYTICS = "Azure Log Analytics"
-    AZURE_RESOURCE_GRAPH = "Azure Resource Graph"
-    AZURE_TRACES = "Azure Traces"
+    RESOURCE_GRAPH = "Azure Resource Graph"
+    TRACES = "Azure Traces"
     SUBSCRIPTIONS_QUERY = "Azure Subscriptions"
     RESOURCE_GROUPS_QUERY = "Azure Resource Groups"
     NAMESPACES_QUERY = "Azure Namespaces"
@@ -1032,6 +1030,6 @@ class BaseGrafanaTemplateVariableQuery:
 def variant_config() -> cogruntime.DataqueryConfig:
     return cogruntime.DataqueryConfig(
         identifier="grafana-azure-monitor-datasource",
-        from_json_hook=AzureMonitorQuery.from_json,
+        from_json_hook=MonitorQuery.from_json,
     )
 

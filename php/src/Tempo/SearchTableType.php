@@ -23,29 +23,29 @@ final class SearchTableType implements \JsonSerializable, \Stringable {
 
     public static function traces(): self
     {
-        if (!isset(self::$instances["traces"])) {
-            self::$instances["traces"] = new self("traces");
+        if (!isset(self::$instances["Traces"])) {
+            self::$instances["Traces"] = new self("traces");
         }
 
-        return self::$instances["traces"];
+        return self::$instances["Traces"];
     }
 
     public static function spans(): self
     {
-        if (!isset(self::$instances["spans"])) {
-            self::$instances["spans"] = new self("spans");
+        if (!isset(self::$instances["Spans"])) {
+            self::$instances["Spans"] = new self("spans");
         }
 
-        return self::$instances["spans"];
+        return self::$instances["Spans"];
     }
 
     public static function raw(): self
     {
-        if (!isset(self::$instances["raw"])) {
-            self::$instances["raw"] = new self("raw");
+        if (!isset(self::$instances["Raw"])) {
+            self::$instances["Raw"] = new self("raw");
         }
 
-        return self::$instances["raw"];
+        return self::$instances["Raw"];
     }
 
     public static function fromValue(string $value): self

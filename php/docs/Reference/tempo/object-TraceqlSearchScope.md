@@ -26,65 +26,65 @@ final class TraceqlSearchScope implements \JsonSerializable, \Stringable {
 
     public static function intrinsic(): self
     {
-        if (!isset(self::$instances["intrinsic"])) {
-            self::$instances["intrinsic"] = new self("intrinsic");
+        if (!isset(self::$instances["Intrinsic"])) {
+            self::$instances["Intrinsic"] = new self("intrinsic");
         }
 
-        return self::$instances["intrinsic"];
+        return self::$instances["Intrinsic"];
     }
 
     public static function unscoped(): self
     {
-        if (!isset(self::$instances["unscoped"])) {
-            self::$instances["unscoped"] = new self("unscoped");
+        if (!isset(self::$instances["Unscoped"])) {
+            self::$instances["Unscoped"] = new self("unscoped");
         }
 
-        return self::$instances["unscoped"];
+        return self::$instances["Unscoped"];
     }
 
     public static function event(): self
     {
-        if (!isset(self::$instances["event"])) {
-            self::$instances["event"] = new self("event");
+        if (!isset(self::$instances["Event"])) {
+            self::$instances["Event"] = new self("event");
         }
 
-        return self::$instances["event"];
+        return self::$instances["Event"];
     }
 
     public static function instrumentation(): self
     {
-        if (!isset(self::$instances["instrumentation"])) {
-            self::$instances["instrumentation"] = new self("instrumentation");
+        if (!isset(self::$instances["Instrumentation"])) {
+            self::$instances["Instrumentation"] = new self("instrumentation");
         }
 
-        return self::$instances["instrumentation"];
+        return self::$instances["Instrumentation"];
     }
 
     public static function link(): self
     {
-        if (!isset(self::$instances["link"])) {
-            self::$instances["link"] = new self("link");
+        if (!isset(self::$instances["Link"])) {
+            self::$instances["Link"] = new self("link");
         }
 
-        return self::$instances["link"];
+        return self::$instances["Link"];
     }
 
     public static function resource(): self
     {
-        if (!isset(self::$instances["resource"])) {
-            self::$instances["resource"] = new self("resource");
+        if (!isset(self::$instances["Resource"])) {
+            self::$instances["Resource"] = new self("resource");
         }
 
-        return self::$instances["resource"];
+        return self::$instances["Resource"];
     }
 
     public static function span(): self
     {
-        if (!isset(self::$instances["span"])) {
-            self::$instances["span"] = new self("span");
+        if (!isset(self::$instances["Span"])) {
+            self::$instances["Span"] = new self("span");
         }
 
-        return self::$instances["span"];
+        return self::$instances["Span"];
     }
 
     public static function fromValue(string $value): self

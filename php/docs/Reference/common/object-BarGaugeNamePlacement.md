@@ -26,38 +26,38 @@ final class BarGaugeNamePlacement implements \JsonSerializable, \Stringable {
 
     public static function auto(): self
     {
-        if (!isset(self::$instances["auto"])) {
-            self::$instances["auto"] = new self("auto");
+        if (!isset(self::$instances["Auto"])) {
+            self::$instances["Auto"] = new self("auto");
         }
 
-        return self::$instances["auto"];
+        return self::$instances["Auto"];
     }
 
     public static function top(): self
     {
-        if (!isset(self::$instances["top"])) {
-            self::$instances["top"] = new self("top");
+        if (!isset(self::$instances["Top"])) {
+            self::$instances["Top"] = new self("top");
         }
 
-        return self::$instances["top"];
+        return self::$instances["Top"];
     }
 
     public static function left(): self
     {
-        if (!isset(self::$instances["left"])) {
-            self::$instances["left"] = new self("left");
+        if (!isset(self::$instances["Left"])) {
+            self::$instances["Left"] = new self("left");
         }
 
-        return self::$instances["left"];
+        return self::$instances["Left"];
     }
 
     public static function hidden(): self
     {
-        if (!isset(self::$instances["hidden"])) {
-            self::$instances["hidden"] = new self("hidden");
+        if (!isset(self::$instances["Hidden"])) {
+            self::$instances["Hidden"] = new self("hidden");
         }
 
-        return self::$instances["hidden"];
+        return self::$instances["Hidden"];
     }
 
     public static function fromValue(string $value): self

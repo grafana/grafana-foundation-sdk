@@ -20,47 +20,47 @@ final class MovingAverageModel implements \JsonSerializable, \Stringable {
 
     public static function simple(): self
     {
-        if (!isset(self::$instances["simple"])) {
-            self::$instances["simple"] = new self("simple");
+        if (!isset(self::$instances["Simple"])) {
+            self::$instances["Simple"] = new self("simple");
         }
 
-        return self::$instances["simple"];
+        return self::$instances["Simple"];
     }
 
     public static function linear(): self
     {
-        if (!isset(self::$instances["linear"])) {
-            self::$instances["linear"] = new self("linear");
+        if (!isset(self::$instances["Linear"])) {
+            self::$instances["Linear"] = new self("linear");
         }
 
-        return self::$instances["linear"];
+        return self::$instances["Linear"];
     }
 
     public static function ewma(): self
     {
-        if (!isset(self::$instances["ewma"])) {
-            self::$instances["ewma"] = new self("ewma");
+        if (!isset(self::$instances["Ewma"])) {
+            self::$instances["Ewma"] = new self("ewma");
         }
 
-        return self::$instances["ewma"];
+        return self::$instances["Ewma"];
     }
 
     public static function holt(): self
     {
-        if (!isset(self::$instances["holt"])) {
-            self::$instances["holt"] = new self("holt");
+        if (!isset(self::$instances["Holt"])) {
+            self::$instances["Holt"] = new self("holt");
         }
 
-        return self::$instances["holt"];
+        return self::$instances["Holt"];
     }
 
     public static function holtWinters(): self
     {
-        if (!isset(self::$instances["holt_winters"])) {
-            self::$instances["holt_winters"] = new self("holt_winters");
+        if (!isset(self::$instances["HoltWinters"])) {
+            self::$instances["HoltWinters"] = new self("holt_winters");
         }
 
-        return self::$instances["holt_winters"];
+        return self::$instances["HoltWinters"];
     }
 
     public static function fromValue(string $value): self

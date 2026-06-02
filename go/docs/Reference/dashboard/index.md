@@ -8,6 +8,8 @@
  * <span class="badge object-type-enum"></span> [ActionVariableType](./object-ActionVariableType.md)
  * <span class="badge object-type-struct"></span> [AnnotationActions](./object-AnnotationActions.md)
  * <span class="badge object-type-struct"></span> [AnnotationContainer](./object-AnnotationContainer.md)
+ * <span class="badge object-type-struct"></span> [AnnotationEventFieldMapping](./object-AnnotationEventFieldMapping.md)
+ * <span class="badge object-type-enum"></span> [AnnotationEventFieldSource](./object-AnnotationEventFieldSource.md)
  * <span class="badge object-type-struct"></span> [AnnotationPanelFilter](./object-AnnotationPanelFilter.md)
  * <span class="badge object-type-struct"></span> [AnnotationPermission](./object-AnnotationPermission.md)
  * <span class="badge object-type-struct"></span> [AnnotationQuery](./object-AnnotationQuery.md)
@@ -75,6 +77,7 @@
  * <span class="badge builder"></span> [ActionVariableBuilder](./builder-ActionVariableBuilder.md)
  * <span class="badge builder"></span> [AdHocVariableBuilder](./builder-AdHocVariableBuilder.md)
  * <span class="badge builder"></span> [AnnotationActionsBuilder](./builder-AnnotationActionsBuilder.md)
+ * <span class="badge builder"></span> [AnnotationEventFieldMappingBuilder](./builder-AnnotationEventFieldMappingBuilder.md)
  * <span class="badge builder"></span> [AnnotationPanelFilterBuilder](./builder-AnnotationPanelFilterBuilder.md)
  * <span class="badge builder"></span> [AnnotationPermissionBuilder](./builder-AnnotationPermissionBuilder.md)
  * <span class="badge builder"></span> [AnnotationQueryBuilder](./builder-AnnotationQueryBuilder.md)
@@ -402,6 +405,14 @@ NewSnapshot creates a new Snapshot object.
 func NewSnapshot() *Snapshot
 ```
 
+### <span class="badge function"></span> NewAnnotationEventFieldMapping
+
+NewAnnotationEventFieldMapping creates a new AnnotationEventFieldMapping object.
+
+```go
+func NewAnnotationEventFieldMapping() *AnnotationEventFieldMapping
+```
+
 ### <span class="badge function"></span> NewDashboardDashboardTime
 
 NewDashboardDashboardTime creates a new DashboardDashboardTime object.
@@ -600,6 +611,14 @@ SnapshotConverter accepts a `Snapshot` object and generates the Go code to build
 
 ```go
 func SnapshotConverter(input Snapshot) string
+```
+
+### <span class="badge function"></span> AnnotationEventFieldMappingConverter
+
+AnnotationEventFieldMappingConverter accepts a `AnnotationEventFieldMapping` object and generates the Go code to build this object using builders.
+
+```go
+func AnnotationEventFieldMappingConverter(input AnnotationEventFieldMapping) string
 ```
 
 ### <span class="badge function"></span> DashboardDashboardTimeConverter

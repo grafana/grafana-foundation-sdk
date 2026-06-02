@@ -130,3 +130,54 @@ func (builder *AnnotationQueryBuilder) Expr(expr string) *AnnotationQueryBuilder
 
 	return builder
 }
+
+// Format for Prometheus annotation text. Label values can be interpolated with templates like {{instance}}.
+func (builder *AnnotationQueryBuilder) TextFormat(textFormat string) *AnnotationQueryBuilder {
+	builder.internal.TextFormat = &textFormat
+
+	return builder
+}
+
+// Format for Prometheus and Loki annotation titles. Label values can be interpolated with templates like {{instance}}.
+func (builder *AnnotationQueryBuilder) TitleFormat(titleFormat string) *AnnotationQueryBuilder {
+	builder.internal.TitleFormat = &titleFormat
+
+	return builder
+}
+
+// Comma-separated label keys used as annotation tags.
+func (builder *AnnotationQueryBuilder) TagKeys(tagKeys string) *AnnotationQueryBuilder {
+	builder.internal.TagKeys = &tagKeys
+
+	return builder
+}
+
+// Legacy Prometheus annotation query step interval.
+func (builder *AnnotationQueryBuilder) Step(step string) *AnnotationQueryBuilder {
+	builder.internal.Step = &step
+
+	return builder
+}
+
+// Use the Prometheus series value as the annotation timestamp.
+func (builder *AnnotationQueryBuilder) UseValueForTime(useValueForTime bool) *AnnotationQueryBuilder {
+	builder.internal.UseValueForTime = &useValueForTime
+
+	return builder
+}
+
+// Mappings define how to convert data frame fields to annotation event fields.
+func (builder *AnnotationQueryBuilder) Mappings(mappings map[string]cog.Builder[AnnotationEventFieldMapping]) *AnnotationQueryBuilder {
+	mappingsResource := make(map[string]AnnotationEventFieldMapping)
+	for key1, val1 := range mappings {
+		mappingsDepth1, err := val1.Build()
+		if err != nil {
+			builder.errors = append(builder.errors, err.(cog.BuildErrors)...)
+			return builder
+		}
+		mappingsResource[key1] = mappingsDepth1
+	}
+	builder.internal.Mappings = mappingsResource
+
+	return builder
+}

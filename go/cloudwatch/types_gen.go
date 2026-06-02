@@ -177,10 +177,6 @@ func (resource *MetricStat) UnmarshalJSONStrict(raw []byte) error {
 		errs = append(errs, cog.MakeBuildErrors("MetricStat", fmt.Errorf("unexpected field '%s'", field))...)
 	}
 
-	if len(errs) == 0 {
-		return nil
-	}
-
 	return errs
 }
 
@@ -366,7 +362,8 @@ func (resource *CloudWatchMetricsQuery) UnmarshalJSONStrict(raw []byte) error {
 
 		}
 		delete(fields, "queryMode")
-
+	} else {
+		errs = append(errs, cog.MakeBuildErrors("queryMode", errors.New("required field is missing from input"))...)
 	}
 	// Field "metricQueryType"
 	if fields["metricQueryType"] != nil {
@@ -629,10 +626,6 @@ func (resource *CloudWatchMetricsQuery) UnmarshalJSONStrict(raw []byte) error {
 
 	for field := range fields {
 		errs = append(errs, cog.MakeBuildErrors("CloudWatchMetricsQuery", fmt.Errorf("unexpected field '%s'", field))...)
-	}
-
-	if len(errs) == 0 {
-		return nil
 	}
 
 	return errs
@@ -1003,10 +996,6 @@ func (resource *SQLExpression) UnmarshalJSONStrict(raw []byte) error {
 		errs = append(errs, cog.MakeBuildErrors("SQLExpression", fmt.Errorf("unexpected field '%s'", field))...)
 	}
 
-	if len(errs) == 0 {
-		return nil
-	}
-
 	return errs
 }
 
@@ -1193,10 +1182,6 @@ func (resource *QueryEditorFunctionExpression) UnmarshalJSONStrict(raw []byte) e
 		errs = append(errs, cog.MakeBuildErrors("QueryEditorFunctionExpression", fmt.Errorf("unexpected field '%s'", field))...)
 	}
 
-	if len(errs) == 0 {
-		return nil
-	}
-
 	return errs
 }
 
@@ -1314,10 +1299,6 @@ func (resource *QueryEditorFunctionParameterExpression) UnmarshalJSONStrict(raw 
 		errs = append(errs, cog.MakeBuildErrors("QueryEditorFunctionParameterExpression", fmt.Errorf("unexpected field '%s'", field))...)
 	}
 
-	if len(errs) == 0 {
-		return nil
-	}
-
 	return errs
 }
 
@@ -1413,10 +1394,6 @@ func (resource *QueryEditorPropertyExpression) UnmarshalJSONStrict(raw []byte) e
 		errs = append(errs, cog.MakeBuildErrors("QueryEditorPropertyExpression", fmt.Errorf("unexpected field '%s'", field))...)
 	}
 
-	if len(errs) == 0 {
-		return nil
-	}
-
 	return errs
 }
 
@@ -1501,10 +1478,6 @@ func (resource *QueryEditorProperty) UnmarshalJSONStrict(raw []byte) error {
 
 	for field := range fields {
 		errs = append(errs, cog.MakeBuildErrors("QueryEditorProperty", fmt.Errorf("unexpected field '%s'", field))...)
-	}
-
-	if len(errs) == 0 {
-		return nil
 	}
 
 	return errs
@@ -1617,10 +1590,6 @@ func (resource *QueryEditorArrayExpression) UnmarshalJSONStrict(raw []byte) erro
 		errs = append(errs, cog.MakeBuildErrors("QueryEditorArrayExpression", fmt.Errorf("unexpected field '%s'", field))...)
 	}
 
-	if len(errs) == 0 {
-		return nil
-	}
-
 	return errs
 }
 
@@ -1725,10 +1694,6 @@ func (resource *QueryEditorGroupByExpression) UnmarshalJSONStrict(raw []byte) er
 
 	for field := range fields {
 		errs = append(errs, cog.MakeBuildErrors("QueryEditorGroupByExpression", fmt.Errorf("unexpected field '%s'", field))...)
-	}
-
-	if len(errs) == 0 {
-		return nil
 	}
 
 	return errs
@@ -1842,10 +1807,6 @@ func (resource *QueryEditorOperatorExpression) UnmarshalJSONStrict(raw []byte) e
 		errs = append(errs, cog.MakeBuildErrors("QueryEditorOperatorExpression", fmt.Errorf("unexpected field '%s'", field))...)
 	}
 
-	if len(errs) == 0 {
-		return nil
-	}
-
 	return errs
 }
 
@@ -1934,10 +1895,6 @@ func (resource *QueryEditorOperator) UnmarshalJSONStrict(raw []byte) error {
 
 	for field := range fields {
 		errs = append(errs, cog.MakeBuildErrors("QueryEditorOperator", fmt.Errorf("unexpected field '%s'", field))...)
-	}
-
-	if len(errs) == 0 {
-		return nil
 	}
 
 	return errs
@@ -2074,7 +2031,8 @@ func (resource *CloudWatchLogsQuery) UnmarshalJSONStrict(raw []byte) error {
 
 		}
 		delete(fields, "queryMode")
-
+	} else {
+		errs = append(errs, cog.MakeBuildErrors("queryMode", errors.New("required field is missing from input"))...)
 	}
 	// Field "id"
 	if fields["id"] != nil {
@@ -2222,10 +2180,6 @@ func (resource *CloudWatchLogsQuery) UnmarshalJSONStrict(raw []byte) error {
 
 	for field := range fields {
 		errs = append(errs, cog.MakeBuildErrors("CloudWatchLogsQuery", fmt.Errorf("unexpected field '%s'", field))...)
-	}
-
-	if len(errs) == 0 {
-		return nil
 	}
 
 	return errs
@@ -2443,10 +2397,6 @@ func (resource *LogGroup) UnmarshalJSONStrict(raw []byte) error {
 		errs = append(errs, cog.MakeBuildErrors("LogGroup", fmt.Errorf("unexpected field '%s'", field))...)
 	}
 
-	if len(errs) == 0 {
-		return nil
-	}
-
 	return errs
 }
 
@@ -2573,7 +2523,8 @@ func (resource *CloudWatchAnnotationQuery) UnmarshalJSONStrict(raw []byte) error
 
 		}
 		delete(fields, "queryMode")
-
+	} else {
+		errs = append(errs, cog.MakeBuildErrors("queryMode", errors.New("required field is missing from input"))...)
 	}
 	// Field "prefixMatching"
 	if fields["prefixMatching"] != nil {
@@ -2776,10 +2727,6 @@ func (resource *CloudWatchAnnotationQuery) UnmarshalJSONStrict(raw []byte) error
 
 	for field := range fields {
 		errs = append(errs, cog.MakeBuildErrors("CloudWatchAnnotationQuery", fmt.Errorf("unexpected field '%s'", field))...)
-	}
-
-	if len(errs) == 0 {
-		return nil
 	}
 
 	return errs

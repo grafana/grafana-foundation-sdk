@@ -23,20 +23,20 @@ final class BigValueJustifyMode implements \JsonSerializable, \Stringable {
 
     public static function auto(): self
     {
-        if (!isset(self::$instances["auto"])) {
-            self::$instances["auto"] = new self("auto");
+        if (!isset(self::$instances["Auto"])) {
+            self::$instances["Auto"] = new self("auto");
         }
 
-        return self::$instances["auto"];
+        return self::$instances["Auto"];
     }
 
     public static function center(): self
     {
-        if (!isset(self::$instances["center"])) {
-            self::$instances["center"] = new self("center");
+        if (!isset(self::$instances["Center"])) {
+            self::$instances["Center"] = new self("center");
         }
 
-        return self::$instances["center"];
+        return self::$instances["Center"];
     }
 
     public static function fromValue(string $value): self

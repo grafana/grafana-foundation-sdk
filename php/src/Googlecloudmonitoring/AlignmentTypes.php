@@ -20,173 +20,173 @@ final class AlignmentTypes implements \JsonSerializable, \Stringable {
 
     public static function aLIGNDELTA(): self
     {
-        if (!isset(self::$instances["ALIGN_DELTA"])) {
-            self::$instances["ALIGN_DELTA"] = new self("ALIGN_DELTA");
+        if (!isset(self::$instances["ALIGNDELTA"])) {
+            self::$instances["ALIGNDELTA"] = new self("ALIGN_DELTA");
         }
 
-        return self::$instances["ALIGN_DELTA"];
+        return self::$instances["ALIGNDELTA"];
     }
 
     public static function aLIGNRATE(): self
     {
-        if (!isset(self::$instances["ALIGN_RATE"])) {
-            self::$instances["ALIGN_RATE"] = new self("ALIGN_RATE");
+        if (!isset(self::$instances["ALIGNRATE"])) {
+            self::$instances["ALIGNRATE"] = new self("ALIGN_RATE");
         }
 
-        return self::$instances["ALIGN_RATE"];
+        return self::$instances["ALIGNRATE"];
     }
 
     public static function aLIGNINTERPOLATE(): self
     {
-        if (!isset(self::$instances["ALIGN_INTERPOLATE"])) {
-            self::$instances["ALIGN_INTERPOLATE"] = new self("ALIGN_INTERPOLATE");
+        if (!isset(self::$instances["ALIGNINTERPOLATE"])) {
+            self::$instances["ALIGNINTERPOLATE"] = new self("ALIGN_INTERPOLATE");
         }
 
-        return self::$instances["ALIGN_INTERPOLATE"];
+        return self::$instances["ALIGNINTERPOLATE"];
     }
 
     public static function aLIGNNEXTOLDER(): self
     {
-        if (!isset(self::$instances["ALIGN_NEXT_OLDER"])) {
-            self::$instances["ALIGN_NEXT_OLDER"] = new self("ALIGN_NEXT_OLDER");
+        if (!isset(self::$instances["ALIGNNEXTOLDER"])) {
+            self::$instances["ALIGNNEXTOLDER"] = new self("ALIGN_NEXT_OLDER");
         }
 
-        return self::$instances["ALIGN_NEXT_OLDER"];
+        return self::$instances["ALIGNNEXTOLDER"];
     }
 
     public static function aLIGNMIN(): self
     {
-        if (!isset(self::$instances["ALIGN_MIN"])) {
-            self::$instances["ALIGN_MIN"] = new self("ALIGN_MIN");
+        if (!isset(self::$instances["ALIGNMIN"])) {
+            self::$instances["ALIGNMIN"] = new self("ALIGN_MIN");
         }
 
-        return self::$instances["ALIGN_MIN"];
+        return self::$instances["ALIGNMIN"];
     }
 
     public static function aLIGNMAX(): self
     {
-        if (!isset(self::$instances["ALIGN_MAX"])) {
-            self::$instances["ALIGN_MAX"] = new self("ALIGN_MAX");
+        if (!isset(self::$instances["ALIGNMAX"])) {
+            self::$instances["ALIGNMAX"] = new self("ALIGN_MAX");
         }
 
-        return self::$instances["ALIGN_MAX"];
+        return self::$instances["ALIGNMAX"];
     }
 
     public static function aLIGNMEAN(): self
     {
-        if (!isset(self::$instances["ALIGN_MEAN"])) {
-            self::$instances["ALIGN_MEAN"] = new self("ALIGN_MEAN");
+        if (!isset(self::$instances["ALIGNMEAN"])) {
+            self::$instances["ALIGNMEAN"] = new self("ALIGN_MEAN");
         }
 
-        return self::$instances["ALIGN_MEAN"];
+        return self::$instances["ALIGNMEAN"];
     }
 
     public static function aLIGNCOUNT(): self
     {
-        if (!isset(self::$instances["ALIGN_COUNT"])) {
-            self::$instances["ALIGN_COUNT"] = new self("ALIGN_COUNT");
+        if (!isset(self::$instances["ALIGNCOUNT"])) {
+            self::$instances["ALIGNCOUNT"] = new self("ALIGN_COUNT");
         }
 
-        return self::$instances["ALIGN_COUNT"];
+        return self::$instances["ALIGNCOUNT"];
     }
 
     public static function aLIGNSUM(): self
     {
-        if (!isset(self::$instances["ALIGN_SUM"])) {
-            self::$instances["ALIGN_SUM"] = new self("ALIGN_SUM");
+        if (!isset(self::$instances["ALIGNSUM"])) {
+            self::$instances["ALIGNSUM"] = new self("ALIGN_SUM");
         }
 
-        return self::$instances["ALIGN_SUM"];
+        return self::$instances["ALIGNSUM"];
     }
 
     public static function aLIGNSTDDEV(): self
     {
-        if (!isset(self::$instances["ALIGN_STDDEV"])) {
-            self::$instances["ALIGN_STDDEV"] = new self("ALIGN_STDDEV");
+        if (!isset(self::$instances["ALIGNSTDDEV"])) {
+            self::$instances["ALIGNSTDDEV"] = new self("ALIGN_STDDEV");
         }
 
-        return self::$instances["ALIGN_STDDEV"];
+        return self::$instances["ALIGNSTDDEV"];
     }
 
     public static function aLIGNCOUNTTRUE(): self
     {
-        if (!isset(self::$instances["ALIGN_COUNT_TRUE"])) {
-            self::$instances["ALIGN_COUNT_TRUE"] = new self("ALIGN_COUNT_TRUE");
+        if (!isset(self::$instances["ALIGNCOUNTTRUE"])) {
+            self::$instances["ALIGNCOUNTTRUE"] = new self("ALIGN_COUNT_TRUE");
         }
 
-        return self::$instances["ALIGN_COUNT_TRUE"];
+        return self::$instances["ALIGNCOUNTTRUE"];
     }
 
     public static function aLIGNCOUNTFALSE(): self
     {
-        if (!isset(self::$instances["ALIGN_COUNT_FALSE"])) {
-            self::$instances["ALIGN_COUNT_FALSE"] = new self("ALIGN_COUNT_FALSE");
+        if (!isset(self::$instances["ALIGNCOUNTFALSE"])) {
+            self::$instances["ALIGNCOUNTFALSE"] = new self("ALIGN_COUNT_FALSE");
         }
 
-        return self::$instances["ALIGN_COUNT_FALSE"];
+        return self::$instances["ALIGNCOUNTFALSE"];
     }
 
     public static function aLIGNFRACTIONTRUE(): self
     {
-        if (!isset(self::$instances["ALIGN_FRACTION_TRUE"])) {
-            self::$instances["ALIGN_FRACTION_TRUE"] = new self("ALIGN_FRACTION_TRUE");
+        if (!isset(self::$instances["ALIGNFRACTIONTRUE"])) {
+            self::$instances["ALIGNFRACTIONTRUE"] = new self("ALIGN_FRACTION_TRUE");
         }
 
-        return self::$instances["ALIGN_FRACTION_TRUE"];
+        return self::$instances["ALIGNFRACTIONTRUE"];
     }
 
     public static function aLIGNPERCENTILE99(): self
     {
-        if (!isset(self::$instances["ALIGN_PERCENTILE_99"])) {
-            self::$instances["ALIGN_PERCENTILE_99"] = new self("ALIGN_PERCENTILE_99");
+        if (!isset(self::$instances["ALIGNPERCENTILE99"])) {
+            self::$instances["ALIGNPERCENTILE99"] = new self("ALIGN_PERCENTILE_99");
         }
 
-        return self::$instances["ALIGN_PERCENTILE_99"];
+        return self::$instances["ALIGNPERCENTILE99"];
     }
 
     public static function aLIGNPERCENTILE95(): self
     {
-        if (!isset(self::$instances["ALIGN_PERCENTILE_95"])) {
-            self::$instances["ALIGN_PERCENTILE_95"] = new self("ALIGN_PERCENTILE_95");
+        if (!isset(self::$instances["ALIGNPERCENTILE95"])) {
+            self::$instances["ALIGNPERCENTILE95"] = new self("ALIGN_PERCENTILE_95");
         }
 
-        return self::$instances["ALIGN_PERCENTILE_95"];
+        return self::$instances["ALIGNPERCENTILE95"];
     }
 
     public static function aLIGNPERCENTILE50(): self
     {
-        if (!isset(self::$instances["ALIGN_PERCENTILE_50"])) {
-            self::$instances["ALIGN_PERCENTILE_50"] = new self("ALIGN_PERCENTILE_50");
+        if (!isset(self::$instances["ALIGNPERCENTILE50"])) {
+            self::$instances["ALIGNPERCENTILE50"] = new self("ALIGN_PERCENTILE_50");
         }
 
-        return self::$instances["ALIGN_PERCENTILE_50"];
+        return self::$instances["ALIGNPERCENTILE50"];
     }
 
     public static function aLIGNPERCENTILE05(): self
     {
-        if (!isset(self::$instances["ALIGN_PERCENTILE_05"])) {
-            self::$instances["ALIGN_PERCENTILE_05"] = new self("ALIGN_PERCENTILE_05");
+        if (!isset(self::$instances["ALIGNPERCENTILE05"])) {
+            self::$instances["ALIGNPERCENTILE05"] = new self("ALIGN_PERCENTILE_05");
         }
 
-        return self::$instances["ALIGN_PERCENTILE_05"];
+        return self::$instances["ALIGNPERCENTILE05"];
     }
 
     public static function aLIGNPERCENTCHANGE(): self
     {
-        if (!isset(self::$instances["ALIGN_PERCENT_CHANGE"])) {
-            self::$instances["ALIGN_PERCENT_CHANGE"] = new self("ALIGN_PERCENT_CHANGE");
+        if (!isset(self::$instances["ALIGNPERCENTCHANGE"])) {
+            self::$instances["ALIGNPERCENTCHANGE"] = new self("ALIGN_PERCENT_CHANGE");
         }
 
-        return self::$instances["ALIGN_PERCENT_CHANGE"];
+        return self::$instances["ALIGNPERCENTCHANGE"];
     }
 
     public static function aLIGNNONE(): self
     {
-        if (!isset(self::$instances["ALIGN_NONE"])) {
-            self::$instances["ALIGN_NONE"] = new self("ALIGN_NONE");
+        if (!isset(self::$instances["ALIGNNONE"])) {
+            self::$instances["ALIGNNONE"] = new self("ALIGN_NONE");
         }
 
-        return self::$instances["ALIGN_NONE"];
+        return self::$instances["ALIGNNONE"];
     }
 
     public static function fromValue(string $value): self

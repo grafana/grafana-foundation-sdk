@@ -20,20 +20,20 @@ final class HeatmapCalculationMode implements \JsonSerializable, \Stringable {
 
     public static function size(): self
     {
-        if (!isset(self::$instances["size"])) {
-            self::$instances["size"] = new self("size");
+        if (!isset(self::$instances["Size"])) {
+            self::$instances["Size"] = new self("size");
         }
 
-        return self::$instances["size"];
+        return self::$instances["Size"];
     }
 
     public static function count(): self
     {
-        if (!isset(self::$instances["count"])) {
-            self::$instances["count"] = new self("count");
+        if (!isset(self::$instances["Count"])) {
+            self::$instances["Count"] = new self("count");
         }
 
-        return self::$instances["count"];
+        return self::$instances["Count"];
     }
 
     public static function fromValue(string $value): self

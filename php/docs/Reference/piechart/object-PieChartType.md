@@ -26,20 +26,20 @@ final class PieChartType implements \JsonSerializable, \Stringable {
 
     public static function pie(): self
     {
-        if (!isset(self::$instances["pie"])) {
-            self::$instances["pie"] = new self("pie");
+        if (!isset(self::$instances["Pie"])) {
+            self::$instances["Pie"] = new self("pie");
         }
 
-        return self::$instances["pie"];
+        return self::$instances["Pie"];
     }
 
     public static function donut(): self
     {
-        if (!isset(self::$instances["donut"])) {
-            self::$instances["donut"] = new self("donut");
+        if (!isset(self::$instances["Donut"])) {
+            self::$instances["Donut"] = new self("donut");
         }
 
-        return self::$instances["donut"];
+        return self::$instances["Donut"];
     }
 
     public static function fromValue(string $value): self

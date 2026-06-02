@@ -54,7 +54,7 @@ final class QueryV2Converter
     
     
     }
-            if ($input->spec !== null && $input->spec instanceof \Grafana\Foundation\Azuremonitor\AzureMonitorQuery && $input->spec->refId !== null && $input->spec->refId !== "") {
+            if ($input->spec !== null && $input->spec instanceof \Grafana\Foundation\Azuremonitor\MonitorQuery && $input->spec->refId !== "") {
     
         
     $buffer = 'refId(';
@@ -67,7 +67,7 @@ final class QueryV2Converter
     
     
     }
-            if ($input->spec !== null && $input->spec instanceof \Grafana\Foundation\Azuremonitor\AzureMonitorQuery && $input->spec->hide !== null) {
+            if ($input->spec !== null && $input->spec instanceof \Grafana\Foundation\Azuremonitor\MonitorQuery && $input->spec->hide !== null) {
     
         
     $buffer = 'hide(';
@@ -80,7 +80,7 @@ final class QueryV2Converter
     
     
     }
-            if ($input->spec !== null && $input->spec instanceof \Grafana\Foundation\Azuremonitor\AzureMonitorQuery && $input->spec->queryType !== null && $input->spec->queryType !== "") {
+            if ($input->spec !== null && $input->spec instanceof \Grafana\Foundation\Azuremonitor\MonitorQuery && $input->spec->queryType !== null && $input->spec->queryType !== "") {
     
         
     $buffer = 'queryType(';
@@ -93,7 +93,7 @@ final class QueryV2Converter
     
     
     }
-            if ($input->spec !== null && $input->spec instanceof \Grafana\Foundation\Azuremonitor\AzureMonitorQuery && $input->spec->subscription !== null && $input->spec->subscription !== "") {
+            if ($input->spec !== null && $input->spec instanceof \Grafana\Foundation\Azuremonitor\MonitorQuery && $input->spec->subscription !== null && $input->spec->subscription !== "") {
     
         
     $buffer = 'subscription(';
@@ -106,7 +106,7 @@ final class QueryV2Converter
     
     
     }
-            if ($input->spec !== null && $input->spec instanceof \Grafana\Foundation\Azuremonitor\AzureMonitorQuery && $input->spec->subscriptions !== null && count($input->spec->subscriptions) >= 1) {
+            if ($input->spec !== null && $input->spec instanceof \Grafana\Foundation\Azuremonitor\MonitorQuery && $input->spec->subscriptions !== null && count($input->spec->subscriptions) >= 1) {
     
         
     $buffer = 'subscriptions(';
@@ -124,11 +124,11 @@ final class QueryV2Converter
     
     
     }
-            if ($input->spec !== null && $input->spec instanceof \Grafana\Foundation\Azuremonitor\AzureMonitorQuery && $input->spec->azureMonitor !== null) {
+            if ($input->spec !== null && $input->spec instanceof \Grafana\Foundation\Azuremonitor\MonitorQuery && $input->spec->azureMonitor !== null) {
     
         
     $buffer = 'azureMonitor(';
-        $arg0 = \Grafana\Foundation\Azuremonitor\AzureMetricQueryConverter::convert($input->spec->azureMonitor);
+        $arg0 = \Grafana\Foundation\Azuremonitor\MetricQueryConverter::convert($input->spec->azureMonitor);
         $buffer .= $arg0;
         
     $buffer .= ')';
@@ -137,11 +137,11 @@ final class QueryV2Converter
     
     
     }
-            if ($input->spec !== null && $input->spec instanceof \Grafana\Foundation\Azuremonitor\AzureMonitorQuery && $input->spec->azureLogAnalytics !== null) {
+            if ($input->spec !== null && $input->spec instanceof \Grafana\Foundation\Azuremonitor\MonitorQuery && $input->spec->azureLogAnalytics !== null) {
     
         
     $buffer = 'azureLogAnalytics(';
-        $arg0 = \Grafana\Foundation\Azuremonitor\AzureLogsQueryConverter::convert($input->spec->azureLogAnalytics);
+        $arg0 = \Grafana\Foundation\Azuremonitor\LogsQueryConverter::convert($input->spec->azureLogAnalytics);
         $buffer .= $arg0;
         
     $buffer .= ')';
@@ -150,11 +150,11 @@ final class QueryV2Converter
     
     
     }
-            if ($input->spec !== null && $input->spec instanceof \Grafana\Foundation\Azuremonitor\AzureMonitorQuery && $input->spec->azureResourceGraph !== null) {
+            if ($input->spec !== null && $input->spec instanceof \Grafana\Foundation\Azuremonitor\MonitorQuery && $input->spec->azureResourceGraph !== null) {
     
         
     $buffer = 'azureResourceGraph(';
-        $arg0 = \Grafana\Foundation\Azuremonitor\AzureResourceGraphQueryConverter::convert($input->spec->azureResourceGraph);
+        $arg0 = \Grafana\Foundation\Azuremonitor\ResourceGraphQueryConverter::convert($input->spec->azureResourceGraph);
         $buffer .= $arg0;
         
     $buffer .= ')';
@@ -163,11 +163,11 @@ final class QueryV2Converter
     
     
     }
-            if ($input->spec !== null && $input->spec instanceof \Grafana\Foundation\Azuremonitor\AzureMonitorQuery && $input->spec->azureTraces !== null) {
+            if ($input->spec !== null && $input->spec instanceof \Grafana\Foundation\Azuremonitor\MonitorQuery && $input->spec->azureTraces !== null) {
     
         
     $buffer = 'azureTraces(';
-        $arg0 = \Grafana\Foundation\Azuremonitor\AzureTracesQueryConverter::convert($input->spec->azureTraces);
+        $arg0 = \Grafana\Foundation\Azuremonitor\TracesQueryConverter::convert($input->spec->azureTraces);
         $buffer .= $arg0;
         
     $buffer .= ')';
@@ -176,7 +176,7 @@ final class QueryV2Converter
     
     
     }
-            if ($input->spec !== null && $input->spec instanceof \Grafana\Foundation\Azuremonitor\AzureMonitorQuery) {
+            if ($input->spec !== null && $input->spec instanceof \Grafana\Foundation\Azuremonitor\MonitorQuery) {
     
         
     $buffer = 'grafanaTemplateVariableFn(';
@@ -232,7 +232,7 @@ final class QueryV2Converter
     
     
     }
-            if ($input->spec !== null && $input->spec instanceof \Grafana\Foundation\Azuremonitor\AzureMonitorQuery && $input->spec->resourceGroup !== null && $input->spec->resourceGroup !== "") {
+            if ($input->spec !== null && $input->spec instanceof \Grafana\Foundation\Azuremonitor\MonitorQuery && $input->spec->resourceGroup !== null && $input->spec->resourceGroup !== "") {
     
         
     $buffer = 'resourceGroup(';
@@ -245,7 +245,7 @@ final class QueryV2Converter
     
     
     }
-            if ($input->spec !== null && $input->spec instanceof \Grafana\Foundation\Azuremonitor\AzureMonitorQuery && $input->spec->namespace !== null && $input->spec->namespace !== "") {
+            if ($input->spec !== null && $input->spec instanceof \Grafana\Foundation\Azuremonitor\MonitorQuery && $input->spec->namespace !== null && $input->spec->namespace !== "") {
     
         
     $buffer = 'namespace(';
@@ -258,7 +258,7 @@ final class QueryV2Converter
     
     
     }
-            if ($input->spec !== null && $input->spec instanceof \Grafana\Foundation\Azuremonitor\AzureMonitorQuery && $input->spec->resource !== null && $input->spec->resource !== "") {
+            if ($input->spec !== null && $input->spec instanceof \Grafana\Foundation\Azuremonitor\MonitorQuery && $input->spec->resource !== null && $input->spec->resource !== "") {
     
         
     $buffer = 'resource(';
@@ -271,7 +271,7 @@ final class QueryV2Converter
     
     
     }
-            if ($input->spec !== null && $input->spec instanceof \Grafana\Foundation\Azuremonitor\AzureMonitorQuery && $input->spec->region !== null && $input->spec->region !== "") {
+            if ($input->spec !== null && $input->spec instanceof \Grafana\Foundation\Azuremonitor\MonitorQuery && $input->spec->region !== null && $input->spec->region !== "") {
     
         
     $buffer = 'region(';
@@ -284,7 +284,7 @@ final class QueryV2Converter
     
     
     }
-            if ($input->spec !== null && $input->spec instanceof \Grafana\Foundation\Azuremonitor\AzureMonitorQuery && $input->spec->customNamespace !== null && $input->spec->customNamespace !== "") {
+            if ($input->spec !== null && $input->spec instanceof \Grafana\Foundation\Azuremonitor\MonitorQuery && $input->spec->customNamespace !== null && $input->spec->customNamespace !== "") {
     
         
     $buffer = 'customNamespace(';
@@ -297,7 +297,7 @@ final class QueryV2Converter
     
     
     }
-            if ($input->spec !== null && $input->spec instanceof \Grafana\Foundation\Azuremonitor\AzureMonitorQuery && $input->spec->query !== null && $input->spec->query !== "") {
+            if ($input->spec !== null && $input->spec instanceof \Grafana\Foundation\Azuremonitor\MonitorQuery && $input->spec->query !== null && $input->spec->query !== "") {
     
         
     $buffer = 'query(';

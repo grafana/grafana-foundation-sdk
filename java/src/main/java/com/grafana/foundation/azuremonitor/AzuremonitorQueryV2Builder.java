@@ -33,133 +33,133 @@ public class AzuremonitorQueryV2Builder implements com.grafana.foundation.cog.Bu
     
     public AzuremonitorQueryV2Builder refId(String refId) {
 		if (this.internal.spec == null) {
-			this.internal.spec = new com.grafana.foundation.azuremonitor.AzureMonitorQueryBuilder().build();
+			this.internal.spec = new com.grafana.foundation.azuremonitor.MonitorQueryBuilder().build();
 		}
-        ((AzureMonitorQuery) this.internal.spec).refId = refId;
+        ((MonitorQuery) this.internal.spec).refId = refId;
         return this;
     }
     
     public AzuremonitorQueryV2Builder hide(Boolean hide) {
 		if (this.internal.spec == null) {
-			this.internal.spec = new com.grafana.foundation.azuremonitor.AzureMonitorQueryBuilder().build();
+			this.internal.spec = new com.grafana.foundation.azuremonitor.MonitorQueryBuilder().build();
 		}
-        ((AzureMonitorQuery) this.internal.spec).hide = hide;
+        ((MonitorQuery) this.internal.spec).hide = hide;
         return this;
     }
     
     public AzuremonitorQueryV2Builder queryType(String queryType) {
 		if (this.internal.spec == null) {
-			this.internal.spec = new com.grafana.foundation.azuremonitor.AzureMonitorQueryBuilder().build();
+			this.internal.spec = new com.grafana.foundation.azuremonitor.MonitorQueryBuilder().build();
 		}
-        ((AzureMonitorQuery) this.internal.spec).queryType = queryType;
+        ((MonitorQuery) this.internal.spec).queryType = queryType;
         return this;
     }
     
     public AzuremonitorQueryV2Builder subscription(String subscription) {
 		if (this.internal.spec == null) {
-			this.internal.spec = new com.grafana.foundation.azuremonitor.AzureMonitorQueryBuilder().build();
+			this.internal.spec = new com.grafana.foundation.azuremonitor.MonitorQueryBuilder().build();
 		}
-        ((AzureMonitorQuery) this.internal.spec).subscription = subscription;
+        ((MonitorQuery) this.internal.spec).subscription = subscription;
         return this;
     }
     
     public AzuremonitorQueryV2Builder subscriptions(List<String> subscriptions) {
 		if (this.internal.spec == null) {
-			this.internal.spec = new com.grafana.foundation.azuremonitor.AzureMonitorQueryBuilder().build();
+			this.internal.spec = new com.grafana.foundation.azuremonitor.MonitorQueryBuilder().build();
 		}
-        ((AzureMonitorQuery) this.internal.spec).subscriptions = subscriptions;
+        ((MonitorQuery) this.internal.spec).subscriptions = subscriptions;
         return this;
     }
     
-    public AzuremonitorQueryV2Builder azureMonitor(com.grafana.foundation.cog.Builder<AzureMetricQuery> azureMonitor) {
+    public AzuremonitorQueryV2Builder azureMonitor(com.grafana.foundation.cog.Builder<MetricQuery> azureMonitor) {
 		if (this.internal.spec == null) {
-			this.internal.spec = new com.grafana.foundation.azuremonitor.AzureMonitorQueryBuilder().build();
+			this.internal.spec = new com.grafana.foundation.azuremonitor.MonitorQueryBuilder().build();
 		}
-    AzureMetricQuery azureMonitorResource = azureMonitor.build();
-        ((AzureMonitorQuery) this.internal.spec).azureMonitor = azureMonitorResource;
+    MetricQuery azureMonitorResource = azureMonitor.build();
+        ((MonitorQuery) this.internal.spec).azureMonitor = azureMonitorResource;
         return this;
     }
     
-    public AzuremonitorQueryV2Builder azureLogAnalytics(com.grafana.foundation.cog.Builder<AzureLogsQuery> azureLogAnalytics) {
+    public AzuremonitorQueryV2Builder azureLogAnalytics(com.grafana.foundation.cog.Builder<LogsQuery> azureLogAnalytics) {
 		if (this.internal.spec == null) {
-			this.internal.spec = new com.grafana.foundation.azuremonitor.AzureMonitorQueryBuilder().build();
+			this.internal.spec = new com.grafana.foundation.azuremonitor.MonitorQueryBuilder().build();
 		}
-    AzureLogsQuery azureLogAnalyticsResource = azureLogAnalytics.build();
-        ((AzureMonitorQuery) this.internal.spec).azureLogAnalytics = azureLogAnalyticsResource;
+    LogsQuery azureLogAnalyticsResource = azureLogAnalytics.build();
+        ((MonitorQuery) this.internal.spec).azureLogAnalytics = azureLogAnalyticsResource;
         return this;
     }
     
-    public AzuremonitorQueryV2Builder azureResourceGraph(com.grafana.foundation.cog.Builder<AzureResourceGraphQuery> azureResourceGraph) {
+    public AzuremonitorQueryV2Builder azureResourceGraph(com.grafana.foundation.cog.Builder<ResourceGraphQuery> azureResourceGraph) {
 		if (this.internal.spec == null) {
-			this.internal.spec = new com.grafana.foundation.azuremonitor.AzureMonitorQueryBuilder().build();
+			this.internal.spec = new com.grafana.foundation.azuremonitor.MonitorQueryBuilder().build();
 		}
-    AzureResourceGraphQuery azureResourceGraphResource = azureResourceGraph.build();
-        ((AzureMonitorQuery) this.internal.spec).azureResourceGraph = azureResourceGraphResource;
+    ResourceGraphQuery azureResourceGraphResource = azureResourceGraph.build();
+        ((MonitorQuery) this.internal.spec).azureResourceGraph = azureResourceGraphResource;
         return this;
     }
     
-    public AzuremonitorQueryV2Builder azureTraces(com.grafana.foundation.cog.Builder<AzureTracesQuery> azureTraces) {
+    public AzuremonitorQueryV2Builder azureTraces(com.grafana.foundation.cog.Builder<TracesQuery> azureTraces) {
 		if (this.internal.spec == null) {
-			this.internal.spec = new com.grafana.foundation.azuremonitor.AzureMonitorQueryBuilder().build();
+			this.internal.spec = new com.grafana.foundation.azuremonitor.MonitorQueryBuilder().build();
 		}
-    AzureTracesQuery azureTracesResource = azureTraces.build();
-        ((AzureMonitorQuery) this.internal.spec).azureTraces = azureTracesResource;
+    TracesQuery azureTracesResource = azureTraces.build();
+        ((MonitorQuery) this.internal.spec).azureTraces = azureTracesResource;
         return this;
     }
     
     public AzuremonitorQueryV2Builder grafanaTemplateVariableFn(GrafanaTemplateVariableQuery grafanaTemplateVariableFn) {
 		if (this.internal.spec == null) {
-			this.internal.spec = new com.grafana.foundation.azuremonitor.AzureMonitorQueryBuilder().build();
+			this.internal.spec = new com.grafana.foundation.azuremonitor.MonitorQueryBuilder().build();
 		}
-        ((AzureMonitorQuery) this.internal.spec).grafanaTemplateVariableFn = grafanaTemplateVariableFn;
+        ((MonitorQuery) this.internal.spec).grafanaTemplateVariableFn = grafanaTemplateVariableFn;
         return this;
     }
     
     public AzuremonitorQueryV2Builder resourceGroup(String resourceGroup) {
 		if (this.internal.spec == null) {
-			this.internal.spec = new com.grafana.foundation.azuremonitor.AzureMonitorQueryBuilder().build();
+			this.internal.spec = new com.grafana.foundation.azuremonitor.MonitorQueryBuilder().build();
 		}
-        ((AzureMonitorQuery) this.internal.spec).resourceGroup = resourceGroup;
+        ((MonitorQuery) this.internal.spec).resourceGroup = resourceGroup;
         return this;
     }
     
     public AzuremonitorQueryV2Builder namespace(String namespace) {
 		if (this.internal.spec == null) {
-			this.internal.spec = new com.grafana.foundation.azuremonitor.AzureMonitorQueryBuilder().build();
+			this.internal.spec = new com.grafana.foundation.azuremonitor.MonitorQueryBuilder().build();
 		}
-        ((AzureMonitorQuery) this.internal.spec).namespace = namespace;
+        ((MonitorQuery) this.internal.spec).namespace = namespace;
         return this;
     }
     
     public AzuremonitorQueryV2Builder resource(String resource) {
 		if (this.internal.spec == null) {
-			this.internal.spec = new com.grafana.foundation.azuremonitor.AzureMonitorQueryBuilder().build();
+			this.internal.spec = new com.grafana.foundation.azuremonitor.MonitorQueryBuilder().build();
 		}
-        ((AzureMonitorQuery) this.internal.spec).resource = resource;
+        ((MonitorQuery) this.internal.spec).resource = resource;
         return this;
     }
     
     public AzuremonitorQueryV2Builder region(String region) {
 		if (this.internal.spec == null) {
-			this.internal.spec = new com.grafana.foundation.azuremonitor.AzureMonitorQueryBuilder().build();
+			this.internal.spec = new com.grafana.foundation.azuremonitor.MonitorQueryBuilder().build();
 		}
-        ((AzureMonitorQuery) this.internal.spec).region = region;
+        ((MonitorQuery) this.internal.spec).region = region;
         return this;
     }
     
     public AzuremonitorQueryV2Builder customNamespace(String customNamespace) {
 		if (this.internal.spec == null) {
-			this.internal.spec = new com.grafana.foundation.azuremonitor.AzureMonitorQueryBuilder().build();
+			this.internal.spec = new com.grafana.foundation.azuremonitor.MonitorQueryBuilder().build();
 		}
-        ((AzureMonitorQuery) this.internal.spec).customNamespace = customNamespace;
+        ((MonitorQuery) this.internal.spec).customNamespace = customNamespace;
         return this;
     }
     
     public AzuremonitorQueryV2Builder query(String query) {
 		if (this.internal.spec == null) {
-			this.internal.spec = new com.grafana.foundation.azuremonitor.AzureMonitorQueryBuilder().build();
+			this.internal.spec = new com.grafana.foundation.azuremonitor.MonitorQueryBuilder().build();
 		}
-        ((AzureMonitorQuery) this.internal.spec).query = query;
+        ((MonitorQuery) this.internal.spec).query = query;
         return this;
     }
     public DataQueryKind build() {

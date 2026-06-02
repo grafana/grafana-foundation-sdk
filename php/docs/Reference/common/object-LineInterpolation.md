@@ -26,38 +26,38 @@ final class LineInterpolation implements \JsonSerializable, \Stringable {
 
     public static function linear(): self
     {
-        if (!isset(self::$instances["linear"])) {
-            self::$instances["linear"] = new self("linear");
+        if (!isset(self::$instances["Linear"])) {
+            self::$instances["Linear"] = new self("linear");
         }
 
-        return self::$instances["linear"];
+        return self::$instances["Linear"];
     }
 
     public static function smooth(): self
     {
-        if (!isset(self::$instances["smooth"])) {
-            self::$instances["smooth"] = new self("smooth");
+        if (!isset(self::$instances["Smooth"])) {
+            self::$instances["Smooth"] = new self("smooth");
         }
 
-        return self::$instances["smooth"];
+        return self::$instances["Smooth"];
     }
 
     public static function stepBefore(): self
     {
-        if (!isset(self::$instances["stepBefore"])) {
-            self::$instances["stepBefore"] = new self("stepBefore");
+        if (!isset(self::$instances["StepBefore"])) {
+            self::$instances["StepBefore"] = new self("stepBefore");
         }
 
-        return self::$instances["stepBefore"];
+        return self::$instances["StepBefore"];
     }
 
     public static function stepAfter(): self
     {
-        if (!isset(self::$instances["stepAfter"])) {
-            self::$instances["stepAfter"] = new self("stepAfter");
+        if (!isset(self::$instances["StepAfter"])) {
+            self::$instances["StepAfter"] = new self("stepAfter");
         }
 
-        return self::$instances["stepAfter"];
+        return self::$instances["StepAfter"];
     }
 
     public static function fromValue(string $value): self

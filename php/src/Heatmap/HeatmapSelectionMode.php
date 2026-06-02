@@ -23,29 +23,29 @@ final class HeatmapSelectionMode implements \JsonSerializable, \Stringable {
 
     public static function x(): self
     {
-        if (!isset(self::$instances["x"])) {
-            self::$instances["x"] = new self("x");
+        if (!isset(self::$instances["X"])) {
+            self::$instances["X"] = new self("x");
         }
 
-        return self::$instances["x"];
+        return self::$instances["X"];
     }
 
     public static function y(): self
     {
-        if (!isset(self::$instances["y"])) {
-            self::$instances["y"] = new self("y");
+        if (!isset(self::$instances["Y"])) {
+            self::$instances["Y"] = new self("y");
         }
 
-        return self::$instances["y"];
+        return self::$instances["Y"];
     }
 
     public static function xy(): self
     {
-        if (!isset(self::$instances["xy"])) {
-            self::$instances["xy"] = new self("xy");
+        if (!isset(self::$instances["Xy"])) {
+            self::$instances["Xy"] = new self("xy");
         }
 
-        return self::$instances["xy"];
+        return self::$instances["Xy"];
     }
 
     public static function fromValue(string $value): self

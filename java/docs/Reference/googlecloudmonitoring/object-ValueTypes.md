@@ -14,7 +14,7 @@ import com.fasterxml.jackson.annotation.JsonValue;
 
 @JsonFormat(shape = JsonFormat.Shape.OBJECT)
 public enum ValueTypes {
-    VALUE_TYPE_UNSPECIFIED("VALUE_TYPE_UNSPECIFIED"),
+    VALUETYPEUNSPECIFIED("VALUE_TYPE_UNSPECIFIED"),
     BOOL("BOOL"),
     INT64("INT64"),
     DOUBLE("DOUBLE"),

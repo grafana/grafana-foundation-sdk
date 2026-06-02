@@ -20,29 +20,29 @@ final class TextDimensionMode implements \JsonSerializable, \Stringable {
 
     public static function fixed(): self
     {
-        if (!isset(self::$instances["fixed"])) {
-            self::$instances["fixed"] = new self("fixed");
+        if (!isset(self::$instances["Fixed"])) {
+            self::$instances["Fixed"] = new self("fixed");
         }
 
-        return self::$instances["fixed"];
+        return self::$instances["Fixed"];
     }
 
     public static function field(): self
     {
-        if (!isset(self::$instances["field"])) {
-            self::$instances["field"] = new self("field");
+        if (!isset(self::$instances["Field"])) {
+            self::$instances["Field"] = new self("field");
         }
 
-        return self::$instances["field"];
+        return self::$instances["Field"];
     }
 
     public static function template(): self
     {
-        if (!isset(self::$instances["template"])) {
-            self::$instances["template"] = new self("template");
+        if (!isset(self::$instances["Template"])) {
+            self::$instances["Template"] = new self("template");
         }
 
-        return self::$instances["template"];
+        return self::$instances["Template"];
     }
 
     public static function fromValue(string $value): self

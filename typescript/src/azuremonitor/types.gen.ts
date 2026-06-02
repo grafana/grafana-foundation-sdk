@@ -1,13 +1,10 @@
 // Code generated - EDITING IS FUTILE. DO NOT EDIT.
 
-import * as common from '../common';
-
-
-export interface AzureMonitorQuery {
+export interface MonitorQuery {
 	// A unique identifier for the query within the list of targets.
 	// In server side expressions, the refId is used as a variable name to identify results.
 	// By default, the UI will assign A->Z; however setting meaningful names may be useful.
-	refId?: string;
+	refId: string;
 	// If hide is set to true, Grafana will filter out the response(s) associated with this query before returning it to the panel.
 	hide?: boolean;
 	// Specify the query flavor
@@ -19,13 +16,13 @@ export interface AzureMonitorQuery {
 	// Subscriptions to be queried via Azure Resource Graph.
 	subscriptions?: string[];
 	// Azure Monitor Metrics sub-query properties.
-	azureMonitor?: AzureMetricQuery;
+	azureMonitor?: MetricQuery;
 	// Azure Monitor Logs sub-query properties.
-	azureLogAnalytics?: AzureLogsQuery;
+	azureLogAnalytics?: LogsQuery;
 	// Azure Resource Graph sub-query properties.
-	azureResourceGraph?: AzureResourceGraphQuery;
+	azureResourceGraph?: ResourceGraphQuery;
 	// Application Insights Traces sub-query properties.
-	azureTraces?: AzureTracesQuery;
+	azureTraces?: TracesQuery;
 	// @deprecated Legacy template variable support.
 	grafanaTemplateVariableFn?: GrafanaTemplateVariableQuery;
 	// Resource group used in template variable queries
@@ -42,19 +39,20 @@ export interface AzureMonitorQuery {
 	// For non mixed scenarios this is undefined.
 	// TODO find a better way to do this ^ that's friendly to schema
 	// TODO this shouldn't be unknown but DataSourceRef | null
-	datasource?: common.DataSourceRef;
+	datasource?: any;
 	// Used only for exemplar queries from Prometheus
 	query?: string;
 	_implementsDataqueryVariant(): void;
 }
 
-export const defaultAzureMonitorQuery = (): AzureMonitorQuery => ({
+export const defaultMonitorQuery = (): MonitorQuery => ({
+	refId: "",
 	_implementsDataqueryVariant: () => {},
 });
 
-export interface AzureMetricQuery {
+export interface MetricQuery {
 	// Array of resource URIs to be queried.
-	resources?: AzureMonitorResource[];
+	resources?: MonitorResource[];
 	// metricNamespace is used as the resource type (or resource namespace).
 	// It's usually equal to the target metric namespace. e.g. microsoft.storage/storageaccounts
 	// Kept the name of the variable as metricNamespace to avoid backward incompatibility issues.
@@ -70,7 +68,7 @@ export interface AzureMetricQuery {
 	// The aggregation to be used within the query. Defaults to the primaryAggregationType defined by the metric.
 	aggregation?: string;
 	// Filters to reduce the set of data returned. Dimensions that can be filtered on are defined by the metric.
-	dimensionFilters?: AzureMetricDimension[];
+	dimensionFilters?: MetricDimension[];
 	// Maximum number of records to return. Defaults to 10.
 	top?: string;
 	// Time grains that are supported by the metric.
@@ -93,10 +91,10 @@ export interface AzureMetricQuery {
 	resourceName?: string;
 }
 
-export const defaultAzureMetricQuery = (): AzureMetricQuery => ({
+export const defaultMetricQuery = (): MetricQuery => ({
 });
 
-export interface AzureMonitorResource {
+export interface MonitorResource {
 	subscription?: string;
 	resourceGroup?: string;
 	resourceName?: string;
@@ -104,10 +102,10 @@ export interface AzureMonitorResource {
 	region?: string;
 }
 
-export const defaultAzureMonitorResource = (): AzureMonitorResource => ({
+export const defaultMonitorResource = (): MonitorResource => ({
 });
 
-export interface AzureMetricDimension {
+export interface MetricDimension {
 	// Name of Dimension to be filtered on.
 	dimension?: string;
 	// String denoting the filter operation. Supports 'eq' - equals,'ne' - not equals, 'sw' - starts with. Note that some dimensions may not support all operators.
@@ -118,11 +116,11 @@ export interface AzureMetricDimension {
 	filter?: string;
 }
 
-export const defaultAzureMetricDimension = (): AzureMetricDimension => ({
+export const defaultMetricDimension = (): MetricDimension => ({
 });
 
 // Azure Monitor Logs sub-query properties
-export interface AzureLogsQuery {
+export interface LogsQuery {
 	// KQL query to be executed.
 	query?: string;
 	// Specifies the format results should be returned as.
@@ -143,7 +141,7 @@ export interface AzureLogsQuery {
 	intersectTime?: boolean;
 }
 
-export const defaultAzureLogsQuery = (): AzureLogsQuery => ({
+export const defaultLogsQuery = (): LogsQuery => ({
 });
 
 export enum ResultFormat {
@@ -155,18 +153,18 @@ export enum ResultFormat {
 
 export const defaultResultFormat = (): ResultFormat => (ResultFormat.Table);
 
-export interface AzureResourceGraphQuery {
+export interface ResourceGraphQuery {
 	// Azure Resource Graph KQL query to be executed.
 	query?: string;
 	// Specifies the format results should be returned as. Defaults to table.
 	resultFormat?: string;
 }
 
-export const defaultAzureResourceGraphQuery = (): AzureResourceGraphQuery => ({
+export const defaultResourceGraphQuery = (): ResourceGraphQuery => ({
 });
 
 // Application Insights Traces sub-query properties
-export interface AzureTracesQuery {
+export interface TracesQuery {
 	// Specifies the format results should be returned as.
 	resultFormat?: ResultFormat;
 	// Array of resource URIs to be queried.
@@ -176,15 +174,15 @@ export interface AzureTracesQuery {
 	// Types of events to filter by.
 	traceTypes?: string[];
 	// Filters for property values.
-	filters?: AzureTracesFilter[];
+	filters?: TracesFilter[];
 	// KQL query to be executed.
 	query?: string;
 }
 
-export const defaultAzureTracesQuery = (): AzureTracesQuery => ({
+export const defaultTracesQuery = (): TracesQuery => ({
 });
 
-export interface AzureTracesFilter {
+export interface TracesFilter {
 	// Property name, auto-populated based on available traces.
 	property: string;
 	// Comparison operator to use. Either equals or not equals.
@@ -193,7 +191,7 @@ export interface AzureTracesFilter {
 	filters: string[];
 }
 
-export const defaultAzureTracesFilter = (): AzureTracesFilter => ({
+export const defaultTracesFilter = (): TracesFilter => ({
 	property: "",
 	operation: "",
 	filters: [],
@@ -327,11 +325,11 @@ export const defaultUnknownQuery = (): UnknownQuery => ({
 });
 
 // Defines the supported queryTypes. GrafanaTemplateVariableFn is deprecated
-export enum AzureQueryType {
-	AzureMonitor = "Azure Monitor",
+export enum QueryType {
+	Monitor = "Azure Monitor",
 	LogAnalytics = "Azure Log Analytics",
-	AzureResourceGraph = "Azure Resource Graph",
-	AzureTraces = "Azure Traces",
+	ResourceGraph = "Azure Resource Graph",
+	Traces = "Azure Traces",
 	SubscriptionsQuery = "Azure Subscriptions",
 	ResourceGroupsQuery = "Azure Resource Groups",
 	NamespacesQuery = "Azure Namespaces",
@@ -345,7 +343,7 @@ export enum AzureQueryType {
 	CustomMetricNamesQuery = "Azure Custom Metric Names",
 }
 
-export const defaultAzureQueryType = (): AzureQueryType => (AzureQueryType.AzureMonitor);
+export const defaultQueryType = (): QueryType => (QueryType.Monitor);
 
 export enum GrafanaTemplateVariableQueryType {
 	AppInsightsMetricNameQuery = "AppInsightsMetricNameQuery",

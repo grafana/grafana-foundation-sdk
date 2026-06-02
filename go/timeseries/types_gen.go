@@ -71,7 +71,8 @@ func (resource *Options) UnmarshalJSONStrict(raw []byte) error {
 
 		}
 		delete(fields, "legend")
-
+	} else {
+		errs = append(errs, cog.MakeBuildErrors("legend", errors.New("required field is missing from input"))...)
 	}
 	// Field "tooltip"
 	if fields["tooltip"] != nil {
@@ -103,10 +104,6 @@ func (resource *Options) UnmarshalJSONStrict(raw []byte) error {
 
 	for field := range fields {
 		errs = append(errs, cog.MakeBuildErrors("Options", fmt.Errorf("unexpected field '%s'", field))...)
-	}
-
-	if len(errs) == 0 {
-		return nil
 	}
 
 	return errs

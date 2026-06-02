@@ -79,7 +79,8 @@ func (resource *MatcherConfig) UnmarshalJSONStrict(raw []byte) error {
 
 		}
 		delete(fields, "id")
-
+	} else {
+		errs = append(errs, cog.MakeBuildErrors("id", errors.New("required field is missing from input"))...)
 	}
 	// Field "options"
 	if fields["options"] != nil {
@@ -95,10 +96,6 @@ func (resource *MatcherConfig) UnmarshalJSONStrict(raw []byte) error {
 
 	for field := range fields {
 		errs = append(errs, cog.MakeBuildErrors("MatcherConfig", fmt.Errorf("unexpected field '%s'", field))...)
-	}
-
-	if len(errs) == 0 {
-		return nil
 	}
 
 	return errs
@@ -372,10 +369,6 @@ func (resource *FieldConfig) UnmarshalJSONStrict(raw []byte) error {
 
 	for field := range fields {
 		errs = append(errs, cog.MakeBuildErrors("FieldConfig", fmt.Errorf("unexpected field '%s'", field))...)
-	}
-
-	if len(errs) == 0 {
-		return nil
 	}
 
 	return errs
@@ -713,10 +706,6 @@ func (resource *XYSeriesConfig) UnmarshalJSONStrict(raw []byte) error {
 		errs = append(errs, cog.MakeBuildErrors("XYSeriesConfig", fmt.Errorf("unexpected field '%s'", field))...)
 	}
 
-	if len(errs) == 0 {
-		return nil
-	}
-
 	return errs
 }
 
@@ -926,10 +915,6 @@ func (resource *Options) UnmarshalJSONStrict(raw []byte) error {
 		errs = append(errs, cog.MakeBuildErrors("Options", fmt.Errorf("unexpected field '%s'", field))...)
 	}
 
-	if len(errs) == 0 {
-		return nil
-	}
-
 	return errs
 }
 
@@ -1042,10 +1027,6 @@ func (resource *XychartFieldConfigPointSize) UnmarshalJSONStrict(raw []byte) err
 		errs = append(errs, cog.MakeBuildErrors("XychartFieldConfigPointSize", fmt.Errorf("unexpected field '%s'", field))...)
 	}
 
-	if len(errs) == 0 {
-		return nil
-	}
-
 	return errs
 }
 
@@ -1154,10 +1135,6 @@ func (resource *XychartXYSeriesConfigName) UnmarshalJSONStrict(raw []byte) error
 		errs = append(errs, cog.MakeBuildErrors("XychartXYSeriesConfigName", fmt.Errorf("unexpected field '%s'", field))...)
 	}
 
-	if len(errs) == 0 {
-		return nil
-	}
-
 	return errs
 }
 
@@ -1223,10 +1200,6 @@ func (resource *XychartXYSeriesConfigFrame) UnmarshalJSONStrict(raw []byte) erro
 
 	for field := range fields {
 		errs = append(errs, cog.MakeBuildErrors("XychartXYSeriesConfigFrame", fmt.Errorf("unexpected field '%s'", field))...)
-	}
-
-	if len(errs) == 0 {
-		return nil
 	}
 
 	return errs
@@ -1299,10 +1272,6 @@ func (resource *XychartXYSeriesConfigX) UnmarshalJSONStrict(raw []byte) error {
 		errs = append(errs, cog.MakeBuildErrors("XychartXYSeriesConfigX", fmt.Errorf("unexpected field '%s'", field))...)
 	}
 
-	if len(errs) == 0 {
-		return nil
-	}
-
 	return errs
 }
 
@@ -1371,10 +1340,6 @@ func (resource *XychartXYSeriesConfigY) UnmarshalJSONStrict(raw []byte) error {
 
 	for field := range fields {
 		errs = append(errs, cog.MakeBuildErrors("XychartXYSeriesConfigY", fmt.Errorf("unexpected field '%s'", field))...)
-	}
-
-	if len(errs) == 0 {
-		return nil
 	}
 
 	return errs
@@ -1447,10 +1412,6 @@ func (resource *XychartXYSeriesConfigColor) UnmarshalJSONStrict(raw []byte) erro
 		errs = append(errs, cog.MakeBuildErrors("XychartXYSeriesConfigColor", fmt.Errorf("unexpected field '%s'", field))...)
 	}
 
-	if len(errs) == 0 {
-		return nil
-	}
-
 	return errs
 }
 
@@ -1519,10 +1480,6 @@ func (resource *XychartXYSeriesConfigSize) UnmarshalJSONStrict(raw []byte) error
 
 	for field := range fields {
 		errs = append(errs, cog.MakeBuildErrors("XychartXYSeriesConfigSize", fmt.Errorf("unexpected field '%s'", field))...)
-	}
-
-	if len(errs) == 0 {
-		return nil
 	}
 
 	return errs

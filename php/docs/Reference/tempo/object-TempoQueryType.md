@@ -24,65 +24,65 @@ final class TempoQueryType implements \JsonSerializable, \Stringable {
 
     public static function traceql(): self
     {
-        if (!isset(self::$instances["traceql"])) {
-            self::$instances["traceql"] = new self("traceql");
+        if (!isset(self::$instances["Traceql"])) {
+            self::$instances["Traceql"] = new self("traceql");
         }
 
-        return self::$instances["traceql"];
+        return self::$instances["Traceql"];
     }
 
     public static function traceqlSearch(): self
     {
-        if (!isset(self::$instances["traceqlSearch"])) {
-            self::$instances["traceqlSearch"] = new self("traceqlSearch");
+        if (!isset(self::$instances["TraceqlSearch"])) {
+            self::$instances["TraceqlSearch"] = new self("traceqlSearch");
         }
 
-        return self::$instances["traceqlSearch"];
+        return self::$instances["TraceqlSearch"];
     }
 
     public static function serviceMap(): self
     {
-        if (!isset(self::$instances["serviceMap"])) {
-            self::$instances["serviceMap"] = new self("serviceMap");
+        if (!isset(self::$instances["ServiceMap"])) {
+            self::$instances["ServiceMap"] = new self("serviceMap");
         }
 
-        return self::$instances["serviceMap"];
+        return self::$instances["ServiceMap"];
     }
 
     public static function upload(): self
     {
-        if (!isset(self::$instances["upload"])) {
-            self::$instances["upload"] = new self("upload");
+        if (!isset(self::$instances["Upload"])) {
+            self::$instances["Upload"] = new self("upload");
         }
 
-        return self::$instances["upload"];
+        return self::$instances["Upload"];
     }
 
     public static function nativeSearch(): self
     {
-        if (!isset(self::$instances["nativeSearch"])) {
-            self::$instances["nativeSearch"] = new self("nativeSearch");
+        if (!isset(self::$instances["NativeSearch"])) {
+            self::$instances["NativeSearch"] = new self("nativeSearch");
         }
 
-        return self::$instances["nativeSearch"];
+        return self::$instances["NativeSearch"];
     }
 
     public static function traceId(): self
     {
-        if (!isset(self::$instances["traceId"])) {
-            self::$instances["traceId"] = new self("traceId");
+        if (!isset(self::$instances["TraceId"])) {
+            self::$instances["TraceId"] = new self("traceId");
         }
 
-        return self::$instances["traceId"];
+        return self::$instances["TraceId"];
     }
 
     public static function clear(): self
     {
-        if (!isset(self::$instances["clear"])) {
-            self::$instances["clear"] = new self("clear");
+        if (!isset(self::$instances["Clear"])) {
+            self::$instances["Clear"] = new self("clear");
         }
 
-        return self::$instances["clear"];
+        return self::$instances["Clear"];
     }
 
     public static function fromValue(string $value): self

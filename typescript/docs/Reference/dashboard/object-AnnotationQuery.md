@@ -33,6 +33,18 @@ export interface AnnotationQuery {
 	// Placement can be used to display the annotation query somewhere else on the dashboard other than the default location.
 	placement?: dashboard.AnnotationQueryPlacement.InControlsMenu;
 	expr?: string;
+	// Format for Prometheus annotation text. Label values can be interpolated with templates like {{instance}}.
+	textFormat?: string;
+	// Format for Prometheus and Loki annotation titles. Label values can be interpolated with templates like {{instance}}.
+	titleFormat?: string;
+	// Comma-separated label keys used as annotation tags.
+	tagKeys?: string;
+	// Legacy Prometheus annotation query step interval.
+	step?: string;
+	// Use the Prometheus series value as the annotation timestamp.
+	useValueForTime?: boolean;
+	// Mappings define how to convert data frame fields to annotation event fields.
+	mappings?: Record<string, dashboard.AnnotationEventFieldMapping>;
 }
 
 ```

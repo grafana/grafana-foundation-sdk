@@ -23,38 +23,38 @@ final class SearchStreamingState implements \JsonSerializable, \Stringable {
 
     public static function pending(): self
     {
-        if (!isset(self::$instances["pending"])) {
-            self::$instances["pending"] = new self("pending");
+        if (!isset(self::$instances["Pending"])) {
+            self::$instances["Pending"] = new self("pending");
         }
 
-        return self::$instances["pending"];
+        return self::$instances["Pending"];
     }
 
     public static function streaming(): self
     {
-        if (!isset(self::$instances["streaming"])) {
-            self::$instances["streaming"] = new self("streaming");
+        if (!isset(self::$instances["Streaming"])) {
+            self::$instances["Streaming"] = new self("streaming");
         }
 
-        return self::$instances["streaming"];
+        return self::$instances["Streaming"];
     }
 
     public static function done(): self
     {
-        if (!isset(self::$instances["done"])) {
-            self::$instances["done"] = new self("done");
+        if (!isset(self::$instances["Done"])) {
+            self::$instances["Done"] = new self("done");
         }
 
-        return self::$instances["done"];
+        return self::$instances["Done"];
     }
 
     public static function error(): self
     {
-        if (!isset(self::$instances["error"])) {
-            self::$instances["error"] = new self("error");
+        if (!isset(self::$instances["Error"])) {
+            self::$instances["Error"] = new self("error");
         }
 
-        return self::$instances["error"];
+        return self::$instances["Error"];
     }
 
     public static function fromValue(string $value): self

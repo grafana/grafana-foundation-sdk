@@ -26,29 +26,29 @@ final class BarGaugeValueMode implements \JsonSerializable, \Stringable {
 
     public static function color(): self
     {
-        if (!isset(self::$instances["color"])) {
-            self::$instances["color"] = new self("color");
+        if (!isset(self::$instances["Color"])) {
+            self::$instances["Color"] = new self("color");
         }
 
-        return self::$instances["color"];
+        return self::$instances["Color"];
     }
 
     public static function text(): self
     {
-        if (!isset(self::$instances["text"])) {
-            self::$instances["text"] = new self("text");
+        if (!isset(self::$instances["Text"])) {
+            self::$instances["Text"] = new self("text");
         }
 
-        return self::$instances["text"];
+        return self::$instances["Text"];
     }
 
     public static function hidden(): self
     {
-        if (!isset(self::$instances["hidden"])) {
-            self::$instances["hidden"] = new self("hidden");
+        if (!isset(self::$instances["Hidden"])) {
+            self::$instances["Hidden"] = new self("hidden");
         }
 
-        return self::$instances["hidden"];
+        return self::$instances["Hidden"];
     }
 
     public static function fromValue(string $value): self

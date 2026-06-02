@@ -24,38 +24,38 @@ final class LogsDedupStrategy implements \JsonSerializable, \Stringable {
 
     public static function none(): self
     {
-        if (!isset(self::$instances["none"])) {
-            self::$instances["none"] = new self("none");
+        if (!isset(self::$instances["None"])) {
+            self::$instances["None"] = new self("none");
         }
 
-        return self::$instances["none"];
+        return self::$instances["None"];
     }
 
     public static function exact(): self
     {
-        if (!isset(self::$instances["exact"])) {
-            self::$instances["exact"] = new self("exact");
+        if (!isset(self::$instances["Exact"])) {
+            self::$instances["Exact"] = new self("exact");
         }
 
-        return self::$instances["exact"];
+        return self::$instances["Exact"];
     }
 
     public static function numbers(): self
     {
-        if (!isset(self::$instances["numbers"])) {
-            self::$instances["numbers"] = new self("numbers");
+        if (!isset(self::$instances["Numbers"])) {
+            self::$instances["Numbers"] = new self("numbers");
         }
 
-        return self::$instances["numbers"];
+        return self::$instances["Numbers"];
     }
 
     public static function signature(): self
     {
-        if (!isset(self::$instances["signature"])) {
-            self::$instances["signature"] = new self("signature");
+        if (!isset(self::$instances["Signature"])) {
+            self::$instances["Signature"] = new self("signature");
         }
 
-        return self::$instances["signature"];
+        return self::$instances["Signature"];
     }
 
     public static function fromValue(string $value): self

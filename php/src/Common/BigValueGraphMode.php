@@ -23,29 +23,29 @@ final class BigValueGraphMode implements \JsonSerializable, \Stringable {
 
     public static function none(): self
     {
-        if (!isset(self::$instances["none"])) {
-            self::$instances["none"] = new self("none");
+        if (!isset(self::$instances["None"])) {
+            self::$instances["None"] = new self("none");
         }
 
-        return self::$instances["none"];
+        return self::$instances["None"];
     }
 
     public static function line(): self
     {
-        if (!isset(self::$instances["line"])) {
-            self::$instances["line"] = new self("line");
+        if (!isset(self::$instances["Line"])) {
+            self::$instances["Line"] = new self("line");
         }
 
-        return self::$instances["line"];
+        return self::$instances["Line"];
     }
 
     public static function area(): self
     {
-        if (!isset(self::$instances["area"])) {
-            self::$instances["area"] = new self("area");
+        if (!isset(self::$instances["Area"])) {
+            self::$instances["Area"] = new self("area");
         }
 
-        return self::$instances["area"];
+        return self::$instances["Area"];
     }
 
     public static function fromValue(string $value): self

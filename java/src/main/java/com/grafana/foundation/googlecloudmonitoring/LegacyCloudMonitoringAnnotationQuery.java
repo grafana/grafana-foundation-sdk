@@ -42,7 +42,7 @@ public class LegacyCloudMonitoringAnnotationQuery {
         this.metricType = "";
         this.refId = "";
         this.filters = new LinkedList<>();
-        this.metricKind = MetricKind.METRIC_KIND_UNSPECIFIED;
+        this.metricKind = MetricKind.METRICKINDUNSPECIFIED;
         this.valueType = "";
         this.title = "";
         this.text = "";

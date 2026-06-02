@@ -153,6 +153,89 @@ final class AnnotationQueryConverter
     
     
     }
+            if ($input->textFormat !== null && $input->textFormat !== "") {
+    
+        
+    $buffer = 'textFormat(';
+        $arg0 =\var_export($input->textFormat, true);
+        $buffer .= $arg0;
+        
+    $buffer .= ')';
+
+    $calls[] = $buffer;
+    
+    
+    }
+            if ($input->titleFormat !== null && $input->titleFormat !== "") {
+    
+        
+    $buffer = 'titleFormat(';
+        $arg0 =\var_export($input->titleFormat, true);
+        $buffer .= $arg0;
+        
+    $buffer .= ')';
+
+    $calls[] = $buffer;
+    
+    
+    }
+            if ($input->tagKeys !== null && $input->tagKeys !== "") {
+    
+        
+    $buffer = 'tagKeys(';
+        $arg0 =\var_export($input->tagKeys, true);
+        $buffer .= $arg0;
+        
+    $buffer .= ')';
+
+    $calls[] = $buffer;
+    
+    
+    }
+            if ($input->step !== null && $input->step !== "") {
+    
+        
+    $buffer = 'step(';
+        $arg0 =\var_export($input->step, true);
+        $buffer .= $arg0;
+        
+    $buffer .= ')';
+
+    $calls[] = $buffer;
+    
+    
+    }
+            if ($input->useValueForTime !== null) {
+    
+        
+    $buffer = 'useValueForTime(';
+        $arg0 =\var_export($input->useValueForTime, true);
+        $buffer .= $arg0;
+        
+    $buffer .= ')';
+
+    $calls[] = $buffer;
+    
+    
+    }
+            if ($input->mappings !== null) {
+    
+        
+    $buffer = 'mappings(';
+        $arg0 = "[";
+        foreach ($input->mappings as $key => $arg1) {
+            $tmpmappingsarg1 = \Grafana\Foundation\Dashboard\AnnotationEventFieldMappingConverter::convert($arg1);
+            $arg0 .= "\t".var_export($key, true)." => $tmpmappingsarg1,";
+        }
+        $arg0 .= "]";
+        $buffer .= $arg0;
+        
+    $buffer .= ')';
+
+    $calls[] = $buffer;
+    
+    
+    }
 
         return \implode("\n\t->", $calls);
     }

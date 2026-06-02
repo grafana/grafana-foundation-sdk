@@ -33,6 +33,18 @@ type AnnotationQuery struct {
     // Placement can be used to display the annotation query somewhere else on the dashboard other than the default location.
     Placement *dashboard.AnnotationQueryPlacement `json:"placement,omitempty"`
     Expr *string `json:"expr,omitempty"`
+    // Format for Prometheus annotation text. Label values can be interpolated with templates like {{instance}}.
+    TextFormat *string `json:"textFormat,omitempty"`
+    // Format for Prometheus and Loki annotation titles. Label values can be interpolated with templates like {{instance}}.
+    TitleFormat *string `json:"titleFormat,omitempty"`
+    // Comma-separated label keys used as annotation tags.
+    TagKeys *string `json:"tagKeys,omitempty"`
+    // Legacy Prometheus annotation query step interval.
+    Step *string `json:"step,omitempty"`
+    // Use the Prometheus series value as the annotation timestamp.
+    UseValueForTime *bool `json:"useValueForTime,omitempty"`
+    // Mappings define how to convert data frame fields to annotation event fields.
+    Mappings map[string]dashboard.AnnotationEventFieldMapping `json:"mappings,omitempty"`
 }
 ```
 ## Methods

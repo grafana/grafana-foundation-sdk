@@ -48,15 +48,12 @@ func (resource *Options) UnmarshalJSONStrict(raw []byte) error {
 
 		}
 		delete(fields, "selectedSeries")
-
+	} else {
+		errs = append(errs, cog.MakeBuildErrors("selectedSeries", errors.New("required field is missing from input"))...)
 	}
 
 	for field := range fields {
 		errs = append(errs, cog.MakeBuildErrors("Options", fmt.Errorf("unexpected field '%s'", field))...)
-	}
-
-	if len(errs) == 0 {
-		return nil
 	}
 
 	return errs

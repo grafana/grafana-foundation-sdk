@@ -109,7 +109,8 @@ func (resource *Options) UnmarshalJSONStrict(raw []byte) error {
 
 		}
 		delete(fields, "orientation")
-
+	} else {
+		errs = append(errs, cog.MakeBuildErrors("orientation", errors.New("required field is missing from input"))...)
 	}
 	// Field "barRadius"
 	if fields["barRadius"] != nil {
@@ -133,7 +134,8 @@ func (resource *Options) UnmarshalJSONStrict(raw []byte) error {
 
 		}
 		delete(fields, "xTickLabelRotation")
-
+	} else {
+		errs = append(errs, cog.MakeBuildErrors("xTickLabelRotation", errors.New("required field is missing from input"))...)
 	}
 	// Field "xTickLabelMaxLength"
 	if fields["xTickLabelMaxLength"] != nil {
@@ -171,7 +173,8 @@ func (resource *Options) UnmarshalJSONStrict(raw []byte) error {
 
 		}
 		delete(fields, "stacking")
-
+	} else {
+		errs = append(errs, cog.MakeBuildErrors("stacking", errors.New("required field is missing from input"))...)
 	}
 	// Field "showValue"
 	if fields["showValue"] != nil {
@@ -184,7 +187,8 @@ func (resource *Options) UnmarshalJSONStrict(raw []byte) error {
 
 		}
 		delete(fields, "showValue")
-
+	} else {
+		errs = append(errs, cog.MakeBuildErrors("showValue", errors.New("required field is missing from input"))...)
 	}
 	// Field "barWidth"
 	if fields["barWidth"] != nil {
@@ -197,7 +201,8 @@ func (resource *Options) UnmarshalJSONStrict(raw []byte) error {
 
 		}
 		delete(fields, "barWidth")
-
+	} else {
+		errs = append(errs, cog.MakeBuildErrors("barWidth", errors.New("required field is missing from input"))...)
 	}
 	// Field "groupWidth"
 	if fields["groupWidth"] != nil {
@@ -210,7 +215,8 @@ func (resource *Options) UnmarshalJSONStrict(raw []byte) error {
 
 		}
 		delete(fields, "groupWidth")
-
+	} else {
+		errs = append(errs, cog.MakeBuildErrors("groupWidth", errors.New("required field is missing from input"))...)
 	}
 	// Field "legend"
 	if fields["legend"] != nil {
@@ -268,15 +274,12 @@ func (resource *Options) UnmarshalJSONStrict(raw []byte) error {
 
 		}
 		delete(fields, "fullHighlight")
-
+	} else {
+		errs = append(errs, cog.MakeBuildErrors("fullHighlight", errors.New("required field is missing from input"))...)
 	}
 
 	for field := range fields {
 		errs = append(errs, cog.MakeBuildErrors("Options", fmt.Errorf("unexpected field '%s'", field))...)
-	}
-
-	if len(errs) == 0 {
-		return nil
 	}
 
 	return errs
@@ -659,10 +662,6 @@ func (resource *FieldConfig) UnmarshalJSONStrict(raw []byte) error {
 
 	for field := range fields {
 		errs = append(errs, cog.MakeBuildErrors("FieldConfig", fmt.Errorf("unexpected field '%s'", field))...)
-	}
-
-	if len(errs) == 0 {
-		return nil
 	}
 
 	return errs

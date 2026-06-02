@@ -76,10 +76,6 @@ func (resource *AnnotationActions) UnmarshalJSONStrict(raw []byte) error {
 		errs = append(errs, cog.MakeBuildErrors("AnnotationActions", fmt.Errorf("unexpected field '%s'", field))...)
 	}
 
-	if len(errs) == 0 {
-		return nil
-	}
-
 	return errs
 }
 
@@ -172,10 +168,6 @@ func (resource *AnnotationPermission) UnmarshalJSONStrict(raw []byte) error {
 
 	for field := range fields {
 		errs = append(errs, cog.MakeBuildErrors("AnnotationPermission", fmt.Errorf("unexpected field '%s'", field))...)
-	}
-
-	if len(errs) == 0 {
-		return nil
 	}
 
 	return errs
@@ -576,10 +568,6 @@ func (resource *DashboardMeta) UnmarshalJSONStrict(raw []byte) error {
 
 	for field := range fields {
 		errs = append(errs, cog.MakeBuildErrors("DashboardMeta", fmt.Errorf("unexpected field '%s'", field))...)
-	}
-
-	if len(errs) == 0 {
-		return nil
 	}
 
 	return errs
@@ -1129,7 +1117,8 @@ func (resource *Dashboard) UnmarshalJSONStrict(raw []byte) error {
 
 		}
 		delete(fields, "schemaVersion")
-
+	} else {
+		errs = append(errs, cog.MakeBuildErrors("schemaVersion", errors.New("required field is missing from input"))...)
 	}
 	// Field "version"
 	if fields["version"] != nil {
@@ -1247,10 +1236,6 @@ func (resource *Dashboard) UnmarshalJSONStrict(raw []byte) error {
 
 	for field := range fields {
 		errs = append(errs, cog.MakeBuildErrors("Dashboard", fmt.Errorf("unexpected field '%s'", field))...)
-	}
-
-	if len(errs) == 0 {
-		return nil
 	}
 
 	return errs
@@ -1621,10 +1606,6 @@ func (resource *TimePickerConfig) UnmarshalJSONStrict(raw []byte) error {
 		errs = append(errs, cog.MakeBuildErrors("TimePickerConfig", fmt.Errorf("unexpected field '%s'", field))...)
 	}
 
-	if len(errs) == 0 {
-		return nil
-	}
-
 	return errs
 }
 
@@ -1758,10 +1739,6 @@ func (resource *TimeOption) UnmarshalJSONStrict(raw []byte) error {
 
 	for field := range fields {
 		errs = append(errs, cog.MakeBuildErrors("TimeOption", fmt.Errorf("unexpected field '%s'", field))...)
-	}
-
-	if len(errs) == 0 {
-		return nil
 	}
 
 	return errs
@@ -2419,10 +2396,6 @@ func (resource *Panel) UnmarshalJSONStrict(raw []byte) error {
 		errs = append(errs, cog.MakeBuildErrors("Panel", fmt.Errorf("unexpected field '%s'", field))...)
 	}
 
-	if len(errs) == 0 {
-		return nil
-	}
-
 	return errs
 }
 
@@ -2759,7 +2732,8 @@ func (resource *GridPos) UnmarshalJSONStrict(raw []byte) error {
 
 		}
 		delete(fields, "h")
-
+	} else {
+		errs = append(errs, cog.MakeBuildErrors("h", errors.New("required field is missing from input"))...)
 	}
 	// Field "w"
 	if fields["w"] != nil {
@@ -2772,7 +2746,8 @@ func (resource *GridPos) UnmarshalJSONStrict(raw []byte) error {
 
 		}
 		delete(fields, "w")
-
+	} else {
+		errs = append(errs, cog.MakeBuildErrors("w", errors.New("required field is missing from input"))...)
 	}
 	// Field "x"
 	if fields["x"] != nil {
@@ -2785,7 +2760,8 @@ func (resource *GridPos) UnmarshalJSONStrict(raw []byte) error {
 
 		}
 		delete(fields, "x")
-
+	} else {
+		errs = append(errs, cog.MakeBuildErrors("x", errors.New("required field is missing from input"))...)
 	}
 	// Field "y"
 	if fields["y"] != nil {
@@ -2798,7 +2774,8 @@ func (resource *GridPos) UnmarshalJSONStrict(raw []byte) error {
 
 		}
 		delete(fields, "y")
-
+	} else {
+		errs = append(errs, cog.MakeBuildErrors("y", errors.New("required field is missing from input"))...)
 	}
 	// Field "static"
 	if fields["static"] != nil {
@@ -2814,10 +2791,6 @@ func (resource *GridPos) UnmarshalJSONStrict(raw []byte) error {
 
 	for field := range fields {
 		errs = append(errs, cog.MakeBuildErrors("GridPos", fmt.Errorf("unexpected field '%s'", field))...)
-	}
-
-	if len(errs) == 0 {
-		return nil
 	}
 
 	return errs
@@ -3040,7 +3013,8 @@ func (resource *DashboardLink) UnmarshalJSONStrict(raw []byte) error {
 
 		}
 		delete(fields, "asDropdown")
-
+	} else {
+		errs = append(errs, cog.MakeBuildErrors("asDropdown", errors.New("required field is missing from input"))...)
 	}
 	// Field "placement"
 	if fields["placement"] != nil {
@@ -3064,7 +3038,8 @@ func (resource *DashboardLink) UnmarshalJSONStrict(raw []byte) error {
 
 		}
 		delete(fields, "targetBlank")
-
+	} else {
+		errs = append(errs, cog.MakeBuildErrors("targetBlank", errors.New("required field is missing from input"))...)
 	}
 	// Field "includeVars"
 	if fields["includeVars"] != nil {
@@ -3077,7 +3052,8 @@ func (resource *DashboardLink) UnmarshalJSONStrict(raw []byte) error {
 
 		}
 		delete(fields, "includeVars")
-
+	} else {
+		errs = append(errs, cog.MakeBuildErrors("includeVars", errors.New("required field is missing from input"))...)
 	}
 	// Field "keepTime"
 	if fields["keepTime"] != nil {
@@ -3090,15 +3066,12 @@ func (resource *DashboardLink) UnmarshalJSONStrict(raw []byte) error {
 
 		}
 		delete(fields, "keepTime")
-
+	} else {
+		errs = append(errs, cog.MakeBuildErrors("keepTime", errors.New("required field is missing from input"))...)
 	}
 
 	for field := range fields {
 		errs = append(errs, cog.MakeBuildErrors("DashboardLink", fmt.Errorf("unexpected field '%s'", field))...)
-	}
-
-	if len(errs) == 0 {
-		return nil
 	}
 
 	return errs
@@ -3297,10 +3270,6 @@ func (resource *DataTransformerConfig) UnmarshalJSONStrict(raw []byte) error {
 		errs = append(errs, cog.MakeBuildErrors("DataTransformerConfig", fmt.Errorf("unexpected field '%s'", field))...)
 	}
 
-	if len(errs) == 0 {
-		return nil
-	}
-
 	return errs
 }
 
@@ -3399,7 +3368,8 @@ func (resource *MatcherConfig) UnmarshalJSONStrict(raw []byte) error {
 
 		}
 		delete(fields, "id")
-
+	} else {
+		errs = append(errs, cog.MakeBuildErrors("id", errors.New("required field is missing from input"))...)
 	}
 	// Field "options"
 	if fields["options"] != nil {
@@ -3415,10 +3385,6 @@ func (resource *MatcherConfig) UnmarshalJSONStrict(raw []byte) error {
 
 	for field := range fields {
 		errs = append(errs, cog.MakeBuildErrors("MatcherConfig", fmt.Errorf("unexpected field '%s'", field))...)
-	}
-
-	if len(errs) == 0 {
-		return nil
 	}
 
 	return errs
@@ -3500,10 +3466,6 @@ func (resource *LibraryPanelRef) UnmarshalJSONStrict(raw []byte) error {
 
 	for field := range fields {
 		errs = append(errs, cog.MakeBuildErrors("LibraryPanelRef", fmt.Errorf("unexpected field '%s'", field))...)
-	}
-
-	if len(errs) == 0 {
-		return nil
 	}
 
 	return errs
@@ -3601,10 +3563,6 @@ func (resource *FieldConfigSource) UnmarshalJSONStrict(raw []byte) error {
 
 	for field := range fields {
 		errs = append(errs, cog.MakeBuildErrors("FieldConfigSource", fmt.Errorf("unexpected field '%s'", field))...)
-	}
-
-	if len(errs) == 0 {
-		return nil
 	}
 
 	return errs
@@ -3968,10 +3926,6 @@ func (resource *FieldConfig) UnmarshalJSONStrict(raw []byte) error {
 		errs = append(errs, cog.MakeBuildErrors("FieldConfig", fmt.Errorf("unexpected field '%s'", field))...)
 	}
 
-	if len(errs) == 0 {
-		return nil
-	}
-
 	return errs
 }
 
@@ -4262,10 +4216,6 @@ func (resource *ValueMap) UnmarshalJSONStrict(raw []byte) error {
 		errs = append(errs, cog.MakeBuildErrors("ValueMap", fmt.Errorf("unexpected field '%s'", field))...)
 	}
 
-	if len(errs) == 0 {
-		return nil
-	}
-
 	return errs
 }
 
@@ -4400,10 +4350,6 @@ func (resource *ValueMappingResult) UnmarshalJSONStrict(raw []byte) error {
 		errs = append(errs, cog.MakeBuildErrors("ValueMappingResult", fmt.Errorf("unexpected field '%s'", field))...)
 	}
 
-	if len(errs) == 0 {
-		return nil
-	}
-
 	return errs
 }
 
@@ -4517,10 +4463,6 @@ func (resource *RangeMap) UnmarshalJSONStrict(raw []byte) error {
 		errs = append(errs, cog.MakeBuildErrors("RangeMap", fmt.Errorf("unexpected field '%s'", field))...)
 	}
 
-	if len(errs) == 0 {
-		return nil
-	}
-
 	return errs
 }
 
@@ -4616,10 +4558,6 @@ func (resource *RegexMap) UnmarshalJSONStrict(raw []byte) error {
 		errs = append(errs, cog.MakeBuildErrors("RegexMap", fmt.Errorf("unexpected field '%s'", field))...)
 	}
 
-	if len(errs) == 0 {
-		return nil
-	}
-
 	return errs
 }
 
@@ -4713,10 +4651,6 @@ func (resource *SpecialValueMap) UnmarshalJSONStrict(raw []byte) error {
 
 	for field := range fields {
 		errs = append(errs, cog.MakeBuildErrors("SpecialValueMap", fmt.Errorf("unexpected field '%s'", field))...)
-	}
-
-	if len(errs) == 0 {
-		return nil
 	}
 
 	return errs
@@ -4835,10 +4769,6 @@ func (resource *ThresholdsConfig) UnmarshalJSONStrict(raw []byte) error {
 		errs = append(errs, cog.MakeBuildErrors("ThresholdsConfig", fmt.Errorf("unexpected field '%s'", field))...)
 	}
 
-	if len(errs) == 0 {
-		return nil
-	}
-
 	return errs
 }
 
@@ -4944,10 +4874,6 @@ func (resource *Threshold) UnmarshalJSONStrict(raw []byte) error {
 		errs = append(errs, cog.MakeBuildErrors("Threshold", fmt.Errorf("unexpected field '%s'", field))...)
 	}
 
-	if len(errs) == 0 {
-		return nil
-	}
-
 	return errs
 }
 
@@ -5040,10 +4966,6 @@ func (resource *FieldColor) UnmarshalJSONStrict(raw []byte) error {
 
 	for field := range fields {
 		errs = append(errs, cog.MakeBuildErrors("FieldColor", fmt.Errorf("unexpected field '%s'", field))...)
-	}
-
-	if len(errs) == 0 {
-		return nil
 	}
 
 	return errs
@@ -5274,10 +5196,6 @@ func (resource *Action) UnmarshalJSONStrict(raw []byte) error {
 		errs = append(errs, cog.MakeBuildErrors("Action", fmt.Errorf("unexpected field '%s'", field))...)
 	}
 
-	if len(errs) == 0 {
-		return nil
-	}
-
 	return errs
 }
 
@@ -5485,10 +5403,6 @@ func (resource *FetchOptions) UnmarshalJSONStrict(raw []byte) error {
 		errs = append(errs, cog.MakeBuildErrors("FetchOptions", fmt.Errorf("unexpected field '%s'", field))...)
 	}
 
-	if len(errs) == 0 {
-		return nil
-	}
-
 	return errs
 }
 
@@ -5674,10 +5588,6 @@ func (resource *InfinityOptions) UnmarshalJSONStrict(raw []byte) error {
 		errs = append(errs, cog.MakeBuildErrors("InfinityOptions", fmt.Errorf("unexpected field '%s'", field))...)
 	}
 
-	if len(errs) == 0 {
-		return nil
-	}
-
 	return errs
 }
 
@@ -5816,10 +5726,6 @@ func (resource *ActionVariable) UnmarshalJSONStrict(raw []byte) error {
 		errs = append(errs, cog.MakeBuildErrors("ActionVariable", fmt.Errorf("unexpected field '%s'", field))...)
 	}
 
-	if len(errs) == 0 {
-		return nil
-	}
-
 	return errs
 }
 
@@ -5894,7 +5800,8 @@ func (resource *DynamicConfigValue) UnmarshalJSONStrict(raw []byte) error {
 
 		}
 		delete(fields, "id")
-
+	} else {
+		errs = append(errs, cog.MakeBuildErrors("id", errors.New("required field is missing from input"))...)
 	}
 	// Field "value"
 	if fields["value"] != nil {
@@ -5910,10 +5817,6 @@ func (resource *DynamicConfigValue) UnmarshalJSONStrict(raw []byte) error {
 
 	for field := range fields {
 		errs = append(errs, cog.MakeBuildErrors("DynamicConfigValue", fmt.Errorf("unexpected field '%s'", field))...)
-	}
-
-	if len(errs) == 0 {
-		return nil
 	}
 
 	return errs
@@ -6003,7 +5906,8 @@ func (resource *RowPanel) UnmarshalJSONStrict(raw []byte) error {
 
 		}
 		delete(fields, "collapsed")
-
+	} else {
+		errs = append(errs, cog.MakeBuildErrors("collapsed", errors.New("required field is missing from input"))...)
 	}
 	// Field "title"
 	if fields["title"] != nil {
@@ -6096,10 +6000,6 @@ func (resource *RowPanel) UnmarshalJSONStrict(raw []byte) error {
 
 	for field := range fields {
 		errs = append(errs, cog.MakeBuildErrors("RowPanel", fmt.Errorf("unexpected field '%s'", field))...)
-	}
-
-	if len(errs) == 0 {
-		return nil
 	}
 
 	return errs
@@ -6563,10 +6463,6 @@ func (resource *VariableModel) UnmarshalJSONStrict(raw []byte) error {
 		errs = append(errs, cog.MakeBuildErrors("VariableModel", fmt.Errorf("unexpected field '%s'", field))...)
 	}
 
-	if len(errs) == 0 {
-		return nil
-	}
-
 	return errs
 }
 
@@ -6934,10 +6830,6 @@ func (resource *VariableOption) UnmarshalJSONStrict(raw []byte) error {
 		errs = append(errs, cog.MakeBuildErrors("VariableOption", fmt.Errorf("unexpected field '%s'", field))...)
 	}
 
-	if len(errs) == 0 {
-		return nil
-	}
-
 	return errs
 }
 
@@ -7070,10 +6962,6 @@ func (resource *AnnotationContainer) UnmarshalJSONStrict(raw []byte) error {
 		errs = append(errs, cog.MakeBuildErrors("AnnotationContainer", fmt.Errorf("unexpected field '%s'", field))...)
 	}
 
-	if len(errs) == 0 {
-		return nil
-	}
-
 	return errs
 }
 
@@ -7135,6 +7023,18 @@ type AnnotationQuery struct {
 	// Placement can be used to display the annotation query somewhere else on the dashboard other than the default location.
 	Placement *AnnotationQueryPlacement `json:"placement,omitempty"`
 	Expr      *string                   `json:"expr,omitempty"`
+	// Format for Prometheus annotation text. Label values can be interpolated with templates like {{instance}}.
+	TextFormat *string `json:"textFormat,omitempty"`
+	// Format for Prometheus and Loki annotation titles. Label values can be interpolated with templates like {{instance}}.
+	TitleFormat *string `json:"titleFormat,omitempty"`
+	// Comma-separated label keys used as annotation tags.
+	TagKeys *string `json:"tagKeys,omitempty"`
+	// Legacy Prometheus annotation query step interval.
+	Step *string `json:"step,omitempty"`
+	// Use the Prometheus series value as the annotation timestamp.
+	UseValueForTime *bool `json:"useValueForTime,omitempty"`
+	// Mappings define how to convert data frame fields to annotation event fields.
+	Mappings map[string]AnnotationEventFieldMapping `json:"mappings,omitempty"`
 }
 
 // NewAnnotationQuery creates a new AnnotationQuery object.
@@ -7217,6 +7117,42 @@ func (resource *AnnotationQuery) UnmarshalJSON(raw []byte) error {
 		}
 	}
 
+	if fields["textFormat"] != nil {
+		if err := json.Unmarshal(fields["textFormat"], &resource.TextFormat); err != nil {
+			return fmt.Errorf("error decoding field 'textFormat': %w", err)
+		}
+	}
+
+	if fields["titleFormat"] != nil {
+		if err := json.Unmarshal(fields["titleFormat"], &resource.TitleFormat); err != nil {
+			return fmt.Errorf("error decoding field 'titleFormat': %w", err)
+		}
+	}
+
+	if fields["tagKeys"] != nil {
+		if err := json.Unmarshal(fields["tagKeys"], &resource.TagKeys); err != nil {
+			return fmt.Errorf("error decoding field 'tagKeys': %w", err)
+		}
+	}
+
+	if fields["step"] != nil {
+		if err := json.Unmarshal(fields["step"], &resource.Step); err != nil {
+			return fmt.Errorf("error decoding field 'step': %w", err)
+		}
+	}
+
+	if fields["useValueForTime"] != nil {
+		if err := json.Unmarshal(fields["useValueForTime"], &resource.UseValueForTime); err != nil {
+			return fmt.Errorf("error decoding field 'useValueForTime': %w", err)
+		}
+	}
+
+	if fields["mappings"] != nil {
+		if err := json.Unmarshal(fields["mappings"], &resource.Mappings); err != nil {
+			return fmt.Errorf("error decoding field 'mappings': %w", err)
+		}
+	}
+
 	if fields["target"] != nil {
 		dataqueryTypeHint := ""
 
@@ -7284,7 +7220,8 @@ func (resource *AnnotationQuery) UnmarshalJSONStrict(raw []byte) error {
 
 		}
 		delete(fields, "enable")
-
+	} else {
+		errs = append(errs, cog.MakeBuildErrors("enable", errors.New("required field is missing from input"))...)
 	}
 	// Field "hide"
 	if fields["hide"] != nil {
@@ -7383,13 +7320,88 @@ func (resource *AnnotationQuery) UnmarshalJSONStrict(raw []byte) error {
 		delete(fields, "expr")
 
 	}
+	// Field "textFormat"
+	if fields["textFormat"] != nil {
+		if string(fields["textFormat"]) != "null" {
+			if err := json.Unmarshal(fields["textFormat"], &resource.TextFormat); err != nil {
+				errs = append(errs, cog.MakeBuildErrors("textFormat", err)...)
+			}
+
+		}
+		delete(fields, "textFormat")
+
+	}
+	// Field "titleFormat"
+	if fields["titleFormat"] != nil {
+		if string(fields["titleFormat"]) != "null" {
+			if err := json.Unmarshal(fields["titleFormat"], &resource.TitleFormat); err != nil {
+				errs = append(errs, cog.MakeBuildErrors("titleFormat", err)...)
+			}
+
+		}
+		delete(fields, "titleFormat")
+
+	}
+	// Field "tagKeys"
+	if fields["tagKeys"] != nil {
+		if string(fields["tagKeys"]) != "null" {
+			if err := json.Unmarshal(fields["tagKeys"], &resource.TagKeys); err != nil {
+				errs = append(errs, cog.MakeBuildErrors("tagKeys", err)...)
+			}
+
+		}
+		delete(fields, "tagKeys")
+
+	}
+	// Field "step"
+	if fields["step"] != nil {
+		if string(fields["step"]) != "null" {
+			if err := json.Unmarshal(fields["step"], &resource.Step); err != nil {
+				errs = append(errs, cog.MakeBuildErrors("step", err)...)
+			}
+
+		}
+		delete(fields, "step")
+
+	}
+	// Field "useValueForTime"
+	if fields["useValueForTime"] != nil {
+		if string(fields["useValueForTime"]) != "null" {
+			if err := json.Unmarshal(fields["useValueForTime"], &resource.UseValueForTime); err != nil {
+				errs = append(errs, cog.MakeBuildErrors("useValueForTime", err)...)
+			}
+
+		}
+		delete(fields, "useValueForTime")
+
+	}
+	// Field "mappings"
+	if fields["mappings"] != nil {
+		if string(fields["mappings"]) != "null" {
+
+			partialMap := make(map[string]json.RawMessage)
+			if err := json.Unmarshal(fields["mappings"], &partialMap); err != nil {
+				return err
+			}
+			parsedMap1 := make(map[string]AnnotationEventFieldMapping, len(partialMap))
+			for key1 := range partialMap {
+				var result1 AnnotationEventFieldMapping
+
+				result1 = AnnotationEventFieldMapping{}
+				if err := result1.UnmarshalJSONStrict(partialMap[key1]); err != nil {
+					errs = append(errs, cog.MakeBuildErrors("mappings["+key1+"]", err)...)
+				}
+				parsedMap1[key1] = result1
+			}
+			resource.Mappings = parsedMap1
+
+		}
+		delete(fields, "mappings")
+
+	}
 
 	for field := range fields {
 		errs = append(errs, cog.MakeBuildErrors("AnnotationQuery", fmt.Errorf("unexpected field '%s'", field))...)
-	}
-
-	if len(errs) == 0 {
-		return nil
 	}
 
 	return errs
@@ -7478,6 +7490,61 @@ func (resource AnnotationQuery) Equals(other AnnotationQuery) bool {
 			return false
 		}
 	}
+	if resource.TextFormat == nil && other.TextFormat != nil || resource.TextFormat != nil && other.TextFormat == nil {
+		return false
+	}
+
+	if resource.TextFormat != nil {
+		if *resource.TextFormat != *other.TextFormat {
+			return false
+		}
+	}
+	if resource.TitleFormat == nil && other.TitleFormat != nil || resource.TitleFormat != nil && other.TitleFormat == nil {
+		return false
+	}
+
+	if resource.TitleFormat != nil {
+		if *resource.TitleFormat != *other.TitleFormat {
+			return false
+		}
+	}
+	if resource.TagKeys == nil && other.TagKeys != nil || resource.TagKeys != nil && other.TagKeys == nil {
+		return false
+	}
+
+	if resource.TagKeys != nil {
+		if *resource.TagKeys != *other.TagKeys {
+			return false
+		}
+	}
+	if resource.Step == nil && other.Step != nil || resource.Step != nil && other.Step == nil {
+		return false
+	}
+
+	if resource.Step != nil {
+		if *resource.Step != *other.Step {
+			return false
+		}
+	}
+	if resource.UseValueForTime == nil && other.UseValueForTime != nil || resource.UseValueForTime != nil && other.UseValueForTime == nil {
+		return false
+	}
+
+	if resource.UseValueForTime != nil {
+		if *resource.UseValueForTime != *other.UseValueForTime {
+			return false
+		}
+	}
+
+	if len(resource.Mappings) != len(other.Mappings) {
+		return false
+	}
+
+	for key1 := range resource.Mappings {
+		if !resource.Mappings[key1].Equals(other.Mappings[key1]) {
+			return false
+		}
+	}
 
 	return true
 }
@@ -7503,6 +7570,12 @@ func (resource AnnotationQuery) Validate() error {
 	if resource.Placement != nil {
 		if *resource.Placement != "inControlsMenu" {
 			errs = append(errs, cog.MakeBuildErrors("placement", errors.New("must be inControlsMenu"))...)
+		}
+	}
+
+	for key1 := range resource.Mappings {
+		if err := resource.Mappings[key1].Validate(); err != nil {
+			errs = append(errs, cog.MakeBuildErrors("mappings["+key1+"]", err)...)
 		}
 	}
 
@@ -7569,10 +7642,6 @@ func (resource *AnnotationPanelFilter) UnmarshalJSONStrict(raw []byte) error {
 
 	for field := range fields {
 		errs = append(errs, cog.MakeBuildErrors("AnnotationPanelFilter", fmt.Errorf("unexpected field '%s'", field))...)
-	}
-
-	if len(errs) == 0 {
-		return nil
 	}
 
 	return errs
@@ -7704,10 +7773,6 @@ func (resource *AnnotationTarget) UnmarshalJSONStrict(raw []byte) error {
 
 	for field := range fields {
 		errs = append(errs, cog.MakeBuildErrors("AnnotationTarget", fmt.Errorf("unexpected field '%s'", field))...)
-	}
-
-	if len(errs) == 0 {
-		return nil
 	}
 
 	return errs
@@ -7984,10 +8049,6 @@ func (resource *Snapshot) UnmarshalJSONStrict(raw []byte) error {
 		errs = append(errs, cog.MakeBuildErrors("Snapshot", fmt.Errorf("unexpected field '%s'", field))...)
 	}
 
-	if len(errs) == 0 {
-		return nil
-	}
-
 	return errs
 }
 
@@ -8064,6 +8125,124 @@ func (resource Snapshot) Validate() error {
 	return errs
 }
 
+// Annotation event field source. Defines how to obtain the value for an annotation event field.
+// - "field": Find the value with a matching key (default)
+// - "text": Write a constant string into the value
+// - "skip": Do not include the field
+type AnnotationEventFieldSource string
+
+const (
+	AnnotationEventFieldSourceField AnnotationEventFieldSource = "field"
+	AnnotationEventFieldSourceText  AnnotationEventFieldSource = "text"
+	AnnotationEventFieldSourceSkip  AnnotationEventFieldSource = "skip"
+)
+
+// Annotation event field mapping. Defines how to map a data frame field to an annotation event field.
+type AnnotationEventFieldMapping struct {
+	// Source type for the field value.
+	Source *AnnotationEventFieldSource `json:"source,omitempty"`
+	// Constant value to use when source is "text".
+	Value *string `json:"value,omitempty"`
+	// Regular expression to apply to the field value.
+	Regex *string `json:"regex,omitempty"`
+}
+
+// NewAnnotationEventFieldMapping creates a new AnnotationEventFieldMapping object.
+func NewAnnotationEventFieldMapping() *AnnotationEventFieldMapping {
+	return &AnnotationEventFieldMapping{}
+}
+
+// UnmarshalJSONStrict implements a custom JSON unmarshalling logic to decode `AnnotationEventFieldMapping` from JSON.
+// Note: the unmarshalling done by this function is strict. It will fail over required fields being absent from the input, fields having an incorrect type, unexpected fields being present, …
+func (resource *AnnotationEventFieldMapping) UnmarshalJSONStrict(raw []byte) error {
+	if raw == nil {
+		return nil
+	}
+	var errs cog.BuildErrors
+
+	fields := make(map[string]json.RawMessage)
+	if err := json.Unmarshal(raw, &fields); err != nil {
+		return err
+	}
+	// Field "source"
+	if fields["source"] != nil {
+		if string(fields["source"]) != "null" {
+			if err := json.Unmarshal(fields["source"], &resource.Source); err != nil {
+				errs = append(errs, cog.MakeBuildErrors("source", err)...)
+			}
+
+		}
+		delete(fields, "source")
+
+	}
+	// Field "value"
+	if fields["value"] != nil {
+		if string(fields["value"]) != "null" {
+			if err := json.Unmarshal(fields["value"], &resource.Value); err != nil {
+				errs = append(errs, cog.MakeBuildErrors("value", err)...)
+			}
+
+		}
+		delete(fields, "value")
+
+	}
+	// Field "regex"
+	if fields["regex"] != nil {
+		if string(fields["regex"]) != "null" {
+			if err := json.Unmarshal(fields["regex"], &resource.Regex); err != nil {
+				errs = append(errs, cog.MakeBuildErrors("regex", err)...)
+			}
+
+		}
+		delete(fields, "regex")
+
+	}
+
+	for field := range fields {
+		errs = append(errs, cog.MakeBuildErrors("AnnotationEventFieldMapping", fmt.Errorf("unexpected field '%s'", field))...)
+	}
+
+	return errs
+}
+
+// Equals tests the equality of two `AnnotationEventFieldMapping` objects.
+func (resource AnnotationEventFieldMapping) Equals(other AnnotationEventFieldMapping) bool {
+	if resource.Source == nil && other.Source != nil || resource.Source != nil && other.Source == nil {
+		return false
+	}
+
+	if resource.Source != nil {
+		if *resource.Source != *other.Source {
+			return false
+		}
+	}
+	if resource.Value == nil && other.Value != nil || resource.Value != nil && other.Value == nil {
+		return false
+	}
+
+	if resource.Value != nil {
+		if *resource.Value != *other.Value {
+			return false
+		}
+	}
+	if resource.Regex == nil && other.Regex != nil || resource.Regex != nil && other.Regex == nil {
+		return false
+	}
+
+	if resource.Regex != nil {
+		if *resource.Regex != *other.Regex {
+			return false
+		}
+	}
+
+	return true
+}
+
+// Validate checks all the validation constraints that may be defined on `AnnotationEventFieldMapping` fields for violations and returns them.
+func (resource AnnotationEventFieldMapping) Validate() error {
+	return nil
+}
+
 type DashboardDashboardTime struct {
 	From string `json:"from"`
 	To   string `json:"to"`
@@ -8100,7 +8279,8 @@ func (resource *DashboardDashboardTime) UnmarshalJSONStrict(raw []byte) error {
 
 		}
 		delete(fields, "from")
-
+	} else {
+		errs = append(errs, cog.MakeBuildErrors("from", errors.New("required field is missing from input"))...)
 	}
 	// Field "to"
 	if fields["to"] != nil {
@@ -8113,15 +8293,12 @@ func (resource *DashboardDashboardTime) UnmarshalJSONStrict(raw []byte) error {
 
 		}
 		delete(fields, "to")
-
+	} else {
+		errs = append(errs, cog.MakeBuildErrors("to", errors.New("required field is missing from input"))...)
 	}
 
 	for field := range fields {
 		errs = append(errs, cog.MakeBuildErrors("DashboardDashboardTime", fmt.Errorf("unexpected field '%s'", field))...)
-	}
-
-	if len(errs) == 0 {
-		return nil
 	}
 
 	return errs
@@ -8192,10 +8369,6 @@ func (resource *DashboardDashboardTemplating) UnmarshalJSONStrict(raw []byte) er
 
 	for field := range fields {
 		errs = append(errs, cog.MakeBuildErrors("DashboardDashboardTemplating", fmt.Errorf("unexpected field '%s'", field))...)
-	}
-
-	if len(errs) == 0 {
-		return nil
 	}
 
 	return errs
@@ -8316,10 +8489,6 @@ func (resource *DashboardFieldConfigSourceOverrides) UnmarshalJSONStrict(raw []b
 
 	for field := range fields {
 		errs = append(errs, cog.MakeBuildErrors("DashboardFieldConfigSourceOverrides", fmt.Errorf("unexpected field '%s'", field))...)
-	}
-
-	if len(errs) == 0 {
-		return nil
 	}
 
 	return errs
@@ -8446,10 +8615,6 @@ func (resource *DashboardRangeMapOptions) UnmarshalJSONStrict(raw []byte) error 
 		errs = append(errs, cog.MakeBuildErrors("DashboardRangeMapOptions", fmt.Errorf("unexpected field '%s'", field))...)
 	}
 
-	if len(errs) == 0 {
-		return nil
-	}
-
 	return errs
 }
 
@@ -8555,10 +8720,6 @@ func (resource *DashboardRegexMapOptions) UnmarshalJSONStrict(raw []byte) error 
 		errs = append(errs, cog.MakeBuildErrors("DashboardRegexMapOptions", fmt.Errorf("unexpected field '%s'", field))...)
 	}
 
-	if len(errs) == 0 {
-		return nil
-	}
-
 	return errs
 }
 
@@ -8649,10 +8810,6 @@ func (resource *DashboardSpecialValueMapOptions) UnmarshalJSONStrict(raw []byte)
 		errs = append(errs, cog.MakeBuildErrors("DashboardSpecialValueMapOptions", fmt.Errorf("unexpected field '%s'", field))...)
 	}
 
-	if len(errs) == 0 {
-		return nil
-	}
-
 	return errs
 }
 
@@ -8717,10 +8874,6 @@ func (resource *DashboardActionStyle) UnmarshalJSONStrict(raw []byte) error {
 
 	for field := range fields {
 		errs = append(errs, cog.MakeBuildErrors("DashboardActionStyle", fmt.Errorf("unexpected field '%s'", field))...)
-	}
-
-	if len(errs) == 0 {
-		return nil
 	}
 
 	return errs

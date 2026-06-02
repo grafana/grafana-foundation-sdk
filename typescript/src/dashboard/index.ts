@@ -30,6 +30,8 @@ export * from './annotationTargetBuilder.gen';
 export type * from './annotationTargetBuilder.gen';
 export * from './snapshotBuilder.gen';
 export type * from './snapshotBuilder.gen';
+export * from './annotationEventFieldMappingBuilder.gen';
+export type * from './annotationEventFieldMappingBuilder.gen';
 export * from './timePickerBuilder.gen';
 export type * from './timePickerBuilder.gen';
 export * from './panelBuilder.gen';

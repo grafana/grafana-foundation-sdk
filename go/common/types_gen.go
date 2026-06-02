@@ -107,10 +107,6 @@ func (resource *DataSourceJsonData) UnmarshalJSONStrict(raw []byte) error {
 		errs = append(errs, cog.MakeBuildErrors("DataSourceJsonData", fmt.Errorf("unexpected field '%s'", field))...)
 	}
 
-	if len(errs) == 0 {
-		return nil
-	}
-
 	return errs
 }
 
@@ -259,10 +255,6 @@ func (resource *DataQuery) UnmarshalJSONStrict(raw []byte) error {
 		errs = append(errs, cog.MakeBuildErrors("DataQuery", fmt.Errorf("unexpected field '%s'", field))...)
 	}
 
-	if len(errs) == 0 {
-		return nil
-	}
-
 	return errs
 }
 
@@ -338,10 +330,6 @@ func (resource *BaseDimensionConfig) UnmarshalJSONStrict(raw []byte) error {
 
 	for field := range fields {
 		errs = append(errs, cog.MakeBuildErrors("BaseDimensionConfig", fmt.Errorf("unexpected field '%s'", field))...)
-	}
-
-	if len(errs) == 0 {
-		return nil
 	}
 
 	return errs
@@ -467,10 +455,6 @@ func (resource *ScaleDimensionConfig) UnmarshalJSONStrict(raw []byte) error {
 		errs = append(errs, cog.MakeBuildErrors("ScaleDimensionConfig", fmt.Errorf("unexpected field '%s'", field))...)
 	}
 
-	if len(errs) == 0 {
-		return nil
-	}
-
 	return errs
 }
 
@@ -567,10 +551,6 @@ func (resource *ColorDimensionConfig) UnmarshalJSONStrict(raw []byte) error {
 
 	for field := range fields {
 		errs = append(errs, cog.MakeBuildErrors("ColorDimensionConfig", fmt.Errorf("unexpected field '%s'", field))...)
-	}
-
-	if len(errs) == 0 {
-		return nil
 	}
 
 	return errs
@@ -704,10 +684,6 @@ func (resource *ScalarDimensionConfig) UnmarshalJSONStrict(raw []byte) error {
 		errs = append(errs, cog.MakeBuildErrors("ScalarDimensionConfig", fmt.Errorf("unexpected field '%s'", field))...)
 	}
 
-	if len(errs) == 0 {
-		return nil
-	}
-
 	return errs
 }
 
@@ -826,10 +802,6 @@ func (resource *TextDimensionConfig) UnmarshalJSONStrict(raw []byte) error {
 
 	for field := range fields {
 		errs = append(errs, cog.MakeBuildErrors("TextDimensionConfig", fmt.Errorf("unexpected field '%s'", field))...)
-	}
-
-	if len(errs) == 0 {
-		return nil
 	}
 
 	return errs
@@ -998,10 +970,6 @@ func (resource *MapLayerOptions) UnmarshalJSONStrict(raw []byte) error {
 
 	for field := range fields {
 		errs = append(errs, cog.MakeBuildErrors("MapLayerOptions", fmt.Errorf("unexpected field '%s'", field))...)
-	}
-
-	if len(errs) == 0 {
-		return nil
 	}
 
 	return errs
@@ -1184,10 +1152,6 @@ func (resource *FrameGeometrySource) UnmarshalJSONStrict(raw []byte) error {
 		errs = append(errs, cog.MakeBuildErrors("FrameGeometrySource", fmt.Errorf("unexpected field '%s'", field))...)
 	}
 
-	if len(errs) == 0 {
-		return nil
-	}
-
 	return errs
 }
 
@@ -1350,10 +1314,6 @@ func (resource *HeatmapCalculationBucketConfig) UnmarshalJSONStrict(raw []byte) 
 		errs = append(errs, cog.MakeBuildErrors("HeatmapCalculationBucketConfig", fmt.Errorf("unexpected field '%s'", field))...)
 	}
 
-	if len(errs) == 0 {
-		return nil
-	}
-
 	return errs
 }
 
@@ -1469,10 +1429,6 @@ func (resource *ScaleDistributionConfig) UnmarshalJSONStrict(raw []byte) error {
 
 	for field := range fields {
 		errs = append(errs, cog.MakeBuildErrors("ScaleDistributionConfig", fmt.Errorf("unexpected field '%s'", field))...)
-	}
-
-	if len(errs) == 0 {
-		return nil
 	}
 
 	return errs
@@ -1680,10 +1636,6 @@ func (resource *LineStyle) UnmarshalJSONStrict(raw []byte) error {
 		errs = append(errs, cog.MakeBuildErrors("LineStyle", fmt.Errorf("unexpected field '%s'", field))...)
 	}
 
-	if len(errs) == 0 {
-		return nil
-	}
-
 	return errs
 }
 
@@ -1808,10 +1760,6 @@ func (resource *LineConfig) UnmarshalJSONStrict(raw []byte) error {
 
 	for field := range fields {
 		errs = append(errs, cog.MakeBuildErrors("LineConfig", fmt.Errorf("unexpected field '%s'", field))...)
-	}
-
-	if len(errs) == 0 {
-		return nil
 	}
 
 	return errs
@@ -1951,10 +1899,6 @@ func (resource *BarConfig) UnmarshalJSONStrict(raw []byte) error {
 		errs = append(errs, cog.MakeBuildErrors("BarConfig", fmt.Errorf("unexpected field '%s'", field))...)
 	}
 
-	if len(errs) == 0 {
-		return nil
-	}
-
 	return errs
 }
 
@@ -2056,10 +2000,6 @@ func (resource *FillConfig) UnmarshalJSONStrict(raw []byte) error {
 
 	for field := range fields {
 		errs = append(errs, cog.MakeBuildErrors("FillConfig", fmt.Errorf("unexpected field '%s'", field))...)
-	}
-
-	if len(errs) == 0 {
-		return nil
 	}
 
 	return errs
@@ -2175,10 +2115,6 @@ func (resource *PointsConfig) UnmarshalJSONStrict(raw []byte) error {
 
 	for field := range fields {
 		errs = append(errs, cog.MakeBuildErrors("PointsConfig", fmt.Errorf("unexpected field '%s'", field))...)
-	}
-
-	if len(errs) == 0 {
-		return nil
 	}
 
 	return errs
@@ -2379,10 +2315,6 @@ func (resource *AxisConfig) UnmarshalJSONStrict(raw []byte) error {
 		errs = append(errs, cog.MakeBuildErrors("AxisConfig", fmt.Errorf("unexpected field '%s'", field))...)
 	}
 
-	if len(errs) == 0 {
-		return nil
-	}
-
 	return errs
 }
 
@@ -2569,10 +2501,6 @@ func (resource *HideSeriesConfig) UnmarshalJSONStrict(raw []byte) error {
 		errs = append(errs, cog.MakeBuildErrors("HideSeriesConfig", fmt.Errorf("unexpected field '%s'", field))...)
 	}
 
-	if len(errs) == 0 {
-		return nil
-	}
-
 	return errs
 }
 
@@ -2644,10 +2572,6 @@ func (resource *StackingConfig) UnmarshalJSONStrict(raw []byte) error {
 
 	for field := range fields {
 		errs = append(errs, cog.MakeBuildErrors("StackingConfig", fmt.Errorf("unexpected field '%s'", field))...)
-	}
-
-	if len(errs) == 0 {
-		return nil
 	}
 
 	return errs
@@ -2722,10 +2646,6 @@ func (resource *StackableFieldConfig) UnmarshalJSONStrict(raw []byte) error {
 		errs = append(errs, cog.MakeBuildErrors("StackableFieldConfig", fmt.Errorf("unexpected field '%s'", field))...)
 	}
 
-	if len(errs) == 0 {
-		return nil
-	}
-
 	return errs
 }
 
@@ -2798,10 +2718,6 @@ func (resource *HideableFieldConfig) UnmarshalJSONStrict(raw []byte) error {
 
 	for field := range fields {
 		errs = append(errs, cog.MakeBuildErrors("HideableFieldConfig", fmt.Errorf("unexpected field '%s'", field))...)
-	}
-
-	if len(errs) == 0 {
-		return nil
 	}
 
 	return errs
@@ -2890,10 +2806,6 @@ func (resource *GraphThresholdsStyleConfig) UnmarshalJSONStrict(raw []byte) erro
 
 	for field := range fields {
 		errs = append(errs, cog.MakeBuildErrors("GraphThresholdsStyleConfig", fmt.Errorf("unexpected field '%s'", field))...)
-	}
-
-	if len(errs) == 0 {
-		return nil
 	}
 
 	return errs
@@ -3003,10 +2915,6 @@ func (resource *SingleStatBaseOptions) UnmarshalJSONStrict(raw []byte) error {
 
 	for field := range fields {
 		errs = append(errs, cog.MakeBuildErrors("SingleStatBaseOptions", fmt.Errorf("unexpected field '%s'", field))...)
-	}
-
-	if len(errs) == 0 {
-		return nil
 	}
 
 	return errs
@@ -3136,10 +3044,6 @@ func (resource *ReduceDataOptions) UnmarshalJSONStrict(raw []byte) error {
 		errs = append(errs, cog.MakeBuildErrors("ReduceDataOptions", fmt.Errorf("unexpected field '%s'", field))...)
 	}
 
-	if len(errs) == 0 {
-		return nil
-	}
-
 	return errs
 }
 
@@ -3256,10 +3160,6 @@ func (resource *VizTextDisplayOptions) UnmarshalJSONStrict(raw []byte) error {
 		errs = append(errs, cog.MakeBuildErrors("VizTextDisplayOptions", fmt.Errorf("unexpected field '%s'", field))...)
 	}
 
-	if len(errs) == 0 {
-		return nil
-	}
-
 	return errs
 }
 
@@ -3353,10 +3253,6 @@ func (resource *OptionsWithTooltip) UnmarshalJSONStrict(raw []byte) error {
 
 	for field := range fields {
 		errs = append(errs, cog.MakeBuildErrors("OptionsWithTooltip", fmt.Errorf("unexpected field '%s'", field))...)
-	}
-
-	if len(errs) == 0 {
-		return nil
 	}
 
 	return errs
@@ -3477,10 +3373,6 @@ func (resource *VizTooltipOptions) UnmarshalJSONStrict(raw []byte) error {
 		errs = append(errs, cog.MakeBuildErrors("VizTooltipOptions", fmt.Errorf("unexpected field '%s'", field))...)
 	}
 
-	if len(errs) == 0 {
-		return nil
-	}
-
 	return errs
 }
 
@@ -3591,10 +3483,6 @@ func (resource *OptionsWithLegend) UnmarshalJSONStrict(raw []byte) error {
 		errs = append(errs, cog.MakeBuildErrors("OptionsWithLegend", fmt.Errorf("unexpected field '%s'", field))...)
 	}
 
-	if len(errs) == 0 {
-		return nil
-	}
-
 	return errs
 }
 
@@ -3666,7 +3554,8 @@ func (resource *VizLegendOptions) UnmarshalJSONStrict(raw []byte) error {
 
 		}
 		delete(fields, "displayMode")
-
+	} else {
+		errs = append(errs, cog.MakeBuildErrors("displayMode", errors.New("required field is missing from input"))...)
 	}
 	// Field "placement"
 	if fields["placement"] != nil {
@@ -3679,7 +3568,8 @@ func (resource *VizLegendOptions) UnmarshalJSONStrict(raw []byte) error {
 
 		}
 		delete(fields, "placement")
-
+	} else {
+		errs = append(errs, cog.MakeBuildErrors("placement", errors.New("required field is missing from input"))...)
 	}
 	// Field "showLegend"
 	if fields["showLegend"] != nil {
@@ -3762,15 +3652,12 @@ func (resource *VizLegendOptions) UnmarshalJSONStrict(raw []byte) error {
 
 		}
 		delete(fields, "calcs")
-
+	} else {
+		errs = append(errs, cog.MakeBuildErrors("calcs", errors.New("required field is missing from input"))...)
 	}
 
 	for field := range fields {
 		errs = append(errs, cog.MakeBuildErrors("VizLegendOptions", fmt.Errorf("unexpected field '%s'", field))...)
-	}
-
-	if len(errs) == 0 {
-		return nil
 	}
 
 	return errs
@@ -3890,10 +3777,6 @@ func (resource *OptionsWithTimezones) UnmarshalJSONStrict(raw []byte) error {
 		errs = append(errs, cog.MakeBuildErrors("OptionsWithTimezones", fmt.Errorf("unexpected field '%s'", field))...)
 	}
 
-	if len(errs) == 0 {
-		return nil
-	}
-
 	return errs
 }
 
@@ -3965,10 +3848,6 @@ func (resource *OptionsWithTextFormatting) UnmarshalJSONStrict(raw []byte) error
 
 	for field := range fields {
 		errs = append(errs, cog.MakeBuildErrors("OptionsWithTextFormatting", fmt.Errorf("unexpected field '%s'", field))...)
-	}
-
-	if len(errs) == 0 {
-		return nil
 	}
 
 	return errs
@@ -4499,10 +4378,6 @@ func (resource *GraphFieldConfig) UnmarshalJSONStrict(raw []byte) error {
 		errs = append(errs, cog.MakeBuildErrors("GraphFieldConfig", fmt.Errorf("unexpected field '%s'", field))...)
 	}
 
-	if len(errs) == 0 {
-		return nil
-	}
-
 	return errs
 }
 
@@ -4973,10 +4848,6 @@ func (resource *TableSortByFieldState) UnmarshalJSONStrict(raw []byte) error {
 		errs = append(errs, cog.MakeBuildErrors("TableSortByFieldState", fmt.Errorf("unexpected field '%s'", field))...)
 	}
 
-	if len(errs) == 0 {
-		return nil
-	}
-
 	return errs
 }
 
@@ -5155,10 +5026,6 @@ func (resource *TableFooterOptions) UnmarshalJSONStrict(raw []byte) error {
 		errs = append(errs, cog.MakeBuildErrors("TableFooterOptions", fmt.Errorf("unexpected field '%s'", field))...)
 	}
 
-	if len(errs) == 0 {
-		return nil
-	}
-
 	return errs
 }
 
@@ -5269,10 +5136,6 @@ func (resource *TableAutoCellOptions) UnmarshalJSONStrict(raw []byte) error {
 		errs = append(errs, cog.MakeBuildErrors("TableAutoCellOptions", fmt.Errorf("unexpected field '%s'", field))...)
 	}
 
-	if len(errs) == 0 {
-		return nil
-	}
-
 	return errs
 }
 
@@ -5363,10 +5226,6 @@ func (resource *TableColorTextCellOptions) UnmarshalJSONStrict(raw []byte) error
 		errs = append(errs, cog.MakeBuildErrors("TableColorTextCellOptions", fmt.Errorf("unexpected field '%s'", field))...)
 	}
 
-	if len(errs) == 0 {
-		return nil
-	}
-
 	return errs
 }
 
@@ -5443,10 +5302,6 @@ func (resource *TableJsonViewCellOptions) UnmarshalJSONStrict(raw []byte) error 
 
 	for field := range fields {
 		errs = append(errs, cog.MakeBuildErrors("TableJsonViewCellOptions", fmt.Errorf("unexpected field '%s'", field))...)
-	}
-
-	if len(errs) == 0 {
-		return nil
 	}
 
 	return errs
@@ -5542,10 +5397,6 @@ func (resource *TableImageCellOptions) UnmarshalJSONStrict(raw []byte) error {
 		errs = append(errs, cog.MakeBuildErrors("TableImageCellOptions", fmt.Errorf("unexpected field '%s'", field))...)
 	}
 
-	if len(errs) == 0 {
-		return nil
-	}
-
 	return errs
 }
 
@@ -5633,10 +5484,6 @@ func (resource *TableDataLinksCellOptions) UnmarshalJSONStrict(raw []byte) error
 		errs = append(errs, cog.MakeBuildErrors("TableDataLinksCellOptions", fmt.Errorf("unexpected field '%s'", field))...)
 	}
 
-	if len(errs) == 0 {
-		return nil
-	}
-
 	return errs
 }
 
@@ -5704,10 +5551,6 @@ func (resource *TableActionsCellOptions) UnmarshalJSONStrict(raw []byte) error {
 
 	for field := range fields {
 		errs = append(errs, cog.MakeBuildErrors("TableActionsCellOptions", fmt.Errorf("unexpected field '%s'", field))...)
-	}
-
-	if len(errs) == 0 {
-		return nil
 	}
 
 	return errs
@@ -5801,10 +5644,6 @@ func (resource *TableBarGaugeCellOptions) UnmarshalJSONStrict(raw []byte) error 
 
 	for field := range fields {
 		errs = append(errs, cog.MakeBuildErrors("TableBarGaugeCellOptions", fmt.Errorf("unexpected field '%s'", field))...)
-	}
-
-	if len(errs) == 0 {
-		return nil
 	}
 
 	return errs
@@ -6307,10 +6146,6 @@ func (resource *TableSparklineCellOptions) UnmarshalJSONStrict(raw []byte) error
 		errs = append(errs, cog.MakeBuildErrors("TableSparklineCellOptions", fmt.Errorf("unexpected field '%s'", field))...)
 	}
 
-	if len(errs) == 0 {
-		return nil
-	}
-
 	return errs
 }
 
@@ -6748,10 +6583,6 @@ func (resource *TableColoredBackgroundCellOptions) UnmarshalJSONStrict(raw []byt
 		errs = append(errs, cog.MakeBuildErrors("TableColoredBackgroundCellOptions", fmt.Errorf("unexpected field '%s'", field))...)
 	}
 
-	if len(errs) == 0 {
-		return nil
-	}
-
 	return errs
 }
 
@@ -6899,10 +6730,6 @@ func (resource *DataSourceRef) UnmarshalJSONStrict(raw []byte) error {
 		errs = append(errs, cog.MakeBuildErrors("DataSourceRef", fmt.Errorf("unexpected field '%s'", field))...)
 	}
 
-	if len(errs) == 0 {
-		return nil
-	}
-
 	return errs
 }
 
@@ -7001,10 +6828,6 @@ func (resource *ResourceDimensionConfig) UnmarshalJSONStrict(raw []byte) error {
 		errs = append(errs, cog.MakeBuildErrors("ResourceDimensionConfig", fmt.Errorf("unexpected field '%s'", field))...)
 	}
 
-	if len(errs) == 0 {
-		return nil
-	}
-
 	return errs
 }
 
@@ -7093,10 +6916,6 @@ func (resource *HeatmapCalculationOptions) UnmarshalJSONStrict(raw []byte) error
 
 	for field := range fields {
 		errs = append(errs, cog.MakeBuildErrors("HeatmapCalculationOptions", fmt.Errorf("unexpected field '%s'", field))...)
-	}
-
-	if len(errs) == 0 {
-		return nil
 	}
 
 	return errs
@@ -7238,7 +7057,8 @@ func (resource *TableFieldOptions) UnmarshalJSONStrict(raw []byte) error {
 
 		}
 		delete(fields, "align")
-
+	} else {
+		errs = append(errs, cog.MakeBuildErrors("align", errors.New("required field is missing from input"))...)
 	}
 	// Field "displayMode"
 	if fields["displayMode"] != nil {
@@ -7286,7 +7106,8 @@ func (resource *TableFieldOptions) UnmarshalJSONStrict(raw []byte) error {
 
 		}
 		delete(fields, "inspect")
-
+	} else {
+		errs = append(errs, cog.MakeBuildErrors("inspect", errors.New("required field is missing from input"))...)
 	}
 	// Field "filterable"
 	if fields["filterable"] != nil {
@@ -7313,10 +7134,6 @@ func (resource *TableFieldOptions) UnmarshalJSONStrict(raw []byte) error {
 
 	for field := range fields {
 		errs = append(errs, cog.MakeBuildErrors("TableFieldOptions", fmt.Errorf("unexpected field '%s'", field))...)
-	}
-
-	if len(errs) == 0 {
-		return nil
 	}
 
 	return errs

@@ -36,7 +36,7 @@ public class Registry {
         registerPanel("trend", com.grafana.foundation.trend.Options.class, com.grafana.foundation.trend.FieldConfig.class);
         registerPanel("xychart", com.grafana.foundation.xychart.Options.class, com.grafana.foundation.xychart.FieldConfig.class);
         registerDataquery("grafana-athena-datasource", com.grafana.foundation.athena.Dataquery.class);
-        registerDataquery("grafana-azure-monitor-datasource", com.grafana.foundation.azuremonitor.AzureMonitorQuery.class);
+        registerDataquery("grafana-azure-monitor-datasource", com.grafana.foundation.azuremonitor.MonitorQuery.class);
         registerDataquery("grafana-bigquery-datasource", com.grafana.foundation.bigquery.Dataquery.class);
         registerDataquery("cloudwatch", com.grafana.foundation.cloudwatch.CloudWatchQuery.class);
         registerDataquery("datasource", com.grafana.foundation.datasource.Dataquery.class);

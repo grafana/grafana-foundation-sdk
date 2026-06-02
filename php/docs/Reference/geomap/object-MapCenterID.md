@@ -24,29 +24,29 @@ final class MapCenterID implements \JsonSerializable, \Stringable {
 
     public static function zero(): self
     {
-        if (!isset(self::$instances["zero"])) {
-            self::$instances["zero"] = new self("zero");
+        if (!isset(self::$instances["Zero"])) {
+            self::$instances["Zero"] = new self("zero");
         }
 
-        return self::$instances["zero"];
+        return self::$instances["Zero"];
     }
 
     public static function coords(): self
     {
-        if (!isset(self::$instances["coords"])) {
-            self::$instances["coords"] = new self("coords");
+        if (!isset(self::$instances["Coords"])) {
+            self::$instances["Coords"] = new self("coords");
         }
 
-        return self::$instances["coords"];
+        return self::$instances["Coords"];
     }
 
     public static function fit(): self
     {
-        if (!isset(self::$instances["fit"])) {
-            self::$instances["fit"] = new self("fit");
+        if (!isset(self::$instances["Fit"])) {
+            self::$instances["Fit"] = new self("fit");
         }
 
-        return self::$instances["fit"];
+        return self::$instances["Fit"];
     }
 
     public static function fromValue(string $value): self

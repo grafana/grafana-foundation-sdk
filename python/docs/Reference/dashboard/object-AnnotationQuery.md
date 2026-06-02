@@ -38,6 +38,18 @@ class AnnotationQuery:
     # Placement can be used to display the annotation query somewhere else on the dashboard other than the default location.
     placement: str
     expr: typing.Optional[str]
+    # Format for Prometheus annotation text. Label values can be interpolated with templates like {{instance}}.
+    text_format: typing.Optional[str]
+    # Format for Prometheus and Loki annotation titles. Label values can be interpolated with templates like {{instance}}.
+    title_format: typing.Optional[str]
+    # Comma-separated label keys used as annotation tags.
+    tag_keys: typing.Optional[str]
+    # Legacy Prometheus annotation query step interval.
+    step: typing.Optional[str]
+    # Use the Prometheus series value as the annotation timestamp.
+    use_value_for_time: typing.Optional[bool]
+    # Mappings define how to convert data frame fields to annotation event fields.
+    mappings: typing.Optional[dict[str, dashboard.AnnotationEventFieldMapping]]
 ```
 ## Methods
 

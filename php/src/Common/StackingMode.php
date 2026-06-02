@@ -23,29 +23,29 @@ final class StackingMode implements \JsonSerializable, \Stringable {
 
     public static function none(): self
     {
-        if (!isset(self::$instances["none"])) {
-            self::$instances["none"] = new self("none");
+        if (!isset(self::$instances["None"])) {
+            self::$instances["None"] = new self("none");
         }
 
-        return self::$instances["none"];
+        return self::$instances["None"];
     }
 
     public static function normal(): self
     {
-        if (!isset(self::$instances["normal"])) {
-            self::$instances["normal"] = new self("normal");
+        if (!isset(self::$instances["Normal"])) {
+            self::$instances["Normal"] = new self("normal");
         }
 
-        return self::$instances["normal"];
+        return self::$instances["Normal"];
     }
 
     public static function percent(): self
     {
-        if (!isset(self::$instances["percent"])) {
-            self::$instances["percent"] = new self("percent");
+        if (!isset(self::$instances["Percent"])) {
+            self::$instances["Percent"] = new self("percent");
         }
 
-        return self::$instances["percent"];
+        return self::$instances["Percent"];
     }
 
     public static function fromValue(string $value): self

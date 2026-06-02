@@ -20,20 +20,20 @@ final class ScaleDimensionMode implements \JsonSerializable, \Stringable {
 
     public static function linear(): self
     {
-        if (!isset(self::$instances["linear"])) {
-            self::$instances["linear"] = new self("linear");
+        if (!isset(self::$instances["Linear"])) {
+            self::$instances["Linear"] = new self("linear");
         }
 
-        return self::$instances["linear"];
+        return self::$instances["Linear"];
     }
 
     public static function quad(): self
     {
-        if (!isset(self::$instances["quad"])) {
-            self::$instances["quad"] = new self("quad");
+        if (!isset(self::$instances["Quad"])) {
+            self::$instances["Quad"] = new self("quad");
         }
 
-        return self::$instances["quad"];
+        return self::$instances["Quad"];
     }
 
     public static function fromValue(string $value): self

@@ -23,7 +23,7 @@ def build() -> dashboardv2beta1.DataQueryKind
 Azure Monitor Logs sub-query properties.
 
 ```python
-def azure_log_analytics(azure_log_analytics: cogbuilder.Builder[azuremonitor.AzureLogsQuery]) -> typing.Self
+def azure_log_analytics(azure_log_analytics: cogbuilder.Builder[azuremonitor.LogsQuery]) -> typing.Self
 ```
 
 ### <span class="badge object-method"></span> azure_monitor
@@ -31,7 +31,7 @@ def azure_log_analytics(azure_log_analytics: cogbuilder.Builder[azuremonitor.Azu
 Azure Monitor Metrics sub-query properties.
 
 ```python
-def azure_monitor(azure_monitor: cogbuilder.Builder[azuremonitor.AzureMetricQuery]) -> typing.Self
+def azure_monitor(azure_monitor: cogbuilder.Builder[azuremonitor.MetricQuery]) -> typing.Self
 ```
 
 ### <span class="badge object-method"></span> azure_resource_graph
@@ -39,7 +39,7 @@ def azure_monitor(azure_monitor: cogbuilder.Builder[azuremonitor.AzureMetricQuer
 Azure Resource Graph sub-query properties.
 
 ```python
-def azure_resource_graph(azure_resource_graph: cogbuilder.Builder[azuremonitor.AzureResourceGraphQuery]) -> typing.Self
+def azure_resource_graph(azure_resource_graph: cogbuilder.Builder[azuremonitor.ResourceGraphQuery]) -> typing.Self
 ```
 
 ### <span class="badge object-method"></span> azure_traces
@@ -47,7 +47,7 @@ def azure_resource_graph(azure_resource_graph: cogbuilder.Builder[azuremonitor.A
 Application Insights Traces sub-query properties.
 
 ```python
-def azure_traces(azure_traces: cogbuilder.Builder[azuremonitor.AzureTracesQuery]) -> typing.Self
+def azure_traces(azure_traces: cogbuilder.Builder[azuremonitor.TracesQuery]) -> typing.Self
 ```
 
 ### <span class="badge object-method"></span> custom_namespace

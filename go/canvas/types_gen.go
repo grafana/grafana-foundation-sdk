@@ -86,10 +86,6 @@ func (resource *Constraint) UnmarshalJSONStrict(raw []byte) error {
 		errs = append(errs, cog.MakeBuildErrors("Constraint", fmt.Errorf("unexpected field '%s'", field))...)
 	}
 
-	if len(errs) == 0 {
-		return nil
-	}
-
 	return errs
 }
 
@@ -229,10 +225,6 @@ func (resource *Placement) UnmarshalJSONStrict(raw []byte) error {
 
 	for field := range fields {
 		errs = append(errs, cog.MakeBuildErrors("Placement", fmt.Errorf("unexpected field '%s'", field))...)
-	}
-
-	if len(errs) == 0 {
-		return nil
 	}
 
 	return errs
@@ -387,10 +379,6 @@ func (resource *BackgroundConfig) UnmarshalJSONStrict(raw []byte) error {
 		errs = append(errs, cog.MakeBuildErrors("BackgroundConfig", fmt.Errorf("unexpected field '%s'", field))...)
 	}
 
-	if len(errs) == 0 {
-		return nil
-	}
-
 	return errs
 }
 
@@ -511,10 +499,6 @@ func (resource *LineConfig) UnmarshalJSONStrict(raw []byte) error {
 		errs = append(errs, cog.MakeBuildErrors("LineConfig", fmt.Errorf("unexpected field '%s'", field))...)
 	}
 
-	if len(errs) == 0 {
-		return nil
-	}
-
 	return errs
 }
 
@@ -628,10 +612,6 @@ func (resource *ConnectionCoordinates) UnmarshalJSONStrict(raw []byte) error {
 
 	for field := range fields {
 		errs = append(errs, cog.MakeBuildErrors("ConnectionCoordinates", fmt.Errorf("unexpected field '%s'", field))...)
-	}
-
-	if len(errs) == 0 {
-		return nil
 	}
 
 	return errs
@@ -828,10 +808,6 @@ func (resource *CanvasConnection) UnmarshalJSONStrict(raw []byte) error {
 
 	for field := range fields {
 		errs = append(errs, cog.MakeBuildErrors("CanvasConnection", fmt.Errorf("unexpected field '%s'", field))...)
-	}
-
-	if len(errs) == 0 {
-		return nil
 	}
 
 	return errs
@@ -1101,10 +1077,6 @@ func (resource *CanvasElementOptions) UnmarshalJSONStrict(raw []byte) error {
 		errs = append(errs, cog.MakeBuildErrors("CanvasElementOptions", fmt.Errorf("unexpected field '%s'", field))...)
 	}
 
-	if len(errs) == 0 {
-		return nil
-	}
-
 	return errs
 }
 
@@ -1255,7 +1227,8 @@ func (resource *Options) UnmarshalJSONStrict(raw []byte) error {
 
 		}
 		delete(fields, "inlineEditing")
-
+	} else {
+		errs = append(errs, cog.MakeBuildErrors("inlineEditing", errors.New("required field is missing from input"))...)
 	}
 	// Field "showAdvancedTypes"
 	if fields["showAdvancedTypes"] != nil {
@@ -1268,7 +1241,8 @@ func (resource *Options) UnmarshalJSONStrict(raw []byte) error {
 
 		}
 		delete(fields, "showAdvancedTypes")
-
+	} else {
+		errs = append(errs, cog.MakeBuildErrors("showAdvancedTypes", errors.New("required field is missing from input"))...)
 	}
 	// Field "panZoom"
 	if fields["panZoom"] != nil {
@@ -1281,7 +1255,8 @@ func (resource *Options) UnmarshalJSONStrict(raw []byte) error {
 
 		}
 		delete(fields, "panZoom")
-
+	} else {
+		errs = append(errs, cog.MakeBuildErrors("panZoom", errors.New("required field is missing from input"))...)
 	}
 	// Field "infinitePan"
 	if fields["infinitePan"] != nil {
@@ -1294,7 +1269,8 @@ func (resource *Options) UnmarshalJSONStrict(raw []byte) error {
 
 		}
 		delete(fields, "infinitePan")
-
+	} else {
+		errs = append(errs, cog.MakeBuildErrors("infinitePan", errors.New("required field is missing from input"))...)
 	}
 	// Field "root"
 	if fields["root"] != nil {
@@ -1315,10 +1291,6 @@ func (resource *Options) UnmarshalJSONStrict(raw []byte) error {
 
 	for field := range fields {
 		errs = append(errs, cog.MakeBuildErrors("Options", fmt.Errorf("unexpected field '%s'", field))...)
-	}
-
-	if len(errs) == 0 {
-		return nil
 	}
 
 	return errs
@@ -1445,10 +1417,6 @@ func (resource *CanvasOptionsRoot) UnmarshalJSONStrict(raw []byte) error {
 
 	for field := range fields {
 		errs = append(errs, cog.MakeBuildErrors("CanvasOptionsRoot", fmt.Errorf("unexpected field '%s'", field))...)
-	}
-
-	if len(errs) == 0 {
-		return nil
 	}
 
 	return errs

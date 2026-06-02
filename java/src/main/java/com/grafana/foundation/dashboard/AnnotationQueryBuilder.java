@@ -4,6 +4,8 @@ package com.grafana.foundation.dashboard;
 
 import com.grafana.foundation.common.DataSourceRef;
 import com.grafana.foundation.cog.variants.Dataquery;
+import java.util.Map;
+import java.util.HashMap;
 
 public class AnnotationQueryBuilder implements com.grafana.foundation.cog.Builder<AnnotationQuery> {
     protected final AnnotationQuery internal;
@@ -65,6 +67,41 @@ public class AnnotationQueryBuilder implements com.grafana.foundation.cog.Builde
     
     public AnnotationQueryBuilder expr(String expr) {
         this.internal.expr = expr;
+        return this;
+    }
+    
+    public AnnotationQueryBuilder textFormat(String textFormat) {
+        this.internal.textFormat = textFormat;
+        return this;
+    }
+    
+    public AnnotationQueryBuilder titleFormat(String titleFormat) {
+        this.internal.titleFormat = titleFormat;
+        return this;
+    }
+    
+    public AnnotationQueryBuilder tagKeys(String tagKeys) {
+        this.internal.tagKeys = tagKeys;
+        return this;
+    }
+    
+    public AnnotationQueryBuilder step(String step) {
+        this.internal.step = step;
+        return this;
+    }
+    
+    public AnnotationQueryBuilder useValueForTime(Boolean useValueForTime) {
+        this.internal.useValueForTime = useValueForTime;
+        return this;
+    }
+    
+    public AnnotationQueryBuilder mappings(Map<String, com.grafana.foundation.cog.Builder<AnnotationEventFieldMapping>> mappings) {
+        Map<String, AnnotationEventFieldMapping> mappingsResources = new HashMap<>();
+        for (var entry1 : mappings.entrySet()) {
+                AnnotationEventFieldMapping mappingsDepth1 = entry1.getValue().build();
+                mappingsResources.put(entry1.getKey(), mappingsDepth1);           
+        }
+        this.internal.mappings = mappingsResources;
         return this;
     }
     public AnnotationQuery build() {
