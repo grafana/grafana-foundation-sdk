@@ -2,7 +2,7 @@ module github.com/grafana/grafana-foundation-sdk/scripts/add-resource
 
 go 1.25.0
 
-require github.com/charmbracelet/huh v0.8.0
+require github.com/charmbracelet/huh/v2 v2.0.3
 
 require (
 	github.com/atotto/clipboard v0.1.4 // indirect
