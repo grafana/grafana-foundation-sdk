@@ -25,20 +25,11 @@ jobs:
         with:
           persist-credentials: false
 
-      - name: Get secrets
-        uses: grafana/shared-workflows/actions/get-vault-secrets@c2f1df59dba624b3fd509e5181aa8da5217120c0
+      - name: Generate github token
+        id: get-github-token
+        uses: grafana/shared-workflows/actions/create-github-app-token@create-github-app-token/v0.3.1
         with:
-          repo_secrets: |
-            GITHUB_APP_ID=github_app:app-id
-            GITHUB_APP_PRIVATE_KEY=github_app:private-key
-
-      - name: Generate github private token
-        id: generate_github_token
-        uses: actions/create-github-app-token@fee1f7d63c2ff003460e3d139729b119787bc349 # v2.2.2
-        with:
-          app-id: ${{ env.GITHUB_APP_ID }}
-          private-key: ${{ env.GITHUB_APP_PRIVATE_KEY }}
-          owner: ${{ github.repository_owner }}
+          github_app: foundation-sdk-ci
 
       - name: Install devbox
         uses: jetify-com/devbox-install-action@8c6a66ed6273138b1915457069de78cb52fe3bd7 # v0.15.0
@@ -48,8 +39,8 @@ jobs:
 
       - name: Run codegen pipeline
         run: |
-          git config --global user.email "cog-ci@grafana.com"
-          git config --global user.name "cog - CI"
+          git config --global user.name 'github-actions[bot]'
+          git config --global user.email 'github-actions[bot]@users.noreply.github.com'
 
           devbox run make prepare-release
         env:
@@ -59,7 +50,7 @@ jobs:
           SKIP_VALIDATION: 'no'
           LOG_LEVEL: '7' # debug
           GOGC: 'off'
-          GITHUB_AUTH_TOKEN: ${{ steps.generate_github_token.outputs.token }}
+          GITHUB_AUTH_TOKEN: ${{ steps.get-github-token.outputs.token }} # in case cog needs to access private repositories
 
   run_examples:
     name: Run examples
@@ -72,20 +63,11 @@ jobs:
         with:
           persist-credentials: false
 
-      - name: Get secrets
-        uses: grafana/shared-workflows/actions/get-vault-secrets@c2f1df59dba624b3fd509e5181aa8da5217120c0
+      - name: Generate github token
+        id: get-github-token
+        uses: grafana/shared-workflows/actions/create-github-app-token@create-github-app-token/v0.3.1
         with:
-          repo_secrets: |
-            GITHUB_APP_ID=github_app:app-id
-            GITHUB_APP_PRIVATE_KEY=github_app:private-key
-
-      - name: Generate github private token
-        id: generate_github_token
-        uses: actions/create-github-app-token@fee1f7d63c2ff003460e3d139729b119787bc349 # v2.2.2
-        with:
-          app-id: ${{ env.GITHUB_APP_ID }}
-          private-key: ${{ env.GITHUB_APP_PRIVATE_KEY }}
-          owner: ${{ github.repository_owner }}
+          github_app: foundation-sdk-ci
 
       - name: Install devbox
         uses: jetify-com/devbox-install-action@8c6a66ed6273138b1915457069de78cb52fe3bd7 # v0.15.0
@@ -98,7 +80,7 @@ jobs:
           devbox run make generate
         env:
           GOGC: 'off'
-          GITHUB_AUTH_TOKEN: ${{ steps.generate_github_token.outputs.token }}
+          GITHUB_AUTH_TOKEN: ${{ steps.get-github-token.outputs.token }} # in case cog needs to access private repositories
 
       - name: Run examples
         run: |
@@ -124,25 +106,16 @@ jobs:
           enable-cache: 'true'
           devbox-version: ${{ env.DEVBOX_VERSION }}
 
-      - name: Get secrets
-        uses: grafana/shared-workflows/actions/get-vault-secrets@c2f1df59dba624b3fd509e5181aa8da5217120c0
+      - name: Generate github token
+        id: get-github-token
+        uses: grafana/shared-workflows/actions/create-github-app-token@create-github-app-token/v0.3.1
         with:
-          repo_secrets: |
-            GITHUB_APP_ID=github_app:app-id
-            GITHUB_APP_PRIVATE_KEY=github_app:private-key
-
-      - name: Generate github private token
-        id: generate_github_token
-        uses: actions/create-github-app-token@fee1f7d63c2ff003460e3d139729b119787bc349 # v2.2.2
-        with:
-          app-id: ${{ env.GITHUB_APP_ID }}
-          private-key: ${{ env.GITHUB_APP_PRIVATE_KEY }}
-          owner: ${{ github.repository_owner }}
+          github_app: foundation-sdk-ci
 
       - name: Dry-run release with current branch
         run: |
-          git config --global user.email "cog-ci@grafana.com"
-          git config --global user.name "cog - CI"
+          git config --global user.name 'github-actions[bot]'
+          git config --global user.email 'github-actions[bot]@users.noreply.github.com'
 
           devbox run make prepare-release
         env:
@@ -152,7 +125,7 @@ jobs:
           SKIP_VALIDATION: 'yes'
           LOG_LEVEL: '7' # debug
           GOGC: 'off'
-          GITHUB_AUTH_TOKEN: ${{ steps.generate_github_token.outputs.token }}
+          GITHUB_AUTH_TOKEN: ${{ steps.get-github-token.outputs.token }} # in case cog needs to access private repositories
 
       - name: Identify latest branch
         id: latest_branch
