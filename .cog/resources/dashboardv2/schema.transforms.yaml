@@ -24,6 +24,22 @@ passes:
       objects:
         - dashboardv2.RepeatMode
 
+  # See https://github.com/grafana/grafana-foundation-sdk/issues/1202
+  # dashboardv2.AnnotationQueryPlacement is defined as a constant in the schema
+  # when it should really be an enum. As a result, the only possible value for
+  # the dashboardv2.AnnotationQuerySpec.placement field is the constant value
+  # defined in dashboardv2.AnnotationQueryPlacement
+  - constant_to_enum:
+      objects:
+        - dashboardv2.AnnotationQueryPlacement
+  - retype_field:
+      field: dashboardv2.AnnotationQuerySpec.placement
+      as:
+        kind: ref
+        ref: { referred_pkg: dashboardv2, referred_type: AnnotationQueryPlacement }
+        nullable: true
+      comments: ["Placement can be used to display the annotation query somewhere else on the dashboard other than the default location."]
+
   ##############
   # Composable #
   ##############
