@@ -9,6 +9,8 @@ inputs:
         identifier: datasource
       cue_imports:
         - '%kind_registry_path%/grafana/%kind_registry_version%/common:github.com/grafana/grafana/packages/grafana-schema/src/common'
+      transformations:
+        - '%__config_dir%/schema.transforms.yaml'
 
 builder_transformations:
   - '%__config_dir%/builder-transforms/'

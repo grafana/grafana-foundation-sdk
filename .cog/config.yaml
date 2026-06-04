@@ -28,10 +28,13 @@ inputs:
         - '%__config_dir%/resources/candlestick/schema.transforms.yaml'
         - '%__config_dir%/resources/cloudwatch/schema.transforms.yaml'
         - '%__config_dir%/resources/common/schema.transforms.yaml'
+        - '%__config_dir%/resources/elasticsearch/schema.transforms.yaml'
         - '%__config_dir%/resources/googlecloudmonitoring/schema.transforms.yaml'
+        - '%__config_dir%/resources/grafanapyroscope/schema.transforms.yaml'
         - '%__config_dir%/resources/heatmap/schema.transforms.yaml'
         - '%__config_dir%/resources/logs/schema.transforms.yaml'
         - '%__config_dir%/resources/loki/schema.transforms.yaml'
+        - '%__config_dir%/resources/parca/schema.transforms.yaml'
         - '%__config_dir%/resources/piechart/schema.transforms.yaml'
         - '%__config_dir%/resources/statetimeline/schema.transforms.yaml'
         - '%__config_dir%/resources/tempo/schema.transforms.yaml'
@@ -50,7 +53,6 @@ transformations:
   # Globally applied schema transformations
   schemas:
     - '%__config_dir%/resources/common.schema.transforms.yaml'
-    - '%__config_dir%/resources/dataqueries.schema.transforms.yaml'
     - '%__config_dir%/resources/panels.schema.transforms.yaml'
     - '%__config_dir%/resources/dashboard/global.schema.transforms.yaml'
     # To avoid it to conflict with the refid in the dataquery schema.

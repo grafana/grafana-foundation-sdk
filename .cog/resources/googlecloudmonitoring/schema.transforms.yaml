@@ -1,6 +1,22 @@
 # yaml-language-server: $schema=https://raw.githubusercontent.com/grafana/cog/main/schemas/compiler_passes.json
 
 passes:
+  - schema_set_identifier: { package: googlecloudmonitoring, identifier: cloud-monitoring }
+
+  - hint_object:
+      object: googlecloudmonitoring.CloudMonitoringQuery
+      hints: { implements_variant: dataquery }
+
+  - schema_set_entry_point:
+      package: googlecloudmonitoring
+      entry_point: CloudMonitoringQuery
+
+  - retype_field:
+      field: googlecloudmonitoring.CloudMonitoringQuery.datasource
+      as:
+        kind: ref
+        ref: { referred_pkg: common, referred_type: DataSourceRef }
+
   - retype_field:
       field: googlecloudmonitoring.CloudMonitoringQuery.timeSeriesList
       as:

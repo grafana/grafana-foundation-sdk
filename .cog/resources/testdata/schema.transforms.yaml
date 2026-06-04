@@ -18,6 +18,10 @@ passes:
       package: testdata
       entry_point: dataquery
 
+  - hint_object:
+      object: testdata.Dataquery
+      hints: { implements_variant: dataquery }
+
   - retype_field:
       field: testdata.dataquery.datasource
       as:
