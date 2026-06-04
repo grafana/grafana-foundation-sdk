@@ -21,7 +21,7 @@ class AnnotationQuerySpec implements \JsonSerializable
     /**
      * Placement can be used to display the annotation query somewhere else on the dashboard other than the default location.
      */
-    public ?string $placement;
+    public ?\Grafana\Foundation\Dashboardv2beta1\AnnotationQueryPlacement $placement;
 
     /**
      * Mappings define how to convert data frame fields to annotation event fields.
@@ -43,10 +43,11 @@ class AnnotationQuerySpec implements \JsonSerializable
      * @param string|null $name
      * @param bool|null $builtIn
      * @param \Grafana\Foundation\Dashboardv2beta1\AnnotationPanelFilter|null $filter
+     * @param \Grafana\Foundation\Dashboardv2beta1\AnnotationQueryPlacement|null $placement
      * @param array<string, \Grafana\Foundation\Dashboardv2beta1\AnnotationEventFieldMapping>|null $mappings
      * @param array<string, mixed>|null $legacyOptions
      */
-    public function __construct(?\Grafana\Foundation\Dashboardv2beta1\DataQueryKind $query = null, ?bool $enable = null, ?bool $hide = null, ?string $iconColor = null, ?string $name = null, ?bool $builtIn = null, ?\Grafana\Foundation\Dashboardv2beta1\AnnotationPanelFilter $filter = null, ?array $mappings = null, ?array $legacyOptions = null)
+    public function __construct(?\Grafana\Foundation\Dashboardv2beta1\DataQueryKind $query = null, ?bool $enable = null, ?bool $hide = null, ?string $iconColor = null, ?string $name = null, ?bool $builtIn = null, ?\Grafana\Foundation\Dashboardv2beta1\AnnotationPanelFilter $filter = null, ?\Grafana\Foundation\Dashboardv2beta1\AnnotationQueryPlacement $placement = null, ?array $mappings = null, ?array $legacyOptions = null)
     {
         $this->query = $query ?: new \Grafana\Foundation\Dashboardv2beta1\DataQueryKind();
         $this->enable = $enable ?: false;
@@ -55,7 +56,7 @@ class AnnotationQuerySpec implements \JsonSerializable
         $this->name = $name ?: "";
         $this->builtIn = $builtIn;
         $this->filter = $filter;
-        $this->placement = \Grafana\Foundation\Dashboardv2beta1\Constants::ANNOTATION_QUERY_PLACEMENT;
+        $this->placement = $placement;
         $this->mappings = $mappings;
         $this->legacyOptions = $legacyOptions;
     }
@@ -65,7 +66,7 @@ class AnnotationQuerySpec implements \JsonSerializable
      */
     public static function fromArray(array $inputData): self
     {
-        /** @var array{query?: mixed, enable?: bool, hide?: bool, iconColor?: string, name?: string, builtIn?: bool, filter?: mixed, placement?: "inControlsMenu", mappings?: array<string, mixed>, legacyOptions?: array<string, mixed>} $inputData */
+        /** @var array{query?: mixed, enable?: bool, hide?: bool, iconColor?: string, name?: string, builtIn?: bool, filter?: mixed, placement?: string, mappings?: array<string, mixed>, legacyOptions?: array<string, mixed>} $inputData */
         $data = $inputData;
         return new self(
             query: isset($data["query"]) ? (function($input) {
@@ -83,6 +84,7 @@ class AnnotationQuerySpec implements \JsonSerializable
     $val = $input;
     	return \Grafana\Foundation\Dashboardv2beta1\AnnotationPanelFilter::fromArray($val);
     })($data["filter"]) : null,
+            placement: isset($data["placement"]) ? (function($input) { return \Grafana\Foundation\Dashboardv2beta1\AnnotationQueryPlacement::fromValue($input); })($data["placement"]) : null,
             mappings: isset($data["mappings"]) ? (function($input) {
         /** @var array<string, \Grafana\Foundation\Dashboardv2beta1\AnnotationEventFieldMapping> $results */
         $results = [];

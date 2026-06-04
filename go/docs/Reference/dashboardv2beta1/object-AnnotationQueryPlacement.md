@@ -1,7 +1,7 @@
 ---
-title: <span class="badge object-type-scalar"></span> AnnotationQueryPlacement
+title: <span class="badge object-type-enum"></span> AnnotationQueryPlacement
 ---
-# <span class="badge object-type-scalar"></span> AnnotationQueryPlacement
+# <span class="badge object-type-enum"></span> AnnotationQueryPlacement
 
 Annotation Query placement. Defines where the annotation query should be displayed.
 
@@ -10,5 +10,9 @@ Annotation Query placement. Defines where the annotation query should be display
 ## Definition
 
 ```go
-const AnnotationQueryPlacement = "inControlsMenu"
+type AnnotationQueryPlacement string
+const (
+	AnnotationQueryPlacementInControlsMenu AnnotationQueryPlacement = "inControlsMenu"
+)
+
 ```

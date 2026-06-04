@@ -75,7 +75,7 @@ def name(name: str) -> typing.Self
 Placement can be used to display the annotation query somewhere else on the dashboard other than the default location.
 
 ```python
-def placement(placement: str) -> typing.Self
+def placement(placement: dashboardv2beta1.AnnotationQueryPlacement) -> typing.Self
 ```
 
 ### <span class="badge object-method"></span> query

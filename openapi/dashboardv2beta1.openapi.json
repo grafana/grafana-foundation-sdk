@@ -161,7 +161,12 @@
             "$ref": "#/components/schemas/AnnotationPanelFilter"
           },
           "placement": {
-            "$ref": "#/components/schemas/AnnotationQueryPlacement",
+            "nullable": true,
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/AnnotationQueryPlacement"
+              }
+            ],
             "description": "Placement can be used to display the annotation query somewhere else on the dashboard other than the default location."
           },
           "mappings": {
@@ -244,8 +249,10 @@
         }
       },
       "AnnotationQueryPlacement": {
+        "enum": [
+          "inControlsMenu"
+        ],
         "type": "string",
-        "const": "inControlsMenu",
         "description": "Annotation Query placement. Defines where the annotation query should be displayed.\n- \"inControlsMenu\" renders the annotation query in the dashboard controls dropdown menu"
       },
       "AnnotationEventFieldMapping": {

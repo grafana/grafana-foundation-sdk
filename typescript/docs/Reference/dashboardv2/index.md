@@ -13,7 +13,7 @@
  * <span class="badge object-type-enum"></span> [AnnotationEventFieldSource](./object-AnnotationEventFieldSource.md)
  * <span class="badge object-type-interface"></span> [AnnotationPanelFilter](./object-AnnotationPanelFilter.md)
  * <span class="badge object-type-interface"></span> [AnnotationQueryKind](./object-AnnotationQueryKind.md)
- * <span class="badge object-type-scalar"></span> [AnnotationQueryPlacement](./object-AnnotationQueryPlacement.md)
+ * <span class="badge object-type-enum"></span> [AnnotationQueryPlacement](./object-AnnotationQueryPlacement.md)
  * <span class="badge object-type-interface"></span> [AnnotationQuerySpec](./object-AnnotationQuerySpec.md)
  * <span class="badge object-type-interface"></span> [AutoGridLayoutItemKind](./object-AutoGridLayoutItemKind.md)
  * <span class="badge object-type-interface"></span> [AutoGridLayoutItemSpec](./object-AutoGridLayoutItemSpec.md)

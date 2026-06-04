@@ -1308,7 +1308,7 @@ class AnnotationQuery(cogbuilder.Builder[dashboardv2.AnnotationQueryKind]):
     
         return self
     
-    def placement(self, placement: str) -> typing.Self:    
+    def placement(self, placement: dashboardv2.AnnotationQueryPlacement) -> typing.Self:    
         """
         Placement can be used to display the annotation query somewhere else on the dashboard other than the default location.
         """

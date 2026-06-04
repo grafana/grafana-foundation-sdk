@@ -84,7 +84,7 @@ class AnnotationQueryBuilder implements \Grafana\Foundation\Cog\Builder
     /**
      * Placement can be used to display the annotation query somewhere else on the dashboard other than the default location.
      */
-    public function placement(string $placement): static
+    public function placement(\Grafana\Foundation\Dashboardv2beta1\AnnotationQueryPlacement $placement): static
     {
         $this->internal->spec->placement = $placement;
     

@@ -15,7 +15,7 @@ type AnnotationQuerySpec struct {
     BuiltIn *bool `json:"builtIn,omitempty"`
     Filter *dashboardv2.AnnotationPanelFilter `json:"filter,omitempty"`
     // Placement can be used to display the annotation query somewhere else on the dashboard other than the default location.
-    Placement *string `json:"placement,omitempty"`
+    Placement *dashboardv2.AnnotationQueryPlacement `json:"placement,omitempty"`
     // Mappings define how to convert data frame fields to annotation event fields.
     Mappings map[string]dashboardv2.AnnotationEventFieldMapping `json:"mappings,omitempty"`
     // Catch-all field for datasource-specific properties. Should not be available in as code tooling.

@@ -81,7 +81,7 @@ name(string $name)
 Placement can be used to display the annotation query somewhere else on the dashboard other than the default location.
 
 ```php
-placement(string $placement)
+placement(\Grafana\Foundation\Dashboardv2beta1\AnnotationQueryPlacement $placement)
 ```
 
 ### <span class="badge object-method"></span> query

@@ -77,7 +77,7 @@ export class AnnotationQueryBuilder implements cog.Builder<dashboardv2beta1.Anno
     }
 
     // Placement can be used to display the annotation query somewhere else on the dashboard other than the default location.
-    placement(placement: "inControlsMenu"): this {
+    placement(placement: dashboardv2beta1.AnnotationQueryPlacement): this {
         if (!this.internal.spec) {
             this.internal.spec = dashboardv2beta1.defaultAnnotationQuerySpec();
         }

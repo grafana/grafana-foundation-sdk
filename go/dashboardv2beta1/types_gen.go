@@ -566,7 +566,7 @@ type AnnotationQuerySpec struct {
 	BuiltIn   *bool                  `json:"builtIn,omitempty"`
 	Filter    *AnnotationPanelFilter `json:"filter,omitempty"`
 	// Placement can be used to display the annotation query somewhere else on the dashboard other than the default location.
-	Placement *string `json:"placement,omitempty"`
+	Placement *AnnotationQueryPlacement `json:"placement,omitempty"`
 	// Mappings define how to convert data frame fields to annotation event fields.
 	Mappings map[string]AnnotationEventFieldMapping `json:"mappings,omitempty"`
 	// Catch-all field for datasource-specific properties. Should not be available in as code tooling.
@@ -576,9 +576,8 @@ type AnnotationQuerySpec struct {
 // NewAnnotationQuerySpec creates a new AnnotationQuerySpec object.
 func NewAnnotationQuerySpec() *AnnotationQuerySpec {
 	return &AnnotationQuerySpec{
-		Query:     *NewDataQueryKind(),
-		BuiltIn:   (func(input bool) *bool { return &input })(false),
-		Placement: (func(input string) *string { return &input })(AnnotationQueryPlacement),
+		Query:   *NewDataQueryKind(),
+		BuiltIn: (func(input bool) *bool { return &input })(false),
 	}
 }
 
@@ -1152,7 +1151,11 @@ func (resource AnnotationPanelFilter) Validate() error {
 
 // Annotation Query placement. Defines where the annotation query should be displayed.
 // - "inControlsMenu" renders the annotation query in the dashboard controls dropdown menu
-const AnnotationQueryPlacement = "inControlsMenu"
+type AnnotationQueryPlacement string
+
+const (
+	AnnotationQueryPlacementInControlsMenu AnnotationQueryPlacement = "inControlsMenu"
+)
 
 // Annotation event field mapping. Defines how to map a data frame field to an annotation event field.
 type AnnotationEventFieldMapping struct {

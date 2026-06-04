@@ -70,7 +70,7 @@ public class AnnotationQueryBuilder implements com.grafana.foundation.cog.Builde
         return this;
     }
     
-    public AnnotationQueryBuilder placement(String placement) {
+    public AnnotationQueryBuilder placement(AnnotationQueryPlacement placement) {
 		if (this.internal.spec == null) {
 			this.internal.spec = new com.grafana.foundation.dashboardv2beta1.AnnotationQuerySpec();
 		}

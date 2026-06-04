@@ -1,15 +1,11 @@
----
-title: <span class="badge object-type-enum"></span> AnnotationQueryPlacement
----
-# <span class="badge object-type-enum"></span> AnnotationQueryPlacement
+<?php
 
-Annotation Query placement. Defines where the annotation query should be displayed.
+namespace Grafana\Foundation\Dashboardv2beta1;
 
-- "inControlsMenu" renders the annotation query in the dashboard controls dropdown menu
-
-## Definition
-
-```php
+/**
+ * Annotation Query placement. Defines where the annotation query should be displayed.
+ * - "inControlsMenu" renders the annotation query in the dashboard controls dropdown menu
+ */
 final class AnnotationQueryPlacement implements \JsonSerializable, \Stringable {
     /**
      * @var string
@@ -55,4 +51,3 @@ final class AnnotationQueryPlacement implements \JsonSerializable, \Stringable {
     }
 }
 
-```

@@ -155,13 +155,13 @@ class AnnotationQuerySpec:
     built_in: typing.Optional[bool]
     filter_val: typing.Optional['AnnotationPanelFilter']
     # Placement can be used to display the annotation query somewhere else on the dashboard other than the default location.
-    placement: str
+    placement: typing.Optional['AnnotationQueryPlacement']
     # Mappings define how to convert data frame fields to annotation event fields.
     mappings: typing.Optional[dict[str, 'AnnotationEventFieldMapping']]
     # Catch-all field for datasource-specific properties. Should not be available in as code tooling.
     legacy_options: typing.Optional[dict[str, object]]
 
-    def __init__(self, query: typing.Optional['DataQueryKind'] = None, enable: bool = False, hide: bool = False, icon_color: str = "", name: str = "", built_in: typing.Optional[bool] = False, filter_val: typing.Optional['AnnotationPanelFilter'] = None, mappings: typing.Optional[dict[str, 'AnnotationEventFieldMapping']] = None, legacy_options: typing.Optional[dict[str, object]] = None) -> None:
+    def __init__(self, query: typing.Optional['DataQueryKind'] = None, enable: bool = False, hide: bool = False, icon_color: str = "", name: str = "", built_in: typing.Optional[bool] = False, filter_val: typing.Optional['AnnotationPanelFilter'] = None, placement: typing.Optional['AnnotationQueryPlacement'] = None, mappings: typing.Optional[dict[str, 'AnnotationEventFieldMapping']] = None, legacy_options: typing.Optional[dict[str, object]] = None) -> None:
         self.query = query if query is not None else DataQueryKind()
         self.enable = enable
         self.hide = hide
@@ -169,7 +169,7 @@ class AnnotationQuerySpec:
         self.name = name
         self.built_in = built_in
         self.filter_val = filter_val
-        self.placement = AnnotationQueryPlacement
+        self.placement = placement
         self.mappings = mappings
         self.legacy_options = legacy_options
 
@@ -211,6 +211,8 @@ class AnnotationQuerySpec:
             args["built_in"] = data["builtIn"]
         if "filter" in data:
             args["filter_val"] = AnnotationPanelFilter.from_json(data["filter"])
+        if "placement" in data:
+            args["placement"] = data["placement"]
         if "mappings" in data:
             args["mappings"] = {key: AnnotationEventFieldMapping.from_json(data["mappings"][key]) for key in data["mappings"].keys()}
         if "legacyOptions" in data:
@@ -303,9 +305,13 @@ class AnnotationPanelFilter:
         return cls(**args)
 
 
-# Annotation Query placement. Defines where the annotation query should be displayed.
-# - "inControlsMenu" renders the annotation query in the dashboard controls dropdown menu
-AnnotationQueryPlacement: typing.Literal["inControlsMenu"] = "inControlsMenu"
+class AnnotationQueryPlacement(enum.StrEnum):
+    """
+    Annotation Query placement. Defines where the annotation query should be displayed.
+    - "inControlsMenu" renders the annotation query in the dashboard controls dropdown menu
+    """
+
+    IN_CONTROLS_MENU = "inControlsMenu"
 
 
 class AnnotationEventFieldMapping:

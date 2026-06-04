@@ -75,7 +75,7 @@ func (builder *AnnotationQueryBuilder) Name(name string) *AnnotationQueryBuilder
 Placement can be used to display the annotation query somewhere else on the dashboard other than the default location.
 
 ```go
-func (builder *AnnotationQueryBuilder) Placement(placement string) *AnnotationQueryBuilder
+func (builder *AnnotationQueryBuilder) Placement(placement dashboardv2beta1.AnnotationQueryPlacement) *AnnotationQueryBuilder
 ```
 
 ### <span class="badge object-method"></span> Query

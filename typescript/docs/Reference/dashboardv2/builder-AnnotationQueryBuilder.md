@@ -75,7 +75,7 @@ name(name: string)
 Placement can be used to display the annotation query somewhere else on the dashboard other than the default location.
 
 ```typescript
-placement(placement: "inControlsMenu")
+placement(placement: dashboardv2.AnnotationQueryPlacement)
 ```
 
 ### <span class="badge object-method"></span> query
