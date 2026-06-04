@@ -2,15 +2,15 @@
 
 passes:
   - hint_object:
-      object: athena.Dataquery
+      object: bigquery.Dataquery
       hints: { implements_variant: dataquery }
 
   - schema_set_entry_point:
-      package: athena
+      package: bigquery
       entry_point: Dataquery
 
   - retype_field:
-      field: athena.Dataquery.datasource
+      field: bigquery.Dataquery.datasource
       as:
         kind: ref
         ref: { referred_pkg: common, referred_type: DataSourceRef }

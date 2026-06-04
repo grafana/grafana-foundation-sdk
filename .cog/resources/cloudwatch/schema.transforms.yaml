@@ -1,6 +1,28 @@
 # yaml-language-server: $schema=https://raw.githubusercontent.com/grafana/cog/main/schemas/compiler_passes.json
 
 passes:
+  - hint_object:
+      object: cloudwatch.CloudWatchMetricsQuery
+      hints: { implements_variant: dataquery }
+  - hint_object:
+      object: cloudwatch.CloudWatchLogsQuery
+      hints: { implements_variant: dataquery }
+  - hint_object:
+      object: cloudwatch.CloudWatchAnnotationQuery
+      hints: { implements_variant: dataquery }
+
+  - retype_field:
+      field: cloudwatch.CloudWatchMetricsQuery.datasource
+      as: &common_datasourceRef
+        kind: ref
+        ref: { referred_pkg: common, referred_type: DataSourceRef }
+  - retype_field:
+      field: cloudwatch.CloudWatchLogsQuery.datasource
+      as: *common_datasourceRef
+  - retype_field:
+      field: cloudwatch.CloudWatchAnnotationQuery.datasource
+      as: *common_datasourceRef
+
   # Simplify the definition of the `QueryEditorArrayExpression.expressions` field from
   # `[...#QueryEditorExpression] | [...#QueryEditorArrayExpression]` to
   # `[...#QueryEditorExpression]`.

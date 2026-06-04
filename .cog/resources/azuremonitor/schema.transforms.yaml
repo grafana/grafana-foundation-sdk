@@ -1,5 +1,21 @@
 # yaml-language-server: $schema=https://raw.githubusercontent.com/grafana/cog/main/schemas/compiler_passes.json
 
 passes:
+  - schema_set_identifier: { package: azuremonitor, identifier: grafana-azure-monitor-datasource }
+
+  - hint_object:
+      object: azuremonitor.AzureMonitorQuery
+      hints: { implements_variant: dataquery }
+
+  - schema_set_entry_point:
+      package: azuremonitor
+      entry_point: AzureMonitorQuery
+
   - trim_object_name_prefix:
       prefix: Azure
+
+  - retype_field:
+      field: azuremonitor.AzureMonitorQuery.datasource
+      as:
+        kind: ref
+        ref: { referred_pkg: common, referred_type: DataSourceRef }

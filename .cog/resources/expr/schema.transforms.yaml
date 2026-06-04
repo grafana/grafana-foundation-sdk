@@ -5,6 +5,25 @@ passes:
   - disjunction_infer_mapping: {}
   - disjunction_to_type: {}
 
+  - hint_object:
+      object: expr.typeMath
+      hints: { implements_variant: dataquery }
+  - hint_object:
+      object: expr.typeReduce
+      hints: { implements_variant: dataquery }
+  - hint_object:
+      object: expr.typeResample
+      hints: { implements_variant: dataquery }
+  - hint_object:
+      object: expr.typeClassicConditions
+      hints: { implements_variant: dataquery }
+  - hint_object:
+      object: expr.typeThreshold
+      hints: { implements_variant: dataquery }
+  - hint_object:
+      object: expr.typeSql
+      hints: { implements_variant: dataquery }
+
   - retype_field:
       field: expr.typeMath.datasource
       as: &common_datasourceRef
@@ -39,22 +58,3 @@ passes:
             - { kind: ref, ref: { referred_pkg: expr, referred_type: TypeClassicConditions } }
             - { kind: ref, ref: { referred_pkg: expr, referred_type: TypeThreshold } }
             - { kind: ref, ref: { referred_pkg: expr, referred_type: TypeSql } }
-
-  - hint_object:
-      object: expr.typeMath
-      hints: { implements_variant: dataquery, skip_variant_plugin_registration: true }
-  - hint_object:
-      object: expr.typeReduce
-      hints: { implements_variant: dataquery, skip_variant_plugin_registration: true }
-  - hint_object:
-      object: expr.typeResample
-      hints: { implements_variant: dataquery, skip_variant_plugin_registration: true }
-  - hint_object:
-      object: expr.typeClassicConditions
-      hints: { implements_variant: dataquery, skip_variant_plugin_registration: true }
-  - hint_object:
-      object: expr.typeThreshold
-      hints: { implements_variant: dataquery, skip_variant_plugin_registration: true }
-  - hint_object:
-      object: expr.typeSql
-      hints: { implements_variant: dataquery, skip_variant_plugin_registration: true }
