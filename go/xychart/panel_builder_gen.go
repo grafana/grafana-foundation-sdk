@@ -24,6 +24,11 @@ func NewPanelBuilder() *PanelBuilder {
 		errors:   make(cog.BuildErrors, 0),
 	}
 	builder.internal.Type = "xychart"
+	if builder.internal.FieldConfig == nil {
+		builder.internal.FieldConfig = dashboard.NewFieldConfigSource()
+	}
+	builder.internal.FieldConfig.Defaults.Custom = NewFieldConfig()
+	builder.internal.Options = NewOptions()
 
 	return builder
 }

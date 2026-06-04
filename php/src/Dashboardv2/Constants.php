@@ -12,11 +12,6 @@ final class Constants
      * Determine the origin of the adhoc variable filter
      */
     const FILTER_ORIGIN = "dashboard";
-    /**
-     * Dashboard Link placement. Defines where the link should be displayed.
-     * - "inControlsMenu" renders the link in bottom part of the dashboard controls dropdown menu
-     */
-    const DASHBOARD_LINK_PLACEMENT = "inControlsMenu";
     const DASHBOARD_API_VERSION = "dashboard.grafana.app/v2";
     const DASHBOARD_KIND = "Dashboard";
 }

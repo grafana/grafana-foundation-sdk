@@ -63,7 +63,7 @@ func (builder *DashboardLinkBuilder) Origin(origin cog.Builder[dashboardv2.Contr
 Placement can be used to display the link somewhere else on the dashboard other than above the visualisations.
 
 ```go
-func (builder *DashboardLinkBuilder) Placement(placement string) *DashboardLinkBuilder
+func (builder *DashboardLinkBuilder) Placement(placement dashboardv2.DashboardLinkPlacement) *DashboardLinkBuilder
 ```
 
 ### <span class="badge object-method"></span> Tags

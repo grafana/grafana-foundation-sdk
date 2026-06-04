@@ -28,6 +28,7 @@ public class LogsPanelBuilder implements com.grafana.foundation.cog.Builder<Pane
     public LogsPanelBuilder() {
         this.internal = new Panel();
         this.internal.type = "logs";
+        this.internal.options = new com.grafana.foundation.logs.Options();
     }
     public LogsPanelBuilder id(Integer id) {
         this.internal.id = id;

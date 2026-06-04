@@ -14,6 +14,8 @@ class VisualizationV2Builder implements \Grafana\Foundation\Cog\Builder
     	$this->internal = new \Grafana\Foundation\Dashboardv2\VizConfigKind();
     $this->internal->kind = "VizConfig";
     $this->internal->group = "barchart";
+    $this->internal->spec->options = new \Grafana\Foundation\Barchart\Options();
+    $this->internal->spec->fieldConfig->defaults->custom = new \Grafana\Foundation\Barchart\FieldConfig();
     }
 
     /**

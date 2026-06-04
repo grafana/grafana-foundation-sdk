@@ -22,6 +22,10 @@ public class GeomapVisualizationV2Builder implements com.grafana.foundation.cog.
         this.internal = new VizConfigKind();
         this.internal.kind = "VizConfig";
         this.internal.group = "geomap";
+		if (this.internal.spec == null) {
+			this.internal.spec = new com.grafana.foundation.dashboardv2.VizConfigSpec();
+		}
+        this.internal.spec.options = new com.grafana.foundation.geomap.Options();
     }
     public GeomapVisualizationV2Builder displayName(String displayName) {
 		if (this.internal.spec == null) {

@@ -14,6 +14,8 @@ class VisualizationV2Builder implements \Grafana\Foundation\Cog\Builder
     	$this->internal = new \Grafana\Foundation\Dashboardv2\VizConfigKind();
     $this->internal->kind = "VizConfig";
     $this->internal->group = "timeseries";
+    $this->internal->spec->options = new \Grafana\Foundation\Timeseries\Options();
+    $this->internal->spec->fieldConfig->defaults->custom = new \Grafana\Foundation\Timeseries\FieldConfig();
     }
 
     /**

@@ -23,6 +23,10 @@ public class LogsVisualizationV2Builder implements com.grafana.foundation.cog.Bu
         this.internal = new VizConfigKind();
         this.internal.kind = "VizConfig";
         this.internal.group = "logs";
+		if (this.internal.spec == null) {
+			this.internal.spec = new com.grafana.foundation.dashboardv2.VizConfigSpec();
+		}
+        this.internal.spec.options = new com.grafana.foundation.logs.Options();
     }
     public LogsVisualizationV2Builder displayName(String displayName) {
 		if (this.internal.spec == null) {

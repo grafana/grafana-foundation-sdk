@@ -22,6 +22,7 @@ func NewVisualizationBuilder() *VisualizationBuilder {
 	}
 	builder.internal.Kind = "VizConfig"
 	builder.internal.Group = "nodeGraph"
+	builder.internal.Spec.Options = NewOptions()
 
 	return builder
 }

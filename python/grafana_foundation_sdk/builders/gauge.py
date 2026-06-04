@@ -3,9 +3,9 @@
 import typing
 from ..cog import builder as cogbuilder
 from ..models import dashboard
+from ..models import gauge
 from ..cog import variants as cogvariants
 from ..models import common
-from ..models import gauge
 from ..models import dashboardv2
 from ..models import dashboardv2beta1
 
@@ -19,7 +19,8 @@ class Panel(cogbuilder.Builder[dashboard.Panel]):
 
     def __init__(self) -> None:
         self._internal = dashboard.Panel()        
-        self._internal.type_val = "gauge"
+        self._internal.type_val = "gauge"        
+        self._internal.options = gauge.Options()
 
     def build(self) -> dashboard.Panel:
         """
@@ -670,7 +671,11 @@ class VisualizationV2(cogbuilder.Builder[dashboardv2.VizConfigKind]):
     def __init__(self) -> None:
         self._internal = dashboardv2.VizConfigKind()        
         self._internal.kind = "VizConfig"        
-        self._internal.group = "gauge"
+        self._internal.group = "gauge"        
+        if self._internal.spec is None:
+            self._internal.spec = dashboardv2.VizConfigSpec()
+        assert isinstance(self._internal.spec, dashboardv2.VizConfigSpec)
+        self._internal.spec.options = gauge.Options()
 
     def build(self) -> dashboardv2.VizConfigKind:
         """
@@ -1212,7 +1217,11 @@ class Visualization(cogbuilder.Builder[dashboardv2beta1.VizConfigKind]):
     def __init__(self) -> None:
         self._internal = dashboardv2beta1.VizConfigKind()        
         self._internal.kind = "VizConfig"        
-        self._internal.group = "gauge"
+        self._internal.group = "gauge"        
+        if self._internal.spec is None:
+            self._internal.spec = dashboardv2beta1.VizConfigSpec()
+        assert isinstance(self._internal.spec, dashboardv2beta1.VizConfigSpec)
+        self._internal.spec.options = gauge.Options()
 
     def build(self) -> dashboardv2beta1.VizConfigKind:
         """

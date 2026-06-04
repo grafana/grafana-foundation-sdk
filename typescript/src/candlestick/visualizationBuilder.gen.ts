@@ -12,6 +12,17 @@ export class VisualizationBuilder implements cog.Builder<dashboardv2beta1.VizCon
         this.internal = dashboardv2beta1.defaultVizConfigKind();
         this.internal.kind = "VizConfig";
         this.internal.group = "candlestick";
+        if (!this.internal.spec) {
+            this.internal.spec = dashboardv2beta1.defaultVizConfigSpec();
+        }
+        this.internal.spec.options = candlestick.defaultOptions();
+        if (!this.internal.spec.fieldConfig) {
+            this.internal.spec.fieldConfig = dashboardv2beta1.defaultFieldConfigSource();
+        }
+        if (!this.internal.spec.fieldConfig.defaults) {
+            this.internal.spec.fieldConfig.defaults = dashboardv2beta1.defaultFieldConfig();
+        }
+        this.internal.spec.fieldConfig.defaults.custom = candlestick.defaultFieldConfig();
     }
 
     /**

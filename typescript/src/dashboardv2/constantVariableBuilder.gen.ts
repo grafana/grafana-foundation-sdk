@@ -10,6 +10,9 @@ export class ConstantVariableBuilder implements cog.Builder<dashboardv2.Constant
     constructor(name: string) {
         this.internal = dashboardv2.defaultConstantVariableKind();
         this.internal.kind = "ConstantVariable";
+        if (!this.internal.spec) {
+            this.internal.spec = dashboardv2.defaultConstantVariableSpec();
+        }
         this.internal.spec.name = name;
     }
 

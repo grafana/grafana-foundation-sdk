@@ -11,6 +11,10 @@ export class VisualizationV2Builder implements cog.Builder<dashboardv2.VizConfig
         this.internal = dashboardv2.defaultVizConfigKind();
         this.internal.kind = "VizConfig";
         this.internal.group = "datagrid";
+        if (!this.internal.spec) {
+            this.internal.spec = dashboardv2.defaultVizConfigSpec();
+        }
+        this.internal.spec.options = datagrid.defaultOptions();
     }
 
     /**

@@ -63,7 +63,7 @@ origin(origin: cog.Builder<dashboardv2.ControlSourceRef>)
 Placement can be used to display the link somewhere else on the dashboard other than above the visualisations.
 
 ```typescript
-placement(placement: "inControlsMenu")
+placement(placement: dashboardv2.DashboardLinkPlacement)
 ```
 
 ### <span class="badge object-method"></span> tags

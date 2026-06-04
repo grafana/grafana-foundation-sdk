@@ -10,6 +10,9 @@ export class GroupByVariableBuilder implements cog.Builder<dashboardv2.GroupByVa
     constructor(name: string) {
         this.internal = dashboardv2.defaultGroupByVariableKind();
         this.internal.kind = "GroupByVariable";
+        if (!this.internal.spec) {
+            this.internal.spec = dashboardv2.defaultGroupByVariableSpec();
+        }
         this.internal.spec.name = name;
     }
 

@@ -12,6 +12,17 @@ export class VisualizationV2Builder implements cog.Builder<dashboardv2.VizConfig
         this.internal = dashboardv2.defaultVizConfigKind();
         this.internal.kind = "VizConfig";
         this.internal.group = "barchart";
+        if (!this.internal.spec) {
+            this.internal.spec = dashboardv2.defaultVizConfigSpec();
+        }
+        this.internal.spec.options = barchart.defaultOptions();
+        if (!this.internal.spec.fieldConfig) {
+            this.internal.spec.fieldConfig = dashboardv2.defaultFieldConfigSource();
+        }
+        if (!this.internal.spec.fieldConfig.defaults) {
+            this.internal.spec.fieldConfig.defaults = dashboardv2.defaultFieldConfig();
+        }
+        this.internal.spec.fieldConfig.defaults.custom = barchart.defaultFieldConfig();
     }
 
     /**

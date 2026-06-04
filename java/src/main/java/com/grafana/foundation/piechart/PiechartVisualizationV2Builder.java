@@ -26,6 +26,17 @@ public class PiechartVisualizationV2Builder implements com.grafana.foundation.co
         this.internal = new VizConfigKind();
         this.internal.kind = "VizConfig";
         this.internal.group = "piechart";
+		if (this.internal.spec == null) {
+			this.internal.spec = new com.grafana.foundation.dashboardv2.VizConfigSpec();
+		}
+        this.internal.spec.options = new com.grafana.foundation.piechart.Options();
+		if (this.internal.spec.fieldConfig == null) {
+			this.internal.spec.fieldConfig = new com.grafana.foundation.dashboardv2.FieldConfigSource();
+		}
+		if (this.internal.spec.fieldConfig.defaults == null) {
+			this.internal.spec.fieldConfig.defaults = new com.grafana.foundation.dashboardv2.FieldConfig();
+		}
+        this.internal.spec.fieldConfig.defaults.custom = new com.grafana.foundation.piechart.FieldConfig();
     }
     public PiechartVisualizationV2Builder displayName(String displayName) {
 		if (this.internal.spec == null) {

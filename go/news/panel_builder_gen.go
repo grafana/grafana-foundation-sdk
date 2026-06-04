@@ -24,6 +24,7 @@ func NewPanelBuilder() *PanelBuilder {
 		errors:   make(cog.BuildErrors, 0),
 	}
 	builder.internal.Type = "news"
+	builder.internal.Options = NewOptions()
 
 	return builder
 }

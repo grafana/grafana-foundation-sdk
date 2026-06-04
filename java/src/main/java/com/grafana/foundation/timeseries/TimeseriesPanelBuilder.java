@@ -43,6 +43,14 @@ public class TimeseriesPanelBuilder implements com.grafana.foundation.cog.Builde
     public TimeseriesPanelBuilder() {
         this.internal = new Panel();
         this.internal.type = "timeseries";
+        this.internal.options = new com.grafana.foundation.timeseries.Options();
+		if (this.internal.fieldConfig == null) {
+			this.internal.fieldConfig = new com.grafana.foundation.dashboard.FieldConfigSource();
+		}
+		if (this.internal.fieldConfig.defaults == null) {
+			this.internal.fieldConfig.defaults = new com.grafana.foundation.dashboard.FieldConfig();
+		}
+        this.internal.fieldConfig.defaults.custom = new com.grafana.foundation.timeseries.FieldConfig();
     }
     public TimeseriesPanelBuilder id(Integer id) {
         this.internal.id = id;

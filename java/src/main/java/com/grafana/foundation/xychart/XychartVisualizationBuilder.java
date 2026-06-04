@@ -28,6 +28,17 @@ public class XychartVisualizationBuilder implements com.grafana.foundation.cog.B
         this.internal = new VizConfigKind();
         this.internal.kind = "VizConfig";
         this.internal.group = "xychart";
+		if (this.internal.spec == null) {
+			this.internal.spec = new com.grafana.foundation.dashboardv2beta1.VizConfigSpec();
+		}
+		if (this.internal.spec.fieldConfig == null) {
+			this.internal.spec.fieldConfig = new com.grafana.foundation.dashboardv2beta1.FieldConfigSource();
+		}
+		if (this.internal.spec.fieldConfig.defaults == null) {
+			this.internal.spec.fieldConfig.defaults = new com.grafana.foundation.dashboardv2beta1.FieldConfig();
+		}
+        this.internal.spec.fieldConfig.defaults.custom = new com.grafana.foundation.xychart.FieldConfig();
+        this.internal.spec.options = new com.grafana.foundation.xychart.Options();
     }
     public XychartVisualizationBuilder displayName(String displayName) {
 		if (this.internal.spec == null) {

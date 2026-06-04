@@ -10,6 +10,9 @@ export class IntervalVariableBuilder implements cog.Builder<dashboardv2beta1.Int
     constructor(name: string) {
         this.internal = dashboardv2beta1.defaultIntervalVariableKind();
         this.internal.kind = "IntervalVariable";
+        if (!this.internal.spec) {
+            this.internal.spec = dashboardv2beta1.defaultIntervalVariableSpec();
+        }
         this.internal.spec.refresh = "onTimeRangeChanged";
         this.internal.spec.name = name;
     }

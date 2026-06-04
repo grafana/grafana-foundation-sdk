@@ -23,6 +23,8 @@ func NewVisualizationV2Builder() *VisualizationV2Builder {
 	}
 	builder.internal.Kind = "VizConfig"
 	builder.internal.Group = "state-timeline"
+	builder.internal.Spec.Options = NewOptions()
+	builder.internal.Spec.FieldConfig.Defaults.Custom = NewFieldConfig()
 
 	return builder
 }

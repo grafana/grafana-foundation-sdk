@@ -26,6 +26,7 @@ public class NodegraphPanelBuilder implements com.grafana.foundation.cog.Builder
     public NodegraphPanelBuilder() {
         this.internal = new Panel();
         this.internal.type = "nodeGraph";
+        this.internal.options = new com.grafana.foundation.nodegraph.Options();
     }
     public NodegraphPanelBuilder id(Integer id) {
         this.internal.id = id;

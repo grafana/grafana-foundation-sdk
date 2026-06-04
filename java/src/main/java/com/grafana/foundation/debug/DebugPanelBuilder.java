@@ -26,6 +26,7 @@ public class DebugPanelBuilder implements com.grafana.foundation.cog.Builder<Pan
     public DebugPanelBuilder() {
         this.internal = new Panel();
         this.internal.type = "debug";
+        this.internal.options = new com.grafana.foundation.debug.Options();
     }
     public DebugPanelBuilder id(Integer id) {
         this.internal.id = id;

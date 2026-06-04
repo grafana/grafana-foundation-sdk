@@ -29,6 +29,10 @@ public class BargaugeVisualizationV2Builder implements com.grafana.foundation.co
         this.internal = new VizConfigKind();
         this.internal.kind = "VizConfig";
         this.internal.group = "bargauge";
+		if (this.internal.spec == null) {
+			this.internal.spec = new com.grafana.foundation.dashboardv2.VizConfigSpec();
+		}
+        this.internal.spec.options = new com.grafana.foundation.bargauge.Options();
     }
     public BargaugeVisualizationV2Builder displayName(String displayName) {
 		if (this.internal.spec == null) {

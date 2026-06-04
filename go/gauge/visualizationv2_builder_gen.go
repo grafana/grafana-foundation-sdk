@@ -23,6 +23,7 @@ func NewVisualizationV2Builder() *VisualizationV2Builder {
 	}
 	builder.internal.Kind = "VizConfig"
 	builder.internal.Group = "gauge"
+	builder.internal.Spec.Options = NewOptions()
 
 	return builder
 }

@@ -170,7 +170,7 @@ class Dashboard implements \JsonSerializable
     }
     })($data["layout"]) : null,
             links: array_filter(array_map((function($input) {
-    	/** @var array{title?: string, type?: string, icon?: string, tooltip?: string, url?: string, tags?: array<string>, asDropdown?: bool, targetBlank?: bool, includeVars?: bool, keepTime?: bool, placement?: "inControlsMenu", origin?: mixed} */
+    	/** @var array{title?: string, type?: string, icon?: string, tooltip?: string, url?: string, tags?: array<string>, asDropdown?: bool, targetBlank?: bool, includeVars?: bool, keepTime?: bool, placement?: string, origin?: mixed} */
     $val = $input;
     	return \Grafana\Foundation\Dashboardv2\DashboardLink::fromArray($val);
     }), $data["links"] ?? [])),

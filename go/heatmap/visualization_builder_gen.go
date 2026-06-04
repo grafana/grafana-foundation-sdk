@@ -23,6 +23,8 @@ func NewVisualizationBuilder() *VisualizationBuilder {
 	}
 	builder.internal.Kind = "VizConfig"
 	builder.internal.Group = "heatmap"
+	builder.internal.Spec.Options = NewOptions()
+	builder.internal.Spec.FieldConfig.Defaults.Custom = NewFieldConfig()
 
 	return builder
 }

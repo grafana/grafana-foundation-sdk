@@ -26,6 +26,7 @@ public class CanvasPanelBuilder implements com.grafana.foundation.cog.Builder<Pa
     public CanvasPanelBuilder() {
         this.internal = new Panel();
         this.internal.type = "canvas";
+        this.internal.options = new com.grafana.foundation.canvas.Options();
     }
     public CanvasPanelBuilder id(Integer id) {
         this.internal.id = id;

@@ -1,7 +1,7 @@
 ---
-title: <span class="badge object-type-scalar"></span> DashboardLinkPlacement
+title: <span class="badge object-type-enum"></span> DashboardLinkPlacement
 ---
-# <span class="badge object-type-scalar"></span> DashboardLinkPlacement
+# <span class="badge object-type-enum"></span> DashboardLinkPlacement
 
 Dashboard Link placement. Defines where the link should be displayed.
 
@@ -10,5 +10,9 @@ Dashboard Link placement. Defines where the link should be displayed.
 ## Definition
 
 ```go
-const DashboardLinkPlacement = "inControlsMenu"
+type DashboardLinkPlacement string
+const (
+	DashboardLinkPlacementInControlsMenu DashboardLinkPlacement = "inControlsMenu"
+)
+
 ```

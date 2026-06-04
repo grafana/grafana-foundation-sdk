@@ -10,6 +10,9 @@ export class DatasourceVariableBuilder implements cog.Builder<dashboardv2.Dataso
     constructor(name: string) {
         this.internal = dashboardv2.defaultDatasourceVariableKind();
         this.internal.kind = "DatasourceVariable";
+        if (!this.internal.spec) {
+            this.internal.spec = dashboardv2.defaultDatasourceVariableSpec();
+        }
         this.internal.spec.name = name;
     }
 

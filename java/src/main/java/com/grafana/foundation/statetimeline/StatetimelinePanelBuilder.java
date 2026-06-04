@@ -34,6 +34,14 @@ public class StatetimelinePanelBuilder implements com.grafana.foundation.cog.Bui
     public StatetimelinePanelBuilder() {
         this.internal = new Panel();
         this.internal.type = "state-timeline";
+        this.internal.options = new com.grafana.foundation.statetimeline.Options();
+		if (this.internal.fieldConfig == null) {
+			this.internal.fieldConfig = new com.grafana.foundation.dashboard.FieldConfigSource();
+		}
+		if (this.internal.fieldConfig.defaults == null) {
+			this.internal.fieldConfig.defaults = new com.grafana.foundation.dashboard.FieldConfig();
+		}
+        this.internal.fieldConfig.defaults.custom = new com.grafana.foundation.statetimeline.FieldConfig();
     }
     public StatetimelinePanelBuilder id(Integer id) {
         this.internal.id = id;

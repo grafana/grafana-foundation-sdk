@@ -24,6 +24,11 @@ func NewPanelBuilder() *PanelBuilder {
 		errors:   make(cog.BuildErrors, 0),
 	}
 	builder.internal.Type = "histogram"
+	builder.internal.Options = NewOptions()
+	if builder.internal.FieldConfig == nil {
+		builder.internal.FieldConfig = dashboard.NewFieldConfigSource()
+	}
+	builder.internal.FieldConfig.Defaults.Custom = NewFieldConfig()
 
 	return builder
 }

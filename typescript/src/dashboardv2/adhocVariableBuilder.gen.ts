@@ -10,6 +10,9 @@ export class AdhocVariableBuilder implements cog.Builder<dashboardv2.AdhocVariab
     constructor(name: string) {
         this.internal = dashboardv2.defaultAdhocVariableKind();
         this.internal.kind = "AdhocVariable";
+        if (!this.internal.spec) {
+            this.internal.spec = dashboardv2.defaultAdhocVariableSpec();
+        }
         this.internal.spec.name = name;
     }
 

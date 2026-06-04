@@ -26,6 +26,7 @@ public class AnnotationslistPanelBuilder implements com.grafana.foundation.cog.B
     public AnnotationslistPanelBuilder() {
         this.internal = new Panel();
         this.internal.type = "annolist";
+        this.internal.options = new com.grafana.foundation.annotationslist.Options();
     }
     public AnnotationslistPanelBuilder id(Integer id) {
         this.internal.id = id;

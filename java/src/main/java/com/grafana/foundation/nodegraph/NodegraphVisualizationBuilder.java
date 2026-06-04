@@ -21,6 +21,10 @@ public class NodegraphVisualizationBuilder implements com.grafana.foundation.cog
         this.internal = new VizConfigKind();
         this.internal.kind = "VizConfig";
         this.internal.group = "nodeGraph";
+		if (this.internal.spec == null) {
+			this.internal.spec = new com.grafana.foundation.dashboardv2beta1.VizConfigSpec();
+		}
+        this.internal.spec.options = new com.grafana.foundation.nodegraph.Options();
     }
     public NodegraphVisualizationBuilder displayName(String displayName) {
 		if (this.internal.spec == null) {

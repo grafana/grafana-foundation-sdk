@@ -80,7 +80,7 @@ export class DashboardLinkBuilder implements cog.Builder<dashboardv2.DashboardLi
     }
 
     // Placement can be used to display the link somewhere else on the dashboard other than above the visualisations.
-    placement(placement: "inControlsMenu"): this {
+    placement(placement: dashboardv2.DashboardLinkPlacement): this {
         this.internal.placement = placement;
         return this;
     }

@@ -14,6 +14,7 @@ class VisualizationBuilder implements \Grafana\Foundation\Cog\Builder
     	$this->internal = new \Grafana\Foundation\Dashboardv2beta1\VizConfigKind();
     $this->internal->kind = "VizConfig";
     $this->internal->group = "annolist";
+    $this->internal->spec->options = new \Grafana\Foundation\Annotationslist\Options();
     }
 
     /**

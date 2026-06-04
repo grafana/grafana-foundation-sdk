@@ -27,6 +27,7 @@ public class GeomapPanelBuilder implements com.grafana.foundation.cog.Builder<Pa
     public GeomapPanelBuilder() {
         this.internal = new Panel();
         this.internal.type = "geomap";
+        this.internal.options = new com.grafana.foundation.geomap.Options();
     }
     public GeomapPanelBuilder id(Integer id) {
         this.internal.id = id;

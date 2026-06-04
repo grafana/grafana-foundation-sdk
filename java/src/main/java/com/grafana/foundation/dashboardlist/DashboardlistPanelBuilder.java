@@ -26,6 +26,7 @@ public class DashboardlistPanelBuilder implements com.grafana.foundation.cog.Bui
     public DashboardlistPanelBuilder() {
         this.internal = new Panel();
         this.internal.type = "dashlist";
+        this.internal.options = new com.grafana.foundation.dashboardlist.Options();
     }
     public DashboardlistPanelBuilder id(Integer id) {
         this.internal.id = id;

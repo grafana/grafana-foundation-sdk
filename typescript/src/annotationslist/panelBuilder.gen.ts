@@ -12,6 +12,7 @@ export class PanelBuilder implements cog.Builder<dashboard.Panel> {
     constructor() {
         this.internal = dashboard.defaultPanel();
         this.internal.type = "annolist";
+        this.internal.options = annotationslist.defaultOptions();
     }
 
     /**

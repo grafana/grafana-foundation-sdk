@@ -21,6 +21,10 @@ public class TextVisualizationV2Builder implements com.grafana.foundation.cog.Bu
         this.internal = new VizConfigKind();
         this.internal.kind = "VizConfig";
         this.internal.group = "text";
+		if (this.internal.spec == null) {
+			this.internal.spec = new com.grafana.foundation.dashboardv2.VizConfigSpec();
+		}
+        this.internal.spec.options = new com.grafana.foundation.text.Options();
     }
     public TextVisualizationV2Builder displayName(String displayName) {
 		if (this.internal.spec == null) {
