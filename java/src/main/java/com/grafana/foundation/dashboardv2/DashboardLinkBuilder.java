@@ -60,7 +60,7 @@ public class DashboardLinkBuilder implements com.grafana.foundation.cog.Builder<
         return this;
     }
     
-    public DashboardLinkBuilder placement(String placement) {
+    public DashboardLinkBuilder placement(DashboardLinkPlacement placement) {
         this.internal.placement = placement;
         return this;
     }

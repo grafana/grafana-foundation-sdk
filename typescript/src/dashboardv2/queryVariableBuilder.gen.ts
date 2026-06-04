@@ -10,6 +10,9 @@ export class QueryVariableBuilder implements cog.Builder<dashboardv2.QueryVariab
     constructor(name: string) {
         this.internal = dashboardv2.defaultQueryVariableKind();
         this.internal.kind = "QueryVariable";
+        if (!this.internal.spec) {
+            this.internal.spec = dashboardv2.defaultQueryVariableSpec();
+        }
         this.internal.spec.name = name;
     }
 

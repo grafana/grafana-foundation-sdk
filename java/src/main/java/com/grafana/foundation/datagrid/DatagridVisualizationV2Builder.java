@@ -21,6 +21,10 @@ public class DatagridVisualizationV2Builder implements com.grafana.foundation.co
         this.internal = new VizConfigKind();
         this.internal.kind = "VizConfig";
         this.internal.group = "datagrid";
+		if (this.internal.spec == null) {
+			this.internal.spec = new com.grafana.foundation.dashboardv2.VizConfigSpec();
+		}
+        this.internal.spec.options = new com.grafana.foundation.datagrid.Options();
     }
     public DatagridVisualizationV2Builder displayName(String displayName) {
 		if (this.internal.spec == null) {

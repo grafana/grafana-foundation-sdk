@@ -26,6 +26,7 @@ public class DatagridPanelBuilder implements com.grafana.foundation.cog.Builder<
     public DatagridPanelBuilder() {
         this.internal = new Panel();
         this.internal.type = "datagrid";
+        this.internal.options = new com.grafana.foundation.datagrid.Options();
     }
     public DatagridPanelBuilder id(Integer id) {
         this.internal.id = id;

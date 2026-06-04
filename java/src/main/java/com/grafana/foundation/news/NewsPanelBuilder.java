@@ -26,6 +26,7 @@ public class NewsPanelBuilder implements com.grafana.foundation.cog.Builder<Pane
     public NewsPanelBuilder() {
         this.internal = new Panel();
         this.internal.type = "news";
+        this.internal.options = new com.grafana.foundation.news.Options();
     }
     public NewsPanelBuilder id(Integer id) {
         this.internal.id = id;

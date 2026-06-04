@@ -1,16 +1,6 @@
----
-title: <span class="badge object-type-enum"></span> DashboardLinkPlacement
----
-# <span class="badge object-type-enum"></span> DashboardLinkPlacement
+// Code generated - EDITING IS FUTILE. DO NOT EDIT.
 
-Dashboard Link placement. Defines where the link should be displayed.
-
-- "inControlsMenu" renders the link in bottom part of the dashboard controls dropdown menu
-
-## Definition
-
-```java
-package com.grafana.foundation.dashboardv2.DashboardLinkPlacement;
+package com.grafana.foundation.dashboardv2;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonValue;
@@ -34,5 +24,3 @@ public enum DashboardLinkPlacement {
         return value;
     }
 }
-
-```

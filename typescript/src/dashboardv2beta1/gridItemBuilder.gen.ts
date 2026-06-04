@@ -9,6 +9,12 @@ export class GridItemBuilder implements cog.Builder<dashboardv2beta1.GridLayoutI
     constructor() {
         this.internal = dashboardv2beta1.defaultGridLayoutItemKind();
         this.internal.kind = "GridLayoutItem";
+        if (!this.internal.spec) {
+            this.internal.spec = dashboardv2beta1.defaultGridLayoutItemSpec();
+        }
+        if (!this.internal.spec.element) {
+            this.internal.spec.element = dashboardv2beta1.defaultElementReference();
+        }
         this.internal.spec.element.kind = "ElementReference";
     }
 

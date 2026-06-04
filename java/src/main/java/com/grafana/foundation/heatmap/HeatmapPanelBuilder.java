@@ -30,6 +30,14 @@ public class HeatmapPanelBuilder implements com.grafana.foundation.cog.Builder<P
     public HeatmapPanelBuilder() {
         this.internal = new Panel();
         this.internal.type = "heatmap";
+        this.internal.options = new com.grafana.foundation.heatmap.Options();
+		if (this.internal.fieldConfig == null) {
+			this.internal.fieldConfig = new com.grafana.foundation.dashboard.FieldConfigSource();
+		}
+		if (this.internal.fieldConfig.defaults == null) {
+			this.internal.fieldConfig.defaults = new com.grafana.foundation.dashboard.FieldConfig();
+		}
+        this.internal.fieldConfig.defaults.custom = new com.grafana.foundation.heatmap.FieldConfig();
     }
     public HeatmapPanelBuilder id(Integer id) {
         this.internal.id = id;

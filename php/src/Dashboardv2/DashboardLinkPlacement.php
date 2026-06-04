@@ -1,15 +1,11 @@
----
-title: <span class="badge object-type-enum"></span> DashboardLinkPlacement
----
-# <span class="badge object-type-enum"></span> DashboardLinkPlacement
+<?php
 
-Dashboard Link placement. Defines where the link should be displayed.
+namespace Grafana\Foundation\Dashboardv2;
 
-- "inControlsMenu" renders the link in bottom part of the dashboard controls dropdown menu
-
-## Definition
-
-```php
+/**
+ * Dashboard Link placement. Defines where the link should be displayed.
+ * - "inControlsMenu" renders the link in bottom part of the dashboard controls dropdown menu
+ */
 final class DashboardLinkPlacement implements \JsonSerializable, \Stringable {
     /**
      * @var string
@@ -55,4 +51,3 @@ final class DashboardLinkPlacement implements \JsonSerializable, \Stringable {
     }
 }
 
-```

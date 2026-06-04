@@ -3,9 +3,9 @@
 import typing
 from ..cog import builder as cogbuilder
 from ..models import dashboard
+from ..models import candlestick
 from ..cog import variants as cogvariants
 from ..models import common
-from ..models import candlestick
 from ..models import dashboardv2
 from ..models import dashboardv2beta1
 
@@ -19,7 +19,15 @@ class Panel(cogbuilder.Builder[dashboard.Panel]):
 
     def __init__(self) -> None:
         self._internal = dashboard.Panel()        
-        self._internal.type_val = "candlestick"
+        self._internal.type_val = "candlestick"        
+        self._internal.options = candlestick.Options()        
+        if self._internal.field_config is None:
+            self._internal.field_config = dashboard.FieldConfigSource()
+        assert isinstance(self._internal.field_config, dashboard.FieldConfigSource)
+        if self._internal.field_config.defaults is None:
+            self._internal.field_config.defaults = dashboard.FieldConfig()
+        assert isinstance(self._internal.field_config.defaults, dashboard.FieldConfig)
+        self._internal.field_config.defaults.custom = candlestick.FieldConfig()
 
     def build(self) -> dashboard.Panel:
         """
@@ -1155,7 +1163,18 @@ class VisualizationV2(cogbuilder.Builder[dashboardv2.VizConfigKind]):
     def __init__(self) -> None:
         self._internal = dashboardv2.VizConfigKind()        
         self._internal.kind = "VizConfig"        
-        self._internal.group = "candlestick"
+        self._internal.group = "candlestick"        
+        if self._internal.spec is None:
+            self._internal.spec = dashboardv2.VizConfigSpec()
+        assert isinstance(self._internal.spec, dashboardv2.VizConfigSpec)
+        self._internal.spec.options = candlestick.Options()        
+        if self._internal.spec.field_config is None:
+            self._internal.spec.field_config = dashboardv2.FieldConfigSource()
+        assert isinstance(self._internal.spec.field_config, dashboardv2.FieldConfigSource)
+        if self._internal.spec.field_config.defaults is None:
+            self._internal.spec.field_config.defaults = dashboardv2.FieldConfig()
+        assert isinstance(self._internal.spec.field_config.defaults, dashboardv2.FieldConfig)
+        self._internal.spec.field_config.defaults.custom = candlestick.FieldConfig()
 
     def build(self) -> dashboardv2.VizConfigKind:
         """
@@ -2366,7 +2385,18 @@ class Visualization(cogbuilder.Builder[dashboardv2beta1.VizConfigKind]):
     def __init__(self) -> None:
         self._internal = dashboardv2beta1.VizConfigKind()        
         self._internal.kind = "VizConfig"        
-        self._internal.group = "candlestick"
+        self._internal.group = "candlestick"        
+        if self._internal.spec is None:
+            self._internal.spec = dashboardv2beta1.VizConfigSpec()
+        assert isinstance(self._internal.spec, dashboardv2beta1.VizConfigSpec)
+        self._internal.spec.options = candlestick.Options()        
+        if self._internal.spec.field_config is None:
+            self._internal.spec.field_config = dashboardv2beta1.FieldConfigSource()
+        assert isinstance(self._internal.spec.field_config, dashboardv2beta1.FieldConfigSource)
+        if self._internal.spec.field_config.defaults is None:
+            self._internal.spec.field_config.defaults = dashboardv2beta1.FieldConfig()
+        assert isinstance(self._internal.spec.field_config.defaults, dashboardv2beta1.FieldConfig)
+        self._internal.spec.field_config.defaults.custom = candlestick.FieldConfig()
 
     def build(self) -> dashboardv2beta1.VizConfigKind:
         """

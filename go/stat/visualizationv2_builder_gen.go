@@ -23,6 +23,7 @@ func NewVisualizationV2Builder() *VisualizationV2Builder {
 	}
 	builder.internal.Kind = "VizConfig"
 	builder.internal.Group = "stat"
+	builder.internal.Spec.Options = NewOptions()
 
 	return builder
 }

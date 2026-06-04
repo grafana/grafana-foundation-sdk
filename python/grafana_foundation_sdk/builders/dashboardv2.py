@@ -875,7 +875,7 @@ class DashboardLink(cogbuilder.Builder[dashboardv2.DashboardLink]):
     
         return self
     
-    def placement(self, placement: str) -> typing.Self:    
+    def placement(self, placement: dashboardv2.DashboardLinkPlacement) -> typing.Self:    
         """
         Placement can be used to display the link somewhere else on the dashboard other than above the visualisations.
         """

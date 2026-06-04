@@ -9,6 +9,9 @@ export class SwitchVariableBuilder implements cog.Builder<dashboardv2beta1.Switc
     constructor(name: string) {
         this.internal = dashboardv2beta1.defaultSwitchVariableKind();
         this.internal.kind = "SwitchVariable";
+        if (!this.internal.spec) {
+            this.internal.spec = dashboardv2beta1.defaultSwitchVariableSpec();
+        }
         this.internal.spec.name = name;
     }
 

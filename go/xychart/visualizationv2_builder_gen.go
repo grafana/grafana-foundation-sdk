@@ -23,6 +23,8 @@ func NewVisualizationV2Builder() *VisualizationV2Builder {
 	}
 	builder.internal.Kind = "VizConfig"
 	builder.internal.Group = "xychart"
+	builder.internal.Spec.FieldConfig.Defaults.Custom = NewFieldConfig()
+	builder.internal.Spec.Options = NewOptions()
 
 	return builder
 }

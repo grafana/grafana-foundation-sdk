@@ -23,6 +23,7 @@ func NewVisualizationBuilder() *VisualizationBuilder {
 	}
 	builder.internal.Kind = "VizConfig"
 	builder.internal.Group = "logs"
+	builder.internal.Spec.Options = NewOptions()
 
 	return builder
 }

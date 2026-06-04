@@ -9,6 +9,12 @@ export class AutoGridItemBuilder implements cog.Builder<dashboardv2beta1.AutoGri
     constructor() {
         this.internal = dashboardv2beta1.defaultAutoGridLayoutItemKind();
         this.internal.kind = "AutoGridLayoutItem";
+        if (!this.internal.spec) {
+            this.internal.spec = dashboardv2beta1.defaultAutoGridLayoutItemSpec();
+        }
+        if (!this.internal.spec.element) {
+            this.internal.spec.element = dashboardv2beta1.defaultElementReference();
+        }
         this.internal.spec.element.kind = "ElementReference";
     }
 

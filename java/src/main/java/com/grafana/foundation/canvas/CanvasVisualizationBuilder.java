@@ -21,6 +21,10 @@ public class CanvasVisualizationBuilder implements com.grafana.foundation.cog.Bu
         this.internal = new VizConfigKind();
         this.internal.kind = "VizConfig";
         this.internal.group = "canvas";
+		if (this.internal.spec == null) {
+			this.internal.spec = new com.grafana.foundation.dashboardv2beta1.VizConfigSpec();
+		}
+        this.internal.spec.options = new com.grafana.foundation.canvas.Options();
     }
     public CanvasVisualizationBuilder displayName(String displayName) {
 		if (this.internal.spec == null) {

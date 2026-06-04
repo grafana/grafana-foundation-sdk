@@ -34,6 +34,7 @@ public class StatPanelBuilder implements com.grafana.foundation.cog.Builder<Pane
     public StatPanelBuilder() {
         this.internal = new Panel();
         this.internal.type = "stat";
+        this.internal.options = new com.grafana.foundation.stat.Options();
     }
     public StatPanelBuilder id(Integer id) {
         this.internal.id = id;

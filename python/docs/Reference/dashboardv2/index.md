@@ -40,7 +40,7 @@
  * <span class="badge object-type-enum"></span> [DashboardCursorSync](./object-DashboardCursorSync.md)
  * <span class="badge object-type-scalar"></span> [DashboardKind](./object-DashboardKind.md)
  * <span class="badge object-type-class"></span> [DashboardLink](./object-DashboardLink.md)
- * <span class="badge object-type-scalar"></span> [DashboardLinkPlacement](./object-DashboardLinkPlacement.md)
+ * <span class="badge object-type-enum"></span> [DashboardLinkPlacement](./object-DashboardLinkPlacement.md)
  * <span class="badge object-type-enum"></span> [DashboardLinkType](./object-DashboardLinkType.md)
  * <span class="badge object-type-class"></span> [Dashboardv2ActionStyle](./object-Dashboardv2ActionStyle.md)
  * <span class="badge object-type-class"></span> [Dashboardv2AdhocVariableKindDatasource](./object-Dashboardv2AdhocVariableKindDatasource.md)

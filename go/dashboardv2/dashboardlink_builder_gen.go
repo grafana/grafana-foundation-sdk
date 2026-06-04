@@ -113,7 +113,7 @@ func (builder *DashboardLinkBuilder) KeepTime(keepTime bool) *DashboardLinkBuild
 }
 
 // Placement can be used to display the link somewhere else on the dashboard other than above the visualisations.
-func (builder *DashboardLinkBuilder) Placement(placement string) *DashboardLinkBuilder {
+func (builder *DashboardLinkBuilder) Placement(placement DashboardLinkPlacement) *DashboardLinkBuilder {
 	builder.internal.Placement = &placement
 
 	return builder

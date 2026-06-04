@@ -30,6 +30,7 @@ public class GaugePanelBuilder implements com.grafana.foundation.cog.Builder<Pan
     public GaugePanelBuilder() {
         this.internal = new Panel();
         this.internal.type = "gauge";
+        this.internal.options = new com.grafana.foundation.gauge.Options();
     }
     public GaugePanelBuilder id(Integer id) {
         this.internal.id = id;

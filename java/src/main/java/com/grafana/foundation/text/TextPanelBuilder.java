@@ -26,6 +26,7 @@ public class TextPanelBuilder implements com.grafana.foundation.cog.Builder<Pane
     public TextPanelBuilder() {
         this.internal = new Panel();
         this.internal.type = "text";
+        this.internal.options = new com.grafana.foundation.text.Options();
     }
     public TextPanelBuilder id(Integer id) {
         this.internal.id = id;

@@ -14,6 +14,8 @@ class VisualizationBuilder implements \Grafana\Foundation\Cog\Builder
     	$this->internal = new \Grafana\Foundation\Dashboardv2beta1\VizConfigKind();
     $this->internal->kind = "VizConfig";
     $this->internal->group = "table";
+    $this->internal->spec->options = new \Grafana\Foundation\Table\Options();
+    $this->internal->spec->fieldConfig->defaults->custom = new \Grafana\Foundation\Table\FieldConfig();
     }
 
     /**

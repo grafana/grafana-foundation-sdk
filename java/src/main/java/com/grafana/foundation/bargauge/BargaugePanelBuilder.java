@@ -34,6 +34,7 @@ public class BargaugePanelBuilder implements com.grafana.foundation.cog.Builder<
     public BargaugePanelBuilder() {
         this.internal = new Panel();
         this.internal.type = "bargauge";
+        this.internal.options = new com.grafana.foundation.bargauge.Options();
     }
     public BargaugePanelBuilder id(Integer id) {
         this.internal.id = id;

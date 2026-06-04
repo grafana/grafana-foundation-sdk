@@ -14,6 +14,12 @@ class PanelBuilder implements \Grafana\Foundation\Cog\Builder
     {
     	$this->internal = new \Grafana\Foundation\Dashboard\Panel();
     $this->internal->type = "candlestick";
+    $this->internal->options = new \Grafana\Foundation\Candlestick\Options();    
+    if ($this->internal->fieldConfig === null) {
+        $this->internal->fieldConfig = new \Grafana\Foundation\Dashboard\FieldConfigSource();
+    }
+    assert($this->internal->fieldConfig instanceof \Grafana\Foundation\Dashboard\FieldConfigSource);
+    $this->internal->fieldConfig->defaults->custom = new \Grafana\Foundation\Candlestick\FieldConfig();
     }
 
     /**

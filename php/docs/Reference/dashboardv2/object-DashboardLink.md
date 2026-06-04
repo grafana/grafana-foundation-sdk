@@ -65,7 +65,7 @@ class DashboardLink implements \JsonSerializable
     /**
      * Placement can be used to display the link somewhere else on the dashboard other than above the visualisations.
      */
-    public ?string $placement;
+    public ?\Grafana\Foundation\Dashboardv2\DashboardLinkPlacement $placement;
 
     /**
      * The source that registered the link (if any)

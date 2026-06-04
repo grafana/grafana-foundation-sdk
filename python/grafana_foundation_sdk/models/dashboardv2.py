@@ -4023,11 +4023,11 @@ class DashboardLink:
     # If true, includes current time range in the link as query params
     keep_time: bool
     # Placement can be used to display the link somewhere else on the dashboard other than above the visualisations.
-    placement: str
+    placement: typing.Optional['DashboardLinkPlacement']
     # The source that registered the link (if any)
     origin: typing.Optional['ControlSourceRef']
 
-    def __init__(self, title: str = "", type_val: typing.Optional['DashboardLinkType'] = None, icon: str = "", tooltip: str = "", url: typing.Optional[str] = None, tags: typing.Optional[list[str]] = None, as_dropdown: bool = False, target_blank: bool = False, include_vars: bool = False, keep_time: bool = False, origin: typing.Optional['ControlSourceRef'] = None) -> None:
+    def __init__(self, title: str = "", type_val: typing.Optional['DashboardLinkType'] = None, icon: str = "", tooltip: str = "", url: typing.Optional[str] = None, tags: typing.Optional[list[str]] = None, as_dropdown: bool = False, target_blank: bool = False, include_vars: bool = False, keep_time: bool = False, placement: typing.Optional['DashboardLinkPlacement'] = None, origin: typing.Optional['ControlSourceRef'] = None) -> None:
         self.title = title
         self.type_val = type_val if type_val is not None else DashboardLinkType.LINK
         self.icon = icon
@@ -4038,7 +4038,7 @@ class DashboardLink:
         self.target_blank = target_blank
         self.include_vars = include_vars
         self.keep_time = keep_time
-        self.placement = DashboardLinkPlacement
+        self.placement = placement
         self.origin = origin
 
     def to_json(self) -> dict[str, object]:
@@ -4085,6 +4085,8 @@ class DashboardLink:
             args["include_vars"] = data["includeVars"]
         if "keepTime" in data:
             args["keep_time"] = data["keepTime"]
+        if "placement" in data:
+            args["placement"] = data["placement"]
         if "origin" in data:
             args["origin"] = ControlSourceRef.from_json(data["origin"])        
 
@@ -4100,9 +4102,13 @@ class DashboardLinkType(enum.StrEnum):
     DASHBOARDS = "dashboards"
 
 
-# Dashboard Link placement. Defines where the link should be displayed.
-# - "inControlsMenu" renders the link in bottom part of the dashboard controls dropdown menu
-DashboardLinkPlacement: typing.Literal["inControlsMenu"] = "inControlsMenu"
+class DashboardLinkPlacement(enum.StrEnum):
+    """
+    Dashboard Link placement. Defines where the link should be displayed.
+    - "inControlsMenu" renders the link in bottom part of the dashboard controls dropdown menu
+    """
+
+    IN_CONTROLS_MENU = "inControlsMenu"
 
 
 class TimeSettingsSpec:

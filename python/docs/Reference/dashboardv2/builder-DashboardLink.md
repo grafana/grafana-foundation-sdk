@@ -63,7 +63,7 @@ def origin(origin: cogbuilder.Builder[dashboardv2.ControlSourceRef]) -> typing.S
 Placement can be used to display the link somewhere else on the dashboard other than above the visualisations.
 
 ```python
-def placement(placement: str) -> typing.Self
+def placement(placement: dashboardv2.DashboardLinkPlacement) -> typing.Self
 ```
 
 ### <span class="badge object-method"></span> tags

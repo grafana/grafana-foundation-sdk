@@ -12,6 +12,14 @@ export class PanelBuilder implements cog.Builder<dashboard.Panel> {
     constructor() {
         this.internal = dashboard.defaultPanel();
         this.internal.type = "table";
+        this.internal.options = table.defaultOptions();
+        if (!this.internal.fieldConfig) {
+            this.internal.fieldConfig = dashboard.defaultFieldConfigSource();
+        }
+        if (!this.internal.fieldConfig.defaults) {
+            this.internal.fieldConfig.defaults = dashboard.defaultFieldConfig();
+        }
+        this.internal.fieldConfig.defaults.custom = table.defaultFieldConfig();
     }
 
     /**

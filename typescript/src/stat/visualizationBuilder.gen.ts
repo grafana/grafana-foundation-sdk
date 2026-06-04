@@ -12,6 +12,10 @@ export class VisualizationBuilder implements cog.Builder<dashboardv2beta1.VizCon
         this.internal = dashboardv2beta1.defaultVizConfigKind();
         this.internal.kind = "VizConfig";
         this.internal.group = "stat";
+        if (!this.internal.spec) {
+            this.internal.spec = dashboardv2beta1.defaultVizConfigSpec();
+        }
+        this.internal.spec.options = stat.defaultOptions();
     }
 
     /**

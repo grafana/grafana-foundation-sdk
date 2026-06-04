@@ -149,7 +149,7 @@ final class DashboardLinkConverter
     
         
     $buffer = 'placement(';
-        $arg0 =\var_export($input->placement, true);
+        $arg0 ='\Grafana\Foundation\Dashboardv2\DashboardLinkPlacement::fromValue("'.$input->placement.'")';
         $buffer .= $arg0;
         
     $buffer .= ')';

@@ -10,6 +10,9 @@ export class TextVariableBuilder implements cog.Builder<dashboardv2.TextVariable
     constructor(name: string) {
         this.internal = dashboardv2.defaultTextVariableKind();
         this.internal.kind = "TextVariable";
+        if (!this.internal.spec) {
+            this.internal.spec = dashboardv2.defaultTextVariableSpec();
+        }
         this.internal.spec.name = name;
     }
 

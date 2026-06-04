@@ -14,6 +14,7 @@ class PanelBuilder implements \Grafana\Foundation\Cog\Builder
     {
     	$this->internal = new \Grafana\Foundation\Dashboard\Panel();
     $this->internal->type = "debug";
+    $this->internal->options = new \Grafana\Foundation\Debug\Options();
     }
 
     /**
