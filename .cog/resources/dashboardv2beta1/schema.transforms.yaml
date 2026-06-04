@@ -39,6 +39,19 @@ passes:
         nullable: true
       comments: ["Placement can be used to display the annotation query somewhere else on the dashboard other than the default location."]
 
+  # See https://github.com/grafana/grafana-foundation-sdk/issues/1272
+  # DashboardLinkPlacement has the same issue as AnnotationQueryPlacement
+  - constant_to_enum:
+      objects:
+        - dashboardv2.DashboardLinkPlacement
+  - retype_field:
+      field: dashboardv2.DashboardLink.placement
+      as:
+        kind: ref
+        ref: { referred_pkg: dashboardv2, referred_type: DashboardLinkPlacement }
+        nullable: true
+      comments: ["Placement can be used to display the link somewhere else on the dashboard other than above the visualisations."]
+
   # To make our composability veneers shenanigans work
   - retype_field:
       field: dashboardv2beta1.VizConfigSpec.options
