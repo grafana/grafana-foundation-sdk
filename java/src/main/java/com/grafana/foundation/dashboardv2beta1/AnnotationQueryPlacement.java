@@ -1,16 +1,6 @@
----
-title: <span class="badge object-type-enum"></span> AnnotationQueryPlacement
----
-# <span class="badge object-type-enum"></span> AnnotationQueryPlacement
+// Code generated - EDITING IS FUTILE. DO NOT EDIT.
 
-Annotation Query placement. Defines where the annotation query should be displayed.
-
-- "inControlsMenu" renders the annotation query in the dashboard controls dropdown menu
-
-## Definition
-
-```java
-package com.grafana.foundation.dashboardv2beta1.AnnotationQueryPlacement;
+package com.grafana.foundation.dashboardv2beta1;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonValue;
@@ -34,5 +24,3 @@ public enum AnnotationQueryPlacement {
         return value;
     }
 }
-
-```

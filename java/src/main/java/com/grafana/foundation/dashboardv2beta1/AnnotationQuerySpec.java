@@ -30,7 +30,7 @@ public class AnnotationQuerySpec {
     // Placement can be used to display the annotation query somewhere else on the dashboard other than the default location.
     @JsonInclude(JsonInclude.Include.NON_NULL)
     @JsonProperty("placement")
-    public String placement;
+    public AnnotationQueryPlacement placement;
     // Mappings define how to convert data frame fields to annotation event fields.
     @JsonInclude(JsonInclude.Include.NON_NULL)
     @JsonProperty("mappings")
@@ -46,9 +46,8 @@ public class AnnotationQuerySpec {
         this.iconColor = "";
         this.name = "";
         this.builtIn = false;
-        this.placement = Constants.AnnotationQueryPlacement;
     }
-    public AnnotationQuerySpec(DataQueryKind query,Boolean enable,Boolean hide,String iconColor,String name,Boolean builtIn,AnnotationPanelFilter filter,Map<String, AnnotationEventFieldMapping> mappings,Map<String, Object> legacyOptions) {
+    public AnnotationQuerySpec(DataQueryKind query,Boolean enable,Boolean hide,String iconColor,String name,Boolean builtIn,AnnotationPanelFilter filter,AnnotationQueryPlacement placement,Map<String, AnnotationEventFieldMapping> mappings,Map<String, Object> legacyOptions) {
         this.query = query;
         this.enable = enable;
         this.hide = hide;
@@ -56,7 +55,7 @@ public class AnnotationQuerySpec {
         this.name = name;
         this.builtIn = builtIn;
         this.filter = filter;
-        this.placement = Constants.AnnotationQueryPlacement;
+        this.placement = placement;
         this.mappings = mappings;
         this.legacyOptions = legacyOptions;
     }

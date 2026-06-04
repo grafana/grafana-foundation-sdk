@@ -94,7 +94,7 @@ func (builder *AnnotationQueryBuilder) Filter(filter cog.Builder[AnnotationPanel
 }
 
 // Placement can be used to display the annotation query somewhere else on the dashboard other than the default location.
-func (builder *AnnotationQueryBuilder) Placement(placement string) *AnnotationQueryBuilder {
+func (builder *AnnotationQueryBuilder) Placement(placement AnnotationQueryPlacement) *AnnotationQueryBuilder {
 	builder.internal.Spec.Placement = &placement
 
 	return builder

@@ -15,7 +15,7 @@ class AnnotationQuerySpec:
     built_in: typing.Optional[bool]
     filter_val: typing.Optional[dashboardv2beta1.AnnotationPanelFilter]
     # Placement can be used to display the annotation query somewhere else on the dashboard other than the default location.
-    placement: str
+    placement: typing.Optional[dashboardv2beta1.AnnotationQueryPlacement]
     # Mappings define how to convert data frame fields to annotation event fields.
     mappings: typing.Optional[dict[str, dashboardv2beta1.AnnotationEventFieldMapping]]
     # Catch-all field for datasource-specific properties. Should not be available in as code tooling.

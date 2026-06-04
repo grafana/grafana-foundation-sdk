@@ -15,7 +15,7 @@ export interface AnnotationQuerySpec {
 	builtIn?: boolean;
 	filter?: dashboardv2.AnnotationPanelFilter;
 	// Placement can be used to display the annotation query somewhere else on the dashboard other than the default location.
-	placement?: "inControlsMenu";
+	placement?: dashboardv2.AnnotationQueryPlacement;
 	// Mappings define how to convert data frame fields to annotation event fields.
 	mappings?: Record<string, dashboardv2.AnnotationEventFieldMapping>;
 	// Catch-all field for datasource-specific properties. Should not be available in as code tooling.

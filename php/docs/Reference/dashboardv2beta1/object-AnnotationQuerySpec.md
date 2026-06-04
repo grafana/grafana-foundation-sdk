@@ -25,7 +25,7 @@ class AnnotationQuerySpec implements \JsonSerializable
     /**
      * Placement can be used to display the annotation query somewhere else on the dashboard other than the default location.
      */
-    public ?string $placement;
+    public ?\Grafana\Foundation\Dashboardv2beta1\AnnotationQueryPlacement $placement;
 
     /**
      * Mappings define how to convert data frame fields to annotation event fields.

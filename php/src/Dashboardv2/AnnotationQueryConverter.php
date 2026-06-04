@@ -105,7 +105,7 @@ final class AnnotationQueryConverter
     
         
     $buffer = 'placement(';
-        $arg0 =\var_export($input->spec->placement, true);
+        $arg0 ='\Grafana\Foundation\Dashboardv2\AnnotationQueryPlacement::fromValue("'.$input->spec->placement.'")';
         $buffer .= $arg0;
         
     $buffer .= ')';

@@ -67,7 +67,7 @@ export interface AnnotationQuerySpec {
 	builtIn?: boolean;
 	filter?: AnnotationPanelFilter;
 	// Placement can be used to display the annotation query somewhere else on the dashboard other than the default location.
-	placement?: "inControlsMenu";
+	placement?: AnnotationQueryPlacement;
 	// Mappings define how to convert data frame fields to annotation event fields.
 	mappings?: Record<string, AnnotationEventFieldMapping>;
 	// Catch-all field for datasource-specific properties. Should not be available in as code tooling.
@@ -81,7 +81,6 @@ export const defaultAnnotationQuerySpec = (): AnnotationQuerySpec => ({
 	iconColor: "",
 	name: "",
 	builtIn: false,
-	placement: AnnotationQueryPlacement,
 });
 
 export interface DataQueryKind {
@@ -118,7 +117,11 @@ export const defaultAnnotationPanelFilter = (): AnnotationPanelFilter => ({
 
 // Annotation Query placement. Defines where the annotation query should be displayed.
 // - "inControlsMenu" renders the annotation query in the dashboard controls dropdown menu
-export const AnnotationQueryPlacement = "inControlsMenu";
+export enum AnnotationQueryPlacement {
+	InControlsMenu = "inControlsMenu",
+}
+
+export const defaultAnnotationQueryPlacement = (): AnnotationQueryPlacement => (AnnotationQueryPlacement.InControlsMenu);
 
 // Annotation event field mapping. Defines how to map a data frame field to an annotation event field.
 export interface AnnotationEventFieldMapping {

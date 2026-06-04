@@ -5,11 +5,6 @@ namespace Grafana\Foundation\Dashboardv2beta1;
 final class Constants
 {
     /**
-     * Annotation Query placement. Defines where the annotation query should be displayed.
-     * - "inControlsMenu" renders the annotation query in the dashboard controls dropdown menu
-     */
-    const ANNOTATION_QUERY_PLACEMENT = "inControlsMenu";
-    /**
      * Action variable type
      */
     const ACTION_VARIABLE_TYPE = "string";

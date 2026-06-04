@@ -75,7 +75,7 @@ public AnnotationQueryBuilder name(String name)
 Placement can be used to display the annotation query somewhere else on the dashboard other than the default location.
 
 ```java
-public AnnotationQueryBuilder placement(String placement)
+public AnnotationQueryBuilder placement(AnnotationQueryPlacement placement)
 ```
 
 ### <span class="badge object-method"></span> query

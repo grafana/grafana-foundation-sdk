@@ -14,7 +14,7 @@ public class AnnotationQuerySpec {
   public String name;
   public Boolean builtIn;
   public AnnotationPanelFilter filter;
-  public String placement;
+  public AnnotationQueryPlacement placement;
   public Map<String, AnnotationEventFieldMapping> mappings;
   public Map<String, Object> legacyOptions;
 }
