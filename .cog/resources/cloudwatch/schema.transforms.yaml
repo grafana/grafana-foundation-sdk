@@ -98,3 +98,10 @@ passes:
         - cloudwatch.CloudWatchMetricsQuery.queryMode
         - cloudwatch.CloudWatchLogsQuery.queryMode
         - cloudwatch.CloudWatchAnnotationQuery.queryMode
+
+  - rename_object:
+      from: cloudwatch.CloudWatchQuery
+      to: Request
+
+  - trim_object_name_prefix:
+      prefix: CloudWatch
