@@ -1,16 +1,6 @@
 # yaml-language-server: $schema=https://raw.githubusercontent.com/grafana/cog/main/schemas/compiler_passes.json
 
 passes:
-  - hint_object:
-      object: cloudwatch.CloudWatchMetricsQuery
-      hints: { implements_variant: dataquery }
-  - hint_object:
-      object: cloudwatch.CloudWatchLogsQuery
-      hints: { implements_variant: dataquery }
-  - hint_object:
-      object: cloudwatch.CloudWatchAnnotationQuery
-      hints: { implements_variant: dataquery }
-
   - retype_field:
       field: cloudwatch.CloudWatchMetricsQuery.datasource
       as: &common_datasourceRef

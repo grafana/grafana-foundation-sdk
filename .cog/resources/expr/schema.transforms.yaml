@@ -5,25 +5,6 @@ passes:
   - disjunction_infer_mapping: {}
   - disjunction_to_type: {}
 
-  - hint_object:
-      object: expr.typeMath
-      hints: { implements_variant: dataquery }
-  - hint_object:
-      object: expr.typeReduce
-      hints: { implements_variant: dataquery }
-  - hint_object:
-      object: expr.typeResample
-      hints: { implements_variant: dataquery }
-  - hint_object:
-      object: expr.typeClassicConditions
-      hints: { implements_variant: dataquery }
-  - hint_object:
-      object: expr.typeThreshold
-      hints: { implements_variant: dataquery }
-  - hint_object:
-      object: expr.typeSql
-      hints: { implements_variant: dataquery }
-
   - retype_field:
       field: expr.typeMath.datasource
       as: &common_datasourceRef
@@ -46,7 +27,7 @@ passes:
       as: *common_datasourceRef
 
   - retype_object:
-      object: expr.Expr
+      object: expr.expr
       as:
         kind: disjunction
         hints: { implements_variant: dataquery }
