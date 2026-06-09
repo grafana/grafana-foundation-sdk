@@ -1,0 +1,46 @@
+# yaml-language-server: $schema=https://raw.githubusercontent.com/grafana/cog/main/schemas/veneers.json
+
+languages: [all]
+
+package: expr
+
+options:
+  # Dashboardv2beta1
+  - rename:
+      by_builder: query.typeMath
+      as: math
+  - rename:
+      by_builder: query.typeSql
+      as: sql
+  - rename:
+      by_builder: query.typeThreshold
+      as: threshold
+  - rename:
+      by_builder: query.typeClassicConditions
+      as: classicConditions
+  - rename:
+      by_builder: query.typeResample
+      as: resample
+  - rename:
+      by_builder: query.typeReduce
+      as: reduce
+
+  # Dashboardv2
+  - rename:
+      by_builder: queryv2.typeMath
+      as: math
+  - rename:
+      by_builder: queryv2.typeSql
+      as: sql
+  - rename:
+      by_builder: queryv2.typeThreshold
+      as: threshold
+  - rename:
+      by_builder: queryv2.typeClassicConditions
+      as: classicConditions
+  - rename:
+      by_builder: queryv2.typeResample
+      as: resample
+  - rename:
+      by_builder: queryv2.typeReduce
+      as: reduce
