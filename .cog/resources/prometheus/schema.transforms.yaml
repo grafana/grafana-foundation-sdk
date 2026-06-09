@@ -2,6 +2,8 @@
 
 passes:
   - anonymous_structs_to_named: {}
+  - anonymous_enum_to_named: {}
+  - sanitize_enum_member_names: {}
 
   # Omit the outer container object; we only need the individual query type
   - omit:
@@ -17,6 +19,21 @@ passes:
       package: prometheus
       entry_point: Dataquery
 
+  - hint_object:
+      object: prometheus.Dataquery
+      hints: { implements_variant: dataquery }
+
+  - trim_object_name_prefix:
+      prefix: PrometheusPrometheusQueries
+
+  # To preserve backward compatibility with the previous schema
+  - rename_object:
+      from: prometheus.Format
+      to: PromQueryFormat
+  - rename_object:
+      from: prometheus.EditorMode
+      to: QueryEditorMode
+
   - retype_field:
       field: prometheus.Dataquery.datasource
       as:
@@ -26,28 +43,7 @@ passes:
   # Omit the inline datasource type since we replaced it with common.DataSourceRef
   - omit:
       objects:
-        - 'prometheus.PrometheusPrometheusQueriesDatasource'
-
-  # Rename sub-objects to clean names
-  - rename_object:
-      from: 'prometheus.PrometheusPrometheusQueriesAdhocFilters'
-      to: 'AdHocFilter'
-
-  - rename_object:
-      from: 'prometheus.PrometheusPrometheusQueriesResultAssertions'
-      to: 'ResultAssertions'
-
-  - rename_object:
-      from: 'prometheus.PrometheusPrometheusQueriesScopesFilters'
-      to: 'ScopeFilter'
-
-  - rename_object:
-      from: 'prometheus.PrometheusPrometheusQueriesScopes'
-      to: 'ScopeNode'
-
-  - rename_object:
-      from: 'prometheus.PrometheusPrometheusQueriesTimeRange'
-      to: 'TimeRange'
+        - 'prometheus.Datasource'
 
   # Add a few missing fields.
   # This is meant to be removed once the schema is updated.
