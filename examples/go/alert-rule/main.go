@@ -35,11 +35,13 @@ func main() {
 	queryB := alerting.NewQueryBuilder("B").
 		DatasourceUid("__expr__").
 		Model(
-			expr.NewTypeThresholdBuilder().
-				Conditions([]cog.Builder[expr.ExprTypeThresholdConditions]{thresholdCondition}).
-				Datasource(dashboard.DataSourceRef{Uid: &exprStr, Type: &exprStr}).
-				Expression("A").
-				RefId("B"),
+			expr.NewExprBuilder().TypeThreshold(
+				expr.NewTypeThresholdBuilder().
+					Conditions([]cog.Builder[expr.ExprTypeThresholdConditions]{thresholdCondition}).
+					Datasource(dashboard.DataSourceRef{Uid: &exprStr, Type: &exprStr}).
+					Expression("A").
+					RefId("B"),
+			),
 		)
 
 	ruleBuilder := alerting.NewRuleBuilder("[Example] Rule").
