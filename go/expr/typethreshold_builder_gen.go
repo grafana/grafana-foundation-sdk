@@ -4,11 +4,10 @@ package expr
 
 import (
 	cog "github.com/grafana/grafana-foundation-sdk/go/cog"
-	variants "github.com/grafana/grafana-foundation-sdk/go/cog/variants"
 	common "github.com/grafana/grafana-foundation-sdk/go/common"
 )
 
-var _ cog.Builder[variants.Dataquery] = (*TypeThresholdBuilder)(nil)
+var _ cog.Builder[TypeThreshold] = (*TypeThresholdBuilder)(nil)
 
 type TypeThresholdBuilder struct {
 	internal *TypeThreshold
@@ -26,7 +25,7 @@ func NewTypeThresholdBuilder() *TypeThresholdBuilder {
 	return builder
 }
 
-func (builder *TypeThresholdBuilder) Build() (variants.Dataquery, error) {
+func (builder *TypeThresholdBuilder) Build() (TypeThreshold, error) {
 	if err := builder.internal.Validate(); err != nil {
 		return TypeThreshold{}, err
 	}

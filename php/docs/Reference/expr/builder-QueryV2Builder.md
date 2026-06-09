@@ -18,52 +18,12 @@ Builds the object.
 build()
 ```
 
-### <span class="badge object-method"></span> typeClassicConditions
+### <span class="badge object-method"></span> classicConditions
 
 @param \Grafana\Foundation\Cog\Builder<\Grafana\Foundation\Expr\TypeClassicConditions> $typeClassicConditions
 
 ```php
-typeClassicConditions(\Grafana\Foundation\Cog\Builder $typeClassicConditions)
-```
-
-### <span class="badge object-method"></span> typeMath
-
-@param \Grafana\Foundation\Cog\Builder<\Grafana\Foundation\Expr\TypeMath> $typeMath
-
-```php
-typeMath(\Grafana\Foundation\Cog\Builder $typeMath)
-```
-
-### <span class="badge object-method"></span> typeReduce
-
-@param \Grafana\Foundation\Cog\Builder<\Grafana\Foundation\Expr\TypeReduce> $typeReduce
-
-```php
-typeReduce(\Grafana\Foundation\Cog\Builder $typeReduce)
-```
-
-### <span class="badge object-method"></span> typeResample
-
-@param \Grafana\Foundation\Cog\Builder<\Grafana\Foundation\Expr\TypeResample> $typeResample
-
-```php
-typeResample(\Grafana\Foundation\Cog\Builder $typeResample)
-```
-
-### <span class="badge object-method"></span> typeSql
-
-@param \Grafana\Foundation\Cog\Builder<\Grafana\Foundation\Expr\TypeSql> $typeSql
-
-```php
-typeSql(\Grafana\Foundation\Cog\Builder $typeSql)
-```
-
-### <span class="badge object-method"></span> typeThreshold
-
-@param \Grafana\Foundation\Cog\Builder<\Grafana\Foundation\Expr\TypeThreshold> $typeThreshold
-
-```php
-typeThreshold(\Grafana\Foundation\Cog\Builder $typeThreshold)
+classicConditions(\Grafana\Foundation\Cog\Builder $typeClassicConditions)
 ```
 
 ### <span class="badge object-method"></span> datasource
@@ -84,6 +44,46 @@ datasource(\Grafana\Foundation\Cog\Builder $datasource)
 
 ```php
 labels(array $labels)
+```
+
+### <span class="badge object-method"></span> math
+
+@param \Grafana\Foundation\Cog\Builder<\Grafana\Foundation\Expr\TypeMath> $typeMath
+
+```php
+math(\Grafana\Foundation\Cog\Builder $typeMath)
+```
+
+### <span class="badge object-method"></span> reduce
+
+@param \Grafana\Foundation\Cog\Builder<\Grafana\Foundation\Expr\TypeReduce> $typeReduce
+
+```php
+reduce(\Grafana\Foundation\Cog\Builder $typeReduce)
+```
+
+### <span class="badge object-method"></span> resample
+
+@param \Grafana\Foundation\Cog\Builder<\Grafana\Foundation\Expr\TypeResample> $typeResample
+
+```php
+resample(\Grafana\Foundation\Cog\Builder $typeResample)
+```
+
+### <span class="badge object-method"></span> sql
+
+@param \Grafana\Foundation\Cog\Builder<\Grafana\Foundation\Expr\TypeSql> $typeSql
+
+```php
+sql(\Grafana\Foundation\Cog\Builder $typeSql)
+```
+
+### <span class="badge object-method"></span> threshold
+
+@param \Grafana\Foundation\Cog\Builder<\Grafana\Foundation\Expr\TypeThreshold> $typeThreshold
+
+```php
+threshold(\Grafana\Foundation\Cog\Builder $typeThreshold)
 ```
 
 ### <span class="badge object-method"></span> version

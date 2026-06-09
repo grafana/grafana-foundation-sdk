@@ -30,30 +30,30 @@ public class CloudwatchQueryV2Builder implements com.grafana.foundation.cog.Buil
         return this;
     }
     
-    public CloudwatchQueryV2Builder cloudWatchMetricsQuery(com.grafana.foundation.cog.Builder<CloudWatchMetricsQuery> cloudWatchMetricsQuery) {
+    public CloudwatchQueryV2Builder metricsQuery(com.grafana.foundation.cog.Builder<MetricsQuery> metricsQuery) {
 		if (this.internal.spec == null) {
-			this.internal.spec = new com.grafana.foundation.cloudwatch.CloudWatchQuery();
+			this.internal.spec = new com.grafana.foundation.cloudwatch.RequestBuilder().build();
 		}
-    CloudWatchMetricsQuery cloudWatchMetricsQueryResource = cloudWatchMetricsQuery.build();
-        ((CloudWatchQuery) this.internal.spec).cloudWatchMetricsQuery = cloudWatchMetricsQueryResource;
+    MetricsQuery metricsQueryResource = metricsQuery.build();
+        ((Request) this.internal.spec).metricsQuery = metricsQueryResource;
         return this;
     }
     
-    public CloudwatchQueryV2Builder cloudWatchLogsQuery(com.grafana.foundation.cog.Builder<CloudWatchLogsQuery> cloudWatchLogsQuery) {
+    public CloudwatchQueryV2Builder logsQuery(com.grafana.foundation.cog.Builder<LogsQuery> logsQuery) {
 		if (this.internal.spec == null) {
-			this.internal.spec = new com.grafana.foundation.cloudwatch.CloudWatchQuery();
+			this.internal.spec = new com.grafana.foundation.cloudwatch.RequestBuilder().build();
 		}
-    CloudWatchLogsQuery cloudWatchLogsQueryResource = cloudWatchLogsQuery.build();
-        ((CloudWatchQuery) this.internal.spec).cloudWatchLogsQuery = cloudWatchLogsQueryResource;
+    LogsQuery logsQueryResource = logsQuery.build();
+        ((Request) this.internal.spec).logsQuery = logsQueryResource;
         return this;
     }
     
-    public CloudwatchQueryV2Builder cloudWatchAnnotationQuery(com.grafana.foundation.cog.Builder<CloudWatchAnnotationQuery> cloudWatchAnnotationQuery) {
+    public CloudwatchQueryV2Builder annotationQuery(com.grafana.foundation.cog.Builder<AnnotationQuery> annotationQuery) {
 		if (this.internal.spec == null) {
-			this.internal.spec = new com.grafana.foundation.cloudwatch.CloudWatchQuery();
+			this.internal.spec = new com.grafana.foundation.cloudwatch.RequestBuilder().build();
 		}
-    CloudWatchAnnotationQuery cloudWatchAnnotationQueryResource = cloudWatchAnnotationQuery.build();
-        ((CloudWatchQuery) this.internal.spec).cloudWatchAnnotationQuery = cloudWatchAnnotationQueryResource;
+    AnnotationQuery annotationQueryResource = annotationQuery.build();
+        ((Request) this.internal.spec).annotationQuery = annotationQueryResource;
         return this;
     }
     public DataQueryKind build() {

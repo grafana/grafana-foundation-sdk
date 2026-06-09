@@ -6,7 +6,7 @@ title: <span class="badge object-type-class"></span> TypeReduce
 ## Definition
 
 ```java
-public class TypeReduce extends com.grafana.foundation.cog.variants.Dataquery {
+public class TypeReduce {
   public DataSourceRef datasource;
   public String expression;
   public Boolean hide;

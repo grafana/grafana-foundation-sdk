@@ -54,12 +54,6 @@ type TypeMath struct {
 	Type      string                 `json:"type"`
 }
 
-func (resource TypeMath) ImplementsDataqueryVariant() {}
-
-func (resource TypeMath) DataqueryType() string {
-	return "__expr__"
-}
-
 // NewTypeMath creates a new TypeMath object.
 func NewTypeMath() *TypeMath {
 	return &TypeMath{
@@ -209,16 +203,8 @@ func (resource *TypeMath) UnmarshalJSONStrict(raw []byte) error {
 	return errs
 }
 
-// Equals tests the equality of two dataqueries.
-func (resource TypeMath) Equals(otherCandidate variants.Dataquery) bool {
-	if otherCandidate == nil {
-		return false
-	}
-
-	other, ok := otherCandidate.(TypeMath)
-	if !ok {
-		return false
-	}
+// Equals tests the equality of two `TypeMath` objects.
+func (resource TypeMath) Equals(other TypeMath) bool {
 	if resource.Datasource == nil && other.Datasource != nil || resource.Datasource != nil && other.Datasource == nil {
 		return false
 	}
@@ -374,12 +360,6 @@ type TypeReduce struct {
 	// NOTE: the values for timeRange are not saved in a dashboard, they are constructed on the fly
 	TimeRange *ExprTypeReduceTimeRange `json:"timeRange,omitempty"`
 	Type      string                   `json:"type"`
-}
-
-func (resource TypeReduce) ImplementsDataqueryVariant() {}
-
-func (resource TypeReduce) DataqueryType() string {
-	return "__expr__"
 }
 
 // NewTypeReduce creates a new TypeReduce object.
@@ -558,16 +538,8 @@ func (resource *TypeReduce) UnmarshalJSONStrict(raw []byte) error {
 	return errs
 }
 
-// Equals tests the equality of two dataqueries.
-func (resource TypeReduce) Equals(otherCandidate variants.Dataquery) bool {
-	if otherCandidate == nil {
-		return false
-	}
-
-	other, ok := otherCandidate.(TypeReduce)
-	if !ok {
-		return false
-	}
+// Equals tests the equality of two `TypeReduce` objects.
+func (resource TypeReduce) Equals(other TypeReduce) bool {
 	if resource.Datasource == nil && other.Datasource != nil || resource.Datasource != nil && other.Datasource == nil {
 		return false
 	}
@@ -746,12 +718,6 @@ type TypeResample struct {
 	Upsampler TypeResampleUpsampler `json:"upsampler"`
 	// The time duration
 	Window string `json:"window"`
-}
-
-func (resource TypeResample) ImplementsDataqueryVariant() {}
-
-func (resource TypeResample) DataqueryType() string {
-	return "__expr__"
 }
 
 // NewTypeResample creates a new TypeResample object.
@@ -945,16 +911,8 @@ func (resource *TypeResample) UnmarshalJSONStrict(raw []byte) error {
 	return errs
 }
 
-// Equals tests the equality of two dataqueries.
-func (resource TypeResample) Equals(otherCandidate variants.Dataquery) bool {
-	if otherCandidate == nil {
-		return false
-	}
-
-	other, ok := otherCandidate.(TypeResample)
-	if !ok {
-		return false
-	}
+// Equals tests the equality of two `TypeResample` objects.
+func (resource TypeResample) Equals(other TypeResample) bool {
 	if resource.Datasource == nil && other.Datasource != nil || resource.Datasource != nil && other.Datasource == nil {
 		return false
 	}
@@ -1112,12 +1070,6 @@ type TypeClassicConditions struct {
 	// NOTE: the values for timeRange are not saved in a dashboard, they are constructed on the fly
 	TimeRange *ExprTypeClassicConditionsTimeRange `json:"timeRange,omitempty"`
 	Type      string                              `json:"type"`
-}
-
-func (resource TypeClassicConditions) ImplementsDataqueryVariant() {}
-
-func (resource TypeClassicConditions) DataqueryType() string {
-	return "__expr__"
 }
 
 // NewTypeClassicConditions creates a new TypeClassicConditions object.
@@ -1282,16 +1234,8 @@ func (resource *TypeClassicConditions) UnmarshalJSONStrict(raw []byte) error {
 	return errs
 }
 
-// Equals tests the equality of two dataqueries.
-func (resource TypeClassicConditions) Equals(otherCandidate variants.Dataquery) bool {
-	if otherCandidate == nil {
-		return false
-	}
-
-	other, ok := otherCandidate.(TypeClassicConditions)
-	if !ok {
-		return false
-	}
+// Equals tests the equality of two `TypeClassicConditions` objects.
+func (resource TypeClassicConditions) Equals(other TypeClassicConditions) bool {
 
 	if len(resource.Conditions) != len(other.Conditions) {
 		return false
@@ -1444,12 +1388,6 @@ type TypeThreshold struct {
 	// NOTE: the values for timeRange are not saved in a dashboard, they are constructed on the fly
 	TimeRange *ExprTypeThresholdTimeRange `json:"timeRange,omitempty"`
 	Type      string                      `json:"type"`
-}
-
-func (resource TypeThreshold) ImplementsDataqueryVariant() {}
-
-func (resource TypeThreshold) DataqueryType() string {
-	return "__expr__"
 }
 
 // NewTypeThreshold creates a new TypeThreshold object.
@@ -1628,16 +1566,8 @@ func (resource *TypeThreshold) UnmarshalJSONStrict(raw []byte) error {
 	return errs
 }
 
-// Equals tests the equality of two dataqueries.
-func (resource TypeThreshold) Equals(otherCandidate variants.Dataquery) bool {
-	if otherCandidate == nil {
-		return false
-	}
-
-	other, ok := otherCandidate.(TypeThreshold)
-	if !ok {
-		return false
-	}
+// Equals tests the equality of two `TypeThreshold` objects.
+func (resource TypeThreshold) Equals(other TypeThreshold) bool {
 
 	if len(resource.Conditions) != len(other.Conditions) {
 		return false
@@ -1797,12 +1727,6 @@ type TypeSql struct {
 	// NOTE: the values for timeRange are not saved in a dashboard, they are constructed on the fly
 	TimeRange *ExprTypeSqlTimeRange `json:"timeRange,omitempty"`
 	Type      string                `json:"type"`
-}
-
-func (resource TypeSql) ImplementsDataqueryVariant() {}
-
-func (resource TypeSql) DataqueryType() string {
-	return "__expr__"
 }
 
 // NewTypeSql creates a new TypeSql object.
@@ -1968,16 +1892,8 @@ func (resource *TypeSql) UnmarshalJSONStrict(raw []byte) error {
 	return errs
 }
 
-// Equals tests the equality of two dataqueries.
-func (resource TypeSql) Equals(otherCandidate variants.Dataquery) bool {
-	if otherCandidate == nil {
-		return false
-	}
-
-	other, ok := otherCandidate.(TypeSql)
-	if !ok {
-		return false
-	}
+// Equals tests the equality of two `TypeSql` objects.
+func (resource TypeSql) Equals(other TypeSql) bool {
 	if resource.Datasource == nil && other.Datasource != nil || resource.Datasource != nil && other.Datasource == nil {
 		return false
 	}

@@ -56,10 +56,10 @@ func QueryConverter(input dashboardv2beta1.DataQueryKind) string {
 		buffer.Reset()
 
 	}
-	if input.Spec != nil && input.Spec.(*CloudWatchQuery).CloudWatchMetricsQuery != nil {
+	if input.Spec != nil && input.Spec.(*Request).MetricsQuery != nil {
 
-		buffer.WriteString(`CloudWatchMetricsQuery(`)
-		arg0 := CloudWatchMetricsQueryConverter(*input.Spec.(*CloudWatchQuery).CloudWatchMetricsQuery)
+		buffer.WriteString(`MetricsQuery(`)
+		arg0 := MetricsQueryConverter(*input.Spec.(*Request).MetricsQuery)
 		buffer.WriteString(arg0)
 
 		buffer.WriteString(")")
@@ -68,10 +68,10 @@ func QueryConverter(input dashboardv2beta1.DataQueryKind) string {
 		buffer.Reset()
 
 	}
-	if input.Spec != nil && input.Spec.(*CloudWatchQuery).CloudWatchLogsQuery != nil {
+	if input.Spec != nil && input.Spec.(*Request).LogsQuery != nil {
 
-		buffer.WriteString(`CloudWatchLogsQuery(`)
-		arg0 := CloudWatchLogsQueryConverter(*input.Spec.(*CloudWatchQuery).CloudWatchLogsQuery)
+		buffer.WriteString(`LogsQuery(`)
+		arg0 := LogsQueryConverter(*input.Spec.(*Request).LogsQuery)
 		buffer.WriteString(arg0)
 
 		buffer.WriteString(")")
@@ -80,10 +80,10 @@ func QueryConverter(input dashboardv2beta1.DataQueryKind) string {
 		buffer.Reset()
 
 	}
-	if input.Spec != nil && input.Spec.(*CloudWatchQuery).CloudWatchAnnotationQuery != nil {
+	if input.Spec != nil && input.Spec.(*Request).AnnotationQuery != nil {
 
-		buffer.WriteString(`CloudWatchAnnotationQuery(`)
-		arg0 := CloudWatchAnnotationQueryConverter(*input.Spec.(*CloudWatchQuery).CloudWatchAnnotationQuery)
+		buffer.WriteString(`AnnotationQuery(`)
+		arg0 := AnnotationQueryConverter(*input.Spec.(*Request).AnnotationQuery)
 		buffer.WriteString(arg0)
 
 		buffer.WriteString(")")

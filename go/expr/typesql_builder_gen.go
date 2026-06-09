@@ -4,11 +4,10 @@ package expr
 
 import (
 	cog "github.com/grafana/grafana-foundation-sdk/go/cog"
-	variants "github.com/grafana/grafana-foundation-sdk/go/cog/variants"
 	common "github.com/grafana/grafana-foundation-sdk/go/common"
 )
 
-var _ cog.Builder[variants.Dataquery] = (*TypeSqlBuilder)(nil)
+var _ cog.Builder[TypeSql] = (*TypeSqlBuilder)(nil)
 
 type TypeSqlBuilder struct {
 	internal *TypeSql
@@ -26,7 +25,7 @@ func NewTypeSqlBuilder() *TypeSqlBuilder {
 	return builder
 }
 
-func (builder *TypeSqlBuilder) Build() (variants.Dataquery, error) {
+func (builder *TypeSqlBuilder) Build() (TypeSql, error) {
 	if err := builder.internal.Validate(); err != nil {
 		return TypeSql{}, err
 	}

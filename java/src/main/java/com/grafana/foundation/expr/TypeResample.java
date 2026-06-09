@@ -9,7 +9,7 @@ import com.fasterxml.jackson.databind.ObjectWriter;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.grafana.foundation.common.DataSourceRef;
 
-public class TypeResample implements com.grafana.foundation.cog.variants.Dataquery {
+public class TypeResample {
     // The datasource
     @JsonInclude(JsonInclude.Include.NON_NULL)
     @JsonProperty("datasource")
@@ -100,9 +100,6 @@ public class TypeResample implements com.grafana.foundation.cog.variants.Dataque
         this.type = type;
         this.upsampler = upsampler;
         this.window = window;
-    }
-    public String dataqueryName() {
-        return "__expr__";
     }
     
     public String toJSON() throws JsonProcessingException {

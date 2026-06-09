@@ -272,9 +272,9 @@ func (resource MetricStat) Validate() error {
 type Dimensions map[string]StringOrArrayOfString
 
 // Shape of a CloudWatch Metrics query
-type CloudWatchMetricsQuery struct {
+type MetricsQuery struct {
 	// Whether a query is a Metrics, Logs, or Annotations query
-	QueryMode CloudWatchQueryMode `json:"queryMode"`
+	QueryMode QueryMode `json:"queryMode"`
 	// Whether to use a metric search or metric insights query
 	MetricQueryType *MetricQueryType `json:"metricQueryType,omitempty"`
 	// Whether to use the query builder or code editor to create the query
@@ -293,7 +293,7 @@ type CloudWatchMetricsQuery struct {
 	// A unique identifier for the query within the list of targets.
 	// In server side expressions, the refId is used as a variable name to identify results.
 	// By default, the UI will assign A->Z; however setting meaningful names may be useful.
-	RefId *string `json:"refId,omitempty"`
+	RefId string `json:"refId"`
 	// If hide is set to true, Grafana will filter out the response(s) associated with this query before returning it to the panel.
 	Hide *bool `json:"hide,omitempty"`
 	// Specify the query flavor
@@ -326,22 +326,16 @@ type CloudWatchMetricsQuery struct {
 	Statistics []string `json:"statistics,omitempty"`
 }
 
-func (resource CloudWatchMetricsQuery) ImplementsDataqueryVariant() {}
-
-func (resource CloudWatchMetricsQuery) DataqueryType() string {
-	return "cloudwatch"
-}
-
-// NewCloudWatchMetricsQuery creates a new CloudWatchMetricsQuery object.
-func NewCloudWatchMetricsQuery() *CloudWatchMetricsQuery {
-	return &CloudWatchMetricsQuery{
-		QueryMode: CloudWatchQueryModeMetrics,
+// NewMetricsQuery creates a new MetricsQuery object.
+func NewMetricsQuery() *MetricsQuery {
+	return &MetricsQuery{
+		QueryMode: QueryModeMetrics,
 	}
 }
 
-// UnmarshalJSONStrict implements a custom JSON unmarshalling logic to decode `CloudWatchMetricsQuery` from JSON.
+// UnmarshalJSONStrict implements a custom JSON unmarshalling logic to decode `MetricsQuery` from JSON.
 // Note: the unmarshalling done by this function is strict. It will fail over required fields being absent from the input, fields having an incorrect type, unexpected fields being present, …
-func (resource *CloudWatchMetricsQuery) UnmarshalJSONStrict(raw []byte) error {
+func (resource *MetricsQuery) UnmarshalJSONStrict(raw []byte) error {
 	if raw == nil {
 		return nil
 	}
@@ -451,10 +445,13 @@ func (resource *CloudWatchMetricsQuery) UnmarshalJSONStrict(raw []byte) error {
 			if err := json.Unmarshal(fields["refId"], &resource.RefId); err != nil {
 				errs = append(errs, cog.MakeBuildErrors("refId", err)...)
 			}
+		} else {
+			errs = append(errs, cog.MakeBuildErrors("refId", errors.New("required field is null"))...)
 
 		}
 		delete(fields, "refId")
-
+	} else {
+		errs = append(errs, cog.MakeBuildErrors("refId", errors.New("required field is missing from input"))...)
 	}
 	// Field "hide"
 	if fields["hide"] != nil {
@@ -625,22 +622,14 @@ func (resource *CloudWatchMetricsQuery) UnmarshalJSONStrict(raw []byte) error {
 	}
 
 	for field := range fields {
-		errs = append(errs, cog.MakeBuildErrors("CloudWatchMetricsQuery", fmt.Errorf("unexpected field '%s'", field))...)
+		errs = append(errs, cog.MakeBuildErrors("MetricsQuery", fmt.Errorf("unexpected field '%s'", field))...)
 	}
 
 	return errs
 }
 
-// Equals tests the equality of two dataqueries.
-func (resource CloudWatchMetricsQuery) Equals(otherCandidate variants.Dataquery) bool {
-	if otherCandidate == nil {
-		return false
-	}
-
-	other, ok := otherCandidate.(CloudWatchMetricsQuery)
-	if !ok {
-		return false
-	}
+// Equals tests the equality of two `MetricsQuery` objects.
+func (resource MetricsQuery) Equals(other MetricsQuery) bool {
 	if resource.QueryMode != other.QueryMode {
 		return false
 	}
@@ -701,14 +690,8 @@ func (resource CloudWatchMetricsQuery) Equals(otherCandidate variants.Dataquery)
 			return false
 		}
 	}
-	if resource.RefId == nil && other.RefId != nil || resource.RefId != nil && other.RefId == nil {
+	if resource.RefId != other.RefId {
 		return false
-	}
-
-	if resource.RefId != nil {
-		if *resource.RefId != *other.RefId {
-			return false
-		}
 	}
 	if resource.Hide == nil && other.Hide != nil || resource.Hide != nil && other.Hide == nil {
 		return false
@@ -827,8 +810,8 @@ func (resource CloudWatchMetricsQuery) Equals(otherCandidate variants.Dataquery)
 	return true
 }
 
-// Validate checks all the validation constraints that may be defined on `CloudWatchMetricsQuery` fields for violations and returns them.
-func (resource CloudWatchMetricsQuery) Validate() error {
+// Validate checks all the validation constraints that may be defined on `MetricsQuery` fields for violations and returns them.
+func (resource MetricsQuery) Validate() error {
 	var errs cog.BuildErrors
 	if resource.Sql != nil {
 		if err := resource.Sql.Validate(); err != nil {
@@ -848,12 +831,12 @@ func (resource CloudWatchMetricsQuery) Validate() error {
 	return errs
 }
 
-type CloudWatchQueryMode string
+type QueryMode string
 
 const (
-	CloudWatchQueryModeMetrics     CloudWatchQueryMode = "Metrics"
-	CloudWatchQueryModeLogs        CloudWatchQueryMode = "Logs"
-	CloudWatchQueryModeAnnotations CloudWatchQueryMode = "Annotations"
+	QueryModeMetrics     QueryMode = "Metrics"
+	QueryModeLogs        QueryMode = "Logs"
+	QueryModeAnnotations QueryMode = "Annotations"
 )
 
 type MetricQueryType int64
@@ -1963,10 +1946,10 @@ const (
 )
 
 // Shape of a CloudWatch Logs query
-type CloudWatchLogsQuery struct {
+type LogsQuery struct {
 	// Whether a query is a Metrics, Logs, or Annotations query
-	QueryMode CloudWatchQueryMode `json:"queryMode"`
-	Id        string              `json:"id"`
+	QueryMode QueryMode `json:"queryMode"`
+	Id        string    `json:"id"`
 	// AWS region to query for the logs
 	Region string `json:"region"`
 	// The CloudWatch Logs Insights query to execute
@@ -1980,7 +1963,7 @@ type CloudWatchLogsQuery struct {
 	// A unique identifier for the query within the list of targets.
 	// In server side expressions, the refId is used as a variable name to identify results.
 	// By default, the UI will assign A->Z; however setting meaningful names may be useful.
-	RefId *string `json:"refId,omitempty"`
+	RefId string `json:"refId"`
 	// If hide is set to true, Grafana will filter out the response(s) associated with this query before returning it to the panel.
 	Hide *bool `json:"hide,omitempty"`
 	// Specify the query flavor
@@ -1995,22 +1978,16 @@ type CloudWatchLogsQuery struct {
 	Datasource *common.DataSourceRef `json:"datasource,omitempty"`
 }
 
-func (resource CloudWatchLogsQuery) ImplementsDataqueryVariant() {}
-
-func (resource CloudWatchLogsQuery) DataqueryType() string {
-	return "cloudwatch"
-}
-
-// NewCloudWatchLogsQuery creates a new CloudWatchLogsQuery object.
-func NewCloudWatchLogsQuery() *CloudWatchLogsQuery {
-	return &CloudWatchLogsQuery{
-		QueryMode: CloudWatchQueryModeLogs,
+// NewLogsQuery creates a new LogsQuery object.
+func NewLogsQuery() *LogsQuery {
+	return &LogsQuery{
+		QueryMode: QueryModeLogs,
 	}
 }
 
-// UnmarshalJSONStrict implements a custom JSON unmarshalling logic to decode `CloudWatchLogsQuery` from JSON.
+// UnmarshalJSONStrict implements a custom JSON unmarshalling logic to decode `LogsQuery` from JSON.
 // Note: the unmarshalling done by this function is strict. It will fail over required fields being absent from the input, fields having an incorrect type, unexpected fields being present, …
-func (resource *CloudWatchLogsQuery) UnmarshalJSONStrict(raw []byte) error {
+func (resource *LogsQuery) UnmarshalJSONStrict(raw []byte) error {
 	if raw == nil {
 		return nil
 	}
@@ -2126,10 +2103,13 @@ func (resource *CloudWatchLogsQuery) UnmarshalJSONStrict(raw []byte) error {
 			if err := json.Unmarshal(fields["refId"], &resource.RefId); err != nil {
 				errs = append(errs, cog.MakeBuildErrors("refId", err)...)
 			}
+		} else {
+			errs = append(errs, cog.MakeBuildErrors("refId", errors.New("required field is null"))...)
 
 		}
 		delete(fields, "refId")
-
+	} else {
+		errs = append(errs, cog.MakeBuildErrors("refId", errors.New("required field is missing from input"))...)
 	}
 	// Field "hide"
 	if fields["hide"] != nil {
@@ -2179,22 +2159,14 @@ func (resource *CloudWatchLogsQuery) UnmarshalJSONStrict(raw []byte) error {
 	}
 
 	for field := range fields {
-		errs = append(errs, cog.MakeBuildErrors("CloudWatchLogsQuery", fmt.Errorf("unexpected field '%s'", field))...)
+		errs = append(errs, cog.MakeBuildErrors("LogsQuery", fmt.Errorf("unexpected field '%s'", field))...)
 	}
 
 	return errs
 }
 
-// Equals tests the equality of two dataqueries.
-func (resource CloudWatchLogsQuery) Equals(otherCandidate variants.Dataquery) bool {
-	if otherCandidate == nil {
-		return false
-	}
-
-	other, ok := otherCandidate.(CloudWatchLogsQuery)
-	if !ok {
-		return false
-	}
+// Equals tests the equality of two `LogsQuery` objects.
+func (resource LogsQuery) Equals(other LogsQuery) bool {
 	if resource.QueryMode != other.QueryMode {
 		return false
 	}
@@ -2243,14 +2215,8 @@ func (resource CloudWatchLogsQuery) Equals(otherCandidate variants.Dataquery) bo
 			return false
 		}
 	}
-	if resource.RefId == nil && other.RefId != nil || resource.RefId != nil && other.RefId == nil {
+	if resource.RefId != other.RefId {
 		return false
-	}
-
-	if resource.RefId != nil {
-		if *resource.RefId != *other.RefId {
-			return false
-		}
 	}
 	if resource.Hide == nil && other.Hide != nil || resource.Hide != nil && other.Hide == nil {
 		return false
@@ -2292,8 +2258,8 @@ func (resource CloudWatchLogsQuery) Equals(otherCandidate variants.Dataquery) bo
 	return true
 }
 
-// Validate checks all the validation constraints that may be defined on `CloudWatchLogsQuery` fields for violations and returns them.
-func (resource CloudWatchLogsQuery) Validate() error {
+// Validate checks all the validation constraints that may be defined on `LogsQuery` fields for violations and returns them.
+func (resource LogsQuery) Validate() error {
 	var errs cog.BuildErrors
 
 	for i1 := range resource.LogGroups {
@@ -2438,9 +2404,9 @@ func (resource LogGroup) Validate() error {
 // Shape of a CloudWatch Annotation query
 // TS type is CloudWatchDefaultQuery = Omit<CloudWatchLogsQuery, 'queryMode'> & CloudWatchMetricsQuery, declared in veneer
 // #CloudWatchDefaultQuery: #CloudWatchLogsQuery & #CloudWatchMetricsQuery @cuetsy(kind="type")
-type CloudWatchAnnotationQuery struct {
+type AnnotationQuery struct {
 	// Whether a query is a Metrics, Logs, or Annotations query
-	QueryMode CloudWatchQueryMode `json:"queryMode"`
+	QueryMode QueryMode `json:"queryMode"`
 	// Enable matching on the prefix of the action name or alarm name, specify the prefixes with actionPrefix and/or alarmNamePrefix
 	PrefixMatching *bool `json:"prefixMatching,omitempty"`
 	// Use this parameter to filter the results of the operation to only those alarms
@@ -2452,7 +2418,7 @@ type CloudWatchAnnotationQuery struct {
 	// A unique identifier for the query within the list of targets.
 	// In server side expressions, the refId is used as a variable name to identify results.
 	// By default, the UI will assign A->Z; however setting meaningful names may be useful.
-	RefId *string `json:"refId,omitempty"`
+	RefId string `json:"refId"`
 	// If hide is set to true, Grafana will filter out the response(s) associated with this query before returning it to the panel.
 	Hide *bool `json:"hide,omitempty"`
 	// Specify the query flavor
@@ -2487,22 +2453,16 @@ type CloudWatchAnnotationQuery struct {
 	Statistics []string `json:"statistics,omitempty"`
 }
 
-func (resource CloudWatchAnnotationQuery) ImplementsDataqueryVariant() {}
-
-func (resource CloudWatchAnnotationQuery) DataqueryType() string {
-	return "cloudwatch"
-}
-
-// NewCloudWatchAnnotationQuery creates a new CloudWatchAnnotationQuery object.
-func NewCloudWatchAnnotationQuery() *CloudWatchAnnotationQuery {
-	return &CloudWatchAnnotationQuery{
-		QueryMode: CloudWatchQueryModeAnnotations,
+// NewAnnotationQuery creates a new AnnotationQuery object.
+func NewAnnotationQuery() *AnnotationQuery {
+	return &AnnotationQuery{
+		QueryMode: QueryModeAnnotations,
 	}
 }
 
-// UnmarshalJSONStrict implements a custom JSON unmarshalling logic to decode `CloudWatchAnnotationQuery` from JSON.
+// UnmarshalJSONStrict implements a custom JSON unmarshalling logic to decode `AnnotationQuery` from JSON.
 // Note: the unmarshalling done by this function is strict. It will fail over required fields being absent from the input, fields having an incorrect type, unexpected fields being present, …
-func (resource *CloudWatchAnnotationQuery) UnmarshalJSONStrict(raw []byte) error {
+func (resource *AnnotationQuery) UnmarshalJSONStrict(raw []byte) error {
 	if raw == nil {
 		return nil
 	}
@@ -2554,10 +2514,13 @@ func (resource *CloudWatchAnnotationQuery) UnmarshalJSONStrict(raw []byte) error
 			if err := json.Unmarshal(fields["refId"], &resource.RefId); err != nil {
 				errs = append(errs, cog.MakeBuildErrors("refId", err)...)
 			}
+		} else {
+			errs = append(errs, cog.MakeBuildErrors("refId", errors.New("required field is null"))...)
 
 		}
 		delete(fields, "refId")
-
+	} else {
+		errs = append(errs, cog.MakeBuildErrors("refId", errors.New("required field is missing from input"))...)
 	}
 	// Field "hide"
 	if fields["hide"] != nil {
@@ -2726,22 +2689,14 @@ func (resource *CloudWatchAnnotationQuery) UnmarshalJSONStrict(raw []byte) error
 	}
 
 	for field := range fields {
-		errs = append(errs, cog.MakeBuildErrors("CloudWatchAnnotationQuery", fmt.Errorf("unexpected field '%s'", field))...)
+		errs = append(errs, cog.MakeBuildErrors("AnnotationQuery", fmt.Errorf("unexpected field '%s'", field))...)
 	}
 
 	return errs
 }
 
-// Equals tests the equality of two dataqueries.
-func (resource CloudWatchAnnotationQuery) Equals(otherCandidate variants.Dataquery) bool {
-	if otherCandidate == nil {
-		return false
-	}
-
-	other, ok := otherCandidate.(CloudWatchAnnotationQuery)
-	if !ok {
-		return false
-	}
+// Equals tests the equality of two `AnnotationQuery` objects.
+func (resource AnnotationQuery) Equals(other AnnotationQuery) bool {
 	if resource.QueryMode != other.QueryMode {
 		return false
 	}
@@ -2763,14 +2718,8 @@ func (resource CloudWatchAnnotationQuery) Equals(otherCandidate variants.Dataque
 			return false
 		}
 	}
-	if resource.RefId == nil && other.RefId != nil || resource.RefId != nil && other.RefId == nil {
+	if resource.RefId != other.RefId {
 		return false
-	}
-
-	if resource.RefId != nil {
-		if *resource.RefId != *other.RefId {
-			return false
-		}
 	}
 	if resource.Hide == nil && other.Hide != nil || resource.Hide != nil && other.Hide == nil {
 		return false
@@ -2889,8 +2838,8 @@ func (resource CloudWatchAnnotationQuery) Equals(otherCandidate variants.Dataque
 	return true
 }
 
-// Validate checks all the validation constraints that may be defined on `CloudWatchAnnotationQuery` fields for violations and returns them.
-func (resource CloudWatchAnnotationQuery) Validate() error {
+// Validate checks all the validation constraints that may be defined on `AnnotationQuery` fields for violations and returns them.
+func (resource AnnotationQuery) Validate() error {
 	var errs cog.BuildErrors
 	if resource.Datasource != nil {
 		if err := resource.Datasource.Validate(); err != nil {
@@ -2905,11 +2854,11 @@ func (resource CloudWatchAnnotationQuery) Validate() error {
 	return errs
 }
 
-type CloudWatchQuery = CloudWatchMetricsQueryOrCloudWatchLogsQueryOrCloudWatchAnnotationQuery
+type Request = MetricsQueryOrLogsQueryOrAnnotationQuery
 
-// NewCloudWatchQuery creates a new CloudWatchQuery object.
-func NewCloudWatchQuery() *CloudWatchQuery {
-	return NewCloudWatchMetricsQueryOrCloudWatchLogsQueryOrCloudWatchAnnotationQuery()
+// NewRequest creates a new Request object.
+func NewRequest() *Request {
+	return NewMetricsQueryOrLogsQueryOrAnnotationQuery()
 }
 
 type QueryEditorArrayExpressionType string
@@ -3846,41 +3795,40 @@ func (resource StringOrBoolOrInt64) Validate() error {
 	return nil
 }
 
-type CloudWatchMetricsQueryOrCloudWatchLogsQueryOrCloudWatchAnnotationQuery struct {
-	CloudWatchMetricsQuery    *CloudWatchMetricsQuery    `json:"CloudWatchMetricsQuery,omitempty"`
-	CloudWatchLogsQuery       *CloudWatchLogsQuery       `json:"CloudWatchLogsQuery,omitempty"`
-	CloudWatchAnnotationQuery *CloudWatchAnnotationQuery `json:"CloudWatchAnnotationQuery,omitempty"`
+type MetricsQueryOrLogsQueryOrAnnotationQuery struct {
+	MetricsQuery    *MetricsQuery    `json:"MetricsQuery,omitempty"`
+	LogsQuery       *LogsQuery       `json:"LogsQuery,omitempty"`
+	AnnotationQuery *AnnotationQuery `json:"AnnotationQuery,omitempty"`
 }
 
-func (resource CloudWatchMetricsQueryOrCloudWatchLogsQueryOrCloudWatchAnnotationQuery) ImplementsDataqueryVariant() {
-}
+func (resource MetricsQueryOrLogsQueryOrAnnotationQuery) ImplementsDataqueryVariant() {}
 
-func (resource CloudWatchMetricsQueryOrCloudWatchLogsQueryOrCloudWatchAnnotationQuery) DataqueryType() string {
+func (resource MetricsQueryOrLogsQueryOrAnnotationQuery) DataqueryType() string {
 	return "cloudwatch"
 }
 
-// NewCloudWatchMetricsQueryOrCloudWatchLogsQueryOrCloudWatchAnnotationQuery creates a new CloudWatchMetricsQueryOrCloudWatchLogsQueryOrCloudWatchAnnotationQuery object.
-func NewCloudWatchMetricsQueryOrCloudWatchLogsQueryOrCloudWatchAnnotationQuery() *CloudWatchMetricsQueryOrCloudWatchLogsQueryOrCloudWatchAnnotationQuery {
-	return &CloudWatchMetricsQueryOrCloudWatchLogsQueryOrCloudWatchAnnotationQuery{}
+// NewMetricsQueryOrLogsQueryOrAnnotationQuery creates a new MetricsQueryOrLogsQueryOrAnnotationQuery object.
+func NewMetricsQueryOrLogsQueryOrAnnotationQuery() *MetricsQueryOrLogsQueryOrAnnotationQuery {
+	return &MetricsQueryOrLogsQueryOrAnnotationQuery{}
 }
 
-// MarshalJSON implements a custom JSON marshalling logic to encode `CloudWatchMetricsQueryOrCloudWatchLogsQueryOrCloudWatchAnnotationQuery` as JSON.
-func (resource CloudWatchMetricsQueryOrCloudWatchLogsQueryOrCloudWatchAnnotationQuery) MarshalJSON() ([]byte, error) {
-	if resource.CloudWatchMetricsQuery != nil {
-		return json.Marshal(resource.CloudWatchMetricsQuery)
+// MarshalJSON implements a custom JSON marshalling logic to encode `MetricsQueryOrLogsQueryOrAnnotationQuery` as JSON.
+func (resource MetricsQueryOrLogsQueryOrAnnotationQuery) MarshalJSON() ([]byte, error) {
+	if resource.MetricsQuery != nil {
+		return json.Marshal(resource.MetricsQuery)
 	}
-	if resource.CloudWatchLogsQuery != nil {
-		return json.Marshal(resource.CloudWatchLogsQuery)
+	if resource.LogsQuery != nil {
+		return json.Marshal(resource.LogsQuery)
 	}
-	if resource.CloudWatchAnnotationQuery != nil {
-		return json.Marshal(resource.CloudWatchAnnotationQuery)
+	if resource.AnnotationQuery != nil {
+		return json.Marshal(resource.AnnotationQuery)
 	}
 
 	return []byte("null"), nil
 }
 
-// UnmarshalJSON implements a custom JSON unmarshalling logic to decode `CloudWatchMetricsQueryOrCloudWatchLogsQueryOrCloudWatchAnnotationQuery` from JSON.
-func (resource *CloudWatchMetricsQueryOrCloudWatchLogsQueryOrCloudWatchAnnotationQuery) UnmarshalJSON(raw []byte) error {
+// UnmarshalJSON implements a custom JSON unmarshalling logic to decode `MetricsQueryOrLogsQueryOrAnnotationQuery` from JSON.
+func (resource *MetricsQueryOrLogsQueryOrAnnotationQuery) UnmarshalJSON(raw []byte) error {
 	if raw == nil {
 		return nil
 	}
@@ -3898,37 +3846,37 @@ func (resource *CloudWatchMetricsQueryOrCloudWatchLogsQueryOrCloudWatchAnnotatio
 
 	switch discriminator {
 	case "Annotations":
-		var cloudWatchAnnotationQuery CloudWatchAnnotationQuery
-		if err := json.Unmarshal(raw, &cloudWatchAnnotationQuery); err != nil {
+		var annotationQuery AnnotationQuery
+		if err := json.Unmarshal(raw, &annotationQuery); err != nil {
 			return err
 		}
 
-		resource.CloudWatchAnnotationQuery = &cloudWatchAnnotationQuery
+		resource.AnnotationQuery = &annotationQuery
 		return nil
 	case "Logs":
-		var cloudWatchLogsQuery CloudWatchLogsQuery
-		if err := json.Unmarshal(raw, &cloudWatchLogsQuery); err != nil {
+		var logsQuery LogsQuery
+		if err := json.Unmarshal(raw, &logsQuery); err != nil {
 			return err
 		}
 
-		resource.CloudWatchLogsQuery = &cloudWatchLogsQuery
+		resource.LogsQuery = &logsQuery
 		return nil
 	case "Metrics":
-		var cloudWatchMetricsQuery CloudWatchMetricsQuery
-		if err := json.Unmarshal(raw, &cloudWatchMetricsQuery); err != nil {
+		var metricsQuery MetricsQuery
+		if err := json.Unmarshal(raw, &metricsQuery); err != nil {
 			return err
 		}
 
-		resource.CloudWatchMetricsQuery = &cloudWatchMetricsQuery
+		resource.MetricsQuery = &metricsQuery
 		return nil
 	}
 
 	return nil
 }
 
-// UnmarshalJSONStrict implements a custom JSON unmarshalling logic to decode `CloudWatchMetricsQueryOrCloudWatchLogsQueryOrCloudWatchAnnotationQuery` from JSON.
+// UnmarshalJSONStrict implements a custom JSON unmarshalling logic to decode `MetricsQueryOrLogsQueryOrAnnotationQuery` from JSON.
 // Note: the unmarshalling done by this function is strict. It will fail over required fields being absent from the input, fields having an incorrect type, unexpected fields being present, …
-func (resource *CloudWatchMetricsQueryOrCloudWatchLogsQueryOrCloudWatchAnnotationQuery) UnmarshalJSONStrict(raw []byte) error {
+func (resource *MetricsQueryOrLogsQueryOrAnnotationQuery) UnmarshalJSONStrict(raw []byte) error {
 	if raw == nil {
 		return nil
 	}
@@ -3945,28 +3893,28 @@ func (resource *CloudWatchMetricsQueryOrCloudWatchLogsQueryOrCloudWatchAnnotatio
 
 	switch discriminator {
 	case "Annotations":
-		cloudWatchAnnotationQuery := &CloudWatchAnnotationQuery{}
-		if err := cloudWatchAnnotationQuery.UnmarshalJSONStrict(raw); err != nil {
+		annotationQuery := &AnnotationQuery{}
+		if err := annotationQuery.UnmarshalJSONStrict(raw); err != nil {
 			return err
 		}
 
-		resource.CloudWatchAnnotationQuery = cloudWatchAnnotationQuery
+		resource.AnnotationQuery = annotationQuery
 		return nil
 	case "Logs":
-		cloudWatchLogsQuery := &CloudWatchLogsQuery{}
-		if err := cloudWatchLogsQuery.UnmarshalJSONStrict(raw); err != nil {
+		logsQuery := &LogsQuery{}
+		if err := logsQuery.UnmarshalJSONStrict(raw); err != nil {
 			return err
 		}
 
-		resource.CloudWatchLogsQuery = cloudWatchLogsQuery
+		resource.LogsQuery = logsQuery
 		return nil
 	case "Metrics":
-		cloudWatchMetricsQuery := &CloudWatchMetricsQuery{}
-		if err := cloudWatchMetricsQuery.UnmarshalJSONStrict(raw); err != nil {
+		metricsQuery := &MetricsQuery{}
+		if err := metricsQuery.UnmarshalJSONStrict(raw); err != nil {
 			return err
 		}
 
-		resource.CloudWatchMetricsQuery = cloudWatchMetricsQuery
+		resource.MetricsQuery = metricsQuery
 		return nil
 	}
 
@@ -3974,39 +3922,39 @@ func (resource *CloudWatchMetricsQueryOrCloudWatchLogsQueryOrCloudWatchAnnotatio
 }
 
 // Equals tests the equality of two dataqueries.
-func (resource CloudWatchMetricsQueryOrCloudWatchLogsQueryOrCloudWatchAnnotationQuery) Equals(otherCandidate variants.Dataquery) bool {
+func (resource MetricsQueryOrLogsQueryOrAnnotationQuery) Equals(otherCandidate variants.Dataquery) bool {
 	if otherCandidate == nil {
 		return false
 	}
 
-	other, ok := otherCandidate.(CloudWatchMetricsQueryOrCloudWatchLogsQueryOrCloudWatchAnnotationQuery)
+	other, ok := otherCandidate.(MetricsQueryOrLogsQueryOrAnnotationQuery)
 	if !ok {
 		return false
 	}
-	if resource.CloudWatchMetricsQuery == nil && other.CloudWatchMetricsQuery != nil || resource.CloudWatchMetricsQuery != nil && other.CloudWatchMetricsQuery == nil {
+	if resource.MetricsQuery == nil && other.MetricsQuery != nil || resource.MetricsQuery != nil && other.MetricsQuery == nil {
 		return false
 	}
 
-	if resource.CloudWatchMetricsQuery != nil {
-		if !resource.CloudWatchMetricsQuery.Equals(*other.CloudWatchMetricsQuery) {
+	if resource.MetricsQuery != nil {
+		if !resource.MetricsQuery.Equals(*other.MetricsQuery) {
 			return false
 		}
 	}
-	if resource.CloudWatchLogsQuery == nil && other.CloudWatchLogsQuery != nil || resource.CloudWatchLogsQuery != nil && other.CloudWatchLogsQuery == nil {
+	if resource.LogsQuery == nil && other.LogsQuery != nil || resource.LogsQuery != nil && other.LogsQuery == nil {
 		return false
 	}
 
-	if resource.CloudWatchLogsQuery != nil {
-		if !resource.CloudWatchLogsQuery.Equals(*other.CloudWatchLogsQuery) {
+	if resource.LogsQuery != nil {
+		if !resource.LogsQuery.Equals(*other.LogsQuery) {
 			return false
 		}
 	}
-	if resource.CloudWatchAnnotationQuery == nil && other.CloudWatchAnnotationQuery != nil || resource.CloudWatchAnnotationQuery != nil && other.CloudWatchAnnotationQuery == nil {
+	if resource.AnnotationQuery == nil && other.AnnotationQuery != nil || resource.AnnotationQuery != nil && other.AnnotationQuery == nil {
 		return false
 	}
 
-	if resource.CloudWatchAnnotationQuery != nil {
-		if !resource.CloudWatchAnnotationQuery.Equals(*other.CloudWatchAnnotationQuery) {
+	if resource.AnnotationQuery != nil {
+		if !resource.AnnotationQuery.Equals(*other.AnnotationQuery) {
 			return false
 		}
 	}
@@ -4014,22 +3962,22 @@ func (resource CloudWatchMetricsQueryOrCloudWatchLogsQueryOrCloudWatchAnnotation
 	return true
 }
 
-// Validate checks all the validation constraints that may be defined on `CloudWatchMetricsQueryOrCloudWatchLogsQueryOrCloudWatchAnnotationQuery` fields for violations and returns them.
-func (resource CloudWatchMetricsQueryOrCloudWatchLogsQueryOrCloudWatchAnnotationQuery) Validate() error {
+// Validate checks all the validation constraints that may be defined on `MetricsQueryOrLogsQueryOrAnnotationQuery` fields for violations and returns them.
+func (resource MetricsQueryOrLogsQueryOrAnnotationQuery) Validate() error {
 	var errs cog.BuildErrors
-	if resource.CloudWatchMetricsQuery != nil {
-		if err := resource.CloudWatchMetricsQuery.Validate(); err != nil {
-			errs = append(errs, cog.MakeBuildErrors("CloudWatchMetricsQuery", err)...)
+	if resource.MetricsQuery != nil {
+		if err := resource.MetricsQuery.Validate(); err != nil {
+			errs = append(errs, cog.MakeBuildErrors("MetricsQuery", err)...)
 		}
 	}
-	if resource.CloudWatchLogsQuery != nil {
-		if err := resource.CloudWatchLogsQuery.Validate(); err != nil {
-			errs = append(errs, cog.MakeBuildErrors("CloudWatchLogsQuery", err)...)
+	if resource.LogsQuery != nil {
+		if err := resource.LogsQuery.Validate(); err != nil {
+			errs = append(errs, cog.MakeBuildErrors("LogsQuery", err)...)
 		}
 	}
-	if resource.CloudWatchAnnotationQuery != nil {
-		if err := resource.CloudWatchAnnotationQuery.Validate(); err != nil {
-			errs = append(errs, cog.MakeBuildErrors("CloudWatchAnnotationQuery", err)...)
+	if resource.AnnotationQuery != nil {
+		if err := resource.AnnotationQuery.Validate(); err != nil {
+			errs = append(errs, cog.MakeBuildErrors("AnnotationQuery", err)...)
 		}
 	}
 
@@ -4046,7 +3994,7 @@ func VariantConfig() variants.DataqueryConfig {
 	return variants.DataqueryConfig{
 		Identifier: "cloudwatch",
 		DataqueryUnmarshaler: func(raw []byte) (variants.Dataquery, error) {
-			dataquery := &CloudWatchQuery{}
+			dataquery := &Request{}
 
 			if err := json.Unmarshal(raw, dataquery); err != nil {
 				return nil, err
@@ -4055,7 +4003,7 @@ func VariantConfig() variants.DataqueryConfig {
 			return dataquery, nil
 		},
 		StrictDataqueryUnmarshaler: func(raw []byte) (variants.Dataquery, error) {
-			dataquery := &CloudWatchQuery{}
+			dataquery := &Request{}
 
 			if err := dataquery.UnmarshalJSONStrict(raw); err != nil {
 				return nil, err
@@ -4064,21 +4012,21 @@ func VariantConfig() variants.DataqueryConfig {
 			return dataquery, nil
 		},
 		GoConverter: func(input any) string {
-			var dataquery CloudWatchQuery
-			if cast, ok := input.(*CloudWatchQuery); ok {
+			var dataquery Request
+			if cast, ok := input.(*Request); ok {
 				dataquery = *cast
 			} else {
-				dataquery = input.(CloudWatchQuery)
+				dataquery = input.(Request)
 			}
 
-			if dataquery.CloudWatchMetricsQuery != nil {
-				return CloudWatchMetricsQueryConverter(*dataquery.CloudWatchMetricsQuery)
+			if dataquery.MetricsQuery != nil {
+				return MetricsQueryConverter(*dataquery.MetricsQuery)
 			}
-			if dataquery.CloudWatchLogsQuery != nil {
-				return CloudWatchLogsQueryConverter(*dataquery.CloudWatchLogsQuery)
+			if dataquery.LogsQuery != nil {
+				return LogsQueryConverter(*dataquery.LogsQuery)
 			}
-			if dataquery.CloudWatchAnnotationQuery != nil {
-				return CloudWatchAnnotationQueryConverter(*dataquery.CloudWatchAnnotationQuery)
+			if dataquery.AnnotationQuery != nil {
+				return AnnotationQueryConverter(*dataquery.AnnotationQuery)
 			}
 
 			return ""

@@ -13,7 +13,7 @@ import java.util.List;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.grafana.foundation.common.DataSourceRef;
 
-public class TypeClassicConditions implements com.grafana.foundation.cog.variants.Dataquery {
+public class TypeClassicConditions {
     @JsonSetter(nulls = Nulls.AS_EMPTY)
     @JsonProperty("conditions")
     public List<ExprTypeClassicConditionsConditions> conditions;
@@ -75,9 +75,6 @@ public class TypeClassicConditions implements com.grafana.foundation.cog.variant
         this.resultAssertions = resultAssertions;
         this.timeRange = timeRange;
         this.type = type;
-    }
-    public String dataqueryName() {
-        return "__expr__";
     }
     
     public String toJSON() throws JsonProcessingException {

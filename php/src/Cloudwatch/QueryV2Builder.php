@@ -56,34 +56,34 @@ class QueryV2Builder implements \Grafana\Foundation\Cog\Builder
     }
 
     /**
-     * @param \Grafana\Foundation\Cog\Builder<\Grafana\Foundation\Cloudwatch\CloudWatchMetricsQuery> $cloudWatchMetricsQuery
+     * @param \Grafana\Foundation\Cog\Builder<\Grafana\Foundation\Cloudwatch\MetricsQuery> $metricsQuery
      */
-    public function cloudWatchMetricsQuery(\Grafana\Foundation\Cog\Builder $cloudWatchMetricsQuery): static
+    public function metricsQuery(\Grafana\Foundation\Cog\Builder $metricsQuery): static
     {
-        $cloudWatchMetricsQueryResource = $cloudWatchMetricsQuery->build();
-        $this->internal->spec = $cloudWatchMetricsQueryResource;
+        $metricsQueryResource = $metricsQuery->build();
+        $this->internal->spec = $metricsQueryResource;
     
         return $this;
     }
 
     /**
-     * @param \Grafana\Foundation\Cog\Builder<\Grafana\Foundation\Cloudwatch\CloudWatchLogsQuery> $cloudWatchLogsQuery
+     * @param \Grafana\Foundation\Cog\Builder<\Grafana\Foundation\Cloudwatch\LogsQuery> $logsQuery
      */
-    public function cloudWatchLogsQuery(\Grafana\Foundation\Cog\Builder $cloudWatchLogsQuery): static
+    public function logsQuery(\Grafana\Foundation\Cog\Builder $logsQuery): static
     {
-        $cloudWatchLogsQueryResource = $cloudWatchLogsQuery->build();
-        $this->internal->spec = $cloudWatchLogsQueryResource;
+        $logsQueryResource = $logsQuery->build();
+        $this->internal->spec = $logsQueryResource;
     
         return $this;
     }
 
     /**
-     * @param \Grafana\Foundation\Cog\Builder<\Grafana\Foundation\Cloudwatch\CloudWatchAnnotationQuery> $cloudWatchAnnotationQuery
+     * @param \Grafana\Foundation\Cog\Builder<\Grafana\Foundation\Cloudwatch\AnnotationQuery> $annotationQuery
      */
-    public function cloudWatchAnnotationQuery(\Grafana\Foundation\Cog\Builder $cloudWatchAnnotationQuery): static
+    public function annotationQuery(\Grafana\Foundation\Cog\Builder $annotationQuery): static
     {
-        $cloudWatchAnnotationQueryResource = $cloudWatchAnnotationQuery->build();
-        $this->internal->spec = $cloudWatchAnnotationQueryResource;
+        $annotationQueryResource = $annotationQuery->build();
+        $this->internal->spec = $annotationQueryResource;
     
         return $this;
     }

@@ -18,22 +18,22 @@ Builds the object.
 func (builder *QueryBuilder) Build() (dashboardv2beta1.DataQueryKind, error)
 ```
 
-### <span class="badge object-method"></span> CloudWatchAnnotationQuery
+### <span class="badge object-method"></span> AnnotationQuery
 
 ```go
-func (builder *QueryBuilder) CloudWatchAnnotationQuery(cloudWatchAnnotationQuery cog.Builder[cloudwatch.CloudWatchAnnotationQuery]) *QueryBuilder
+func (builder *QueryBuilder) AnnotationQuery(annotationQuery cog.Builder[cloudwatch.AnnotationQuery]) *QueryBuilder
 ```
 
-### <span class="badge object-method"></span> CloudWatchLogsQuery
+### <span class="badge object-method"></span> LogsQuery
 
 ```go
-func (builder *QueryBuilder) CloudWatchLogsQuery(cloudWatchLogsQuery cog.Builder[cloudwatch.CloudWatchLogsQuery]) *QueryBuilder
+func (builder *QueryBuilder) LogsQuery(logsQuery cog.Builder[cloudwatch.LogsQuery]) *QueryBuilder
 ```
 
-### <span class="badge object-method"></span> CloudWatchMetricsQuery
+### <span class="badge object-method"></span> MetricsQuery
 
 ```go
-func (builder *QueryBuilder) CloudWatchMetricsQuery(cloudWatchMetricsQuery cog.Builder[cloudwatch.CloudWatchMetricsQuery]) *QueryBuilder
+func (builder *QueryBuilder) MetricsQuery(metricsQuery cog.Builder[cloudwatch.MetricsQuery]) *QueryBuilder
 ```
 
 ### <span class="badge object-method"></span> Datasource

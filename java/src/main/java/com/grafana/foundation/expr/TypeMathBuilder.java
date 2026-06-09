@@ -4,7 +4,7 @@ package com.grafana.foundation.expr;
 
 import com.grafana.foundation.common.DataSourceRef;
 
-public class TypeMathBuilder implements com.grafana.foundation.cog.Builder<com.grafana.foundation.cog.variants.Dataquery> {
+public class TypeMathBuilder implements com.grafana.foundation.cog.Builder<TypeMath> {
     protected final TypeMath internal;
     
     public TypeMathBuilder() {

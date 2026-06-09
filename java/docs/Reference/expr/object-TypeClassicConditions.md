@@ -6,7 +6,7 @@ title: <span class="badge object-type-class"></span> TypeClassicConditions
 ## Definition
 
 ```java
-public class TypeClassicConditions extends com.grafana.foundation.cog.variants.Dataquery {
+public class TypeClassicConditions {
   public List<ExprTypeClassicConditionsConditions> conditions;
   public DataSourceRef datasource;
   public Boolean hide;

@@ -59,3 +59,6 @@ Validate checks all the validation constraints that may be defined on `TypeMathO
 func (typeMathOrTypeReduceOrTypeResampleOrTypeClassicConditionsOrTypeThresholdOrTypeSql *TypeMathOrTypeReduceOrTypeResampleOrTypeClassicConditionsOrTypeThresholdOrTypeSql) Validate() error
 ```
 
+## See also
+
+ * <span class="badge builder"></span> [TypeMathOrTypeReduceOrTypeResampleOrTypeClassicConditionsOrTypeThresholdOrTypeSqlBuilder](./builder-TypeMathOrTypeReduceOrTypeResampleOrTypeClassicConditionsOrTypeThresholdOrTypeSqlBuilder.md)

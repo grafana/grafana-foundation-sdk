@@ -4,7 +4,7 @@ package com.grafana.foundation.expr;
 
 import com.grafana.foundation.common.DataSourceRef;
 
-public class TypeResampleBuilder implements com.grafana.foundation.cog.Builder<com.grafana.foundation.cog.variants.Dataquery> {
+public class TypeResampleBuilder implements com.grafana.foundation.cog.Builder<TypeResample> {
     protected final TypeResample internal;
     
     public TypeResampleBuilder() {

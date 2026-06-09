@@ -9,7 +9,7 @@ import com.fasterxml.jackson.databind.ObjectWriter;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.grafana.foundation.common.DataSourceRef;
 
-public class TypeReduce implements com.grafana.foundation.cog.variants.Dataquery {
+public class TypeReduce {
     // The datasource
     @JsonInclude(JsonInclude.Include.NON_NULL)
     @JsonProperty("datasource")
@@ -90,9 +90,6 @@ public class TypeReduce implements com.grafana.foundation.cog.variants.Dataquery
         this.settings = settings;
         this.timeRange = timeRange;
         this.type = type;
-    }
-    public String dataqueryName() {
-        return "__expr__";
     }
     
     public String toJSON() throws JsonProcessingException {

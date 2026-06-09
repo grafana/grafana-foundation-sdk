@@ -4,7 +4,7 @@ package com.grafana.foundation.expr;
 
 import com.grafana.foundation.common.DataSourceRef;
 
-public class TypeReduceBuilder implements com.grafana.foundation.cog.Builder<com.grafana.foundation.cog.variants.Dataquery> {
+public class TypeReduceBuilder implements com.grafana.foundation.cog.Builder<TypeReduce> {
     protected final TypeReduce internal;
     
     public TypeReduceBuilder() {

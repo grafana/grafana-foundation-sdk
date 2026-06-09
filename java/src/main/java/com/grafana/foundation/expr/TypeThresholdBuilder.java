@@ -6,7 +6,7 @@ import java.util.List;
 import java.util.LinkedList;
 import com.grafana.foundation.common.DataSourceRef;
 
-public class TypeThresholdBuilder implements com.grafana.foundation.cog.Builder<com.grafana.foundation.cog.variants.Dataquery> {
+public class TypeThresholdBuilder implements com.grafana.foundation.cog.Builder<TypeThreshold> {
     protected final TypeThreshold internal;
     
     public TypeThresholdBuilder() {

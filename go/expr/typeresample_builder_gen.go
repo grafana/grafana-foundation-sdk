@@ -4,11 +4,10 @@ package expr
 
 import (
 	cog "github.com/grafana/grafana-foundation-sdk/go/cog"
-	variants "github.com/grafana/grafana-foundation-sdk/go/cog/variants"
 	common "github.com/grafana/grafana-foundation-sdk/go/common"
 )
 
-var _ cog.Builder[variants.Dataquery] = (*TypeResampleBuilder)(nil)
+var _ cog.Builder[TypeResample] = (*TypeResampleBuilder)(nil)
 
 type TypeResampleBuilder struct {
 	internal *TypeResample
@@ -26,7 +25,7 @@ func NewTypeResampleBuilder() *TypeResampleBuilder {
 	return builder
 }
 
-func (builder *TypeResampleBuilder) Build() (variants.Dataquery, error) {
+func (builder *TypeResampleBuilder) Build() (TypeResample, error) {
 	if err := builder.internal.Validate(); err != nil {
 		return TypeResample{}, err
 	}

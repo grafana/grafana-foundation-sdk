@@ -18,22 +18,22 @@ Builds the object.
 public Query build()
 ```
 
-### <span class="badge object-method"></span> cloudWatchAnnotationQuery
+### <span class="badge object-method"></span> annotationQuery
 
 ```java
-public QueryBuilder cloudWatchAnnotationQuery(com.grafana.foundation.cog.Builder<CloudWatchAnnotationQuery> cloudWatchAnnotationQuery)
+public QueryBuilder annotationQuery(com.grafana.foundation.cog.Builder<AnnotationQuery> annotationQuery)
 ```
 
-### <span class="badge object-method"></span> cloudWatchLogsQuery
+### <span class="badge object-method"></span> logsQuery
 
 ```java
-public QueryBuilder cloudWatchLogsQuery(com.grafana.foundation.cog.Builder<CloudWatchLogsQuery> cloudWatchLogsQuery)
+public QueryBuilder logsQuery(com.grafana.foundation.cog.Builder<LogsQuery> logsQuery)
 ```
 
-### <span class="badge object-method"></span> cloudWatchMetricsQuery
+### <span class="badge object-method"></span> metricsQuery
 
 ```java
-public QueryBuilder cloudWatchMetricsQuery(com.grafana.foundation.cog.Builder<CloudWatchMetricsQuery> cloudWatchMetricsQuery)
+public QueryBuilder metricsQuery(com.grafana.foundation.cog.Builder<MetricsQuery> metricsQuery)
 ```
 
 ### <span class="badge object-method"></span> datasource

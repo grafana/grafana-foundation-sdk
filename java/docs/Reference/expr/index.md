@@ -74,3 +74,4 @@
  * <span class="badge builder"></span> [TypeResampleBuilder](./builder-TypeResampleBuilder.md)
  * <span class="badge builder"></span> [TypeSqlBuilder](./builder-TypeSqlBuilder.md)
  * <span class="badge builder"></span> [TypeThresholdBuilder](./builder-TypeThresholdBuilder.md)
+ * <span class="badge builder"></span> [ExprBuilder](./builder-ExprBuilder.md)

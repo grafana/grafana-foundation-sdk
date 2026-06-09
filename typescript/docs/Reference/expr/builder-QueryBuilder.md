@@ -18,40 +18,10 @@ Builds the object.
 build()
 ```
 
-### <span class="badge object-method"></span> typeClassicConditions
+### <span class="badge object-method"></span> classicConditions
 
 ```typescript
-typeClassicConditions(typeClassicConditions: cog.Builder<expr.TypeClassicConditions>)
-```
-
-### <span class="badge object-method"></span> typeMath
-
-```typescript
-typeMath(typeMath: cog.Builder<expr.TypeMath>)
-```
-
-### <span class="badge object-method"></span> typeReduce
-
-```typescript
-typeReduce(typeReduce: cog.Builder<expr.TypeReduce>)
-```
-
-### <span class="badge object-method"></span> typeResample
-
-```typescript
-typeResample(typeResample: cog.Builder<expr.TypeResample>)
-```
-
-### <span class="badge object-method"></span> typeSql
-
-```typescript
-typeSql(typeSql: cog.Builder<expr.TypeSql>)
-```
-
-### <span class="badge object-method"></span> typeThreshold
-
-```typescript
-typeThreshold(typeThreshold: cog.Builder<expr.TypeThreshold>)
+classicConditions(typeClassicConditions: cog.Builder<expr.TypeClassicConditions>)
 ```
 
 ### <span class="badge object-method"></span> datasource
@@ -70,6 +40,36 @@ datasource(ref: {
 
 ```typescript
 labels(labels: Record<string, string>)
+```
+
+### <span class="badge object-method"></span> math
+
+```typescript
+math(typeMath: cog.Builder<expr.TypeMath>)
+```
+
+### <span class="badge object-method"></span> reduce
+
+```typescript
+reduce(typeReduce: cog.Builder<expr.TypeReduce>)
+```
+
+### <span class="badge object-method"></span> resample
+
+```typescript
+resample(typeResample: cog.Builder<expr.TypeResample>)
+```
+
+### <span class="badge object-method"></span> sql
+
+```typescript
+sql(typeSql: cog.Builder<expr.TypeSql>)
+```
+
+### <span class="badge object-method"></span> threshold
+
+```typescript
+threshold(typeThreshold: cog.Builder<expr.TypeThreshold>)
 ```
 
 ### <span class="badge object-method"></span> version

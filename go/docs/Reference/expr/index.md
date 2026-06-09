@@ -71,10 +71,12 @@
  * <span class="badge builder"></span> [QueryV2Builder](./builder-QueryV2Builder.md)
  * <span class="badge builder"></span> [TypeClassicConditionsBuilder](./builder-TypeClassicConditionsBuilder.md)
  * <span class="badge builder"></span> [TypeMathBuilder](./builder-TypeMathBuilder.md)
+ * <span class="badge builder"></span> [TypeMathOrTypeReduceOrTypeResampleOrTypeClassicConditionsOrTypeThresholdOrTypeSqlBuilder](./builder-TypeMathOrTypeReduceOrTypeResampleOrTypeClassicConditionsOrTypeThresholdOrTypeSqlBuilder.md)
  * <span class="badge builder"></span> [TypeReduceBuilder](./builder-TypeReduceBuilder.md)
  * <span class="badge builder"></span> [TypeResampleBuilder](./builder-TypeResampleBuilder.md)
  * <span class="badge builder"></span> [TypeSqlBuilder](./builder-TypeSqlBuilder.md)
  * <span class="badge builder"></span> [TypeThresholdBuilder](./builder-TypeThresholdBuilder.md)
+ * <span class="badge builder"></span> [ExprBuilder](./builder-ExprBuilder.md)
 ## Functions
 
 ### <span class="badge function"></span> NewExpr
@@ -327,6 +329,14 @@ QueryV2Converter accepts a `QueryV2` object and generates the Go code to build t
 func QueryV2Converter(input dashboardv2.DataQueryKind) string
 ```
 
+### <span class="badge function"></span> ExprConverter
+
+ExprConverter accepts a `Expr` object and generates the Go code to build this object using builders.
+
+```go
+func ExprConverter(input Expr) string
+```
+
 ### <span class="badge function"></span> TypeMathConverter
 
 TypeMathConverter accepts a `TypeMath` object and generates the Go code to build this object using builders.
@@ -373,6 +383,14 @@ TypeSqlConverter accepts a `TypeSql` object and generates the Go code to build t
 
 ```go
 func TypeSqlConverter(input TypeSql) string
+```
+
+### <span class="badge function"></span> TypeMathOrTypeReduceOrTypeResampleOrTypeClassicConditionsOrTypeThresholdOrTypeSqlConverter
+
+TypeMathOrTypeReduceOrTypeResampleOrTypeClassicConditionsOrTypeThresholdOrTypeSqlConverter accepts a `TypeMathOrTypeReduceOrTypeResampleOrTypeClassicConditionsOrTypeThresholdOrTypeSql` object and generates the Go code to build this object using builders.
+
+```go
+func TypeMathOrTypeReduceOrTypeResampleOrTypeClassicConditionsOrTypeThresholdOrTypeSqlConverter(input TypeMathOrTypeReduceOrTypeResampleOrTypeClassicConditionsOrTypeThresholdOrTypeSql) string
 ```
 
 ### <span class="badge function"></span> ExprTypeMathResultAssertionsConverter
