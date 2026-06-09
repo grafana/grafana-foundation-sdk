@@ -25,6 +25,7 @@ func statPanel(query cog.Builder[variants.Dataquery]) *stat.PanelBuilder {
 func main() {
 	builder := dashboard.NewDashboardBuilder("[Example] Dashboard with expr queries").
 		Editable().
+		Uid("example-dashboard-with-expr-queries").
 		WithPanel(timeseriesPanel(
 			expr.NewExprBuilder().
 				TypeSql(expr.NewTypeSqlBuilder().Expression("select * from A")),

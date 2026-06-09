@@ -1,0 +1,20 @@
+{
+    "name": "grafana/foundation-sdk-example",
+    "type": "project",
+    "autoload": {
+        "psr-4": {
+            "App\\": "./src"
+        }
+    },
+    "require": {
+        "grafana/foundation-sdk": "dev-main"
+    },
+    "scripts": {
+        "post-install-cmd": [
+            "rm -rf vendor/grafana/foundation-sdk && ln -s ../../../../../ vendor/grafana/foundation-sdk"
+        ],
+        "post-update-cmd": [
+            "rm -rf vendor/grafana/foundation-sdk && ln -s ../../../../../ vendor/grafana/foundation-sdk"
+        ]
+    }
+}
