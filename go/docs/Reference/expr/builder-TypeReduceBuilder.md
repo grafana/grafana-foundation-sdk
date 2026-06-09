@@ -15,7 +15,7 @@ func NewTypeReduceBuilder() *TypeReduceBuilder
 Builds the object.
 
 ```go
-func (builder *TypeReduceBuilder) Build() (variants.Dataquery, error)
+func (builder *TypeReduceBuilder) Build() (TypeReduce, error)
 ```
 
 ### <span class="badge object-method"></span> Datasource

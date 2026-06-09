@@ -15,7 +15,7 @@ func NewTypeMathBuilder() *TypeMathBuilder
 Builds the object.
 
 ```go
-func (builder *TypeMathBuilder) Build() (variants.Dataquery, error)
+func (builder *TypeMathBuilder) Build() (TypeMath, error)
 ```
 
 ### <span class="badge object-method"></span> Datasource

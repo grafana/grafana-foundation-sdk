@@ -30,54 +30,54 @@ public class ExprQueryBuilder implements com.grafana.foundation.cog.Builder<Data
         return this;
     }
     
-    public ExprQueryBuilder typeMath(com.grafana.foundation.cog.Builder<TypeMath> typeMath) {
+    public ExprQueryBuilder math(com.grafana.foundation.cog.Builder<TypeMath> typeMath) {
 		if (this.internal.spec == null) {
-			this.internal.spec = new com.grafana.foundation.expr.Expr();
+			this.internal.spec = new com.grafana.foundation.expr.ExprBuilder().build();
 		}
     TypeMath typeMathResource = typeMath.build();
         ((Expr) this.internal.spec).typeMath = typeMathResource;
         return this;
     }
     
-    public ExprQueryBuilder typeReduce(com.grafana.foundation.cog.Builder<TypeReduce> typeReduce) {
+    public ExprQueryBuilder reduce(com.grafana.foundation.cog.Builder<TypeReduce> typeReduce) {
 		if (this.internal.spec == null) {
-			this.internal.spec = new com.grafana.foundation.expr.Expr();
+			this.internal.spec = new com.grafana.foundation.expr.ExprBuilder().build();
 		}
     TypeReduce typeReduceResource = typeReduce.build();
         ((Expr) this.internal.spec).typeReduce = typeReduceResource;
         return this;
     }
     
-    public ExprQueryBuilder typeResample(com.grafana.foundation.cog.Builder<TypeResample> typeResample) {
+    public ExprQueryBuilder resample(com.grafana.foundation.cog.Builder<TypeResample> typeResample) {
 		if (this.internal.spec == null) {
-			this.internal.spec = new com.grafana.foundation.expr.Expr();
+			this.internal.spec = new com.grafana.foundation.expr.ExprBuilder().build();
 		}
     TypeResample typeResampleResource = typeResample.build();
         ((Expr) this.internal.spec).typeResample = typeResampleResource;
         return this;
     }
     
-    public ExprQueryBuilder typeClassicConditions(com.grafana.foundation.cog.Builder<TypeClassicConditions> typeClassicConditions) {
+    public ExprQueryBuilder classicConditions(com.grafana.foundation.cog.Builder<TypeClassicConditions> typeClassicConditions) {
 		if (this.internal.spec == null) {
-			this.internal.spec = new com.grafana.foundation.expr.Expr();
+			this.internal.spec = new com.grafana.foundation.expr.ExprBuilder().build();
 		}
     TypeClassicConditions typeClassicConditionsResource = typeClassicConditions.build();
         ((Expr) this.internal.spec).typeClassicConditions = typeClassicConditionsResource;
         return this;
     }
     
-    public ExprQueryBuilder typeThreshold(com.grafana.foundation.cog.Builder<TypeThreshold> typeThreshold) {
+    public ExprQueryBuilder threshold(com.grafana.foundation.cog.Builder<TypeThreshold> typeThreshold) {
 		if (this.internal.spec == null) {
-			this.internal.spec = new com.grafana.foundation.expr.Expr();
+			this.internal.spec = new com.grafana.foundation.expr.ExprBuilder().build();
 		}
     TypeThreshold typeThresholdResource = typeThreshold.build();
         ((Expr) this.internal.spec).typeThreshold = typeThresholdResource;
         return this;
     }
     
-    public ExprQueryBuilder typeSql(com.grafana.foundation.cog.Builder<TypeSql> typeSql) {
+    public ExprQueryBuilder sql(com.grafana.foundation.cog.Builder<TypeSql> typeSql) {
 		if (this.internal.spec == null) {
-			this.internal.spec = new com.grafana.foundation.expr.Expr();
+			this.internal.spec = new com.grafana.foundation.expr.ExprBuilder().build();
 		}
     TypeSql typeSqlResource = typeSql.build();
         ((Expr) this.internal.spec).typeSql = typeSqlResource;

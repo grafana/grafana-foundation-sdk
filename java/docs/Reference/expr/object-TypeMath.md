@@ -6,7 +6,7 @@ title: <span class="badge object-type-class"></span> TypeMath
 ## Definition
 
 ```java
-public class TypeMath extends com.grafana.foundation.cog.variants.Dataquery {
+public class TypeMath {
   public DataSourceRef datasource;
   public String expression;
   public Boolean hide;

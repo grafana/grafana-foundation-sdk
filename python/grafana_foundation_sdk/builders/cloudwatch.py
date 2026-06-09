@@ -43,21 +43,21 @@ class QueryV2(cogbuilder.Builder[dashboardv2.DataQueryKind]):
     
         return self
     
-    def cloud_watch_metrics_query(self, cloud_watch_metrics_query: cogbuilder.Builder[cloudwatch.CloudWatchMetricsQuery]) -> typing.Self:    
-        cloud_watch_metrics_query_resource = cloud_watch_metrics_query.build()
-        self._internal.spec = cloud_watch_metrics_query_resource
+    def metrics_query(self, metrics_query: cogbuilder.Builder[cloudwatch.MetricsQuery]) -> typing.Self:    
+        metrics_query_resource = metrics_query.build()
+        self._internal.spec = metrics_query_resource
     
         return self
     
-    def cloud_watch_logs_query(self, cloud_watch_logs_query: cogbuilder.Builder[cloudwatch.CloudWatchLogsQuery]) -> typing.Self:    
-        cloud_watch_logs_query_resource = cloud_watch_logs_query.build()
-        self._internal.spec = cloud_watch_logs_query_resource
+    def logs_query(self, logs_query: cogbuilder.Builder[cloudwatch.LogsQuery]) -> typing.Self:    
+        logs_query_resource = logs_query.build()
+        self._internal.spec = logs_query_resource
     
         return self
     
-    def cloud_watch_annotation_query(self, cloud_watch_annotation_query: cogbuilder.Builder[cloudwatch.CloudWatchAnnotationQuery]) -> typing.Self:    
-        cloud_watch_annotation_query_resource = cloud_watch_annotation_query.build()
-        self._internal.spec = cloud_watch_annotation_query_resource
+    def annotation_query(self, annotation_query: cogbuilder.Builder[cloudwatch.AnnotationQuery]) -> typing.Self:    
+        annotation_query_resource = annotation_query.build()
+        self._internal.spec = annotation_query_resource
     
         return self
     
@@ -158,23 +158,23 @@ class MetricStat(cogbuilder.Builder[cloudwatch.MetricStat]):
     
 
 
-class CloudWatchMetricsQuery(cogbuilder.Builder[cloudwatch.CloudWatchMetricsQuery]):    
+class MetricsQuery(cogbuilder.Builder[cloudwatch.MetricsQuery]):    
     """
     Shape of a CloudWatch Metrics query
     """
     
-    _internal: cloudwatch.CloudWatchMetricsQuery
+    _internal: cloudwatch.MetricsQuery
 
     def __init__(self) -> None:
-        self._internal = cloudwatch.CloudWatchMetricsQuery()
+        self._internal = cloudwatch.MetricsQuery()
 
-    def build(self) -> cloudwatch.CloudWatchMetricsQuery:
+    def build(self) -> cloudwatch.MetricsQuery:
         """
         Builds the object.
         """
         return self._internal    
     
-    def query_mode(self, query_mode: cloudwatch.CloudWatchQueryMode) -> typing.Self:    
+    def query_mode(self, query_mode: cloudwatch.QueryMode) -> typing.Self:    
         """
         Whether a query is a Metrics, Logs, or Annotations query
         """
@@ -650,23 +650,23 @@ class QueryEditorOperator(cogbuilder.Builder[cloudwatch.QueryEditorOperator]):
     
 
 
-class CloudWatchLogsQuery(cogbuilder.Builder[cloudwatch.CloudWatchLogsQuery]):    
+class LogsQuery(cogbuilder.Builder[cloudwatch.LogsQuery]):    
     """
     Shape of a CloudWatch Logs query
     """
     
-    _internal: cloudwatch.CloudWatchLogsQuery
+    _internal: cloudwatch.LogsQuery
 
     def __init__(self) -> None:
-        self._internal = cloudwatch.CloudWatchLogsQuery()
+        self._internal = cloudwatch.LogsQuery()
 
-    def build(self) -> cloudwatch.CloudWatchLogsQuery:
+    def build(self) -> cloudwatch.LogsQuery:
         """
         Builds the object.
         """
         return self._internal    
     
-    def query_mode(self, query_mode: cloudwatch.CloudWatchQueryMode) -> typing.Self:    
+    def query_mode(self, query_mode: cloudwatch.QueryMode) -> typing.Self:    
         """
         Whether a query is a Metrics, Logs, or Annotations query
         """
@@ -829,25 +829,25 @@ class LogGroup(cogbuilder.Builder[cloudwatch.LogGroup]):
     
 
 
-class CloudWatchAnnotationQuery(cogbuilder.Builder[cloudwatch.CloudWatchAnnotationQuery]):    
+class AnnotationQuery(cogbuilder.Builder[cloudwatch.AnnotationQuery]):    
     """
     Shape of a CloudWatch Annotation query
     TS type is CloudWatchDefaultQuery = Omit<CloudWatchLogsQuery, 'queryMode'> & CloudWatchMetricsQuery, declared in veneer
     #CloudWatchDefaultQuery: #CloudWatchLogsQuery & #CloudWatchMetricsQuery @cuetsy(kind="type")
     """
     
-    _internal: cloudwatch.CloudWatchAnnotationQuery
+    _internal: cloudwatch.AnnotationQuery
 
     def __init__(self) -> None:
-        self._internal = cloudwatch.CloudWatchAnnotationQuery()
+        self._internal = cloudwatch.AnnotationQuery()
 
-    def build(self) -> cloudwatch.CloudWatchAnnotationQuery:
+    def build(self) -> cloudwatch.AnnotationQuery:
         """
         Builds the object.
         """
         return self._internal    
     
-    def query_mode(self, query_mode: cloudwatch.CloudWatchQueryMode) -> typing.Self:    
+    def query_mode(self, query_mode: cloudwatch.QueryMode) -> typing.Self:    
         """
         Whether a query is a Metrics, Logs, or Annotations query
         """
@@ -1049,21 +1049,21 @@ class Query(cogbuilder.Builder[dashboardv2beta1.DataQueryKind]):
     
         return self
     
-    def cloud_watch_metrics_query(self, cloud_watch_metrics_query: cogbuilder.Builder[cloudwatch.CloudWatchMetricsQuery]) -> typing.Self:    
-        cloud_watch_metrics_query_resource = cloud_watch_metrics_query.build()
-        self._internal.spec = cloud_watch_metrics_query_resource
+    def metrics_query(self, metrics_query: cogbuilder.Builder[cloudwatch.MetricsQuery]) -> typing.Self:    
+        metrics_query_resource = metrics_query.build()
+        self._internal.spec = metrics_query_resource
     
         return self
     
-    def cloud_watch_logs_query(self, cloud_watch_logs_query: cogbuilder.Builder[cloudwatch.CloudWatchLogsQuery]) -> typing.Self:    
-        cloud_watch_logs_query_resource = cloud_watch_logs_query.build()
-        self._internal.spec = cloud_watch_logs_query_resource
+    def logs_query(self, logs_query: cogbuilder.Builder[cloudwatch.LogsQuery]) -> typing.Self:    
+        logs_query_resource = logs_query.build()
+        self._internal.spec = logs_query_resource
     
         return self
     
-    def cloud_watch_annotation_query(self, cloud_watch_annotation_query: cogbuilder.Builder[cloudwatch.CloudWatchAnnotationQuery]) -> typing.Self:    
-        cloud_watch_annotation_query_resource = cloud_watch_annotation_query.build()
-        self._internal.spec = cloud_watch_annotation_query_resource
+    def annotation_query(self, annotation_query: cogbuilder.Builder[cloudwatch.AnnotationQuery]) -> typing.Self:    
+        annotation_query_resource = annotation_query.build()
+        self._internal.spec = annotation_query_resource
     
         return self
     

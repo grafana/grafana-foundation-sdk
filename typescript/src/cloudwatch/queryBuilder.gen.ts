@@ -39,21 +39,21 @@ export class QueryBuilder implements cog.Builder<dashboardv2beta1.DataQueryKind>
         return this;
     }
 
-    cloudWatchMetricsQuery(cloudWatchMetricsQuery: cog.Builder<cloudwatch.CloudWatchMetricsQuery>): this {
-        const cloudWatchMetricsQueryResource = cloudWatchMetricsQuery.build();
-        this.internal.spec = cloudWatchMetricsQueryResource;
+    metricsQuery(metricsQuery: cog.Builder<cloudwatch.MetricsQuery>): this {
+        const metricsQueryResource = metricsQuery.build();
+        this.internal.spec = metricsQueryResource;
         return this;
     }
 
-    cloudWatchLogsQuery(cloudWatchLogsQuery: cog.Builder<cloudwatch.CloudWatchLogsQuery>): this {
-        const cloudWatchLogsQueryResource = cloudWatchLogsQuery.build();
-        this.internal.spec = cloudWatchLogsQueryResource;
+    logsQuery(logsQuery: cog.Builder<cloudwatch.LogsQuery>): this {
+        const logsQueryResource = logsQuery.build();
+        this.internal.spec = logsQueryResource;
         return this;
     }
 
-    cloudWatchAnnotationQuery(cloudWatchAnnotationQuery: cog.Builder<cloudwatch.CloudWatchAnnotationQuery>): this {
-        const cloudWatchAnnotationQueryResource = cloudWatchAnnotationQuery.build();
-        this.internal.spec = cloudWatchAnnotationQueryResource;
+    annotationQuery(annotationQuery: cog.Builder<cloudwatch.AnnotationQuery>): this {
+        const annotationQueryResource = annotationQuery.build();
+        this.internal.spec = annotationQueryResource;
         return this;
     }
 }

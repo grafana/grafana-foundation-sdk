@@ -57,7 +57,7 @@ final class QueryV2Converter
             if ($input->spec !== null && $input->spec instanceof \Grafana\Foundation\Expr\TypeMath) {
     
         
-    $buffer = 'typeMath(';
+    $buffer = 'math(';
         $arg0 = \Grafana\Foundation\Expr\TypeMathConverter::convert($input->spec);
         $buffer .= $arg0;
         
@@ -70,7 +70,7 @@ final class QueryV2Converter
             if ($input->spec !== null && $input->spec instanceof \Grafana\Foundation\Expr\TypeReduce) {
     
         
-    $buffer = 'typeReduce(';
+    $buffer = 'reduce(';
         $arg0 = \Grafana\Foundation\Expr\TypeReduceConverter::convert($input->spec);
         $buffer .= $arg0;
         
@@ -83,7 +83,7 @@ final class QueryV2Converter
             if ($input->spec !== null && $input->spec instanceof \Grafana\Foundation\Expr\TypeResample) {
     
         
-    $buffer = 'typeResample(';
+    $buffer = 'resample(';
         $arg0 = \Grafana\Foundation\Expr\TypeResampleConverter::convert($input->spec);
         $buffer .= $arg0;
         
@@ -96,7 +96,7 @@ final class QueryV2Converter
             if ($input->spec !== null && $input->spec instanceof \Grafana\Foundation\Expr\TypeClassicConditions) {
     
         
-    $buffer = 'typeClassicConditions(';
+    $buffer = 'classicConditions(';
         $arg0 = \Grafana\Foundation\Expr\TypeClassicConditionsConverter::convert($input->spec);
         $buffer .= $arg0;
         
@@ -109,7 +109,7 @@ final class QueryV2Converter
             if ($input->spec !== null && $input->spec instanceof \Grafana\Foundation\Expr\TypeThreshold) {
     
         
-    $buffer = 'typeThreshold(';
+    $buffer = 'threshold(';
         $arg0 = \Grafana\Foundation\Expr\TypeThresholdConverter::convert($input->spec);
         $buffer .= $arg0;
         
@@ -122,7 +122,7 @@ final class QueryV2Converter
             if ($input->spec !== null && $input->spec instanceof \Grafana\Foundation\Expr\TypeSql) {
     
         
-    $buffer = 'typeSql(';
+    $buffer = 'sql(';
         $arg0 = \Grafana\Foundation\Expr\TypeSqlConverter::convert($input->spec);
         $buffer .= $arg0;
         

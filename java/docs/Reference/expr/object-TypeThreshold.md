@@ -6,7 +6,7 @@ title: <span class="badge object-type-class"></span> TypeThreshold
 ## Definition
 
 ```java
-public class TypeThreshold extends com.grafana.foundation.cog.variants.Dataquery {
+public class TypeThreshold {
   public List<ExprTypeThresholdConditions> conditions;
   public DataSourceRef datasource;
   public String expression;

@@ -15,7 +15,7 @@ func NewTypeClassicConditionsBuilder() *TypeClassicConditionsBuilder
 Builds the object.
 
 ```go
-func (builder *TypeClassicConditionsBuilder) Build() (variants.Dataquery, error)
+func (builder *TypeClassicConditionsBuilder) Build() (TypeClassicConditions, error)
 ```
 
 ### <span class="badge object-method"></span> Conditions

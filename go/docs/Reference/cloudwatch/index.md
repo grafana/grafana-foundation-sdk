@@ -2,18 +2,16 @@
 
 ## Objects
 
- * <span class="badge object-type-struct"></span> [CloudWatchAnnotationQuery](./object-CloudWatchAnnotationQuery.md)
- * <span class="badge object-type-struct"></span> [CloudWatchLogsQuery](./object-CloudWatchLogsQuery.md)
- * <span class="badge object-type-struct"></span> [CloudWatchMetricsQuery](./object-CloudWatchMetricsQuery.md)
- * <span class="badge object-type-struct"></span> [CloudWatchMetricsQueryOrCloudWatchLogsQueryOrCloudWatchAnnotationQuery](./object-CloudWatchMetricsQueryOrCloudWatchLogsQueryOrCloudWatchAnnotationQuery.md)
- * <span class="badge object-type-ref"></span> [CloudWatchQuery](./object-CloudWatchQuery.md)
- * <span class="badge object-type-enum"></span> [CloudWatchQueryMode](./object-CloudWatchQueryMode.md)
+ * <span class="badge object-type-struct"></span> [AnnotationQuery](./object-AnnotationQuery.md)
  * <span class="badge object-type-map"></span> [Dimensions](./object-Dimensions.md)
  * <span class="badge object-type-struct"></span> [LogGroup](./object-LogGroup.md)
+ * <span class="badge object-type-struct"></span> [LogsQuery](./object-LogsQuery.md)
  * <span class="badge object-type-enum"></span> [LogsQueryLanguage](./object-LogsQueryLanguage.md)
  * <span class="badge object-type-enum"></span> [MetricEditorMode](./object-MetricEditorMode.md)
  * <span class="badge object-type-enum"></span> [MetricQueryType](./object-MetricQueryType.md)
  * <span class="badge object-type-struct"></span> [MetricStat](./object-MetricStat.md)
+ * <span class="badge object-type-struct"></span> [MetricsQuery](./object-MetricsQuery.md)
+ * <span class="badge object-type-struct"></span> [MetricsQueryOrLogsQueryOrAnnotationQuery](./object-MetricsQueryOrLogsQueryOrAnnotationQuery.md)
  * <span class="badge object-type-struct"></span> [QueryEditorArrayExpression](./object-QueryEditorArrayExpression.md)
  * <span class="badge object-type-struct"></span> [QueryEditorArrayExpressionOrQueryEditorPropertyExpressionOrQueryEditorGroupByExpressionOrQueryEditorFunctionExpressionOrQueryEditorFunctionParameterExpressionOrQueryEditorOperatorExpression](./object-QueryEditorArrayExpressionOrQueryEditorPropertyExpressionOrQueryEditorGroupByExpressionOrQueryEditorFunctionExpressionOrQueryEditorFunctionParameterExpressionOrQueryEditorOperatorExpression.md)
  * <span class="badge object-type-enum"></span> [QueryEditorArrayExpressionType](./object-QueryEditorArrayExpressionType.md)
@@ -30,17 +28,20 @@
  * <span class="badge object-type-struct"></span> [QueryEditorPropertyExpression](./object-QueryEditorPropertyExpression.md)
  * <span class="badge object-type-struct"></span> [QueryEditorPropertyExpressionOrQueryEditorFunctionExpression](./object-QueryEditorPropertyExpressionOrQueryEditorFunctionExpression.md)
  * <span class="badge object-type-enum"></span> [QueryEditorPropertyType](./object-QueryEditorPropertyType.md)
+ * <span class="badge object-type-enum"></span> [QueryMode](./object-QueryMode.md)
+ * <span class="badge object-type-ref"></span> [Request](./object-Request.md)
  * <span class="badge object-type-struct"></span> [SQLExpression](./object-SQLExpression.md)
  * <span class="badge object-type-struct"></span> [StringOrArrayOfString](./object-StringOrArrayOfString.md)
  * <span class="badge object-type-struct"></span> [StringOrBoolOrInt64](./object-StringOrBoolOrInt64.md)
  * <span class="badge object-type-struct"></span> [StringOrBoolOrInt64OrArrayOfQueryEditorOperatorType](./object-StringOrBoolOrInt64OrArrayOfQueryEditorOperatorType.md)
 ## Builders
 
- * <span class="badge builder"></span> [CloudWatchAnnotationQueryBuilder](./builder-CloudWatchAnnotationQueryBuilder.md)
- * <span class="badge builder"></span> [CloudWatchLogsQueryBuilder](./builder-CloudWatchLogsQueryBuilder.md)
- * <span class="badge builder"></span> [CloudWatchMetricsQueryBuilder](./builder-CloudWatchMetricsQueryBuilder.md)
+ * <span class="badge builder"></span> [AnnotationQueryBuilder](./builder-AnnotationQueryBuilder.md)
  * <span class="badge builder"></span> [LogGroupBuilder](./builder-LogGroupBuilder.md)
+ * <span class="badge builder"></span> [LogsQueryBuilder](./builder-LogsQueryBuilder.md)
  * <span class="badge builder"></span> [MetricStatBuilder](./builder-MetricStatBuilder.md)
+ * <span class="badge builder"></span> [MetricsQueryBuilder](./builder-MetricsQueryBuilder.md)
+ * <span class="badge builder"></span> [MetricsQueryOrLogsQueryOrAnnotationQueryBuilder](./builder-MetricsQueryOrLogsQueryOrAnnotationQueryBuilder.md)
  * <span class="badge builder"></span> [QueryBuilder](./builder-QueryBuilder.md)
  * <span class="badge builder"></span> [QueryEditorArrayExpressionBuilder](./builder-QueryEditorArrayExpressionBuilder.md)
  * <span class="badge builder"></span> [QueryEditorFunctionExpressionBuilder](./builder-QueryEditorFunctionExpressionBuilder.md)
@@ -51,6 +52,7 @@
  * <span class="badge builder"></span> [QueryEditorPropertyBuilder](./builder-QueryEditorPropertyBuilder.md)
  * <span class="badge builder"></span> [QueryEditorPropertyExpressionBuilder](./builder-QueryEditorPropertyExpressionBuilder.md)
  * <span class="badge builder"></span> [QueryV2Builder](./builder-QueryV2Builder.md)
+ * <span class="badge builder"></span> [RequestBuilder](./builder-RequestBuilder.md)
  * <span class="badge builder"></span> [SQLExpressionBuilder](./builder-SQLExpressionBuilder.md)
 ## Functions
 
@@ -62,12 +64,12 @@ NewMetricStat creates a new MetricStat object.
 func NewMetricStat() *MetricStat
 ```
 
-### <span class="badge function"></span> NewCloudWatchMetricsQuery
+### <span class="badge function"></span> NewMetricsQuery
 
-NewCloudWatchMetricsQuery creates a new CloudWatchMetricsQuery object.
+NewMetricsQuery creates a new MetricsQuery object.
 
 ```go
-func NewCloudWatchMetricsQuery() *CloudWatchMetricsQuery
+func NewMetricsQuery() *MetricsQuery
 ```
 
 ### <span class="badge function"></span> NewSQLExpression
@@ -166,12 +168,12 @@ NewQueryEditorOperatorValueType creates a new QueryEditorOperatorValueType objec
 func NewQueryEditorOperatorValueType() *QueryEditorOperatorValueType
 ```
 
-### <span class="badge function"></span> NewCloudWatchLogsQuery
+### <span class="badge function"></span> NewLogsQuery
 
-NewCloudWatchLogsQuery creates a new CloudWatchLogsQuery object.
+NewLogsQuery creates a new LogsQuery object.
 
 ```go
-func NewCloudWatchLogsQuery() *CloudWatchLogsQuery
+func NewLogsQuery() *LogsQuery
 ```
 
 ### <span class="badge function"></span> NewLogGroup
@@ -182,20 +184,20 @@ NewLogGroup creates a new LogGroup object.
 func NewLogGroup() *LogGroup
 ```
 
-### <span class="badge function"></span> NewCloudWatchAnnotationQuery
+### <span class="badge function"></span> NewAnnotationQuery
 
-NewCloudWatchAnnotationQuery creates a new CloudWatchAnnotationQuery object.
+NewAnnotationQuery creates a new AnnotationQuery object.
 
 ```go
-func NewCloudWatchAnnotationQuery() *CloudWatchAnnotationQuery
+func NewAnnotationQuery() *AnnotationQuery
 ```
 
-### <span class="badge function"></span> NewCloudWatchQuery
+### <span class="badge function"></span> NewRequest
 
-NewCloudWatchQuery creates a new CloudWatchQuery object.
+NewRequest creates a new Request object.
 
 ```go
-func NewCloudWatchQuery() *CloudWatchQuery
+func NewRequest() *Request
 ```
 
 ### <span class="badge function"></span> NewStringOrArrayOfString
@@ -238,12 +240,12 @@ NewStringOrBoolOrInt64 creates a new StringOrBoolOrInt64 object.
 func NewStringOrBoolOrInt64() *StringOrBoolOrInt64
 ```
 
-### <span class="badge function"></span> NewCloudWatchMetricsQueryOrCloudWatchLogsQueryOrCloudWatchAnnotationQuery
+### <span class="badge function"></span> NewMetricsQueryOrLogsQueryOrAnnotationQuery
 
-NewCloudWatchMetricsQueryOrCloudWatchLogsQueryOrCloudWatchAnnotationQuery creates a new CloudWatchMetricsQueryOrCloudWatchLogsQueryOrCloudWatchAnnotationQuery object.
+NewMetricsQueryOrLogsQueryOrAnnotationQuery creates a new MetricsQueryOrLogsQueryOrAnnotationQuery object.
 
 ```go
-func NewCloudWatchMetricsQueryOrCloudWatchLogsQueryOrCloudWatchAnnotationQuery() *CloudWatchMetricsQueryOrCloudWatchLogsQueryOrCloudWatchAnnotationQuery
+func NewMetricsQueryOrLogsQueryOrAnnotationQuery() *MetricsQueryOrLogsQueryOrAnnotationQuery
 ```
 
 ### <span class="badge function"></span> VariantConfig
@@ -272,12 +274,12 @@ MetricStatConverter accepts a `MetricStat` object and generates the Go code to b
 func MetricStatConverter(input MetricStat) string
 ```
 
-### <span class="badge function"></span> CloudWatchMetricsQueryConverter
+### <span class="badge function"></span> MetricsQueryConverter
 
-CloudWatchMetricsQueryConverter accepts a `CloudWatchMetricsQuery` object and generates the Go code to build this object using builders.
+MetricsQueryConverter accepts a `MetricsQuery` object and generates the Go code to build this object using builders.
 
 ```go
-func CloudWatchMetricsQueryConverter(input CloudWatchMetricsQuery) string
+func MetricsQueryConverter(input MetricsQuery) string
 ```
 
 ### <span class="badge function"></span> SQLExpressionConverter
@@ -352,12 +354,12 @@ QueryEditorOperatorConverter accepts a `QueryEditorOperator` object and generate
 func QueryEditorOperatorConverter(input QueryEditorOperator) string
 ```
 
-### <span class="badge function"></span> CloudWatchLogsQueryConverter
+### <span class="badge function"></span> LogsQueryConverter
 
-CloudWatchLogsQueryConverter accepts a `CloudWatchLogsQuery` object and generates the Go code to build this object using builders.
+LogsQueryConverter accepts a `LogsQuery` object and generates the Go code to build this object using builders.
 
 ```go
-func CloudWatchLogsQueryConverter(input CloudWatchLogsQuery) string
+func LogsQueryConverter(input LogsQuery) string
 ```
 
 ### <span class="badge function"></span> LogGroupConverter
@@ -368,12 +370,28 @@ LogGroupConverter accepts a `LogGroup` object and generates the Go code to build
 func LogGroupConverter(input LogGroup) string
 ```
 
-### <span class="badge function"></span> CloudWatchAnnotationQueryConverter
+### <span class="badge function"></span> AnnotationQueryConverter
 
-CloudWatchAnnotationQueryConverter accepts a `CloudWatchAnnotationQuery` object and generates the Go code to build this object using builders.
+AnnotationQueryConverter accepts a `AnnotationQuery` object and generates the Go code to build this object using builders.
 
 ```go
-func CloudWatchAnnotationQueryConverter(input CloudWatchAnnotationQuery) string
+func AnnotationQueryConverter(input AnnotationQuery) string
+```
+
+### <span class="badge function"></span> RequestConverter
+
+RequestConverter accepts a `Request` object and generates the Go code to build this object using builders.
+
+```go
+func RequestConverter(input Request) string
+```
+
+### <span class="badge function"></span> MetricsQueryOrLogsQueryOrAnnotationQueryConverter
+
+MetricsQueryOrLogsQueryOrAnnotationQueryConverter accepts a `MetricsQueryOrLogsQueryOrAnnotationQuery` object and generates the Go code to build this object using builders.
+
+```go
+func MetricsQueryOrLogsQueryOrAnnotationQueryConverter(input MetricsQueryOrLogsQueryOrAnnotationQuery) string
 ```
 
 ### <span class="badge function"></span> QueryConverter

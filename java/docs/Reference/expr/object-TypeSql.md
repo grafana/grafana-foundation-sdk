@@ -6,7 +6,7 @@ title: <span class="badge object-type-class"></span> TypeSql
 ## Definition
 
 ```java
-public class TypeSql extends com.grafana.foundation.cog.variants.Dataquery {
+public class TypeSql {
   public DataSourceRef datasource;
   public String expression;
   public String format;

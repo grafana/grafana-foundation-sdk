@@ -18,28 +18,28 @@ Builds the object.
 build()
 ```
 
-### <span class="badge object-method"></span> cloudWatchAnnotationQuery
+### <span class="badge object-method"></span> annotationQuery
 
-@param \Grafana\Foundation\Cog\Builder<\Grafana\Foundation\Cloudwatch\CloudWatchAnnotationQuery> $cloudWatchAnnotationQuery
+@param \Grafana\Foundation\Cog\Builder<\Grafana\Foundation\Cloudwatch\AnnotationQuery> $annotationQuery
 
 ```php
-cloudWatchAnnotationQuery(\Grafana\Foundation\Cog\Builder $cloudWatchAnnotationQuery)
+annotationQuery(\Grafana\Foundation\Cog\Builder $annotationQuery)
 ```
 
-### <span class="badge object-method"></span> cloudWatchLogsQuery
+### <span class="badge object-method"></span> logsQuery
 
-@param \Grafana\Foundation\Cog\Builder<\Grafana\Foundation\Cloudwatch\CloudWatchLogsQuery> $cloudWatchLogsQuery
+@param \Grafana\Foundation\Cog\Builder<\Grafana\Foundation\Cloudwatch\LogsQuery> $logsQuery
 
 ```php
-cloudWatchLogsQuery(\Grafana\Foundation\Cog\Builder $cloudWatchLogsQuery)
+logsQuery(\Grafana\Foundation\Cog\Builder $logsQuery)
 ```
 
-### <span class="badge object-method"></span> cloudWatchMetricsQuery
+### <span class="badge object-method"></span> metricsQuery
 
-@param \Grafana\Foundation\Cog\Builder<\Grafana\Foundation\Cloudwatch\CloudWatchMetricsQuery> $cloudWatchMetricsQuery
+@param \Grafana\Foundation\Cog\Builder<\Grafana\Foundation\Cloudwatch\MetricsQuery> $metricsQuery
 
 ```php
-cloudWatchMetricsQuery(\Grafana\Foundation\Cog\Builder $cloudWatchMetricsQuery)
+metricsQuery(\Grafana\Foundation\Cog\Builder $metricsQuery)
 ```
 
 ### <span class="badge object-method"></span> datasource

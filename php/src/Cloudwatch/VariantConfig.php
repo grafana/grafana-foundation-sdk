@@ -13,11 +13,11 @@ final class VariantConfig
     /** @var array<string, mixed> $input */
     switch ($input["queryMode"]) {
     case "Annotations":
-        return CloudWatchAnnotationQuery::fromArray($input);
+        return AnnotationQuery::fromArray($input);
     case "Logs":
-        return CloudWatchLogsQuery::fromArray($input);
+        return LogsQuery::fromArray($input);
     case "Metrics":
-        return CloudWatchMetricsQuery::fromArray($input);
+        return MetricsQuery::fromArray($input);
     default:
         throw new \ValueError('can not parse disjunction from array');
 }
@@ -25,12 +25,12 @@ final class VariantConfig
             convert: (function(\Grafana\Foundation\Cog\Dataquery $input) {
 
     switch (true) {
-    case $input instanceof CloudWatchAnnotationQuery:
-        return CloudWatchAnnotationQueryConverter::convert($input);
-    case $input instanceof CloudWatchLogsQuery:
-        return CloudWatchLogsQueryConverter::convert($input);
-    case $input instanceof CloudWatchMetricsQuery:
-        return CloudWatchMetricsQueryConverter::convert($input);
+    case $input instanceof AnnotationQuery:
+        return AnnotationQueryConverter::convert($input);
+    case $input instanceof LogsQuery:
+        return LogsQueryConverter::convert($input);
+    case $input instanceof MetricsQuery:
+        return MetricsQueryConverter::convert($input);
     default:
         throw new \ValueError('can not convert unknown disjunction branch');
 }

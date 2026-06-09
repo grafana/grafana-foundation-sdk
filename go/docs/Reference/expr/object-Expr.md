@@ -8,3 +8,6 @@ title: <span class="badge object-type-ref"></span> Expr
 ```go
 type Expr = expr.TypeMathOrTypeReduceOrTypeResampleOrTypeClassicConditionsOrTypeThresholdOrTypeSql
 ```
+## See also
+
+ * <span class="badge builder"></span> [ExprBuilder](./builder-ExprBuilder.md)

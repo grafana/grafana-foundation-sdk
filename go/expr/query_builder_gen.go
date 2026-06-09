@@ -68,7 +68,7 @@ func (builder *QueryBuilder) Datasource(datasource cog.Builder[dashboardv2beta1.
 	return builder
 }
 
-func (builder *QueryBuilder) TypeMath(typeMath cog.Builder[TypeMath]) *QueryBuilder {
+func (builder *QueryBuilder) Math(typeMath cog.Builder[TypeMath]) *QueryBuilder {
 	if builder.internal.Spec == nil {
 		builder.internal.Spec = NewExpr()
 	}
@@ -82,7 +82,7 @@ func (builder *QueryBuilder) TypeMath(typeMath cog.Builder[TypeMath]) *QueryBuil
 	return builder
 }
 
-func (builder *QueryBuilder) TypeReduce(typeReduce cog.Builder[TypeReduce]) *QueryBuilder {
+func (builder *QueryBuilder) Reduce(typeReduce cog.Builder[TypeReduce]) *QueryBuilder {
 	if builder.internal.Spec == nil {
 		builder.internal.Spec = NewExpr()
 	}
@@ -96,7 +96,7 @@ func (builder *QueryBuilder) TypeReduce(typeReduce cog.Builder[TypeReduce]) *Que
 	return builder
 }
 
-func (builder *QueryBuilder) TypeResample(typeResample cog.Builder[TypeResample]) *QueryBuilder {
+func (builder *QueryBuilder) Resample(typeResample cog.Builder[TypeResample]) *QueryBuilder {
 	if builder.internal.Spec == nil {
 		builder.internal.Spec = NewExpr()
 	}
@@ -110,7 +110,7 @@ func (builder *QueryBuilder) TypeResample(typeResample cog.Builder[TypeResample]
 	return builder
 }
 
-func (builder *QueryBuilder) TypeClassicConditions(typeClassicConditions cog.Builder[TypeClassicConditions]) *QueryBuilder {
+func (builder *QueryBuilder) ClassicConditions(typeClassicConditions cog.Builder[TypeClassicConditions]) *QueryBuilder {
 	if builder.internal.Spec == nil {
 		builder.internal.Spec = NewExpr()
 	}
@@ -124,7 +124,7 @@ func (builder *QueryBuilder) TypeClassicConditions(typeClassicConditions cog.Bui
 	return builder
 }
 
-func (builder *QueryBuilder) TypeThreshold(typeThreshold cog.Builder[TypeThreshold]) *QueryBuilder {
+func (builder *QueryBuilder) Threshold(typeThreshold cog.Builder[TypeThreshold]) *QueryBuilder {
 	if builder.internal.Spec == nil {
 		builder.internal.Spec = NewExpr()
 	}
@@ -138,7 +138,7 @@ func (builder *QueryBuilder) TypeThreshold(typeThreshold cog.Builder[TypeThresho
 	return builder
 }
 
-func (builder *QueryBuilder) TypeSql(typeSql cog.Builder[TypeSql]) *QueryBuilder {
+func (builder *QueryBuilder) Sql(typeSql cog.Builder[TypeSql]) *QueryBuilder {
 	if builder.internal.Spec == nil {
 		builder.internal.Spec = NewExpr()
 	}

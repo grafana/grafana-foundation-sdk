@@ -13,7 +13,7 @@ import java.util.List;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.grafana.foundation.common.DataSourceRef;
 
-public class TypeThreshold implements com.grafana.foundation.cog.variants.Dataquery {
+public class TypeThreshold {
     // Threshold Conditions
     @JsonSetter(nulls = Nulls.AS_EMPTY)
     @JsonProperty("conditions")
@@ -81,9 +81,6 @@ public class TypeThreshold implements com.grafana.foundation.cog.variants.Dataqu
         this.resultAssertions = resultAssertions;
         this.timeRange = timeRange;
         this.type = type;
-    }
-    public String dataqueryName() {
-        return "__expr__";
     }
     
     public String toJSON() throws JsonProcessingException {

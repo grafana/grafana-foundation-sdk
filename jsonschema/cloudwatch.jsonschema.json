@@ -1,6 +1,6 @@
 {
   "$schema": "http://json-schema.org/draft-07/schema#",
-  "$ref": "#/definitions/CloudWatchQuery",
+  "$ref": "#/definitions/Request",
   "definitions": {
     "MetricStat": {
       "type": "object",
@@ -68,18 +68,19 @@
       },
       "description": "A name/value pair that is part of the identity of a metric. For example, you can get statistics for a specific EC2 instance by specifying the InstanceId dimension when you search for metrics."
     },
-    "CloudWatchMetricsQuery": {
+    "MetricsQuery": {
       "type": "object",
       "additionalProperties": false,
       "required": [
         "queryMode",
         "id",
+        "refId",
         "region",
         "namespace"
       ],
       "properties": {
         "queryMode": {
-          "$ref": "#/definitions/CloudWatchQueryMode",
+          "$ref": "#/definitions/QueryMode",
           "description": "Whether a query is a Metrics, Logs, or Annotations query",
           "default": "Metrics"
         },
@@ -112,14 +113,7 @@
           "description": "When the metric query type is set to `Insights`, this field is used to specify the query string."
         },
         "refId": {
-          "anyOf": [
-            {
-              "type": "string"
-            },
-            {
-              "type": "null"
-            }
-          ],
+          "type": "string",
           "description": "A unique identifier for the query within the list of targets.\nIn server side expressions, the refId is used as a variable name to identify results.\nBy default, the UI will assign A-\u003eZ; however setting meaningful names may be useful."
         },
         "hide": {
@@ -180,7 +174,7 @@
       },
       "description": "Shape of a CloudWatch Metrics query"
     },
-    "CloudWatchQueryMode": {
+    "QueryMode": {
       "enum": [
         "Metrics",
         "Logs",
@@ -497,17 +491,18 @@
       ],
       "type": "string"
     },
-    "CloudWatchLogsQuery": {
+    "LogsQuery": {
       "type": "object",
       "additionalProperties": false,
       "required": [
         "queryMode",
         "id",
-        "region"
+        "region",
+        "refId"
       ],
       "properties": {
         "queryMode": {
-          "$ref": "#/definitions/CloudWatchQueryMode",
+          "$ref": "#/definitions/QueryMode",
           "description": "Whether a query is a Metrics, Logs, or Annotations query",
           "default": "Logs"
         },
@@ -544,14 +539,7 @@
           "description": "@deprecated use logGroups"
         },
         "refId": {
-          "anyOf": [
-            {
-              "type": "string"
-            },
-            {
-              "type": "null"
-            }
-          ],
+          "type": "string",
           "description": "A unique identifier for the query within the list of targets.\nIn server side expressions, the refId is used as a variable name to identify results.\nBy default, the UI will assign A-\u003eZ; however setting meaningful names may be useful."
         },
         "hide": {
@@ -599,17 +587,18 @@
         }
       }
     },
-    "CloudWatchAnnotationQuery": {
+    "AnnotationQuery": {
       "type": "object",
       "additionalProperties": false,
       "required": [
         "queryMode",
+        "refId",
         "region",
         "namespace"
       ],
       "properties": {
         "queryMode": {
-          "$ref": "#/definitions/CloudWatchQueryMode",
+          "$ref": "#/definitions/QueryMode",
           "description": "Whether a query is a Metrics, Logs, or Annotations query",
           "default": "Annotations"
         },
@@ -622,14 +611,7 @@
           "description": "Use this parameter to filter the results of the operation to only those alarms\nthat use a certain alarm action. For example, you could specify the ARN of\nan SNS topic to find all alarms that send notifications to that topic.\ne.g. `arn:aws:sns:us-east-1:123456789012:my-app-` would match `arn:aws:sns:us-east-1:123456789012:my-app-action`\nbut not match `arn:aws:sns:us-east-1:123456789012:your-app-action`"
         },
         "refId": {
-          "anyOf": [
-            {
-              "type": "string"
-            },
-            {
-              "type": "null"
-            }
-          ],
+          "type": "string",
           "description": "A unique identifier for the query within the list of targets.\nIn server side expressions, the refId is used as a variable name to identify results.\nBy default, the UI will assign A-\u003eZ; however setting meaningful names may be useful."
         },
         "hide": {
@@ -690,16 +672,16 @@
       },
       "description": "Shape of a CloudWatch Annotation query\nTS type is CloudWatchDefaultQuery = Omit\u003cCloudWatchLogsQuery, 'queryMode'\u003e \u0026 CloudWatchMetricsQuery, declared in veneer\n#CloudWatchDefaultQuery: #CloudWatchLogsQuery \u0026 #CloudWatchMetricsQuery @cuetsy(kind=\"type\")"
     },
-    "CloudWatchQuery": {
+    "Request": {
       "oneOf": [
         {
-          "$ref": "#/definitions/CloudWatchMetricsQuery"
+          "$ref": "#/definitions/MetricsQuery"
         },
         {
-          "$ref": "#/definitions/CloudWatchLogsQuery"
+          "$ref": "#/definitions/LogsQuery"
         },
         {
-          "$ref": "#/definitions/CloudWatchAnnotationQuery"
+          "$ref": "#/definitions/AnnotationQuery"
         }
       ]
     },

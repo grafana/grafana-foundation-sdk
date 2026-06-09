@@ -15,7 +15,7 @@ func NewTypeSqlBuilder() *TypeSqlBuilder
 Builds the object.
 
 ```go
-func (builder *TypeSqlBuilder) Build() (variants.Dataquery, error)
+func (builder *TypeSqlBuilder) Build() (TypeSql, error)
 ```
 
 ### <span class="badge object-method"></span> Datasource

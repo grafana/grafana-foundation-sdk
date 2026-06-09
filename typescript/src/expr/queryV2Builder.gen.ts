@@ -39,37 +39,37 @@ export class QueryV2Builder implements cog.Builder<dashboardv2.DataQueryKind> {
         return this;
     }
 
-    typeMath(typeMath: cog.Builder<expr.TypeMath>): this {
+    math(typeMath: cog.Builder<expr.TypeMath>): this {
         const typeMathResource = typeMath.build();
         this.internal.spec = typeMathResource;
         return this;
     }
 
-    typeReduce(typeReduce: cog.Builder<expr.TypeReduce>): this {
+    reduce(typeReduce: cog.Builder<expr.TypeReduce>): this {
         const typeReduceResource = typeReduce.build();
         this.internal.spec = typeReduceResource;
         return this;
     }
 
-    typeResample(typeResample: cog.Builder<expr.TypeResample>): this {
+    resample(typeResample: cog.Builder<expr.TypeResample>): this {
         const typeResampleResource = typeResample.build();
         this.internal.spec = typeResampleResource;
         return this;
     }
 
-    typeClassicConditions(typeClassicConditions: cog.Builder<expr.TypeClassicConditions>): this {
+    classicConditions(typeClassicConditions: cog.Builder<expr.TypeClassicConditions>): this {
         const typeClassicConditionsResource = typeClassicConditions.build();
         this.internal.spec = typeClassicConditionsResource;
         return this;
     }
 
-    typeThreshold(typeThreshold: cog.Builder<expr.TypeThreshold>): this {
+    threshold(typeThreshold: cog.Builder<expr.TypeThreshold>): this {
         const typeThresholdResource = typeThreshold.build();
         this.internal.spec = typeThresholdResource;
         return this;
     }
 
-    typeSql(typeSql: cog.Builder<expr.TypeSql>): this {
+    sql(typeSql: cog.Builder<expr.TypeSql>): this {
         const typeSqlResource = typeSql.build();
         this.internal.spec = typeSqlResource;
         return this;

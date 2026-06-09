@@ -58,7 +58,7 @@ class QueryBuilder implements \Grafana\Foundation\Cog\Builder
     /**
      * @param \Grafana\Foundation\Cog\Builder<\Grafana\Foundation\Expr\TypeMath> $typeMath
      */
-    public function typeMath(\Grafana\Foundation\Cog\Builder $typeMath): static
+    public function math(\Grafana\Foundation\Cog\Builder $typeMath): static
     {
         $typeMathResource = $typeMath->build();
         $this->internal->spec = $typeMathResource;
@@ -69,7 +69,7 @@ class QueryBuilder implements \Grafana\Foundation\Cog\Builder
     /**
      * @param \Grafana\Foundation\Cog\Builder<\Grafana\Foundation\Expr\TypeReduce> $typeReduce
      */
-    public function typeReduce(\Grafana\Foundation\Cog\Builder $typeReduce): static
+    public function reduce(\Grafana\Foundation\Cog\Builder $typeReduce): static
     {
         $typeReduceResource = $typeReduce->build();
         $this->internal->spec = $typeReduceResource;
@@ -80,7 +80,7 @@ class QueryBuilder implements \Grafana\Foundation\Cog\Builder
     /**
      * @param \Grafana\Foundation\Cog\Builder<\Grafana\Foundation\Expr\TypeResample> $typeResample
      */
-    public function typeResample(\Grafana\Foundation\Cog\Builder $typeResample): static
+    public function resample(\Grafana\Foundation\Cog\Builder $typeResample): static
     {
         $typeResampleResource = $typeResample->build();
         $this->internal->spec = $typeResampleResource;
@@ -91,7 +91,7 @@ class QueryBuilder implements \Grafana\Foundation\Cog\Builder
     /**
      * @param \Grafana\Foundation\Cog\Builder<\Grafana\Foundation\Expr\TypeClassicConditions> $typeClassicConditions
      */
-    public function typeClassicConditions(\Grafana\Foundation\Cog\Builder $typeClassicConditions): static
+    public function classicConditions(\Grafana\Foundation\Cog\Builder $typeClassicConditions): static
     {
         $typeClassicConditionsResource = $typeClassicConditions->build();
         $this->internal->spec = $typeClassicConditionsResource;
@@ -102,7 +102,7 @@ class QueryBuilder implements \Grafana\Foundation\Cog\Builder
     /**
      * @param \Grafana\Foundation\Cog\Builder<\Grafana\Foundation\Expr\TypeThreshold> $typeThreshold
      */
-    public function typeThreshold(\Grafana\Foundation\Cog\Builder $typeThreshold): static
+    public function threshold(\Grafana\Foundation\Cog\Builder $typeThreshold): static
     {
         $typeThresholdResource = $typeThreshold->build();
         $this->internal->spec = $typeThresholdResource;
@@ -113,7 +113,7 @@ class QueryBuilder implements \Grafana\Foundation\Cog\Builder
     /**
      * @param \Grafana\Foundation\Cog\Builder<\Grafana\Foundation\Expr\TypeSql> $typeSql
      */
-    public function typeSql(\Grafana\Foundation\Cog\Builder $typeSql): static
+    public function sql(\Grafana\Foundation\Cog\Builder $typeSql): static
     {
         $typeSqlResource = $typeSql->build();
         $this->internal->spec = $typeSqlResource;

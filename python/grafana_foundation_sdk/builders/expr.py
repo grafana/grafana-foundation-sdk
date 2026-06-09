@@ -43,37 +43,37 @@ class QueryV2(cogbuilder.Builder[dashboardv2.DataQueryKind]):
     
         return self
     
-    def type_math(self, type_math: cogbuilder.Builder[expr.TypeMath]) -> typing.Self:    
+    def math(self, type_math: cogbuilder.Builder[expr.TypeMath]) -> typing.Self:    
         type_math_resource = type_math.build()
         self._internal.spec = type_math_resource
     
         return self
     
-    def type_reduce(self, type_reduce: cogbuilder.Builder[expr.TypeReduce]) -> typing.Self:    
+    def reduce(self, type_reduce: cogbuilder.Builder[expr.TypeReduce]) -> typing.Self:    
         type_reduce_resource = type_reduce.build()
         self._internal.spec = type_reduce_resource
     
         return self
     
-    def type_resample(self, type_resample: cogbuilder.Builder[expr.TypeResample]) -> typing.Self:    
+    def resample(self, type_resample: cogbuilder.Builder[expr.TypeResample]) -> typing.Self:    
         type_resample_resource = type_resample.build()
         self._internal.spec = type_resample_resource
     
         return self
     
-    def type_classic_conditions(self, type_classic_conditions: cogbuilder.Builder[expr.TypeClassicConditions]) -> typing.Self:    
+    def classic_conditions(self, type_classic_conditions: cogbuilder.Builder[expr.TypeClassicConditions]) -> typing.Self:    
         type_classic_conditions_resource = type_classic_conditions.build()
         self._internal.spec = type_classic_conditions_resource
     
         return self
     
-    def type_threshold(self, type_threshold: cogbuilder.Builder[expr.TypeThreshold]) -> typing.Self:    
+    def threshold(self, type_threshold: cogbuilder.Builder[expr.TypeThreshold]) -> typing.Self:    
         type_threshold_resource = type_threshold.build()
         self._internal.spec = type_threshold_resource
     
         return self
     
-    def type_sql(self, type_sql: cogbuilder.Builder[expr.TypeSql]) -> typing.Self:    
+    def sql(self, type_sql: cogbuilder.Builder[expr.TypeSql]) -> typing.Self:    
         type_sql_resource = type_sql.build()
         self._internal.spec = type_sql_resource
     
@@ -1605,37 +1605,37 @@ class Query(cogbuilder.Builder[dashboardv2beta1.DataQueryKind]):
     
         return self
     
-    def type_math(self, type_math: cogbuilder.Builder[expr.TypeMath]) -> typing.Self:    
+    def math(self, type_math: cogbuilder.Builder[expr.TypeMath]) -> typing.Self:    
         type_math_resource = type_math.build()
         self._internal.spec = type_math_resource
     
         return self
     
-    def type_reduce(self, type_reduce: cogbuilder.Builder[expr.TypeReduce]) -> typing.Self:    
+    def reduce(self, type_reduce: cogbuilder.Builder[expr.TypeReduce]) -> typing.Self:    
         type_reduce_resource = type_reduce.build()
         self._internal.spec = type_reduce_resource
     
         return self
     
-    def type_resample(self, type_resample: cogbuilder.Builder[expr.TypeResample]) -> typing.Self:    
+    def resample(self, type_resample: cogbuilder.Builder[expr.TypeResample]) -> typing.Self:    
         type_resample_resource = type_resample.build()
         self._internal.spec = type_resample_resource
     
         return self
     
-    def type_classic_conditions(self, type_classic_conditions: cogbuilder.Builder[expr.TypeClassicConditions]) -> typing.Self:    
+    def classic_conditions(self, type_classic_conditions: cogbuilder.Builder[expr.TypeClassicConditions]) -> typing.Self:    
         type_classic_conditions_resource = type_classic_conditions.build()
         self._internal.spec = type_classic_conditions_resource
     
         return self
     
-    def type_threshold(self, type_threshold: cogbuilder.Builder[expr.TypeThreshold]) -> typing.Self:    
+    def threshold(self, type_threshold: cogbuilder.Builder[expr.TypeThreshold]) -> typing.Self:    
         type_threshold_resource = type_threshold.build()
         self._internal.spec = type_threshold_resource
     
         return self
     
-    def type_sql(self, type_sql: cogbuilder.Builder[expr.TypeSql]) -> typing.Self:    
+    def sql(self, type_sql: cogbuilder.Builder[expr.TypeSql]) -> typing.Self:    
         type_sql_resource = type_sql.build()
         self._internal.spec = type_sql_resource
     

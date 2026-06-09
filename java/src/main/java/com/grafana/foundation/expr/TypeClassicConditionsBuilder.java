@@ -6,7 +6,7 @@ import java.util.List;
 import java.util.LinkedList;
 import com.grafana.foundation.common.DataSourceRef;
 
-public class TypeClassicConditionsBuilder implements com.grafana.foundation.cog.Builder<com.grafana.foundation.cog.variants.Dataquery> {
+public class TypeClassicConditionsBuilder implements com.grafana.foundation.cog.Builder<TypeClassicConditions> {
     protected final TypeClassicConditions internal;
     
     public TypeClassicConditionsBuilder() {

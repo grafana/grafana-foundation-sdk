@@ -54,11 +54,11 @@ final class QueryV2Converter
     
     
     }
-            if ($input->spec !== null && $input->spec instanceof \Grafana\Foundation\Cloudwatch\CloudWatchMetricsQuery) {
+            if ($input->spec !== null && $input->spec instanceof \Grafana\Foundation\Cloudwatch\MetricsQuery) {
     
         
-    $buffer = 'cloudWatchMetricsQuery(';
-        $arg0 = \Grafana\Foundation\Cloudwatch\CloudWatchMetricsQueryConverter::convert($input->spec);
+    $buffer = 'metricsQuery(';
+        $arg0 = \Grafana\Foundation\Cloudwatch\MetricsQueryConverter::convert($input->spec);
         $buffer .= $arg0;
         
     $buffer .= ')';
@@ -67,11 +67,11 @@ final class QueryV2Converter
     
     
     }
-            if ($input->spec !== null && $input->spec instanceof \Grafana\Foundation\Cloudwatch\CloudWatchLogsQuery) {
+            if ($input->spec !== null && $input->spec instanceof \Grafana\Foundation\Cloudwatch\LogsQuery) {
     
         
-    $buffer = 'cloudWatchLogsQuery(';
-        $arg0 = \Grafana\Foundation\Cloudwatch\CloudWatchLogsQueryConverter::convert($input->spec);
+    $buffer = 'logsQuery(';
+        $arg0 = \Grafana\Foundation\Cloudwatch\LogsQueryConverter::convert($input->spec);
         $buffer .= $arg0;
         
     $buffer .= ')';
@@ -80,11 +80,11 @@ final class QueryV2Converter
     
     
     }
-            if ($input->spec !== null && $input->spec instanceof \Grafana\Foundation\Cloudwatch\CloudWatchAnnotationQuery) {
+            if ($input->spec !== null && $input->spec instanceof \Grafana\Foundation\Cloudwatch\AnnotationQuery) {
     
         
-    $buffer = 'cloudWatchAnnotationQuery(';
-        $arg0 = \Grafana\Foundation\Cloudwatch\CloudWatchAnnotationQueryConverter::convert($input->spec);
+    $buffer = 'annotationQuery(';
+        $arg0 = \Grafana\Foundation\Cloudwatch\AnnotationQueryConverter::convert($input->spec);
         $buffer .= $arg0;
         
     $buffer .= ')';

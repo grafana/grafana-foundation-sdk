@@ -4,11 +4,10 @@ package expr
 
 import (
 	cog "github.com/grafana/grafana-foundation-sdk/go/cog"
-	variants "github.com/grafana/grafana-foundation-sdk/go/cog/variants"
 	common "github.com/grafana/grafana-foundation-sdk/go/common"
 )
 
-var _ cog.Builder[variants.Dataquery] = (*TypeReduceBuilder)(nil)
+var _ cog.Builder[TypeReduce] = (*TypeReduceBuilder)(nil)
 
 type TypeReduceBuilder struct {
 	internal *TypeReduce
@@ -26,7 +25,7 @@ func NewTypeReduceBuilder() *TypeReduceBuilder {
 	return builder
 }
 
-func (builder *TypeReduceBuilder) Build() (variants.Dataquery, error) {
+func (builder *TypeReduceBuilder) Build() (TypeReduce, error) {
 	if err := builder.internal.Validate(); err != nil {
 		return TypeReduce{}, err
 	}

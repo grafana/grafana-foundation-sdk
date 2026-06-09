@@ -18,22 +18,22 @@ Builds the object.
 build()
 ```
 
-### <span class="badge object-method"></span> cloudWatchAnnotationQuery
+### <span class="badge object-method"></span> annotationQuery
 
 ```typescript
-cloudWatchAnnotationQuery(cloudWatchAnnotationQuery: cog.Builder<cloudwatch.CloudWatchAnnotationQuery>)
+annotationQuery(annotationQuery: cog.Builder<cloudwatch.AnnotationQuery>)
 ```
 
-### <span class="badge object-method"></span> cloudWatchLogsQuery
+### <span class="badge object-method"></span> logsQuery
 
 ```typescript
-cloudWatchLogsQuery(cloudWatchLogsQuery: cog.Builder<cloudwatch.CloudWatchLogsQuery>)
+logsQuery(logsQuery: cog.Builder<cloudwatch.LogsQuery>)
 ```
 
-### <span class="badge object-method"></span> cloudWatchMetricsQuery
+### <span class="badge object-method"></span> metricsQuery
 
 ```typescript
-cloudWatchMetricsQuery(cloudWatchMetricsQuery: cog.Builder<cloudwatch.CloudWatchMetricsQuery>)
+metricsQuery(metricsQuery: cog.Builder<cloudwatch.MetricsQuery>)
 ```
 
 ### <span class="badge object-method"></span> datasource

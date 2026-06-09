@@ -68,44 +68,44 @@ func (builder *QueryV2Builder) Datasource(datasource cog.Builder[dashboardv2.Das
 	return builder
 }
 
-func (builder *QueryV2Builder) CloudWatchMetricsQuery(cloudWatchMetricsQuery cog.Builder[CloudWatchMetricsQuery]) *QueryV2Builder {
+func (builder *QueryV2Builder) MetricsQuery(metricsQuery cog.Builder[MetricsQuery]) *QueryV2Builder {
 	if builder.internal.Spec == nil {
-		builder.internal.Spec = NewCloudWatchQuery()
+		builder.internal.Spec = NewRequest()
 	}
-	cloudWatchMetricsQueryResource, err := cloudWatchMetricsQuery.Build()
+	metricsQueryResource, err := metricsQuery.Build()
 	if err != nil {
 		builder.errors = append(builder.errors, err.(cog.BuildErrors)...)
 		return builder
 	}
-	builder.internal.Spec.(*CloudWatchQuery).CloudWatchMetricsQuery = &cloudWatchMetricsQueryResource
+	builder.internal.Spec.(*Request).MetricsQuery = &metricsQueryResource
 
 	return builder
 }
 
-func (builder *QueryV2Builder) CloudWatchLogsQuery(cloudWatchLogsQuery cog.Builder[CloudWatchLogsQuery]) *QueryV2Builder {
+func (builder *QueryV2Builder) LogsQuery(logsQuery cog.Builder[LogsQuery]) *QueryV2Builder {
 	if builder.internal.Spec == nil {
-		builder.internal.Spec = NewCloudWatchQuery()
+		builder.internal.Spec = NewRequest()
 	}
-	cloudWatchLogsQueryResource, err := cloudWatchLogsQuery.Build()
+	logsQueryResource, err := logsQuery.Build()
 	if err != nil {
 		builder.errors = append(builder.errors, err.(cog.BuildErrors)...)
 		return builder
 	}
-	builder.internal.Spec.(*CloudWatchQuery).CloudWatchLogsQuery = &cloudWatchLogsQueryResource
+	builder.internal.Spec.(*Request).LogsQuery = &logsQueryResource
 
 	return builder
 }
 
-func (builder *QueryV2Builder) CloudWatchAnnotationQuery(cloudWatchAnnotationQuery cog.Builder[CloudWatchAnnotationQuery]) *QueryV2Builder {
+func (builder *QueryV2Builder) AnnotationQuery(annotationQuery cog.Builder[AnnotationQuery]) *QueryV2Builder {
 	if builder.internal.Spec == nil {
-		builder.internal.Spec = NewCloudWatchQuery()
+		builder.internal.Spec = NewRequest()
 	}
-	cloudWatchAnnotationQueryResource, err := cloudWatchAnnotationQuery.Build()
+	annotationQueryResource, err := annotationQuery.Build()
 	if err != nil {
 		builder.errors = append(builder.errors, err.(cog.BuildErrors)...)
 		return builder
 	}
-	builder.internal.Spec.(*CloudWatchQuery).CloudWatchAnnotationQuery = &cloudWatchAnnotationQueryResource
+	builder.internal.Spec.(*Request).AnnotationQuery = &annotationQueryResource
 
 	return builder
 }

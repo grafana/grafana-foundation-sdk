@@ -18,22 +18,22 @@ Builds the object.
 def build() -> dashboardv2.DataQueryKind
 ```
 
-### <span class="badge object-method"></span> cloud_watch_annotation_query
+### <span class="badge object-method"></span> annotation_query
 
 ```python
-def cloud_watch_annotation_query(cloud_watch_annotation_query: cogbuilder.Builder[cloudwatch.CloudWatchAnnotationQuery]) -> typing.Self
+def annotation_query(annotation_query: cogbuilder.Builder[cloudwatch.AnnotationQuery]) -> typing.Self
 ```
 
-### <span class="badge object-method"></span> cloud_watch_logs_query
+### <span class="badge object-method"></span> logs_query
 
 ```python
-def cloud_watch_logs_query(cloud_watch_logs_query: cogbuilder.Builder[cloudwatch.CloudWatchLogsQuery]) -> typing.Self
+def logs_query(logs_query: cogbuilder.Builder[cloudwatch.LogsQuery]) -> typing.Self
 ```
 
-### <span class="badge object-method"></span> cloud_watch_metrics_query
+### <span class="badge object-method"></span> metrics_query
 
 ```python
-def cloud_watch_metrics_query(cloud_watch_metrics_query: cogbuilder.Builder[cloudwatch.CloudWatchMetricsQuery]) -> typing.Self
+def metrics_query(metrics_query: cogbuilder.Builder[cloudwatch.MetricsQuery]) -> typing.Self
 ```
 
 ### <span class="badge object-method"></span> datasource

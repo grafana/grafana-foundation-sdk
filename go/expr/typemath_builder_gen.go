@@ -4,11 +4,10 @@ package expr
 
 import (
 	cog "github.com/grafana/grafana-foundation-sdk/go/cog"
-	variants "github.com/grafana/grafana-foundation-sdk/go/cog/variants"
 	common "github.com/grafana/grafana-foundation-sdk/go/common"
 )
 
-var _ cog.Builder[variants.Dataquery] = (*TypeMathBuilder)(nil)
+var _ cog.Builder[TypeMath] = (*TypeMathBuilder)(nil)
 
 type TypeMathBuilder struct {
 	internal *TypeMath
@@ -26,7 +25,7 @@ func NewTypeMathBuilder() *TypeMathBuilder {
 	return builder
 }
 
-func (builder *TypeMathBuilder) Build() (variants.Dataquery, error) {
+func (builder *TypeMathBuilder) Build() (TypeMath, error) {
 	if err := builder.internal.Validate(); err != nil {
 		return TypeMath{}, err
 	}

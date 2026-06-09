@@ -18,40 +18,10 @@ Builds the object.
 public Query build()
 ```
 
-### <span class="badge object-method"></span> typeClassicConditions
+### <span class="badge object-method"></span> classicConditions
 
 ```java
-public QueryBuilder typeClassicConditions(com.grafana.foundation.cog.Builder<TypeClassicConditions> typeClassicConditions)
-```
-
-### <span class="badge object-method"></span> typeMath
-
-```java
-public QueryBuilder typeMath(com.grafana.foundation.cog.Builder<TypeMath> typeMath)
-```
-
-### <span class="badge object-method"></span> typeReduce
-
-```java
-public QueryBuilder typeReduce(com.grafana.foundation.cog.Builder<TypeReduce> typeReduce)
-```
-
-### <span class="badge object-method"></span> typeResample
-
-```java
-public QueryBuilder typeResample(com.grafana.foundation.cog.Builder<TypeResample> typeResample)
-```
-
-### <span class="badge object-method"></span> typeSql
-
-```java
-public QueryBuilder typeSql(com.grafana.foundation.cog.Builder<TypeSql> typeSql)
-```
-
-### <span class="badge object-method"></span> typeThreshold
-
-```java
-public QueryBuilder typeThreshold(com.grafana.foundation.cog.Builder<TypeThreshold> typeThreshold)
+public QueryBuilder classicConditions(com.grafana.foundation.cog.Builder<TypeClassicConditions> typeClassicConditions)
 ```
 
 ### <span class="badge object-method"></span> datasource
@@ -68,6 +38,36 @@ public QueryBuilder datasource(com.grafana.foundation.cog.Builder<Dashboardv2bet
 
 ```java
 public QueryBuilder labels(Map<String, String> labels)
+```
+
+### <span class="badge object-method"></span> math
+
+```java
+public QueryBuilder math(com.grafana.foundation.cog.Builder<TypeMath> typeMath)
+```
+
+### <span class="badge object-method"></span> reduce
+
+```java
+public QueryBuilder reduce(com.grafana.foundation.cog.Builder<TypeReduce> typeReduce)
+```
+
+### <span class="badge object-method"></span> resample
+
+```java
+public QueryBuilder resample(com.grafana.foundation.cog.Builder<TypeResample> typeResample)
+```
+
+### <span class="badge object-method"></span> sql
+
+```java
+public QueryBuilder sql(com.grafana.foundation.cog.Builder<TypeSql> typeSql)
+```
+
+### <span class="badge object-method"></span> threshold
+
+```java
+public QueryBuilder threshold(com.grafana.foundation.cog.Builder<TypeThreshold> typeThreshold)
 ```
 
 ### <span class="badge object-method"></span> version

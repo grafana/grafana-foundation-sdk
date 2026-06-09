@@ -18,40 +18,10 @@ Builds the object.
 func (builder *QueryV2Builder) Build() (dashboardv2.DataQueryKind, error)
 ```
 
-### <span class="badge object-method"></span> TypeClassicConditions
+### <span class="badge object-method"></span> ClassicConditions
 
 ```go
-func (builder *QueryV2Builder) TypeClassicConditions(typeClassicConditions cog.Builder[expr.TypeClassicConditions]) *QueryV2Builder
-```
-
-### <span class="badge object-method"></span> TypeMath
-
-```go
-func (builder *QueryV2Builder) TypeMath(typeMath cog.Builder[expr.TypeMath]) *QueryV2Builder
-```
-
-### <span class="badge object-method"></span> TypeReduce
-
-```go
-func (builder *QueryV2Builder) TypeReduce(typeReduce cog.Builder[expr.TypeReduce]) *QueryV2Builder
-```
-
-### <span class="badge object-method"></span> TypeResample
-
-```go
-func (builder *QueryV2Builder) TypeResample(typeResample cog.Builder[expr.TypeResample]) *QueryV2Builder
-```
-
-### <span class="badge object-method"></span> TypeSql
-
-```go
-func (builder *QueryV2Builder) TypeSql(typeSql cog.Builder[expr.TypeSql]) *QueryV2Builder
-```
-
-### <span class="badge object-method"></span> TypeThreshold
-
-```go
-func (builder *QueryV2Builder) TypeThreshold(typeThreshold cog.Builder[expr.TypeThreshold]) *QueryV2Builder
+func (builder *QueryV2Builder) ClassicConditions(typeClassicConditions cog.Builder[expr.TypeClassicConditions]) *QueryV2Builder
 ```
 
 ### <span class="badge object-method"></span> Datasource
@@ -68,6 +38,36 @@ func (builder *QueryV2Builder) Datasource(datasource cog.Builder[dashboardv2.Das
 
 ```go
 func (builder *QueryV2Builder) Labels(labels map[string]string) *QueryV2Builder
+```
+
+### <span class="badge object-method"></span> Math
+
+```go
+func (builder *QueryV2Builder) Math(typeMath cog.Builder[expr.TypeMath]) *QueryV2Builder
+```
+
+### <span class="badge object-method"></span> Reduce
+
+```go
+func (builder *QueryV2Builder) Reduce(typeReduce cog.Builder[expr.TypeReduce]) *QueryV2Builder
+```
+
+### <span class="badge object-method"></span> Resample
+
+```go
+func (builder *QueryV2Builder) Resample(typeResample cog.Builder[expr.TypeResample]) *QueryV2Builder
+```
+
+### <span class="badge object-method"></span> Sql
+
+```go
+func (builder *QueryV2Builder) Sql(typeSql cog.Builder[expr.TypeSql]) *QueryV2Builder
+```
+
+### <span class="badge object-method"></span> Threshold
+
+```go
+func (builder *QueryV2Builder) Threshold(typeThreshold cog.Builder[expr.TypeThreshold]) *QueryV2Builder
 ```
 
 ### <span class="badge object-method"></span> Version

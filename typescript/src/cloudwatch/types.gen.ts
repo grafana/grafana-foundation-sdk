@@ -35,9 +35,9 @@ export type Dimensions = Record<string, string | string[]>;
 export const defaultDimensions = (): Dimensions => ({});
 
 // Shape of a CloudWatch Metrics query
-export interface CloudWatchMetricsQuery {
+export interface MetricsQuery {
 	// Whether a query is a Metrics, Logs, or Annotations query
-	queryMode: CloudWatchQueryMode;
+	queryMode: QueryMode;
 	// Whether to use a metric search or metric insights query
 	metricQueryType?: MetricQueryType;
 	// Whether to use the query builder or code editor to create the query
@@ -56,7 +56,7 @@ export interface CloudWatchMetricsQuery {
 	// A unique identifier for the query within the list of targets.
 	// In server side expressions, the refId is used as a variable name to identify results.
 	// By default, the UI will assign A->Z; however setting meaningful names may be useful.
-	refId?: string;
+	refId: string;
 	// If hide is set to true, Grafana will filter out the response(s) associated with this query before returning it to the panel.
 	hide?: boolean;
 	// Specify the query flavor
@@ -90,21 +90,22 @@ export interface CloudWatchMetricsQuery {
 	_implementsDataqueryVariant(): void;
 }
 
-export const defaultCloudWatchMetricsQuery = (): CloudWatchMetricsQuery => ({
-	queryMode: CloudWatchQueryMode.Metrics,
+export const defaultMetricsQuery = (): MetricsQuery => ({
+	queryMode: QueryMode.Metrics,
 	id: "",
+	refId: "",
 	region: "",
 	namespace: "",
 	_implementsDataqueryVariant: () => {},
 });
 
-export enum CloudWatchQueryMode {
+export enum QueryMode {
 	Metrics = "Metrics",
 	Logs = "Logs",
 	Annotations = "Annotations",
 }
 
-export const defaultCloudWatchQueryMode = (): CloudWatchQueryMode => (CloudWatchQueryMode.Metrics);
+export const defaultQueryMode = (): QueryMode => (QueryMode.Metrics);
 
 export enum MetricQueryType {
 	Search = 0,
@@ -259,9 +260,9 @@ export enum LogsQueryLanguage {
 export const defaultLogsQueryLanguage = (): LogsQueryLanguage => (LogsQueryLanguage.CWLI);
 
 // Shape of a CloudWatch Logs query
-export interface CloudWatchLogsQuery {
+export interface LogsQuery {
 	// Whether a query is a Metrics, Logs, or Annotations query
-	queryMode: CloudWatchQueryMode;
+	queryMode: QueryMode;
 	id: string;
 	// AWS region to query for the logs
 	region: string;
@@ -276,7 +277,7 @@ export interface CloudWatchLogsQuery {
 	// A unique identifier for the query within the list of targets.
 	// In server side expressions, the refId is used as a variable name to identify results.
 	// By default, the UI will assign A->Z; however setting meaningful names may be useful.
-	refId?: string;
+	refId: string;
 	// If hide is set to true, Grafana will filter out the response(s) associated with this query before returning it to the panel.
 	hide?: boolean;
 	// Specify the query flavor
@@ -292,10 +293,11 @@ export interface CloudWatchLogsQuery {
 	_implementsDataqueryVariant(): void;
 }
 
-export const defaultCloudWatchLogsQuery = (): CloudWatchLogsQuery => ({
-	queryMode: CloudWatchQueryMode.Logs,
+export const defaultLogsQuery = (): LogsQuery => ({
+	queryMode: QueryMode.Logs,
 	id: "",
 	region: "",
+	refId: "",
 	_implementsDataqueryVariant: () => {},
 });
 
@@ -318,9 +320,9 @@ export const defaultLogGroup = (): LogGroup => ({
 // Shape of a CloudWatch Annotation query
 // TS type is CloudWatchDefaultQuery = Omit<CloudWatchLogsQuery, 'queryMode'> & CloudWatchMetricsQuery, declared in veneer
 // #CloudWatchDefaultQuery: #CloudWatchLogsQuery & #CloudWatchMetricsQuery @cuetsy(kind="type")
-export interface CloudWatchAnnotationQuery {
+export interface AnnotationQuery {
 	// Whether a query is a Metrics, Logs, or Annotations query
-	queryMode: CloudWatchQueryMode;
+	queryMode: QueryMode;
 	// Enable matching on the prefix of the action name or alarm name, specify the prefixes with actionPrefix and/or alarmNamePrefix
 	prefixMatching?: boolean;
 	// Use this parameter to filter the results of the operation to only those alarms
@@ -332,7 +334,7 @@ export interface CloudWatchAnnotationQuery {
 	// A unique identifier for the query within the list of targets.
 	// In server side expressions, the refId is used as a variable name to identify results.
 	// By default, the UI will assign A->Z; however setting meaningful names may be useful.
-	refId?: string;
+	refId: string;
 	// If hide is set to true, Grafana will filter out the response(s) associated with this query before returning it to the panel.
 	hide?: boolean;
 	// Specify the query flavor
@@ -368,14 +370,15 @@ export interface CloudWatchAnnotationQuery {
 	_implementsDataqueryVariant(): void;
 }
 
-export const defaultCloudWatchAnnotationQuery = (): CloudWatchAnnotationQuery => ({
-	queryMode: CloudWatchQueryMode.Annotations,
+export const defaultAnnotationQuery = (): AnnotationQuery => ({
+	queryMode: QueryMode.Annotations,
+	refId: "",
 	region: "",
 	namespace: "",
 	_implementsDataqueryVariant: () => {},
 });
 
-export type CloudWatchQuery = CloudWatchMetricsQuery | CloudWatchLogsQuery | CloudWatchAnnotationQuery;
+export type Request = MetricsQuery | LogsQuery | AnnotationQuery;
 
-export const defaultCloudWatchQuery = (): CloudWatchQuery => (defaultCloudWatchMetricsQuery());
+export const defaultRequest = (): Request => (defaultMetricsQuery());
 

@@ -15,7 +15,7 @@ func NewTypeThresholdBuilder() *TypeThresholdBuilder
 Builds the object.
 
 ```go
-func (builder *TypeThresholdBuilder) Build() (variants.Dataquery, error)
+func (builder *TypeThresholdBuilder) Build() (TypeThreshold, error)
 ```
 
 ### <span class="badge object-method"></span> Conditions

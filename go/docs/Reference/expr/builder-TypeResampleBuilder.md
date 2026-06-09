@@ -15,7 +15,7 @@ func NewTypeResampleBuilder() *TypeResampleBuilder
 Builds the object.
 
 ```go
-func (builder *TypeResampleBuilder) Build() (variants.Dataquery, error)
+func (builder *TypeResampleBuilder) Build() (TypeResample, error)
 ```
 
 ### <span class="badge object-method"></span> Datasource

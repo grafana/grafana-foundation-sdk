@@ -4,11 +4,10 @@ package expr
 
 import (
 	cog "github.com/grafana/grafana-foundation-sdk/go/cog"
-	variants "github.com/grafana/grafana-foundation-sdk/go/cog/variants"
 	common "github.com/grafana/grafana-foundation-sdk/go/common"
 )
 
-var _ cog.Builder[variants.Dataquery] = (*TypeClassicConditionsBuilder)(nil)
+var _ cog.Builder[TypeClassicConditions] = (*TypeClassicConditionsBuilder)(nil)
 
 type TypeClassicConditionsBuilder struct {
 	internal *TypeClassicConditions
@@ -26,7 +25,7 @@ func NewTypeClassicConditionsBuilder() *TypeClassicConditionsBuilder {
 	return builder
 }
 
-func (builder *TypeClassicConditionsBuilder) Build() (variants.Dataquery, error) {
+func (builder *TypeClassicConditionsBuilder) Build() (TypeClassicConditions, error) {
 	if err := builder.internal.Validate(); err != nil {
 		return TypeClassicConditions{}, err
 	}

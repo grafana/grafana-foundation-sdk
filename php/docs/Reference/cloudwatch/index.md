@@ -2,15 +2,14 @@
 
 ## Objects
 
- * <span class="badge object-type-class"></span> [CloudWatchAnnotationQuery](./object-CloudWatchAnnotationQuery.md)
- * <span class="badge object-type-class"></span> [CloudWatchLogsQuery](./object-CloudWatchLogsQuery.md)
- * <span class="badge object-type-class"></span> [CloudWatchMetricsQuery](./object-CloudWatchMetricsQuery.md)
- * <span class="badge object-type-enum"></span> [CloudWatchQueryMode](./object-CloudWatchQueryMode.md)
+ * <span class="badge object-type-class"></span> [AnnotationQuery](./object-AnnotationQuery.md)
  * <span class="badge object-type-class"></span> [LogGroup](./object-LogGroup.md)
+ * <span class="badge object-type-class"></span> [LogsQuery](./object-LogsQuery.md)
  * <span class="badge object-type-enum"></span> [LogsQueryLanguage](./object-LogsQueryLanguage.md)
  * <span class="badge object-type-enum"></span> [MetricEditorMode](./object-MetricEditorMode.md)
  * <span class="badge object-type-enum"></span> [MetricQueryType](./object-MetricQueryType.md)
  * <span class="badge object-type-class"></span> [MetricStat](./object-MetricStat.md)
+ * <span class="badge object-type-class"></span> [MetricsQuery](./object-MetricsQuery.md)
  * <span class="badge object-type-class"></span> [QueryEditorArrayExpression](./object-QueryEditorArrayExpression.md)
  * <span class="badge object-type-enum"></span> [QueryEditorArrayExpressionType](./object-QueryEditorArrayExpressionType.md)
  * <span class="badge object-type-enum"></span> [QueryEditorExpressionType](./object-QueryEditorExpressionType.md)
@@ -22,14 +21,15 @@
  * <span class="badge object-type-class"></span> [QueryEditorProperty](./object-QueryEditorProperty.md)
  * <span class="badge object-type-class"></span> [QueryEditorPropertyExpression](./object-QueryEditorPropertyExpression.md)
  * <span class="badge object-type-enum"></span> [QueryEditorPropertyType](./object-QueryEditorPropertyType.md)
+ * <span class="badge object-type-enum"></span> [QueryMode](./object-QueryMode.md)
  * <span class="badge object-type-class"></span> [SQLExpression](./object-SQLExpression.md)
 ## Builders
 
- * <span class="badge builder"></span> [CloudWatchAnnotationQueryBuilder](./builder-CloudWatchAnnotationQueryBuilder.md)
- * <span class="badge builder"></span> [CloudWatchLogsQueryBuilder](./builder-CloudWatchLogsQueryBuilder.md)
- * <span class="badge builder"></span> [CloudWatchMetricsQueryBuilder](./builder-CloudWatchMetricsQueryBuilder.md)
+ * <span class="badge builder"></span> [AnnotationQueryBuilder](./builder-AnnotationQueryBuilder.md)
  * <span class="badge builder"></span> [LogGroupBuilder](./builder-LogGroupBuilder.md)
+ * <span class="badge builder"></span> [LogsQueryBuilder](./builder-LogsQueryBuilder.md)
  * <span class="badge builder"></span> [MetricStatBuilder](./builder-MetricStatBuilder.md)
+ * <span class="badge builder"></span> [MetricsQueryBuilder](./builder-MetricsQueryBuilder.md)
  * <span class="badge builder"></span> [QueryBuilder](./builder-QueryBuilder.md)
  * <span class="badge builder"></span> [QueryEditorArrayExpressionBuilder](./builder-QueryEditorArrayExpressionBuilder.md)
  * <span class="badge builder"></span> [QueryEditorFunctionExpressionBuilder](./builder-QueryEditorFunctionExpressionBuilder.md)

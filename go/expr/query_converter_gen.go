@@ -58,7 +58,7 @@ func QueryConverter(input dashboardv2beta1.DataQueryKind) string {
 	}
 	if input.Spec != nil && input.Spec.(*Expr).TypeMath != nil {
 
-		buffer.WriteString(`TypeMath(`)
+		buffer.WriteString(`Math(`)
 		arg0 := TypeMathConverter(*input.Spec.(*Expr).TypeMath)
 		buffer.WriteString(arg0)
 
@@ -70,7 +70,7 @@ func QueryConverter(input dashboardv2beta1.DataQueryKind) string {
 	}
 	if input.Spec != nil && input.Spec.(*Expr).TypeReduce != nil {
 
-		buffer.WriteString(`TypeReduce(`)
+		buffer.WriteString(`Reduce(`)
 		arg0 := TypeReduceConverter(*input.Spec.(*Expr).TypeReduce)
 		buffer.WriteString(arg0)
 
@@ -82,7 +82,7 @@ func QueryConverter(input dashboardv2beta1.DataQueryKind) string {
 	}
 	if input.Spec != nil && input.Spec.(*Expr).TypeResample != nil {
 
-		buffer.WriteString(`TypeResample(`)
+		buffer.WriteString(`Resample(`)
 		arg0 := TypeResampleConverter(*input.Spec.(*Expr).TypeResample)
 		buffer.WriteString(arg0)
 
@@ -94,7 +94,7 @@ func QueryConverter(input dashboardv2beta1.DataQueryKind) string {
 	}
 	if input.Spec != nil && input.Spec.(*Expr).TypeClassicConditions != nil {
 
-		buffer.WriteString(`TypeClassicConditions(`)
+		buffer.WriteString(`ClassicConditions(`)
 		arg0 := TypeClassicConditionsConverter(*input.Spec.(*Expr).TypeClassicConditions)
 		buffer.WriteString(arg0)
 
@@ -106,7 +106,7 @@ func QueryConverter(input dashboardv2beta1.DataQueryKind) string {
 	}
 	if input.Spec != nil && input.Spec.(*Expr).TypeThreshold != nil {
 
-		buffer.WriteString(`TypeThreshold(`)
+		buffer.WriteString(`Threshold(`)
 		arg0 := TypeThresholdConverter(*input.Spec.(*Expr).TypeThreshold)
 		buffer.WriteString(arg0)
 
@@ -118,7 +118,7 @@ func QueryConverter(input dashboardv2beta1.DataQueryKind) string {
 	}
 	if input.Spec != nil && input.Spec.(*Expr).TypeSql != nil {
 
-		buffer.WriteString(`TypeSql(`)
+		buffer.WriteString(`Sql(`)
 		arg0 := TypeSqlConverter(*input.Spec.(*Expr).TypeSql)
 		buffer.WriteString(arg0)
 

@@ -6,7 +6,7 @@ title: <span class="badge object-type-class"></span> TypeResample
 ## Definition
 
 ```java
-public class TypeResample extends com.grafana.foundation.cog.variants.Dataquery {
+public class TypeResample {
   public DataSourceRef datasource;
   public TypeResampleDownsampler downsampler;
   public String expression;
