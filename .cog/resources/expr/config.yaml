@@ -10,3 +10,6 @@ inputs:
         identifier: __expr__
       transformations:
         - '%__config_dir%/schema.transforms.yaml'
+
+builder_transformations:
+  - '%__config_dir%/builder-transforms'
