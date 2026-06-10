@@ -4,7 +4,7 @@
 
 inputs:
   - cue:
-      url: 'https://raw.githubusercontent.com/grafana/grafana/main/apps/dashboard/kinds/v2/dashboard_spec.cue'
+      url: 'https://raw.githubusercontent.com/grafana/grafana/v13.0.2/apps/dashboard/kinds/v2/dashboard_spec.cue'
 
       # Name of the package in which code for this resource will be generated.
       package: dashboardv2
