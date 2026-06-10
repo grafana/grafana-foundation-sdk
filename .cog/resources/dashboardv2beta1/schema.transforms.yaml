@@ -24,10 +24,10 @@ passes:
         - dashboardv2beta1.RepeatMode
 
   # See https://github.com/grafana/grafana-foundation-sdk/issues/1202
-  # dashboardv2.AnnotationQueryPlacement is defined as a constant in the schema
+  # dashboardv2beta1.AnnotationQueryPlacement is defined as a constant in the schema
   # when it should really be an enum. As a result, the only possible value for
-  # the dashboardv2.AnnotationQuerySpec.placement field is the constant value
-  # defined in dashboardv2.AnnotationQueryPlacement
+  # the dashboardv2beta1.AnnotationQuerySpec.placement field is the constant value
+  # defined in dashboardv2beta1.AnnotationQueryPlacement
   - constant_to_enum:
       objects:
         - dashboardv2beta1.AnnotationQueryPlacement
@@ -43,12 +43,12 @@ passes:
   # DashboardLinkPlacement has the same issue as AnnotationQueryPlacement
   - constant_to_enum:
       objects:
-        - dashboardv2.DashboardLinkPlacement
+        - dashboardv2beta1.DashboardLinkPlacement
   - retype_field:
-      field: dashboardv2.DashboardLink.placement
+      field: dashboardv2beta1.DashboardLink.placement
       as:
         kind: ref
-        ref: { referred_pkg: dashboardv2, referred_type: DashboardLinkPlacement }
+        ref: { referred_pkg: dashboardv2beta1, referred_type: DashboardLinkPlacement }
         nullable: true
       comments: ["Placement can be used to display the link somewhere else on the dashboard other than above the visualisations."]
 
