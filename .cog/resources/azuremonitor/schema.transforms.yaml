@@ -15,7 +15,7 @@ passes:
       prefix: Azure
 
   - retype_field:
-      field: azuremonitor.AzureMonitorQuery.datasource
+      field: azuremonitor.MonitorQuery.datasource
       as:
         kind: ref
         ref: { referred_pkg: common, referred_type: DataSourceRef }
