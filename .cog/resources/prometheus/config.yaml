@@ -2,7 +2,7 @@
 
 inputs:
   - jsonschema:
-      url: 'https://raw.githubusercontent.com/grafana/grafana-prometheus-datasource/refs/heads/main/pkg/promlib/models/query.request.schema.json'
+      url: 'https://raw.githubusercontent.com/grafana/grafana-prometheus-datasource/pkg/promlib/v0.0.12/pkg/promlib/models/query.request.schema.json'
       package: prometheus
       metadata:
         kind: composable
