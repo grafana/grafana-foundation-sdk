@@ -25,10 +25,6 @@ passes:
         dashboard.Target
       ]
 
-  - name_anonymous_struct:
-      field: dashboard.Dashboard.timepicker
-      as: TimePicker
-
   # From: `panels: [...#Panel | #RowPanel | #GraphPanel | #HeatmapPanel]`
   # To: `panels: [...#Panel | #GraphPanel | #HeatmapPanel]`
   - retype_field:
@@ -298,10 +294,6 @@ passes:
           type:
             kind: ref
             ref: { referred_pkg: dashboard, referred_type: Dashboard }
-
-  - omit:
-      objects:
-        - dashboard.HeatmapPanel
 
   # Some future-proofing
   - constant_to_enum:
