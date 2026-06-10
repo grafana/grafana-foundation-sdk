@@ -183,14 +183,6 @@ passes:
       comments:
         - 'The amount of time, in seconds, for which the rule must be breached for the rule to be considered to be Firing.'
         - 'Before this time has elapsed, the rule is only considered to be Pending.'
-  - retype_field:
-      field: alerting.TimeInterval.time_intervals
-      as:
-        kind: array
-        array:
-          value_type:
-            kind: ref
-            ref: { referred_pkg: alerting, referred_type: TimeIntervalItem }
   - retype_object:
       object: alerting.MatchType
       as:

@@ -9,11 +9,9 @@ passes:
   ############################################################################
 
   # Panels
-  - schema_set_identifier: { package: alertgroups, identifier: alertGroups }
   - schema_set_identifier: { package: annotationslist, identifier: annolist }
   - schema_set_identifier: { package: dashboardlist, identifier: dashlist }
   - schema_set_identifier: { package: nodegraph, identifier: nodeGraph }
   - schema_set_identifier: { package: statetimeline, identifier: state-timeline }
   - schema_set_identifier: { package: statushistory, identifier: status-history }
-  - schema_set_identifier: { package: tableold, identifier: table-old }
 
