@@ -8,11 +8,11 @@ passes:
   - fields_set_not_required:
       fields: [
         athena.Dataquery.refId,
-        azuremonitor.AzureMonitorQuery.refId,
+        azuremonitor.MonitorQuery.refId,
         bigquery.Dataquery.refId,
-        cloudwatch.CloudWatchMetricsQuery.refId,
-        cloudwatch.CloudWatchLogsQuery.refId,
-        cloudwatch.CloudWatchAnnotationQuery.refId,
+        cloudwatch.MetricsQuery.refId,
+        cloudwatch.LogsQuery.refId,
+        cloudwatch.AnnotationQuery.refId,
         datasource.Dataquery.refId,
         elasticsearch.Dataquery.refId,
         expr.typeMath.refId,
@@ -26,6 +26,6 @@ passes:
         loki.Dataquery.refId,
         parca.Dataquery.refId,
         prometheus.Dataquery.refId,
-        tempo.TempoQuery.refId,
+        tempo.Dataquery.refId,
         testdata.dataquery.refId,
       ]
