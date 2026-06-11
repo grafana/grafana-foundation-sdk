@@ -9,6 +9,14 @@
   background-color: #ffa6571a;
 }
 
+.badge.deprecated {
+  color: rgba(237, 69, 92, 1);
+  background-color: rgba(237, 69, 92, 0.1);
+}
+.badge.deprecated::after {
+  content: 'deprecated';
+}
+
 .badge.object-type-struct,
 .badge.object-type-interface,
 .badge.object-type-class {
