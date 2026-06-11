@@ -1,5 +1,5 @@
 # Build Go Binary
-FROM golang:1.26.0@sha256:c83e68f3ebb6943a2904fa66348867d108119890a2c6a2e6f07b38d0eb6c25c5 AS build
+FROM golang:1.26.3@sha256:2d6c80227255c3112a4d08e67ba98e58efd3846daf15d9d7d4c389565d881b1a AS build
 
 WORKDIR /app
 COPY ["go.mod", "go.sum", "./"]
@@ -11,7 +11,7 @@ ENV GOCACHE=/go/pkg/mod/
 RUN --mount=type=cache,target="/go/pkg/mod/" go build -o dashboard-converter .
 
 # Build Image
-FROM golang:1.26.0-alpine@sha256:d4c4845f5d60c6a974c6000ce58ae079328d03ab7f721a0734277e69905473e5
+FROM golang:1.26.3-alpine@sha256:91eda9776261207ea25fd06b5b7fed8d397dd2c0a283e77f2ab6e91bfa71079d
 RUN apk add --no-cache ca-certificates
 
 WORKDIR /root
