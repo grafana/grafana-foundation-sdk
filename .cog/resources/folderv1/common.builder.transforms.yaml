@@ -1,0 +1,51 @@
+# yaml-language-server: $schema=https://raw.githubusercontent.com/grafana/cog/main/schemas/veneers.json
+
+languages: [all]
+
+package: folderv1
+
+builders:
+  - promote_options_to_constructor:
+      by_name: Folder
+      options: [title]
+
+  - add_factory:
+      by_name: Folder
+      factory:
+        name: manifest
+        builder_ref: {referred_pkg: resource, referred_type: Manifest}
+        comments:
+          - "Creates a resource manifest from a Folder."
+        arguments:
+          - &name_argument
+            name: name
+            type: &type_string
+              kind: scalar
+              scalar: {scalar_kind: string}
+          - &spec_argument
+            name: folder
+            type:
+              kind: ref
+              ref: {referred_pkg: folderv1, referred_type: Folder}
+        options:
+          - name: apiVersion
+            parameters:
+              - constant:
+                  value: "folder.grafana.app/v1"
+                  type: *type_string
+          - name: kind
+            parameters:
+              - constant:
+                  value: "Folder"
+                  type: *type_string
+          - name: metadata
+            parameters:
+              - factory:
+                  ref: { package: resource, builder: Metadata, factory: named }
+                  parameters:
+                    - { argument: *name_argument }
+          - name: spec
+            parameters:
+              - { argument: *spec_argument, force_build: true }
+
+options: []
