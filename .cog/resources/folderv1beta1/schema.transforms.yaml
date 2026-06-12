@@ -1,6 +1,10 @@
 # yaml-language-server: $schema=https://raw.githubusercontent.com/grafana/cog/main/schemas/compiler_passes.json
 
 passes:
+  - deprecate_object:
+      object: folderv1beta1.Folder
+      message: Prefer using folder.Folder instead.
+
   # Add a few useful constants
   - add_object:
       object: folderv1beta1.FolderApiVersion
