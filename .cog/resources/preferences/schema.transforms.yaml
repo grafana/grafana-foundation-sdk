@@ -1,0 +1,6 @@
+# yaml-language-server: $schema=https://raw.githubusercontent.com/grafana/cog/main/schemas/compiler_passes.json
+
+passes:
+  - deprecate_object:
+      object: preferences.Preferences
+      message: Prefer using preferencesv1alpha1.Preferences instead.

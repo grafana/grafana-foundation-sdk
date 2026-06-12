@@ -5,6 +5,10 @@ passes:
   # Dashboard #
   #############
 
+  - deprecate_object:
+      object: dashboard.Dashboard
+      message: Prefer using dashboardv2.Dashboard instead.
+
   # These fields are incorrectly set as non-required in the CUE schema.
   # Loading a dashboard with these set to null will fail.
   - fields_set_required:

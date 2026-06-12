@@ -1,6 +1,10 @@
 # yaml-language-server: $schema=https://raw.githubusercontent.com/grafana/cog/main/schemas/compiler_passes.json
 
 passes:
+  - deprecate_object:
+      object: dashboardv2beta1.DashboardSpec
+      message: Prefer using dashboardv2.Dashboard instead.
+
   # Add a few useful constants
   - add_object:
       object: dashboardv2beta1.DashboardApiVersion
