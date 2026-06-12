@@ -4,6 +4,9 @@ import * as cog from '../cog';
 import * as playlistv0alpha1 from '../playlistv0alpha1';
 import * as resource from '../resource';
 
+/**
+ * @deprecated Prefer using playlistv1.Playlist instead.
+ */
 export class PlaylistBuilder implements cog.Builder<playlistv0alpha1.Playlist> {
     protected readonly internal: playlistv0alpha1.Playlist;
 

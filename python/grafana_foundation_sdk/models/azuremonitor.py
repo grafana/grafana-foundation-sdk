@@ -2,6 +2,7 @@
 
 from ..cog import variants as cogvariants
 import typing
+from ..models import common
 import enum
 from ..cog import runtime as cogruntime
 
@@ -10,7 +11,7 @@ class MonitorQuery(cogvariants.Dataquery):
     # A unique identifier for the query within the list of targets.
     # In server side expressions, the refId is used as a variable name to identify results.
     # By default, the UI will assign A->Z; however setting meaningful names may be useful.
-    ref_id: str
+    ref_id: typing.Optional[str]
     # If hide is set to true, Grafana will filter out the response(s) associated with this query before returning it to the panel.
     hide: typing.Optional[bool]
     # Specify the query flavor
@@ -45,11 +46,11 @@ class MonitorQuery(cogvariants.Dataquery):
     # For non mixed scenarios this is undefined.
     # TODO find a better way to do this ^ that's friendly to schema
     # TODO this shouldn't be unknown but DataSourceRef | null
-    datasource: typing.Optional[object]
+    datasource: typing.Optional[common.DataSourceRef]
     # Used only for exemplar queries from Prometheus
     query: typing.Optional[str]
 
-    def __init__(self, ref_id: str = "", hide: typing.Optional[bool] = None, query_type: typing.Optional[str] = None, subscription: typing.Optional[str] = None, subscriptions: typing.Optional[list[str]] = None, azure_monitor: typing.Optional['MetricQuery'] = None, azure_log_analytics: typing.Optional['LogsQuery'] = None, azure_resource_graph: typing.Optional['ResourceGraphQuery'] = None, azure_traces: typing.Optional['TracesQuery'] = None, grafana_template_variable_fn: typing.Optional['GrafanaTemplateVariableQuery'] = None, resource_group: typing.Optional[str] = None, namespace: typing.Optional[str] = None, resource: typing.Optional[str] = None, region: typing.Optional[str] = None, custom_namespace: typing.Optional[str] = None, datasource: typing.Optional[object] = None, query: typing.Optional[str] = None) -> None:
+    def __init__(self, ref_id: typing.Optional[str] = None, hide: typing.Optional[bool] = None, query_type: typing.Optional[str] = None, subscription: typing.Optional[str] = None, subscriptions: typing.Optional[list[str]] = None, azure_monitor: typing.Optional['MetricQuery'] = None, azure_log_analytics: typing.Optional['LogsQuery'] = None, azure_resource_graph: typing.Optional['ResourceGraphQuery'] = None, azure_traces: typing.Optional['TracesQuery'] = None, grafana_template_variable_fn: typing.Optional['GrafanaTemplateVariableQuery'] = None, resource_group: typing.Optional[str] = None, namespace: typing.Optional[str] = None, resource: typing.Optional[str] = None, region: typing.Optional[str] = None, custom_namespace: typing.Optional[str] = None, datasource: typing.Optional[common.DataSourceRef] = None, query: typing.Optional[str] = None) -> None:
         self.ref_id = ref_id
         self.hide = hide
         self.query_type = query_type
@@ -70,8 +71,9 @@ class MonitorQuery(cogvariants.Dataquery):
 
     def to_json(self) -> dict[str, object]:
         payload: dict[str, object] = {
-            "refId": self.ref_id,
         }
+        if self.ref_id is not None:
+            payload["refId"] = self.ref_id
         if self.hide is not None:
             payload["hide"] = self.hide
         if self.query_type is not None:
@@ -142,7 +144,7 @@ class MonitorQuery(cogvariants.Dataquery):
         if "customNamespace" in data:
             args["custom_namespace"] = data["customNamespace"]
         if "datasource" in data:
-            args["datasource"] = data["datasource"]
+            args["datasource"] = common.DataSourceRef.from_json(data["datasource"])
         if "query" in data:
             args["query"] = data["query"]        
 

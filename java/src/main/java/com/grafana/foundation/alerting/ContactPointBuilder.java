@@ -3,6 +3,10 @@
 package com.grafana.foundation.alerting;
 
 
+/**
+ * EmbeddedContactPoint is the contact point type that is used
+ * by grafanas embedded alertmanager implementation.
+ */
 public class ContactPointBuilder implements com.grafana.foundation.cog.Builder<ContactPoint> {
     protected final ContactPoint internal;
     

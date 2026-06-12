@@ -3,6 +3,9 @@
 package com.grafana.foundation.dashboardv2beta1;
 
 
+/**
+ * Result used as replacement with text and color when the value matches
+ */
 public class ValueMappingResultBuilder implements com.grafana.foundation.cog.Builder<ValueMappingResult> {
     protected final ValueMappingResult internal;
     

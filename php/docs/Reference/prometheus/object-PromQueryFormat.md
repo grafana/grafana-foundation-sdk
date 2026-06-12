@@ -24,29 +24,29 @@ final class PromQueryFormat implements \JsonSerializable, \Stringable {
 
     public static function timeSeries(): self
     {
-        if (!isset(self::$instances["time_series"])) {
-            self::$instances["time_series"] = new self("time_series");
+        if (!isset(self::$instances["TimeSeries"])) {
+            self::$instances["TimeSeries"] = new self("time_series");
         }
 
-        return self::$instances["time_series"];
+        return self::$instances["TimeSeries"];
     }
 
     public static function table(): self
     {
-        if (!isset(self::$instances["table"])) {
-            self::$instances["table"] = new self("table");
+        if (!isset(self::$instances["Table"])) {
+            self::$instances["Table"] = new self("table");
         }
 
-        return self::$instances["table"];
+        return self::$instances["Table"];
     }
 
     public static function heatmap(): self
     {
-        if (!isset(self::$instances["heatmap"])) {
-            self::$instances["heatmap"] = new self("heatmap");
+        if (!isset(self::$instances["Heatmap"])) {
+            self::$instances["Heatmap"] = new self("heatmap");
         }
 
-        return self::$instances["heatmap"];
+        return self::$instances["Heatmap"];
     }
 
     public static function fromValue(string $value): self

@@ -3,6 +3,8 @@ title: <span class="badge builder"></span> CustomFormatterVariableBuilder
 ---
 # <span class="badge builder"></span> CustomFormatterVariableBuilder
 
+Custom formatter variable
+
 ## Constructor
 
 ```go

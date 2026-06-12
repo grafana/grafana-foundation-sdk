@@ -3,6 +3,9 @@
 package com.grafana.foundation.common;
 
 
+/**
+ * Links to a resource (image/svg path)
+ */
 public class ResourceDimensionConfigBuilder implements com.grafana.foundation.cog.Builder<ResourceDimensionConfig> {
     protected final ResourceDimensionConfig internal;
     

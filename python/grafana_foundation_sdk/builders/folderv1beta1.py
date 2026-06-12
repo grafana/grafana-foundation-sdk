@@ -3,11 +3,14 @@
 import typing
 from ..cog import builder as cogbuilder
 from ..models import folderv1beta1
+import warnings
 from ..builders import resource as resource_builder
 from ..models import resource
 
 
 class Folder(cogbuilder.Builder[folderv1beta1.Folder]):
+    warnings.warn("Prefer using folder.Folder instead.", DeprecationWarning)
+
     _internal: folderv1beta1.Folder
 
     def __init__(self, title: str) -> None:

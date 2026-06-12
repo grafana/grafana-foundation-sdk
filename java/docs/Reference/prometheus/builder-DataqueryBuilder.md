@@ -18,26 +18,34 @@ Builds the object.
 public Dataquery build()
 ```
 
-### <span class="badge object-method"></span> datasource
+### <span class="badge object-method"></span> adhocFilters
 
-For mixed data sources the selected datasource is on the query level.
-
-For non mixed scenarios this is undefined.
-
-TODO find a better way to do this ^ that's friendly to schema
-
-TODO this shouldn't be unknown but DataSourceRef | null
+Additional Ad-hoc filters that take precedence over Scope on conflict.
 
 ```java
-public dataqueryBuilder datasource(DataSourceRef datasource)
+public DataqueryBuilder adhocFilters(List<com.grafana.foundation.cog.Builder<AdhocFilters>> adhocFilters)
+```
+
+### <span class="badge object-method"></span> datasource
+
+The datasource
+
+```java
+public DataqueryBuilder datasource(DataSourceRef datasource)
 ```
 
 ### <span class="badge object-method"></span> editorMode
 
-Specifies which editor is being used to prepare the query. It can be "code" or "builder"
+what we should show in the editor
+
+Possible enum values:
+
+ - `"builder"` 
+
+ - `"code"` 
 
 ```java
-public dataqueryBuilder editorMode(QueryEditorMode editorMode)
+public DataqueryBuilder editorMode(QueryEditorMode editorMode)
 ```
 
 ### <span class="badge object-method"></span> exemplar
@@ -45,7 +53,7 @@ public dataqueryBuilder editorMode(QueryEditorMode editorMode)
 Execute an additional query to identify interesting raw samples relevant for the given expr
 
 ```java
-public dataqueryBuilder exemplar(Boolean exemplar)
+public DataqueryBuilder exemplar(Boolean exemplar)
 ```
 
 ### <span class="badge object-method"></span> expr
@@ -53,23 +61,43 @@ public dataqueryBuilder exemplar(Boolean exemplar)
 The actual expression/query that will be evaluated by Prometheus
 
 ```java
-public dataqueryBuilder expr(String expr)
+public DataqueryBuilder expr(String expr)
 ```
 
 ### <span class="badge object-method"></span> format
 
-Query format to determine how to display data points in panel. It can be "time_series", "table", "heatmap"
+The response format
+
+Possible enum values:
+
+ - `"time_series"` 
+
+ - `"table"` 
+
+ - `"heatmap"` 
 
 ```java
-public dataqueryBuilder format(PromQueryFormat format)
+public DataqueryBuilder format(PromQueryFormat format)
+```
+
+### <span class="badge object-method"></span> groupByKeys
+
+Group By parameters to apply to aggregate expressions in the query
+
+```java
+public DataqueryBuilder groupByKeys(List<String> groupByKeys)
 ```
 
 ### <span class="badge object-method"></span> hide
 
-If hide is set to true, Grafana will filter out the response(s) associated with this query before returning it to the panel.
+true if query is disabled (ie should not be returned to the dashboard)
+
+NOTE: this does not always imply that the query should not be executed since
+
+the results from a hidden query may be used as the input to other queries (SSE etc)
 
 ```java
-public dataqueryBuilder hide(Boolean hide)
+public DataqueryBuilder hide(Boolean hide)
 ```
 
 ### <span class="badge object-method"></span> instant
@@ -77,7 +105,7 @@ public dataqueryBuilder hide(Boolean hide)
 Returns only the latest value that Prometheus has scraped for the requested time series
 
 ```java
-public dataqueryBuilder instant()
+public DataqueryBuilder instant()
 ```
 
 ### <span class="badge object-method"></span> interval
@@ -87,17 +115,31 @@ An additional lower limit for the step parameter of the Prometheus query and for
 `$__interval` and `$__rate_interval` variables.
 
 ```java
-public dataqueryBuilder interval(String interval)
+public DataqueryBuilder interval(String interval)
 ```
 
 ### <span class="badge object-method"></span> intervalFactor
 
-@deprecated Used to specify how many times to divide max data points by. We use max data points under query options
+Used to specify how many times to divide max data points by. We use max data points under query options
 
 See https://github.com/grafana/grafana/issues/48081
 
+Deprecated: use interval
+
 ```java
-public dataqueryBuilder intervalFactor(Double intervalFactor)
+public DataqueryBuilder intervalFactor(Long intervalFactor)
+```
+
+### <span class="badge object-method"></span> intervalMs
+
+Interval is the suggested duration between time points in a time series query.
+
+NOTE: the values for intervalMs is not saved in the query model.  It is typically calculated
+
+from the interval required to fill a pixels in the visualization
+
+```java
+public DataqueryBuilder intervalMs(Double intervalMs)
 ```
 
 ### <span class="badge object-method"></span> legendFormat
@@ -105,17 +147,29 @@ public dataqueryBuilder intervalFactor(Double intervalFactor)
 Series name override or template. Ex. {{hostname}} will be replaced with label value for hostname
 
 ```java
-public dataqueryBuilder legendFormat(String legendFormat)
+public DataqueryBuilder legendFormat(String legendFormat)
+```
+
+### <span class="badge object-method"></span> maxDataPoints
+
+MaxDataPoints is the maximum number of data points that should be returned from a time series query.
+
+NOTE: the values for maxDataPoints is not saved in the query model.  It is typically calculated
+
+from the number of pixels visible in a visualization
+
+```java
+public DataqueryBuilder maxDataPoints(Long maxDataPoints)
 ```
 
 ### <span class="badge object-method"></span> queryType
 
-Specify the query flavor
+QueryType is an optional identifier for the type of query.
 
-TODO make this required and give it a default
+It can be used to distinguish different types of queries.
 
 ```java
-public dataqueryBuilder queryType(String queryType)
+public DataqueryBuilder queryType(String queryType)
 ```
 
 ### <span class="badge object-method"></span> range
@@ -123,25 +177,49 @@ public dataqueryBuilder queryType(String queryType)
 Returns a Range vector, comprised of a set of time series containing a range of data points over time for each time series
 
 ```java
-public dataqueryBuilder range()
+public DataqueryBuilder range()
 ```
 
 ### <span class="badge object-method"></span> rangeAndInstant
 
 ```java
-public dataqueryBuilder rangeAndInstant()
+public DataqueryBuilder rangeAndInstant()
 ```
 
 ### <span class="badge object-method"></span> refId
 
-A unique identifier for the query within the list of targets.
-
-In server side expressions, the refId is used as a variable name to identify results.
-
-By default, the UI will assign A->Z; however setting meaningful names may be useful.
+RefID is the unique identifier of the query, set by the frontend call.
 
 ```java
-public dataqueryBuilder refId(String refId)
+public DataqueryBuilder refId(String refId)
+```
+
+### <span class="badge object-method"></span> resultAssertions
+
+Optionally define expected query result behavior
+
+```java
+public DataqueryBuilder resultAssertions(com.grafana.foundation.cog.Builder<ResultAssertions> resultAssertions)
+```
+
+### <span class="badge object-method"></span> scopes
+
+A set of filters applied to apply to the query
+
+```java
+public DataqueryBuilder scopes(List<com.grafana.foundation.cog.Builder<Scopes>> scopes)
+```
+
+### <span class="badge object-method"></span> timeRange
+
+TimeRange represents the query range
+
+NOTE: unlike generic /ds/query, we can now send explicit time values in each query
+
+NOTE: the values for timeRange are not saved in a dashboard, they are constructed on the fly
+
+```java
+public DataqueryBuilder timeRange(com.grafana.foundation.cog.Builder<TimeRange> timeRange)
 ```
 
 ## See also

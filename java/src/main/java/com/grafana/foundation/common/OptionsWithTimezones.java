@@ -9,7 +9,9 @@ import com.fasterxml.jackson.databind.ObjectWriter;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import java.util.List;
 
-// TODO docs
+/**
+ * TODO docs
+ */
 public class OptionsWithTimezones {
     @JsonInclude(JsonInclude.Include.NON_NULL)
     @JsonProperty("timezone")

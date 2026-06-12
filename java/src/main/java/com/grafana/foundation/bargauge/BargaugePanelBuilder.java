@@ -28,6 +28,9 @@ import com.grafana.foundation.common.ReduceDataOptions;
 import com.grafana.foundation.common.VizTextDisplayOptions;
 import com.grafana.foundation.common.VizOrientation;
 
+/**
+ * Dashboard panels are the basic visualization building blocks.
+ */
 public class BargaugePanelBuilder implements com.grafana.foundation.cog.Builder<Panel> {
     protected final Panel internal;
     

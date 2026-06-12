@@ -8,8 +8,8 @@ title: <span class="badge object-type-enum"></span> QueryEditorMode
 ```go
 type QueryEditorMode string
 const (
-	QueryEditorModeCode QueryEditorMode = "code"
 	QueryEditorModeBuilder QueryEditorMode = "builder"
+	QueryEditorModeCode QueryEditorMode = "code"
 )
 
 ```

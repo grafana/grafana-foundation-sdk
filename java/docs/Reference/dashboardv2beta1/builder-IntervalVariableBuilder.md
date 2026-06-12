@@ -3,6 +3,8 @@ title: <span class="badge builder"></span> IntervalVariableBuilder
 ---
 # <span class="badge builder"></span> IntervalVariableBuilder
 
+Interval variable kind
+
 ## Constructor
 
 ```java

@@ -9,7 +9,9 @@ import com.fasterxml.jackson.databind.ObjectWriter;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import java.util.List;
 
-// Dashboard action
+/**
+ * Dashboard action
+ */
 public class Action {
     @JsonInclude(JsonInclude.Include.NON_EMPTY)
     @JsonProperty("type")

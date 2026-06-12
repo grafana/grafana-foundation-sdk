@@ -3,6 +3,10 @@ title: <span class="badge builder"></span> AnnotationTargetBuilder
 ---
 # <span class="badge builder"></span> AnnotationTargetBuilder
 
+TODO: this should be a regular DataQuery that depends on the selected dashboard
+
+these match the properties of the "grafana" datasouce that is default in most dashboards
+
 ## Constructor
 
 ```java

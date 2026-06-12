@@ -3,6 +3,8 @@ title: <span class="badge builder"></span> ValueMappingResult
 ---
 # <span class="badge builder"></span> ValueMappingResult
 
+Result used as replacement with text and color when the value matches
+
 ## Constructor
 
 ```python

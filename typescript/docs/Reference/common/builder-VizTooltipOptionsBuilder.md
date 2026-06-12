@@ -3,6 +3,8 @@ title: <span class="badge builder"></span> VizTooltipOptionsBuilder
 ---
 # <span class="badge builder"></span> VizTooltipOptionsBuilder
 
+TODO docs
+
 ## Constructor
 
 ```typescript

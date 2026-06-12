@@ -28,6 +28,9 @@ import com.grafana.foundation.common.AxisColorMode;
 import com.grafana.foundation.common.ScaleDistributionConfig;
 import com.grafana.foundation.common.HideSeriesConfig;
 
+/**
+ * Dashboard panels are the basic visualization building blocks.
+ */
 public class StatetimelinePanelBuilder implements com.grafana.foundation.cog.Builder<Panel> {
     protected final Panel internal;
     

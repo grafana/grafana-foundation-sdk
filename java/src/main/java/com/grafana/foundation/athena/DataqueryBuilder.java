@@ -4,6 +4,9 @@ package com.grafana.foundation.athena;
 
 import com.grafana.foundation.common.DataSourceRef;
 
+/**
+ * Manually converted from https://github.com/grafana/athena-datasource/blob/57ad707147b7a11e9a521a836d6bf9799877e0e3/src/types.ts
+ */
 public class DataqueryBuilder implements com.grafana.foundation.cog.Builder<com.grafana.foundation.cog.variants.Dataquery> {
     protected final Dataquery internal;
     

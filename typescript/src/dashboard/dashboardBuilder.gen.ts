@@ -3,6 +3,9 @@
 import * as cog from '../cog';
 import * as dashboard from '../dashboard';
 
+/**
+ * @deprecated Prefer using dashboardv2.Dashboard instead.
+ */
 export class DashboardBuilder implements cog.Builder<dashboard.Dashboard> {
     protected readonly internal: dashboard.Dashboard;
     private currentY: number = 0;

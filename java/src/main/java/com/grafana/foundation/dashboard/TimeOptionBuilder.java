@@ -3,6 +3,9 @@
 package com.grafana.foundation.dashboard;
 
 
+/**
+ * Counterpart for TypeScript's TimeOption type.
+ */
 public class TimeOptionBuilder implements com.grafana.foundation.cog.Builder<TimeOption> {
     protected final TimeOption internal;
     

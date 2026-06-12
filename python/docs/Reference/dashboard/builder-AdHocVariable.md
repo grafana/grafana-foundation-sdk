@@ -3,6 +3,8 @@ title: <span class="badge builder"></span> AdHocVariable
 ---
 # <span class="badge builder"></span> AdHocVariable
 
+A variable is a placeholder for a value. You can use variables in metric queries and in panel titles.
+
 ## Constructor
 
 ```python

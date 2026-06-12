@@ -3,6 +3,8 @@ title: <span class="badge builder"></span> BarConfigBuilder
 ---
 # <span class="badge builder"></span> BarConfigBuilder
 
+TODO docs
+
 ## Constructor
 
 ```typescript

@@ -9,7 +9,9 @@ import com.fasterxml.jackson.databind.ObjectWriter;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.fasterxml.jackson.annotation.JsonInclude;
 
-// Allow to transform the visual representation of specific data values in a visualization, irrespective of their original units
+/**
+ * Allow to transform the visual representation of specific data values in a visualization, irrespective of their original units
+ */
 @JsonDeserialize(using = ValueMappingDeserializer.class)
 public class ValueMapping {
     @JsonInclude(JsonInclude.Include.NON_NULL)

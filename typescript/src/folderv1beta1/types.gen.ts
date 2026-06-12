@@ -1,5 +1,8 @@
 // Code generated - EDITING IS FUTILE. DO NOT EDIT.
 
+/**
+ * @deprecated Prefer using folder.Folder instead.
+ */
 export interface Folder {
 	title: string;
 	description?: string;

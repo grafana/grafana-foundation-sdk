@@ -7,7 +7,9 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.ObjectWriter;
 
-// PromQL sub-query properties.
+/**
+ * PromQL sub-query properties.
+ */
 public class PromQLQuery {
     // GCP project to execute the query against.
     @JsonProperty("projectName")

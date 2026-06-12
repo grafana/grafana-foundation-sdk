@@ -838,6 +838,7 @@ func (resource DashboardMeta) Validate() error {
 	return errs
 }
 
+// Deprecated: Prefer using dashboardv2.Dashboard instead.
 type Dashboard struct {
 	// Unique numeric identifier for the dashboard.
 	// `id` is internal to a specific Grafana instance. `uid` should be used to identify a dashboard across Grafana instances.

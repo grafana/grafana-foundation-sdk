@@ -3,6 +3,7 @@
 import typing
 from ..cog import builder as cogbuilder
 from ..models import playlistv0alpha1
+import warnings
 from ..builders import resource as resource_builder
 from ..models import resource
 
@@ -46,6 +47,8 @@ class Item(cogbuilder.Builder[playlistv0alpha1.Item]):
 
 
 class Playlist(cogbuilder.Builder[playlistv0alpha1.Playlist]):
+    warnings.warn("Prefer using playlistv1.Playlist instead.", DeprecationWarning)
+
     _internal: playlistv0alpha1.Playlist
 
     def __init__(self, title: str) -> None:

@@ -114,7 +114,7 @@ class MetricsQuery(cogvariants.Dataquery):
     # A unique identifier for the query within the list of targets.
     # In server side expressions, the refId is used as a variable name to identify results.
     # By default, the UI will assign A->Z; however setting meaningful names may be useful.
-    ref_id: str
+    ref_id: typing.Optional[str]
     # If hide is set to true, Grafana will filter out the response(s) associated with this query before returning it to the panel.
     hide: typing.Optional[bool]
     # Specify the query flavor
@@ -146,7 +146,7 @@ class MetricsQuery(cogvariants.Dataquery):
     # @deprecated use statistic
     statistics: typing.Optional[list[str]]
 
-    def __init__(self, query_mode: typing.Optional['QueryMode'] = None, metric_query_type: typing.Optional['MetricQueryType'] = None, metric_editor_mode: typing.Optional['MetricEditorMode'] = None, id_val: str = "", alias: typing.Optional[str] = None, label: typing.Optional[str] = None, expression: typing.Optional[str] = None, sql_expression: typing.Optional[str] = None, ref_id: str = "", hide: typing.Optional[bool] = None, query_type: typing.Optional[str] = None, region: str = "", namespace: str = "", metric_name: typing.Optional[str] = None, dimensions: typing.Optional['Dimensions'] = None, match_exact: typing.Optional[bool] = None, period: typing.Optional[str] = None, account_id: typing.Optional[str] = None, statistic: typing.Optional[str] = None, sql: typing.Optional['SQLExpression'] = None, datasource: typing.Optional[common.DataSourceRef] = None, statistics: typing.Optional[list[str]] = None) -> None:
+    def __init__(self, query_mode: typing.Optional['QueryMode'] = None, metric_query_type: typing.Optional['MetricQueryType'] = None, metric_editor_mode: typing.Optional['MetricEditorMode'] = None, id_val: str = "", alias: typing.Optional[str] = None, label: typing.Optional[str] = None, expression: typing.Optional[str] = None, sql_expression: typing.Optional[str] = None, ref_id: typing.Optional[str] = None, hide: typing.Optional[bool] = None, query_type: typing.Optional[str] = None, region: str = "", namespace: str = "", metric_name: typing.Optional[str] = None, dimensions: typing.Optional['Dimensions'] = None, match_exact: typing.Optional[bool] = None, period: typing.Optional[str] = None, account_id: typing.Optional[str] = None, statistic: typing.Optional[str] = None, sql: typing.Optional['SQLExpression'] = None, datasource: typing.Optional[common.DataSourceRef] = None, statistics: typing.Optional[list[str]] = None) -> None:
         self.query_mode = query_mode if query_mode is not None else QueryMode.METRICS
         self.metric_query_type = metric_query_type
         self.metric_editor_mode = metric_editor_mode
@@ -174,7 +174,6 @@ class MetricsQuery(cogvariants.Dataquery):
         payload: dict[str, object] = {
             "queryMode": self.query_mode,
             "id": self.id_val,
-            "refId": self.ref_id,
             "region": self.region,
             "namespace": self.namespace,
         }
@@ -190,6 +189,8 @@ class MetricsQuery(cogvariants.Dataquery):
             payload["expression"] = self.expression
         if self.sql_expression is not None:
             payload["sqlExpression"] = self.sql_expression
+        if self.ref_id is not None:
+            payload["refId"] = self.ref_id
         if self.hide is not None:
             payload["hide"] = self.hide
         if self.query_type is not None:
@@ -625,7 +626,7 @@ class LogsQuery(cogvariants.Dataquery):
     # A unique identifier for the query within the list of targets.
     # In server side expressions, the refId is used as a variable name to identify results.
     # By default, the UI will assign A->Z; however setting meaningful names may be useful.
-    ref_id: str
+    ref_id: typing.Optional[str]
     # If hide is set to true, Grafana will filter out the response(s) associated with this query before returning it to the panel.
     hide: typing.Optional[bool]
     # Specify the query flavor
@@ -639,7 +640,7 @@ class LogsQuery(cogvariants.Dataquery):
     # TODO this shouldn't be unknown but DataSourceRef | null
     datasource: typing.Optional[common.DataSourceRef]
 
-    def __init__(self, query_mode: typing.Optional['QueryMode'] = None, id_val: str = "", region: str = "", expression: typing.Optional[str] = None, stats_groups: typing.Optional[list[str]] = None, log_groups: typing.Optional[list['LogGroup']] = None, log_group_names: typing.Optional[list[str]] = None, ref_id: str = "", hide: typing.Optional[bool] = None, query_type: typing.Optional[str] = None, query_language: typing.Optional['LogsQueryLanguage'] = None, datasource: typing.Optional[common.DataSourceRef] = None) -> None:
+    def __init__(self, query_mode: typing.Optional['QueryMode'] = None, id_val: str = "", region: str = "", expression: typing.Optional[str] = None, stats_groups: typing.Optional[list[str]] = None, log_groups: typing.Optional[list['LogGroup']] = None, log_group_names: typing.Optional[list[str]] = None, ref_id: typing.Optional[str] = None, hide: typing.Optional[bool] = None, query_type: typing.Optional[str] = None, query_language: typing.Optional['LogsQueryLanguage'] = None, datasource: typing.Optional[common.DataSourceRef] = None) -> None:
         self.query_mode = query_mode if query_mode is not None else QueryMode.LOGS
         self.id_val = id_val
         self.region = region
@@ -658,7 +659,6 @@ class LogsQuery(cogvariants.Dataquery):
             "queryMode": self.query_mode,
             "id": self.id_val,
             "region": self.region,
-            "refId": self.ref_id,
         }
         if self.expression is not None:
             payload["expression"] = self.expression
@@ -668,6 +668,8 @@ class LogsQuery(cogvariants.Dataquery):
             payload["logGroups"] = self.log_groups
         if self.log_group_names is not None:
             payload["logGroupNames"] = self.log_group_names
+        if self.ref_id is not None:
+            payload["refId"] = self.ref_id
         if self.hide is not None:
             payload["hide"] = self.hide
         if self.query_type is not None:
@@ -773,7 +775,7 @@ class AnnotationQuery(cogvariants.Dataquery):
     # A unique identifier for the query within the list of targets.
     # In server side expressions, the refId is used as a variable name to identify results.
     # By default, the UI will assign A->Z; however setting meaningful names may be useful.
-    ref_id: str
+    ref_id: typing.Optional[str]
     # If hide is set to true, Grafana will filter out the response(s) associated with this query before returning it to the panel.
     hide: typing.Optional[bool]
     # Specify the query flavor
@@ -807,7 +809,7 @@ class AnnotationQuery(cogvariants.Dataquery):
     # @deprecated use statistic
     statistics: typing.Optional[list[str]]
 
-    def __init__(self, query_mode: typing.Optional['QueryMode'] = None, prefix_matching: typing.Optional[bool] = None, action_prefix: typing.Optional[str] = None, ref_id: str = "", hide: typing.Optional[bool] = None, query_type: typing.Optional[str] = None, region: str = "", namespace: str = "", metric_name: typing.Optional[str] = None, dimensions: typing.Optional['Dimensions'] = None, match_exact: typing.Optional[bool] = None, period: typing.Optional[str] = None, account_id: typing.Optional[str] = None, statistic: typing.Optional[str] = None, alarm_name_prefix: typing.Optional[str] = None, datasource: typing.Optional[common.DataSourceRef] = None, statistics: typing.Optional[list[str]] = None) -> None:
+    def __init__(self, query_mode: typing.Optional['QueryMode'] = None, prefix_matching: typing.Optional[bool] = None, action_prefix: typing.Optional[str] = None, ref_id: typing.Optional[str] = None, hide: typing.Optional[bool] = None, query_type: typing.Optional[str] = None, region: str = "", namespace: str = "", metric_name: typing.Optional[str] = None, dimensions: typing.Optional['Dimensions'] = None, match_exact: typing.Optional[bool] = None, period: typing.Optional[str] = None, account_id: typing.Optional[str] = None, statistic: typing.Optional[str] = None, alarm_name_prefix: typing.Optional[str] = None, datasource: typing.Optional[common.DataSourceRef] = None, statistics: typing.Optional[list[str]] = None) -> None:
         self.query_mode = query_mode if query_mode is not None else QueryMode.ANNOTATIONS
         self.prefix_matching = prefix_matching
         self.action_prefix = action_prefix
@@ -829,7 +831,6 @@ class AnnotationQuery(cogvariants.Dataquery):
     def to_json(self) -> dict[str, object]:
         payload: dict[str, object] = {
             "queryMode": self.query_mode,
-            "refId": self.ref_id,
             "region": self.region,
             "namespace": self.namespace,
         }
@@ -837,6 +838,8 @@ class AnnotationQuery(cogvariants.Dataquery):
             payload["prefixMatching"] = self.prefix_matching
         if self.action_prefix is not None:
             payload["actionPrefix"] = self.action_prefix
+        if self.ref_id is not None:
+            payload["refId"] = self.ref_id
         if self.hide is not None:
             payload["hide"] = self.hide
         if self.query_type is not None:

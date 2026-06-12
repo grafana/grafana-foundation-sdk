@@ -3,6 +3,8 @@ title: <span class="badge builder"></span> HideSeriesConfig
 ---
 # <span class="badge builder"></span> HideSeriesConfig
 
+TODO docs
+
 ## Constructor
 
 ```python

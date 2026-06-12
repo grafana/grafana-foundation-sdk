@@ -15,7 +15,9 @@ import com.grafana.foundation.dashboard.DashboardLink;
 import com.grafana.foundation.dashboard.DataTransformerConfig;
 import com.grafana.foundation.dashboard.FieldConfigSource;
 
-// Dashboard panels are the basic visualization building blocks.
+/**
+ * Dashboard panels are the basic visualization building blocks.
+ */
 @JsonDeserialize(using = PanelModelDeserializer.class)
 public class PanelModel {
     // The panel plugin type id. This is used to find the plugin to display the panel.

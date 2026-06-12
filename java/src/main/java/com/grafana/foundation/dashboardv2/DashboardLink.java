@@ -12,7 +12,9 @@ import com.fasterxml.jackson.annotation.JsonSetter;
 import com.fasterxml.jackson.annotation.Nulls;
 import java.util.List;
 
-// Links with references to other dashboards or external resources
+/**
+ * Links with references to other dashboards or external resources
+ */
 public class DashboardLink {
     // Title to display with the link
     @JsonProperty("title")

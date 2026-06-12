@@ -3,6 +3,9 @@
 package com.grafana.foundation.azuremonitor;
 
 
+/**
+ * @deprecated Use MetricNamespaceQuery instead
+ */
 public class MetricDefinitionsQueryBuilder implements com.grafana.foundation.cog.Builder<MetricDefinitionsQuery> {
     protected final MetricDefinitionsQuery internal;
     

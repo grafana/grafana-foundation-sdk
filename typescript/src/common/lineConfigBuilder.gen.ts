@@ -3,7 +3,9 @@
 import * as cog from '../cog';
 import * as common from '../common';
 
-// TODO docs
+/**
+ * TODO docs
+ */
 export class LineConfigBuilder implements cog.Builder<common.LineConfig> {
     protected readonly internal: common.LineConfig;
 

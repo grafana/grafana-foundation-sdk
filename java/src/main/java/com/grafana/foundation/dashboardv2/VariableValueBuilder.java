@@ -5,6 +5,9 @@ package com.grafana.foundation.dashboardv2;
 import java.util.List;
 import java.util.LinkedList;
 
+/**
+ * Variable types
+ */
 public class VariableValueBuilder implements com.grafana.foundation.cog.Builder<VariableValue> {
     protected final VariableValue internal;
     

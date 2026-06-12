@@ -3,6 +3,8 @@ title: <span class="badge builder"></span> DatasourceVariableBuilder
 ---
 # <span class="badge builder"></span> DatasourceVariableBuilder
 
+Datasource variable kind
+
 ## Constructor
 
 ```php

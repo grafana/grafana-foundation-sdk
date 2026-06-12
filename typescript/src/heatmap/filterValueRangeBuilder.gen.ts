@@ -3,7 +3,9 @@
 import * as cog from '../cog';
 import * as heatmap from '../heatmap';
 
-// Controls the value filter range
+/**
+ * Controls the value filter range
+ */
 export class FilterValueRangeBuilder implements cog.Builder<heatmap.FilterValueRange> {
     protected readonly internal: heatmap.FilterValueRange;
 

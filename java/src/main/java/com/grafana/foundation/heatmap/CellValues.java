@@ -8,7 +8,9 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.ObjectWriter;
 import com.fasterxml.jackson.annotation.JsonInclude;
 
-// Controls cell value options
+/**
+ * Controls cell value options
+ */
 public class CellValues {
     // Controls the cell value unit
     @JsonInclude(JsonInclude.Include.NON_NULL)

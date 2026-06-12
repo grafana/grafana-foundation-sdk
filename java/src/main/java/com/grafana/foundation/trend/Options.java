@@ -10,7 +10,9 @@ import com.fasterxml.jackson.annotation.JsonInclude;
 import com.grafana.foundation.common.VizLegendOptions;
 import com.grafana.foundation.common.VizTooltipOptions;
 
-// Identical to timeseries... except it does not have timezone settings
+/**
+ * Identical to timeseries... except it does not have timezone settings
+ */
 public class Options {
     @JsonInclude(JsonInclude.Include.NON_EMPTY)
     @JsonProperty("legend")

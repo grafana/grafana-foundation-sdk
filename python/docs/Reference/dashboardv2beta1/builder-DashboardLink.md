@@ -3,6 +3,8 @@ title: <span class="badge builder"></span> DashboardLink
 ---
 # <span class="badge builder"></span> DashboardLink
 
+Links with references to other dashboards or external resources
+
 ## Constructor
 
 ```python
@@ -63,7 +65,7 @@ def origin(origin: cogbuilder.Builder[dashboardv2beta1.ControlSourceRef]) -> typ
 Placement can be used to display the link somewhere else on the dashboard other than above the visualisations.
 
 ```python
-def placement(placement: str) -> typing.Self
+def placement(placement: dashboardv2beta1.DashboardLinkPlacement) -> typing.Self
 ```
 
 ### <span class="badge object-method"></span> tags

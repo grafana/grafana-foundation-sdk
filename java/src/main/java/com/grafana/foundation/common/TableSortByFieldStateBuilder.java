@@ -3,6 +3,9 @@
 package com.grafana.foundation.common;
 
 
+/**
+ * Sort by field state
+ */
 public class TableSortByFieldStateBuilder implements com.grafana.foundation.cog.Builder<TableSortByFieldState> {
     protected final TableSortByFieldState internal;
     

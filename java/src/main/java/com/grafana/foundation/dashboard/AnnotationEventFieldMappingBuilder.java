@@ -3,6 +3,9 @@
 package com.grafana.foundation.dashboard;
 
 
+/**
+ * Annotation event field mapping. Defines how to map a data frame field to an annotation event field.
+ */
 public class AnnotationEventFieldMappingBuilder implements com.grafana.foundation.cog.Builder<AnnotationEventFieldMapping> {
     protected final AnnotationEventFieldMapping internal;
     

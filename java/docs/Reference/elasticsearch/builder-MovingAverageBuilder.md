@@ -3,6 +3,8 @@ title: <span class="badge builder"></span> MovingAverageBuilder
 ---
 # <span class="badge builder"></span> MovingAverageBuilder
 
+#MovingAverage's settings are overridden in types.ts
+
 ## Constructor
 
 ```java

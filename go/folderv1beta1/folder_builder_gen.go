@@ -9,11 +9,13 @@ import (
 
 var _ cog.Builder[Folder] = (*FolderBuilder)(nil)
 
+// Deprecated: Prefer using folder.Folder instead.
 type FolderBuilder struct {
 	internal *Folder
 	errors   cog.BuildErrors
 }
 
+// Deprecated: "Prefer using folder.Folder instead."
 func NewFolderBuilder(title string) *FolderBuilder {
 	resource := NewFolder()
 	builder := &FolderBuilder{

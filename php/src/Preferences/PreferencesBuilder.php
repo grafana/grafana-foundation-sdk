@@ -6,6 +6,7 @@ namespace Grafana\Foundation\Preferences;
  * Spec defines user, team or org Grafana preferences
  * swagger:model Preferences
  * @implements \Grafana\Foundation\Cog\Builder<\Grafana\Foundation\Preferences\Preferences>
+ * @deprecated Prefer using preferencesv1alpha1.Preferences instead.
  */
 class PreferencesBuilder implements \Grafana\Foundation\Cog\Builder
 {

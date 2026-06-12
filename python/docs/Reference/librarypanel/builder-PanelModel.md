@@ -3,6 +3,8 @@ title: <span class="badge builder"></span> PanelModel
 ---
 # <span class="badge builder"></span> PanelModel
 
+Dashboard panels are the basic visualization building blocks.
+
 ## Constructor
 
 ```python

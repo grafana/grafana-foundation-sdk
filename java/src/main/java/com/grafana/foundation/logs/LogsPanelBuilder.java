@@ -22,6 +22,9 @@ import com.grafana.foundation.dashboard.MatcherConfig;
 import com.grafana.foundation.common.LogsSortOrder;
 import com.grafana.foundation.common.LogsDedupStrategy;
 
+/**
+ * Dashboard panels are the basic visualization building blocks.
+ */
 public class LogsPanelBuilder implements com.grafana.foundation.cog.Builder<Panel> {
     protected final Panel internal;
     

@@ -3,6 +3,8 @@ title: <span class="badge builder"></span> GroupByVariable
 ---
 # <span class="badge builder"></span> GroupByVariable
 
+Group variable kind
+
 ## Constructor
 
 ```python

@@ -129,7 +129,7 @@ class DashboardLinkBuilder implements \Grafana\Foundation\Cog\Builder
     /**
      * Placement can be used to display the link somewhere else on the dashboard other than above the visualisations.
      */
-    public function placement(string $placement): static
+    public function placement(\Grafana\Foundation\Dashboardv2beta1\DashboardLinkPlacement $placement): static
     {
         $this->internal->placement = $placement;
     

@@ -4,7 +4,9 @@ import * as cog from '../cog';
 import * as dashboard from '../dashboard';
 import * as common from '../common';
 
-// Row panel
+/**
+ * Row panel
+ */
 export class RowBuilder implements cog.Builder<dashboard.RowPanel> {
     protected readonly internal: dashboard.RowPanel;
 

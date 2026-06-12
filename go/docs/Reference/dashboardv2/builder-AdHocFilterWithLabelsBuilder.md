@@ -3,6 +3,8 @@ title: <span class="badge builder"></span> AdHocFilterWithLabelsBuilder
 ---
 # <span class="badge builder"></span> AdHocFilterWithLabelsBuilder
 
+Define the AdHocFilterWithLabels type
+
 ## Constructor
 
 ```go

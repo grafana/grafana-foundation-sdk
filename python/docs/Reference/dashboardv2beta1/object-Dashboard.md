@@ -1,12 +1,15 @@
 ---
-title: <span class="badge object-type-class"></span> Dashboard
+title: <span class="badge object-type-class"></span> <span class="badge deprecated"></span> Dashboard
 ---
-# <span class="badge object-type-class"></span> Dashboard
+# <span class="badge object-type-class"></span> <span class="badge deprecated"></span> Dashboard
+
+<span class="badge deprecated"></span>Prefer using dashboardv2.Dashboard instead.
 
 ## Definition
 
 ```python
 class Dashboard:
+    warnings.warn("Prefer using dashboardv2.Dashboard instead.", DeprecationWarning)
     annotations: list[dashboardv2beta1.AnnotationQueryKind]
     # Configuration of dashboard cursor sync behavior.
     # "Off" for no shared crosshair or tooltip (default).
@@ -59,4 +62,4 @@ def from_json(data: dict[str, typing.Any]) -> typing.Self
 
 ## See also
 
- * <span class="badge builder"></span> [Dashboard](./builder-Dashboard.md)
+ * <span class="badge builder"></span> <span class="badge deprecated"></span> [Dashboard](./builder-Dashboard.md)

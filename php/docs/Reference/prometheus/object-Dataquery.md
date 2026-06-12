@@ -9,19 +9,23 @@ title: <span class="badge object-type-class"></span> Dataquery
 class Dataquery implements \JsonSerializable, \Grafana\Foundation\Cog\Dataquery
 {
     /**
-     * The actual expression/query that will be evaluated by Prometheus
+     * Additional Ad-hoc filters that take precedence over Scope on conflict.
+     * @var array<\Grafana\Foundation\Prometheus\AdhocFilters>|null
      */
-    public string $expr;
+    public ?array $adhocFilters;
 
     /**
-     * Returns only the latest value that Prometheus has scraped for the requested time series
+     * The datasource
      */
-    public ?bool $instant;
+    public ?\Grafana\Foundation\Common\DataSourceRef $datasource;
 
     /**
-     * Returns a Range vector, comprised of a set of time series containing a range of data points over time for each time series
+     * what we should show in the editor
+     * Possible enum values:
+     *  - `"builder"` 
+     *  - `"code"` 
      */
-    public ?bool $range;
+    public ?\Grafana\Foundation\Prometheus\QueryEditorMode $editorMode;
 
     /**
      * Execute an additional query to identify interesting raw samples relevant for the given expr
@@ -29,14 +33,50 @@ class Dataquery implements \JsonSerializable, \Grafana\Foundation\Cog\Dataquery
     public ?bool $exemplar;
 
     /**
-     * Specifies which editor is being used to prepare the query. It can be "code" or "builder"
+     * The actual expression/query that will be evaluated by Prometheus
      */
-    public ?\Grafana\Foundation\Prometheus\QueryEditorMode $editorMode;
+    public string $expr;
 
     /**
-     * Query format to determine how to display data points in panel. It can be "time_series", "table", "heatmap"
+     * The response format
+     * Possible enum values:
+     *  - `"time_series"` 
+     *  - `"table"` 
+     *  - `"heatmap"` 
      */
     public ?\Grafana\Foundation\Prometheus\PromQueryFormat $format;
+
+    /**
+     * Group By parameters to apply to aggregate expressions in the query
+     * @var array<string>|null
+     */
+    public ?array $groupByKeys;
+
+    /**
+     * true if query is disabled (ie should not be returned to the dashboard)
+     * NOTE: this does not always imply that the query should not be executed since
+     * the results from a hidden query may be used as the input to other queries (SSE etc)
+     */
+    public ?bool $hide;
+
+    /**
+     * Returns only the latest value that Prometheus has scraped for the requested time series
+     */
+    public ?bool $instant;
+
+    /**
+     * Used to specify how many times to divide max data points by. We use max data points under query options
+     * See https://github.com/grafana/grafana/issues/48081
+     * Deprecated: use interval
+     */
+    public ?int $intervalFactor;
+
+    /**
+     * Interval is the suggested duration between time points in a time series query.
+     * NOTE: the values for intervalMs is not saved in the query model.  It is typically calculated
+     * from the interval required to fill a pixels in the visualization
+     */
+    public ?float $intervalMs;
 
     /**
      * Series name override or template. Ex. {{hostname}} will be replaced with label value for hostname
@@ -44,42 +84,51 @@ class Dataquery implements \JsonSerializable, \Grafana\Foundation\Cog\Dataquery
     public ?string $legendFormat;
 
     /**
-     * @deprecated Used to specify how many times to divide max data points by. We use max data points under query options
-     * See https://github.com/grafana/grafana/issues/48081
+     * MaxDataPoints is the maximum number of data points that should be returned from a time series query.
+     * NOTE: the values for maxDataPoints is not saved in the query model.  It is typically calculated
+     * from the number of pixels visible in a visualization
      */
-    public ?float $intervalFactor;
+    public ?int $maxDataPoints;
 
     /**
-     * A unique identifier for the query within the list of targets.
-     * In server side expressions, the refId is used as a variable name to identify results.
-     * By default, the UI will assign A->Z; however setting meaningful names may be useful.
+     * QueryType is an optional identifier for the type of query.
+     * It can be used to distinguish different types of queries.
+     */
+    public ?string $queryType;
+
+    /**
+     * Returns a Range vector, comprised of a set of time series containing a range of data points over time for each time series
+     */
+    public ?bool $range;
+
+    /**
+     * RefID is the unique identifier of the query, set by the frontend call.
      */
     public ?string $refId;
 
     /**
-     * If hide is set to true, Grafana will filter out the response(s) associated with this query before returning it to the panel.
+     * Optionally define expected query result behavior
      */
-    public ?bool $hide;
+    public ?\Grafana\Foundation\Prometheus\ResultAssertions $resultAssertions;
 
     /**
-     * Specify the query flavor
-     * TODO make this required and give it a default
+     * A set of filters applied to apply to the query
+     * @var array<\Grafana\Foundation\Prometheus\Scopes>|null
      */
-    public ?string $queryType;
+    public ?array $scopes;
+
+    /**
+     * TimeRange represents the query range
+     * NOTE: unlike generic /ds/query, we can now send explicit time values in each query
+     * NOTE: the values for timeRange are not saved in a dashboard, they are constructed on the fly
+     */
+    public ?\Grafana\Foundation\Prometheus\TimeRange $timeRange;
 
     /**
      * An additional lower limit for the step parameter of the Prometheus query and for the
      * `$__interval` and `$__rate_interval` variables.
      */
     public ?string $interval;
-
-    /**
-     * For mixed data sources the selected datasource is on the query level.
-     * For non mixed scenarios this is undefined.
-     * TODO find a better way to do this ^ that's friendly to schema
-     * TODO this shouldn't be unknown but DataSourceRef | null
-     */
-    public ?\Grafana\Foundation\Common\DataSourceRef $datasource;
 
 }
 ```

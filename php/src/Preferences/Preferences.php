@@ -5,6 +5,7 @@ namespace Grafana\Foundation\Preferences;
 /**
  * Spec defines user, team or org Grafana preferences
  * swagger:model Preferences
+ * @deprecated Prefer using preferencesv1alpha1.Preferences instead.
  */
 class Preferences implements \JsonSerializable
 {

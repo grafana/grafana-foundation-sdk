@@ -1,12 +1,15 @@
 ---
-title: <span class="badge object-type-class"></span> Dashboard
+title: <span class="badge object-type-class"></span> <span class="badge deprecated"></span> Dashboard
 ---
-# <span class="badge object-type-class"></span> Dashboard
+# <span class="badge object-type-class"></span> <span class="badge deprecated"></span> Dashboard
+
+<span class="badge deprecated"></span>Prefer using dashboardv2.Dashboard instead.
 
 ## Definition
 
 ```python
 class Dashboard:
+    warnings.warn("Prefer using dashboardv2.Dashboard instead.", DeprecationWarning)
     # Unique numeric identifier for the dashboard.
     # `id` is internal to a specific Grafana instance. `uid` should be used to identify a dashboard across Grafana instances.
     # TODO eliminate this null option
@@ -121,4 +124,4 @@ if __name__ == '__main__':
 ```
 ## See also
 
- * <span class="badge builder"></span> [Dashboard](./builder-Dashboard.md)
+ * <span class="badge builder"></span> <span class="badge deprecated"></span> [Dashboard](./builder-Dashboard.md)

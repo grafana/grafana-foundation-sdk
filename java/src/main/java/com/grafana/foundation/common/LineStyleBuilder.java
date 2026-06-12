@@ -4,6 +4,9 @@ package com.grafana.foundation.common;
 
 import java.util.List;
 
+/**
+ * TODO docs
+ */
 public class LineStyleBuilder implements com.grafana.foundation.cog.Builder<LineStyle> {
     protected final LineStyle internal;
     

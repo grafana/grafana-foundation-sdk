@@ -3,6 +3,9 @@
 package com.grafana.foundation.dashboardv2;
 
 
+/**
+ * Dashboard specific preferences (applied per dashboard = all users using the dashboard)
+ */
 public class PreferencesBuilder implements com.grafana.foundation.cog.Builder<Preferences> {
     protected final Preferences internal;
     

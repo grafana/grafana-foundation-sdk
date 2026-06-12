@@ -3,6 +3,8 @@ title: <span class="badge builder"></span> TimeSeriesQueryBuilder
 ---
 # <span class="badge builder"></span> TimeSeriesQueryBuilder
 
+Time Series sub-query properties.
+
 ## Constructor
 
 ```go

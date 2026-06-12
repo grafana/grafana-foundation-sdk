@@ -4,6 +4,9 @@ package com.grafana.foundation.heatmap;
 
 import com.grafana.foundation.common.TooltipDisplayMode;
 
+/**
+ * Controls tooltip options
+ */
 public class HeatmapTooltipBuilder implements com.grafana.foundation.cog.Builder<HeatmapTooltip> {
     protected final HeatmapTooltip internal;
     

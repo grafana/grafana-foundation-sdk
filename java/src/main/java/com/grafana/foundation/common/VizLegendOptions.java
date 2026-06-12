@@ -11,7 +11,9 @@ import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonSetter;
 import com.fasterxml.jackson.annotation.Nulls;
 
-// TODO docs
+/**
+ * TODO docs
+ */
 public class VizLegendOptions {
     @JsonInclude(JsonInclude.Include.NON_EMPTY)
     @JsonProperty("displayMode")

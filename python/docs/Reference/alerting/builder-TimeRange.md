@@ -3,6 +3,8 @@ title: <span class="badge builder"></span> TimeRange
 ---
 # <span class="badge builder"></span> TimeRange
 
+Redefining this to avoid an import cycle
+
 ## Constructor
 
 ```python

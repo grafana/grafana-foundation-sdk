@@ -18,6 +18,14 @@ Builds the object.
 func (builder *QueryBuilder) Build() (dashboardv2beta1.DataQueryKind, error)
 ```
 
+### <span class="badge object-method"></span> AdhocFilters
+
+Additional Ad-hoc filters that take precedence over Scope on conflict.
+
+```go
+func (builder *QueryBuilder) AdhocFilters(adhocFilters []cog.Builder[prometheus.AdhocFilters]) *QueryBuilder
+```
+
 ### <span class="badge object-method"></span> Datasource
 
 New type for datasource reference
@@ -30,7 +38,13 @@ func (builder *QueryBuilder) Datasource(datasource cog.Builder[dashboardv2beta1.
 
 ### <span class="badge object-method"></span> EditorMode
 
-Specifies which editor is being used to prepare the query. It can be "code" or "builder"
+what we should show in the editor
+
+Possible enum values:
+
+ - `"builder"` 
+
+ - `"code"` 
 
 ```go
 func (builder *QueryBuilder) EditorMode(editorMode prometheus.QueryEditorMode) *QueryBuilder
@@ -54,15 +68,35 @@ func (builder *QueryBuilder) Expr(expr string) *QueryBuilder
 
 ### <span class="badge object-method"></span> Format
 
-Query format to determine how to display data points in panel. It can be "time_series", "table", "heatmap"
+The response format
+
+Possible enum values:
+
+ - `"time_series"` 
+
+ - `"table"` 
+
+ - `"heatmap"` 
 
 ```go
 func (builder *QueryBuilder) Format(format prometheus.PromQueryFormat) *QueryBuilder
 ```
 
+### <span class="badge object-method"></span> GroupByKeys
+
+Group By parameters to apply to aggregate expressions in the query
+
+```go
+func (builder *QueryBuilder) GroupByKeys(groupByKeys []string) *QueryBuilder
+```
+
 ### <span class="badge object-method"></span> Hide
 
-If hide is set to true, Grafana will filter out the response(s) associated with this query before returning it to the panel.
+true if query is disabled (ie should not be returned to the dashboard)
+
+NOTE: this does not always imply that the query should not be executed since
+
+the results from a hidden query may be used as the input to other queries (SSE etc)
 
 ```go
 func (builder *QueryBuilder) Hide(hide bool) *QueryBuilder
@@ -88,12 +122,26 @@ func (builder *QueryBuilder) Interval(interval string) *QueryBuilder
 
 ### <span class="badge object-method"></span> IntervalFactor
 
-@deprecated Used to specify how many times to divide max data points by. We use max data points under query options
+Used to specify how many times to divide max data points by. We use max data points under query options
 
 See https://github.com/grafana/grafana/issues/48081
 
+Deprecated: use interval
+
 ```go
-func (builder *QueryBuilder) IntervalFactor(intervalFactor float64) *QueryBuilder
+func (builder *QueryBuilder) IntervalFactor(intervalFactor int64) *QueryBuilder
+```
+
+### <span class="badge object-method"></span> IntervalMs
+
+Interval is the suggested duration between time points in a time series query.
+
+NOTE: the values for intervalMs is not saved in the query model.  It is typically calculated
+
+from the interval required to fill a pixels in the visualization
+
+```go
+func (builder *QueryBuilder) IntervalMs(intervalMs float64) *QueryBuilder
 ```
 
 ### <span class="badge object-method"></span> Labels
@@ -110,11 +158,23 @@ Series name override or template. Ex. {{hostname}} will be replaced with label v
 func (builder *QueryBuilder) LegendFormat(legendFormat string) *QueryBuilder
 ```
 
+### <span class="badge object-method"></span> MaxDataPoints
+
+MaxDataPoints is the maximum number of data points that should be returned from a time series query.
+
+NOTE: the values for maxDataPoints is not saved in the query model.  It is typically calculated
+
+from the number of pixels visible in a visualization
+
+```go
+func (builder *QueryBuilder) MaxDataPoints(maxDataPoints int64) *QueryBuilder
+```
+
 ### <span class="badge object-method"></span> QueryType
 
-Specify the query flavor
+QueryType is an optional identifier for the type of query.
 
-TODO make this required and give it a default
+It can be used to distinguish different types of queries.
 
 ```go
 func (builder *QueryBuilder) QueryType(queryType string) *QueryBuilder
@@ -136,14 +196,38 @@ func (builder *QueryBuilder) RangeAndInstant() *QueryBuilder
 
 ### <span class="badge object-method"></span> RefId
 
-A unique identifier for the query within the list of targets.
-
-In server side expressions, the refId is used as a variable name to identify results.
-
-By default, the UI will assign A->Z; however setting meaningful names may be useful.
+RefID is the unique identifier of the query, set by the frontend call.
 
 ```go
 func (builder *QueryBuilder) RefId(refId string) *QueryBuilder
+```
+
+### <span class="badge object-method"></span> ResultAssertions
+
+Optionally define expected query result behavior
+
+```go
+func (builder *QueryBuilder) ResultAssertions(resultAssertions cog.Builder[prometheus.ResultAssertions]) *QueryBuilder
+```
+
+### <span class="badge object-method"></span> Scopes
+
+A set of filters applied to apply to the query
+
+```go
+func (builder *QueryBuilder) Scopes(scopes []cog.Builder[prometheus.Scopes]) *QueryBuilder
+```
+
+### <span class="badge object-method"></span> TimeRange
+
+TimeRange represents the query range
+
+NOTE: unlike generic /ds/query, we can now send explicit time values in each query
+
+NOTE: the values for timeRange are not saved in a dashboard, they are constructed on the fly
+
+```go
+func (builder *QueryBuilder) TimeRange(timeRange cog.Builder[prometheus.TimeRange]) *QueryBuilder
 ```
 
 ### <span class="badge object-method"></span> Version

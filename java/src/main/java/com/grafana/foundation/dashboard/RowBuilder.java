@@ -5,6 +5,9 @@ package com.grafana.foundation.dashboard;
 import com.grafana.foundation.common.DataSourceRef;
 import java.util.LinkedList;
 
+/**
+ * Row panel
+ */
 public class RowBuilder implements com.grafana.foundation.cog.Builder<RowPanel> {
     protected final RowPanel internal;
     

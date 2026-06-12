@@ -3,6 +3,11 @@
 package com.grafana.foundation.xychart;
 
 
+/**
+ * NOTE: (copied from dashboard_kind.cue, since not exported)
+ * Matcher is a predicate configuration. Based on the config a set of field(s) or values is filtered in order to apply override / transformation.
+ * It comes with in id ( to resolve implementation from registry) and a configuration that’s specific to a particular matcher type.
+ */
 public class MatcherConfigBuilder implements com.grafana.foundation.cog.Builder<MatcherConfig> {
     protected final MatcherConfig internal;
     

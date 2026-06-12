@@ -8,7 +8,9 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.ObjectWriter;
 import com.fasterxml.jackson.annotation.JsonInclude;
 
-// Links to a resource (image/svg path)
+/**
+ * Links to a resource (image/svg path)
+ */
 public class ResourceDimensionConfig {
     @JsonInclude(JsonInclude.Include.NON_EMPTY)
     @JsonProperty("mode")

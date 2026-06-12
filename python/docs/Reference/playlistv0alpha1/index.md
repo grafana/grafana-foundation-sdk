@@ -9,7 +9,7 @@
 ## Builders
 
  * <span class="badge builder"></span> [Item](./builder-Item.md)
- * <span class="badge builder"></span> [Playlist](./builder-Playlist.md)
+ * <span class="badge builder"></span> <span class="badge deprecated"></span> [Playlist](./builder-Playlist.md)
 ## Functions
 
 ### <span class="badge function"></span> manifest

@@ -3,6 +3,9 @@
 package com.grafana.foundation.common;
 
 
+/**
+ * TODO docs
+ */
 public class AxisConfigBuilder implements com.grafana.foundation.cog.Builder<AxisConfig> {
     protected final AxisConfig internal;
     

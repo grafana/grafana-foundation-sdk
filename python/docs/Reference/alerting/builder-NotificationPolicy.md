@@ -3,6 +3,10 @@ title: <span class="badge builder"></span> NotificationPolicy
 ---
 # <span class="badge builder"></span> NotificationPolicy
 
+A Route is a node that contains definitions of how to handle alerts. This is modified
+
+from the upstream alertmanager in that it adds the ObjectMatchers property.
+
 ## Constructor
 
 ```python

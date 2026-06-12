@@ -3,6 +3,8 @@ title: <span class="badge builder"></span> TextBoxVariableBuilder
 ---
 # <span class="badge builder"></span> TextBoxVariableBuilder
 
+A variable is a placeholder for a value. You can use variables in metric queries and in panel titles.
+
 ## Constructor
 
 ```go

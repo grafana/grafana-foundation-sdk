@@ -3,7 +3,9 @@
 import * as cog from '../cog';
 import * as dashboardv2beta1 from '../dashboardv2beta1';
 
-// Group variable kind
+/**
+ * Group variable kind
+ */
 export class GroupByVariableBuilder implements cog.Builder<dashboardv2beta1.GroupByVariableKind> {
     protected readonly internal: dashboardv2beta1.GroupByVariableKind;
 

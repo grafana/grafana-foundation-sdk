@@ -53,7 +53,9 @@
               "$ref": "#/components/schemas/Item"
             }
           }
-        }
+        },
+        "deprecated": true,
+        "x-deprecation-message": "Prefer using playlistv1.Playlist instead."
       },
       "PlaylistApiVersion": {
         "type": "string",

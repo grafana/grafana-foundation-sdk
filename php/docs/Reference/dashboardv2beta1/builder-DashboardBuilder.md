@@ -1,7 +1,9 @@
 ---
-title: <span class="badge builder"></span> DashboardBuilder
+title: <span class="badge builder"></span> <span class="badge deprecated"></span> DashboardBuilder
 ---
-# <span class="badge builder"></span> DashboardBuilder
+# <span class="badge builder"></span> <span class="badge deprecated"></span> DashboardBuilder
+
+<span class="badge deprecated"></span>Prefer using dashboardv2.Dashboard instead.
 
 ## Constructor
 

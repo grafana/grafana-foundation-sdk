@@ -3,6 +3,8 @@ title: <span class="badge builder"></span> RowsHeatmapOptions
 ---
 # <span class="badge builder"></span> RowsHeatmapOptions
 
+Controls frame rows options
+
 ## Constructor
 
 ```python

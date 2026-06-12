@@ -3,6 +3,8 @@ title: <span class="badge builder"></span> CustomVariableBuilder
 ---
 # <span class="badge builder"></span> CustomVariableBuilder
 
+Custom variable kind
+
 ## Constructor
 
 ```go

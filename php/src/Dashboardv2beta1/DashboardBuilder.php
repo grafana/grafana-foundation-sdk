@@ -4,6 +4,7 @@ namespace Grafana\Foundation\Dashboardv2beta1;
 
 /**
  * @implements \Grafana\Foundation\Cog\Builder<\Grafana\Foundation\Dashboardv2beta1\Dashboard>
+ * @deprecated Prefer using dashboardv2.Dashboard instead.
  */
 class DashboardBuilder implements \Grafana\Foundation\Cog\Builder
 {

@@ -4,6 +4,9 @@ package com.grafana.foundation.dashboard;
 
 import java.util.List;
 
+/**
+ * Infinity options
+ */
 public class InfinityOptionsBuilder implements com.grafana.foundation.cog.Builder<InfinityOptions> {
     protected final InfinityOptions internal;
     

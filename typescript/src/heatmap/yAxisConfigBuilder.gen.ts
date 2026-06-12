@@ -4,7 +4,9 @@ import * as cog from '../cog';
 import * as heatmap from '../heatmap';
 import * as common from '../common';
 
-// Configuration options for the yAxis
+/**
+ * Configuration options for the yAxis
+ */
 export class YAxisConfigBuilder implements cog.Builder<heatmap.YAxisConfig> {
     protected readonly internal: heatmap.YAxisConfig;
 

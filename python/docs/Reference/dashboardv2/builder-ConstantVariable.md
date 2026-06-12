@@ -3,6 +3,8 @@ title: <span class="badge builder"></span> ConstantVariable
 ---
 # <span class="badge builder"></span> ConstantVariable
 
+Constant variable kind
+
 ## Constructor
 
 ```python

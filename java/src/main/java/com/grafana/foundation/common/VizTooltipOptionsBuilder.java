@@ -3,6 +3,9 @@
 package com.grafana.foundation.common;
 
 
+/**
+ * TODO docs
+ */
 public class VizTooltipOptionsBuilder implements com.grafana.foundation.cog.Builder<VizTooltipOptions> {
     protected final VizTooltipOptions internal;
     

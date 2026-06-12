@@ -3,6 +3,8 @@ title: <span class="badge builder"></span> DashboardLinkBuilder
 ---
 # <span class="badge builder"></span> DashboardLinkBuilder
 
+Links with references to other dashboards or external resources
+
 ## Constructor
 
 ```java
@@ -63,7 +65,7 @@ public DashboardLinkBuilder origin(com.grafana.foundation.cog.Builder<ControlSou
 Placement can be used to display the link somewhere else on the dashboard other than above the visualisations.
 
 ```java
-public DashboardLinkBuilder placement(String placement)
+public DashboardLinkBuilder placement(DashboardLinkPlacement placement)
 ```
 
 ### <span class="badge object-method"></span> tags

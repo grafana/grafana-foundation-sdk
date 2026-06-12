@@ -8,9 +8,11 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.ObjectWriter;
 import com.fasterxml.jackson.annotation.JsonInclude;
 
-// Transformations allow to manipulate data returned by a query before the system applies a visualization.
-// Using transformations you can: rename fields, join time series data, perform mathematical operations across queries,
-// use the output of one transformation as the input to another transformation, etc.
+/**
+ * Transformations allow to manipulate data returned by a query before the system applies a visualization.
+ * Using transformations you can: rename fields, join time series data, perform mathematical operations across queries,
+ * use the output of one transformation as the input to another transformation, etc.
+ */
 public class DataTransformerConfig {
     // Unique identifier of transformer
     @JsonProperty("id")

@@ -8,7 +8,9 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.ObjectWriter;
 import com.fasterxml.jackson.annotation.JsonInclude;
 
-// Colored text cell options
+/**
+ * Colored text cell options
+ */
 public class TableColorTextCellOptions {
     @JsonProperty("type")
     public TableCellDisplayMode type;

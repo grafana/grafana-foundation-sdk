@@ -3,6 +3,9 @@
 package com.grafana.foundation.common;
 
 
+/**
+ * TODO docs
+ */
 public class DataSourceJsonDataBuilder implements com.grafana.foundation.cog.Builder<DataSourceJsonData> {
     protected final DataSourceJsonData internal;
     

@@ -3,6 +3,8 @@ title: <span class="badge builder"></span> TextVariableBuilder
 ---
 # <span class="badge builder"></span> TextVariableBuilder
 
+Text variable kind
+
 ## Constructor
 
 ```java

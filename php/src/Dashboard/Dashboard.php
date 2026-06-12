@@ -2,6 +2,9 @@
 
 namespace Grafana\Foundation\Dashboard;
 
+/**
+ * @deprecated Prefer using dashboardv2.Dashboard instead.
+ */
 class Dashboard implements \JsonSerializable
 {
     /**

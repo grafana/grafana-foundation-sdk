@@ -3,6 +3,8 @@ title: <span class="badge builder"></span> GraphThresholdsStyleConfig
 ---
 # <span class="badge builder"></span> GraphThresholdsStyleConfig
 
+TODO docs
+
 ## Constructor
 
 ```python

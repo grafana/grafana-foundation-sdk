@@ -10,7 +10,9 @@ import com.fasterxml.jackson.annotation.JsonInclude;
 import com.grafana.foundation.common.DataSourceRef;
 import java.util.List;
 
-// A variable is a placeholder for a value. You can use variables in metric queries and in panel titles.
+/**
+ * A variable is a placeholder for a value. You can use variables in metric queries and in panel titles.
+ */
 public class VariableModel {
     // Type of variable
     @JsonInclude(JsonInclude.Include.NON_EMPTY)

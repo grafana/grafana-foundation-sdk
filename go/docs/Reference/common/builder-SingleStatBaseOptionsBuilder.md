@@ -3,6 +3,8 @@ title: <span class="badge builder"></span> SingleStatBaseOptionsBuilder
 ---
 # <span class="badge builder"></span> SingleStatBaseOptionsBuilder
 
+TODO docs
+
 ## Constructor
 
 ```go

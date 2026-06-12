@@ -3,6 +3,8 @@ title: <span class="badge builder"></span> TimeRangeBuilder
 ---
 # <span class="badge builder"></span> TimeRangeBuilder
 
+Redefining this to avoid an import cycle
+
 ## Constructor
 
 ```go

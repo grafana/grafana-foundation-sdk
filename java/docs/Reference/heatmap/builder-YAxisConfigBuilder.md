@@ -3,6 +3,8 @@ title: <span class="badge builder"></span> YAxisConfigBuilder
 ---
 # <span class="badge builder"></span> YAxisConfigBuilder
 
+Configuration options for the yAxis
+
 ## Constructor
 
 ```java

@@ -75,7 +75,7 @@ func (builder *QueryV2Builder) RefId(refId string) *QueryV2Builder {
 	if builder.internal.Spec == nil {
 		builder.internal.Spec = NewMonitorQuery()
 	}
-	builder.internal.Spec.(*MonitorQuery).RefId = refId
+	builder.internal.Spec.(*MonitorQuery).RefId = &refId
 
 	return builder
 }

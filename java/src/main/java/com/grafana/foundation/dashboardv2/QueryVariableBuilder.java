@@ -4,6 +4,9 @@ package com.grafana.foundation.dashboardv2;
 
 import java.util.List;
 
+/**
+ * Query variable kind
+ */
 public class QueryVariableBuilder implements com.grafana.foundation.cog.Builder<QueryVariableKind> {
     protected final QueryVariableKind internal;
     

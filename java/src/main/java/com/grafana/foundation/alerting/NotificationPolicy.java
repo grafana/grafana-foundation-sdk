@@ -12,8 +12,10 @@ import java.util.Map;
 import com.fasterxml.jackson.annotation.JsonSetter;
 import com.fasterxml.jackson.annotation.Nulls;
 
-// A Route is a node that contains definitions of how to handle alerts. This is modified
-// from the upstream alertmanager in that it adds the ObjectMatchers property.
+/**
+ * A Route is a node that contains definitions of how to handle alerts. This is modified
+ * from the upstream alertmanager in that it adds the ObjectMatchers property.
+ */
 public class NotificationPolicy {
     @JsonInclude(JsonInclude.Include.NON_NULL)
     @JsonProperty("active_time_intervals")

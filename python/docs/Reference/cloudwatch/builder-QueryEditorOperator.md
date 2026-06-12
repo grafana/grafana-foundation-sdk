@@ -3,6 +3,8 @@ title: <span class="badge builder"></span> QueryEditorOperator
 ---
 # <span class="badge builder"></span> QueryEditorOperator
 
+TS type is QueryEditorOperator<T extends QueryEditorOperatorValueType>, extended in veneer
+
 ## Constructor
 
 ```python

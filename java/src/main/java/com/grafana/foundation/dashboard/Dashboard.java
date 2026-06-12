@@ -9,6 +9,10 @@ import com.fasterxml.jackson.databind.ObjectWriter;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import java.util.List;
 
+/**
+ * @deprecated Prefer using dashboardv2.Dashboard instead.
+ */
+@Deprecated(forRemoval = true)
 public class Dashboard {
     // Unique numeric identifier for the dashboard.
     // `id` is internal to a specific Grafana instance. `uid` should be used to identify a dashboard across Grafana instances.

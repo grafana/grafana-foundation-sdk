@@ -3,6 +3,8 @@ title: <span class="badge builder"></span> OptionsWithTextFormattingBuilder
 ---
 # <span class="badge builder"></span> OptionsWithTextFormattingBuilder
 
+TODO docs
+
 ## Constructor
 
 ```java

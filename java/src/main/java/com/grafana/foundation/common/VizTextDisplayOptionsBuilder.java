@@ -3,6 +3,9 @@
 package com.grafana.foundation.common;
 
 
+/**
+ * TODO docs
+ */
 public class VizTextDisplayOptionsBuilder implements com.grafana.foundation.cog.Builder<VizTextDisplayOptions> {
     protected final VizTextDisplayOptions internal;
     

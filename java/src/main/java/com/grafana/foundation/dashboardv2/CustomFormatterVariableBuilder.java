@@ -3,6 +3,9 @@
 package com.grafana.foundation.dashboardv2;
 
 
+/**
+ * Custom formatter variable
+ */
 public class CustomFormatterVariableBuilder implements com.grafana.foundation.cog.Builder<CustomFormatterVariable> {
     protected final CustomFormatterVariable internal;
     

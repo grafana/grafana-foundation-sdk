@@ -4,6 +4,9 @@ import * as cog from '../cog';
 import * as dashboardv2beta1 from '../dashboardv2beta1';
 import * as resource from '../resource';
 
+/**
+ * @deprecated Prefer using dashboardv2.Dashboard instead.
+ */
 export class DashboardBuilder implements cog.Builder<dashboardv2beta1.Dashboard> {
     protected readonly internal: dashboardv2beta1.Dashboard;
 

@@ -4,6 +4,9 @@ package com.grafana.foundation.azuremonitor;
 
 import java.util.List;
 
+/**
+ * Azure Monitor Logs sub-query properties
+ */
 public class LogsQueryBuilder implements com.grafana.foundation.cog.Builder<LogsQuery> {
     protected final LogsQuery internal;
     

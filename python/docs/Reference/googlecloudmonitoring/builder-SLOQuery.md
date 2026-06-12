@@ -3,6 +3,8 @@ title: <span class="badge builder"></span> SLOQuery
 ---
 # <span class="badge builder"></span> SLOQuery
 
+SLO sub-query properties.
+
 ## Constructor
 
 ```python

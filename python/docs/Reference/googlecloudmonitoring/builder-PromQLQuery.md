@@ -3,6 +3,8 @@ title: <span class="badge builder"></span> PromQLQuery
 ---
 # <span class="badge builder"></span> PromQLQuery
 
+PromQL sub-query properties.
+
 ## Constructor
 
 ```python

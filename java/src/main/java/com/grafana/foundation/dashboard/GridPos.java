@@ -8,7 +8,9 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.ObjectWriter;
 import com.fasterxml.jackson.annotation.JsonInclude;
 
-// Position and dimensions of a panel in the grid
+/**
+ * Position and dimensions of a panel in the grid
+ */
 public class GridPos {
     // Panel height. The height is the number of rows from the top edge of the panel.
     @JsonProperty("h")

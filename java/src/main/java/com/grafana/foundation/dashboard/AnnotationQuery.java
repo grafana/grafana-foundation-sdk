@@ -12,8 +12,10 @@ import com.grafana.foundation.common.DataSourceRef;
 import com.grafana.foundation.cog.variants.Dataquery;
 import java.util.Map;
 
-// TODO docs
-// FROM: AnnotationQuery in grafana-data/src/types/annotations.ts
+/**
+ * TODO docs
+ * FROM: AnnotationQuery in grafana-data/src/types/annotations.ts
+ */
 @JsonDeserialize(using = AnnotationQueryDeserializer.class)
 public class AnnotationQuery {
     // Name of annotation.

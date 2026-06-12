@@ -26,6 +26,9 @@ import com.grafana.foundation.common.FieldTextAlignment;
 import com.grafana.foundation.common.TableCellDisplayMode;
 import com.grafana.foundation.common.TableCellOptions;
 
+/**
+ * Dashboard panels are the basic visualization building blocks.
+ */
 public class TablePanelBuilder implements com.grafana.foundation.cog.Builder<Panel> {
     protected final Panel internal;
     

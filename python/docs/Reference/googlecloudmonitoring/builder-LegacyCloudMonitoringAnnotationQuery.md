@@ -3,6 +3,8 @@ title: <span class="badge builder"></span> LegacyCloudMonitoringAnnotationQuery
 ---
 # <span class="badge builder"></span> LegacyCloudMonitoringAnnotationQuery
 
+@deprecated Use TimeSeriesList instead. Legacy annotation query properties for migration purposes.
+
 ## Constructor
 
 ```python

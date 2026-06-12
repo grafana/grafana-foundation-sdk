@@ -3,6 +3,11 @@
 package com.grafana.foundation.dashboardv2beta1;
 
 
+/**
+ * A library panel is a reusable panel that you can use in any dashboard.
+ * When you make a change to a library panel, that change propagates to all instances of where the panel is used.
+ * Library panels streamline reuse of panels across multiple dashboards.
+ */
 public class LibraryPanelRefBuilder implements com.grafana.foundation.cog.Builder<LibraryPanelRef> {
     protected final LibraryPanelRef internal;
     

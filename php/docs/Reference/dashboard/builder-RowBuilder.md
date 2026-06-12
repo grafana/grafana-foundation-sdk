@@ -3,6 +3,8 @@ title: <span class="badge builder"></span> RowBuilder
 ---
 # <span class="badge builder"></span> RowBuilder
 
+Row panel
+
 ## Constructor
 
 ```php

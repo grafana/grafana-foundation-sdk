@@ -3,6 +3,9 @@
 package com.grafana.foundation.googlecloudmonitoring;
 
 
+/**
+ * SLO sub-query properties.
+ */
 public class SLOQueryBuilder implements com.grafana.foundation.cog.Builder<SLOQuery> {
     protected final SLOQuery internal;
     

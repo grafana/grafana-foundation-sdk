@@ -5,6 +5,10 @@ package com.grafana.foundation.dashboardv2beta1;
 import java.util.List;
 import java.util.LinkedList;
 
+/**
+ * Time configuration
+ * It defines the default time config for the time picker, the refresh picker for the specific dashboard.
+ */
 public class TimeSettingsBuilder implements com.grafana.foundation.cog.Builder<TimeSettingsSpec> {
     protected final TimeSettingsSpec internal;
     

@@ -193,9 +193,8 @@ class MonitorQueryBuilder implements \Grafana\Foundation\Cog\Builder
      * For non mixed scenarios this is undefined.
      * TODO find a better way to do this ^ that's friendly to schema
      * TODO this shouldn't be unknown but DataSourceRef | null
-     * @param mixed $datasource
      */
-    public function datasource( $datasource): static
+    public function datasource(\Grafana\Foundation\Common\DataSourceRef $datasource): static
     {
         $this->internal->datasource = $datasource;
     

@@ -3,7 +3,9 @@
 import * as cog from '../cog';
 import * as dashboardv2beta1 from '../dashboardv2beta1';
 
-// Custom variable kind
+/**
+ * Custom variable kind
+ */
 export class CustomVariableBuilder implements cog.Builder<dashboardv2beta1.CustomVariableKind> {
     protected readonly internal: dashboardv2beta1.CustomVariableKind;
 

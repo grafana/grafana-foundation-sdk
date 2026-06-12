@@ -3,6 +3,9 @@
 package com.grafana.foundation.heatmap;
 
 
+/**
+ * Controls the value filter range
+ */
 public class FilterValueRangeBuilder implements com.grafana.foundation.cog.Builder<FilterValueRange> {
     protected final FilterValueRange internal;
     

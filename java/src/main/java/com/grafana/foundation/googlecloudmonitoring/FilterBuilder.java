@@ -3,6 +3,9 @@
 package com.grafana.foundation.googlecloudmonitoring;
 
 
+/**
+ * Query filter representation.
+ */
 public class FilterBuilder implements com.grafana.foundation.cog.Builder<Filter> {
     protected final Filter internal;
     

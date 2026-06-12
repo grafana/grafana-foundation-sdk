@@ -3,6 +3,10 @@ title: <span class="badge builder"></span> TimePickerBuilder
 ---
 # <span class="badge builder"></span> TimePickerBuilder
 
+Time picker configuration
+
+It defines the default config for the time picker and the refresh picker for the specific dashboard.
+
 ## Constructor
 
 ```java

@@ -3,6 +3,8 @@ title: <span class="badge builder"></span> ResourceDimensionConfigBuilder
 ---
 # <span class="badge builder"></span> ResourceDimensionConfigBuilder
 
+Links to a resource (image/svg path)
+
 ## Constructor
 
 ```php

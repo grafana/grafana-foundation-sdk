@@ -3,7 +3,9 @@
 import * as cog from '../cog';
 import * as dashboard from '../dashboard';
 
-// Infinity options
+/**
+ * Infinity options
+ */
 export class InfinityOptionsBuilder implements cog.Builder<dashboard.InfinityOptions> {
     protected readonly internal: dashboard.InfinityOptions;
 

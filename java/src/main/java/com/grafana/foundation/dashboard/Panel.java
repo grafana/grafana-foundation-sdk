@@ -12,7 +12,9 @@ import java.util.List;
 import com.grafana.foundation.cog.variants.Dataquery;
 import com.grafana.foundation.common.DataSourceRef;
 
-// Dashboard panels are the basic visualization building blocks.
+/**
+ * Dashboard panels are the basic visualization building blocks.
+ */
 @JsonDeserialize(using = PanelDeserializer.class)
 public class Panel {
     // The panel plugin type id. This is used to find the plugin to display the panel.

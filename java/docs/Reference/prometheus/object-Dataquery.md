@@ -7,19 +7,26 @@ title: <span class="badge object-type-class"></span> Dataquery
 
 ```java
 public class Dataquery extends com.grafana.foundation.cog.variants.Dataquery {
-  public String expr;
-  public Boolean instant;
-  public Boolean range;
-  public Boolean exemplar;
-  public QueryEditorMode editorMode;
-  public PromQueryFormat format;
-  public String legendFormat;
-  public Double intervalFactor;
-  public String refId;
-  public Boolean hide;
-  public String queryType;
-  public String interval;
+  public List<AdhocFilters> adhocFilters;
   public DataSourceRef datasource;
+  public QueryEditorMode editorMode;
+  public Boolean exemplar;
+  public String expr;
+  public PromQueryFormat format;
+  public List<String> groupByKeys;
+  public Boolean hide;
+  public Boolean instant;
+  public Long intervalFactor;
+  public Double intervalMs;
+  public String legendFormat;
+  public Long maxDataPoints;
+  public String queryType;
+  public Boolean range;
+  public String refId;
+  public ResultAssertions resultAssertions;
+  public List<Scopes> scopes;
+  public TimeRange timeRange;
+  public String interval;
 }
 ```
 ## See also

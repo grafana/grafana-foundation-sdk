@@ -4,6 +4,7 @@ import typing
 from ..cog import builder as cogbuilder
 from ..models import dashboardv2
 from ..models import azuremonitor
+from ..models import common
 from ..models import dashboardv2beta1
 
 
@@ -401,7 +402,7 @@ class MonitorQuery(cogbuilder.Builder[azuremonitor.MonitorQuery]):
     
         return self
     
-    def datasource(self, datasource: object) -> typing.Self:    
+    def datasource(self, datasource: common.DataSourceRef) -> typing.Self:    
         """
         For mixed data sources the selected datasource is on the query level.
         For non mixed scenarios this is undefined.

@@ -4,7 +4,9 @@ import * as cog from '../cog';
 import * as heatmap from '../heatmap';
 import * as common from '../common';
 
-// Controls tooltip options
+/**
+ * Controls tooltip options
+ */
 export class HeatmapTooltipBuilder implements cog.Builder<heatmap.HeatmapTooltip> {
     protected readonly internal: heatmap.HeatmapTooltip;
 

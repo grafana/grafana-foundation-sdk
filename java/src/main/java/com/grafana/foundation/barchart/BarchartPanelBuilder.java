@@ -32,6 +32,9 @@ import com.grafana.foundation.common.ScaleDistributionConfig;
 import com.grafana.foundation.common.HideSeriesConfig;
 import com.grafana.foundation.common.GraphThresholdsStyleConfig;
 
+/**
+ * Dashboard panels are the basic visualization building blocks.
+ */
 public class BarchartPanelBuilder implements com.grafana.foundation.cog.Builder<Panel> {
     protected final Panel internal;
     

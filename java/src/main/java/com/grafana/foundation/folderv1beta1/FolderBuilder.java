@@ -3,6 +3,10 @@
 package com.grafana.foundation.folderv1beta1;
 
 
+/**
+ * @deprecated Prefer using folder.Folder instead.
+ */
+@Deprecated(forRemoval = true)
 public class FolderBuilder implements com.grafana.foundation.cog.Builder<Folder> {
     protected final Folder internal;
     

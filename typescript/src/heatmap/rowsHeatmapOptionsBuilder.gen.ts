@@ -4,7 +4,9 @@ import * as cog from '../cog';
 import * as heatmap from '../heatmap';
 import * as common from '../common';
 
-// Controls frame rows options
+/**
+ * Controls frame rows options
+ */
 export class RowsHeatmapOptionsBuilder implements cog.Builder<heatmap.RowsHeatmapOptions> {
     protected readonly internal: heatmap.RowsHeatmapOptions;
 

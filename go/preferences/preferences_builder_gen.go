@@ -10,11 +10,13 @@ var _ cog.Builder[Preferences] = (*PreferencesBuilder)(nil)
 
 // Spec defines user, team or org Grafana preferences
 // swagger:model Preferences
+// Deprecated: Prefer using preferencesv1alpha1.Preferences instead.
 type PreferencesBuilder struct {
 	internal *Preferences
 	errors   cog.BuildErrors
 }
 
+// Deprecated: "Prefer using preferencesv1alpha1.Preferences instead."
 func NewPreferencesBuilder() *PreferencesBuilder {
 	resource := NewPreferences()
 	builder := &PreferencesBuilder{

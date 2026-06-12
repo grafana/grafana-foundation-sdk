@@ -5,6 +5,9 @@ package com.grafana.foundation.azuremonitor;
 import java.util.List;
 import java.util.LinkedList;
 
+/**
+ * Application Insights Traces sub-query properties
+ */
 public class TracesQueryBuilder implements com.grafana.foundation.cog.Builder<TracesQuery> {
     protected final TracesQuery internal;
     

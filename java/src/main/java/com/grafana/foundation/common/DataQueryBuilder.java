@@ -3,6 +3,11 @@
 package com.grafana.foundation.common;
 
 
+/**
+ * These are the common properties available to all queries in all datasources.
+ * Specific implementations will *extend* this interface, adding the required
+ * properties for the given context.
+ */
 public class DataQueryBuilder implements com.grafana.foundation.cog.Builder<DataQuery> {
     protected final DataQuery internal;
     

@@ -1,6 +1,7 @@
 # Code generated - EDITING IS FUTILE. DO NOT EDIT.
 
 import typing
+import warnings
 
 
 class Item:
@@ -39,6 +40,7 @@ class Item:
 
 
 class Playlist:
+    warnings.warn("Prefer using playlistv1.Playlist instead.", DeprecationWarning)
     title: str
     interval: str
     items: list['Item']

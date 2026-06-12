@@ -8,7 +8,9 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.ObjectWriter;
 import com.fasterxml.jackson.annotation.JsonInclude;
 
-// Define the MetricFindValue type
+/**
+ * Define the MetricFindValue type
+ */
 public class MetricFindValue {
     @JsonProperty("text")
     public String text;

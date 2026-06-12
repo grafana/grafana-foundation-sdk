@@ -8,7 +8,9 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.ObjectWriter;
 import com.fasterxml.jackson.annotation.JsonInclude;
 
-// Constant variable kind
+/**
+ * Constant variable kind
+ */
 public class ConstantVariableKind {
     @JsonProperty("kind")
     public String kind;

@@ -3,6 +3,8 @@ title: <span class="badge builder"></span> ExemplarConfigBuilder
 ---
 # <span class="badge builder"></span> ExemplarConfigBuilder
 
+Controls exemplar options
+
 ## Constructor
 
 ```php

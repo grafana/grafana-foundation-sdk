@@ -53,7 +53,7 @@ class MetricsQuery implements \JsonSerializable, \Grafana\Foundation\Cog\Dataque
      * In server side expressions, the refId is used as a variable name to identify results.
      * By default, the UI will assign A->Z; however setting meaningful names may be useful.
      */
-    public string $refId;
+    public ?string $refId;
 
     /**
      * If hide is set to true, Grafana will filter out the response(s) associated with this query before returning it to the panel.
@@ -160,7 +160,7 @@ class MetricsQuery implements \JsonSerializable, \Grafana\Foundation\Cog\Dataque
         $this->label = $label;
         $this->expression = $expression;
         $this->sqlExpression = $sqlExpression;
-        $this->refId = $refId ?: "";
+        $this->refId = $refId;
         $this->hide = $hide;
         $this->queryType = $queryType;
         $this->region = $region ?: "";
@@ -239,7 +239,6 @@ class MetricsQuery implements \JsonSerializable, \Grafana\Foundation\Cog\Dataque
         $data = new \stdClass;
         $data->queryMode = $this->queryMode;
         $data->id = $this->id;
-        $data->refId = $this->refId;
         $data->region = $this->region;
         $data->namespace = $this->namespace;
         $data->dimensions = $this->dimensions;
@@ -260,6 +259,9 @@ class MetricsQuery implements \JsonSerializable, \Grafana\Foundation\Cog\Dataque
         }
         if (isset($this->sqlExpression)) {
             $data->sqlExpression = $this->sqlExpression;
+        }
+        if (isset($this->refId)) {
+            $data->refId = $this->refId;
         }
         if (isset($this->hide)) {
             $data->hide = $this->hide;

@@ -7,7 +7,7 @@
  * <span class="badge object-type-scalar"></span> [FolderKind](./object-FolderKind.md)
 ## Builders
 
- * <span class="badge builder"></span> [Folder](./builder-Folder.md)
+ * <span class="badge builder"></span> <span class="badge deprecated"></span> [Folder](./builder-Folder.md)
 ## Functions
 
 ### <span class="badge function"></span> manifest

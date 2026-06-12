@@ -36,6 +36,9 @@ import com.grafana.foundation.common.StackingConfig;
 import com.grafana.foundation.common.HideSeriesConfig;
 import com.grafana.foundation.common.BoolOrFloat64;
 
+/**
+ * Dashboard panels are the basic visualization building blocks.
+ */
 public class TrendPanelBuilder implements com.grafana.foundation.cog.Builder<Panel> {
     protected final Panel internal;
     

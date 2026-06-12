@@ -3,7 +3,9 @@
 import * as cog from '../cog';
 import * as heatmap from '../heatmap';
 
-// Controls exemplar options
+/**
+ * Controls exemplar options
+ */
 export class ExemplarConfigBuilder implements cog.Builder<heatmap.ExemplarConfig> {
     protected readonly internal: heatmap.ExemplarConfig;
 

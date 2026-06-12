@@ -11,8 +11,10 @@ import com.fasterxml.jackson.annotation.JsonSetter;
 import com.fasterxml.jackson.annotation.Nulls;
 import java.util.Map;
 
-// Maps text values to a color or different display text and color.
-// For example, you can configure a value mapping so that all instances of the value 10 appear as Perfection! rather than the number.
+/**
+ * Maps text values to a color or different display text and color.
+ * For example, you can configure a value mapping so that all instances of the value 10 appear as Perfection! rather than the number.
+ */
 public class ValueMap {
     @JsonProperty("type")
     public MappingType type;

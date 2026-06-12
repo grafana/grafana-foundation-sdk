@@ -3,6 +3,8 @@ title: <span class="badge builder"></span> TableSortByFieldStateBuilder
 ---
 # <span class="badge builder"></span> TableSortByFieldStateBuilder
 
+Sort by field state
+
 ## Constructor
 
 ```php

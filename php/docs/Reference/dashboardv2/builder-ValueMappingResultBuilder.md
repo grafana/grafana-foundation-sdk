@@ -3,6 +3,8 @@ title: <span class="badge builder"></span> ValueMappingResultBuilder
 ---
 # <span class="badge builder"></span> ValueMappingResultBuilder
 
+Result used as replacement with text and color when the value matches
+
 ## Constructor
 
 ```php

@@ -94,6 +94,7 @@ func (resource Item) Validate() error {
 	return nil
 }
 
+// Deprecated: Prefer using playlistv1.Playlist instead.
 type Playlist struct {
 	Title    string `json:"title"`
 	Interval string `json:"interval"`

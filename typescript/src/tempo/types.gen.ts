@@ -7,7 +7,7 @@ export interface Dataquery {
 	// A unique identifier for the query within the list of targets.
 	// In server side expressions, the refId is used as a variable name to identify results.
 	// By default, the UI will assign A->Z; however setting meaningful names may be useful.
-	refId: string;
+	refId?: string;
 	// If hide is set to true, Grafana will filter out the response(s) associated with this query before returning it to the panel.
 	hide?: boolean;
 	// Specify the query flavor
@@ -53,7 +53,6 @@ export interface Dataquery {
 }
 
 export const defaultDataquery = (): Dataquery => ({
-	refId: "",
 	filters: [],
 	_implementsDataqueryVariant: () => {},
 });
@@ -77,7 +76,9 @@ export const defaultTraceqlFilter = (): TraceqlFilter => ({
 	id: "",
 });
 
-// static fields are pre-set in the UI, dynamic fields are added by the user
+/**
+ * static fields are pre-set in the UI, dynamic fields are added by the user
+ */
 export enum TraceqlSearchScope {
 	Intrinsic = "intrinsic",
 	Unscoped = "unscoped",
@@ -90,7 +91,9 @@ export enum TraceqlSearchScope {
 
 export const defaultTraceqlSearchScope = (): TraceqlSearchScope => (TraceqlSearchScope.Intrinsic);
 
-// The type of the table that is used to display the search results
+/**
+ * The type of the table that is used to display the search results
+ */
 export enum SearchTableType {
 	Traces = "traces",
 	Spans = "spans",
@@ -118,7 +121,9 @@ export enum TempoQueryType {
 
 export const defaultTempoQueryType = (): TempoQueryType => (TempoQueryType.Traceql);
 
-// The state of the TraceQL streaming search query
+/**
+ * The state of the TraceQL streaming search query
+ */
 export enum SearchStreamingState {
 	Pending = "pending",
 	Streaming = "streaming",

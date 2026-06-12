@@ -1,7 +1,9 @@
 ---
-title: <span class="badge builder"></span> Playlist
+title: <span class="badge builder"></span> <span class="badge deprecated"></span> Playlist
 ---
-# <span class="badge builder"></span> Playlist
+# <span class="badge builder"></span> <span class="badge deprecated"></span> Playlist
+
+<span class="badge deprecated"></span>Prefer using playlistv1.Playlist instead.
 
 ## Constructor
 

@@ -24,6 +24,9 @@ import com.grafana.foundation.common.VisibilityMode;
 import com.grafana.foundation.common.ScaleDistributionConfig;
 import com.grafana.foundation.common.HideSeriesConfig;
 
+/**
+ * Dashboard panels are the basic visualization building blocks.
+ */
 public class HeatmapPanelBuilder implements com.grafana.foundation.cog.Builder<Panel> {
     protected final Panel internal;
     

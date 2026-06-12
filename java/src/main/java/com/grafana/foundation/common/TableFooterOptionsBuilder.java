@@ -4,6 +4,9 @@ package com.grafana.foundation.common;
 
 import java.util.List;
 
+/**
+ * Footer options
+ */
 public class TableFooterOptionsBuilder implements com.grafana.foundation.cog.Builder<TableFooterOptions> {
     protected final TableFooterOptions internal;
     

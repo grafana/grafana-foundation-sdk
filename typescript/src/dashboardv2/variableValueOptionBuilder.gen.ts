@@ -3,7 +3,9 @@
 import * as cog from '../cog';
 import * as dashboardv2 from '../dashboardv2';
 
-// FIXME: should we introduce this? --- Variable value option
+/**
+ * FIXME: should we introduce this? --- Variable value option
+ */
 export class VariableValueOptionBuilder implements cog.Builder<dashboardv2.VariableValueOption> {
     protected readonly internal: dashboardv2.VariableValueOption;
 

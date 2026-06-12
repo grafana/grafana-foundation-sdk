@@ -3,7 +3,9 @@
 import * as cog from '../cog';
 import * as googlecloudmonitoring from '../googlecloudmonitoring';
 
-// @deprecated This type is for migration purposes only. Replaced by TimeSeriesList Metric sub-query properties.
+/**
+ * @deprecated This type is for migration purposes only. Replaced by TimeSeriesList Metric sub-query properties.
+ */
 export class MetricQueryBuilder implements cog.Builder<googlecloudmonitoring.MetricQuery> {
     protected readonly internal: googlecloudmonitoring.MetricQuery;
 

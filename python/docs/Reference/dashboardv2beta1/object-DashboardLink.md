@@ -35,7 +35,7 @@ class DashboardLink:
     # If true, includes current time range in the link as query params
     keep_time: bool
     # Placement can be used to display the link somewhere else on the dashboard other than above the visualisations.
-    placement: str
+    placement: typing.Optional[dashboardv2beta1.DashboardLinkPlacement]
     # The source that registered the link (if any)
     origin: typing.Optional[dashboardv2beta1.ControlSourceRef]
 ```

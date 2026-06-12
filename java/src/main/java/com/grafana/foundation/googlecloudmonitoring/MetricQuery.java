@@ -9,7 +9,9 @@ import com.fasterxml.jackson.databind.ObjectWriter;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import java.util.List;
 
-// @deprecated This type is for migration purposes only. Replaced by TimeSeriesList Metric sub-query properties.
+/**
+ * @deprecated This type is for migration purposes only. Replaced by TimeSeriesList Metric sub-query properties.
+ */
 public class MetricQuery {
     // GCP project to execute the query against.
     @JsonProperty("projectName")

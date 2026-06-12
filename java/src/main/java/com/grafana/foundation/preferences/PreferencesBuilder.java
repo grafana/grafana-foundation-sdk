@@ -3,6 +3,12 @@
 package com.grafana.foundation.preferences;
 
 
+/**
+ * Spec defines user, team or org Grafana preferences
+ * swagger:model Preferences
+ * @deprecated Prefer using preferencesv1alpha1.Preferences instead.
+ */
+@Deprecated(forRemoval = true)
 public class PreferencesBuilder implements com.grafana.foundation.cog.Builder<Preferences> {
     protected final Preferences internal;
     

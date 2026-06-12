@@ -3,6 +3,8 @@ title: <span class="badge builder"></span> LineConfigBuilder
 ---
 # <span class="badge builder"></span> LineConfigBuilder
 
+TODO docs
+
 ## Constructor
 
 ```java

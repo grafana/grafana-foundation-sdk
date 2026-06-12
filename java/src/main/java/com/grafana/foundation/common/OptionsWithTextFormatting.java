@@ -8,7 +8,9 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.ObjectWriter;
 import com.fasterxml.jackson.annotation.JsonInclude;
 
-// TODO docs
+/**
+ * TODO docs
+ */
 public class OptionsWithTextFormatting {
     @JsonInclude(JsonInclude.Include.NON_NULL)
     @JsonProperty("text")

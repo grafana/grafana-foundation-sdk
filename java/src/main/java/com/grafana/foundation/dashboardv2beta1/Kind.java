@@ -8,7 +8,9 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.ObjectWriter;
 import com.fasterxml.jackson.annotation.JsonInclude;
 
-// --- Common types ---
+/**
+ * --- Common types ---
+ */
 public class Kind {
     @JsonProperty("kind")
     public String kind;

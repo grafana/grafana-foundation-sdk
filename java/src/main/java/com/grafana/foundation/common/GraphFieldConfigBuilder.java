@@ -3,6 +3,9 @@
 package com.grafana.foundation.common;
 
 
+/**
+ * TODO docs
+ */
 public class GraphFieldConfigBuilder implements com.grafana.foundation.cog.Builder<GraphFieldConfig> {
     protected final GraphFieldConfig internal;
     

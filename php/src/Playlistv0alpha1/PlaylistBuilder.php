@@ -4,6 +4,7 @@ namespace Grafana\Foundation\Playlistv0alpha1;
 
 /**
  * @implements \Grafana\Foundation\Cog\Builder<\Grafana\Foundation\Playlistv0alpha1\Playlist>
+ * @deprecated Prefer using playlistv1.Playlist instead.
  */
 class PlaylistBuilder implements \Grafana\Foundation\Cog\Builder
 {

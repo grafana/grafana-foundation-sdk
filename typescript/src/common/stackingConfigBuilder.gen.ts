@@ -3,7 +3,9 @@
 import * as cog from '../cog';
 import * as common from '../common';
 
-// TODO docs
+/**
+ * TODO docs
+ */
 export class StackingConfigBuilder implements cog.Builder<common.StackingConfig> {
     protected readonly internal: common.StackingConfig;
 

@@ -159,7 +159,9 @@ export type PipelineMetricAggregation = MovingAverage | Derivative | CumulativeS
 
 export const defaultPipelineMetricAggregation = (): PipelineMetricAggregation => (defaultMovingAverage());
 
-// #MovingAverage's settings are overridden in types.ts
+/**
+ * #MovingAverage's settings are overridden in types.ts
+ */
 export interface MovingAverage {
 	pipelineAgg?: string;
 	field?: string;

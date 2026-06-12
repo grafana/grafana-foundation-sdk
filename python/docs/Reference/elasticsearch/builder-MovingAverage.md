@@ -3,6 +3,8 @@ title: <span class="badge builder"></span> MovingAverage
 ---
 # <span class="badge builder"></span> MovingAverage
 
+#MovingAverage's settings are overridden in types.ts
+
 ## Constructor
 
 ```python

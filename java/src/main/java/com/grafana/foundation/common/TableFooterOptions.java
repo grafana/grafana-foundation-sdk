@@ -12,7 +12,9 @@ import com.fasterxml.jackson.annotation.Nulls;
 import java.util.List;
 import com.fasterxml.jackson.annotation.JsonInclude;
 
-// Footer options
+/**
+ * Footer options
+ */
 public class TableFooterOptions {
     @JsonProperty("show")
     public Boolean show;

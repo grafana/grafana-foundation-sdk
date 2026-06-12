@@ -3,6 +3,8 @@ title: <span class="badge builder"></span> CellValuesBuilder
 ---
 # <span class="badge builder"></span> CellValuesBuilder
 
+Controls cell value options
+
 ## Constructor
 
 ```php

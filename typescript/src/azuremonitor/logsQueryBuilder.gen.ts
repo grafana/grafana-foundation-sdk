@@ -3,7 +3,9 @@
 import * as cog from '../cog';
 import * as azuremonitor from '../azuremonitor';
 
-// Azure Monitor Logs sub-query properties
+/**
+ * Azure Monitor Logs sub-query properties
+ */
 export class LogsQueryBuilder implements cog.Builder<azuremonitor.LogsQuery> {
     protected readonly internal: azuremonitor.LogsQuery;
 

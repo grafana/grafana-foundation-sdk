@@ -3,6 +3,8 @@ title: <span class="badge builder"></span> LineStyleBuilder
 ---
 # <span class="badge builder"></span> LineStyleBuilder
 
+TODO docs
+
 ## Constructor
 
 ```go

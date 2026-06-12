@@ -1,12 +1,15 @@
 ---
-title: <span class="badge object-type-class"></span> Playlist
+title: <span class="badge object-type-class"></span> <span class="badge deprecated"></span> Playlist
 ---
-# <span class="badge object-type-class"></span> Playlist
+# <span class="badge object-type-class"></span> <span class="badge deprecated"></span> Playlist
+
+<span class="badge deprecated"></span>Prefer using playlistv1.Playlist instead.
 
 ## Definition
 
 ```python
 class Playlist:
+    warnings.warn("Prefer using playlistv1.Playlist instead.", DeprecationWarning)
     title: str
     interval: str
     items: list[playlistv0alpha1.Item]
@@ -32,4 +35,4 @@ def from_json(data: dict[str, typing.Any]) -> typing.Self
 
 ## See also
 
- * <span class="badge builder"></span> [Playlist](./builder-Playlist.md)
+ * <span class="badge builder"></span> <span class="badge deprecated"></span> [Playlist](./builder-Playlist.md)

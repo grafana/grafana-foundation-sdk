@@ -3,8 +3,10 @@
 import * as cog from '../cog';
 import * as common from '../common';
 
-// Field options for each field within a table (e.g 10, "The String", 64.20, etc.)
-// Generally defines alignment, filtering capabilties, display options, etc.
+/**
+ * Field options for each field within a table (e.g 10, "The String", 64.20, etc.)
+ * Generally defines alignment, filtering capabilties, display options, etc.
+ */
 export class TableFieldOptionsBuilder implements cog.Builder<common.TableFieldOptions> {
     protected readonly internal: common.TableFieldOptions;
 

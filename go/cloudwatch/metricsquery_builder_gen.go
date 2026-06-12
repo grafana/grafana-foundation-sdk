@@ -103,7 +103,7 @@ func (builder *MetricsQueryBuilder) SqlExpression(sqlExpression string) *Metrics
 // In server side expressions, the refId is used as a variable name to identify results.
 // By default, the UI will assign A->Z; however setting meaningful names may be useful.
 func (builder *MetricsQueryBuilder) RefId(refId string) *MetricsQueryBuilder {
-	builder.internal.RefId = refId
+	builder.internal.RefId = &refId
 
 	return builder
 }

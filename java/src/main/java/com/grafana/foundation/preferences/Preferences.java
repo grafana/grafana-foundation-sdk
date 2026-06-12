@@ -8,8 +8,12 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.ObjectWriter;
 import com.fasterxml.jackson.annotation.JsonInclude;
 
-// Spec defines user, team or org Grafana preferences
-// swagger:model Preferences
+/**
+ * Spec defines user, team or org Grafana preferences
+ * swagger:model Preferences
+ * @deprecated Prefer using preferencesv1alpha1.Preferences instead.
+ */
+@Deprecated(forRemoval = true)
 public class Preferences {
     // UID for the home dashboard
     @JsonInclude(JsonInclude.Include.NON_NULL)

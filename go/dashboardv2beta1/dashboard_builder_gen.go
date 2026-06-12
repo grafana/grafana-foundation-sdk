@@ -9,11 +9,13 @@ import (
 
 var _ cog.Builder[Dashboard] = (*DashboardBuilder)(nil)
 
+// Deprecated: Prefer using dashboardv2.Dashboard instead.
 type DashboardBuilder struct {
 	internal *Dashboard
 	errors   cog.BuildErrors
 }
 
+// Deprecated: "Prefer using dashboardv2.Dashboard instead."
 func NewDashboardBuilder(title string) *DashboardBuilder {
 	resource := NewDashboard()
 	builder := &DashboardBuilder{

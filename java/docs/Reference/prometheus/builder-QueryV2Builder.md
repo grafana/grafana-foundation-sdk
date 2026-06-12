@@ -18,6 +18,14 @@ Builds the object.
 public QueryV2 build()
 ```
 
+### <span class="badge object-method"></span> adhocFilters
+
+Additional Ad-hoc filters that take precedence over Scope on conflict.
+
+```java
+public QueryV2Builder adhocFilters(List<com.grafana.foundation.cog.Builder<AdhocFilters>> adhocFilters)
+```
+
 ### <span class="badge object-method"></span> datasource
 
 New type for datasource reference
@@ -30,7 +38,13 @@ public QueryV2Builder datasource(com.grafana.foundation.cog.Builder<Dashboardv2D
 
 ### <span class="badge object-method"></span> editorMode
 
-Specifies which editor is being used to prepare the query. It can be "code" or "builder"
+what we should show in the editor
+
+Possible enum values:
+
+ - `"builder"` 
+
+ - `"code"` 
 
 ```java
 public QueryV2Builder editorMode(QueryEditorMode editorMode)
@@ -54,15 +68,35 @@ public QueryV2Builder expr(String expr)
 
 ### <span class="badge object-method"></span> format
 
-Query format to determine how to display data points in panel. It can be "time_series", "table", "heatmap"
+The response format
+
+Possible enum values:
+
+ - `"time_series"` 
+
+ - `"table"` 
+
+ - `"heatmap"` 
 
 ```java
 public QueryV2Builder format(PromQueryFormat format)
 ```
 
+### <span class="badge object-method"></span> groupByKeys
+
+Group By parameters to apply to aggregate expressions in the query
+
+```java
+public QueryV2Builder groupByKeys(List<String> groupByKeys)
+```
+
 ### <span class="badge object-method"></span> hide
 
-If hide is set to true, Grafana will filter out the response(s) associated with this query before returning it to the panel.
+true if query is disabled (ie should not be returned to the dashboard)
+
+NOTE: this does not always imply that the query should not be executed since
+
+the results from a hidden query may be used as the input to other queries (SSE etc)
 
 ```java
 public QueryV2Builder hide(Boolean hide)
@@ -88,12 +122,26 @@ public QueryV2Builder interval(String interval)
 
 ### <span class="badge object-method"></span> intervalFactor
 
-@deprecated Used to specify how many times to divide max data points by. We use max data points under query options
+Used to specify how many times to divide max data points by. We use max data points under query options
 
 See https://github.com/grafana/grafana/issues/48081
 
+Deprecated: use interval
+
 ```java
-public QueryV2Builder intervalFactor(Double intervalFactor)
+public QueryV2Builder intervalFactor(Long intervalFactor)
+```
+
+### <span class="badge object-method"></span> intervalMs
+
+Interval is the suggested duration between time points in a time series query.
+
+NOTE: the values for intervalMs is not saved in the query model.  It is typically calculated
+
+from the interval required to fill a pixels in the visualization
+
+```java
+public QueryV2Builder intervalMs(Double intervalMs)
 ```
 
 ### <span class="badge object-method"></span> labels
@@ -110,11 +158,23 @@ Series name override or template. Ex. {{hostname}} will be replaced with label v
 public QueryV2Builder legendFormat(String legendFormat)
 ```
 
+### <span class="badge object-method"></span> maxDataPoints
+
+MaxDataPoints is the maximum number of data points that should be returned from a time series query.
+
+NOTE: the values for maxDataPoints is not saved in the query model.  It is typically calculated
+
+from the number of pixels visible in a visualization
+
+```java
+public QueryV2Builder maxDataPoints(Long maxDataPoints)
+```
+
 ### <span class="badge object-method"></span> queryType
 
-Specify the query flavor
+QueryType is an optional identifier for the type of query.
 
-TODO make this required and give it a default
+It can be used to distinguish different types of queries.
 
 ```java
 public QueryV2Builder queryType(String queryType)
@@ -130,14 +190,38 @@ public QueryV2Builder range(Boolean range)
 
 ### <span class="badge object-method"></span> refId
 
-A unique identifier for the query within the list of targets.
-
-In server side expressions, the refId is used as a variable name to identify results.
-
-By default, the UI will assign A->Z; however setting meaningful names may be useful.
+RefID is the unique identifier of the query, set by the frontend call.
 
 ```java
 public QueryV2Builder refId(String refId)
+```
+
+### <span class="badge object-method"></span> resultAssertions
+
+Optionally define expected query result behavior
+
+```java
+public QueryV2Builder resultAssertions(com.grafana.foundation.cog.Builder<ResultAssertions> resultAssertions)
+```
+
+### <span class="badge object-method"></span> scopes
+
+A set of filters applied to apply to the query
+
+```java
+public QueryV2Builder scopes(List<com.grafana.foundation.cog.Builder<Scopes>> scopes)
+```
+
+### <span class="badge object-method"></span> timeRange
+
+TimeRange represents the query range
+
+NOTE: unlike generic /ds/query, we can now send explicit time values in each query
+
+NOTE: the values for timeRange are not saved in a dashboard, they are constructed on the fly
+
+```java
+public QueryV2Builder timeRange(com.grafana.foundation.cog.Builder<TimeRange> timeRange)
 ```
 
 ### <span class="badge object-method"></span> version

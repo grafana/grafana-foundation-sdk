@@ -3,6 +3,8 @@ title: <span class="badge builder"></span> ThresholdsConfigBuilder
 ---
 # <span class="badge builder"></span> ThresholdsConfigBuilder
 
+Thresholds configuration for the panel
+
 ## Constructor
 
 ```java

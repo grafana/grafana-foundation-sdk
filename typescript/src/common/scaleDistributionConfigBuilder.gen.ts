@@ -3,7 +3,9 @@
 import * as cog from '../cog';
 import * as common from '../common';
 
-// TODO docs
+/**
+ * TODO docs
+ */
 export class ScaleDistributionConfigBuilder implements cog.Builder<common.ScaleDistributionConfig> {
     protected readonly internal: common.ScaleDistributionConfig;
 

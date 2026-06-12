@@ -4,9 +4,11 @@ import * as cog from '../cog';
 import * as cloudwatch from '../cloudwatch';
 import * as common from '../common';
 
-// Shape of a CloudWatch Annotation query
-// TS type is CloudWatchDefaultQuery = Omit<CloudWatchLogsQuery, 'queryMode'> & CloudWatchMetricsQuery, declared in veneer
-// #CloudWatchDefaultQuery: #CloudWatchLogsQuery & #CloudWatchMetricsQuery @cuetsy(kind="type")
+/**
+ * Shape of a CloudWatch Annotation query
+ * TS type is CloudWatchDefaultQuery = Omit<CloudWatchLogsQuery, 'queryMode'> & CloudWatchMetricsQuery, declared in veneer
+ * #CloudWatchDefaultQuery: #CloudWatchLogsQuery & #CloudWatchMetricsQuery @cuetsy(kind="type")
+ */
 export class AnnotationQueryBuilder implements cog.Builder<cog.Dataquery> {
     protected readonly internal: cloudwatch.AnnotationQuery;
 

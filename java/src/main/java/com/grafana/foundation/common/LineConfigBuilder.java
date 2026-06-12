@@ -3,6 +3,9 @@
 package com.grafana.foundation.common;
 
 
+/**
+ * TODO docs
+ */
 public class LineConfigBuilder implements com.grafana.foundation.cog.Builder<LineConfig> {
     protected final LineConfig internal;
     

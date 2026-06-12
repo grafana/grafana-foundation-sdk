@@ -3,6 +3,8 @@ title: <span class="badge builder"></span> IntervalVariable
 ---
 # <span class="badge builder"></span> IntervalVariable
 
+Interval variable kind
+
 ## Constructor
 
 ```python

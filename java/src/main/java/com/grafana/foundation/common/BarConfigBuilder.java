@@ -3,6 +3,9 @@
 package com.grafana.foundation.common;
 
 
+/**
+ * TODO docs
+ */
 public class BarConfigBuilder implements com.grafana.foundation.cog.Builder<BarConfig> {
     protected final BarConfig internal;
     

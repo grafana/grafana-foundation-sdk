@@ -3,6 +3,8 @@ title: <span class="badge builder"></span> ScaleDistributionConfig
 ---
 # <span class="badge builder"></span> ScaleDistributionConfig
 
+TODO docs
+
 ## Constructor
 
 ```python

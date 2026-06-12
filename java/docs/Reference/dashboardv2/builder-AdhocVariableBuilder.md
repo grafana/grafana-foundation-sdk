@@ -3,6 +3,8 @@ title: <span class="badge builder"></span> AdhocVariableBuilder
 ---
 # <span class="badge builder"></span> AdhocVariableBuilder
 
+Adhoc variable kind
+
 ## Constructor
 
 ```java

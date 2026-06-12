@@ -3,9 +3,11 @@
 import * as cog from '../cog';
 import * as common from '../common';
 
-// These are the common properties available to all queries in all datasources.
-// Specific implementations will *extend* this interface, adding the required
-// properties for the given context.
+/**
+ * These are the common properties available to all queries in all datasources.
+ * Specific implementations will *extend* this interface, adding the required
+ * properties for the given context.
+ */
 export class DataQueryBuilder implements cog.Builder<common.DataQuery> {
     protected readonly internal: common.DataQuery;
 

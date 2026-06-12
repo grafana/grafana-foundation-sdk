@@ -4,6 +4,9 @@ package com.grafana.foundation.dashboard;
 
 import java.util.List;
 
+/**
+ * A variable is a placeholder for a value. You can use variables in metric queries and in panel titles.
+ */
 public class DatasourceVariableBuilder implements com.grafana.foundation.cog.Builder<VariableModel> {
     protected final VariableModel internal;
     

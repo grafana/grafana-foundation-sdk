@@ -10,5 +10,5 @@
 
  * <span class="badge builder"></span> [CookiePreferences](./builder-CookiePreferences.md)
  * <span class="badge builder"></span> [NavbarPreference](./builder-NavbarPreference.md)
- * <span class="badge builder"></span> [Preferences](./builder-Preferences.md)
+ * <span class="badge builder"></span> <span class="badge deprecated"></span> [Preferences](./builder-Preferences.md)
  * <span class="badge builder"></span> [QueryHistoryPreference](./builder-QueryHistoryPreference.md)

@@ -3,6 +3,8 @@ title: <span class="badge builder"></span> Row
 ---
 # <span class="badge builder"></span> Row
 
+Row panel
+
 ## Constructor
 
 ```python

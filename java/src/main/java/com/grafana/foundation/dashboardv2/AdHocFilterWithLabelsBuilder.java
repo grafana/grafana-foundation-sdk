@@ -4,6 +4,9 @@ package com.grafana.foundation.dashboardv2;
 
 import java.util.List;
 
+/**
+ * Define the AdHocFilterWithLabels type
+ */
 public class AdHocFilterWithLabelsBuilder implements com.grafana.foundation.cog.Builder<AdHocFilterWithLabels> {
     protected final AdHocFilterWithLabels internal;
     

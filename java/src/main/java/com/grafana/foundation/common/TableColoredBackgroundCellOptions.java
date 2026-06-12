@@ -8,7 +8,9 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.ObjectWriter;
 import com.fasterxml.jackson.annotation.JsonInclude;
 
-// Colored background cell options
+/**
+ * Colored background cell options
+ */
 public class TableColoredBackgroundCellOptions {
     @JsonProperty("type")
     public TableCellDisplayMode type;

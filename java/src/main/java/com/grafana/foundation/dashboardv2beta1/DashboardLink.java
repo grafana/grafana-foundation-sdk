@@ -12,7 +12,9 @@ import com.fasterxml.jackson.annotation.JsonSetter;
 import com.fasterxml.jackson.annotation.Nulls;
 import java.util.List;
 
-// Links with references to other dashboards or external resources
+/**
+ * Links with references to other dashboards or external resources
+ */
 public class DashboardLink {
     // Title to display with the link
     @JsonProperty("title")
@@ -51,7 +53,7 @@ public class DashboardLink {
     // Placement can be used to display the link somewhere else on the dashboard other than above the visualisations.
     @JsonInclude(JsonInclude.Include.NON_NULL)
     @JsonProperty("placement")
-    public String placement;
+    public DashboardLinkPlacement placement;
     // The source that registered the link (if any)
     @JsonInclude(JsonInclude.Include.NON_NULL)
     @JsonProperty("origin")
@@ -66,9 +68,8 @@ public class DashboardLink {
         this.targetBlank = false;
         this.includeVars = false;
         this.keepTime = false;
-        this.placement = Constants.DashboardLinkPlacement;
     }
-    public DashboardLink(String title,DashboardLinkType type,String icon,String tooltip,String url,List<String> tags,Boolean asDropdown,Boolean targetBlank,Boolean includeVars,Boolean keepTime,ControlSourceRef origin) {
+    public DashboardLink(String title,DashboardLinkType type,String icon,String tooltip,String url,List<String> tags,Boolean asDropdown,Boolean targetBlank,Boolean includeVars,Boolean keepTime,DashboardLinkPlacement placement,ControlSourceRef origin) {
         this.title = title;
         this.type = type;
         this.icon = icon;
@@ -79,7 +80,7 @@ public class DashboardLink {
         this.targetBlank = targetBlank;
         this.includeVars = includeVars;
         this.keepTime = keepTime;
-        this.placement = Constants.DashboardLinkPlacement;
+        this.placement = placement;
         this.origin = origin;
     }
     

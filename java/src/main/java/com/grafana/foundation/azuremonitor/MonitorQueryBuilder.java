@@ -3,6 +3,7 @@
 package com.grafana.foundation.azuremonitor;
 
 import java.util.List;
+import com.grafana.foundation.common.DataSourceRef;
 
 public class MonitorQueryBuilder implements com.grafana.foundation.cog.Builder<com.grafana.foundation.cog.variants.Dataquery> {
     protected final MonitorQuery internal;
@@ -89,7 +90,7 @@ public class MonitorQueryBuilder implements com.grafana.foundation.cog.Builder<c
         return this;
     }
     
-    public MonitorQueryBuilder datasource(Object datasource) {
+    public MonitorQueryBuilder datasource(DataSourceRef datasource) {
         this.internal.datasource = datasource;
         return this;
     }

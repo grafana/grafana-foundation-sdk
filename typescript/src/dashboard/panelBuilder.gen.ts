@@ -4,7 +4,9 @@ import * as cog from '../cog';
 import * as dashboard from '../dashboard';
 import * as common from '../common';
 
-// Dashboard panels are the basic visualization building blocks.
+/**
+ * Dashboard panels are the basic visualization building blocks.
+ */
 export class PanelBuilder implements cog.Builder<dashboard.Panel> {
     protected readonly internal: dashboard.Panel;
 

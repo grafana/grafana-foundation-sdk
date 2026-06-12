@@ -3,6 +3,8 @@ title: <span class="badge builder"></span> VariableValueOption
 ---
 # <span class="badge builder"></span> VariableValueOption
 
+FIXME: should we introduce this? --- Variable value option
+
 ## Constructor
 
 ```python

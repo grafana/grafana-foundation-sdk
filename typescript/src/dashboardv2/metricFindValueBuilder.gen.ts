@@ -3,7 +3,9 @@
 import * as cog from '../cog';
 import * as dashboardv2 from '../dashboardv2';
 
-// Define the MetricFindValue type
+/**
+ * Define the MetricFindValue type
+ */
 export class MetricFindValueBuilder implements cog.Builder<dashboardv2.MetricFindValue> {
     protected readonly internal: dashboardv2.MetricFindValue;
 

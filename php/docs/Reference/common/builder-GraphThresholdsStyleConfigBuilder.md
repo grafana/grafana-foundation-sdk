@@ -3,6 +3,8 @@ title: <span class="badge builder"></span> GraphThresholdsStyleConfigBuilder
 ---
 # <span class="badge builder"></span> GraphThresholdsStyleConfigBuilder
 
+TODO docs
+
 ## Constructor
 
 ```php

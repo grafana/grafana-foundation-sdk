@@ -9,9 +9,11 @@ import com.fasterxml.jackson.databind.ObjectWriter;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import java.util.List;
 
-// The data model used in Grafana, namely the data frame, is a columnar-oriented table structure that unifies both time series and table query results.
-// Each column within this structure is called a field. A field can represent a single time series or table column.
-// Field options allow you to change how the data is displayed in your visualizations.
+/**
+ * The data model used in Grafana, namely the data frame, is a columnar-oriented table structure that unifies both time series and table query results.
+ * Each column within this structure is called a field. A field can represent a single time series or table column.
+ * Field options allow you to change how the data is displayed in your visualizations.
+ */
 public class FieldConfig {
     // The display value for this field.  This supports template variables blank is auto
     @JsonInclude(JsonInclude.Include.NON_NULL)

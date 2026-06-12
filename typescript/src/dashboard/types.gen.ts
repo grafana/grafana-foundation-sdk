@@ -55,6 +55,9 @@ export interface DashboardMeta {
 export const defaultDashboardMeta = (): DashboardMeta => ({
 });
 
+/**
+ * @deprecated Prefer using dashboardv2.Dashboard instead.
+ */
 export interface Dashboard {
 	// Unique numeric identifier for the dashboard.
 	// `id` is internal to a specific Grafana instance. `uid` should be used to identify a dashboard across Grafana instances.
@@ -134,9 +137,11 @@ export const defaultDashboard = (): Dashboard => ({
 	annotations: defaultAnnotationContainer(),
 });
 
-// 0 for no shared crosshair or tooltip (default).
-// 1 for shared crosshair.
-// 2 for shared crosshair AND shared tooltip.
+/**
+ * 0 for no shared crosshair or tooltip (default).
+ * 1 for shared crosshair.
+ * 2 for shared crosshair AND shared tooltip.
+ */
 export enum DashboardCursorSync {
 	Off = 0,
 	Crosshair = 1,
@@ -145,8 +150,10 @@ export enum DashboardCursorSync {
 
 export const defaultDashboardCursorSync = (): DashboardCursorSync => (DashboardCursorSync.Off);
 
-// Time picker configuration
-// It defines the default config for the time picker and the refresh picker for the specific dashboard.
+/**
+ * Time picker configuration
+ * It defines the default config for the time picker and the refresh picker for the specific dashboard.
+ */
 export interface TimePickerConfig {
 	// Whether timepicker is visible or not.
 	hidden?: boolean;
@@ -174,7 +181,9 @@ export const defaultTimePickerConfig = (): TimePickerConfig => ({
 ],
 });
 
-// Counterpart for TypeScript's TimeOption type.
+/**
+ * Counterpart for TypeScript's TimeOption type.
+ */
 export interface TimeOption {
 	display: string;
 	from: string;
@@ -187,7 +196,9 @@ export const defaultTimeOption = (): TimeOption => ({
 	to: "",
 });
 
-// Dashboard panels are the basic visualization building blocks.
+/**
+ * Dashboard panels are the basic visualization building blocks.
+ */
 export interface Panel {
 	// The panel plugin type id. This is used to find the plugin to display the panel.
 	type: string;
@@ -265,12 +276,16 @@ export const defaultPanel = (): Panel => ({
 	repeatDirection: "h",
 });
 
-// Ref to a DataSource instance
+/**
+ * Ref to a DataSource instance
+ */
 export type DataSourceRef = common.DataSourceRef;
 
 export const defaultDataSourceRef = (): DataSourceRef => (common.defaultDataSourceRef());
 
-// Position and dimensions of a panel in the grid
+/**
+ * Position and dimensions of a panel in the grid
+ */
 export interface GridPos {
 	// Panel height. The height is the number of rows from the top edge of the panel.
 	h: number;
@@ -291,7 +306,9 @@ export const defaultGridPos = (): GridPos => ({
 	y: 0,
 });
 
-// Links with references to other dashboards or external resources
+/**
+ * Links with references to other dashboards or external resources
+ */
 export interface DashboardLink {
 	// Title to display with the link
 	title: string;
@@ -330,7 +347,9 @@ export const defaultDashboardLink = (): DashboardLink => ({
 	keepTime: false,
 });
 
-// Dashboard Link type. Accepted values are dashboards (to refer to another dashboard) and link (to refer to an external resource)
+/**
+ * Dashboard Link type. Accepted values are dashboards (to refer to another dashboard) and link (to refer to an external resource)
+ */
 export enum DashboardLinkType {
 	Link = "link",
 	Dashboards = "dashboards",
@@ -338,17 +357,21 @@ export enum DashboardLinkType {
 
 export const defaultDashboardLinkType = (): DashboardLinkType => (DashboardLinkType.Link);
 
-// Dashboard Link placement. Defines where the link should be displayed.
-// - "inControlsMenu" renders the link in bottom part of the dashboard controls dropdown menu
+/**
+ * Dashboard Link placement. Defines where the link should be displayed.
+ * - "inControlsMenu" renders the link in bottom part of the dashboard controls dropdown menu
+ */
 export enum DashboardLinkPlacement {
 	InControlsMenu = "inControlsMenu",
 }
 
 export const defaultDashboardLinkPlacement = (): DashboardLinkPlacement => (DashboardLinkPlacement.InControlsMenu);
 
-// Transformations allow to manipulate data returned by a query before the system applies a visualization.
-// Using transformations you can: rename fields, join time series data, perform mathematical operations across queries,
-// use the output of one transformation as the input to another transformation, etc.
+/**
+ * Transformations allow to manipulate data returned by a query before the system applies a visualization.
+ * Using transformations you can: rename fields, join time series data, perform mathematical operations across queries,
+ * use the output of one transformation as the input to another transformation, etc.
+ */
 export interface DataTransformerConfig {
 	// Unique identifier of transformer
 	id: string;
@@ -369,8 +392,10 @@ export const defaultDataTransformerConfig = (): DataTransformerConfig => ({
 	options: {},
 });
 
-// Matcher is a predicate configuration. Based on the config a set of field(s) or values is filtered in order to apply override / transformation.
-// It comes with in id ( to resolve implementation from registry) and a configuration that’s specific to a particular matcher type.
+/**
+ * Matcher is a predicate configuration. Based on the config a set of field(s) or values is filtered in order to apply override / transformation.
+ * It comes with in id ( to resolve implementation from registry) and a configuration that’s specific to a particular matcher type.
+ */
 export interface MatcherConfig {
 	// The matcher id. This is used to find the matcher implementation from registry.
 	id: string;
@@ -382,9 +407,11 @@ export const defaultMatcherConfig = (): MatcherConfig => ({
 	id: "",
 });
 
-// A library panel is a reusable panel that you can use in any dashboard.
-// When you make a change to a library panel, that change propagates to all instances of where the panel is used.
-// Library panels streamline reuse of panels across multiple dashboards.
+/**
+ * A library panel is a reusable panel that you can use in any dashboard.
+ * When you make a change to a library panel, that change propagates to all instances of where the panel is used.
+ * Library panels streamline reuse of panels across multiple dashboards.
+ */
 export interface LibraryPanelRef {
 	// Library panel name
 	name: string;
@@ -397,9 +424,11 @@ export const defaultLibraryPanelRef = (): LibraryPanelRef => ({
 	uid: "",
 });
 
-// The data model used in Grafana, namely the data frame, is a columnar-oriented table structure that unifies both time series and table query results.
-// Each column within this structure is called a field. A field can represent a single time series or table column.
-// Field options allow you to change how the data is displayed in your visualizations.
+/**
+ * The data model used in Grafana, namely the data frame, is a columnar-oriented table structure that unifies both time series and table query results.
+ * Each column within this structure is called a field. A field can represent a single time series or table column.
+ * Field options allow you to change how the data is displayed in your visualizations.
+ */
 export interface FieldConfigSource {
 	// Defaults are the options applied to all fields.
 	defaults: FieldConfig;
@@ -416,9 +445,11 @@ export const defaultFieldConfigSource = (): FieldConfigSource => ({
 	overrides: [],
 });
 
-// The data model used in Grafana, namely the data frame, is a columnar-oriented table structure that unifies both time series and table query results.
-// Each column within this structure is called a field. A field can represent a single time series or table column.
-// Field options allow you to change how the data is displayed in your visualizations.
+/**
+ * The data model used in Grafana, namely the data frame, is a columnar-oriented table structure that unifies both time series and table query results.
+ * Each column within this structure is called a field. A field can represent a single time series or table column.
+ * Field options allow you to change how the data is displayed in your visualizations.
+ */
 export interface FieldConfig {
 	// The display value for this field.  This supports template variables blank is auto
 	displayName?: string;
@@ -478,13 +509,17 @@ export interface FieldConfig {
 export const defaultFieldConfig = (): FieldConfig => ({
 });
 
-// Allow to transform the visual representation of specific data values in a visualization, irrespective of their original units
+/**
+ * Allow to transform the visual representation of specific data values in a visualization, irrespective of their original units
+ */
 export type ValueMapping = ValueMap | RangeMap | RegexMap | SpecialValueMap;
 
 export const defaultValueMapping = (): ValueMapping => (defaultValueMap());
 
-// Maps text values to a color or different display text and color.
-// For example, you can configure a value mapping so that all instances of the value 10 appear as Perfection! rather than the number.
+/**
+ * Maps text values to a color or different display text and color.
+ * For example, you can configure a value mapping so that all instances of the value 10 appear as Perfection! rather than the number.
+ */
 export interface ValueMap {
 	type: MappingType.ValueToText;
 	// Map with <value_to_match>: ValueMappingResult. For example: { "10": { text: "Perfection!", color: "green" } }
@@ -496,11 +531,13 @@ export const defaultValueMap = (): ValueMap => ({
 	options: {},
 });
 
-// Supported value mapping types
-// `value`: Maps text values to a color or different display text and color. For example, you can configure a value mapping so that all instances of the value 10 appear as Perfection! rather than the number.
-// `range`: Maps numerical ranges to a display text and color. For example, if a value is within a certain range, you can configure a range value mapping to display Low or High rather than the number.
-// `regex`: Maps regular expressions to replacement text and a color. For example, if a value is www.example.com, you can configure a regex value mapping so that Grafana displays www and truncates the domain.
-// `special`: Maps special values like Null, NaN (not a number), and boolean values like true and false to a display text and color. See SpecialValueMatch to see the list of special values. For example, you can configure a special value mapping so that null values appear as N/A.
+/**
+ * Supported value mapping types
+ * `value`: Maps text values to a color or different display text and color. For example, you can configure a value mapping so that all instances of the value 10 appear as Perfection! rather than the number.
+ * `range`: Maps numerical ranges to a display text and color. For example, if a value is within a certain range, you can configure a range value mapping to display Low or High rather than the number.
+ * `regex`: Maps regular expressions to replacement text and a color. For example, if a value is www.example.com, you can configure a regex value mapping so that Grafana displays www and truncates the domain.
+ * `special`: Maps special values like Null, NaN (not a number), and boolean values like true and false to a display text and color. See SpecialValueMatch to see the list of special values. For example, you can configure a special value mapping so that null values appear as N/A.
+ */
 export enum MappingType {
 	ValueToText = "value",
 	RangeToText = "range",
@@ -510,7 +547,9 @@ export enum MappingType {
 
 export const defaultMappingType = (): MappingType => (MappingType.ValueToText);
 
-// Result used as replacement with text and color when the value matches
+/**
+ * Result used as replacement with text and color when the value matches
+ */
 export interface ValueMappingResult {
 	// Text to display when the value matches
 	text?: string;
@@ -525,8 +564,10 @@ export interface ValueMappingResult {
 export const defaultValueMappingResult = (): ValueMappingResult => ({
 });
 
-// Maps numerical ranges to a display text and color.
-// For example, if a value is within a certain range, you can configure a range value mapping to display Low or High rather than the number.
+/**
+ * Maps numerical ranges to a display text and color.
+ * For example, if a value is within a certain range, you can configure a range value mapping to display Low or High rather than the number.
+ */
 export interface RangeMap {
 	type: MappingType.RangeToText;
 	// Range to match against and the result to apply when the value is within the range
@@ -549,8 +590,10 @@ export const defaultRangeMap = (): RangeMap => ({
 },
 });
 
-// Maps regular expressions to replacement text and a color.
-// For example, if a value is www.example.com, you can configure a regex value mapping so that Grafana displays www and truncates the domain.
+/**
+ * Maps regular expressions to replacement text and a color.
+ * For example, if a value is www.example.com, you can configure a regex value mapping so that Grafana displays www and truncates the domain.
+ */
 export interface RegexMap {
 	type: MappingType.RegexToText;
 	// Regular expression to match against and the result to apply when the value matches the regex
@@ -570,9 +613,11 @@ export const defaultRegexMap = (): RegexMap => ({
 },
 });
 
-// Maps special values like Null, NaN (not a number), and boolean values like true and false to a display text and color.
-// See SpecialValueMatch to see the list of special values.
-// For example, you can configure a special value mapping so that null values appear as N/A.
+/**
+ * Maps special values like Null, NaN (not a number), and boolean values like true and false to a display text and color.
+ * See SpecialValueMatch to see the list of special values.
+ * For example, you can configure a special value mapping so that null values appear as N/A.
+ */
 export interface SpecialValueMap {
 	type: MappingType.SpecialValue;
 	options: {
@@ -591,7 +636,9 @@ export const defaultSpecialValueMap = (): SpecialValueMap => ({
 },
 });
 
-// Special value types supported by the `SpecialValueMap`
+/**
+ * Special value types supported by the `SpecialValueMap`
+ */
 export enum SpecialValueMatch {
 	True = "true",
 	False = "false",
@@ -603,7 +650,9 @@ export enum SpecialValueMatch {
 
 export const defaultSpecialValueMatch = (): SpecialValueMatch => (SpecialValueMatch.True);
 
-// Thresholds configuration for the panel
+/**
+ * Thresholds configuration for the panel
+ */
 export interface ThresholdsConfig {
 	// Thresholds mode.
 	mode: ThresholdsMode;
@@ -616,7 +665,9 @@ export const defaultThresholdsConfig = (): ThresholdsConfig => ({
 	steps: [],
 });
 
-// Thresholds can either be `absolute` (specific number) or `percentage` (relative to min or max, it will be values between 0 and 1).
+/**
+ * Thresholds can either be `absolute` (specific number) or `percentage` (relative to min or max, it will be values between 0 and 1).
+ */
 export enum ThresholdsMode {
 	Absolute = "absolute",
 	Percentage = "percentage",
@@ -624,8 +675,10 @@ export enum ThresholdsMode {
 
 export const defaultThresholdsMode = (): ThresholdsMode => (ThresholdsMode.Absolute);
 
-// User-defined value for a metric that triggers visual changes in a panel when this value is met or exceeded
-// They are used to conditionally style and color visualizations based on query results , and can be applied to most visualizations.
+/**
+ * User-defined value for a metric that triggers visual changes in a panel when this value is met or exceeded
+ * They are used to conditionally style and color visualizations based on query results , and can be applied to most visualizations.
+ */
 export interface Threshold {
 	// Value represents a specified metric for the threshold, which triggers a visual change in the dashboard when this value is met or exceeded.
 	// Nulls currently appear here when serializing -Infinity to JSON.
@@ -639,7 +692,9 @@ export const defaultThreshold = (): Threshold => ({
 	color: "",
 });
 
-// Map a field to a color.
+/**
+ * Map a field to a color.
+ */
 export interface FieldColor {
 	// The main color scheme mode.
 	mode: FieldColorModeId;
@@ -653,24 +708,26 @@ export const defaultFieldColor = (): FieldColor => ({
 	mode: FieldColorModeId.Thresholds,
 });
 
-// Color mode for a field. You can specify a single color, or select a continuous (gradient) color schemes, based on a value.
-// Continuous color interpolates a color using the percentage of a value relative to min and max.
-// Accepted values are:
-// `thresholds`: From thresholds. Informs Grafana to take the color from the matching threshold
-// `palette-classic`: Classic palette. Grafana will assign color by looking up a color in a palette by series index. Useful for Graphs and pie charts and other categorical data visualizations
-// `palette-classic-by-name`: Classic palette (by name). Grafana will assign color by looking up a color in a palette by series name. Useful for Graphs and pie charts and other categorical data visualizations
-// `continuous-GrYlRd`: ontinuous Green-Yellow-Red palette mode
-// `continuous-RdYlGr`: Continuous Red-Yellow-Green palette mode
-// `continuous-BlYlRd`: Continuous Blue-Yellow-Red palette mode
-// `continuous-YlRd`: Continuous Yellow-Red palette mode
-// `continuous-BlPu`: Continuous Blue-Purple palette mode
-// `continuous-YlBl`: Continuous Yellow-Blue palette mode
-// `continuous-blues`: Continuous Blue palette mode
-// `continuous-reds`: Continuous Red palette mode
-// `continuous-greens`: Continuous Green palette mode
-// `continuous-purples`: Continuous Purple palette mode
-// `shades`: Shades of a single color. Specify a single color, useful in an override rule.
-// `fixed`: Fixed color mode. Specify a single color, useful in an override rule.
+/**
+ * Color mode for a field. You can specify a single color, or select a continuous (gradient) color schemes, based on a value.
+ * Continuous color interpolates a color using the percentage of a value relative to min and max.
+ * Accepted values are:
+ * `thresholds`: From thresholds. Informs Grafana to take the color from the matching threshold
+ * `palette-classic`: Classic palette. Grafana will assign color by looking up a color in a palette by series index. Useful for Graphs and pie charts and other categorical data visualizations
+ * `palette-classic-by-name`: Classic palette (by name). Grafana will assign color by looking up a color in a palette by series name. Useful for Graphs and pie charts and other categorical data visualizations
+ * `continuous-GrYlRd`: ontinuous Green-Yellow-Red palette mode
+ * `continuous-RdYlGr`: Continuous Red-Yellow-Green palette mode
+ * `continuous-BlYlRd`: Continuous Blue-Yellow-Red palette mode
+ * `continuous-YlRd`: Continuous Yellow-Red palette mode
+ * `continuous-BlPu`: Continuous Blue-Purple palette mode
+ * `continuous-YlBl`: Continuous Yellow-Blue palette mode
+ * `continuous-blues`: Continuous Blue palette mode
+ * `continuous-reds`: Continuous Red palette mode
+ * `continuous-greens`: Continuous Green palette mode
+ * `continuous-purples`: Continuous Purple palette mode
+ * `shades`: Shades of a single color. Specify a single color, useful in an override rule.
+ * `fixed`: Fixed color mode. Specify a single color, useful in an override rule.
+ */
 export enum FieldColorModeId {
 	Thresholds = "thresholds",
 	PaletteClassic = "palette-classic",
@@ -691,7 +748,9 @@ export enum FieldColorModeId {
 
 export const defaultFieldColorModeId = (): FieldColorModeId => (FieldColorModeId.Thresholds);
 
-// Defines how to assign a series color from "by value" color schemes. For example for an aggregated data points like a timeseries, the color can be assigned by the min, max or last value.
+/**
+ * Defines how to assign a series color from "by value" color schemes. For example for an aggregated data points like a timeseries, the color can be assigned by the min, max or last value.
+ */
 export enum FieldColorSeriesByMode {
 	Min = "min",
 	Max = "max",
@@ -700,7 +759,9 @@ export enum FieldColorSeriesByMode {
 
 export const defaultFieldColorSeriesByMode = (): FieldColorSeriesByMode => (FieldColorSeriesByMode.Min);
 
-// Dashboard action
+/**
+ * Dashboard action
+ */
 export interface Action {
 	type: ActionType;
 	title: string;
@@ -719,7 +780,9 @@ export const defaultAction = (): Action => ({
 	title: "",
 });
 
-// Dashboard action type
+/**
+ * Dashboard action type
+ */
 export enum ActionType {
 	Fetch = "fetch",
 	Infinity = "infinity",
@@ -727,7 +790,9 @@ export enum ActionType {
 
 export const defaultActionType = (): ActionType => (ActionType.Fetch);
 
-// Fetch options
+/**
+ * Fetch options
+ */
 export interface FetchOptions {
 	method: HttpRequestMethod;
 	url: string;
@@ -754,7 +819,9 @@ export enum HttpRequestMethod {
 
 export const defaultHttpRequestMethod = (): HttpRequestMethod => (HttpRequestMethod.GET);
 
-// Infinity options
+/**
+ * Infinity options
+ */
 export interface InfinityOptions {
 	method: HttpRequestMethod;
 	url: string;
@@ -785,7 +852,9 @@ export const defaultActionVariable = (): ActionVariable => ({
 	type: ActionVariableType.String,
 });
 
-// Action variable type
+/**
+ * Action variable type
+ */
 export enum ActionVariableType {
 	String = "string",
 }
@@ -801,7 +870,9 @@ export const defaultDynamicConfigValue = (): DynamicConfigValue => ({
 	id: "",
 });
 
-// Row panel
+/**
+ * Row panel
+ */
 export interface RowPanel {
 	// The panel type
 	type: "row";
@@ -828,7 +899,9 @@ export const defaultRowPanel = (): RowPanel => ({
 	panels: [],
 });
 
-// A variable is a placeholder for a value. You can use variables in metric queries and in panel titles.
+/**
+ * A variable is a placeholder for a value. You can use variables in metric queries and in panel titles.
+ */
 export interface VariableModel {
 	// Type of variable
 	type: VariableType;
@@ -891,16 +964,18 @@ export const defaultVariableModel = (): VariableModel => ({
 	auto_count: 0x1e,
 });
 
-// Dashboard variable type
-// `query`: Query-generated list of values such as metric names, server names, sensor IDs, data centers, and so on.
-// `adhoc`: Key/value filters that are automatically added to all metric queries for a data source (Prometheus, Loki, InfluxDB, and Elasticsearch only).
-// `constant`: 	Define a hidden constant.
-// `datasource`: Quickly change the data source for an entire dashboard.
-// `interval`: Interval variables represent time spans.
-// `textbox`: Display a free text input field with an optional default value.
-// `custom`: Define the variable options manually using a comma-separated list.
-// `system`: Variables defined by Grafana. See: https://grafana.com/docs/grafana/latest/dashboards/variables/add-template-variables/#global-variables
-// `switch`: Boolean variables rendered as a switch
+/**
+ * Dashboard variable type
+ * `query`: Query-generated list of values such as metric names, server names, sensor IDs, data centers, and so on.
+ * `adhoc`: Key/value filters that are automatically added to all metric queries for a data source (Prometheus, Loki, InfluxDB, and Elasticsearch only).
+ * `constant`: 	Define a hidden constant.
+ * `datasource`: Quickly change the data source for an entire dashboard.
+ * `interval`: Interval variables represent time spans.
+ * `textbox`: Display a free text input field with an optional default value.
+ * `custom`: Define the variable options manually using a comma-separated list.
+ * `system`: Variables defined by Grafana. See: https://grafana.com/docs/grafana/latest/dashboards/variables/add-template-variables/#global-variables
+ * `switch`: Boolean variables rendered as a switch
+ */
 export enum VariableType {
 	Query = "query",
 	Adhoc = "adhoc",
@@ -917,8 +992,10 @@ export enum VariableType {
 
 export const defaultVariableType = (): VariableType => (VariableType.Query);
 
-// Determine if the variable shows on dashboard
-// Accepted values are 0 (show label and value), 1 (show value only), 2 (show nothing), 3 (show under the controls dropdown menu).
+/**
+ * Determine if the variable shows on dashboard
+ * Accepted values are 0 (show label and value), 1 (show value only), 2 (show nothing), 3 (show under the controls dropdown menu).
+ */
 export enum VariableHide {
 	DontHide = 0,
 	HideLabel = 1,
@@ -928,7 +1005,9 @@ export enum VariableHide {
 
 export const defaultVariableHide = (): VariableHide => (VariableHide.DontHide);
 
-// Option to be selected in a variable.
+/**
+ * Option to be selected in a variable.
+ */
 export interface VariableOption {
 	// Whether the option is selected or not
 	selected?: boolean;
@@ -943,10 +1022,12 @@ export const defaultVariableOption = (): VariableOption => ({
 	value: "",
 });
 
-// Options to config when to refresh a variable
-// `0`: Never refresh the variable
-// `1`: Queries the data source every time the dashboard loads.
-// `2`: Queries the data source when the dashboard time range changes.
+/**
+ * Options to config when to refresh a variable
+ * `0`: Never refresh the variable
+ * `1`: Queries the data source every time the dashboard loads.
+ * `2`: Queries the data source when the dashboard time range changes.
+ */
 export enum VariableRefresh {
 	Never = 0,
 	OnDashboardLoad = 1,
@@ -955,17 +1036,19 @@ export enum VariableRefresh {
 
 export const defaultVariableRefresh = (): VariableRefresh => (VariableRefresh.Never);
 
-// Sort variable options
-// Accepted values are:
-// `0`: No sorting
-// `1`: Alphabetical ASC
-// `2`: Alphabetical DESC
-// `3`: Numerical ASC
-// `4`: Numerical DESC
-// `5`: Alphabetical Case Insensitive ASC
-// `6`: Alphabetical Case Insensitive DESC
-// `7`: Natural ASC
-// `8`: Natural DESC
+/**
+ * Sort variable options
+ * Accepted values are:
+ * `0`: No sorting
+ * `1`: Alphabetical ASC
+ * `2`: Alphabetical DESC
+ * `3`: Numerical ASC
+ * `4`: Numerical DESC
+ * `5`: Alphabetical Case Insensitive ASC
+ * `6`: Alphabetical Case Insensitive DESC
+ * `7`: Natural ASC
+ * `8`: Natural DESC
+ */
 export enum VariableSort {
 	Disabled = 0,
 	AlphabeticalAsc = 1,
@@ -980,10 +1063,12 @@ export enum VariableSort {
 
 export const defaultVariableSort = (): VariableSort => (VariableSort.Disabled);
 
-// Contains the list of annotations that are associated with the dashboard.
-// Annotations are used to overlay event markers and overlay event tags on graphs.
-// Grafana comes with a native annotation store and the ability to add annotation events directly from the graph panel or via the HTTP API.
-// See https://grafana.com/docs/grafana/latest/dashboards/build-dashboards/annotate-visualizations/
+/**
+ * Contains the list of annotations that are associated with the dashboard.
+ * Annotations are used to overlay event markers and overlay event tags on graphs.
+ * Grafana comes with a native annotation store and the ability to add annotation events directly from the graph panel or via the HTTP API.
+ * See https://grafana.com/docs/grafana/latest/dashboards/build-dashboards/annotate-visualizations/
+ */
 export interface AnnotationContainer {
 	// List of annotations
 	list?: AnnotationQuery[];
@@ -992,8 +1077,10 @@ export interface AnnotationContainer {
 export const defaultAnnotationContainer = (): AnnotationContainer => ({
 });
 
-// TODO docs
-// FROM: AnnotationQuery in grafana-data/src/types/annotations.ts
+/**
+ * TODO docs
+ * FROM: AnnotationQuery in grafana-data/src/types/annotations.ts
+ */
 export interface AnnotationQuery {
 	// Name of annotation.
 	name: string;
@@ -1052,8 +1139,10 @@ export const defaultAnnotationPanelFilter = (): AnnotationPanelFilter => ({
 	ids: [],
 });
 
-// TODO: this should be a regular DataQuery that depends on the selected dashboard
-// these match the properties of the "grafana" datasouce that is default in most dashboards
+/**
+ * TODO: this should be a regular DataQuery that depends on the selected dashboard
+ * these match the properties of the "grafana" datasouce that is default in most dashboards
+ */
 export interface AnnotationTarget {
 	// Only required/valid for the grafana datasource...
 	// but code+tests is already depending on it so hard to change
@@ -1076,19 +1165,23 @@ export const defaultAnnotationTarget = (): AnnotationTarget => ({
 	type: "",
 });
 
-// Annotation Query placement. Defines where the annotation query should be displayed.
-// - "inControlsMenu" renders the annotation query in the dashboard controls dropdown menu
+/**
+ * Annotation Query placement. Defines where the annotation query should be displayed.
+ * - "inControlsMenu" renders the annotation query in the dashboard controls dropdown menu
+ */
 export enum AnnotationQueryPlacement {
 	InControlsMenu = "inControlsMenu",
 }
 
 export const defaultAnnotationQueryPlacement = (): AnnotationQueryPlacement => (AnnotationQueryPlacement.InControlsMenu);
 
-// A dashboard snapshot shares an interactive dashboard publicly.
-// It is a read-only version of a dashboard, and is not editable.
-// It is possible to create a snapshot of a snapshot.
-// Grafana strips away all sensitive information from the dashboard.
-// Sensitive information stripped: queries (metric, template,annotation) and panel links.
+/**
+ * A dashboard snapshot shares an interactive dashboard publicly.
+ * It is a read-only version of a dashboard, and is not editable.
+ * It is possible to create a snapshot of a snapshot.
+ * Grafana strips away all sensitive information from the dashboard.
+ * Sensitive information stripped: queries (metric, template,annotation) and panel links.
+ */
 export interface Snapshot {
 	// Time when the snapshot was created
 	created: string;
@@ -1131,10 +1224,12 @@ export const defaultSnapshot = (): Snapshot => ({
 	userId: 0,
 });
 
-// Annotation event field source. Defines how to obtain the value for an annotation event field.
-// - "field": Find the value with a matching key (default)
-// - "text": Write a constant string into the value
-// - "skip": Do not include the field
+/**
+ * Annotation event field source. Defines how to obtain the value for an annotation event field.
+ * - "field": Find the value with a matching key (default)
+ * - "text": Write a constant string into the value
+ * - "skip": Do not include the field
+ */
 export enum AnnotationEventFieldSource {
 	Field = "field",
 	Text = "text",
@@ -1143,7 +1238,9 @@ export enum AnnotationEventFieldSource {
 
 export const defaultAnnotationEventFieldSource = (): AnnotationEventFieldSource => (AnnotationEventFieldSource.Field);
 
-// Annotation event field mapping. Defines how to map a data frame field to an annotation event field.
+/**
+ * Annotation event field mapping. Defines how to map a data frame field to an annotation event field.
+ */
 export interface AnnotationEventFieldMapping {
 	// Source type for the field value.
 	source?: AnnotationEventFieldSource;

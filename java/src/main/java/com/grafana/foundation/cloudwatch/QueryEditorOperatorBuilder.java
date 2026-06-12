@@ -3,6 +3,9 @@
 package com.grafana.foundation.cloudwatch;
 
 
+/**
+ * TS type is QueryEditorOperator<T extends QueryEditorOperatorValueType>, extended in veneer
+ */
 public class QueryEditorOperatorBuilder implements com.grafana.foundation.cog.Builder<QueryEditorOperator> {
     protected final QueryEditorOperator internal;
     

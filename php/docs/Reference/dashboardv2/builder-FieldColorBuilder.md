@@ -3,6 +3,8 @@ title: <span class="badge builder"></span> FieldColorBuilder
 ---
 # <span class="badge builder"></span> FieldColorBuilder
 
+Map a field to a color.
+
 ## Constructor
 
 ```php

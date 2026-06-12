@@ -3,6 +3,8 @@ title: <span class="badge builder"></span> FetchOptionsBuilder
 ---
 # <span class="badge builder"></span> FetchOptionsBuilder
 
+Fetch options
+
 ## Constructor
 
 ```typescript

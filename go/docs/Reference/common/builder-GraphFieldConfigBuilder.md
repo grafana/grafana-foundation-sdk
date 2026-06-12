@@ -3,6 +3,8 @@ title: <span class="badge builder"></span> GraphFieldConfigBuilder
 ---
 # <span class="badge builder"></span> GraphFieldConfigBuilder
 
+TODO docs
+
 ## Constructor
 
 ```go

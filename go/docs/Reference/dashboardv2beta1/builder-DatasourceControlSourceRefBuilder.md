@@ -3,6 +3,8 @@ title: <span class="badge builder"></span> DatasourceControlSourceRefBuilder
 ---
 # <span class="badge builder"></span> DatasourceControlSourceRefBuilder
 
+Source information for controls (e.g. variables or links)
+
 ## Constructor
 
 ```go

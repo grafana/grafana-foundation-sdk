@@ -3,6 +3,9 @@
 package com.grafana.foundation.heatmap;
 
 
+/**
+ * Controls exemplar options
+ */
 public class ExemplarConfigBuilder implements com.grafana.foundation.cog.Builder<ExemplarConfig> {
     protected final ExemplarConfig internal;
     

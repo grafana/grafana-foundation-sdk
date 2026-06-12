@@ -3,6 +3,8 @@ title: <span class="badge builder"></span> MetricDefinitionsQueryBuilder
 ---
 # <span class="badge builder"></span> MetricDefinitionsQueryBuilder
 
+@deprecated Use MetricNamespaceQuery instead
+
 ## Constructor
 
 ```go

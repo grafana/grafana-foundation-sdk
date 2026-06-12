@@ -3,6 +3,8 @@ title: <span class="badge builder"></span> OptionsWithTooltipBuilder
 ---
 # <span class="badge builder"></span> OptionsWithTooltipBuilder
 
+TODO docs
+
 ## Constructor
 
 ```typescript

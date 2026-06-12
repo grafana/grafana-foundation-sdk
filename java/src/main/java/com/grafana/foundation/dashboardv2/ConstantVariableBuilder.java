@@ -3,6 +3,9 @@
 package com.grafana.foundation.dashboardv2;
 
 
+/**
+ * Constant variable kind
+ */
 public class ConstantVariableBuilder implements com.grafana.foundation.cog.Builder<ConstantVariableKind> {
     protected final ConstantVariableKind internal;
     

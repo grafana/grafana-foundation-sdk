@@ -6,6 +6,9 @@ import java.util.List;
 import java.util.LinkedList;
 import com.grafana.foundation.common.DataSourceRef;
 
+/**
+ * Shape of a CloudWatch Logs query
+ */
 public class LogsQueryBuilder implements com.grafana.foundation.cog.Builder<LogsQuery> {
     protected final LogsQuery internal;
     

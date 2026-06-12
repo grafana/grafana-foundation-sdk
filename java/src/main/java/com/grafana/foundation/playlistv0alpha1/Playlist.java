@@ -11,6 +11,10 @@ import com.fasterxml.jackson.annotation.JsonSetter;
 import com.fasterxml.jackson.annotation.Nulls;
 import java.util.List;
 
+/**
+ * @deprecated Prefer using playlistv1.Playlist instead.
+ */
+@Deprecated(forRemoval = true)
 public class Playlist {
     @JsonProperty("title")
     public String title;

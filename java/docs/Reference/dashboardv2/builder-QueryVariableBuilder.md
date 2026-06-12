@@ -3,6 +3,8 @@ title: <span class="badge builder"></span> QueryVariableBuilder
 ---
 # <span class="badge builder"></span> QueryVariableBuilder
 
+Query variable kind
+
 ## Constructor
 
 ```java

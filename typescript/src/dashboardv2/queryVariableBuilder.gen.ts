@@ -3,7 +3,9 @@
 import * as cog from '../cog';
 import * as dashboardv2 from '../dashboardv2';
 
-// Query variable kind
+/**
+ * Query variable kind
+ */
 export class QueryVariableBuilder implements cog.Builder<dashboardv2.QueryVariableKind> {
     protected readonly internal: dashboardv2.QueryVariableKind;
 

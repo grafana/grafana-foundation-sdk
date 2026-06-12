@@ -3,6 +3,8 @@ title: <span class="badge builder"></span> Preferences
 ---
 # <span class="badge builder"></span> Preferences
 
+Dashboard specific preferences (applied per dashboard = all users using the dashboard)
+
 ## Constructor
 
 ```python

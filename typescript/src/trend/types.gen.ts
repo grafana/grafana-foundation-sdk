@@ -3,7 +3,9 @@
 import * as common from '../common';
 
 
-// Identical to timeseries... except it does not have timezone settings
+/**
+ * Identical to timeseries... except it does not have timezone settings
+ */
 export interface Options {
 	legend: common.VizLegendOptions;
 	tooltip: common.VizTooltipOptions;

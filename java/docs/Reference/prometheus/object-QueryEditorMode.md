@@ -14,8 +14,8 @@ import com.fasterxml.jackson.annotation.JsonValue;
 
 @JsonFormat(shape = JsonFormat.Shape.OBJECT)
 public enum QueryEditorMode {
-    CODE("code"),
     BUILDER("builder"),
+    CODE("code"),
     _EMPTY("");
 
     private final String value;

@@ -9,7 +9,9 @@ import com.fasterxml.jackson.databind.ObjectWriter;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import java.util.List;
 
-// Application Insights Traces sub-query properties
+/**
+ * Application Insights Traces sub-query properties
+ */
 public class TracesQuery {
     // Specifies the format results should be returned as.
     @JsonInclude(JsonInclude.Include.NON_NULL)

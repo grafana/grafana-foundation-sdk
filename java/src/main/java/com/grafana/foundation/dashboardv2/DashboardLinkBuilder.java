@@ -4,6 +4,9 @@ package com.grafana.foundation.dashboardv2;
 
 import java.util.List;
 
+/**
+ * Links with references to other dashboards or external resources
+ */
 public class DashboardLinkBuilder implements com.grafana.foundation.cog.Builder<DashboardLink> {
     protected final DashboardLink internal;
     

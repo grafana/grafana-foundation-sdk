@@ -3,7 +3,9 @@
 import * as cog from '../cog';
 import * as dashboardv2 from '../dashboardv2';
 
-// Custom formatter variable
+/**
+ * Custom formatter variable
+ */
 export class CustomFormatterVariableBuilder implements cog.Builder<dashboardv2.CustomFormatterVariable> {
     protected readonly internal: dashboardv2.CustomFormatterVariable;
 

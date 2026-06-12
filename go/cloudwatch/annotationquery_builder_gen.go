@@ -73,7 +73,7 @@ func (builder *AnnotationQueryBuilder) ActionPrefix(actionPrefix string) *Annota
 // In server side expressions, the refId is used as a variable name to identify results.
 // By default, the UI will assign A->Z; however setting meaningful names may be useful.
 func (builder *AnnotationQueryBuilder) RefId(refId string) *AnnotationQueryBuilder {
-	builder.internal.RefId = refId
+	builder.internal.RefId = &refId
 
 	return builder
 }

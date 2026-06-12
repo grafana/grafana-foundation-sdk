@@ -3,7 +3,9 @@
 import * as cog from '../cog';
 import * as dashboardv2 from '../dashboardv2';
 
-// Text variable kind
+/**
+ * Text variable kind
+ */
 export class TextVariableBuilder implements cog.Builder<dashboardv2.TextVariableKind> {
     protected readonly internal: dashboardv2.TextVariableKind;
 

@@ -7,7 +7,9 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.ObjectWriter;
 
-// TODO docs
+/**
+ * TODO docs
+ */
 public class HideSeriesConfig {
     @JsonProperty("tooltip")
     public Boolean tooltip;

@@ -8,11 +8,13 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.ObjectWriter;
 import com.fasterxml.jackson.annotation.JsonInclude;
 
-// A dashboard snapshot shares an interactive dashboard publicly.
-// It is a read-only version of a dashboard, and is not editable.
-// It is possible to create a snapshot of a snapshot.
-// Grafana strips away all sensitive information from the dashboard.
-// Sensitive information stripped: queries (metric, template,annotation) and panel links.
+/**
+ * A dashboard snapshot shares an interactive dashboard publicly.
+ * It is a read-only version of a dashboard, and is not editable.
+ * It is possible to create a snapshot of a snapshot.
+ * Grafana strips away all sensitive information from the dashboard.
+ * Sensitive information stripped: queries (metric, template,annotation) and panel links.
+ */
 public class Snapshot {
     // Time when the snapshot was created
     @JsonProperty("created")

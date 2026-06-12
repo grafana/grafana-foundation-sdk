@@ -8,7 +8,9 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.ObjectWriter;
 import com.fasterxml.jackson.annotation.JsonInclude;
 
-// TODO docs
+/**
+ * TODO docs
+ */
 public class OptionsWithTooltip {
     @JsonInclude(JsonInclude.Include.NON_EMPTY)
     @JsonProperty("tooltip")

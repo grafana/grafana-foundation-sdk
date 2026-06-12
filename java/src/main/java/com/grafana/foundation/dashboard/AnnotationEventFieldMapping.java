@@ -8,7 +8,9 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.ObjectWriter;
 import com.fasterxml.jackson.annotation.JsonInclude;
 
-// Annotation event field mapping. Defines how to map a data frame field to an annotation event field.
+/**
+ * Annotation event field mapping. Defines how to map a data frame field to an annotation event field.
+ */
 public class AnnotationEventFieldMapping {
     // Source type for the field value.
     @JsonInclude(JsonInclude.Include.NON_NULL)

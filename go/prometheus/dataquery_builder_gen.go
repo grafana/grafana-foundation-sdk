@@ -42,9 +42,76 @@ func (builder *DataqueryBuilder) RecordError(path string, err error) *DataqueryB
 	return builder
 }
 
+// Additional Ad-hoc filters that take precedence over Scope on conflict.
+func (builder *DataqueryBuilder) AdhocFilters(adhocFilters []cog.Builder[AdhocFilters]) *DataqueryBuilder {
+	adhocFiltersResources := make([]AdhocFilters, 0, len(adhocFilters))
+	for _, r1 := range adhocFilters {
+		adhocFiltersDepth1, err := r1.Build()
+		if err != nil {
+			builder.errors = append(builder.errors, err.(cog.BuildErrors)...)
+			return builder
+		}
+		adhocFiltersResources = append(adhocFiltersResources, adhocFiltersDepth1)
+	}
+	builder.internal.AdhocFilters = adhocFiltersResources
+
+	return builder
+}
+
+// The datasource
+func (builder *DataqueryBuilder) Datasource(datasource common.DataSourceRef) *DataqueryBuilder {
+	builder.internal.Datasource = &datasource
+
+	return builder
+}
+
+// what we should show in the editor
+// Possible enum values:
+//   - `"builder"`
+//   - `"code"`
+func (builder *DataqueryBuilder) EditorMode(editorMode QueryEditorMode) *DataqueryBuilder {
+	builder.internal.EditorMode = &editorMode
+
+	return builder
+}
+
+// Execute an additional query to identify interesting raw samples relevant for the given expr
+func (builder *DataqueryBuilder) Exemplar(exemplar bool) *DataqueryBuilder {
+	builder.internal.Exemplar = &exemplar
+
+	return builder
+}
+
 // The actual expression/query that will be evaluated by Prometheus
 func (builder *DataqueryBuilder) Expr(expr string) *DataqueryBuilder {
 	builder.internal.Expr = expr
+
+	return builder
+}
+
+// The response format
+// Possible enum values:
+//   - `"time_series"`
+//   - `"table"`
+//   - `"heatmap"`
+func (builder *DataqueryBuilder) Format(format PromQueryFormat) *DataqueryBuilder {
+	builder.internal.Format = &format
+
+	return builder
+}
+
+// Group By parameters to apply to aggregate expressions in the query
+func (builder *DataqueryBuilder) GroupByKeys(groupByKeys []string) *DataqueryBuilder {
+	builder.internal.GroupByKeys = groupByKeys
+
+	return builder
+}
+
+// true if query is disabled (ie should not be returned to the dashboard)
+// NOTE: this does not always imply that the query should not be executed since
+// the results from a hidden query may be used as the input to other queries (SSE etc)
+func (builder *DataqueryBuilder) Hide(hide bool) *DataqueryBuilder {
+	builder.internal.Hide = &hide
 
 	return builder
 }
@@ -59,33 +126,20 @@ func (builder *DataqueryBuilder) Instant() *DataqueryBuilder {
 	return builder
 }
 
-// Returns a Range vector, comprised of a set of time series containing a range of data points over time for each time series
-func (builder *DataqueryBuilder) Range() *DataqueryBuilder {
-	valRange := true
-	builder.internal.Range = &valRange
-	valInstant := false
-	builder.internal.Instant = &valInstant
+// Used to specify how many times to divide max data points by. We use max data points under query options
+// See https://github.com/grafana/grafana/issues/48081
+// Deprecated: use interval
+func (builder *DataqueryBuilder) IntervalFactor(intervalFactor int64) *DataqueryBuilder {
+	builder.internal.IntervalFactor = &intervalFactor
 
 	return builder
 }
 
-// Execute an additional query to identify interesting raw samples relevant for the given expr
-func (builder *DataqueryBuilder) Exemplar(exemplar bool) *DataqueryBuilder {
-	builder.internal.Exemplar = &exemplar
-
-	return builder
-}
-
-// Specifies which editor is being used to prepare the query. It can be "code" or "builder"
-func (builder *DataqueryBuilder) EditorMode(editorMode QueryEditorMode) *DataqueryBuilder {
-	builder.internal.EditorMode = &editorMode
-
-	return builder
-}
-
-// Query format to determine how to display data points in panel. It can be "time_series", "table", "heatmap"
-func (builder *DataqueryBuilder) Format(format PromQueryFormat) *DataqueryBuilder {
-	builder.internal.Format = &format
+// Interval is the suggested duration between time points in a time series query.
+// NOTE: the values for intervalMs is not saved in the query model.  It is typically calculated
+// from the interval required to fill a pixels in the visualization
+func (builder *DataqueryBuilder) IntervalMs(intervalMs float64) *DataqueryBuilder {
+	builder.internal.IntervalMs = &intervalMs
 
 	return builder
 }
@@ -97,34 +151,78 @@ func (builder *DataqueryBuilder) LegendFormat(legendFormat string) *DataqueryBui
 	return builder
 }
 
-// @deprecated Used to specify how many times to divide max data points by. We use max data points under query options
-// See https://github.com/grafana/grafana/issues/48081
-func (builder *DataqueryBuilder) IntervalFactor(intervalFactor float64) *DataqueryBuilder {
-	builder.internal.IntervalFactor = &intervalFactor
+// MaxDataPoints is the maximum number of data points that should be returned from a time series query.
+// NOTE: the values for maxDataPoints is not saved in the query model.  It is typically calculated
+// from the number of pixels visible in a visualization
+func (builder *DataqueryBuilder) MaxDataPoints(maxDataPoints int64) *DataqueryBuilder {
+	builder.internal.MaxDataPoints = &maxDataPoints
 
 	return builder
 }
 
-// A unique identifier for the query within the list of targets.
-// In server side expressions, the refId is used as a variable name to identify results.
-// By default, the UI will assign A->Z; however setting meaningful names may be useful.
+// QueryType is an optional identifier for the type of query.
+// It can be used to distinguish different types of queries.
+func (builder *DataqueryBuilder) QueryType(queryType string) *DataqueryBuilder {
+	builder.internal.QueryType = &queryType
+
+	return builder
+}
+
+// Returns a Range vector, comprised of a set of time series containing a range of data points over time for each time series
+func (builder *DataqueryBuilder) Range() *DataqueryBuilder {
+	valRange := true
+	builder.internal.Range = &valRange
+	valInstant := false
+	builder.internal.Instant = &valInstant
+
+	return builder
+}
+
+// RefID is the unique identifier of the query, set by the frontend call.
 func (builder *DataqueryBuilder) RefId(refId string) *DataqueryBuilder {
 	builder.internal.RefId = &refId
 
 	return builder
 }
 
-// If hide is set to true, Grafana will filter out the response(s) associated with this query before returning it to the panel.
-func (builder *DataqueryBuilder) Hide(hide bool) *DataqueryBuilder {
-	builder.internal.Hide = &hide
+// Optionally define expected query result behavior
+func (builder *DataqueryBuilder) ResultAssertions(resultAssertions cog.Builder[ResultAssertions]) *DataqueryBuilder {
+	resultAssertionsResource, err := resultAssertions.Build()
+	if err != nil {
+		builder.errors = append(builder.errors, err.(cog.BuildErrors)...)
+		return builder
+	}
+	builder.internal.ResultAssertions = &resultAssertionsResource
 
 	return builder
 }
 
-// Specify the query flavor
-// TODO make this required and give it a default
-func (builder *DataqueryBuilder) QueryType(queryType string) *DataqueryBuilder {
-	builder.internal.QueryType = &queryType
+// A set of filters applied to apply to the query
+func (builder *DataqueryBuilder) Scopes(scopes []cog.Builder[Scopes]) *DataqueryBuilder {
+	scopesResources := make([]Scopes, 0, len(scopes))
+	for _, r1 := range scopes {
+		scopesDepth1, err := r1.Build()
+		if err != nil {
+			builder.errors = append(builder.errors, err.(cog.BuildErrors)...)
+			return builder
+		}
+		scopesResources = append(scopesResources, scopesDepth1)
+	}
+	builder.internal.Scopes = scopesResources
+
+	return builder
+}
+
+// TimeRange represents the query range
+// NOTE: unlike generic /ds/query, we can now send explicit time values in each query
+// NOTE: the values for timeRange are not saved in a dashboard, they are constructed on the fly
+func (builder *DataqueryBuilder) TimeRange(timeRange cog.Builder[TimeRange]) *DataqueryBuilder {
+	timeRangeResource, err := timeRange.Build()
+	if err != nil {
+		builder.errors = append(builder.errors, err.(cog.BuildErrors)...)
+		return builder
+	}
+	builder.internal.TimeRange = &timeRangeResource
 
 	return builder
 }
@@ -133,16 +231,6 @@ func (builder *DataqueryBuilder) QueryType(queryType string) *DataqueryBuilder {
 // `$__interval` and `$__rate_interval` variables.
 func (builder *DataqueryBuilder) Interval(interval string) *DataqueryBuilder {
 	builder.internal.Interval = &interval
-
-	return builder
-}
-
-// For mixed data sources the selected datasource is on the query level.
-// For non mixed scenarios this is undefined.
-// TODO find a better way to do this ^ that's friendly to schema
-// TODO this shouldn't be unknown but DataSourceRef | null
-func (builder *DataqueryBuilder) Datasource(datasource common.DataSourceRef) *DataqueryBuilder {
-	builder.internal.Datasource = &datasource
 
 	return builder
 }

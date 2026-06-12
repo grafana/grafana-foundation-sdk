@@ -5,6 +5,9 @@ package com.grafana.foundation.dashboardv2;
 import java.util.Map;
 import java.util.List;
 
+/**
+ * Group variable kind
+ */
 public class GroupByVariableBuilder implements com.grafana.foundation.cog.Builder<GroupByVariableKind> {
     protected final GroupByVariableKind internal;
     

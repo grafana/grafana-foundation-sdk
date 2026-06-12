@@ -3,7 +3,9 @@
 import * as cog from '../cog';
 import * as dashboard from '../dashboard';
 
-// Fetch options
+/**
+ * Fetch options
+ */
 export class FetchOptionsBuilder implements cog.Builder<dashboard.FetchOptions> {
     protected readonly internal: dashboard.FetchOptions;
 

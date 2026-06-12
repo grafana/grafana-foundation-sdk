@@ -3,6 +3,8 @@ title: <span class="badge builder"></span> TableSortByFieldState
 ---
 # <span class="badge builder"></span> TableSortByFieldState
 
+Sort by field state
+
 ## Constructor
 
 ```python

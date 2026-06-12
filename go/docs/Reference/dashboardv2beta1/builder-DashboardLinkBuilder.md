@@ -3,6 +3,8 @@ title: <span class="badge builder"></span> DashboardLinkBuilder
 ---
 # <span class="badge builder"></span> DashboardLinkBuilder
 
+Links with references to other dashboards or external resources
+
 ## Constructor
 
 ```go
@@ -63,7 +65,7 @@ func (builder *DashboardLinkBuilder) Origin(origin cog.Builder[dashboardv2beta1.
 Placement can be used to display the link somewhere else on the dashboard other than above the visualisations.
 
 ```go
-func (builder *DashboardLinkBuilder) Placement(placement string) *DashboardLinkBuilder
+func (builder *DashboardLinkBuilder) Placement(placement dashboardv2beta1.DashboardLinkPlacement) *DashboardLinkBuilder
 ```
 
 ### <span class="badge object-method"></span> Tags

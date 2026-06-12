@@ -6,6 +6,9 @@ import com.grafana.foundation.common.AxisPlacement;
 import com.grafana.foundation.common.AxisColorMode;
 import com.grafana.foundation.common.ScaleDistributionConfig;
 
+/**
+ * Configuration options for the yAxis
+ */
 public class YAxisConfigBuilder implements com.grafana.foundation.cog.Builder<YAxisConfig> {
     protected final YAxisConfig internal;
     

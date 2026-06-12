@@ -3,6 +3,10 @@ title: <span class="badge builder"></span> TimeSettingsBuilder
 ---
 # <span class="badge builder"></span> TimeSettingsBuilder
 
+Time configuration
+
+It defines the default time config for the time picker, the refresh picker for the specific dashboard.
+
 ## Constructor
 
 ```typescript

@@ -9,7 +9,9 @@ import com.fasterxml.jackson.databind.ObjectWriter;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import java.util.List;
 
-// Azure Monitor Logs sub-query properties
+/**
+ * Azure Monitor Logs sub-query properties
+ */
 public class LogsQuery {
     // KQL query to be executed.
     @JsonInclude(JsonInclude.Include.NON_NULL)

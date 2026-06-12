@@ -8,4 +8,4 @@
  * <span class="badge object-type-class"></span> [Folderv1beta1](./object-Folderv1beta1.md)
 ## Builders
 
- * <span class="badge builder"></span> [FolderBuilder](./builder-FolderBuilder.md)
+ * <span class="badge builder"></span> <span class="badge deprecated"></span> [FolderBuilder](./builder-FolderBuilder.md)

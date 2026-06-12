@@ -12,7 +12,9 @@ import com.fasterxml.jackson.annotation.JsonSetter;
 import com.fasterxml.jackson.annotation.Nulls;
 import java.util.List;
 
-// TODO docs
+/**
+ * TODO docs
+ */
 public class ReduceDataOptions {
     // If true show each row value
     @JsonInclude(JsonInclude.Include.NON_NULL)

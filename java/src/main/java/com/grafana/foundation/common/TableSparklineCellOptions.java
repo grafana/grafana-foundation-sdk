@@ -8,7 +8,9 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.ObjectWriter;
 import com.fasterxml.jackson.annotation.JsonInclude;
 
-// Sparkline cell options
+/**
+ * Sparkline cell options
+ */
 public class TableSparklineCellOptions {
     @JsonProperty("type")
     public TableCellDisplayMode type;

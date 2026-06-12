@@ -3,6 +3,8 @@ title: <span class="badge builder"></span> DashboardLinkBuilder
 ---
 # <span class="badge builder"></span> DashboardLinkBuilder
 
+Links with references to other dashboards or external resources
+
 ## Constructor
 
 ```typescript
@@ -63,7 +65,7 @@ origin(origin: cog.Builder<dashboardv2beta1.ControlSourceRef>)
 Placement can be used to display the link somewhere else on the dashboard other than above the visualisations.
 
 ```typescript
-placement(placement: "inControlsMenu")
+placement(placement: dashboardv2beta1.DashboardLinkPlacement)
 ```
 
 ### <span class="badge object-method"></span> tags

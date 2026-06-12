@@ -3,6 +3,8 @@ title: <span class="badge builder"></span> Dataquery
 ---
 # <span class="badge builder"></span> Dataquery
 
+Manually converted from https://github.com/grafana/athena-datasource/blob/57ad707147b7a11e9a521a836d6bf9799877e0e3/src/types.ts
+
 ## Constructor
 
 ```python

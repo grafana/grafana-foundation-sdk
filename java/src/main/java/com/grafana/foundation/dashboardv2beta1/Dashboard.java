@@ -14,6 +14,10 @@ import java.util.List;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import java.util.Map;
 
+/**
+ * @deprecated Prefer using dashboardv2.Dashboard instead.
+ */
+@Deprecated(forRemoval = true)
 public class Dashboard {
     @JsonSetter(nulls = Nulls.AS_EMPTY)
     @JsonProperty("annotations")

@@ -3,6 +3,8 @@ title: <span class="badge builder"></span> VizTextDisplayOptions
 ---
 # <span class="badge builder"></span> VizTextDisplayOptions
 
+TODO docs
+
 ## Constructor
 
 ```python

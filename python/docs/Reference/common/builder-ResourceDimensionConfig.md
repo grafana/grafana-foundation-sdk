@@ -3,6 +3,8 @@ title: <span class="badge builder"></span> ResourceDimensionConfig
 ---
 # <span class="badge builder"></span> ResourceDimensionConfig
 
+Links to a resource (image/svg path)
+
 ## Constructor
 
 ```python

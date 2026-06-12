@@ -3,6 +3,7 @@
 import typing
 from ..cog import builder as cogbuilder
 from ..models import dashboardv2beta1
+import warnings
 from ..builders import resource as resource_builder
 from ..models import resource
 
@@ -875,7 +876,7 @@ class DashboardLink(cogbuilder.Builder[dashboardv2beta1.DashboardLink]):
     
         return self
     
-    def placement(self, placement: str) -> typing.Self:    
+    def placement(self, placement: dashboardv2beta1.DashboardLinkPlacement) -> typing.Self:    
         """
         Placement can be used to display the link somewhere else on the dashboard other than above the visualisations.
         """
@@ -1894,6 +1895,8 @@ class ConditionalRenderingVariable(cogbuilder.Builder[dashboardv2beta1.Condition
 
 
 class Dashboard(cogbuilder.Builder[dashboardv2beta1.Dashboard]):
+    warnings.warn("Prefer using dashboardv2.Dashboard instead.", DeprecationWarning)
+
     _internal: dashboardv2beta1.Dashboard
 
     def __init__(self, title: str) -> None:

@@ -3,6 +3,9 @@
 package com.grafana.foundation.dashboardv2beta1;
 
 
+/**
+ * Define the MetricFindValue type
+ */
 public class MetricFindValueBuilder implements com.grafana.foundation.cog.Builder<MetricFindValue> {
     protected final MetricFindValue internal;
     

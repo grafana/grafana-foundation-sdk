@@ -1,7 +1,9 @@
 ---
-title: <span class="badge builder"></span> Folder
+title: <span class="badge builder"></span> <span class="badge deprecated"></span> Folder
 ---
-# <span class="badge builder"></span> Folder
+# <span class="badge builder"></span> <span class="badge deprecated"></span> Folder
+
+<span class="badge deprecated"></span>Prefer using folder.Folder instead.
 
 ## Constructor
 

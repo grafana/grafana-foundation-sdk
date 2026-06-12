@@ -3,6 +3,9 @@
 package com.grafana.foundation.common;
 
 
+/**
+ * TODO docs
+ */
 public class ScaleDistributionConfigBuilder implements com.grafana.foundation.cog.Builder<ScaleDistributionConfig> {
     protected final ScaleDistributionConfig internal;
     

@@ -3,6 +3,8 @@ title: <span class="badge builder"></span> InfinityOptions
 ---
 # <span class="badge builder"></span> InfinityOptions
 
+Infinity options
+
 ## Constructor
 
 ```python

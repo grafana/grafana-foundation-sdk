@@ -9,8 +9,10 @@ import com.fasterxml.jackson.databind.ObjectWriter;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import java.util.List;
 
-// Time picker configuration
-// It defines the default config for the time picker and the refresh picker for the specific dashboard.
+/**
+ * Time picker configuration
+ * It defines the default config for the time picker and the refresh picker for the specific dashboard.
+ */
 public class TimePickerConfig {
     // Whether timepicker is visible or not.
     @JsonInclude(JsonInclude.Include.NON_NULL)

@@ -4,6 +4,9 @@ package com.grafana.foundation.elasticsearch;
 
 import java.util.Map;
 
+/**
+ * #MovingAverage's settings are overridden in types.ts
+ */
 public class MovingAverageBuilder implements com.grafana.foundation.cog.Builder<MovingAverage> {
     protected final MovingAverage internal;
     

@@ -103,7 +103,7 @@ func (builder *LogsQueryBuilder) LogGroupNames(logGroupNames []string) *LogsQuer
 // In server side expressions, the refId is used as a variable name to identify results.
 // By default, the UI will assign A->Z; however setting meaningful names may be useful.
 func (builder *LogsQueryBuilder) RefId(refId string) *LogsQueryBuilder {
-	builder.internal.RefId = refId
+	builder.internal.RefId = &refId
 
 	return builder
 }

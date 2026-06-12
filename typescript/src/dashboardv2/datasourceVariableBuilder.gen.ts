@@ -3,7 +3,9 @@
 import * as cog from '../cog';
 import * as dashboardv2 from '../dashboardv2';
 
-// Datasource variable kind
+/**
+ * Datasource variable kind
+ */
 export class DatasourceVariableBuilder implements cog.Builder<dashboardv2.DatasourceVariableKind> {
     protected readonly internal: dashboardv2.DatasourceVariableKind;
 

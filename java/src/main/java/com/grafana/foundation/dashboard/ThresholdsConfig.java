@@ -12,7 +12,9 @@ import com.fasterxml.jackson.annotation.JsonSetter;
 import com.fasterxml.jackson.annotation.Nulls;
 import java.util.List;
 
-// Thresholds configuration for the panel
+/**
+ * Thresholds configuration for the panel
+ */
 public class ThresholdsConfig {
     // Thresholds mode.
     @JsonInclude(JsonInclude.Include.NON_EMPTY)

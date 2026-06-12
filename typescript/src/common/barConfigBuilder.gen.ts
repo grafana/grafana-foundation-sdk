@@ -3,7 +3,9 @@
 import * as cog from '../cog';
 import * as common from '../common';
 
-// TODO docs
+/**
+ * TODO docs
+ */
 export class BarConfigBuilder implements cog.Builder<common.BarConfig> {
     protected readonly internal: common.BarConfig;
 

@@ -1,10 +1,13 @@
 // Code generated - EDITING IS FUTILE. DO NOT EDIT.
 
+import * as common from '../common';
+
+
 export interface MonitorQuery {
 	// A unique identifier for the query within the list of targets.
 	// In server side expressions, the refId is used as a variable name to identify results.
 	// By default, the UI will assign A->Z; however setting meaningful names may be useful.
-	refId: string;
+	refId?: string;
 	// If hide is set to true, Grafana will filter out the response(s) associated with this query before returning it to the panel.
 	hide?: boolean;
 	// Specify the query flavor
@@ -39,14 +42,13 @@ export interface MonitorQuery {
 	// For non mixed scenarios this is undefined.
 	// TODO find a better way to do this ^ that's friendly to schema
 	// TODO this shouldn't be unknown but DataSourceRef | null
-	datasource?: any;
+	datasource?: common.DataSourceRef;
 	// Used only for exemplar queries from Prometheus
 	query?: string;
 	_implementsDataqueryVariant(): void;
 }
 
 export const defaultMonitorQuery = (): MonitorQuery => ({
-	refId: "",
 	_implementsDataqueryVariant: () => {},
 });
 
@@ -119,7 +121,9 @@ export interface MetricDimension {
 export const defaultMetricDimension = (): MetricDimension => ({
 });
 
-// Azure Monitor Logs sub-query properties
+/**
+ * Azure Monitor Logs sub-query properties
+ */
 export interface LogsQuery {
 	// KQL query to be executed.
 	query?: string;
@@ -163,7 +167,9 @@ export interface ResourceGraphQuery {
 export const defaultResourceGraphQuery = (): ResourceGraphQuery => ({
 });
 
-// Application Insights Traces sub-query properties
+/**
+ * Application Insights Traces sub-query properties
+ */
 export interface TracesQuery {
 	// Specifies the format results should be returned as.
 	resultFormat?: ResultFormat;
@@ -271,7 +277,9 @@ export const defaultMetricNamespaceQuery = (): MetricNamespaceQuery => ({
 	resourceGroup: "",
 });
 
-// @deprecated Use MetricNamespaceQuery instead
+/**
+ * @deprecated Use MetricNamespaceQuery instead
+ */
 export interface MetricDefinitionsQuery {
 	rawQuery?: string;
 	kind: "MetricDefinitionsQuery";
@@ -324,7 +332,9 @@ export const defaultUnknownQuery = (): UnknownQuery => ({
 	kind: "UnknownQuery",
 });
 
-// Defines the supported queryTypes. GrafanaTemplateVariableFn is deprecated
+/**
+ * Defines the supported queryTypes. GrafanaTemplateVariableFn is deprecated
+ */
 export enum QueryType {
 	Monitor = "Azure Monitor",
 	LogAnalytics = "Azure Log Analytics",

@@ -31,7 +31,7 @@ type DashboardLink struct {
     // If true, includes current time range in the link as query params
     KeepTime bool `json:"keepTime"`
     // Placement can be used to display the link somewhere else on the dashboard other than above the visualisations.
-    Placement *string `json:"placement,omitempty"`
+    Placement *dashboardv2beta1.DashboardLinkPlacement `json:"placement,omitempty"`
     // The source that registered the link (if any)
     Origin *dashboardv2beta1.ControlSourceRef `json:"origin,omitempty"`
 }

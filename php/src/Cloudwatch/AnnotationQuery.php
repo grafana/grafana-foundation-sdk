@@ -33,7 +33,7 @@ class AnnotationQuery implements \JsonSerializable, \Grafana\Foundation\Cog\Data
      * In server side expressions, the refId is used as a variable name to identify results.
      * By default, the UI will assign A->Z; however setting meaningful names may be useful.
      */
-    public string $refId;
+    public ?string $refId;
 
     /**
      * If hide is set to true, Grafana will filter out the response(s) associated with this query before returning it to the panel.
@@ -132,7 +132,7 @@ class AnnotationQuery implements \JsonSerializable, \Grafana\Foundation\Cog\Data
         $this->queryMode = $queryMode ?: \Grafana\Foundation\Cloudwatch\QueryMode::annotations();
         $this->prefixMatching = $prefixMatching;
         $this->actionPrefix = $actionPrefix;
-        $this->refId = $refId ?: "";
+        $this->refId = $refId;
         $this->hide = $hide;
         $this->queryType = $queryType;
         $this->region = $region ?: "";
@@ -201,7 +201,6 @@ class AnnotationQuery implements \JsonSerializable, \Grafana\Foundation\Cog\Data
     {
         $data = new \stdClass;
         $data->queryMode = $this->queryMode;
-        $data->refId = $this->refId;
         $data->region = $this->region;
         $data->namespace = $this->namespace;
         $data->dimensions = $this->dimensions;
@@ -210,6 +209,9 @@ class AnnotationQuery implements \JsonSerializable, \Grafana\Foundation\Cog\Data
         }
         if (isset($this->actionPrefix)) {
             $data->actionPrefix = $this->actionPrefix;
+        }
+        if (isset($this->refId)) {
+            $data->refId = $this->refId;
         }
         if (isset($this->hide)) {
             $data->hide = $this->hide;

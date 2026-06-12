@@ -3,6 +3,9 @@
 package com.grafana.foundation.heatmap;
 
 
+/**
+ * Controls legend options
+ */
 public class HeatmapLegendBuilder implements com.grafana.foundation.cog.Builder<HeatmapLegend> {
     protected final HeatmapLegend internal;
     

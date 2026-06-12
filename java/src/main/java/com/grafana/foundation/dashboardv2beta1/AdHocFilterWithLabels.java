@@ -9,7 +9,9 @@ import com.fasterxml.jackson.databind.ObjectWriter;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import java.util.List;
 
-// Define the AdHocFilterWithLabels type
+/**
+ * Define the AdHocFilterWithLabels type
+ */
 public class AdHocFilterWithLabels {
     @JsonProperty("key")
     public String key;

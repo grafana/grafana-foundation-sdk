@@ -3,6 +3,8 @@ title: <span class="badge builder"></span> HeatmapColorOptions
 ---
 # <span class="badge builder"></span> HeatmapColorOptions
 
+Controls various color options
+
 ## Constructor
 
 ```python

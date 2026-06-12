@@ -6,6 +6,9 @@ import java.util.Map;
 import com.grafana.foundation.common.DataSourceRef;
 import java.util.List;
 
+/**
+ * Shape of a CloudWatch Metrics query
+ */
 public class MetricsQueryBuilder implements com.grafana.foundation.cog.Builder<MetricsQuery> {
     protected final MetricsQuery internal;
     

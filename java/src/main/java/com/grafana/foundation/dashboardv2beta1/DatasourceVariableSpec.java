@@ -13,7 +13,9 @@ import com.fasterxml.jackson.annotation.JsonSetter;
 import com.fasterxml.jackson.annotation.Nulls;
 import java.util.List;
 
-// Datasource variable specification
+/**
+ * Datasource variable specification
+ */
 public class DatasourceVariableSpec {
     @JsonProperty("name")
     public String name;

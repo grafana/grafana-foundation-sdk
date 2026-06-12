@@ -1,7 +1,9 @@
 ---
-title: <span class="badge object-type-struct"></span> Folder
+title: <span class="badge object-type-struct"></span> <span class="badge deprecated"></span> Folder
 ---
-# <span class="badge object-type-struct"></span> Folder
+# <span class="badge object-type-struct"></span> <span class="badge deprecated"></span> Folder
+
+<span class="badge deprecated"></span>Prefer using folder.Folder instead.
 
 ## Definition
 
@@ -41,4 +43,4 @@ func (folder *Folder) Validate() error
 
 ## See also
 
- * <span class="badge builder"></span> [FolderBuilder](./builder-FolderBuilder.md)
+ * <span class="badge builder"></span> <span class="badge deprecated"></span> [FolderBuilder](./builder-FolderBuilder.md)

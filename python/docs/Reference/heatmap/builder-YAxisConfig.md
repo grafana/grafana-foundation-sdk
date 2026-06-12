@@ -3,6 +3,8 @@ title: <span class="badge builder"></span> YAxisConfig
 ---
 # <span class="badge builder"></span> YAxisConfig
 
+Configuration options for the yAxis
+
 ## Constructor
 
 ```python

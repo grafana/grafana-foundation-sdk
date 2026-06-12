@@ -3,7 +3,9 @@
 import * as cog from '../cog';
 import * as googlecloudmonitoring from '../googlecloudmonitoring';
 
-// SLO sub-query properties.
+/**
+ * SLO sub-query properties.
+ */
 export class SLOQueryBuilder implements cog.Builder<googlecloudmonitoring.SLOQuery> {
     protected readonly internal: googlecloudmonitoring.SLOQuery;
 

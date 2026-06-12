@@ -2,6 +2,9 @@
 
 namespace Grafana\Foundation\Folderv1beta1;
 
+/**
+ * @deprecated Prefer using folder.Folder instead.
+ */
 class Folder implements \JsonSerializable
 {
     public string $title;

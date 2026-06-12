@@ -3,7 +3,9 @@
 import * as cog from '../cog';
 import * as heatmap from '../heatmap';
 
-// Controls legend options
+/**
+ * Controls legend options
+ */
 export class HeatmapLegendBuilder implements cog.Builder<heatmap.HeatmapLegend> {
     protected readonly internal: heatmap.HeatmapLegend;
 

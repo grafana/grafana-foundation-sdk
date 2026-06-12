@@ -3,6 +3,8 @@ title: <span class="badge builder"></span> HideableFieldConfig
 ---
 # <span class="badge builder"></span> HideableFieldConfig
 
+TODO docs
+
 ## Constructor
 
 ```python

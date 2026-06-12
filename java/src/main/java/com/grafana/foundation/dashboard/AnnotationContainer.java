@@ -9,10 +9,12 @@ import com.fasterxml.jackson.databind.ObjectWriter;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import java.util.List;
 
-// Contains the list of annotations that are associated with the dashboard.
-// Annotations are used to overlay event markers and overlay event tags on graphs.
-// Grafana comes with a native annotation store and the ability to add annotation events directly from the graph panel or via the HTTP API.
-// See https://grafana.com/docs/grafana/latest/dashboards/build-dashboards/annotate-visualizations/
+/**
+ * Contains the list of annotations that are associated with the dashboard.
+ * Annotations are used to overlay event markers and overlay event tags on graphs.
+ * Grafana comes with a native annotation store and the ability to add annotation events directly from the graph panel or via the HTTP API.
+ * See https://grafana.com/docs/grafana/latest/dashboards/build-dashboards/annotate-visualizations/
+ */
 public class AnnotationContainer {
     // List of annotations
     @JsonInclude(JsonInclude.Include.NON_NULL)

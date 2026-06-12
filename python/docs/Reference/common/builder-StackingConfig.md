@@ -3,6 +3,8 @@ title: <span class="badge builder"></span> StackingConfig
 ---
 # <span class="badge builder"></span> StackingConfig
 
+TODO docs
+
 ## Constructor
 
 ```python

@@ -54,7 +54,7 @@ final class QueryV2Converter
     
     
     }
-            if ($input->spec !== null && $input->spec instanceof \Grafana\Foundation\Tempo\Dataquery && $input->spec->refId !== "") {
+            if ($input->spec !== null && $input->spec instanceof \Grafana\Foundation\Tempo\Dataquery && $input->spec->refId !== null && $input->spec->refId !== "") {
     
         
     $buffer = 'refId(';

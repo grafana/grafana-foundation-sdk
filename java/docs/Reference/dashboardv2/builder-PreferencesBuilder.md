@@ -3,6 +3,8 @@ title: <span class="badge builder"></span> PreferencesBuilder
 ---
 # <span class="badge builder"></span> PreferencesBuilder
 
+Dashboard specific preferences (applied per dashboard = all users using the dashboard)
+
 ## Constructor
 
 ```java

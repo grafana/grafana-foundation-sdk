@@ -3,6 +3,8 @@ title: <span class="badge builder"></span> TimeSeriesQuery
 ---
 # <span class="badge builder"></span> TimeSeriesQuery
 
+Time Series sub-query properties.
+
 ## Constructor
 
 ```python
