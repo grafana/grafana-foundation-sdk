@@ -1,6 +1,10 @@
 # yaml-language-server: $schema=https://raw.githubusercontent.com/grafana/cog/main/schemas/compiler_passes.json
 
 passes:
+  - deprecate_object:
+      object: playlistv0alpha1.Playlist
+      message: Prefer using playlistv1.Playlist instead.
+
   # Add a few useful constants
   - add_object:
       object: playlistv0alpha1.PlaylistApiVersion
