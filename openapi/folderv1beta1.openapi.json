@@ -22,7 +22,9 @@
           "description": {
             "type": "string"
           }
-        }
+        },
+        "deprecated": true,
+        "x-deprecation-message": "Prefer using folder.Folder instead."
       },
       "FolderApiVersion": {
         "type": "string",

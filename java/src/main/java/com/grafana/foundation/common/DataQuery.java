@@ -8,9 +8,11 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.ObjectWriter;
 import com.fasterxml.jackson.annotation.JsonInclude;
 
-// These are the common properties available to all queries in all datasources.
-// Specific implementations will *extend* this interface, adding the required
-// properties for the given context.
+/**
+ * These are the common properties available to all queries in all datasources.
+ * Specific implementations will *extend* this interface, adding the required
+ * properties for the given context.
+ */
 public class DataQuery {
     // A unique identifier for the query within the list of targets.
     // In server side expressions, the refId is used as a variable name to identify results.

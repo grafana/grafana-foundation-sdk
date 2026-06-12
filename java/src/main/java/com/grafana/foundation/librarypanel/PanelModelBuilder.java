@@ -10,6 +10,9 @@ import com.grafana.foundation.dashboard.DashboardLink;
 import com.grafana.foundation.dashboard.DataTransformerConfig;
 import com.grafana.foundation.dashboard.FieldConfigSource;
 
+/**
+ * Dashboard panels are the basic visualization building blocks.
+ */
 public class PanelModelBuilder implements com.grafana.foundation.cog.Builder<PanelModel> {
     protected final PanelModel internal;
     

@@ -3,7 +3,9 @@
 import * as cog from '../cog';
 import * as dashboardv2beta1 from '../dashboardv2beta1';
 
-// Result used as replacement with text and color when the value matches
+/**
+ * Result used as replacement with text and color when the value matches
+ */
 export class ValueMappingResultBuilder implements cog.Builder<dashboardv2beta1.ValueMappingResult> {
     protected readonly internal: dashboardv2beta1.ValueMappingResult;
 

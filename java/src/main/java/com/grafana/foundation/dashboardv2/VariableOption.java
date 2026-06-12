@@ -9,7 +9,9 @@ import com.fasterxml.jackson.databind.ObjectWriter;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import java.util.Map;
 
-// Variable option specification
+/**
+ * Variable option specification
+ */
 public class VariableOption {
     // Whether the option is selected or not
     @JsonInclude(JsonInclude.Include.NON_NULL)

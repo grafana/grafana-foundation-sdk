@@ -68,12 +68,90 @@ func (builder *QueryBuilder) Datasource(datasource cog.Builder[dashboardv2beta1.
 	return builder
 }
 
+// Additional Ad-hoc filters that take precedence over Scope on conflict.
+func (builder *QueryBuilder) AdhocFilters(adhocFilters []cog.Builder[AdhocFilters]) *QueryBuilder {
+	if builder.internal.Spec == nil {
+		builder.internal.Spec = NewDataquery()
+	}
+	adhocFiltersResources := make([]AdhocFilters, 0, len(adhocFilters))
+	for _, r1 := range adhocFilters {
+		adhocFiltersDepth1, err := r1.Build()
+		if err != nil {
+			builder.errors = append(builder.errors, err.(cog.BuildErrors)...)
+			return builder
+		}
+		adhocFiltersResources = append(adhocFiltersResources, adhocFiltersDepth1)
+	}
+	builder.internal.Spec.(*Dataquery).AdhocFilters = adhocFiltersResources
+
+	return builder
+}
+
+// what we should show in the editor
+// Possible enum values:
+//   - `"builder"`
+//   - `"code"`
+func (builder *QueryBuilder) EditorMode(editorMode QueryEditorMode) *QueryBuilder {
+	if builder.internal.Spec == nil {
+		builder.internal.Spec = NewDataquery()
+	}
+	builder.internal.Spec.(*Dataquery).EditorMode = &editorMode
+
+	return builder
+}
+
+// Execute an additional query to identify interesting raw samples relevant for the given expr
+func (builder *QueryBuilder) Exemplar(exemplar bool) *QueryBuilder {
+	if builder.internal.Spec == nil {
+		builder.internal.Spec = NewDataquery()
+	}
+	builder.internal.Spec.(*Dataquery).Exemplar = &exemplar
+
+	return builder
+}
+
 // The actual expression/query that will be evaluated by Prometheus
 func (builder *QueryBuilder) Expr(expr string) *QueryBuilder {
 	if builder.internal.Spec == nil {
 		builder.internal.Spec = NewDataquery()
 	}
 	builder.internal.Spec.(*Dataquery).Expr = expr
+
+	return builder
+}
+
+// The response format
+// Possible enum values:
+//   - `"time_series"`
+//   - `"table"`
+//   - `"heatmap"`
+func (builder *QueryBuilder) Format(format PromQueryFormat) *QueryBuilder {
+	if builder.internal.Spec == nil {
+		builder.internal.Spec = NewDataquery()
+	}
+	builder.internal.Spec.(*Dataquery).Format = &format
+
+	return builder
+}
+
+// Group By parameters to apply to aggregate expressions in the query
+func (builder *QueryBuilder) GroupByKeys(groupByKeys []string) *QueryBuilder {
+	if builder.internal.Spec == nil {
+		builder.internal.Spec = NewDataquery()
+	}
+	builder.internal.Spec.(*Dataquery).GroupByKeys = groupByKeys
+
+	return builder
+}
+
+// true if query is disabled (ie should not be returned to the dashboard)
+// NOTE: this does not always imply that the query should not be executed since
+// the results from a hidden query may be used as the input to other queries (SSE etc)
+func (builder *QueryBuilder) Hide(hide bool) *QueryBuilder {
+	if builder.internal.Spec == nil {
+		builder.internal.Spec = NewDataquery()
+	}
+	builder.internal.Spec.(*Dataquery).Hide = &hide
 
 	return builder
 }
@@ -91,45 +169,26 @@ func (builder *QueryBuilder) Instant() *QueryBuilder {
 	return builder
 }
 
-// Returns a Range vector, comprised of a set of time series containing a range of data points over time for each time series
-func (builder *QueryBuilder) Range() *QueryBuilder {
+// Used to specify how many times to divide max data points by. We use max data points under query options
+// See https://github.com/grafana/grafana/issues/48081
+// Deprecated: use interval
+func (builder *QueryBuilder) IntervalFactor(intervalFactor int64) *QueryBuilder {
 	if builder.internal.Spec == nil {
 		builder.internal.Spec = NewDataquery()
 	}
-	valRange := true
-	builder.internal.Spec.(*Dataquery).Range = &valRange
-	valInstant := false
-	builder.internal.Spec.(*Dataquery).Instant = &valInstant
+	builder.internal.Spec.(*Dataquery).IntervalFactor = &intervalFactor
 
 	return builder
 }
 
-// Execute an additional query to identify interesting raw samples relevant for the given expr
-func (builder *QueryBuilder) Exemplar(exemplar bool) *QueryBuilder {
+// Interval is the suggested duration between time points in a time series query.
+// NOTE: the values for intervalMs is not saved in the query model.  It is typically calculated
+// from the interval required to fill a pixels in the visualization
+func (builder *QueryBuilder) IntervalMs(intervalMs float64) *QueryBuilder {
 	if builder.internal.Spec == nil {
 		builder.internal.Spec = NewDataquery()
 	}
-	builder.internal.Spec.(*Dataquery).Exemplar = &exemplar
-
-	return builder
-}
-
-// Specifies which editor is being used to prepare the query. It can be "code" or "builder"
-func (builder *QueryBuilder) EditorMode(editorMode QueryEditorMode) *QueryBuilder {
-	if builder.internal.Spec == nil {
-		builder.internal.Spec = NewDataquery()
-	}
-	builder.internal.Spec.(*Dataquery).EditorMode = &editorMode
-
-	return builder
-}
-
-// Query format to determine how to display data points in panel. It can be "time_series", "table", "heatmap"
-func (builder *QueryBuilder) Format(format PromQueryFormat) *QueryBuilder {
-	if builder.internal.Spec == nil {
-		builder.internal.Spec = NewDataquery()
-	}
-	builder.internal.Spec.(*Dataquery).Format = &format
+	builder.internal.Spec.(*Dataquery).IntervalMs = &intervalMs
 
 	return builder
 }
@@ -144,20 +203,43 @@ func (builder *QueryBuilder) LegendFormat(legendFormat string) *QueryBuilder {
 	return builder
 }
 
-// @deprecated Used to specify how many times to divide max data points by. We use max data points under query options
-// See https://github.com/grafana/grafana/issues/48081
-func (builder *QueryBuilder) IntervalFactor(intervalFactor float64) *QueryBuilder {
+// MaxDataPoints is the maximum number of data points that should be returned from a time series query.
+// NOTE: the values for maxDataPoints is not saved in the query model.  It is typically calculated
+// from the number of pixels visible in a visualization
+func (builder *QueryBuilder) MaxDataPoints(maxDataPoints int64) *QueryBuilder {
 	if builder.internal.Spec == nil {
 		builder.internal.Spec = NewDataquery()
 	}
-	builder.internal.Spec.(*Dataquery).IntervalFactor = &intervalFactor
+	builder.internal.Spec.(*Dataquery).MaxDataPoints = &maxDataPoints
 
 	return builder
 }
 
-// A unique identifier for the query within the list of targets.
-// In server side expressions, the refId is used as a variable name to identify results.
-// By default, the UI will assign A->Z; however setting meaningful names may be useful.
+// QueryType is an optional identifier for the type of query.
+// It can be used to distinguish different types of queries.
+func (builder *QueryBuilder) QueryType(queryType string) *QueryBuilder {
+	if builder.internal.Spec == nil {
+		builder.internal.Spec = NewDataquery()
+	}
+	builder.internal.Spec.(*Dataquery).QueryType = &queryType
+
+	return builder
+}
+
+// Returns a Range vector, comprised of a set of time series containing a range of data points over time for each time series
+func (builder *QueryBuilder) Range() *QueryBuilder {
+	if builder.internal.Spec == nil {
+		builder.internal.Spec = NewDataquery()
+	}
+	valRange := true
+	builder.internal.Spec.(*Dataquery).Range = &valRange
+	valInstant := false
+	builder.internal.Spec.(*Dataquery).Instant = &valInstant
+
+	return builder
+}
+
+// RefID is the unique identifier of the query, set by the frontend call.
 func (builder *QueryBuilder) RefId(refId string) *QueryBuilder {
 	if builder.internal.Spec == nil {
 		builder.internal.Spec = NewDataquery()
@@ -167,23 +249,53 @@ func (builder *QueryBuilder) RefId(refId string) *QueryBuilder {
 	return builder
 }
 
-// If hide is set to true, Grafana will filter out the response(s) associated with this query before returning it to the panel.
-func (builder *QueryBuilder) Hide(hide bool) *QueryBuilder {
+// Optionally define expected query result behavior
+func (builder *QueryBuilder) ResultAssertions(resultAssertions cog.Builder[ResultAssertions]) *QueryBuilder {
 	if builder.internal.Spec == nil {
 		builder.internal.Spec = NewDataquery()
 	}
-	builder.internal.Spec.(*Dataquery).Hide = &hide
+	resultAssertionsResource, err := resultAssertions.Build()
+	if err != nil {
+		builder.errors = append(builder.errors, err.(cog.BuildErrors)...)
+		return builder
+	}
+	builder.internal.Spec.(*Dataquery).ResultAssertions = &resultAssertionsResource
 
 	return builder
 }
 
-// Specify the query flavor
-// TODO make this required and give it a default
-func (builder *QueryBuilder) QueryType(queryType string) *QueryBuilder {
+// A set of filters applied to apply to the query
+func (builder *QueryBuilder) Scopes(scopes []cog.Builder[Scopes]) *QueryBuilder {
 	if builder.internal.Spec == nil {
 		builder.internal.Spec = NewDataquery()
 	}
-	builder.internal.Spec.(*Dataquery).QueryType = &queryType
+	scopesResources := make([]Scopes, 0, len(scopes))
+	for _, r1 := range scopes {
+		scopesDepth1, err := r1.Build()
+		if err != nil {
+			builder.errors = append(builder.errors, err.(cog.BuildErrors)...)
+			return builder
+		}
+		scopesResources = append(scopesResources, scopesDepth1)
+	}
+	builder.internal.Spec.(*Dataquery).Scopes = scopesResources
+
+	return builder
+}
+
+// TimeRange represents the query range
+// NOTE: unlike generic /ds/query, we can now send explicit time values in each query
+// NOTE: the values for timeRange are not saved in a dashboard, they are constructed on the fly
+func (builder *QueryBuilder) TimeRange(timeRange cog.Builder[TimeRange]) *QueryBuilder {
+	if builder.internal.Spec == nil {
+		builder.internal.Spec = NewDataquery()
+	}
+	timeRangeResource, err := timeRange.Build()
+	if err != nil {
+		builder.errors = append(builder.errors, err.(cog.BuildErrors)...)
+		return builder
+	}
+	builder.internal.Spec.(*Dataquery).TimeRange = &timeRangeResource
 
 	return builder
 }

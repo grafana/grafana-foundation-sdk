@@ -8,7 +8,9 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.ObjectWriter;
 import com.fasterxml.jackson.annotation.JsonInclude;
 
-// Dashboard specific preferences (applied per dashboard = all users using the dashboard)
+/**
+ * Dashboard specific preferences (applied per dashboard = all users using the dashboard)
+ */
 public class Preferences {
     // default layout template to be used when new containers are created
     @JsonInclude(JsonInclude.Include.NON_NULL)

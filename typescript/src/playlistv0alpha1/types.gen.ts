@@ -18,6 +18,9 @@ export const defaultItem = (): Item => ({
 	value: "",
 });
 
+/**
+ * @deprecated Prefer using playlistv1.Playlist instead.
+ */
 export interface Playlist {
 	title: string;
 	interval: string;

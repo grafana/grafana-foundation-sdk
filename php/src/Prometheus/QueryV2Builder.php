@@ -56,43 +56,37 @@ class QueryV2Builder implements \Grafana\Foundation\Cog\Builder
     }
 
     /**
-     * The actual expression/query that will be evaluated by Prometheus
+     * Additional Ad-hoc filters that take precedence over Scope on conflict.
+     * @param array<\Grafana\Foundation\Cog\Builder<\Grafana\Foundation\Prometheus\AdhocFilters>> $adhocFilters
      */
-    public function expr(string $expr): static
+    public function adhocFilters(array $adhocFilters): static
     {    
         if ($this->internal->spec === null) {
             $this->internal->spec = new \Grafana\Foundation\Prometheus\Dataquery();
         }
         assert($this->internal->spec instanceof \Grafana\Foundation\Prometheus\Dataquery);
-        $this->internal->spec->expr = $expr;
+            $adhocFiltersResources = [];
+            foreach ($adhocFilters as $r1) {
+                    $adhocFiltersResources[] = $r1->build();
+            }
+        $this->internal->spec->adhocFilters = $adhocFiltersResources;
     
         return $this;
     }
 
     /**
-     * Returns only the latest value that Prometheus has scraped for the requested time series
+     * what we should show in the editor
+     * Possible enum values:
+     *  - `"builder"` 
+     *  - `"code"` 
      */
-    public function instant(bool $instant): static
+    public function editorMode(\Grafana\Foundation\Prometheus\QueryEditorMode $editorMode): static
     {    
         if ($this->internal->spec === null) {
             $this->internal->spec = new \Grafana\Foundation\Prometheus\Dataquery();
         }
         assert($this->internal->spec instanceof \Grafana\Foundation\Prometheus\Dataquery);
-        $this->internal->spec->instant = $instant;
-    
-        return $this;
-    }
-
-    /**
-     * Returns a Range vector, comprised of a set of time series containing a range of data points over time for each time series
-     */
-    public function range(bool $range): static
-    {    
-        if ($this->internal->spec === null) {
-            $this->internal->spec = new \Grafana\Foundation\Prometheus\Dataquery();
-        }
-        assert($this->internal->spec instanceof \Grafana\Foundation\Prometheus\Dataquery);
-        $this->internal->spec->range = $range;
+        $this->internal->spec->editorMode = $editorMode;
     
         return $this;
     }
@@ -112,21 +106,25 @@ class QueryV2Builder implements \Grafana\Foundation\Cog\Builder
     }
 
     /**
-     * Specifies which editor is being used to prepare the query. It can be "code" or "builder"
+     * The actual expression/query that will be evaluated by Prometheus
      */
-    public function editorMode(\Grafana\Foundation\Prometheus\QueryEditorMode $editorMode): static
+    public function expr(string $expr): static
     {    
         if ($this->internal->spec === null) {
             $this->internal->spec = new \Grafana\Foundation\Prometheus\Dataquery();
         }
         assert($this->internal->spec instanceof \Grafana\Foundation\Prometheus\Dataquery);
-        $this->internal->spec->editorMode = $editorMode;
+        $this->internal->spec->expr = $expr;
     
         return $this;
     }
 
     /**
-     * Query format to determine how to display data points in panel. It can be "time_series", "table", "heatmap"
+     * The response format
+     * Possible enum values:
+     *  - `"time_series"` 
+     *  - `"table"` 
+     *  - `"heatmap"` 
      */
     public function format(\Grafana\Foundation\Prometheus\PromQueryFormat $format): static
     {    
@@ -135,6 +133,83 @@ class QueryV2Builder implements \Grafana\Foundation\Cog\Builder
         }
         assert($this->internal->spec instanceof \Grafana\Foundation\Prometheus\Dataquery);
         $this->internal->spec->format = $format;
+    
+        return $this;
+    }
+
+    /**
+     * Group By parameters to apply to aggregate expressions in the query
+     * @param array<string> $groupByKeys
+     */
+    public function groupByKeys(array $groupByKeys): static
+    {    
+        if ($this->internal->spec === null) {
+            $this->internal->spec = new \Grafana\Foundation\Prometheus\Dataquery();
+        }
+        assert($this->internal->spec instanceof \Grafana\Foundation\Prometheus\Dataquery);
+        $this->internal->spec->groupByKeys = $groupByKeys;
+    
+        return $this;
+    }
+
+    /**
+     * true if query is disabled (ie should not be returned to the dashboard)
+     * NOTE: this does not always imply that the query should not be executed since
+     * the results from a hidden query may be used as the input to other queries (SSE etc)
+     */
+    public function hide(bool $hide): static
+    {    
+        if ($this->internal->spec === null) {
+            $this->internal->spec = new \Grafana\Foundation\Prometheus\Dataquery();
+        }
+        assert($this->internal->spec instanceof \Grafana\Foundation\Prometheus\Dataquery);
+        $this->internal->spec->hide = $hide;
+    
+        return $this;
+    }
+
+    /**
+     * Returns only the latest value that Prometheus has scraped for the requested time series
+     */
+    public function instant(bool $instant): static
+    {    
+        if ($this->internal->spec === null) {
+            $this->internal->spec = new \Grafana\Foundation\Prometheus\Dataquery();
+        }
+        assert($this->internal->spec instanceof \Grafana\Foundation\Prometheus\Dataquery);
+        $this->internal->spec->instant = $instant;
+    
+        return $this;
+    }
+
+    /**
+     * Used to specify how many times to divide max data points by. We use max data points under query options
+     * See https://github.com/grafana/grafana/issues/48081
+     * Deprecated: use interval
+     */
+    public function intervalFactor(int $intervalFactor): static
+    {    
+        if ($this->internal->spec === null) {
+            $this->internal->spec = new \Grafana\Foundation\Prometheus\Dataquery();
+        }
+        assert($this->internal->spec instanceof \Grafana\Foundation\Prometheus\Dataquery);
+        $this->internal->spec->intervalFactor = $intervalFactor;
+    
+        return $this;
+    }
+
+    /**
+     * Interval is the suggested duration between time points in a time series query.
+     * NOTE: the values for intervalMs is not saved in the query model.  It is typically calculated
+     * from the interval required to fill a pixels in the visualization
+     */
+    public function intervalMs(float $intervalMs): static
+    {    
+        if ($this->internal->spec === null) {
+            $this->internal->spec = new \Grafana\Foundation\Prometheus\Dataquery();
+        }
+        assert($this->internal->spec instanceof \Grafana\Foundation\Prometheus\Dataquery);
+        $this->internal->spec->intervalMs = $intervalMs;
     
         return $this;
     }
@@ -154,24 +229,52 @@ class QueryV2Builder implements \Grafana\Foundation\Cog\Builder
     }
 
     /**
-     * @deprecated Used to specify how many times to divide max data points by. We use max data points under query options
-     * See https://github.com/grafana/grafana/issues/48081
+     * MaxDataPoints is the maximum number of data points that should be returned from a time series query.
+     * NOTE: the values for maxDataPoints is not saved in the query model.  It is typically calculated
+     * from the number of pixels visible in a visualization
      */
-    public function intervalFactor(float $intervalFactor): static
+    public function maxDataPoints(int $maxDataPoints): static
     {    
         if ($this->internal->spec === null) {
             $this->internal->spec = new \Grafana\Foundation\Prometheus\Dataquery();
         }
         assert($this->internal->spec instanceof \Grafana\Foundation\Prometheus\Dataquery);
-        $this->internal->spec->intervalFactor = $intervalFactor;
+        $this->internal->spec->maxDataPoints = $maxDataPoints;
     
         return $this;
     }
 
     /**
-     * A unique identifier for the query within the list of targets.
-     * In server side expressions, the refId is used as a variable name to identify results.
-     * By default, the UI will assign A->Z; however setting meaningful names may be useful.
+     * QueryType is an optional identifier for the type of query.
+     * It can be used to distinguish different types of queries.
+     */
+    public function queryType(string $queryType): static
+    {    
+        if ($this->internal->spec === null) {
+            $this->internal->spec = new \Grafana\Foundation\Prometheus\Dataquery();
+        }
+        assert($this->internal->spec instanceof \Grafana\Foundation\Prometheus\Dataquery);
+        $this->internal->spec->queryType = $queryType;
+    
+        return $this;
+    }
+
+    /**
+     * Returns a Range vector, comprised of a set of time series containing a range of data points over time for each time series
+     */
+    public function range(bool $range): static
+    {    
+        if ($this->internal->spec === null) {
+            $this->internal->spec = new \Grafana\Foundation\Prometheus\Dataquery();
+        }
+        assert($this->internal->spec instanceof \Grafana\Foundation\Prometheus\Dataquery);
+        $this->internal->spec->range = $range;
+    
+        return $this;
+    }
+
+    /**
+     * RefID is the unique identifier of the query, set by the frontend call.
      */
     public function refId(string $refId): static
     {    
@@ -185,30 +288,54 @@ class QueryV2Builder implements \Grafana\Foundation\Cog\Builder
     }
 
     /**
-     * If hide is set to true, Grafana will filter out the response(s) associated with this query before returning it to the panel.
+     * Optionally define expected query result behavior
+     * @param \Grafana\Foundation\Cog\Builder<\Grafana\Foundation\Prometheus\ResultAssertions> $resultAssertions
      */
-    public function hide(bool $hide): static
+    public function resultAssertions(\Grafana\Foundation\Cog\Builder $resultAssertions): static
     {    
         if ($this->internal->spec === null) {
             $this->internal->spec = new \Grafana\Foundation\Prometheus\Dataquery();
         }
         assert($this->internal->spec instanceof \Grafana\Foundation\Prometheus\Dataquery);
-        $this->internal->spec->hide = $hide;
+        $resultAssertionsResource = $resultAssertions->build();
+        $this->internal->spec->resultAssertions = $resultAssertionsResource;
     
         return $this;
     }
 
     /**
-     * Specify the query flavor
-     * TODO make this required and give it a default
+     * A set of filters applied to apply to the query
+     * @param array<\Grafana\Foundation\Cog\Builder<\Grafana\Foundation\Prometheus\Scopes>> $scopes
      */
-    public function queryType(string $queryType): static
+    public function scopes(array $scopes): static
     {    
         if ($this->internal->spec === null) {
             $this->internal->spec = new \Grafana\Foundation\Prometheus\Dataquery();
         }
         assert($this->internal->spec instanceof \Grafana\Foundation\Prometheus\Dataquery);
-        $this->internal->spec->queryType = $queryType;
+            $scopesResources = [];
+            foreach ($scopes as $r1) {
+                    $scopesResources[] = $r1->build();
+            }
+        $this->internal->spec->scopes = $scopesResources;
+    
+        return $this;
+    }
+
+    /**
+     * TimeRange represents the query range
+     * NOTE: unlike generic /ds/query, we can now send explicit time values in each query
+     * NOTE: the values for timeRange are not saved in a dashboard, they are constructed on the fly
+     * @param \Grafana\Foundation\Cog\Builder<\Grafana\Foundation\Prometheus\TimeRange> $timeRange
+     */
+    public function timeRange(\Grafana\Foundation\Cog\Builder $timeRange): static
+    {    
+        if ($this->internal->spec === null) {
+            $this->internal->spec = new \Grafana\Foundation\Prometheus\Dataquery();
+        }
+        assert($this->internal->spec instanceof \Grafana\Foundation\Prometheus\Dataquery);
+        $timeRangeResource = $timeRange->build();
+        $this->internal->spec->timeRange = $timeRangeResource;
     
         return $this;
     }

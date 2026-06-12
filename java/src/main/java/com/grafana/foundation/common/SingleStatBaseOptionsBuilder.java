@@ -3,6 +3,9 @@
 package com.grafana.foundation.common;
 
 
+/**
+ * TODO docs
+ */
 public class SingleStatBaseOptionsBuilder implements com.grafana.foundation.cog.Builder<SingleStatBaseOptions> {
     protected final SingleStatBaseOptions internal;
     

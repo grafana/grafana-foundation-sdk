@@ -3,6 +3,8 @@ title: <span class="badge builder"></span> LineConfig
 ---
 # <span class="badge builder"></span> LineConfig
 
+TODO docs
+
 ## Constructor
 
 ```python

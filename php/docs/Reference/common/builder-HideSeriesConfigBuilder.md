@@ -3,6 +3,8 @@ title: <span class="badge builder"></span> HideSeriesConfigBuilder
 ---
 # <span class="badge builder"></span> HideSeriesConfigBuilder
 
+TODO docs
+
 ## Constructor
 
 ```php

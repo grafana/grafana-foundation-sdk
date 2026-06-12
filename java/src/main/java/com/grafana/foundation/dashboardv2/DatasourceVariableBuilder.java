@@ -4,6 +4,9 @@ package com.grafana.foundation.dashboardv2;
 
 import java.util.List;
 
+/**
+ * Datasource variable kind
+ */
 public class DatasourceVariableBuilder implements com.grafana.foundation.cog.Builder<DatasourceVariableKind> {
     protected final DatasourceVariableKind internal;
     

@@ -13,7 +13,9 @@ import com.fasterxml.jackson.annotation.JsonSetter;
 import com.fasterxml.jackson.annotation.Nulls;
 import java.util.List;
 
-// Interval variable specification
+/**
+ * Interval variable specification
+ */
 public class IntervalVariableSpec {
     @JsonProperty("name")
     public String name;

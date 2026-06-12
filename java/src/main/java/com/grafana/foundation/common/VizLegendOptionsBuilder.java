@@ -4,6 +4,9 @@ package com.grafana.foundation.common;
 
 import java.util.List;
 
+/**
+ * TODO docs
+ */
 public class VizLegendOptionsBuilder implements com.grafana.foundation.cog.Builder<VizLegendOptions> {
     protected final VizLegendOptions internal;
     

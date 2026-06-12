@@ -8,7 +8,9 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.ObjectWriter;
 import com.fasterxml.jackson.annotation.JsonInclude;
 
-// FIXME: should we introduce this? --- Variable value option
+/**
+ * FIXME: should we introduce this? --- Variable value option
+ */
 public class VariableValueOption {
     @JsonProperty("label")
     public String label;

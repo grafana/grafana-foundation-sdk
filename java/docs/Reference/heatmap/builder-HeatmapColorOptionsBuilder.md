@@ -3,6 +3,8 @@ title: <span class="badge builder"></span> HeatmapColorOptionsBuilder
 ---
 # <span class="badge builder"></span> HeatmapColorOptionsBuilder
 
+Controls various color options
+
 ## Constructor
 
 ```java

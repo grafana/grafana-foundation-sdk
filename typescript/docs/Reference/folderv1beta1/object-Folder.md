@@ -1,7 +1,9 @@
 ---
-title: <span class="badge object-type-interface"></span> Folder
+title: <span class="badge object-type-interface"></span> <span class="badge deprecated"></span> Folder
 ---
-# <span class="badge object-type-interface"></span> Folder
+# <span class="badge object-type-interface"></span> <span class="badge deprecated"></span> Folder
+
+<span class="badge deprecated"></span>Prefer using folder.Folder instead.
 
 ## Definition
 
@@ -14,4 +16,4 @@ export interface Folder {
 ```
 ## See also
 
- * <span class="badge builder"></span> [FolderBuilder](./builder-FolderBuilder.md)
+ * <span class="badge builder"></span> <span class="badge deprecated"></span> [FolderBuilder](./builder-FolderBuilder.md)

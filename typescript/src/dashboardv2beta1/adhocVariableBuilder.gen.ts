@@ -3,7 +3,9 @@
 import * as cog from '../cog';
 import * as dashboardv2beta1 from '../dashboardv2beta1';
 
-// Adhoc variable kind
+/**
+ * Adhoc variable kind
+ */
 export class AdhocVariableBuilder implements cog.Builder<dashboardv2beta1.AdhocVariableKind> {
     protected readonly internal: dashboardv2beta1.AdhocVariableKind;
 

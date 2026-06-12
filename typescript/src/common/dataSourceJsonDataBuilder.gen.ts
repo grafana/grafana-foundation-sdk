@@ -3,7 +3,9 @@
 import * as cog from '../cog';
 import * as common from '../common';
 
-// TODO docs
+/**
+ * TODO docs
+ */
 export class DataSourceJsonDataBuilder implements cog.Builder<common.DataSourceJsonData> {
     protected readonly internal: common.DataSourceJsonData;
 

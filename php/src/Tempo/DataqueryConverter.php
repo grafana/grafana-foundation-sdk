@@ -10,7 +10,7 @@ final class DataqueryConverter
         $calls = [
             '(new \Grafana\Foundation\Tempo\DataqueryBuilder())',
         ];
-            if ($input->refId !== "") {
+            if ($input->refId !== null && $input->refId !== "") {
     
         
     $buffer = 'refId(';

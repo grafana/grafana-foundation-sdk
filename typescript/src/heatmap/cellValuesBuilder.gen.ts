@@ -3,7 +3,9 @@
 import * as cog from '../cog';
 import * as heatmap from '../heatmap';
 
-// Controls cell value options
+/**
+ * Controls cell value options
+ */
 export class CellValuesBuilder implements cog.Builder<heatmap.CellValues> {
     protected readonly internal: heatmap.CellValues;
 

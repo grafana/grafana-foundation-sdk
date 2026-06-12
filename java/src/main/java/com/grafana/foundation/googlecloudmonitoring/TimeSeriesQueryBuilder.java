@@ -3,6 +3,9 @@
 package com.grafana.foundation.googlecloudmonitoring;
 
 
+/**
+ * Time Series sub-query properties.
+ */
 public class TimeSeriesQueryBuilder implements com.grafana.foundation.cog.Builder<TimeSeriesQuery> {
     protected final TimeSeriesQuery internal;
     

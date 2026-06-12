@@ -3,6 +3,8 @@ title: <span class="badge builder"></span> ThresholdsConfig
 ---
 # <span class="badge builder"></span> ThresholdsConfig
 
+Thresholds configuration for the panel
+
 ## Constructor
 
 ```python

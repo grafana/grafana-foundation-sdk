@@ -9,7 +9,9 @@ import com.fasterxml.jackson.databind.ObjectWriter;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import java.util.List;
 
-// Time Series List sub-query properties.
+/**
+ * Time Series List sub-query properties.
+ */
 public class TimeSeriesList {
     // GCP project to execute the query against.
     @JsonProperty("projectName")

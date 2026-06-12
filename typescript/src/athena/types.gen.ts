@@ -3,7 +3,9 @@
 import * as common from '../common';
 
 
-// Manually converted from https://github.com/grafana/athena-datasource/blob/57ad707147b7a11e9a521a836d6bf9799877e0e3/src/types.ts
+/**
+ * Manually converted from https://github.com/grafana/athena-datasource/blob/57ad707147b7a11e9a521a836d6bf9799877e0e3/src/types.ts
+ */
 export interface Dataquery {
 	format: FormatOptions;
 	connectionArgs: ConnectionArgs;

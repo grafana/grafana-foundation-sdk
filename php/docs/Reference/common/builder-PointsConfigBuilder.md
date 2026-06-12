@@ -3,6 +3,8 @@ title: <span class="badge builder"></span> PointsConfigBuilder
 ---
 # <span class="badge builder"></span> PointsConfigBuilder
 
+TODO docs
+
 ## Constructor
 
 ```php

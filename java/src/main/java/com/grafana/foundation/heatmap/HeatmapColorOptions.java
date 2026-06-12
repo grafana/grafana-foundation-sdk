@@ -8,7 +8,9 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.ObjectWriter;
 import com.fasterxml.jackson.annotation.JsonInclude;
 
-// Controls various color options
+/**
+ * Controls various color options
+ */
 public class HeatmapColorOptions {
     // Sets the color mode
     @JsonInclude(JsonInclude.Include.NON_NULL)

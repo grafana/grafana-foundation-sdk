@@ -1,5 +1,6 @@
 # Code generated - EDITING IS FUTILE. DO NOT EDIT.
 
+import warnings
 import typing
 
 
@@ -9,6 +10,7 @@ class Preferences:
     swagger:model Preferences
     """
 
+    warnings.warn("Prefer using preferencesv1alpha1.Preferences instead.", DeprecationWarning)
     # UID for the home dashboard
     home_dashboard_uid: typing.Optional[str]
     # The timezone selection

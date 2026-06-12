@@ -4,7 +4,9 @@ import * as cog from '../cog';
 import * as athena from '../athena';
 import * as common from '../common';
 
-// Manually converted from https://github.com/grafana/athena-datasource/blob/57ad707147b7a11e9a521a836d6bf9799877e0e3/src/types.ts
+/**
+ * Manually converted from https://github.com/grafana/athena-datasource/blob/57ad707147b7a11e9a521a836d6bf9799877e0e3/src/types.ts
+ */
 export class DataqueryBuilder implements cog.Builder<cog.Dataquery> {
     protected readonly internal: athena.Dataquery;
 

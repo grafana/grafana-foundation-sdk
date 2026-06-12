@@ -19,7 +19,7 @@ public class DashboardLink {
   public Boolean targetBlank;
   public Boolean includeVars;
   public Boolean keepTime;
-  public String placement;
+  public DashboardLinkPlacement placement;
   public ControlSourceRef origin;
 }
 ```

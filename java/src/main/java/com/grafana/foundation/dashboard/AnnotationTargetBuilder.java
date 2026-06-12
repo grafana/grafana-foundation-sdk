@@ -4,6 +4,10 @@ package com.grafana.foundation.dashboard;
 
 import java.util.List;
 
+/**
+ * TODO: this should be a regular DataQuery that depends on the selected dashboard
+ * these match the properties of the "grafana" datasouce that is default in most dashboards
+ */
 public class AnnotationTargetBuilder implements com.grafana.foundation.cog.Builder<AnnotationTarget> {
     protected final AnnotationTarget internal;
     

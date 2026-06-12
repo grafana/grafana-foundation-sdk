@@ -3,11 +3,13 @@
 import * as cog from '../cog';
 import * as dashboard from '../dashboard';
 
-// A dashboard snapshot shares an interactive dashboard publicly.
-// It is a read-only version of a dashboard, and is not editable.
-// It is possible to create a snapshot of a snapshot.
-// Grafana strips away all sensitive information from the dashboard.
-// Sensitive information stripped: queries (metric, template,annotation) and panel links.
+/**
+ * A dashboard snapshot shares an interactive dashboard publicly.
+ * It is a read-only version of a dashboard, and is not editable.
+ * It is possible to create a snapshot of a snapshot.
+ * Grafana strips away all sensitive information from the dashboard.
+ * Sensitive information stripped: queries (metric, template,annotation) and panel links.
+ */
 export class SnapshotBuilder implements cog.Builder<dashboard.Snapshot> {
     protected readonly internal: dashboard.Snapshot;
 

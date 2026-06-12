@@ -3,6 +3,8 @@ title: <span class="badge builder"></span> DashboardLink
 ---
 # <span class="badge builder"></span> DashboardLink
 
+Links with references to other dashboards or external resources
+
 ## Constructor
 
 ```python

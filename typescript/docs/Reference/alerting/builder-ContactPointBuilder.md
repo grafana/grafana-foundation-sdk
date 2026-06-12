@@ -3,6 +3,10 @@ title: <span class="badge builder"></span> ContactPointBuilder
 ---
 # <span class="badge builder"></span> ContactPointBuilder
 
+EmbeddedContactPoint is the contact point type that is used
+
+by grafanas embedded alertmanager implementation.
+
 ## Constructor
 
 ```typescript

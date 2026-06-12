@@ -1,7 +1,9 @@
 ---
-title: <span class="badge object-type-struct"></span> Dashboard
+title: <span class="badge object-type-struct"></span> <span class="badge deprecated"></span> Dashboard
 ---
-# <span class="badge object-type-struct"></span> Dashboard
+# <span class="badge object-type-struct"></span> <span class="badge deprecated"></span> Dashboard
+
+<span class="badge deprecated"></span>Prefer using dashboardv2.Dashboard instead.
 
 ## Definition
 
@@ -160,4 +162,4 @@ func main() {
 ```
 ## See also
 
- * <span class="badge builder"></span> [DashboardBuilder](./builder-DashboardBuilder.md)
+ * <span class="badge builder"></span> <span class="badge deprecated"></span> [DashboardBuilder](./builder-DashboardBuilder.md)

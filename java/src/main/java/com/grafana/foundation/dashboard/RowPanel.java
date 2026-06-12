@@ -13,7 +13,9 @@ import com.fasterxml.jackson.annotation.JsonSetter;
 import com.fasterxml.jackson.annotation.Nulls;
 import java.util.List;
 
-// Row panel
+/**
+ * Row panel
+ */
 public class RowPanel {
     // The panel type
     @JsonProperty("type")

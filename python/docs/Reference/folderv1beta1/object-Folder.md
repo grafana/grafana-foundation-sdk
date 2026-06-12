@@ -1,12 +1,15 @@
 ---
-title: <span class="badge object-type-class"></span> Folder
+title: <span class="badge object-type-class"></span> <span class="badge deprecated"></span> Folder
 ---
-# <span class="badge object-type-class"></span> Folder
+# <span class="badge object-type-class"></span> <span class="badge deprecated"></span> Folder
+
+<span class="badge deprecated"></span>Prefer using folder.Folder instead.
 
 ## Definition
 
 ```python
 class Folder:
+    warnings.warn("Prefer using folder.Folder instead.", DeprecationWarning)
     title: str
     description: typing.Optional[str]
 ```
@@ -31,4 +34,4 @@ def from_json(data: dict[str, typing.Any]) -> typing.Self
 
 ## See also
 
- * <span class="badge builder"></span> [Folder](./builder-Folder.md)
+ * <span class="badge builder"></span> <span class="badge deprecated"></span> [Folder](./builder-Folder.md)

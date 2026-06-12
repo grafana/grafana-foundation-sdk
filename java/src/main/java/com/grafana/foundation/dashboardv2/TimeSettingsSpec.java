@@ -11,8 +11,10 @@ import com.fasterxml.jackson.annotation.JsonSetter;
 import com.fasterxml.jackson.annotation.Nulls;
 import java.util.List;
 
-// Time configuration
-// It defines the default time config for the time picker, the refresh picker for the specific dashboard.
+/**
+ * Time configuration
+ * It defines the default time config for the time picker, the refresh picker for the specific dashboard.
+ */
 public class TimeSettingsSpec {
     // Timezone of dashboard. Accepted values are IANA TZDB zone ID or "browser" or "utc".
     @JsonInclude(JsonInclude.Include.NON_NULL)

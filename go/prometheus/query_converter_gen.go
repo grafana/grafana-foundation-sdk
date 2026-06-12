@@ -57,40 +57,15 @@ func QueryConverter(input dashboardv2beta1.DataQueryKind) string {
 		buffer.Reset()
 
 	}
-	if input.Spec != nil && input.Spec.(*Dataquery).Expr != "" {
+	if input.Spec != nil && input.Spec.(*Dataquery).AdhocFilters != nil && len(input.Spec.(*Dataquery).AdhocFilters) >= 1 {
 
-		buffer.WriteString(`Expr(`)
-		arg0 := fmt.Sprintf("%#v", input.Spec.(*Dataquery).Expr)
-		buffer.WriteString(arg0)
-
-		buffer.WriteString(")")
-
-		calls = append(calls, buffer.String())
-		buffer.Reset()
-
-	}
-	if input.Spec != nil && input.Spec.(*Dataquery).Instant != nil && *input.Spec.(*Dataquery).Instant == true && input.Spec.(*Dataquery).Range != nil && *input.Spec.(*Dataquery).Range == false {
-
-		buffer.WriteString(`Instant(`)
-		buffer.WriteString(")")
-
-		calls = append(calls, buffer.String())
-		buffer.Reset()
-
-	}
-	if input.Spec != nil && input.Spec.(*Dataquery).Range != nil && *input.Spec.(*Dataquery).Range == true && input.Spec.(*Dataquery).Instant != nil && *input.Spec.(*Dataquery).Instant == false {
-
-		buffer.WriteString(`Range(`)
-		buffer.WriteString(")")
-
-		calls = append(calls, buffer.String())
-		buffer.Reset()
-
-	}
-	if input.Spec != nil && input.Spec.(*Dataquery).Exemplar != nil {
-
-		buffer.WriteString(`Exemplar(`)
-		arg0 := fmt.Sprintf("%#v", *input.Spec.(*Dataquery).Exemplar)
+		buffer.WriteString(`AdhocFilters(`)
+		tmparg0 := []string{}
+		for _, arg1 := range input.Spec.(*Dataquery).AdhocFilters {
+			tmpadhocFiltersarg1 := AdhocFiltersConverter(arg1)
+			tmparg0 = append(tmparg0, tmpadhocFiltersarg1)
+		}
+		arg0 := "[]cog.Builder[prometheus.AdhocFilters]{" + strings.Join(tmparg0, ",\n") + "}"
 		buffer.WriteString(arg0)
 
 		buffer.WriteString(")")
@@ -111,6 +86,30 @@ func QueryConverter(input dashboardv2beta1.DataQueryKind) string {
 		buffer.Reset()
 
 	}
+	if input.Spec != nil && input.Spec.(*Dataquery).Exemplar != nil {
+
+		buffer.WriteString(`Exemplar(`)
+		arg0 := fmt.Sprintf("%#v", *input.Spec.(*Dataquery).Exemplar)
+		buffer.WriteString(arg0)
+
+		buffer.WriteString(")")
+
+		calls = append(calls, buffer.String())
+		buffer.Reset()
+
+	}
+	if input.Spec != nil && input.Spec.(*Dataquery).Expr != "" {
+
+		buffer.WriteString(`Expr(`)
+		arg0 := fmt.Sprintf("%#v", input.Spec.(*Dataquery).Expr)
+		buffer.WriteString(arg0)
+
+		buffer.WriteString(")")
+
+		calls = append(calls, buffer.String())
+		buffer.Reset()
+
+	}
 	if input.Spec != nil && input.Spec.(*Dataquery).Format != nil {
 
 		buffer.WriteString(`Format(`)
@@ -123,34 +122,15 @@ func QueryConverter(input dashboardv2beta1.DataQueryKind) string {
 		buffer.Reset()
 
 	}
-	if input.Spec != nil && input.Spec.(*Dataquery).LegendFormat != nil && *input.Spec.(*Dataquery).LegendFormat != "" {
+	if input.Spec != nil && input.Spec.(*Dataquery).GroupByKeys != nil && len(input.Spec.(*Dataquery).GroupByKeys) >= 1 {
 
-		buffer.WriteString(`LegendFormat(`)
-		arg0 := fmt.Sprintf("%#v", *input.Spec.(*Dataquery).LegendFormat)
-		buffer.WriteString(arg0)
-
-		buffer.WriteString(")")
-
-		calls = append(calls, buffer.String())
-		buffer.Reset()
-
-	}
-	if input.Spec != nil && input.Spec.(*Dataquery).IntervalFactor != nil {
-
-		buffer.WriteString(`IntervalFactor(`)
-		arg0 := fmt.Sprintf("%#v", *input.Spec.(*Dataquery).IntervalFactor)
-		buffer.WriteString(arg0)
-
-		buffer.WriteString(")")
-
-		calls = append(calls, buffer.String())
-		buffer.Reset()
-
-	}
-	if input.Spec != nil && input.Spec.(*Dataquery).RefId != nil && *input.Spec.(*Dataquery).RefId != "" {
-
-		buffer.WriteString(`RefId(`)
-		arg0 := fmt.Sprintf("%#v", *input.Spec.(*Dataquery).RefId)
+		buffer.WriteString(`GroupByKeys(`)
+		tmparg0 := []string{}
+		for _, arg1 := range input.Spec.(*Dataquery).GroupByKeys {
+			tmpgroupByKeysarg1 := fmt.Sprintf("%#v", arg1)
+			tmparg0 = append(tmparg0, tmpgroupByKeysarg1)
+		}
+		arg0 := "[]string{" + strings.Join(tmparg0, ",\n") + "}"
 		buffer.WriteString(arg0)
 
 		buffer.WriteString(")")
@@ -171,10 +151,129 @@ func QueryConverter(input dashboardv2beta1.DataQueryKind) string {
 		buffer.Reset()
 
 	}
+	if input.Spec != nil && input.Spec.(*Dataquery).Instant != nil && *input.Spec.(*Dataquery).Instant == true && input.Spec.(*Dataquery).Range != nil && *input.Spec.(*Dataquery).Range == false {
+
+		buffer.WriteString(`Instant(`)
+		buffer.WriteString(")")
+
+		calls = append(calls, buffer.String())
+		buffer.Reset()
+
+	}
+	if input.Spec != nil && input.Spec.(*Dataquery).IntervalFactor != nil {
+
+		buffer.WriteString(`IntervalFactor(`)
+		arg0 := fmt.Sprintf("%#v", *input.Spec.(*Dataquery).IntervalFactor)
+		buffer.WriteString(arg0)
+
+		buffer.WriteString(")")
+
+		calls = append(calls, buffer.String())
+		buffer.Reset()
+
+	}
+	if input.Spec != nil && input.Spec.(*Dataquery).IntervalMs != nil {
+
+		buffer.WriteString(`IntervalMs(`)
+		arg0 := fmt.Sprintf("%#v", *input.Spec.(*Dataquery).IntervalMs)
+		buffer.WriteString(arg0)
+
+		buffer.WriteString(")")
+
+		calls = append(calls, buffer.String())
+		buffer.Reset()
+
+	}
+	if input.Spec != nil && input.Spec.(*Dataquery).LegendFormat != nil && *input.Spec.(*Dataquery).LegendFormat != "" {
+
+		buffer.WriteString(`LegendFormat(`)
+		arg0 := fmt.Sprintf("%#v", *input.Spec.(*Dataquery).LegendFormat)
+		buffer.WriteString(arg0)
+
+		buffer.WriteString(")")
+
+		calls = append(calls, buffer.String())
+		buffer.Reset()
+
+	}
+	if input.Spec != nil && input.Spec.(*Dataquery).MaxDataPoints != nil {
+
+		buffer.WriteString(`MaxDataPoints(`)
+		arg0 := fmt.Sprintf("%#v", *input.Spec.(*Dataquery).MaxDataPoints)
+		buffer.WriteString(arg0)
+
+		buffer.WriteString(")")
+
+		calls = append(calls, buffer.String())
+		buffer.Reset()
+
+	}
 	if input.Spec != nil && input.Spec.(*Dataquery).QueryType != nil && *input.Spec.(*Dataquery).QueryType != "" {
 
 		buffer.WriteString(`QueryType(`)
 		arg0 := fmt.Sprintf("%#v", *input.Spec.(*Dataquery).QueryType)
+		buffer.WriteString(arg0)
+
+		buffer.WriteString(")")
+
+		calls = append(calls, buffer.String())
+		buffer.Reset()
+
+	}
+	if input.Spec != nil && input.Spec.(*Dataquery).Range != nil && *input.Spec.(*Dataquery).Range == true && input.Spec.(*Dataquery).Instant != nil && *input.Spec.(*Dataquery).Instant == false {
+
+		buffer.WriteString(`Range(`)
+		buffer.WriteString(")")
+
+		calls = append(calls, buffer.String())
+		buffer.Reset()
+
+	}
+	if input.Spec != nil && input.Spec.(*Dataquery).RefId != nil && *input.Spec.(*Dataquery).RefId != "" {
+
+		buffer.WriteString(`RefId(`)
+		arg0 := fmt.Sprintf("%#v", *input.Spec.(*Dataquery).RefId)
+		buffer.WriteString(arg0)
+
+		buffer.WriteString(")")
+
+		calls = append(calls, buffer.String())
+		buffer.Reset()
+
+	}
+	if input.Spec != nil && input.Spec.(*Dataquery).ResultAssertions != nil {
+
+		buffer.WriteString(`ResultAssertions(`)
+		arg0 := ResultAssertionsConverter(*input.Spec.(*Dataquery).ResultAssertions)
+		buffer.WriteString(arg0)
+
+		buffer.WriteString(")")
+
+		calls = append(calls, buffer.String())
+		buffer.Reset()
+
+	}
+	if input.Spec != nil && input.Spec.(*Dataquery).Scopes != nil && len(input.Spec.(*Dataquery).Scopes) >= 1 {
+
+		buffer.WriteString(`Scopes(`)
+		tmparg0 := []string{}
+		for _, arg1 := range input.Spec.(*Dataquery).Scopes {
+			tmpscopesarg1 := ScopesConverter(arg1)
+			tmparg0 = append(tmparg0, tmpscopesarg1)
+		}
+		arg0 := "[]cog.Builder[prometheus.Scopes]{" + strings.Join(tmparg0, ",\n") + "}"
+		buffer.WriteString(arg0)
+
+		buffer.WriteString(")")
+
+		calls = append(calls, buffer.String())
+		buffer.Reset()
+
+	}
+	if input.Spec != nil && input.Spec.(*Dataquery).TimeRange != nil {
+
+		buffer.WriteString(`TimeRange(`)
+		arg0 := TimeRangeConverter(*input.Spec.(*Dataquery).TimeRange)
 		buffer.WriteString(arg0)
 
 		buffer.WriteString(")")

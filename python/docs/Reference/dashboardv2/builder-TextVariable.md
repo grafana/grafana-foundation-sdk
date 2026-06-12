@@ -3,6 +3,8 @@ title: <span class="badge builder"></span> TextVariable
 ---
 # <span class="badge builder"></span> TextVariable
 
+Text variable kind
+
 ## Constructor
 
 ```python

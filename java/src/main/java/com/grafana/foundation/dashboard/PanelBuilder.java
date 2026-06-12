@@ -7,6 +7,9 @@ import com.grafana.foundation.cog.variants.Dataquery;
 import java.util.LinkedList;
 import com.grafana.foundation.common.DataSourceRef;
 
+/**
+ * Dashboard panels are the basic visualization building blocks.
+ */
 public class PanelBuilder implements com.grafana.foundation.cog.Builder<Panel> {
     protected final Panel internal;
     

@@ -3,7 +3,9 @@
 import * as cog from '../cog';
 import * as dashboardv2 from '../dashboardv2';
 
-// Source information for controls (e.g. variables or links)
+/**
+ * Source information for controls (e.g. variables or links)
+ */
 export class DatasourceControlSourceRefBuilder implements cog.Builder<dashboardv2.DatasourceControlSourceRef> {
     protected readonly internal: dashboardv2.DatasourceControlSourceRef;
 

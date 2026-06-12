@@ -3,6 +3,9 @@
 package com.grafana.foundation.common;
 
 
+/**
+ * TODO docs
+ */
 public class StackingConfigBuilder implements com.grafana.foundation.cog.Builder<StackingConfig> {
     protected final StackingConfig internal;
     

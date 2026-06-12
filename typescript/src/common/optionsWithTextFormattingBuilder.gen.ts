@@ -3,7 +3,9 @@
 import * as cog from '../cog';
 import * as common from '../common';
 
-// TODO docs
+/**
+ * TODO docs
+ */
 export class OptionsWithTextFormattingBuilder implements cog.Builder<common.OptionsWithTextFormatting> {
     protected readonly internal: common.OptionsWithTextFormatting;
 

@@ -3,7 +3,9 @@
 import * as common from '../common';
 
 
-// Controls the color mode of the heatmap
+/**
+ * Controls the color mode of the heatmap
+ */
 export enum HeatmapColorMode {
 	Opacity = "opacity",
 	Scheme = "scheme",
@@ -11,7 +13,9 @@ export enum HeatmapColorMode {
 
 export const defaultHeatmapColorMode = (): HeatmapColorMode => (HeatmapColorMode.Opacity);
 
-// Controls the color scale of the heatmap
+/**
+ * Controls the color scale of the heatmap
+ */
 export enum HeatmapColorScale {
 	Linear = "linear",
 	Exponential = "exponential",
@@ -19,7 +23,9 @@ export enum HeatmapColorScale {
 
 export const defaultHeatmapColorScale = (): HeatmapColorScale => (HeatmapColorScale.Linear);
 
-// Controls which axis to allow selection on
+/**
+ * Controls which axis to allow selection on
+ */
 export enum HeatmapSelectionMode {
 	X = "x",
 	Y = "y",
@@ -28,7 +34,9 @@ export enum HeatmapSelectionMode {
 
 export const defaultHeatmapSelectionMode = (): HeatmapSelectionMode => (HeatmapSelectionMode.X);
 
-// Controls various color options
+/**
+ * Controls various color options
+ */
 export interface HeatmapColorOptions {
 	// Sets the color mode
 	mode?: HeatmapColorMode;
@@ -58,7 +66,9 @@ export const defaultHeatmapColorOptions = (): HeatmapColorOptions => ({
 	reverse: false,
 });
 
-// Configuration options for the yAxis
+/**
+ * Configuration options for the yAxis
+ */
 export interface YAxisConfig {
 	// Sets the yAxis unit
 	unit?: string;
@@ -85,7 +95,9 @@ export interface YAxisConfig {
 export const defaultYAxisConfig = (): YAxisConfig => ({
 });
 
-// Controls cell value options
+/**
+ * Controls cell value options
+ */
 export interface CellValues {
 	// Controls the cell value unit
 	unit?: string;
@@ -96,7 +108,9 @@ export interface CellValues {
 export const defaultCellValues = (): CellValues => ({
 });
 
-// Controls the value filter range
+/**
+ * Controls the value filter range
+ */
 export interface FilterValueRange {
 	// Sets the filter range to values less than or equal to the given value
 	le?: number;
@@ -107,7 +121,9 @@ export interface FilterValueRange {
 export const defaultFilterValueRange = (): FilterValueRange => ({
 });
 
-// Controls tooltip options
+/**
+ * Controls tooltip options
+ */
 export interface HeatmapTooltip {
 	// Controls how the tooltip is shown
 	mode: common.TooltipDisplayMode;
@@ -123,7 +139,9 @@ export const defaultHeatmapTooltip = (): HeatmapTooltip => ({
 	mode: common.TooltipDisplayMode.Single,
 });
 
-// Controls legend options
+/**
+ * Controls legend options
+ */
 export interface HeatmapLegend {
 	// Controls if the legend is shown
 	show: boolean;
@@ -133,7 +151,9 @@ export const defaultHeatmapLegend = (): HeatmapLegend => ({
 	show: false,
 });
 
-// Controls exemplar options
+/**
+ * Controls exemplar options
+ */
 export interface ExemplarConfig {
 	// Sets the color of the exemplar markers
 	color: string;
@@ -143,7 +163,9 @@ export const defaultExemplarConfig = (): ExemplarConfig => ({
 	color: "",
 });
 
-// Controls frame rows options
+/**
+ * Controls frame rows options
+ */
 export interface RowsHeatmapOptions {
 	// Sets the name of the cell when not calculating from data
 	value?: string;

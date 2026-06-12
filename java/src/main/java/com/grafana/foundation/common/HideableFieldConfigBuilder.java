@@ -3,6 +3,9 @@
 package com.grafana.foundation.common;
 
 
+/**
+ * TODO docs
+ */
 public class HideableFieldConfigBuilder implements com.grafana.foundation.cog.Builder<HideableFieldConfig> {
     protected final HideableFieldConfig internal;
     

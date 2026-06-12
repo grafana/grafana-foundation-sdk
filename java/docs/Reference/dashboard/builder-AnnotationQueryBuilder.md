@@ -3,6 +3,10 @@ title: <span class="badge builder"></span> AnnotationQueryBuilder
 ---
 # <span class="badge builder"></span> AnnotationQueryBuilder
 
+TODO docs
+
+FROM: AnnotationQuery in grafana-data/src/types/annotations.ts
+
 ## Constructor
 
 ```java

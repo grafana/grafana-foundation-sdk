@@ -6,11 +6,11 @@ import (
 	"encoding/json"
 	"errors"
 	"fmt"
-	"reflect"
 	"strconv"
 
 	cog "github.com/grafana/grafana-foundation-sdk/go/cog"
 	variants "github.com/grafana/grafana-foundation-sdk/go/cog/variants"
+	common "github.com/grafana/grafana-foundation-sdk/go/common"
 	dashboardv2 "github.com/grafana/grafana-foundation-sdk/go/dashboardv2"
 	dashboardv2beta1 "github.com/grafana/grafana-foundation-sdk/go/dashboardv2beta1"
 )
@@ -19,7 +19,7 @@ type MonitorQuery struct {
 	// A unique identifier for the query within the list of targets.
 	// In server side expressions, the refId is used as a variable name to identify results.
 	// By default, the UI will assign A->Z; however setting meaningful names may be useful.
-	RefId string `json:"refId"`
+	RefId *string `json:"refId,omitempty"`
 	// If hide is set to true, Grafana will filter out the response(s) associated with this query before returning it to the panel.
 	Hide *bool `json:"hide,omitempty"`
 	// Specify the query flavor
@@ -54,7 +54,7 @@ type MonitorQuery struct {
 	// For non mixed scenarios this is undefined.
 	// TODO find a better way to do this ^ that's friendly to schema
 	// TODO this shouldn't be unknown but DataSourceRef | null
-	Datasource any `json:"datasource,omitempty"`
+	Datasource *common.DataSourceRef `json:"datasource,omitempty"`
 	// Used only for exemplar queries from Prometheus
 	Query *string `json:"query,omitempty"`
 }
@@ -88,13 +88,10 @@ func (resource *MonitorQuery) UnmarshalJSONStrict(raw []byte) error {
 			if err := json.Unmarshal(fields["refId"], &resource.RefId); err != nil {
 				errs = append(errs, cog.MakeBuildErrors("refId", err)...)
 			}
-		} else {
-			errs = append(errs, cog.MakeBuildErrors("refId", errors.New("required field is null"))...)
 
 		}
 		delete(fields, "refId")
-	} else {
-		errs = append(errs, cog.MakeBuildErrors("refId", errors.New("required field is missing from input"))...)
+
 	}
 	// Field "hide"
 	if fields["hide"] != nil {
@@ -264,7 +261,9 @@ func (resource *MonitorQuery) UnmarshalJSONStrict(raw []byte) error {
 	// Field "datasource"
 	if fields["datasource"] != nil {
 		if string(fields["datasource"]) != "null" {
-			if err := json.Unmarshal(fields["datasource"], &resource.Datasource); err != nil {
+
+			resource.Datasource = &common.DataSourceRef{}
+			if err := resource.Datasource.UnmarshalJSONStrict(fields["datasource"]); err != nil {
 				errs = append(errs, cog.MakeBuildErrors("datasource", err)...)
 			}
 
@@ -301,8 +300,14 @@ func (resource MonitorQuery) Equals(otherCandidate variants.Dataquery) bool {
 	if !ok {
 		return false
 	}
-	if resource.RefId != other.RefId {
+	if resource.RefId == nil && other.RefId != nil || resource.RefId != nil && other.RefId == nil {
 		return false
+	}
+
+	if resource.RefId != nil {
+		if *resource.RefId != *other.RefId {
+			return false
+		}
 	}
 	if resource.Hide == nil && other.Hide != nil || resource.Hide != nil && other.Hide == nil {
 		return false
@@ -431,9 +436,14 @@ func (resource MonitorQuery) Equals(otherCandidate variants.Dataquery) bool {
 			return false
 		}
 	}
-	// is DeepEqual good enough here?
-	if !reflect.DeepEqual(resource.Datasource, other.Datasource) {
+	if resource.Datasource == nil && other.Datasource != nil || resource.Datasource != nil && other.Datasource == nil {
 		return false
+	}
+
+	if resource.Datasource != nil {
+		if !resource.Datasource.Equals(*other.Datasource) {
+			return false
+		}
 	}
 	if resource.Query == nil && other.Query != nil || resource.Query != nil && other.Query == nil {
 		return false
@@ -474,6 +484,11 @@ func (resource MonitorQuery) Validate() error {
 	if resource.GrafanaTemplateVariableFn != nil {
 		if err := resource.GrafanaTemplateVariableFn.Validate(); err != nil {
 			errs = append(errs, cog.MakeBuildErrors("grafanaTemplateVariableFn", err)...)
+		}
+	}
+	if resource.Datasource != nil {
+		if err := resource.Datasource.Validate(); err != nil {
+			errs = append(errs, cog.MakeBuildErrors("datasource", err)...)
 		}
 	}
 

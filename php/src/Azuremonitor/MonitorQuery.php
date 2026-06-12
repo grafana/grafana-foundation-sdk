@@ -9,7 +9,7 @@ class MonitorQuery implements \JsonSerializable, \Grafana\Foundation\Cog\Dataque
      * In server side expressions, the refId is used as a variable name to identify results.
      * By default, the UI will assign A->Z; however setting meaningful names may be useful.
      */
-    public string $refId;
+    public ?string $refId;
 
     /**
      * If hide is set to true, Grafana will filter out the response(s) associated with this query before returning it to the panel.
@@ -90,9 +90,8 @@ class MonitorQuery implements \JsonSerializable, \Grafana\Foundation\Cog\Dataque
      * For non mixed scenarios this is undefined.
      * TODO find a better way to do this ^ that's friendly to schema
      * TODO this shouldn't be unknown but DataSourceRef | null
-     * @var mixed|null
      */
-    public $datasource;
+    public ?\Grafana\Foundation\Common\DataSourceRef $datasource;
 
     /**
      * Used only for exemplar queries from Prometheus
@@ -115,12 +114,12 @@ class MonitorQuery implements \JsonSerializable, \Grafana\Foundation\Cog\Dataque
      * @param string|null $resource
      * @param string|null $region
      * @param string|null $customNamespace
-     * @param mixed|null $datasource
+     * @param \Grafana\Foundation\Common\DataSourceRef|null $datasource
      * @param string|null $query
      */
-    public function __construct(?string $refId = null, ?bool $hide = null, ?string $queryType = null, ?string $subscription = null, ?array $subscriptions = null, ?\Grafana\Foundation\Azuremonitor\MetricQuery $azureMonitor = null, ?\Grafana\Foundation\Azuremonitor\LogsQuery $azureLogAnalytics = null, ?\Grafana\Foundation\Azuremonitor\ResourceGraphQuery $azureResourceGraph = null, ?\Grafana\Foundation\Azuremonitor\TracesQuery $azureTraces = null,  $grafanaTemplateVariableFn = null, ?string $resourceGroup = null, ?string $namespace = null, ?string $resource = null, ?string $region = null, ?string $customNamespace = null,  $datasource = null, ?string $query = null)
+    public function __construct(?string $refId = null, ?bool $hide = null, ?string $queryType = null, ?string $subscription = null, ?array $subscriptions = null, ?\Grafana\Foundation\Azuremonitor\MetricQuery $azureMonitor = null, ?\Grafana\Foundation\Azuremonitor\LogsQuery $azureLogAnalytics = null, ?\Grafana\Foundation\Azuremonitor\ResourceGraphQuery $azureResourceGraph = null, ?\Grafana\Foundation\Azuremonitor\TracesQuery $azureTraces = null,  $grafanaTemplateVariableFn = null, ?string $resourceGroup = null, ?string $namespace = null, ?string $resource = null, ?string $region = null, ?string $customNamespace = null, ?\Grafana\Foundation\Common\DataSourceRef $datasource = null, ?string $query = null)
     {
-        $this->refId = $refId ?: "";
+        $this->refId = $refId;
         $this->hide = $hide;
         $this->queryType = $queryType;
         $this->subscription = $subscription;
@@ -205,7 +204,11 @@ class MonitorQuery implements \JsonSerializable, \Grafana\Foundation\Cog\Dataque
             resource: $data["resource"] ?? null,
             region: $data["region"] ?? null,
             customNamespace: $data["customNamespace"] ?? null,
-            datasource: $data["datasource"] ?? null,
+            datasource: isset($data["datasource"]) ? (function($input) {
+    	/** @var array{type?: string, uid?: string} */
+    $val = $input;
+    	return \Grafana\Foundation\Common\DataSourceRef::fromArray($val);
+    })($data["datasource"]) : null,
             query: $data["query"] ?? null,
         );
     }
@@ -216,8 +219,10 @@ class MonitorQuery implements \JsonSerializable, \Grafana\Foundation\Cog\Dataque
     public function jsonSerialize(): mixed
     {
         $data = new \stdClass;
-        $data->refId = $this->refId;
         $data->grafanaTemplateVariableFn = $this->grafanaTemplateVariableFn;
+        if (isset($this->refId)) {
+            $data->refId = $this->refId;
+        }
         if (isset($this->hide)) {
             $data->hide = $this->hide;
         }

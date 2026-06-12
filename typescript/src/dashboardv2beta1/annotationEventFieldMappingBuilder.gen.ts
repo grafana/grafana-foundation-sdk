@@ -3,7 +3,9 @@
 import * as cog from '../cog';
 import * as dashboardv2beta1 from '../dashboardv2beta1';
 
-// Annotation event field mapping. Defines how to map a data frame field to an annotation event field.
+/**
+ * Annotation event field mapping. Defines how to map a data frame field to an annotation event field.
+ */
 export class AnnotationEventFieldMappingBuilder implements cog.Builder<dashboardv2beta1.AnnotationEventFieldMapping> {
     protected readonly internal: dashboardv2beta1.AnnotationEventFieldMapping;
 

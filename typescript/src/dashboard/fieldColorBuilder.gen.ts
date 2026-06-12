@@ -3,7 +3,9 @@
 import * as cog from '../cog';
 import * as dashboard from '../dashboard';
 
-// Map a field to a color.
+/**
+ * Map a field to a color.
+ */
 export class FieldColorBuilder implements cog.Builder<dashboard.FieldColor> {
     protected readonly internal: dashboard.FieldColor;
 

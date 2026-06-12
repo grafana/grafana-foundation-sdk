@@ -3,6 +3,8 @@ title: <span class="badge builder"></span> FieldColor
 ---
 # <span class="badge builder"></span> FieldColor
 
+Map a field to a color.
+
 ## Constructor
 
 ```python

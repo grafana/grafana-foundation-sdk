@@ -4,6 +4,9 @@ package com.grafana.foundation.dashboard;
 
 import java.util.List;
 
+/**
+ * Fetch options
+ */
 public class FetchOptionsBuilder implements com.grafana.foundation.cog.Builder<FetchOptions> {
     protected final FetchOptions internal;
     

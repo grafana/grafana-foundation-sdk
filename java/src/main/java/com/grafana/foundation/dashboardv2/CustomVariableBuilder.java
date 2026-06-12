@@ -4,6 +4,9 @@ package com.grafana.foundation.dashboardv2;
 
 import java.util.List;
 
+/**
+ * Custom variable kind
+ */
 public class CustomVariableBuilder implements com.grafana.foundation.cog.Builder<CustomVariableKind> {
     protected final CustomVariableKind internal;
     

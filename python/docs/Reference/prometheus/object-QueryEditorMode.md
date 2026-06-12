@@ -7,6 +7,6 @@ title: <span class="badge object-type-enum"></span> QueryEditorMode
 
 ```python
 class QueryEditorMode(enum.StrEnum):
-    CODE = "code"
     BUILDER = "builder"
+    CODE = "code"
 ```

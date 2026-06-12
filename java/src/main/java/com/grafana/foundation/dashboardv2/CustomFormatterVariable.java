@@ -8,7 +8,9 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.ObjectWriter;
 import com.fasterxml.jackson.annotation.JsonInclude;
 
-// Custom formatter variable
+/**
+ * Custom formatter variable
+ */
 public class CustomFormatterVariable {
     @JsonProperty("name")
     public String name;

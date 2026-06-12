@@ -3,7 +3,9 @@
 import * as cog from '../cog';
 import * as common from '../common';
 
-// TODO docs
+/**
+ * TODO docs
+ */
 export class SingleStatBaseOptionsBuilder implements cog.Builder<common.SingleStatBaseOptions> {
     protected readonly internal: common.SingleStatBaseOptions;
 

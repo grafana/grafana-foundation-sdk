@@ -12,7 +12,9 @@ import com.fasterxml.jackson.annotation.JsonSetter;
 import com.fasterxml.jackson.annotation.Nulls;
 import java.util.List;
 
-// Custom variable specification
+/**
+ * Custom variable specification
+ */
 public class CustomVariableSpec {
     @JsonProperty("name")
     public String name;

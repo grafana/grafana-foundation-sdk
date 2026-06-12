@@ -2,6 +2,9 @@
 
 namespace Grafana\Foundation\Playlistv0alpha1;
 
+/**
+ * @deprecated Prefer using playlistv1.Playlist instead.
+ */
 class Playlist implements \JsonSerializable
 {
     public string $title;

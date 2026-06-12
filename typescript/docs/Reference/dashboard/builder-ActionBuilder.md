@@ -3,6 +3,8 @@ title: <span class="badge builder"></span> ActionBuilder
 ---
 # <span class="badge builder"></span> ActionBuilder
 
+Dashboard action
+
 ## Constructor
 
 ```typescript

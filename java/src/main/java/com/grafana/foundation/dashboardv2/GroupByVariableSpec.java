@@ -13,7 +13,9 @@ import com.fasterxml.jackson.annotation.JsonSetter;
 import com.fasterxml.jackson.annotation.Nulls;
 import java.util.List;
 
-// GroupBy variable specification
+/**
+ * GroupBy variable specification
+ */
 public class GroupByVariableSpec {
     @JsonProperty("name")
     public String name;

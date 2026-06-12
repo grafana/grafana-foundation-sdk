@@ -3,7 +3,9 @@
 import * as cog from '../cog';
 import * as googlecloudmonitoring from '../googlecloudmonitoring';
 
-// Query filter representation.
+/**
+ * Query filter representation.
+ */
 export class FilterBuilder implements cog.Builder<googlecloudmonitoring.Filter> {
     protected readonly internal: googlecloudmonitoring.Filter;
 

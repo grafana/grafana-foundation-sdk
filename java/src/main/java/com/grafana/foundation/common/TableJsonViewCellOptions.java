@@ -7,7 +7,9 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.ObjectWriter;
 
-// Json view cell options
+/**
+ * Json view cell options
+ */
 public class TableJsonViewCellOptions {
     @JsonProperty("type")
     public TableCellDisplayMode type;

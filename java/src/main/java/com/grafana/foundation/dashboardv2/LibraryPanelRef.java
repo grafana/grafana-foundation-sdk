@@ -7,9 +7,11 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.ObjectWriter;
 
-// A library panel is a reusable panel that you can use in any dashboard.
-// When you make a change to a library panel, that change propagates to all instances of where the panel is used.
-// Library panels streamline reuse of panels across multiple dashboards.
+/**
+ * A library panel is a reusable panel that you can use in any dashboard.
+ * When you make a change to a library panel, that change propagates to all instances of where the panel is used.
+ * Library panels streamline reuse of panels across multiple dashboards.
+ */
 public class LibraryPanelRef {
     // Library panel name
     @JsonProperty("name")

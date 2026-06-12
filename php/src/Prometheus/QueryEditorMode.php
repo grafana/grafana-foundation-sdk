@@ -18,32 +18,32 @@ final class QueryEditorMode implements \JsonSerializable, \Stringable {
         $this->value = $value;
     }
 
-    public static function code(): self
-    {
-        if (!isset(self::$instances["code"])) {
-            self::$instances["code"] = new self("code");
-        }
-
-        return self::$instances["code"];
-    }
-
     public static function builder(): self
     {
-        if (!isset(self::$instances["builder"])) {
-            self::$instances["builder"] = new self("builder");
+        if (!isset(self::$instances["Builder"])) {
+            self::$instances["Builder"] = new self("builder");
         }
 
-        return self::$instances["builder"];
+        return self::$instances["Builder"];
+    }
+
+    public static function code(): self
+    {
+        if (!isset(self::$instances["Code"])) {
+            self::$instances["Code"] = new self("code");
+        }
+
+        return self::$instances["Code"];
     }
 
     public static function fromValue(string $value): self
     {
-        if ($value === "code") {
-            return self::code();
-        }
-
         if ($value === "builder") {
             return self::builder();
+        }
+
+        if ($value === "code") {
+            return self::code();
         }
 
         throw new \UnexpectedValueException("Value '$value' is not part of the enum QueryEditorMode");

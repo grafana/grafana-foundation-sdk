@@ -7,8 +7,10 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.ObjectWriter;
 
-// RelativeTimeRange is the per query start and end time
-// for requests.
+/**
+ * RelativeTimeRange is the per query start and end time
+ * for requests.
+ */
 public class RelativeTimeRange {
     // A Duration represents the elapsed time between two instants
     // as an int64 nanosecond count. The representation limits the

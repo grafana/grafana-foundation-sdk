@@ -39,7 +39,9 @@
           "description": "Navigation preferences"
         }
       },
-      "description": "Spec defines user, team or org Grafana preferences\nswagger:model Preferences"
+      "description": "Spec defines user, team or org Grafana preferences\nswagger:model Preferences",
+      "deprecated": true,
+      "x-deprecation-message": "Prefer using preferencesv1alpha1.Preferences instead."
     },
     "QueryHistoryPreference": {
       "type": "object",

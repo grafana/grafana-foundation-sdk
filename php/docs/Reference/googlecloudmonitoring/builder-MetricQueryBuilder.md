@@ -3,6 +3,8 @@ title: <span class="badge builder"></span> MetricQueryBuilder
 ---
 # <span class="badge builder"></span> MetricQueryBuilder
 
+@deprecated This type is for migration purposes only. Replaced by TimeSeriesList Metric sub-query properties.
+
 ## Constructor
 
 ```php

@@ -9,7 +9,9 @@ import com.fasterxml.jackson.databind.ObjectWriter;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import java.util.Map;
 
-// Group variable kind
+/**
+ * Group variable kind
+ */
 public class GroupByVariableKind {
     @JsonProperty("kind")
     public String kind;

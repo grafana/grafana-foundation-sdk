@@ -3,7 +3,9 @@
 import * as cog from '../cog';
 import * as dashboardv2 from '../dashboardv2';
 
-// Dashboard specific preferences (applied per dashboard = all users using the dashboard)
+/**
+ * Dashboard specific preferences (applied per dashboard = all users using the dashboard)
+ */
 export class PreferencesBuilder implements cog.Builder<dashboardv2.Preferences> {
     protected readonly internal: dashboardv2.Preferences;
 

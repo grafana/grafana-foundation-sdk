@@ -3,6 +3,8 @@ title: <span class="badge builder"></span> VariableValueOptionBuilder
 ---
 # <span class="badge builder"></span> VariableValueOptionBuilder
 
+FIXME: should we introduce this? --- Variable value option
+
 ## Constructor
 
 ```java

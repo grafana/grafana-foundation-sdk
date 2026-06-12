@@ -3,7 +3,9 @@
 import * as cog from '../cog';
 import * as dashboard from '../dashboard';
 
-// Counterpart for TypeScript's TimeOption type.
+/**
+ * Counterpart for TypeScript's TimeOption type.
+ */
 export class TimeOptionBuilder implements cog.Builder<dashboard.TimeOption> {
     protected readonly internal: dashboard.TimeOption;
 

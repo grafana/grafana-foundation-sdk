@@ -3,7 +3,9 @@
 import * as cog from '../cog';
 import * as alerting from '../alerting';
 
-// Redefining this to avoid an import cycle
+/**
+ * Redefining this to avoid an import cycle
+ */
 export class TimeRangeBuilder implements cog.Builder<alerting.TimeRange> {
     protected readonly internal: alerting.TimeRange;
 

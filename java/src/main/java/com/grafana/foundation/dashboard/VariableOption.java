@@ -8,7 +8,9 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.ObjectWriter;
 import com.fasterxml.jackson.annotation.JsonInclude;
 
-// Option to be selected in a variable.
+/**
+ * Option to be selected in a variable.
+ */
 public class VariableOption {
     // Whether the option is selected or not
     @JsonInclude(JsonInclude.Include.NON_NULL)

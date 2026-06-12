@@ -3,6 +3,8 @@ title: <span class="badge builder"></span> OptionsWithTextFormatting
 ---
 # <span class="badge builder"></span> OptionsWithTextFormatting
 
+TODO docs
+
 ## Constructor
 
 ```python

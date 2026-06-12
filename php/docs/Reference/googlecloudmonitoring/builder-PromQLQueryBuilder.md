@@ -3,6 +3,8 @@ title: <span class="badge builder"></span> PromQLQueryBuilder
 ---
 # <span class="badge builder"></span> PromQLQueryBuilder
 
+PromQL sub-query properties.
+
 ## Constructor
 
 ```php

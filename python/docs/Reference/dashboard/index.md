@@ -77,7 +77,7 @@
  * <span class="badge builder"></span> [AnnotationTarget](./builder-AnnotationTarget.md)
  * <span class="badge builder"></span> [ConstantVariable](./builder-ConstantVariable.md)
  * <span class="badge builder"></span> [CustomVariable](./builder-CustomVariable.md)
- * <span class="badge builder"></span> [Dashboard](./builder-Dashboard.md)
+ * <span class="badge builder"></span> <span class="badge deprecated"></span> [Dashboard](./builder-Dashboard.md)
  * <span class="badge builder"></span> [DashboardActionStyle](./builder-DashboardActionStyle.md)
  * <span class="badge builder"></span> [DashboardDashboardTemplating](./builder-DashboardDashboardTemplating.md)
  * <span class="badge builder"></span> [DashboardFieldConfigSourceOverrides](./builder-DashboardFieldConfigSourceOverrides.md)

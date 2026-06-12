@@ -9,7 +9,9 @@ import com.fasterxml.jackson.databind.ObjectWriter;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import java.util.List;
 
-// Infinity options
+/**
+ * Infinity options
+ */
 public class InfinityOptions {
     @JsonInclude(JsonInclude.Include.NON_EMPTY)
     @JsonProperty("method")

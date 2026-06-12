@@ -18,6 +18,14 @@ Builds the object.
 def build() -> dashboardv2.DataQueryKind
 ```
 
+### <span class="badge object-method"></span> adhoc_filters
+
+Additional Ad-hoc filters that take precedence over Scope on conflict.
+
+```python
+def adhoc_filters(adhoc_filters: list[cogbuilder.Builder[prometheus.AdhocFilters]]) -> typing.Self
+```
+
 ### <span class="badge object-method"></span> datasource
 
 New type for datasource reference
@@ -30,7 +38,13 @@ def datasource(ref: cogbuilder.Builder[dashboardv2.Dashboardv2DataQueryKindDatas
 
 ### <span class="badge object-method"></span> editor_mode
 
-Specifies which editor is being used to prepare the query. It can be "code" or "builder"
+what we should show in the editor
+
+Possible enum values:
+
+ - `"builder"` 
+
+ - `"code"` 
 
 ```python
 def editor_mode(editor_mode: prometheus.QueryEditorMode) -> typing.Self
@@ -54,15 +68,35 @@ def expr(expr: str) -> typing.Self
 
 ### <span class="badge object-method"></span> format_val
 
-Query format to determine how to display data points in panel. It can be "time_series", "table", "heatmap"
+The response format
+
+Possible enum values:
+
+ - `"time_series"` 
+
+ - `"table"` 
+
+ - `"heatmap"` 
 
 ```python
 def format_val(format_val: prometheus.PromQueryFormat) -> typing.Self
 ```
 
+### <span class="badge object-method"></span> group_by_keys
+
+Group By parameters to apply to aggregate expressions in the query
+
+```python
+def group_by_keys(group_by_keys: list[str]) -> typing.Self
+```
+
 ### <span class="badge object-method"></span> hide
 
-If hide is set to true, Grafana will filter out the response(s) associated with this query before returning it to the panel.
+true if query is disabled (ie should not be returned to the dashboard)
+
+NOTE: this does not always imply that the query should not be executed since
+
+the results from a hidden query may be used as the input to other queries (SSE etc)
 
 ```python
 def hide(hide: bool) -> typing.Self
@@ -88,12 +122,26 @@ def interval(interval: str) -> typing.Self
 
 ### <span class="badge object-method"></span> interval_factor
 
-@deprecated Used to specify how many times to divide max data points by. We use max data points under query options
+Used to specify how many times to divide max data points by. We use max data points under query options
 
 See https://github.com/grafana/grafana/issues/48081
 
+Deprecated: use interval
+
 ```python
-def interval_factor(interval_factor: float) -> typing.Self
+def interval_factor(interval_factor: int) -> typing.Self
+```
+
+### <span class="badge object-method"></span> interval_ms
+
+Interval is the suggested duration between time points in a time series query.
+
+NOTE: the values for intervalMs is not saved in the query model.  It is typically calculated
+
+from the interval required to fill a pixels in the visualization
+
+```python
+def interval_ms(interval_ms: float) -> typing.Self
 ```
 
 ### <span class="badge object-method"></span> labels
@@ -110,11 +158,23 @@ Series name override or template. Ex. {{hostname}} will be replaced with label v
 def legend_format(legend_format: str) -> typing.Self
 ```
 
+### <span class="badge object-method"></span> max_data_points
+
+MaxDataPoints is the maximum number of data points that should be returned from a time series query.
+
+NOTE: the values for maxDataPoints is not saved in the query model.  It is typically calculated
+
+from the number of pixels visible in a visualization
+
+```python
+def max_data_points(max_data_points: int) -> typing.Self
+```
+
 ### <span class="badge object-method"></span> query_type
 
-Specify the query flavor
+QueryType is an optional identifier for the type of query.
 
-TODO make this required and give it a default
+It can be used to distinguish different types of queries.
 
 ```python
 def query_type(query_type: str) -> typing.Self
@@ -130,14 +190,38 @@ def range_val(range_val: bool) -> typing.Self
 
 ### <span class="badge object-method"></span> ref_id
 
-A unique identifier for the query within the list of targets.
-
-In server side expressions, the refId is used as a variable name to identify results.
-
-By default, the UI will assign A->Z; however setting meaningful names may be useful.
+RefID is the unique identifier of the query, set by the frontend call.
 
 ```python
 def ref_id(ref_id: str) -> typing.Self
+```
+
+### <span class="badge object-method"></span> result_assertions
+
+Optionally define expected query result behavior
+
+```python
+def result_assertions(result_assertions: cogbuilder.Builder[prometheus.ResultAssertions]) -> typing.Self
+```
+
+### <span class="badge object-method"></span> scopes
+
+A set of filters applied to apply to the query
+
+```python
+def scopes(scopes: list[cogbuilder.Builder[prometheus.Scopes]]) -> typing.Self
+```
+
+### <span class="badge object-method"></span> time_range
+
+TimeRange represents the query range
+
+NOTE: unlike generic /ds/query, we can now send explicit time values in each query
+
+NOTE: the values for timeRange are not saved in a dashboard, they are constructed on the fly
+
+```python
+def time_range(time_range: cogbuilder.Builder[prometheus.TimeRange]) -> typing.Self
 ```
 
 ### <span class="badge object-method"></span> version

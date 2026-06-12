@@ -3,6 +3,8 @@ title: <span class="badge builder"></span> CellValues
 ---
 # <span class="badge builder"></span> CellValues
 
+Controls cell value options
+
 ## Constructor
 
 ```python

@@ -3,6 +3,9 @@
 package com.grafana.foundation.googlecloudmonitoring;
 
 
+/**
+ * PromQL sub-query properties.
+ */
 public class PromQLQueryBuilder implements com.grafana.foundation.cog.Builder<PromQLQuery> {
     protected final PromQLQuery internal;
     

@@ -7,6 +7,10 @@ import com.grafana.foundation.cog.variants.Dataquery;
 import java.util.Map;
 import java.util.HashMap;
 
+/**
+ * TODO docs
+ * FROM: AnnotationQuery in grafana-data/src/types/annotations.ts
+ */
 public class AnnotationQueryBuilder implements com.grafana.foundation.cog.Builder<AnnotationQuery> {
     protected final AnnotationQuery internal;
     

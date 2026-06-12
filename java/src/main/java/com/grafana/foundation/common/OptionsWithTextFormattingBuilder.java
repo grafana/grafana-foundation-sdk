@@ -3,6 +3,9 @@
 package com.grafana.foundation.common;
 
 
+/**
+ * TODO docs
+ */
 public class OptionsWithTextFormattingBuilder implements com.grafana.foundation.cog.Builder<OptionsWithTextFormatting> {
     protected final OptionsWithTextFormatting internal;
     

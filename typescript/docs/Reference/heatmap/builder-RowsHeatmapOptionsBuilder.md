@@ -3,6 +3,8 @@ title: <span class="badge builder"></span> RowsHeatmapOptionsBuilder
 ---
 # <span class="badge builder"></span> RowsHeatmapOptionsBuilder
 
+Controls frame rows options
+
 ## Constructor
 
 ```typescript

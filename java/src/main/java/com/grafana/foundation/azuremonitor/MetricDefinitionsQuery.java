@@ -8,7 +8,9 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.ObjectWriter;
 import com.fasterxml.jackson.annotation.JsonInclude;
 
-// @deprecated Use MetricNamespaceQuery instead
+/**
+ * @deprecated Use MetricNamespaceQuery instead
+ */
 public class MetricDefinitionsQuery {
     @JsonInclude(JsonInclude.Include.NON_NULL)
     @JsonProperty("rawQuery")

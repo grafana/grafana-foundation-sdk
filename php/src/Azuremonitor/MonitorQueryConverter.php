@@ -10,7 +10,7 @@ final class MonitorQueryConverter
         $calls = [
             '(new \Grafana\Foundation\Azuremonitor\MonitorQueryBuilder())',
         ];
-            if ($input->refId !== "") {
+            if ($input->refId !== null && $input->refId !== "") {
     
         
     $buffer = 'refId(';
@@ -257,7 +257,7 @@ final class MonitorQueryConverter
     
         
     $buffer = 'datasource(';
-        $arg0 =\var_export($input->datasource, true);
+        $arg0 ='(new \Grafana\Foundation\Common\DataSourceRef('.(($input->datasource->type !== null) ? 'type: '.\var_export($input->datasource->type, true).', ' : '').''.(($input->datasource->uid !== null) ? 'uid: '.\var_export($input->datasource->uid, true).', ' : '').'))';
         $buffer .= $arg0;
         
     $buffer .= ')';

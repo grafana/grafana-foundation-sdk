@@ -3,6 +3,8 @@ title: <span class="badge builder"></span> DashboardLinkBuilder
 ---
 # <span class="badge builder"></span> DashboardLinkBuilder
 
+Links with references to other dashboards or external resources
+
 ## Constructor
 
 ```php
@@ -65,7 +67,7 @@ origin(\Grafana\Foundation\Cog\Builder $origin)
 Placement can be used to display the link somewhere else on the dashboard other than above the visualisations.
 
 ```php
-placement(string $placement)
+placement(\Grafana\Foundation\Dashboardv2beta1\DashboardLinkPlacement $placement)
 ```
 
 ### <span class="badge object-method"></span> tags

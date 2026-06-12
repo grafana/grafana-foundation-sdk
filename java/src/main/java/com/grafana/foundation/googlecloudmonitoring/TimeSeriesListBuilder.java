@@ -4,6 +4,9 @@ package com.grafana.foundation.googlecloudmonitoring;
 
 import java.util.List;
 
+/**
+ * Time Series List sub-query properties.
+ */
 public class TimeSeriesListBuilder implements com.grafana.foundation.cog.Builder<TimeSeriesList> {
     protected final TimeSeriesList internal;
     

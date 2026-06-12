@@ -39,7 +39,9 @@ export const defaultCloudMonitoringQuery = (): CloudMonitoringQuery => ({
 	_implementsDataqueryVariant: () => {},
 });
 
-// Time Series List sub-query properties.
+/**
+ * Time Series List sub-query properties.
+ */
 export interface TimeSeriesList {
 	// GCP project to execute the query against.
 	projectName: string;
@@ -76,7 +78,9 @@ export const defaultTimeSeriesList = (): TimeSeriesList => ({
 	crossSeriesReducer: "",
 });
 
-// Types of pre-processor available. Defined by the metric.
+/**
+ * Types of pre-processor available. Defined by the metric.
+ */
 export enum PreprocessorType {
 	None = "none",
 	Rate = "rate",
@@ -85,7 +89,9 @@ export enum PreprocessorType {
 
 export const defaultPreprocessorType = (): PreprocessorType => (PreprocessorType.None);
 
-// Time Series sub-query properties.
+/**
+ * Time Series sub-query properties.
+ */
 export interface TimeSeriesQuery {
 	// GCP project to execute the query against.
 	projectName: string;
@@ -101,7 +107,9 @@ export const defaultTimeSeriesQuery = (): TimeSeriesQuery => ({
 	graphPeriod: "disabled",
 });
 
-// SLO sub-query properties.
+/**
+ * SLO sub-query properties.
+ */
 export interface SLOQuery {
 	// GCP project to execute the query against.
 	projectName: string;
@@ -134,7 +142,9 @@ export const defaultSLOQuery = (): SLOQuery => ({
 	sloName: "",
 });
 
-// PromQL sub-query properties.
+/**
+ * PromQL sub-query properties.
+ */
 export interface PromQLQuery {
 	// GCP project to execute the query against.
 	projectName: string;
@@ -150,7 +160,9 @@ export const defaultPromQLQuery = (): PromQLQuery => ({
 	step: "",
 });
 
-// Defines the supported queryTypes.
+/**
+ * Defines the supported queryTypes.
+ */
 export enum QueryType {
 	TIMESERIESLIST = "timeSeriesList",
 	TIMESERIESQUERY = "timeSeriesQuery",
@@ -161,7 +173,9 @@ export enum QueryType {
 
 export const defaultQueryType = (): QueryType => (QueryType.TIMESERIESLIST);
 
-// @deprecated This type is for migration purposes only. Replaced by TimeSeriesList Metric sub-query properties.
+/**
+ * @deprecated This type is for migration purposes only. Replaced by TimeSeriesList Metric sub-query properties.
+ */
 export interface MetricQuery {
 	// GCP project to execute the query against.
 	projectName: string;
@@ -244,7 +258,9 @@ export enum AlignmentTypes {
 
 export const defaultAlignmentTypes = (): AlignmentTypes => (AlignmentTypes.ALIGNDELTA);
 
-// @deprecated Use TimeSeriesList instead. Legacy annotation query properties for migration purposes.
+/**
+ * @deprecated Use TimeSeriesList instead. Legacy annotation query properties for migration purposes.
+ */
 export interface LegacyCloudMonitoringAnnotationQuery {
 	// GCP project to execute the query against.
 	projectName: string;
@@ -272,7 +288,9 @@ export const defaultLegacyCloudMonitoringAnnotationQuery = (): LegacyCloudMonito
 	text: "",
 });
 
-// Query filter representation.
+/**
+ * Query filter representation.
+ */
 export interface Filter {
 	// Filter key.
 	key: string;

@@ -3,6 +3,8 @@ title: <span class="badge builder"></span> AxisConfig
 ---
 # <span class="badge builder"></span> AxisConfig
 
+TODO docs
+
 ## Constructor
 
 ```python

@@ -9,7 +9,9 @@ import com.fasterxml.jackson.databind.ObjectWriter;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import java.util.Map;
 
-// #MovingAverage's settings are overridden in types.ts
+/**
+ * #MovingAverage's settings are overridden in types.ts
+ */
 public class MovingAverage {
     @JsonInclude(JsonInclude.Include.NON_NULL)
     @JsonProperty("pipelineAgg")

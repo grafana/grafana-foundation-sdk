@@ -7,7 +7,9 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.ObjectWriter;
 
-// Counterpart for TypeScript's TimeOption type.
+/**
+ * Counterpart for TypeScript's TimeOption type.
+ */
 public class TimeOption {
     @JsonProperty("display")
     public String display;

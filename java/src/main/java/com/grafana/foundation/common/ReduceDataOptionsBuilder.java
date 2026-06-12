@@ -4,6 +4,9 @@ package com.grafana.foundation.common;
 
 import java.util.List;
 
+/**
+ * TODO docs
+ */
 public class ReduceDataOptionsBuilder implements com.grafana.foundation.cog.Builder<ReduceDataOptions> {
     protected final ReduceDataOptions internal;
     

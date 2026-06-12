@@ -9,7 +9,9 @@ import com.fasterxml.jackson.databind.ObjectWriter;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.grafana.foundation.common.HeatmapCellLayout;
 
-// Controls frame rows options
+/**
+ * Controls frame rows options
+ */
 public class RowsHeatmapOptions {
     // Sets the name of the cell when not calculating from data
     @JsonInclude(JsonInclude.Include.NON_NULL)

@@ -1,7 +1,13 @@
 ---
-title: <span class="badge builder"></span> Preferences
+title: <span class="badge builder"></span> <span class="badge deprecated"></span> Preferences
 ---
-# <span class="badge builder"></span> Preferences
+# <span class="badge builder"></span> <span class="badge deprecated"></span> Preferences
+
+<span class="badge deprecated"></span>Prefer using preferencesv1alpha1.Preferences instead.
+
+Spec defines user, team or org Grafana preferences
+
+swagger:model Preferences
 
 ## Constructor
 

@@ -3,6 +3,8 @@ title: <span class="badge builder"></span> PanelBuilder
 ---
 # <span class="badge builder"></span> PanelBuilder
 
+Dashboard panels are the basic visualization building blocks.
+
 ## Constructor
 
 ```typescript

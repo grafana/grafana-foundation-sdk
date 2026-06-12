@@ -3,6 +3,8 @@ title: <span class="badge builder"></span> MetricFindValue
 ---
 # <span class="badge builder"></span> MetricFindValue
 
+Define the MetricFindValue type
+
 ## Constructor
 
 ```python

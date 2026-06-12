@@ -8,7 +8,9 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.ObjectWriter;
 import com.fasterxml.jackson.annotation.JsonInclude;
 
-// Auto mode table cell options
+/**
+ * Auto mode table cell options
+ */
 public class TableAutoCellOptions {
     @JsonProperty("type")
     public TableCellDisplayMode type;

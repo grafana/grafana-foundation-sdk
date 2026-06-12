@@ -3,6 +3,8 @@ title: <span class="badge builder"></span> TableFooterOptionsBuilder
 ---
 # <span class="badge builder"></span> TableFooterOptionsBuilder
 
+Footer options
+
 ## Constructor
 
 ```go

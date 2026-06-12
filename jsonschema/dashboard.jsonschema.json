@@ -279,7 +279,9 @@
           "type": "boolean",
           "description": "When set to true, the dashboard will load all panels in the dashboard when it's loaded."
         }
-      }
+      },
+      "deprecated": true,
+      "x-deprecation-message": "Prefer using dashboardv2.Dashboard instead."
     },
     "DashboardCursorSync": {
       "enum": [

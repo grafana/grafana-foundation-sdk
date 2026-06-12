@@ -3,7 +3,9 @@
 import * as cog from '../cog';
 import * as azuremonitor from '../azuremonitor';
 
-// Application Insights Traces sub-query properties
+/**
+ * Application Insights Traces sub-query properties
+ */
 export class TracesQueryBuilder implements cog.Builder<azuremonitor.TracesQuery> {
     protected readonly internal: azuremonitor.TracesQuery;
 

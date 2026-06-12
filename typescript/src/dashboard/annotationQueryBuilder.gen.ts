@@ -4,8 +4,10 @@ import * as cog from '../cog';
 import * as dashboard from '../dashboard';
 import * as common from '../common';
 
-// TODO docs
-// FROM: AnnotationQuery in grafana-data/src/types/annotations.ts
+/**
+ * TODO docs
+ * FROM: AnnotationQuery in grafana-data/src/types/annotations.ts
+ */
 export class AnnotationQueryBuilder implements cog.Builder<dashboard.AnnotationQuery> {
     protected readonly internal: dashboard.AnnotationQuery;
 

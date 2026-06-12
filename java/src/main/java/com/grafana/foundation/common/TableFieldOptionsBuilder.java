@@ -3,6 +3,10 @@
 package com.grafana.foundation.common;
 
 
+/**
+ * Field options for each field within a table (e.g 10, "The String", 64.20, etc.)
+ * Generally defines alignment, filtering capabilties, display options, etc.
+ */
 public class TableFieldOptionsBuilder implements com.grafana.foundation.cog.Builder<TableFieldOptions> {
     protected final TableFieldOptions internal;
     

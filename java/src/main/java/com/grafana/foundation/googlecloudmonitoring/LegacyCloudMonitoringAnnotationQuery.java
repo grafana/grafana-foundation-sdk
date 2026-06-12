@@ -12,7 +12,9 @@ import com.fasterxml.jackson.annotation.Nulls;
 import java.util.List;
 import com.fasterxml.jackson.annotation.JsonInclude;
 
-// @deprecated Use TimeSeriesList instead. Legacy annotation query properties for migration purposes.
+/**
+ * @deprecated Use TimeSeriesList instead. Legacy annotation query properties for migration purposes.
+ */
 public class LegacyCloudMonitoringAnnotationQuery {
     // GCP project to execute the query against.
     @JsonProperty("projectName")

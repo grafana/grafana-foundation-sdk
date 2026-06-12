@@ -3,7 +3,9 @@
 import * as cog from '../cog';
 import * as common from '../common';
 
-// TODO docs
+/**
+ * TODO docs
+ */
 export class HideSeriesConfigBuilder implements cog.Builder<common.HideSeriesConfig> {
     protected readonly internal: common.HideSeriesConfig;
 

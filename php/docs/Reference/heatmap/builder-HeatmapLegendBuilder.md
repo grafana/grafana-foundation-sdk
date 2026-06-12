@@ -3,6 +3,8 @@ title: <span class="badge builder"></span> HeatmapLegendBuilder
 ---
 # <span class="badge builder"></span> HeatmapLegendBuilder
 
+Controls legend options
+
 ## Constructor
 
 ```php

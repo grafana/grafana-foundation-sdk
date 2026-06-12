@@ -3,6 +3,8 @@ title: <span class="badge builder"></span> TracesQueryBuilder
 ---
 # <span class="badge builder"></span> TracesQueryBuilder
 
+Application Insights Traces sub-query properties
+
 ## Constructor
 
 ```go

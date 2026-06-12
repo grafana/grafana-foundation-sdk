@@ -8,7 +8,9 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.ObjectWriter;
 import com.fasterxml.jackson.annotation.JsonInclude;
 
-// Interval variable kind
+/**
+ * Interval variable kind
+ */
 public class IntervalVariableKind {
     @JsonProperty("kind")
     public String kind;

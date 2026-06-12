@@ -6,6 +6,11 @@ import java.util.Map;
 import com.grafana.foundation.common.DataSourceRef;
 import java.util.List;
 
+/**
+ * Shape of a CloudWatch Annotation query
+ * TS type is CloudWatchDefaultQuery = Omit<CloudWatchLogsQuery, 'queryMode'> & CloudWatchMetricsQuery, declared in veneer
+ * #CloudWatchDefaultQuery: #CloudWatchLogsQuery & #CloudWatchMetricsQuery @cuetsy(kind="type")
+ */
 public class AnnotationQueryBuilder implements com.grafana.foundation.cog.Builder<AnnotationQuery> {
     protected final AnnotationQuery internal;
     

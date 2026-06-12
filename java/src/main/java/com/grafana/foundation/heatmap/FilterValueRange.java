@@ -8,7 +8,9 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.ObjectWriter;
 import com.fasterxml.jackson.annotation.JsonInclude;
 
-// Controls the value filter range
+/**
+ * Controls the value filter range
+ */
 public class FilterValueRange {
     // Sets the filter range to values less than or equal to the given value
     @JsonInclude(JsonInclude.Include.NON_NULL)

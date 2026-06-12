@@ -3,7 +3,9 @@
 import * as cog from '../cog';
 import * as dashboard from '../dashboard';
 
-// Thresholds configuration for the panel
+/**
+ * Thresholds configuration for the panel
+ */
 export class ThresholdsConfigBuilder implements cog.Builder<dashboard.ThresholdsConfig> {
     protected readonly internal: dashboard.ThresholdsConfig;
 

@@ -3,6 +3,8 @@ title: <span class="badge builder"></span> TimeOptionBuilder
 ---
 # <span class="badge builder"></span> TimeOptionBuilder
 
+Counterpart for TypeScript's TimeOption type.
+
 ## Constructor
 
 ```go

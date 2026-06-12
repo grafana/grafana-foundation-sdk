@@ -3,6 +3,8 @@ title: <span class="badge builder"></span> SingleStatBaseOptions
 ---
 # <span class="badge builder"></span> SingleStatBaseOptions
 
+TODO docs
+
 ## Constructor
 
 ```python

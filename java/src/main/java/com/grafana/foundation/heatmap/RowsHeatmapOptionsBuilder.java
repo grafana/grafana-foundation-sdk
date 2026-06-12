@@ -4,6 +4,9 @@ package com.grafana.foundation.heatmap;
 
 import com.grafana.foundation.common.HeatmapCellLayout;
 
+/**
+ * Controls frame rows options
+ */
 public class RowsHeatmapOptionsBuilder implements com.grafana.foundation.cog.Builder<RowsHeatmapOptions> {
     protected final RowsHeatmapOptions internal;
     

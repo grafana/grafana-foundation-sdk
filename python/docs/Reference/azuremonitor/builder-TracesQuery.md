@@ -3,6 +3,8 @@ title: <span class="badge builder"></span> TracesQuery
 ---
 # <span class="badge builder"></span> TracesQuery
 
+Application Insights Traces sub-query properties
+
 ## Constructor
 
 ```python

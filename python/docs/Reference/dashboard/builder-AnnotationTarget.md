@@ -3,6 +3,10 @@ title: <span class="badge builder"></span> AnnotationTarget
 ---
 # <span class="badge builder"></span> AnnotationTarget
 
+TODO: this should be a regular DataQuery that depends on the selected dashboard
+
+these match the properties of the "grafana" datasouce that is default in most dashboards
+
 ## Constructor
 
 ```python

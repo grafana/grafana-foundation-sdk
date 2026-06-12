@@ -4,6 +4,9 @@ package com.grafana.foundation.common;
 
 import java.util.List;
 
+/**
+ * TODO docs
+ */
 public class OptionsWithTimezonesBuilder implements com.grafana.foundation.cog.Builder<OptionsWithTimezones> {
     protected final OptionsWithTimezones internal;
     

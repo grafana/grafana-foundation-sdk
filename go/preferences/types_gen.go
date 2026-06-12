@@ -13,6 +13,7 @@ import (
 
 // Spec defines user, team or org Grafana preferences
 // swagger:model Preferences
+// Deprecated: Prefer using preferencesv1alpha1.Preferences instead.
 type Preferences struct {
 	// UID for the home dashboard
 	HomeDashboardUID *string `json:"homeDashboardUID,omitempty"`

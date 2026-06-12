@@ -3,6 +3,8 @@ title: <span class="badge builder"></span> LegacyCloudMonitoringAnnotationQueryB
 ---
 # <span class="badge builder"></span> LegacyCloudMonitoringAnnotationQueryBuilder
 
+@deprecated Use TimeSeriesList instead. Legacy annotation query properties for migration purposes.
+
 ## Constructor
 
 ```php

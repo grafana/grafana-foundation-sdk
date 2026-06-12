@@ -3,6 +3,9 @@
 package com.grafana.foundation.alerting;
 
 
+/**
+ * Redefining this to avoid an import cycle
+ */
 public class TimeRangeBuilder implements com.grafana.foundation.cog.Builder<TimeRange> {
     protected final TimeRange internal;
     

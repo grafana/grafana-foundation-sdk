@@ -3,7 +3,9 @@
 import * as cog from '../cog';
 import * as dashboardv2 from '../dashboardv2';
 
-// Define the AdHocFilterWithLabels type
+/**
+ * Define the AdHocFilterWithLabels type
+ */
 export class AdHocFilterWithLabelsBuilder implements cog.Builder<dashboardv2.AdHocFilterWithLabels> {
     protected readonly internal: dashboardv2.AdHocFilterWithLabels;
 

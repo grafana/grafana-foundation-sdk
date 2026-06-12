@@ -3,6 +3,9 @@
 package com.grafana.foundation.common;
 
 
+/**
+ * TODO docs
+ */
 public class StackableFieldConfigBuilder implements com.grafana.foundation.cog.Builder<StackableFieldConfig> {
     protected final StackableFieldConfig internal;
     

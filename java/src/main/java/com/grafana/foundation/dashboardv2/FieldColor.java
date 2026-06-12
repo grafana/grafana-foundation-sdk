@@ -8,7 +8,9 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.ObjectWriter;
 import com.fasterxml.jackson.annotation.JsonInclude;
 
-// Map a field to a color.
+/**
+ * Map a field to a color.
+ */
 public class FieldColor {
     // The main color scheme mode.
     @JsonInclude(JsonInclude.Include.NON_EMPTY)

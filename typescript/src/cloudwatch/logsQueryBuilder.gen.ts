@@ -4,7 +4,9 @@ import * as cog from '../cog';
 import * as cloudwatch from '../cloudwatch';
 import * as common from '../common';
 
-// Shape of a CloudWatch Logs query
+/**
+ * Shape of a CloudWatch Logs query
+ */
 export class LogsQueryBuilder implements cog.Builder<cog.Dataquery> {
     protected readonly internal: cloudwatch.LogsQuery;
 

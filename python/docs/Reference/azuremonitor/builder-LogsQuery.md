@@ -3,6 +3,8 @@ title: <span class="badge builder"></span> LogsQuery
 ---
 # <span class="badge builder"></span> LogsQuery
 
+Azure Monitor Logs sub-query properties
+
 ## Constructor
 
 ```python

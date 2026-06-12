@@ -54,7 +54,7 @@ final class QueryConverter
     
     
     }
-            if ($input->spec !== null && $input->spec instanceof \Grafana\Foundation\Azuremonitor\MonitorQuery && $input->spec->refId !== "") {
+            if ($input->spec !== null && $input->spec instanceof \Grafana\Foundation\Azuremonitor\MonitorQuery && $input->spec->refId !== null && $input->spec->refId !== "") {
     
         
     $buffer = 'refId(';

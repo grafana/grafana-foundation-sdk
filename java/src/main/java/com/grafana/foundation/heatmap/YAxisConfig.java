@@ -11,7 +11,9 @@ import com.grafana.foundation.common.AxisPlacement;
 import com.grafana.foundation.common.AxisColorMode;
 import com.grafana.foundation.common.ScaleDistributionConfig;
 
-// Configuration options for the yAxis
+/**
+ * Configuration options for the yAxis
+ */
 public class YAxisConfig {
     // Sets the yAxis unit
     @JsonInclude(JsonInclude.Include.NON_NULL)

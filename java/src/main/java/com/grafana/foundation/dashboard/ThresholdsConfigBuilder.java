@@ -4,6 +4,9 @@ package com.grafana.foundation.dashboard;
 
 import java.util.List;
 
+/**
+ * Thresholds configuration for the panel
+ */
 public class ThresholdsConfigBuilder implements com.grafana.foundation.cog.Builder<ThresholdsConfig> {
     protected final ThresholdsConfig internal;
     

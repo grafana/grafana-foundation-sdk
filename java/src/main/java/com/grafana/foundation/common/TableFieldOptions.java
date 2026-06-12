@@ -8,8 +8,10 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.ObjectWriter;
 import com.fasterxml.jackson.annotation.JsonInclude;
 
-// Field options for each field within a table (e.g 10, "The String", 64.20, etc.)
-// Generally defines alignment, filtering capabilties, display options, etc.
+/**
+ * Field options for each field within a table (e.g 10, "The String", 64.20, etc.)
+ * Generally defines alignment, filtering capabilties, display options, etc.
+ */
 public class TableFieldOptions {
     @JsonInclude(JsonInclude.Include.NON_NULL)
     @JsonProperty("width")

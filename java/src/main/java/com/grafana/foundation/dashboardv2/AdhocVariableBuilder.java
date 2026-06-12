@@ -6,6 +6,9 @@ import java.util.Map;
 import java.util.List;
 import java.util.LinkedList;
 
+/**
+ * Adhoc variable kind
+ */
 public class AdhocVariableBuilder implements com.grafana.foundation.cog.Builder<AdhocVariableKind> {
     protected final AdhocVariableKind internal;
     

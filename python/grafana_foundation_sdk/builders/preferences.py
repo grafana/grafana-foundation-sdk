@@ -3,6 +3,7 @@
 import typing
 from ..cog import builder as cogbuilder
 from ..models import preferences
+import warnings
 
 
 class Preferences(cogbuilder.Builder[preferences.Preferences]):    
@@ -11,6 +12,8 @@ class Preferences(cogbuilder.Builder[preferences.Preferences]):
     swagger:model Preferences
     """
     
+    warnings.warn("Prefer using preferencesv1alpha1.Preferences instead.", DeprecationWarning)
+
     _internal: preferences.Preferences
 
     def __init__(self) -> None:

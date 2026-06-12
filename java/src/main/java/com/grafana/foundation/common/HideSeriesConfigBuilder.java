@@ -3,6 +3,9 @@
 package com.grafana.foundation.common;
 
 
+/**
+ * TODO docs
+ */
 public class HideSeriesConfigBuilder implements com.grafana.foundation.cog.Builder<HideSeriesConfig> {
     protected final HideSeriesConfig internal;
     

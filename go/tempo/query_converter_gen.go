@@ -57,10 +57,10 @@ func QueryConverter(input dashboardv2beta1.DataQueryKind) string {
 		buffer.Reset()
 
 	}
-	if input.Spec != nil && input.Spec.(*Dataquery).RefId != "" {
+	if input.Spec != nil && input.Spec.(*Dataquery).RefId != nil && *input.Spec.(*Dataquery).RefId != "" {
 
 		buffer.WriteString(`RefId(`)
-		arg0 := fmt.Sprintf("%#v", input.Spec.(*Dataquery).RefId)
+		arg0 := fmt.Sprintf("%#v", *input.Spec.(*Dataquery).RefId)
 		buffer.WriteString(arg0)
 
 		buffer.WriteString(")")

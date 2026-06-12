@@ -3,7 +3,9 @@
 import * as cog from '../cog';
 import * as common from '../common';
 
-// TODO docs
+/**
+ * TODO docs
+ */
 export class HideableFieldConfigBuilder implements cog.Builder<common.HideableFieldConfig> {
     protected readonly internal: common.HideableFieldConfig;
 

@@ -3,7 +3,9 @@
 import * as cog from '../cog';
 import * as dashboardv2beta1 from '../dashboardv2beta1';
 
-// Interval variable kind
+/**
+ * Interval variable kind
+ */
 export class IntervalVariableBuilder implements cog.Builder<dashboardv2beta1.IntervalVariableKind> {
     protected readonly internal: dashboardv2beta1.IntervalVariableKind;
 

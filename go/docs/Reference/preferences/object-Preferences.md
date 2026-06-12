@@ -1,7 +1,9 @@
 ---
-title: <span class="badge object-type-struct"></span> Preferences
+title: <span class="badge object-type-struct"></span> <span class="badge deprecated"></span> Preferences
 ---
-# <span class="badge object-type-struct"></span> Preferences
+# <span class="badge object-type-struct"></span> <span class="badge deprecated"></span> Preferences
+
+<span class="badge deprecated"></span>Prefer using preferencesv1alpha1.Preferences instead.
 
 Spec defines user, team or org Grafana preferences
 
@@ -60,4 +62,4 @@ func (preferences *Preferences) Validate() error
 
 ## See also
 
- * <span class="badge builder"></span> [PreferencesBuilder](./builder-PreferencesBuilder.md)
+ * <span class="badge builder"></span> <span class="badge deprecated"></span> [PreferencesBuilder](./builder-PreferencesBuilder.md)

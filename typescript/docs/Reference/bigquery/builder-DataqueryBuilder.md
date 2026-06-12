@@ -3,6 +3,8 @@ title: <span class="badge builder"></span> DataqueryBuilder
 ---
 # <span class="badge builder"></span> DataqueryBuilder
 
+Manually converted from https://github.com/grafana/google-bigquery-datasource/blob/18680e42ba557791d109c7c540c2c3f2647592f0/src/types.ts#L75
+
 ## Constructor
 
 ```typescript

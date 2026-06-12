@@ -114,7 +114,7 @@ final class MetricsQueryConverter
     
     
     }
-            if ($input->refId !== "") {
+            if ($input->refId !== null && $input->refId !== "") {
     
         
     $buffer = 'refId(';

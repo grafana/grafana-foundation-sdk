@@ -3,6 +3,10 @@ title: <span class="badge builder"></span> NotificationPolicyBuilder
 ---
 # <span class="badge builder"></span> NotificationPolicyBuilder
 
+A Route is a node that contains definitions of how to handle alerts. This is modified
+
+from the upstream alertmanager in that it adds the ObjectMatchers property.
+
 ## Constructor
 
 ```java

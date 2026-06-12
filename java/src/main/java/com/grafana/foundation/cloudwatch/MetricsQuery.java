@@ -13,7 +13,9 @@ import java.util.Map;
 import com.grafana.foundation.common.DataSourceRef;
 import java.util.List;
 
-// Shape of a CloudWatch Metrics query
+/**
+ * Shape of a CloudWatch Metrics query
+ */
 public class MetricsQuery {
     // Whether a query is a Metrics, Logs, or Annotations query
     @JsonInclude(JsonInclude.Include.NON_EMPTY)
@@ -50,6 +52,7 @@ public class MetricsQuery {
     // A unique identifier for the query within the list of targets.
     // In server side expressions, the refId is used as a variable name to identify results.
     // By default, the UI will assign A->Z; however setting meaningful names may be useful.
+    @JsonInclude(JsonInclude.Include.NON_NULL)
     @JsonProperty("refId")
     public String refId;
     // If hide is set to true, Grafana will filter out the response(s) associated with this query before returning it to the panel.
@@ -109,7 +112,6 @@ public class MetricsQuery {
     public MetricsQuery() {
         this.queryMode = QueryMode.METRICS;
         this.id = "";
-        this.refId = "";
         this.region = "";
         this.namespace = "";
     }

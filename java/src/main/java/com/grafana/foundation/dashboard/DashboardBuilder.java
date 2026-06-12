@@ -5,6 +5,10 @@ package com.grafana.foundation.dashboard;
 import java.util.List;
 import java.util.LinkedList;
 
+/**
+ * @deprecated Prefer using dashboardv2.Dashboard instead.
+ */
+@Deprecated(forRemoval = true)
 public class DashboardBuilder implements com.grafana.foundation.cog.Builder<Dashboard> {
     protected final Dashboard internal;
     private Integer currentY;

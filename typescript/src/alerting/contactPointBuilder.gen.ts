@@ -3,8 +3,10 @@
 import * as cog from '../cog';
 import * as alerting from '../alerting';
 
-// EmbeddedContactPoint is the contact point type that is used
-// by grafanas embedded alertmanager implementation.
+/**
+ * EmbeddedContactPoint is the contact point type that is used
+ * by grafanas embedded alertmanager implementation.
+ */
 export class ContactPointBuilder implements cog.Builder<alerting.ContactPoint> {
     protected readonly internal: alerting.ContactPoint;
 

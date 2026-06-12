@@ -3,6 +3,8 @@ title: <span class="badge builder"></span> MetricQuery
 ---
 # <span class="badge builder"></span> MetricQuery
 
+@deprecated This type is for migration purposes only. Replaced by TimeSeriesList Metric sub-query properties.
+
 ## Constructor
 
 ```python

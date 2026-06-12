@@ -3,6 +3,12 @@ title: <span class="badge builder"></span> AnnotationQueryBuilder
 ---
 # <span class="badge builder"></span> AnnotationQueryBuilder
 
+Shape of a CloudWatch Annotation query
+
+TS type is CloudWatchDefaultQuery = Omit<CloudWatchLogsQuery, 'queryMode'> & CloudWatchMetricsQuery, declared in veneer
+
+#CloudWatchDefaultQuery: #CloudWatchLogsQuery & #CloudWatchMetricsQuery @cuetsy(kind="type")
+
 ## Constructor
 
 ```php

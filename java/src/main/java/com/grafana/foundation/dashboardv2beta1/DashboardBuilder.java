@@ -7,6 +7,10 @@ import java.util.LinkedList;
 import java.util.Map;
 import java.util.HashMap;
 
+/**
+ * @deprecated Prefer using dashboardv2.Dashboard instead.
+ */
+@Deprecated(forRemoval = true)
 public class DashboardBuilder implements com.grafana.foundation.cog.Builder<Dashboard> {
     protected final Dashboard internal;
     

@@ -3,6 +3,9 @@
 package com.grafana.foundation.common;
 
 
+/**
+ * TODO docs
+ */
 public class FillConfigBuilder implements com.grafana.foundation.cog.Builder<FillConfig> {
     protected final FillConfig internal;
     

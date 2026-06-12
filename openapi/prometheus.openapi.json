@@ -10,10 +10,245 @@
   "paths": {},
   "components": {
     "schemas": {
+      "AdhocFilters": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "key",
+          "operator",
+          "value"
+        ],
+        "properties": {
+          "key": {
+            "type": "string"
+          },
+          "operator": {
+            "type": "string"
+          },
+          "value": {
+            "type": "string"
+          },
+          "values": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          }
+        }
+      },
+      "ResultAssertions": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "typeVersion"
+        ],
+        "properties": {
+          "maxFrames": {
+            "type": "integer",
+            "description": "Maximum frame count"
+          },
+          "type": {
+            "$ref": "#/components/schemas/ResultAssertionsType",
+            "description": "Type asserts that the frame matches a known type structure.\nPossible enum values:\n - `\"\"` \n - `\"timeseries-wide\"` \n - `\"timeseries-long\"` \n - `\"timeseries-many\"` \n - `\"timeseries-multi\"` \n - `\"directory-listing\"` \n - `\"table\"` \n - `\"numeric-wide\"` \n - `\"numeric-multi\"` \n - `\"numeric-long\"` \n - `\"log-lines\"` "
+          },
+          "typeVersion": {
+            "type": "array",
+            "items": {
+              "type": "integer"
+            },
+            "description": "TypeVersion is the version of the Type property. Versions greater than 0.0 correspond to the dataplane\ncontract documentation https://grafana.github.io/dataplane/contract/."
+          }
+        }
+      },
+      "ScopesFilters": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "key",
+          "operator",
+          "value"
+        ],
+        "properties": {
+          "key": {
+            "type": "string"
+          },
+          "operator": {
+            "type": "string"
+          },
+          "value": {
+            "type": "string"
+          },
+          "values": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          }
+        }
+      },
+      "Scopes": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "title"
+        ],
+        "properties": {
+          "defaultPath": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "filters": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ScopesFilters"
+            }
+          },
+          "title": {
+            "type": "string"
+          }
+        }
+      },
+      "TimeRange": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "from",
+          "to"
+        ],
+        "properties": {
+          "from": {
+            "type": "string",
+            "description": "From is the start time of the query.",
+            "default": "now-6h"
+          },
+          "to": {
+            "type": "string",
+            "description": "To is the end time of the query.",
+            "default": "now"
+          }
+        }
+      },
+      "Dataquery": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "expr"
+        ],
+        "properties": {
+          "adhocFilters": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/AdhocFilters"
+            },
+            "description": "Additional Ad-hoc filters that take precedence over Scope on conflict."
+          },
+          "datasource": {
+            "$ref": "#/components/schemas/DataSourceRef",
+            "description": "The datasource"
+          },
+          "editorMode": {
+            "$ref": "#/components/schemas/QueryEditorMode",
+            "description": "what we should show in the editor\nPossible enum values:\n - `\"builder\"` \n - `\"code\"` "
+          },
+          "exemplar": {
+            "type": "boolean",
+            "description": "Execute an additional query to identify interesting raw samples relevant for the given expr"
+          },
+          "expr": {
+            "type": "string",
+            "description": "The actual expression/query that will be evaluated by Prometheus"
+          },
+          "format": {
+            "$ref": "#/components/schemas/PromQueryFormat",
+            "description": "The response format\nPossible enum values:\n - `\"time_series\"` \n - `\"table\"` \n - `\"heatmap\"` "
+          },
+          "groupByKeys": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "description": "Group By parameters to apply to aggregate expressions in the query"
+          },
+          "hide": {
+            "type": "boolean",
+            "description": "true if query is disabled (ie should not be returned to the dashboard)\nNOTE: this does not always imply that the query should not be executed since\nthe results from a hidden query may be used as the input to other queries (SSE etc)"
+          },
+          "instant": {
+            "type": "boolean",
+            "description": "Returns only the latest value that Prometheus has scraped for the requested time series"
+          },
+          "intervalFactor": {
+            "type": "integer",
+            "description": "Used to specify how many times to divide max data points by. We use max data points under query options\nSee https://github.com/grafana/grafana/issues/48081\nDeprecated: use interval"
+          },
+          "intervalMs": {
+            "type": "number",
+            "description": "Interval is the suggested duration between time points in a time series query.\nNOTE: the values for intervalMs is not saved in the query model.  It is typically calculated\nfrom the interval required to fill a pixels in the visualization"
+          },
+          "legendFormat": {
+            "type": "string",
+            "description": "Series name override or template. Ex. {{hostname}} will be replaced with label value for hostname"
+          },
+          "maxDataPoints": {
+            "type": "integer",
+            "description": "MaxDataPoints is the maximum number of data points that should be returned from a time series query.\nNOTE: the values for maxDataPoints is not saved in the query model.  It is typically calculated\nfrom the number of pixels visible in a visualization"
+          },
+          "queryType": {
+            "type": "string",
+            "description": "QueryType is an optional identifier for the type of query.\nIt can be used to distinguish different types of queries."
+          },
+          "range": {
+            "type": "boolean",
+            "description": "Returns a Range vector, comprised of a set of time series containing a range of data points over time for each time series"
+          },
+          "refId": {
+            "type": "string",
+            "nullable": true,
+            "description": "RefID is the unique identifier of the query, set by the frontend call."
+          },
+          "resultAssertions": {
+            "$ref": "#/components/schemas/ResultAssertions",
+            "description": "Optionally define expected query result behavior"
+          },
+          "scopes": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Scopes"
+            },
+            "description": "A set of filters applied to apply to the query"
+          },
+          "timeRange": {
+            "$ref": "#/components/schemas/TimeRange",
+            "description": "TimeRange represents the query range\nNOTE: unlike generic /ds/query, we can now send explicit time values in each query\nNOTE: the values for timeRange are not saved in a dashboard, they are constructed on the fly"
+          },
+          "interval": {
+            "type": "string",
+            "description": "An additional lower limit for the step parameter of the Prometheus query and for the\n`$__interval` and `$__rate_interval` variables."
+          }
+        }
+      },
+      "ResultAssertionsType": {
+        "enum": [
+          "",
+          "timeseries-wide",
+          "timeseries-long",
+          "timeseries-many",
+          "timeseries-multi",
+          "directory-listing",
+          "table",
+          "numeric-wide",
+          "numeric-multi",
+          "numeric-long",
+          "log-lines"
+        ],
+        "type": "string"
+      },
       "QueryEditorMode": {
         "enum": [
-          "code",
-          "builder"
+          "builder",
+          "code"
         ],
         "type": "string"
       },
@@ -24,68 +259,6 @@
           "heatmap"
         ],
         "type": "string"
-      },
-      "dataquery": {
-        "type": "object",
-        "additionalProperties": false,
-        "required": [
-          "expr"
-        ],
-        "properties": {
-          "expr": {
-            "type": "string",
-            "description": "The actual expression/query that will be evaluated by Prometheus"
-          },
-          "instant": {
-            "type": "boolean",
-            "description": "Returns only the latest value that Prometheus has scraped for the requested time series"
-          },
-          "range": {
-            "type": "boolean",
-            "description": "Returns a Range vector, comprised of a set of time series containing a range of data points over time for each time series"
-          },
-          "exemplar": {
-            "type": "boolean",
-            "description": "Execute an additional query to identify interesting raw samples relevant for the given expr"
-          },
-          "editorMode": {
-            "$ref": "#/components/schemas/QueryEditorMode",
-            "description": "Specifies which editor is being used to prepare the query. It can be \"code\" or \"builder\""
-          },
-          "format": {
-            "$ref": "#/components/schemas/PromQueryFormat",
-            "description": "Query format to determine how to display data points in panel. It can be \"time_series\", \"table\", \"heatmap\""
-          },
-          "legendFormat": {
-            "type": "string",
-            "description": "Series name override or template. Ex. {{hostname}} will be replaced with label value for hostname"
-          },
-          "intervalFactor": {
-            "type": "number",
-            "description": "@deprecated Used to specify how many times to divide max data points by. We use max data points under query options\nSee https://github.com/grafana/grafana/issues/48081"
-          },
-          "refId": {
-            "type": "string",
-            "nullable": true,
-            "description": "A unique identifier for the query within the list of targets.\nIn server side expressions, the refId is used as a variable name to identify results.\nBy default, the UI will assign A-\u003eZ; however setting meaningful names may be useful."
-          },
-          "hide": {
-            "type": "boolean",
-            "description": "If hide is set to true, Grafana will filter out the response(s) associated with this query before returning it to the panel."
-          },
-          "queryType": {
-            "type": "string",
-            "description": "Specify the query flavor\nTODO make this required and give it a default"
-          },
-          "interval": {
-            "type": "string",
-            "description": "An additional lower limit for the step parameter of the Prometheus query and for the\n`$__interval` and `$__rate_interval` variables."
-          },
-          "datasource": {
-            "$ref": "#/components/schemas/DataSourceRef",
-            "description": "For mixed data sources the selected datasource is on the query level.\nFor non mixed scenarios this is undefined.\nTODO find a better way to do this ^ that's friendly to schema\nTODO this shouldn't be unknown but DataSourceRef | null"
-          }
-        }
       },
       "DataSourceRef": {
         "type": "object",

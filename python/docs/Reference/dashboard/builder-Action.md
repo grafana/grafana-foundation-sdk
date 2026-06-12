@@ -3,6 +3,8 @@ title: <span class="badge builder"></span> Action
 ---
 # <span class="badge builder"></span> Action
 
+Dashboard action
+
 ## Constructor
 
 ```python

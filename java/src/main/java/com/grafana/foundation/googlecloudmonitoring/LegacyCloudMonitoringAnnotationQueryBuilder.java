@@ -4,6 +4,9 @@ package com.grafana.foundation.googlecloudmonitoring;
 
 import java.util.List;
 
+/**
+ * @deprecated Use TimeSeriesList instead. Legacy annotation query properties for migration purposes.
+ */
 public class LegacyCloudMonitoringAnnotationQueryBuilder implements com.grafana.foundation.cog.Builder<LegacyCloudMonitoringAnnotationQuery> {
     protected final LegacyCloudMonitoringAnnotationQuery internal;
     

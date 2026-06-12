@@ -3,7 +3,9 @@
 import * as cog from '../cog';
 import * as dashboardv2 from '../dashboardv2';
 
-// Links with references to other dashboards or external resources
+/**
+ * Links with references to other dashboards or external resources
+ */
 export class DashboardLinkBuilder implements cog.Builder<dashboardv2.DashboardLink> {
     protected readonly internal: dashboardv2.DashboardLink;
 

@@ -1,6 +1,6 @@
 {
   "name": "@grafana/grafana-foundation-sdk",
-  "version": "v0.0.17",
+  "version": "v0.0.18",
   "description": "A set of tools, types and libraries for building and manipulating Grafana objects.",
   "keywords": [
     "observability",
@@ -115,6 +115,10 @@
       "types": "./dist/expr/index.d.ts",
       "default": "./dist/expr/index.js"
     },
+    "./folderv1": {
+      "types": "./dist/folderv1/index.d.ts",
+      "default": "./dist/folderv1/index.js"
+    },
     "./folderv1beta1": {
       "types": "./dist/folderv1beta1/index.d.ts",
       "default": "./dist/folderv1beta1/index.js"
@@ -174,6 +178,10 @@
     "./playlistv0alpha1": {
       "types": "./dist/playlistv0alpha1/index.d.ts",
       "default": "./dist/playlistv0alpha1/index.js"
+    },
+    "./playlistv1": {
+      "types": "./dist/playlistv1/index.d.ts",
+      "default": "./dist/playlistv1/index.js"
     },
     "./preferences": {
       "types": "./dist/preferences/index.d.ts",

@@ -67,7 +67,9 @@ export const defaultLibraryElementDTOMetaUser = (): LibraryElementDTOMetaUser =>
 	avatarUrl: "",
 });
 
-// Dashboard panels are the basic visualization building blocks.
+/**
+ * Dashboard panels are the basic visualization building blocks.
+ */
 export interface PanelModel {
 	// The panel plugin type id. This is used to find the plugin to display the panel.
 	type: string;

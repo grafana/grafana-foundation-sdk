@@ -3,6 +3,13 @@
 package com.grafana.foundation.dashboard;
 
 
+/**
+ * A dashboard snapshot shares an interactive dashboard publicly.
+ * It is a read-only version of a dashboard, and is not editable.
+ * It is possible to create a snapshot of a snapshot.
+ * Grafana strips away all sensitive information from the dashboard.
+ * Sensitive information stripped: queries (metric, template,annotation) and panel links.
+ */
 public class SnapshotBuilder implements com.grafana.foundation.cog.Builder<Snapshot> {
     protected final Snapshot internal;
     

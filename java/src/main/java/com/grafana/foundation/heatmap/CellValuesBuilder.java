@@ -3,6 +3,9 @@
 package com.grafana.foundation.heatmap;
 
 
+/**
+ * Controls cell value options
+ */
 public class CellValuesBuilder implements com.grafana.foundation.cog.Builder<CellValues> {
     protected final CellValues internal;
     

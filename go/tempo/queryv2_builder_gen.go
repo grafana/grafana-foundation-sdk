@@ -75,7 +75,7 @@ func (builder *QueryV2Builder) RefId(refId string) *QueryV2Builder {
 	if builder.internal.Spec == nil {
 		builder.internal.Spec = NewDataquery()
 	}
-	builder.internal.Spec.(*Dataquery).RefId = refId
+	builder.internal.Spec.(*Dataquery).RefId = &refId
 
 	return builder
 }

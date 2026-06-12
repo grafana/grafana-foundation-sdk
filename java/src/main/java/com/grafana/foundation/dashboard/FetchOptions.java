@@ -9,7 +9,9 @@ import com.fasterxml.jackson.databind.ObjectWriter;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import java.util.List;
 
-// Fetch options
+/**
+ * Fetch options
+ */
 public class FetchOptions {
     @JsonInclude(JsonInclude.Include.NON_EMPTY)
     @JsonProperty("method")

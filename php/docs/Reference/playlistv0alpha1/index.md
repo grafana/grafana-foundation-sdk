@@ -11,4 +11,4 @@
 ## Builders
 
  * <span class="badge builder"></span> [ItemBuilder](./builder-ItemBuilder.md)
- * <span class="badge builder"></span> [PlaylistBuilder](./builder-PlaylistBuilder.md)
+ * <span class="badge builder"></span> <span class="badge deprecated"></span> [PlaylistBuilder](./builder-PlaylistBuilder.md)

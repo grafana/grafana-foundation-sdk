@@ -3,6 +3,10 @@ title: <span class="badge builder"></span> TableFieldOptionsBuilder
 ---
 # <span class="badge builder"></span> TableFieldOptionsBuilder
 
+Field options for each field within a table (e.g 10, "The String", 64.20, etc.)
+
+Generally defines alignment, filtering capabilties, display options, etc.
+
 ## Constructor
 
 ```go

@@ -3,6 +3,8 @@ title: <span class="badge builder"></span> HeatmapTooltipBuilder
 ---
 # <span class="badge builder"></span> HeatmapTooltipBuilder
 
+Controls tooltip options
+
 ## Constructor
 
 ```go

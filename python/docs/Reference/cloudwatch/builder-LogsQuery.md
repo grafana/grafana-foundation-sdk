@@ -3,6 +3,8 @@ title: <span class="badge builder"></span> LogsQuery
 ---
 # <span class="badge builder"></span> LogsQuery
 
+Shape of a CloudWatch Logs query
+
 ## Constructor
 
 ```python

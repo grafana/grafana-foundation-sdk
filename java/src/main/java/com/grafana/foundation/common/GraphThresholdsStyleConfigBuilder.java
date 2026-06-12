@@ -3,6 +3,9 @@
 package com.grafana.foundation.common;
 
 
+/**
+ * TODO docs
+ */
 public class GraphThresholdsStyleConfigBuilder implements com.grafana.foundation.cog.Builder<GraphThresholdsStyleConfig> {
     protected final GraphThresholdsStyleConfig internal;
     

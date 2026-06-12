@@ -3,6 +3,9 @@
 package com.grafana.foundation.heatmap;
 
 
+/**
+ * Controls various color options
+ */
 public class HeatmapColorOptionsBuilder implements com.grafana.foundation.cog.Builder<HeatmapColorOptions> {
     protected final HeatmapColorOptions internal;
     

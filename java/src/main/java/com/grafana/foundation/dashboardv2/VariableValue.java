@@ -10,7 +10,9 @@ import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import java.util.List;
 
-// Variable types
+/**
+ * Variable types
+ */
 @JsonDeserialize(using = VariableValueDeserializer.class)
 public class VariableValue {
     @JsonInclude(JsonInclude.Include.NON_NULL)

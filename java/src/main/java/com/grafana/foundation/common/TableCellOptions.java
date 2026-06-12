@@ -9,8 +9,10 @@ import com.fasterxml.jackson.databind.ObjectWriter;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.fasterxml.jackson.annotation.JsonInclude;
 
-// Table cell options. Each cell has a display mode
-// and other potential options for that display.
+/**
+ * Table cell options. Each cell has a display mode
+ * and other potential options for that display.
+ */
 @JsonDeserialize(using = TableCellOptionsDeserializer.class)
 public class TableCellOptions {
     @JsonInclude(JsonInclude.Include.NON_NULL)

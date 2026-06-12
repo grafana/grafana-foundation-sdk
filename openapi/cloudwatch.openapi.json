@@ -82,7 +82,6 @@
         "required": [
           "queryMode",
           "id",
-          "refId",
           "region",
           "namespace"
         ],
@@ -122,6 +121,7 @@
           },
           "refId": {
             "type": "string",
+            "nullable": true,
             "description": "A unique identifier for the query within the list of targets.\nIn server side expressions, the refId is used as a variable name to identify results.\nBy default, the UI will assign A-\u003eZ; however setting meaningful names may be useful."
           },
           "hide": {
@@ -505,8 +505,7 @@
         "required": [
           "queryMode",
           "id",
-          "region",
-          "refId"
+          "region"
         ],
         "properties": {
           "queryMode": {
@@ -548,6 +547,7 @@
           },
           "refId": {
             "type": "string",
+            "nullable": true,
             "description": "A unique identifier for the query within the list of targets.\nIn server side expressions, the refId is used as a variable name to identify results.\nBy default, the UI will assign A-\u003eZ; however setting meaningful names may be useful."
           },
           "hide": {
@@ -600,7 +600,6 @@
         "additionalProperties": false,
         "required": [
           "queryMode",
-          "refId",
           "region",
           "namespace"
         ],
@@ -620,6 +619,7 @@
           },
           "refId": {
             "type": "string",
+            "nullable": true,
             "description": "A unique identifier for the query within the list of targets.\nIn server side expressions, the refId is used as a variable name to identify results.\nBy default, the UI will assign A-\u003eZ; however setting meaningful names may be useful."
           },
           "hide": {

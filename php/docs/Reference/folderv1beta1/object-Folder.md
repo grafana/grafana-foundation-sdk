@@ -1,7 +1,9 @@
 ---
-title: <span class="badge object-type-class"></span> Folder
+title: <span class="badge object-type-class"></span> <span class="badge deprecated"></span> Folder
 ---
-# <span class="badge object-type-class"></span> Folder
+# <span class="badge object-type-class"></span> <span class="badge deprecated"></span> Folder
+
+<span class="badge deprecated"></span>Prefer using folder.Folder instead.
 
 ## Definition
 
@@ -36,4 +38,4 @@ jsonSerialize()
 
 ## See also
 
- * <span class="badge builder"></span> [FolderBuilder](./builder-FolderBuilder.md)
+ * <span class="badge builder"></span> <span class="badge deprecated"></span> [FolderBuilder](./builder-FolderBuilder.md)

@@ -7,7 +7,9 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.ObjectWriter;
 
-// Show actions in the cell
+/**
+ * Show actions in the cell
+ */
 public class TableActionsCellOptions {
     @JsonProperty("type")
     public TableCellDisplayMode type;

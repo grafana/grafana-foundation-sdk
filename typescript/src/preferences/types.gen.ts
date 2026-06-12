@@ -1,7 +1,10 @@
 // Code generated - EDITING IS FUTILE. DO NOT EDIT.
 
-// Spec defines user, team or org Grafana preferences
-// swagger:model Preferences
+/**
+ * Spec defines user, team or org Grafana preferences
+ * swagger:model Preferences
+ * @deprecated Prefer using preferencesv1alpha1.Preferences instead.
+ */
 export interface Preferences {
 	// UID for the home dashboard
 	homeDashboardUID?: string;

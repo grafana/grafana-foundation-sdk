@@ -3,6 +3,8 @@ title: <span class="badge builder"></span> AdhocVariable
 ---
 # <span class="badge builder"></span> AdhocVariable
 
+Adhoc variable kind
+
 ## Constructor
 
 ```python

@@ -3,7 +3,9 @@
 import * as cog from '../cog';
 import * as common from '../common';
 
-// Footer options
+/**
+ * Footer options
+ */
 export class TableFooterOptionsBuilder implements cog.Builder<common.TableFooterOptions> {
     protected readonly internal: common.TableFooterOptions;
 

@@ -15,10 +15,10 @@ func MonitorQueryConverter(input MonitorQuery) string {
 		`azuremonitor.NewMonitorQueryBuilder()`,
 	}
 	var buffer strings.Builder
-	if input.RefId != "" {
+	if input.RefId != nil && *input.RefId != "" {
 
 		buffer.WriteString(`RefId(`)
-		arg0 := fmt.Sprintf("%#v", input.RefId)
+		arg0 := fmt.Sprintf("%#v", *input.RefId)
 		buffer.WriteString(arg0)
 
 		buffer.WriteString(")")
@@ -203,7 +203,7 @@ func MonitorQueryConverter(input MonitorQuery) string {
 	if input.Datasource != nil {
 
 		buffer.WriteString(`Datasource(`)
-		arg0 := cog.Dump(input.Datasource)
+		arg0 := cog.Dump(*input.Datasource)
 		buffer.WriteString(arg0)
 
 		buffer.WriteString(")")

@@ -3,6 +3,8 @@ title: <span class="badge builder"></span> MetricsQueryBuilder
 ---
 # <span class="badge builder"></span> MetricsQueryBuilder
 
+Shape of a CloudWatch Metrics query
+
 ## Constructor
 
 ```go

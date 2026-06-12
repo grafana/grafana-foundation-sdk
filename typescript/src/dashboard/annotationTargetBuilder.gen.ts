@@ -3,8 +3,10 @@
 import * as cog from '../cog';
 import * as dashboard from '../dashboard';
 
-// TODO: this should be a regular DataQuery that depends on the selected dashboard
-// these match the properties of the "grafana" datasouce that is default in most dashboards
+/**
+ * TODO: this should be a regular DataQuery that depends on the selected dashboard
+ * these match the properties of the "grafana" datasouce that is default in most dashboards
+ */
 export class AnnotationTargetBuilder implements cog.Builder<dashboard.AnnotationTarget> {
     protected readonly internal: dashboard.AnnotationTarget;
 

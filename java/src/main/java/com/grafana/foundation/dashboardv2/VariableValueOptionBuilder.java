@@ -3,6 +3,9 @@
 package com.grafana.foundation.dashboardv2;
 
 
+/**
+ * FIXME: should we introduce this? --- Variable value option
+ */
 public class VariableValueOptionBuilder implements com.grafana.foundation.cog.Builder<VariableValueOption> {
     protected final VariableValueOption internal;
     

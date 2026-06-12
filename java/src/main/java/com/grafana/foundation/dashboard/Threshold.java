@@ -8,8 +8,10 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.ObjectWriter;
 import com.fasterxml.jackson.annotation.JsonInclude;
 
-// User-defined value for a metric that triggers visual changes in a panel when this value is met or exceeded
-// They are used to conditionally style and color visualizations based on query results , and can be applied to most visualizations.
+/**
+ * User-defined value for a metric that triggers visual changes in a panel when this value is met or exceeded
+ * They are used to conditionally style and color visualizations based on query results , and can be applied to most visualizations.
+ */
 public class Threshold {
     // Value represents a specified metric for the threshold, which triggers a visual change in the dashboard when this value is met or exceeded.
     // Nulls currently appear here when serializing -Infinity to JSON.

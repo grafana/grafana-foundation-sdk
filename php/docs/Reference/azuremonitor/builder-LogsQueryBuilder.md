@@ -3,6 +3,8 @@ title: <span class="badge builder"></span> LogsQueryBuilder
 ---
 # <span class="badge builder"></span> LogsQueryBuilder
 
+Azure Monitor Logs sub-query properties
+
 ## Constructor
 
 ```php

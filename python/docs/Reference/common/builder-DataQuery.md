@@ -3,6 +3,12 @@ title: <span class="badge builder"></span> DataQuery
 ---
 # <span class="badge builder"></span> DataQuery
 
+These are the common properties available to all queries in all datasources.
+
+Specific implementations will *extend* this interface, adding the required
+
+properties for the given context.
+
 ## Constructor
 
 ```python

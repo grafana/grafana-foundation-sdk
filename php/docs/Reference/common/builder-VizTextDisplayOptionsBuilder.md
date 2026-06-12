@@ -3,6 +3,8 @@ title: <span class="badge builder"></span> VizTextDisplayOptionsBuilder
 ---
 # <span class="badge builder"></span> VizTextDisplayOptionsBuilder
 
+TODO docs
+
 ## Constructor
 
 ```php

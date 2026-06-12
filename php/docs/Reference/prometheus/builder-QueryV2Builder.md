@@ -18,6 +18,16 @@ Builds the object.
 build()
 ```
 
+### <span class="badge object-method"></span> adhocFilters
+
+Additional Ad-hoc filters that take precedence over Scope on conflict.
+
+@param array<\Grafana\Foundation\Cog\Builder<\Grafana\Foundation\Prometheus\AdhocFilters>> $adhocFilters
+
+```php
+adhocFilters(array $adhocFilters)
+```
+
 ### <span class="badge object-method"></span> datasource
 
 New type for datasource reference
@@ -32,7 +42,13 @@ datasource(\Grafana\Foundation\Cog\Builder $datasource)
 
 ### <span class="badge object-method"></span> editorMode
 
-Specifies which editor is being used to prepare the query. It can be "code" or "builder"
+what we should show in the editor
+
+Possible enum values:
+
+ - `"builder"` 
+
+ - `"code"` 
 
 ```php
 editorMode(\Grafana\Foundation\Prometheus\QueryEditorMode $editorMode)
@@ -56,15 +72,37 @@ expr(string $expr)
 
 ### <span class="badge object-method"></span> format
 
-Query format to determine how to display data points in panel. It can be "time_series", "table", "heatmap"
+The response format
+
+Possible enum values:
+
+ - `"time_series"` 
+
+ - `"table"` 
+
+ - `"heatmap"` 
 
 ```php
 format(\Grafana\Foundation\Prometheus\PromQueryFormat $format)
 ```
 
+### <span class="badge object-method"></span> groupByKeys
+
+Group By parameters to apply to aggregate expressions in the query
+
+@param array<string> $groupByKeys
+
+```php
+groupByKeys(array $groupByKeys)
+```
+
 ### <span class="badge object-method"></span> hide
 
-If hide is set to true, Grafana will filter out the response(s) associated with this query before returning it to the panel.
+true if query is disabled (ie should not be returned to the dashboard)
+
+NOTE: this does not always imply that the query should not be executed since
+
+the results from a hidden query may be used as the input to other queries (SSE etc)
 
 ```php
 hide(bool $hide)
@@ -90,12 +128,26 @@ interval(string $interval)
 
 ### <span class="badge object-method"></span> intervalFactor
 
-@deprecated Used to specify how many times to divide max data points by. We use max data points under query options
+Used to specify how many times to divide max data points by. We use max data points under query options
 
 See https://github.com/grafana/grafana/issues/48081
 
+Deprecated: use interval
+
 ```php
-intervalFactor(float $intervalFactor)
+intervalFactor(int $intervalFactor)
+```
+
+### <span class="badge object-method"></span> intervalMs
+
+Interval is the suggested duration between time points in a time series query.
+
+NOTE: the values for intervalMs is not saved in the query model.  It is typically calculated
+
+from the interval required to fill a pixels in the visualization
+
+```php
+intervalMs(float $intervalMs)
 ```
 
 ### <span class="badge object-method"></span> labels
@@ -114,11 +166,23 @@ Series name override or template. Ex. {{hostname}} will be replaced with label v
 legendFormat(string $legendFormat)
 ```
 
+### <span class="badge object-method"></span> maxDataPoints
+
+MaxDataPoints is the maximum number of data points that should be returned from a time series query.
+
+NOTE: the values for maxDataPoints is not saved in the query model.  It is typically calculated
+
+from the number of pixels visible in a visualization
+
+```php
+maxDataPoints(int $maxDataPoints)
+```
+
 ### <span class="badge object-method"></span> queryType
 
-Specify the query flavor
+QueryType is an optional identifier for the type of query.
 
-TODO make this required and give it a default
+It can be used to distinguish different types of queries.
 
 ```php
 queryType(string $queryType)
@@ -134,14 +198,44 @@ range(bool $range)
 
 ### <span class="badge object-method"></span> refId
 
-A unique identifier for the query within the list of targets.
-
-In server side expressions, the refId is used as a variable name to identify results.
-
-By default, the UI will assign A->Z; however setting meaningful names may be useful.
+RefID is the unique identifier of the query, set by the frontend call.
 
 ```php
 refId(string $refId)
+```
+
+### <span class="badge object-method"></span> resultAssertions
+
+Optionally define expected query result behavior
+
+@param \Grafana\Foundation\Cog\Builder<\Grafana\Foundation\Prometheus\ResultAssertions> $resultAssertions
+
+```php
+resultAssertions(\Grafana\Foundation\Cog\Builder $resultAssertions)
+```
+
+### <span class="badge object-method"></span> scopes
+
+A set of filters applied to apply to the query
+
+@param array<\Grafana\Foundation\Cog\Builder<\Grafana\Foundation\Prometheus\Scopes>> $scopes
+
+```php
+scopes(array $scopes)
+```
+
+### <span class="badge object-method"></span> timeRange
+
+TimeRange represents the query range
+
+NOTE: unlike generic /ds/query, we can now send explicit time values in each query
+
+NOTE: the values for timeRange are not saved in a dashboard, they are constructed on the fly
+
+@param \Grafana\Foundation\Cog\Builder<\Grafana\Foundation\Prometheus\TimeRange> $timeRange
+
+```php
+timeRange(\Grafana\Foundation\Cog\Builder $timeRange)
 ```
 
 ### <span class="badge object-method"></span> version

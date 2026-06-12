@@ -3,8 +3,11 @@
 import * as cog from '../cog';
 import * as preferences from '../preferences';
 
-// Spec defines user, team or org Grafana preferences
-// swagger:model Preferences
+/**
+ * Spec defines user, team or org Grafana preferences
+ * swagger:model Preferences
+ * @deprecated Prefer using preferencesv1alpha1.Preferences instead.
+ */
 export class PreferencesBuilder implements cog.Builder<preferences.Preferences> {
     protected readonly internal: preferences.Preferences;
 

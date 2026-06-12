@@ -3,6 +3,8 @@ title: <span class="badge builder"></span> ScaleDistributionConfigBuilder
 ---
 # <span class="badge builder"></span> ScaleDistributionConfigBuilder
 
+TODO docs
+
 ## Constructor
 
 ```java

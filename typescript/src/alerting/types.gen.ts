@@ -69,13 +69,17 @@ export const defaultNotificationSettings = (): NotificationSettings => ({
 	receiver: "",
 });
 
-// Duration in seconds.
+/**
+ * Duration in seconds.
+ */
 export type Duration = number;
 
 export const defaultDuration = (): Duration => (0);
 
-// EmbeddedContactPoint is the contact point type that is used
-// by grafanas embedded alertmanager implementation.
+/**
+ * EmbeddedContactPoint is the contact point type that is used
+ * by grafanas embedded alertmanager implementation.
+ */
 export interface ContactPoint {
 	disableResolveMessage?: boolean;
 	// Name is used as grouping key in the UI. Contact points with the
@@ -120,9 +124,11 @@ export interface Matcher {
 export const defaultMatcher = (): Matcher => ({
 });
 
-// Matchers is a slice of Matchers that is sortable, implements Stringer, and
-// provides a Matches method to match a LabelSet against all Matchers in the
-// slice. Note that some users of Matchers might require it to be sorted.
+/**
+ * Matchers is a slice of Matchers that is sortable, implements Stringer, and
+ * provides a Matches method to match a LabelSet against all Matchers in the
+ * slice. Note that some users of Matchers might require it to be sorted.
+ */
 export type Matchers = Matcher[];
 
 export const defaultMatchers = (): Matchers => ([]);
@@ -207,8 +213,10 @@ export const defaultRecordRule = (): RecordRule => ({
 	metric: "",
 });
 
-// RelativeTimeRange is the per query start and end time
-// for requests.
+/**
+ * RelativeTimeRange is the per query start and end time
+ * for requests.
+ */
 export interface RelativeTimeRange {
 	// A Duration represents the elapsed time between two instants
 	// as an int64 nanosecond count. The representation limits the
@@ -223,8 +231,10 @@ export interface RelativeTimeRange {
 export const defaultRelativeTimeRange = (): RelativeTimeRange => ({
 });
 
-// A Route is a node that contains definitions of how to handle alerts. This is modified
-// from the upstream alertmanager in that it adds the ObjectMatchers property.
+/**
+ * A Route is a node that contains definitions of how to handle alerts. This is modified
+ * from the upstream alertmanager in that it adds the ObjectMatchers property.
+ */
 export interface NotificationPolicy {
 	active_time_intervals?: string[];
 	continue?: boolean;
@@ -261,7 +271,9 @@ export interface TimeInterval {
 export const defaultTimeInterval = (): TimeInterval => ({
 });
 
-// Redefining this to avoid an import cycle
+/**
+ * Redefining this to avoid an import cycle
+ */
 export interface TimeRange {
 	from?: string;
 	to?: string;

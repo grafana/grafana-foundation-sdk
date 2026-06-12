@@ -12,7 +12,9 @@ import com.fasterxml.jackson.annotation.Nulls;
 import java.util.List;
 import com.fasterxml.jackson.annotation.JsonInclude;
 
-// Adhoc variable specification
+/**
+ * Adhoc variable specification
+ */
 public class AdhocVariableSpec {
     @JsonProperty("name")
     public String name;

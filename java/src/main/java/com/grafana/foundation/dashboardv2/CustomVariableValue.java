@@ -8,7 +8,9 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.ObjectWriter;
 import com.fasterxml.jackson.annotation.JsonInclude;
 
-// Custom variable value
+/**
+ * Custom variable value
+ */
 public class CustomVariableValue {
     // The format name or function used in the expression
     @JsonInclude(JsonInclude.Include.NON_NULL)

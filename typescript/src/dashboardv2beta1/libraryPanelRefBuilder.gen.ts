@@ -3,9 +3,11 @@
 import * as cog from '../cog';
 import * as dashboardv2beta1 from '../dashboardv2beta1';
 
-// A library panel is a reusable panel that you can use in any dashboard.
-// When you make a change to a library panel, that change propagates to all instances of where the panel is used.
-// Library panels streamline reuse of panels across multiple dashboards.
+/**
+ * A library panel is a reusable panel that you can use in any dashboard.
+ * When you make a change to a library panel, that change propagates to all instances of where the panel is used.
+ * Library panels streamline reuse of panels across multiple dashboards.
+ */
 export class LibraryPanelRefBuilder implements cog.Builder<dashboardv2beta1.LibraryPanelRef> {
     protected readonly internal: dashboardv2beta1.LibraryPanelRef;
 

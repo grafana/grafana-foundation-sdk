@@ -1,9 +1,11 @@
 # Code generated - EDITING IS FUTILE. DO NOT EDIT.
 
+import warnings
 import typing
 
 
 class Folder:
+    warnings.warn("Prefer using folder.Folder instead.", DeprecationWarning)
     title: str
     description: typing.Optional[str]
 

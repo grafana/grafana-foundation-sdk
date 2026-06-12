@@ -3,7 +3,9 @@
 import * as common from '../common';
 
 
-// Select the pie chart display style.
+/**
+ * Select the pie chart display style.
+ */
 export enum PieChartType {
 	Pie = "pie",
 	Donut = "donut",
@@ -11,10 +13,12 @@ export enum PieChartType {
 
 export const defaultPieChartType = (): PieChartType => (PieChartType.Pie);
 
-// Select labels to display on the pie chart.
-//  - Name - The series or field name.
-//  - Percent - The percentage of the whole.
-//  - Value - The raw numerical value.
+/**
+ * Select labels to display on the pie chart.
+ *  - Name - The series or field name.
+ *  - Percent - The percentage of the whole.
+ *  - Value - The raw numerical value.
+ */
 export enum PieChartLabels {
 	Name = "name",
 	Value = "value",
@@ -23,9 +27,11 @@ export enum PieChartLabels {
 
 export const defaultPieChartLabels = (): PieChartLabels => (PieChartLabels.Name);
 
-// Select values to display in the legend.
-//  - Percent: The percentage of the whole.
-//  - Value: The raw numerical value.
+/**
+ * Select values to display in the legend.
+ *  - Percent: The percentage of the whole.
+ *  - Value: The raw numerical value.
+ */
 export enum PieChartLegendValues {
 	Value = "value",
 	Percent = "percent",

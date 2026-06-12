@@ -11,8 +11,10 @@ import com.fasterxml.jackson.annotation.JsonSetter;
 import com.fasterxml.jackson.annotation.Nulls;
 import java.util.List;
 
-// TODO: this should be a regular DataQuery that depends on the selected dashboard
-// these match the properties of the "grafana" datasouce that is default in most dashboards
+/**
+ * TODO: this should be a regular DataQuery that depends on the selected dashboard
+ * these match the properties of the "grafana" datasouce that is default in most dashboards
+ */
 public class AnnotationTarget {
     // Only required/valid for the grafana datasource...
     // but code+tests is already depending on it so hard to change

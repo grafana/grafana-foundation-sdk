@@ -4,6 +4,9 @@ package com.grafana.foundation.bigquery;
 
 import com.grafana.foundation.common.DataSourceRef;
 
+/**
+ * Manually converted from https://github.com/grafana/google-bigquery-datasource/blob/18680e42ba557791d109c7c540c2c3f2647592f0/src/types.ts#L75
+ */
 public class DataqueryBuilder implements com.grafana.foundation.cog.Builder<com.grafana.foundation.cog.variants.Dataquery> {
     protected final Dataquery internal;
     

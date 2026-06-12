@@ -13,6 +13,7 @@ import (
 	cog "github.com/grafana/grafana-foundation-sdk/go/cog"
 )
 
+// Deprecated: Prefer using dashboardv2.Dashboard instead.
 type Dashboard struct {
 	Annotations []AnnotationQueryKind `json:"annotations"`
 	// Configuration of dashboard cursor sync behavior.
@@ -13331,7 +13332,7 @@ type DashboardLink struct {
 	// If true, includes current time range in the link as query params
 	KeepTime bool `json:"keepTime"`
 	// Placement can be used to display the link somewhere else on the dashboard other than above the visualisations.
-	Placement *string `json:"placement,omitempty"`
+	Placement *DashboardLinkPlacement `json:"placement,omitempty"`
 	// The source that registered the link (if any)
 	Origin *ControlSourceRef `json:"origin,omitempty"`
 }
@@ -13344,7 +13345,6 @@ func NewDashboardLink() *DashboardLink {
 		TargetBlank: false,
 		IncludeVars: false,
 		KeepTime:    false,
-		Placement:   (func(input string) *string { return &input })(DashboardLinkPlacement),
 	}
 }
 
@@ -13623,7 +13623,11 @@ const (
 
 // Dashboard Link placement. Defines where the link should be displayed.
 // - "inControlsMenu" renders the link in bottom part of the dashboard controls dropdown menu
-const DashboardLinkPlacement = "inControlsMenu"
+type DashboardLinkPlacement string
+
+const (
+	DashboardLinkPlacementInControlsMenu DashboardLinkPlacement = "inControlsMenu"
+)
 
 // Time configuration
 // It defines the default time config for the time picker, the refresh picker for the specific dashboard.

@@ -3,7 +3,9 @@
 import * as cog from '../cog';
 import * as common from '../common';
 
-// TODO docs
+/**
+ * TODO docs
+ */
 export class VizTooltipOptionsBuilder implements cog.Builder<common.VizTooltipOptions> {
     protected readonly internal: common.VizTooltipOptions;
 

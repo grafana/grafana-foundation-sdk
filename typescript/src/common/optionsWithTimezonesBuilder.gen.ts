@@ -3,7 +3,9 @@
 import * as cog from '../cog';
 import * as common from '../common';
 
-// TODO docs
+/**
+ * TODO docs
+ */
 export class OptionsWithTimezonesBuilder implements cog.Builder<common.OptionsWithTimezones> {
     protected readonly internal: common.OptionsWithTimezones;
 

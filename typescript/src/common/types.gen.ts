@@ -1,7 +1,9 @@
 // Code generated - EDITING IS FUTILE. DO NOT EDIT.
 
-// A topic is attached to DataFrame metadata in query results.
-// This specifies where the data should be used.
+/**
+ * A topic is attached to DataFrame metadata in query results.
+ * This specifies where the data should be used.
+ */
 export enum DataTopic {
 	Series = "series",
 	Annotations = "annotations",
@@ -10,7 +12,9 @@ export enum DataTopic {
 
 export const defaultDataTopic = (): DataTopic => (DataTopic.Series);
 
-// TODO docs
+/**
+ * TODO docs
+ */
 export interface DataSourceJsonData {
 	authType?: string;
 	defaultRegion?: string;
@@ -22,9 +26,11 @@ export interface DataSourceJsonData {
 export const defaultDataSourceJsonData = (): DataSourceJsonData => ({
 });
 
-// These are the common properties available to all queries in all datasources.
-// Specific implementations will *extend* this interface, adding the required
-// properties for the given context.
+/**
+ * These are the common properties available to all queries in all datasources.
+ * Specific implementations will *extend* this interface, adding the required
+ * properties for the given context.
+ */
 export interface DataQuery {
 	// A unique identifier for the query within the list of targets.
 	// In server side expressions, the refId is used as a variable name to identify results.
@@ -210,7 +216,9 @@ export interface HeatmapCalculationBucketConfig {
 export const defaultHeatmapCalculationBucketConfig = (): HeatmapCalculationBucketConfig => ({
 });
 
-// TODO docs
+/**
+ * TODO docs
+ */
 export interface ScaleDistributionConfig {
 	type: ScaleDistribution;
 	log?: number;
@@ -221,7 +229,9 @@ export const defaultScaleDistributionConfig = (): ScaleDistributionConfig => ({
 	type: ScaleDistribution.Linear,
 });
 
-// TODO docs
+/**
+ * TODO docs
+ */
 export enum ScaleDistribution {
 	Linear = "linear",
 	Log = "log",
@@ -238,7 +248,9 @@ export enum LogsSortOrder {
 
 export const defaultLogsSortOrder = (): LogsSortOrder => (LogsSortOrder.Descending);
 
-// TODO docs
+/**
+ * TODO docs
+ */
 export enum AxisPlacement {
 	Auto = "auto",
 	Top = "top",
@@ -250,7 +262,9 @@ export enum AxisPlacement {
 
 export const defaultAxisPlacement = (): AxisPlacement => (AxisPlacement.Auto);
 
-// TODO docs
+/**
+ * TODO docs
+ */
 export enum AxisColorMode {
 	Text = "text",
 	Series = "series",
@@ -258,7 +272,9 @@ export enum AxisColorMode {
 
 export const defaultAxisColorMode = (): AxisColorMode => (AxisColorMode.Text);
 
-// TODO docs
+/**
+ * TODO docs
+ */
 export enum VisibilityMode {
 	Auto = "auto",
 	Never = "never",
@@ -267,7 +283,9 @@ export enum VisibilityMode {
 
 export const defaultVisibilityMode = (): VisibilityMode => (VisibilityMode.Auto);
 
-// TODO docs
+/**
+ * TODO docs
+ */
 export enum GraphDrawStyle {
 	Line = "line",
 	Bars = "bars",
@@ -276,7 +294,9 @@ export enum GraphDrawStyle {
 
 export const defaultGraphDrawStyle = (): GraphDrawStyle => (GraphDrawStyle.Line);
 
-// TODO docs
+/**
+ * TODO docs
+ */
 export enum GraphTransform {
 	Constant = "constant",
 	NegativeY = "negative-Y",
@@ -284,7 +304,9 @@ export enum GraphTransform {
 
 export const defaultGraphTransform = (): GraphTransform => (GraphTransform.Constant);
 
-// TODO docs
+/**
+ * TODO docs
+ */
 export enum LineInterpolation {
 	Linear = "linear",
 	Smooth = "smooth",
@@ -294,7 +316,9 @@ export enum LineInterpolation {
 
 export const defaultLineInterpolation = (): LineInterpolation => (LineInterpolation.Linear);
 
-// TODO docs
+/**
+ * TODO docs
+ */
 export enum GraphGradientMode {
 	None = "none",
 	Opacity = "opacity",
@@ -304,7 +328,9 @@ export enum GraphGradientMode {
 
 export const defaultGraphGradientMode = (): GraphGradientMode => (GraphGradientMode.None);
 
-// TODO docs
+/**
+ * TODO docs
+ */
 export enum StackingMode {
 	None = "none",
 	Normal = "normal",
@@ -313,7 +339,9 @@ export enum StackingMode {
 
 export const defaultStackingMode = (): StackingMode => (StackingMode.None);
 
-// TODO docs
+/**
+ * TODO docs
+ */
 export enum BarAlignment {
 	Before = -1,
 	Center = 0,
@@ -322,7 +350,9 @@ export enum BarAlignment {
 
 export const defaultBarAlignment = (): BarAlignment => (BarAlignment.Before);
 
-// TODO docs
+/**
+ * TODO docs
+ */
 export enum ScaleOrientation {
 	Horizontal = 0,
 	Vertical = 1,
@@ -330,7 +360,9 @@ export enum ScaleOrientation {
 
 export const defaultScaleOrientation = (): ScaleOrientation => (ScaleOrientation.Horizontal);
 
-// TODO docs
+/**
+ * TODO docs
+ */
 export enum ScaleDirection {
 	Up = 1,
 	Right = 1,
@@ -340,7 +372,9 @@ export enum ScaleDirection {
 
 export const defaultScaleDirection = (): ScaleDirection => (ScaleDirection.Up);
 
-// TODO docs
+/**
+ * TODO docs
+ */
 export interface LineStyle {
 	fill?: "solid" | "dash" | "dot" | "square";
 	dash?: number[];
@@ -349,7 +383,9 @@ export interface LineStyle {
 export const defaultLineStyle = (): LineStyle => ({
 });
 
-// TODO docs
+/**
+ * TODO docs
+ */
 export interface LineConfig {
 	lineColor?: string;
 	lineWidth?: number;
@@ -364,7 +400,9 @@ export interface LineConfig {
 export const defaultLineConfig = (): LineConfig => ({
 });
 
-// TODO docs
+/**
+ * TODO docs
+ */
 export interface BarConfig {
 	barAlignment?: BarAlignment;
 	barWidthFactor?: number;
@@ -374,7 +412,9 @@ export interface BarConfig {
 export const defaultBarConfig = (): BarConfig => ({
 });
 
-// TODO docs
+/**
+ * TODO docs
+ */
 export interface FillConfig {
 	fillColor?: string;
 	fillOpacity?: number;
@@ -384,7 +424,9 @@ export interface FillConfig {
 export const defaultFillConfig = (): FillConfig => ({
 });
 
-// TODO docs
+/**
+ * TODO docs
+ */
 export interface PointsConfig {
 	showPoints?: VisibilityMode;
 	pointSize?: number;
@@ -395,7 +437,9 @@ export interface PointsConfig {
 export const defaultPointsConfig = (): PointsConfig => ({
 });
 
-// TODO docs
+/**
+ * TODO docs
+ */
 export interface AxisConfig {
 	axisPlacement?: AxisPlacement;
 	axisColorMode?: AxisColorMode;
@@ -412,7 +456,9 @@ export interface AxisConfig {
 export const defaultAxisConfig = (): AxisConfig => ({
 });
 
-// TODO docs
+/**
+ * TODO docs
+ */
 export interface HideSeriesConfig {
 	tooltip: boolean;
 	legend: boolean;
@@ -425,7 +471,9 @@ export const defaultHideSeriesConfig = (): HideSeriesConfig => ({
 	viz: false,
 });
 
-// TODO docs
+/**
+ * TODO docs
+ */
 export interface StackingConfig {
 	mode?: StackingMode;
 	group?: string;
@@ -434,7 +482,9 @@ export interface StackingConfig {
 export const defaultStackingConfig = (): StackingConfig => ({
 });
 
-// TODO docs
+/**
+ * TODO docs
+ */
 export interface StackableFieldConfig {
 	stacking?: StackingConfig;
 }
@@ -442,7 +492,9 @@ export interface StackableFieldConfig {
 export const defaultStackableFieldConfig = (): StackableFieldConfig => ({
 });
 
-// TODO docs
+/**
+ * TODO docs
+ */
 export interface HideableFieldConfig {
 	hideFrom?: HideSeriesConfig;
 }
@@ -450,7 +502,9 @@ export interface HideableFieldConfig {
 export const defaultHideableFieldConfig = (): HideableFieldConfig => ({
 });
 
-// TODO docs
+/**
+ * TODO docs
+ */
 export enum GraphThresholdsStyleMode {
 	Off = "off",
 	Line = "line",
@@ -463,7 +517,9 @@ export enum GraphThresholdsStyleMode {
 
 export const defaultGraphThresholdsStyleMode = (): GraphThresholdsStyleMode => (GraphThresholdsStyleMode.Off);
 
-// TODO docs
+/**
+ * TODO docs
+ */
 export interface GraphThresholdsStyleConfig {
 	mode: GraphThresholdsStyleMode;
 }
@@ -472,7 +528,9 @@ export const defaultGraphThresholdsStyleConfig = (): GraphThresholdsStyleConfig 
 	mode: GraphThresholdsStyleMode.Off,
 });
 
-// TODO docs
+/**
+ * TODO docs
+ */
 export enum LegendPlacement {
 	Bottom = "bottom",
 	Right = "right",
@@ -480,8 +538,10 @@ export enum LegendPlacement {
 
 export const defaultLegendPlacement = (): LegendPlacement => (LegendPlacement.Bottom);
 
-// TODO docs
-// Note: "hidden" needs to remain as an option for plugins compatibility
+/**
+ * TODO docs
+ * Note: "hidden" needs to remain as an option for plugins compatibility
+ */
 export enum LegendDisplayMode {
 	List = "list",
 	Table = "table",
@@ -490,7 +550,9 @@ export enum LegendDisplayMode {
 
 export const defaultLegendDisplayMode = (): LegendDisplayMode => (LegendDisplayMode.List);
 
-// TODO docs
+/**
+ * TODO docs
+ */
 export interface SingleStatBaseOptions {
 	reduceOptions: ReduceDataOptions;
 	text?: VizTextDisplayOptions;
@@ -502,7 +564,9 @@ export const defaultSingleStatBaseOptions = (): SingleStatBaseOptions => ({
 	orientation: VizOrientation.Auto,
 });
 
-// TODO docs
+/**
+ * TODO docs
+ */
 export interface ReduceDataOptions {
 	// If true show each row value
 	values?: boolean;
@@ -518,7 +582,9 @@ export const defaultReduceDataOptions = (): ReduceDataOptions => ({
 	calcs: [],
 });
 
-// TODO docs
+/**
+ * TODO docs
+ */
 export interface VizTextDisplayOptions {
 	// Explicit title text size
 	titleSize?: number;
@@ -531,7 +597,9 @@ export interface VizTextDisplayOptions {
 export const defaultVizTextDisplayOptions = (): VizTextDisplayOptions => ({
 });
 
-// TODO docs
+/**
+ * TODO docs
+ */
 export enum VizOrientation {
 	Auto = "auto",
 	Vertical = "vertical",
@@ -540,7 +608,9 @@ export enum VizOrientation {
 
 export const defaultVizOrientation = (): VizOrientation => (VizOrientation.Auto);
 
-// TODO docs
+/**
+ * TODO docs
+ */
 export interface OptionsWithTooltip {
 	tooltip: VizTooltipOptions;
 }
@@ -549,7 +619,9 @@ export const defaultOptionsWithTooltip = (): OptionsWithTooltip => ({
 	tooltip: defaultVizTooltipOptions(),
 });
 
-// TODO docs
+/**
+ * TODO docs
+ */
 export interface VizTooltipOptions {
 	mode: TooltipDisplayMode;
 	sort: SortOrder;
@@ -563,7 +635,9 @@ export const defaultVizTooltipOptions = (): VizTooltipOptions => ({
 	sort: SortOrder.Ascending,
 });
 
-// TODO docs
+/**
+ * TODO docs
+ */
 export enum TooltipDisplayMode {
 	Single = "single",
 	Multi = "multi",
@@ -572,7 +646,9 @@ export enum TooltipDisplayMode {
 
 export const defaultTooltipDisplayMode = (): TooltipDisplayMode => (TooltipDisplayMode.Single);
 
-// TODO docs
+/**
+ * TODO docs
+ */
 export enum SortOrder {
 	Ascending = "asc",
 	Descending = "desc",
@@ -581,7 +657,9 @@ export enum SortOrder {
 
 export const defaultSortOrder = (): SortOrder => (SortOrder.Ascending);
 
-// TODO docs
+/**
+ * TODO docs
+ */
 export interface OptionsWithLegend {
 	legend: VizLegendOptions;
 }
@@ -590,7 +668,9 @@ export const defaultOptionsWithLegend = (): OptionsWithLegend => ({
 	legend: defaultVizLegendOptions(),
 });
 
-// TODO docs
+/**
+ * TODO docs
+ */
 export interface VizLegendOptions {
 	displayMode: LegendDisplayMode;
 	placement: LegendPlacement;
@@ -611,7 +691,9 @@ export const defaultVizLegendOptions = (): VizLegendOptions => ({
 ],
 });
 
-// TODO docs
+/**
+ * TODO docs
+ */
 export interface OptionsWithTimezones {
 	timezone?: TimeZone[];
 }
@@ -619,18 +701,26 @@ export interface OptionsWithTimezones {
 export const defaultOptionsWithTimezones = (): OptionsWithTimezones => ({
 });
 
-// A specific timezone from https://en.wikipedia.org/wiki/Tz_database
+/**
+ * A specific timezone from https://en.wikipedia.org/wiki/Tz_database
+ */
 export type TimeZone = string;
 
 export const defaultTimeZone = (): TimeZone => ("browser");
 
-// Use UTC/GMT timezone
+/**
+ * Use UTC/GMT timezone
+ */
 export type TimeZoneUtc = "utc";
 
-// Use the timezone defined by end user web browser
+/**
+ * Use the timezone defined by end user web browser
+ */
 export type TimeZoneBrowser = "browser";
 
-// TODO docs
+/**
+ * TODO docs
+ */
 export interface OptionsWithTextFormatting {
 	text?: VizTextDisplayOptions;
 }
@@ -638,7 +728,9 @@ export interface OptionsWithTextFormatting {
 export const defaultOptionsWithTextFormatting = (): OptionsWithTextFormatting => ({
 });
 
-// TODO docs
+/**
+ * TODO docs
+ */
 export enum BigValueColorMode {
 	Value = "value",
 	Background = "background",
@@ -648,7 +740,9 @@ export enum BigValueColorMode {
 
 export const defaultBigValueColorMode = (): BigValueColorMode => (BigValueColorMode.Value);
 
-// TODO docs
+/**
+ * TODO docs
+ */
 export enum BigValueGraphMode {
 	None = "none",
 	Line = "line",
@@ -657,7 +751,9 @@ export enum BigValueGraphMode {
 
 export const defaultBigValueGraphMode = (): BigValueGraphMode => (BigValueGraphMode.None);
 
-// TODO docs
+/**
+ * TODO docs
+ */
 export enum BigValueJustifyMode {
 	Auto = "auto",
 	Center = "center",
@@ -665,7 +761,9 @@ export enum BigValueJustifyMode {
 
 export const defaultBigValueJustifyMode = (): BigValueJustifyMode => (BigValueJustifyMode.Auto);
 
-// TODO docs
+/**
+ * TODO docs
+ */
 export enum BigValueTextMode {
 	Auto = "auto",
 	Value = "value",
@@ -676,7 +774,9 @@ export enum BigValueTextMode {
 
 export const defaultBigValueTextMode = (): BigValueTextMode => (BigValueTextMode.Auto);
 
-// TODO docs
+/**
+ * TODO docs
+ */
 export enum PercentChangeColorMode {
 	Standard = "standard",
 	Inverted = "inverted",
@@ -685,8 +785,10 @@ export enum PercentChangeColorMode {
 
 export const defaultPercentChangeColorMode = (): PercentChangeColorMode => (PercentChangeColorMode.Standard);
 
-// TODO -- should not be table specific!
-// TODO docs
+/**
+ * TODO -- should not be table specific!
+ * TODO docs
+ */
 export enum FieldTextAlignment {
 	Auto = "auto",
 	Left = "left",
@@ -696,7 +798,9 @@ export enum FieldTextAlignment {
 
 export const defaultFieldTextAlignment = (): FieldTextAlignment => (FieldTextAlignment.Auto);
 
-// Controls the value alignment in the TimelineChart component
+/**
+ * Controls the value alignment in the TimelineChart component
+ */
 export enum TimelineValueAlignment {
 	Center = "center",
 	Left = "left",
@@ -705,7 +809,9 @@ export enum TimelineValueAlignment {
 
 export const defaultTimelineValueAlignment = (): TimelineValueAlignment => (TimelineValueAlignment.Center);
 
-// TODO docs
+/**
+ * TODO docs
+ */
 export interface GraphFieldConfig {
 	drawStyle?: GraphDrawStyle;
 	gradientMode?: GraphGradientMode;
@@ -747,8 +853,10 @@ export interface GraphFieldConfig {
 export const defaultGraphFieldConfig = (): GraphFieldConfig => ({
 });
 
-// Enum expressing the possible display modes
-// for the bar gauge component of Grafana UI
+/**
+ * Enum expressing the possible display modes
+ * for the bar gauge component of Grafana UI
+ */
 export enum BarGaugeDisplayMode {
 	Basic = "basic",
 	Lcd = "lcd",
@@ -757,7 +865,9 @@ export enum BarGaugeDisplayMode {
 
 export const defaultBarGaugeDisplayMode = (): BarGaugeDisplayMode => (BarGaugeDisplayMode.Basic);
 
-// Allows for the table cell gauge display type to set the gauge mode.
+/**
+ * Allows for the table cell gauge display type to set the gauge mode.
+ */
 export enum BarGaugeValueMode {
 	Color = "color",
 	Text = "text",
@@ -766,7 +876,9 @@ export enum BarGaugeValueMode {
 
 export const defaultBarGaugeValueMode = (): BarGaugeValueMode => (BarGaugeValueMode.Color);
 
-// Allows for the bar gauge name to be placed explicitly
+/**
+ * Allows for the bar gauge name to be placed explicitly
+ */
 export enum BarGaugeNamePlacement {
 	Auto = "auto",
 	Top = "top",
@@ -776,7 +888,9 @@ export enum BarGaugeNamePlacement {
 
 export const defaultBarGaugeNamePlacement = (): BarGaugeNamePlacement => (BarGaugeNamePlacement.Auto);
 
-// Allows for the bar gauge size to be set explicitly
+/**
+ * Allows for the bar gauge size to be set explicitly
+ */
 export enum BarGaugeSizing {
 	Auto = "auto",
 	Manual = "manual",
@@ -788,10 +902,12 @@ export type Labels = Record<string, string>;
 
 export const defaultLabels = (): Labels => ({});
 
-// Internally, this is the "type" of cell that's being displayed
-// in the table such as colored text, JSON, gauge, etc.
-// The color-background-solid, gradient-gauge, and lcd-gauge
-// modes are deprecated in favor of new cell subOptions
+/**
+ * Internally, this is the "type" of cell that's being displayed
+ * in the table such as colored text, JSON, gauge, etc.
+ * The color-background-solid, gradient-gauge, and lcd-gauge
+ * modes are deprecated in favor of new cell subOptions
+ */
 export enum TableCellDisplayMode {
 	Auto = "auto",
 	ColorText = "color-text",
@@ -811,9 +927,11 @@ export enum TableCellDisplayMode {
 
 export const defaultTableCellDisplayMode = (): TableCellDisplayMode => (TableCellDisplayMode.Auto);
 
-// Display mode to the "Colored Background" display
-// mode for table cells. Either displays a solid color (basic mode)
-// or a gradient.
+/**
+ * Display mode to the "Colored Background" display
+ * mode for table cells. Either displays a solid color (basic mode)
+ * or a gradient.
+ */
 export enum TableCellBackgroundDisplayMode {
 	Basic = "basic",
 	Gradient = "gradient",
@@ -821,7 +939,9 @@ export enum TableCellBackgroundDisplayMode {
 
 export const defaultTableCellBackgroundDisplayMode = (): TableCellBackgroundDisplayMode => (TableCellBackgroundDisplayMode.Basic);
 
-// Sort by field state
+/**
+ * Sort by field state
+ */
 export interface TableSortByFieldState {
 	// Sets the display name of the field to sort by
 	displayName: string;
@@ -833,7 +953,9 @@ export const defaultTableSortByFieldState = (): TableSortByFieldState => ({
 	displayName: "",
 });
 
-// Footer options
+/**
+ * Footer options
+ */
 export interface TableFooterOptions {
 	show: boolean;
 	// actually 1 value
@@ -848,7 +970,9 @@ export const defaultTableFooterOptions = (): TableFooterOptions => ({
 	reducer: [],
 });
 
-// Auto mode table cell options
+/**
+ * Auto mode table cell options
+ */
 export interface TableAutoCellOptions {
 	type: TableCellDisplayMode.Auto;
 	wrapText?: boolean;
@@ -858,7 +982,9 @@ export const defaultTableAutoCellOptions = (): TableAutoCellOptions => ({
 	type: TableCellDisplayMode.Auto,
 });
 
-// Colored text cell options
+/**
+ * Colored text cell options
+ */
 export interface TableColorTextCellOptions {
 	type: TableCellDisplayMode.ColorText;
 	wrapText?: boolean;
@@ -868,7 +994,9 @@ export const defaultTableColorTextCellOptions = (): TableColorTextCellOptions =>
 	type: TableCellDisplayMode.ColorText,
 });
 
-// Json view cell options
+/**
+ * Json view cell options
+ */
 export interface TableJsonViewCellOptions {
 	type: TableCellDisplayMode.JSONView;
 }
@@ -877,7 +1005,9 @@ export const defaultTableJsonViewCellOptions = (): TableJsonViewCellOptions => (
 	type: TableCellDisplayMode.JSONView,
 });
 
-// Json view cell options
+/**
+ * Json view cell options
+ */
 export interface TableImageCellOptions {
 	type: TableCellDisplayMode.Image;
 	alt?: string;
@@ -888,7 +1018,9 @@ export const defaultTableImageCellOptions = (): TableImageCellOptions => ({
 	type: TableCellDisplayMode.Image,
 });
 
-// Show data links in the cell
+/**
+ * Show data links in the cell
+ */
 export interface TableDataLinksCellOptions {
 	type: TableCellDisplayMode.DataLinks;
 }
@@ -897,7 +1029,9 @@ export const defaultTableDataLinksCellOptions = (): TableDataLinksCellOptions =>
 	type: TableCellDisplayMode.DataLinks,
 });
 
-// Show actions in the cell
+/**
+ * Show actions in the cell
+ */
 export interface TableActionsCellOptions {
 	type: TableCellDisplayMode.Actions;
 }
@@ -906,7 +1040,9 @@ export const defaultTableActionsCellOptions = (): TableActionsCellOptions => ({
 	type: TableCellDisplayMode.Actions,
 });
 
-// Gauge cell options
+/**
+ * Gauge cell options
+ */
 export interface TableBarGaugeCellOptions {
 	type: TableCellDisplayMode.Gauge;
 	mode?: BarGaugeDisplayMode;
@@ -917,7 +1053,9 @@ export const defaultTableBarGaugeCellOptions = (): TableBarGaugeCellOptions => (
 	type: TableCellDisplayMode.Gauge,
 });
 
-// Sparkline cell options
+/**
+ * Sparkline cell options
+ */
 export interface TableSparklineCellOptions {
 	type: TableCellDisplayMode.Sparkline;
 	drawStyle?: GraphDrawStyle;
@@ -962,7 +1100,9 @@ export const defaultTableSparklineCellOptions = (): TableSparklineCellOptions =>
 	type: TableCellDisplayMode.Sparkline,
 });
 
-// Colored background cell options
+/**
+ * Colored background cell options
+ */
 export interface TableColoredBackgroundCellOptions {
 	type: TableCellDisplayMode.ColorBackground;
 	mode?: TableCellBackgroundDisplayMode;
@@ -974,7 +1114,9 @@ export const defaultTableColoredBackgroundCellOptions = (): TableColoredBackgrou
 	type: TableCellDisplayMode.ColorBackground,
 });
 
-// Height of a table cell
+/**
+ * Height of a table cell
+ */
 export enum TableCellHeight {
 	Sm = "sm",
 	Md = "md",
@@ -984,14 +1126,18 @@ export enum TableCellHeight {
 
 export const defaultTableCellHeight = (): TableCellHeight => (TableCellHeight.Sm);
 
-// Table cell options. Each cell has a display mode
-// and other potential options for that display.
+/**
+ * Table cell options. Each cell has a display mode
+ * and other potential options for that display.
+ */
 export type TableCellOptions = TableAutoCellOptions | TableSparklineCellOptions | TableBarGaugeCellOptions | TableColoredBackgroundCellOptions | TableColorTextCellOptions | TableImageCellOptions | TableDataLinksCellOptions | TableActionsCellOptions | TableJsonViewCellOptions;
 
 export const defaultTableCellOptions = (): TableCellOptions => (defaultTableAutoCellOptions());
 
-// Optional formats for the template variable replace functions
-// See also https://grafana.com/docs/grafana/latest/dashboards/variables/variable-syntax/#advanced-variable-format-options
+/**
+ * Optional formats for the template variable replace functions
+ * See also https://grafana.com/docs/grafana/latest/dashboards/variables/variable-syntax/#advanced-variable-format-options
+ */
 export enum VariableFormatID {
 	Lucene = "lucene",
 	Raw = "raw",
@@ -1024,7 +1170,9 @@ export interface DataSourceRef {
 export const defaultDataSourceRef = (): DataSourceRef => ({
 });
 
-// Links to a resource (image/svg path)
+/**
+ * Links to a resource (image/svg path)
+ */
 export interface ResourceDimensionConfig {
 	mode: ResourceDimensionMode;
 	// fixed: T -- will be added by each element
@@ -1055,7 +1203,9 @@ export enum LogsDedupStrategy {
 
 export const defaultLogsDedupStrategy = (): LogsDedupStrategy => (LogsDedupStrategy.None);
 
-// Compare two values
+/**
+ * Compare two values
+ */
 export enum ComparisonOperation {
 	EQ = "eq",
 	NEQ = "neq",
@@ -1067,8 +1217,10 @@ export enum ComparisonOperation {
 
 export const defaultComparisonOperation = (): ComparisonOperation => (ComparisonOperation.EQ);
 
-// Field options for each field within a table (e.g 10, "The String", 64.20, etc.)
-// Generally defines alignment, filtering capabilties, display options, etc.
+/**
+ * Field options for each field within a table (e.g 10, "The String", 64.20, etc.)
+ * Generally defines alignment, filtering capabilties, display options, etc.
+ */
 export interface TableFieldOptions {
 	width?: number;
 	minWidth?: number;

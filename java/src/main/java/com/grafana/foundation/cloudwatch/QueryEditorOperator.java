@@ -8,7 +8,9 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.ObjectWriter;
 import com.fasterxml.jackson.annotation.JsonInclude;
 
-// TS type is QueryEditorOperator<T extends QueryEditorOperatorValueType>, extended in veneer
+/**
+ * TS type is QueryEditorOperator<T extends QueryEditorOperatorValueType>, extended in veneer
+ */
 public class QueryEditorOperator {
     @JsonInclude(JsonInclude.Include.NON_NULL)
     @JsonProperty("name")

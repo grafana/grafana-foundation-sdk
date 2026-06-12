@@ -3,7 +3,9 @@
 import * as cog from '../cog';
 import * as heatmap from '../heatmap';
 
-// Controls various color options
+/**
+ * Controls various color options
+ */
 export class HeatmapColorOptionsBuilder implements cog.Builder<heatmap.HeatmapColorOptions> {
     protected readonly internal: heatmap.HeatmapColorOptions;
 

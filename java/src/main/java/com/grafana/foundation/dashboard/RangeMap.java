@@ -8,8 +8,10 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.ObjectWriter;
 import com.fasterxml.jackson.annotation.JsonInclude;
 
-// Maps numerical ranges to a display text and color.
-// For example, if a value is within a certain range, you can configure a range value mapping to display Low or High rather than the number.
+/**
+ * Maps numerical ranges to a display text and color.
+ * For example, if a value is within a certain range, you can configure a range value mapping to display Low or High rather than the number.
+ */
 public class RangeMap {
     @JsonProperty("type")
     public MappingType type;

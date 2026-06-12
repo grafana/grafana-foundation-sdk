@@ -3,7 +3,9 @@
 import * as cog from '../cog';
 import * as dashboard from '../dashboard';
 
-// Dashboard action
+/**
+ * Dashboard action
+ */
 export class ActionBuilder implements cog.Builder<dashboard.Action> {
     protected readonly internal: dashboard.Action;
 

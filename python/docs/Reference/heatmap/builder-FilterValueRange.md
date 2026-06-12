@@ -3,6 +3,8 @@ title: <span class="badge builder"></span> FilterValueRange
 ---
 # <span class="badge builder"></span> FilterValueRange
 
+Controls the value filter range
+
 ## Constructor
 
 ```python

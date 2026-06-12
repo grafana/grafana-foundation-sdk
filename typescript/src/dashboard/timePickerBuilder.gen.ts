@@ -3,8 +3,10 @@
 import * as cog from '../cog';
 import * as dashboard from '../dashboard';
 
-// Time picker configuration
-// It defines the default config for the time picker and the refresh picker for the specific dashboard.
+/**
+ * Time picker configuration
+ * It defines the default config for the time picker and the refresh picker for the specific dashboard.
+ */
 export class TimePickerBuilder implements cog.Builder<dashboard.TimePickerConfig> {
     protected readonly internal: dashboard.TimePickerConfig;
 

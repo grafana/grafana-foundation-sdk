@@ -5,6 +5,9 @@ package com.grafana.foundation.dashboard;
 import java.util.List;
 import java.util.LinkedList;
 
+/**
+ * Dashboard action
+ */
 public class ActionBuilder implements com.grafana.foundation.cog.Builder<Action> {
     protected final Action internal;
     

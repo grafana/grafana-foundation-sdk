@@ -13,12 +13,10 @@
       "MonitorQuery": {
         "type": "object",
         "additionalProperties": false,
-        "required": [
-          "refId"
-        ],
         "properties": {
           "refId": {
             "type": "string",
+            "nullable": true,
             "description": "A unique identifier for the query within the list of targets.\nIn server side expressions, the refId is used as a variable name to identify results.\nBy default, the UI will assign A-\u003eZ; however setting meaningful names may be useful."
           },
           "hide": {
@@ -81,8 +79,7 @@
             "description": "Custom namespace used in template variable queries"
           },
           "datasource": {
-            "type": "object",
-            "additionalProperties": {},
+            "$ref": "#/components/schemas/DataSourceRef",
             "description": "For mixed data sources the selected datasource is on the query level.\nFor non mixed scenarios this is undefined.\nTODO find a better way to do this ^ that's friendly to schema\nTODO this shouldn't be unknown but DataSourceRef | null"
           },
           "query": {
@@ -663,6 +660,20 @@
         "properties": {
           "rawQuery": {
             "type": "string"
+          }
+        }
+      },
+      "DataSourceRef": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "type": {
+            "type": "string",
+            "description": "The plugin type-id"
+          },
+          "uid": {
+            "type": "string",
+            "description": "Specific datasource instance"
           }
         }
       }

@@ -22,7 +22,7 @@ public class MonitorQuery extends com.grafana.foundation.cog.variants.Dataquery 
   public String resource;
   public String region;
   public String customNamespace;
-  public Object datasource;
+  public DataSourceRef datasource;
   public String query;
 }
 ```

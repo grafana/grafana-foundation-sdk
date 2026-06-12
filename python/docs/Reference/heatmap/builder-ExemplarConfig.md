@@ -3,6 +3,8 @@ title: <span class="badge builder"></span> ExemplarConfig
 ---
 # <span class="badge builder"></span> ExemplarConfig
 
+Controls exemplar options
+
 ## Constructor
 
 ```python

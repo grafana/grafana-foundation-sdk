@@ -4,6 +4,9 @@ package com.grafana.foundation.googlecloudmonitoring;
 
 import java.util.List;
 
+/**
+ * @deprecated This type is for migration purposes only. Replaced by TimeSeriesList Metric sub-query properties.
+ */
 public class MetricQueryBuilder implements com.grafana.foundation.cog.Builder<MetricQuery> {
     protected final MetricQuery internal;
     

@@ -10,6 +10,7 @@ import (
 	cog "github.com/grafana/grafana-foundation-sdk/go/cog"
 )
 
+// Deprecated: Prefer using folder.Folder instead.
 type Folder struct {
 	Title       string  `json:"title"`
 	Description *string `json:"description,omitempty"`

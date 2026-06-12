@@ -76,10 +76,8 @@ TODO find a better way to do this ^ that's friendly to schema
 
 TODO this shouldn't be unknown but DataSourceRef | null
 
-@param mixed $datasource
-
 ```php
-datasource($datasource)
+datasource(\Grafana\Foundation\Common\DataSourceRef $datasource)
 ```
 
 ### <span class="badge object-method"></span> grafanaTemplateVariableFn

@@ -5,6 +5,7 @@ from ..cog import builder as cogbuilder
 from ..models import dashboard
 from ..models import common
 from ..cog import variants as cogvariants
+import warnings
 
 
 class AnnotationActions(cogbuilder.Builder[dashboard.AnnotationActions]):
@@ -1823,6 +1824,8 @@ class Panel(cogbuilder.Builder[dashboard.Panel]):
 
 
 class Dashboard(cogbuilder.Builder[dashboard.Dashboard]):
+    warnings.warn("Prefer using dashboardv2.Dashboard instead.", DeprecationWarning)
+
     _internal: dashboard.Dashboard
     __current_y: int = 0
     __current_x: int = 0

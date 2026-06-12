@@ -18,15 +18,17 @@ Builds the object.
 func (builder *DataqueryBuilder) Build() (variants.Dataquery, error)
 ```
 
+### <span class="badge object-method"></span> AdhocFilters
+
+Additional Ad-hoc filters that take precedence over Scope on conflict.
+
+```go
+func (builder *DataqueryBuilder) AdhocFilters(adhocFilters []cog.Builder[prometheus.AdhocFilters]) *DataqueryBuilder
+```
+
 ### <span class="badge object-method"></span> Datasource
 
-For mixed data sources the selected datasource is on the query level.
-
-For non mixed scenarios this is undefined.
-
-TODO find a better way to do this ^ that's friendly to schema
-
-TODO this shouldn't be unknown but DataSourceRef | null
+The datasource
 
 ```go
 func (builder *DataqueryBuilder) Datasource(datasource common.DataSourceRef) *DataqueryBuilder
@@ -34,7 +36,13 @@ func (builder *DataqueryBuilder) Datasource(datasource common.DataSourceRef) *Da
 
 ### <span class="badge object-method"></span> EditorMode
 
-Specifies which editor is being used to prepare the query. It can be "code" or "builder"
+what we should show in the editor
+
+Possible enum values:
+
+ - `"builder"` 
+
+ - `"code"` 
 
 ```go
 func (builder *DataqueryBuilder) EditorMode(editorMode prometheus.QueryEditorMode) *DataqueryBuilder
@@ -58,15 +66,35 @@ func (builder *DataqueryBuilder) Expr(expr string) *DataqueryBuilder
 
 ### <span class="badge object-method"></span> Format
 
-Query format to determine how to display data points in panel. It can be "time_series", "table", "heatmap"
+The response format
+
+Possible enum values:
+
+ - `"time_series"` 
+
+ - `"table"` 
+
+ - `"heatmap"` 
 
 ```go
 func (builder *DataqueryBuilder) Format(format prometheus.PromQueryFormat) *DataqueryBuilder
 ```
 
+### <span class="badge object-method"></span> GroupByKeys
+
+Group By parameters to apply to aggregate expressions in the query
+
+```go
+func (builder *DataqueryBuilder) GroupByKeys(groupByKeys []string) *DataqueryBuilder
+```
+
 ### <span class="badge object-method"></span> Hide
 
-If hide is set to true, Grafana will filter out the response(s) associated with this query before returning it to the panel.
+true if query is disabled (ie should not be returned to the dashboard)
+
+NOTE: this does not always imply that the query should not be executed since
+
+the results from a hidden query may be used as the input to other queries (SSE etc)
 
 ```go
 func (builder *DataqueryBuilder) Hide(hide bool) *DataqueryBuilder
@@ -92,12 +120,26 @@ func (builder *DataqueryBuilder) Interval(interval string) *DataqueryBuilder
 
 ### <span class="badge object-method"></span> IntervalFactor
 
-@deprecated Used to specify how many times to divide max data points by. We use max data points under query options
+Used to specify how many times to divide max data points by. We use max data points under query options
 
 See https://github.com/grafana/grafana/issues/48081
 
+Deprecated: use interval
+
 ```go
-func (builder *DataqueryBuilder) IntervalFactor(intervalFactor float64) *DataqueryBuilder
+func (builder *DataqueryBuilder) IntervalFactor(intervalFactor int64) *DataqueryBuilder
+```
+
+### <span class="badge object-method"></span> IntervalMs
+
+Interval is the suggested duration between time points in a time series query.
+
+NOTE: the values for intervalMs is not saved in the query model.  It is typically calculated
+
+from the interval required to fill a pixels in the visualization
+
+```go
+func (builder *DataqueryBuilder) IntervalMs(intervalMs float64) *DataqueryBuilder
 ```
 
 ### <span class="badge object-method"></span> LegendFormat
@@ -108,11 +150,23 @@ Series name override or template. Ex. {{hostname}} will be replaced with label v
 func (builder *DataqueryBuilder) LegendFormat(legendFormat string) *DataqueryBuilder
 ```
 
+### <span class="badge object-method"></span> MaxDataPoints
+
+MaxDataPoints is the maximum number of data points that should be returned from a time series query.
+
+NOTE: the values for maxDataPoints is not saved in the query model.  It is typically calculated
+
+from the number of pixels visible in a visualization
+
+```go
+func (builder *DataqueryBuilder) MaxDataPoints(maxDataPoints int64) *DataqueryBuilder
+```
+
 ### <span class="badge object-method"></span> QueryType
 
-Specify the query flavor
+QueryType is an optional identifier for the type of query.
 
-TODO make this required and give it a default
+It can be used to distinguish different types of queries.
 
 ```go
 func (builder *DataqueryBuilder) QueryType(queryType string) *DataqueryBuilder
@@ -134,14 +188,38 @@ func (builder *DataqueryBuilder) RangeAndInstant() *DataqueryBuilder
 
 ### <span class="badge object-method"></span> RefId
 
-A unique identifier for the query within the list of targets.
-
-In server side expressions, the refId is used as a variable name to identify results.
-
-By default, the UI will assign A->Z; however setting meaningful names may be useful.
+RefID is the unique identifier of the query, set by the frontend call.
 
 ```go
 func (builder *DataqueryBuilder) RefId(refId string) *DataqueryBuilder
+```
+
+### <span class="badge object-method"></span> ResultAssertions
+
+Optionally define expected query result behavior
+
+```go
+func (builder *DataqueryBuilder) ResultAssertions(resultAssertions cog.Builder[prometheus.ResultAssertions]) *DataqueryBuilder
+```
+
+### <span class="badge object-method"></span> Scopes
+
+A set of filters applied to apply to the query
+
+```go
+func (builder *DataqueryBuilder) Scopes(scopes []cog.Builder[prometheus.Scopes]) *DataqueryBuilder
+```
+
+### <span class="badge object-method"></span> TimeRange
+
+TimeRange represents the query range
+
+NOTE: unlike generic /ds/query, we can now send explicit time values in each query
+
+NOTE: the values for timeRange are not saved in a dashboard, they are constructed on the fly
+
+```go
+func (builder *DataqueryBuilder) TimeRange(timeRange cog.Builder[prometheus.TimeRange]) *DataqueryBuilder
 ```
 
 ## See also

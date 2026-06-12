@@ -3,6 +3,8 @@ title: <span class="badge builder"></span> DatasourceControlSourceRef
 ---
 # <span class="badge builder"></span> DatasourceControlSourceRef
 
+Source information for controls (e.g. variables or links)
+
 ## Constructor
 
 ```python

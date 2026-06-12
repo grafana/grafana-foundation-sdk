@@ -8,7 +8,9 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.ObjectWriter;
 import com.fasterxml.jackson.annotation.JsonInclude;
 
-// Result used as replacement with text and color when the value matches
+/**
+ * Result used as replacement with text and color when the value matches
+ */
 public class ValueMappingResult {
     // Text to display when the value matches
     @JsonInclude(JsonInclude.Include.NON_NULL)

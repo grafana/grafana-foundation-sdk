@@ -8,8 +8,10 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.ObjectWriter;
 import com.fasterxml.jackson.annotation.JsonInclude;
 
-// Maps regular expressions to replacement text and a color.
-// For example, if a value is www.example.com, you can configure a regex value mapping so that Grafana displays www and truncates the domain.
+/**
+ * Maps regular expressions to replacement text and a color.
+ * For example, if a value is www.example.com, you can configure a regex value mapping so that Grafana displays www and truncates the domain.
+ */
 public class RegexMap {
     @JsonProperty("type")
     public MappingType type;

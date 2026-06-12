@@ -8,7 +8,9 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.ObjectWriter;
 import com.fasterxml.jackson.annotation.JsonInclude;
 
-// Json view cell options
+/**
+ * Json view cell options
+ */
 public class TableImageCellOptions {
     @JsonProperty("type")
     public TableCellDisplayMode type;

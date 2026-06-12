@@ -6,6 +6,10 @@ import java.util.List;
 import java.util.Map;
 import java.util.LinkedList;
 
+/**
+ * A Route is a node that contains definitions of how to handle alerts. This is modified
+ * from the upstream alertmanager in that it adds the ObjectMatchers property.
+ */
 public class NotificationPolicyBuilder implements com.grafana.foundation.cog.Builder<NotificationPolicy> {
     protected final NotificationPolicy internal;
     

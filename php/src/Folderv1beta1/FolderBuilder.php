@@ -4,6 +4,7 @@ namespace Grafana\Foundation\Folderv1beta1;
 
 /**
  * @implements \Grafana\Foundation\Cog\Builder<\Grafana\Foundation\Folderv1beta1\Folder>
+ * @deprecated Prefer using folder.Folder instead.
  */
 class FolderBuilder implements \Grafana\Foundation\Cog\Builder
 {

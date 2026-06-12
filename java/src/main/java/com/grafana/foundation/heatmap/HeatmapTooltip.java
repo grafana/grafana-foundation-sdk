@@ -9,7 +9,9 @@ import com.fasterxml.jackson.databind.ObjectWriter;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.grafana.foundation.common.TooltipDisplayMode;
 
-// Controls tooltip options
+/**
+ * Controls tooltip options
+ */
 public class HeatmapTooltip {
     // Controls how the tooltip is shown
     @JsonInclude(JsonInclude.Include.NON_EMPTY)

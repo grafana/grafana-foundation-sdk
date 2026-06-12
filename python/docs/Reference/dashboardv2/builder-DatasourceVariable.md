@@ -3,6 +3,8 @@ title: <span class="badge builder"></span> DatasourceVariable
 ---
 # <span class="badge builder"></span> DatasourceVariable
 
+Datasource variable kind
+
 ## Constructor
 
 ```python

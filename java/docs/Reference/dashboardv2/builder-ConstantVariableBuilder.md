@@ -3,6 +3,8 @@ title: <span class="badge builder"></span> ConstantVariableBuilder
 ---
 # <span class="badge builder"></span> ConstantVariableBuilder
 
+Constant variable kind
+
 ## Constructor
 
 ```java

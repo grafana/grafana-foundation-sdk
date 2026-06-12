@@ -3,6 +3,9 @@
 package com.grafana.foundation.dashboardv2;
 
 
+/**
+ * Text variable kind
+ */
 public class TextVariableBuilder implements com.grafana.foundation.cog.Builder<TextVariableKind> {
     protected final TextVariableKind internal;
     

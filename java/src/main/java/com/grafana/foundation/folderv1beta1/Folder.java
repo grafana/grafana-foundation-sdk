@@ -8,6 +8,10 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.ObjectWriter;
 import com.fasterxml.jackson.annotation.JsonInclude;
 
+/**
+ * @deprecated Prefer using folder.Folder instead.
+ */
+@Deprecated(forRemoval = true)
 public class Folder {
     @JsonProperty("title")
     public String title;

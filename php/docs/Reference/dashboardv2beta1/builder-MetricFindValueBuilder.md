@@ -3,6 +3,8 @@ title: <span class="badge builder"></span> MetricFindValueBuilder
 ---
 # <span class="badge builder"></span> MetricFindValueBuilder
 
+Define the MetricFindValue type
+
 ## Constructor
 
 ```php

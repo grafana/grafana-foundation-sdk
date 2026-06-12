@@ -27,6 +27,9 @@ import com.grafana.foundation.common.LineStyle;
 import com.grafana.foundation.common.VizLegendOptions;
 import com.grafana.foundation.common.VizTooltipOptions;
 
+/**
+ * Dashboard panels are the basic visualization building blocks.
+ */
 public class XychartPanelBuilder implements com.grafana.foundation.cog.Builder<Panel> {
     protected final Panel internal;
     

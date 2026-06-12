@@ -13,9 +13,11 @@ import java.util.Map;
 import com.grafana.foundation.common.DataSourceRef;
 import java.util.List;
 
-// Shape of a CloudWatch Annotation query
-// TS type is CloudWatchDefaultQuery = Omit<CloudWatchLogsQuery, 'queryMode'> & CloudWatchMetricsQuery, declared in veneer
-// #CloudWatchDefaultQuery: #CloudWatchLogsQuery & #CloudWatchMetricsQuery @cuetsy(kind="type")
+/**
+ * Shape of a CloudWatch Annotation query
+ * TS type is CloudWatchDefaultQuery = Omit<CloudWatchLogsQuery, 'queryMode'> & CloudWatchMetricsQuery, declared in veneer
+ * #CloudWatchDefaultQuery: #CloudWatchLogsQuery & #CloudWatchMetricsQuery @cuetsy(kind="type")
+ */
 public class AnnotationQuery {
     // Whether a query is a Metrics, Logs, or Annotations query
     @JsonInclude(JsonInclude.Include.NON_EMPTY)
@@ -36,6 +38,7 @@ public class AnnotationQuery {
     // A unique identifier for the query within the list of targets.
     // In server side expressions, the refId is used as a variable name to identify results.
     // By default, the UI will assign A->Z; however setting meaningful names may be useful.
+    @JsonInclude(JsonInclude.Include.NON_NULL)
     @JsonProperty("refId")
     public String refId;
     // If hide is set to true, Grafana will filter out the response(s) associated with this query before returning it to the panel.
@@ -96,7 +99,6 @@ public class AnnotationQuery {
     public List<String> statistics;
     public AnnotationQuery() {
         this.queryMode = QueryMode.ANNOTATIONS;
-        this.refId = "";
         this.region = "";
         this.namespace = "";
     }

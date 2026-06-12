@@ -4,6 +4,9 @@ package com.grafana.foundation.dashboardv2beta1;
 
 import java.util.List;
 
+/**
+ * Interval variable kind
+ */
 public class IntervalVariableBuilder implements com.grafana.foundation.cog.Builder<IntervalVariableKind> {
     protected final IntervalVariableKind internal;
     

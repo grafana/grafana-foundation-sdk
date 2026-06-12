@@ -3,7 +3,9 @@
 import * as cog from '../cog';
 import * as dashboardv2beta1 from '../dashboardv2beta1';
 
-// Constant variable kind
+/**
+ * Constant variable kind
+ */
 export class ConstantVariableBuilder implements cog.Builder<dashboardv2beta1.ConstantVariableKind> {
     protected readonly internal: dashboardv2beta1.ConstantVariableKind;
 

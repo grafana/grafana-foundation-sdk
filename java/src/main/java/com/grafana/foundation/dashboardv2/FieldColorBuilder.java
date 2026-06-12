@@ -3,6 +3,9 @@
 package com.grafana.foundation.dashboardv2;
 
 
+/**
+ * Map a field to a color.
+ */
 public class FieldColorBuilder implements com.grafana.foundation.cog.Builder<FieldColor> {
     protected final FieldColor internal;
     

@@ -8,8 +8,10 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.ObjectWriter;
 import com.fasterxml.jackson.annotation.JsonInclude;
 
-// EmbeddedContactPoint is the contact point type that is used
-// by grafanas embedded alertmanager implementation.
+/**
+ * EmbeddedContactPoint is the contact point type that is used
+ * by grafanas embedded alertmanager implementation.
+ */
 public class ContactPoint {
     @JsonInclude(JsonInclude.Include.NON_NULL)
     @JsonProperty("disableResolveMessage")

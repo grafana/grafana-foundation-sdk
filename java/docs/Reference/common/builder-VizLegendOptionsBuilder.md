@@ -3,6 +3,8 @@ title: <span class="badge builder"></span> VizLegendOptionsBuilder
 ---
 # <span class="badge builder"></span> VizLegendOptionsBuilder
 
+TODO docs
+
 ## Constructor
 
 ```java

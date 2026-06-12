@@ -3,6 +3,8 @@ title: <span class="badge builder"></span> InfinityOptionsBuilder
 ---
 # <span class="badge builder"></span> InfinityOptionsBuilder
 
+Infinity options
+
 ## Constructor
 
 ```php

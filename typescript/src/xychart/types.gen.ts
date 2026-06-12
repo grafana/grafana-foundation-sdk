@@ -25,9 +25,11 @@ export enum XYShowMode {
 
 export const defaultXYShowMode = (): XYShowMode => (XYShowMode.Points);
 
-// NOTE: (copied from dashboard_kind.cue, since not exported)
-// Matcher is a predicate configuration. Based on the config a set of field(s) or values is filtered in order to apply override / transformation.
-// It comes with in id ( to resolve implementation from registry) and a configuration that’s specific to a particular matcher type.
+/**
+ * NOTE: (copied from dashboard_kind.cue, since not exported)
+ * Matcher is a predicate configuration. Based on the config a set of field(s) or values is filtered in order to apply override / transformation.
+ * It comes with in id ( to resolve implementation from registry) and a configuration that’s specific to a particular matcher type.
+ */
 export interface MatcherConfig {
 	// The matcher id. This is used to find the matcher implementation from registry.
 	id: string;

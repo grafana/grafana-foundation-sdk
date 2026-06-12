@@ -3,6 +3,8 @@ title: <span class="badge builder"></span> HeatmapLegend
 ---
 # <span class="badge builder"></span> HeatmapLegend
 
+Controls legend options
+
 ## Constructor
 
 ```python

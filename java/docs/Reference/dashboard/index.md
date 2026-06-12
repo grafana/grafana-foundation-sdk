@@ -83,7 +83,7 @@
  * <span class="badge builder"></span> [AnnotationTargetBuilder](./builder-AnnotationTargetBuilder.md)
  * <span class="badge builder"></span> [ConstantVariableBuilder](./builder-ConstantVariableBuilder.md)
  * <span class="badge builder"></span> [CustomVariableBuilder](./builder-CustomVariableBuilder.md)
- * <span class="badge builder"></span> [DashboardBuilder](./builder-DashboardBuilder.md)
+ * <span class="badge builder"></span> <span class="badge deprecated"></span> [DashboardBuilder](./builder-DashboardBuilder.md)
  * <span class="badge builder"></span> [DashboardActionStyleBuilder](./builder-DashboardActionStyleBuilder.md)
  * <span class="badge builder"></span> [DashboardDashboardTemplatingBuilder](./builder-DashboardDashboardTemplatingBuilder.md)
  * <span class="badge builder"></span> [DashboardDashboardTimeBuilder](./builder-DashboardDashboardTimeBuilder.md)

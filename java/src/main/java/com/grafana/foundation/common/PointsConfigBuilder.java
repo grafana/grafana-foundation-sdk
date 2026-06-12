@@ -3,6 +3,9 @@
 package com.grafana.foundation.common;
 
 
+/**
+ * TODO docs
+ */
 public class PointsConfigBuilder implements com.grafana.foundation.cog.Builder<PointsConfig> {
     protected final PointsConfig internal;
     

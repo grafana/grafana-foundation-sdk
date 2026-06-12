@@ -47,7 +47,7 @@ class LogsQuery implements \JsonSerializable, \Grafana\Foundation\Cog\Dataquery
      * In server side expressions, the refId is used as a variable name to identify results.
      * By default, the UI will assign A->Z; however setting meaningful names may be useful.
      */
-    public string $refId;
+    public ?string $refId;
 
     /**
      * If hide is set to true, Grafana will filter out the response(s) associated with this query before returning it to the panel.
@@ -96,7 +96,7 @@ class LogsQuery implements \JsonSerializable, \Grafana\Foundation\Cog\Dataquery
         $this->statsGroups = $statsGroups;
         $this->logGroups = $logGroups;
         $this->logGroupNames = $logGroupNames;
-        $this->refId = $refId ?: "";
+        $this->refId = $refId;
         $this->hide = $hide;
         $this->queryType = $queryType;
         $this->queryLanguage = $queryLanguage;
@@ -143,7 +143,6 @@ class LogsQuery implements \JsonSerializable, \Grafana\Foundation\Cog\Dataquery
         $data->queryMode = $this->queryMode;
         $data->id = $this->id;
         $data->region = $this->region;
-        $data->refId = $this->refId;
         if (isset($this->expression)) {
             $data->expression = $this->expression;
         }
@@ -155,6 +154,9 @@ class LogsQuery implements \JsonSerializable, \Grafana\Foundation\Cog\Dataquery
         }
         if (isset($this->logGroupNames)) {
             $data->logGroupNames = $this->logGroupNames;
+        }
+        if (isset($this->refId)) {
+            $data->refId = $this->refId;
         }
         if (isset($this->hide)) {
             $data->hide = $this->hide;

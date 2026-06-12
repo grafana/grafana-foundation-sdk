@@ -3,6 +3,8 @@ title: <span class="badge builder"></span> AnnotationEventFieldMapping
 ---
 # <span class="badge builder"></span> AnnotationEventFieldMapping
 
+Annotation event field mapping. Defines how to map a data frame field to an annotation event field.
+
 ## Constructor
 
 ```python

@@ -9,11 +9,13 @@ import (
 
 var _ cog.Builder[Playlist] = (*PlaylistBuilder)(nil)
 
+// Deprecated: Prefer using playlistv1.Playlist instead.
 type PlaylistBuilder struct {
 	internal *Playlist
 	errors   cog.BuildErrors
 }
 
+// Deprecated: "Prefer using playlistv1.Playlist instead."
 func NewPlaylistBuilder(title string) *PlaylistBuilder {
 	resource := NewPlaylist()
 	builder := &PlaylistBuilder{

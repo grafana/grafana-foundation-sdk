@@ -3,6 +3,8 @@ title: <span class="badge builder"></span> FilterValueRangeBuilder
 ---
 # <span class="badge builder"></span> FilterValueRangeBuilder
 
+Controls the value filter range
+
 ## Constructor
 
 ```php

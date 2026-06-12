@@ -3,6 +3,10 @@ title: <span class="badge builder"></span> AnnotationQuery
 ---
 # <span class="badge builder"></span> AnnotationQuery
 
+TODO docs
+
+FROM: AnnotationQuery in grafana-data/src/types/annotations.ts
+
 ## Constructor
 
 ```python

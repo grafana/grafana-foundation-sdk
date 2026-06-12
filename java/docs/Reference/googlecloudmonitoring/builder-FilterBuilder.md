@@ -3,6 +3,8 @@ title: <span class="badge builder"></span> FilterBuilder
 ---
 # <span class="badge builder"></span> FilterBuilder
 
+Query filter representation.
+
 ## Constructor
 
 ```java

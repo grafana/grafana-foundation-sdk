@@ -4,7 +4,9 @@ import * as cog from '../cog';
 import * as bigquery from '../bigquery';
 import * as common from '../common';
 
-// Manually converted from https://github.com/grafana/google-bigquery-datasource/blob/18680e42ba557791d109c7c540c2c3f2647592f0/src/types.ts#L75
+/**
+ * Manually converted from https://github.com/grafana/google-bigquery-datasource/blob/18680e42ba557791d109c7c540c2c3f2647592f0/src/types.ts#L75
+ */
 export class DataqueryBuilder implements cog.Builder<cog.Dataquery> {
     protected readonly internal: bigquery.Dataquery;
 

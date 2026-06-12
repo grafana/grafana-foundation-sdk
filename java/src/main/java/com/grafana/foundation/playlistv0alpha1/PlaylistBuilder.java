@@ -5,6 +5,10 @@ package com.grafana.foundation.playlistv0alpha1;
 import java.util.List;
 import java.util.LinkedList;
 
+/**
+ * @deprecated Prefer using playlistv1.Playlist instead.
+ */
+@Deprecated(forRemoval = true)
 public class PlaylistBuilder implements com.grafana.foundation.cog.Builder<Playlist> {
     protected final Playlist internal;
     

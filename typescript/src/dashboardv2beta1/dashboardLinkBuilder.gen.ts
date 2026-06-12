@@ -3,7 +3,9 @@
 import * as cog from '../cog';
 import * as dashboardv2beta1 from '../dashboardv2beta1';
 
-// Links with references to other dashboards or external resources
+/**
+ * Links with references to other dashboards or external resources
+ */
 export class DashboardLinkBuilder implements cog.Builder<dashboardv2beta1.DashboardLink> {
     protected readonly internal: dashboardv2beta1.DashboardLink;
 
@@ -80,7 +82,7 @@ export class DashboardLinkBuilder implements cog.Builder<dashboardv2beta1.Dashbo
     }
 
     // Placement can be used to display the link somewhere else on the dashboard other than above the visualisations.
-    placement(placement: "inControlsMenu"): this {
+    placement(placement: dashboardv2beta1.DashboardLinkPlacement): this {
         this.internal.placement = placement;
         return this;
     }

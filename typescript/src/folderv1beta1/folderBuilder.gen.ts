@@ -4,6 +4,9 @@ import * as cog from '../cog';
 import * as folderv1beta1 from '../folderv1beta1';
 import * as resource from '../resource';
 
+/**
+ * @deprecated Prefer using folder.Folder instead.
+ */
 export class FolderBuilder implements cog.Builder<folderv1beta1.Folder> {
     protected readonly internal: folderv1beta1.Folder;
 

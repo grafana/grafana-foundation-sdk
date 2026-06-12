@@ -9,7 +9,9 @@ import com.fasterxml.jackson.databind.ObjectWriter;
 import java.util.HashMap;
 import com.fasterxml.jackson.annotation.JsonInclude;
 
-// Text variable specification
+/**
+ * Text variable specification
+ */
 public class TextVariableSpec {
     @JsonProperty("name")
     public String name;

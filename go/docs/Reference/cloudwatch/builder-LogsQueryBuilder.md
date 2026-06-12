@@ -3,6 +3,8 @@ title: <span class="badge builder"></span> LogsQueryBuilder
 ---
 # <span class="badge builder"></span> LogsQueryBuilder
 
+Shape of a CloudWatch Logs query
+
 ## Constructor
 
 ```go

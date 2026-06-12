@@ -3,6 +3,9 @@
 package com.grafana.foundation.common;
 
 
+/**
+ * TODO docs
+ */
 public class OptionsWithLegendBuilder implements com.grafana.foundation.cog.Builder<OptionsWithLegend> {
     protected final OptionsWithLegend internal;
     

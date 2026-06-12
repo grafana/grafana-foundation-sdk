@@ -25,6 +25,9 @@ import com.grafana.foundation.common.VizTextDisplayOptions;
 import com.grafana.foundation.common.VizOrientation;
 import com.grafana.foundation.common.HideSeriesConfig;
 
+/**
+ * Dashboard panels are the basic visualization building blocks.
+ */
 public class PiechartPanelBuilder implements com.grafana.foundation.cog.Builder<Panel> {
     protected final Panel internal;
     

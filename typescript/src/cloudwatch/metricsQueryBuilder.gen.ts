@@ -4,7 +4,9 @@ import * as cog from '../cog';
 import * as cloudwatch from '../cloudwatch';
 import * as common from '../common';
 
-// Shape of a CloudWatch Metrics query
+/**
+ * Shape of a CloudWatch Metrics query
+ */
 export class MetricsQueryBuilder implements cog.Builder<cog.Dataquery> {
     protected readonly internal: cloudwatch.MetricsQuery;
 

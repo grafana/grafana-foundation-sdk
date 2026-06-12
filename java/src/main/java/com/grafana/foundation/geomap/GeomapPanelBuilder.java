@@ -21,6 +21,9 @@ import com.grafana.foundation.dashboard.DynamicConfigValue;
 import com.grafana.foundation.dashboard.MatcherConfig;
 import com.grafana.foundation.common.MapLayerOptions;
 
+/**
+ * Dashboard panels are the basic visualization building blocks.
+ */
 public class GeomapPanelBuilder implements com.grafana.foundation.cog.Builder<Panel> {
     protected final Panel internal;
     

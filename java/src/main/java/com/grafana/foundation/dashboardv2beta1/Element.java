@@ -9,8 +9,10 @@ import com.fasterxml.jackson.databind.ObjectWriter;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.fasterxml.jackson.annotation.JsonInclude;
 
-// Supported dashboard elements
-// |* more element types in the future
+/**
+ * Supported dashboard elements
+ * |* more element types in the future
+ */
 @JsonDeserialize(using = ElementDeserializer.class)
 public class Element {
     @JsonInclude(JsonInclude.Include.NON_NULL)
