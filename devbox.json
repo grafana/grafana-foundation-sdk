@@ -4,7 +4,7 @@
     "python312@3.12.13",
     "go@1.26",
     "php83Packages.composer@2.10.0",
-    "php83Packages.phpstan@2.1.1",
+    "php83Packages.phpstan@2.1.32",
     "yarn@1.22",
     "gradle@8.14.4",
     "php83@8.3.31"
