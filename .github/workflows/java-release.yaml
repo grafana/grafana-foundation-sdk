@@ -29,7 +29,7 @@ jobs:
         uses: jdx/mise-action@1648a7812b9aeae629881980618f079932869151 # v4
         with:
           install: true
-          cache: true
+          cache: false # don't depend on the cache during releases
 
       - name: Install dependencies
         run: mise exec -- make deps
