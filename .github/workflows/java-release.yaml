@@ -3,9 +3,6 @@ on:
   push:
     tags: ["v*"]
 
-env:
-  DEVBOX_VERSION: '0.16.0'
-
 jobs:
   release:
     name: Build and release
