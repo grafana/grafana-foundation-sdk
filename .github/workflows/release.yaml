@@ -4,9 +4,6 @@ on:
     branches: ["main"]
   workflow_dispatch: ~
 
-env:
-  DEVBOX_VERSION: '0.16.0'
-
 # Grant GITHUB_TOKEN the permissions required to make a release
 permissions:
   contents: write # to push new branches
@@ -33,11 +30,14 @@ jobs:
         with:
           persist-credentials: false
 
-      - name: Install devbox
-        uses: jetify-com/devbox-install-action@8c6a66ed6273138b1915457069de78cb52fe3bd7 # v0.15.0
+      - name: Setup mise
+        uses: jdx/mise-action@1648a7812b9aeae629881980618f079932869151 # v4
         with:
-          enable-cache: 'true'
-          devbox-version: ${{ env.DEVBOX_VERSION }}
+          install: true
+          cache: true
+
+      - name: Install dependencies
+        run: mise exec -- make deps
 
       - name: Generate github token
         id: get-github-token
@@ -51,7 +51,7 @@ jobs:
           git config --global user.email 'github-actions[bot]@users.noreply.github.com'
           git config --global url."https://x-access-token:${{ steps.get-github-token.outputs.token }}@github.com/".insteadOf "git@github.com:"
 
-          devbox run make prepare-release
+          mise exec -- make prepare-release
         env:
           TERM: 'xterm'
           LOG_LEVEL: '7' # debug
@@ -66,7 +66,7 @@ jobs:
           git config --global user.email 'github-actions[bot]@users.noreply.github.com'
           git config --global url."https://x-access-token:${{ steps.get-github-token.outputs.token }}@github.com/".insteadOf "git@github.com:"
 
-          devbox run ./scripts/release.sh
+          mise exec -- ./scripts/release.sh
         env:
           TERM: 'xterm'
           LOG_LEVEL: '7' # debug
