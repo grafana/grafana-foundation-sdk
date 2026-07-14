@@ -20,3 +20,22 @@ venv = { path = ".venv", create = true }
 
 [env]
 _.path = './vendor/bin'
+
+############
+# Examples #
+############
+
+[tasks."examples:go"]
+run = "./scripts/examples/go.sh"
+
+[tasks."examples:php"]
+run = "./scripts/examples/php.sh"
+
+[tasks."examples:python"]
+run = "./scripts/examples/python.sh"
+
+[tasks."examples:typescript"]
+run = "./scripts/examples/typescript.sh"
+
+[tasks.examples]
+depends = ["examples:*"]
