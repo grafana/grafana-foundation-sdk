@@ -17,5 +17,8 @@
             "Grafana\\Foundation\\": "php/src/"
         }
     },
-    "require": {}
+    "require": {},
+    "require-dev": {
+        "phpstan/phpstan": "^2.1"
+    }
 }

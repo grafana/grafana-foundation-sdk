@@ -34,3 +34,8 @@ prepare-release: install-cog
 .PHONY: add-resource
 add-resource: install-cog
 	@cd ./scripts/add-resource && go run . ../../.cog/resources
+
+.PHONY: deps
+deps:
+	@pip install -qq -r requirements.txt
+	@composer install
