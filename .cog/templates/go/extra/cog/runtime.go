@@ -10,10 +10,12 @@ import (
 	"{{ .Data.PackageRoot }}/cog/variants"
 )
 
-var (
-	runtimeInstance *Runtime
-	runtimeOnce     sync.Once
-)
+var newRuntime = sync.OnceValue(func() *Runtime {
+	return &Runtime{
+		panelcfgVariants:  make(map[string]variants.PanelcfgConfig),
+		dataqueryVariants: make(map[string]variants.DataqueryConfig),
+	}
+})
 
 type Runtime struct {
 	mutex             sync.RWMutex
@@ -22,14 +24,7 @@ type Runtime struct {
 }
 
 func NewRuntime() *Runtime {
-	runtimeOnce.Do(func() {
-		runtimeInstance = &Runtime{
-			panelcfgVariants:  make(map[string]variants.PanelcfgConfig),
-			dataqueryVariants: make(map[string]variants.DataqueryConfig),
-		}
-	})
-
-	return runtimeInstance
+	return newRuntime()
 }
 
 func (runtime *Runtime) RegisterPanelcfgVariant(config variants.PanelcfgConfig) {
