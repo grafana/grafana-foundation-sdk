@@ -20,8 +20,10 @@ var newRuntime = sync.OnceValue(func() *Runtime {
 })
 
 type Runtime struct {
-	mutex             sync.RWMutex
-	panelcfgVariants  map[string]variants.PanelcfgConfig
+	panelcfgMutex    sync.RWMutex
+	panelcfgVariants map[string]variants.PanelcfgConfig
+
+	dataqueryMutex    sync.RWMutex
 	dataqueryVariants map[string]variants.DataqueryConfig
 }
 
@@ -30,15 +32,15 @@ func NewRuntime() *Runtime {
 }
 
 func (runtime *Runtime) RegisterPanelcfgVariant(config variants.PanelcfgConfig) {
-	runtime.mutex.Lock()
-	defer runtime.mutex.Unlock()
+	runtime.panelcfgMutex.Lock()
+	defer runtime.panelcfgMutex.Unlock()
 
 	runtime.panelcfgVariants[config.Identifier] = config
 }
 
 func (runtime *Runtime) ConfigForPanelcfgVariant(identifier string) (variants.PanelcfgConfig, bool) {
-	runtime.mutex.RLock()
-	defer runtime.mutex.RUnlock()
+	runtime.panelcfgMutex.RLock()
+	defer runtime.panelcfgMutex.RUnlock()
 
 	config, found := runtime.panelcfgVariants[identifier]
 
@@ -46,15 +48,15 @@ func (runtime *Runtime) ConfigForPanelcfgVariant(identifier string) (variants.Pa
 }
 
 func (runtime *Runtime) RegisterDataqueryVariant(config variants.DataqueryConfig) {
-	runtime.mutex.Lock()
-	defer runtime.mutex.Unlock()
+	runtime.dataqueryMutex.Lock()
+	defer runtime.dataqueryMutex.Unlock()
 
 	runtime.dataqueryVariants[config.Identifier] = config
 }
 
 func (runtime *Runtime) configForDataqueryVariant(identifier string) (variants.DataqueryConfig, bool) {
-	runtime.mutex.RLock()
-	defer runtime.mutex.RUnlock()
+	runtime.dataqueryMutex.RLock()
+	defer runtime.dataqueryMutex.RUnlock()
 
 	config, found := runtime.dataqueryVariants[identifier]
 
