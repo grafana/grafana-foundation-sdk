@@ -5,42 +5,60 @@ import (
 	"fmt"
 	"reflect"
 	"strings"
+	"sync"
 
 	"{{ .Data.PackageRoot }}/cog/variants"
 )
 
-var runtimeInstance *Runtime
+var newRuntime = sync.OnceValue(func() *Runtime {
+	return &Runtime{
+		panelcfgVariants:  make(map[string]variants.PanelcfgConfig),
+		dataqueryVariants: make(map[string]variants.DataqueryConfig),
+	}
+})
 
 type Runtime struct {
-	panelcfgVariants  map[string]variants.PanelcfgConfig
+	panelcfgMutex    sync.RWMutex
+	panelcfgVariants map[string]variants.PanelcfgConfig
+
+	dataqueryMutex    sync.RWMutex
 	dataqueryVariants map[string]variants.DataqueryConfig
 }
 
 func NewRuntime() *Runtime {
-	if runtimeInstance != nil {
-		return runtimeInstance
-	}
-
-	runtimeInstance = &Runtime{
-		panelcfgVariants:  make(map[string]variants.PanelcfgConfig),
-		dataqueryVariants: make(map[string]variants.DataqueryConfig),
-	}
-
-	return runtimeInstance
+	return newRuntime()
 }
 
 func (runtime *Runtime) RegisterPanelcfgVariant(config variants.PanelcfgConfig) {
+	runtime.panelcfgMutex.Lock()
+	defer runtime.panelcfgMutex.Unlock()
+
 	runtime.panelcfgVariants[config.Identifier] = config
 }
 
 func (runtime *Runtime) ConfigForPanelcfgVariant(identifier string) (variants.PanelcfgConfig, bool) {
+	runtime.panelcfgMutex.RLock()
+	defer runtime.panelcfgMutex.RUnlock()
+
 	config, found := runtime.panelcfgVariants[identifier]
 
 	return config, found
 }
 
 func (runtime *Runtime) RegisterDataqueryVariant(config variants.DataqueryConfig) {
+	runtime.dataqueryMutex.Lock()
+	defer runtime.dataqueryMutex.Unlock()
+
 	runtime.dataqueryVariants[config.Identifier] = config
+}
+
+func (runtime *Runtime) configForDataqueryVariant(identifier string) (variants.DataqueryConfig, bool) {
+	runtime.dataqueryMutex.RLock()
+	defer runtime.dataqueryMutex.RUnlock()
+
+	config, found := runtime.dataqueryVariants[identifier]
+
+	return config, found
 }
 
 func (runtime *Runtime) UnmarshalDataqueryArray(raw []byte, dataqueryTypeHint string) ([]variants.Dataquery, error) {
@@ -65,7 +83,7 @@ func (runtime *Runtime) UnmarshalDataqueryArray(raw []byte, dataqueryTypeHint st
 func (runtime *Runtime) UnmarshalDataquery(raw []byte, dataqueryTypeHint string) (variants.Dataquery, error) {
 	// A hint tells us the dataquery type: let's use it.
 	if dataqueryTypeHint != "" {
-		config, found := runtime.dataqueryVariants[dataqueryTypeHint]
+		config, found := runtime.configForDataqueryVariant(dataqueryTypeHint)
 		if found {
 			dataquery, err := config.DataqueryUnmarshaler(raw)
 			if err != nil {
@@ -86,7 +104,7 @@ func (runtime *Runtime) UnmarshalDataquery(raw []byte, dataqueryTypeHint string)
 		return nil, err
 	}
 	if partialDataquery.Datasource.Type != "" {
-		config, found := runtime.dataqueryVariants[partialDataquery.Datasource.Type]
+		config, found := runtime.configForDataqueryVariant(partialDataquery.Datasource.Type)
 		if found {
 			dataquery, err := config.DataqueryUnmarshaler(raw)
 			if err != nil {
@@ -109,7 +127,7 @@ func (runtime *Runtime) UnmarshalDataquery(raw []byte, dataqueryTypeHint string)
 func (runtime *Runtime) StrictUnmarshalDataquery(raw []byte, dataqueryTypeHint string) (variants.Dataquery, error) {
 	// A hint tells us the dataquery type: let's use it.
 	if dataqueryTypeHint != "" {
-		config, found := runtime.dataqueryVariants[dataqueryTypeHint]
+		config, found := runtime.configForDataqueryVariant(dataqueryTypeHint)
 		if found {
 			dataquery, err := config.StrictDataqueryUnmarshaler(raw)
 			if err != nil {
@@ -130,7 +148,7 @@ func (runtime *Runtime) StrictUnmarshalDataquery(raw []byte, dataqueryTypeHint s
 		return nil, err
 	}
 	if partialDataquery.Datasource.Type != "" {
-		config, found := runtime.dataqueryVariants[partialDataquery.Datasource.Type]
+		config, found := runtime.configForDataqueryVariant(partialDataquery.Datasource.Type)
 		if found {
 			dataquery, err := config.StrictDataqueryUnmarshaler(raw)
 			if err != nil {
@@ -167,7 +185,7 @@ func ConfigForPanelcfgVariant(identifier string) (variants.PanelcfgConfig, bool)
 }
 
 func (runtime *Runtime) ConvertPanelToGo(inputPanel any, panelType string) string {
-	config, found := runtime.panelcfgVariants[panelType]
+	config, found := runtime.ConfigForPanelcfgVariant(panelType)
 	if found && config.GoConverter != nil {
 		return config.GoConverter(inputPanel)
 	}
@@ -176,7 +194,7 @@ func (runtime *Runtime) ConvertPanelToGo(inputPanel any, panelType string) strin
 }
 
 func (runtime *Runtime) ConvertDataqueryToGo(dataquery variants.Dataquery) string {
-	config, found := runtime.dataqueryVariants[dataquery.DataqueryType()]
+	config, found := runtime.configForDataqueryVariant(dataquery.DataqueryType())
 	if found && config.GoConverter != nil {
 		return config.GoConverter(dataquery)
 	}
@@ -193,7 +211,7 @@ func ConvertDataqueryToCode(dataquery variants.Dataquery) string {
 }
 
 func ConvertDataQueryKindToCode(dataqueryKind any, group string) string {
-	config, found := NewRuntime().dataqueryVariants[group]
+	config, found := NewRuntime().configForDataqueryVariant(group)
 	if found && config.GoV2Converter != nil {
 		return config.GoV2Converter(dataqueryKind)
 	}
