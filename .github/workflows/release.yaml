@@ -45,22 +45,54 @@ jobs:
         with:
           github_app: foundation-sdk-ci
 
+      - name: Determine release mode
+        id: release_mode
+        run: |
+          echo "mode=$(./scripts/release-mode.sh)" >> "$GITHUB_OUTPUT"
+
       - name: Prepare a release
+        id: prepare
+        if: steps.release_mode.outputs.mode == 'prepare'
         run: |
           git config --global user.name 'github-actions[bot]'
           git config --global user.email 'github-actions[bot]@users.noreply.github.com'
           git config --global url."https://x-access-token:${{ steps.get-github-token.outputs.token }}@github.com/".insteadOf "git@github.com:"
 
           devbox run make prepare-release
+
+          if [[ `git -C ./workspace/foundation-sdk/ status --porcelain` ]]; then
+            echo "has_changes=yes" >> "$GITHUB_OUTPUT"
+          else
+            echo "has_changes=no" >> "$GITHUB_OUTPUT"
+          fi
         env:
           TERM: 'xterm'
           LOG_LEVEL: '7' # debug
           GOGC: 'off'
           GH_TOKEN: ${{ steps.get-github-token.outputs.token }} # to be used by `gh`
-          DRY_RUN: 'no'
           SKIP_VALIDATION: 'no'
 
+      - name: Publish prepared release in preview branch
+        if: steps.release_mode.outputs.mode == 'prepare' && steps.prepare.outputs.has_changes == 'yes'
+        uses: planetscale/ghcommit-action@a6b150b81dca5dd027baa898604418eec9e11465  # v0.2.22
+        with:
+          commit_message: "Prepare next release"
+          repo: ${{ github.event.pull_request.head.repo.full_name }}
+          branch: 'release-preview'
+          file_pattern: '*' # actual changes will already be `git add`-ed by the previous step
+          repository: 'workspace/foundation-sdk'
+        env:
+          GITHUB_TOKEN: ${{ steps.app-token.outputs.token }}
+
+      - name: Open pull request for preview branch
+        if: steps.release_mode.outputs.mode == 'prepare' && steps.prepare.outputs.has_changes == 'yes'
+        run: |
+          ./scripts/open-release-pr.sh
+        env:
+          GH_TOKEN: ${{ steps.get-github-token.outputs.token }} # to be used by `gh`
+
       - name: Release
+        if: steps.release_mode.outputs.mode == 'release'
         run: |
           git config --global user.name 'github-actions[bot]'
           git config --global user.email 'github-actions[bot]@users.noreply.github.com'
