@@ -25,5 +25,5 @@ declare -a examples=(
 for i in "${examples[@]}"
 do
     info "Running $i"
-    PYTHONPATH=$PYTHONPATH:"${__dir}/../../python" python "${__dir}/../../examples/python/$i/main.py"
+    PYTHONPATH=${PYTHONPATH-""}:"${__dir}/../../python" python "${__dir}/../../examples/python/$i/main.py"
 done

@@ -1,0 +1,41 @@
+min_version = "2024.1.0"
+
+[tools]
+go = "1.26"
+php = "8.3.31"
+python = "3.12.13"
+node = "20"
+yarn = "1.22.22"
+java = "17"
+gradle = "8.14.4"
+
+[plugins]
+php = "https://github.com/verzly/mise-php"
+
+[env._.php]
+prebuilt_static = true
+
+[env._.python]
+venv = { path = ".venv", create = true }
+
+[env]
+_.path = './vendor/bin'
+
+############
+# Examples #
+############
+
+[tasks."examples:go"]
+run = "./scripts/examples/go.sh"
+
+[tasks."examples:php"]
+run = "./scripts/examples/php.sh"
+
+[tasks."examples:python"]
+run = "./scripts/examples/python.sh"
+
+[tasks."examples:typescript"]
+run = "./scripts/examples/typescript.sh"
+
+[tasks.examples]
+depends = ["examples:*"]
