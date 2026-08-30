@@ -151,51 +151,51 @@
         }
       }
     },
-    "php83Packages.composer@2.10.0": {
-      "last_modified": "2026-05-29T05:01:12Z",
-      "resolved": "github:NixOS/nixpkgs/e9a7635a57597d9754eccebdfc7045e6c8600e6b#php83Packages.composer",
+    "php83Packages.composer@2.10.2": {
+      "last_modified": "2026-08-27T07:16:00Z",
+      "resolved": "github:NixOS/nixpkgs/c27cdad491a991b11ed731760aa2ef8db0cb0410#php83Packages.composer",
       "source": "devbox-search",
-      "version": "2.10.0",
+      "version": "2.10.2",
       "systems": {
         "aarch64-darwin": {
           "outputs": [
             {
               "name": "out",
-              "path": "/nix/store/k9xm77003b6rdyfx7ividalnnzviacz6-composer-2.10.0",
+              "path": "/nix/store/rz2q4bxh4hkjp22g7j7f3hni2hglcmc5-composer-2.10.2",
               "default": true
             }
           ],
-          "store_path": "/nix/store/k9xm77003b6rdyfx7ividalnnzviacz6-composer-2.10.0"
+          "store_path": "/nix/store/rz2q4bxh4hkjp22g7j7f3hni2hglcmc5-composer-2.10.2"
         },
         "aarch64-linux": {
           "outputs": [
             {
               "name": "out",
-              "path": "/nix/store/9y5mknqnfrq6wphhlj8f3harawgfh6q5-composer-2.10.0",
+              "path": "/nix/store/k7rx9a80cd2kd9s4kpidw268v73zvh9y-composer-2.10.2",
               "default": true
             }
           ],
-          "store_path": "/nix/store/9y5mknqnfrq6wphhlj8f3harawgfh6q5-composer-2.10.0"
+          "store_path": "/nix/store/k7rx9a80cd2kd9s4kpidw268v73zvh9y-composer-2.10.2"
         },
         "x86_64-darwin": {
           "outputs": [
             {
               "name": "out",
-              "path": "/nix/store/mffjb3yzr6x3par4jbjkj2mrwm81c01c-composer-2.10.0",
+              "path": "/nix/store/mqpp0rn8d3f8fgq5ys5arw98n2lckyil-composer-2.10.2",
               "default": true
             }
           ],
-          "store_path": "/nix/store/mffjb3yzr6x3par4jbjkj2mrwm81c01c-composer-2.10.0"
+          "store_path": "/nix/store/mqpp0rn8d3f8fgq5ys5arw98n2lckyil-composer-2.10.2"
         },
         "x86_64-linux": {
           "outputs": [
             {
               "name": "out",
-              "path": "/nix/store/dyzvvii7cldzx8k2zj3ywzs2iqd9nqqq-composer-2.10.0",
+              "path": "/nix/store/bxxaf7g4f953y6j0ad3cfzwn9ylvrn58-composer-2.10.2",
               "default": true
             }
           ],
-          "store_path": "/nix/store/dyzvvii7cldzx8k2zj3ywzs2iqd9nqqq-composer-2.10.0"
+          "store_path": "/nix/store/bxxaf7g4f953y6j0ad3cfzwn9ylvrn58-composer-2.10.2"
         }
       }
     },
@@ -249,7 +249,7 @@
     },
     "python312@3.12.13": {
       "last_modified": "2026-04-23T13:07:47Z",
-      "plugin_version": "0.0.4",
+      "plugin_version": "0.0.5",
       "resolved": "github:NixOS/nixpkgs/01fbdeef22b76df85ea168fbfe1bfd9e63681b30#python312",
       "source": "devbox-search",
       "version": "3.12.13",
