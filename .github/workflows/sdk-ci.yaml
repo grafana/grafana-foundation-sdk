@@ -46,7 +46,6 @@ jobs:
         env:
           TERM: 'xterm'
           WORKSPACE_PATH: /tmp/foundation-workspace-current
-          CLEANUP_WORKSPACE: 'no'
           SKIP_VALIDATION: 'no'
           LOG_LEVEL: '7' # debug
           GOGC: 'off'
@@ -121,7 +120,6 @@ jobs:
         env:
           TERM: 'xterm'
           WORKSPACE_PATH: /tmp/foundation-workspace-current
-          CLEANUP_WORKSPACE: 'no'
           SKIP_VALIDATION: 'yes'
           LOG_LEVEL: '7' # debug
           GOGC: 'off'
