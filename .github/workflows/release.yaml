@@ -55,10 +55,6 @@ jobs:
         id: prepare
         if: steps.release_mode.outputs.mode == 'prepare'
         run: |
-          git config --global user.name 'github-actions[bot]'
-          git config --global user.email 'github-actions[bot]@users.noreply.github.com'
-          git config --global url."https://x-access-token:${{ steps.get-github-token.outputs.token }}@github.com/".insteadOf "git@github.com:"
-
           devbox run make prepare-release
 
           if [[ `git -C ./workspace/foundation-sdk/ status --porcelain` ]]; then
@@ -78,7 +74,7 @@ jobs:
         uses: planetscale/ghcommit-action@a6b150b81dca5dd027baa898604418eec9e11465  # v0.2.22
         with:
           commit_message: "Prepare next release"
-          repo: ${{ github.event.pull_request.head.repo.full_name }}
+          repo: ${{ github.repository }}
           branch: 'release-preview'
           file_pattern: '*' # actual changes will already be `git add`-ed by the previous step
           repository: 'workspace/foundation-sdk'
