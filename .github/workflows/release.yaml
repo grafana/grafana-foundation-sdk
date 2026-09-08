@@ -55,10 +55,6 @@ jobs:
         id: prepare
         if: steps.release_mode.outputs.mode == 'prepare'
         run: |
-          git config --global user.name 'github-actions[bot]'
-          git config --global user.email 'github-actions[bot]@users.noreply.github.com'
-          git config --global url."https://x-access-token:${{ steps.get-github-token.outputs.token }}@github.com/".insteadOf "git@github.com:"
-
           devbox run make prepare-release
 
           if [[ `git -C ./workspace/foundation-sdk/ status --porcelain` ]]; then
