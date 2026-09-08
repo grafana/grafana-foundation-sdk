@@ -26,7 +26,6 @@ KIND_REGISTRY_REPO=${KIND_REGISTRY_REPO:-'https://github.com/grafana/kind-regist
 FOUNDATION_SDK_REPO=${FOUNDATION_SDK_REPO:-'git@github.com:grafana/grafana-foundation-sdk.git'}
 
 SKIP_VALIDATION=${SKIP_VALIDATION:-"no"}
-CLEANUP_WORKSPACE=${CLEANUP_WORKSPACE:-"yes"} # Should the workspace be deleted after the script runs?
 WORKSPACE_PATH=${WORKSPACE_PATH:-'./workspace'}
 
 #################
@@ -128,14 +127,6 @@ function should_abort_prepare() {
 ############
 ### Main ###
 ############
-
-function cleanup() {
-  debug "Cleaning up workspace"
-  rm -rf "${WORKSPACE_PATH}"
-}
-if [ "${CLEANUP_WORKSPACE}" == "yes" ]; then
-  trap cleanup EXIT # run the cleanup() function on exit
-fi
 
 codegen_output_path="${WORKSPACE_PATH}/codegen"
 foundation_sdk_path="${WORKSPACE_PATH}/foundation-sdk"
