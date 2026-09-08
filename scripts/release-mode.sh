@@ -29,6 +29,8 @@ FOUNDATION_SDK_PATH=${FOUNDATION_SDK_PATH:-'./'}
 
 release_marker=".release/tag"
 
+debug "FOUNDATION_SDK_PATH: '${FOUNDATION_SDK_PATH}'"
+
 # Make sure the tags are up-to-date
 git_run "${FOUNDATION_SDK_PATH}" fetch origin --tags 2> /dev/null
 
@@ -38,8 +40,10 @@ if [ ! -f "${release_marker}" ]; then
   exit 0
 fi
 
-latest_tag=$(git_run "${FOUNDATION_SDK_PATH}" describe --tags --match 'v*.*.*' --abbrev=0 2>/dev/null || echo 'v0.0.0')
+latest_tag=$(git_run "${FOUNDATION_SDK_PATH}" describe --tags --match 'v*.*.*' --always --abbrev=0 2>/dev/null || echo 'v0.0.0')
 current_marker=$(cat "${release_marker}")
+
+git_run "${FOUNDATION_SDK_PATH}" describe --tags --match 'v*.*.*' --always --abbrev=0
 
 debug "latest: $latest_tag"
 debug "current_marker: $current_marker"

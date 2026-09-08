@@ -14,6 +14,30 @@ defaults:
     shell: bash
 
 jobs:
+  test:
+    name: Debug job
+    runs-on: ubuntu-latest
+    permissions:
+      id-token: write
+
+    steps:
+      - uses: actions/checkout@df4cb1c069e1874edd31b4311f1884172cec0e10 # v6.0.3
+        with:
+          persist-credentials: false
+
+      - name: Generate github token
+        id: get-github-token
+        uses: grafana/shared-workflows/actions/create-github-app-token@create-github-app-token/v0.3.1
+        with:
+          github_app: foundation-sdk-ci
+
+      - name: Determine release mode
+        id: release_mode
+        run: |
+          echo "mode=$(./scripts/release-mode.sh)" >> "$GITHUB_OUTPUT"
+          echo "mode=$(./scripts/release-mode.sh)"
+          LOG_LEVEL=7 ./scripts/release-mode.sh
+
   run_codegen:
     name: Run codegen pipeline
     runs-on: ubuntu-latest
