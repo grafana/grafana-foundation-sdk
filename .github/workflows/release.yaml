@@ -78,7 +78,7 @@ jobs:
         uses: planetscale/ghcommit-action@a6b150b81dca5dd027baa898604418eec9e11465  # v0.2.22
         with:
           commit_message: "Prepare next release"
-          repo: ${{ github.event.pull_request.head.repo.full_name }}
+          repo: ${{ github.repository }}
           branch: 'release-preview'
           file_pattern: '*' # actual changes will already be `git add`-ed by the previous step
           repository: 'workspace/foundation-sdk'
