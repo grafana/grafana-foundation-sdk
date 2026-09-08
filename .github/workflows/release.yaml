@@ -83,7 +83,7 @@ jobs:
           file_pattern: '*' # actual changes will already be `git add`-ed by the previous step
           repository: 'workspace/foundation-sdk'
         env:
-          GITHUB_TOKEN: ${{ steps.app-token.outputs.token }}
+          GITHUB_TOKEN: ${{ steps.get-github-token.outputs.token }}
 
       - name: Open pull request for preview branch
         if: steps.release_mode.outputs.mode == 'prepare' && steps.prepare.outputs.has_changes == 'yes'
