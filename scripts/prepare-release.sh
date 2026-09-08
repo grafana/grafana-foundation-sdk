@@ -27,6 +27,7 @@ FOUNDATION_SDK_REPO=${FOUNDATION_SDK_REPO:-'git@github.com:grafana/grafana-found
 
 SKIP_VALIDATION=${SKIP_VALIDATION:-"no"}
 WORKSPACE_PATH=${WORKSPACE_PATH:-'./workspace'}
+DRY_RUN=${DRY_RUN:-"yes"} # Some kind of fail-safe to ensure that we're only pushing something when we mean it.
 
 #################
 ### Usage ###
@@ -37,6 +38,18 @@ WORKSPACE_PATH=${WORKSPACE_PATH:-'./workspace'}
 #################
 ### Utilities ###
 #################
+
+function run_when_safe() {
+  local command=${1}
+  shift
+
+  if [ "${DRY_RUN}" == "no" ]; then
+    ${command} "$@"
+  else
+    warning "Dry run enabled: skipping execution of \"${command} $*\""
+    info "Run this script with DRY_RUN=no to disable dry-run mode."
+  fi
+}
 
 function clone_kind_registry() {
   local clone_into_dir="${1}"
@@ -221,6 +234,12 @@ if [ "${has_changes}" != "0" ]; then
   warning "No changes detected."
   exit 0
 fi
+
+debug "Deleting remote '${release_branch}' branch"
+run_when_safe git_run "${foundation_sdk_path}" push origin ":$release_branch" || true
+
+debug "Publish new '${release_branch}' branch"
+run_when_safe git_run "${foundation_sdk_path}" push origin "$release_branch"
 
 notice "Review the changes on the ${release_branch} branch in ${foundation_sdk_path}."
 notice "Tip: git diff main..${release_branch}"

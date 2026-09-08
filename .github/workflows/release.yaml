@@ -72,6 +72,7 @@ jobs:
           GOGC: 'off'
           GH_TOKEN: ${{ steps.get-github-token.outputs.token }} # to be used by `gh`
           SKIP_VALIDATION: 'no'
+          DRY_RUN: 'no'
 
       - name: Publish prepared release in preview branch
         if: steps.release_mode.outputs.mode == 'prepare' && steps.prepare.outputs.has_changes == 'yes'
