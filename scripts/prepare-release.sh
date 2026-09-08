@@ -15,8 +15,6 @@ source "${__dir}/libs/git.sh"
 
 # These environment variables can be used to alter the behavior of the release script.
 
-DRY_RUN=${DRY_RUN:-"yes"} # Some kind of fail-safe to ensure that we're only pushing something when we mean it.
-
 COG_CMD=${COG_CMD:-"cog"} # Command used to run `cog`
 GH_CLI_CMD=${GH_CLI_CMD:-"gh"} # Command used to run `gh` (GitHub cli)
 
@@ -73,18 +71,6 @@ function gh_run() (
 
   $GH_CLI_CMD "$@"
 )
-
-function run_when_safe() {
-  local command=${1}
-  shift
-
-  if [ "${DRY_RUN}" == "no" ]; then
-    ${command} "$@"
-  else
-    warning "Dry run enabled: skipping execution of \"${command} $*\""
-    info "Run this script with DRY_RUN=no to disable dry-run mode."
-  fi
-}
 
 function next_version() {
   local base="$1"
@@ -155,12 +141,6 @@ codegen_output_path="${WORKSPACE_PATH}/codegen"
 foundation_sdk_path="${WORKSPACE_PATH}/foundation-sdk"
 release_branch='release-preview'
 release_file_marker="${foundation_sdk_path}/.release/tag"
-
-if [ "${DRY_RUN}" == "no" ]; then
-  warning "Dry-run is OFF."
-else
-  notice "Dry-run is ON."
-fi
 
 if [ "${SKIP_VALIDATION}" == "yes" ]; then
   warning "Code validation is OFF."
@@ -247,28 +227,9 @@ git_run "${foundation_sdk_path}" add .
 
 has_changes=$(git_has_changes "${foundation_sdk_path}")
 if [ "${has_changes}" != "0" ]; then
-  warning "No changes detected: aborting."
+  warning "No changes detected."
   exit 0
 fi
 
-git_run "${foundation_sdk_path}" commit -m "Prepare ${next_tag} release"
-
-info "Pushing release branch ${release_branch}"
-run_when_safe git_run "${foundation_sdk_path}" push origin "+${release_branch}"
-
-debug "Ensuring that ${FOUNDATION_SDK_REPO} will be used by gh"
-run_when_safe gh_run "${foundation_sdk_path}" repo set-default "${FOUNDATION_SDK_REPO}"
-
-if [ "$release_branch_exists" != "0" ]; then
-  info "Opening release Pull Request"
-  run_when_safe gh_run "${foundation_sdk_path}" pr create \
-    --base main \
-    --head "${release_branch}" \
-    --title "Next release" \
-    --body "Note to maintainers: merging this PR will trigger the creation of a new release with all the modifications included on this branch. See the [release docs](https://github.com/grafana/grafana-foundation-sdk/blob/main/maintainers/releasing.md) for more information."
-fi
-
-if [ "${DRY_RUN}" != "no" ]; then
-  notice "Review the changes on the ${release_branch} branch in ${foundation_sdk_path} and re-run this script with DRY_RUN=no to disable dry-run mode."
-  notice "Tip: git diff main..${release_branch}"
-fi
+notice "Review the changes on the ${release_branch} branch in ${foundation_sdk_path}."
+notice "Tip: git diff main..${release_branch}"
