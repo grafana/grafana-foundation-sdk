@@ -5,7 +5,7 @@ A set of tools, types and *builder libraries* for building and manipulating Graf
 ## Installing
 
 ```shell
-go get github.com/grafana/grafana-foundation-sdk/go@v0.0.18
+go get github.com/grafana/grafana-foundation-sdk/go@v0.0.19
 ```
 
 ## Example usage
