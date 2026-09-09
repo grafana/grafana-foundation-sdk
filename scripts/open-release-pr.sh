@@ -48,7 +48,7 @@ release_branch='release-preview'
 debug "Ensuring that ${FOUNDATION_SDK_REPO} will be used by gh"
 gh_run "${FOUNDATION_SDK_PATH}" repo set-default "${FOUNDATION_SDK_REPO}"
 
-pr_exists=$(gh_run "${FOUNDATION_SDK_PATH}" pr list -S "Next release")
+pr_exists=$(gh_run "${FOUNDATION_SDK_PATH}" pr list --json title | grep -q '"Next release"' || true)
 
 if [ "${pr_exists}" == "" ]; then
   info "Opening release Pull Request"
