@@ -1,0 +1,78 @@
+name: Schema updates
+on:
+  schedule:
+    - cron: "0 9 * * 1" # every monday at 9:00 am
+  workflow_dispatch: ~  # on demand
+
+# Grant GITHUB_TOKEN the permissions required to push a branch and open a PR
+permissions:
+  contents: write # to push new branches
+  pull-requests: write # to open PRs
+  id-token: write # to retrieve vault secrets
+
+concurrency:
+  group: "schema-updates"
+  cancel-in-progress: false
+
+defaults:
+  run:
+    shell: bash
+
+jobs:
+  schema_updates:
+    name: Search for schema updates
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@df4cb1c069e1874edd31b4311f1884172cec0e10 # v6.0.3
+        with:
+          persist-credentials: false
+
+      - name: Generate github token
+        id: get-github-token
+        uses: grafana/shared-workflows/actions/create-github-app-token@create-github-app-token/v0.3.1
+        with:
+          github_app: foundation-sdk-ci
+
+      - name: Check for schema updates
+        id: identify-updates
+        run: |
+          git config --global user.name 'github-actions[bot]'
+          git config --global user.email 'github-actions[bot]@users.noreply.github.com'
+          git config --global url."https://x-access-token:${{ steps.get-github-token.outputs.token }}@github.com/".insteadOf "git@github.com:"
+
+          make update-schemas
+
+          echo "update_branch_name=$(git -C ./workspace/foundation-sdk/ rev-parse --abbrev-ref HEAD)" >> "$GITHUB_OUTPUT"
+
+          if [[ `git -C ./workspace/foundation-sdk/ status --porcelain` ]]; then
+            echo "has_changes=yes" >> "$GITHUB_OUTPUT"
+          else
+            echo "has_changes=no" >> "$GITHUB_OUTPUT"
+          fi
+        env:
+          TERM: 'xterm'
+          LOG_LEVEL: '7' # debug
+          GOGC: 'off'
+          GITHUB_AUTH_TOKEN: ${{ steps.get-github-token.outputs.token }} # to be used by `gh`
+          DRY_RUN: 'no'
+
+      - name: Publish prepared release in preview branch
+        if: steps.identify-updates.outputs.has_changes == 'yes'
+        uses: planetscale/ghcommit-action@a6b150b81dca5dd027baa898604418eec9e11465  # v0.2.22
+        with:
+          commit_message: "Schema updates"
+          repo: ${{ github.repository }}
+          branch: ${{ steps.identify-updates.outputs.update_branch_name }}
+          file_pattern: '.cog/*' # actual changes will already be `git add`-ed by the previous step
+          repository: 'workspace/foundation-sdk'
+        env:
+          GITHUB_TOKEN: ${{ steps.get-github-token.outputs.token }}
+
+      - name: Open pull request
+        if: steps.identify-updates.outputs.has_changes == 'yes'
+        run: |
+          ./scripts/open-update-schemas-pr.sh
+        env:
+          UPDATES_BRANCH: ${{ steps.identify-updates.outputs.update_branch_name }}
+          GH_TOKEN: ${{ steps.get-github-token.outputs.token }} # to be used by `gh`
