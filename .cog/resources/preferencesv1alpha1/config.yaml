@@ -2,7 +2,7 @@
 
 inputs:
   - cue:
-      url: 'https://raw.githubusercontent.com/grafana/grafana/v12.3.2/apps/preferences/kinds/preferences.cue'
+      url: https://raw.githubusercontent.com/grafana/grafana/v13.2.2/apps/preferences/kinds/preferences.cue
 
       # Name of the package in which code for this resource will be generated.
       package: preferencesv1alpha1
