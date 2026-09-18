@@ -15,7 +15,7 @@ source "${__dir}/libs/git.sh"
 
 # These environment variables can be used to alter the behavior of the script.
 
-FOUNDATION_SDK_PATH=${FOUNDATION_SDK_PATH:-'./'}
+FOUNDATION_SDK_PATH=${FOUNDATION_SDK_PATH:-'./workspace/foundation-sdk'}
 FOUNDATION_SDK_REPO=${FOUNDATION_SDK_REPO:-'git@github.com:grafana/grafana-foundation-sdk.git'}
 GH_CLI_CMD=${GH_CLI_CMD:-"gh"} # Command used to run `gh` (GitHub cli)
 
