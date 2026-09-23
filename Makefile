@@ -1,4 +1,4 @@
-COG_VERSION = v0.1.20
+COG_VERSION = v0.2.0
 COG_DIR     = $(shell go env GOPATH)/bin/cog-$(COG_VERSION)
 COG_BIN     = $(COG_DIR)/cli
 
@@ -34,3 +34,7 @@ prepare-release: install-cog
 .PHONY: add-resource
 add-resource: install-cog
 	@cd ./scripts/add-resource && go run . ../../.cog/resources
+
+.PHONY: update-schemas
+update-schemas: install-cog
+	COG_CMD=$(COG_BIN) ./scripts/update-schemas.sh
