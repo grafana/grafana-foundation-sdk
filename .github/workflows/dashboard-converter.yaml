@@ -85,7 +85,7 @@ jobs:
           file: scripts/dashboard-converter/Dockerfile
       - name: Export Docker Digest
         id: export
-        uses: grafana/shared-workflows/actions/docker-export-digest@015e80562a04751edab840263e21561807c88c76 # docker-export-digest/v0.1.4
+        uses: grafana/shared-workflows/actions/docker-export-digest@203d59d1f1962cf24e4e3b288eb6492754f0f53f # docker-export-digest/v0.1.5
         with:
           digest: ${{ steps.build.outputs.digest }}
           platform: ${{ matrix.platform }}
