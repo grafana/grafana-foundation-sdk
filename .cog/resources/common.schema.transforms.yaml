@@ -3,3 +3,10 @@
 passes:
   - entrypoint_identification: {}
   - disjunction_with_constant_to_default: {}
+
+  - fields_set_default:
+      defaults:
+        common.SingleStatBaseOptions.orientation: auto
+        stat.Options.orientation: auto
+        gauge.Options.orientation: auto
+        bargauge.Options.orientation: auto
