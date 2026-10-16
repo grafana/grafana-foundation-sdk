@@ -45,6 +45,16 @@ class FieldColorBuilder implements \Grafana\Foundation\Cog\Builder
     }
 
     /**
+     * The end color for the gradient color mode (smallest value). Only used when mode is gradient.
+     */
+    public function gradientColorTo(string $gradientColorTo): static
+    {
+        $this->internal->gradientColorTo = $gradientColorTo;
+    
+        return $this;
+    }
+
+    /**
      * Some visualizations need to know how to assign a series color from by value color schemes.
      */
     public function seriesBy(\Grafana\Foundation\Dashboardv2beta1\FieldColorSeriesByMode $seriesBy): static

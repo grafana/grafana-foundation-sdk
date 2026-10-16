@@ -31,7 +31,7 @@ def exclude(exclude: bool) -> typing.Self
 Panel IDs that should be included or excluded
 
 ```python
-def ids(ids: list[int]) -> typing.Self
+def ids(ids: list[float]) -> typing.Self
 ```
 
 ## See also

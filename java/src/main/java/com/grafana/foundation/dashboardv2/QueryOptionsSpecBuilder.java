@@ -14,6 +14,11 @@ public class QueryOptionsSpecBuilder implements com.grafana.foundation.cog.Build
         return this;
     }
     
+    public QueryOptionsSpecBuilder timeTo(String timeTo) {
+        this.internal.timeTo = timeTo;
+        return this;
+    }
+    
     public QueryOptionsSpecBuilder maxDataPoints(Long maxDataPoints) {
         this.internal.maxDataPoints = maxDataPoints;
         return this;

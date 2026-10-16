@@ -48,7 +48,7 @@ func (builder *AnnotationPanelFilterBuilder) Exclude(exclude bool) *AnnotationPa
 }
 
 // Panel IDs that should be included or excluded
-func (builder *AnnotationPanelFilterBuilder) Ids(ids []uint32) *AnnotationPanelFilterBuilder {
+func (builder *AnnotationPanelFilterBuilder) Ids(ids []float64) *AnnotationPanelFilterBuilder {
 	builder.internal.Ids = ids
 
 	return builder

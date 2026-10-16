@@ -15,6 +15,14 @@ Accepted values are:
 
 `palette-classic-by-name`: Classic palette (by name). Grafana will assign color by looking up a color in a palette by series name. Useful for Graphs and pie charts and other categorical data visualizations
 
+`palette-colorblind`: Color blind safe palette. A discrete palette whose colors are distinguishable under common forms of color vision deficiency. Useful for categorical and multi-series data visualizations
+
+`palette-categorical-next`: Experimental categorical palette. Useful for categorical and multi-series data visualizations
+
+`palette-categorical-next-2`: Experimental categorical palette. Useful for categorical and multi-series data visualizations
+
+`palette-categorical-next-3`: Experimental categorical palette. Useful for categorical and multi-series data visualizations
+
 `continuous-viridis`: Continuous Viridis palette mode
 
 `continuous-magma`: Continuous Magma palette mode
@@ -48,6 +56,8 @@ Accepted values are:
 `shades`: Shades of a single color. Specify a single color, useful in an override rule.
 
 `fixed`: Fixed color mode. Specify a single color, useful in an override rule.
+
+`gradient`: Gradient color mode. Interpolate between two colors based on value order; the start color is taken from fixedColor and the end color from gradientColorTo.
 
 ## Definition
 
@@ -93,6 +103,42 @@ final class FieldColorModeId implements \JsonSerializable, \Stringable {
         }
 
         return self::$instances["palette-classic-by-name"];
+    }
+
+    public static function paletteColorblind(): self
+    {
+        if (!isset(self::$instances["palette-colorblind"])) {
+            self::$instances["palette-colorblind"] = new self("palette-colorblind");
+        }
+
+        return self::$instances["palette-colorblind"];
+    }
+
+    public static function paletteCategoricalNext(): self
+    {
+        if (!isset(self::$instances["palette-categorical-next"])) {
+            self::$instances["palette-categorical-next"] = new self("palette-categorical-next");
+        }
+
+        return self::$instances["palette-categorical-next"];
+    }
+
+    public static function paletteCategoricalNext2(): self
+    {
+        if (!isset(self::$instances["palette-categorical-next-2"])) {
+            self::$instances["palette-categorical-next-2"] = new self("palette-categorical-next-2");
+        }
+
+        return self::$instances["palette-categorical-next-2"];
+    }
+
+    public static function paletteCategoricalNext3(): self
+    {
+        if (!isset(self::$instances["palette-categorical-next-3"])) {
+            self::$instances["palette-categorical-next-3"] = new self("palette-categorical-next-3");
+        }
+
+        return self::$instances["palette-categorical-next-3"];
     }
 
     public static function continuousViridis(): self
@@ -248,6 +294,15 @@ final class FieldColorModeId implements \JsonSerializable, \Stringable {
         return self::$instances["shades"];
     }
 
+    public static function gradient(): self
+    {
+        if (!isset(self::$instances["gradient"])) {
+            self::$instances["gradient"] = new self("gradient");
+        }
+
+        return self::$instances["gradient"];
+    }
+
     public static function fromValue(string $value): self
     {
         if ($value === "thresholds") {
@@ -260,6 +315,22 @@ final class FieldColorModeId implements \JsonSerializable, \Stringable {
 
         if ($value === "palette-classic-by-name") {
             return self::paletteClassicByName();
+        }
+
+        if ($value === "palette-colorblind") {
+            return self::paletteColorblind();
+        }
+
+        if ($value === "palette-categorical-next") {
+            return self::paletteCategoricalNext();
+        }
+
+        if ($value === "palette-categorical-next-2") {
+            return self::paletteCategoricalNext2();
+        }
+
+        if ($value === "palette-categorical-next-3") {
+            return self::paletteCategoricalNext3();
         }
 
         if ($value === "continuous-viridis") {
@@ -328,6 +399,10 @@ final class FieldColorModeId implements \JsonSerializable, \Stringable {
 
         if ($value === "shades") {
             return self::shades();
+        }
+
+        if ($value === "gradient") {
+            return self::gradient();
         }
 
         throw new \UnexpectedValueException("Value '$value' is not part of the enum FieldColorModeId");

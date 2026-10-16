@@ -7,6 +7,7 @@ title: <span class="badge object-type-struct"></span> DashboardMeta
 
 ```go
 type DashboardMeta struct {
+    // +k8s:deepcopy-gen=true
     AnnotationsPermissions *dashboard.AnnotationPermission `json:"annotationsPermissions,omitempty"`
     ApiVersion *string `json:"apiVersion,omitempty"`
     CanAdmin *bool `json:"canAdmin,omitempty"`
@@ -25,7 +26,6 @@ type DashboardMeta struct {
     HasAcl *bool `json:"hasAcl,omitempty"`
     IsFolder *bool `json:"isFolder,omitempty"`
     IsSnapshot *bool `json:"isSnapshot,omitempty"`
-    IsStarred *bool `json:"isStarred,omitempty"`
     Provisioned *bool `json:"provisioned,omitempty"`
     ProvisionedExternalId *string `json:"provisionedExternalId,omitempty"`
     PublicDashboardEnabled *bool `json:"publicDashboardEnabled,omitempty"`

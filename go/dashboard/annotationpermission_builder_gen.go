@@ -8,6 +8,7 @@ import (
 
 var _ cog.Builder[AnnotationPermission] = (*AnnotationPermissionBuilder)(nil)
 
+// +k8s:deepcopy-gen=true
 type AnnotationPermissionBuilder struct {
 	internal *AnnotationPermission
 	errors   cog.BuildErrors
@@ -40,6 +41,7 @@ func (builder *AnnotationPermissionBuilder) RecordError(path string, err error) 
 	return builder
 }
 
+// +k8s:deepcopy-gen=true
 func (builder *AnnotationPermissionBuilder) Dashboard(dashboard cog.Builder[AnnotationActions]) *AnnotationPermissionBuilder {
 	dashboardResource, err := dashboard.Build()
 	if err != nil {
@@ -47,17 +49,6 @@ func (builder *AnnotationPermissionBuilder) Dashboard(dashboard cog.Builder[Anno
 		return builder
 	}
 	builder.internal.Dashboard = &dashboardResource
-
-	return builder
-}
-
-func (builder *AnnotationPermissionBuilder) Organization(organization cog.Builder[AnnotationActions]) *AnnotationPermissionBuilder {
-	organizationResource, err := organization.Build()
-	if err != nil {
-		builder.errors = append(builder.errors, err.(cog.BuildErrors)...)
-		return builder
-	}
-	builder.internal.Organization = &organizationResource
 
 	return builder
 }

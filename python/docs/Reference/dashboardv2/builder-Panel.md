@@ -26,6 +26,8 @@ def data(data: cogbuilder.Builder[dashboardv2.QueryGroupKind]) -> typing.Self
 
 ### <span class="badge object-method"></span> description
 
+Shown in a info icon tooltip next to panel title
+
 ```python
 def description(description: str) -> typing.Self
 ```
@@ -40,6 +42,14 @@ def id_val(id_val: float) -> typing.Self
 
 ```python
 def links(links: list[cogbuilder.Builder[dashboardv2.DataLink]]) -> typing.Self
+```
+
+### <span class="badge object-method"></span> subtitle
+
+Shown in a sub header below the title.
+
+```python
+def subtitle(subtitle: str) -> typing.Self
 ```
 
 ### <span class="badge object-method"></span> title

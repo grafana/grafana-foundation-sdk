@@ -9,6 +9,14 @@ title: <span class="badge object-type-class"></span> NotificationSettings
 class NotificationSettings implements \JsonSerializable
 {
     /**
+     * Override the times when notifications should not be muted. These must match the name of a mute time interval defined
+     * in the alertmanager configuration time_intervals section. All notifications will be suppressed unless they are sent
+     * at the time that matches any interval.
+     * @var array<string>|null
+     */
+    public ?array $activeTimeIntervals;
+
+    /**
      * Override the labels by which incoming alerts are grouped together. For example, multiple alerts coming in for
      * cluster=A and alertname=LatencyHigh would be batched into a single group. To aggregate by all possible labels
      * use the special value '...' as the sole label name.
@@ -33,7 +41,7 @@ class NotificationSettings implements \JsonSerializable
 
     /**
      * Override the times when notifications should be muted. These must match the name of a mute time interval defined
-     * in the alertmanager configuration mute_time_intervals section. When muted it will not send any notifications, but
+     * in the alertmanager configuration time_intervals section. When muted it will not send any notifications, but
      * otherwise acts normally.
      * @var array<string>|null
      */

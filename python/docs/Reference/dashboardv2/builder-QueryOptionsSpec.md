@@ -66,6 +66,12 @@ def time_from(time_from: str) -> typing.Self
 def time_shift(time_shift: str) -> typing.Self
 ```
 
+### <span class="badge object-method"></span> time_to
+
+```python
+def time_to(time_to: str) -> typing.Self
+```
+
 ## See also
 
  * <span class="badge object-type-class"></span> [QueryOptionsSpec](./object-QueryOptionsSpec.md)

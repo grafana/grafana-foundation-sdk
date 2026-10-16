@@ -24,7 +24,6 @@ public class DashboardMeta {
   public Boolean hasAcl;
   public Boolean isFolder;
   public Boolean isSnapshot;
-  public Boolean isStarred;
   public Boolean provisioned;
   public String provisionedExternalId;
   public Boolean publicDashboardEnabled;

@@ -9,6 +9,8 @@ title: <span class="badge object-type-class"></span> Threshold
 class Threshold:
     # Value null means -Infinity
     value: typing.Optional[float]
+    # Optional dashboard-variable expression (e.g. `$myVar`) resolved at render time; `value` is the numeric fallback when the expression cannot be resolved to a single finite number.
+    value_expr: typing.Optional[str]
     color: str
 ```
 ## Methods

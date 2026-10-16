@@ -23,6 +23,19 @@ final class QueryOptionsSpecConverter
     
     
     }
+            if ($input->timeTo !== null && $input->timeTo !== "") {
+    
+        
+    $buffer = 'timeTo(';
+        $arg0 =\var_export($input->timeTo, true);
+        $buffer .= $arg0;
+        
+    $buffer .= ')';
+
+    $calls[] = $buffer;
+    
+    
+    }
             if ($input->maxDataPoints !== null) {
     
         

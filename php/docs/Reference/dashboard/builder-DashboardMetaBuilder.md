@@ -20,6 +20,8 @@ build()
 
 ### <span class="badge object-method"></span> annotationsPermissions
 
++k8s:deepcopy-gen=true
+
 @param \Grafana\Foundation\Cog\Builder<\Grafana\Foundation\Dashboard\AnnotationPermission> $annotationsPermissions
 
 ```php
@@ -122,12 +124,6 @@ isFolder(bool $isFolder)
 
 ```php
 isSnapshot(bool $isSnapshot)
-```
-
-### <span class="badge object-method"></span> isStarred
-
-```php
-isStarred(bool $isStarred)
 ```
 
 ### <span class="badge object-method"></span> provisioned

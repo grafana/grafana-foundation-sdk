@@ -31,7 +31,7 @@ public AnnotationPanelFilterBuilder exclude(Boolean exclude)
 Panel IDs that should be included or excluded
 
 ```java
-public AnnotationPanelFilterBuilder ids(List<Integer> ids)
+public AnnotationPanelFilterBuilder ids(List<Double> ids)
 ```
 
 ## See also

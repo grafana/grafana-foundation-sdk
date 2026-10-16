@@ -3,14 +3,17 @@ title: <span class="badge object-type-class"></span> AnnotationPermission
 ---
 # <span class="badge object-type-class"></span> AnnotationPermission
 
++k8s:deepcopy-gen=true
+
 ## Definition
 
 ```php
 class AnnotationPermission implements \JsonSerializable
 {
+    /**
+     * +k8s:deepcopy-gen=true
+     */
     public ?\Grafana\Foundation\Dashboard\AnnotationActions $dashboard;
-
-    public ?\Grafana\Foundation\Dashboard\AnnotationActions $organization;
 
 }
 ```

@@ -57,6 +57,13 @@
         "receiver"
       ],
       "properties": {
+        "active_time_intervals": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "description": "Override the times when notifications should not be muted. These must match the name of a mute time interval defined\nin the alertmanager configuration time_intervals section. All notifications will be suppressed unless they are sent\nat the time that matches any interval."
+        },
         "group_by": {
           "type": "array",
           "items": {
@@ -81,7 +88,7 @@
           "items": {
             "type": "string"
           },
-          "description": "Override the times when notifications should be muted. These must match the name of a mute time interval defined\nin the alertmanager configuration mute_time_intervals section. When muted it will not send any notifications, but\notherwise acts normally."
+          "description": "Override the times when notifications should be muted. These must match the name of a mute time interval defined\nin the alertmanager configuration time_intervals section. When muted it will not send any notifications, but\notherwise acts normally."
         },
         "receiver": {
           "type": "string",
@@ -291,11 +298,17 @@
         "isPaused": {
           "type": "boolean"
         },
+        "keep_firing_for": {
+          "type": "string"
+        },
         "labels": {
           "type": "object",
           "additionalProperties": {
             "type": "string"
           }
+        },
+        "missingSeriesEvalsToResolve": {
+          "type": "integer"
         },
         "noDataState": {
           "enum": [
@@ -336,10 +349,6 @@
         "updated": {
           "type": "string",
           "format": "date-time"
-        },
-        "keepFiringFor": {
-          "type": "integer",
-          "description": "You can set a Keep firing for period to avoid repeated firing-resolving-firing notifications caused by flapping conditions.\nValue is in nanoseconds"
         }
       }
     },
@@ -358,6 +367,10 @@
         "metric": {
           "type": "string",
           "description": "Name of the recorded metric."
+        },
+        "target_datasource_uid": {
+          "type": "string",
+          "description": "Which data source should be used to write the output of the recording rule, specified by UID."
         }
       }
     },

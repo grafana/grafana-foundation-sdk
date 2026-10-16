@@ -3,6 +3,8 @@ title: <span class="badge builder"></span> AnnotationPermission
 ---
 # <span class="badge builder"></span> AnnotationPermission
 
++k8s:deepcopy-gen=true
+
 ## Constructor
 
 ```python
@@ -20,14 +22,10 @@ def build() -> dashboard.AnnotationPermission
 
 ### <span class="badge object-method"></span> dashboard_permissions
 
++k8s:deepcopy-gen=true
+
 ```python
 def dashboard_permissions(dashboard: cogbuilder.Builder[dashboard.AnnotationActions]) -> typing.Self
-```
-
-### <span class="badge object-method"></span> organization_permissions
-
-```python
-def organization_permissions(organization: cogbuilder.Builder[dashboard.AnnotationActions]) -> typing.Self
 ```
 
 ## See also

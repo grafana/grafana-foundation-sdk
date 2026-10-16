@@ -3,6 +3,9 @@
 package com.grafana.foundation.dashboard;
 
 
+/**
+ * +k8s:deepcopy-gen=true
+ */
 public class AnnotationActionsBuilder implements com.grafana.foundation.cog.Builder<AnnotationActions> {
     protected final AnnotationActions internal;
     

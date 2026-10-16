@@ -17,6 +17,7 @@ export class DashboardMetaBuilder implements cog.Builder<dashboard.DashboardMeta
         return this.internal;
     }
 
+    // +k8s:deepcopy-gen=true
     annotationsPermissions(annotationsPermissions: cog.Builder<dashboard.AnnotationPermission>): this {
         const annotationsPermissionsResource = annotationsPermissions.build();
         this.internal.annotationsPermissions = annotationsPermissionsResource;
@@ -101,11 +102,6 @@ export class DashboardMetaBuilder implements cog.Builder<dashboard.DashboardMeta
 
     isSnapshot(isSnapshot: boolean): this {
         this.internal.isSnapshot = isSnapshot;
-        return this;
-    }
-
-    isStarred(isStarred: boolean): this {
-        this.internal.isStarred = isStarred;
         return this;
     }
 

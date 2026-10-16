@@ -211,7 +211,7 @@ class FieldConfig implements \JsonSerializable
     	return \Grafana\Foundation\Dashboardv2beta1\ThresholdsConfig::fromArray($val);
     })($data["thresholds"]) : null,
             color: isset($data["color"]) ? (function($input) {
-    	/** @var array{mode?: string, fixedColor?: string, seriesBy?: string} */
+    	/** @var array{mode?: string, fixedColor?: string, gradientColorTo?: string, seriesBy?: string} */
     $val = $input;
     	return \Grafana\Foundation\Dashboardv2beta1\FieldColor::fromArray($val);
     })($data["color"]) : null,

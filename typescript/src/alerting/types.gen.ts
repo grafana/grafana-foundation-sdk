@@ -34,6 +34,10 @@ export const defaultRuleGroup = (): RuleGroup => ({
 });
 
 export interface NotificationSettings {
+	// Override the times when notifications should not be muted. These must match the name of a mute time interval defined
+	// in the alertmanager configuration time_intervals section. All notifications will be suppressed unless they are sent
+	// at the time that matches any interval.
+	active_time_intervals?: string[];
 	// Override the labels by which incoming alerts are grouped together. For example, multiple alerts coming in for
 	// cluster=A and alertname=LatencyHigh would be batched into a single group. To aggregate by all possible labels
 	// use the special value '...' as the sole label name.
@@ -48,7 +52,7 @@ export interface NotificationSettings {
 	// inhibiting alert to arrive or collect more initial alerts for the same group. (Usually ~0s to few minutes.)
 	group_wait?: string;
 	// Override the times when notifications should be muted. These must match the name of a mute time interval defined
-	// in the alertmanager configuration mute_time_intervals section. When muted it will not send any notifications, but
+	// in the alertmanager configuration time_intervals section. When muted it will not send any notifications, but
 	// otherwise acts normally.
 	mute_time_intervals?: string[];
 	// Name of the receiver to send notifications to.
@@ -174,7 +178,9 @@ export interface Rule {
 	for: string;
 	id?: number;
 	isPaused?: boolean;
+	keep_firing_for?: string;
 	labels?: Record<string, string>;
+	missingSeriesEvalsToResolve?: number;
 	noDataState: "OK" | "Alerting" | "NoData" | "KeepLast";
 	notification_settings?: NotificationSettings;
 	orgID: number;
@@ -184,9 +190,6 @@ export interface Rule {
 	title: string;
 	uid?: string;
 	updated?: string;
-	// You can set a Keep firing for period to avoid repeated firing-resolving-firing notifications caused by flapping conditions.
-	// Value is in nanoseconds
-	keepFiringFor?: number;
 }
 
 export const defaultRule = (): Rule => ({
@@ -206,6 +209,8 @@ export interface RecordRule {
 	from: string;
 	// Name of the recorded metric.
 	metric: string;
+	// Which data source should be used to write the output of the recording rule, specified by UID.
+	target_datasource_uid?: string;
 }
 
 export const defaultRecordRule = (): RecordRule => ({

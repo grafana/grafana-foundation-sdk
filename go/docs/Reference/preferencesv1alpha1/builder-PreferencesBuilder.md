@@ -18,14 +18,6 @@ Builds the object.
 func (builder *PreferencesBuilder) Build() (Preferences, error)
 ```
 
-### <span class="badge object-method"></span> CookiePreferences
-
-Cookie preferences
-
-```go
-func (builder *PreferencesBuilder) CookiePreferences(cookiePreferences cog.Builder[preferencesv1alpha1.CookiePreferences]) *PreferencesBuilder
-```
-
 ### <span class="badge object-method"></span> HomeDashboardUID
 
 UID for the home dashboard
@@ -34,9 +26,17 @@ UID for the home dashboard
 func (builder *PreferencesBuilder) HomeDashboardUID(homeDashboardUID string) *PreferencesBuilder
 ```
 
+### <span class="badge object-method"></span> HomeURL
+
+Explicit home URL (NOTE: this can only be modified in the system settings)
+
+```go
+func (builder *PreferencesBuilder) HomeURL(homeURL string) *PreferencesBuilder
+```
+
 ### <span class="badge object-method"></span> Language
 
-Selected language (beta)
+Selected language
 
 ```go
 func (builder *PreferencesBuilder) Language(language string) *PreferencesBuilder
@@ -58,17 +58,9 @@ Explore query history preferences
 func (builder *PreferencesBuilder) QueryHistory(queryHistory cog.Builder[preferencesv1alpha1.QueryHistoryPreference]) *PreferencesBuilder
 ```
 
-### <span class="badge object-method"></span> RegionalFormat
-
-Selected locale (beta)
-
-```go
-func (builder *PreferencesBuilder) RegionalFormat(regionalFormat string) *PreferencesBuilder
-```
-
 ### <span class="badge object-method"></span> Theme
 
-light, dark, empty is default
+user interface theme
 
 ```go
 func (builder *PreferencesBuilder) Theme(theme string) *PreferencesBuilder
@@ -77,8 +69,6 @@ func (builder *PreferencesBuilder) Theme(theme string) *PreferencesBuilder
 ### <span class="badge object-method"></span> Timezone
 
 The timezone selection
-
-TODO: this should use the timezone defined in common
 
 ```go
 func (builder *PreferencesBuilder) Timezone(timezone string) *PreferencesBuilder

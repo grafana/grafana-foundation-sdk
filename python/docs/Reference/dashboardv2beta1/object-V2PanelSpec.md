@@ -1,0 +1,42 @@
+---
+title: <span class="badge object-type-class"></span> V2PanelSpec
+---
+# <span class="badge object-type-class"></span> V2PanelSpec
+
+## Definition
+
+```python
+class V2PanelSpec:
+    id_val: float
+    title: str
+    # Shown in a info icon tooltip next to panel title
+    description: typing.Optional[str]
+    # Shown in a sub header below the title.
+    subtitle: typing.Optional[str]
+    links: list[dashboardv2beta1.DataLink]
+    data: dashboardv2beta1.V2QueryGroupKind
+    viz_config: dashboardv2beta1.VizConfigKind
+    transparent: typing.Optional[bool]
+```
+## Methods
+
+### <span class="badge object-method"></span> to_json
+
+Converts this object into a representation that can easily be encoded to JSON.
+
+```python
+def to_json() -> dict[str, object]
+```
+
+### <span class="badge object-method"></span> from_json
+
+Builds this object from a JSON-decoded dict.
+
+```python
+@classmethod
+def from_json(data: dict[str, typing.Any]) -> typing.Self
+```
+
+## See also
+
+ * <span class="badge builder"></span> [V2PanelSpec](./builder-V2PanelSpec.md)

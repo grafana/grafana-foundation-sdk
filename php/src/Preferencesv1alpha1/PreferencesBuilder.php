@@ -24,6 +24,16 @@ class PreferencesBuilder implements \Grafana\Foundation\Cog\Builder
     }
 
     /**
+     * Explicit home URL (NOTE: this can only be modified in the system settings)
+     */
+    public function homeURL(string $homeURL): static
+    {
+        $this->internal->homeURL = $homeURL;
+    
+        return $this;
+    }
+
+    /**
      * UID for the home dashboard
      */
     public function homeDashboardUID(string $homeDashboardUID): static
@@ -35,7 +45,6 @@ class PreferencesBuilder implements \Grafana\Foundation\Cog\Builder
 
     /**
      * The timezone selection
-     * TODO: this should use the timezone defined in common
      */
     public function timezone(string $timezone): static
     {
@@ -55,7 +64,7 @@ class PreferencesBuilder implements \Grafana\Foundation\Cog\Builder
     }
 
     /**
-     * light, dark, empty is default
+     * user interface theme
      */
     public function theme(string $theme): static
     {
@@ -65,21 +74,11 @@ class PreferencesBuilder implements \Grafana\Foundation\Cog\Builder
     }
 
     /**
-     * Selected language (beta)
+     * Selected language
      */
     public function language(string $language): static
     {
         $this->internal->language = $language;
-    
-        return $this;
-    }
-
-    /**
-     * Selected locale (beta)
-     */
-    public function regionalFormat(string $regionalFormat): static
-    {
-        $this->internal->regionalFormat = $regionalFormat;
     
         return $this;
     }
@@ -92,18 +91,6 @@ class PreferencesBuilder implements \Grafana\Foundation\Cog\Builder
     {
         $queryHistoryResource = $queryHistory->build();
         $this->internal->queryHistory = $queryHistoryResource;
-    
-        return $this;
-    }
-
-    /**
-     * Cookie preferences
-     * @param \Grafana\Foundation\Cog\Builder<\Grafana\Foundation\Preferencesv1alpha1\CookiePreferences> $cookiePreferences
-     */
-    public function cookiePreferences(\Grafana\Foundation\Cog\Builder $cookiePreferences): static
-    {
-        $cookiePreferencesResource = $cookiePreferences->build();
-        $this->internal->cookiePreferences = $cookiePreferencesResource;
     
         return $this;
     }

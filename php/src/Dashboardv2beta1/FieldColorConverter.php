@@ -36,6 +36,19 @@ final class FieldColorConverter
     
     
     }
+            if ($input->gradientColorTo !== null && $input->gradientColorTo !== "") {
+    
+        
+    $buffer = 'gradientColorTo(';
+        $arg0 =\var_export($input->gradientColorTo, true);
+        $buffer .= $arg0;
+        
+    $buffer .= ')';
+
+    $calls[] = $buffer;
+    
+    
+    }
             if ($input->seriesBy !== null) {
     
         

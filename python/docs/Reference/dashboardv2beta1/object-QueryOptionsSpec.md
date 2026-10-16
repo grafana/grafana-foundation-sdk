@@ -8,6 +8,7 @@ title: <span class="badge object-type-class"></span> QueryOptionsSpec
 ```python
 class QueryOptionsSpec:
     time_from: typing.Optional[str]
+    time_to: typing.Optional[str]
     max_data_points: typing.Optional[int]
     time_shift: typing.Optional[str]
     query_caching_ttl: typing.Optional[int]

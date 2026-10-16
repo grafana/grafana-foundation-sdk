@@ -25,6 +25,18 @@ func QueryOptionsSpecConverter(input QueryOptionsSpec) string {
 		buffer.Reset()
 
 	}
+	if input.TimeTo != nil && *input.TimeTo != "" {
+
+		buffer.WriteString(`TimeTo(`)
+		arg0 := fmt.Sprintf("%#v", *input.TimeTo)
+		buffer.WriteString(arg0)
+
+		buffer.WriteString(")")
+
+		calls = append(calls, buffer.String())
+		buffer.Reset()
+
+	}
 	if input.MaxDataPoints != nil {
 
 		buffer.WriteString(`MaxDataPoints(`)

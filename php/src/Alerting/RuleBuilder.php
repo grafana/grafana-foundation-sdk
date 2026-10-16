@@ -111,12 +111,26 @@ class RuleBuilder implements \Grafana\Foundation\Cog\Builder
         return $this;
     }
 
+    public function keepFiringFor(string $keepFiringFor): static
+    {
+        $this->internal->keepFiringFor = $keepFiringFor;
+    
+        return $this;
+    }
+
     /**
      * @param array<string, string> $labels
      */
     public function labels(array $labels): static
     {
         $this->internal->labels = $labels;
+    
+        return $this;
+    }
+
+    public function missingSeriesEvalsToResolve(int $missingSeriesEvalsToResolve): static
+    {
+        $this->internal->missingSeriesEvalsToResolve = $missingSeriesEvalsToResolve;
     
         return $this;
     }
@@ -206,17 +220,6 @@ class RuleBuilder implements \Grafana\Foundation\Cog\Builder
     public function updated(string $updated): static
     {
         $this->internal->updated = $updated;
-    
-        return $this;
-    }
-
-    /**
-     * You can set a Keep firing for period to avoid repeated firing-resolving-firing notifications caused by flapping conditions.
-     * Value is in nanoseconds
-     */
-    public function keepFiringFor(int $keepFiringFor): static
-    {
-        $this->internal->keepFiringFor = $keepFiringFor;
     
         return $this;
     }

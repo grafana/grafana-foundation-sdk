@@ -17,7 +17,9 @@ class Rule:
     for_val: str
     id_val: typing.Optional[int]
     is_paused: typing.Optional[bool]
+    keep_firing_for: typing.Optional[str]
     labels: typing.Optional[dict[str, str]]
+    missing_series_evals_to_resolve: typing.Optional[int]
     no_data_state: typing.Literal["OK", "Alerting", "NoData", "KeepLast"]
     notification_settings: typing.Optional[alerting.NotificationSettings]
     org_id: int
@@ -27,9 +29,6 @@ class Rule:
     title: str
     uid: typing.Optional[str]
     updated: typing.Optional[str]
-    # You can set a Keep firing for period to avoid repeated firing-resolving-firing notifications caused by flapping conditions.
-    # Value is in nanoseconds
-    keep_firing_for: typing.Optional[int]
 ```
 ## Methods
 

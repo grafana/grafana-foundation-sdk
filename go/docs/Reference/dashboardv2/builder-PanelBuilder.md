@@ -26,6 +26,8 @@ func (builder *PanelBuilder) Data(data cog.Builder[dashboardv2.QueryGroupKind]) 
 
 ### <span class="badge object-method"></span> Description
 
+Shown in a info icon tooltip next to panel title
+
 ```go
 func (builder *PanelBuilder) Description(description string) *PanelBuilder
 ```
@@ -40,6 +42,14 @@ func (builder *PanelBuilder) Id(id float64) *PanelBuilder
 
 ```go
 func (builder *PanelBuilder) Links(links []cog.Builder[dashboardv2.DataLink]) *PanelBuilder
+```
+
+### <span class="badge object-method"></span> Subtitle
+
+Shown in a sub header below the title.
+
+```go
+func (builder *PanelBuilder) Subtitle(subtitle string) *PanelBuilder
 ```
 
 ### <span class="badge object-method"></span> Title

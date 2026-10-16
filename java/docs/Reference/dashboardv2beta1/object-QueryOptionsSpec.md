@@ -8,6 +8,7 @@ title: <span class="badge object-type-class"></span> QueryOptionsSpec
 ```java
 public class QueryOptionsSpec {
   public String timeFrom;
+  public String timeTo;
   public Long maxDataPoints;
   public String timeShift;
   public Long queryCachingTTL;

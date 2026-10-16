@@ -28,6 +28,14 @@ The fixed color value for fixed or shades color modes.
 public FieldColorBuilder fixedColor(String fixedColor)
 ```
 
+### <span class="badge object-method"></span> gradientColorTo
+
+The end color for the gradient color mode (smallest value). Only used when mode is gradient.
+
+```java
+public FieldColorBuilder gradientColorTo(String gradientColorTo)
+```
+
 ### <span class="badge object-method"></span> mode
 
 The main color scheme mode.

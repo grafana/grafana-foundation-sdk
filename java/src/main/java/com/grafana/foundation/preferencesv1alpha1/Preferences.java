@@ -9,12 +9,15 @@ import com.fasterxml.jackson.databind.ObjectWriter;
 import com.fasterxml.jackson.annotation.JsonInclude;
 
 public class Preferences {
+    // Explicit home URL (NOTE: this can only be modified in the system settings)
+    @JsonInclude(JsonInclude.Include.NON_NULL)
+    @JsonProperty("homeURL")
+    public String homeURL;
     // UID for the home dashboard
     @JsonInclude(JsonInclude.Include.NON_NULL)
     @JsonProperty("homeDashboardUID")
     public String homeDashboardUID;
     // The timezone selection
-    // TODO: this should use the timezone defined in common
     @JsonInclude(JsonInclude.Include.NON_NULL)
     @JsonProperty("timezone")
     public String timezone;
@@ -22,41 +25,32 @@ public class Preferences {
     @JsonInclude(JsonInclude.Include.NON_NULL)
     @JsonProperty("weekStart")
     public String weekStart;
-    // light, dark, empty is default
+    // user interface theme
     @JsonInclude(JsonInclude.Include.NON_NULL)
     @JsonProperty("theme")
     public String theme;
-    // Selected language (beta)
+    // Selected language
     @JsonInclude(JsonInclude.Include.NON_NULL)
     @JsonProperty("language")
     public String language;
-    // Selected locale (beta)
-    @JsonInclude(JsonInclude.Include.NON_NULL)
-    @JsonProperty("regionalFormat")
-    public String regionalFormat;
     // Explore query history preferences
     @JsonInclude(JsonInclude.Include.NON_NULL)
     @JsonProperty("queryHistory")
     public QueryHistoryPreference queryHistory;
-    // Cookie preferences
-    @JsonInclude(JsonInclude.Include.NON_NULL)
-    @JsonProperty("cookiePreferences")
-    public CookiePreferences cookiePreferences;
     // Navigation preferences
     @JsonInclude(JsonInclude.Include.NON_NULL)
     @JsonProperty("navbar")
     public NavbarPreference navbar;
     public Preferences() {
     }
-    public Preferences(String homeDashboardUID,String timezone,String weekStart,String theme,String language,String regionalFormat,QueryHistoryPreference queryHistory,CookiePreferences cookiePreferences,NavbarPreference navbar) {
+    public Preferences(String homeURL,String homeDashboardUID,String timezone,String weekStart,String theme,String language,QueryHistoryPreference queryHistory,NavbarPreference navbar) {
+        this.homeURL = homeURL;
         this.homeDashboardUID = homeDashboardUID;
         this.timezone = timezone;
         this.weekStart = weekStart;
         this.theme = theme;
         this.language = language;
-        this.regionalFormat = regionalFormat;
         this.queryHistory = queryHistory;
-        this.cookiePreferences = cookiePreferences;
         this.navbar = navbar;
     }
     

@@ -13,6 +13,9 @@ public class QueryOptionsSpec {
     @JsonProperty("timeFrom")
     public String timeFrom;
     @JsonInclude(JsonInclude.Include.NON_NULL)
+    @JsonProperty("timeTo")
+    public String timeTo;
+    @JsonInclude(JsonInclude.Include.NON_NULL)
     @JsonProperty("maxDataPoints")
     public Long maxDataPoints;
     @JsonInclude(JsonInclude.Include.NON_NULL)
@@ -35,8 +38,9 @@ public class QueryOptionsSpec {
     public String timeCompare;
     public QueryOptionsSpec() {
     }
-    public QueryOptionsSpec(String timeFrom,Long maxDataPoints,String timeShift,Long queryCachingTTL,String interval,String cacheTimeout,Boolean hideTimeOverride,String timeCompare) {
+    public QueryOptionsSpec(String timeFrom,String timeTo,Long maxDataPoints,String timeShift,Long queryCachingTTL,String interval,String cacheTimeout,Boolean hideTimeOverride,String timeCompare) {
         this.timeFrom = timeFrom;
+        this.timeTo = timeTo;
         this.maxDataPoints = maxDataPoints;
         this.timeShift = timeShift;
         this.queryCachingTTL = queryCachingTTL;

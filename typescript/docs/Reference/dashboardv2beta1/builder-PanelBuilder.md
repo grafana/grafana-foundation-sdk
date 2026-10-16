@@ -26,6 +26,8 @@ data(data: cog.Builder<dashboardv2beta1.QueryGroupKind>)
 
 ### <span class="badge object-method"></span> description
 
+Shown in a info icon tooltip next to panel title
+
 ```typescript
 description(description: string)
 ```
@@ -40,6 +42,14 @@ id(id: number)
 
 ```typescript
 links(links: cog.Builder<dashboardv2beta1.DataLink>[])
+```
+
+### <span class="badge object-method"></span> subtitle
+
+Shown in a sub header below the title.
+
+```typescript
+subtitle(subtitle: string)
 ```
 
 ### <span class="badge object-method"></span> title

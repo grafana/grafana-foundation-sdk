@@ -1063,14 +1063,14 @@ type AnnotationPanelFilter struct {
 	// Should the specified panels be included or excluded
 	Exclude *bool `json:"exclude,omitempty"`
 	// Panel IDs that should be included or excluded
-	Ids []uint32 `json:"ids"`
+	Ids []float64 `json:"ids"`
 }
 
 // NewAnnotationPanelFilter creates a new AnnotationPanelFilter object.
 func NewAnnotationPanelFilter() *AnnotationPanelFilter {
 	return &AnnotationPanelFilter{
 		Exclude: (func(input bool) *bool { return &input })(false),
-		Ids:     []uint32{},
+		Ids:     []float64{},
 	}
 }
 
@@ -1376,9 +1376,12 @@ func (resource PanelKind) Validate() error {
 }
 
 type PanelSpec struct {
-	Id          float64        `json:"id"`
-	Title       string         `json:"title"`
-	Description string         `json:"description"`
+	Id    float64 `json:"id"`
+	Title string  `json:"title"`
+	// Shown in a info icon tooltip next to panel title
+	Description *string `json:"description,omitempty"`
+	// Shown in a sub header below the title.
+	Subtitle    *string        `json:"subtitle,omitempty"`
 	Links       []DataLink     `json:"links"`
 	Data        QueryGroupKind `json:"data"`
 	VizConfig   VizConfigKind  `json:"vizConfig"`
@@ -1440,13 +1443,21 @@ func (resource *PanelSpec) UnmarshalJSONStrict(raw []byte) error {
 			if err := json.Unmarshal(fields["description"], &resource.Description); err != nil {
 				errs = append(errs, cog.MakeBuildErrors("description", err)...)
 			}
-		} else {
-			errs = append(errs, cog.MakeBuildErrors("description", errors.New("required field is null"))...)
 
 		}
 		delete(fields, "description")
-	} else {
-		errs = append(errs, cog.MakeBuildErrors("description", errors.New("required field is missing from input"))...)
+
+	}
+	// Field "subtitle"
+	if fields["subtitle"] != nil {
+		if string(fields["subtitle"]) != "null" {
+			if err := json.Unmarshal(fields["subtitle"], &resource.Subtitle); err != nil {
+				errs = append(errs, cog.MakeBuildErrors("subtitle", err)...)
+			}
+
+		}
+		delete(fields, "subtitle")
+
 	}
 	// Field "links"
 	if fields["links"] != nil {
@@ -1533,8 +1544,23 @@ func (resource PanelSpec) Equals(other PanelSpec) bool {
 	if resource.Title != other.Title {
 		return false
 	}
-	if resource.Description != other.Description {
+	if resource.Description == nil && other.Description != nil || resource.Description != nil && other.Description == nil {
 		return false
+	}
+
+	if resource.Description != nil {
+		if *resource.Description != *other.Description {
+			return false
+		}
+	}
+	if resource.Subtitle == nil && other.Subtitle != nil || resource.Subtitle != nil && other.Subtitle == nil {
+		return false
+	}
+
+	if resource.Subtitle != nil {
+		if *resource.Subtitle != *other.Subtitle {
+			return false
+		}
 	}
 
 	if len(resource.Links) != len(other.Links) {
@@ -2498,6 +2524,7 @@ const (
 
 type QueryOptionsSpec struct {
 	TimeFrom         *string `json:"timeFrom,omitempty"`
+	TimeTo           *string `json:"timeTo,omitempty"`
 	MaxDataPoints    *int64  `json:"maxDataPoints,omitempty"`
 	TimeShift        *string `json:"timeShift,omitempty"`
 	QueryCachingTTL  *int64  `json:"queryCachingTTL,omitempty"`
@@ -2533,6 +2560,17 @@ func (resource *QueryOptionsSpec) UnmarshalJSONStrict(raw []byte) error {
 
 		}
 		delete(fields, "timeFrom")
+
+	}
+	// Field "timeTo"
+	if fields["timeTo"] != nil {
+		if string(fields["timeTo"]) != "null" {
+			if err := json.Unmarshal(fields["timeTo"], &resource.TimeTo); err != nil {
+				errs = append(errs, cog.MakeBuildErrors("timeTo", err)...)
+			}
+
+		}
+		delete(fields, "timeTo")
 
 	}
 	// Field "maxDataPoints"
@@ -2628,6 +2666,15 @@ func (resource QueryOptionsSpec) Equals(other QueryOptionsSpec) bool {
 
 	if resource.TimeFrom != nil {
 		if *resource.TimeFrom != *other.TimeFrom {
+			return false
+		}
+	}
+	if resource.TimeTo == nil && other.TimeTo != nil || resource.TimeTo != nil && other.TimeTo == nil {
+		return false
+	}
+
+	if resource.TimeTo != nil {
+		if *resource.TimeTo != *other.TimeTo {
 			return false
 		}
 	}
@@ -4376,7 +4423,9 @@ const (
 type Threshold struct {
 	// Value null means -Infinity
 	Value *float64 `json:"value"`
-	Color string   `json:"color"`
+	// Optional dashboard-variable expression (e.g. `$myVar`) resolved at render time; `value` is the numeric fallback when the expression cannot be resolved to a single finite number.
+	ValueExpr *string `json:"valueExpr,omitempty"`
+	Color     string  `json:"color"`
 }
 
 // NewThreshold creates a new Threshold object.
@@ -4407,6 +4456,17 @@ func (resource *Threshold) UnmarshalJSONStrict(raw []byte) error {
 		delete(fields, "value")
 	} else {
 		errs = append(errs, cog.MakeBuildErrors("value", errors.New("required field is missing from input"))...)
+	}
+	// Field "valueExpr"
+	if fields["valueExpr"] != nil {
+		if string(fields["valueExpr"]) != "null" {
+			if err := json.Unmarshal(fields["valueExpr"], &resource.ValueExpr); err != nil {
+				errs = append(errs, cog.MakeBuildErrors("valueExpr", err)...)
+			}
+
+		}
+		delete(fields, "valueExpr")
+
 	}
 	// Field "color"
 	if fields["color"] != nil {
@@ -4441,6 +4501,15 @@ func (resource Threshold) Equals(other Threshold) bool {
 			return false
 		}
 	}
+	if resource.ValueExpr == nil && other.ValueExpr != nil || resource.ValueExpr != nil && other.ValueExpr == nil {
+		return false
+	}
+
+	if resource.ValueExpr != nil {
+		if *resource.ValueExpr != *other.ValueExpr {
+			return false
+		}
+	}
 	if resource.Color != other.Color {
 		return false
 	}
@@ -4459,6 +4528,8 @@ type FieldColor struct {
 	Mode FieldColorModeId `json:"mode"`
 	// The fixed color value for fixed or shades color modes.
 	FixedColor *string `json:"fixedColor,omitempty"`
+	// The end color for the gradient color mode (smallest value). Only used when mode is gradient.
+	GradientColorTo *string `json:"gradientColorTo,omitempty"`
 	// Some visualizations need to know how to assign a series color from by value color schemes.
 	SeriesBy *FieldColorSeriesByMode `json:"seriesBy,omitempty"`
 }
@@ -4505,6 +4576,17 @@ func (resource *FieldColor) UnmarshalJSONStrict(raw []byte) error {
 		delete(fields, "fixedColor")
 
 	}
+	// Field "gradientColorTo"
+	if fields["gradientColorTo"] != nil {
+		if string(fields["gradientColorTo"]) != "null" {
+			if err := json.Unmarshal(fields["gradientColorTo"], &resource.GradientColorTo); err != nil {
+				errs = append(errs, cog.MakeBuildErrors("gradientColorTo", err)...)
+			}
+
+		}
+		delete(fields, "gradientColorTo")
+
+	}
 	// Field "seriesBy"
 	if fields["seriesBy"] != nil {
 		if string(fields["seriesBy"]) != "null" {
@@ -4538,6 +4620,15 @@ func (resource FieldColor) Equals(other FieldColor) bool {
 			return false
 		}
 	}
+	if resource.GradientColorTo == nil && other.GradientColorTo != nil || resource.GradientColorTo != nil && other.GradientColorTo == nil {
+		return false
+	}
+
+	if resource.GradientColorTo != nil {
+		if *resource.GradientColorTo != *other.GradientColorTo {
+			return false
+		}
+	}
 	if resource.SeriesBy == nil && other.SeriesBy != nil || resource.SeriesBy != nil && other.SeriesBy == nil {
 		return false
 	}
@@ -4562,6 +4653,10 @@ func (resource FieldColor) Validate() error {
 // `thresholds`: From thresholds. Informs Grafana to take the color from the matching threshold
 // `palette-classic`: Classic palette. Grafana will assign color by looking up a color in a palette by series index. Useful for Graphs and pie charts and other categorical data visualizations
 // `palette-classic-by-name`: Classic palette (by name). Grafana will assign color by looking up a color in a palette by series name. Useful for Graphs and pie charts and other categorical data visualizations
+// `palette-colorblind`: Color blind safe palette. A discrete palette whose colors are distinguishable under common forms of color vision deficiency. Useful for categorical and multi-series data visualizations
+// `palette-categorical-next`: Experimental categorical palette. Useful for categorical and multi-series data visualizations
+// `palette-categorical-next-2`: Experimental categorical palette. Useful for categorical and multi-series data visualizations
+// `palette-categorical-next-3`: Experimental categorical palette. Useful for categorical and multi-series data visualizations
 // `continuous-viridis`: Continuous Viridis palette mode
 // `continuous-magma`: Continuous Magma palette mode
 // `continuous-plasma`: Continuous Plasma palette mode
@@ -4579,29 +4674,35 @@ func (resource FieldColor) Validate() error {
 // `continuous-purples`: Continuous Purple palette mode
 // `shades`: Shades of a single color. Specify a single color, useful in an override rule.
 // `fixed`: Fixed color mode. Specify a single color, useful in an override rule.
+// `gradient`: Gradient color mode. Interpolate between two colors based on value order; the start color is taken from fixedColor and the end color from gradientColorTo.
 type FieldColorModeId string
 
 const (
-	FieldColorModeIdThresholds           FieldColorModeId = "thresholds"
-	FieldColorModeIdPaletteClassic       FieldColorModeId = "palette-classic"
-	FieldColorModeIdPaletteClassicByName FieldColorModeId = "palette-classic-by-name"
-	FieldColorModeIdContinuousViridis    FieldColorModeId = "continuous-viridis"
-	FieldColorModeIdContinuousMagma      FieldColorModeId = "continuous-magma"
-	FieldColorModeIdContinuousPlasma     FieldColorModeId = "continuous-plasma"
-	FieldColorModeIdContinuousInferno    FieldColorModeId = "continuous-inferno"
-	FieldColorModeIdContinuousCividis    FieldColorModeId = "continuous-cividis"
-	FieldColorModeIdContinuousGrYlRd     FieldColorModeId = "continuous-GrYlRd"
-	FieldColorModeIdContinuousRdYlGr     FieldColorModeId = "continuous-RdYlGr"
-	FieldColorModeIdContinuousBlYlRd     FieldColorModeId = "continuous-BlYlRd"
-	FieldColorModeIdContinuousYlRd       FieldColorModeId = "continuous-YlRd"
-	FieldColorModeIdContinuousBlPu       FieldColorModeId = "continuous-BlPu"
-	FieldColorModeIdContinuousYlBl       FieldColorModeId = "continuous-YlBl"
-	FieldColorModeIdContinuousBlues      FieldColorModeId = "continuous-blues"
-	FieldColorModeIdContinuousReds       FieldColorModeId = "continuous-reds"
-	FieldColorModeIdContinuousGreens     FieldColorModeId = "continuous-greens"
-	FieldColorModeIdContinuousPurples    FieldColorModeId = "continuous-purples"
-	FieldColorModeIdFixed                FieldColorModeId = "fixed"
-	FieldColorModeIdShades               FieldColorModeId = "shades"
+	FieldColorModeIdThresholds              FieldColorModeId = "thresholds"
+	FieldColorModeIdPaletteClassic          FieldColorModeId = "palette-classic"
+	FieldColorModeIdPaletteClassicByName    FieldColorModeId = "palette-classic-by-name"
+	FieldColorModeIdPaletteColorblind       FieldColorModeId = "palette-colorblind"
+	FieldColorModeIdPaletteCategoricalNext  FieldColorModeId = "palette-categorical-next"
+	FieldColorModeIdPaletteCategoricalNext2 FieldColorModeId = "palette-categorical-next-2"
+	FieldColorModeIdPaletteCategoricalNext3 FieldColorModeId = "palette-categorical-next-3"
+	FieldColorModeIdContinuousViridis       FieldColorModeId = "continuous-viridis"
+	FieldColorModeIdContinuousMagma         FieldColorModeId = "continuous-magma"
+	FieldColorModeIdContinuousPlasma        FieldColorModeId = "continuous-plasma"
+	FieldColorModeIdContinuousInferno       FieldColorModeId = "continuous-inferno"
+	FieldColorModeIdContinuousCividis       FieldColorModeId = "continuous-cividis"
+	FieldColorModeIdContinuousGrYlRd        FieldColorModeId = "continuous-GrYlRd"
+	FieldColorModeIdContinuousRdYlGr        FieldColorModeId = "continuous-RdYlGr"
+	FieldColorModeIdContinuousBlYlRd        FieldColorModeId = "continuous-BlYlRd"
+	FieldColorModeIdContinuousYlRd          FieldColorModeId = "continuous-YlRd"
+	FieldColorModeIdContinuousBlPu          FieldColorModeId = "continuous-BlPu"
+	FieldColorModeIdContinuousYlBl          FieldColorModeId = "continuous-YlBl"
+	FieldColorModeIdContinuousBlues         FieldColorModeId = "continuous-blues"
+	FieldColorModeIdContinuousReds          FieldColorModeId = "continuous-reds"
+	FieldColorModeIdContinuousGreens        FieldColorModeId = "continuous-greens"
+	FieldColorModeIdContinuousPurples       FieldColorModeId = "continuous-purples"
+	FieldColorModeIdFixed                   FieldColorModeId = "fixed"
+	FieldColorModeIdShades                  FieldColorModeId = "shades"
+	FieldColorModeIdGradient                FieldColorModeId = "gradient"
 )
 
 // Defines how to assign a series color from "by value" color schemes. For example for an aggregated data points like a timeseries, the color can be assigned by the min, max or last value.
@@ -14447,6 +14548,1956 @@ func (resource VariableValueOption) Validate() error {
 	return errs
 }
 
+// A cell holds non-panel narrative content (markdown text, code) in a notebook layout.
+// Panel cells are not represented here — they reuse V2PanelKind.
+type CellKind struct {
+	Kind string   `json:"kind"`
+	Spec CellSpec `json:"spec"`
+}
+
+// NewCellKind creates a new CellKind object.
+func NewCellKind() *CellKind {
+	return &CellKind{
+		Kind: "Cell",
+		Spec: *NewCellSpec(),
+	}
+}
+
+// UnmarshalJSONStrict implements a custom JSON unmarshalling logic to decode `CellKind` from JSON.
+// Note: the unmarshalling done by this function is strict. It will fail over required fields being absent from the input, fields having an incorrect type, unexpected fields being present, …
+func (resource *CellKind) UnmarshalJSONStrict(raw []byte) error {
+	if raw == nil {
+		return nil
+	}
+	var errs cog.BuildErrors
+
+	fields := make(map[string]json.RawMessage)
+	if err := json.Unmarshal(raw, &fields); err != nil {
+		return err
+	}
+	// Field "kind"
+	if fields["kind"] != nil {
+		if string(fields["kind"]) != "null" {
+			if err := json.Unmarshal(fields["kind"], &resource.Kind); err != nil {
+				errs = append(errs, cog.MakeBuildErrors("kind", err)...)
+			}
+		} else {
+			errs = append(errs, cog.MakeBuildErrors("kind", errors.New("required field is null"))...)
+
+		}
+		delete(fields, "kind")
+	} else {
+		errs = append(errs, cog.MakeBuildErrors("kind", errors.New("required field is missing from input"))...)
+	}
+	// Field "spec"
+	if fields["spec"] != nil {
+		if string(fields["spec"]) != "null" {
+
+			resource.Spec = CellSpec{}
+			if err := resource.Spec.UnmarshalJSONStrict(fields["spec"]); err != nil {
+				errs = append(errs, cog.MakeBuildErrors("spec", err)...)
+			}
+		} else {
+			errs = append(errs, cog.MakeBuildErrors("spec", errors.New("required field is null"))...)
+
+		}
+		delete(fields, "spec")
+	} else {
+		errs = append(errs, cog.MakeBuildErrors("spec", errors.New("required field is missing from input"))...)
+	}
+
+	for field := range fields {
+		errs = append(errs, cog.MakeBuildErrors("CellKind", fmt.Errorf("unexpected field '%s'", field))...)
+	}
+
+	return errs
+}
+
+// Equals tests the equality of two `CellKind` objects.
+func (resource CellKind) Equals(other CellKind) bool {
+	if resource.Kind != other.Kind {
+		return false
+	}
+	if !resource.Spec.Equals(other.Spec) {
+		return false
+	}
+
+	return true
+}
+
+// Validate checks all the validation constraints that may be defined on `CellKind` fields for violations and returns them.
+func (resource CellKind) Validate() error {
+	var errs cog.BuildErrors
+	if err := resource.Spec.Validate(); err != nil {
+		errs = append(errs, cog.MakeBuildErrors("spec", err)...)
+	}
+
+	if len(errs) == 0 {
+		return nil
+	}
+
+	return errs
+}
+
+type CellSpec struct {
+	Content CellContentKind `json:"content"`
+}
+
+// NewCellSpec creates a new CellSpec object.
+func NewCellSpec() *CellSpec {
+	return &CellSpec{
+		Content: *NewCellContentKind(),
+	}
+}
+
+// UnmarshalJSONStrict implements a custom JSON unmarshalling logic to decode `CellSpec` from JSON.
+// Note: the unmarshalling done by this function is strict. It will fail over required fields being absent from the input, fields having an incorrect type, unexpected fields being present, …
+func (resource *CellSpec) UnmarshalJSONStrict(raw []byte) error {
+	if raw == nil {
+		return nil
+	}
+	var errs cog.BuildErrors
+
+	fields := make(map[string]json.RawMessage)
+	if err := json.Unmarshal(raw, &fields); err != nil {
+		return err
+	}
+	// Field "content"
+	if fields["content"] != nil {
+		if string(fields["content"]) != "null" {
+
+			resource.Content = CellContentKind{}
+			if err := resource.Content.UnmarshalJSONStrict(fields["content"]); err != nil {
+				errs = append(errs, cog.MakeBuildErrors("content", err)...)
+			}
+		} else {
+			errs = append(errs, cog.MakeBuildErrors("content", errors.New("required field is null"))...)
+
+		}
+		delete(fields, "content")
+	} else {
+		errs = append(errs, cog.MakeBuildErrors("content", errors.New("required field is missing from input"))...)
+	}
+
+	for field := range fields {
+		errs = append(errs, cog.MakeBuildErrors("CellSpec", fmt.Errorf("unexpected field '%s'", field))...)
+	}
+
+	return errs
+}
+
+// Equals tests the equality of two `CellSpec` objects.
+func (resource CellSpec) Equals(other CellSpec) bool {
+	if !resource.Content.Equals(other.Content) {
+		return false
+	}
+
+	return true
+}
+
+// Validate checks all the validation constraints that may be defined on `CellSpec` fields for violations and returns them.
+func (resource CellSpec) Validate() error {
+	var errs cog.BuildErrors
+	if err := resource.Content.Validate(); err != nil {
+		errs = append(errs, cog.MakeBuildErrors("content", err)...)
+	}
+
+	if len(errs) == 0 {
+		return nil
+	}
+
+	return errs
+}
+
+// Pluggable cell content discriminated by `kind`. New content types are added
+// by extending this union with another <Name>CellContentKind member.
+type CellContentKind = MarkdownCellContentKindOrCodeCellContentKind
+
+// NewCellContentKind creates a new CellContentKind object.
+func NewCellContentKind() *CellContentKind {
+	return NewMarkdownCellContentKindOrCodeCellContentKind()
+}
+
+type MarkdownCellContentKind struct {
+	Kind string                  `json:"kind"`
+	Spec MarkdownCellContentSpec `json:"spec"`
+}
+
+// NewMarkdownCellContentKind creates a new MarkdownCellContentKind object.
+func NewMarkdownCellContentKind() *MarkdownCellContentKind {
+	return &MarkdownCellContentKind{
+		Kind: "Markdown",
+		Spec: *NewMarkdownCellContentSpec(),
+	}
+}
+
+// UnmarshalJSONStrict implements a custom JSON unmarshalling logic to decode `MarkdownCellContentKind` from JSON.
+// Note: the unmarshalling done by this function is strict. It will fail over required fields being absent from the input, fields having an incorrect type, unexpected fields being present, …
+func (resource *MarkdownCellContentKind) UnmarshalJSONStrict(raw []byte) error {
+	if raw == nil {
+		return nil
+	}
+	var errs cog.BuildErrors
+
+	fields := make(map[string]json.RawMessage)
+	if err := json.Unmarshal(raw, &fields); err != nil {
+		return err
+	}
+	// Field "kind"
+	if fields["kind"] != nil {
+		if string(fields["kind"]) != "null" {
+			if err := json.Unmarshal(fields["kind"], &resource.Kind); err != nil {
+				errs = append(errs, cog.MakeBuildErrors("kind", err)...)
+			}
+		} else {
+			errs = append(errs, cog.MakeBuildErrors("kind", errors.New("required field is null"))...)
+
+		}
+		delete(fields, "kind")
+	} else {
+		errs = append(errs, cog.MakeBuildErrors("kind", errors.New("required field is missing from input"))...)
+	}
+	// Field "spec"
+	if fields["spec"] != nil {
+		if string(fields["spec"]) != "null" {
+
+			resource.Spec = MarkdownCellContentSpec{}
+			if err := resource.Spec.UnmarshalJSONStrict(fields["spec"]); err != nil {
+				errs = append(errs, cog.MakeBuildErrors("spec", err)...)
+			}
+		} else {
+			errs = append(errs, cog.MakeBuildErrors("spec", errors.New("required field is null"))...)
+
+		}
+		delete(fields, "spec")
+	} else {
+		errs = append(errs, cog.MakeBuildErrors("spec", errors.New("required field is missing from input"))...)
+	}
+
+	for field := range fields {
+		errs = append(errs, cog.MakeBuildErrors("MarkdownCellContentKind", fmt.Errorf("unexpected field '%s'", field))...)
+	}
+
+	return errs
+}
+
+// Equals tests the equality of two `MarkdownCellContentKind` objects.
+func (resource MarkdownCellContentKind) Equals(other MarkdownCellContentKind) bool {
+	if resource.Kind != other.Kind {
+		return false
+	}
+	if !resource.Spec.Equals(other.Spec) {
+		return false
+	}
+
+	return true
+}
+
+// Validate checks all the validation constraints that may be defined on `MarkdownCellContentKind` fields for violations and returns them.
+func (resource MarkdownCellContentKind) Validate() error {
+	var errs cog.BuildErrors
+	if err := resource.Spec.Validate(); err != nil {
+		errs = append(errs, cog.MakeBuildErrors("spec", err)...)
+	}
+
+	if len(errs) == 0 {
+		return nil
+	}
+
+	return errs
+}
+
+type MarkdownCellContentSpec struct {
+	Text string `json:"text"`
+}
+
+// NewMarkdownCellContentSpec creates a new MarkdownCellContentSpec object.
+func NewMarkdownCellContentSpec() *MarkdownCellContentSpec {
+	return &MarkdownCellContentSpec{}
+}
+
+// UnmarshalJSONStrict implements a custom JSON unmarshalling logic to decode `MarkdownCellContentSpec` from JSON.
+// Note: the unmarshalling done by this function is strict. It will fail over required fields being absent from the input, fields having an incorrect type, unexpected fields being present, …
+func (resource *MarkdownCellContentSpec) UnmarshalJSONStrict(raw []byte) error {
+	if raw == nil {
+		return nil
+	}
+	var errs cog.BuildErrors
+
+	fields := make(map[string]json.RawMessage)
+	if err := json.Unmarshal(raw, &fields); err != nil {
+		return err
+	}
+	// Field "text"
+	if fields["text"] != nil {
+		if string(fields["text"]) != "null" {
+			if err := json.Unmarshal(fields["text"], &resource.Text); err != nil {
+				errs = append(errs, cog.MakeBuildErrors("text", err)...)
+			}
+		} else {
+			errs = append(errs, cog.MakeBuildErrors("text", errors.New("required field is null"))...)
+
+		}
+		delete(fields, "text")
+	} else {
+		errs = append(errs, cog.MakeBuildErrors("text", errors.New("required field is missing from input"))...)
+	}
+
+	for field := range fields {
+		errs = append(errs, cog.MakeBuildErrors("MarkdownCellContentSpec", fmt.Errorf("unexpected field '%s'", field))...)
+	}
+
+	return errs
+}
+
+// Equals tests the equality of two `MarkdownCellContentSpec` objects.
+func (resource MarkdownCellContentSpec) Equals(other MarkdownCellContentSpec) bool {
+	if resource.Text != other.Text {
+		return false
+	}
+
+	return true
+}
+
+// Validate checks all the validation constraints that may be defined on `MarkdownCellContentSpec` fields for violations and returns them.
+func (resource MarkdownCellContentSpec) Validate() error {
+	return nil
+}
+
+type CodeCellContentKind struct {
+	Kind string              `json:"kind"`
+	Spec CodeCellContentSpec `json:"spec"`
+}
+
+// NewCodeCellContentKind creates a new CodeCellContentKind object.
+func NewCodeCellContentKind() *CodeCellContentKind {
+	return &CodeCellContentKind{
+		Kind: "Code",
+		Spec: *NewCodeCellContentSpec(),
+	}
+}
+
+// UnmarshalJSONStrict implements a custom JSON unmarshalling logic to decode `CodeCellContentKind` from JSON.
+// Note: the unmarshalling done by this function is strict. It will fail over required fields being absent from the input, fields having an incorrect type, unexpected fields being present, …
+func (resource *CodeCellContentKind) UnmarshalJSONStrict(raw []byte) error {
+	if raw == nil {
+		return nil
+	}
+	var errs cog.BuildErrors
+
+	fields := make(map[string]json.RawMessage)
+	if err := json.Unmarshal(raw, &fields); err != nil {
+		return err
+	}
+	// Field "kind"
+	if fields["kind"] != nil {
+		if string(fields["kind"]) != "null" {
+			if err := json.Unmarshal(fields["kind"], &resource.Kind); err != nil {
+				errs = append(errs, cog.MakeBuildErrors("kind", err)...)
+			}
+		} else {
+			errs = append(errs, cog.MakeBuildErrors("kind", errors.New("required field is null"))...)
+
+		}
+		delete(fields, "kind")
+	} else {
+		errs = append(errs, cog.MakeBuildErrors("kind", errors.New("required field is missing from input"))...)
+	}
+	// Field "spec"
+	if fields["spec"] != nil {
+		if string(fields["spec"]) != "null" {
+
+			resource.Spec = CodeCellContentSpec{}
+			if err := resource.Spec.UnmarshalJSONStrict(fields["spec"]); err != nil {
+				errs = append(errs, cog.MakeBuildErrors("spec", err)...)
+			}
+		} else {
+			errs = append(errs, cog.MakeBuildErrors("spec", errors.New("required field is null"))...)
+
+		}
+		delete(fields, "spec")
+	} else {
+		errs = append(errs, cog.MakeBuildErrors("spec", errors.New("required field is missing from input"))...)
+	}
+
+	for field := range fields {
+		errs = append(errs, cog.MakeBuildErrors("CodeCellContentKind", fmt.Errorf("unexpected field '%s'", field))...)
+	}
+
+	return errs
+}
+
+// Equals tests the equality of two `CodeCellContentKind` objects.
+func (resource CodeCellContentKind) Equals(other CodeCellContentKind) bool {
+	if resource.Kind != other.Kind {
+		return false
+	}
+	if !resource.Spec.Equals(other.Spec) {
+		return false
+	}
+
+	return true
+}
+
+// Validate checks all the validation constraints that may be defined on `CodeCellContentKind` fields for violations and returns them.
+func (resource CodeCellContentKind) Validate() error {
+	var errs cog.BuildErrors
+	if err := resource.Spec.Validate(); err != nil {
+		errs = append(errs, cog.MakeBuildErrors("spec", err)...)
+	}
+
+	if len(errs) == 0 {
+		return nil
+	}
+
+	return errs
+}
+
+type CodeCellContentSpec struct {
+	Language   string  `json:"language"`
+	Code       string  `json:"code"`
+	Highlight  []int64 `json:"highlight,omitempty"`
+	Annotation *string `json:"annotation,omitempty"`
+}
+
+// NewCodeCellContentSpec creates a new CodeCellContentSpec object.
+func NewCodeCellContentSpec() *CodeCellContentSpec {
+	return &CodeCellContentSpec{}
+}
+
+// UnmarshalJSONStrict implements a custom JSON unmarshalling logic to decode `CodeCellContentSpec` from JSON.
+// Note: the unmarshalling done by this function is strict. It will fail over required fields being absent from the input, fields having an incorrect type, unexpected fields being present, …
+func (resource *CodeCellContentSpec) UnmarshalJSONStrict(raw []byte) error {
+	if raw == nil {
+		return nil
+	}
+	var errs cog.BuildErrors
+
+	fields := make(map[string]json.RawMessage)
+	if err := json.Unmarshal(raw, &fields); err != nil {
+		return err
+	}
+	// Field "language"
+	if fields["language"] != nil {
+		if string(fields["language"]) != "null" {
+			if err := json.Unmarshal(fields["language"], &resource.Language); err != nil {
+				errs = append(errs, cog.MakeBuildErrors("language", err)...)
+			}
+		} else {
+			errs = append(errs, cog.MakeBuildErrors("language", errors.New("required field is null"))...)
+
+		}
+		delete(fields, "language")
+	} else {
+		errs = append(errs, cog.MakeBuildErrors("language", errors.New("required field is missing from input"))...)
+	}
+	// Field "code"
+	if fields["code"] != nil {
+		if string(fields["code"]) != "null" {
+			if err := json.Unmarshal(fields["code"], &resource.Code); err != nil {
+				errs = append(errs, cog.MakeBuildErrors("code", err)...)
+			}
+		} else {
+			errs = append(errs, cog.MakeBuildErrors("code", errors.New("required field is null"))...)
+
+		}
+		delete(fields, "code")
+	} else {
+		errs = append(errs, cog.MakeBuildErrors("code", errors.New("required field is missing from input"))...)
+	}
+	// Field "highlight"
+	if fields["highlight"] != nil {
+		if string(fields["highlight"]) != "null" {
+
+			if err := json.Unmarshal(fields["highlight"], &resource.Highlight); err != nil {
+				errs = append(errs, cog.MakeBuildErrors("highlight", err)...)
+			}
+
+		}
+		delete(fields, "highlight")
+
+	}
+	// Field "annotation"
+	if fields["annotation"] != nil {
+		if string(fields["annotation"]) != "null" {
+			if err := json.Unmarshal(fields["annotation"], &resource.Annotation); err != nil {
+				errs = append(errs, cog.MakeBuildErrors("annotation", err)...)
+			}
+
+		}
+		delete(fields, "annotation")
+
+	}
+
+	for field := range fields {
+		errs = append(errs, cog.MakeBuildErrors("CodeCellContentSpec", fmt.Errorf("unexpected field '%s'", field))...)
+	}
+
+	return errs
+}
+
+// Equals tests the equality of two `CodeCellContentSpec` objects.
+func (resource CodeCellContentSpec) Equals(other CodeCellContentSpec) bool {
+	if resource.Language != other.Language {
+		return false
+	}
+	if resource.Code != other.Code {
+		return false
+	}
+
+	if len(resource.Highlight) != len(other.Highlight) {
+		return false
+	}
+
+	for i1 := range resource.Highlight {
+		if resource.Highlight[i1] != other.Highlight[i1] {
+			return false
+		}
+	}
+	if resource.Annotation == nil && other.Annotation != nil || resource.Annotation != nil && other.Annotation == nil {
+		return false
+	}
+
+	if resource.Annotation != nil {
+		if *resource.Annotation != *other.Annotation {
+			return false
+		}
+	}
+
+	return true
+}
+
+// Validate checks all the validation constraints that may be defined on `CodeCellContentSpec` fields for violations and returns them.
+func (resource CodeCellContentSpec) Validate() error {
+	return nil
+}
+
+type NotebookLayoutKind struct {
+	Kind string             `json:"kind"`
+	Spec NotebookLayoutSpec `json:"spec"`
+}
+
+// NewNotebookLayoutKind creates a new NotebookLayoutKind object.
+func NewNotebookLayoutKind() *NotebookLayoutKind {
+	return &NotebookLayoutKind{
+		Kind: "NotebookLayout",
+		Spec: *NewNotebookLayoutSpec(),
+	}
+}
+
+// UnmarshalJSONStrict implements a custom JSON unmarshalling logic to decode `NotebookLayoutKind` from JSON.
+// Note: the unmarshalling done by this function is strict. It will fail over required fields being absent from the input, fields having an incorrect type, unexpected fields being present, …
+func (resource *NotebookLayoutKind) UnmarshalJSONStrict(raw []byte) error {
+	if raw == nil {
+		return nil
+	}
+	var errs cog.BuildErrors
+
+	fields := make(map[string]json.RawMessage)
+	if err := json.Unmarshal(raw, &fields); err != nil {
+		return err
+	}
+	// Field "kind"
+	if fields["kind"] != nil {
+		if string(fields["kind"]) != "null" {
+			if err := json.Unmarshal(fields["kind"], &resource.Kind); err != nil {
+				errs = append(errs, cog.MakeBuildErrors("kind", err)...)
+			}
+		} else {
+			errs = append(errs, cog.MakeBuildErrors("kind", errors.New("required field is null"))...)
+
+		}
+		delete(fields, "kind")
+	} else {
+		errs = append(errs, cog.MakeBuildErrors("kind", errors.New("required field is missing from input"))...)
+	}
+	// Field "spec"
+	if fields["spec"] != nil {
+		if string(fields["spec"]) != "null" {
+
+			resource.Spec = NotebookLayoutSpec{}
+			if err := resource.Spec.UnmarshalJSONStrict(fields["spec"]); err != nil {
+				errs = append(errs, cog.MakeBuildErrors("spec", err)...)
+			}
+		} else {
+			errs = append(errs, cog.MakeBuildErrors("spec", errors.New("required field is null"))...)
+
+		}
+		delete(fields, "spec")
+	} else {
+		errs = append(errs, cog.MakeBuildErrors("spec", errors.New("required field is missing from input"))...)
+	}
+
+	for field := range fields {
+		errs = append(errs, cog.MakeBuildErrors("NotebookLayoutKind", fmt.Errorf("unexpected field '%s'", field))...)
+	}
+
+	return errs
+}
+
+// Equals tests the equality of two `NotebookLayoutKind` objects.
+func (resource NotebookLayoutKind) Equals(other NotebookLayoutKind) bool {
+	if resource.Kind != other.Kind {
+		return false
+	}
+	if !resource.Spec.Equals(other.Spec) {
+		return false
+	}
+
+	return true
+}
+
+// Validate checks all the validation constraints that may be defined on `NotebookLayoutKind` fields for violations and returns them.
+func (resource NotebookLayoutKind) Validate() error {
+	var errs cog.BuildErrors
+	if err := resource.Spec.Validate(); err != nil {
+		errs = append(errs, cog.MakeBuildErrors("spec", err)...)
+	}
+
+	if len(errs) == 0 {
+		return nil
+	}
+
+	return errs
+}
+
+type NotebookLayoutSpec struct {
+	Cells []NotebookLayoutItemKind `json:"cells"`
+}
+
+// NewNotebookLayoutSpec creates a new NotebookLayoutSpec object.
+func NewNotebookLayoutSpec() *NotebookLayoutSpec {
+	return &NotebookLayoutSpec{
+		Cells: []NotebookLayoutItemKind{},
+	}
+}
+
+// UnmarshalJSONStrict implements a custom JSON unmarshalling logic to decode `NotebookLayoutSpec` from JSON.
+// Note: the unmarshalling done by this function is strict. It will fail over required fields being absent from the input, fields having an incorrect type, unexpected fields being present, …
+func (resource *NotebookLayoutSpec) UnmarshalJSONStrict(raw []byte) error {
+	if raw == nil {
+		return nil
+	}
+	var errs cog.BuildErrors
+
+	fields := make(map[string]json.RawMessage)
+	if err := json.Unmarshal(raw, &fields); err != nil {
+		return err
+	}
+	// Field "cells"
+	if fields["cells"] != nil {
+		if string(fields["cells"]) != "null" {
+
+			partialArray := []json.RawMessage{}
+			if err := json.Unmarshal(fields["cells"], &partialArray); err != nil {
+				return err
+			}
+
+			for i1 := range partialArray {
+				var result1 NotebookLayoutItemKind
+
+				result1 = NotebookLayoutItemKind{}
+				if err := result1.UnmarshalJSONStrict(partialArray[i1]); err != nil {
+					errs = append(errs, cog.MakeBuildErrors("cells["+strconv.Itoa(i1)+"]", err)...)
+				}
+				resource.Cells = append(resource.Cells, result1)
+			}
+		} else {
+			errs = append(errs, cog.MakeBuildErrors("cells", errors.New("required field is null"))...)
+
+		}
+		delete(fields, "cells")
+	} else {
+		errs = append(errs, cog.MakeBuildErrors("cells", errors.New("required field is missing from input"))...)
+	}
+
+	for field := range fields {
+		errs = append(errs, cog.MakeBuildErrors("NotebookLayoutSpec", fmt.Errorf("unexpected field '%s'", field))...)
+	}
+
+	return errs
+}
+
+// Equals tests the equality of two `NotebookLayoutSpec` objects.
+func (resource NotebookLayoutSpec) Equals(other NotebookLayoutSpec) bool {
+
+	if len(resource.Cells) != len(other.Cells) {
+		return false
+	}
+
+	for i1 := range resource.Cells {
+		if !resource.Cells[i1].Equals(other.Cells[i1]) {
+			return false
+		}
+	}
+
+	return true
+}
+
+// Validate checks all the validation constraints that may be defined on `NotebookLayoutSpec` fields for violations and returns them.
+func (resource NotebookLayoutSpec) Validate() error {
+	var errs cog.BuildErrors
+
+	for i1 := range resource.Cells {
+		if err := resource.Cells[i1].Validate(); err != nil {
+			errs = append(errs, cog.MakeBuildErrors("cells["+strconv.Itoa(i1)+"]", err)...)
+		}
+	}
+
+	if len(errs) == 0 {
+		return nil
+	}
+
+	return errs
+}
+
+type NotebookLayoutItemKind struct {
+	Kind string                 `json:"kind"`
+	Spec NotebookLayoutItemSpec `json:"spec"`
+}
+
+// NewNotebookLayoutItemKind creates a new NotebookLayoutItemKind object.
+func NewNotebookLayoutItemKind() *NotebookLayoutItemKind {
+	return &NotebookLayoutItemKind{
+		Kind: "NotebookLayoutItem",
+		Spec: *NewNotebookLayoutItemSpec(),
+	}
+}
+
+// UnmarshalJSONStrict implements a custom JSON unmarshalling logic to decode `NotebookLayoutItemKind` from JSON.
+// Note: the unmarshalling done by this function is strict. It will fail over required fields being absent from the input, fields having an incorrect type, unexpected fields being present, …
+func (resource *NotebookLayoutItemKind) UnmarshalJSONStrict(raw []byte) error {
+	if raw == nil {
+		return nil
+	}
+	var errs cog.BuildErrors
+
+	fields := make(map[string]json.RawMessage)
+	if err := json.Unmarshal(raw, &fields); err != nil {
+		return err
+	}
+	// Field "kind"
+	if fields["kind"] != nil {
+		if string(fields["kind"]) != "null" {
+			if err := json.Unmarshal(fields["kind"], &resource.Kind); err != nil {
+				errs = append(errs, cog.MakeBuildErrors("kind", err)...)
+			}
+		} else {
+			errs = append(errs, cog.MakeBuildErrors("kind", errors.New("required field is null"))...)
+
+		}
+		delete(fields, "kind")
+	} else {
+		errs = append(errs, cog.MakeBuildErrors("kind", errors.New("required field is missing from input"))...)
+	}
+	// Field "spec"
+	if fields["spec"] != nil {
+		if string(fields["spec"]) != "null" {
+
+			resource.Spec = NotebookLayoutItemSpec{}
+			if err := resource.Spec.UnmarshalJSONStrict(fields["spec"]); err != nil {
+				errs = append(errs, cog.MakeBuildErrors("spec", err)...)
+			}
+		} else {
+			errs = append(errs, cog.MakeBuildErrors("spec", errors.New("required field is null"))...)
+
+		}
+		delete(fields, "spec")
+	} else {
+		errs = append(errs, cog.MakeBuildErrors("spec", errors.New("required field is missing from input"))...)
+	}
+
+	for field := range fields {
+		errs = append(errs, cog.MakeBuildErrors("NotebookLayoutItemKind", fmt.Errorf("unexpected field '%s'", field))...)
+	}
+
+	return errs
+}
+
+// Equals tests the equality of two `NotebookLayoutItemKind` objects.
+func (resource NotebookLayoutItemKind) Equals(other NotebookLayoutItemKind) bool {
+	if resource.Kind != other.Kind {
+		return false
+	}
+	if !resource.Spec.Equals(other.Spec) {
+		return false
+	}
+
+	return true
+}
+
+// Validate checks all the validation constraints that may be defined on `NotebookLayoutItemKind` fields for violations and returns them.
+func (resource NotebookLayoutItemKind) Validate() error {
+	var errs cog.BuildErrors
+	if err := resource.Spec.Validate(); err != nil {
+		errs = append(errs, cog.MakeBuildErrors("spec", err)...)
+	}
+
+	if len(errs) == 0 {
+		return nil
+	}
+
+	return errs
+}
+
+// One ordered item in a notebook layout. `element` references either a CellKind
+// (markdown/code content) or a V2PanelKind in the notebook's elements map. `source`
+// records who authored the cell; `collapsed` hides the body in the UI.
+type NotebookLayoutItemSpec struct {
+	Element   ElementReference             `json:"element"`
+	Source    NotebookLayoutItemSpecSource `json:"source"`
+	Collapsed *bool                        `json:"collapsed,omitempty"`
+}
+
+// NewNotebookLayoutItemSpec creates a new NotebookLayoutItemSpec object.
+func NewNotebookLayoutItemSpec() *NotebookLayoutItemSpec {
+	return &NotebookLayoutItemSpec{
+		Element: *NewElementReference(),
+	}
+}
+
+// UnmarshalJSONStrict implements a custom JSON unmarshalling logic to decode `NotebookLayoutItemSpec` from JSON.
+// Note: the unmarshalling done by this function is strict. It will fail over required fields being absent from the input, fields having an incorrect type, unexpected fields being present, …
+func (resource *NotebookLayoutItemSpec) UnmarshalJSONStrict(raw []byte) error {
+	if raw == nil {
+		return nil
+	}
+	var errs cog.BuildErrors
+
+	fields := make(map[string]json.RawMessage)
+	if err := json.Unmarshal(raw, &fields); err != nil {
+		return err
+	}
+	// Field "element"
+	if fields["element"] != nil {
+		if string(fields["element"]) != "null" {
+
+			resource.Element = ElementReference{}
+			if err := resource.Element.UnmarshalJSONStrict(fields["element"]); err != nil {
+				errs = append(errs, cog.MakeBuildErrors("element", err)...)
+			}
+		} else {
+			errs = append(errs, cog.MakeBuildErrors("element", errors.New("required field is null"))...)
+
+		}
+		delete(fields, "element")
+	} else {
+		errs = append(errs, cog.MakeBuildErrors("element", errors.New("required field is missing from input"))...)
+	}
+	// Field "source"
+	if fields["source"] != nil {
+		if string(fields["source"]) != "null" {
+			if err := json.Unmarshal(fields["source"], &resource.Source); err != nil {
+				errs = append(errs, cog.MakeBuildErrors("source", err)...)
+			}
+		} else {
+			errs = append(errs, cog.MakeBuildErrors("source", errors.New("required field is null"))...)
+
+		}
+		delete(fields, "source")
+	} else {
+		errs = append(errs, cog.MakeBuildErrors("source", errors.New("required field is missing from input"))...)
+	}
+	// Field "collapsed"
+	if fields["collapsed"] != nil {
+		if string(fields["collapsed"]) != "null" {
+			if err := json.Unmarshal(fields["collapsed"], &resource.Collapsed); err != nil {
+				errs = append(errs, cog.MakeBuildErrors("collapsed", err)...)
+			}
+
+		}
+		delete(fields, "collapsed")
+
+	}
+
+	for field := range fields {
+		errs = append(errs, cog.MakeBuildErrors("NotebookLayoutItemSpec", fmt.Errorf("unexpected field '%s'", field))...)
+	}
+
+	return errs
+}
+
+// Equals tests the equality of two `NotebookLayoutItemSpec` objects.
+func (resource NotebookLayoutItemSpec) Equals(other NotebookLayoutItemSpec) bool {
+	if !resource.Element.Equals(other.Element) {
+		return false
+	}
+	if resource.Source != other.Source {
+		return false
+	}
+	if resource.Collapsed == nil && other.Collapsed != nil || resource.Collapsed != nil && other.Collapsed == nil {
+		return false
+	}
+
+	if resource.Collapsed != nil {
+		if *resource.Collapsed != *other.Collapsed {
+			return false
+		}
+	}
+
+	return true
+}
+
+// Validate checks all the validation constraints that may be defined on `NotebookLayoutItemSpec` fields for violations and returns them.
+func (resource NotebookLayoutItemSpec) Validate() error {
+	var errs cog.BuildErrors
+	if err := resource.Element.Validate(); err != nil {
+		errs = append(errs, cog.MakeBuildErrors("element", err)...)
+	}
+
+	if len(errs) == 0 {
+		return nil
+	}
+
+	return errs
+}
+
+// The notebook's own panel chain. It is a copy of the dashboard one down to the transformation,
+// which follows the dashboard v2 shape rather than the v2beta1 shape in this package. The chain has
+// to be forked rather than shared because PanelKind reaches TransformationKind through
+// QueryGroupKind, and those three are what Dashboard v2beta1 serves. Everything the chain does not
+// change (DataLink, VizConfigKind, PanelQueryKind, QueryOptionsSpec) stays shared.
+type V2PanelKind struct {
+	Kind string      `json:"kind"`
+	Spec V2PanelSpec `json:"spec"`
+}
+
+// NewV2PanelKind creates a new V2PanelKind object.
+func NewV2PanelKind() *V2PanelKind {
+	return &V2PanelKind{
+		Kind: "Panel",
+		Spec: *NewV2PanelSpec(),
+	}
+}
+
+// UnmarshalJSONStrict implements a custom JSON unmarshalling logic to decode `V2PanelKind` from JSON.
+// Note: the unmarshalling done by this function is strict. It will fail over required fields being absent from the input, fields having an incorrect type, unexpected fields being present, …
+func (resource *V2PanelKind) UnmarshalJSONStrict(raw []byte) error {
+	if raw == nil {
+		return nil
+	}
+	var errs cog.BuildErrors
+
+	fields := make(map[string]json.RawMessage)
+	if err := json.Unmarshal(raw, &fields); err != nil {
+		return err
+	}
+	// Field "kind"
+	if fields["kind"] != nil {
+		if string(fields["kind"]) != "null" {
+			if err := json.Unmarshal(fields["kind"], &resource.Kind); err != nil {
+				errs = append(errs, cog.MakeBuildErrors("kind", err)...)
+			}
+		} else {
+			errs = append(errs, cog.MakeBuildErrors("kind", errors.New("required field is null"))...)
+
+		}
+		delete(fields, "kind")
+	} else {
+		errs = append(errs, cog.MakeBuildErrors("kind", errors.New("required field is missing from input"))...)
+	}
+	// Field "spec"
+	if fields["spec"] != nil {
+		if string(fields["spec"]) != "null" {
+
+			resource.Spec = V2PanelSpec{}
+			if err := resource.Spec.UnmarshalJSONStrict(fields["spec"]); err != nil {
+				errs = append(errs, cog.MakeBuildErrors("spec", err)...)
+			}
+		} else {
+			errs = append(errs, cog.MakeBuildErrors("spec", errors.New("required field is null"))...)
+
+		}
+		delete(fields, "spec")
+	} else {
+		errs = append(errs, cog.MakeBuildErrors("spec", errors.New("required field is missing from input"))...)
+	}
+
+	for field := range fields {
+		errs = append(errs, cog.MakeBuildErrors("V2PanelKind", fmt.Errorf("unexpected field '%s'", field))...)
+	}
+
+	return errs
+}
+
+// Equals tests the equality of two `V2PanelKind` objects.
+func (resource V2PanelKind) Equals(other V2PanelKind) bool {
+	if resource.Kind != other.Kind {
+		return false
+	}
+	if !resource.Spec.Equals(other.Spec) {
+		return false
+	}
+
+	return true
+}
+
+// Validate checks all the validation constraints that may be defined on `V2PanelKind` fields for violations and returns them.
+func (resource V2PanelKind) Validate() error {
+	var errs cog.BuildErrors
+	if err := resource.Spec.Validate(); err != nil {
+		errs = append(errs, cog.MakeBuildErrors("spec", err)...)
+	}
+
+	if len(errs) == 0 {
+		return nil
+	}
+
+	return errs
+}
+
+type V2PanelSpec struct {
+	Id    float64 `json:"id"`
+	Title string  `json:"title"`
+	// Shown in a info icon tooltip next to panel title
+	Description *string `json:"description,omitempty"`
+	// Shown in a sub header below the title.
+	Subtitle    *string          `json:"subtitle,omitempty"`
+	Links       []DataLink       `json:"links"`
+	Data        V2QueryGroupKind `json:"data"`
+	VizConfig   VizConfigKind    `json:"vizConfig"`
+	Transparent *bool            `json:"transparent,omitempty"`
+}
+
+// NewV2PanelSpec creates a new V2PanelSpec object.
+func NewV2PanelSpec() *V2PanelSpec {
+	return &V2PanelSpec{
+		Links:     []DataLink{},
+		Data:      *NewV2QueryGroupKind(),
+		VizConfig: *NewVizConfigKind(),
+	}
+}
+
+// UnmarshalJSONStrict implements a custom JSON unmarshalling logic to decode `V2PanelSpec` from JSON.
+// Note: the unmarshalling done by this function is strict. It will fail over required fields being absent from the input, fields having an incorrect type, unexpected fields being present, …
+func (resource *V2PanelSpec) UnmarshalJSONStrict(raw []byte) error {
+	if raw == nil {
+		return nil
+	}
+	var errs cog.BuildErrors
+
+	fields := make(map[string]json.RawMessage)
+	if err := json.Unmarshal(raw, &fields); err != nil {
+		return err
+	}
+	// Field "id"
+	if fields["id"] != nil {
+		if string(fields["id"]) != "null" {
+			if err := json.Unmarshal(fields["id"], &resource.Id); err != nil {
+				errs = append(errs, cog.MakeBuildErrors("id", err)...)
+			}
+		} else {
+			errs = append(errs, cog.MakeBuildErrors("id", errors.New("required field is null"))...)
+
+		}
+		delete(fields, "id")
+	} else {
+		errs = append(errs, cog.MakeBuildErrors("id", errors.New("required field is missing from input"))...)
+	}
+	// Field "title"
+	if fields["title"] != nil {
+		if string(fields["title"]) != "null" {
+			if err := json.Unmarshal(fields["title"], &resource.Title); err != nil {
+				errs = append(errs, cog.MakeBuildErrors("title", err)...)
+			}
+		} else {
+			errs = append(errs, cog.MakeBuildErrors("title", errors.New("required field is null"))...)
+
+		}
+		delete(fields, "title")
+	} else {
+		errs = append(errs, cog.MakeBuildErrors("title", errors.New("required field is missing from input"))...)
+	}
+	// Field "description"
+	if fields["description"] != nil {
+		if string(fields["description"]) != "null" {
+			if err := json.Unmarshal(fields["description"], &resource.Description); err != nil {
+				errs = append(errs, cog.MakeBuildErrors("description", err)...)
+			}
+
+		}
+		delete(fields, "description")
+
+	}
+	// Field "subtitle"
+	if fields["subtitle"] != nil {
+		if string(fields["subtitle"]) != "null" {
+			if err := json.Unmarshal(fields["subtitle"], &resource.Subtitle); err != nil {
+				errs = append(errs, cog.MakeBuildErrors("subtitle", err)...)
+			}
+
+		}
+		delete(fields, "subtitle")
+
+	}
+	// Field "links"
+	if fields["links"] != nil {
+		if string(fields["links"]) != "null" {
+
+			partialArray := []json.RawMessage{}
+			if err := json.Unmarshal(fields["links"], &partialArray); err != nil {
+				return err
+			}
+
+			for i1 := range partialArray {
+				var result1 DataLink
+
+				result1 = DataLink{}
+				if err := result1.UnmarshalJSONStrict(partialArray[i1]); err != nil {
+					errs = append(errs, cog.MakeBuildErrors("links["+strconv.Itoa(i1)+"]", err)...)
+				}
+				resource.Links = append(resource.Links, result1)
+			}
+		} else {
+			errs = append(errs, cog.MakeBuildErrors("links", errors.New("required field is null"))...)
+
+		}
+		delete(fields, "links")
+	} else {
+		errs = append(errs, cog.MakeBuildErrors("links", errors.New("required field is missing from input"))...)
+	}
+	// Field "data"
+	if fields["data"] != nil {
+		if string(fields["data"]) != "null" {
+
+			resource.Data = V2QueryGroupKind{}
+			if err := resource.Data.UnmarshalJSONStrict(fields["data"]); err != nil {
+				errs = append(errs, cog.MakeBuildErrors("data", err)...)
+			}
+		} else {
+			errs = append(errs, cog.MakeBuildErrors("data", errors.New("required field is null"))...)
+
+		}
+		delete(fields, "data")
+	} else {
+		errs = append(errs, cog.MakeBuildErrors("data", errors.New("required field is missing from input"))...)
+	}
+	// Field "vizConfig"
+	if fields["vizConfig"] != nil {
+		if string(fields["vizConfig"]) != "null" {
+
+			resource.VizConfig = VizConfigKind{}
+			if err := resource.VizConfig.UnmarshalJSONStrict(fields["vizConfig"]); err != nil {
+				errs = append(errs, cog.MakeBuildErrors("vizConfig", err)...)
+			}
+		} else {
+			errs = append(errs, cog.MakeBuildErrors("vizConfig", errors.New("required field is null"))...)
+
+		}
+		delete(fields, "vizConfig")
+	} else {
+		errs = append(errs, cog.MakeBuildErrors("vizConfig", errors.New("required field is missing from input"))...)
+	}
+	// Field "transparent"
+	if fields["transparent"] != nil {
+		if string(fields["transparent"]) != "null" {
+			if err := json.Unmarshal(fields["transparent"], &resource.Transparent); err != nil {
+				errs = append(errs, cog.MakeBuildErrors("transparent", err)...)
+			}
+
+		}
+		delete(fields, "transparent")
+
+	}
+
+	for field := range fields {
+		errs = append(errs, cog.MakeBuildErrors("V2PanelSpec", fmt.Errorf("unexpected field '%s'", field))...)
+	}
+
+	return errs
+}
+
+// Equals tests the equality of two `V2PanelSpec` objects.
+func (resource V2PanelSpec) Equals(other V2PanelSpec) bool {
+	if resource.Id != other.Id {
+		return false
+	}
+	if resource.Title != other.Title {
+		return false
+	}
+	if resource.Description == nil && other.Description != nil || resource.Description != nil && other.Description == nil {
+		return false
+	}
+
+	if resource.Description != nil {
+		if *resource.Description != *other.Description {
+			return false
+		}
+	}
+	if resource.Subtitle == nil && other.Subtitle != nil || resource.Subtitle != nil && other.Subtitle == nil {
+		return false
+	}
+
+	if resource.Subtitle != nil {
+		if *resource.Subtitle != *other.Subtitle {
+			return false
+		}
+	}
+
+	if len(resource.Links) != len(other.Links) {
+		return false
+	}
+
+	for i1 := range resource.Links {
+		if !resource.Links[i1].Equals(other.Links[i1]) {
+			return false
+		}
+	}
+	if !resource.Data.Equals(other.Data) {
+		return false
+	}
+	if !resource.VizConfig.Equals(other.VizConfig) {
+		return false
+	}
+	if resource.Transparent == nil && other.Transparent != nil || resource.Transparent != nil && other.Transparent == nil {
+		return false
+	}
+
+	if resource.Transparent != nil {
+		if *resource.Transparent != *other.Transparent {
+			return false
+		}
+	}
+
+	return true
+}
+
+// Validate checks all the validation constraints that may be defined on `V2PanelSpec` fields for violations and returns them.
+func (resource V2PanelSpec) Validate() error {
+	var errs cog.BuildErrors
+
+	for i1 := range resource.Links {
+		if err := resource.Links[i1].Validate(); err != nil {
+			errs = append(errs, cog.MakeBuildErrors("links["+strconv.Itoa(i1)+"]", err)...)
+		}
+	}
+	if err := resource.Data.Validate(); err != nil {
+		errs = append(errs, cog.MakeBuildErrors("data", err)...)
+	}
+	if err := resource.VizConfig.Validate(); err != nil {
+		errs = append(errs, cog.MakeBuildErrors("vizConfig", err)...)
+	}
+
+	if len(errs) == 0 {
+		return nil
+	}
+
+	return errs
+}
+
+type V2QueryGroupKind struct {
+	Kind string           `json:"kind"`
+	Spec V2QueryGroupSpec `json:"spec"`
+}
+
+// NewV2QueryGroupKind creates a new V2QueryGroupKind object.
+func NewV2QueryGroupKind() *V2QueryGroupKind {
+	return &V2QueryGroupKind{
+		Kind: "QueryGroup",
+		Spec: *NewV2QueryGroupSpec(),
+	}
+}
+
+// UnmarshalJSONStrict implements a custom JSON unmarshalling logic to decode `V2QueryGroupKind` from JSON.
+// Note: the unmarshalling done by this function is strict. It will fail over required fields being absent from the input, fields having an incorrect type, unexpected fields being present, …
+func (resource *V2QueryGroupKind) UnmarshalJSONStrict(raw []byte) error {
+	if raw == nil {
+		return nil
+	}
+	var errs cog.BuildErrors
+
+	fields := make(map[string]json.RawMessage)
+	if err := json.Unmarshal(raw, &fields); err != nil {
+		return err
+	}
+	// Field "kind"
+	if fields["kind"] != nil {
+		if string(fields["kind"]) != "null" {
+			if err := json.Unmarshal(fields["kind"], &resource.Kind); err != nil {
+				errs = append(errs, cog.MakeBuildErrors("kind", err)...)
+			}
+		} else {
+			errs = append(errs, cog.MakeBuildErrors("kind", errors.New("required field is null"))...)
+
+		}
+		delete(fields, "kind")
+	} else {
+		errs = append(errs, cog.MakeBuildErrors("kind", errors.New("required field is missing from input"))...)
+	}
+	// Field "spec"
+	if fields["spec"] != nil {
+		if string(fields["spec"]) != "null" {
+
+			resource.Spec = V2QueryGroupSpec{}
+			if err := resource.Spec.UnmarshalJSONStrict(fields["spec"]); err != nil {
+				errs = append(errs, cog.MakeBuildErrors("spec", err)...)
+			}
+		} else {
+			errs = append(errs, cog.MakeBuildErrors("spec", errors.New("required field is null"))...)
+
+		}
+		delete(fields, "spec")
+	} else {
+		errs = append(errs, cog.MakeBuildErrors("spec", errors.New("required field is missing from input"))...)
+	}
+
+	for field := range fields {
+		errs = append(errs, cog.MakeBuildErrors("V2QueryGroupKind", fmt.Errorf("unexpected field '%s'", field))...)
+	}
+
+	return errs
+}
+
+// Equals tests the equality of two `V2QueryGroupKind` objects.
+func (resource V2QueryGroupKind) Equals(other V2QueryGroupKind) bool {
+	if resource.Kind != other.Kind {
+		return false
+	}
+	if !resource.Spec.Equals(other.Spec) {
+		return false
+	}
+
+	return true
+}
+
+// Validate checks all the validation constraints that may be defined on `V2QueryGroupKind` fields for violations and returns them.
+func (resource V2QueryGroupKind) Validate() error {
+	var errs cog.BuildErrors
+	if err := resource.Spec.Validate(); err != nil {
+		errs = append(errs, cog.MakeBuildErrors("spec", err)...)
+	}
+
+	if len(errs) == 0 {
+		return nil
+	}
+
+	return errs
+}
+
+type V2QueryGroupSpec struct {
+	Queries         []PanelQueryKind       `json:"queries"`
+	Transformations []V2TransformationKind `json:"transformations"`
+	QueryOptions    QueryOptionsSpec       `json:"queryOptions"`
+}
+
+// NewV2QueryGroupSpec creates a new V2QueryGroupSpec object.
+func NewV2QueryGroupSpec() *V2QueryGroupSpec {
+	return &V2QueryGroupSpec{
+		Queries:         []PanelQueryKind{},
+		Transformations: []V2TransformationKind{},
+		QueryOptions:    *NewQueryOptionsSpec(),
+	}
+}
+
+// UnmarshalJSONStrict implements a custom JSON unmarshalling logic to decode `V2QueryGroupSpec` from JSON.
+// Note: the unmarshalling done by this function is strict. It will fail over required fields being absent from the input, fields having an incorrect type, unexpected fields being present, …
+func (resource *V2QueryGroupSpec) UnmarshalJSONStrict(raw []byte) error {
+	if raw == nil {
+		return nil
+	}
+	var errs cog.BuildErrors
+
+	fields := make(map[string]json.RawMessage)
+	if err := json.Unmarshal(raw, &fields); err != nil {
+		return err
+	}
+	// Field "queries"
+	if fields["queries"] != nil {
+		if string(fields["queries"]) != "null" {
+
+			partialArray := []json.RawMessage{}
+			if err := json.Unmarshal(fields["queries"], &partialArray); err != nil {
+				return err
+			}
+
+			for i1 := range partialArray {
+				var result1 PanelQueryKind
+
+				result1 = PanelQueryKind{}
+				if err := result1.UnmarshalJSONStrict(partialArray[i1]); err != nil {
+					errs = append(errs, cog.MakeBuildErrors("queries["+strconv.Itoa(i1)+"]", err)...)
+				}
+				resource.Queries = append(resource.Queries, result1)
+			}
+		} else {
+			errs = append(errs, cog.MakeBuildErrors("queries", errors.New("required field is null"))...)
+
+		}
+		delete(fields, "queries")
+	} else {
+		errs = append(errs, cog.MakeBuildErrors("queries", errors.New("required field is missing from input"))...)
+	}
+	// Field "transformations"
+	if fields["transformations"] != nil {
+		if string(fields["transformations"]) != "null" {
+
+			partialArray := []json.RawMessage{}
+			if err := json.Unmarshal(fields["transformations"], &partialArray); err != nil {
+				return err
+			}
+
+			for i1 := range partialArray {
+				var result1 V2TransformationKind
+
+				result1 = V2TransformationKind{}
+				if err := result1.UnmarshalJSONStrict(partialArray[i1]); err != nil {
+					errs = append(errs, cog.MakeBuildErrors("transformations["+strconv.Itoa(i1)+"]", err)...)
+				}
+				resource.Transformations = append(resource.Transformations, result1)
+			}
+		} else {
+			errs = append(errs, cog.MakeBuildErrors("transformations", errors.New("required field is null"))...)
+
+		}
+		delete(fields, "transformations")
+	} else {
+		errs = append(errs, cog.MakeBuildErrors("transformations", errors.New("required field is missing from input"))...)
+	}
+	// Field "queryOptions"
+	if fields["queryOptions"] != nil {
+		if string(fields["queryOptions"]) != "null" {
+
+			resource.QueryOptions = QueryOptionsSpec{}
+			if err := resource.QueryOptions.UnmarshalJSONStrict(fields["queryOptions"]); err != nil {
+				errs = append(errs, cog.MakeBuildErrors("queryOptions", err)...)
+			}
+		} else {
+			errs = append(errs, cog.MakeBuildErrors("queryOptions", errors.New("required field is null"))...)
+
+		}
+		delete(fields, "queryOptions")
+	} else {
+		errs = append(errs, cog.MakeBuildErrors("queryOptions", errors.New("required field is missing from input"))...)
+	}
+
+	for field := range fields {
+		errs = append(errs, cog.MakeBuildErrors("V2QueryGroupSpec", fmt.Errorf("unexpected field '%s'", field))...)
+	}
+
+	return errs
+}
+
+// Equals tests the equality of two `V2QueryGroupSpec` objects.
+func (resource V2QueryGroupSpec) Equals(other V2QueryGroupSpec) bool {
+
+	if len(resource.Queries) != len(other.Queries) {
+		return false
+	}
+
+	for i1 := range resource.Queries {
+		if !resource.Queries[i1].Equals(other.Queries[i1]) {
+			return false
+		}
+	}
+
+	if len(resource.Transformations) != len(other.Transformations) {
+		return false
+	}
+
+	for i1 := range resource.Transformations {
+		if !resource.Transformations[i1].Equals(other.Transformations[i1]) {
+			return false
+		}
+	}
+	if !resource.QueryOptions.Equals(other.QueryOptions) {
+		return false
+	}
+
+	return true
+}
+
+// Validate checks all the validation constraints that may be defined on `V2QueryGroupSpec` fields for violations and returns them.
+func (resource V2QueryGroupSpec) Validate() error {
+	var errs cog.BuildErrors
+
+	for i1 := range resource.Queries {
+		if err := resource.Queries[i1].Validate(); err != nil {
+			errs = append(errs, cog.MakeBuildErrors("queries["+strconv.Itoa(i1)+"]", err)...)
+		}
+	}
+
+	for i1 := range resource.Transformations {
+		if err := resource.Transformations[i1].Validate(); err != nil {
+			errs = append(errs, cog.MakeBuildErrors("transformations["+strconv.Itoa(i1)+"]", err)...)
+		}
+	}
+	if err := resource.QueryOptions.Validate(); err != nil {
+		errs = append(errs, cog.MakeBuildErrors("queryOptions", err)...)
+	}
+
+	if len(errs) == 0 {
+		return nil
+	}
+
+	return errs
+}
+
+// Dashboard v2 shape: the transformation ID moved from `kind` to `group`.
+type V2TransformationKind struct {
+	Kind string `json:"kind"`
+	// The group is the transformation ID
+	Group string               `json:"group"`
+	Spec  V2TransformationSpec `json:"spec"`
+}
+
+// NewV2TransformationKind creates a new V2TransformationKind object.
+func NewV2TransformationKind() *V2TransformationKind {
+	return &V2TransformationKind{
+		Kind: "Transformation",
+		Spec: *NewV2TransformationSpec(),
+	}
+}
+
+// UnmarshalJSONStrict implements a custom JSON unmarshalling logic to decode `V2TransformationKind` from JSON.
+// Note: the unmarshalling done by this function is strict. It will fail over required fields being absent from the input, fields having an incorrect type, unexpected fields being present, …
+func (resource *V2TransformationKind) UnmarshalJSONStrict(raw []byte) error {
+	if raw == nil {
+		return nil
+	}
+	var errs cog.BuildErrors
+
+	fields := make(map[string]json.RawMessage)
+	if err := json.Unmarshal(raw, &fields); err != nil {
+		return err
+	}
+	// Field "kind"
+	if fields["kind"] != nil {
+		if string(fields["kind"]) != "null" {
+			if err := json.Unmarshal(fields["kind"], &resource.Kind); err != nil {
+				errs = append(errs, cog.MakeBuildErrors("kind", err)...)
+			}
+		} else {
+			errs = append(errs, cog.MakeBuildErrors("kind", errors.New("required field is null"))...)
+
+		}
+		delete(fields, "kind")
+	} else {
+		errs = append(errs, cog.MakeBuildErrors("kind", errors.New("required field is missing from input"))...)
+	}
+	// Field "group"
+	if fields["group"] != nil {
+		if string(fields["group"]) != "null" {
+			if err := json.Unmarshal(fields["group"], &resource.Group); err != nil {
+				errs = append(errs, cog.MakeBuildErrors("group", err)...)
+			}
+		} else {
+			errs = append(errs, cog.MakeBuildErrors("group", errors.New("required field is null"))...)
+
+		}
+		delete(fields, "group")
+	} else {
+		errs = append(errs, cog.MakeBuildErrors("group", errors.New("required field is missing from input"))...)
+	}
+	// Field "spec"
+	if fields["spec"] != nil {
+		if string(fields["spec"]) != "null" {
+
+			resource.Spec = V2TransformationSpec{}
+			if err := resource.Spec.UnmarshalJSONStrict(fields["spec"]); err != nil {
+				errs = append(errs, cog.MakeBuildErrors("spec", err)...)
+			}
+		} else {
+			errs = append(errs, cog.MakeBuildErrors("spec", errors.New("required field is null"))...)
+
+		}
+		delete(fields, "spec")
+	} else {
+		errs = append(errs, cog.MakeBuildErrors("spec", errors.New("required field is missing from input"))...)
+	}
+
+	for field := range fields {
+		errs = append(errs, cog.MakeBuildErrors("V2TransformationKind", fmt.Errorf("unexpected field '%s'", field))...)
+	}
+
+	return errs
+}
+
+// Equals tests the equality of two `V2TransformationKind` objects.
+func (resource V2TransformationKind) Equals(other V2TransformationKind) bool {
+	if resource.Kind != other.Kind {
+		return false
+	}
+	if resource.Group != other.Group {
+		return false
+	}
+	if !resource.Spec.Equals(other.Spec) {
+		return false
+	}
+
+	return true
+}
+
+// Validate checks all the validation constraints that may be defined on `V2TransformationKind` fields for violations and returns them.
+func (resource V2TransformationKind) Validate() error {
+	var errs cog.BuildErrors
+	if err := resource.Spec.Validate(); err != nil {
+		errs = append(errs, cog.MakeBuildErrors("spec", err)...)
+	}
+
+	if len(errs) == 0 {
+		return nil
+	}
+
+	return errs
+}
+
+// Dashboard v2 shape: no `id`, it is carried by the parent's `group`.
+type V2TransformationSpec struct {
+	// Disabled transformations are skipped
+	Disabled *bool `json:"disabled,omitempty"`
+	// Optional frame matcher. When missing it will be applied to all results
+	Filter *MatcherConfig `json:"filter,omitempty"`
+	// Where to pull DataFrames from as input to transformation
+	Topic *DataTopic `json:"topic,omitempty"`
+	// Options to be passed to the transformer
+	// Valid options depend on the transformer id
+	Options any `json:"options"`
+}
+
+// NewV2TransformationSpec creates a new V2TransformationSpec object.
+func NewV2TransformationSpec() *V2TransformationSpec {
+	return &V2TransformationSpec{}
+}
+
+// UnmarshalJSONStrict implements a custom JSON unmarshalling logic to decode `V2TransformationSpec` from JSON.
+// Note: the unmarshalling done by this function is strict. It will fail over required fields being absent from the input, fields having an incorrect type, unexpected fields being present, …
+func (resource *V2TransformationSpec) UnmarshalJSONStrict(raw []byte) error {
+	if raw == nil {
+		return nil
+	}
+	var errs cog.BuildErrors
+
+	fields := make(map[string]json.RawMessage)
+	if err := json.Unmarshal(raw, &fields); err != nil {
+		return err
+	}
+	// Field "disabled"
+	if fields["disabled"] != nil {
+		if string(fields["disabled"]) != "null" {
+			if err := json.Unmarshal(fields["disabled"], &resource.Disabled); err != nil {
+				errs = append(errs, cog.MakeBuildErrors("disabled", err)...)
+			}
+
+		}
+		delete(fields, "disabled")
+
+	}
+	// Field "filter"
+	if fields["filter"] != nil {
+		if string(fields["filter"]) != "null" {
+
+			resource.Filter = &MatcherConfig{}
+			if err := resource.Filter.UnmarshalJSONStrict(fields["filter"]); err != nil {
+				errs = append(errs, cog.MakeBuildErrors("filter", err)...)
+			}
+
+		}
+		delete(fields, "filter")
+
+	}
+	// Field "topic"
+	if fields["topic"] != nil {
+		if string(fields["topic"]) != "null" {
+			if err := json.Unmarshal(fields["topic"], &resource.Topic); err != nil {
+				errs = append(errs, cog.MakeBuildErrors("topic", err)...)
+			}
+
+		}
+		delete(fields, "topic")
+
+	}
+	// Field "options"
+	if fields["options"] != nil {
+		if string(fields["options"]) != "null" {
+			if err := json.Unmarshal(fields["options"], &resource.Options); err != nil {
+				errs = append(errs, cog.MakeBuildErrors("options", err)...)
+			}
+		} else {
+			errs = append(errs, cog.MakeBuildErrors("options", errors.New("required field is null"))...)
+
+		}
+		delete(fields, "options")
+	} else {
+		errs = append(errs, cog.MakeBuildErrors("options", errors.New("required field is missing from input"))...)
+	}
+
+	for field := range fields {
+		errs = append(errs, cog.MakeBuildErrors("V2TransformationSpec", fmt.Errorf("unexpected field '%s'", field))...)
+	}
+
+	return errs
+}
+
+// Equals tests the equality of two `V2TransformationSpec` objects.
+func (resource V2TransformationSpec) Equals(other V2TransformationSpec) bool {
+	if resource.Disabled == nil && other.Disabled != nil || resource.Disabled != nil && other.Disabled == nil {
+		return false
+	}
+
+	if resource.Disabled != nil {
+		if *resource.Disabled != *other.Disabled {
+			return false
+		}
+	}
+	if resource.Filter == nil && other.Filter != nil || resource.Filter != nil && other.Filter == nil {
+		return false
+	}
+
+	if resource.Filter != nil {
+		if !resource.Filter.Equals(*other.Filter) {
+			return false
+		}
+	}
+	if resource.Topic == nil && other.Topic != nil || resource.Topic != nil && other.Topic == nil {
+		return false
+	}
+
+	if resource.Topic != nil {
+		if *resource.Topic != *other.Topic {
+			return false
+		}
+	}
+	// is DeepEqual good enough here?
+	if !reflect.DeepEqual(resource.Options, other.Options) {
+		return false
+	}
+
+	return true
+}
+
+// Validate checks all the validation constraints that may be defined on `V2TransformationSpec` fields for violations and returns them.
+func (resource V2TransformationSpec) Validate() error {
+	var errs cog.BuildErrors
+	if resource.Filter != nil {
+		if err := resource.Filter.Validate(); err != nil {
+			errs = append(errs, cog.MakeBuildErrors("filter", err)...)
+		}
+	}
+
+	if len(errs) == 0 {
+		return nil
+	}
+
+	return errs
+}
+
+// A notebook element is a narrative cell, a panel, or a library panel. Unlike the dashboard
+// Element union, this one includes CellKind — and it is referenced ONLY by NotebookSpec.
+// CellKind is listed first so it is the generated default (a notebook is narrative-first).
+type NotebookElement = CellKindOrV2PanelKindOrLibraryPanelKind
+
+// NewNotebookElement creates a new NotebookElement object.
+func NewNotebookElement() *NotebookElement {
+	return NewCellKindOrV2PanelKindOrLibraryPanelKind()
+}
+
+// A notebook spec is a dashboard spec with narrative content. It has a title, optional description, tags, time
+// settings, and a map of elements (panels and cells) referenced by the layout.
+type NotebookSpec struct {
+	Title        string                     `json:"title"`
+	Description  *string                    `json:"description,omitempty"`
+	Tags         []string                   `json:"tags"`
+	TimeSettings TimeSettingsSpec           `json:"timeSettings"`
+	Elements     map[string]NotebookElement `json:"elements"`
+	Layout       NotebookLayoutKind         `json:"layout"`
+}
+
+// NewNotebookSpec creates a new NotebookSpec object.
+func NewNotebookSpec() *NotebookSpec {
+	return &NotebookSpec{
+		Tags:         []string{},
+		TimeSettings: *NewTimeSettingsSpec(),
+		Elements:     map[string]NotebookElement{},
+		Layout:       *NewNotebookLayoutKind(),
+	}
+}
+
+// UnmarshalJSONStrict implements a custom JSON unmarshalling logic to decode `NotebookSpec` from JSON.
+// Note: the unmarshalling done by this function is strict. It will fail over required fields being absent from the input, fields having an incorrect type, unexpected fields being present, …
+func (resource *NotebookSpec) UnmarshalJSONStrict(raw []byte) error {
+	if raw == nil {
+		return nil
+	}
+	var errs cog.BuildErrors
+
+	fields := make(map[string]json.RawMessage)
+	if err := json.Unmarshal(raw, &fields); err != nil {
+		return err
+	}
+	// Field "title"
+	if fields["title"] != nil {
+		if string(fields["title"]) != "null" {
+			if err := json.Unmarshal(fields["title"], &resource.Title); err != nil {
+				errs = append(errs, cog.MakeBuildErrors("title", err)...)
+			}
+		} else {
+			errs = append(errs, cog.MakeBuildErrors("title", errors.New("required field is null"))...)
+
+		}
+		delete(fields, "title")
+	} else {
+		errs = append(errs, cog.MakeBuildErrors("title", errors.New("required field is missing from input"))...)
+	}
+	// Field "description"
+	if fields["description"] != nil {
+		if string(fields["description"]) != "null" {
+			if err := json.Unmarshal(fields["description"], &resource.Description); err != nil {
+				errs = append(errs, cog.MakeBuildErrors("description", err)...)
+			}
+
+		}
+		delete(fields, "description")
+
+	}
+	// Field "tags"
+	if fields["tags"] != nil {
+		if string(fields["tags"]) != "null" {
+
+			if err := json.Unmarshal(fields["tags"], &resource.Tags); err != nil {
+				errs = append(errs, cog.MakeBuildErrors("tags", err)...)
+			}
+		} else {
+			errs = append(errs, cog.MakeBuildErrors("tags", errors.New("required field is null"))...)
+
+		}
+		delete(fields, "tags")
+	} else {
+		errs = append(errs, cog.MakeBuildErrors("tags", errors.New("required field is missing from input"))...)
+	}
+	// Field "timeSettings"
+	if fields["timeSettings"] != nil {
+		if string(fields["timeSettings"]) != "null" {
+
+			resource.TimeSettings = TimeSettingsSpec{}
+			if err := resource.TimeSettings.UnmarshalJSONStrict(fields["timeSettings"]); err != nil {
+				errs = append(errs, cog.MakeBuildErrors("timeSettings", err)...)
+			}
+		} else {
+			errs = append(errs, cog.MakeBuildErrors("timeSettings", errors.New("required field is null"))...)
+
+		}
+		delete(fields, "timeSettings")
+	} else {
+		errs = append(errs, cog.MakeBuildErrors("timeSettings", errors.New("required field is missing from input"))...)
+	}
+	// Field "elements"
+	if fields["elements"] != nil {
+		if string(fields["elements"]) != "null" {
+
+			partialMap := make(map[string]json.RawMessage)
+			if err := json.Unmarshal(fields["elements"], &partialMap); err != nil {
+				return err
+			}
+			parsedMap1 := make(map[string]NotebookElement, len(partialMap))
+			for key1 := range partialMap {
+				var result1 NotebookElement
+
+				result1 = NotebookElement{}
+				if err := result1.UnmarshalJSONStrict(partialMap[key1]); err != nil {
+					errs = append(errs, cog.MakeBuildErrors("elements["+key1+"]", err)...)
+				}
+				parsedMap1[key1] = result1
+			}
+			resource.Elements = parsedMap1
+		} else {
+			errs = append(errs, cog.MakeBuildErrors("elements", errors.New("required field is null"))...)
+
+		}
+		delete(fields, "elements")
+	} else {
+		errs = append(errs, cog.MakeBuildErrors("elements", errors.New("required field is missing from input"))...)
+	}
+	// Field "layout"
+	if fields["layout"] != nil {
+		if string(fields["layout"]) != "null" {
+
+			resource.Layout = NotebookLayoutKind{}
+			if err := resource.Layout.UnmarshalJSONStrict(fields["layout"]); err != nil {
+				errs = append(errs, cog.MakeBuildErrors("layout", err)...)
+			}
+		} else {
+			errs = append(errs, cog.MakeBuildErrors("layout", errors.New("required field is null"))...)
+
+		}
+		delete(fields, "layout")
+	} else {
+		errs = append(errs, cog.MakeBuildErrors("layout", errors.New("required field is missing from input"))...)
+	}
+
+	for field := range fields {
+		errs = append(errs, cog.MakeBuildErrors("NotebookSpec", fmt.Errorf("unexpected field '%s'", field))...)
+	}
+
+	return errs
+}
+
+// Equals tests the equality of two `NotebookSpec` objects.
+func (resource NotebookSpec) Equals(other NotebookSpec) bool {
+	if resource.Title != other.Title {
+		return false
+	}
+	if resource.Description == nil && other.Description != nil || resource.Description != nil && other.Description == nil {
+		return false
+	}
+
+	if resource.Description != nil {
+		if *resource.Description != *other.Description {
+			return false
+		}
+	}
+
+	if len(resource.Tags) != len(other.Tags) {
+		return false
+	}
+
+	for i1 := range resource.Tags {
+		if resource.Tags[i1] != other.Tags[i1] {
+			return false
+		}
+	}
+	if !resource.TimeSettings.Equals(other.TimeSettings) {
+		return false
+	}
+
+	if len(resource.Elements) != len(other.Elements) {
+		return false
+	}
+
+	for key1 := range resource.Elements {
+		if !resource.Elements[key1].Equals(other.Elements[key1]) {
+			return false
+		}
+	}
+	if !resource.Layout.Equals(other.Layout) {
+		return false
+	}
+
+	return true
+}
+
+// Validate checks all the validation constraints that may be defined on `NotebookSpec` fields for violations and returns them.
+func (resource NotebookSpec) Validate() error {
+	var errs cog.BuildErrors
+	if err := resource.TimeSettings.Validate(); err != nil {
+		errs = append(errs, cog.MakeBuildErrors("timeSettings", err)...)
+	}
+
+	for key1 := range resource.Elements {
+		if err := resource.Elements[key1].Validate(); err != nil {
+			errs = append(errs, cog.MakeBuildErrors("elements["+key1+"]", err)...)
+		}
+	}
+	if err := resource.Layout.Validate(); err != nil {
+		errs = append(errs, cog.MakeBuildErrors("layout", err)...)
+	}
+
+	if len(errs) == 0 {
+		return nil
+	}
+
+	return errs
+}
+
 const DashboardApiVersion = "dashboard.grafana.app/v2beta1"
 
 const DashboardKind = "Dashboard"
@@ -15192,6 +17243,13 @@ const (
 	TimeSettingsSpecWeekStartSaturday TimeSettingsSpecWeekStart = "saturday"
 	TimeSettingsSpecWeekStartMonday   TimeSettingsSpecWeekStart = "monday"
 	TimeSettingsSpecWeekStartSunday   TimeSettingsSpecWeekStart = "sunday"
+)
+
+type NotebookLayoutItemSpecSource string
+
+const (
+	NotebookLayoutItemSpecSourceAssistant NotebookLayoutItemSpecSource = "assistant"
+	NotebookLayoutItemSpecSourceUser      NotebookLayoutItemSpecSource = "user"
 )
 
 type GridLayoutKindOrRowsLayoutKindOrAutoGridLayoutKindOrTabsLayoutKind struct {
@@ -17214,6 +19272,330 @@ func (resource StringOrBoolOrFloat64OrCustomVariableValue) Validate() error {
 	if resource.CustomVariableValue != nil {
 		if err := resource.CustomVariableValue.Validate(); err != nil {
 			errs = append(errs, cog.MakeBuildErrors("CustomVariableValue", err)...)
+		}
+	}
+
+	if len(errs) == 0 {
+		return nil
+	}
+
+	return errs
+}
+
+type MarkdownCellContentKindOrCodeCellContentKind struct {
+	MarkdownCellContentKind *MarkdownCellContentKind `json:"MarkdownCellContentKind,omitempty"`
+	CodeCellContentKind     *CodeCellContentKind     `json:"CodeCellContentKind,omitempty"`
+}
+
+// NewMarkdownCellContentKindOrCodeCellContentKind creates a new MarkdownCellContentKindOrCodeCellContentKind object.
+func NewMarkdownCellContentKindOrCodeCellContentKind() *MarkdownCellContentKindOrCodeCellContentKind {
+	return &MarkdownCellContentKindOrCodeCellContentKind{}
+}
+
+// MarshalJSON implements a custom JSON marshalling logic to encode `MarkdownCellContentKindOrCodeCellContentKind` as JSON.
+func (resource MarkdownCellContentKindOrCodeCellContentKind) MarshalJSON() ([]byte, error) {
+	if resource.MarkdownCellContentKind != nil {
+		return json.Marshal(resource.MarkdownCellContentKind)
+	}
+	if resource.CodeCellContentKind != nil {
+		return json.Marshal(resource.CodeCellContentKind)
+	}
+
+	return []byte("null"), nil
+}
+
+// UnmarshalJSON implements a custom JSON unmarshalling logic to decode `MarkdownCellContentKindOrCodeCellContentKind` from JSON.
+func (resource *MarkdownCellContentKindOrCodeCellContentKind) UnmarshalJSON(raw []byte) error {
+	if raw == nil {
+		return nil
+	}
+
+	// FIXME: this is wasteful, we need to find a more efficient way to unmarshal this.
+	parsedAsMap := make(map[string]any)
+	if err := json.Unmarshal(raw, &parsedAsMap); err != nil {
+		return err
+	}
+
+	discriminator, found := parsedAsMap["kind"]
+	if !found {
+		return nil
+	}
+
+	switch discriminator {
+	case "Code":
+		var codeCellContentKind CodeCellContentKind
+		if err := json.Unmarshal(raw, &codeCellContentKind); err != nil {
+			return err
+		}
+
+		resource.CodeCellContentKind = &codeCellContentKind
+		return nil
+	case "Markdown":
+		var markdownCellContentKind MarkdownCellContentKind
+		if err := json.Unmarshal(raw, &markdownCellContentKind); err != nil {
+			return err
+		}
+
+		resource.MarkdownCellContentKind = &markdownCellContentKind
+		return nil
+	}
+
+	return nil
+}
+
+// UnmarshalJSONStrict implements a custom JSON unmarshalling logic to decode `MarkdownCellContentKindOrCodeCellContentKind` from JSON.
+// Note: the unmarshalling done by this function is strict. It will fail over required fields being absent from the input, fields having an incorrect type, unexpected fields being present, …
+func (resource *MarkdownCellContentKindOrCodeCellContentKind) UnmarshalJSONStrict(raw []byte) error {
+	if raw == nil {
+		return nil
+	}
+	// FIXME: this is wasteful, we need to find a more efficient way to unmarshal this.
+	parsedAsMap := make(map[string]any)
+	if err := json.Unmarshal(raw, &parsedAsMap); err != nil {
+		return err
+	}
+
+	discriminator, found := parsedAsMap["kind"]
+	if !found {
+		return fmt.Errorf("discriminator field 'kind' not found in payload")
+	}
+
+	switch discriminator {
+	case "Code":
+		codeCellContentKind := &CodeCellContentKind{}
+		if err := codeCellContentKind.UnmarshalJSONStrict(raw); err != nil {
+			return err
+		}
+
+		resource.CodeCellContentKind = codeCellContentKind
+		return nil
+	case "Markdown":
+		markdownCellContentKind := &MarkdownCellContentKind{}
+		if err := markdownCellContentKind.UnmarshalJSONStrict(raw); err != nil {
+			return err
+		}
+
+		resource.MarkdownCellContentKind = markdownCellContentKind
+		return nil
+	}
+
+	return fmt.Errorf("could not unmarshal resource with `kind = %v`", discriminator)
+}
+
+// Equals tests the equality of two `MarkdownCellContentKindOrCodeCellContentKind` objects.
+func (resource MarkdownCellContentKindOrCodeCellContentKind) Equals(other MarkdownCellContentKindOrCodeCellContentKind) bool {
+	if resource.MarkdownCellContentKind == nil && other.MarkdownCellContentKind != nil || resource.MarkdownCellContentKind != nil && other.MarkdownCellContentKind == nil {
+		return false
+	}
+
+	if resource.MarkdownCellContentKind != nil {
+		if !resource.MarkdownCellContentKind.Equals(*other.MarkdownCellContentKind) {
+			return false
+		}
+	}
+	if resource.CodeCellContentKind == nil && other.CodeCellContentKind != nil || resource.CodeCellContentKind != nil && other.CodeCellContentKind == nil {
+		return false
+	}
+
+	if resource.CodeCellContentKind != nil {
+		if !resource.CodeCellContentKind.Equals(*other.CodeCellContentKind) {
+			return false
+		}
+	}
+
+	return true
+}
+
+// Validate checks all the validation constraints that may be defined on `MarkdownCellContentKindOrCodeCellContentKind` fields for violations and returns them.
+func (resource MarkdownCellContentKindOrCodeCellContentKind) Validate() error {
+	var errs cog.BuildErrors
+	if resource.MarkdownCellContentKind != nil {
+		if err := resource.MarkdownCellContentKind.Validate(); err != nil {
+			errs = append(errs, cog.MakeBuildErrors("MarkdownCellContentKind", err)...)
+		}
+	}
+	if resource.CodeCellContentKind != nil {
+		if err := resource.CodeCellContentKind.Validate(); err != nil {
+			errs = append(errs, cog.MakeBuildErrors("CodeCellContentKind", err)...)
+		}
+	}
+
+	if len(errs) == 0 {
+		return nil
+	}
+
+	return errs
+}
+
+type CellKindOrV2PanelKindOrLibraryPanelKind struct {
+	CellKind         *CellKind         `json:"CellKind,omitempty"`
+	V2PanelKind      *V2PanelKind      `json:"V2PanelKind,omitempty"`
+	LibraryPanelKind *LibraryPanelKind `json:"LibraryPanelKind,omitempty"`
+}
+
+// NewCellKindOrV2PanelKindOrLibraryPanelKind creates a new CellKindOrV2PanelKindOrLibraryPanelKind object.
+func NewCellKindOrV2PanelKindOrLibraryPanelKind() *CellKindOrV2PanelKindOrLibraryPanelKind {
+	return &CellKindOrV2PanelKindOrLibraryPanelKind{}
+}
+
+// MarshalJSON implements a custom JSON marshalling logic to encode `CellKindOrV2PanelKindOrLibraryPanelKind` as JSON.
+func (resource CellKindOrV2PanelKindOrLibraryPanelKind) MarshalJSON() ([]byte, error) {
+	if resource.CellKind != nil {
+		return json.Marshal(resource.CellKind)
+	}
+	if resource.V2PanelKind != nil {
+		return json.Marshal(resource.V2PanelKind)
+	}
+	if resource.LibraryPanelKind != nil {
+		return json.Marshal(resource.LibraryPanelKind)
+	}
+
+	return []byte("null"), nil
+}
+
+// UnmarshalJSON implements a custom JSON unmarshalling logic to decode `CellKindOrV2PanelKindOrLibraryPanelKind` from JSON.
+func (resource *CellKindOrV2PanelKindOrLibraryPanelKind) UnmarshalJSON(raw []byte) error {
+	if raw == nil {
+		return nil
+	}
+
+	// FIXME: this is wasteful, we need to find a more efficient way to unmarshal this.
+	parsedAsMap := make(map[string]any)
+	if err := json.Unmarshal(raw, &parsedAsMap); err != nil {
+		return err
+	}
+
+	discriminator, found := parsedAsMap["kind"]
+	if !found {
+		return nil
+	}
+
+	switch discriminator {
+	case "Cell":
+		var cellKind CellKind
+		if err := json.Unmarshal(raw, &cellKind); err != nil {
+			return err
+		}
+
+		resource.CellKind = &cellKind
+		return nil
+	case "LibraryPanel":
+		var libraryPanelKind LibraryPanelKind
+		if err := json.Unmarshal(raw, &libraryPanelKind); err != nil {
+			return err
+		}
+
+		resource.LibraryPanelKind = &libraryPanelKind
+		return nil
+	case "Panel":
+		var v2PanelKind V2PanelKind
+		if err := json.Unmarshal(raw, &v2PanelKind); err != nil {
+			return err
+		}
+
+		resource.V2PanelKind = &v2PanelKind
+		return nil
+	}
+
+	return nil
+}
+
+// UnmarshalJSONStrict implements a custom JSON unmarshalling logic to decode `CellKindOrV2PanelKindOrLibraryPanelKind` from JSON.
+// Note: the unmarshalling done by this function is strict. It will fail over required fields being absent from the input, fields having an incorrect type, unexpected fields being present, …
+func (resource *CellKindOrV2PanelKindOrLibraryPanelKind) UnmarshalJSONStrict(raw []byte) error {
+	if raw == nil {
+		return nil
+	}
+	// FIXME: this is wasteful, we need to find a more efficient way to unmarshal this.
+	parsedAsMap := make(map[string]any)
+	if err := json.Unmarshal(raw, &parsedAsMap); err != nil {
+		return err
+	}
+
+	discriminator, found := parsedAsMap["kind"]
+	if !found {
+		return fmt.Errorf("discriminator field 'kind' not found in payload")
+	}
+
+	switch discriminator {
+	case "Cell":
+		cellKind := &CellKind{}
+		if err := cellKind.UnmarshalJSONStrict(raw); err != nil {
+			return err
+		}
+
+		resource.CellKind = cellKind
+		return nil
+	case "LibraryPanel":
+		libraryPanelKind := &LibraryPanelKind{}
+		if err := libraryPanelKind.UnmarshalJSONStrict(raw); err != nil {
+			return err
+		}
+
+		resource.LibraryPanelKind = libraryPanelKind
+		return nil
+	case "Panel":
+		v2PanelKind := &V2PanelKind{}
+		if err := v2PanelKind.UnmarshalJSONStrict(raw); err != nil {
+			return err
+		}
+
+		resource.V2PanelKind = v2PanelKind
+		return nil
+	}
+
+	return fmt.Errorf("could not unmarshal resource with `kind = %v`", discriminator)
+}
+
+// Equals tests the equality of two `CellKindOrV2PanelKindOrLibraryPanelKind` objects.
+func (resource CellKindOrV2PanelKindOrLibraryPanelKind) Equals(other CellKindOrV2PanelKindOrLibraryPanelKind) bool {
+	if resource.CellKind == nil && other.CellKind != nil || resource.CellKind != nil && other.CellKind == nil {
+		return false
+	}
+
+	if resource.CellKind != nil {
+		if !resource.CellKind.Equals(*other.CellKind) {
+			return false
+		}
+	}
+	if resource.V2PanelKind == nil && other.V2PanelKind != nil || resource.V2PanelKind != nil && other.V2PanelKind == nil {
+		return false
+	}
+
+	if resource.V2PanelKind != nil {
+		if !resource.V2PanelKind.Equals(*other.V2PanelKind) {
+			return false
+		}
+	}
+	if resource.LibraryPanelKind == nil && other.LibraryPanelKind != nil || resource.LibraryPanelKind != nil && other.LibraryPanelKind == nil {
+		return false
+	}
+
+	if resource.LibraryPanelKind != nil {
+		if !resource.LibraryPanelKind.Equals(*other.LibraryPanelKind) {
+			return false
+		}
+	}
+
+	return true
+}
+
+// Validate checks all the validation constraints that may be defined on `CellKindOrV2PanelKindOrLibraryPanelKind` fields for violations and returns them.
+func (resource CellKindOrV2PanelKindOrLibraryPanelKind) Validate() error {
+	var errs cog.BuildErrors
+	if resource.CellKind != nil {
+		if err := resource.CellKind.Validate(); err != nil {
+			errs = append(errs, cog.MakeBuildErrors("CellKind", err)...)
+		}
+	}
+	if resource.V2PanelKind != nil {
+		if err := resource.V2PanelKind.Validate(); err != nil {
+			errs = append(errs, cog.MakeBuildErrors("V2PanelKind", err)...)
+		}
+	}
+	if resource.LibraryPanelKind != nil {
+		if err := resource.LibraryPanelKind.Validate(); err != nil {
+			errs = append(errs, cog.MakeBuildErrors("LibraryPanelKind", err)...)
 		}
 	}
 

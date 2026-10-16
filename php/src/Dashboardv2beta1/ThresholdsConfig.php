@@ -31,7 +31,7 @@ class ThresholdsConfig implements \JsonSerializable
         return new self(
             mode: isset($data["mode"]) ? (function($input) { return \Grafana\Foundation\Dashboardv2beta1\ThresholdsMode::fromValue($input); })($data["mode"]) : null,
             steps: array_filter(array_map((function($input) {
-    	/** @var array{value?: float, color?: string} */
+    	/** @var array{value?: float, valueExpr?: string, color?: string} */
     $val = $input;
     	return \Grafana\Foundation\Dashboardv2beta1\Threshold::fromArray($val);
     }), $data["steps"] ?? [])),

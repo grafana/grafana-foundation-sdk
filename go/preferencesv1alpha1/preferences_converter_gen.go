@@ -13,6 +13,18 @@ func PreferencesConverter(input Preferences) string {
 		`preferencesv1alpha1.NewPreferencesBuilder()`,
 	}
 	var buffer strings.Builder
+	if input.HomeURL != nil && *input.HomeURL != "" {
+
+		buffer.WriteString(`HomeURL(`)
+		arg0 := fmt.Sprintf("%#v", *input.HomeURL)
+		buffer.WriteString(arg0)
+
+		buffer.WriteString(")")
+
+		calls = append(calls, buffer.String())
+		buffer.Reset()
+
+	}
 	if input.HomeDashboardUID != nil && *input.HomeDashboardUID != "" {
 
 		buffer.WriteString(`HomeDashboardUID(`)
@@ -73,34 +85,10 @@ func PreferencesConverter(input Preferences) string {
 		buffer.Reset()
 
 	}
-	if input.RegionalFormat != nil && *input.RegionalFormat != "" {
-
-		buffer.WriteString(`RegionalFormat(`)
-		arg0 := fmt.Sprintf("%#v", *input.RegionalFormat)
-		buffer.WriteString(arg0)
-
-		buffer.WriteString(")")
-
-		calls = append(calls, buffer.String())
-		buffer.Reset()
-
-	}
 	if input.QueryHistory != nil {
 
 		buffer.WriteString(`QueryHistory(`)
 		arg0 := QueryHistoryPreferenceConverter(*input.QueryHistory)
-		buffer.WriteString(arg0)
-
-		buffer.WriteString(")")
-
-		calls = append(calls, buffer.String())
-		buffer.Reset()
-
-	}
-	if input.CookiePreferences != nil {
-
-		buffer.WriteString(`CookiePreferences(`)
-		arg0 := CookiePreferencesConverter(*input.CookiePreferences)
 		buffer.WriteString(arg0)
 
 		buffer.WriteString(")")

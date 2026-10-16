@@ -28,7 +28,7 @@ class AnnotationPanelFilter(cogbuilder.Builder[dashboardv2.AnnotationPanelFilter
     
         return self
     
-    def ids(self, ids: list[int]) -> typing.Self:    
+    def ids(self, ids: list[float]) -> typing.Self:    
         """
         Panel IDs that should be included or excluded
         """
@@ -127,6 +127,11 @@ class QueryOptionsSpec(cogbuilder.Builder[dashboardv2.QueryOptionsSpec]):
     
     def time_from(self, time_from: str) -> typing.Self:    
         self._internal.time_from = time_from
+    
+        return self
+    
+    def time_to(self, time_to: str) -> typing.Self:    
+        self._internal.time_to = time_to
     
         return self
     
@@ -276,6 +281,15 @@ class FieldColor(cogbuilder.Builder[dashboardv2.FieldColor]):
         """
             
         self._internal.fixed_color = fixed_color
+    
+        return self
+    
+    def gradient_color_to(self, gradient_color_to: str) -> typing.Self:    
+        """
+        The end color for the gradient color mode (smallest value). Only used when mode is gradient.
+        """
+            
+        self._internal.gradient_color_to = gradient_color_to
     
         return self
     
@@ -1729,10 +1743,26 @@ class Panel(cogbuilder.Builder[dashboardv2.PanelKind]):
         return self
     
     def description(self, description: str) -> typing.Self:    
+        """
+        Shown in a info icon tooltip next to panel title
+        """
+            
         if self._internal.spec is None:
             self._internal.spec = dashboardv2.PanelSpec()
         assert isinstance(self._internal.spec, dashboardv2.PanelSpec)
         self._internal.spec.description = description
+    
+        return self
+    
+    def subtitle(self, subtitle: str) -> typing.Self:    
+        """
+        Shown in a sub header below the title.
+        """
+            
+        if self._internal.spec is None:
+            self._internal.spec = dashboardv2.PanelSpec()
+        assert isinstance(self._internal.spec, dashboardv2.PanelSpec)
+        self._internal.spec.subtitle = subtitle
     
         return self
     

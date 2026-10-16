@@ -10,6 +10,19 @@ final class PreferencesConverter
         $calls = [
             '(new \Grafana\Foundation\Preferencesv1alpha1\PreferencesBuilder())',
         ];
+            if ($input->homeURL !== null && $input->homeURL !== "") {
+    
+        
+    $buffer = 'homeURL(';
+        $arg0 =\var_export($input->homeURL, true);
+        $buffer .= $arg0;
+        
+    $buffer .= ')';
+
+    $calls[] = $buffer;
+    
+    
+    }
             if ($input->homeDashboardUID !== null && $input->homeDashboardUID !== "") {
     
         
@@ -75,37 +88,11 @@ final class PreferencesConverter
     
     
     }
-            if ($input->regionalFormat !== null && $input->regionalFormat !== "") {
-    
-        
-    $buffer = 'regionalFormat(';
-        $arg0 =\var_export($input->regionalFormat, true);
-        $buffer .= $arg0;
-        
-    $buffer .= ')';
-
-    $calls[] = $buffer;
-    
-    
-    }
             if ($input->queryHistory !== null) {
     
         
     $buffer = 'queryHistory(';
         $arg0 = \Grafana\Foundation\Preferencesv1alpha1\QueryHistoryPreferenceConverter::convert($input->queryHistory);
-        $buffer .= $arg0;
-        
-    $buffer .= ')';
-
-    $calls[] = $buffer;
-    
-    
-    }
-            if ($input->cookiePreferences !== null) {
-    
-        
-    $buffer = 'cookiePreferences(';
-        $arg0 = \Grafana\Foundation\Preferencesv1alpha1\CookiePreferencesConverter::convert($input->cookiePreferences);
         $buffer .= $arg0;
         
     $buffer .= ')';

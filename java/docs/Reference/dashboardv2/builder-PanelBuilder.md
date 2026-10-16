@@ -26,6 +26,8 @@ public PanelBuilder data(com.grafana.foundation.cog.Builder<QueryGroupKind> data
 
 ### <span class="badge object-method"></span> description
 
+Shown in a info icon tooltip next to panel title
+
 ```java
 public PanelBuilder description(String description)
 ```
@@ -40,6 +42,14 @@ public PanelBuilder id(Double id)
 
 ```java
 public PanelBuilder links(List<com.grafana.foundation.cog.Builder<DataLink>> links)
+```
+
+### <span class="badge object-method"></span> subtitle
+
+Shown in a sub header below the title.
+
+```java
+public PanelBuilder subtitle(String subtitle)
 ```
 
 ### <span class="badge object-method"></span> title

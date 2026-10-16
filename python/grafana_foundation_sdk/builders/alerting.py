@@ -18,6 +18,17 @@ class NotificationSettings(cogbuilder.Builder[alerting.NotificationSettings]):
         """
         return self._internal    
     
+    def active_time_intervals(self, active_time_intervals: list[str]) -> typing.Self:    
+        """
+        Override the times when notifications should not be muted. These must match the name of a mute time interval defined
+        in the alertmanager configuration time_intervals section. All notifications will be suppressed unless they are sent
+        at the time that matches any interval.
+        """
+            
+        self._internal.active_time_intervals = active_time_intervals
+    
+        return self
+    
     def group_by(self, group_by: list[str]) -> typing.Self:    
         """
         Override the labels by which incoming alerts are grouped together. For example, multiple alerts coming in for
@@ -55,7 +66,7 @@ class NotificationSettings(cogbuilder.Builder[alerting.NotificationSettings]):
     def mute_time_intervals(self, mute_time_intervals: list[str]) -> typing.Self:    
         """
         Override the times when notifications should be muted. These must match the name of a mute time interval defined
-        in the alertmanager configuration mute_time_intervals section. When muted it will not send any notifications, but
+        in the alertmanager configuration time_intervals section. When muted it will not send any notifications, but
         otherwise acts normally.
         """
             
@@ -265,6 +276,15 @@ class RecordRule(cogbuilder.Builder[alerting.RecordRule]):
         """
             
         self._internal.metric = metric
+    
+        return self
+    
+    def target_datasource_uid(self, target_datasource_uid: str) -> typing.Self:    
+        """
+        Which data source should be used to write the output of the recording rule, specified by UID.
+        """
+            
+        self._internal.target_datasource_uid = target_datasource_uid
     
         return self
     
@@ -665,8 +685,18 @@ class Rule(cogbuilder.Builder[alerting.Rule]):
     
         return self
     
+    def keep_firing_for(self, keep_firing_for: str) -> typing.Self:    
+        self._internal.keep_firing_for = keep_firing_for
+    
+        return self
+    
     def labels(self, labels: dict[str, str]) -> typing.Self:    
         self._internal.labels = labels
+    
+        return self
+    
+    def missing_series_evals_to_resolve(self, missing_series_evals_to_resolve: int) -> typing.Self:    
+        self._internal.missing_series_evals_to_resolve = missing_series_evals_to_resolve
     
         return self
     
@@ -726,16 +756,6 @@ class Rule(cogbuilder.Builder[alerting.Rule]):
     
     def updated(self, updated: str) -> typing.Self:    
         self._internal.updated = updated
-    
-        return self
-    
-    def keep_firing_for(self, keep_firing_for: int) -> typing.Self:    
-        """
-        You can set a Keep firing for period to avoid repeated firing-resolving-firing notifications caused by flapping conditions.
-        Value is in nanoseconds
-        """
-            
-        self._internal.keep_firing_for = keep_firing_for
     
         return self
     

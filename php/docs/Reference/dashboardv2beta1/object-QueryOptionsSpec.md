@@ -10,6 +10,8 @@ class QueryOptionsSpec implements \JsonSerializable
 {
     public ?string $timeFrom;
 
+    public ?string $timeTo;
+
     public ?int $maxDataPoints;
 
     public ?string $timeShift;

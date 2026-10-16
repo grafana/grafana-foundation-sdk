@@ -12,24 +12,6 @@
         }
       }
     },
-    "CookiePreferences": {
-      "type": "object",
-      "additionalProperties": false,
-      "properties": {
-        "analytics": {
-          "type": "object",
-          "additionalProperties": {}
-        },
-        "performance": {
-          "type": "object",
-          "additionalProperties": {}
-        },
-        "functional": {
-          "type": "object",
-          "additionalProperties": {}
-        }
-      }
-    },
     "NavbarPreference": {
       "type": "object",
       "additionalProperties": false,
@@ -49,13 +31,17 @@
       "type": "object",
       "additionalProperties": false,
       "properties": {
+        "homeURL": {
+          "type": "string",
+          "description": "Explicit home URL (NOTE: this can only be modified in the system settings)"
+        },
         "homeDashboardUID": {
           "type": "string",
           "description": "UID for the home dashboard"
         },
         "timezone": {
           "type": "string",
-          "description": "The timezone selection\nTODO: this should use the timezone defined in common"
+          "description": "The timezone selection"
         },
         "weekStart": {
           "type": "string",
@@ -63,23 +49,15 @@
         },
         "theme": {
           "type": "string",
-          "description": "light, dark, empty is default"
+          "description": "user interface theme"
         },
         "language": {
           "type": "string",
-          "description": "Selected language (beta)"
-        },
-        "regionalFormat": {
-          "type": "string",
-          "description": "Selected locale (beta)"
+          "description": "Selected language"
         },
         "queryHistory": {
           "$ref": "#/definitions/QueryHistoryPreference",
           "description": "Explore query history preferences"
-        },
-        "cookiePreferences": {
-          "$ref": "#/definitions/CookiePreferences",
-          "description": "Cookie preferences"
         },
         "navbar": {
           "$ref": "#/definitions/NavbarPreference",

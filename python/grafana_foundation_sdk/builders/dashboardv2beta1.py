@@ -29,7 +29,7 @@ class AnnotationPanelFilter(cogbuilder.Builder[dashboardv2beta1.AnnotationPanelF
     
         return self
     
-    def ids(self, ids: list[int]) -> typing.Self:    
+    def ids(self, ids: list[float]) -> typing.Self:    
         """
         Panel IDs that should be included or excluded
         """
@@ -128,6 +128,11 @@ class QueryOptionsSpec(cogbuilder.Builder[dashboardv2beta1.QueryOptionsSpec]):
     
     def time_from(self, time_from: str) -> typing.Self:    
         self._internal.time_from = time_from
+    
+        return self
+    
+    def time_to(self, time_to: str) -> typing.Self:    
+        self._internal.time_to = time_to
     
         return self
     
@@ -277,6 +282,15 @@ class FieldColor(cogbuilder.Builder[dashboardv2beta1.FieldColor]):
         """
             
         self._internal.fixed_color = fixed_color
+    
+        return self
+    
+    def gradient_color_to(self, gradient_color_to: str) -> typing.Self:    
+        """
+        The end color for the gradient color mode (smallest value). Only used when mode is gradient.
+        """
+            
+        self._internal.gradient_color_to = gradient_color_to
     
         return self
     
@@ -992,6 +1006,533 @@ class VariableValueOption(cogbuilder.Builder[dashboardv2beta1.VariableValueOptio
     
     def group(self, group: str) -> typing.Self:    
         self._internal.group = group
+    
+        return self
+    
+
+
+class CellKind(cogbuilder.Builder[dashboardv2beta1.CellKind]):    
+    """
+    A cell holds non-panel narrative content (markdown text, code) in a notebook layout.
+    Panel cells are not represented here — they reuse V2PanelKind.
+    """
+    
+    _internal: dashboardv2beta1.CellKind
+
+    def __init__(self) -> None:
+        self._internal = dashboardv2beta1.CellKind()        
+        self._internal.kind = "Cell"
+
+    def build(self) -> dashboardv2beta1.CellKind:
+        """
+        Builds the object.
+        """
+        return self._internal    
+    
+    def spec(self, spec: cogbuilder.Builder[dashboardv2beta1.CellSpec]) -> typing.Self:    
+        spec_resource = spec.build()
+        self._internal.spec = spec_resource
+    
+        return self
+    
+
+
+class CellSpec(cogbuilder.Builder[dashboardv2beta1.CellSpec]):
+    _internal: dashboardv2beta1.CellSpec
+
+    def __init__(self) -> None:
+        self._internal = dashboardv2beta1.CellSpec()
+
+    def build(self) -> dashboardv2beta1.CellSpec:
+        """
+        Builds the object.
+        """
+        return self._internal    
+    
+    def content(self, content: cogbuilder.Builder[dashboardv2beta1.CellContentKind]) -> typing.Self:    
+        content_resource = content.build()
+        self._internal.content = content_resource
+    
+        return self
+    
+
+
+class MarkdownCellContentKind(cogbuilder.Builder[dashboardv2beta1.MarkdownCellContentKind]):
+    _internal: dashboardv2beta1.MarkdownCellContentKind
+
+    def __init__(self) -> None:
+        self._internal = dashboardv2beta1.MarkdownCellContentKind()        
+        self._internal.kind = "Markdown"
+
+    def build(self) -> dashboardv2beta1.MarkdownCellContentKind:
+        """
+        Builds the object.
+        """
+        return self._internal    
+    
+    def spec(self, spec: cogbuilder.Builder[dashboardv2beta1.MarkdownCellContentSpec]) -> typing.Self:    
+        spec_resource = spec.build()
+        self._internal.spec = spec_resource
+    
+        return self
+    
+
+
+class MarkdownCellContentSpec(cogbuilder.Builder[dashboardv2beta1.MarkdownCellContentSpec]):
+    _internal: dashboardv2beta1.MarkdownCellContentSpec
+
+    def __init__(self) -> None:
+        self._internal = dashboardv2beta1.MarkdownCellContentSpec()
+
+    def build(self) -> dashboardv2beta1.MarkdownCellContentSpec:
+        """
+        Builds the object.
+        """
+        return self._internal    
+    
+    def text(self, text: str) -> typing.Self:    
+        self._internal.text = text
+    
+        return self
+    
+
+
+class CodeCellContentKind(cogbuilder.Builder[dashboardv2beta1.CodeCellContentKind]):
+    _internal: dashboardv2beta1.CodeCellContentKind
+
+    def __init__(self) -> None:
+        self._internal = dashboardv2beta1.CodeCellContentKind()        
+        self._internal.kind = "Code"
+
+    def build(self) -> dashboardv2beta1.CodeCellContentKind:
+        """
+        Builds the object.
+        """
+        return self._internal    
+    
+    def spec(self, spec: cogbuilder.Builder[dashboardv2beta1.CodeCellContentSpec]) -> typing.Self:    
+        spec_resource = spec.build()
+        self._internal.spec = spec_resource
+    
+        return self
+    
+
+
+class CodeCellContentSpec(cogbuilder.Builder[dashboardv2beta1.CodeCellContentSpec]):
+    _internal: dashboardv2beta1.CodeCellContentSpec
+
+    def __init__(self) -> None:
+        self._internal = dashboardv2beta1.CodeCellContentSpec()
+
+    def build(self) -> dashboardv2beta1.CodeCellContentSpec:
+        """
+        Builds the object.
+        """
+        return self._internal    
+    
+    def language(self, language: str) -> typing.Self:    
+        self._internal.language = language
+    
+        return self
+    
+    def code(self, code: str) -> typing.Self:    
+        self._internal.code = code
+    
+        return self
+    
+    def highlight(self, highlight: list[int]) -> typing.Self:    
+        self._internal.highlight = highlight
+    
+        return self
+    
+    def annotation(self, annotation: str) -> typing.Self:    
+        self._internal.annotation = annotation
+    
+        return self
+    
+
+
+class NotebookLayoutKind(cogbuilder.Builder[dashboardv2beta1.NotebookLayoutKind]):
+    _internal: dashboardv2beta1.NotebookLayoutKind
+
+    def __init__(self) -> None:
+        self._internal = dashboardv2beta1.NotebookLayoutKind()        
+        self._internal.kind = "NotebookLayout"
+
+    def build(self) -> dashboardv2beta1.NotebookLayoutKind:
+        """
+        Builds the object.
+        """
+        return self._internal    
+    
+    def spec(self, spec: cogbuilder.Builder[dashboardv2beta1.NotebookLayoutSpec]) -> typing.Self:    
+        spec_resource = spec.build()
+        self._internal.spec = spec_resource
+    
+        return self
+    
+
+
+class NotebookLayoutSpec(cogbuilder.Builder[dashboardv2beta1.NotebookLayoutSpec]):
+    _internal: dashboardv2beta1.NotebookLayoutSpec
+
+    def __init__(self) -> None:
+        self._internal = dashboardv2beta1.NotebookLayoutSpec()
+
+    def build(self) -> dashboardv2beta1.NotebookLayoutSpec:
+        """
+        Builds the object.
+        """
+        return self._internal    
+    
+    def cells(self, cells: list[cogbuilder.Builder[dashboardv2beta1.NotebookLayoutItemKind]]) -> typing.Self:    
+        cells_resources = [r1.build() for r1 in cells]
+        self._internal.cells = cells_resources
+    
+        return self
+    
+
+
+class NotebookLayoutItemKind(cogbuilder.Builder[dashboardv2beta1.NotebookLayoutItemKind]):
+    _internal: dashboardv2beta1.NotebookLayoutItemKind
+
+    def __init__(self) -> None:
+        self._internal = dashboardv2beta1.NotebookLayoutItemKind()        
+        self._internal.kind = "NotebookLayoutItem"
+
+    def build(self) -> dashboardv2beta1.NotebookLayoutItemKind:
+        """
+        Builds the object.
+        """
+        return self._internal    
+    
+    def spec(self, spec: cogbuilder.Builder[dashboardv2beta1.NotebookLayoutItemSpec]) -> typing.Self:    
+        spec_resource = spec.build()
+        self._internal.spec = spec_resource
+    
+        return self
+    
+
+
+class NotebookLayoutItemSpec(cogbuilder.Builder[dashboardv2beta1.NotebookLayoutItemSpec]):    
+    """
+    One ordered item in a notebook layout. `element` references either a CellKind
+    (markdown/code content) or a V2PanelKind in the notebook's elements map. `source`
+    records who authored the cell; `collapsed` hides the body in the UI.
+    """
+    
+    _internal: dashboardv2beta1.NotebookLayoutItemSpec
+
+    def __init__(self) -> None:
+        self._internal = dashboardv2beta1.NotebookLayoutItemSpec()
+
+    def build(self) -> dashboardv2beta1.NotebookLayoutItemSpec:
+        """
+        Builds the object.
+        """
+        return self._internal    
+    
+    def element(self, element: cogbuilder.Builder[dashboardv2beta1.ElementReference]) -> typing.Self:    
+        element_resource = element.build()
+        self._internal.element = element_resource
+    
+        return self
+    
+    def source(self, source: typing.Literal["assistant", "user"]) -> typing.Self:    
+        self._internal.source = source
+    
+        return self
+    
+    def collapsed(self, collapsed: bool) -> typing.Self:    
+        self._internal.collapsed = collapsed
+    
+        return self
+    
+
+
+class V2PanelKind(cogbuilder.Builder[dashboardv2beta1.V2PanelKind]):    
+    """
+    The notebook's own panel chain. It is a copy of the dashboard one down to the transformation,
+    which follows the dashboard v2 shape rather than the v2beta1 shape in this package. The chain has
+    to be forked rather than shared because PanelKind reaches TransformationKind through
+    QueryGroupKind, and those three are what Dashboard v2beta1 serves. Everything the chain does not
+    change (DataLink, VizConfigKind, PanelQueryKind, QueryOptionsSpec) stays shared.
+    """
+    
+    _internal: dashboardv2beta1.V2PanelKind
+
+    def __init__(self) -> None:
+        self._internal = dashboardv2beta1.V2PanelKind()        
+        self._internal.kind = "Panel"
+
+    def build(self) -> dashboardv2beta1.V2PanelKind:
+        """
+        Builds the object.
+        """
+        return self._internal    
+    
+    def spec(self, spec: cogbuilder.Builder[dashboardv2beta1.V2PanelSpec]) -> typing.Self:    
+        spec_resource = spec.build()
+        self._internal.spec = spec_resource
+    
+        return self
+    
+
+
+class V2PanelSpec(cogbuilder.Builder[dashboardv2beta1.V2PanelSpec]):
+    _internal: dashboardv2beta1.V2PanelSpec
+
+    def __init__(self) -> None:
+        self._internal = dashboardv2beta1.V2PanelSpec()
+
+    def build(self) -> dashboardv2beta1.V2PanelSpec:
+        """
+        Builds the object.
+        """
+        return self._internal    
+    
+    def id(self, id_val: float) -> typing.Self:    
+        self._internal.id_val = id_val
+    
+        return self
+    
+    def title(self, title: str) -> typing.Self:    
+        self._internal.title = title
+    
+        return self
+    
+    def description(self, description: str) -> typing.Self:    
+        """
+        Shown in a info icon tooltip next to panel title
+        """
+            
+        self._internal.description = description
+    
+        return self
+    
+    def subtitle(self, subtitle: str) -> typing.Self:    
+        """
+        Shown in a sub header below the title.
+        """
+            
+        self._internal.subtitle = subtitle
+    
+        return self
+    
+    def links(self, links: list[cogbuilder.Builder[dashboardv2beta1.DataLink]]) -> typing.Self:    
+        links_resources = [r1.build() for r1 in links]
+        self._internal.links = links_resources
+    
+        return self
+    
+    def data(self, data: cogbuilder.Builder[dashboardv2beta1.V2QueryGroupKind]) -> typing.Self:    
+        data_resource = data.build()
+        self._internal.data = data_resource
+    
+        return self
+    
+    def viz_config(self, viz_config: cogbuilder.Builder[dashboardv2beta1.VizConfigKind]) -> typing.Self:    
+        viz_config_resource = viz_config.build()
+        self._internal.viz_config = viz_config_resource
+    
+        return self
+    
+    def transparent(self, transparent: bool) -> typing.Self:    
+        self._internal.transparent = transparent
+    
+        return self
+    
+
+
+class V2QueryGroupKind(cogbuilder.Builder[dashboardv2beta1.V2QueryGroupKind]):
+    _internal: dashboardv2beta1.V2QueryGroupKind
+
+    def __init__(self) -> None:
+        self._internal = dashboardv2beta1.V2QueryGroupKind()        
+        self._internal.kind = "QueryGroup"
+
+    def build(self) -> dashboardv2beta1.V2QueryGroupKind:
+        """
+        Builds the object.
+        """
+        return self._internal    
+    
+    def spec(self, spec: cogbuilder.Builder[dashboardv2beta1.V2QueryGroupSpec]) -> typing.Self:    
+        spec_resource = spec.build()
+        self._internal.spec = spec_resource
+    
+        return self
+    
+
+
+class V2QueryGroupSpec(cogbuilder.Builder[dashboardv2beta1.V2QueryGroupSpec]):
+    _internal: dashboardv2beta1.V2QueryGroupSpec
+
+    def __init__(self) -> None:
+        self._internal = dashboardv2beta1.V2QueryGroupSpec()
+
+    def build(self) -> dashboardv2beta1.V2QueryGroupSpec:
+        """
+        Builds the object.
+        """
+        return self._internal    
+    
+    def queries(self, queries: list[cogbuilder.Builder[dashboardv2beta1.PanelQueryKind]]) -> typing.Self:    
+        queries_resources = [r1.build() for r1 in queries]
+        self._internal.queries = queries_resources
+    
+        return self
+    
+    def transformations(self, transformations: list[cogbuilder.Builder[dashboardv2beta1.V2TransformationKind]]) -> typing.Self:    
+        transformations_resources = [r1.build() for r1 in transformations]
+        self._internal.transformations = transformations_resources
+    
+        return self
+    
+    def query_options(self, query_options: cogbuilder.Builder[dashboardv2beta1.QueryOptionsSpec]) -> typing.Self:    
+        query_options_resource = query_options.build()
+        self._internal.query_options = query_options_resource
+    
+        return self
+    
+
+
+class V2TransformationKind(cogbuilder.Builder[dashboardv2beta1.V2TransformationKind]):    
+    """
+    Dashboard v2 shape: the transformation ID moved from `kind` to `group`.
+    """
+    
+    _internal: dashboardv2beta1.V2TransformationKind
+
+    def __init__(self) -> None:
+        self._internal = dashboardv2beta1.V2TransformationKind()        
+        self._internal.kind = "Transformation"
+
+    def build(self) -> dashboardv2beta1.V2TransformationKind:
+        """
+        Builds the object.
+        """
+        return self._internal    
+    
+    def group(self, group: str) -> typing.Self:    
+        """
+        The group is the transformation ID
+        """
+            
+        self._internal.group = group
+    
+        return self
+    
+    def spec(self, spec: cogbuilder.Builder[dashboardv2beta1.V2TransformationSpec]) -> typing.Self:    
+        spec_resource = spec.build()
+        self._internal.spec = spec_resource
+    
+        return self
+    
+
+
+class V2TransformationSpec(cogbuilder.Builder[dashboardv2beta1.V2TransformationSpec]):    
+    """
+    Dashboard v2 shape: no `id`, it is carried by the parent's `group`.
+    """
+    
+    _internal: dashboardv2beta1.V2TransformationSpec
+
+    def __init__(self) -> None:
+        self._internal = dashboardv2beta1.V2TransformationSpec()
+
+    def build(self) -> dashboardv2beta1.V2TransformationSpec:
+        """
+        Builds the object.
+        """
+        return self._internal    
+    
+    def disabled(self, disabled: bool) -> typing.Self:    
+        """
+        Disabled transformations are skipped
+        """
+            
+        self._internal.disabled = disabled
+    
+        return self
+    
+    def filter(self, filter_val: dashboardv2beta1.MatcherConfig) -> typing.Self:    
+        """
+        Optional frame matcher. When missing it will be applied to all results
+        """
+            
+        self._internal.filter_val = filter_val
+    
+        return self
+    
+    def topic(self, topic: dashboardv2beta1.DataTopic) -> typing.Self:    
+        """
+        Where to pull DataFrames from as input to transformation
+        """
+            
+        self._internal.topic = topic
+    
+        return self
+    
+    def options(self, options: object) -> typing.Self:    
+        """
+        Options to be passed to the transformer
+        Valid options depend on the transformer id
+        """
+            
+        self._internal.options = options
+    
+        return self
+    
+
+
+class NotebookSpec(cogbuilder.Builder[dashboardv2beta1.NotebookSpec]):    
+    """
+    A notebook spec is a dashboard spec with narrative content. It has a title, optional description, tags, time
+    settings, and a map of elements (panels and cells) referenced by the layout.
+    """
+    
+    _internal: dashboardv2beta1.NotebookSpec
+
+    def __init__(self) -> None:
+        self._internal = dashboardv2beta1.NotebookSpec()
+
+    def build(self) -> dashboardv2beta1.NotebookSpec:
+        """
+        Builds the object.
+        """
+        return self._internal    
+    
+    def title(self, title: str) -> typing.Self:    
+        self._internal.title = title
+    
+        return self
+    
+    def description(self, description: str) -> typing.Self:    
+        self._internal.description = description
+    
+        return self
+    
+    def tags(self, tags: list[str]) -> typing.Self:    
+        self._internal.tags = tags
+    
+        return self
+    
+    def time_settings(self, time_settings: cogbuilder.Builder[dashboardv2beta1.TimeSettingsSpec]) -> typing.Self:    
+        time_settings_resource = time_settings.build()
+        self._internal.time_settings = time_settings_resource
+    
+        return self
+    
+    def elements(self, elements: dict[str, cogbuilder.Builder[dashboardv2beta1.NotebookElement]]) -> typing.Self:    
+        elements_resources = { key1: val1.build() for (key1, val1) in elements.items() }
+        self._internal.elements = elements_resources
+    
+        return self
+    
+    def layout(self, layout: cogbuilder.Builder[dashboardv2beta1.NotebookLayoutKind]) -> typing.Self:    
+        layout_resource = layout.build()
+        self._internal.layout = layout_resource
     
         return self
     
@@ -1713,10 +2254,26 @@ class Panel(cogbuilder.Builder[dashboardv2beta1.PanelKind]):
         return self
     
     def description(self, description: str) -> typing.Self:    
+        """
+        Shown in a info icon tooltip next to panel title
+        """
+            
         if self._internal.spec is None:
             self._internal.spec = dashboardv2beta1.PanelSpec()
         assert isinstance(self._internal.spec, dashboardv2beta1.PanelSpec)
         self._internal.spec.description = description
+    
+        return self
+    
+    def subtitle(self, subtitle: str) -> typing.Self:    
+        """
+        Shown in a sub header below the title.
+        """
+            
+        if self._internal.spec is None:
+            self._internal.spec = dashboardv2beta1.PanelSpec()
+        assert isinstance(self._internal.spec, dashboardv2beta1.PanelSpec)
+        self._internal.spec.subtitle = subtitle
     
         return self
     

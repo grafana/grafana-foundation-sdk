@@ -3,6 +3,8 @@ title: <span class="badge builder"></span> AnnotationPermissionBuilder
 ---
 # <span class="badge builder"></span> AnnotationPermissionBuilder
 
++k8s:deepcopy-gen=true
+
 ## Constructor
 
 ```java
@@ -20,14 +22,10 @@ public AnnotationPermission build()
 
 ### <span class="badge object-method"></span> dashboard
 
++k8s:deepcopy-gen=true
+
 ```java
 public AnnotationPermissionBuilder dashboard(com.grafana.foundation.cog.Builder<AnnotationActions> dashboard)
-```
-
-### <span class="badge object-method"></span> organization
-
-```java
-public AnnotationPermissionBuilder organization(com.grafana.foundation.cog.Builder<AnnotationActions> organization)
 ```
 
 ## See also

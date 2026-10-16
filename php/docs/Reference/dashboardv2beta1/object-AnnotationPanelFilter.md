@@ -15,7 +15,7 @@ class AnnotationPanelFilter implements \JsonSerializable
 
     /**
      * Panel IDs that should be included or excluded
-     * @var array<int>
+     * @var array<float>
      */
     public array $ids;
 

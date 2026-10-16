@@ -10,6 +10,12 @@ import com.fasterxml.jackson.annotation.JsonInclude;
 import java.util.List;
 
 public class NotificationSettings {
+    // Override the times when notifications should not be muted. These must match the name of a mute time interval defined
+    // in the alertmanager configuration time_intervals section. All notifications will be suppressed unless they are sent
+    // at the time that matches any interval.
+    @JsonInclude(JsonInclude.Include.NON_NULL)
+    @JsonProperty("active_time_intervals")
+    public List<String> activeTimeIntervals;
     // Override the labels by which incoming alerts are grouped together. For example, multiple alerts coming in for
     // cluster=A and alertname=LatencyHigh would be batched into a single group. To aggregate by all possible labels
     // use the special value '...' as the sole label name.
@@ -30,7 +36,7 @@ public class NotificationSettings {
     @JsonProperty("group_wait")
     public String groupWait;
     // Override the times when notifications should be muted. These must match the name of a mute time interval defined
-    // in the alertmanager configuration mute_time_intervals section. When muted it will not send any notifications, but
+    // in the alertmanager configuration time_intervals section. When muted it will not send any notifications, but
     // otherwise acts normally.
     @JsonInclude(JsonInclude.Include.NON_NULL)
     @JsonProperty("mute_time_intervals")
@@ -50,7 +56,8 @@ public class NotificationSettings {
         this.groupBy = List.of("alertname", "grafana_folder");
         this.receiver = "";
     }
-    public NotificationSettings(List<String> groupBy,String groupInterval,String groupWait,List<String> muteTimeIntervals,String receiver,String repeatInterval) {
+    public NotificationSettings(List<String> activeTimeIntervals,List<String> groupBy,String groupInterval,String groupWait,List<String> muteTimeIntervals,String receiver,String repeatInterval) {
+        this.activeTimeIntervals = activeTimeIntervals;
         this.groupBy = groupBy;
         this.groupInterval = groupInterval;
         this.groupWait = groupWait;

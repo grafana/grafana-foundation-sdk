@@ -30,35 +30,6 @@ class QueryHistoryPreference(cogbuilder.Builder[preferencesv1alpha1.QueryHistory
     
 
 
-class CookiePreferences(cogbuilder.Builder[preferencesv1alpha1.CookiePreferences]):
-    _internal: preferencesv1alpha1.CookiePreferences
-
-    def __init__(self) -> None:
-        self._internal = preferencesv1alpha1.CookiePreferences()
-
-    def build(self) -> preferencesv1alpha1.CookiePreferences:
-        """
-        Builds the object.
-        """
-        return self._internal    
-    
-    def analytics(self, analytics: object) -> typing.Self:    
-        self._internal.analytics = analytics
-    
-        return self
-    
-    def performance(self, performance: object) -> typing.Self:    
-        self._internal.performance = performance
-    
-        return self
-    
-    def functional(self, functional: object) -> typing.Self:    
-        self._internal.functional = functional
-    
-        return self
-    
-
-
 class NavbarPreference(cogbuilder.Builder[preferencesv1alpha1.NavbarPreference]):
     _internal: preferencesv1alpha1.NavbarPreference
 
@@ -90,6 +61,15 @@ class Preferences(cogbuilder.Builder[preferencesv1alpha1.Preferences]):
         """
         return self._internal    
     
+    def home_url(self, home_url: str) -> typing.Self:    
+        """
+        Explicit home URL (NOTE: this can only be modified in the system settings)
+        """
+            
+        self._internal.home_url = home_url
+    
+        return self
+    
     def home_dashboard_uid(self, home_dashboard_uid: str) -> typing.Self:    
         """
         UID for the home dashboard
@@ -102,7 +82,6 @@ class Preferences(cogbuilder.Builder[preferencesv1alpha1.Preferences]):
     def timezone(self, timezone: str) -> typing.Self:    
         """
         The timezone selection
-        TODO: this should use the timezone defined in common
         """
             
         self._internal.timezone = timezone
@@ -120,7 +99,7 @@ class Preferences(cogbuilder.Builder[preferencesv1alpha1.Preferences]):
     
     def theme(self, theme: str) -> typing.Self:    
         """
-        light, dark, empty is default
+        user interface theme
         """
             
         self._internal.theme = theme
@@ -129,19 +108,10 @@ class Preferences(cogbuilder.Builder[preferencesv1alpha1.Preferences]):
     
     def language(self, language: str) -> typing.Self:    
         """
-        Selected language (beta)
+        Selected language
         """
             
         self._internal.language = language
-    
-        return self
-    
-    def regional_format(self, regional_format: str) -> typing.Self:    
-        """
-        Selected locale (beta)
-        """
-            
-        self._internal.regional_format = regional_format
     
         return self
     
@@ -152,16 +122,6 @@ class Preferences(cogbuilder.Builder[preferencesv1alpha1.Preferences]):
             
         query_history_resource = query_history.build()
         self._internal.query_history = query_history_resource
-    
-        return self
-    
-    def cookie_preferences(self, cookie_preferences: cogbuilder.Builder[preferencesv1alpha1.CookiePreferences]) -> typing.Self:    
-        """
-        Cookie preferences
-        """
-            
-        cookie_preferences_resource = cookie_preferences.build()
-        self._internal.cookie_preferences = cookie_preferences_resource
     
         return self
     

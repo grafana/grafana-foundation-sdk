@@ -11,6 +11,8 @@ type RecordRule struct {
     From string `json:"from"`
     // Name of the recorded metric.
     Metric string `json:"metric"`
+    // Which data source should be used to write the output of the recording rule, specified by UID.
+    TargetDatasourceUid *string `json:"target_datasource_uid,omitempty"`
 }
 ```
 ## Methods

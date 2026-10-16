@@ -11,13 +11,13 @@ class AnnotationPanelFilter implements \JsonSerializable
 
     /**
      * Panel IDs that should be included or excluded
-     * @var array<int>
+     * @var array<float>
      */
     public array $ids;
 
     /**
      * @param bool|null $exclude
-     * @param array<int>|null $ids
+     * @param array<float>|null $ids
      */
     public function __construct(?bool $exclude = null, ?array $ids = null)
     {
@@ -30,7 +30,7 @@ class AnnotationPanelFilter implements \JsonSerializable
      */
     public static function fromArray(array $inputData): self
     {
-        /** @var array{exclude?: bool, ids?: array<int>} $inputData */
+        /** @var array{exclude?: bool, ids?: array<float>} $inputData */
         $data = $inputData;
         return new self(
             exclude: $data["exclude"] ?? null,

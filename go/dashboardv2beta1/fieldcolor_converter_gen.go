@@ -39,6 +39,18 @@ func FieldColorConverter(input FieldColor) string {
 		buffer.Reset()
 
 	}
+	if input.GradientColorTo != nil && *input.GradientColorTo != "" {
+
+		buffer.WriteString(`GradientColorTo(`)
+		arg0 := fmt.Sprintf("%#v", *input.GradientColorTo)
+		buffer.WriteString(arg0)
+
+		buffer.WriteString(")")
+
+		calls = append(calls, buffer.String())
+		buffer.Reset()
+
+	}
 	if input.SeriesBy != nil {
 
 		buffer.WriteString(`SeriesBy(`)

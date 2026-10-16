@@ -66,6 +66,12 @@ timeFrom(timeFrom: string)
 timeShift(timeShift: string)
 ```
 
+### <span class="badge object-method"></span> timeTo
+
+```typescript
+timeTo(timeTo: string)
+```
+
 ## See also
 
  * <span class="badge object-type-interface"></span> [QueryOptionsSpec](./object-QueryOptionsSpec.md)

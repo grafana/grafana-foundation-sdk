@@ -8,7 +8,11 @@ from ..cog import variants as cogvariants
 import warnings
 
 
-class AnnotationActions(cogbuilder.Builder[dashboard.AnnotationActions]):
+class AnnotationActions(cogbuilder.Builder[dashboard.AnnotationActions]):    
+    """
+    +k8s:deepcopy-gen=true
+    """
+    
     _internal: dashboard.AnnotationActions
 
     def __init__(self) -> None:
@@ -37,7 +41,11 @@ class AnnotationActions(cogbuilder.Builder[dashboard.AnnotationActions]):
     
 
 
-class AnnotationPermission(cogbuilder.Builder[dashboard.AnnotationPermission]):
+class AnnotationPermission(cogbuilder.Builder[dashboard.AnnotationPermission]):    
+    """
+    +k8s:deepcopy-gen=true
+    """
+    
     _internal: dashboard.AnnotationPermission
 
     def __init__(self) -> None:
@@ -50,14 +58,12 @@ class AnnotationPermission(cogbuilder.Builder[dashboard.AnnotationPermission]):
         return self._internal    
     
     def dashboard_permissions(self, dashboard: cogbuilder.Builder[dashboard.AnnotationActions]) -> typing.Self:    
+        """
+        +k8s:deepcopy-gen=true
+        """
+            
         dashboard_resource = dashboard.build()
         self._internal.dashboard = dashboard_resource
-    
-        return self
-    
-    def organization_permissions(self, organization: cogbuilder.Builder[dashboard.AnnotationActions]) -> typing.Self:    
-        organization_resource = organization.build()
-        self._internal.organization = organization_resource
     
         return self
     
@@ -76,6 +82,10 @@ class DashboardMeta(cogbuilder.Builder[dashboard.DashboardMeta]):
         return self._internal    
     
     def annotations_permissions(self, annotations_permissions: cogbuilder.Builder[dashboard.AnnotationPermission]) -> typing.Self:    
+        """
+        +k8s:deepcopy-gen=true
+        """
+            
         annotations_permissions_resource = annotations_permissions.build()
         self._internal.annotations_permissions = annotations_permissions_resource
     
@@ -162,11 +172,6 @@ class DashboardMeta(cogbuilder.Builder[dashboard.DashboardMeta]):
     
     def is_snapshot(self, is_snapshot: bool) -> typing.Self:    
         self._internal.is_snapshot = is_snapshot
-    
-        return self
-    
-    def is_starred(self, is_starred: bool) -> typing.Self:    
-        self._internal.is_starred = is_starred
     
         return self
     

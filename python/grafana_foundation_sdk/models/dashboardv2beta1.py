@@ -275,9 +275,9 @@ class AnnotationPanelFilter:
     # Should the specified panels be included or excluded
     exclude: typing.Optional[bool]
     # Panel IDs that should be included or excluded
-    ids: list[int]
+    ids: list[float]
 
-    def __init__(self, exclude: typing.Optional[bool] = False, ids: typing.Optional[list[int]] = None) -> None:
+    def __init__(self, exclude: typing.Optional[bool] = False, ids: typing.Optional[list[float]] = None) -> None:
         self.exclude = exclude
         self.ids = ids if ids is not None else []
 
@@ -397,16 +397,20 @@ class PanelKind:
 class PanelSpec:
     id_val: float
     title: str
-    description: str
+    # Shown in a info icon tooltip next to panel title
+    description: typing.Optional[str]
+    # Shown in a sub header below the title.
+    subtitle: typing.Optional[str]
     links: list['DataLink']
     data: 'QueryGroupKind'
     viz_config: 'VizConfigKind'
     transparent: typing.Optional[bool]
 
-    def __init__(self, id_val: float = 0, title: str = "", description: str = "", links: typing.Optional[list['DataLink']] = None, data: typing.Optional['QueryGroupKind'] = None, viz_config: typing.Optional['VizConfigKind'] = None, transparent: typing.Optional[bool] = None) -> None:
+    def __init__(self, id_val: float = 0, title: str = "", description: typing.Optional[str] = None, subtitle: typing.Optional[str] = None, links: typing.Optional[list['DataLink']] = None, data: typing.Optional['QueryGroupKind'] = None, viz_config: typing.Optional['VizConfigKind'] = None, transparent: typing.Optional[bool] = None) -> None:
         self.id_val = id_val
         self.title = title
         self.description = description
+        self.subtitle = subtitle
         self.links = links if links is not None else []
         self.data = data if data is not None else QueryGroupKind()
         self.viz_config = viz_config if viz_config is not None else VizConfigKind()
@@ -416,11 +420,14 @@ class PanelSpec:
         payload: dict[str, object] = {
             "id": self.id_val,
             "title": self.title,
-            "description": self.description,
             "links": self.links,
             "data": self.data,
             "vizConfig": self.viz_config,
         }
+        if self.description is not None:
+            payload["description"] = self.description
+        if self.subtitle is not None:
+            payload["subtitle"] = self.subtitle
         if self.transparent is not None:
             payload["transparent"] = self.transparent
         return payload
@@ -435,6 +442,8 @@ class PanelSpec:
             args["title"] = data["title"]
         if "description" in data:
             args["description"] = data["description"]
+        if "subtitle" in data:
+            args["subtitle"] = data["subtitle"]
         if "links" in data:
             args["links"] = [DataLink.from_json(item) for item in data["links"]]
         if "data" in data:
@@ -741,6 +750,7 @@ class DataTopic(enum.StrEnum):
 
 class QueryOptionsSpec:
     time_from: typing.Optional[str]
+    time_to: typing.Optional[str]
     max_data_points: typing.Optional[int]
     time_shift: typing.Optional[str]
     query_caching_ttl: typing.Optional[int]
@@ -749,8 +759,9 @@ class QueryOptionsSpec:
     hide_time_override: typing.Optional[bool]
     time_compare: typing.Optional[str]
 
-    def __init__(self, time_from: typing.Optional[str] = None, max_data_points: typing.Optional[int] = None, time_shift: typing.Optional[str] = None, query_caching_ttl: typing.Optional[int] = None, interval: typing.Optional[str] = None, cache_timeout: typing.Optional[str] = None, hide_time_override: typing.Optional[bool] = None, time_compare: typing.Optional[str] = None) -> None:
+    def __init__(self, time_from: typing.Optional[str] = None, time_to: typing.Optional[str] = None, max_data_points: typing.Optional[int] = None, time_shift: typing.Optional[str] = None, query_caching_ttl: typing.Optional[int] = None, interval: typing.Optional[str] = None, cache_timeout: typing.Optional[str] = None, hide_time_override: typing.Optional[bool] = None, time_compare: typing.Optional[str] = None) -> None:
         self.time_from = time_from
+        self.time_to = time_to
         self.max_data_points = max_data_points
         self.time_shift = time_shift
         self.query_caching_ttl = query_caching_ttl
@@ -764,6 +775,8 @@ class QueryOptionsSpec:
         }
         if self.time_from is not None:
             payload["timeFrom"] = self.time_from
+        if self.time_to is not None:
+            payload["timeTo"] = self.time_to
         if self.max_data_points is not None:
             payload["maxDataPoints"] = self.max_data_points
         if self.time_shift is not None:
@@ -786,6 +799,8 @@ class QueryOptionsSpec:
         
         if "timeFrom" in data:
             args["time_from"] = data["timeFrom"]
+        if "timeTo" in data:
+            args["time_to"] = data["timeTo"]
         if "maxDataPoints" in data:
             args["max_data_points"] = data["maxDataPoints"]
         if "timeShift" in data:
@@ -1332,10 +1347,13 @@ class ThresholdsMode(enum.StrEnum):
 class Threshold:
     # Value null means -Infinity
     value: typing.Optional[float]
+    # Optional dashboard-variable expression (e.g. `$myVar`) resolved at render time; `value` is the numeric fallback when the expression cannot be resolved to a single finite number.
+    value_expr: typing.Optional[str]
     color: str
 
-    def __init__(self, value: typing.Optional[float] = None, color: str = "") -> None:
+    def __init__(self, value: typing.Optional[float] = None, value_expr: typing.Optional[str] = None, color: str = "") -> None:
         self.value = value
+        self.value_expr = value_expr
         self.color = color
 
     def to_json(self) -> dict[str, object]:
@@ -1343,6 +1361,8 @@ class Threshold:
             "value": self.value,
             "color": self.color,
         }
+        if self.value_expr is not None:
+            payload["valueExpr"] = self.value_expr
         return payload
 
     @classmethod
@@ -1351,6 +1371,8 @@ class Threshold:
         
         if "value" in data:
             args["value"] = data["value"]
+        if "valueExpr" in data:
+            args["value_expr"] = data["valueExpr"]
         if "color" in data:
             args["color"] = data["color"]        
 
@@ -1366,12 +1388,15 @@ class FieldColor:
     mode: 'FieldColorModeId'
     # The fixed color value for fixed or shades color modes.
     fixed_color: typing.Optional[str]
+    # The end color for the gradient color mode (smallest value). Only used when mode is gradient.
+    gradient_color_to: typing.Optional[str]
     # Some visualizations need to know how to assign a series color from by value color schemes.
     series_by: typing.Optional['FieldColorSeriesByMode']
 
-    def __init__(self, mode: typing.Optional['FieldColorModeId'] = None, fixed_color: typing.Optional[str] = None, series_by: typing.Optional['FieldColorSeriesByMode'] = None) -> None:
+    def __init__(self, mode: typing.Optional['FieldColorModeId'] = None, fixed_color: typing.Optional[str] = None, gradient_color_to: typing.Optional[str] = None, series_by: typing.Optional['FieldColorSeriesByMode'] = None) -> None:
         self.mode = mode if mode is not None else FieldColorModeId.THRESHOLDS
         self.fixed_color = fixed_color
+        self.gradient_color_to = gradient_color_to
         self.series_by = series_by
 
     def to_json(self) -> dict[str, object]:
@@ -1380,6 +1405,8 @@ class FieldColor:
         }
         if self.fixed_color is not None:
             payload["fixedColor"] = self.fixed_color
+        if self.gradient_color_to is not None:
+            payload["gradientColorTo"] = self.gradient_color_to
         if self.series_by is not None:
             payload["seriesBy"] = self.series_by
         return payload
@@ -1392,6 +1419,8 @@ class FieldColor:
             args["mode"] = data["mode"]
         if "fixedColor" in data:
             args["fixed_color"] = data["fixedColor"]
+        if "gradientColorTo" in data:
+            args["gradient_color_to"] = data["gradientColorTo"]
         if "seriesBy" in data:
             args["series_by"] = data["seriesBy"]        
 
@@ -1406,6 +1435,10 @@ class FieldColorModeId(enum.StrEnum):
     `thresholds`: From thresholds. Informs Grafana to take the color from the matching threshold
     `palette-classic`: Classic palette. Grafana will assign color by looking up a color in a palette by series index. Useful for Graphs and pie charts and other categorical data visualizations
     `palette-classic-by-name`: Classic palette (by name). Grafana will assign color by looking up a color in a palette by series name. Useful for Graphs and pie charts and other categorical data visualizations
+    `palette-colorblind`: Color blind safe palette. A discrete palette whose colors are distinguishable under common forms of color vision deficiency. Useful for categorical and multi-series data visualizations
+    `palette-categorical-next`: Experimental categorical palette. Useful for categorical and multi-series data visualizations
+    `palette-categorical-next-2`: Experimental categorical palette. Useful for categorical and multi-series data visualizations
+    `palette-categorical-next-3`: Experimental categorical palette. Useful for categorical and multi-series data visualizations
     `continuous-viridis`: Continuous Viridis palette mode
     `continuous-magma`: Continuous Magma palette mode
     `continuous-plasma`: Continuous Plasma palette mode
@@ -1423,11 +1456,16 @@ class FieldColorModeId(enum.StrEnum):
     `continuous-purples`: Continuous Purple palette mode
     `shades`: Shades of a single color. Specify a single color, useful in an override rule.
     `fixed`: Fixed color mode. Specify a single color, useful in an override rule.
+    `gradient`: Gradient color mode. Interpolate between two colors based on value order; the start color is taken from fixedColor and the end color from gradientColorTo.
     """
 
     THRESHOLDS = "thresholds"
     PALETTE_CLASSIC = "palette-classic"
     PALETTE_CLASSIC_BY_NAME = "palette-classic-by-name"
+    PALETTE_COLORBLIND = "palette-colorblind"
+    PALETTE_CATEGORICAL_NEXT = "palette-categorical-next"
+    PALETTE_CATEGORICAL_NEXT_2 = "palette-categorical-next-2"
+    PALETTE_CATEGORICAL_NEXT_3 = "palette-categorical-next-3"
     CONTINUOUS_VIRIDIS = "continuous-viridis"
     CONTINUOUS_MAGMA = "continuous-magma"
     CONTINUOUS_PLASMA = "continuous-plasma"
@@ -1445,6 +1483,7 @@ class FieldColorModeId(enum.StrEnum):
     CONTINUOUS_PURPLES = "continuous-purples"
     FIXED = "fixed"
     SHADES = "shades"
+    GRADIENT = "gradient"
 
 
 class FieldColorSeriesByMode(enum.StrEnum):
@@ -4419,6 +4458,582 @@ class VariableValueOption:
             args["value"] = data["value"]
         if "group" in data:
             args["group"] = data["group"]        
+
+        return cls(**args)
+
+
+class CellKind:
+    """
+    A cell holds non-panel narrative content (markdown text, code) in a notebook layout.
+    Panel cells are not represented here — they reuse V2PanelKind.
+    """
+
+    kind: typing.Literal["Cell"]
+    spec: 'CellSpec'
+
+    def __init__(self, spec: typing.Optional['CellSpec'] = None) -> None:
+        self.kind = "Cell"
+        self.spec = spec if spec is not None else CellSpec()
+
+    def to_json(self) -> dict[str, object]:
+        payload: dict[str, object] = {
+            "kind": self.kind,
+            "spec": self.spec,
+        }
+        return payload
+
+    @classmethod
+    def from_json(cls, data: dict[str, typing.Any]) -> typing.Self:
+        args: dict[str, typing.Any] = {}
+        
+        if "spec" in data:
+            args["spec"] = CellSpec.from_json(data["spec"])        
+
+        return cls(**args)
+
+
+class CellSpec:
+    content: 'CellContentKind'
+
+    def __init__(self, content: typing.Optional['CellContentKind'] = None) -> None:
+        self.content = content if content is not None else MarkdownCellContentKind()
+
+    def to_json(self) -> dict[str, object]:
+        payload: dict[str, object] = {
+            "content": self.content,
+        }
+        return payload
+
+    @classmethod
+    def from_json(cls, data: dict[str, typing.Any]) -> typing.Self:
+        args: dict[str, typing.Any] = {}
+        
+        if "content" in data:
+            decoding_map_content_ref_union: dict[str, typing.Union[typing.Type[CodeCellContentKind], typing.Type[MarkdownCellContentKind]]] = {"Code": CodeCellContentKind, "Markdown": MarkdownCellContentKind}
+            args["content"] = decoding_map_content_ref_union[data["content"]["kind"]].from_json(data["content"])        
+
+        return cls(**args)
+
+
+# Pluggable cell content discriminated by `kind`. New content types are added
+# by extending this union with another <Name>CellContentKind member.
+CellContentKind: typing.TypeAlias = typing.Union['MarkdownCellContentKind', 'CodeCellContentKind']
+
+
+class MarkdownCellContentKind:
+    kind: typing.Literal["Markdown"]
+    spec: 'MarkdownCellContentSpec'
+
+    def __init__(self, spec: typing.Optional['MarkdownCellContentSpec'] = None) -> None:
+        self.kind = "Markdown"
+        self.spec = spec if spec is not None else MarkdownCellContentSpec()
+
+    def to_json(self) -> dict[str, object]:
+        payload: dict[str, object] = {
+            "kind": self.kind,
+            "spec": self.spec,
+        }
+        return payload
+
+    @classmethod
+    def from_json(cls, data: dict[str, typing.Any]) -> typing.Self:
+        args: dict[str, typing.Any] = {}
+        
+        if "spec" in data:
+            args["spec"] = MarkdownCellContentSpec.from_json(data["spec"])        
+
+        return cls(**args)
+
+
+class MarkdownCellContentSpec:
+    text: str
+
+    def __init__(self, text: str = "") -> None:
+        self.text = text
+
+    def to_json(self) -> dict[str, object]:
+        payload: dict[str, object] = {
+            "text": self.text,
+        }
+        return payload
+
+    @classmethod
+    def from_json(cls, data: dict[str, typing.Any]) -> typing.Self:
+        args: dict[str, typing.Any] = {}
+        
+        if "text" in data:
+            args["text"] = data["text"]        
+
+        return cls(**args)
+
+
+class CodeCellContentKind:
+    kind: typing.Literal["Code"]
+    spec: 'CodeCellContentSpec'
+
+    def __init__(self, spec: typing.Optional['CodeCellContentSpec'] = None) -> None:
+        self.kind = "Code"
+        self.spec = spec if spec is not None else CodeCellContentSpec()
+
+    def to_json(self) -> dict[str, object]:
+        payload: dict[str, object] = {
+            "kind": self.kind,
+            "spec": self.spec,
+        }
+        return payload
+
+    @classmethod
+    def from_json(cls, data: dict[str, typing.Any]) -> typing.Self:
+        args: dict[str, typing.Any] = {}
+        
+        if "spec" in data:
+            args["spec"] = CodeCellContentSpec.from_json(data["spec"])        
+
+        return cls(**args)
+
+
+class CodeCellContentSpec:
+    language: str
+    code: str
+    highlight: typing.Optional[list[int]]
+    annotation: typing.Optional[str]
+
+    def __init__(self, language: str = "", code: str = "", highlight: typing.Optional[list[int]] = None, annotation: typing.Optional[str] = None) -> None:
+        self.language = language
+        self.code = code
+        self.highlight = highlight
+        self.annotation = annotation
+
+    def to_json(self) -> dict[str, object]:
+        payload: dict[str, object] = {
+            "language": self.language,
+            "code": self.code,
+        }
+        if self.highlight is not None:
+            payload["highlight"] = self.highlight
+        if self.annotation is not None:
+            payload["annotation"] = self.annotation
+        return payload
+
+    @classmethod
+    def from_json(cls, data: dict[str, typing.Any]) -> typing.Self:
+        args: dict[str, typing.Any] = {}
+        
+        if "language" in data:
+            args["language"] = data["language"]
+        if "code" in data:
+            args["code"] = data["code"]
+        if "highlight" in data:
+            args["highlight"] = data["highlight"]
+        if "annotation" in data:
+            args["annotation"] = data["annotation"]        
+
+        return cls(**args)
+
+
+class NotebookLayoutKind:
+    kind: typing.Literal["NotebookLayout"]
+    spec: 'NotebookLayoutSpec'
+
+    def __init__(self, spec: typing.Optional['NotebookLayoutSpec'] = None) -> None:
+        self.kind = "NotebookLayout"
+        self.spec = spec if spec is not None else NotebookLayoutSpec()
+
+    def to_json(self) -> dict[str, object]:
+        payload: dict[str, object] = {
+            "kind": self.kind,
+            "spec": self.spec,
+        }
+        return payload
+
+    @classmethod
+    def from_json(cls, data: dict[str, typing.Any]) -> typing.Self:
+        args: dict[str, typing.Any] = {}
+        
+        if "spec" in data:
+            args["spec"] = NotebookLayoutSpec.from_json(data["spec"])        
+
+        return cls(**args)
+
+
+class NotebookLayoutSpec:
+    cells: list['NotebookLayoutItemKind']
+
+    def __init__(self, cells: typing.Optional[list['NotebookLayoutItemKind']] = None) -> None:
+        self.cells = cells if cells is not None else []
+
+    def to_json(self) -> dict[str, object]:
+        payload: dict[str, object] = {
+            "cells": self.cells,
+        }
+        return payload
+
+    @classmethod
+    def from_json(cls, data: dict[str, typing.Any]) -> typing.Self:
+        args: dict[str, typing.Any] = {}
+        
+        if "cells" in data:
+            args["cells"] = [NotebookLayoutItemKind.from_json(item) for item in data["cells"]]        
+
+        return cls(**args)
+
+
+class NotebookLayoutItemKind:
+    kind: typing.Literal["NotebookLayoutItem"]
+    spec: 'NotebookLayoutItemSpec'
+
+    def __init__(self, spec: typing.Optional['NotebookLayoutItemSpec'] = None) -> None:
+        self.kind = "NotebookLayoutItem"
+        self.spec = spec if spec is not None else NotebookLayoutItemSpec()
+
+    def to_json(self) -> dict[str, object]:
+        payload: dict[str, object] = {
+            "kind": self.kind,
+            "spec": self.spec,
+        }
+        return payload
+
+    @classmethod
+    def from_json(cls, data: dict[str, typing.Any]) -> typing.Self:
+        args: dict[str, typing.Any] = {}
+        
+        if "spec" in data:
+            args["spec"] = NotebookLayoutItemSpec.from_json(data["spec"])        
+
+        return cls(**args)
+
+
+class NotebookLayoutItemSpec:
+    """
+    One ordered item in a notebook layout. `element` references either a CellKind
+    (markdown/code content) or a V2PanelKind in the notebook's elements map. `source`
+    records who authored the cell; `collapsed` hides the body in the UI.
+    """
+
+    element: 'ElementReference'
+    source: typing.Literal["assistant", "user"]
+    collapsed: typing.Optional[bool]
+
+    def __init__(self, element: typing.Optional['ElementReference'] = None, source: typing.Optional[typing.Literal["assistant", "user"]] = None, collapsed: typing.Optional[bool] = None) -> None:
+        self.element = element if element is not None else ElementReference()
+        self.source = source if source is not None else "assistant"
+        self.collapsed = collapsed
+
+    def to_json(self) -> dict[str, object]:
+        payload: dict[str, object] = {
+            "element": self.element,
+            "source": self.source,
+        }
+        if self.collapsed is not None:
+            payload["collapsed"] = self.collapsed
+        return payload
+
+    @classmethod
+    def from_json(cls, data: dict[str, typing.Any]) -> typing.Self:
+        args: dict[str, typing.Any] = {}
+        
+        if "element" in data:
+            args["element"] = ElementReference.from_json(data["element"])
+        if "source" in data:
+            args["source"] = data["source"]
+        if "collapsed" in data:
+            args["collapsed"] = data["collapsed"]        
+
+        return cls(**args)
+
+
+class V2PanelKind:
+    """
+    The notebook's own panel chain. It is a copy of the dashboard one down to the transformation,
+    which follows the dashboard v2 shape rather than the v2beta1 shape in this package. The chain has
+    to be forked rather than shared because PanelKind reaches TransformationKind through
+    QueryGroupKind, and those three are what Dashboard v2beta1 serves. Everything the chain does not
+    change (DataLink, VizConfigKind, PanelQueryKind, QueryOptionsSpec) stays shared.
+    """
+
+    kind: typing.Literal["Panel"]
+    spec: 'V2PanelSpec'
+
+    def __init__(self, spec: typing.Optional['V2PanelSpec'] = None) -> None:
+        self.kind = "Panel"
+        self.spec = spec if spec is not None else V2PanelSpec()
+
+    def to_json(self) -> dict[str, object]:
+        payload: dict[str, object] = {
+            "kind": self.kind,
+            "spec": self.spec,
+        }
+        return payload
+
+    @classmethod
+    def from_json(cls, data: dict[str, typing.Any]) -> typing.Self:
+        args: dict[str, typing.Any] = {}
+        
+        if "spec" in data:
+            args["spec"] = V2PanelSpec.from_json(data["spec"])        
+
+        return cls(**args)
+
+
+class V2PanelSpec:
+    id_val: float
+    title: str
+    # Shown in a info icon tooltip next to panel title
+    description: typing.Optional[str]
+    # Shown in a sub header below the title.
+    subtitle: typing.Optional[str]
+    links: list['DataLink']
+    data: 'V2QueryGroupKind'
+    viz_config: 'VizConfigKind'
+    transparent: typing.Optional[bool]
+
+    def __init__(self, id_val: float = 0, title: str = "", description: typing.Optional[str] = None, subtitle: typing.Optional[str] = None, links: typing.Optional[list['DataLink']] = None, data: typing.Optional['V2QueryGroupKind'] = None, viz_config: typing.Optional['VizConfigKind'] = None, transparent: typing.Optional[bool] = None) -> None:
+        self.id_val = id_val
+        self.title = title
+        self.description = description
+        self.subtitle = subtitle
+        self.links = links if links is not None else []
+        self.data = data if data is not None else V2QueryGroupKind()
+        self.viz_config = viz_config if viz_config is not None else VizConfigKind()
+        self.transparent = transparent
+
+    def to_json(self) -> dict[str, object]:
+        payload: dict[str, object] = {
+            "id": self.id_val,
+            "title": self.title,
+            "links": self.links,
+            "data": self.data,
+            "vizConfig": self.viz_config,
+        }
+        if self.description is not None:
+            payload["description"] = self.description
+        if self.subtitle is not None:
+            payload["subtitle"] = self.subtitle
+        if self.transparent is not None:
+            payload["transparent"] = self.transparent
+        return payload
+
+    @classmethod
+    def from_json(cls, data: dict[str, typing.Any]) -> typing.Self:
+        args: dict[str, typing.Any] = {}
+        
+        if "id" in data:
+            args["id_val"] = data["id"]
+        if "title" in data:
+            args["title"] = data["title"]
+        if "description" in data:
+            args["description"] = data["description"]
+        if "subtitle" in data:
+            args["subtitle"] = data["subtitle"]
+        if "links" in data:
+            args["links"] = [DataLink.from_json(item) for item in data["links"]]
+        if "data" in data:
+            args["data"] = V2QueryGroupKind.from_json(data["data"])
+        if "vizConfig" in data:
+            args["viz_config"] = VizConfigKind.from_json(data["vizConfig"])
+        if "transparent" in data:
+            args["transparent"] = data["transparent"]        
+
+        return cls(**args)
+
+
+class V2QueryGroupKind:
+    kind: typing.Literal["QueryGroup"]
+    spec: 'V2QueryGroupSpec'
+
+    def __init__(self, spec: typing.Optional['V2QueryGroupSpec'] = None) -> None:
+        self.kind = "QueryGroup"
+        self.spec = spec if spec is not None else V2QueryGroupSpec()
+
+    def to_json(self) -> dict[str, object]:
+        payload: dict[str, object] = {
+            "kind": self.kind,
+            "spec": self.spec,
+        }
+        return payload
+
+    @classmethod
+    def from_json(cls, data: dict[str, typing.Any]) -> typing.Self:
+        args: dict[str, typing.Any] = {}
+        
+        if "spec" in data:
+            args["spec"] = V2QueryGroupSpec.from_json(data["spec"])        
+
+        return cls(**args)
+
+
+class V2QueryGroupSpec:
+    queries: list['PanelQueryKind']
+    transformations: list['V2TransformationKind']
+    query_options: 'QueryOptionsSpec'
+
+    def __init__(self, queries: typing.Optional[list['PanelQueryKind']] = None, transformations: typing.Optional[list['V2TransformationKind']] = None, query_options: typing.Optional['QueryOptionsSpec'] = None) -> None:
+        self.queries = queries if queries is not None else []
+        self.transformations = transformations if transformations is not None else []
+        self.query_options = query_options if query_options is not None else QueryOptionsSpec()
+
+    def to_json(self) -> dict[str, object]:
+        payload: dict[str, object] = {
+            "queries": self.queries,
+            "transformations": self.transformations,
+            "queryOptions": self.query_options,
+        }
+        return payload
+
+    @classmethod
+    def from_json(cls, data: dict[str, typing.Any]) -> typing.Self:
+        args: dict[str, typing.Any] = {}
+        
+        if "queries" in data:
+            args["queries"] = [PanelQueryKind.from_json(item) for item in data["queries"]]
+        if "transformations" in data:
+            args["transformations"] = [V2TransformationKind.from_json(item) for item in data["transformations"]]
+        if "queryOptions" in data:
+            args["query_options"] = QueryOptionsSpec.from_json(data["queryOptions"])        
+
+        return cls(**args)
+
+
+class V2TransformationKind:
+    """
+    Dashboard v2 shape: the transformation ID moved from `kind` to `group`.
+    """
+
+    kind: typing.Literal["Transformation"]
+    # The group is the transformation ID
+    group: str
+    spec: 'V2TransformationSpec'
+
+    def __init__(self, group: str = "", spec: typing.Optional['V2TransformationSpec'] = None) -> None:
+        self.kind = "Transformation"
+        self.group = group
+        self.spec = spec if spec is not None else V2TransformationSpec()
+
+    def to_json(self) -> dict[str, object]:
+        payload: dict[str, object] = {
+            "kind": self.kind,
+            "group": self.group,
+            "spec": self.spec,
+        }
+        return payload
+
+    @classmethod
+    def from_json(cls, data: dict[str, typing.Any]) -> typing.Self:
+        args: dict[str, typing.Any] = {}
+        
+        if "group" in data:
+            args["group"] = data["group"]
+        if "spec" in data:
+            args["spec"] = V2TransformationSpec.from_json(data["spec"])        
+
+        return cls(**args)
+
+
+class V2TransformationSpec:
+    """
+    Dashboard v2 shape: no `id`, it is carried by the parent's `group`.
+    """
+
+    # Disabled transformations are skipped
+    disabled: typing.Optional[bool]
+    # Optional frame matcher. When missing it will be applied to all results
+    filter_val: typing.Optional['MatcherConfig']
+    # Where to pull DataFrames from as input to transformation
+    topic: typing.Optional['DataTopic']
+    # Options to be passed to the transformer
+    # Valid options depend on the transformer id
+    options: object
+
+    def __init__(self, disabled: typing.Optional[bool] = None, filter_val: typing.Optional['MatcherConfig'] = None, topic: typing.Optional['DataTopic'] = None, options: object = None) -> None:
+        self.disabled = disabled
+        self.filter_val = filter_val
+        self.topic = topic
+        self.options = options
+
+    def to_json(self) -> dict[str, object]:
+        payload: dict[str, object] = {
+            "options": self.options,
+        }
+        if self.disabled is not None:
+            payload["disabled"] = self.disabled
+        if self.filter_val is not None:
+            payload["filter"] = self.filter_val
+        if self.topic is not None:
+            payload["topic"] = self.topic
+        return payload
+
+    @classmethod
+    def from_json(cls, data: dict[str, typing.Any]) -> typing.Self:
+        args: dict[str, typing.Any] = {}
+        
+        if "disabled" in data:
+            args["disabled"] = data["disabled"]
+        if "filter" in data:
+            args["filter_val"] = MatcherConfig.from_json(data["filter"])
+        if "topic" in data:
+            args["topic"] = data["topic"]
+        if "options" in data:
+            args["options"] = data["options"]        
+
+        return cls(**args)
+
+
+# A notebook element is a narrative cell, a panel, or a library panel. Unlike the dashboard
+# Element union, this one includes CellKind — and it is referenced ONLY by NotebookSpec.
+# CellKind is listed first so it is the generated default (a notebook is narrative-first).
+NotebookElement: typing.TypeAlias = typing.Union['CellKind', 'V2PanelKind', 'LibraryPanelKind']
+
+
+class NotebookSpec:
+    """
+    A notebook spec is a dashboard spec with narrative content. It has a title, optional description, tags, time
+    settings, and a map of elements (panels and cells) referenced by the layout.
+    """
+
+    title: str
+    description: typing.Optional[str]
+    tags: list[str]
+    time_settings: 'TimeSettingsSpec'
+    elements: dict[str, 'NotebookElement']
+    layout: 'NotebookLayoutKind'
+
+    def __init__(self, title: str = "", description: typing.Optional[str] = None, tags: typing.Optional[list[str]] = None, time_settings: typing.Optional['TimeSettingsSpec'] = None, elements: typing.Optional[dict[str, 'NotebookElement']] = None, layout: typing.Optional['NotebookLayoutKind'] = None) -> None:
+        self.title = title
+        self.description = description
+        self.tags = tags if tags is not None else []
+        self.time_settings = time_settings if time_settings is not None else TimeSettingsSpec()
+        self.elements = elements if elements is not None else {}
+        self.layout = layout if layout is not None else NotebookLayoutKind()
+
+    def to_json(self) -> dict[str, object]:
+        payload: dict[str, object] = {
+            "title": self.title,
+            "tags": self.tags,
+            "timeSettings": self.time_settings,
+            "elements": self.elements,
+            "layout": self.layout,
+        }
+        if self.description is not None:
+            payload["description"] = self.description
+        return payload
+
+    @classmethod
+    def from_json(cls, data: dict[str, typing.Any]) -> typing.Self:
+        args: dict[str, typing.Any] = {}
+        
+        if "title" in data:
+            args["title"] = data["title"]
+        if "description" in data:
+            args["description"] = data["description"]
+        if "tags" in data:
+            args["tags"] = data["tags"]
+        if "timeSettings" in data:
+            args["time_settings"] = TimeSettingsSpec.from_json(data["timeSettings"])
+        if "elements" in data:
+            decoding_map_elements_map_ref_union: dict[str, typing.Union[typing.Type[CellKind], typing.Type[LibraryPanelKind], typing.Type[V2PanelKind]]] = {"Cell": CellKind, "LibraryPanel": LibraryPanelKind, "Panel": V2PanelKind}
+            args["elements"] = {key: decoding_map_elements_map_ref_union[data["elements"][key]["kind"]].from_json(data["elements"][key]) for key in data["elements"].keys()}
+        if "layout" in data:
+            args["layout"] = NotebookLayoutKind.from_json(data["layout"])        
 
         return cls(**args)
 

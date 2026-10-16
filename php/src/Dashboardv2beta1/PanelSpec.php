@@ -8,7 +8,15 @@ class PanelSpec implements \JsonSerializable
 
     public string $title;
 
-    public string $description;
+    /**
+     * Shown in a info icon tooltip next to panel title
+     */
+    public ?string $description;
+
+    /**
+     * Shown in a sub header below the title.
+     */
+    public ?string $subtitle;
 
     /**
      * @var array<\Grafana\Foundation\Dashboardv2beta1\DataLink>
@@ -25,16 +33,18 @@ class PanelSpec implements \JsonSerializable
      * @param float|null $id
      * @param string|null $title
      * @param string|null $description
+     * @param string|null $subtitle
      * @param array<\Grafana\Foundation\Dashboardv2beta1\DataLink>|null $links
      * @param \Grafana\Foundation\Dashboardv2beta1\QueryGroupKind|null $data
      * @param \Grafana\Foundation\Dashboardv2beta1\VizConfigKind|null $vizConfig
      * @param bool|null $transparent
      */
-    public function __construct(?float $id = null, ?string $title = null, ?string $description = null, ?array $links = null, ?\Grafana\Foundation\Dashboardv2beta1\QueryGroupKind $data = null, ?\Grafana\Foundation\Dashboardv2beta1\VizConfigKind $vizConfig = null, ?bool $transparent = null)
+    public function __construct(?float $id = null, ?string $title = null, ?string $description = null, ?string $subtitle = null, ?array $links = null, ?\Grafana\Foundation\Dashboardv2beta1\QueryGroupKind $data = null, ?\Grafana\Foundation\Dashboardv2beta1\VizConfigKind $vizConfig = null, ?bool $transparent = null)
     {
         $this->id = $id ?: 0;
         $this->title = $title ?: "";
-        $this->description = $description ?: "";
+        $this->description = $description;
+        $this->subtitle = $subtitle;
         $this->links = $links ?: [];
         $this->data = $data ?: new \Grafana\Foundation\Dashboardv2beta1\QueryGroupKind();
         $this->vizConfig = $vizConfig ?: new \Grafana\Foundation\Dashboardv2beta1\VizConfigKind();
@@ -46,12 +56,13 @@ class PanelSpec implements \JsonSerializable
      */
     public static function fromArray(array $inputData): self
     {
-        /** @var array{id?: float, title?: string, description?: string, links?: array<mixed>, data?: mixed, vizConfig?: mixed, transparent?: bool} $inputData */
+        /** @var array{id?: float, title?: string, description?: string, subtitle?: string, links?: array<mixed>, data?: mixed, vizConfig?: mixed, transparent?: bool} $inputData */
         $data = $inputData;
         return new self(
             id: $data["id"] ?? null,
             title: $data["title"] ?? null,
             description: $data["description"] ?? null,
+            subtitle: $data["subtitle"] ?? null,
             links: array_filter(array_map((function($input) {
     	/** @var array{title?: string, url?: string, targetBlank?: bool} */
     $val = $input;
@@ -79,10 +90,15 @@ class PanelSpec implements \JsonSerializable
         $data = new \stdClass;
         $data->id = $this->id;
         $data->title = $this->title;
-        $data->description = $this->description;
         $data->links = $this->links;
         $data->data = $this->data;
         $data->vizConfig = $this->vizConfig;
+        if (isset($this->description)) {
+            $data->description = $this->description;
+        }
+        if (isset($this->subtitle)) {
+            $data->subtitle = $this->subtitle;
+        }
         if (isset($this->transparent)) {
             $data->transparent = $this->transparent;
         }

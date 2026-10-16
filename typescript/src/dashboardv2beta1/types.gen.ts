@@ -177,7 +177,10 @@ export const defaultPanelKind = (): PanelKind => ({
 export interface PanelSpec {
 	id: number;
 	title: string;
-	description: string;
+	// Shown in a info icon tooltip next to panel title
+	description?: string;
+	// Shown in a sub header below the title.
+	subtitle?: string;
 	links: DataLink[];
 	data: QueryGroupKind;
 	vizConfig: VizConfigKind;
@@ -187,7 +190,6 @@ export interface PanelSpec {
 export const defaultPanelSpec = (): PanelSpec => ({
 	id: 0,
 	title: "",
-	description: "",
 	links: [],
 	data: defaultQueryGroupKind(),
 	vizConfig: defaultVizConfigKind(),
@@ -323,6 +325,7 @@ export const defaultDataTopic = (): DataTopic => (DataTopic.Series);
 
 export interface QueryOptionsSpec {
 	timeFrom?: string;
+	timeTo?: string;
 	maxDataPoints?: number;
 	timeShift?: string;
 	queryCachingTTL?: number;
@@ -610,6 +613,8 @@ export const defaultThresholdsMode = (): ThresholdsMode => (ThresholdsMode.Absol
 export interface Threshold {
 	// Value null means -Infinity
 	value: number | null;
+	// Optional dashboard-variable expression (e.g. `$myVar`) resolved at render time; `value` is the numeric fallback when the expression cannot be resolved to a single finite number.
+	valueExpr?: string;
 	color: string;
 }
 
@@ -626,6 +631,8 @@ export interface FieldColor {
 	mode: FieldColorModeId;
 	// The fixed color value for fixed or shades color modes.
 	fixedColor?: string;
+	// The end color for the gradient color mode (smallest value). Only used when mode is gradient.
+	gradientColorTo?: string;
 	// Some visualizations need to know how to assign a series color from by value color schemes.
 	seriesBy?: FieldColorSeriesByMode;
 }
@@ -641,6 +648,10 @@ export const defaultFieldColor = (): FieldColor => ({
  * `thresholds`: From thresholds. Informs Grafana to take the color from the matching threshold
  * `palette-classic`: Classic palette. Grafana will assign color by looking up a color in a palette by series index. Useful for Graphs and pie charts and other categorical data visualizations
  * `palette-classic-by-name`: Classic palette (by name). Grafana will assign color by looking up a color in a palette by series name. Useful for Graphs and pie charts and other categorical data visualizations
+ * `palette-colorblind`: Color blind safe palette. A discrete palette whose colors are distinguishable under common forms of color vision deficiency. Useful for categorical and multi-series data visualizations
+ * `palette-categorical-next`: Experimental categorical palette. Useful for categorical and multi-series data visualizations
+ * `palette-categorical-next-2`: Experimental categorical palette. Useful for categorical and multi-series data visualizations
+ * `palette-categorical-next-3`: Experimental categorical palette. Useful for categorical and multi-series data visualizations
  * `continuous-viridis`: Continuous Viridis palette mode
  * `continuous-magma`: Continuous Magma palette mode
  * `continuous-plasma`: Continuous Plasma palette mode
@@ -658,11 +669,16 @@ export const defaultFieldColor = (): FieldColor => ({
  * `continuous-purples`: Continuous Purple palette mode
  * `shades`: Shades of a single color. Specify a single color, useful in an override rule.
  * `fixed`: Fixed color mode. Specify a single color, useful in an override rule.
+ * `gradient`: Gradient color mode. Interpolate between two colors based on value order; the start color is taken from fixedColor and the end color from gradientColorTo.
  */
 export enum FieldColorModeId {
 	Thresholds = "thresholds",
 	PaletteClassic = "palette-classic",
 	PaletteClassicByName = "palette-classic-by-name",
+	PaletteColorblind = "palette-colorblind",
+	PaletteCategoricalNext = "palette-categorical-next",
+	PaletteCategoricalNext2 = "palette-categorical-next-2",
+	PaletteCategoricalNext3 = "palette-categorical-next-3",
 	ContinuousViridis = "continuous-viridis",
 	ContinuousMagma = "continuous-magma",
 	ContinuousPlasma = "continuous-plasma",
@@ -680,6 +696,7 @@ export enum FieldColorModeId {
 	ContinuousPurples = "continuous-purples",
 	Fixed = "fixed",
 	Shades = "shades",
+	Gradient = "gradient",
 }
 
 export const defaultFieldColorModeId = (): FieldColorModeId => (FieldColorModeId.Thresholds);
@@ -1933,6 +1950,245 @@ export interface VariableValueOption {
 export const defaultVariableValueOption = (): VariableValueOption => ({
 	label: "",
 	value: defaultVariableValueSingle(),
+});
+
+/**
+ * A cell holds non-panel narrative content (markdown text, code) in a notebook layout.
+ * Panel cells are not represented here — they reuse V2PanelKind.
+ */
+export interface CellKind {
+	kind: "Cell";
+	spec: CellSpec;
+}
+
+export const defaultCellKind = (): CellKind => ({
+	kind: "Cell",
+	spec: defaultCellSpec(),
+});
+
+export interface CellSpec {
+	content: CellContentKind;
+}
+
+export const defaultCellSpec = (): CellSpec => ({
+	content: defaultCellContentKind(),
+});
+
+/**
+ * Pluggable cell content discriminated by `kind`. New content types are added
+ * by extending this union with another <Name>CellContentKind member.
+ */
+export type CellContentKind = MarkdownCellContentKind | CodeCellContentKind;
+
+export const defaultCellContentKind = (): CellContentKind => (defaultMarkdownCellContentKind());
+
+export interface MarkdownCellContentKind {
+	kind: "Markdown";
+	spec: MarkdownCellContentSpec;
+}
+
+export const defaultMarkdownCellContentKind = (): MarkdownCellContentKind => ({
+	kind: "Markdown",
+	spec: defaultMarkdownCellContentSpec(),
+});
+
+export interface MarkdownCellContentSpec {
+	text: string;
+}
+
+export const defaultMarkdownCellContentSpec = (): MarkdownCellContentSpec => ({
+	text: "",
+});
+
+export interface CodeCellContentKind {
+	kind: "Code";
+	spec: CodeCellContentSpec;
+}
+
+export const defaultCodeCellContentKind = (): CodeCellContentKind => ({
+	kind: "Code",
+	spec: defaultCodeCellContentSpec(),
+});
+
+export interface CodeCellContentSpec {
+	language: string;
+	code: string;
+	highlight?: number[];
+	annotation?: string;
+}
+
+export const defaultCodeCellContentSpec = (): CodeCellContentSpec => ({
+	language: "",
+	code: "",
+});
+
+export interface NotebookLayoutKind {
+	kind: "NotebookLayout";
+	spec: NotebookLayoutSpec;
+}
+
+export const defaultNotebookLayoutKind = (): NotebookLayoutKind => ({
+	kind: "NotebookLayout",
+	spec: defaultNotebookLayoutSpec(),
+});
+
+export interface NotebookLayoutSpec {
+	cells: NotebookLayoutItemKind[];
+}
+
+export const defaultNotebookLayoutSpec = (): NotebookLayoutSpec => ({
+	cells: [],
+});
+
+export interface NotebookLayoutItemKind {
+	kind: "NotebookLayoutItem";
+	spec: NotebookLayoutItemSpec;
+}
+
+export const defaultNotebookLayoutItemKind = (): NotebookLayoutItemKind => ({
+	kind: "NotebookLayoutItem",
+	spec: defaultNotebookLayoutItemSpec(),
+});
+
+/**
+ * One ordered item in a notebook layout. `element` references either a CellKind
+ * (markdown/code content) or a V2PanelKind in the notebook's elements map. `source`
+ * records who authored the cell; `collapsed` hides the body in the UI.
+ */
+export interface NotebookLayoutItemSpec {
+	element: ElementReference;
+	source: "assistant" | "user";
+	collapsed?: boolean;
+}
+
+export const defaultNotebookLayoutItemSpec = (): NotebookLayoutItemSpec => ({
+	element: defaultElementReference(),
+	source: "assistant",
+});
+
+/**
+ * The notebook's own panel chain. It is a copy of the dashboard one down to the transformation,
+ * which follows the dashboard v2 shape rather than the v2beta1 shape in this package. The chain has
+ * to be forked rather than shared because PanelKind reaches TransformationKind through
+ * QueryGroupKind, and those three are what Dashboard v2beta1 serves. Everything the chain does not
+ * change (DataLink, VizConfigKind, PanelQueryKind, QueryOptionsSpec) stays shared.
+ */
+export interface V2PanelKind {
+	kind: "Panel";
+	spec: V2PanelSpec;
+}
+
+export const defaultV2PanelKind = (): V2PanelKind => ({
+	kind: "Panel",
+	spec: defaultV2PanelSpec(),
+});
+
+export interface V2PanelSpec {
+	id: number;
+	title: string;
+	// Shown in a info icon tooltip next to panel title
+	description?: string;
+	// Shown in a sub header below the title.
+	subtitle?: string;
+	links: DataLink[];
+	data: V2QueryGroupKind;
+	vizConfig: VizConfigKind;
+	transparent?: boolean;
+}
+
+export const defaultV2PanelSpec = (): V2PanelSpec => ({
+	id: 0,
+	title: "",
+	links: [],
+	data: defaultV2QueryGroupKind(),
+	vizConfig: defaultVizConfigKind(),
+});
+
+export interface V2QueryGroupKind {
+	kind: "QueryGroup";
+	spec: V2QueryGroupSpec;
+}
+
+export const defaultV2QueryGroupKind = (): V2QueryGroupKind => ({
+	kind: "QueryGroup",
+	spec: defaultV2QueryGroupSpec(),
+});
+
+export interface V2QueryGroupSpec {
+	queries: PanelQueryKind[];
+	transformations: V2TransformationKind[];
+	queryOptions: QueryOptionsSpec;
+}
+
+export const defaultV2QueryGroupSpec = (): V2QueryGroupSpec => ({
+	queries: [],
+	transformations: [],
+	queryOptions: defaultQueryOptionsSpec(),
+});
+
+/**
+ * Dashboard v2 shape: the transformation ID moved from `kind` to `group`.
+ */
+export interface V2TransformationKind {
+	kind: "Transformation";
+	// The group is the transformation ID
+	group: string;
+	spec: V2TransformationSpec;
+}
+
+export const defaultV2TransformationKind = (): V2TransformationKind => ({
+	kind: "Transformation",
+	group: "",
+	spec: defaultV2TransformationSpec(),
+});
+
+/**
+ * Dashboard v2 shape: no `id`, it is carried by the parent's `group`.
+ */
+export interface V2TransformationSpec {
+	// Disabled transformations are skipped
+	disabled?: boolean;
+	// Optional frame matcher. When missing it will be applied to all results
+	filter?: MatcherConfig;
+	// Where to pull DataFrames from as input to transformation
+	topic?: DataTopic;
+	// Options to be passed to the transformer
+	// Valid options depend on the transformer id
+	options: any;
+}
+
+export const defaultV2TransformationSpec = (): V2TransformationSpec => ({
+	options: {},
+});
+
+/**
+ * A notebook element is a narrative cell, a panel, or a library panel. Unlike the dashboard
+ * Element union, this one includes CellKind — and it is referenced ONLY by NotebookSpec.
+ * CellKind is listed first so it is the generated default (a notebook is narrative-first).
+ */
+export type NotebookElement = CellKind | V2PanelKind | LibraryPanelKind;
+
+export const defaultNotebookElement = (): NotebookElement => (defaultCellKind());
+
+/**
+ * A notebook spec is a dashboard spec with narrative content. It has a title, optional description, tags, time
+ * settings, and a map of elements (panels and cells) referenced by the layout.
+ */
+export interface NotebookSpec {
+	title: string;
+	description?: string;
+	tags: string[];
+	timeSettings: TimeSettingsSpec;
+	elements: Record<string, NotebookElement>;
+	layout: NotebookLayoutKind;
+}
+
+export const defaultNotebookSpec = (): NotebookSpec => ({
+	title: "",
+	tags: [],
+	timeSettings: defaultTimeSettingsSpec(),
+	elements: {},
+	layout: defaultNotebookLayoutKind(),
 });
 
 export const DashboardApiVersion = "dashboard.grafana.app/v2beta1";

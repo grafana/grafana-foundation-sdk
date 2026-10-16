@@ -10,7 +10,7 @@ type AnnotationPanelFilter struct {
     // Should the specified panels be included or excluded
     Exclude *bool `json:"exclude,omitempty"`
     // Panel IDs that should be included or excluded
-    Ids []uint32 `json:"ids"`
+    Ids []float64 `json:"ids"`
 }
 ```
 ## Methods

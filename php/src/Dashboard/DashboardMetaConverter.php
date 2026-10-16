@@ -231,19 +231,6 @@ final class DashboardMetaConverter
     
     
     }
-            if ($input->isStarred !== null) {
-    
-        
-    $buffer = 'isStarred(';
-        $arg0 =\var_export($input->isStarred, true);
-        $buffer .= $arg0;
-        
-    $buffer .= ')';
-
-    $calls[] = $buffer;
-    
-    
-    }
             if ($input->provisioned !== null) {
     
         

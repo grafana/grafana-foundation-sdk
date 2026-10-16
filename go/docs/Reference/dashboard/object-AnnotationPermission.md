@@ -3,12 +3,14 @@ title: <span class="badge object-type-struct"></span> AnnotationPermission
 ---
 # <span class="badge object-type-struct"></span> AnnotationPermission
 
++k8s:deepcopy-gen=true
+
 ## Definition
 
 ```go
 type AnnotationPermission struct {
+    // +k8s:deepcopy-gen=true
     Dashboard *dashboard.AnnotationActions `json:"dashboard,omitempty"`
-    Organization *dashboard.AnnotationActions `json:"organization,omitempty"`
 }
 ```
 ## Methods

@@ -13,6 +13,11 @@ class Threshold implements \JsonSerializable
      */
     public ?float $value;
 
+    /**
+     * Optional dashboard-variable expression (e.g. `$myVar`) resolved at render time; `value` is the numeric fallback when the expression cannot be resolved to a single finite number.
+     */
+    public ?string $valueExpr;
+
     public string $color;
 
 }

@@ -60,6 +60,13 @@ func (builder *PreferencesBuilder) RecordError(path string, err error) *Preferen
 	return builder
 }
 
+// Explicit home URL (NOTE: this can only be modified in the system settings)
+func (builder *PreferencesBuilder) HomeURL(homeURL string) *PreferencesBuilder {
+	builder.internal.HomeURL = &homeURL
+
+	return builder
+}
+
 // UID for the home dashboard
 func (builder *PreferencesBuilder) HomeDashboardUID(homeDashboardUID string) *PreferencesBuilder {
 	builder.internal.HomeDashboardUID = &homeDashboardUID
@@ -68,7 +75,6 @@ func (builder *PreferencesBuilder) HomeDashboardUID(homeDashboardUID string) *Pr
 }
 
 // The timezone selection
-// TODO: this should use the timezone defined in common
 func (builder *PreferencesBuilder) Timezone(timezone string) *PreferencesBuilder {
 	builder.internal.Timezone = &timezone
 
@@ -82,23 +88,16 @@ func (builder *PreferencesBuilder) WeekStart(weekStart string) *PreferencesBuild
 	return builder
 }
 
-// light, dark, empty is default
+// user interface theme
 func (builder *PreferencesBuilder) Theme(theme string) *PreferencesBuilder {
 	builder.internal.Theme = &theme
 
 	return builder
 }
 
-// Selected language (beta)
+// Selected language
 func (builder *PreferencesBuilder) Language(language string) *PreferencesBuilder {
 	builder.internal.Language = &language
-
-	return builder
-}
-
-// Selected locale (beta)
-func (builder *PreferencesBuilder) RegionalFormat(regionalFormat string) *PreferencesBuilder {
-	builder.internal.RegionalFormat = &regionalFormat
 
 	return builder
 }
@@ -111,18 +110,6 @@ func (builder *PreferencesBuilder) QueryHistory(queryHistory cog.Builder[QueryHi
 		return builder
 	}
 	builder.internal.QueryHistory = &queryHistoryResource
-
-	return builder
-}
-
-// Cookie preferences
-func (builder *PreferencesBuilder) CookiePreferences(cookiePreferences cog.Builder[CookiePreferences]) *PreferencesBuilder {
-	cookiePreferencesResource, err := cookiePreferences.Build()
-	if err != nil {
-		builder.errors = append(builder.errors, err.(cog.BuildErrors)...)
-		return builder
-	}
-	builder.internal.CookiePreferences = &cookiePreferencesResource
 
 	return builder
 }

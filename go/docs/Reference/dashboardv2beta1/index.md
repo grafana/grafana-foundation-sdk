@@ -22,6 +22,12 @@
  * <span class="badge object-type-enum"></span> [AutoGridLayoutSpecColumnWidthMode](./object-AutoGridLayoutSpecColumnWidthMode.md)
  * <span class="badge object-type-enum"></span> [AutoGridLayoutSpecRowHeightMode](./object-AutoGridLayoutSpecRowHeightMode.md)
  * <span class="badge object-type-struct"></span> [AutoGridRepeatOptions](./object-AutoGridRepeatOptions.md)
+ * <span class="badge object-type-ref"></span> [CellContentKind](./object-CellContentKind.md)
+ * <span class="badge object-type-struct"></span> [CellKind](./object-CellKind.md)
+ * <span class="badge object-type-struct"></span> [CellKindOrV2PanelKindOrLibraryPanelKind](./object-CellKindOrV2PanelKindOrLibraryPanelKind.md)
+ * <span class="badge object-type-struct"></span> [CellSpec](./object-CellSpec.md)
+ * <span class="badge object-type-struct"></span> [CodeCellContentKind](./object-CodeCellContentKind.md)
+ * <span class="badge object-type-struct"></span> [CodeCellContentSpec](./object-CodeCellContentSpec.md)
  * <span class="badge object-type-struct"></span> [ConditionalRenderingDataKind](./object-ConditionalRenderingDataKind.md)
  * <span class="badge object-type-struct"></span> [ConditionalRenderingDataSpec](./object-ConditionalRenderingDataSpec.md)
  * <span class="badge object-type-struct"></span> [ConditionalRenderingGroupKind](./object-ConditionalRenderingGroupKind.md)
@@ -91,9 +97,19 @@
  * <span class="badge object-type-struct"></span> [LibraryPanelKindSpec](./object-LibraryPanelKindSpec.md)
  * <span class="badge object-type-struct"></span> [LibraryPanelRef](./object-LibraryPanelRef.md)
  * <span class="badge object-type-enum"></span> [MappingType](./object-MappingType.md)
+ * <span class="badge object-type-struct"></span> [MarkdownCellContentKind](./object-MarkdownCellContentKind.md)
+ * <span class="badge object-type-struct"></span> [MarkdownCellContentKindOrCodeCellContentKind](./object-MarkdownCellContentKindOrCodeCellContentKind.md)
+ * <span class="badge object-type-struct"></span> [MarkdownCellContentSpec](./object-MarkdownCellContentSpec.md)
  * <span class="badge object-type-struct"></span> [MatcherConfig](./object-MatcherConfig.md)
  * <span class="badge object-type-enum"></span> [MatcherScope](./object-MatcherScope.md)
  * <span class="badge object-type-struct"></span> [MetricFindValue](./object-MetricFindValue.md)
+ * <span class="badge object-type-ref"></span> [NotebookElement](./object-NotebookElement.md)
+ * <span class="badge object-type-struct"></span> [NotebookLayoutItemKind](./object-NotebookLayoutItemKind.md)
+ * <span class="badge object-type-struct"></span> [NotebookLayoutItemSpec](./object-NotebookLayoutItemSpec.md)
+ * <span class="badge object-type-enum"></span> [NotebookLayoutItemSpecSource](./object-NotebookLayoutItemSpecSource.md)
+ * <span class="badge object-type-struct"></span> [NotebookLayoutKind](./object-NotebookLayoutKind.md)
+ * <span class="badge object-type-struct"></span> [NotebookLayoutSpec](./object-NotebookLayoutSpec.md)
+ * <span class="badge object-type-struct"></span> [NotebookSpec](./object-NotebookSpec.md)
  * <span class="badge object-type-enum"></span> [NullValueMode](./object-NullValueMode.md)
  * <span class="badge object-type-struct"></span> [PanelKind](./object-PanelKind.md)
  * <span class="badge object-type-struct"></span> [PanelKindOrLibraryPanelKind](./object-PanelKindOrLibraryPanelKind.md)
@@ -139,6 +155,12 @@
  * <span class="badge object-type-struct"></span> [TimeSettingsSpec](./object-TimeSettingsSpec.md)
  * <span class="badge object-type-enum"></span> [TimeSettingsSpecWeekStart](./object-TimeSettingsSpecWeekStart.md)
  * <span class="badge object-type-struct"></span> [TransformationKind](./object-TransformationKind.md)
+ * <span class="badge object-type-struct"></span> [V2PanelKind](./object-V2PanelKind.md)
+ * <span class="badge object-type-struct"></span> [V2PanelSpec](./object-V2PanelSpec.md)
+ * <span class="badge object-type-struct"></span> [V2QueryGroupKind](./object-V2QueryGroupKind.md)
+ * <span class="badge object-type-struct"></span> [V2QueryGroupSpec](./object-V2QueryGroupSpec.md)
+ * <span class="badge object-type-struct"></span> [V2TransformationKind](./object-V2TransformationKind.md)
+ * <span class="badge object-type-struct"></span> [V2TransformationSpec](./object-V2TransformationSpec.md)
  * <span class="badge object-type-struct"></span> [ValueMap](./object-ValueMap.md)
  * <span class="badge object-type-struct"></span> [ValueMapOrRangeMapOrRegexMapOrSpecialValueMap](./object-ValueMapOrRangeMapOrRegexMapOrSpecialValueMap.md)
  * <span class="badge object-type-ref"></span> [ValueMapping](./object-ValueMapping.md)
@@ -167,6 +189,10 @@
  * <span class="badge builder"></span> [AutoGridBuilder](./builder-AutoGridBuilder.md)
  * <span class="badge builder"></span> [AutoGridItemBuilder](./builder-AutoGridItemBuilder.md)
  * <span class="badge builder"></span> [AutoGridRepeatOptionsBuilder](./builder-AutoGridRepeatOptionsBuilder.md)
+ * <span class="badge builder"></span> [CellKindBuilder](./builder-CellKindBuilder.md)
+ * <span class="badge builder"></span> [CellSpecBuilder](./builder-CellSpecBuilder.md)
+ * <span class="badge builder"></span> [CodeCellContentKindBuilder](./builder-CodeCellContentKindBuilder.md)
+ * <span class="badge builder"></span> [CodeCellContentSpecBuilder](./builder-CodeCellContentSpecBuilder.md)
  * <span class="badge builder"></span> [ConditionalRenderingDataBuilder](./builder-ConditionalRenderingDataBuilder.md)
  * <span class="badge builder"></span> [ConditionalRenderingGroupBuilder](./builder-ConditionalRenderingGroupBuilder.md)
  * <span class="badge builder"></span> [ConditionalRenderingTimeRangeSizeBuilder](./builder-ConditionalRenderingTimeRangeSizeBuilder.md)
@@ -198,7 +224,14 @@
  * <span class="badge builder"></span> [IntervalVariableBuilder](./builder-IntervalVariableBuilder.md)
  * <span class="badge builder"></span> [LibraryPanelBuilder](./builder-LibraryPanelBuilder.md)
  * <span class="badge builder"></span> [LibraryPanelRefBuilder](./builder-LibraryPanelRefBuilder.md)
+ * <span class="badge builder"></span> [MarkdownCellContentKindBuilder](./builder-MarkdownCellContentKindBuilder.md)
+ * <span class="badge builder"></span> [MarkdownCellContentSpecBuilder](./builder-MarkdownCellContentSpecBuilder.md)
  * <span class="badge builder"></span> [MetricFindValueBuilder](./builder-MetricFindValueBuilder.md)
+ * <span class="badge builder"></span> [NotebookLayoutItemKindBuilder](./builder-NotebookLayoutItemKindBuilder.md)
+ * <span class="badge builder"></span> [NotebookLayoutItemSpecBuilder](./builder-NotebookLayoutItemSpecBuilder.md)
+ * <span class="badge builder"></span> [NotebookLayoutKindBuilder](./builder-NotebookLayoutKindBuilder.md)
+ * <span class="badge builder"></span> [NotebookLayoutSpecBuilder](./builder-NotebookLayoutSpecBuilder.md)
+ * <span class="badge builder"></span> [NotebookSpecBuilder](./builder-NotebookSpecBuilder.md)
  * <span class="badge builder"></span> [PanelBuilder](./builder-PanelBuilder.md)
  * <span class="badge builder"></span> [QueryGroupBuilder](./builder-QueryGroupBuilder.md)
  * <span class="badge builder"></span> [QueryOptionsSpecBuilder](./builder-QueryOptionsSpecBuilder.md)
@@ -219,6 +252,12 @@
  * <span class="badge builder"></span> [TimeRangeOptionBuilder](./builder-TimeRangeOptionBuilder.md)
  * <span class="badge builder"></span> [TimeSettingsBuilder](./builder-TimeSettingsBuilder.md)
  * <span class="badge builder"></span> [TransformationBuilder](./builder-TransformationBuilder.md)
+ * <span class="badge builder"></span> [V2PanelKindBuilder](./builder-V2PanelKindBuilder.md)
+ * <span class="badge builder"></span> [V2PanelSpecBuilder](./builder-V2PanelSpecBuilder.md)
+ * <span class="badge builder"></span> [V2QueryGroupKindBuilder](./builder-V2QueryGroupKindBuilder.md)
+ * <span class="badge builder"></span> [V2QueryGroupSpecBuilder](./builder-V2QueryGroupSpecBuilder.md)
+ * <span class="badge builder"></span> [V2TransformationKindBuilder](./builder-V2TransformationKindBuilder.md)
+ * <span class="badge builder"></span> [V2TransformationSpecBuilder](./builder-V2TransformationSpecBuilder.md)
  * <span class="badge builder"></span> [ValueMappingResultBuilder](./builder-ValueMappingResultBuilder.md)
  * <span class="badge builder"></span> [VariableValueBuilder](./builder-VariableValueBuilder.md)
  * <span class="badge builder"></span> [VariableValueOptionBuilder](./builder-VariableValueOptionBuilder.md)
@@ -1033,6 +1072,158 @@ NewVariableValueOption creates a new VariableValueOption object.
 func NewVariableValueOption() *VariableValueOption
 ```
 
+### <span class="badge function"></span> NewCellKind
+
+NewCellKind creates a new CellKind object.
+
+```go
+func NewCellKind() *CellKind
+```
+
+### <span class="badge function"></span> NewCellSpec
+
+NewCellSpec creates a new CellSpec object.
+
+```go
+func NewCellSpec() *CellSpec
+```
+
+### <span class="badge function"></span> NewCellContentKind
+
+NewCellContentKind creates a new CellContentKind object.
+
+```go
+func NewCellContentKind() *CellContentKind
+```
+
+### <span class="badge function"></span> NewMarkdownCellContentKind
+
+NewMarkdownCellContentKind creates a new MarkdownCellContentKind object.
+
+```go
+func NewMarkdownCellContentKind() *MarkdownCellContentKind
+```
+
+### <span class="badge function"></span> NewMarkdownCellContentSpec
+
+NewMarkdownCellContentSpec creates a new MarkdownCellContentSpec object.
+
+```go
+func NewMarkdownCellContentSpec() *MarkdownCellContentSpec
+```
+
+### <span class="badge function"></span> NewCodeCellContentKind
+
+NewCodeCellContentKind creates a new CodeCellContentKind object.
+
+```go
+func NewCodeCellContentKind() *CodeCellContentKind
+```
+
+### <span class="badge function"></span> NewCodeCellContentSpec
+
+NewCodeCellContentSpec creates a new CodeCellContentSpec object.
+
+```go
+func NewCodeCellContentSpec() *CodeCellContentSpec
+```
+
+### <span class="badge function"></span> NewNotebookLayoutKind
+
+NewNotebookLayoutKind creates a new NotebookLayoutKind object.
+
+```go
+func NewNotebookLayoutKind() *NotebookLayoutKind
+```
+
+### <span class="badge function"></span> NewNotebookLayoutSpec
+
+NewNotebookLayoutSpec creates a new NotebookLayoutSpec object.
+
+```go
+func NewNotebookLayoutSpec() *NotebookLayoutSpec
+```
+
+### <span class="badge function"></span> NewNotebookLayoutItemKind
+
+NewNotebookLayoutItemKind creates a new NotebookLayoutItemKind object.
+
+```go
+func NewNotebookLayoutItemKind() *NotebookLayoutItemKind
+```
+
+### <span class="badge function"></span> NewNotebookLayoutItemSpec
+
+NewNotebookLayoutItemSpec creates a new NotebookLayoutItemSpec object.
+
+```go
+func NewNotebookLayoutItemSpec() *NotebookLayoutItemSpec
+```
+
+### <span class="badge function"></span> NewV2PanelKind
+
+NewV2PanelKind creates a new V2PanelKind object.
+
+```go
+func NewV2PanelKind() *V2PanelKind
+```
+
+### <span class="badge function"></span> NewV2PanelSpec
+
+NewV2PanelSpec creates a new V2PanelSpec object.
+
+```go
+func NewV2PanelSpec() *V2PanelSpec
+```
+
+### <span class="badge function"></span> NewV2QueryGroupKind
+
+NewV2QueryGroupKind creates a new V2QueryGroupKind object.
+
+```go
+func NewV2QueryGroupKind() *V2QueryGroupKind
+```
+
+### <span class="badge function"></span> NewV2QueryGroupSpec
+
+NewV2QueryGroupSpec creates a new V2QueryGroupSpec object.
+
+```go
+func NewV2QueryGroupSpec() *V2QueryGroupSpec
+```
+
+### <span class="badge function"></span> NewV2TransformationKind
+
+NewV2TransformationKind creates a new V2TransformationKind object.
+
+```go
+func NewV2TransformationKind() *V2TransformationKind
+```
+
+### <span class="badge function"></span> NewV2TransformationSpec
+
+NewV2TransformationSpec creates a new V2TransformationSpec object.
+
+```go
+func NewV2TransformationSpec() *V2TransformationSpec
+```
+
+### <span class="badge function"></span> NewNotebookElement
+
+NewNotebookElement creates a new NotebookElement object.
+
+```go
+func NewNotebookElement() *NotebookElement
+```
+
+### <span class="badge function"></span> NewNotebookSpec
+
+NewNotebookSpec creates a new NotebookSpec object.
+
+```go
+func NewNotebookSpec() *NotebookSpec
+```
+
 ### <span class="badge function"></span> NewDashboardv2beta1DataQueryKindDatasource
 
 NewDashboardv2beta1DataQueryKindDatasource creates a new Dashboardv2beta1DataQueryKindDatasource object.
@@ -1175,6 +1366,22 @@ NewStringOrBoolOrFloat64OrCustomVariableValue creates a new StringOrBoolOrFloat6
 
 ```go
 func NewStringOrBoolOrFloat64OrCustomVariableValue() *StringOrBoolOrFloat64OrCustomVariableValue
+```
+
+### <span class="badge function"></span> NewMarkdownCellContentKindOrCodeCellContentKind
+
+NewMarkdownCellContentKindOrCodeCellContentKind creates a new MarkdownCellContentKindOrCodeCellContentKind object.
+
+```go
+func NewMarkdownCellContentKindOrCodeCellContentKind() *MarkdownCellContentKindOrCodeCellContentKind
+```
+
+### <span class="badge function"></span> NewCellKindOrV2PanelKindOrLibraryPanelKind
+
+NewCellKindOrV2PanelKindOrLibraryPanelKind creates a new CellKindOrV2PanelKindOrLibraryPanelKind object.
+
+```go
+func NewCellKindOrV2PanelKindOrLibraryPanelKind() *CellKindOrV2PanelKindOrLibraryPanelKind
 ```
 
 ### <span class="badge function"></span> Manifest
@@ -1447,6 +1654,142 @@ VariableValueOptionConverter accepts a `VariableValueOption` object and generate
 
 ```go
 func VariableValueOptionConverter(input VariableValueOption) string
+```
+
+### <span class="badge function"></span> CellKindConverter
+
+CellKindConverter accepts a `CellKind` object and generates the Go code to build this object using builders.
+
+```go
+func CellKindConverter(input CellKind) string
+```
+
+### <span class="badge function"></span> CellSpecConverter
+
+CellSpecConverter accepts a `CellSpec` object and generates the Go code to build this object using builders.
+
+```go
+func CellSpecConverter(input CellSpec) string
+```
+
+### <span class="badge function"></span> MarkdownCellContentKindConverter
+
+MarkdownCellContentKindConverter accepts a `MarkdownCellContentKind` object and generates the Go code to build this object using builders.
+
+```go
+func MarkdownCellContentKindConverter(input MarkdownCellContentKind) string
+```
+
+### <span class="badge function"></span> MarkdownCellContentSpecConverter
+
+MarkdownCellContentSpecConverter accepts a `MarkdownCellContentSpec` object and generates the Go code to build this object using builders.
+
+```go
+func MarkdownCellContentSpecConverter(input MarkdownCellContentSpec) string
+```
+
+### <span class="badge function"></span> CodeCellContentKindConverter
+
+CodeCellContentKindConverter accepts a `CodeCellContentKind` object and generates the Go code to build this object using builders.
+
+```go
+func CodeCellContentKindConverter(input CodeCellContentKind) string
+```
+
+### <span class="badge function"></span> CodeCellContentSpecConverter
+
+CodeCellContentSpecConverter accepts a `CodeCellContentSpec` object and generates the Go code to build this object using builders.
+
+```go
+func CodeCellContentSpecConverter(input CodeCellContentSpec) string
+```
+
+### <span class="badge function"></span> NotebookLayoutKindConverter
+
+NotebookLayoutKindConverter accepts a `NotebookLayoutKind` object and generates the Go code to build this object using builders.
+
+```go
+func NotebookLayoutKindConverter(input NotebookLayoutKind) string
+```
+
+### <span class="badge function"></span> NotebookLayoutSpecConverter
+
+NotebookLayoutSpecConverter accepts a `NotebookLayoutSpec` object and generates the Go code to build this object using builders.
+
+```go
+func NotebookLayoutSpecConverter(input NotebookLayoutSpec) string
+```
+
+### <span class="badge function"></span> NotebookLayoutItemKindConverter
+
+NotebookLayoutItemKindConverter accepts a `NotebookLayoutItemKind` object and generates the Go code to build this object using builders.
+
+```go
+func NotebookLayoutItemKindConverter(input NotebookLayoutItemKind) string
+```
+
+### <span class="badge function"></span> NotebookLayoutItemSpecConverter
+
+NotebookLayoutItemSpecConverter accepts a `NotebookLayoutItemSpec` object and generates the Go code to build this object using builders.
+
+```go
+func NotebookLayoutItemSpecConverter(input NotebookLayoutItemSpec) string
+```
+
+### <span class="badge function"></span> V2PanelKindConverter
+
+V2PanelKindConverter accepts a `V2PanelKind` object and generates the Go code to build this object using builders.
+
+```go
+func V2PanelKindConverter(input V2PanelKind) string
+```
+
+### <span class="badge function"></span> V2PanelSpecConverter
+
+V2PanelSpecConverter accepts a `V2PanelSpec` object and generates the Go code to build this object using builders.
+
+```go
+func V2PanelSpecConverter(input V2PanelSpec) string
+```
+
+### <span class="badge function"></span> V2QueryGroupKindConverter
+
+V2QueryGroupKindConverter accepts a `V2QueryGroupKind` object and generates the Go code to build this object using builders.
+
+```go
+func V2QueryGroupKindConverter(input V2QueryGroupKind) string
+```
+
+### <span class="badge function"></span> V2QueryGroupSpecConverter
+
+V2QueryGroupSpecConverter accepts a `V2QueryGroupSpec` object and generates the Go code to build this object using builders.
+
+```go
+func V2QueryGroupSpecConverter(input V2QueryGroupSpec) string
+```
+
+### <span class="badge function"></span> V2TransformationKindConverter
+
+V2TransformationKindConverter accepts a `V2TransformationKind` object and generates the Go code to build this object using builders.
+
+```go
+func V2TransformationKindConverter(input V2TransformationKind) string
+```
+
+### <span class="badge function"></span> V2TransformationSpecConverter
+
+V2TransformationSpecConverter accepts a `V2TransformationSpec` object and generates the Go code to build this object using builders.
+
+```go
+func V2TransformationSpecConverter(input V2TransformationSpec) string
+```
+
+### <span class="badge function"></span> NotebookSpecConverter
+
+NotebookSpecConverter accepts a `NotebookSpec` object and generates the Go code to build this object using builders.
+
+```go
+func NotebookSpecConverter(input NotebookSpec) string
 ```
 
 ### <span class="badge function"></span> Dashboardv2beta1DataQueryKindDatasourceConverter

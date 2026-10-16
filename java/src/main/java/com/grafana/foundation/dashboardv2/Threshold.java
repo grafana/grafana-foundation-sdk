@@ -13,13 +13,18 @@ public class Threshold {
     @JsonInclude(JsonInclude.Include.NON_NULL)
     @JsonProperty("value")
     public Double value;
+    // Optional dashboard-variable expression (e.g. `$myVar`) resolved at render time; `value` is the numeric fallback when the expression cannot be resolved to a single finite number.
+    @JsonInclude(JsonInclude.Include.NON_NULL)
+    @JsonProperty("valueExpr")
+    public String valueExpr;
     @JsonProperty("color")
     public String color;
     public Threshold() {
         this.color = "";
     }
-    public Threshold(Double value,String color) {
+    public Threshold(Double value,String valueExpr,String color) {
         this.value = value;
+        this.valueExpr = valueExpr;
         this.color = color;
     }
     

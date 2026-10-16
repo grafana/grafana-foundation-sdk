@@ -175,7 +175,10 @@ export const defaultPanelKind = (): PanelKind => ({
 export interface PanelSpec {
 	id: number;
 	title: string;
-	description: string;
+	// Shown in a info icon tooltip next to panel title
+	description?: string;
+	// Shown in a sub header below the title.
+	subtitle?: string;
 	links: DataLink[];
 	data: QueryGroupKind;
 	vizConfig: VizConfigKind;
@@ -185,7 +188,6 @@ export interface PanelSpec {
 export const defaultPanelSpec = (): PanelSpec => ({
 	id: 0,
 	title: "",
-	description: "",
 	links: [],
 	data: defaultQueryGroupKind(),
 	vizConfig: defaultVizConfigKind(),
@@ -320,6 +322,7 @@ export const defaultDataTopic = (): DataTopic => (DataTopic.Series);
 
 export interface QueryOptionsSpec {
 	timeFrom?: string;
+	timeTo?: string;
 	maxDataPoints?: number;
 	timeShift?: string;
 	queryCachingTTL?: number;
@@ -607,6 +610,8 @@ export const defaultThresholdsMode = (): ThresholdsMode => (ThresholdsMode.Absol
 export interface Threshold {
 	// Value null means -Infinity
 	value: number | null;
+	// Optional dashboard-variable expression (e.g. `$myVar`) resolved at render time; `value` is the numeric fallback when the expression cannot be resolved to a single finite number.
+	valueExpr?: string;
 	color: string;
 }
 
@@ -623,6 +628,8 @@ export interface FieldColor {
 	mode: FieldColorModeId;
 	// The fixed color value for fixed or shades color modes.
 	fixedColor?: string;
+	// The end color for the gradient color mode (smallest value). Only used when mode is gradient.
+	gradientColorTo?: string;
 	// Some visualizations need to know how to assign a series color from by value color schemes.
 	seriesBy?: FieldColorSeriesByMode;
 }
@@ -638,6 +645,10 @@ export const defaultFieldColor = (): FieldColor => ({
  * `thresholds`: From thresholds. Informs Grafana to take the color from the matching threshold
  * `palette-classic`: Classic palette. Grafana will assign color by looking up a color in a palette by series index. Useful for Graphs and pie charts and other categorical data visualizations
  * `palette-classic-by-name`: Classic palette (by name). Grafana will assign color by looking up a color in a palette by series name. Useful for Graphs and pie charts and other categorical data visualizations
+ * `palette-colorblind`: Color blind safe palette. A discrete palette whose colors are distinguishable under common forms of color vision deficiency. Useful for categorical and multi-series data visualizations
+ * `palette-categorical-next`: Experimental categorical palette. Useful for categorical and multi-series data visualizations
+ * `palette-categorical-next-2`: Experimental categorical palette. Useful for categorical and multi-series data visualizations
+ * `palette-categorical-next-3`: Experimental categorical palette. Useful for categorical and multi-series data visualizations
  * `continuous-viridis`: Continuous Viridis palette mode
  * `continuous-magma`: Continuous Magma palette mode
  * `continuous-plasma`: Continuous Plasma palette mode
@@ -655,11 +666,16 @@ export const defaultFieldColor = (): FieldColor => ({
  * `continuous-purples`: Continuous Purple palette mode
  * `shades`: Shades of a single color. Specify a single color, useful in an override rule.
  * `fixed`: Fixed color mode. Specify a single color, useful in an override rule.
+ * `gradient`: Gradient color mode. Interpolate between two colors based on value order; the start color is taken from fixedColor and the end color from gradientColorTo.
  */
 export enum FieldColorModeId {
 	Thresholds = "thresholds",
 	PaletteClassic = "palette-classic",
 	PaletteClassicByName = "palette-classic-by-name",
+	PaletteColorblind = "palette-colorblind",
+	PaletteCategoricalNext = "palette-categorical-next",
+	PaletteCategoricalNext2 = "palette-categorical-next-2",
+	PaletteCategoricalNext3 = "palette-categorical-next-3",
 	ContinuousViridis = "continuous-viridis",
 	ContinuousMagma = "continuous-magma",
 	ContinuousPlasma = "continuous-plasma",
@@ -677,6 +693,7 @@ export enum FieldColorModeId {
 	ContinuousPurples = "continuous-purples",
 	Fixed = "fixed",
 	Shades = "shades",
+	Gradient = "gradient",
 }
 
 export const defaultFieldColorModeId = (): FieldColorModeId => (FieldColorModeId.Thresholds);

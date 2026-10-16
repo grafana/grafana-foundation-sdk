@@ -11,6 +11,8 @@ class RecordRule:
     from_val: str
     # Name of the recorded metric.
     metric: str
+    # Which data source should be used to write the output of the recording rule, specified by UID.
+    target_datasource_uid: typing.Optional[str]
 ```
 ## Methods
 

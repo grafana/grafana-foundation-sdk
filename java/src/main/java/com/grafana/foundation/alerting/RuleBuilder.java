@@ -73,8 +73,18 @@ public class RuleBuilder implements com.grafana.foundation.cog.Builder<Rule> {
         return this;
     }
     
+    public RuleBuilder keepFiringFor(String keepFiringFor) {
+        this.internal.keepFiringFor = keepFiringFor;
+        return this;
+    }
+    
     public RuleBuilder labels(Map<String, String> labels) {
         this.internal.labels = labels;
+        return this;
+    }
+    
+    public RuleBuilder missingSeriesEvalsToResolve(Long missingSeriesEvalsToResolve) {
+        this.internal.missingSeriesEvalsToResolve = missingSeriesEvalsToResolve;
         return this;
     }
     
@@ -140,11 +150,6 @@ public class RuleBuilder implements com.grafana.foundation.cog.Builder<Rule> {
     
     public RuleBuilder updated(String updated) {
         this.internal.updated = updated;
-        return this;
-    }
-    
-    public RuleBuilder keepFiringFor(Long keepFiringFor) {
-        this.internal.keepFiringFor = keepFiringFor;
         return this;
     }
     public Rule build() {

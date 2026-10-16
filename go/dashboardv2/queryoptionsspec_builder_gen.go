@@ -46,6 +46,12 @@ func (builder *QueryOptionsSpecBuilder) TimeFrom(timeFrom string) *QueryOptionsS
 	return builder
 }
 
+func (builder *QueryOptionsSpecBuilder) TimeTo(timeTo string) *QueryOptionsSpecBuilder {
+	builder.internal.TimeTo = &timeTo
+
+	return builder
+}
+
 func (builder *QueryOptionsSpecBuilder) MaxDataPoints(maxDataPoints int64) *QueryOptionsSpecBuilder {
 	builder.internal.MaxDataPoints = &maxDataPoints
 

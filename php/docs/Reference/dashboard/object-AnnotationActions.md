@@ -3,6 +3,8 @@ title: <span class="badge object-type-class"></span> AnnotationActions
 ---
 # <span class="badge object-type-class"></span> AnnotationActions
 
++k8s:deepcopy-gen=true
+
 ## Definition
 
 ```php

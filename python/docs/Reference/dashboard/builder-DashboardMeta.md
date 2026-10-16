@@ -20,6 +20,8 @@ def build() -> dashboard.DashboardMeta
 
 ### <span class="badge object-method"></span> annotations_permissions
 
++k8s:deepcopy-gen=true
+
 ```python
 def annotations_permissions(annotations_permissions: cogbuilder.Builder[dashboard.AnnotationPermission]) -> typing.Self
 ```
@@ -120,12 +122,6 @@ def is_folder(is_folder: bool) -> typing.Self
 
 ```python
 def is_snapshot(is_snapshot: bool) -> typing.Self
-```
-
-### <span class="badge object-method"></span> is_starred
-
-```python
-def is_starred(is_starred: bool) -> typing.Self
 ```
 
 ### <span class="badge object-method"></span> provisioned

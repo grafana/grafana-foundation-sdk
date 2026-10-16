@@ -384,6 +384,10 @@ func (resource RuleGroup) Validate() error {
 }
 
 type NotificationSettings struct {
+	// Override the times when notifications should not be muted. These must match the name of a mute time interval defined
+	// in the alertmanager configuration time_intervals section. All notifications will be suppressed unless they are sent
+	// at the time that matches any interval.
+	ActiveTimeIntervals []string `json:"active_time_intervals,omitempty"`
 	// Override the labels by which incoming alerts are grouped together. For example, multiple alerts coming in for
 	// cluster=A and alertname=LatencyHigh would be batched into a single group. To aggregate by all possible labels
 	// use the special value '...' as the sole label name.
@@ -398,7 +402,7 @@ type NotificationSettings struct {
 	// inhibiting alert to arrive or collect more initial alerts for the same group. (Usually ~0s to few minutes.)
 	GroupWait *string `json:"group_wait,omitempty"`
 	// Override the times when notifications should be muted. These must match the name of a mute time interval defined
-	// in the alertmanager configuration mute_time_intervals section. When muted it will not send any notifications, but
+	// in the alertmanager configuration time_intervals section. When muted it will not send any notifications, but
 	// otherwise acts normally.
 	MuteTimeIntervals []string `json:"mute_time_intervals,omitempty"`
 	// Name of the receiver to send notifications to.
@@ -429,6 +433,18 @@ func (resource *NotificationSettings) UnmarshalJSONStrict(raw []byte) error {
 	fields := make(map[string]json.RawMessage)
 	if err := json.Unmarshal(raw, &fields); err != nil {
 		return err
+	}
+	// Field "active_time_intervals"
+	if fields["active_time_intervals"] != nil {
+		if string(fields["active_time_intervals"]) != "null" {
+
+			if err := json.Unmarshal(fields["active_time_intervals"], &resource.ActiveTimeIntervals); err != nil {
+				errs = append(errs, cog.MakeBuildErrors("active_time_intervals", err)...)
+			}
+
+		}
+		delete(fields, "active_time_intervals")
+
 	}
 	// Field "group_by"
 	if fields["group_by"] != nil {
@@ -511,6 +527,16 @@ func (resource *NotificationSettings) UnmarshalJSONStrict(raw []byte) error {
 
 // Equals tests the equality of two `NotificationSettings` objects.
 func (resource NotificationSettings) Equals(other NotificationSettings) bool {
+
+	if len(resource.ActiveTimeIntervals) != len(other.ActiveTimeIntervals) {
+		return false
+	}
+
+	for i1 := range resource.ActiveTimeIntervals {
+		if resource.ActiveTimeIntervals[i1] != other.ActiveTimeIntervals[i1] {
+			return false
+		}
+	}
 
 	if len(resource.GroupBy) != len(other.GroupBy) {
 		return false
@@ -1121,22 +1147,21 @@ type Rule struct {
 	FolderUID    string            `json:"folderUID"`
 	// The amount of time, in seconds, for which the rule must be breached for the rule to be considered to be Firing.
 	// Before this time has elapsed, the rule is only considered to be Pending.
-	For                  string                `json:"for"`
-	Id                   *int64                `json:"id,omitempty"`
-	IsPaused             *bool                 `json:"isPaused,omitempty"`
-	Labels               map[string]string     `json:"labels,omitempty"`
-	NoDataState          RuleNoDataState       `json:"noDataState"`
-	NotificationSettings *NotificationSettings `json:"notification_settings,omitempty"`
-	OrgID                int64                 `json:"orgID"`
-	Provenance           *Provenance           `json:"provenance,omitempty"`
-	Record               *RecordRule           `json:"record,omitempty"`
-	RuleGroup            string                `json:"ruleGroup"`
-	Title                string                `json:"title"`
-	Uid                  *string               `json:"uid,omitempty"`
-	Updated              *time.Time            `json:"updated,omitempty"`
-	// You can set a Keep firing for period to avoid repeated firing-resolving-firing notifications caused by flapping conditions.
-	// Value is in nanoseconds
-	KeepFiringFor *int64 `json:"keepFiringFor,omitempty"`
+	For                         string                `json:"for"`
+	Id                          *int64                `json:"id,omitempty"`
+	IsPaused                    *bool                 `json:"isPaused,omitempty"`
+	KeepFiringFor               *string               `json:"keep_firing_for,omitempty"`
+	Labels                      map[string]string     `json:"labels,omitempty"`
+	MissingSeriesEvalsToResolve *int64                `json:"missingSeriesEvalsToResolve,omitempty"`
+	NoDataState                 RuleNoDataState       `json:"noDataState"`
+	NotificationSettings        *NotificationSettings `json:"notification_settings,omitempty"`
+	OrgID                       int64                 `json:"orgID"`
+	Provenance                  *Provenance           `json:"provenance,omitempty"`
+	Record                      *RecordRule           `json:"record,omitempty"`
+	RuleGroup                   string                `json:"ruleGroup"`
+	Title                       string                `json:"title"`
+	Uid                         *string               `json:"uid,omitempty"`
+	Updated                     *time.Time            `json:"updated,omitempty"`
 }
 
 // NewRule creates a new Rule object.
@@ -1274,6 +1299,17 @@ func (resource *Rule) UnmarshalJSONStrict(raw []byte) error {
 		delete(fields, "isPaused")
 
 	}
+	// Field "keep_firing_for"
+	if fields["keep_firing_for"] != nil {
+		if string(fields["keep_firing_for"]) != "null" {
+			if err := json.Unmarshal(fields["keep_firing_for"], &resource.KeepFiringFor); err != nil {
+				errs = append(errs, cog.MakeBuildErrors("keep_firing_for", err)...)
+			}
+
+		}
+		delete(fields, "keep_firing_for")
+
+	}
 	// Field "labels"
 	if fields["labels"] != nil {
 		if string(fields["labels"]) != "null" {
@@ -1284,6 +1320,17 @@ func (resource *Rule) UnmarshalJSONStrict(raw []byte) error {
 
 		}
 		delete(fields, "labels")
+
+	}
+	// Field "missingSeriesEvalsToResolve"
+	if fields["missingSeriesEvalsToResolve"] != nil {
+		if string(fields["missingSeriesEvalsToResolve"]) != "null" {
+			if err := json.Unmarshal(fields["missingSeriesEvalsToResolve"], &resource.MissingSeriesEvalsToResolve); err != nil {
+				errs = append(errs, cog.MakeBuildErrors("missingSeriesEvalsToResolve", err)...)
+			}
+
+		}
+		delete(fields, "missingSeriesEvalsToResolve")
 
 	}
 	// Field "noDataState"
@@ -1401,17 +1448,6 @@ func (resource *Rule) UnmarshalJSONStrict(raw []byte) error {
 		delete(fields, "updated")
 
 	}
-	// Field "keepFiringFor"
-	if fields["keepFiringFor"] != nil {
-		if string(fields["keepFiringFor"]) != "null" {
-			if err := json.Unmarshal(fields["keepFiringFor"], &resource.KeepFiringFor); err != nil {
-				errs = append(errs, cog.MakeBuildErrors("keepFiringFor", err)...)
-			}
-
-		}
-		delete(fields, "keepFiringFor")
-
-	}
 
 	for field := range fields {
 		errs = append(errs, cog.MakeBuildErrors("Rule", fmt.Errorf("unexpected field '%s'", field))...)
@@ -1472,6 +1508,15 @@ func (resource Rule) Equals(other Rule) bool {
 			return false
 		}
 	}
+	if resource.KeepFiringFor == nil && other.KeepFiringFor != nil || resource.KeepFiringFor != nil && other.KeepFiringFor == nil {
+		return false
+	}
+
+	if resource.KeepFiringFor != nil {
+		if *resource.KeepFiringFor != *other.KeepFiringFor {
+			return false
+		}
+	}
 
 	if len(resource.Labels) != len(other.Labels) {
 		return false
@@ -1479,6 +1524,15 @@ func (resource Rule) Equals(other Rule) bool {
 
 	for key1 := range resource.Labels {
 		if resource.Labels[key1] != other.Labels[key1] {
+			return false
+		}
+	}
+	if resource.MissingSeriesEvalsToResolve == nil && other.MissingSeriesEvalsToResolve != nil || resource.MissingSeriesEvalsToResolve != nil && other.MissingSeriesEvalsToResolve == nil {
+		return false
+	}
+
+	if resource.MissingSeriesEvalsToResolve != nil {
+		if *resource.MissingSeriesEvalsToResolve != *other.MissingSeriesEvalsToResolve {
 			return false
 		}
 	}
@@ -1536,15 +1590,6 @@ func (resource Rule) Equals(other Rule) bool {
 
 	if resource.Updated != nil {
 		if *resource.Updated != *other.Updated {
-			return false
-		}
-	}
-	if resource.KeepFiringFor == nil && other.KeepFiringFor != nil || resource.KeepFiringFor != nil && other.KeepFiringFor == nil {
-		return false
-	}
-
-	if resource.KeepFiringFor != nil {
-		if *resource.KeepFiringFor != *other.KeepFiringFor {
 			return false
 		}
 	}
@@ -1622,6 +1667,8 @@ type RecordRule struct {
 	From string `json:"from"`
 	// Name of the recorded metric.
 	Metric string `json:"metric"`
+	// Which data source should be used to write the output of the recording rule, specified by UID.
+	TargetDatasourceUid *string `json:"target_datasource_uid,omitempty"`
 }
 
 // NewRecordRule creates a new RecordRule object.
@@ -1669,6 +1716,17 @@ func (resource *RecordRule) UnmarshalJSONStrict(raw []byte) error {
 	} else {
 		errs = append(errs, cog.MakeBuildErrors("metric", errors.New("required field is missing from input"))...)
 	}
+	// Field "target_datasource_uid"
+	if fields["target_datasource_uid"] != nil {
+		if string(fields["target_datasource_uid"]) != "null" {
+			if err := json.Unmarshal(fields["target_datasource_uid"], &resource.TargetDatasourceUid); err != nil {
+				errs = append(errs, cog.MakeBuildErrors("target_datasource_uid", err)...)
+			}
+
+		}
+		delete(fields, "target_datasource_uid")
+
+	}
 
 	for field := range fields {
 		errs = append(errs, cog.MakeBuildErrors("RecordRule", fmt.Errorf("unexpected field '%s'", field))...)
@@ -1684,6 +1742,15 @@ func (resource RecordRule) Equals(other RecordRule) bool {
 	}
 	if resource.Metric != other.Metric {
 		return false
+	}
+	if resource.TargetDatasourceUid == nil && other.TargetDatasourceUid != nil || resource.TargetDatasourceUid != nil && other.TargetDatasourceUid == nil {
+		return false
+	}
+
+	if resource.TargetDatasourceUid != nil {
+		if *resource.TargetDatasourceUid != *other.TargetDatasourceUid {
+			return false
+		}
 	}
 
 	return true

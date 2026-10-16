@@ -7,6 +7,7 @@ title: <span class="badge object-type-class"></span> NotificationSettings
 
 ```java
 public class NotificationSettings {
+  public List<String> activeTimeIntervals;
   public List<String> groupBy;
   public String groupInterval;
   public String groupWait;

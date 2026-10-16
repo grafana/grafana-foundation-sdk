@@ -10,6 +10,7 @@ public class PanelSpec {
   public Double id;
   public String title;
   public String description;
+  public String subtitle;
   public List<DataLink> links;
   public QueryGroupKind data;
   public VizConfigKind vizConfig;

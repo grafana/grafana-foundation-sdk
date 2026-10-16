@@ -76,8 +76,18 @@ export class RuleBuilder implements cog.Builder<alerting.Rule> {
         return this;
     }
 
+    keepFiringFor(keepFiringFor: string): this {
+        this.internal.keep_firing_for = keepFiringFor;
+        return this;
+    }
+
     labels(labels: Record<string, string>): this {
         this.internal.labels = labels;
+        return this;
+    }
+
+    missingSeriesEvalsToResolve(missingSeriesEvalsToResolve: number): this {
+        this.internal.missingSeriesEvalsToResolve = missingSeriesEvalsToResolve;
         return this;
     }
 
@@ -143,13 +153,6 @@ export class RuleBuilder implements cog.Builder<alerting.Rule> {
 
     updated(updated: string): this {
         this.internal.updated = updated;
-        return this;
-    }
-
-    // You can set a Keep firing for period to avoid repeated firing-resolving-firing notifications caused by flapping conditions.
-    // Value is in nanoseconds
-    keepFiringFor(keepFiringFor: number): this {
-        this.internal.keepFiringFor = keepFiringFor;
         return this;
     }
 }

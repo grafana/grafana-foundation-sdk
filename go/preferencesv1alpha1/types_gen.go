@@ -6,7 +6,6 @@ import (
 	"encoding/json"
 	"errors"
 	"fmt"
-	"reflect"
 
 	cog "github.com/grafana/grafana-foundation-sdk/go/cog"
 )
@@ -69,93 +68,6 @@ func (resource QueryHistoryPreference) Equals(other QueryHistoryPreference) bool
 
 // Validate checks all the validation constraints that may be defined on `QueryHistoryPreference` fields for violations and returns them.
 func (resource QueryHistoryPreference) Validate() error {
-	return nil
-}
-
-type CookiePreferences struct {
-	Analytics   any `json:"analytics,omitempty"`
-	Performance any `json:"performance,omitempty"`
-	Functional  any `json:"functional,omitempty"`
-}
-
-// NewCookiePreferences creates a new CookiePreferences object.
-func NewCookiePreferences() *CookiePreferences {
-	return &CookiePreferences{}
-}
-
-// UnmarshalJSONStrict implements a custom JSON unmarshalling logic to decode `CookiePreferences` from JSON.
-// Note: the unmarshalling done by this function is strict. It will fail over required fields being absent from the input, fields having an incorrect type, unexpected fields being present, …
-func (resource *CookiePreferences) UnmarshalJSONStrict(raw []byte) error {
-	if raw == nil {
-		return nil
-	}
-	var errs cog.BuildErrors
-
-	fields := make(map[string]json.RawMessage)
-	if err := json.Unmarshal(raw, &fields); err != nil {
-		return err
-	}
-	// Field "analytics"
-	if fields["analytics"] != nil {
-		if string(fields["analytics"]) != "null" {
-			if err := json.Unmarshal(fields["analytics"], &resource.Analytics); err != nil {
-				errs = append(errs, cog.MakeBuildErrors("analytics", err)...)
-			}
-
-		}
-		delete(fields, "analytics")
-
-	}
-	// Field "performance"
-	if fields["performance"] != nil {
-		if string(fields["performance"]) != "null" {
-			if err := json.Unmarshal(fields["performance"], &resource.Performance); err != nil {
-				errs = append(errs, cog.MakeBuildErrors("performance", err)...)
-			}
-
-		}
-		delete(fields, "performance")
-
-	}
-	// Field "functional"
-	if fields["functional"] != nil {
-		if string(fields["functional"]) != "null" {
-			if err := json.Unmarshal(fields["functional"], &resource.Functional); err != nil {
-				errs = append(errs, cog.MakeBuildErrors("functional", err)...)
-			}
-
-		}
-		delete(fields, "functional")
-
-	}
-
-	for field := range fields {
-		errs = append(errs, cog.MakeBuildErrors("CookiePreferences", fmt.Errorf("unexpected field '%s'", field))...)
-	}
-
-	return errs
-}
-
-// Equals tests the equality of two `CookiePreferences` objects.
-func (resource CookiePreferences) Equals(other CookiePreferences) bool {
-	// is DeepEqual good enough here?
-	if !reflect.DeepEqual(resource.Analytics, other.Analytics) {
-		return false
-	}
-	// is DeepEqual good enough here?
-	if !reflect.DeepEqual(resource.Performance, other.Performance) {
-		return false
-	}
-	// is DeepEqual good enough here?
-	if !reflect.DeepEqual(resource.Functional, other.Functional) {
-		return false
-	}
-
-	return true
-}
-
-// Validate checks all the validation constraints that may be defined on `CookiePreferences` fields for violations and returns them.
-func (resource CookiePreferences) Validate() error {
 	return nil
 }
 
@@ -227,23 +139,20 @@ func (resource NavbarPreference) Validate() error {
 }
 
 type Preferences struct {
+	// Explicit home URL (NOTE: this can only be modified in the system settings)
+	HomeURL *string `json:"homeURL,omitempty"`
 	// UID for the home dashboard
 	HomeDashboardUID *string `json:"homeDashboardUID,omitempty"`
 	// The timezone selection
-	// TODO: this should use the timezone defined in common
 	Timezone *string `json:"timezone,omitempty"`
 	// day of the week (sunday, monday, etc)
 	WeekStart *string `json:"weekStart,omitempty"`
-	// light, dark, empty is default
+	// user interface theme
 	Theme *string `json:"theme,omitempty"`
-	// Selected language (beta)
+	// Selected language
 	Language *string `json:"language,omitempty"`
-	// Selected locale (beta)
-	RegionalFormat *string `json:"regionalFormat,omitempty"`
 	// Explore query history preferences
 	QueryHistory *QueryHistoryPreference `json:"queryHistory,omitempty"`
-	// Cookie preferences
-	CookiePreferences *CookiePreferences `json:"cookiePreferences,omitempty"`
 	// Navigation preferences
 	Navbar *NavbarPreference `json:"navbar,omitempty"`
 }
@@ -264,6 +173,17 @@ func (resource *Preferences) UnmarshalJSONStrict(raw []byte) error {
 	fields := make(map[string]json.RawMessage)
 	if err := json.Unmarshal(raw, &fields); err != nil {
 		return err
+	}
+	// Field "homeURL"
+	if fields["homeURL"] != nil {
+		if string(fields["homeURL"]) != "null" {
+			if err := json.Unmarshal(fields["homeURL"], &resource.HomeURL); err != nil {
+				errs = append(errs, cog.MakeBuildErrors("homeURL", err)...)
+			}
+
+		}
+		delete(fields, "homeURL")
+
 	}
 	// Field "homeDashboardUID"
 	if fields["homeDashboardUID"] != nil {
@@ -320,17 +240,6 @@ func (resource *Preferences) UnmarshalJSONStrict(raw []byte) error {
 		delete(fields, "language")
 
 	}
-	// Field "regionalFormat"
-	if fields["regionalFormat"] != nil {
-		if string(fields["regionalFormat"]) != "null" {
-			if err := json.Unmarshal(fields["regionalFormat"], &resource.RegionalFormat); err != nil {
-				errs = append(errs, cog.MakeBuildErrors("regionalFormat", err)...)
-			}
-
-		}
-		delete(fields, "regionalFormat")
-
-	}
 	// Field "queryHistory"
 	if fields["queryHistory"] != nil {
 		if string(fields["queryHistory"]) != "null" {
@@ -342,19 +251,6 @@ func (resource *Preferences) UnmarshalJSONStrict(raw []byte) error {
 
 		}
 		delete(fields, "queryHistory")
-
-	}
-	// Field "cookiePreferences"
-	if fields["cookiePreferences"] != nil {
-		if string(fields["cookiePreferences"]) != "null" {
-
-			resource.CookiePreferences = &CookiePreferences{}
-			if err := resource.CookiePreferences.UnmarshalJSONStrict(fields["cookiePreferences"]); err != nil {
-				errs = append(errs, cog.MakeBuildErrors("cookiePreferences", err)...)
-			}
-
-		}
-		delete(fields, "cookiePreferences")
 
 	}
 	// Field "navbar"
@@ -380,6 +276,15 @@ func (resource *Preferences) UnmarshalJSONStrict(raw []byte) error {
 
 // Equals tests the equality of two `Preferences` objects.
 func (resource Preferences) Equals(other Preferences) bool {
+	if resource.HomeURL == nil && other.HomeURL != nil || resource.HomeURL != nil && other.HomeURL == nil {
+		return false
+	}
+
+	if resource.HomeURL != nil {
+		if *resource.HomeURL != *other.HomeURL {
+			return false
+		}
+	}
 	if resource.HomeDashboardUID == nil && other.HomeDashboardUID != nil || resource.HomeDashboardUID != nil && other.HomeDashboardUID == nil {
 		return false
 	}
@@ -425,30 +330,12 @@ func (resource Preferences) Equals(other Preferences) bool {
 			return false
 		}
 	}
-	if resource.RegionalFormat == nil && other.RegionalFormat != nil || resource.RegionalFormat != nil && other.RegionalFormat == nil {
-		return false
-	}
-
-	if resource.RegionalFormat != nil {
-		if *resource.RegionalFormat != *other.RegionalFormat {
-			return false
-		}
-	}
 	if resource.QueryHistory == nil && other.QueryHistory != nil || resource.QueryHistory != nil && other.QueryHistory == nil {
 		return false
 	}
 
 	if resource.QueryHistory != nil {
 		if !resource.QueryHistory.Equals(*other.QueryHistory) {
-			return false
-		}
-	}
-	if resource.CookiePreferences == nil && other.CookiePreferences != nil || resource.CookiePreferences != nil && other.CookiePreferences == nil {
-		return false
-	}
-
-	if resource.CookiePreferences != nil {
-		if !resource.CookiePreferences.Equals(*other.CookiePreferences) {
 			return false
 		}
 	}
@@ -471,11 +358,6 @@ func (resource Preferences) Validate() error {
 	if resource.QueryHistory != nil {
 		if err := resource.QueryHistory.Validate(); err != nil {
 			errs = append(errs, cog.MakeBuildErrors("queryHistory", err)...)
-		}
-	}
-	if resource.CookiePreferences != nil {
-		if err := resource.CookiePreferences.Validate(); err != nil {
-			errs = append(errs, cog.MakeBuildErrors("cookiePreferences", err)...)
 		}
 	}
 	if resource.Navbar != nil {

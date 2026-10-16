@@ -9,13 +9,17 @@ title: <span class="badge object-type-class"></span> Preferences
 class Preferences implements \JsonSerializable
 {
     /**
+     * Explicit home URL (NOTE: this can only be modified in the system settings)
+     */
+    public ?string $homeURL;
+
+    /**
      * UID for the home dashboard
      */
     public ?string $homeDashboardUID;
 
     /**
      * The timezone selection
-     * TODO: this should use the timezone defined in common
      */
     public ?string $timezone;
 
@@ -25,29 +29,19 @@ class Preferences implements \JsonSerializable
     public ?string $weekStart;
 
     /**
-     * light, dark, empty is default
+     * user interface theme
      */
     public ?string $theme;
 
     /**
-     * Selected language (beta)
+     * Selected language
      */
     public ?string $language;
-
-    /**
-     * Selected locale (beta)
-     */
-    public ?string $regionalFormat;
 
     /**
      * Explore query history preferences
      */
     public ?\Grafana\Foundation\Preferencesv1alpha1\QueryHistoryPreference $queryHistory;
-
-    /**
-     * Cookie preferences
-     */
-    public ?\Grafana\Foundation\Preferencesv1alpha1\CookiePreferences $cookiePreferences;
 
     /**
      * Navigation preferences

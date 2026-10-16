@@ -36,11 +36,24 @@ final class PanelConverter
     
     
     }
-            if ($input->spec->description !== "") {
+            if ($input->spec->description !== null && $input->spec->description !== "") {
     
         
     $buffer = 'description(';
         $arg0 =\var_export($input->spec->description, true);
+        $buffer .= $arg0;
+        
+    $buffer .= ')';
+
+    $calls[] = $buffer;
+    
+    
+    }
+            if ($input->spec->subtitle !== null && $input->spec->subtitle !== "") {
+    
+        
+    $buffer = 'subtitle(';
+        $arg0 =\var_export($input->spec->subtitle, true);
         $buffer .= $arg0;
         
     $buffer .= ')';

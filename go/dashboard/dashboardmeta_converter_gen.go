@@ -217,18 +217,6 @@ func DashboardMetaConverter(input DashboardMeta) string {
 		buffer.Reset()
 
 	}
-	if input.IsStarred != nil {
-
-		buffer.WriteString(`IsStarred(`)
-		arg0 := fmt.Sprintf("%#v", *input.IsStarred)
-		buffer.WriteString(arg0)
-
-		buffer.WriteString(")")
-
-		calls = append(calls, buffer.String())
-		buffer.Reset()
-
-	}
 	if input.Provisioned != nil {
 
 		buffer.WriteString(`Provisioned(`)

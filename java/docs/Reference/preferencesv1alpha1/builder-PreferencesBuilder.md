@@ -18,14 +18,6 @@ Builds the object.
 public Preferences build()
 ```
 
-### <span class="badge object-method"></span> cookiePreferences
-
-Cookie preferences
-
-```java
-public PreferencesBuilder cookiePreferences(com.grafana.foundation.cog.Builder<CookiePreferences> cookiePreferences)
-```
-
 ### <span class="badge object-method"></span> homeDashboardUID
 
 UID for the home dashboard
@@ -34,9 +26,17 @@ UID for the home dashboard
 public PreferencesBuilder homeDashboardUID(String homeDashboardUID)
 ```
 
+### <span class="badge object-method"></span> homeURL
+
+Explicit home URL (NOTE: this can only be modified in the system settings)
+
+```java
+public PreferencesBuilder homeURL(String homeURL)
+```
+
 ### <span class="badge object-method"></span> language
 
-Selected language (beta)
+Selected language
 
 ```java
 public PreferencesBuilder language(String language)
@@ -58,17 +58,9 @@ Explore query history preferences
 public PreferencesBuilder queryHistory(com.grafana.foundation.cog.Builder<QueryHistoryPreference> queryHistory)
 ```
 
-### <span class="badge object-method"></span> regionalFormat
-
-Selected locale (beta)
-
-```java
-public PreferencesBuilder regionalFormat(String regionalFormat)
-```
-
 ### <span class="badge object-method"></span> theme
 
-light, dark, empty is default
+user interface theme
 
 ```java
 public PreferencesBuilder theme(String theme)
@@ -77,8 +69,6 @@ public PreferencesBuilder theme(String theme)
 ### <span class="badge object-method"></span> timezone
 
 The timezone selection
-
-TODO: this should use the timezone defined in common
 
 ```java
 public PreferencesBuilder timezone(String timezone)
