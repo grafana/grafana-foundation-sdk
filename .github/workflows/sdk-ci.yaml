@@ -81,6 +81,9 @@ jobs:
           GOGC: 'off'
           GITHUB_AUTH_TOKEN: ${{ steps.get-github-token.outputs.token }} # in case cog needs to access private repositories
 
+      - name: Test generated stat orientation
+        run: devbox run go -C go test ./common
+
       - name: Run examples
         run: |
           devbox run ./scripts/run-examples.sh
