@@ -28,6 +28,14 @@ The fixed color value for fixed or shades color modes.
 def fixed_color(fixed_color: str) -> typing.Self
 ```
 
+### <span class="badge object-method"></span> gradient_color_to
+
+The end color for the gradient color mode (smallest value). Only used when mode is gradient.
+
+```python
+def gradient_color_to(gradient_color_to: str) -> typing.Self
+```
+
 ### <span class="badge object-method"></span> mode
 
 The main color scheme mode.

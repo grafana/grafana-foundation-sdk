@@ -31,7 +31,7 @@ func (builder *AnnotationPanelFilterBuilder) Exclude(exclude bool) *AnnotationPa
 Panel IDs that should be included or excluded
 
 ```go
-func (builder *AnnotationPanelFilterBuilder) Ids(ids []uint32) *AnnotationPanelFilterBuilder
+func (builder *AnnotationPanelFilterBuilder) Ids(ids []float64) *AnnotationPanelFilterBuilder
 ```
 
 ## See also

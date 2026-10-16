@@ -32,6 +32,12 @@ export class FieldColorBuilder implements cog.Builder<dashboardv2beta1.FieldColo
         return this;
     }
 
+    // The end color for the gradient color mode (smallest value). Only used when mode is gradient.
+    gradientColorTo(gradientColorTo: string): this {
+        this.internal.gradientColorTo = gradientColorTo;
+        return this;
+    }
+
     // Some visualizations need to know how to assign a series color from by value color schemes.
     seriesBy(seriesBy: dashboardv2beta1.FieldColorSeriesByMode): this {
         this.internal.seriesBy = seriesBy;

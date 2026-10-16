@@ -7,23 +7,20 @@ title: <span class="badge object-type-class"></span> Preferences
 
 ```python
 class Preferences:
+    # Explicit home URL (NOTE: this can only be modified in the system settings)
+    home_url: typing.Optional[str]
     # UID for the home dashboard
     home_dashboard_uid: typing.Optional[str]
     # The timezone selection
-    # TODO: this should use the timezone defined in common
     timezone: typing.Optional[str]
     # day of the week (sunday, monday, etc)
     week_start: typing.Optional[str]
-    # light, dark, empty is default
+    # user interface theme
     theme: typing.Optional[str]
-    # Selected language (beta)
+    # Selected language
     language: typing.Optional[str]
-    # Selected locale (beta)
-    regional_format: typing.Optional[str]
     # Explore query history preferences
     query_history: typing.Optional[preferencesv1alpha1.QueryHistoryPreference]
-    # Cookie preferences
-    cookie_preferences: typing.Optional[preferencesv1alpha1.CookiePreferences]
     # Navigation preferences
     navbar: typing.Optional[preferencesv1alpha1.NavbarPreference]
 ```

@@ -22,6 +22,11 @@ public class FieldColorBuilder implements com.grafana.foundation.cog.Builder<Fie
         return this;
     }
     
+    public FieldColorBuilder gradientColorTo(String gradientColorTo) {
+        this.internal.gradientColorTo = gradientColorTo;
+        return this;
+    }
+    
     public FieldColorBuilder seriesBy(FieldColorSeriesByMode seriesBy) {
         this.internal.seriesBy = seriesBy;
         return this;

@@ -3,6 +3,8 @@ title: <span class="badge builder"></span> AnnotationPermissionBuilder
 ---
 # <span class="badge builder"></span> AnnotationPermissionBuilder
 
++k8s:deepcopy-gen=true
+
 ## Constructor
 
 ```go
@@ -20,14 +22,10 @@ func (builder *AnnotationPermissionBuilder) Build() (AnnotationPermission, error
 
 ### <span class="badge object-method"></span> Dashboard
 
++k8s:deepcopy-gen=true
+
 ```go
 func (builder *AnnotationPermissionBuilder) Dashboard(dashboard cog.Builder[dashboard.AnnotationActions]) *AnnotationPermissionBuilder
-```
-
-### <span class="badge object-method"></span> Organization
-
-```go
-func (builder *AnnotationPermissionBuilder) Organization(organization cog.Builder[dashboard.AnnotationActions]) *AnnotationPermissionBuilder
 ```
 
 ## See also

@@ -18,6 +18,20 @@ Builds the object.
 build()
 ```
 
+### <span class="badge object-method"></span> activeTimeIntervals
+
+Override the times when notifications should not be muted. These must match the name of a mute time interval defined
+
+in the alertmanager configuration time_intervals section. All notifications will be suppressed unless they are sent
+
+at the time that matches any interval.
+
+@param array<string> $activeTimeIntervals
+
+```php
+activeTimeIntervals(array $activeTimeIntervals)
+```
+
 ### <span class="badge object-method"></span> groupBy
 
 Override the labels by which incoming alerts are grouped together. For example, multiple alerts coming in for
@@ -62,7 +76,7 @@ groupWait(string $groupWait)
 
 Override the times when notifications should be muted. These must match the name of a mute time interval defined
 
-in the alertmanager configuration mute_time_intervals section. When muted it will not send any notifications, but
+in the alertmanager configuration time_intervals section. When muted it will not send any notifications, but
 
 otherwise acts normally.
 

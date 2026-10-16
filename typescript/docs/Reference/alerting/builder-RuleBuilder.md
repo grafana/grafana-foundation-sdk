@@ -66,18 +66,20 @@ isPaused(isPaused: boolean)
 
 ### <span class="badge object-method"></span> keepFiringFor
 
-You can set a Keep firing for period to avoid repeated firing-resolving-firing notifications caused by flapping conditions.
-
-Value is in nanoseconds
-
 ```typescript
-keepFiringFor(keepFiringFor: number)
+keepFiringFor(keepFiringFor: string)
 ```
 
 ### <span class="badge object-method"></span> labels
 
 ```typescript
 labels(labels: Record<string, string>)
+```
+
+### <span class="badge object-method"></span> missingSeriesEvalsToResolve
+
+```typescript
+missingSeriesEvalsToResolve(missingSeriesEvalsToResolve: number)
 ```
 
 ### <span class="badge object-method"></span> noDataState

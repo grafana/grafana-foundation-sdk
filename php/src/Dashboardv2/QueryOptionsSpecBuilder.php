@@ -30,6 +30,13 @@ class QueryOptionsSpecBuilder implements \Grafana\Foundation\Cog\Builder
         return $this;
     }
 
+    public function timeTo(string $timeTo): static
+    {
+        $this->internal->timeTo = $timeTo;
+    
+        return $this;
+    }
+
     public function maxDataPoints(int $maxDataPoints): static
     {
         $this->internal->maxDataPoints = $maxDataPoints;

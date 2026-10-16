@@ -20,6 +20,8 @@ build()
 
 ### <span class="badge object-method"></span> annotationsPermissions
 
++k8s:deepcopy-gen=true
+
 ```typescript
 annotationsPermissions(annotationsPermissions: cog.Builder<dashboard.AnnotationPermission>)
 ```
@@ -120,12 +122,6 @@ isFolder(isFolder: boolean)
 
 ```typescript
 isSnapshot(isSnapshot: boolean)
-```
-
-### <span class="badge object-method"></span> isStarred
-
-```typescript
-isStarred(isStarred: boolean)
 ```
 
 ### <span class="badge object-method"></span> provisioned

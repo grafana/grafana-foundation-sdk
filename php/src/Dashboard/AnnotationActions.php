@@ -2,6 +2,9 @@
 
 namespace Grafana\Foundation\Dashboard;
 
+/**
+ * +k8s:deepcopy-gen=true
+ */
 class AnnotationActions implements \JsonSerializable
 {
     public ?bool $canAdd;

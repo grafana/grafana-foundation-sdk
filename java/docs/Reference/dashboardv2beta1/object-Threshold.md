@@ -8,6 +8,7 @@ title: <span class="badge object-type-class"></span> Threshold
 ```java
 public class Threshold {
   public Double value;
+  public String valueExpr;
   public String color;
 }
 ```

@@ -3,12 +3,18 @@ title: <span class="badge object-type-class"></span> AnnotationPermission
 ---
 # <span class="badge object-type-class"></span> AnnotationPermission
 
++k8s:deepcopy-gen=true
+
 ## Definition
 
 ```python
 class AnnotationPermission:
+    """
+    +k8s:deepcopy-gen=true
+    """
+
+    # +k8s:deepcopy-gen=true
     dashboard: typing.Optional[dashboard.AnnotationActions]
-    organization: typing.Optional[dashboard.AnnotationActions]
 ```
 ## Methods
 

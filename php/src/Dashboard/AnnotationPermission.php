@@ -2,20 +2,22 @@
 
 namespace Grafana\Foundation\Dashboard;
 
+/**
+ * +k8s:deepcopy-gen=true
+ */
 class AnnotationPermission implements \JsonSerializable
 {
+    /**
+     * +k8s:deepcopy-gen=true
+     */
     public ?\Grafana\Foundation\Dashboard\AnnotationActions $dashboard;
-
-    public ?\Grafana\Foundation\Dashboard\AnnotationActions $organization;
 
     /**
      * @param \Grafana\Foundation\Dashboard\AnnotationActions|null $dashboard
-     * @param \Grafana\Foundation\Dashboard\AnnotationActions|null $organization
      */
-    public function __construct(?\Grafana\Foundation\Dashboard\AnnotationActions $dashboard = null, ?\Grafana\Foundation\Dashboard\AnnotationActions $organization = null)
+    public function __construct(?\Grafana\Foundation\Dashboard\AnnotationActions $dashboard = null)
     {
         $this->dashboard = $dashboard;
-        $this->organization = $organization;
     }
 
     /**
@@ -23,7 +25,7 @@ class AnnotationPermission implements \JsonSerializable
      */
     public static function fromArray(array $inputData): self
     {
-        /** @var array{dashboard?: mixed, organization?: mixed} $inputData */
+        /** @var array{dashboard?: mixed} $inputData */
         $data = $inputData;
         return new self(
             dashboard: isset($data["dashboard"]) ? (function($input) {
@@ -31,11 +33,6 @@ class AnnotationPermission implements \JsonSerializable
     $val = $input;
     	return \Grafana\Foundation\Dashboard\AnnotationActions::fromArray($val);
     })($data["dashboard"]) : null,
-            organization: isset($data["organization"]) ? (function($input) {
-    	/** @var array{canAdd?: bool, canDelete?: bool, canEdit?: bool} */
-    $val = $input;
-    	return \Grafana\Foundation\Dashboard\AnnotationActions::fromArray($val);
-    })($data["organization"]) : null,
         );
     }
 
@@ -47,9 +44,6 @@ class AnnotationPermission implements \JsonSerializable
         $data = new \stdClass;
         if (isset($this->dashboard)) {
             $data->dashboard = $this->dashboard;
-        }
-        if (isset($this->organization)) {
-            $data->organization = $this->organization;
         }
         return $data;
     }

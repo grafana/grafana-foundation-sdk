@@ -7,18 +7,24 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.ObjectWriter;
 import java.util.LinkedList;
+import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonSetter;
 import com.fasterxml.jackson.annotation.Nulls;
 import java.util.List;
-import com.fasterxml.jackson.annotation.JsonInclude;
 
 public class PanelSpec {
     @JsonProperty("id")
     public Double id;
     @JsonProperty("title")
     public String title;
+    // Shown in a info icon tooltip next to panel title
+    @JsonInclude(JsonInclude.Include.NON_NULL)
     @JsonProperty("description")
     public String description;
+    // Shown in a sub header below the title.
+    @JsonInclude(JsonInclude.Include.NON_NULL)
+    @JsonProperty("subtitle")
+    public String subtitle;
     @JsonSetter(nulls = Nulls.AS_EMPTY)
     @JsonProperty("links")
     public List<DataLink> links;
@@ -34,15 +40,15 @@ public class PanelSpec {
     public PanelSpec() {
         this.id = 0.0;
         this.title = "";
-        this.description = "";
         this.links = new LinkedList<>();
         this.data = new com.grafana.foundation.dashboardv2beta1.QueryGroupKind();
         this.vizConfig = new com.grafana.foundation.dashboardv2beta1.VizConfigKind();
     }
-    public PanelSpec(Double id,String title,String description,List<DataLink> links,QueryGroupKind data,VizConfigKind vizConfig,Boolean transparent) {
+    public PanelSpec(Double id,String title,String description,String subtitle,List<DataLink> links,QueryGroupKind data,VizConfigKind vizConfig,Boolean transparent) {
         this.id = id;
         this.title = title;
         this.description = description;
+        this.subtitle = subtitle;
         this.links = links;
         this.data = data;
         this.vizConfig = vizConfig;

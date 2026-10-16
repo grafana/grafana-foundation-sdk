@@ -8,6 +8,7 @@ title: <span class="badge object-type-interface"></span> QueryOptionsSpec
 ```typescript
 export interface QueryOptionsSpec {
 	timeFrom?: string;
+	timeTo?: string;
 	maxDataPoints?: number;
 	timeShift?: string;
 	queryCachingTTL?: number;

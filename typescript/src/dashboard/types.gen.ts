@@ -4,6 +4,9 @@ import * as cog from '../cog';
 import * as common from '../common';
 
 
+/**
+ * +k8s:deepcopy-gen=true
+ */
 export interface AnnotationActions {
 	canAdd?: boolean;
 	canDelete?: boolean;
@@ -13,15 +16,19 @@ export interface AnnotationActions {
 export const defaultAnnotationActions = (): AnnotationActions => ({
 });
 
+/**
+ * +k8s:deepcopy-gen=true
+ */
 export interface AnnotationPermission {
+	// +k8s:deepcopy-gen=true
 	dashboard?: AnnotationActions;
-	organization?: AnnotationActions;
 }
 
 export const defaultAnnotationPermission = (): AnnotationPermission => ({
 });
 
 export interface DashboardMeta {
+	// +k8s:deepcopy-gen=true
 	annotationsPermissions?: AnnotationPermission;
 	apiVersion?: string;
 	canAdmin?: boolean;
@@ -40,7 +47,6 @@ export interface DashboardMeta {
 	hasAcl?: boolean;
 	isFolder?: boolean;
 	isSnapshot?: boolean;
-	isStarred?: boolean;
 	provisioned?: boolean;
 	provisionedExternalId?: string;
 	publicDashboardEnabled?: boolean;

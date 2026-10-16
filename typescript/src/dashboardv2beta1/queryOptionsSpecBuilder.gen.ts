@@ -22,6 +22,11 @@ export class QueryOptionsSpecBuilder implements cog.Builder<dashboardv2beta1.Que
         return this;
     }
 
+    timeTo(timeTo: string): this {
+        this.internal.timeTo = timeTo;
+        return this;
+    }
+
     maxDataPoints(maxDataPoints: number): this {
         this.internal.maxDataPoints = maxDataPoints;
         return this;

@@ -47,7 +47,7 @@ class QueryGroupSpec implements \JsonSerializable
     	return \Grafana\Foundation\Dashboardv2\TransformationKind::fromArray($val);
     }), $data["transformations"] ?? [])),
             queryOptions: isset($data["queryOptions"]) ? (function($input) {
-    	/** @var array{timeFrom?: string, maxDataPoints?: int, timeShift?: string, queryCachingTTL?: int, interval?: string, cacheTimeout?: string, hideTimeOverride?: bool, timeCompare?: string} */
+    	/** @var array{timeFrom?: string, timeTo?: string, maxDataPoints?: int, timeShift?: string, queryCachingTTL?: int, interval?: string, cacheTimeout?: string, hideTimeOverride?: bool, timeCompare?: string} */
     $val = $input;
     	return \Grafana\Foundation\Dashboardv2\QueryOptionsSpec::fromArray($val);
     })($data["queryOptions"]) : null,

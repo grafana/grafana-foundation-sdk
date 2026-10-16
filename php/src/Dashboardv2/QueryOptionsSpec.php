@@ -6,6 +6,8 @@ class QueryOptionsSpec implements \JsonSerializable
 {
     public ?string $timeFrom;
 
+    public ?string $timeTo;
+
     public ?int $maxDataPoints;
 
     public ?string $timeShift;
@@ -22,6 +24,7 @@ class QueryOptionsSpec implements \JsonSerializable
 
     /**
      * @param string|null $timeFrom
+     * @param string|null $timeTo
      * @param int|null $maxDataPoints
      * @param string|null $timeShift
      * @param int|null $queryCachingTTL
@@ -30,9 +33,10 @@ class QueryOptionsSpec implements \JsonSerializable
      * @param bool|null $hideTimeOverride
      * @param string|null $timeCompare
      */
-    public function __construct(?string $timeFrom = null, ?int $maxDataPoints = null, ?string $timeShift = null, ?int $queryCachingTTL = null, ?string $interval = null, ?string $cacheTimeout = null, ?bool $hideTimeOverride = null, ?string $timeCompare = null)
+    public function __construct(?string $timeFrom = null, ?string $timeTo = null, ?int $maxDataPoints = null, ?string $timeShift = null, ?int $queryCachingTTL = null, ?string $interval = null, ?string $cacheTimeout = null, ?bool $hideTimeOverride = null, ?string $timeCompare = null)
     {
         $this->timeFrom = $timeFrom;
+        $this->timeTo = $timeTo;
         $this->maxDataPoints = $maxDataPoints;
         $this->timeShift = $timeShift;
         $this->queryCachingTTL = $queryCachingTTL;
@@ -47,10 +51,11 @@ class QueryOptionsSpec implements \JsonSerializable
      */
     public static function fromArray(array $inputData): self
     {
-        /** @var array{timeFrom?: string, maxDataPoints?: int, timeShift?: string, queryCachingTTL?: int, interval?: string, cacheTimeout?: string, hideTimeOverride?: bool, timeCompare?: string} $inputData */
+        /** @var array{timeFrom?: string, timeTo?: string, maxDataPoints?: int, timeShift?: string, queryCachingTTL?: int, interval?: string, cacheTimeout?: string, hideTimeOverride?: bool, timeCompare?: string} $inputData */
         $data = $inputData;
         return new self(
             timeFrom: $data["timeFrom"] ?? null,
+            timeTo: $data["timeTo"] ?? null,
             maxDataPoints: $data["maxDataPoints"] ?? null,
             timeShift: $data["timeShift"] ?? null,
             queryCachingTTL: $data["queryCachingTTL"] ?? null,
@@ -69,6 +74,9 @@ class QueryOptionsSpec implements \JsonSerializable
         $data = new \stdClass;
         if (isset($this->timeFrom)) {
             $data->timeFrom = $this->timeFrom;
+        }
+        if (isset($this->timeTo)) {
+            $data->timeTo = $this->timeTo;
         }
         if (isset($this->maxDataPoints)) {
             $data->maxDataPoints = $this->maxDataPoints;

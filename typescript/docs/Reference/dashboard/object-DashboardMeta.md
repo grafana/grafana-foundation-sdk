@@ -7,6 +7,7 @@ title: <span class="badge object-type-interface"></span> DashboardMeta
 
 ```typescript
 export interface DashboardMeta {
+	// +k8s:deepcopy-gen=true
 	annotationsPermissions?: dashboard.AnnotationPermission;
 	apiVersion?: string;
 	canAdmin?: boolean;
@@ -25,7 +26,6 @@ export interface DashboardMeta {
 	hasAcl?: boolean;
 	isFolder?: boolean;
 	isSnapshot?: boolean;
-	isStarred?: boolean;
 	provisioned?: boolean;
 	provisionedExternalId?: string;
 	publicDashboardEnabled?: boolean;

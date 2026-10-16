@@ -8,7 +8,7 @@ title: <span class="badge object-type-class"></span> AnnotationPanelFilter
 ```java
 public class AnnotationPanelFilter {
   public Boolean exclude;
-  public List<Integer> ids;
+  public List<Double> ids;
 }
 ```
 ## See also

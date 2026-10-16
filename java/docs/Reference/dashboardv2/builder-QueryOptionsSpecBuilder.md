@@ -66,6 +66,12 @@ public QueryOptionsSpecBuilder timeFrom(String timeFrom)
 public QueryOptionsSpecBuilder timeShift(String timeShift)
 ```
 
+### <span class="badge object-method"></span> timeTo
+
+```java
+public QueryOptionsSpecBuilder timeTo(String timeTo)
+```
+
 ## See also
 
  * <span class="badge object-type-class"></span> [QueryOptionsSpec](./object-QueryOptionsSpec.md)

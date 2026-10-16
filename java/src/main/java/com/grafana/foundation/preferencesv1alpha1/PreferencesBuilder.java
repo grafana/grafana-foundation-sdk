@@ -9,6 +9,11 @@ public class PreferencesBuilder implements com.grafana.foundation.cog.Builder<Pr
     public PreferencesBuilder() {
         this.internal = new Preferences();
     }
+    public PreferencesBuilder homeURL(String homeURL) {
+        this.internal.homeURL = homeURL;
+        return this;
+    }
+    
     public PreferencesBuilder homeDashboardUID(String homeDashboardUID) {
         this.internal.homeDashboardUID = homeDashboardUID;
         return this;
@@ -34,20 +39,9 @@ public class PreferencesBuilder implements com.grafana.foundation.cog.Builder<Pr
         return this;
     }
     
-    public PreferencesBuilder regionalFormat(String regionalFormat) {
-        this.internal.regionalFormat = regionalFormat;
-        return this;
-    }
-    
     public PreferencesBuilder queryHistory(com.grafana.foundation.cog.Builder<QueryHistoryPreference> queryHistory) {
     QueryHistoryPreference queryHistoryResource = queryHistory.build();
         this.internal.queryHistory = queryHistoryResource;
-        return this;
-    }
-    
-    public PreferencesBuilder cookiePreferences(com.grafana.foundation.cog.Builder<CookiePreferences> cookiePreferences) {
-    CookiePreferences cookiePreferencesResource = cookiePreferences.build();
-        this.internal.cookiePreferences = cookiePreferencesResource;
         return this;
     }
     

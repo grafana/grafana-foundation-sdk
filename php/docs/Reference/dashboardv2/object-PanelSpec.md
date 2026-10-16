@@ -12,7 +12,15 @@ class PanelSpec implements \JsonSerializable
 
     public string $title;
 
-    public string $description;
+    /**
+     * Shown in a info icon tooltip next to panel title
+     */
+    public ?string $description;
+
+    /**
+     * Shown in a sub header below the title.
+     */
+    public ?string $subtitle;
 
     /**
      * @var array<\Grafana\Foundation\Dashboardv2\DataLink>

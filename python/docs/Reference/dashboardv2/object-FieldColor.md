@@ -17,6 +17,8 @@ class FieldColor:
     mode: dashboardv2.FieldColorModeId
     # The fixed color value for fixed or shades color modes.
     fixed_color: typing.Optional[str]
+    # The end color for the gradient color mode (smallest value). Only used when mode is gradient.
+    gradient_color_to: typing.Optional[str]
     # Some visualizations need to know how to assign a series color from by value color schemes.
     series_by: typing.Optional[dashboardv2.FieldColorSeriesByMode]
 ```

@@ -3,6 +3,9 @@
 package com.grafana.foundation.dashboard;
 
 
+/**
+ * +k8s:deepcopy-gen=true
+ */
 public class AnnotationPermissionBuilder implements com.grafana.foundation.cog.Builder<AnnotationPermission> {
     protected final AnnotationPermission internal;
     
@@ -12,12 +15,6 @@ public class AnnotationPermissionBuilder implements com.grafana.foundation.cog.B
     public AnnotationPermissionBuilder dashboard(com.grafana.foundation.cog.Builder<AnnotationActions> dashboard) {
     AnnotationActions dashboardResource = dashboard.build();
         this.internal.dashboard = dashboardResource;
-        return this;
-    }
-    
-    public AnnotationPermissionBuilder organization(com.grafana.foundation.cog.Builder<AnnotationActions> organization) {
-    AnnotationActions organizationResource = organization.build();
-        this.internal.organization = organizationResource;
         return this;
     }
     public AnnotationPermission build() {

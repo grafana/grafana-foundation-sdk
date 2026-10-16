@@ -15,6 +15,14 @@ Accepted values are:
 
 `palette-classic-by-name`: Classic palette (by name). Grafana will assign color by looking up a color in a palette by series name. Useful for Graphs and pie charts and other categorical data visualizations
 
+`palette-colorblind`: Color blind safe palette. A discrete palette whose colors are distinguishable under common forms of color vision deficiency. Useful for categorical and multi-series data visualizations
+
+`palette-categorical-next`: Experimental categorical palette. Useful for categorical and multi-series data visualizations
+
+`palette-categorical-next-2`: Experimental categorical palette. Useful for categorical and multi-series data visualizations
+
+`palette-categorical-next-3`: Experimental categorical palette. Useful for categorical and multi-series data visualizations
+
 `continuous-viridis`: Continuous Viridis palette mode
 
 `continuous-magma`: Continuous Magma palette mode
@@ -49,6 +57,8 @@ Accepted values are:
 
 `fixed`: Fixed color mode. Specify a single color, useful in an override rule.
 
+`gradient`: Gradient color mode. Interpolate between two colors based on value order; the start color is taken from fixedColor and the end color from gradientColorTo.
+
 ## Definition
 
 ```java
@@ -64,6 +74,10 @@ import com.fasterxml.jackson.annotation.JsonValue;
 // `thresholds`: From thresholds. Informs Grafana to take the color from the matching threshold
 // `palette-classic`: Classic palette. Grafana will assign color by looking up a color in a palette by series index. Useful for Graphs and pie charts and other categorical data visualizations
 // `palette-classic-by-name`: Classic palette (by name). Grafana will assign color by looking up a color in a palette by series name. Useful for Graphs and pie charts and other categorical data visualizations
+// `palette-colorblind`: Color blind safe palette. A discrete palette whose colors are distinguishable under common forms of color vision deficiency. Useful for categorical and multi-series data visualizations
+// `palette-categorical-next`: Experimental categorical palette. Useful for categorical and multi-series data visualizations
+// `palette-categorical-next-2`: Experimental categorical palette. Useful for categorical and multi-series data visualizations
+// `palette-categorical-next-3`: Experimental categorical palette. Useful for categorical and multi-series data visualizations
 // `continuous-viridis`: Continuous Viridis palette mode
 // `continuous-magma`: Continuous Magma palette mode
 // `continuous-plasma`: Continuous Plasma palette mode
@@ -81,11 +95,16 @@ import com.fasterxml.jackson.annotation.JsonValue;
 // `continuous-purples`: Continuous Purple palette mode
 // `shades`: Shades of a single color. Specify a single color, useful in an override rule.
 // `fixed`: Fixed color mode. Specify a single color, useful in an override rule.
+// `gradient`: Gradient color mode. Interpolate between two colors based on value order; the start color is taken from fixedColor and the end color from gradientColorTo.
 @JsonFormat(shape = JsonFormat.Shape.OBJECT)
 public enum FieldColorModeId {
     THRESHOLDS("thresholds"),
     PALETTE_CLASSIC("palette-classic"),
     PALETTE_CLASSIC_BY_NAME("palette-classic-by-name"),
+    PALETTE_COLORBLIND("palette-colorblind"),
+    PALETTE_CATEGORICAL_NEXT("palette-categorical-next"),
+    PALETTE_CATEGORICAL_NEXT_2("palette-categorical-next-2"),
+    PALETTE_CATEGORICAL_NEXT_3("palette-categorical-next-3"),
     CONTINUOUS_VIRIDIS("continuous-viridis"),
     CONTINUOUS_MAGMA("continuous-magma"),
     CONTINUOUS_PLASMA("continuous-plasma"),
@@ -103,6 +122,7 @@ public enum FieldColorModeId {
     CONTINUOUS_PURPLES("continuous-purples"),
     FIXED("fixed"),
     SHADES("shades"),
+    GRADIENT("gradient"),
     _EMPTY("");
 
     private final String value;

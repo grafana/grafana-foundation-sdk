@@ -13,6 +13,23 @@ func NotificationSettingsConverter(input NotificationSettings) string {
 		`alerting.NewNotificationSettingsBuilder()`,
 	}
 	var buffer strings.Builder
+	if input.ActiveTimeIntervals != nil && len(input.ActiveTimeIntervals) >= 1 {
+
+		buffer.WriteString(`ActiveTimeIntervals(`)
+		tmparg0 := []string{}
+		for _, arg1 := range input.ActiveTimeIntervals {
+			tmpactive_time_intervalsarg1 := fmt.Sprintf("%#v", arg1)
+			tmparg0 = append(tmparg0, tmpactive_time_intervalsarg1)
+		}
+		arg0 := "[]string{" + strings.Join(tmparg0, ",\n") + "}"
+		buffer.WriteString(arg0)
+
+		buffer.WriteString(")")
+
+		calls = append(calls, buffer.String())
+		buffer.Reset()
+
+	}
 	if input.GroupBy != nil && len(input.GroupBy) >= 1 {
 
 		buffer.WriteString(`GroupBy(`)

@@ -8,6 +8,9 @@ title: <span class="badge object-type-class"></span> DashboardMeta
 ```php
 class DashboardMeta implements \JsonSerializable
 {
+    /**
+     * +k8s:deepcopy-gen=true
+     */
     public ?\Grafana\Foundation\Dashboard\AnnotationPermission $annotationsPermissions;
 
     public ?string $apiVersion;
@@ -44,8 +47,6 @@ class DashboardMeta implements \JsonSerializable
     public ?bool $isFolder;
 
     public ?bool $isSnapshot;
-
-    public ?bool $isStarred;
 
     public ?bool $provisioned;
 

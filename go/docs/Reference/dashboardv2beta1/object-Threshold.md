@@ -9,6 +9,8 @@ title: <span class="badge object-type-struct"></span> Threshold
 type Threshold struct {
     // Value null means -Infinity
     Value *float64 `json:"value"`
+    // Optional dashboard-variable expression (e.g. `$myVar`) resolved at render time; `value` is the numeric fallback when the expression cannot be resolved to a single finite number.
+    ValueExpr *string `json:"valueExpr,omitempty"`
     Color string `json:"color"`
 }
 ```

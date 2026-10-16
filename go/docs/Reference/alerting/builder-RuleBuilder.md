@@ -66,18 +66,20 @@ func (builder *RuleBuilder) IsPaused(isPaused bool) *RuleBuilder
 
 ### <span class="badge object-method"></span> KeepFiringFor
 
-You can set a Keep firing for period to avoid repeated firing-resolving-firing notifications caused by flapping conditions.
-
-Value is in nanoseconds
-
 ```go
-func (builder *RuleBuilder) KeepFiringFor(keepFiringFor int64) *RuleBuilder
+func (builder *RuleBuilder) KeepFiringFor(keepFiringFor string) *RuleBuilder
 ```
 
 ### <span class="badge object-method"></span> Labels
 
 ```go
 func (builder *RuleBuilder) Labels(labels map[string]string) *RuleBuilder
+```
+
+### <span class="badge object-method"></span> MissingSeriesEvalsToResolve
+
+```go
+func (builder *RuleBuilder) MissingSeriesEvalsToResolve(missingSeriesEvalsToResolve int64) *RuleBuilder
 ```
 
 ### <span class="badge object-method"></span> NoDataState

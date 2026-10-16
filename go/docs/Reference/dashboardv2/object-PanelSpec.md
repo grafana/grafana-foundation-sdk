@@ -9,7 +9,10 @@ title: <span class="badge object-type-struct"></span> PanelSpec
 type PanelSpec struct {
     Id float64 `json:"id"`
     Title string `json:"title"`
-    Description string `json:"description"`
+    // Shown in a info icon tooltip next to panel title
+    Description *string `json:"description,omitempty"`
+    // Shown in a sub header below the title.
+    Subtitle *string `json:"subtitle,omitempty"`
     Links []dashboardv2.DataLink `json:"links"`
     Data dashboardv2.QueryGroupKind `json:"data"`
     VizConfig dashboardv2.VizConfigKind `json:"vizConfig"`

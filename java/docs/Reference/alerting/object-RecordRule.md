@@ -9,6 +9,7 @@ title: <span class="badge object-type-class"></span> RecordRule
 public class RecordRule {
   public String from;
   public String metric;
+  public String targetDatasourceUid;
 }
 ```
 ## See also

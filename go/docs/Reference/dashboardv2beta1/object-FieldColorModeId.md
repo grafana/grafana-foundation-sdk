@@ -15,6 +15,14 @@ Accepted values are:
 
 `palette-classic-by-name`: Classic palette (by name). Grafana will assign color by looking up a color in a palette by series name. Useful for Graphs and pie charts and other categorical data visualizations
 
+`palette-colorblind`: Color blind safe palette. A discrete palette whose colors are distinguishable under common forms of color vision deficiency. Useful for categorical and multi-series data visualizations
+
+`palette-categorical-next`: Experimental categorical palette. Useful for categorical and multi-series data visualizations
+
+`palette-categorical-next-2`: Experimental categorical palette. Useful for categorical and multi-series data visualizations
+
+`palette-categorical-next-3`: Experimental categorical palette. Useful for categorical and multi-series data visualizations
+
 `continuous-viridis`: Continuous Viridis palette mode
 
 `continuous-magma`: Continuous Magma palette mode
@@ -49,6 +57,8 @@ Accepted values are:
 
 `fixed`: Fixed color mode. Specify a single color, useful in an override rule.
 
+`gradient`: Gradient color mode. Interpolate between two colors based on value order; the start color is taken from fixedColor and the end color from gradientColorTo.
+
 ## Definition
 
 ```go
@@ -57,6 +67,10 @@ const (
 	FieldColorModeIdThresholds FieldColorModeId = "thresholds"
 	FieldColorModeIdPaletteClassic FieldColorModeId = "palette-classic"
 	FieldColorModeIdPaletteClassicByName FieldColorModeId = "palette-classic-by-name"
+	FieldColorModeIdPaletteColorblind FieldColorModeId = "palette-colorblind"
+	FieldColorModeIdPaletteCategoricalNext FieldColorModeId = "palette-categorical-next"
+	FieldColorModeIdPaletteCategoricalNext2 FieldColorModeId = "palette-categorical-next-2"
+	FieldColorModeIdPaletteCategoricalNext3 FieldColorModeId = "palette-categorical-next-3"
 	FieldColorModeIdContinuousViridis FieldColorModeId = "continuous-viridis"
 	FieldColorModeIdContinuousMagma FieldColorModeId = "continuous-magma"
 	FieldColorModeIdContinuousPlasma FieldColorModeId = "continuous-plasma"
@@ -74,6 +88,7 @@ const (
 	FieldColorModeIdContinuousPurples FieldColorModeId = "continuous-purples"
 	FieldColorModeIdFixed FieldColorModeId = "fixed"
 	FieldColorModeIdShades FieldColorModeId = "shades"
+	FieldColorModeIdGradient FieldColorModeId = "gradient"
 )
 
 ```

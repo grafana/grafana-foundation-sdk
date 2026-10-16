@@ -18,14 +18,6 @@ Builds the object.
 build()
 ```
 
-### <span class="badge object-method"></span> cookiePreferences
-
-Cookie preferences
-
-```typescript
-cookiePreferences(cookiePreferences: cog.Builder<preferencesv1alpha1.CookiePreferences>)
-```
-
 ### <span class="badge object-method"></span> homeDashboardUID
 
 UID for the home dashboard
@@ -34,9 +26,17 @@ UID for the home dashboard
 homeDashboardUID(homeDashboardUID: string)
 ```
 
+### <span class="badge object-method"></span> homeURL
+
+Explicit home URL (NOTE: this can only be modified in the system settings)
+
+```typescript
+homeURL(homeURL: string)
+```
+
 ### <span class="badge object-method"></span> language
 
-Selected language (beta)
+Selected language
 
 ```typescript
 language(language: string)
@@ -58,17 +58,9 @@ Explore query history preferences
 queryHistory(queryHistory: cog.Builder<preferencesv1alpha1.QueryHistoryPreference>)
 ```
 
-### <span class="badge object-method"></span> regionalFormat
-
-Selected locale (beta)
-
-```typescript
-regionalFormat(regionalFormat: string)
-```
-
 ### <span class="badge object-method"></span> theme
 
-light, dark, empty is default
+user interface theme
 
 ```typescript
 theme(theme: string)
@@ -77,8 +69,6 @@ theme(theme: string)
 ### <span class="badge object-method"></span> timezone
 
 The timezone selection
-
-TODO: this should use the timezone defined in common
 
 ```typescript
 timezone(timezone: string)

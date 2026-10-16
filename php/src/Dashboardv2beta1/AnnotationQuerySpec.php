@@ -80,7 +80,7 @@ class AnnotationQuerySpec implements \JsonSerializable
             name: $data["name"] ?? null,
             builtIn: $data["builtIn"] ?? null,
             filter: isset($data["filter"]) ? (function($input) {
-    	/** @var array{exclude?: bool, ids?: array<int>} */
+    	/** @var array{exclude?: bool, ids?: array<float>} */
     $val = $input;
     	return \Grafana\Foundation\Dashboardv2beta1\AnnotationPanelFilter::fromArray($val);
     })($data["filter"]) : null,

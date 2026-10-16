@@ -1090,14 +1090,14 @@ type AnnotationPanelFilter struct {
 	// Should the specified panels be included or excluded
 	Exclude *bool `json:"exclude,omitempty"`
 	// Panel IDs that should be included or excluded
-	Ids []uint32 `json:"ids"`
+	Ids []float64 `json:"ids"`
 }
 
 // NewAnnotationPanelFilter creates a new AnnotationPanelFilter object.
 func NewAnnotationPanelFilter() *AnnotationPanelFilter {
 	return &AnnotationPanelFilter{
 		Exclude: (func(input bool) *bool { return &input })(false),
-		Ids:     []uint32{},
+		Ids:     []float64{},
 	}
 }
 
@@ -1403,9 +1403,12 @@ func (resource PanelKind) Validate() error {
 }
 
 type PanelSpec struct {
-	Id          float64        `json:"id"`
-	Title       string         `json:"title"`
-	Description string         `json:"description"`
+	Id    float64 `json:"id"`
+	Title string  `json:"title"`
+	// Shown in a info icon tooltip next to panel title
+	Description *string `json:"description,omitempty"`
+	// Shown in a sub header below the title.
+	Subtitle    *string        `json:"subtitle,omitempty"`
 	Links       []DataLink     `json:"links"`
 	Data        QueryGroupKind `json:"data"`
 	VizConfig   VizConfigKind  `json:"vizConfig"`
@@ -1467,13 +1470,21 @@ func (resource *PanelSpec) UnmarshalJSONStrict(raw []byte) error {
 			if err := json.Unmarshal(fields["description"], &resource.Description); err != nil {
 				errs = append(errs, cog.MakeBuildErrors("description", err)...)
 			}
-		} else {
-			errs = append(errs, cog.MakeBuildErrors("description", errors.New("required field is null"))...)
 
 		}
 		delete(fields, "description")
-	} else {
-		errs = append(errs, cog.MakeBuildErrors("description", errors.New("required field is missing from input"))...)
+
+	}
+	// Field "subtitle"
+	if fields["subtitle"] != nil {
+		if string(fields["subtitle"]) != "null" {
+			if err := json.Unmarshal(fields["subtitle"], &resource.Subtitle); err != nil {
+				errs = append(errs, cog.MakeBuildErrors("subtitle", err)...)
+			}
+
+		}
+		delete(fields, "subtitle")
+
 	}
 	// Field "links"
 	if fields["links"] != nil {
@@ -1560,8 +1571,23 @@ func (resource PanelSpec) Equals(other PanelSpec) bool {
 	if resource.Title != other.Title {
 		return false
 	}
-	if resource.Description != other.Description {
+	if resource.Description == nil && other.Description != nil || resource.Description != nil && other.Description == nil {
 		return false
+	}
+
+	if resource.Description != nil {
+		if *resource.Description != *other.Description {
+			return false
+		}
+	}
+	if resource.Subtitle == nil && other.Subtitle != nil || resource.Subtitle != nil && other.Subtitle == nil {
+		return false
+	}
+
+	if resource.Subtitle != nil {
+		if *resource.Subtitle != *other.Subtitle {
+			return false
+		}
 	}
 
 	if len(resource.Links) != len(other.Links) {
@@ -2525,6 +2551,7 @@ const (
 
 type QueryOptionsSpec struct {
 	TimeFrom         *string `json:"timeFrom,omitempty"`
+	TimeTo           *string `json:"timeTo,omitempty"`
 	MaxDataPoints    *int64  `json:"maxDataPoints,omitempty"`
 	TimeShift        *string `json:"timeShift,omitempty"`
 	QueryCachingTTL  *int64  `json:"queryCachingTTL,omitempty"`
@@ -2560,6 +2587,17 @@ func (resource *QueryOptionsSpec) UnmarshalJSONStrict(raw []byte) error {
 
 		}
 		delete(fields, "timeFrom")
+
+	}
+	// Field "timeTo"
+	if fields["timeTo"] != nil {
+		if string(fields["timeTo"]) != "null" {
+			if err := json.Unmarshal(fields["timeTo"], &resource.TimeTo); err != nil {
+				errs = append(errs, cog.MakeBuildErrors("timeTo", err)...)
+			}
+
+		}
+		delete(fields, "timeTo")
 
 	}
 	// Field "maxDataPoints"
@@ -2655,6 +2693,15 @@ func (resource QueryOptionsSpec) Equals(other QueryOptionsSpec) bool {
 
 	if resource.TimeFrom != nil {
 		if *resource.TimeFrom != *other.TimeFrom {
+			return false
+		}
+	}
+	if resource.TimeTo == nil && other.TimeTo != nil || resource.TimeTo != nil && other.TimeTo == nil {
+		return false
+	}
+
+	if resource.TimeTo != nil {
+		if *resource.TimeTo != *other.TimeTo {
 			return false
 		}
 	}
@@ -4403,7 +4450,9 @@ const (
 type Threshold struct {
 	// Value null means -Infinity
 	Value *float64 `json:"value"`
-	Color string   `json:"color"`
+	// Optional dashboard-variable expression (e.g. `$myVar`) resolved at render time; `value` is the numeric fallback when the expression cannot be resolved to a single finite number.
+	ValueExpr *string `json:"valueExpr,omitempty"`
+	Color     string  `json:"color"`
 }
 
 // NewThreshold creates a new Threshold object.
@@ -4434,6 +4483,17 @@ func (resource *Threshold) UnmarshalJSONStrict(raw []byte) error {
 		delete(fields, "value")
 	} else {
 		errs = append(errs, cog.MakeBuildErrors("value", errors.New("required field is missing from input"))...)
+	}
+	// Field "valueExpr"
+	if fields["valueExpr"] != nil {
+		if string(fields["valueExpr"]) != "null" {
+			if err := json.Unmarshal(fields["valueExpr"], &resource.ValueExpr); err != nil {
+				errs = append(errs, cog.MakeBuildErrors("valueExpr", err)...)
+			}
+
+		}
+		delete(fields, "valueExpr")
+
 	}
 	// Field "color"
 	if fields["color"] != nil {
@@ -4468,6 +4528,15 @@ func (resource Threshold) Equals(other Threshold) bool {
 			return false
 		}
 	}
+	if resource.ValueExpr == nil && other.ValueExpr != nil || resource.ValueExpr != nil && other.ValueExpr == nil {
+		return false
+	}
+
+	if resource.ValueExpr != nil {
+		if *resource.ValueExpr != *other.ValueExpr {
+			return false
+		}
+	}
 	if resource.Color != other.Color {
 		return false
 	}
@@ -4486,6 +4555,8 @@ type FieldColor struct {
 	Mode FieldColorModeId `json:"mode"`
 	// The fixed color value for fixed or shades color modes.
 	FixedColor *string `json:"fixedColor,omitempty"`
+	// The end color for the gradient color mode (smallest value). Only used when mode is gradient.
+	GradientColorTo *string `json:"gradientColorTo,omitempty"`
 	// Some visualizations need to know how to assign a series color from by value color schemes.
 	SeriesBy *FieldColorSeriesByMode `json:"seriesBy,omitempty"`
 }
@@ -4532,6 +4603,17 @@ func (resource *FieldColor) UnmarshalJSONStrict(raw []byte) error {
 		delete(fields, "fixedColor")
 
 	}
+	// Field "gradientColorTo"
+	if fields["gradientColorTo"] != nil {
+		if string(fields["gradientColorTo"]) != "null" {
+			if err := json.Unmarshal(fields["gradientColorTo"], &resource.GradientColorTo); err != nil {
+				errs = append(errs, cog.MakeBuildErrors("gradientColorTo", err)...)
+			}
+
+		}
+		delete(fields, "gradientColorTo")
+
+	}
 	// Field "seriesBy"
 	if fields["seriesBy"] != nil {
 		if string(fields["seriesBy"]) != "null" {
@@ -4565,6 +4647,15 @@ func (resource FieldColor) Equals(other FieldColor) bool {
 			return false
 		}
 	}
+	if resource.GradientColorTo == nil && other.GradientColorTo != nil || resource.GradientColorTo != nil && other.GradientColorTo == nil {
+		return false
+	}
+
+	if resource.GradientColorTo != nil {
+		if *resource.GradientColorTo != *other.GradientColorTo {
+			return false
+		}
+	}
 	if resource.SeriesBy == nil && other.SeriesBy != nil || resource.SeriesBy != nil && other.SeriesBy == nil {
 		return false
 	}
@@ -4589,6 +4680,10 @@ func (resource FieldColor) Validate() error {
 // `thresholds`: From thresholds. Informs Grafana to take the color from the matching threshold
 // `palette-classic`: Classic palette. Grafana will assign color by looking up a color in a palette by series index. Useful for Graphs and pie charts and other categorical data visualizations
 // `palette-classic-by-name`: Classic palette (by name). Grafana will assign color by looking up a color in a palette by series name. Useful for Graphs and pie charts and other categorical data visualizations
+// `palette-colorblind`: Color blind safe palette. A discrete palette whose colors are distinguishable under common forms of color vision deficiency. Useful for categorical and multi-series data visualizations
+// `palette-categorical-next`: Experimental categorical palette. Useful for categorical and multi-series data visualizations
+// `palette-categorical-next-2`: Experimental categorical palette. Useful for categorical and multi-series data visualizations
+// `palette-categorical-next-3`: Experimental categorical palette. Useful for categorical and multi-series data visualizations
 // `continuous-viridis`: Continuous Viridis palette mode
 // `continuous-magma`: Continuous Magma palette mode
 // `continuous-plasma`: Continuous Plasma palette mode
@@ -4606,29 +4701,35 @@ func (resource FieldColor) Validate() error {
 // `continuous-purples`: Continuous Purple palette mode
 // `shades`: Shades of a single color. Specify a single color, useful in an override rule.
 // `fixed`: Fixed color mode. Specify a single color, useful in an override rule.
+// `gradient`: Gradient color mode. Interpolate between two colors based on value order; the start color is taken from fixedColor and the end color from gradientColorTo.
 type FieldColorModeId string
 
 const (
-	FieldColorModeIdThresholds           FieldColorModeId = "thresholds"
-	FieldColorModeIdPaletteClassic       FieldColorModeId = "palette-classic"
-	FieldColorModeIdPaletteClassicByName FieldColorModeId = "palette-classic-by-name"
-	FieldColorModeIdContinuousViridis    FieldColorModeId = "continuous-viridis"
-	FieldColorModeIdContinuousMagma      FieldColorModeId = "continuous-magma"
-	FieldColorModeIdContinuousPlasma     FieldColorModeId = "continuous-plasma"
-	FieldColorModeIdContinuousInferno    FieldColorModeId = "continuous-inferno"
-	FieldColorModeIdContinuousCividis    FieldColorModeId = "continuous-cividis"
-	FieldColorModeIdContinuousGrYlRd     FieldColorModeId = "continuous-GrYlRd"
-	FieldColorModeIdContinuousRdYlGr     FieldColorModeId = "continuous-RdYlGr"
-	FieldColorModeIdContinuousBlYlRd     FieldColorModeId = "continuous-BlYlRd"
-	FieldColorModeIdContinuousYlRd       FieldColorModeId = "continuous-YlRd"
-	FieldColorModeIdContinuousBlPu       FieldColorModeId = "continuous-BlPu"
-	FieldColorModeIdContinuousYlBl       FieldColorModeId = "continuous-YlBl"
-	FieldColorModeIdContinuousBlues      FieldColorModeId = "continuous-blues"
-	FieldColorModeIdContinuousReds       FieldColorModeId = "continuous-reds"
-	FieldColorModeIdContinuousGreens     FieldColorModeId = "continuous-greens"
-	FieldColorModeIdContinuousPurples    FieldColorModeId = "continuous-purples"
-	FieldColorModeIdFixed                FieldColorModeId = "fixed"
-	FieldColorModeIdShades               FieldColorModeId = "shades"
+	FieldColorModeIdThresholds              FieldColorModeId = "thresholds"
+	FieldColorModeIdPaletteClassic          FieldColorModeId = "palette-classic"
+	FieldColorModeIdPaletteClassicByName    FieldColorModeId = "palette-classic-by-name"
+	FieldColorModeIdPaletteColorblind       FieldColorModeId = "palette-colorblind"
+	FieldColorModeIdPaletteCategoricalNext  FieldColorModeId = "palette-categorical-next"
+	FieldColorModeIdPaletteCategoricalNext2 FieldColorModeId = "palette-categorical-next-2"
+	FieldColorModeIdPaletteCategoricalNext3 FieldColorModeId = "palette-categorical-next-3"
+	FieldColorModeIdContinuousViridis       FieldColorModeId = "continuous-viridis"
+	FieldColorModeIdContinuousMagma         FieldColorModeId = "continuous-magma"
+	FieldColorModeIdContinuousPlasma        FieldColorModeId = "continuous-plasma"
+	FieldColorModeIdContinuousInferno       FieldColorModeId = "continuous-inferno"
+	FieldColorModeIdContinuousCividis       FieldColorModeId = "continuous-cividis"
+	FieldColorModeIdContinuousGrYlRd        FieldColorModeId = "continuous-GrYlRd"
+	FieldColorModeIdContinuousRdYlGr        FieldColorModeId = "continuous-RdYlGr"
+	FieldColorModeIdContinuousBlYlRd        FieldColorModeId = "continuous-BlYlRd"
+	FieldColorModeIdContinuousYlRd          FieldColorModeId = "continuous-YlRd"
+	FieldColorModeIdContinuousBlPu          FieldColorModeId = "continuous-BlPu"
+	FieldColorModeIdContinuousYlBl          FieldColorModeId = "continuous-YlBl"
+	FieldColorModeIdContinuousBlues         FieldColorModeId = "continuous-blues"
+	FieldColorModeIdContinuousReds          FieldColorModeId = "continuous-reds"
+	FieldColorModeIdContinuousGreens        FieldColorModeId = "continuous-greens"
+	FieldColorModeIdContinuousPurples       FieldColorModeId = "continuous-purples"
+	FieldColorModeIdFixed                   FieldColorModeId = "fixed"
+	FieldColorModeIdShades                  FieldColorModeId = "shades"
+	FieldColorModeIdGradient                FieldColorModeId = "gradient"
 )
 
 // Defines how to assign a series color from "by value" color schemes. For example for an aggregated data points like a timeseries, the color can be assigned by the min, max or last value.

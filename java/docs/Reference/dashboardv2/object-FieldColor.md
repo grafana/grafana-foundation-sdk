@@ -11,6 +11,7 @@ Map a field to a color.
 public class FieldColor {
   public FieldColorModeId mode;
   public String fixedColor;
+  public String gradientColorTo;
   public FieldColorSeriesByMode seriesBy;
 }
 ```

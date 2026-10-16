@@ -17,7 +17,9 @@ type Rule struct {
     For string `json:"for"`
     Id *int64 `json:"id,omitempty"`
     IsPaused *bool `json:"isPaused,omitempty"`
+    KeepFiringFor *string `json:"keep_firing_for,omitempty"`
     Labels map[string]string `json:"labels,omitempty"`
+    MissingSeriesEvalsToResolve *int64 `json:"missingSeriesEvalsToResolve,omitempty"`
     NoDataState alerting.RuleNoDataState `json:"noDataState"`
     NotificationSettings *alerting.NotificationSettings `json:"notification_settings,omitempty"`
     OrgID int64 `json:"orgID"`
@@ -27,9 +29,6 @@ type Rule struct {
     Title string `json:"title"`
     Uid *string `json:"uid,omitempty"`
     Updated *time.Time `json:"updated,omitempty"`
-    // You can set a Keep firing for period to avoid repeated firing-resolving-firing notifications caused by flapping conditions.
-    // Value is in nanoseconds
-    KeepFiringFor *int64 `json:"keepFiringFor,omitempty"`
 }
 ```
 ## Methods

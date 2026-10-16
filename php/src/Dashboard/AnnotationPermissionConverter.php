@@ -23,19 +23,6 @@ final class AnnotationPermissionConverter
     
     
     }
-            if ($input->organization !== null) {
-    
-        
-    $buffer = 'organization(';
-        $arg0 = \Grafana\Foundation\Dashboard\AnnotationActionsConverter::convert($input->organization);
-        $buffer .= $arg0;
-        
-    $buffer .= ')';
-
-    $calls[] = $buffer;
-    
-    
-    }
 
         return \implode("\n\t->", $calls);
     }

@@ -9,6 +9,10 @@ from ..cog import runtime as cogruntime
 
 
 class AnnotationActions:
+    """
+    +k8s:deepcopy-gen=true
+    """
+
     can_add: typing.Optional[bool]
     can_delete: typing.Optional[bool]
     can_edit: typing.Optional[bool]
@@ -44,20 +48,21 @@ class AnnotationActions:
 
 
 class AnnotationPermission:
-    dashboard: typing.Optional['AnnotationActions']
-    organization: typing.Optional['AnnotationActions']
+    """
+    +k8s:deepcopy-gen=true
+    """
 
-    def __init__(self, dashboard: typing.Optional['AnnotationActions'] = None, organization: typing.Optional['AnnotationActions'] = None) -> None:
+    # +k8s:deepcopy-gen=true
+    dashboard: typing.Optional['AnnotationActions']
+
+    def __init__(self, dashboard: typing.Optional['AnnotationActions'] = None) -> None:
         self.dashboard = dashboard
-        self.organization = organization
 
     def to_json(self) -> dict[str, object]:
         payload: dict[str, object] = {
         }
         if self.dashboard is not None:
             payload["dashboard"] = self.dashboard
-        if self.organization is not None:
-            payload["organization"] = self.organization
         return payload
 
     @classmethod
@@ -65,14 +70,13 @@ class AnnotationPermission:
         args: dict[str, typing.Any] = {}
         
         if "dashboard" in data:
-            args["dashboard"] = AnnotationActions.from_json(data["dashboard"])
-        if "organization" in data:
-            args["organization"] = AnnotationActions.from_json(data["organization"])        
+            args["dashboard"] = AnnotationActions.from_json(data["dashboard"])        
 
         return cls(**args)
 
 
 class DashboardMeta:
+    # +k8s:deepcopy-gen=true
     annotations_permissions: typing.Optional['AnnotationPermission']
     api_version: typing.Optional[str]
     can_admin: typing.Optional[bool]
@@ -91,7 +95,6 @@ class DashboardMeta:
     has_acl: typing.Optional[bool]
     is_folder: typing.Optional[bool]
     is_snapshot: typing.Optional[bool]
-    is_starred: typing.Optional[bool]
     provisioned: typing.Optional[bool]
     provisioned_external_id: typing.Optional[str]
     public_dashboard_enabled: typing.Optional[bool]
@@ -102,7 +105,7 @@ class DashboardMeta:
     url: typing.Optional[str]
     version: typing.Optional[int]
 
-    def __init__(self, annotations_permissions: typing.Optional['AnnotationPermission'] = None, api_version: typing.Optional[str] = None, can_admin: typing.Optional[bool] = None, can_delete: typing.Optional[bool] = None, can_edit: typing.Optional[bool] = None, can_save: typing.Optional[bool] = None, can_star: typing.Optional[bool] = None, created: typing.Optional[str] = None, created_by: typing.Optional[str] = None, expires: typing.Optional[str] = None, folder_id: typing.Optional[int] = None, folder_title: typing.Optional[str] = None, folder_uid: typing.Optional[str] = None, folder_url: typing.Optional[str] = None, has_acl: typing.Optional[bool] = None, is_folder: typing.Optional[bool] = None, is_snapshot: typing.Optional[bool] = None, is_starred: typing.Optional[bool] = None, provisioned: typing.Optional[bool] = None, provisioned_external_id: typing.Optional[str] = None, public_dashboard_enabled: typing.Optional[bool] = None, slug: typing.Optional[str] = None, type_val: typing.Optional[str] = None, updated: typing.Optional[str] = None, updated_by: typing.Optional[str] = None, url: typing.Optional[str] = None, version: typing.Optional[int] = None) -> None:
+    def __init__(self, annotations_permissions: typing.Optional['AnnotationPermission'] = None, api_version: typing.Optional[str] = None, can_admin: typing.Optional[bool] = None, can_delete: typing.Optional[bool] = None, can_edit: typing.Optional[bool] = None, can_save: typing.Optional[bool] = None, can_star: typing.Optional[bool] = None, created: typing.Optional[str] = None, created_by: typing.Optional[str] = None, expires: typing.Optional[str] = None, folder_id: typing.Optional[int] = None, folder_title: typing.Optional[str] = None, folder_uid: typing.Optional[str] = None, folder_url: typing.Optional[str] = None, has_acl: typing.Optional[bool] = None, is_folder: typing.Optional[bool] = None, is_snapshot: typing.Optional[bool] = None, provisioned: typing.Optional[bool] = None, provisioned_external_id: typing.Optional[str] = None, public_dashboard_enabled: typing.Optional[bool] = None, slug: typing.Optional[str] = None, type_val: typing.Optional[str] = None, updated: typing.Optional[str] = None, updated_by: typing.Optional[str] = None, url: typing.Optional[str] = None, version: typing.Optional[int] = None) -> None:
         self.annotations_permissions = annotations_permissions
         self.api_version = api_version
         self.can_admin = can_admin
@@ -120,7 +123,6 @@ class DashboardMeta:
         self.has_acl = has_acl
         self.is_folder = is_folder
         self.is_snapshot = is_snapshot
-        self.is_starred = is_starred
         self.provisioned = provisioned
         self.provisioned_external_id = provisioned_external_id
         self.public_dashboard_enabled = public_dashboard_enabled
@@ -168,8 +170,6 @@ class DashboardMeta:
             payload["isFolder"] = self.is_folder
         if self.is_snapshot is not None:
             payload["isSnapshot"] = self.is_snapshot
-        if self.is_starred is not None:
-            payload["isStarred"] = self.is_starred
         if self.provisioned is not None:
             payload["provisioned"] = self.provisioned
         if self.provisioned_external_id is not None:
@@ -228,8 +228,6 @@ class DashboardMeta:
             args["is_folder"] = data["isFolder"]
         if "isSnapshot" in data:
             args["is_snapshot"] = data["isSnapshot"]
-        if "isStarred" in data:
-            args["is_starred"] = data["isStarred"]
         if "provisioned" in data:
             args["provisioned"] = data["provisioned"]
         if "provisionedExternalId" in data:

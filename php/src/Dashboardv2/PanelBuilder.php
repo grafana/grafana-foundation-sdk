@@ -38,9 +38,22 @@ class PanelBuilder implements \Grafana\Foundation\Cog\Builder
         return $this;
     }
 
+    /**
+     * Shown in a info icon tooltip next to panel title
+     */
     public function description(string $description): static
     {
         $this->internal->spec->description = $description;
+    
+        return $this;
+    }
+
+    /**
+     * Shown in a sub header below the title.
+     */
+    public function subtitle(string $subtitle): static
+    {
+        $this->internal->spec->subtitle = $subtitle;
     
         return $this;
     }

@@ -3,6 +3,7 @@
 namespace Grafana\Foundation\Dashboard;
 
 /**
+ * +k8s:deepcopy-gen=true
  * @implements \Grafana\Foundation\Cog\Builder<\Grafana\Foundation\Dashboard\AnnotationActions>
  */
 class AnnotationActionsBuilder implements \Grafana\Foundation\Cog\Builder

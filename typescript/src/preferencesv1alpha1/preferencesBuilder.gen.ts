@@ -18,6 +18,12 @@ export class PreferencesBuilder implements cog.Builder<preferencesv1alpha1.Prefe
         return this.internal;
     }
 
+    // Explicit home URL (NOTE: this can only be modified in the system settings)
+    homeURL(homeURL: string): this {
+        this.internal.homeURL = homeURL;
+        return this;
+    }
+
     // UID for the home dashboard
     homeDashboardUID(homeDashboardUID: string): this {
         this.internal.homeDashboardUID = homeDashboardUID;
@@ -25,7 +31,6 @@ export class PreferencesBuilder implements cog.Builder<preferencesv1alpha1.Prefe
     }
 
     // The timezone selection
-    // TODO: this should use the timezone defined in common
     timezone(timezone: string): this {
         this.internal.timezone = timezone;
         return this;
@@ -37,21 +42,15 @@ export class PreferencesBuilder implements cog.Builder<preferencesv1alpha1.Prefe
         return this;
     }
 
-    // light, dark, empty is default
+    // user interface theme
     theme(theme: string): this {
         this.internal.theme = theme;
         return this;
     }
 
-    // Selected language (beta)
+    // Selected language
     language(language: string): this {
         this.internal.language = language;
-        return this;
-    }
-
-    // Selected locale (beta)
-    regionalFormat(regionalFormat: string): this {
-        this.internal.regionalFormat = regionalFormat;
         return this;
     }
 
@@ -59,13 +58,6 @@ export class PreferencesBuilder implements cog.Builder<preferencesv1alpha1.Prefe
     queryHistory(queryHistory: cog.Builder<preferencesv1alpha1.QueryHistoryPreference>): this {
         const queryHistoryResource = queryHistory.build();
         this.internal.queryHistory = queryHistoryResource;
-        return this;
-    }
-
-    // Cookie preferences
-    cookiePreferences(cookiePreferences: cog.Builder<preferencesv1alpha1.CookiePreferences>): this {
-        const cookiePreferencesResource = cookiePreferences.build();
-        this.internal.cookiePreferences = cookiePreferencesResource;
         return this;
     }
 

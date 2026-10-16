@@ -66,6 +66,12 @@ timeFrom(string $timeFrom)
 timeShift(string $timeShift)
 ```
 
+### <span class="badge object-method"></span> timeTo
+
+```php
+timeTo(string $timeTo)
+```
+
 ## See also
 
  * <span class="badge object-type-class"></span> [QueryOptionsSpec](./object-QueryOptionsSpec.md)

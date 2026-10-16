@@ -13,6 +13,8 @@ export interface FieldColor {
 	mode: dashboardv2beta1.FieldColorModeId;
 	// The fixed color value for fixed or shades color modes.
 	fixedColor?: string;
+	// The end color for the gradient color mode (smallest value). Only used when mode is gradient.
+	gradientColorTo?: string;
 	// Some visualizations need to know how to assign a series color from by value color schemes.
 	seriesBy?: dashboardv2beta1.FieldColorSeriesByMode;
 }

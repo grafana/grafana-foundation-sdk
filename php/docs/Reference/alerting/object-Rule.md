@@ -34,10 +34,14 @@ class Rule implements \JsonSerializable
 
     public ?bool $isPaused;
 
+    public ?string $keepFiringFor;
+
     /**
      * @var array<string, string>|null
      */
     public ?array $labels;
+
+    public ?int $missingSeriesEvalsToResolve;
 
     public \Grafana\Foundation\Alerting\RuleNoDataState $noDataState;
 
@@ -56,12 +60,6 @@ class Rule implements \JsonSerializable
     public ?string $uid;
 
     public ?string $updated;
-
-    /**
-     * You can set a Keep firing for period to avoid repeated firing-resolving-firing notifications caused by flapping conditions.
-     * Value is in nanoseconds
-     */
-    public ?int $keepFiringFor;
 
 }
 ```

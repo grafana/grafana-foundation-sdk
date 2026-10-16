@@ -18,14 +18,6 @@ Builds the object.
 def build() -> preferencesv1alpha1.Preferences
 ```
 
-### <span class="badge object-method"></span> cookie_preferences
-
-Cookie preferences
-
-```python
-def cookie_preferences(cookie_preferences: cogbuilder.Builder[preferencesv1alpha1.CookiePreferences]) -> typing.Self
-```
-
 ### <span class="badge object-method"></span> home_dashboard_uid
 
 UID for the home dashboard
@@ -34,9 +26,17 @@ UID for the home dashboard
 def home_dashboard_uid(home_dashboard_uid: str) -> typing.Self
 ```
 
+### <span class="badge object-method"></span> home_url
+
+Explicit home URL (NOTE: this can only be modified in the system settings)
+
+```python
+def home_url(home_url: str) -> typing.Self
+```
+
 ### <span class="badge object-method"></span> language
 
-Selected language (beta)
+Selected language
 
 ```python
 def language(language: str) -> typing.Self
@@ -58,17 +58,9 @@ Explore query history preferences
 def query_history(query_history: cogbuilder.Builder[preferencesv1alpha1.QueryHistoryPreference]) -> typing.Self
 ```
 
-### <span class="badge object-method"></span> regional_format
-
-Selected locale (beta)
-
-```python
-def regional_format(regional_format: str) -> typing.Self
-```
-
 ### <span class="badge object-method"></span> theme
 
-light, dark, empty is default
+user interface theme
 
 ```python
 def theme(theme: str) -> typing.Self
@@ -77,8 +69,6 @@ def theme(theme: str) -> typing.Self
 ### <span class="badge object-method"></span> timezone
 
 The timezone selection
-
-TODO: this should use the timezone defined in common
 
 ```python
 def timezone(timezone: str) -> typing.Self

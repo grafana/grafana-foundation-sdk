@@ -18,16 +18,6 @@ Builds the object.
 build()
 ```
 
-### <span class="badge object-method"></span> cookiePreferences
-
-Cookie preferences
-
-@param \Grafana\Foundation\Cog\Builder<\Grafana\Foundation\Preferencesv1alpha1\CookiePreferences> $cookiePreferences
-
-```php
-cookiePreferences(\Grafana\Foundation\Cog\Builder $cookiePreferences)
-```
-
 ### <span class="badge object-method"></span> homeDashboardUID
 
 UID for the home dashboard
@@ -36,9 +26,17 @@ UID for the home dashboard
 homeDashboardUID(string $homeDashboardUID)
 ```
 
+### <span class="badge object-method"></span> homeURL
+
+Explicit home URL (NOTE: this can only be modified in the system settings)
+
+```php
+homeURL(string $homeURL)
+```
+
 ### <span class="badge object-method"></span> language
 
-Selected language (beta)
+Selected language
 
 ```php
 language(string $language)
@@ -64,17 +62,9 @@ Explore query history preferences
 queryHistory(\Grafana\Foundation\Cog\Builder $queryHistory)
 ```
 
-### <span class="badge object-method"></span> regionalFormat
-
-Selected locale (beta)
-
-```php
-regionalFormat(string $regionalFormat)
-```
-
 ### <span class="badge object-method"></span> theme
 
-light, dark, empty is default
+user interface theme
 
 ```php
 theme(string $theme)
@@ -83,8 +73,6 @@ theme(string $theme)
 ### <span class="badge object-method"></span> timezone
 
 The timezone selection
-
-TODO: this should use the timezone defined in common
 
 ```php
 timezone(string $timezone)

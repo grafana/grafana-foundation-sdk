@@ -9,7 +9,10 @@ title: <span class="badge object-type-class"></span> PanelSpec
 class PanelSpec:
     id_val: float
     title: str
-    description: str
+    # Shown in a info icon tooltip next to panel title
+    description: typing.Optional[str]
+    # Shown in a sub header below the title.
+    subtitle: typing.Optional[str]
     links: list[dashboardv2.DataLink]
     data: dashboardv2.QueryGroupKind
     viz_config: dashboardv2.VizConfigKind

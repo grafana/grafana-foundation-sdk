@@ -13,6 +13,8 @@ type FieldColor struct {
     Mode dashboardv2.FieldColorModeId `json:"mode"`
     // The fixed color value for fixed or shades color modes.
     FixedColor *string `json:"fixedColor,omitempty"`
+    // The end color for the gradient color mode (smallest value). Only used when mode is gradient.
+    GradientColorTo *string `json:"gradientColorTo,omitempty"`
     // Some visualizations need to know how to assign a series color from by value color schemes.
     SeriesBy *dashboardv2.FieldColorSeriesByMode `json:"seriesBy,omitempty"`
 }

@@ -66,6 +66,12 @@ func (builder *QueryOptionsSpecBuilder) TimeFrom(timeFrom string) *QueryOptionsS
 func (builder *QueryOptionsSpecBuilder) TimeShift(timeShift string) *QueryOptionsSpecBuilder
 ```
 
+### <span class="badge object-method"></span> TimeTo
+
+```go
+func (builder *QueryOptionsSpecBuilder) TimeTo(timeTo string) *QueryOptionsSpecBuilder
+```
+
 ## See also
 
  * <span class="badge object-type-struct"></span> [QueryOptionsSpec](./object-QueryOptionsSpec.md)

@@ -95,11 +95,6 @@ public class DashboardMetaBuilder implements com.grafana.foundation.cog.Builder<
         return this;
     }
     
-    public DashboardMetaBuilder isStarred(Boolean isStarred) {
-        this.internal.isStarred = isStarred;
-        return this;
-    }
-    
     public DashboardMetaBuilder provisioned(Boolean provisioned) {
         this.internal.provisioned = provisioned;
         return this;

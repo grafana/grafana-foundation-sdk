@@ -28,6 +28,14 @@ The fixed color value for fixed or shades color modes.
 func (builder *FieldColorBuilder) FixedColor(fixedColor string) *FieldColorBuilder
 ```
 
+### <span class="badge object-method"></span> GradientColorTo
+
+The end color for the gradient color mode (smallest value). Only used when mode is gradient.
+
+```go
+func (builder *FieldColorBuilder) GradientColorTo(gradientColorTo string) *FieldColorBuilder
+```
+
 ### <span class="badge object-method"></span> Mode
 
 The main color scheme mode.

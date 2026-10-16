@@ -7,23 +7,20 @@ title: <span class="badge object-type-struct"></span> Preferences
 
 ```go
 type Preferences struct {
+    // Explicit home URL (NOTE: this can only be modified in the system settings)
+    HomeURL *string `json:"homeURL,omitempty"`
     // UID for the home dashboard
     HomeDashboardUID *string `json:"homeDashboardUID,omitempty"`
     // The timezone selection
-    // TODO: this should use the timezone defined in common
     Timezone *string `json:"timezone,omitempty"`
     // day of the week (sunday, monday, etc)
     WeekStart *string `json:"weekStart,omitempty"`
-    // light, dark, empty is default
+    // user interface theme
     Theme *string `json:"theme,omitempty"`
-    // Selected language (beta)
+    // Selected language
     Language *string `json:"language,omitempty"`
-    // Selected locale (beta)
-    RegionalFormat *string `json:"regionalFormat,omitempty"`
     // Explore query history preferences
     QueryHistory *preferencesv1alpha1.QueryHistoryPreference `json:"queryHistory,omitempty"`
-    // Cookie preferences
-    CookiePreferences *preferencesv1alpha1.CookiePreferences `json:"cookiePreferences,omitempty"`
     // Navigation preferences
     Navbar *preferencesv1alpha1.NavbarPreference `json:"navbar,omitempty"`
 }

@@ -39,10 +39,22 @@ func PanelConverter(input PanelKind) string {
 		buffer.Reset()
 
 	}
-	if input.Spec.Description != "" {
+	if input.Spec.Description != nil && *input.Spec.Description != "" {
 
 		buffer.WriteString(`Description(`)
-		arg0 := fmt.Sprintf("%#v", input.Spec.Description)
+		arg0 := fmt.Sprintf("%#v", *input.Spec.Description)
+		buffer.WriteString(arg0)
+
+		buffer.WriteString(")")
+
+		calls = append(calls, buffer.String())
+		buffer.Reset()
+
+	}
+	if input.Spec.Subtitle != nil && *input.Spec.Subtitle != "" {
+
+		buffer.WriteString(`Subtitle(`)
+		arg0 := fmt.Sprintf("%#v", *input.Spec.Subtitle)
 		buffer.WriteString(arg0)
 
 		buffer.WriteString(")")

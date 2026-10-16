@@ -20,6 +20,8 @@ public DashboardMeta build()
 
 ### <span class="badge object-method"></span> annotationsPermissions
 
++k8s:deepcopy-gen=true
+
 ```java
 public DashboardMetaBuilder annotationsPermissions(com.grafana.foundation.cog.Builder<AnnotationPermission> annotationsPermissions)
 ```
@@ -120,12 +122,6 @@ public DashboardMetaBuilder isFolder(Boolean isFolder)
 
 ```java
 public DashboardMetaBuilder isSnapshot(Boolean isSnapshot)
-```
-
-### <span class="badge object-method"></span> isStarred
-
-```java
-public DashboardMetaBuilder isStarred(Boolean isStarred)
 ```
 
 ### <span class="badge object-method"></span> provisioned

@@ -68,12 +68,8 @@ isPaused(bool $isPaused)
 
 ### <span class="badge object-method"></span> keepFiringFor
 
-You can set a Keep firing for period to avoid repeated firing-resolving-firing notifications caused by flapping conditions.
-
-Value is in nanoseconds
-
 ```php
-keepFiringFor(int $keepFiringFor)
+keepFiringFor(string $keepFiringFor)
 ```
 
 ### <span class="badge object-method"></span> labels
@@ -82,6 +78,12 @@ keepFiringFor(int $keepFiringFor)
 
 ```php
 labels(array $labels)
+```
+
+### <span class="badge object-method"></span> missingSeriesEvalsToResolve
+
+```php
+missingSeriesEvalsToResolve(int $missingSeriesEvalsToResolve)
 ```
 
 ### <span class="badge object-method"></span> noDataState

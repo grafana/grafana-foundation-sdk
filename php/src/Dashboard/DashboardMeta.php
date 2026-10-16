@@ -4,6 +4,9 @@ namespace Grafana\Foundation\Dashboard;
 
 class DashboardMeta implements \JsonSerializable
 {
+    /**
+     * +k8s:deepcopy-gen=true
+     */
     public ?\Grafana\Foundation\Dashboard\AnnotationPermission $annotationsPermissions;
 
     public ?string $apiVersion;
@@ -41,8 +44,6 @@ class DashboardMeta implements \JsonSerializable
 
     public ?bool $isSnapshot;
 
-    public ?bool $isStarred;
-
     public ?bool $provisioned;
 
     public ?string $provisionedExternalId;
@@ -79,7 +80,6 @@ class DashboardMeta implements \JsonSerializable
      * @param bool|null $hasAcl
      * @param bool|null $isFolder
      * @param bool|null $isSnapshot
-     * @param bool|null $isStarred
      * @param bool|null $provisioned
      * @param string|null $provisionedExternalId
      * @param bool|null $publicDashboardEnabled
@@ -90,7 +90,7 @@ class DashboardMeta implements \JsonSerializable
      * @param string|null $url
      * @param int|null $version
      */
-    public function __construct(?\Grafana\Foundation\Dashboard\AnnotationPermission $annotationsPermissions = null, ?string $apiVersion = null, ?bool $canAdmin = null, ?bool $canDelete = null, ?bool $canEdit = null, ?bool $canSave = null, ?bool $canStar = null, ?string $created = null, ?string $createdBy = null, ?string $expires = null, ?int $folderId = null, ?string $folderTitle = null, ?string $folderUid = null, ?string $folderUrl = null, ?bool $hasAcl = null, ?bool $isFolder = null, ?bool $isSnapshot = null, ?bool $isStarred = null, ?bool $provisioned = null, ?string $provisionedExternalId = null, ?bool $publicDashboardEnabled = null, ?string $slug = null, ?string $type = null, ?string $updated = null, ?string $updatedBy = null, ?string $url = null, ?int $version = null)
+    public function __construct(?\Grafana\Foundation\Dashboard\AnnotationPermission $annotationsPermissions = null, ?string $apiVersion = null, ?bool $canAdmin = null, ?bool $canDelete = null, ?bool $canEdit = null, ?bool $canSave = null, ?bool $canStar = null, ?string $created = null, ?string $createdBy = null, ?string $expires = null, ?int $folderId = null, ?string $folderTitle = null, ?string $folderUid = null, ?string $folderUrl = null, ?bool $hasAcl = null, ?bool $isFolder = null, ?bool $isSnapshot = null, ?bool $provisioned = null, ?string $provisionedExternalId = null, ?bool $publicDashboardEnabled = null, ?string $slug = null, ?string $type = null, ?string $updated = null, ?string $updatedBy = null, ?string $url = null, ?int $version = null)
     {
         $this->annotationsPermissions = $annotationsPermissions;
         $this->apiVersion = $apiVersion;
@@ -109,7 +109,6 @@ class DashboardMeta implements \JsonSerializable
         $this->hasAcl = $hasAcl;
         $this->isFolder = $isFolder;
         $this->isSnapshot = $isSnapshot;
-        $this->isStarred = $isStarred;
         $this->provisioned = $provisioned;
         $this->provisionedExternalId = $provisionedExternalId;
         $this->publicDashboardEnabled = $publicDashboardEnabled;
@@ -126,11 +125,11 @@ class DashboardMeta implements \JsonSerializable
      */
     public static function fromArray(array $inputData): self
     {
-        /** @var array{annotationsPermissions?: mixed, apiVersion?: string, canAdmin?: bool, canDelete?: bool, canEdit?: bool, canSave?: bool, canStar?: bool, created?: string, createdBy?: string, expires?: string, folderId?: int, folderTitle?: string, folderUid?: string, folderUrl?: string, hasAcl?: bool, isFolder?: bool, isSnapshot?: bool, isStarred?: bool, provisioned?: bool, provisionedExternalId?: string, publicDashboardEnabled?: bool, slug?: string, type?: string, updated?: string, updatedBy?: string, url?: string, version?: int} $inputData */
+        /** @var array{annotationsPermissions?: mixed, apiVersion?: string, canAdmin?: bool, canDelete?: bool, canEdit?: bool, canSave?: bool, canStar?: bool, created?: string, createdBy?: string, expires?: string, folderId?: int, folderTitle?: string, folderUid?: string, folderUrl?: string, hasAcl?: bool, isFolder?: bool, isSnapshot?: bool, provisioned?: bool, provisionedExternalId?: string, publicDashboardEnabled?: bool, slug?: string, type?: string, updated?: string, updatedBy?: string, url?: string, version?: int} $inputData */
         $data = $inputData;
         return new self(
             annotationsPermissions: isset($data["annotationsPermissions"]) ? (function($input) {
-    	/** @var array{dashboard?: mixed, organization?: mixed} */
+    	/** @var array{dashboard?: mixed} */
     $val = $input;
     	return \Grafana\Foundation\Dashboard\AnnotationPermission::fromArray($val);
     })($data["annotationsPermissions"]) : null,
@@ -150,7 +149,6 @@ class DashboardMeta implements \JsonSerializable
             hasAcl: $data["hasAcl"] ?? null,
             isFolder: $data["isFolder"] ?? null,
             isSnapshot: $data["isSnapshot"] ?? null,
-            isStarred: $data["isStarred"] ?? null,
             provisioned: $data["provisioned"] ?? null,
             provisionedExternalId: $data["provisionedExternalId"] ?? null,
             publicDashboardEnabled: $data["publicDashboardEnabled"] ?? null,
@@ -219,9 +217,6 @@ class DashboardMeta implements \JsonSerializable
         }
         if (isset($this->isSnapshot)) {
             $data->isSnapshot = $this->isSnapshot;
-        }
-        if (isset($this->isStarred)) {
-            $data->isStarred = $this->isStarred;
         }
         if (isset($this->provisioned)) {
             $data->provisioned = $this->provisioned;

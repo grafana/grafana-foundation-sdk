@@ -15,7 +15,7 @@ public class AnnotationPanelFilterBuilder implements com.grafana.foundation.cog.
         return this;
     }
     
-    public AnnotationPanelFilterBuilder ids(List<Integer> ids) {
+    public AnnotationPanelFilterBuilder ids(List<Double> ids) {
         this.internal.ids = ids;
         return this;
     }

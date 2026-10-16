@@ -55,6 +55,13 @@ func (builder *FieldColorBuilder) FixedColor(fixedColor string) *FieldColorBuild
 	return builder
 }
 
+// The end color for the gradient color mode (smallest value). Only used when mode is gradient.
+func (builder *FieldColorBuilder) GradientColorTo(gradientColorTo string) *FieldColorBuilder {
+	builder.internal.GradientColorTo = &gradientColorTo
+
+	return builder
+}
+
 // Some visualizations need to know how to assign a series color from by value color schemes.
 func (builder *FieldColorBuilder) SeriesBy(seriesBy FieldColorSeriesByMode) *FieldColorBuilder {
 	builder.internal.SeriesBy = &seriesBy

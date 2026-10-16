@@ -27,7 +27,7 @@ class PanelKind implements \JsonSerializable
         $data = $inputData;
         return new self(
             spec: isset($data["spec"]) ? (function($input) {
-    	/** @var array{id?: float, title?: string, description?: string, links?: array<mixed>, data?: mixed, vizConfig?: mixed, transparent?: bool} */
+    	/** @var array{id?: float, title?: string, description?: string, subtitle?: string, links?: array<mixed>, data?: mixed, vizConfig?: mixed, transparent?: bool} */
     $val = $input;
     	return \Grafana\Foundation\Dashboardv2\PanelSpec::fromArray($val);
     })($data["spec"]) : null,

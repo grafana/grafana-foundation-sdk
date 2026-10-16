@@ -7,6 +7,10 @@ title: <span class="badge object-type-struct"></span> NotificationSettings
 
 ```go
 type NotificationSettings struct {
+    // Override the times when notifications should not be muted. These must match the name of a mute time interval defined
+    // in the alertmanager configuration time_intervals section. All notifications will be suppressed unless they are sent
+    // at the time that matches any interval.
+    ActiveTimeIntervals []string `json:"active_time_intervals,omitempty"`
     // Override the labels by which incoming alerts are grouped together. For example, multiple alerts coming in for
     // cluster=A and alertname=LatencyHigh would be batched into a single group. To aggregate by all possible labels
     // use the special value '...' as the sole label name.
@@ -21,7 +25,7 @@ type NotificationSettings struct {
     // inhibiting alert to arrive or collect more initial alerts for the same group. (Usually ~0s to few minutes.)
     GroupWait *string `json:"group_wait,omitempty"`
     // Override the times when notifications should be muted. These must match the name of a mute time interval defined
-    // in the alertmanager configuration mute_time_intervals section. When muted it will not send any notifications, but
+    // in the alertmanager configuration time_intervals section. When muted it will not send any notifications, but
     // otherwise acts normally.
     MuteTimeIntervals []string `json:"mute_time_intervals,omitempty"`
     // Name of the receiver to send notifications to.

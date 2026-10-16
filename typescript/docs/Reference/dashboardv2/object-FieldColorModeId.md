@@ -15,6 +15,14 @@ Accepted values are:
 
 `palette-classic-by-name`: Classic palette (by name). Grafana will assign color by looking up a color in a palette by series name. Useful for Graphs and pie charts and other categorical data visualizations
 
+`palette-colorblind`: Color blind safe palette. A discrete palette whose colors are distinguishable under common forms of color vision deficiency. Useful for categorical and multi-series data visualizations
+
+`palette-categorical-next`: Experimental categorical palette. Useful for categorical and multi-series data visualizations
+
+`palette-categorical-next-2`: Experimental categorical palette. Useful for categorical and multi-series data visualizations
+
+`palette-categorical-next-3`: Experimental categorical palette. Useful for categorical and multi-series data visualizations
+
 `continuous-viridis`: Continuous Viridis palette mode
 
 `continuous-magma`: Continuous Magma palette mode
@@ -49,6 +57,8 @@ Accepted values are:
 
 `fixed`: Fixed color mode. Specify a single color, useful in an override rule.
 
+`gradient`: Gradient color mode. Interpolate between two colors based on value order; the start color is taken from fixedColor and the end color from gradientColorTo.
+
 ## Definition
 
 ```typescript
@@ -56,6 +66,10 @@ export enum FieldColorModeId {
 	Thresholds = "thresholds",
 	PaletteClassic = "palette-classic",
 	PaletteClassicByName = "palette-classic-by-name",
+	PaletteColorblind = "palette-colorblind",
+	PaletteCategoricalNext = "palette-categorical-next",
+	PaletteCategoricalNext2 = "palette-categorical-next-2",
+	PaletteCategoricalNext3 = "palette-categorical-next-3",
 	ContinuousViridis = "continuous-viridis",
 	ContinuousMagma = "continuous-magma",
 	ContinuousPlasma = "continuous-plasma",
@@ -73,6 +87,7 @@ export enum FieldColorModeId {
 	ContinuousPurples = "continuous-purples",
 	Fixed = "fixed",
 	Shades = "shades",
+	Gradient = "gradient",
 }
 
 ```

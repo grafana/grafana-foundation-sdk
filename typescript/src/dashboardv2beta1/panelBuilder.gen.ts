@@ -34,11 +34,21 @@ export class PanelBuilder implements cog.Builder<dashboardv2beta1.PanelKind> {
         return this;
     }
 
+    // Shown in a info icon tooltip next to panel title
     description(description: string): this {
         if (!this.internal.spec) {
             this.internal.spec = dashboardv2beta1.defaultPanelSpec();
         }
         this.internal.spec.description = description;
+        return this;
+    }
+
+    // Shown in a sub header below the title.
+    subtitle(subtitle: string): this {
+        if (!this.internal.spec) {
+            this.internal.spec = dashboardv2beta1.defaultPanelSpec();
+        }
+        this.internal.spec.subtitle = subtitle;
         return this;
     }
 

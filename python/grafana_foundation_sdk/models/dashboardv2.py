@@ -279,9 +279,9 @@ class AnnotationPanelFilter:
     # Should the specified panels be included or excluded
     exclude: typing.Optional[bool]
     # Panel IDs that should be included or excluded
-    ids: list[int]
+    ids: list[float]
 
-    def __init__(self, exclude: typing.Optional[bool] = False, ids: typing.Optional[list[int]] = None) -> None:
+    def __init__(self, exclude: typing.Optional[bool] = False, ids: typing.Optional[list[float]] = None) -> None:
         self.exclude = exclude
         self.ids = ids if ids is not None else []
 
@@ -401,16 +401,20 @@ class PanelKind:
 class PanelSpec:
     id_val: float
     title: str
-    description: str
+    # Shown in a info icon tooltip next to panel title
+    description: typing.Optional[str]
+    # Shown in a sub header below the title.
+    subtitle: typing.Optional[str]
     links: list['DataLink']
     data: 'QueryGroupKind'
     viz_config: 'VizConfigKind'
     transparent: typing.Optional[bool]
 
-    def __init__(self, id_val: float = 0, title: str = "", description: str = "", links: typing.Optional[list['DataLink']] = None, data: typing.Optional['QueryGroupKind'] = None, viz_config: typing.Optional['VizConfigKind'] = None, transparent: typing.Optional[bool] = None) -> None:
+    def __init__(self, id_val: float = 0, title: str = "", description: typing.Optional[str] = None, subtitle: typing.Optional[str] = None, links: typing.Optional[list['DataLink']] = None, data: typing.Optional['QueryGroupKind'] = None, viz_config: typing.Optional['VizConfigKind'] = None, transparent: typing.Optional[bool] = None) -> None:
         self.id_val = id_val
         self.title = title
         self.description = description
+        self.subtitle = subtitle
         self.links = links if links is not None else []
         self.data = data if data is not None else QueryGroupKind()
         self.viz_config = viz_config if viz_config is not None else VizConfigKind()
@@ -420,11 +424,14 @@ class PanelSpec:
         payload: dict[str, object] = {
             "id": self.id_val,
             "title": self.title,
-            "description": self.description,
             "links": self.links,
             "data": self.data,
             "vizConfig": self.viz_config,
         }
+        if self.description is not None:
+            payload["description"] = self.description
+        if self.subtitle is not None:
+            payload["subtitle"] = self.subtitle
         if self.transparent is not None:
             payload["transparent"] = self.transparent
         return payload
@@ -439,6 +446,8 @@ class PanelSpec:
             args["title"] = data["title"]
         if "description" in data:
             args["description"] = data["description"]
+        if "subtitle" in data:
+            args["subtitle"] = data["subtitle"]
         if "links" in data:
             args["links"] = [DataLink.from_json(item) for item in data["links"]]
         if "data" in data:
@@ -742,6 +751,7 @@ class DataTopic(enum.StrEnum):
 
 class QueryOptionsSpec:
     time_from: typing.Optional[str]
+    time_to: typing.Optional[str]
     max_data_points: typing.Optional[int]
     time_shift: typing.Optional[str]
     query_caching_ttl: typing.Optional[int]
@@ -750,8 +760,9 @@ class QueryOptionsSpec:
     hide_time_override: typing.Optional[bool]
     time_compare: typing.Optional[str]
 
-    def __init__(self, time_from: typing.Optional[str] = None, max_data_points: typing.Optional[int] = None, time_shift: typing.Optional[str] = None, query_caching_ttl: typing.Optional[int] = None, interval: typing.Optional[str] = None, cache_timeout: typing.Optional[str] = None, hide_time_override: typing.Optional[bool] = None, time_compare: typing.Optional[str] = None) -> None:
+    def __init__(self, time_from: typing.Optional[str] = None, time_to: typing.Optional[str] = None, max_data_points: typing.Optional[int] = None, time_shift: typing.Optional[str] = None, query_caching_ttl: typing.Optional[int] = None, interval: typing.Optional[str] = None, cache_timeout: typing.Optional[str] = None, hide_time_override: typing.Optional[bool] = None, time_compare: typing.Optional[str] = None) -> None:
         self.time_from = time_from
+        self.time_to = time_to
         self.max_data_points = max_data_points
         self.time_shift = time_shift
         self.query_caching_ttl = query_caching_ttl
@@ -765,6 +776,8 @@ class QueryOptionsSpec:
         }
         if self.time_from is not None:
             payload["timeFrom"] = self.time_from
+        if self.time_to is not None:
+            payload["timeTo"] = self.time_to
         if self.max_data_points is not None:
             payload["maxDataPoints"] = self.max_data_points
         if self.time_shift is not None:
@@ -787,6 +800,8 @@ class QueryOptionsSpec:
         
         if "timeFrom" in data:
             args["time_from"] = data["timeFrom"]
+        if "timeTo" in data:
+            args["time_to"] = data["timeTo"]
         if "maxDataPoints" in data:
             args["max_data_points"] = data["maxDataPoints"]
         if "timeShift" in data:
@@ -1333,10 +1348,13 @@ class ThresholdsMode(enum.StrEnum):
 class Threshold:
     # Value null means -Infinity
     value: typing.Optional[float]
+    # Optional dashboard-variable expression (e.g. `$myVar`) resolved at render time; `value` is the numeric fallback when the expression cannot be resolved to a single finite number.
+    value_expr: typing.Optional[str]
     color: str
 
-    def __init__(self, value: typing.Optional[float] = None, color: str = "") -> None:
+    def __init__(self, value: typing.Optional[float] = None, value_expr: typing.Optional[str] = None, color: str = "") -> None:
         self.value = value
+        self.value_expr = value_expr
         self.color = color
 
     def to_json(self) -> dict[str, object]:
@@ -1344,6 +1362,8 @@ class Threshold:
             "value": self.value,
             "color": self.color,
         }
+        if self.value_expr is not None:
+            payload["valueExpr"] = self.value_expr
         return payload
 
     @classmethod
@@ -1352,6 +1372,8 @@ class Threshold:
         
         if "value" in data:
             args["value"] = data["value"]
+        if "valueExpr" in data:
+            args["value_expr"] = data["valueExpr"]
         if "color" in data:
             args["color"] = data["color"]        
 
@@ -1367,12 +1389,15 @@ class FieldColor:
     mode: 'FieldColorModeId'
     # The fixed color value for fixed or shades color modes.
     fixed_color: typing.Optional[str]
+    # The end color for the gradient color mode (smallest value). Only used when mode is gradient.
+    gradient_color_to: typing.Optional[str]
     # Some visualizations need to know how to assign a series color from by value color schemes.
     series_by: typing.Optional['FieldColorSeriesByMode']
 
-    def __init__(self, mode: typing.Optional['FieldColorModeId'] = None, fixed_color: typing.Optional[str] = None, series_by: typing.Optional['FieldColorSeriesByMode'] = None) -> None:
+    def __init__(self, mode: typing.Optional['FieldColorModeId'] = None, fixed_color: typing.Optional[str] = None, gradient_color_to: typing.Optional[str] = None, series_by: typing.Optional['FieldColorSeriesByMode'] = None) -> None:
         self.mode = mode if mode is not None else FieldColorModeId.THRESHOLDS
         self.fixed_color = fixed_color
+        self.gradient_color_to = gradient_color_to
         self.series_by = series_by
 
     def to_json(self) -> dict[str, object]:
@@ -1381,6 +1406,8 @@ class FieldColor:
         }
         if self.fixed_color is not None:
             payload["fixedColor"] = self.fixed_color
+        if self.gradient_color_to is not None:
+            payload["gradientColorTo"] = self.gradient_color_to
         if self.series_by is not None:
             payload["seriesBy"] = self.series_by
         return payload
@@ -1393,6 +1420,8 @@ class FieldColor:
             args["mode"] = data["mode"]
         if "fixedColor" in data:
             args["fixed_color"] = data["fixedColor"]
+        if "gradientColorTo" in data:
+            args["gradient_color_to"] = data["gradientColorTo"]
         if "seriesBy" in data:
             args["series_by"] = data["seriesBy"]        
 
@@ -1407,6 +1436,10 @@ class FieldColorModeId(enum.StrEnum):
     `thresholds`: From thresholds. Informs Grafana to take the color from the matching threshold
     `palette-classic`: Classic palette. Grafana will assign color by looking up a color in a palette by series index. Useful for Graphs and pie charts and other categorical data visualizations
     `palette-classic-by-name`: Classic palette (by name). Grafana will assign color by looking up a color in a palette by series name. Useful for Graphs and pie charts and other categorical data visualizations
+    `palette-colorblind`: Color blind safe palette. A discrete palette whose colors are distinguishable under common forms of color vision deficiency. Useful for categorical and multi-series data visualizations
+    `palette-categorical-next`: Experimental categorical palette. Useful for categorical and multi-series data visualizations
+    `palette-categorical-next-2`: Experimental categorical palette. Useful for categorical and multi-series data visualizations
+    `palette-categorical-next-3`: Experimental categorical palette. Useful for categorical and multi-series data visualizations
     `continuous-viridis`: Continuous Viridis palette mode
     `continuous-magma`: Continuous Magma palette mode
     `continuous-plasma`: Continuous Plasma palette mode
@@ -1424,11 +1457,16 @@ class FieldColorModeId(enum.StrEnum):
     `continuous-purples`: Continuous Purple palette mode
     `shades`: Shades of a single color. Specify a single color, useful in an override rule.
     `fixed`: Fixed color mode. Specify a single color, useful in an override rule.
+    `gradient`: Gradient color mode. Interpolate between two colors based on value order; the start color is taken from fixedColor and the end color from gradientColorTo.
     """
 
     THRESHOLDS = "thresholds"
     PALETTE_CLASSIC = "palette-classic"
     PALETTE_CLASSIC_BY_NAME = "palette-classic-by-name"
+    PALETTE_COLORBLIND = "palette-colorblind"
+    PALETTE_CATEGORICAL_NEXT = "palette-categorical-next"
+    PALETTE_CATEGORICAL_NEXT_2 = "palette-categorical-next-2"
+    PALETTE_CATEGORICAL_NEXT_3 = "palette-categorical-next-3"
     CONTINUOUS_VIRIDIS = "continuous-viridis"
     CONTINUOUS_MAGMA = "continuous-magma"
     CONTINUOUS_PLASMA = "continuous-plasma"
@@ -1446,6 +1484,7 @@ class FieldColorModeId(enum.StrEnum):
     CONTINUOUS_PURPLES = "continuous-purples"
     FIXED = "fixed"
     SHADES = "shades"
+    GRADIENT = "gradient"
 
 
 class FieldColorSeriesByMode(enum.StrEnum):

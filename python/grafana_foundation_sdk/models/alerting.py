@@ -104,6 +104,10 @@ class RuleGroup:
 
 
 class NotificationSettings:
+    # Override the times when notifications should not be muted. These must match the name of a mute time interval defined
+    # in the alertmanager configuration time_intervals section. All notifications will be suppressed unless they are sent
+    # at the time that matches any interval.
+    active_time_intervals: typing.Optional[list[str]]
     # Override the labels by which incoming alerts are grouped together. For example, multiple alerts coming in for
     # cluster=A and alertname=LatencyHigh would be batched into a single group. To aggregate by all possible labels
     # use the special value '...' as the sole label name.
@@ -118,7 +122,7 @@ class NotificationSettings:
     # inhibiting alert to arrive or collect more initial alerts for the same group. (Usually ~0s to few minutes.)
     group_wait: typing.Optional[str]
     # Override the times when notifications should be muted. These must match the name of a mute time interval defined
-    # in the alertmanager configuration mute_time_intervals section. When muted it will not send any notifications, but
+    # in the alertmanager configuration time_intervals section. When muted it will not send any notifications, but
     # otherwise acts normally.
     mute_time_intervals: typing.Optional[list[str]]
     # Name of the receiver to send notifications to.
@@ -130,7 +134,8 @@ class NotificationSettings:
     # occurs first. `repeat_interval` should not be less than `group_interval`.
     repeat_interval: typing.Optional[str]
 
-    def __init__(self, group_by: typing.Optional[list[str]] = None, group_interval: typing.Optional[str] = None, group_wait: typing.Optional[str] = None, mute_time_intervals: typing.Optional[list[str]] = None, receiver: str = "", repeat_interval: typing.Optional[str] = None) -> None:
+    def __init__(self, active_time_intervals: typing.Optional[list[str]] = None, group_by: typing.Optional[list[str]] = None, group_interval: typing.Optional[str] = None, group_wait: typing.Optional[str] = None, mute_time_intervals: typing.Optional[list[str]] = None, receiver: str = "", repeat_interval: typing.Optional[str] = None) -> None:
+        self.active_time_intervals = active_time_intervals
         self.group_by = group_by if group_by is not None else ["alertname", "grafana_folder"]
         self.group_interval = group_interval
         self.group_wait = group_wait
@@ -142,6 +147,8 @@ class NotificationSettings:
         payload: dict[str, object] = {
             "receiver": self.receiver,
         }
+        if self.active_time_intervals is not None:
+            payload["active_time_intervals"] = self.active_time_intervals
         if self.group_by is not None:
             payload["group_by"] = self.group_by
         if self.group_interval is not None:
@@ -158,6 +165,8 @@ class NotificationSettings:
     def from_json(cls, data: dict[str, typing.Any]) -> typing.Self:
         args: dict[str, typing.Any] = {}
         
+        if "active_time_intervals" in data:
+            args["active_time_intervals"] = data["active_time_intervals"]
         if "group_by" in data:
             args["group_by"] = data["group_by"]
         if "group_interval" in data:
@@ -382,7 +391,9 @@ class Rule:
     for_val: str
     id_val: typing.Optional[int]
     is_paused: typing.Optional[bool]
+    keep_firing_for: typing.Optional[str]
     labels: typing.Optional[dict[str, str]]
+    missing_series_evals_to_resolve: typing.Optional[int]
     no_data_state: typing.Literal["OK", "Alerting", "NoData", "KeepLast"]
     notification_settings: typing.Optional['NotificationSettings']
     org_id: int
@@ -392,11 +403,8 @@ class Rule:
     title: str
     uid: typing.Optional[str]
     updated: typing.Optional[str]
-    # You can set a Keep firing for period to avoid repeated firing-resolving-firing notifications caused by flapping conditions.
-    # Value is in nanoseconds
-    keep_firing_for: typing.Optional[int]
 
-    def __init__(self, annotations: typing.Optional[dict[str, str]] = None, condition: str = "", data: typing.Optional[list['Query']] = None, exec_err_state: typing.Optional[typing.Literal["Alerting", "Error", "OK", "KeepLast"]] = None, folder_uid: str = "", for_val: str = "", id_val: typing.Optional[int] = None, is_paused: typing.Optional[bool] = None, labels: typing.Optional[dict[str, str]] = None, no_data_state: typing.Optional[typing.Literal["OK", "Alerting", "NoData", "KeepLast"]] = None, notification_settings: typing.Optional['NotificationSettings'] = None, org_id: int = 0, provenance: typing.Optional['Provenance'] = None, record: typing.Optional['RecordRule'] = None, rule_group: str = "", title: str = "", uid: typing.Optional[str] = None, updated: typing.Optional[str] = None, keep_firing_for: typing.Optional[int] = None) -> None:
+    def __init__(self, annotations: typing.Optional[dict[str, str]] = None, condition: str = "", data: typing.Optional[list['Query']] = None, exec_err_state: typing.Optional[typing.Literal["Alerting", "Error", "OK", "KeepLast"]] = None, folder_uid: str = "", for_val: str = "", id_val: typing.Optional[int] = None, is_paused: typing.Optional[bool] = None, keep_firing_for: typing.Optional[str] = None, labels: typing.Optional[dict[str, str]] = None, missing_series_evals_to_resolve: typing.Optional[int] = None, no_data_state: typing.Optional[typing.Literal["OK", "Alerting", "NoData", "KeepLast"]] = None, notification_settings: typing.Optional['NotificationSettings'] = None, org_id: int = 0, provenance: typing.Optional['Provenance'] = None, record: typing.Optional['RecordRule'] = None, rule_group: str = "", title: str = "", uid: typing.Optional[str] = None, updated: typing.Optional[str] = None) -> None:
         self.annotations = annotations
         self.condition = condition
         self.data = data if data is not None else []
@@ -405,7 +413,9 @@ class Rule:
         self.for_val = for_val
         self.id_val = id_val
         self.is_paused = is_paused
+        self.keep_firing_for = keep_firing_for
         self.labels = labels
+        self.missing_series_evals_to_resolve = missing_series_evals_to_resolve
         self.no_data_state = no_data_state if no_data_state is not None else "OK"
         self.notification_settings = notification_settings
         self.org_id = org_id
@@ -415,7 +425,6 @@ class Rule:
         self.title = title
         self.uid = uid
         self.updated = updated
-        self.keep_firing_for = keep_firing_for
 
     def to_json(self) -> dict[str, object]:
         payload: dict[str, object] = {
@@ -435,8 +444,12 @@ class Rule:
             payload["id"] = self.id_val
         if self.is_paused is not None:
             payload["isPaused"] = self.is_paused
+        if self.keep_firing_for is not None:
+            payload["keep_firing_for"] = self.keep_firing_for
         if self.labels is not None:
             payload["labels"] = self.labels
+        if self.missing_series_evals_to_resolve is not None:
+            payload["missingSeriesEvalsToResolve"] = self.missing_series_evals_to_resolve
         if self.notification_settings is not None:
             payload["notification_settings"] = self.notification_settings
         if self.provenance is not None:
@@ -447,8 +460,6 @@ class Rule:
             payload["uid"] = self.uid
         if self.updated is not None:
             payload["updated"] = self.updated
-        if self.keep_firing_for is not None:
-            payload["keepFiringFor"] = self.keep_firing_for
         return payload
 
     @classmethod
@@ -471,8 +482,12 @@ class Rule:
             args["id_val"] = data["id"]
         if "isPaused" in data:
             args["is_paused"] = data["isPaused"]
+        if "keep_firing_for" in data:
+            args["keep_firing_for"] = data["keep_firing_for"]
         if "labels" in data:
             args["labels"] = data["labels"]
+        if "missingSeriesEvalsToResolve" in data:
+            args["missing_series_evals_to_resolve"] = data["missingSeriesEvalsToResolve"]
         if "noDataState" in data:
             args["no_data_state"] = data["noDataState"]
         if "notification_settings" in data:
@@ -490,9 +505,7 @@ class Rule:
         if "uid" in data:
             args["uid"] = data["uid"]
         if "updated" in data:
-            args["updated"] = data["updated"]
-        if "keepFiringFor" in data:
-            args["keep_firing_for"] = data["keepFiringFor"]        
+            args["updated"] = data["updated"]        
 
         return cls(**args)
 
@@ -502,16 +515,21 @@ class RecordRule:
     from_val: str
     # Name of the recorded metric.
     metric: str
+    # Which data source should be used to write the output of the recording rule, specified by UID.
+    target_datasource_uid: typing.Optional[str]
 
-    def __init__(self, from_val: str = "", metric: str = "") -> None:
+    def __init__(self, from_val: str = "", metric: str = "", target_datasource_uid: typing.Optional[str] = None) -> None:
         self.from_val = from_val
         self.metric = metric
+        self.target_datasource_uid = target_datasource_uid
 
     def to_json(self) -> dict[str, object]:
         payload: dict[str, object] = {
             "from": self.from_val,
             "metric": self.metric,
         }
+        if self.target_datasource_uid is not None:
+            payload["target_datasource_uid"] = self.target_datasource_uid
         return payload
 
     @classmethod
@@ -521,7 +539,9 @@ class RecordRule:
         if "from" in data:
             args["from_val"] = data["from"]
         if "metric" in data:
-            args["metric"] = data["metric"]        
+            args["metric"] = data["metric"]
+        if "target_datasource_uid" in data:
+            args["target_datasource_uid"] = data["target_datasource_uid"]        
 
         return cls(**args)
 

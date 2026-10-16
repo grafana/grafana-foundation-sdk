@@ -28,6 +28,8 @@ data(\Grafana\Foundation\Cog\Builder $data)
 
 ### <span class="badge object-method"></span> description
 
+Shown in a info icon tooltip next to panel title
+
 ```php
 description(string $description)
 ```
@@ -44,6 +46,14 @@ id(float $id)
 
 ```php
 links(array $links)
+```
+
+### <span class="badge object-method"></span> subtitle
+
+Shown in a sub header below the title.
+
+```php
+subtitle(string $subtitle)
 ```
 
 ### <span class="badge object-method"></span> title

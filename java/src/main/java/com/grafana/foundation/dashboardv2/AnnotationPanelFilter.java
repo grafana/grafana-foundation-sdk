@@ -20,12 +20,12 @@ public class AnnotationPanelFilter {
     // Panel IDs that should be included or excluded
     @JsonSetter(nulls = Nulls.AS_EMPTY)
     @JsonProperty("ids")
-    public List<Integer> ids;
+    public List<Double> ids;
     public AnnotationPanelFilter() {
         this.exclude = false;
         this.ids = new LinkedList<>();
     }
-    public AnnotationPanelFilter(Boolean exclude,List<Integer> ids) {
+    public AnnotationPanelFilter(Boolean exclude,List<Double> ids) {
         this.exclude = exclude;
         this.ids = ids;
     }

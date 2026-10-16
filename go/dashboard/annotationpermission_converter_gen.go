@@ -24,18 +24,6 @@ func AnnotationPermissionConverter(input AnnotationPermission) string {
 		buffer.Reset()
 
 	}
-	if input.Organization != nil {
-
-		buffer.WriteString(`Organization(`)
-		arg0 := AnnotationActionsConverter(*input.Organization)
-		buffer.WriteString(arg0)
-
-		buffer.WriteString(")")
-
-		calls = append(calls, buffer.String())
-		buffer.Reset()
-
-	}
 
 	return strings.Join(calls, ".\t\n")
 }

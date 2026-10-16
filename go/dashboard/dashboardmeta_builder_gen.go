@@ -42,6 +42,7 @@ func (builder *DashboardMetaBuilder) RecordError(path string, err error) *Dashbo
 	return builder
 }
 
+// +k8s:deepcopy-gen=true
 func (builder *DashboardMetaBuilder) AnnotationsPermissions(annotationsPermissions cog.Builder[AnnotationPermission]) *DashboardMetaBuilder {
 	annotationsPermissionsResource, err := annotationsPermissions.Build()
 	if err != nil {
@@ -146,12 +147,6 @@ func (builder *DashboardMetaBuilder) IsFolder(isFolder bool) *DashboardMetaBuild
 
 func (builder *DashboardMetaBuilder) IsSnapshot(isSnapshot bool) *DashboardMetaBuilder {
 	builder.internal.IsSnapshot = &isSnapshot
-
-	return builder
-}
-
-func (builder *DashboardMetaBuilder) IsStarred(isStarred bool) *DashboardMetaBuilder {
-	builder.internal.IsStarred = &isStarred
 
 	return builder
 }

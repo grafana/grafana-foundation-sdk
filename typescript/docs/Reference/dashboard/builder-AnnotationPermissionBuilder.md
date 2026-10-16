@@ -3,6 +3,8 @@ title: <span class="badge builder"></span> AnnotationPermissionBuilder
 ---
 # <span class="badge builder"></span> AnnotationPermissionBuilder
 
++k8s:deepcopy-gen=true
+
 ## Constructor
 
 ```typescript
@@ -20,14 +22,10 @@ build()
 
 ### <span class="badge object-method"></span> dashboard
 
++k8s:deepcopy-gen=true
+
 ```typescript
 dashboard(dashboard: cog.Builder<dashboard.AnnotationActions>)
-```
-
-### <span class="badge object-method"></span> organization
-
-```typescript
-organization(organization: cog.Builder<dashboard.AnnotationActions>)
 ```
 
 ## See also

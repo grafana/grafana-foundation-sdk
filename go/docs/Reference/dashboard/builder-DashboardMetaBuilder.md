@@ -20,6 +20,8 @@ func (builder *DashboardMetaBuilder) Build() (DashboardMeta, error)
 
 ### <span class="badge object-method"></span> AnnotationsPermissions
 
++k8s:deepcopy-gen=true
+
 ```go
 func (builder *DashboardMetaBuilder) AnnotationsPermissions(annotationsPermissions cog.Builder[dashboard.AnnotationPermission]) *DashboardMetaBuilder
 ```
@@ -120,12 +122,6 @@ func (builder *DashboardMetaBuilder) IsFolder(isFolder bool) *DashboardMetaBuild
 
 ```go
 func (builder *DashboardMetaBuilder) IsSnapshot(isSnapshot bool) *DashboardMetaBuilder
-```
-
-### <span class="badge object-method"></span> IsStarred
-
-```go
-func (builder *DashboardMetaBuilder) IsStarred(isStarred bool) *DashboardMetaBuilder
 ```
 
 ### <span class="badge object-method"></span> Provisioned

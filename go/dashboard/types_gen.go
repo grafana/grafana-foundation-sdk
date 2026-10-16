@@ -15,6 +15,7 @@ import (
 	common "github.com/grafana/grafana-foundation-sdk/go/common"
 )
 
+// +k8s:deepcopy-gen=true
 type AnnotationActions struct {
 	CanAdd    *bool `json:"canAdd,omitempty"`
 	CanDelete *bool `json:"canDelete,omitempty"`
@@ -117,9 +118,10 @@ func (resource AnnotationActions) Validate() error {
 	return nil
 }
 
+// +k8s:deepcopy-gen=true
 type AnnotationPermission struct {
-	Dashboard    *AnnotationActions `json:"dashboard,omitempty"`
-	Organization *AnnotationActions `json:"organization,omitempty"`
+	// +k8s:deepcopy-gen=true
+	Dashboard *AnnotationActions `json:"dashboard,omitempty"`
 }
 
 // NewAnnotationPermission creates a new AnnotationPermission object.
@@ -152,19 +154,6 @@ func (resource *AnnotationPermission) UnmarshalJSONStrict(raw []byte) error {
 		delete(fields, "dashboard")
 
 	}
-	// Field "organization"
-	if fields["organization"] != nil {
-		if string(fields["organization"]) != "null" {
-
-			resource.Organization = &AnnotationActions{}
-			if err := resource.Organization.UnmarshalJSONStrict(fields["organization"]); err != nil {
-				errs = append(errs, cog.MakeBuildErrors("organization", err)...)
-			}
-
-		}
-		delete(fields, "organization")
-
-	}
 
 	for field := range fields {
 		errs = append(errs, cog.MakeBuildErrors("AnnotationPermission", fmt.Errorf("unexpected field '%s'", field))...)
@@ -184,15 +173,6 @@ func (resource AnnotationPermission) Equals(other AnnotationPermission) bool {
 			return false
 		}
 	}
-	if resource.Organization == nil && other.Organization != nil || resource.Organization != nil && other.Organization == nil {
-		return false
-	}
-
-	if resource.Organization != nil {
-		if !resource.Organization.Equals(*other.Organization) {
-			return false
-		}
-	}
 
 	return true
 }
@@ -205,11 +185,6 @@ func (resource AnnotationPermission) Validate() error {
 			errs = append(errs, cog.MakeBuildErrors("dashboard", err)...)
 		}
 	}
-	if resource.Organization != nil {
-		if err := resource.Organization.Validate(); err != nil {
-			errs = append(errs, cog.MakeBuildErrors("organization", err)...)
-		}
-	}
 
 	if len(errs) == 0 {
 		return nil
@@ -219,6 +194,7 @@ func (resource AnnotationPermission) Validate() error {
 }
 
 type DashboardMeta struct {
+	// +k8s:deepcopy-gen=true
 	AnnotationsPermissions *AnnotationPermission `json:"annotationsPermissions,omitempty"`
 	ApiVersion             *string               `json:"apiVersion,omitempty"`
 	CanAdmin               *bool                 `json:"canAdmin,omitempty"`
@@ -237,7 +213,6 @@ type DashboardMeta struct {
 	HasAcl                 *bool      `json:"hasAcl,omitempty"`
 	IsFolder               *bool      `json:"isFolder,omitempty"`
 	IsSnapshot             *bool      `json:"isSnapshot,omitempty"`
-	IsStarred              *bool      `json:"isStarred,omitempty"`
 	Provisioned            *bool      `json:"provisioned,omitempty"`
 	ProvisionedExternalId  *string    `json:"provisionedExternalId,omitempty"`
 	PublicDashboardEnabled *bool      `json:"publicDashboardEnabled,omitempty"`
@@ -453,17 +428,6 @@ func (resource *DashboardMeta) UnmarshalJSONStrict(raw []byte) error {
 
 		}
 		delete(fields, "isSnapshot")
-
-	}
-	// Field "isStarred"
-	if fields["isStarred"] != nil {
-		if string(fields["isStarred"]) != "null" {
-			if err := json.Unmarshal(fields["isStarred"], &resource.IsStarred); err != nil {
-				errs = append(errs, cog.MakeBuildErrors("isStarred", err)...)
-			}
-
-		}
-		delete(fields, "isStarred")
 
 	}
 	// Field "provisioned"
@@ -725,15 +689,6 @@ func (resource DashboardMeta) Equals(other DashboardMeta) bool {
 
 	if resource.IsSnapshot != nil {
 		if *resource.IsSnapshot != *other.IsSnapshot {
-			return false
-		}
-	}
-	if resource.IsStarred == nil && other.IsStarred != nil || resource.IsStarred != nil && other.IsStarred == nil {
-		return false
-	}
-
-	if resource.IsStarred != nil {
-		if *resource.IsStarred != *other.IsStarred {
 			return false
 		}
 	}

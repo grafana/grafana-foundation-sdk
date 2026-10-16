@@ -10,7 +10,7 @@ class AnnotationPanelFilter:
     # Should the specified panels be included or excluded
     exclude: typing.Optional[bool]
     # Panel IDs that should be included or excluded
-    ids: list[int]
+    ids: list[float]
 ```
 ## Methods
 

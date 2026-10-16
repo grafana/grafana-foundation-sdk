@@ -24,6 +24,7 @@ class DashboardMetaBuilder implements \Grafana\Foundation\Cog\Builder
     }
 
     /**
+     * +k8s:deepcopy-gen=true
      * @param \Grafana\Foundation\Cog\Builder<\Grafana\Foundation\Dashboard\AnnotationPermission> $annotationsPermissions
      */
     public function annotationsPermissions(\Grafana\Foundation\Cog\Builder $annotationsPermissions): static
@@ -145,13 +146,6 @@ class DashboardMetaBuilder implements \Grafana\Foundation\Cog\Builder
     public function isSnapshot(bool $isSnapshot): static
     {
         $this->internal->isSnapshot = $isSnapshot;
-    
-        return $this;
-    }
-
-    public function isStarred(bool $isStarred): static
-    {
-        $this->internal->isStarred = $isStarred;
     
         return $this;
     }

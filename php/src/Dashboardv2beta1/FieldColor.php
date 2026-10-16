@@ -18,6 +18,11 @@ class FieldColor implements \JsonSerializable
     public ?string $fixedColor;
 
     /**
+     * The end color for the gradient color mode (smallest value). Only used when mode is gradient.
+     */
+    public ?string $gradientColorTo;
+
+    /**
      * Some visualizations need to know how to assign a series color from by value color schemes.
      */
     public ?\Grafana\Foundation\Dashboardv2beta1\FieldColorSeriesByMode $seriesBy;
@@ -25,12 +30,14 @@ class FieldColor implements \JsonSerializable
     /**
      * @param \Grafana\Foundation\Dashboardv2beta1\FieldColorModeId|null $mode
      * @param string|null $fixedColor
+     * @param string|null $gradientColorTo
      * @param \Grafana\Foundation\Dashboardv2beta1\FieldColorSeriesByMode|null $seriesBy
      */
-    public function __construct(?\Grafana\Foundation\Dashboardv2beta1\FieldColorModeId $mode = null, ?string $fixedColor = null, ?\Grafana\Foundation\Dashboardv2beta1\FieldColorSeriesByMode $seriesBy = null)
+    public function __construct(?\Grafana\Foundation\Dashboardv2beta1\FieldColorModeId $mode = null, ?string $fixedColor = null, ?string $gradientColorTo = null, ?\Grafana\Foundation\Dashboardv2beta1\FieldColorSeriesByMode $seriesBy = null)
     {
         $this->mode = $mode ?: \Grafana\Foundation\Dashboardv2beta1\FieldColorModeId::Thresholds();
         $this->fixedColor = $fixedColor;
+        $this->gradientColorTo = $gradientColorTo;
         $this->seriesBy = $seriesBy;
     }
 
@@ -39,11 +46,12 @@ class FieldColor implements \JsonSerializable
      */
     public static function fromArray(array $inputData): self
     {
-        /** @var array{mode?: string, fixedColor?: string, seriesBy?: string} $inputData */
+        /** @var array{mode?: string, fixedColor?: string, gradientColorTo?: string, seriesBy?: string} $inputData */
         $data = $inputData;
         return new self(
             mode: isset($data["mode"]) ? (function($input) { return \Grafana\Foundation\Dashboardv2beta1\FieldColorModeId::fromValue($input); })($data["mode"]) : null,
             fixedColor: $data["fixedColor"] ?? null,
+            gradientColorTo: $data["gradientColorTo"] ?? null,
             seriesBy: isset($data["seriesBy"]) ? (function($input) { return \Grafana\Foundation\Dashboardv2beta1\FieldColorSeriesByMode::fromValue($input); })($data["seriesBy"]) : null,
         );
     }
@@ -57,6 +65,9 @@ class FieldColor implements \JsonSerializable
         $data->mode = $this->mode;
         if (isset($this->fixedColor)) {
             $data->fixedColor = $this->fixedColor;
+        }
+        if (isset($this->gradientColorTo)) {
+            $data->gradientColorTo = $this->gradientColorTo;
         }
         if (isset($this->seriesBy)) {
             $data->seriesBy = $this->seriesBy;

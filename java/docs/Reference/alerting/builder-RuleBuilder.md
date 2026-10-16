@@ -66,18 +66,20 @@ public RuleBuilder isPaused(Boolean isPaused)
 
 ### <span class="badge object-method"></span> keepFiringFor
 
-You can set a Keep firing for period to avoid repeated firing-resolving-firing notifications caused by flapping conditions.
-
-Value is in nanoseconds
-
 ```java
-public RuleBuilder keepFiringFor(Long keepFiringFor)
+public RuleBuilder keepFiringFor(String keepFiringFor)
 ```
 
 ### <span class="badge object-method"></span> labels
 
 ```java
 public RuleBuilder labels(Map<String, String> labels)
+```
+
+### <span class="badge object-method"></span> missingSeriesEvalsToResolve
+
+```java
+public RuleBuilder missingSeriesEvalsToResolve(Long missingSeriesEvalsToResolve)
 ```
 
 ### <span class="badge object-method"></span> noDataState

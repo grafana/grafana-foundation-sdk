@@ -20,6 +20,10 @@ public class FieldColor {
     @JsonInclude(JsonInclude.Include.NON_NULL)
     @JsonProperty("fixedColor")
     public String fixedColor;
+    // The end color for the gradient color mode (smallest value). Only used when mode is gradient.
+    @JsonInclude(JsonInclude.Include.NON_NULL)
+    @JsonProperty("gradientColorTo")
+    public String gradientColorTo;
     // Some visualizations need to know how to assign a series color from by value color schemes.
     @JsonInclude(JsonInclude.Include.NON_NULL)
     @JsonProperty("seriesBy")
@@ -27,9 +31,10 @@ public class FieldColor {
     public FieldColor() {
         this.mode = FieldColorModeId.THRESHOLDS;
     }
-    public FieldColor(FieldColorModeId mode,String fixedColor,FieldColorSeriesByMode seriesBy) {
+    public FieldColor(FieldColorModeId mode,String fixedColor,String gradientColorTo,FieldColorSeriesByMode seriesBy) {
         this.mode = mode;
         this.fixedColor = fixedColor;
+        this.gradientColorTo = gradientColorTo;
         this.seriesBy = seriesBy;
     }
     

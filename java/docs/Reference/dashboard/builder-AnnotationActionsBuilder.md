@@ -3,6 +3,8 @@ title: <span class="badge builder"></span> AnnotationActionsBuilder
 ---
 # <span class="badge builder"></span> AnnotationActionsBuilder
 
++k8s:deepcopy-gen=true
+
 ## Constructor
 
 ```java

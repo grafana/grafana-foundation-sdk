@@ -36,6 +36,14 @@ public class PanelBuilder implements com.grafana.foundation.cog.Builder<PanelKin
         return this;
     }
     
+    public PanelBuilder subtitle(String subtitle) {
+		if (this.internal.spec == null) {
+			this.internal.spec = new com.grafana.foundation.dashboardv2beta1.PanelSpec();
+		}
+        this.internal.spec.subtitle = subtitle;
+        return this;
+    }
+    
     public PanelBuilder links(List<com.grafana.foundation.cog.Builder<DataLink>> links) {
 		if (this.internal.spec == null) {
 			this.internal.spec = new com.grafana.foundation.dashboardv2beta1.PanelSpec();

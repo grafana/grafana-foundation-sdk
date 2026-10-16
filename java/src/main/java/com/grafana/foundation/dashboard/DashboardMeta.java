@@ -9,6 +9,7 @@ import com.fasterxml.jackson.databind.ObjectWriter;
 import com.fasterxml.jackson.annotation.JsonInclude;
 
 public class DashboardMeta {
+    // +k8s:deepcopy-gen=true
     @JsonInclude(JsonInclude.Include.NON_NULL)
     @JsonProperty("annotationsPermissions")
     public AnnotationPermission annotationsPermissions;
@@ -62,9 +63,6 @@ public class DashboardMeta {
     @JsonProperty("isSnapshot")
     public Boolean isSnapshot;
     @JsonInclude(JsonInclude.Include.NON_NULL)
-    @JsonProperty("isStarred")
-    public Boolean isStarred;
-    @JsonInclude(JsonInclude.Include.NON_NULL)
     @JsonProperty("provisioned")
     public Boolean provisioned;
     @JsonInclude(JsonInclude.Include.NON_NULL)
@@ -93,7 +91,7 @@ public class DashboardMeta {
     public Long version;
     public DashboardMeta() {
     }
-    public DashboardMeta(AnnotationPermission annotationsPermissions,String apiVersion,Boolean canAdmin,Boolean canDelete,Boolean canEdit,Boolean canSave,Boolean canStar,String created,String createdBy,String expires,Long folderId,String folderTitle,String folderUid,String folderUrl,Boolean hasAcl,Boolean isFolder,Boolean isSnapshot,Boolean isStarred,Boolean provisioned,String provisionedExternalId,Boolean publicDashboardEnabled,String slug,String type,String updated,String updatedBy,String url,Long version) {
+    public DashboardMeta(AnnotationPermission annotationsPermissions,String apiVersion,Boolean canAdmin,Boolean canDelete,Boolean canEdit,Boolean canSave,Boolean canStar,String created,String createdBy,String expires,Long folderId,String folderTitle,String folderUid,String folderUrl,Boolean hasAcl,Boolean isFolder,Boolean isSnapshot,Boolean provisioned,String provisionedExternalId,Boolean publicDashboardEnabled,String slug,String type,String updated,String updatedBy,String url,Long version) {
         this.annotationsPermissions = annotationsPermissions;
         this.apiVersion = apiVersion;
         this.canAdmin = canAdmin;
@@ -111,7 +109,6 @@ public class DashboardMeta {
         this.hasAcl = hasAcl;
         this.isFolder = isFolder;
         this.isSnapshot = isSnapshot;
-        this.isStarred = isStarred;
         this.provisioned = provisioned;
         this.provisionedExternalId = provisionedExternalId;
         this.publicDashboardEnabled = publicDashboardEnabled;

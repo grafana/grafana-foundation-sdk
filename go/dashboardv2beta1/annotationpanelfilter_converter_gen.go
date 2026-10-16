@@ -33,7 +33,7 @@ func AnnotationPanelFilterConverter(input AnnotationPanelFilter) string {
 			tmpidsarg1 := fmt.Sprintf("%#v", arg1)
 			tmparg0 = append(tmparg0, tmpidsarg1)
 		}
-		arg0 := "[]uint32{" + strings.Join(tmparg0, ",\n") + "}"
+		arg0 := "[]float64{" + strings.Join(tmparg0, ",\n") + "}"
 		buffer.WriteString(arg0)
 
 		buffer.WriteString(")")

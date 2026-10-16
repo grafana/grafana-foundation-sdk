@@ -30,7 +30,7 @@ exclude(bool $exclude)
 
 Panel IDs that should be included or excluded
 
-@param array<int> $ids
+@param array<float> $ids
 
 ```php
 ids(array $ids)

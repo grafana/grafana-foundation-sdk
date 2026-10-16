@@ -28,6 +28,14 @@ The fixed color value for fixed or shades color modes.
 fixedColor(string $fixedColor)
 ```
 
+### <span class="badge object-method"></span> gradientColorTo
+
+The end color for the gradient color mode (smallest value). Only used when mode is gradient.
+
+```php
+gradientColorTo(string $gradientColorTo)
+```
+
 ### <span class="badge object-method"></span> mode
 
 The main color scheme mode.

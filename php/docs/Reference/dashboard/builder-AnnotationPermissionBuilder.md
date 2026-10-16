@@ -3,6 +3,8 @@ title: <span class="badge builder"></span> AnnotationPermissionBuilder
 ---
 # <span class="badge builder"></span> AnnotationPermissionBuilder
 
++k8s:deepcopy-gen=true
+
 ## Constructor
 
 ```php
@@ -20,18 +22,12 @@ build()
 
 ### <span class="badge object-method"></span> dashboard
 
++k8s:deepcopy-gen=true
+
 @param \Grafana\Foundation\Cog\Builder<\Grafana\Foundation\Dashboard\AnnotationActions> $dashboard
 
 ```php
 dashboard(\Grafana\Foundation\Cog\Builder $dashboard)
-```
-
-### <span class="badge object-method"></span> organization
-
-@param \Grafana\Foundation\Cog\Builder<\Grafana\Foundation\Dashboard\AnnotationActions> $organization
-
-```php
-organization(\Grafana\Foundation\Cog\Builder $organization)
 ```
 
 ## See also

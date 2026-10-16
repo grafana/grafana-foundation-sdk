@@ -15,7 +15,9 @@ public class Rule {
   public String forArg;
   public Long id;
   public Boolean isPaused;
+  public String keepFiringFor;
   public Map<String, String> labels;
+  public Long missingSeriesEvalsToResolve;
   public RuleNoDataState noDataState;
   public NotificationSettings notificationSettings;
   public Long orgID;
@@ -25,7 +27,6 @@ public class Rule {
   public String title;
   public String uid;
   public String updated;
-  public Long keepFiringFor;
 }
 ```
 ## See also

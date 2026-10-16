@@ -53,8 +53,16 @@ func (builder *PanelBuilder) Title(title string) *PanelBuilder {
 	return builder
 }
 
+// Shown in a info icon tooltip next to panel title
 func (builder *PanelBuilder) Description(description string) *PanelBuilder {
-	builder.internal.Spec.Description = description
+	builder.internal.Spec.Description = &description
+
+	return builder
+}
+
+// Shown in a sub header below the title.
+func (builder *PanelBuilder) Subtitle(subtitle string) *PanelBuilder {
+	builder.internal.Spec.Subtitle = &subtitle
 
 	return builder
 }
