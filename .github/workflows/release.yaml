@@ -5,7 +5,7 @@ on:
   workflow_dispatch: ~
 
 env:
-  DEVBOX_VERSION: '0.16.0'
+  DEVBOX_VERSION: '0.18.4'
 
 # Grant GITHUB_TOKEN the permissions required to make a release
 permissions:
