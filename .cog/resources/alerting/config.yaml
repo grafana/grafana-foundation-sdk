@@ -14,7 +14,8 @@ inputs:
         - Route
         - MuteTimeInterval
         - NotificationTemplate
-        - TimeRange
+        - TimeIntervalItem
+        - TimeIntervalTimeRange
       transformations:
         - '%__config_dir%/schema.transforms.yaml'
 
