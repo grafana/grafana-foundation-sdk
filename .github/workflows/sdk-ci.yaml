@@ -42,7 +42,8 @@ jobs:
           git config --global user.name 'github-actions[bot]'
           git config --global user.email 'github-actions[bot]@users.noreply.github.com'
 
-          devbox run make prepare-release
+          devbox run make generate
+          devbox run ./scripts/release-validate.sh
         env:
           TERM: 'xterm'
           WORKSPACE_PATH: /tmp/foundation-workspace-current
