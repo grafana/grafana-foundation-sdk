@@ -74,6 +74,10 @@ publishing {
     }
 }
 {{- else }}
+tasks.withType(JavaCompile) {
+    options.warnings = false
+}
+
 publishing {
     publications {
         mavenJava(MavenPublication) {
