@@ -1,0 +1,106 @@
+---
+title: <span class="badge object-type-enum"></span> RecordingRuleHealth
+---
+# <span class="badge object-type-enum"></span> RecordingRuleHealth
+
+## Definition
+
+```php
+final class RecordingRuleHealth implements \JsonSerializable, \Stringable {
+    /**
+     * @var string
+     */
+    private $value;
+
+    /**
+     * @var array<string, RecordingRuleHealth>
+     */
+    private static $instances = [];
+
+    private function __construct(string $value)
+    {
+        $this->value = $value;
+    }
+
+    public static function unknown(): self
+    {
+        if (!isset(self::$instances["Unknown"])) {
+            self::$instances["Unknown"] = new self("Unknown");
+        }
+
+        return self::$instances["Unknown"];
+    }
+
+    public static function recording(): self
+    {
+        if (!isset(self::$instances["Recording"])) {
+            self::$instances["Recording"] = new self("Recording");
+        }
+
+        return self::$instances["Recording"];
+    }
+
+    public static function paused(): self
+    {
+        if (!isset(self::$instances["Paused"])) {
+            self::$instances["Paused"] = new self("Paused");
+        }
+
+        return self::$instances["Paused"];
+    }
+
+    public static function error(): self
+    {
+        if (!isset(self::$instances["Error"])) {
+            self::$instances["Error"] = new self("Error");
+        }
+
+        return self::$instances["Error"];
+    }
+
+    public static function noData(): self
+    {
+        if (!isset(self::$instances["NoData"])) {
+            self::$instances["NoData"] = new self("NoData");
+        }
+
+        return self::$instances["NoData"];
+    }
+
+    public static function fromValue(string $value): self
+    {
+        if ($value === "Unknown") {
+            return self::unknown();
+        }
+
+        if ($value === "Recording") {
+            return self::recording();
+        }
+
+        if ($value === "Paused") {
+            return self::paused();
+        }
+
+        if ($value === "Error") {
+            return self::error();
+        }
+
+        if ($value === "NoData") {
+            return self::noData();
+        }
+
+        throw new \UnexpectedValueException("Value '$value' is not part of the enum RecordingRuleHealth");
+    }
+
+    public function jsonSerialize(): string
+    {
+        return $this->value;
+    }
+
+    public function __toString(): string
+    {
+        return $this->value;
+    }
+}
+
+```
