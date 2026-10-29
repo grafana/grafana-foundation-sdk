@@ -1,0 +1,27 @@
+# yaml-language-server: $schema=https://raw.githubusercontent.com/grafana/cog/main/schemas/compiler_passes.json
+
+passes:
+  # Add a few useful constants
+  - add_object:
+      object: alertingv0alpha1.ApiVersion
+      as:
+        kind: scalar
+        scalar: { scalar_kind: string, value: "rules.alerting.grafana.app/v0alpha1" }
+
+  - add_object:
+      object: alertingv0alpha1.AlertRuleKind
+      as:
+        kind: scalar
+        scalar: { scalar_kind: string, value: "AlertRule" }
+
+  - add_object:
+      object: alertingv0alpha1.RecordingRuleKind
+      as:
+        kind: scalar
+        scalar: { scalar_kind: string, value: "RecordingRule" }
+
+  - add_object:
+      object: alertingv0alpha1.RuleSequenceKind
+      as:
+        kind: scalar
+        scalar: { scalar_kind: string, value: "RuleSequence" }
