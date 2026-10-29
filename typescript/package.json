@@ -1,6 +1,6 @@
 {
   "name": "@grafana/grafana-foundation-sdk",
-  "version": "v0.0.21",
+  "version": "v0.0.22",
   "description": "A set of tools, types and libraries for building and manipulating Grafana objects.",
   "keywords": [
     "observability",
@@ -38,6 +38,10 @@
     "./alerting": {
       "types": "./dist/alerting/index.d.ts",
       "default": "./dist/alerting/index.js"
+    },
+    "./alertingv0alpha1": {
+      "types": "./dist/alertingv0alpha1/index.d.ts",
+      "default": "./dist/alertingv0alpha1/index.js"
     },
     "./annotationslist": {
       "types": "./dist/annotationslist/index.d.ts",

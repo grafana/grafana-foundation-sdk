@@ -168,7 +168,7 @@ func (builder *AnnotationQueryBuilder) UseValueForTime(useValueForTime bool) *An
 
 // Mappings define how to convert data frame fields to annotation event fields.
 func (builder *AnnotationQueryBuilder) Mappings(mappings map[string]cog.Builder[AnnotationEventFieldMapping]) *AnnotationQueryBuilder {
-	mappingsResource := make(map[string]AnnotationEventFieldMapping)
+	mappingsResource := make(map[string]AnnotationEventFieldMapping, len(mappings))
 	for key1, val1 := range mappings {
 		mappingsDepth1, err := val1.Build()
 		if err != nil {

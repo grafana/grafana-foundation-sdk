@@ -1,0 +1,595 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "title": "alertingv0alpha1",
+    "version": "0.0.0",
+    "x-schema-identifier": "",
+    "x-schema-kind": ""
+  },
+  "paths": {},
+  "components": {
+    "schemas": {
+      "NoDataState": {
+        "enum": [
+          "NoData",
+          "Ok",
+          "Alerting",
+          "KeepLast"
+        ],
+        "type": "string"
+      },
+      "ExecErrState": {
+        "enum": [
+          "Error",
+          "Ok",
+          "Alerting",
+          "KeepLast"
+        ],
+        "type": "string"
+      },
+      "TimeIntervalRef": {
+        "type": "string"
+      },
+      "AlertRuleSpec": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "title",
+          "trigger",
+          "noDataState",
+          "execErrState",
+          "expressions"
+        ],
+        "properties": {
+          "title": {
+            "type": "string"
+          },
+          "paused": {
+            "type": "boolean"
+          },
+          "trigger": {
+            "$ref": "#/components/schemas/IntervalTrigger"
+          },
+          "labels": {
+            "type": "object",
+            "additionalProperties": {
+              "$ref": "#/components/schemas/TemplateString"
+            }
+          },
+          "annotations": {
+            "type": "object",
+            "additionalProperties": {
+              "$ref": "#/components/schemas/TemplateString"
+            }
+          },
+          "for": {
+            "type": "string"
+          },
+          "keepFiringFor": {
+            "type": "string"
+          },
+          "missingSeriesEvalsToResolve": {
+            "type": "integer",
+            "minimum": 0
+          },
+          "noDataState": {
+            "$ref": "#/components/schemas/NoDataState",
+            "default": "NoData"
+          },
+          "execErrState": {
+            "$ref": "#/components/schemas/ExecErrState",
+            "default": "Error"
+          },
+          "notificationSettings": {
+            "$ref": "#/components/schemas/NotificationSettings"
+          },
+          "expressions": {
+            "$ref": "#/components/schemas/ExpressionMap"
+          },
+          "panelRef": {
+            "$ref": "#/components/schemas/PanelRef"
+          }
+        }
+      },
+      "IntervalTrigger": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "interval"
+        ],
+        "properties": {
+          "interval": {
+            "$ref": "#/components/schemas/PromDuration"
+          }
+        }
+      },
+      "PromDuration": {
+        "type": "string",
+        "pattern": "^((([0-9]+)y)?(([0-9]+)w)?(([0-9]+)d)?(([0-9]+)h)?(([0-9]+)m)?(([0-9]+)s)?|0)$",
+        "not": {
+          "pattern": "hmuµn"
+        }
+      },
+      "TemplateString": {
+        "type": "string"
+      },
+      "NotificationSettings": {
+        "oneOf": [
+          {
+            "$ref": "#/components/schemas/SimplifiedRouting"
+          },
+          {
+            "$ref": "#/components/schemas/NamedRoutingTree"
+          }
+        ]
+      },
+      "SimplifiedRouting": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "type",
+          "receiver"
+        ],
+        "properties": {
+          "type": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/NotificationSettingsType"
+              }
+            ],
+            "default": "SimplifiedRouting"
+          },
+          "receiver": {
+            "type": "string"
+          },
+          "groupBy": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "groupWait": {
+            "$ref": "#/components/schemas/PromDuration"
+          },
+          "groupInterval": {
+            "$ref": "#/components/schemas/PromDuration"
+          },
+          "repeatInterval": {
+            "$ref": "#/components/schemas/PromDuration"
+          },
+          "muteTimeIntervals": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/TimeIntervalRef"
+            }
+          },
+          "activeTimeIntervals": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/TimeIntervalRef"
+            }
+          }
+        }
+      },
+      "NotificationSettingsType": {
+        "enum": [
+          "SimplifiedRouting",
+          "NamedRoutingTree"
+        ],
+        "type": "string"
+      },
+      "NamedRoutingTree": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "type",
+          "routingTree"
+        ],
+        "properties": {
+          "type": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/NotificationSettingsType"
+              }
+            ],
+            "default": "NamedRoutingTree"
+          },
+          "routingTree": {
+            "type": "string"
+          }
+        }
+      },
+      "ExpressionMap": {
+        "type": "object",
+        "additionalProperties": {
+          "$ref": "#/components/schemas/Expression"
+        }
+      },
+      "Expression": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "model"
+        ],
+        "properties": {
+          "queryType": {
+            "type": "string",
+            "description": "The type of query if this is a query expression"
+          },
+          "relativeTimeRange": {
+            "$ref": "#/components/schemas/RelativeTimeRange"
+          },
+          "datasourceUID": {
+            "$ref": "#/components/schemas/DatasourceUID",
+            "description": "The UID of the datasource to run this expression against. If omitted, the expression will be run against the `__expr__` datasource"
+          },
+          "model": {
+            "type": "object",
+            "additionalProperties": {}
+          },
+          "source": {
+            "type": "boolean",
+            "description": "Used to mark the expression to be used as the final source for the rule evaluation\nOnly one expression in a rule can be marked as the source\nFor AlertRules, this is the expression that will be evaluated against the alerting condition\nFor RecordingRules, this is the expression that will be recorded"
+          }
+        }
+      },
+      "RelativeTimeRange": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "from",
+          "to"
+        ],
+        "properties": {
+          "from": {
+            "$ref": "#/components/schemas/PromDurationWMillis"
+          },
+          "to": {
+            "$ref": "#/components/schemas/PromDurationWMillis"
+          }
+        }
+      },
+      "PromDurationWMillis": {
+        "type": "string",
+        "pattern": "^((([0-9]+)y)?(([0-9]+)w)?(([0-9]+)d)?(([0-9]+)h)?(([0-9]+)m)?(([0-9]+)s)?(([0-9]+)ms)?|0)$"
+      },
+      "DatasourceUID": {
+        "type": "string",
+        "pattern": "^[a-zA-Z0-9_-]+$"
+      },
+      "PanelRef": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "dashboardUID",
+          "panelID"
+        ],
+        "properties": {
+          "dashboardUID": {
+            "type": "string",
+            "minLength": 1,
+            "pattern": "^[a-zA-Z0-9_-]+$"
+          },
+          "panelID": {
+            "type": "integer",
+            "minimum": 0,
+            "exclusiveMinimum": true
+          }
+        }
+      },
+      "RecordingRuleSpec": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "title",
+          "trigger",
+          "metric",
+          "expressions",
+          "targetDatasourceUID"
+        ],
+        "properties": {
+          "title": {
+            "type": "string"
+          },
+          "paused": {
+            "type": "boolean"
+          },
+          "trigger": {
+            "$ref": "#/components/schemas/IntervalTrigger"
+          },
+          "labels": {
+            "type": "object",
+            "additionalProperties": {
+              "$ref": "#/components/schemas/TemplateString"
+            }
+          },
+          "metric": {
+            "$ref": "#/components/schemas/MetricName"
+          },
+          "expressions": {
+            "$ref": "#/components/schemas/ExpressionMap"
+          },
+          "targetDatasourceUID": {
+            "$ref": "#/components/schemas/DatasourceUID"
+          }
+        }
+      },
+      "MetricName": {
+        "type": "string",
+        "pattern": "^[a-zA-Z_:][a-zA-Z0-9_:]*$"
+      },
+      "RuleSequenceSpec": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "trigger",
+          "recordingRules"
+        ],
+        "properties": {
+          "trigger": {
+            "$ref": "#/components/schemas/IntervalTrigger"
+          },
+          "recordingRules": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/RuleRef"
+            }
+          },
+          "alertingRules": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/RuleRef"
+            }
+          }
+        }
+      },
+      "RuleRef": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "name"
+        ],
+        "properties": {
+          "name": {
+            "$ref": "#/components/schemas/RuleUID",
+            "description": "name is the metadata.name of an AlertRule or RecordingRule resource."
+          }
+        }
+      },
+      "RuleUID": {
+        "type": "string",
+        "pattern": "^[a-zA-Z0-9_-]+$"
+      },
+      "RuleSpec": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "title",
+          "trigger",
+          "expressions"
+        ],
+        "properties": {
+          "title": {
+            "type": "string"
+          },
+          "paused": {
+            "type": "boolean"
+          },
+          "trigger": {
+            "$ref": "#/components/schemas/IntervalTrigger"
+          },
+          "labels": {
+            "type": "object",
+            "additionalProperties": {
+              "$ref": "#/components/schemas/TemplateString"
+            }
+          },
+          "expressions": {
+            "$ref": "#/components/schemas/ExpressionMap"
+          }
+        }
+      },
+      "SearchResultResource": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "group",
+          "resource",
+          "kind",
+          "name"
+        ],
+        "properties": {
+          "group": {
+            "type": "string"
+          },
+          "resource": {
+            "type": "string"
+          },
+          "kind": {
+            "type": "string"
+          },
+          "name": {
+            "type": "string"
+          }
+        },
+        "description": "#SearchResultResource is the full identity of a hit."
+      },
+      "RuleSearchHitFields": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "title": {
+            "type": "string"
+          },
+          "folder": {
+            "type": "string"
+          },
+          "type": {
+            "type": "string"
+          },
+          "interval": {
+            "type": "string"
+          },
+          "paused": {
+            "type": "boolean"
+          },
+          "labels": {
+            "type": "object",
+            "additionalProperties": {
+              "type": "string"
+            }
+          },
+          "datasourceUIDs": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "annotations": {
+            "type": "object",
+            "additionalProperties": {
+              "type": "string"
+            },
+            "description": "Alert-rule fields."
+          },
+          "for": {
+            "type": "string"
+          },
+          "keepFiringFor": {
+            "type": "string"
+          },
+          "dashboardUID": {
+            "type": "string"
+          },
+          "panelID": {
+            "type": "integer"
+          },
+          "receiver": {
+            "type": "string"
+          },
+          "notificationType": {
+            "type": "string"
+          },
+          "routingTree": {
+            "type": "string"
+          },
+          "metric": {
+            "type": "string",
+            "description": "Recording-rule fields."
+          },
+          "targetDatasourceUID": {
+            "type": "string"
+          }
+        },
+        "description": "#RuleSearchHitFields is the per-kind field payload returned on each hit.\nIt carries the union of alert- and recording-rule search fields; only the\nfields relevant to a hit's kind are populated. This maps to the kind's\ndeclared searchFields."
+      },
+      "SearchResultHit": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "resource",
+          "fields"
+        ],
+        "properties": {
+          "resource": {
+            "$ref": "#/components/schemas/SearchResultResource"
+          },
+          "score": {
+            "type": "number"
+          },
+          "fields": {
+            "$ref": "#/components/schemas/RuleSearchHitFields"
+          }
+        },
+        "description": "#SearchResultHit is a single match: its identity, an optional relevance\nscore (present only when the query included free text), and the requested\nfields."
+      },
+      "TotalHitsRelation": {
+        "enum": [
+          "eq",
+          "lte"
+        ],
+        "type": "string",
+        "description": "#TotalHitsRelation says how totalHits relates to the real number of matching\nrules the caller may see: \"eq\" when it is exact, \"lte\" when it is an upper\nbound because authorisation was applied after the search ranked its results."
+      },
+      "SearchResultsMetadata": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "continue": {
+            "type": "string"
+          },
+          "totalHits": {
+            "type": "integer"
+          },
+          "totalHitsRelation": {
+            "$ref": "#/components/schemas/TotalHitsRelation",
+            "description": "Always read totalHits together with totalHitsRelation."
+          }
+        },
+        "description": "#SearchResultsMetadata carries the paging token and total authorised match\ncount."
+      },
+      "FacetValue": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "value",
+          "count"
+        ],
+        "properties": {
+          "value": {
+            "type": "string"
+          },
+          "count": {
+            "type": "integer"
+          }
+        },
+        "description": "#FacetValue is a single value/count pair in a facet breakdown."
+      },
+      "SearchResults": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "metadata",
+          "items"
+        ],
+        "properties": {
+          "metadata": {
+            "$ref": "#/components/schemas/SearchResultsMetadata"
+          },
+          "items": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/SearchResultHit"
+            }
+          },
+          "facets": {
+            "type": "object",
+            "additionalProperties": {
+              "type": "array",
+              "items": {
+                "$ref": "#/components/schemas/FacetValue"
+              }
+            }
+          }
+        },
+        "description": "#SearchResults is the response envelope, mirroring\nsearch.grafana.app SearchResults."
+      },
+      "ApiVersion": {
+        "type": "string",
+        "const": "rules.alerting.grafana.app/v0alpha1"
+      },
+      "AlertRuleKind": {
+        "type": "string",
+        "const": "AlertRule"
+      },
+      "RecordingRuleKind": {
+        "type": "string",
+        "const": "RecordingRule"
+      },
+      "RuleSequenceKind": {
+        "type": "string",
+        "const": "RuleSequence"
+      }
+    }
+  }
+}
