@@ -16,3 +16,4 @@ parameters:
     - identifier: instanceof.alwaysTrue
     - identifier: function.alreadyNarrowedType
     - identifier: arrayFilter.same
+    - identifier: nullCoalesce.variable

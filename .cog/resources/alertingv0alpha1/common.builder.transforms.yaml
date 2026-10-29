@@ -1,0 +1,137 @@
+# yaml-language-server: $schema=https://raw.githubusercontent.com/grafana/cog/main/schemas/veneers.json
+
+languages: [all]
+
+package: alertingv0alpha1
+
+builders:
+  - rename:
+      by_name: AlertRuleSpec
+      as: AlertRule
+
+  - rename:
+      by_name: RuleSequenceSpec
+      as: RuleSequence
+
+  - rename:
+      by_name: RecordingRuleSpec
+      as: RecordingRule
+
+  - add_factory:
+      by_name: AlertRule
+      factory:
+        name: AlertRuleManifest
+        builder_ref: {referred_pkg: resource, referred_type: Manifest}
+        comments:
+          - "Creates a resource manifest from an AlertRule."
+        arguments:
+          - &name_argument
+            name: name
+            type: &type_string
+              kind: scalar
+              scalar: {scalar_kind: string}
+          - &spec_argument
+            name: folder
+            type:
+              kind: ref
+              ref: {referred_pkg: alertingv0alpha1, referred_type: AlertRuleSpec}
+        options:
+          - name: apiVersion
+            parameters:
+              - constant:
+                  value: "rules.alerting.grafana.app/v0alpha1"
+                  type: *type_string
+          - name: kind
+            parameters:
+              - constant:
+                  value: "AlertRule"
+                  type: *type_string
+          - name: metadata
+            parameters:
+              - factory:
+                  ref: { package: resource, builder: Metadata, factory: named }
+                  parameters:
+                    - { argument: *name_argument }
+          - name: spec
+            parameters:
+              - { argument: *spec_argument, force_build: true }
+
+  - add_factory:
+      by_name: RecordingRule
+      factory:
+        name: RecordingRuleManifest
+        builder_ref: {referred_pkg: resource, referred_type: Manifest}
+        comments:
+          - "Creates a resource manifest from a RecordingRule."
+        arguments:
+          - &name_argument
+            name: name
+            type: &type_string
+              kind: scalar
+              scalar: {scalar_kind: string}
+          - &spec_argument
+            name: folder
+            type:
+              kind: ref
+              ref: {referred_pkg: alertingv0alpha1, referred_type: RecordingRuleSpec}
+        options:
+          - name: apiVersion
+            parameters:
+              - constant:
+                  value: "rules.alerting.grafana.app/v0alpha1"
+                  type: *type_string
+          - name: kind
+            parameters:
+              - constant:
+                  value: "RecordingRule"
+                  type: *type_string
+          - name: metadata
+            parameters:
+              - factory:
+                  ref: { package: resource, builder: Metadata, factory: named }
+                  parameters:
+                    - { argument: *name_argument }
+          - name: spec
+            parameters:
+              - { argument: *spec_argument, force_build: true }
+
+  - add_factory:
+      by_name: RuleSequence
+      factory:
+        name: RuleSequenceManifest
+        builder_ref: {referred_pkg: resource, referred_type: Manifest}
+        comments:
+          - "Creates a resource manifest from a RuleSequence."
+        arguments:
+          - &name_argument
+            name: name
+            type: &type_string
+              kind: scalar
+              scalar: {scalar_kind: string}
+          - &spec_argument
+            name: folder
+            type:
+              kind: ref
+              ref: {referred_pkg: alertingv0alpha1, referred_type: RuleSequenceSpec}
+        options:
+          - name: apiVersion
+            parameters:
+              - constant:
+                  value: "rules.alerting.grafana.app/v0alpha1"
+                  type: *type_string
+          - name: kind
+            parameters:
+              - constant:
+                  value: "RuleSequence"
+                  type: *type_string
+          - name: metadata
+            parameters:
+              - factory:
+                  ref: { package: resource, builder: Metadata, factory: named }
+                  parameters:
+                    - { argument: *name_argument }
+          - name: spec
+            parameters:
+              - { argument: *spec_argument, force_build: true }
+
+options: []
