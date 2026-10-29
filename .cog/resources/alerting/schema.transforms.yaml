@@ -18,6 +18,19 @@ passes:
       from: alerting.AlertQuery
       to: Query
 
+  - deprecate_object:
+      object: alerting.RuleGroup
+      message: Prefer using the alertingv1beta1 package instead
+  - deprecate_object:
+      object: alerting.Rule
+      message: Prefer using the alertingv1beta1 package instead
+  - deprecate_object:
+      object: alerting.NotificationSettings
+      message: Prefer using the alertingv1beta1 package instead
+  - deprecate_object:
+      object: alerting.Query
+      message: Prefer using the alertingv1beta1 package instead
+
   - rename_object:
       from: alerting.EmbeddedContactPoint
       to: ContactPoint
