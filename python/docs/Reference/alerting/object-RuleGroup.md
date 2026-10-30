@@ -1,12 +1,15 @@
 ---
-title: <span class="badge object-type-class"></span> RuleGroup
+title: <span class="badge object-type-class"></span> <span class="badge deprecated"></span> RuleGroup
 ---
-# <span class="badge object-type-class"></span> RuleGroup
+# <span class="badge object-type-class"></span> <span class="badge deprecated"></span> RuleGroup
+
+<span class="badge deprecated"></span>Prefer using the alertingv1beta1 package instead
 
 ## Definition
 
 ```python
 class RuleGroup:
+    warnings.warn("Prefer using the alertingv1beta1 package instead", DeprecationWarning)
     folder_uid: typing.Optional[str]
     # The interval, in seconds, at which all rules in the group are evaluated.
     # If a group contains many rules, the rules are evaluated sequentially.
@@ -35,4 +38,4 @@ def from_json(data: dict[str, typing.Any]) -> typing.Self
 
 ## See also
 
- * <span class="badge builder"></span> [RuleGroup](./builder-RuleGroup.md)
+ * <span class="badge builder"></span> <span class="badge deprecated"></span> [RuleGroup](./builder-RuleGroup.md)

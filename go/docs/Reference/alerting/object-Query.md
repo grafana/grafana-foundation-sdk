@@ -1,7 +1,9 @@
 ---
-title: <span class="badge object-type-struct"></span> Query
+title: <span class="badge object-type-struct"></span> <span class="badge deprecated"></span> Query
 ---
-# <span class="badge object-type-struct"></span> Query
+# <span class="badge object-type-struct"></span> <span class="badge deprecated"></span> Query
+
+<span class="badge deprecated"></span>Prefer using the alertingv1beta1 package instead
 
 ## Definition
 
@@ -59,4 +61,4 @@ func (query *Query) Validate() error
 
 ## See also
 
- * <span class="badge builder"></span> [QueryBuilder](./builder-QueryBuilder.md)
+ * <span class="badge builder"></span> <span class="badge deprecated"></span> [QueryBuilder](./builder-QueryBuilder.md)

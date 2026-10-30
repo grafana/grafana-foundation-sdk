@@ -1,7 +1,9 @@
 ---
-title: <span class="badge object-type-interface"></span> Rule
+title: <span class="badge object-type-interface"></span> <span class="badge deprecated"></span> Rule
 ---
-# <span class="badge object-type-interface"></span> Rule
+# <span class="badge object-type-interface"></span> <span class="badge deprecated"></span> Rule
+
+<span class="badge deprecated"></span>Prefer using the alertingv1beta1 package instead
 
 ## Definition
 
@@ -34,4 +36,4 @@ export interface Rule {
 ```
 ## See also
 
- * <span class="badge builder"></span> [RuleBuilder](./builder-RuleBuilder.md)
+ * <span class="badge builder"></span> <span class="badge deprecated"></span> [RuleBuilder](./builder-RuleBuilder.md)

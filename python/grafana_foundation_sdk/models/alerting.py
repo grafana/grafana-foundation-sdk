@@ -1,5 +1,6 @@
 # Code generated - EDITING IS FUTILE. DO NOT EDIT.
 
+import warnings
 import typing
 from ..cog import variants as cogvariants
 from ..cog import runtime as cogruntime
@@ -7,6 +8,7 @@ import enum
 
 
 class Query:
+    warnings.warn("Prefer using the alertingv1beta1 package instead", DeprecationWarning)
     # Grafana data source unique identifier; it should be '__expr__' for a Server Side Expression operation.
     datasource_uid: typing.Optional[str]
     # JSON is the raw JSON query and includes the above properties as well as custom properties.
@@ -61,6 +63,7 @@ class Query:
 
 
 class RuleGroup:
+    warnings.warn("Prefer using the alertingv1beta1 package instead", DeprecationWarning)
     folder_uid: typing.Optional[str]
     # The interval, in seconds, at which all rules in the group are evaluated.
     # If a group contains many rules, the rules are evaluated sequentially.
@@ -104,6 +107,7 @@ class RuleGroup:
 
 
 class NotificationSettings:
+    warnings.warn("Prefer using the alertingv1beta1 package instead", DeprecationWarning)
     # Override the times when notifications should not be muted. These must match the name of a mute time interval defined
     # in the alertmanager configuration time_intervals section. All notifications will be suppressed unless they are sent
     # at the time that matches any interval.
@@ -381,6 +385,7 @@ Provenance: typing.TypeAlias = str
 
 
 class Rule:
+    warnings.warn("Prefer using the alertingv1beta1 package instead", DeprecationWarning)
     annotations: typing.Optional[dict[str, str]]
     condition: str
     data: list['Query']

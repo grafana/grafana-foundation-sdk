@@ -8,11 +8,13 @@ import (
 
 var _ cog.Builder[RuleGroup] = (*RuleGroupBuilder)(nil)
 
+// Deprecated: Prefer using the alertingv1beta1 package instead
 type RuleGroupBuilder struct {
 	internal *RuleGroup
 	errors   cog.BuildErrors
 }
 
+// Deprecated: "Prefer using the alertingv1beta1 package instead"
 func NewRuleGroupBuilder(title string) *RuleGroupBuilder {
 	resource := NewRuleGroup()
 	builder := &RuleGroupBuilder{

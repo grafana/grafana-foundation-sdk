@@ -6,6 +6,10 @@ import java.util.Map;
 import java.util.List;
 import java.util.LinkedList;
 
+/**
+ * @deprecated Prefer using the alertingv1beta1 package instead
+ */
+@Deprecated(forRemoval = true)
 public class RuleBuilder implements com.grafana.foundation.cog.Builder<Rule> {
     protected final Rule internal;
     

@@ -13,6 +13,7 @@ import (
 	variants "github.com/grafana/grafana-foundation-sdk/go/cog/variants"
 )
 
+// Deprecated: Prefer using the alertingv1beta1 package instead
 type Query struct {
 	// Grafana data source unique identifier; it should be '__expr__' for a Server Side Expression operation.
 	DatasourceUid *string `json:"datasourceUid,omitempty"`
@@ -233,6 +234,7 @@ func (resource Query) Validate() error {
 	return errs
 }
 
+// Deprecated: Prefer using the alertingv1beta1 package instead
 type RuleGroup struct {
 	FolderUid *string `json:"folderUid,omitempty"`
 	// The interval, in seconds, at which all rules in the group are evaluated.
@@ -383,6 +385,7 @@ func (resource RuleGroup) Validate() error {
 	return errs
 }
 
+// Deprecated: Prefer using the alertingv1beta1 package instead
 type NotificationSettings struct {
 	// Override the times when notifications should not be muted. These must match the name of a mute time interval defined
 	// in the alertmanager configuration time_intervals section. All notifications will be suppressed unless they are sent
@@ -1139,6 +1142,7 @@ type ObjectMatchers []ObjectMatcher
 
 type Provenance string
 
+// Deprecated: Prefer using the alertingv1beta1 package instead
 type Rule struct {
 	Annotations  map[string]string `json:"annotations,omitempty"`
 	Condition    string            `json:"condition"`

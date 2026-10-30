@@ -4,6 +4,10 @@ package com.grafana.foundation.alerting;
 
 import java.util.List;
 
+/**
+ * @deprecated Prefer using the alertingv1beta1 package instead
+ */
+@Deprecated(forRemoval = true)
 public class NotificationSettingsBuilder implements com.grafana.foundation.cog.Builder<NotificationSettings> {
     protected final NotificationSettings internal;
     
