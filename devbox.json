@@ -6,7 +6,7 @@
     "php83Packages.composer@2.10.3",
     "php83Packages.phpstan@2.1.1",
     "yarn@1.22",
-    "gradle@8.14.4",
+    "gradle@8.14.6",
     "php83@8.3.36"
   ],
   "shell": {
