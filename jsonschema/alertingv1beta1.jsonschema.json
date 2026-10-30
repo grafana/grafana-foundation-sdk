@@ -1,0 +1,511 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "definitions": {
+    "NoDataState": {
+      "enum": [
+        "NoData",
+        "Ok",
+        "Alerting",
+        "KeepLast"
+      ],
+      "type": "string"
+    },
+    "ExecErrState": {
+      "enum": [
+        "Error",
+        "Ok",
+        "Alerting",
+        "KeepLast"
+      ],
+      "type": "string"
+    },
+    "TimeIntervalRef": {
+      "type": "string"
+    },
+    "AlertRuleSpec": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "title",
+        "trigger",
+        "noDataState",
+        "execErrState",
+        "expressions"
+      ],
+      "properties": {
+        "title": {
+          "type": "string"
+        },
+        "paused": {
+          "type": "boolean"
+        },
+        "trigger": {
+          "$ref": "#/definitions/IntervalTrigger"
+        },
+        "labels": {
+          "type": "object",
+          "additionalProperties": {
+            "$ref": "#/definitions/TemplateString"
+          }
+        },
+        "annotations": {
+          "type": "object",
+          "additionalProperties": {
+            "$ref": "#/definitions/TemplateString"
+          }
+        },
+        "for": {
+          "type": "string"
+        },
+        "keepFiringFor": {
+          "type": "string"
+        },
+        "missingSeriesEvalsToResolve": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "noDataState": {
+          "$ref": "#/definitions/NoDataState",
+          "default": "NoData"
+        },
+        "execErrState": {
+          "$ref": "#/definitions/ExecErrState",
+          "default": "Error"
+        },
+        "notificationSettings": {
+          "$ref": "#/definitions/NotificationSettings"
+        },
+        "expressions": {
+          "$ref": "#/definitions/ExpressionMap"
+        },
+        "panelRef": {
+          "$ref": "#/definitions/PanelRef"
+        }
+      }
+    },
+    "IntervalTrigger": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "interval"
+      ],
+      "properties": {
+        "interval": {
+          "$ref": "#/definitions/PromDuration"
+        }
+      }
+    },
+    "PromDuration": {
+      "type": "string",
+      "pattern": "^((([0-9]+)y)?(([0-9]+)w)?(([0-9]+)d)?(([0-9]+)h)?(([0-9]+)m)?(([0-9]+)s)?|0)$",
+      "not": {
+        "pattern": "hmuµn"
+      }
+    },
+    "TemplateString": {
+      "type": "string"
+    },
+    "NotificationSettings": {
+      "oneOf": [
+        {
+          "$ref": "#/definitions/SimplifiedRouting"
+        },
+        {
+          "$ref": "#/definitions/NamedRoutingTree"
+        }
+      ]
+    },
+    "SimplifiedRouting": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "type",
+        "receiver"
+      ],
+      "properties": {
+        "type": {
+          "allOf": [
+            {
+              "$ref": "#/definitions/NotificationSettingsType"
+            }
+          ],
+          "default": "SimplifiedRouting"
+        },
+        "receiver": {
+          "type": "string"
+        },
+        "groupBy": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "groupWait": {
+          "$ref": "#/definitions/PromDuration"
+        },
+        "groupInterval": {
+          "$ref": "#/definitions/PromDuration"
+        },
+        "repeatInterval": {
+          "$ref": "#/definitions/PromDuration"
+        },
+        "muteTimeIntervals": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/TimeIntervalRef"
+          }
+        },
+        "activeTimeIntervals": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/TimeIntervalRef"
+          }
+        }
+      }
+    },
+    "NotificationSettingsType": {
+      "enum": [
+        "SimplifiedRouting",
+        "NamedRoutingTree"
+      ],
+      "type": "string"
+    },
+    "NamedRoutingTree": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "type",
+        "routingTree"
+      ],
+      "properties": {
+        "type": {
+          "allOf": [
+            {
+              "$ref": "#/definitions/NotificationSettingsType"
+            }
+          ],
+          "default": "NamedRoutingTree"
+        },
+        "routingTree": {
+          "type": "string"
+        }
+      }
+    },
+    "ExpressionMap": {
+      "type": "object",
+      "additionalProperties": {
+        "$ref": "#/definitions/Expression"
+      }
+    },
+    "Expression": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "model"
+      ],
+      "properties": {
+        "queryType": {
+          "type": "string",
+          "description": "The type of query if this is a query expression"
+        },
+        "relativeTimeRange": {
+          "$ref": "#/definitions/RelativeTimeRange"
+        },
+        "datasourceUID": {
+          "$ref": "#/definitions/DatasourceUID",
+          "description": "The UID of the datasource to run this expression against. If omitted, the expression will be run against the `__expr__` datasource"
+        },
+        "model": {
+          "type": "object",
+          "additionalProperties": {}
+        },
+        "source": {
+          "type": "boolean",
+          "description": "Used to mark the expression to be used as the final source for the rule evaluation\nOnly one expression in a rule can be marked as the source\nFor AlertRules, this is the expression that will be evaluated against the alerting condition\nFor RecordingRules, this is the expression that will be recorded"
+        }
+      }
+    },
+    "RelativeTimeRange": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "from",
+        "to"
+      ],
+      "properties": {
+        "from": {
+          "$ref": "#/definitions/PromDurationWMillis"
+        },
+        "to": {
+          "$ref": "#/definitions/PromDurationWMillis"
+        }
+      }
+    },
+    "PromDurationWMillis": {
+      "type": "string",
+      "pattern": "^((([0-9]+)y)?(([0-9]+)w)?(([0-9]+)d)?(([0-9]+)h)?(([0-9]+)m)?(([0-9]+)s)?(([0-9]+)ms)?|0)$"
+    },
+    "DatasourceUID": {
+      "type": "string",
+      "pattern": "^[a-zA-Z0-9_-]+$"
+    },
+    "PanelRef": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "dashboardUID",
+        "panelID"
+      ],
+      "properties": {
+        "dashboardUID": {
+          "type": "string",
+          "minLength": 1,
+          "pattern": "^[a-zA-Z0-9_-]+$"
+        },
+        "panelID": {
+          "type": "integer",
+          "exclusiveMinimum": 0
+        }
+      }
+    },
+    "AlertRuleHealth": {
+      "enum": [
+        "Unknown",
+        "OK",
+        "Paused",
+        "Error",
+        "NoData"
+      ],
+      "type": "string"
+    },
+    "AlertRuleState": {
+      "enum": [
+        "Inactive",
+        "Healthy",
+        "Firing",
+        "Pending",
+        "Recovering"
+      ],
+      "type": "string"
+    },
+    "AlertRuleStateReason": {
+      "enum": [
+        "Evaluated",
+        "KeepLast"
+      ],
+      "type": "string"
+    },
+    "AlertRuleInstanceTotals": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "healthy": {
+          "type": "integer"
+        },
+        "firing": {
+          "type": "integer"
+        },
+        "pending": {
+          "type": "integer"
+        },
+        "recovering": {
+          "type": "integer"
+        },
+        "nodata": {
+          "type": "integer"
+        },
+        "error": {
+          "type": "integer"
+        }
+      },
+      "description": "Count of alert instances per state. error also counts instances whose evaluation\nerrored but were mapped to another state via execErrState, so it can overlap."
+    },
+    "RecordingRuleSpec": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "title",
+        "trigger",
+        "metric",
+        "expressions",
+        "targetDatasourceUID"
+      ],
+      "properties": {
+        "title": {
+          "type": "string"
+        },
+        "paused": {
+          "type": "boolean"
+        },
+        "trigger": {
+          "$ref": "#/definitions/IntervalTrigger"
+        },
+        "labels": {
+          "type": "object",
+          "additionalProperties": {
+            "$ref": "#/definitions/TemplateString"
+          }
+        },
+        "metric": {
+          "$ref": "#/definitions/MetricName"
+        },
+        "expressions": {
+          "$ref": "#/definitions/ExpressionMap"
+        },
+        "targetDatasourceUID": {
+          "$ref": "#/definitions/DatasourceUID"
+        }
+      }
+    },
+    "MetricName": {
+      "type": "string",
+      "pattern": "^[a-zA-Z_:][a-zA-Z0-9_:]*$"
+    },
+    "RecordingRuleHealth": {
+      "enum": [
+        "Unknown",
+        "Recording",
+        "Paused",
+        "Error",
+        "NoData"
+      ],
+      "type": "string"
+    },
+    "RuleSequenceSpec": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "trigger",
+        "recordingRules"
+      ],
+      "properties": {
+        "trigger": {
+          "$ref": "#/definitions/IntervalTrigger"
+        },
+        "recordingRules": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/RuleRef"
+          }
+        },
+        "alertRules": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/RuleRef"
+          }
+        }
+      }
+    },
+    "RuleRef": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "name"
+      ],
+      "properties": {
+        "name": {
+          "$ref": "#/definitions/RuleUID",
+          "description": "name is the metadata.name of an AlertRule or RecordingRule resource."
+        }
+      }
+    },
+    "RuleUID": {
+      "type": "string",
+      "pattern": "^[a-zA-Z0-9_-]+$"
+    },
+    "RuleSpec": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "title",
+        "trigger",
+        "expressions"
+      ],
+      "properties": {
+        "title": {
+          "type": "string"
+        },
+        "paused": {
+          "type": "boolean"
+        },
+        "trigger": {
+          "$ref": "#/definitions/IntervalTrigger"
+        },
+        "labels": {
+          "type": "object",
+          "additionalProperties": {
+            "$ref": "#/definitions/TemplateString"
+          }
+        },
+        "expressions": {
+          "$ref": "#/definitions/ExpressionMap"
+        }
+      }
+    },
+    "AlertRuleStatus": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "health": {
+          "$ref": "#/definitions/AlertRuleHealth"
+        },
+        "state": {
+          "$ref": "#/definitions/AlertRuleState"
+        },
+        "stateReason": {
+          "$ref": "#/definitions/AlertRuleStateReason"
+        },
+        "lastEvaluationTime": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "evaluationDuration": {
+          "type": "number",
+          "description": "duration of the last evaluation in seconds"
+        },
+        "lastError": {
+          "type": "string"
+        },
+        "totals": {
+          "$ref": "#/definitions/AlertRuleInstanceTotals"
+        }
+      }
+    },
+    "RecordingRuleStatus": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "health": {
+          "$ref": "#/definitions/RecordingRuleHealth"
+        },
+        "lastEvaluationTime": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "evaluationDuration": {
+          "type": "number",
+          "description": "duration of the last evaluation in seconds"
+        },
+        "lastError": {
+          "type": "string"
+        }
+      }
+    },
+    "ApiVersion": {
+      "type": "string",
+      "const": "rules.alerting.grafana.app/v1beta1"
+    },
+    "AlertRuleKind": {
+      "type": "string",
+      "const": "AlertRule"
+    },
+    "RecordingRuleKind": {
+      "type": "string",
+      "const": "RecordingRule"
+    },
+    "RuleSequenceKind": {
+      "type": "string",
+      "const": "RuleSequence"
+    }
+  }
+}
