@@ -1,7 +1,9 @@
 ---
-title: <span class="badge object-type-interface"></span> NotificationSettings
+title: <span class="badge object-type-interface"></span> <span class="badge deprecated"></span> NotificationSettings
 ---
-# <span class="badge object-type-interface"></span> NotificationSettings
+# <span class="badge object-type-interface"></span> <span class="badge deprecated"></span> NotificationSettings
+
+<span class="badge deprecated"></span>Prefer using the alertingv1beta1 package instead
 
 ## Definition
 
@@ -41,4 +43,4 @@ export interface NotificationSettings {
 ```
 ## See also
 
- * <span class="badge builder"></span> [NotificationSettingsBuilder](./builder-NotificationSettingsBuilder.md)
+ * <span class="badge builder"></span> <span class="badge deprecated"></span> [NotificationSettingsBuilder](./builder-NotificationSettingsBuilder.md)

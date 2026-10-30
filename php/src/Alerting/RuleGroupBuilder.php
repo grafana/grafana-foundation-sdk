@@ -4,6 +4,7 @@ namespace Grafana\Foundation\Alerting;
 
 /**
  * @implements \Grafana\Foundation\Cog\Builder<\Grafana\Foundation\Alerting\RuleGroup>
+ * @deprecated Prefer using the alertingv1beta1 package instead
  */
 class RuleGroupBuilder implements \Grafana\Foundation\Cog\Builder
 {

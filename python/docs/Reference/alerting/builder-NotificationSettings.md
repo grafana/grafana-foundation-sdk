@@ -1,7 +1,9 @@
 ---
-title: <span class="badge builder"></span> NotificationSettings
+title: <span class="badge builder"></span> <span class="badge deprecated"></span> NotificationSettings
 ---
-# <span class="badge builder"></span> NotificationSettings
+# <span class="badge builder"></span> <span class="badge deprecated"></span> NotificationSettings
+
+<span class="badge deprecated"></span>Prefer using the alertingv1beta1 package instead
 
 ## Constructor
 

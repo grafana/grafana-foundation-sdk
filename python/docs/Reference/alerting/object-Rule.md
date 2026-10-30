@@ -1,12 +1,15 @@
 ---
-title: <span class="badge object-type-class"></span> Rule
+title: <span class="badge object-type-class"></span> <span class="badge deprecated"></span> Rule
 ---
-# <span class="badge object-type-class"></span> Rule
+# <span class="badge object-type-class"></span> <span class="badge deprecated"></span> Rule
+
+<span class="badge deprecated"></span>Prefer using the alertingv1beta1 package instead
 
 ## Definition
 
 ```python
 class Rule:
+    warnings.warn("Prefer using the alertingv1beta1 package instead", DeprecationWarning)
     annotations: typing.Optional[dict[str, str]]
     condition: str
     data: list[alerting.Query]
@@ -51,4 +54,4 @@ def from_json(data: dict[str, typing.Any]) -> typing.Self
 
 ## See also
 
- * <span class="badge builder"></span> [Rule](./builder-Rule.md)
+ * <span class="badge builder"></span> <span class="badge deprecated"></span> [Rule](./builder-Rule.md)

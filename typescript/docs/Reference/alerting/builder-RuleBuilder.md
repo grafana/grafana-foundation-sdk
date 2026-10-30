@@ -1,7 +1,9 @@
 ---
-title: <span class="badge builder"></span> RuleBuilder
+title: <span class="badge builder"></span> <span class="badge deprecated"></span> RuleBuilder
 ---
-# <span class="badge builder"></span> RuleBuilder
+# <span class="badge builder"></span> <span class="badge deprecated"></span> RuleBuilder
+
+<span class="badge deprecated"></span>Prefer using the alertingv1beta1 package instead
 
 ## Constructor
 

@@ -8,11 +8,13 @@ import (
 
 var _ cog.Builder[NotificationSettings] = (*NotificationSettingsBuilder)(nil)
 
+// Deprecated: Prefer using the alertingv1beta1 package instead
 type NotificationSettingsBuilder struct {
 	internal *NotificationSettings
 	errors   cog.BuildErrors
 }
 
+// Deprecated: "Prefer using the alertingv1beta1 package instead"
 func NewNotificationSettingsBuilder() *NotificationSettingsBuilder {
 	resource := NewNotificationSettings()
 	builder := &NotificationSettingsBuilder{

@@ -1,7 +1,9 @@
 ---
-title: <span class="badge object-type-struct"></span> Rule
+title: <span class="badge object-type-struct"></span> <span class="badge deprecated"></span> Rule
 ---
-# <span class="badge object-type-struct"></span> Rule
+# <span class="badge object-type-struct"></span> <span class="badge deprecated"></span> Rule
+
+<span class="badge deprecated"></span>Prefer using the alertingv1beta1 package instead
 
 ## Definition
 
@@ -61,4 +63,4 @@ func (rule *Rule) Validate() error
 
 ## See also
 
- * <span class="badge builder"></span> [RuleBuilder](./builder-RuleBuilder.md)
+ * <span class="badge builder"></span> <span class="badge deprecated"></span> [RuleBuilder](./builder-RuleBuilder.md)

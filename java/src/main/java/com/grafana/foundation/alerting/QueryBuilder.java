@@ -4,6 +4,10 @@ package com.grafana.foundation.alerting;
 
 import com.grafana.foundation.cog.variants.Dataquery;
 
+/**
+ * @deprecated Prefer using the alertingv1beta1 package instead
+ */
+@Deprecated(forRemoval = true)
 public class QueryBuilder implements com.grafana.foundation.cog.Builder<Query> {
     protected final Query internal;
     

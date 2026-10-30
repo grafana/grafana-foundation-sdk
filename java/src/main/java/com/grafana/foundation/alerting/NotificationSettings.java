@@ -9,6 +9,10 @@ import com.fasterxml.jackson.databind.ObjectWriter;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import java.util.List;
 
+/**
+ * @deprecated Prefer using the alertingv1beta1 package instead
+ */
+@Deprecated(forRemoval = true)
 public class NotificationSettings {
     // Override the times when notifications should not be muted. These must match the name of a mute time interval defined
     // in the alertmanager configuration time_intervals section. All notifications will be suppressed unless they are sent

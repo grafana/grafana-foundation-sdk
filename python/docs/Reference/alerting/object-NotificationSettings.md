@@ -1,12 +1,15 @@
 ---
-title: <span class="badge object-type-class"></span> NotificationSettings
+title: <span class="badge object-type-class"></span> <span class="badge deprecated"></span> NotificationSettings
 ---
-# <span class="badge object-type-class"></span> NotificationSettings
+# <span class="badge object-type-class"></span> <span class="badge deprecated"></span> NotificationSettings
+
+<span class="badge deprecated"></span>Prefer using the alertingv1beta1 package instead
 
 ## Definition
 
 ```python
 class NotificationSettings:
+    warnings.warn("Prefer using the alertingv1beta1 package instead", DeprecationWarning)
     # Override the times when notifications should not be muted. These must match the name of a mute time interval defined
     # in the alertmanager configuration time_intervals section. All notifications will be suppressed unless they are sent
     # at the time that matches any interval.
@@ -58,4 +61,4 @@ def from_json(data: dict[str, typing.Any]) -> typing.Self
 
 ## See also
 
- * <span class="badge builder"></span> [NotificationSettings](./builder-NotificationSettings.md)
+ * <span class="badge builder"></span> <span class="badge deprecated"></span> [NotificationSettings](./builder-NotificationSettings.md)
