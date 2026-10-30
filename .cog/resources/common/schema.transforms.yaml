@@ -20,6 +20,7 @@ passes:
   # Without these values, some panels might misbehave when displayed in a dashboard
   - fields_set_default:
       defaults:
+        common.SingleStatBaseOptions.orientation: auto # https://github.com/grafana/grafana-foundation-sdk/issues/1302
         common.VizLegendOptions.displayMode: "list"
         common.VizLegendOptions.placement: "bottom"
         common.VizLegendOptions.calcs: []

@@ -1,0 +1,6 @@
+# yaml-language-server: $schema=https://raw.githubusercontent.com/grafana/cog/main/schemas/compiler_passes.json
+
+passes:
+  - fields_set_default:
+      defaults:
+        bargauge.Options.orientation: auto # https://github.com/grafana/grafana-foundation-sdk/issues/1302
