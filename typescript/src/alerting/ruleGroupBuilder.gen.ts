@@ -3,6 +3,9 @@
 import * as cog from '../cog';
 import * as alerting from '../alerting';
 
+/**
+ * @deprecated Prefer using the alertingv1beta1 package instead
+ */
 export class RuleGroupBuilder implements cog.Builder<alerting.RuleGroup> {
     protected readonly internal: alerting.RuleGroup;
 

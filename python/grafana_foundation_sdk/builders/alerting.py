@@ -3,10 +3,13 @@
 import typing
 from ..cog import builder as cogbuilder
 from ..models import alerting
+import warnings
 from ..cog import variants as cogvariants
 
 
 class NotificationSettings(cogbuilder.Builder[alerting.NotificationSettings]):
+    warnings.warn("Prefer using the alertingv1beta1 package instead", DeprecationWarning)
+
     _internal: alerting.NotificationSettings
 
     def __init__(self) -> None:
@@ -564,6 +567,8 @@ class MonthRange(cogbuilder.Builder[alerting.MonthRange]):
 
 
 class RuleGroup(cogbuilder.Builder[alerting.RuleGroup]):
+    warnings.warn("Prefer using the alertingv1beta1 package instead", DeprecationWarning)
+
     _internal: alerting.RuleGroup
 
     def __init__(self, title: str) -> None:
@@ -614,6 +619,8 @@ class RuleGroup(cogbuilder.Builder[alerting.RuleGroup]):
 
 
 class Rule(cogbuilder.Builder[alerting.Rule]):
+    warnings.warn("Prefer using the alertingv1beta1 package instead", DeprecationWarning)
+
     _internal: alerting.Rule
 
     def __init__(self, title: str) -> None:
@@ -762,6 +769,8 @@ class Rule(cogbuilder.Builder[alerting.Rule]):
 
 
 class Query(cogbuilder.Builder[alerting.Query]):
+    warnings.warn("Prefer using the alertingv1beta1 package instead", DeprecationWarning)
+
     _internal: alerting.Query
 
     def __init__(self, ref_id: str) -> None:

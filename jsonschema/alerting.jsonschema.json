@@ -26,7 +26,9 @@
           "$ref": "#/definitions/RelativeTimeRange",
           "description": "RelativeTimeRange is the per query start and end time\nfor requests."
         }
-      }
+      },
+      "deprecated": true,
+      "x-deprecation-message": "Prefer using the alertingv1beta1 package instead"
     },
     "RuleGroup": {
       "type": "object",
@@ -48,7 +50,9 @@
         "title": {
           "type": "string"
         }
-      }
+      },
+      "deprecated": true,
+      "x-deprecation-message": "Prefer using the alertingv1beta1 package instead"
     },
     "NotificationSettings": {
       "type": "object",
@@ -98,7 +102,9 @@
           "type": "string",
           "description": "Override how long to wait before sending a notification again if it has already been sent successfully for an\nalert. (Usually ~3h or more).\nNote that this parameter is implicitly bound by Alertmanager's `--data.retention` configuration flag.\nNotifications will be resent after either repeat_interval or the data retention period have passed, whichever\noccurs first. `repeat_interval` should not be less than `group_interval`."
         }
-      }
+      },
+      "deprecated": true,
+      "x-deprecation-message": "Prefer using the alertingv1beta1 package instead"
     },
     "Duration": {
       "type": "integer",
@@ -350,7 +356,9 @@
           "type": "string",
           "format": "date-time"
         }
-      }
+      },
+      "deprecated": true,
+      "x-deprecation-message": "Prefer using the alertingv1beta1 package instead"
     },
     "RecordRule": {
       "type": "object",

@@ -5,6 +5,10 @@ package com.grafana.foundation.alerting;
 import java.util.List;
 import java.util.LinkedList;
 
+/**
+ * @deprecated Prefer using the alertingv1beta1 package instead
+ */
+@Deprecated(forRemoval = true)
 public class RuleGroupBuilder implements com.grafana.foundation.cog.Builder<RuleGroup> {
     protected final RuleGroup internal;
     

@@ -1,7 +1,9 @@
 ---
-title: <span class="badge builder"></span> Query
+title: <span class="badge builder"></span> <span class="badge deprecated"></span> Query
 ---
-# <span class="badge builder"></span> Query
+# <span class="badge builder"></span> <span class="badge deprecated"></span> Query
+
+<span class="badge deprecated"></span>Prefer using the alertingv1beta1 package instead
 
 ## Constructor
 

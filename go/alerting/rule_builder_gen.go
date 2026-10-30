@@ -10,11 +10,13 @@ import (
 
 var _ cog.Builder[Rule] = (*RuleBuilder)(nil)
 
+// Deprecated: Prefer using the alertingv1beta1 package instead
 type RuleBuilder struct {
 	internal *Rule
 	errors   cog.BuildErrors
 }
 
+// Deprecated: "Prefer using the alertingv1beta1 package instead"
 func NewRuleBuilder(title string) *RuleBuilder {
 	resource := NewRule()
 	builder := &RuleBuilder{

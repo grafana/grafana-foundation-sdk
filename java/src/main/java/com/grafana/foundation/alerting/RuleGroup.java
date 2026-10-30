@@ -9,6 +9,10 @@ import com.fasterxml.jackson.databind.ObjectWriter;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import java.util.List;
 
+/**
+ * @deprecated Prefer using the alertingv1beta1 package instead
+ */
+@Deprecated(forRemoval = true)
 public class RuleGroup {
     @JsonInclude(JsonInclude.Include.NON_NULL)
     @JsonProperty("folderUid")

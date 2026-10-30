@@ -10,6 +10,10 @@ import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.grafana.foundation.cog.variants.Dataquery;
 
+/**
+ * @deprecated Prefer using the alertingv1beta1 package instead
+ */
+@Deprecated(forRemoval = true)
 @JsonDeserialize(using = QueryDeserializer.class)
 public class Query {
     // Grafana data source unique identifier; it should be '__expr__' for a Server Side Expression operation.

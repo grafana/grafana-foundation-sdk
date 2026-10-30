@@ -3,6 +3,9 @@
 import * as cog from '../cog';
 import * as alerting from '../alerting';
 
+/**
+ * @deprecated Prefer using the alertingv1beta1 package instead
+ */
 export class NotificationSettingsBuilder implements cog.Builder<alerting.NotificationSettings> {
     protected readonly internal: alerting.NotificationSettings;
 

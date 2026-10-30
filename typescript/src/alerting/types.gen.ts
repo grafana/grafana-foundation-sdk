@@ -3,6 +3,9 @@
 import * as cog from '../cog';
 
 
+/**
+ * @deprecated Prefer using the alertingv1beta1 package instead
+ */
 export interface Query {
 	// Grafana data source unique identifier; it should be '__expr__' for a Server Side Expression operation.
 	datasourceUid?: string;
@@ -21,6 +24,9 @@ export interface Query {
 export const defaultQuery = (): Query => ({
 });
 
+/**
+ * @deprecated Prefer using the alertingv1beta1 package instead
+ */
 export interface RuleGroup {
 	folderUid?: string;
 	// The interval, in seconds, at which all rules in the group are evaluated.
@@ -33,6 +39,9 @@ export interface RuleGroup {
 export const defaultRuleGroup = (): RuleGroup => ({
 });
 
+/**
+ * @deprecated Prefer using the alertingv1beta1 package instead
+ */
 export interface NotificationSettings {
 	// Override the times when notifications should not be muted. These must match the name of a mute time interval defined
 	// in the alertmanager configuration time_intervals section. All notifications will be suppressed unless they are sent
@@ -167,6 +176,9 @@ export type Provenance = string;
 
 export const defaultProvenance = (): Provenance => ("");
 
+/**
+ * @deprecated Prefer using the alertingv1beta1 package instead
+ */
 export interface Rule {
 	annotations?: Record<string, string>;
 	condition: string;

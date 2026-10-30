@@ -9,11 +9,13 @@ import (
 
 var _ cog.Builder[Query] = (*QueryBuilder)(nil)
 
+// Deprecated: Prefer using the alertingv1beta1 package instead
 type QueryBuilder struct {
 	internal *Query
 	errors   cog.BuildErrors
 }
 
+// Deprecated: "Prefer using the alertingv1beta1 package instead"
 func NewQueryBuilder(refId string) *QueryBuilder {
 	resource := NewQuery()
 	builder := &QueryBuilder{

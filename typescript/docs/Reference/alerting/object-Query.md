@@ -1,7 +1,9 @@
 ---
-title: <span class="badge object-type-interface"></span> Query
+title: <span class="badge object-type-interface"></span> <span class="badge deprecated"></span> Query
 ---
-# <span class="badge object-type-interface"></span> Query
+# <span class="badge object-type-interface"></span> <span class="badge deprecated"></span> Query
+
+<span class="badge deprecated"></span>Prefer using the alertingv1beta1 package instead
 
 ## Definition
 
@@ -24,4 +26,4 @@ export interface Query {
 ```
 ## See also
 
- * <span class="badge builder"></span> [QueryBuilder](./builder-QueryBuilder.md)
+ * <span class="badge builder"></span> <span class="badge deprecated"></span> [QueryBuilder](./builder-QueryBuilder.md)

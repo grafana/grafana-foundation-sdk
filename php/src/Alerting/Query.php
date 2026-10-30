@@ -2,6 +2,9 @@
 
 namespace Grafana\Foundation\Alerting;
 
+/**
+ * @deprecated Prefer using the alertingv1beta1 package instead
+ */
 class Query implements \JsonSerializable
 {
     /**

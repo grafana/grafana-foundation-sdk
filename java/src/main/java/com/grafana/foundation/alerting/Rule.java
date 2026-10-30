@@ -13,6 +13,10 @@ import com.fasterxml.jackson.annotation.JsonSetter;
 import com.fasterxml.jackson.annotation.Nulls;
 import java.util.List;
 
+/**
+ * @deprecated Prefer using the alertingv1beta1 package instead
+ */
+@Deprecated(forRemoval = true)
 public class Rule {
     @JsonInclude(JsonInclude.Include.NON_NULL)
     @JsonProperty("annotations")
