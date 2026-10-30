@@ -2,6 +2,7 @@
 
  * <span class="badge package-core"></span> [alerting](./alerting/index.md)
  * [alertingv0alpha1](./alertingv0alpha1/index.md)
+ * [alertingv1beta1](./alertingv1beta1/index.md)
  * <span class="badge package-variant-panelcfg"></span> [annotationslist](./annotationslist/index.md)
  * <span class="badge package-variant-dataquery"></span> [athena](./athena/index.md)
  * <span class="badge package-variant-dataquery"></span> [azuremonitor](./azuremonitor/index.md)
