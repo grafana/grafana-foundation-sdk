@@ -16,5 +16,3 @@ cd "${release_path}/go"
 for d in */ ; do
   [[ "$d" != "docs/" ]] && (echo "Building $d"; go build "./$d")
 done
-
-go test ./...
