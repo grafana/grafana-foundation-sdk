@@ -68,7 +68,35 @@ passes:
             kind: composable_slot
             composable_slot: { variant: dataquery }
 
-  # typed as `links?: [...]` in the original schema
+  - add_object:
+      object: dashboard.DataLink
+      comments:
+        - Link to another resource from a field value.
+      as:
+        kind: struct
+        struct:
+          fields:
+            - name: title
+              required: true
+              type:
+                kind: scalar
+                scalar: { scalar_kind: string }
+            - name: url
+              required: true
+              type:
+                kind: scalar
+                scalar: { scalar_kind: string }
+            - name: targetBlank
+              type:
+                kind: scalar
+                scalar: { scalar_kind: bool }
+            - name: oneClick
+              type:
+                kind: scalar
+                scalar: { scalar_kind: bool }
+
+  # Field links are data links, not dashboard navigation links.
+  # Typed as `links?: [...]` in the original schema.
   - retype_field:
       field: dashboard.FieldConfig.links
       as:
@@ -76,7 +104,7 @@ passes:
         array:
           value_type:
             kind: ref
-            ref: { referred_pkg: dashboard, referred_type: DashboardLink }
+            ref: { referred_pkg: dashboard, referred_type: DataLink }
 
   # Add a few missing fields.
   # This is meant to be removed once the schema is updated.
