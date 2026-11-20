@@ -1,0 +1,17 @@
+{{- define "object_common_DataSourceRef_custom_unmarshal" -}}
+{{- /* Non-standard unmarshalling, to support "legacy" datasource references. ie: older versions of Grafana reference datasources directly by their name */ -}}
+{{- $typing := importPkg "typing" "typing" }}
+@classmethod
+def from_json(cls, data: {{ $typing }}.Union[str, dict[str, {{ $typing }}.Any]]) -> {{ $typing }}.Self:
+    if isinstance(data, str):
+        return cls(uid=data)
+
+    args: dict[str, {{ $typing }}.Any] = {}
+
+    if "type" in data:
+        args["type_val"] = data["type"]
+    if "uid" in data:
+        args["uid"] = data["uid"]
+
+    return cls(**args)
+{{- end }}
