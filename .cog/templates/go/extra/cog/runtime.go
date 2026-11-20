@@ -61,6 +61,29 @@ func (runtime *Runtime) configForDataqueryVariant(identifier string) (variants.D
 	return config, found
 }
 
+// dataqueryDatasource extracts the type of the datasource referenced by a dataquery.
+// Legacy dashboards reference datasources by name, as a plain string: there is
+// no type to extract in that case.
+type dataqueryDatasource struct {
+	Type string
+}
+
+func (datasource *dataqueryDatasource) UnmarshalJSON(raw []byte) error {
+	if len(raw) > 0 && raw[0] == '"' {
+		return nil
+	}
+
+	ref := struct {
+		Type string `json:"type"`
+	}{}
+	if err := json.Unmarshal(raw, &ref); err != nil {
+		return err
+	}
+	datasource.Type = ref.Type
+
+	return nil
+}
+
 func (runtime *Runtime) UnmarshalDataqueryArray(raw []byte, dataqueryTypeHint string) ([]variants.Dataquery, error) {
 	rawDataqueries := []json.RawMessage{}
 	if err := json.Unmarshal(raw, &rawDataqueries); err != nil {
@@ -96,9 +119,7 @@ func (runtime *Runtime) UnmarshalDataquery(raw []byte, dataqueryTypeHint string)
 
 	// Dataqueries might reference the datasource to use, and its type. Let's use that.
 	partialDataquery := struct {
-		Datasource struct {
-			Type string `json:"type"`
-		} `json:"datasource"`
+		Datasource dataqueryDatasource `json:"datasource"`
 	}{}
 	if err := json.Unmarshal(raw, &partialDataquery); err != nil {
 		return nil, err
@@ -140,9 +161,7 @@ func (runtime *Runtime) StrictUnmarshalDataquery(raw []byte, dataqueryTypeHint s
 
 	// Dataqueries might reference the datasource to use, and its type. Let's use that.
 	partialDataquery := struct {
-		Datasource struct {
-			Type string `json:"type"`
-		} `json:"datasource"`
+		Datasource dataqueryDatasource `json:"datasource"`
 	}{}
 	if err := json.Unmarshal(raw, &partialDataquery); err != nil {
 		return nil, err
