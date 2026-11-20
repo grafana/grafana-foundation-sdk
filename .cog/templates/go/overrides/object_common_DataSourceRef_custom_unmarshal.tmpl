@@ -1,4 +1,4 @@
-{{- define "object_dashboard_DataSourceRef_custom_unmarshal" }}
+{{- define "object_common_DataSourceRef_custom_unmarshal" }}
 {{- /* Non-standard unmarshalling, to support "legacy" datasource references. ie: older versions of Grafana reference datasources directly by their name */ -}}
 func (resource *DataSourceRef) UnmarshalJSON(raw []byte) error {
     if raw == nil {
