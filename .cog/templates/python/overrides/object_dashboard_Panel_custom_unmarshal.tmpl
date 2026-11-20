@@ -50,5 +50,5 @@ def from_json(cls, data: dict[str, typing.Any]) -> typing.Self:
 
 {{- define "unmarshal_dashboard_panel_targets" }}
     if "targets" in data:
-        args["targets"] = [cogruntime.dataquery_from_json(dataquery_json, data["datasource"]["type"] if data.get("datasource") is not None and data["datasource"].get("type", "") != "" else "") for dataquery_json in data["targets"]]
+        args["targets"] = [cogruntime.dataquery_from_json(dataquery_json, data["datasource"]["type"] if isinstance(data.get("datasource"), dict) and data["datasource"].get("type", "") != "" else "") for dataquery_json in data["targets"]]
 {{- end }}

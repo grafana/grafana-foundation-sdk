@@ -15,5 +15,5 @@
 {{- end }}
 
 {{- define "dataquery_field_unmarshal_hint" -}}
-data["{{ .Candidate.Name }}"]["type"] if data.get("{{ .Candidate.Name }}") is not None and data["{{ .Candidate.Name }}"].get("type", "") != "" else ""
+data["{{ .Candidate.Name }}"]["type"] if isinstance(data.get("{{ .Candidate.Name }}"), dict) and data["{{ .Candidate.Name }}"].get("type", "") != "" else ""
 {{- end }}
